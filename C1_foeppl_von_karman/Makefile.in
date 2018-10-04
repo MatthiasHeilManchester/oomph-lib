@@ -829,8 +829,8 @@ dummy_$(libnameFvK).h:  $(headersFvK)
 # Extra hook for install: Optionally replace headers by symbolic links
 #---------------------------------------------------------------------
 @SYMBOLIC_LINKS_FOR_HEADERS_TRUE@install-data-hook: 
-@SYMBOLIC_LINKS_FOR_HEADERS_TRUE@	(cd $(library_includedir) && rm -f $(headers) )
-@SYMBOLIC_LINKS_FOR_HEADERS_TRUE@	(echo "$(headers)" > include_files.list )
+@SYMBOLIC_LINKS_FOR_HEADERS_TRUE@	(cd $(library_includedir) && rm -f $(headersFvK) )
+@SYMBOLIC_LINKS_FOR_HEADERS_TRUE@	(echo "$(headersFvK)" > include_files.list )
 @SYMBOLIC_LINKS_FOR_HEADERS_TRUE@	($(top_builddir)/bin/change_headers_to_links.sh `pwd`)
 @SYMBOLIC_LINKS_FOR_HEADERS_TRUE@	($(LN_S) `cat include_files.list.aux` $(library_includedir) )
 @SYMBOLIC_LINKS_FOR_HEADERS_TRUE@	(rm -r include_files.list.aux include_files.list ) 
@@ -839,7 +839,7 @@ dummy_$(libnameFvK).h:  $(headersFvK)
 # Tidy up
 #--------
 clean-local:
-	rm -f $(libname).h
+	rm -f $(libnameFvK).h
 
 # Tell versions [3.59,3.63) of GNU make to not export all variables.
 # Otherwise a system limit (for SysV at least) may be exceeded.

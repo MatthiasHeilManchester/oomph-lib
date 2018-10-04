@@ -69,8 +69,8 @@ dummy_$(libnameC1).h:  $(headersC1)
 #---------------------------------------------------------------------
 if SYMBOLIC_LINKS_FOR_HEADERS
 install-data-hook: 
-	(cd $(library_includedir) && rm -f $(headers) )
-	(echo "$(headers)" > include_files.list )
+	(cd $(library_includedir) && rm -f $(headersC1) )
+	(echo "$(headersC1)" > include_files.list )
 	($(top_builddir)/bin/change_headers_to_links.sh `pwd`)
 	($(LN_S) `cat include_files.list.aux` $(library_includedir) )
 	(rm -r include_files.list.aux include_files.list ) 
@@ -82,6 +82,6 @@ endif
 # Tidy up
 #--------
 clean-local:
-	rm -f $(libname).h
+	rm -f $(libnameC1).h
 
 
