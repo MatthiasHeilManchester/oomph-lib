@@ -3,12 +3,13 @@
 
 # Define the sources
 sources =  \
-Bell_element_basis.cc
+Bell_element_basis.cc C1_curved_elements.cc C1_curved_basic_basis.cc \
+C1_curved_association_matrix.cc
 #hello_world.cc
 
 # Define the headers
 headers =  \
-Bell_element_basis.h
+Bell_element_basis.h C1_curved_elements.h my_geom_object.h
 
 # Define name of library
 libname = C1_basis

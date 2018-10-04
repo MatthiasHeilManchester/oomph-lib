@@ -137,7 +137,8 @@ am__installdirs = "$(DESTDIR)$(libdir)" "$(DESTDIR)$(includedir)" \
 LTLIBRARIES = $(lib_LTLIBRARIES)
 libC1_basis_la_LIBADD =
 am__objects_1 =
-am__objects_2 = Bell_element_basis.lo
+am__objects_2 = Bell_element_basis.lo C1_curved_elements.lo \
+	C1_curved_basic_basis.lo C1_curved_association_matrix.lo
 am__objects_3 = $(am__objects_1) $(am__objects_2)
 am_libC1_basis_la_OBJECTS = $(am__objects_3)
 libC1_basis_la_OBJECTS = $(am_libC1_basis_la_OBJECTS)
@@ -399,13 +400,14 @@ top_srcdir = @top_srcdir@
 
 # Define the sources
 sources = \
-Bell_element_basis.cc
+Bell_element_basis.cc C1_curved_elements.cc C1_curved_basic_basis.cc \
+C1_curved_association_matrix.cc
 
 #hello_world.cc
 
 # Define the headers
 headers = \
-Bell_element_basis.h
+Bell_element_basis.h C1_curved_elements.h my_geom_object.h
 
 
 # Define name of library
@@ -513,6 +515,9 @@ distclean-compile:
 	-rm -f *.tab.c
 
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/Bell_element_basis.Plo@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/C1_curved_association_matrix.Plo@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/C1_curved_basic_basis.Plo@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/C1_curved_elements.Plo@am__quote@
 
 .cc.o:
 @am__fastdepCXX_TRUE@	$(AM_V_CXX)$(CXXCOMPILE) -MT $@ -MD -MP -MF $(DEPDIR)/$*.Tpo -c -o $@ $<
