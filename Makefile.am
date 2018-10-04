@@ -3,25 +3,26 @@
 
 # Define the sources
 sources =  \
-hello_world.cc
+Bell_element_basis.cc
+#hello_world.cc
 
 # Define the headers
 headers =  \
-hello_world.h
+Bell_element_basis.h
 
 # Define name of library
-libname = jack_cool
+libname = C1_basis
 
 # Combine headers and sources
 headers_and_sources = $(headers) $(sources)
 
 # Define the library that gets placed in lib directory
 #-----------------------------------------------------
-lib_LTLIBRARIES = libjack_cool.la
+lib_LTLIBRARIES = libC1_basis.la
 
 # Sources that the library depends on: 
 #-------------------------------------
-libjack_cool_la_SOURCES = $(headers_and_sources)
+libC1_basis_la_SOURCES = $(headers_and_sources)
 
 # The library's include headers:
 #-------------------------------
@@ -31,7 +32,7 @@ libjack_cool_la_SOURCES = $(headers_and_sources)
 include_HEADERS = $(libname).h 
 
 #Here's the subdirectory where the actual header files are placed
-library_includedir=$(includedir)/jack_cool
+library_includedir=$(includedir)/C1_basis
 
 #These are the header files that are to be placed in subdirectory
 library_include_HEADERS=$(headers) 

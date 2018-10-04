@@ -135,12 +135,12 @@ am__uninstall_files_from_dir = { \
 am__installdirs = "$(DESTDIR)$(libdir)" "$(DESTDIR)$(includedir)" \
 	"$(DESTDIR)$(library_includedir)"
 LTLIBRARIES = $(lib_LTLIBRARIES)
-libjack_cool_la_LIBADD =
+libC1_basis_la_LIBADD =
 am__objects_1 =
-am__objects_2 = hello_world.lo
+am__objects_2 = Bell_element_basis.lo
 am__objects_3 = $(am__objects_1) $(am__objects_2)
-am_libjack_cool_la_OBJECTS = $(am__objects_3)
-libjack_cool_la_OBJECTS = $(am_libjack_cool_la_OBJECTS)
+am_libC1_basis_la_OBJECTS = $(am__objects_3)
+libC1_basis_la_OBJECTS = $(am_libC1_basis_la_OBJECTS)
 AM_V_lt = $(am__v_lt_@AM_V@)
 am__v_lt_ = $(am__v_lt_@AM_DEFAULT_V@)
 am__v_lt_0 = --silent
@@ -196,8 +196,8 @@ AM_V_CCLD = $(am__v_CCLD_@AM_V@)
 am__v_CCLD_ = $(am__v_CCLD_@AM_DEFAULT_V@)
 am__v_CCLD_0 = @echo "  CCLD    " $@;
 am__v_CCLD_1 = 
-SOURCES = $(libjack_cool_la_SOURCES)
-DIST_SOURCES = $(libjack_cool_la_SOURCES)
+SOURCES = $(libC1_basis_la_SOURCES)
+DIST_SOURCES = $(libC1_basis_la_SOURCES)
 am__can_run_installinfo = \
   case $$AM_UPDATE_INFO_DIR in \
     n|no|NO) false;; \
@@ -399,27 +399,28 @@ top_srcdir = @top_srcdir@
 
 # Define the sources
 sources = \
-hello_world.cc
+Bell_element_basis.cc
 
+#hello_world.cc
 
 # Define the headers
 headers = \
-hello_world.h
+Bell_element_basis.h
 
 
 # Define name of library
-libname = jack_cool
+libname = C1_basis
 
 # Combine headers and sources
 headers_and_sources = $(headers) $(sources)
 
 # Define the library that gets placed in lib directory
 #-----------------------------------------------------
-lib_LTLIBRARIES = libjack_cool.la
+lib_LTLIBRARIES = libC1_basis.la
 
 # Sources that the library depends on: 
 #-------------------------------------
-libjack_cool_la_SOURCES = $(headers_and_sources)
+libC1_basis_la_SOURCES = $(headers_and_sources)
 
 # The library's include headers:
 #-------------------------------
@@ -429,7 +430,7 @@ libjack_cool_la_SOURCES = $(headers_and_sources)
 include_HEADERS = $(libname).h 
 
 #Here's the subdirectory where the actual header files are placed
-library_includedir = $(includedir)/jack_cool
+library_includedir = $(includedir)/C1_basis
 
 #These are the header files that are to be placed in subdirectory
 library_include_HEADERS = $(headers) 
@@ -502,8 +503,8 @@ clean-libLTLIBRARIES:
 	  rm -f $${locs}; \
 	}
 
-libjack_cool.la: $(libjack_cool_la_OBJECTS) $(libjack_cool_la_DEPENDENCIES) $(EXTRA_libjack_cool_la_DEPENDENCIES) 
-	$(AM_V_CXXLD)$(CXXLINK) -rpath $(libdir) $(libjack_cool_la_OBJECTS) $(libjack_cool_la_LIBADD) $(LIBS)
+libC1_basis.la: $(libC1_basis_la_OBJECTS) $(libC1_basis_la_DEPENDENCIES) $(EXTRA_libC1_basis_la_DEPENDENCIES) 
+	$(AM_V_CXXLD)$(CXXLINK) -rpath $(libdir) $(libC1_basis_la_OBJECTS) $(libC1_basis_la_LIBADD) $(LIBS)
 
 mostlyclean-compile:
 	-rm -f *.$(OBJEXT)
@@ -511,7 +512,7 @@ mostlyclean-compile:
 distclean-compile:
 	-rm -f *.tab.c
 
-@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/hello_world.Plo@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/Bell_element_basis.Plo@am__quote@
 
 .cc.o:
 @am__fastdepCXX_TRUE@	$(AM_V_CXX)$(CXXCOMPILE) -MT $@ -MD -MP -MF $(DEPDIR)/$*.Tpo -c -o $@ $<
