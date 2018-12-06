@@ -114,15 +114,15 @@ public:
     Curved_edge = curved_edge;
     /// Fill in the function values at vertex 0
     Chi_subar.resize(2);
-    D_chi_subar.resize(1,2);
-    D2_chi_subar.resize(1,2);
+    D_chi_subar.resize(2);
+    D2_chi_subar.resize(2);
     parametric_curve.position(Vector<double>(1,su),Chi_subar);
     parametric_curve.dposition(Vector<double>(1,su),D_chi_subar);
     parametric_curve.d2position(Vector<double>(1,su),D2_chi_subar);
     /// Fill in the function values at vertex 1
     Chi_sobar.resize(2);
-    D_chi_sobar.resize(1,2);
-    D2_chi_sobar.resize(1,2);
+    D_chi_sobar.resize(2);
+    D2_chi_sobar.resize(2);
     parametric_curve.position(Vector<double>(1,so),Chi_sobar);
     parametric_curve.dposition(Vector<double>(1,so),D_chi_sobar);
     parametric_curve.d2position(Vector<double>(1,so),D2_chi_sobar);
