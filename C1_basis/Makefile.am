@@ -6,9 +6,9 @@ sourcesC1 =  \
 Bell_element_basis.cc C1_curved_elements.cc C1_curved_basic_basis.cc \
 C1_curved_association_matrix.cc
 
-sourcesFvK =  \
-foeppl_von_karman_elements.cc foeppl_von_karman_bell_elements.cc \
- foeppl_von_karman_curved_bell_elements.cc
+# sourcesFvK =  \
+# foeppl_von_karman_elements.cc foeppl_von_karman_bell_elements.cc \
+#  foeppl_von_karman_curved_bell_elements.cc
 
 # Define the headers
 headersC1 =  \
@@ -19,7 +19,6 @@ libnameC1 = C1_basis
 
 # Combine headers and sources
 headersC1_and_sourcesC1 = $(headersC1) $(sourcesC1)
-headersFvK_and_sourcesFvK = $(headersFvK) $(sourcesFvK)
 
 # Define the library that gets placed in lib directory
 #-----------------------------------------------------
@@ -57,7 +56,7 @@ AM_CPPFLAGS += -I$(top_builddir)/src/generic
 # Rule for building combined header (dummy target never gets made so
 # the combined header is remade every time)
 $(libnameC1).h: dummy_$(libnameC1).h
-$(libnameFvK).h: dummy_$(libnameFvK).h
+# $(libnameFvK).h: dummy_$(libnameFvK).h
 
 dummy_$(libnameC1).h:  $(headersC1)
 	echo  $(libnameC1) $(headersC1) > all_$(libnameC1).aux
@@ -69,10 +68,10 @@ dummy_$(libnameC1).h:  $(headersC1)
 #---------------------------------------------------------------------
 if SYMBOLIC_LINKS_FOR_HEADERS
 install-data-hook: 
-	(cd $(library_includedir) && rm -f $(headersC1) )
+	(cd $(library_C1_basisincludedir) && rm -f $(headersC1) )
 	(echo "$(headersC1)" > include_files.list )
 	($(top_builddir)/bin/change_headers_to_links.sh `pwd`)
-	($(LN_S) `cat include_files.list.aux` $(library_includedir) )
+	($(LN_S) `cat include_files.list.aux` $(library_C1_basisincludedir) )
 	(rm -r include_files.list.aux include_files.list ) 
 else
 install-data-hook: 

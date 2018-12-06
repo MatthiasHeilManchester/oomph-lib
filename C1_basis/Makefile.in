@@ -405,10 +405,10 @@ sourcesC1 = \
 Bell_element_basis.cc C1_curved_elements.cc C1_curved_basic_basis.cc \
 C1_curved_association_matrix.cc
 
-sourcesFvK = \
-foeppl_von_karman_elements.cc foeppl_von_karman_bell_elements.cc \
- foeppl_von_karman_curved_bell_elements.cc
 
+# sourcesFvK =  \
+# foeppl_von_karman_elements.cc foeppl_von_karman_bell_elements.cc \
+#  foeppl_von_karman_curved_bell_elements.cc
 
 # Define the headers
 headersC1 = \
@@ -420,7 +420,6 @@ libnameC1 = C1_basis
 
 # Combine headers and sources
 headersC1_and_sourcesC1 = $(headersC1) $(sourcesC1)
-headersFvK_and_sourcesFvK = $(headersFvK) $(sourcesFvK)
 
 # Define the library that gets placed in lib directory
 #-----------------------------------------------------
@@ -817,7 +816,7 @@ uninstall-am: uninstall-C1_basisincludeHEADERS \
 # Rule for building combined header (dummy target never gets made so
 # the combined header is remade every time)
 $(libnameC1).h: dummy_$(libnameC1).h
-$(libnameFvK).h: dummy_$(libnameFvK).h
+# $(libnameFvK).h: dummy_$(libnameFvK).h
 
 dummy_$(libnameC1).h:  $(headersC1)
 	echo  $(libnameC1) $(headersC1) > all_$(libnameC1).aux
@@ -828,10 +827,10 @@ dummy_$(libnameC1).h:  $(headersC1)
 # Extra hook for install: Optionally replace headers by symbolic links
 #---------------------------------------------------------------------
 @SYMBOLIC_LINKS_FOR_HEADERS_TRUE@install-data-hook: 
-@SYMBOLIC_LINKS_FOR_HEADERS_TRUE@	(cd $(library_includedir) && rm -f $(headersC1) )
+@SYMBOLIC_LINKS_FOR_HEADERS_TRUE@	(cd $(library_C1_basisincludedir) && rm -f $(headersC1) )
 @SYMBOLIC_LINKS_FOR_HEADERS_TRUE@	(echo "$(headersC1)" > include_files.list )
 @SYMBOLIC_LINKS_FOR_HEADERS_TRUE@	($(top_builddir)/bin/change_headers_to_links.sh `pwd`)
-@SYMBOLIC_LINKS_FOR_HEADERS_TRUE@	($(LN_S) `cat include_files.list.aux` $(library_includedir) )
+@SYMBOLIC_LINKS_FOR_HEADERS_TRUE@	($(LN_S) `cat include_files.list.aux` $(library_C1_basisincludedir) )
 @SYMBOLIC_LINKS_FOR_HEADERS_TRUE@	(rm -r include_files.list.aux include_files.list ) 
 @SYMBOLIC_LINKS_FOR_HEADERS_FALSE@install-data-hook: 
 

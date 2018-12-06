@@ -31,7 +31,7 @@ libC1_foeppl_von_karman_la_SOURCES = $(headersFvK_and_sourcesFvK)
 # This is the combined header which contains "#include<...>" commands
 # for the real headers in the subdirectory below $(includedir)
 C1_foeppl_von_karmaninclude_HEADERS = $(libnameFvK).h 
-C1_basisincludedir = $(includedir) 
+# C1_basisincludedir = $(includedir) 
 C1_foeppl_von_karmanincludedir = $(includedir)
 
 #Here's the subdirectory where the actual header files are placed
@@ -65,10 +65,10 @@ dummy_$(libnameFvK).h:  $(headersFvK)
 #---------------------------------------------------------------------
 if SYMBOLIC_LINKS_FOR_HEADERS
 install-data-hook: 
-	(cd $(library_includedir) && rm -f $(headersFvK) )
+	(cd $(library_C1_foeppl_von_karmanincludedir) && rm -f $(headersFvK) )
 	(echo "$(headersFvK)" > include_files.list )
 	($(top_builddir)/bin/change_headers_to_links.sh `pwd`)
-	($(LN_S) `cat include_files.list.aux` $(library_includedir) )
+	($(LN_S) `cat include_files.list.aux` $(library_C1_foeppl_von_karmanincludedir) )
 	(rm -r include_files.list.aux include_files.list ) 
 else
 install-data-hook: 
