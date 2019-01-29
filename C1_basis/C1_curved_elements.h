@@ -150,7 +150,7 @@ public:
   inline const double& get_s_ubar() const
     {
      // If we have upgraded
-     if(Curved_edge == none) {return s_ubar;}
+     if(Curved_edge != none) {return s_ubar;}
      else {
      throw OomphLibError(
      "The element has not been upgraded yet. Did \
@@ -163,7 +163,7 @@ public:
   inline const double& get_s_obar() const
    {
      // If we have upgraded
-     if(Curved_edge == none) {return s_obar;}
+     if(Curved_edge != none) {return s_obar;}
      else {
      throw OomphLibError(
      "The element has not been upgraded yet. Did \
