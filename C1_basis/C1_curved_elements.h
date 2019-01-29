@@ -416,12 +416,12 @@ protected:
  // normal that points from the point ci on the ith side to the node ai.
  /// (Signed) altitude 1.
  inline double altitude_1() const {
-  return -parallelogram_area(A1(0),A1(1),B2(0),B2(1)) / 
+  return parallelogram_area(A1(0),A1(1),B2(0),B2(1)) / 
    sqrt(B2(0)*B2(0)+B2(1)*B2(1));}
 
  /// (Signed) altitude 2
  inline double altitude_2()const{
-  return -parallelogram_area(A1(0),A1(1),B2(0),B2(1)) / 
+  return parallelogram_area(A1(0),A1(1),B2(0),B2(1)) / 
    sqrt(A1(0)*A1(0)+A1(1)*A1(1));}
 
  /// \short Altitude vector 1 (i.e normal vector with length of altitude) 
