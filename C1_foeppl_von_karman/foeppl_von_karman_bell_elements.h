@@ -155,8 +155,8 @@ public:
  ///\short  Constructor: Call constructors for BellElement and
  /// Biharmonic equations
  FoepplVonKarmanBellElement() :
-  FoepplVonKarmanEquations<DIM,NNODE_1D>(), Rotated_basis_fct_pt(0),
-  Nnodes_to_rotate(0), Bell_basis()
+  FoepplVonKarmanEquations<DIM,NNODE_1D>(), Bell_basis(),
+  Rotated_basis_fct_pt(0), Nnodes_to_rotate(0)
   {
    this->set_nnodal_position_type(6);
    // Use the higher order integration scheme
