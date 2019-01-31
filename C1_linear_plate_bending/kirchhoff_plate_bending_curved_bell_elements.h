@@ -34,6 +34,14 @@ public:
  /// \short get the coordinate
  inline void get_coordinate_x(const Vector<double>& s, Vector<double>& x) const;
 
+ /// \short get the coordinate i
+ double interpolated_x (const Vector<double>& s, const unsigned &i) const 
+  { Vector<double> r(2); get_coordinate_x(s,r); return r[i]; }  
+
+ /// \short get the coordinate i
+ inline void interpolated_zeta (const Vector<double>&s, Vector<double>& zeta) const 
+  {get_coordinate_x(s,zeta); }  
+
  // Upgrade an element to its curved counterpart
  inline void upgrade_to_curved_element(const Edge& curved_edge, const double& s_ubar,
   const double& s_obar,  CurvilineGeomObject* parametric_edge);
@@ -95,8 +103,29 @@ public:
 
    // Use the higher order integration scheme
   TGauss<2,5>* new_integral_pt = new TGauss<2,5>;
+  delete this->integral_pt(); 
   this->set_integration_scheme(new_integral_pt); 
   }
+
+ // Destructor
+ ~KirchhoffPlateBendingC1CurvedBellElement() 
+  {
+   // Clean up allocation of integration scheme
+   delete this->integral_pt(); 
+  }
+
+ // HERE wrapper around locate zeta - hacky way to get the interface working
+ // needs FIXING
+ void locate_zeta(const Vector<double> &zeta,                     
+                                GeomObject*& geom_object_pt, Vector<double> &s, 
+                                const bool& use_coordinate_as_initial_guess)  
+   {
+   // Temporarily set nnodal_position_type to be one
+   this->set_nnodal_position_type(1);
+   FiniteElement::locate_zeta(zeta,geom_object_pt,s,use_coordinate_as_initial_guess);
+   // Set it back to six
+   this->set_nnodal_position_type(6);
+   }
 
  /// Broken copy constructor
  KirchhoffPlateBendingC1CurvedBellElement(const
@@ -308,14 +337,6 @@ inline void KirchhoffPlateBendingC1CurvedBellElement<DIM,NNODE_1D,BOUNDARY_ORDER
    throw OomphLibError(
    "Cannot upgrade more than a single edge to be curved in C1 Curved Bell \
 Elements.",OOMPH_CURRENT_FUNCTION,  OOMPH_EXCEPTION_LOCATION);
-  }
- // Check if higher order element
- if(BOUNDARY_ORDER == 5 && d2_parametric_edge == 0)
-  {
-   // SCREAM
-   throw OomphLibError(
-   "Need to supply a none null d2_parametric_edge function pointer for fifth\
-order Elements.",OOMPH_CURRENT_FUNCTION,  OOMPH_EXCEPTION_LOCATION);
   }
  #endif
  using namespace MyC1CurvedElements;
