@@ -128,6 +128,21 @@ class BellElementBasis
 
  /// Destructor
  ~BellElementBasis() {}
+
+ // Private copy and assign - so this should cause a compilation error
+ private:
+ /// Broken copy constructor
+ BellElementBasis(BellElementBasis& dummy) 
+  { 
+   BrokenCopy::broken_copy("BellElementBasis");
+  } 
+ /// Broken assignment operator
+ void operator=(const BellElementBasis&) 
+  {
+   BrokenCopy::broken_assign("BellElementBasis");
+  }
+
+ public:
  
  /// Get the (twice) area of the triangle from the vertices
  double get_twice_triangle_area(const Vector<double>& v0, const Vector<double>&

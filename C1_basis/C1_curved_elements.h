@@ -136,6 +136,22 @@ public:
   /// Destructor
   ~BernadouElementBasis(){}
 
+  // Private copy and assign - so this should cause a compilation error
+  private:
+  /// Broken copy constructor
+  BernadouElementBasis(BernadouElementBasis& dummy) 
+   { 
+    BrokenCopy::broken_copy("BernadouElementBasis");
+   } 
+  /// Broken assignment operator
+  void operator=(const BernadouElementBasis&) 
+   {
+    BrokenCopy::broken_assign("BernadouElementBasis");
+   }
+
+  public:
+
+
   /// Check the element
   inline void self_check(const CurvilineGeomObject& parametric_curve) const;
 
