@@ -357,11 +357,6 @@ Elements.",OOMPH_CURRENT_FUNCTION,  OOMPH_EXCEPTION_LOCATION);
 
  // Set up the data of the element
  typename BernadouElementBasis<BOUNDARY_ORDER>::VertexList  vertices(3,Vector<double>(2,0.0));
- typename BernadouElementBasis<BOUNDARY_ORDER>::VertexList lvertices(3,Vector<double>(2,0.0));
-
- // Set up the local vertices
- lvertices[0][0]=1.0;
- lvertices[1][1]=1.0;
 
  // Now switch to upgrade
  // The shape functions are designed such that the curved edge is always edge
@@ -376,22 +371,31 @@ one side defined by a parametric function.", OOMPH_CURRENT_FUNCTION,
      OOMPH_EXCEPTION_LOCATION);
    break;
    case zero:
-    // Everything cyclicly permutes
-    this->get_x(lvertices[0],vertices[2]);
-    this->get_x(lvertices[1],vertices[0]);
-    this->get_x(lvertices[2],vertices[1]);
+   // Everything cyclicly permutes
+    for(unsigned i=0;i<2;++i)
+     {
+      vertices[2][i]=this->node_pt(0)->x(i);
+      vertices[0][i]=this->node_pt(1)->x(i);
+      vertices[1][i]=this->node_pt(2)->x(i);
+     }
    break;
    case one:
-    // Everything cyclicly permutes
-    this->get_x(lvertices[1],vertices[2]);
-    this->get_x(lvertices[2],vertices[0]);
-    this->get_x(lvertices[0],vertices[1]);
+   // Everything cyclicly permutes
+    for(unsigned i=0;i<2;++i)
+     {
+      vertices[2][i]=this->node_pt(1)->x(i);
+      vertices[0][i]=this->node_pt(2)->x(i);
+      vertices[1][i]=this->node_pt(0)->x(i);
+     }
    break;
    case two:
-    // Everything is just copied over
-    this->get_x(lvertices[2],vertices[2]);
-    this->get_x(lvertices[0],vertices[0]);
-    this->get_x(lvertices[1],vertices[1]);
+   // Everything is just copied over
+    for(unsigned i=0;i<2;++i)
+     {
+      vertices[2][i]=this->node_pt(2)->x(i);
+      vertices[0][i]=this->node_pt(0)->x(i);
+      vertices[1][i]=this->node_pt(1)->x(i);
+     }
    break;
   }
  // Add the vertices to make the shape functions fully functional
