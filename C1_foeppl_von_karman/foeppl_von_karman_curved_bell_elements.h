@@ -1130,11 +1130,19 @@ template <unsigned DIM, unsigned NNODE_1D, unsigned BOUNDARY_ORDER>
 template <unsigned DIM, unsigned NNODE_1D, unsigned BOUNDARY_ORDER>
  void FoepplVonKarmanC1CurvedBellElement<DIM,NNODE_1D,BOUNDARY_ORDER>::
  fix_out_of_plane_displacement_dof(const unsigned& dof_number, const unsigned&
-b,const DisplacementFctPt& w)
+b,const DisplacementFctPt& specified_deflection_fct_pt)
  {
-  // CHECK HERE
+  const unsigned n_vertices = 3, n_dof_types = 6;
+  // Check that the dof number is a sensible value
+  if(dof_number >= n_dof_types)
+   {
+    throw OomphLibError("Foppl von Karman elements only have 6 Hermite deflection degrees\
+of freedom at internal points. They are {w ; w,x ; w,y ; w,xx ; w,xy ; w,yy}",
+                        "FoepplVonKarmanC1CurvedBellElement:fix_out_of_plane_dof()",
+                        OOMPH_EXCEPTION_LOCATION);
+   }
   // Bell elements only have deflection dofs at vertices
-  for(unsigned n=0; n<3; ++n)
+  for(unsigned n=0; n<n_vertices; ++n)
    {
     // Get node
     Node* nod_pt=this->node_pt(n);
@@ -1148,10 +1156,10 @@ b,const DisplacementFctPt& w)
       x[1]=nod_pt->x(1);
       // Get value
       double value;
-      w(x,value);
+      specified_deflection_fct_pt(x,value);
       // Pin and set the value
-      nod_pt->pin(dof_number);
-      nod_pt->set_value(dof_number,value);
+      nod_pt->pin(this->w_index_foeppl_von_karman()+dof_number);
+      nod_pt->set_value(this->w_index_foeppl_von_karman()+dof_number,value);
      }
    }
  }
@@ -1159,10 +1167,18 @@ b,const DisplacementFctPt& w)
 template <unsigned DIM, unsigned NNODE_1D, unsigned BOUNDARY_ORDER>
  void FoepplVonKarmanC1CurvedBellElement<DIM,NNODE_1D,BOUNDARY_ORDER>::
  fix_in_plane_displacement_dof(const unsigned& dof_number, const unsigned& b, const
-DisplacementFctPt& u)
+DisplacementFctPt& specified_displacement_fct_pt)
  {
-  // CHECK HERE
-   const unsigned n_node = this->nnode();
+  // Initialise constants that we use in this function
+  const unsigned n_dof_types = 2, dim = DIM, n_node = this->nnode();
+  // Check that the dof number is a sensible value
+  if(dof_number >= n_dof_types)
+   {
+    throw OomphLibError("Foppl von Karman elements only have 2 in-plane displacement degrees\
+of freedom at internal points. They are {w ; w,x ; w,y ; w,xx ; w,xy ; w,yy}",
+                        "FoepplVonKarmanC1CurvedBellElement:fix_out_of_plane_dof()",
+                        OOMPH_EXCEPTION_LOCATION);
+   }
   // Bell elements only have deflection dofs at vertices
   for(unsigned n=0; n<n_node; ++n)
    {
@@ -1173,20 +1189,14 @@ DisplacementFctPt& u)
     if(is_boundary_node)
      {
       // Extract nodal coordinates from node:
-      // HERE shouldn't we get s of node and then use interpolated position
-      // here to be consistent?
       // Since the element isn't necessarily isoparametric the nodes 'position'
       // is not necessarily correct?
-      Vector<double> x(2),s(2);
+      Vector<double> x(dim),s(dim);
       this->local_coordinate_of_node(n,s);
       get_coordinate_x(s, x); 
-      /*
-      x[0]=nod_pt->x(0);
-      x[1]=nod_pt->x(1);
-      */
-      // Get value
+      // Fill in value
       double value;
-      u(x,value);
+      specified_displacement_fct_pt(x,value);
       // Pin and set the value
       nod_pt->pin(dof_number);
       nod_pt->set_value(dof_number,value);

@@ -143,12 +143,22 @@ const unsigned& boundary_number, const PressureFctPt& u)=0;
    BrokenCopy::broken_assign("FoepplVonKarmanEquations");
   }
 
- /// \short Return the index at which the unknown value
+ /// \short Return the index at which the first u unknown value
  /// is stored.
  /// In derived multi-physics elements, this function should be overloaded
  /// to reflect the chosen storage scheme. Note that these equations require
  /// that the unknown is always stored at the same index at each node.
- virtual inline unsigned u_index_foeppl_von_karman() const {return this->required_nvalue(0);}
+ /// Note these are stored before w_dofs otherwise at vertex nodes the 
+ /// stored value would be at a different index
+ virtual inline unsigned u_index_foeppl_von_karman() const {return 0;}
+
+ /// \short Return the index at which the first w unknown value
+ /// is stored.
+ /// In derived multi-physics elements, this function should be overloaded
+ /// to reflect the chosen storage scheme. Note that these equations require
+ /// that the unknown is always stored at the same index at each node.
+ /// Note that at midside nodes there are no w dofs 
+ virtual inline unsigned w_index_foeppl_von_karman() const {return u_index_foeppl_von_karman()+2;}
 
  /// Output with default number of plot points
  void output(std::ostream &outfile)
