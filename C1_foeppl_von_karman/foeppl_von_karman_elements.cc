@@ -210,10 +210,10 @@ fill_in_generic_residual_contribution_foeppl_von_karman(Vector<double> &residual
        for(unsigned beta=0; beta<2;++beta)
         {
         // w_{,\alpha\beta} \delta \kappa_\alpha\beta
-        residuals[local_eqn] += (1-nu)/(12.*(1-nu*nu))
+        residuals[local_eqn] += (1-nu)
          *interpolated_d2wdxi2(0,alpha+beta)*d2test_dxi2(l,k,alpha+beta)*W;
         // w_{,\alpha\alpha} \delta \kappa_\beta\beta
-        residuals[local_eqn] += (nu)/(12.*(1-nu*nu))
+        residuals[local_eqn] += (nu)
          *interpolated_d2wdxi2(0,beta+beta)*d2test_dxi2(l,k,alpha+alpha)*W;
         // sigma_{\alpha\beta} w_\alpha \delta w_{,\beta}
         residuals[local_eqn] += eta()*sigma(alpha,beta)
@@ -279,10 +279,10 @@ fill_in_generic_residual_contribution_foeppl_von_karman(Vector<double> &residual
              {
              // Linear Terms
              // w_{,\alpha\beta} \delta \kappa_\alpha\beta
-             jacobian(local_eqn,local_unknown) += (1-nu)/(12.*(1-nu*nu))
+             jacobian(local_eqn,local_unknown) += (1-nu)
                 *d2psi_dxi2(l2,k2,alpha+beta)*d2test_dxi2(l,k,alpha+beta)*W;
              // w_{,\alpha\alpha} \delta \kappa_\beta\beta
-             jacobian(local_eqn,local_unknown) += nu/(12.*(1-nu*nu))
+             jacobian(local_eqn,local_unknown) += nu
                 *d2psi_dxi2(l2,k2,beta+beta)*d2test_dxi2(l,k,alpha+alpha)*W;
              // Nonlinear terms
              jacobian(local_eqn,local_unknown) += eta()*sigma(alpha,beta) 
@@ -318,10 +318,10 @@ fill_in_generic_residual_contribution_foeppl_von_karman(Vector<double> &residual
             {
             // The Linear Terms 
             // w_{,\alpha\beta} \delta \kappa_\alpha\beta
-            jacobian(local_eqn,local_unknown) += (1-nu)/(12.*(1-nu*nu))
+            jacobian(local_eqn,local_unknown) += (1-nu)
                *d2psi_b_dxi2(l2,k2,alpha+beta)*d2test_dxi2(l,k,alpha+beta)*W;
             // w_{,\alpha\alpha} \delta \kappa_\beta\beta
-            jacobian(local_eqn,local_unknown) += nu/(12.*(1-nu*nu))
+            jacobian(local_eqn,local_unknown) += nu
                *d2psi_b_dxi2(l2,k2,beta+beta)*d2test_dxi2(l,k,alpha+alpha)*W;
             // Nonlinear terms
             jacobian(local_eqn,local_unknown) += eta()*sigma(alpha,beta) 
@@ -365,10 +365,10 @@ fill_in_generic_residual_contribution_foeppl_von_karman(Vector<double> &residual
         {
         // The Linear Terms 
         // w_{,\alpha\beta} \delta \kappa_\alpha\beta
-        residuals[local_eqn] += (1-nu)/(12.*(1-nu*nu))
+        residuals[local_eqn] += (1-nu)
           *interpolated_d2wdxi2(0,alpha+beta)*d2test_b_dxi2(l,k,alpha+beta)*W;
         // w_{,\alpha\alpha} \delta \kappa_\beta\beta
-        residuals[local_eqn] += (nu)/(12.*(1-nu*nu))
+        residuals[local_eqn] += (nu)
           *interpolated_d2wdxi2(0,beta+beta)*d2test_b_dxi2(l,k,alpha+alpha)*W;
         // sigma_{\alpha\beta} w_\alpha \delta w_{,\beta}
         residuals[local_eqn] += eta()*sigma(alpha,beta)
@@ -434,10 +434,10 @@ fill_in_generic_residual_contribution_foeppl_von_karman(Vector<double> &residual
              {
              // The Linear Terms 
              // w_{,\alpha\beta} \delta \kappa_\alpha\beta
-             jacobian(local_eqn,local_unknown) += (1-nu)/(12.*(1-nu*nu))
+             jacobian(local_eqn,local_unknown) += (1-nu)
                 *d2psi_dxi2(l2,k2,alpha+beta)*d2test_b_dxi2(l,k,alpha+beta)*W;
              // w_{,\alpha\alpha} \delta \kappa_\beta\beta
-             jacobian(local_eqn,local_unknown) += nu/(12.*(1-nu*nu))
+             jacobian(local_eqn,local_unknown) += nu
                 *d2psi_dxi2(l2,k2,beta+beta)*d2test_b_dxi2(l,k,alpha+alpha)*W;
              // Nonlinear terms
              jacobian(local_eqn,local_unknown) += eta()*sigma(alpha,beta) 
@@ -474,10 +474,10 @@ fill_in_generic_residual_contribution_foeppl_von_karman(Vector<double> &residual
             {
             // The Linear Terms 
             // w_{,\alpha\beta} \delta \kappa_\alpha\beta
-            jacobian(local_eqn,local_unknown) += (1-nu)/(12.*(1-nu*nu))
+            jacobian(local_eqn,local_unknown) += (1-nu)
                *d2psi_b_dxi2(l2,k2,alpha+beta)*d2test_b_dxi2(l,k,alpha+beta)*W;
             // w_{,\alpha\alpha} \delta \kappa_\beta\beta
-            jacobian(local_eqn,local_unknown) += nu/(12.*(1-nu*nu))
+            jacobian(local_eqn,local_unknown) += nu
                *d2psi_b_dxi2(l2,k2,beta+beta)*d2test_b_dxi2(l,k,alpha+alpha)*W;
             // Nonlinear terms
             jacobian(local_eqn,local_unknown) += eta()*sigma(alpha,beta) 
