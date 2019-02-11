@@ -234,7 +234,7 @@ const unsigned& boundary_number, const PressureFctPt& u)=0;
       {
        // Truncated Green Lagrange strain tensor
        epsilon(alpha,beta) += 0.5* grad_u(alpha,beta) + 0.5*grad_u(beta,alpha)
-                           +(*Eta_pt)* 0.5*grad_w(0,alpha)*grad_w(0,beta);
+                           +0.5*grad_w(0,alpha)*grad_w(0,beta);
       }
     }
    

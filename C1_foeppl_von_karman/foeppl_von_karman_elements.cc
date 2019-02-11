@@ -445,13 +445,13 @@ fill_in_generic_residual_contribution_foeppl_von_karman(Vector<double> &residual
              // Nonlinear terms
              jacobian(local_eqn,local_unknown) += eta()*nu/(1-nu*nu)*
                interpolated_dwdxi(0,alpha)*dpsi_dxi(l2,k2,alpha)
-               *interpolated_dwdxi(0,beta)*dtest_b_dxi(l,k,beta)*W;//DGR: eta^2 surely
+               *interpolated_dwdxi(0,beta)*dtest_b_dxi(l,k,beta)*W;
              jacobian(local_eqn,local_unknown) += eta()/2.*(1-nu)/(1-nu*nu)*
                interpolated_dwdxi(0,alpha)*dpsi_dxi(l2,k2,beta)
-               *interpolated_dwdxi(0,alpha)*dtest_b_dxi(l,k,beta)*W;//DGR: eta^2 surely
+               *interpolated_dwdxi(0,alpha)*dtest_b_dxi(l,k,beta)*W;
              jacobian(local_eqn,local_unknown) += eta()/2.*(1-nu)/(1-nu*nu)*
                interpolated_dwdxi(0,beta)*dpsi_dxi(l2,k2,alpha)
-               *interpolated_dwdxi(0,alpha)*dtest_b_dxi(l,k,beta)*W;//DGR: eta^2 surely
+               *interpolated_dwdxi(0,alpha)*dtest_b_dxi(l,k,beta)*W;
              }
             }
            }
@@ -573,11 +573,11 @@ fill_in_generic_residual_contribution_foeppl_von_karman(Vector<double> &residual
           for(unsigned beta=0; beta<2;++beta)
            {
            // The NonLinear Terms 
-           jacobian(local_eqn,local_unknown) += eta()*nu*dpsi_dxi(l2,k2,beta)
+           jacobian(local_eqn,local_unknown) += nu*dpsi_dxi(l2,k2,beta)
                  *interpolated_dwdxi(0,beta)*dtest_udxi(l,alpha)/(1-nu*nu)*W;
-           jacobian(local_eqn,local_unknown) +=eta()*(1-nu)/2.*dpsi_dxi(l2,k2,alpha)
+           jacobian(local_eqn,local_unknown) +=(1-nu)/2.*dpsi_dxi(l2,k2,alpha)
                  *interpolated_dwdxi(0,beta)*dtest_udxi(l,beta)/(1-nu*nu)*W;
-           jacobian(local_eqn,local_unknown) +=eta()*(1-nu)/2.*dpsi_dxi(l2,k2,beta)
+           jacobian(local_eqn,local_unknown) +=(1-nu)/2.*dpsi_dxi(l2,k2,beta)
                  *interpolated_dwdxi(0,alpha)*dtest_udxi(l,beta)/(1-nu*nu)*W;
            }// End loop beta
           }// End if local unknown
@@ -600,11 +600,11 @@ fill_in_generic_residual_contribution_foeppl_von_karman(Vector<double> &residual
           for(unsigned beta=0; beta<2;++beta)
            {
            // The NonLinear Terms 
-           jacobian(local_eqn,local_unknown) += eta()*nu*dpsi_b_dxi(l2,k2,beta)
+           jacobian(local_eqn,local_unknown) += nu*dpsi_b_dxi(l2,k2,beta)
                  *interpolated_dwdxi(0,beta)*dtest_udxi(l,alpha)/(1-nu*nu)*W;
-           jacobian(local_eqn,local_unknown) +=eta()*(1-nu)/2.*dpsi_b_dxi(l2,k2,alpha)
+           jacobian(local_eqn,local_unknown) +=(1-nu)/2.*dpsi_b_dxi(l2,k2,alpha)
                  *interpolated_dwdxi(0,beta)*dtest_udxi(l,beta)/(1-nu*nu)*W;
-           jacobian(local_eqn,local_unknown) +=eta()*(1-nu)/2.*dpsi_b_dxi(l2,k2,beta)
+           jacobian(local_eqn,local_unknown) +=(1-nu)/2.*dpsi_b_dxi(l2,k2,beta)
                  *interpolated_dwdxi(0,alpha)*dtest_udxi(l,beta)/(1-nu*nu)*W;
            } // End loop beta
           } // End if local_unknown
