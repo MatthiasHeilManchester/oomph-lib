@@ -116,9 +116,15 @@ class CurvilineCircleTop : public CurvilineGeomObject
 public:
  /// \short Constructor: Pass dimension of geometric object (# of Eulerian
  /// coords = # of Lagrangian coords; no time history available/needed)
- CurvilineCircleTop() : CurvilineGeomObject()
+ CurvilineCircleTop() : CurvilineGeomObject(), Radius(1.0), 
+   Clockwise_zeta(false)
   { }
 
+ /// \short Constructor: Pass dimension of geometric object (# of Eulerian
+ /// coords = # of Lagrangian coords; no time history available/needed)
+ CurvilineCircleTop(const double& radius, const bool& clockwise_zeta) : 
+   CurvilineGeomObject(), Radius(radius), Clockwise_zeta(clockwise_zeta)
+  { }
  /// \short Constructor: pass # of Eulerian and Lagrangian coordinates
  /// and pointer to time-stepper which is used to handle the
  /// position at previous timesteps and allows the evaluation
@@ -145,12 +151,23 @@ public:
  /// \short Position Vector w.r.t. to zeta: 
  virtual void position(const Vector<double>& zeta, 
                         Vector<double> &r) const
-  { r[0] =-std::sin(zeta[0]);  r[1] = std::cos(zeta[0]);}
+  { 
+   r[0] =-Radius*std::sin(zeta[0]);  r[1] = Radius*std::cos(zeta[0]);
+   // Zeta -> - Zeta 
+   if(Clockwise_zeta)
+    { r[0]*= -1; }
+  }
 
  /// \short Derivative of position Vector w.r.t. to zeta: 
  virtual void dposition(const Vector<double>& zeta, 
                         Vector<double> &drdzeta) const
-  { drdzeta[0] =-std::cos(zeta[0]);  drdzeta[1] =-std::sin(zeta[0]);}
+  { 
+   drdzeta[0] =-Radius*std::cos(zeta[0]);  
+   drdzeta[1] =-Radius*std::sin(zeta[0]);
+   // Zeta -> - Zeta 
+   if(Clockwise_zeta)
+    { drdzeta[0]*= -1; }
+  }
 
 
  /// \short 2nd derivative of position Vector w.r.t. to coordinates: 
@@ -159,14 +176,24 @@ public:
  /// Evaluated at current time.
  virtual void d2position(const Vector<double>& zeta, 
                          Vector<double> &drdzeta) const
-  { drdzeta[0] = std::sin(zeta[0]);  drdzeta[1] =-std::cos(zeta[0]);}
+  { 
+    drdzeta[0] = Radius*std::sin(zeta[0]);  
+    drdzeta[1] =-Radius*std::cos(zeta[0]);
+    // Zeta -> - Zeta 
+    if(Clockwise_zeta)
+     { drdzeta[0]*= -1; }
+  }
 
  /// Get s from x for part 0 of the boundary (inverse mapping - for convenience)
  double get_zeta(const Vector<double>& x)
  {
  // The arc length (parametric parameter) for the upper semi circular arc
-  return atan2(-x[0],x[1]);
+  return (Clockwise_zeta ? atan2(x[0],x[1]) : atan2(-x[0],x[1]));
  }
+
+private:
+ double Radius;
+ bool Clockwise_zeta;
   
 
 };
@@ -177,7 +204,13 @@ class CurvilineCircleBottom : public CurvilineGeomObject
 public:
  /// \short Constructor: Pass dimension of geometric object (# of Eulerian
  /// coords = # of Lagrangian coords; no time history available/needed)
- CurvilineCircleBottom() : CurvilineGeomObject()
+ CurvilineCircleBottom() : CurvilineGeomObject(), Radius(1.0), Clockwise_zeta(false)
+  { }
+
+ /// \short Constructor: Pass dimension of geometric object (# of Eulerian
+ /// coords = # of Lagrangian coords; no time history available/needed)
+ CurvilineCircleBottom(const double& radius, const bool& clockwise_zeta) : 
+   CurvilineGeomObject(), Radius(radius), Clockwise_zeta(clockwise_zeta)
   { }
 
  /// \short Constructor: pass # of Eulerian and Lagrangian coordinates
@@ -206,12 +239,21 @@ public:
  /// \short Position Vector w.r.t. to zeta: 
  virtual void position(const Vector<double>& zeta, 
                         Vector<double> &r) const
-  { r[0] = std::sin(zeta[0]);  r[1] =-std::cos(zeta[0]);}
+  { 
+   r[0] = Radius*std::sin(zeta[0]);  r[1] =-Radius*std::cos(zeta[0]);
+   // Zeta -> - Zeta 
+   if(Clockwise_zeta)
+    { r[1]*= -1; }
+  }
 
  /// \short Derivative of position Vector w.r.t. to zeta: 
  virtual void dposition(const Vector<double>& zeta, 
                         Vector<double> &drdzeta) const
-  { drdzeta[0] = std::cos(zeta[0]);  drdzeta[1] = std::sin(zeta[0]);}
+  { 
+   drdzeta[0] = Radius*std::cos(zeta[0]);  drdzeta[1] = Radius*std::sin(zeta[0]);
+   if(Clockwise_zeta)
+    { drdzeta[1]*= -1; }
+  }
 
 
  /// \short 2nd derivative of position Vector w.r.t. to coordinates: 
@@ -220,15 +262,22 @@ public:
  /// Evaluated at current time.
  virtual void d2position(const Vector<double>& zeta, 
                          Vector<double> &drdzeta) const
-  { drdzeta[0] =-std::sin(zeta[0]);  drdzeta[1] = std::cos(zeta[0]);}
+  { 
+   drdzeta[0] =-Radius*std::sin(zeta[0]);  drdzeta[1] = Radius*std::cos(zeta[0]);
+   if(Clockwise_zeta)
+    { drdzeta[1]*= -1; }
+   }
 
  /// Get s from x for part 0 of the boundary (inverse mapping - for convenience)
  double get_zeta(const Vector<double>& x)
  {
  // The arc length (parametric parameter) for the upper semi circular arc
-  return atan2(x[0],-x[1]);
+  return  (Clockwise_zeta ?atan2(x[0],x[1]) : atan2(x[0],-x[1]));
  }
   
+private:
+ double Radius;
+ bool Clockwise_zeta;
 
 };
 }
