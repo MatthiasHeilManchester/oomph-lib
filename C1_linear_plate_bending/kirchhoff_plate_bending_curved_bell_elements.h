@@ -101,8 +101,9 @@ public:
    Curved_edge_counter=0;
    #endif
 
-   // Use the higher order integration scheme
-  TGauss<2,5>* new_integral_pt = new TGauss<2,5>;
+  // Use the higher order integration scheme
+  // (d^2 p5 / dxi dxj)^2 is element of p6
+  TGauss<2,4>* new_integral_pt = new TGauss<2,4>;
   delete this->integral_pt(); 
   this->set_integration_scheme(new_integral_pt); 
   }
@@ -347,8 +348,18 @@ Elements.",OOMPH_CURRENT_FUNCTION,  OOMPH_EXCEPTION_LOCATION);
  // HERE implement order 10 accuracy for faster 3rd order elements in clamped 
  // problems
  delete this->integral_pt();
- TGauss<2,13>* new_integral_pt = new TGauss<2,13>;
- this->set_integration_scheme(new_integral_pt); 
+ // (d^2 p7 / dxi dxj)^2 is element of p10
+ if(BOUNDARY_ORDER==3)
+ {
+  TGauss<2,13>* new_integral_pt = new TGauss<2,13>;
+  this->set_integration_scheme(new_integral_pt); 
+ }
+ // (d^2 p9 / dxi dxj)^2 is element of p14
+ else
+ {
+  TGauss<2,16>* new_integral_pt = new TGauss<2,16>;
+  this->set_integration_scheme(new_integral_pt); 
+ }
 
  // Set the number of internal dofs to 3
  this->Number_of_internal_dof_types = 1;
