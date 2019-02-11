@@ -1158,8 +1158,8 @@ of freedom at internal points. They are {w ; w,x ; w,y ; w,xx ; w,xy ; w,yy}",
       double value;
       specified_deflection_fct_pt(x,value);
       // Pin and set the value
-      nod_pt->pin(this->w_index_foeppl_von_karman()+dof_number);
-      nod_pt->set_value(this->w_index_foeppl_von_karman()+dof_number,value);
+      nod_pt->pin(this->w_nodal_index_foeppl_von_karman()+dof_number);
+      nod_pt->set_value(this->w_nodal_index_foeppl_von_karman()+dof_number,value);
      }
    }
  }
@@ -1198,8 +1198,8 @@ of freedom at internal points. They are {w ; w,x ; w,y ; w,xx ; w,xy ; w,yy}",
       double value;
       specified_displacement_fct_pt(x,value);
       // Pin and set the value
-      nod_pt->pin(dof_number);
-      nod_pt->set_value(dof_number,value);
+      nod_pt->pin(this->u_nodal_index_foeppl_von_karman()+dof_number);
+      nod_pt->set_value(this->u_nodal_index_foeppl_von_karman()+dof_number,value);
      }
    }
 

@@ -243,7 +243,7 @@ fill_in_generic_residual_contribution_foeppl_von_karman(Vector<double> &residual
             // The Nonlinear Terms 
             if(alpha==beta)
              {
-             jacobian(local_eqn,local_unknown) += eta()*nu*dpsi_udxi(ll,gamma)*
+             jacobian(local_eqn,local_unknown) += eta()*nu*dpsi_udxi(ll,gamma)* 
                    interpolated_dwdxi(0,alpha)*dtest_dxi(l,k,beta)/(1-nu*nu)*W;
              }
             if(alpha==gamma)
@@ -290,13 +290,13 @@ fill_in_generic_residual_contribution_foeppl_von_karman(Vector<double> &residual
              // Nonlinear terms
              jacobian(local_eqn,local_unknown) += eta()*nu/(1-nu*nu)*
                interpolated_dwdxi(0,alpha)*dpsi_dxi(l2,k2,alpha)
-               *interpolated_dwdxi(0,beta)*dtest_dxi(l,k,beta)*W;
+               *interpolated_dwdxi(0,beta)*dtest_dxi(l,k,beta)*W;//DGR: eta^2 surely
              jacobian(local_eqn,local_unknown) += eta()/2.*(1-nu)/(1-nu*nu)*
                interpolated_dwdxi(0,alpha)*dpsi_dxi(l2,k2,beta)
-               *interpolated_dwdxi(0,alpha)*dtest_dxi(l,k,beta)*W;
+               *interpolated_dwdxi(0,alpha)*dtest_dxi(l,k,beta)*W;//DGR: eta^2 surely
              jacobian(local_eqn,local_unknown) += eta()/2.*(1-nu)/(1-nu*nu)*
                interpolated_dwdxi(0,beta)*dpsi_dxi(l2,k2,alpha)
-               *interpolated_dwdxi(0,alpha)*dtest_dxi(l,k,beta)*W;
+               *interpolated_dwdxi(0,alpha)*dtest_dxi(l,k,beta)*W;//DGR: eta^2 surely
              }
             }
            }
@@ -329,13 +329,13 @@ fill_in_generic_residual_contribution_foeppl_von_karman(Vector<double> &residual
             // Nonlinear terms
             jacobian(local_eqn,local_unknown) += eta()*nu/(1-nu*nu)*
               interpolated_dwdxi(0,alpha)*dpsi_b_dxi(l2,k2,alpha)
-              *interpolated_dwdxi(0,beta)*dtest_dxi(l,k,beta)*W;
+              *interpolated_dwdxi(0,beta)*dtest_dxi(l,k,beta)*W;//DGR: eta^2 surely
             jacobian(local_eqn,local_unknown) += eta()/2.*(1-nu)/(1-nu*nu)*
               interpolated_dwdxi(0,alpha)*dpsi_b_dxi(l2,k2,beta)
-              *interpolated_dwdxi(0,alpha)*dtest_dxi(l,k,beta)*W;
+              *interpolated_dwdxi(0,alpha)*dtest_dxi(l,k,beta)*W;//DGR: eta^2 surely
             jacobian(local_eqn,local_unknown) += eta()/2.*(1-nu)/(1-nu*nu)*
               interpolated_dwdxi(0,beta)*dpsi_b_dxi(l2,k2,alpha)
-              *interpolated_dwdxi(0,alpha)*dtest_dxi(l,k,beta)*W;
+              *interpolated_dwdxi(0,alpha)*dtest_dxi(l,k,beta)*W;//DGR: eta^2 surely
             }
            }
           }
@@ -445,13 +445,13 @@ fill_in_generic_residual_contribution_foeppl_von_karman(Vector<double> &residual
              // Nonlinear terms
              jacobian(local_eqn,local_unknown) += eta()*nu/(1-nu*nu)*
                interpolated_dwdxi(0,alpha)*dpsi_dxi(l2,k2,alpha)
-               *interpolated_dwdxi(0,beta)*dtest_b_dxi(l,k,beta)*W;
+               *interpolated_dwdxi(0,beta)*dtest_b_dxi(l,k,beta)*W;//DGR: eta^2 surely
              jacobian(local_eqn,local_unknown) += eta()/2.*(1-nu)/(1-nu*nu)*
                interpolated_dwdxi(0,alpha)*dpsi_dxi(l2,k2,beta)
-               *interpolated_dwdxi(0,alpha)*dtest_b_dxi(l,k,beta)*W;
+               *interpolated_dwdxi(0,alpha)*dtest_b_dxi(l,k,beta)*W;//DGR: eta^2 surely
              jacobian(local_eqn,local_unknown) += eta()/2.*(1-nu)/(1-nu*nu)*
                interpolated_dwdxi(0,beta)*dpsi_dxi(l2,k2,alpha)
-               *interpolated_dwdxi(0,alpha)*dtest_b_dxi(l,k,beta)*W;
+               *interpolated_dwdxi(0,alpha)*dtest_b_dxi(l,k,beta)*W;//DGR: eta^2 surely
              }
             }
            }
@@ -665,8 +665,7 @@ void  FoepplVonKarmanEquations<DIM,NNODE_1D>::output(std::ostream &outfile,
  outfile << this->tecplot_zone_string(nplot);
 
  // Loop over plot points
-// Vector<double> u(this->required_nvalue(0),0.0);
- Vector<double> u(15,0.0);
+ Vector<double> u;
  unsigned num_plot_points=this->nplot_points(nplot);
  Vector<double> r(3);
 
@@ -674,39 +673,20 @@ void  FoepplVonKarmanEquations<DIM,NNODE_1D>::output(std::ostream &outfile,
   {
    // Get local coordinates of plot point
    this->get_s_plot(iplot,nplot,s);
-   u = interpolated_u_foeppl_von_karman(s,true);
+   u = interpolated_u_foeppl_von_karman(s);
 
    // Get x position as Vector
    this->get_coordinate_x(s,x);
 
-//  // // Get the interpolated x
-//  unsigned n_node=this->nnode();
-//  Vector<double> interpolated_x(2,0.0);
-//  Shape psi_u(n_node), test_u(n_node);
-//  // DShape dpsi_udxi(n_node,DIM), dtest_udxi(n_node,DIM);
-//  // dshape_u_and_dtest_u_eulerian_foeppl_von_karman(s,psi_u,dpsi_udxi,test_u,dtest_udxi);
-//
-//   // Check the u geometry
-//   // Loop over nodes
-//   for(unsigned l=0;l<n_node;l++)
-//    {
-//     // Loop over directions
-//     for(unsigned j=0;j<2;j++)
-//      {
-//       interpolated_x[j] += this->raw_nodal_position(l,j)*psi_u[l];
-//      }
-//    }
-//
    for(unsigned i=0;i<DIM;i++)
     {
      outfile << x[i] << " ";
     }
 
    // Loop for variables
-  // for(unsigned j=0;j<this->required_nvalue(0);j++)
-   for(unsigned j=0;j<15;j++)
+   for(Vector<double>::iterator it=u.begin();it!=u.end();++it)
     {
-     outfile << u[j] << " " ;
+     outfile << *it << " " ;
     }
 
    outfile << std::endl;
@@ -750,7 +730,7 @@ void  FoepplVonKarmanEquations<DIM,NNODE_1D>::output(FILE* file_pt,
      fprintf(file_pt,"%g ",x[i]);
     }
    u = interpolated_u_foeppl_von_karman(s);
-   fprintf(file_pt,"%g \n",u[0]);//interpolated_w_poisson(s));
+   fprintf(file_pt,"%g \n",u[0]);
   }
 
  // Write tecplot footer (e.g. FE connectivity lists)

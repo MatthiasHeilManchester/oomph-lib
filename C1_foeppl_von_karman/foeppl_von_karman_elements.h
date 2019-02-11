@@ -150,7 +150,7 @@ const unsigned& boundary_number, const PressureFctPt& u)=0;
  /// that the unknown is always stored at the same index at each node.
  /// Note these are stored before w_dofs otherwise at vertex nodes the 
  /// stored value would be at a different index
- virtual inline unsigned u_index_foeppl_von_karman() const {return 0;}
+ virtual inline unsigned u_nodal_index_foeppl_von_karman() const {return 0;}
 
  /// \short Return the index at which the first w unknown value
  /// is stored.
@@ -158,7 +158,7 @@ const unsigned& boundary_number, const PressureFctPt& u)=0;
  /// to reflect the chosen storage scheme. Note that these equations require
  /// that the unknown is always stored at the same index at each node.
  /// Note that at midside nodes there are no w dofs 
- virtual inline unsigned w_index_foeppl_von_karman() const {return u_index_foeppl_von_karman()+2;}
+ virtual inline unsigned w_nodal_index_foeppl_von_karman() const {return u_nodal_index_foeppl_von_karman()+2;}
 
  /// Output with default number of plot points
  void output(std::ostream &outfile)
@@ -394,9 +394,7 @@ const unsigned& boundary_number, const PressureFctPt& u)=0;
 
  /// \short Return FE representation of unknown values u(s)
  /// at local coordinate s
- // HERE leave as pure virtual and compute inside derived class?
- inline Vector<double> interpolated_u_foeppl_von_karman(const Vector<double> &s, bool
-output_stress_flag=false) const
+ virtual inline Vector<double> interpolated_u_foeppl_von_karman(const Vector<double> &s) const
   {
    //Find number of position dofs
    const unsigned n_position_type = this->nnodal_position_type();
@@ -409,17 +407,22 @@ output_stress_flag=false) const
    //Find out how many internal points there are
    const unsigned n_b_node = this->Number_of_internal_dofs;
    //Get the index at which the unknown is stored
-   // const unsigned u_nodal_index = u_index_foeppl_von_karman();
+   const unsigned u_nodal_index = u_nodal_index_foeppl_von_karman();
+   //Get the index at which the unknown is stored
+   const unsigned w_nodal_index = w_nodal_index_foeppl_von_karman();
+   //Get the index at which the unknown is stored
+   const unsigned w_bubble_index = 0; //w_index_foeppl_von_karman();
+   // Number of unique second deriv. will be the DIMth triangle number
+   const unsigned n_second_deriv = (DIM*(DIM+1))/2;
 
    //Local c1-shape funtion
    Shape psi(n_w_node,n_position_type),test(n_w_node,n_position_type),
     psi_b(n_b_node,n_b_position_type),test_b(n_b_node,n_b_position_type);
    
-
    DShape dpsi_dxi(n_w_node,n_position_type,DIM),dtest_dxi(n_w_node,n_position_type,DIM),
     dpsi_b_dxi(n_b_node,n_b_position_type,DIM),dtest_b_dxi(n_b_node,n_b_position_type,DIM),
-    d2psi_dxi2(n_w_node,n_position_type,3), d2test_dxi2(n_w_node,n_position_type,3),
-    d2psi_b_dxi2(n_b_node,n_b_position_type,3), d2test_b_dxi2(n_b_node,n_b_position_type,3);
+    d2psi_dxi2(n_w_node,n_position_type,n_second_deriv), d2test_dxi2(n_w_node,n_position_type,n_second_deriv),
+    d2psi_b_dxi2(n_b_node,n_b_position_type,n_second_deriv), d2test_b_dxi2(n_b_node,n_b_position_type,n_second_deriv);
    
    // In--plane dofs
    Shape psi_u(n_node);
@@ -427,8 +430,13 @@ output_stress_flag=false) const
    Shape test_u(n_node);
    DShape dtest_u(n_node,DIM);
 
+   // Number of in-plane displacement fields is equal to dimension
+   const unsigned n_u_fields = 2;// DIM;
+   // Number of out-of-plane displacement fields is equal 1 (value of deflection_
+   // plus first and second deriv
+   const unsigned n_w_fields = 6;//1+DIM+n_second_deriv;
    //Initialise value of u
-   Vector<double> interpolated_u(15,0.0);
+   Vector<double> interpolated_u(n_u_fields+n_w_fields,0.0);
    //Find values of c1-shape function
    d2shape_and_d2test_eulerian_foeppl_von_karman(s,psi,psi_b,dpsi_dxi,dpsi_b_dxi,
     d2psi_dxi2,d2psi_b_dxi2,test,test_b,dtest_dxi,dtest_b_dxi,d2test_dxi2,
@@ -442,15 +450,14 @@ output_stress_flag=false) const
     for(unsigned k=0;k<n_position_type;k++)
      {
      // u_3
-     interpolated_u[0] += this->nodal_value(l,k+2)*psi(l,k);
+     interpolated_u[0] += this->nodal_value(l,w_nodal_index+k)*psi(l,k);
      // d_u_3_dx_alpha
      for(unsigned alpha=0;alpha<DIM;++alpha)
-      {interpolated_u[1+alpha] += this->nodal_value(l,k+2)*dpsi_dxi(l,k,alpha);}
+      {interpolated_u[1+alpha] += this->nodal_value(l,w_nodal_index+k)*dpsi_dxi(l,k,alpha);}
      // d2_u_3_dx_alpha dx_beta
-     // HERE this will only work for DIM = 2
-     for(unsigned alphabeta=0;alphabeta<DIM+1;++alphabeta)
+     for(unsigned alphabeta=0;alphabeta<n_second_deriv;++alphabeta)
       {
-      interpolated_u[3+alphabeta] += this->nodal_value(l,k+2)
+      interpolated_u[DIM+1+alphabeta] += this->nodal_value(l,w_nodal_index+k)
          *d2psi_dxi2(l,k,alphabeta);
       }
      }
@@ -461,17 +468,16 @@ output_stress_flag=false) const
    {
     for(unsigned k=0;k<Number_of_internal_dof_types;k++)
      {
-      double u_value = get_w_bubble_dof(l,k);
+      double u_value = get_w_bubble_dof(l,w_bubble_index+k);
       // u_3
-      interpolated_u[0] += u_value * psi_b(l,k);
+      interpolated_u[0] += u_value * psi_b(l,w_bubble_index+k);
       // d_u_3_dx_alpha
       for(unsigned alpha=0;alpha<DIM;++alpha)
-       { interpolated_u[1+alpha] += u_value*dpsi_b_dxi(l,k,alpha); }
+       { interpolated_u[1+alpha] += u_value*dpsi_b_dxi(l,w_bubble_index+k,alpha); }
       // d2_u_3_dx_alpha dx_beta
-      // HERE this will only work for DIM = 2
-     for(unsigned alphabeta=0;alphabeta<DIM+1;++alphabeta)
+     for(unsigned alphabeta=0;alphabeta<n_second_deriv;++alphabeta)
       {
-       interpolated_u[3+alphabeta] += u_value*d2psi_b_dxi2(l,k,alphabeta);
+       interpolated_u[DIM+1+alphabeta] += u_value*d2psi_b_dxi2(l,w_bubble_index+k,alphabeta);
       }
      }
    }
@@ -479,40 +485,15 @@ output_stress_flag=false) const
    for(unsigned l=0; l< n_node;++l)
     {
      // Now for the two in--plane displacements
-     interpolated_u[6] += this->nodal_value(l,0)*psi_u(l);
-     interpolated_u[7] += this->nodal_value(l,1)*psi_u(l);
-     // IF flag
-     if(output_stress_flag)
-      {
-       // Also output the in--plane displacement derivatives
-       for(unsigned i=0; i<DIM; ++i)
-        {
-        interpolated_u[8 +i] += this->nodal_value(l,0)*dpsi_u(l,i);
-        interpolated_u[10+i] += this->nodal_value(l,1)*dpsi_u(l,i);
-        }
-      }
+     interpolated_u[6] += this->nodal_value(l,u_nodal_index+0)*psi_u(l);
+     interpolated_u[7] += this->nodal_value(l,u_nodal_index+1)*psi_u(l);
+    // // Also output the in--plane displacement derivatives
+    // for(unsigned i=0; i<DIM; ++i)
+    //  {
+    //  interpolated_u[8 +i] += this->nodal_value(l,u_nodal_index+0)*dpsi_u(l,i);
+    //  interpolated_u[10+i] += this->nodal_value(l,u_nodal_index+1)*dpsi_u(l,i);
+    //  }
     }
-
-   // IF flag HERE TIDY
-   if(output_stress_flag)
-    {
-     // For stress
-     DenseMatrix<double> interpolated_dwdxi(1,DIM,0.0);
-     DenseMatrix<double> interpolated_dudxi(DIM,DIM,0.0);
-     interpolated_dwdxi(0,0)=interpolated_u[1];
-     interpolated_dwdxi(0,1)=interpolated_u[2];
-     interpolated_dudxi(0,0)=interpolated_u[8];
-     interpolated_dudxi(0,1)=interpolated_u[9];
-     interpolated_dudxi(1,0)=interpolated_u[10];
-     interpolated_dudxi(1,1)=interpolated_u[11];
-     // Get Stress
-     DenseMatrix<double> sigma(DIM,DIM,0.0);
-     get_sigma(sigma,interpolated_dudxi, interpolated_dwdxi);
-     interpolated_u[12] = sigma(0,0);
-     interpolated_u[13] = sigma(0,1);
-     interpolated_u[14] = sigma(1,1);
-    }
-
    return(interpolated_u);
   }
 
