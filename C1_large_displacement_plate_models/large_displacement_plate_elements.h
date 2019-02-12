@@ -6,8 +6,10 @@
 #include<sstream>
 
 //OOMPH-LIB headers
-#include "generic.h"
-#include "MyBellShape.h"
+#include "../generic/nodes.h"
+#include "../generic/oomph_utilities.h"
+#include "../generic/Telements.h"
+#include "../generic/Subparametric_Telements.h"
 
 namespace oomph
 {
@@ -21,7 +23,7 @@ namespace oomph
 /// mapping etc. must get implemented in derived class.
 //=============================================================
 template <unsigned DIM, unsigned NNODE_1D>
-class NonlinearPlateEquations : public virtual BellElement<DIM,NNODE_1D>
+class LargeDisplacementPlateEquations : public virtual BellElement<DIM,NNODE_1D>
 {
 
 public:
@@ -67,7 +69,7 @@ public:
   Vector<double>& norm);
 
  /// Constructor (must initialise the Pressure_fct_pt to null)
- NonlinearPlateEquations() : Pressure_fct_pt(0),  D_pressure_dr_fct_pt(0), 
+ LargeDisplacementPlateEquations() : Pressure_fct_pt(0),  D_pressure_dr_fct_pt(0), 
   D_pressure_dn_fct_pt(0), D_pressure_d_grad_u_fct_pt(0), Stress_fct_pt(0), 
   D_stress_fct_pt(0), Error_metric_fct_pt(0), Multiple_error_metric_fct_pt(0),
   Number_of_internal_dofs(0), Number_of_internal_dof_types(0),
@@ -85,15 +87,15 @@ public:
  } 
 
  /// Broken copy constructor
- NonlinearPlateEquations(const NonlinearPlateEquations& dummy)
+ LargeDisplacementPlateEquations(const LargeDisplacementPlateEquations& dummy)
   {
-   BrokenCopy::broken_copy("NonlinearPlateEquations");
+   BrokenCopy::broken_copy("LargeDisplacementPlateEquations");
   }
 
  /// Broken assignment operator
- void operator=(const NonlinearPlateEquations&)
+ void operator=(const LargeDisplacementPlateEquations&)
   {
-   BrokenCopy::broken_assign("NonlinearPlateEquations");
+   BrokenCopy::broken_assign("LargeDisplacementPlateEquations");
   }
 
  /// \short Return the index at which the ith displacement l-type (unknown) value
@@ -109,7 +111,7 @@ public:
  void output(std::ostream &outfile)
   {
    const unsigned n_plot=5;
-   NonlinearPlateEquations::output(outfile,n_plot);
+   LargeDisplacementPlateEquations::output(outfile,n_plot);
   }
 
  /// \short Output FE representation of soln: x,y,u or x,y,z,u at
@@ -120,7 +122,7 @@ public:
  void output(FILE* file_pt)
   {
    const unsigned n_plot=5;
-   NonlinearPlateEquations::output(file_pt,n_plot);
+   LargeDisplacementPlateEquations::output(file_pt,n_plot);
   }
 
  /// \short C-style output FE representation of soln: x,y,u or x,y,z,u at

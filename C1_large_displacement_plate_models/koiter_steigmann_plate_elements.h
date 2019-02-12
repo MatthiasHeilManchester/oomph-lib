@@ -6,9 +6,7 @@
 #include<sstream>
 
 //OOMPH-LIB headers
-#include "generic.h"
-#include "MyBellShape.h"
-#include "nonlinear_plate_elements.h"
+#include "large_displacement_plate_elements.h"
 
 namespace oomph
 {
@@ -22,12 +20,12 @@ namespace oomph
 /// mapping etc. must get implemented in derived class.
 //=============================================================
 template <unsigned DIM, unsigned NNODE_1D>
-class KoiterSteigmannPlateEquations : public virtual NonlinearPlateEquations<DIM,NNODE_1D>
+class KoiterSteigmannPlateEquations : public virtual LargeDisplacementPlateEquations<DIM,NNODE_1D>
 {
 
 public:
  /// Constructor (must initialise the Pressure_fct_pt to null)
- KoiterSteigmannPlateEquations() : NonlinearPlateEquations<DIM,NNODE_1D>()  {
+ KoiterSteigmannPlateEquations() : LargeDisplacementPlateEquations<DIM,NNODE_1D>()  {
   // Default parameters should lead to membrane like behaviour by default:
   // order 1 displacements for small thickness sheet
   // By default the displacements are asumed to be of order 1
@@ -269,7 +267,7 @@ inline void fill_in_d_unit_normal_du_unknown(const DenseMatrix<double>&
    }
     
   // Determinant of metric tensor
-  const double g (NonlinearPlateEquations<DIM,NNODE_1D>::two_by_two_determinant(g_tensor));
+  const double g (LargeDisplacementPlateEquations<DIM,NNODE_1D>::two_by_two_determinant(g_tensor));
   const double sqrt_g_inv (1/sqrt(g));
   const double sqrt_g_cubed_inv (1/std::pow(g,1.5));
 

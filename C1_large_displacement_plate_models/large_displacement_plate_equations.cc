@@ -1,5 +1,5 @@
 // Non--inline functions for the kirchhoff_plate_bending equations
-#include "nonlinear_plate_models.h"
+#include "large_displacement_plate_models.h"
 
 
 namespace oomph
@@ -7,7 +7,7 @@ namespace oomph
  /// \short unsigned that holds the number if displacments the element has 
  template <unsigned DIM, unsigned NNODE_1D>
  const unsigned
-NonlinearPlateEquations<DIM,NNODE_1D>::Number_of_displacements=3;
+LargeDisplacementPlateEquations<DIM,NNODE_1D>::Number_of_displacements=3;
 
 // /// \short unsigned that holds the number if displacments the element has 
 // template <unsigned DIM, unsigned NNODE_1D>
@@ -16,21 +16,21 @@ NonlinearPlateEquations<DIM,NNODE_1D>::Number_of_displacements=3;
  
  /// \short unsigned that holds the number if displacements the element has 
  template <unsigned DIM, unsigned NNODE_1D>
- const double NonlinearPlateEquations<DIM,NNODE_1D>::Default_Nu_Value=0.5;
+ const double LargeDisplacementPlateEquations<DIM,NNODE_1D>::Default_Nu_Value=0.5;
  
  // HERE move 
  template <unsigned DIM, unsigned NNODE_1D>
- const double NonlinearPlateEquations<DIM,NNODE_1D>::Default_Eta_Value=1;
+ const double LargeDisplacementPlateEquations<DIM,NNODE_1D>::Default_Eta_Value=1;
  
  template <unsigned DIM, unsigned NNODE_1D>
  const double KoiterSteigmannPlateEquations<DIM,NNODE_1D>::Default_Eta_Value=1;
  
- template <unsigned DIM, unsigned NNODE_1D>
- const double FoepplVonKarmanCorrectionEquations<DIM,NNODE_1D>::Default_Eta_Value=1;
+//  template <unsigned DIM, unsigned NNODE_1D>
+//  const double FoepplVonKarmanCorrectionEquations<DIM,NNODE_1D>::Default_Eta_Value=1;
 
  template <unsigned DIM, unsigned NNODE_1D>
  const double
-NonlinearPlateEquations<DIM,NNODE_1D>::Default_Thickness_Value=0.001;
+LargeDisplacementPlateEquations<DIM,NNODE_1D>::Default_Thickness_Value=0.001;
 
 // Output to mathematica
 template<typename T>
@@ -57,7 +57,7 @@ void output_mathematica(std::ostream &outfile, const RankThreeTensor<T>& tensor)
  }
 //======================================================================
 template <unsigned DIM, unsigned NNODE_1D>
-void  NonlinearPlateEquations<DIM,NNODE_1D>::
+void  LargeDisplacementPlateEquations<DIM,NNODE_1D>::
 fill_in_generic_residual_contribution_biharmonic(Vector<double> &residuals,
                                               DenseMatrix<double> &jacobian,
                                               const unsigned& flag)
@@ -666,7 +666,7 @@ fill_in_generic_residual_contribution_biharmonic(Vector<double> &residuals,
 /// Self-test:  Return 0 for OK
 //======================================================================
 template <unsigned DIM, unsigned NNODE_1D>
-unsigned  NonlinearPlateEquations<DIM,NNODE_1D>::self_test()
+unsigned  LargeDisplacementPlateEquations<DIM,NNODE_1D>::self_test()
 {
 
  bool passed=true;
@@ -697,7 +697,7 @@ unsigned  NonlinearPlateEquations<DIM,NNODE_1D>::self_test()
 /// nplot points in each coordinate direction
 //======================================================================
 template <unsigned DIM, unsigned NNODE_1D>
-void  NonlinearPlateEquations<DIM,NNODE_1D>::output(std::ostream &outfile,
+void  LargeDisplacementPlateEquations<DIM,NNODE_1D>::output(std::ostream &outfile,
                                     const unsigned &nplot)
 {
  // Precompute the association matrix
@@ -758,7 +758,7 @@ void  NonlinearPlateEquations<DIM,NNODE_1D>::output(std::ostream &outfile,
 /// nplot points in each coordinate direction
 //======================================================================
 template <unsigned DIM, unsigned NNODE_1D>
-void  NonlinearPlateEquations<DIM,NNODE_1D>::output(FILE* file_pt,
+void  LargeDisplacementPlateEquations<DIM,NNODE_1D>::output(FILE* file_pt,
                                     const unsigned &nplot)
 {
  // Precompute the association matrix
@@ -811,7 +811,7 @@ void  NonlinearPlateEquations<DIM,NNODE_1D>::output(FILE* file_pt,
  ///   x,y,u_exact    or    x,y,z,u_exact
 //======================================================================
 template <unsigned DIM, unsigned NNODE_1D>
-void NonlinearPlateEquations<DIM,NNODE_1D>::output_fct(std::ostream &outfile,
+void LargeDisplacementPlateEquations<DIM,NNODE_1D>::output_fct(std::ostream &outfile,
                                        const unsigned &nplot,
                   FiniteElement::SteadyExactSolutionFctPt exact_soln_pt)
 {
@@ -866,7 +866,7 @@ void NonlinearPlateEquations<DIM,NNODE_1D>::output_fct(std::ostream &outfile,
  ///
 //======================================================================
 template <unsigned DIM, unsigned NNODE_1D>
-void NonlinearPlateEquations<DIM,NNODE_1D>::compute_error(std::ostream &outfile,
+void LargeDisplacementPlateEquations<DIM,NNODE_1D>::compute_error(std::ostream &outfile,
                                           FiniteElement::SteadyExactSolutionFctPt exact_soln_pt,
                                           Vector<double>& error, Vector<double>& norm)
 {
@@ -979,7 +979,7 @@ void NonlinearPlateEquations<DIM,NNODE_1D>::compute_error(std::ostream &outfile,
  ///
 //======================================================================
 template <unsigned DIM, unsigned NNODE_1D>
-void NonlinearPlateEquations<DIM,NNODE_1D>::compute_error(std::ostream &outfile,
+void LargeDisplacementPlateEquations<DIM,NNODE_1D>::compute_error(std::ostream &outfile,
                                           FiniteElement::SteadyExactSolutionFctPt exact_soln_pt,
                                           double& error, double& norm)
 {
@@ -1105,7 +1105,7 @@ void NonlinearPlateEquations<DIM,NNODE_1D>::compute_error(std::ostream &outfile,
  ///
 //======================================================================
 template <unsigned DIM, unsigned NNODE_1D>
-void NonlinearPlateEquations<DIM,NNODE_1D>::check_unit_normal_error(
+void LargeDisplacementPlateEquations<DIM,NNODE_1D>::check_unit_normal_error(
  double& error, double& norm)
 {
  // Initialise
@@ -1216,7 +1216,7 @@ void NonlinearPlateEquations<DIM,NNODE_1D>::check_unit_normal_error(
  ///
 //======================================================================
 template <unsigned DIM, unsigned NNODE_1D>
-void NonlinearPlateEquations<DIM,NNODE_1D>::check_strain_error(
+void LargeDisplacementPlateEquations<DIM,NNODE_1D>::check_strain_error(
  double& error, double& norm)
 {
  // Initialise
@@ -1304,7 +1304,7 @@ void NonlinearPlateEquations<DIM,NNODE_1D>::check_strain_error(
  ///
 //======================================================================
 template <unsigned DIM, unsigned NNODE_1D>
-void NonlinearPlateEquations<DIM,NNODE_1D>::check_stress_error(
+void LargeDisplacementPlateEquations<DIM,NNODE_1D>::check_stress_error(
  double& error, double& norm)
 {
  // Initialise
@@ -1402,7 +1402,7 @@ void NonlinearPlateEquations<DIM,NNODE_1D>::check_stress_error(
  ///
 //======================================================================
 template <unsigned DIM, unsigned NNODE_1D>
-void NonlinearPlateEquations<DIM,NNODE_1D>::check_total_tension_error(
+void LargeDisplacementPlateEquations<DIM,NNODE_1D>::check_total_tension_error(
  double& error, double& norm)
 {
  // Initialise
@@ -1550,7 +1550,7 @@ void NonlinearPlateEquations<DIM,NNODE_1D>::check_total_tension_error(
  ///
 //======================================================================
 template <unsigned DIM, unsigned NNODE_1D>
-void NonlinearPlateEquations<DIM,NNODE_1D>::check_moment_error(
+void LargeDisplacementPlateEquations<DIM,NNODE_1D>::check_moment_error(
  double& error, double& norm)
 {
  // Initialise
@@ -1651,7 +1651,7 @@ void NonlinearPlateEquations<DIM,NNODE_1D>::check_moment_error(
  ///
 //======================================================================
 template <unsigned DIM, unsigned NNODE_1D>
-void NonlinearPlateEquations<DIM,NNODE_1D>::check_tangent_error(
+void LargeDisplacementPlateEquations<DIM,NNODE_1D>::check_tangent_error(
  double& error, double& norm)
 {
  // Initialise
@@ -1743,7 +1743,7 @@ void NonlinearPlateEquations<DIM,NNODE_1D>::check_tangent_error(
  ///
 //======================================================================
 template <unsigned DIM, unsigned NNODE_1D>
-void NonlinearPlateEquations<DIM,NNODE_1D>::check_curvature_error(
+void LargeDisplacementPlateEquations<DIM,NNODE_1D>::check_curvature_error(
  double& error, double& norm)
 {
  // Initialise
@@ -1848,7 +1848,7 @@ void NonlinearPlateEquations<DIM,NNODE_1D>::check_curvature_error(
  ///
 //======================================================================
 template <unsigned DIM, unsigned NNODE_1D>
-void NonlinearPlateEquations<DIM,NNODE_1D>::check_christoffel_error(
+void LargeDisplacementPlateEquations<DIM,NNODE_1D>::check_christoffel_error(
  double& error, double& norm)
 {
  // Initialise
@@ -1976,7 +1976,7 @@ void NonlinearPlateEquations<DIM,NNODE_1D>::check_christoffel_error(
 }
 
 template class KoiterSteigmannPlateEquations<2,2>;
-template class FoepplVonKarmanCorrectionEquations<2,2>;
-template class NonlinearPlateEquations<2,2>;
+// template class FoepplVonKarmanCorrectionEquations<2,2>;
+template class LargeDisplacementPlateEquations<2,2>;
 
 }

@@ -2,21 +2,21 @@
 #ifndef OOMPH_BIHARMONIC_CURVED_BELL_ELEMENTS_HEADER
 #define OOMPH_BIHARMONIC_CURVED_BELL_ELEMENTS_HEADER
 
-#include "nonlinear_plate_elements.h"
-#include "MyBellShape.h"
-#include "C1_curved_elements.h"
+#include "large_displacement_plate_elements.h"
+#include "../C1_basis/C1_curved_elements.h"
+#include "../C1_basis/Bell_element_basis.h"
 
 namespace oomph
 {
 //===============================================================================
-/// NonlinearPlateC1CurvedBellElement elements are a subparametric scheme
+/// LargeDisplacementPlateC1CurvedBellElement elements are a subparametric scheme
 /// with  linear Lagrange interpolation for approximating the geometry and
 /// the C1-functions for approximating variables.
 //==============================================================================
 
 template <unsigned DIM, unsigned NNODE_1D, unsigned BOUNDARY_ORDER, template
 <unsigned DIM, unsigned NNODE_1D> class PLATE_EQUATIONS >
-class NonlinearPlateC1CurvedBellElement : public virtual
+class LargeDisplacementPlateC1CurvedBellElement : public virtual
  PLATE_EQUATIONS<DIM,NNODE_1D>
 {
 public:
@@ -26,10 +26,10 @@ public:
   Vector<double>& b2, DenseMatrix<double>& Db1, DenseMatrix<double>& Db2);
 
  /// \short enum to enumerate the possible edges that could be curved
- typedef  typename MyC1CurvedElements::TestElement<BOUNDARY_ORDER>::Edge Edge; 
+ typedef typename MyC1CurvedElements::Edge Edge; 
 
  /// \short Get the pointer to the Curved shape class data member
- const MyC1CurvedElements::TestElement<BOUNDARY_ORDER>* curved_shape_pt(){return &Curved_shape;};
+ const MyC1CurvedElements::BernadouElementBasis<BOUNDARY_ORDER>* curved_shape_pt(){return &Curved_shape;};
 
  /// \short get the coordinate
  inline void get_coordinate_x(const Vector<double>& s, Vector<double>& x) const;
@@ -74,19 +74,28 @@ public:
    }
  }
 
+ // HERE wrapper around locate zeta - hacky way to get the interface working
+ // needs FIXING
+ void locate_zeta(const Vector<double> &zeta,                     
+                                GeomObject*& geom_object_pt, Vector<double> &s, 
+                                const bool& use_coordinate_as_initial_guess)  
+   {
+   // Temporarily set nnodal_position_type to be one
+   this->set_nnodal_position_type(1);
+   FiniteElement::locate_zeta(zeta,geom_object_pt,s,use_coordinate_as_initial_guess);
+   // Set it back to six
+   this->set_nnodal_position_type(6);
+   }
+
  // Upgrade an element to its curved counterpart
  inline void upgrade_to_curved_element(const Edge& curved_edge, const double& s_ubar,
-  const double& s_obar,
-  typename MyC1CurvedElements::TestElement<BOUNDARY_ORDER>::ParametricCurveFctPt parametric_edge,
-  typename MyC1CurvedElements::TestElement<BOUNDARY_ORDER>::ParametricCurveFctPt d_parametric_edge,
-  typename MyC1CurvedElements::TestElement<BOUNDARY_ORDER>::ParametricCurveFctPt
-d2_parametric_edge=0);
+  const double& s_obar,CurvilineGeomObject* parametric_edge);
 
   // Precompute the association matrix
   void precompute_association_matrix(DenseMatrix<double>& m)
    {
     // If the element has been upgraded
-    if(Curved_edge ==MyC1CurvedElements::TestElement<BOUNDARY_ORDER>::none)
+    if(Curved_edge ==MyC1CurvedElements::none)
      {} // Do nothing
     else 
      {Curved_shape.fill_in_full_association_matrix(m);}
@@ -126,9 +135,9 @@ protected:
 public:
  ///\short  Constructor: Call constructors for C1CurvedBellElement and
  /// Biharmonic equations
- NonlinearPlateC1CurvedBellElement() :
+ LargeDisplacementPlateC1CurvedBellElement() :
   PLATE_EQUATIONS<DIM,NNODE_1D>(), 
-  Curved_edge(MyC1CurvedElements::TestElement<BOUNDARY_ORDER>::none),
+  Curved_edge(MyC1CurvedElements::none),
   Curved_shape(), Rotated_basis_fct_pt(0),  Nnodes_to_rotate(0)
   {
    // Add the (zero) bubble dofs
@@ -145,23 +154,23 @@ public:
   }
 
  ///\short Destructor
- ~NonlinearPlateC1CurvedBellElement()
+ ~LargeDisplacementPlateC1CurvedBellElement()
  {
    // Use the higher order integration scheme
    delete this->integral_pt(); 
  }
  /// Broken copy constructor
- NonlinearPlateC1CurvedBellElement(const
-  NonlinearPlateC1CurvedBellElement<DIM,NNODE_1D,BOUNDARY_ORDER, PLATE_EQUATIONS>& dummy)
+ LargeDisplacementPlateC1CurvedBellElement(const
+  LargeDisplacementPlateC1CurvedBellElement<DIM,NNODE_1D,BOUNDARY_ORDER, PLATE_EQUATIONS>& dummy)
   {
-   BrokenCopy::broken_copy("NonlinearPlateC1CurvedBellElement");
+   BrokenCopy::broken_copy("LargeDisplacementPlateC1CurvedBellElement");
   }
 
  /// Broken assignment operator
  void operator=(const
-NonlinearPlateC1CurvedBellElement<DIM,NNODE_1D,BOUNDARY_ORDER,PLATE_EQUATIONS>&)
+LargeDisplacementPlateC1CurvedBellElement<DIM,NNODE_1D,BOUNDARY_ORDER,PLATE_EQUATIONS>&)
   {
-   BrokenCopy::broken_assign("NonlinearPlateC1CurvedBellElement");
+   BrokenCopy::broken_assign("LargeDisplacementPlateC1CurvedBellElement");
   }
 
  /// \short Set up the rotated degrees of freedom
@@ -277,8 +286,11 @@ private:
  Edge Curved_edge;
 
  /// Curved Shape function
- MyC1CurvedElements::TestElement<BOUNDARY_ORDER> 
+ MyC1CurvedElements::BernadouElementBasis<BOUNDARY_ORDER> 
    Curved_shape;
+
+ /// Basis functions
+ MyShape::BellElementBasis Bell_basis;
 
  /// A Pointer to the function that sets up the rotated basis at point x
  BasisVectorsFctPt Rotated_basis_fct_pt;
@@ -301,14 +313,14 @@ private:
 
 
  //==============================================================================
- /// Face geometry for the NonlinearPlateC1CurvedBellElement elements: The
+ /// Face geometry for the LargeDisplacementPlateC1CurvedBellElement elements: The
  /// spatial dimension of the face elements is one lower than that of the bulk
  /// element but they have the same number of points along their 1D edges.
  //==============================================================================
 template <unsigned DIM, unsigned NNODE_1D, unsigned BOUNDARY_ORDER, template
 <unsigned DIM, unsigned NNODE_1D> class PLATE_EQUATIONS >
  class
-FaceGeometry<NonlinearPlateC1CurvedBellElement<DIM,NNODE_1D,BOUNDARY_ORDER,PLATE_EQUATIONS> >:
+FaceGeometry<LargeDisplacementPlateC1CurvedBellElement<DIM,NNODE_1D,BOUNDARY_ORDER,PLATE_EQUATIONS> >:
   public virtual TElement<DIM-1,NNODE_1D>
  {
  
@@ -333,12 +345,12 @@ FaceGeometry<NonlinearPlateC1CurvedBellElement<DIM,NNODE_1D,BOUNDARY_ORDER,PLATE
 //==============================================================================
 template <unsigned DIM, unsigned NNODE_1D, unsigned BOUNDARY_ORDER, template
 <unsigned DIM, unsigned NNODE_1D> class PLATE_EQUATIONS >
-void NonlinearPlateC1CurvedBellElement<DIM,NNODE_1D,BOUNDARY_ORDER,
+void LargeDisplacementPlateC1CurvedBellElement<DIM,NNODE_1D,BOUNDARY_ORDER,
 PLATE_EQUATIONS>::get_coordinate_x(const
  Vector<double>& s, Vector<double>& x) const
 {
  // If the element has been upgraded
- if(Curved_edge ==MyC1CurvedElements::TestElement<BOUNDARY_ORDER>::none)
+ if(Curved_edge ==MyC1CurvedElements::none)
   {this-> my_interpolated_x(s,x);}
  else 
   {Curved_shape.coordinate_x(s,x);}
@@ -352,11 +364,11 @@ PLATE_EQUATIONS>::get_coordinate_x(const
 template <unsigned DIM, unsigned NNODE_1D, unsigned BOUNDARY_ORDER, template
 <unsigned DIM, unsigned NNODE_1D> class PLATE_EQUATIONS >
 void
-NonlinearPlateC1CurvedBellElement<DIM,NNODE_1D,BOUNDARY_ORDER, PLATE_EQUATIONS>::
+LargeDisplacementPlateC1CurvedBellElement<DIM,NNODE_1D,BOUNDARY_ORDER, PLATE_EQUATIONS>::
 get_internal_dofs_location(const unsigned& dof, Vector<double>& s) const
 {
  // If the element has been upgraded
- if(Curved_edge ==MyC1CurvedElements::TestElement<BOUNDARY_ORDER>::none)
+ if(Curved_edge ==MyC1CurvedElements::none)
   {
    throw OomphLibError(
     "There are no internal dofs for these elements as they have not been\
@@ -373,12 +385,10 @@ upgraded to curved elements.",
 //==============================================================================
 template <unsigned DIM, unsigned NNODE_1D, unsigned BOUNDARY_ORDER, template
 <unsigned DIM, unsigned NNODE_1D> class PLATE_EQUATIONS >
-inline void NonlinearPlateC1CurvedBellElement<DIM,NNODE_1D,BOUNDARY_ORDER,
+inline void LargeDisplacementPlateC1CurvedBellElement<DIM,NNODE_1D,BOUNDARY_ORDER,
 PLATE_EQUATIONS>::upgrade_to_curved_element
  (const Edge& curved_edge, const double& s_ubar, const double& s_obar,
- typename MyC1CurvedElements::TestElement<BOUNDARY_ORDER>::ParametricCurveFctPt parametric_edge,
- typename MyC1CurvedElements::TestElement<BOUNDARY_ORDER>::ParametricCurveFctPt d_parametric_edge,
- typename MyC1CurvedElements::TestElement<BOUNDARY_ORDER>::ParametricCurveFctPt d2_parametric_edge)
+  CurvilineGeomObject* parametric_edge)
 {
  #ifdef PARANOID
  // When upgrading add to count
@@ -428,17 +438,7 @@ order Elements.",OOMPH_CURRENT_FUNCTION,  OOMPH_EXCEPTION_LOCATION);
   (this->Number_of_internal_dofs)*(this->Number_of_displacements)));
 
  // Set up the data of the element
- Curved_shape.get_chi_fct_pt() = parametric_edge;
- Curved_shape.get_d_chi_fct_pt() = d_parametric_edge;
- Curved_shape.get_d2_chi_fct_pt() = d2_parametric_edge;
- Curved_shape.set_s_ubar() = s_ubar;
- Curved_shape.set_s_obar() = s_obar;
- typename TestElement<BOUNDARY_ORDER>::VertexList  vertices(3,Vector<double>(2,0.0));
- typename TestElement<BOUNDARY_ORDER>::VertexList lvertices(3,Vector<double>(2,0.0));
-
- // Set up the local vertices
- lvertices[0][0]=1.0;
- lvertices[1][1]=1.0;
+ typename BernadouElementBasis<BOUNDARY_ORDER>::VertexList  vertices(3,Vector<double>(2,0.0));
 
  // Now switch to upgrade
  // The shape functions are designed such that the curved edge is always edge
@@ -447,33 +447,42 @@ order Elements.",OOMPH_CURRENT_FUNCTION,  OOMPH_EXCEPTION_LOCATION);
  switch(curved_edge)
   {
    // Throw an error if an edge is upgraded to none
-   case TestElement<BOUNDARY_ORDER>::none:
+   case none:
     throw OomphLibError( "Cannot upgrade edge 'none'. Curved elements must have\
 one side defined by a parametric function.", OOMPH_CURRENT_FUNCTION,  
      OOMPH_EXCEPTION_LOCATION);
    break;
-   case TestElement<BOUNDARY_ORDER>::zero:
-    // Everything cyclicly permutes
-    this->get_x(lvertices[0],vertices[2]);
-    this->get_x(lvertices[1],vertices[0]);
-    this->get_x(lvertices[2],vertices[1]);
+   case zero:
+   // Everything cyclicly permutes
+    for(unsigned i=0;i<2;++i)
+     {
+      vertices[2][i]=this->node_pt(0)->x(i);
+      vertices[0][i]=this->node_pt(1)->x(i);
+      vertices[1][i]=this->node_pt(2)->x(i);
+     }
    break;
-   case TestElement<BOUNDARY_ORDER>::one:
-    // Everything cyclicly permutes
-    this->get_x(lvertices[1],vertices[2]);
-    this->get_x(lvertices[2],vertices[0]);
-    this->get_x(lvertices[0],vertices[1]);
+   case one:
+   // Everything cyclicly permutes
+    for(unsigned i=0;i<2;++i)
+     {
+      vertices[2][i]=this->node_pt(1)->x(i);
+      vertices[0][i]=this->node_pt(2)->x(i);
+      vertices[1][i]=this->node_pt(0)->x(i);
+     }
    break;
-   case TestElement<BOUNDARY_ORDER>::two:
-    // Everything is just copied over
-    this->get_x(lvertices[2],vertices[2]);
-    this->get_x(lvertices[0],vertices[0]);
-    this->get_x(lvertices[1],vertices[1]);
+   case two:
+   // Everything is just copied over
+    for(unsigned i=0;i<2;++i)
+     {
+      vertices[2][i]=this->node_pt(2)->x(i);
+      vertices[0][i]=this->node_pt(0)->x(i);
+      vertices[1][i]=this->node_pt(1)->x(i);
+     }
    break;
   }
+
  // Add the vertices to make the shape functions fully functional
- Curved_shape.get_vertices() = vertices;
- Curved_shape.get_edge() = curved_edge;
+ Curved_shape.upgrade_element(vertices, s_ubar,s_obar,curved_edge,*parametric_edge);
 }
 
 //==============================================================================
@@ -483,11 +492,11 @@ one side defined by a parametric function.", OOMPH_CURRENT_FUNCTION,
 template <unsigned DIM, unsigned NNODE_1D, unsigned BOUNDARY_ORDER, template
 <unsigned DIM, unsigned NNODE_1D> class PLATE_EQUATIONS >
 double
-NonlinearPlateC1CurvedBellElement<DIM,NNODE_1D,BOUNDARY_ORDER,PLATE_EQUATIONS>::get_u_bubble_dof
+LargeDisplacementPlateC1CurvedBellElement<DIM,NNODE_1D,BOUNDARY_ORDER,PLATE_EQUATIONS>::get_u_bubble_dof
  (const unsigned& l, const unsigned& j) const
 {
   // Now give the lth internal degree of freedom
-  if(Curved_edge!=MyC1CurvedElements::TestElement<BOUNDARY_ORDER>::none && j<=2)
+  if(Curved_edge!=MyC1CurvedElements::none && j<=2)
   {
    // Internal dofs per displacement
    unsigned n_internal_dofs=Curved_shape.n_internal_dofs();
@@ -495,7 +504,7 @@ NonlinearPlateC1CurvedBellElement<DIM,NNODE_1D,BOUNDARY_ORDER,PLATE_EQUATIONS>::
   }
   // Deliberately break this function for the below cases
   // If there is no curved edge then we cannot return anything meaningful
-  else if(Curved_edge==MyC1CurvedElements::TestElement<BOUNDARY_ORDER>::none)
+  else if(Curved_edge==MyC1CurvedElements::none)
   {
   throw OomphLibError("There are no time-dependent internal 'bubble' dofs for \
 this element.",OOMPH_CURRENT_FUNCTION, OOMPH_EXCEPTION_LOCATION);
@@ -520,12 +529,12 @@ element.", OOMPH_CURRENT_FUNCTION, OOMPH_EXCEPTION_LOCATION);
 template <unsigned DIM, unsigned NNODE_1D, unsigned BOUNDARY_ORDER, template
 <unsigned DIM, unsigned NNODE_1D> class PLATE_EQUATIONS >
 int
-NonlinearPlateC1CurvedBellElement<DIM,NNODE_1D,BOUNDARY_ORDER,PLATE_EQUATIONS>::local_u_bubble_equation(const
+LargeDisplacementPlateC1CurvedBellElement<DIM,NNODE_1D,BOUNDARY_ORDER,PLATE_EQUATIONS>::local_u_bubble_equation(const
   unsigned& l, const unsigned& j) const
  {
   // Deliberately break this function for the below cases
   // If there is no curved edge then we cannot return anything meaningful
-  if(Curved_edge==MyC1CurvedElements::TestElement<BOUNDARY_ORDER>::none)
+  if(Curved_edge==MyC1CurvedElements::none)
   {
   throw OomphLibError(
    "There are no time-dependent internal 'bubble' dofs for this element.",
@@ -557,7 +566,7 @@ element.", OOMPH_CURRENT_FUNCTION,OOMPH_EXCEPTION_LOCATION);
 //==============================================================================
 template <unsigned DIM, unsigned NNODE_1D, unsigned BOUNDARY_ORDER, template
 <unsigned DIM, unsigned NNODE_1D> class PLATE_EQUATIONS >
-void NonlinearPlateC1CurvedBellElement<DIM,NNODE_1D,BOUNDARY_ORDER,PLATE_EQUATIONS>::set_up_rotated_dofs(const unsigned&
+void LargeDisplacementPlateC1CurvedBellElement<DIM,NNODE_1D,BOUNDARY_ORDER,PLATE_EQUATIONS>::set_up_rotated_dofs(const unsigned&
   nnodes_to_rotate, const Vector<unsigned>& nodes_to_rotate, const
   BasisVectorsFctPt& basis_vectors_fct_pt)
 {
@@ -588,7 +597,7 @@ void NonlinearPlateC1CurvedBellElement<DIM,NNODE_1D,BOUNDARY_ORDER,PLATE_EQUATIO
 template <unsigned DIM, unsigned NNODE_1D, unsigned BOUNDARY_ORDER, template
 <unsigned DIM, unsigned NNODE_1D> class PLATE_EQUATIONS >
 void
-NonlinearPlateC1CurvedBellElement<DIM,NNODE_1D,BOUNDARY_ORDER,PLATE_EQUATIONS>::
+LargeDisplacementPlateC1CurvedBellElement<DIM,NNODE_1D,BOUNDARY_ORDER,PLATE_EQUATIONS>::
  rotation_matrix_at_node (const unsigned& inode, DenseDoubleMatrix&
  rotation_matrix) const
 {
@@ -680,13 +689,13 @@ NonlinearPlateC1CurvedBellElement<DIM,NNODE_1D,BOUNDARY_ORDER,PLATE_EQUATIONS>::
 //======================================================================
 template <unsigned DIM, unsigned NNODE_1D, unsigned BOUNDARY_ORDER, template
 <unsigned DIM, unsigned NNODE_1D> class PLATE_EQUATIONS >
- void NonlinearPlateC1CurvedBellElement<DIM,NNODE_1D,BOUNDARY_ORDER,PLATE_EQUATIONS>::shape_and_test_biharmonic(
+ void LargeDisplacementPlateC1CurvedBellElement<DIM,NNODE_1D,BOUNDARY_ORDER,PLATE_EQUATIONS>::shape_and_test_biharmonic(
   const Vector<double> &s, Shape &psi, Shape& psi_b,  Shape &test, Shape& test_b
   ) const
 {
  throw OomphLibError(
  "This still needs testing for curved elements.",
- "void NonlinearPlateC1CurvedBellElement<DIM,NNODE_1D,BOUNDARY_ORDER,PLATE_EQUATIONS>::\
+ "void LargeDisplacementPlateC1CurvedBellElement<DIM,NNODE_1D,BOUNDARY_ORDER,PLATE_EQUATIONS>::\
 shape_and_test_biharmonic(...)", OOMPH_EXCEPTION_LOCATION); // HERE
 
  // Get dummy shape functions for the Bell call
@@ -704,11 +713,11 @@ shape_and_test_biharmonic(...)", OOMPH_EXCEPTION_LOCATION); // HERE
   }
 
  // If the element has not been upgraded
- if(Curved_edge ==MyC1CurvedElements::TestElement<BOUNDARY_ORDER>::none)
+ if(Curved_edge ==MyC1CurvedElements::none)
   { 
   // Get J
   this->J_eulerian1(s);
-  MyShape::d2_basis_eulerian(s,v,psi,dpsidx,d2psidx);
+  Bell_basis.d2_basis_eulerian(s,v,psi,dpsidx,d2psidx);
   }
  else // i.e if has curved edge
   {Curved_shape.shape(s,psi,psi_b);}
@@ -732,7 +741,7 @@ shape_and_test_biharmonic(...)", OOMPH_EXCEPTION_LOCATION); // HERE
 //======================================================================
 template <unsigned DIM, unsigned NNODE_1D, unsigned BOUNDARY_ORDER, template
 <unsigned DIM, unsigned NNODE_1D> class PLATE_EQUATIONS >
- double NonlinearPlateC1CurvedBellElement<DIM,NNODE_1D,BOUNDARY_ORDER,
+ double LargeDisplacementPlateC1CurvedBellElement<DIM,NNODE_1D,BOUNDARY_ORDER,
 PLATE_EQUATIONS>::
  dshape_and_dtest_eulerian_biharmonic(const Vector<double> &s, Shape &psi,
  Shape& psi_b, DShape &dpsidx, DShape& dpsi_b_dx,  Shape &test, Shape& test_b,
@@ -741,7 +750,7 @@ PLATE_EQUATIONS>::
  // Throw if called 
  throw OomphLibError(
  "This still needs testing for curved elements.",
- "void NonlinearPlateC1CurvedBellElement<DIM,NNODE_1D,BOUNDARY_ORDER,PLATE_EQUATIONS>::\
+ "void LargeDisplacementPlateC1CurvedBellElement<DIM,NNODE_1D,BOUNDARY_ORDER,PLATE_EQUATIONS>::\
 dshape_and_dtest_biharmonic(...)",
   OOMPH_EXCEPTION_LOCATION);// HERE
 
@@ -760,11 +769,11 @@ dshape_and_dtest_biharmonic(...)",
   }
 
  // If the element has been upgraded
- if(Curved_edge ==MyC1CurvedElements::TestElement<BOUNDARY_ORDER>::none)
+ if(Curved_edge ==MyC1CurvedElements::none)
   { 
   // Get J
   J=this->J_eulerian1(s);
-  MyShape::d2_basis_eulerian(s,v,psi,dpsidx,d2psidx);
+  Bell_basis.d2_basis_eulerian(s,v,psi,dpsidx,d2psidx);
   }
  else // i.e if has curved edge
   {J=Curved_shape.d_shape_dx(s,psi,psi_b,dpsidx,dpsi_b_dx);}
@@ -784,7 +793,7 @@ dshape_and_dtest_biharmonic(...)",
 template <unsigned DIM, unsigned NNODE_1D, unsigned BOUNDARY_ORDER, template
 <unsigned DIM, unsigned NNODE_1D> class PLATE_EQUATIONS >
  double
-NonlinearPlateC1CurvedBellElement<DIM,NNODE_1D,BOUNDARY_ORDER,PLATE_EQUATIONS>::
+LargeDisplacementPlateC1CurvedBellElement<DIM,NNODE_1D,BOUNDARY_ORDER,PLATE_EQUATIONS>::
   d2shape_and_d2test_eulerian_biharmonic(const Vector<double> &s,  Shape &psi,
   Shape &psi_b, DShape &dpsidx, DShape &dpsi_bdx,  DShape &d2psidx,
   DShape &d2psi_bdx,
@@ -804,11 +813,11 @@ NonlinearPlateC1CurvedBellElement<DIM,NNODE_1D,BOUNDARY_ORDER,PLATE_EQUATIONS>::
   }
 
  // If the element has been upgraded
- if(Curved_edge ==MyC1CurvedElements::TestElement<BOUNDARY_ORDER>::none)
+ if(Curved_edge ==MyC1CurvedElements::none)
   { 
   // Get J
   J=this->J_eulerian1(s);
-  MyShape::d2_basis_eulerian(s,v,psi,dpsidx,d2psidx);
+  Bell_basis.d2_basis_eulerian(s,v,psi,dpsidx,d2psidx);
   }
  // i.e if has curved edge and precomputed matrix
  else if (this->get_association_matrix_pt() != 0)
@@ -845,7 +854,7 @@ NonlinearPlateC1CurvedBellElement<DIM,NNODE_1D,BOUNDARY_ORDER,PLATE_EQUATIONS>::
 template <unsigned DIM, unsigned NNODE_1D, unsigned BOUNDARY_ORDER, template
 <unsigned DIM, unsigned NNODE_1D> class PLATE_EQUATIONS >
 inline void
-NonlinearPlateC1CurvedBellElement<DIM,NNODE_1D,BOUNDARY_ORDER,PLATE_EQUATIONS>::
+LargeDisplacementPlateC1CurvedBellElement<DIM,NNODE_1D,BOUNDARY_ORDER,PLATE_EQUATIONS>::
  rotate_shape(Shape& psi) const
 {
  // Loop over the nodes with rotated dofs
@@ -880,7 +889,7 @@ NonlinearPlateC1CurvedBellElement<DIM,NNODE_1D,BOUNDARY_ORDER,PLATE_EQUATIONS>::
 //======================================================================
 template <unsigned DIM, unsigned NNODE_1D, unsigned BOUNDARY_ORDER, template
 <unsigned DIM, unsigned NNODE_1D> class PLATE_EQUATIONS >
-inline void NonlinearPlateC1CurvedBellElement<DIM,NNODE_1D,BOUNDARY_ORDER,PLATE_EQUATIONS>::
+inline void LargeDisplacementPlateC1CurvedBellElement<DIM,NNODE_1D,BOUNDARY_ORDER,PLATE_EQUATIONS>::
  rotate_shape(Shape& psi, DShape& dpsidx) const
 {
  // Loop over the nodes with rotated dofs
@@ -933,7 +942,7 @@ inline void NonlinearPlateC1CurvedBellElement<DIM,NNODE_1D,BOUNDARY_ORDER,PLATE_
 template <unsigned DIM, unsigned NNODE_1D, unsigned BOUNDARY_ORDER, template
 <unsigned DIM, unsigned NNODE_1D> class PLATE_EQUATIONS >
 inline void
-NonlinearPlateC1CurvedBellElement<DIM,NNODE_1D,BOUNDARY_ORDER,PLATE_EQUATIONS>::
+LargeDisplacementPlateC1CurvedBellElement<DIM,NNODE_1D,BOUNDARY_ORDER,PLATE_EQUATIONS>::
  rotate_shape(Shape& psi, DShape& dpsidx, DShape& d2psidx) const
 {
  // Loop over the nodes with rotated dofs
@@ -990,7 +999,7 @@ NonlinearPlateC1CurvedBellElement<DIM,NNODE_1D,BOUNDARY_ORDER,PLATE_EQUATIONS>::
 ///// Galerkin: Test functions = shape functions
 ////==============================================================================
 //template<unsigned DIM, unsigned NNODE_1D, unsigned BOUNDARY_ORDER>
-//double NonlinearPlateC1CurvedBellElement<DIM,NNODE_1D,BOUNDARY_ORDER>::
+//double LargeDisplacementPlateC1CurvedBellElement<DIM,NNODE_1D,BOUNDARY_ORDER>::
 // dshape_and_dtest_eulerian_at_knot_biharmonic(
 //  const unsigned &ipt,
 //  Shape &psi,
@@ -1005,7 +1014,7 @@ NonlinearPlateC1CurvedBellElement<DIM,NNODE_1D,BOUNDARY_ORDER,PLATE_EQUATIONS>::
 //}
 //
 //template<unsigned DIM, unsigned NNODE_1D, unsigned BOUNDARY_ORDER>
-//double NonlinearPlateC1CurvedBellElement<DIM,NNODE_1D,BOUNDARY_ORDER>::
+//double LargeDisplacementPlateC1CurvedBellElement<DIM,NNODE_1D,BOUNDARY_ORDER>::
 // d2shape_and_d2test_eulerian_at_knot_biharmonic(
 //  const unsigned &ipt,
 //  Shape &psi,

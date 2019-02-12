@@ -1,5 +1,5 @@
 // Non--inline functions for BellBiharmonic elements
-#include "nonlinear_plate_models.h"
+#include "large_displacement_plate_models.h"
 
 namespace oomph
 {
@@ -9,16 +9,16 @@ namespace oomph
 //======================================================================
 template <unsigned DIM, unsigned NNODE_1D, unsigned BOUNDARY_ORDER, template
 <unsigned DIM, unsigned NNODE_1D> class PLATE_EQUATIONS >
- const unsigned NonlinearPlateC1CurvedBellElement<DIM,NNODE_1D,BOUNDARY_ORDER,PLATE_EQUATIONS>
+ const unsigned LargeDisplacementPlateC1CurvedBellElement<DIM,NNODE_1D,BOUNDARY_ORDER,PLATE_EQUATIONS>
   ::Initial_Nvalue = 18;
 
 
 //====================================================================
 // Force build of templates
 //====================================================================
-template class NonlinearPlateC1CurvedBellElement<2,2,3,KoiterSteigmannPlateEquations>;
-template class NonlinearPlateC1CurvedBellElement<2,2,5,KoiterSteigmannPlateEquations>;
-template class NonlinearPlateC1CurvedBellElement<2,2,3,FoepplVonKarmanCorrectionEquations>;
-template class NonlinearPlateC1CurvedBellElement<2,2,5,FoepplVonKarmanCorrectionEquations>;
+template class LargeDisplacementPlateC1CurvedBellElement<2,2,3,KoiterSteigmannPlateEquations>;
+template class LargeDisplacementPlateC1CurvedBellElement<2,2,5,KoiterSteigmannPlateEquations>;
+// template class LargeDisplacementPlateC1CurvedBellElement<2,2,3,FoepplVonKarmanCorrectionEquations>;
+// template class LargeDisplacementPlateC1CurvedBellElement<2,2,5,FoepplVonKarmanCorrectionEquations>;
 
 }
