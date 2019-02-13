@@ -99,8 +99,10 @@ am__aclocal_m4_deps = $(top_srcdir)/config/configure.ac_scripts/automake_init_co
 	$(top_srcdir)/configure.ac
 am__configure_deps = $(am__aclocal_m4_deps) $(CONFIGURE_DEPENDENCIES) \
 	$(ACLOCAL_M4)
-DIST_COMMON = $(srcdir)/Makefile.am $(C1_basisinclude_HEADERS) \
-	$(library_C1_basisinclude_HEADERS) $(am__DIST_COMMON)
+DIST_COMMON = $(srcdir)/Makefile.am \
+	$(C1_large_displacement_plate_modelsinclude_HEADERS) \
+	$(library_C1_large_displacement_plate_modelsinclude_HEADERS) \
+	$(am__DIST_COMMON)
 mkinstalldirs = $(install_sh) -d
 CONFIG_HEADER = $(top_builddir)/config.h
 CONFIG_CLEAN_FILES =
@@ -133,16 +135,18 @@ am__uninstall_files_from_dir = { \
          $(am__cd) "$$dir" && rm -f $$files; }; \
   }
 am__installdirs = "$(DESTDIR)$(libdir)" \
-	"$(DESTDIR)$(C1_basisincludedir)" \
-	"$(DESTDIR)$(library_C1_basisincludedir)"
+	"$(DESTDIR)$(C1_large_displacement_plate_modelsincludedir)" \
+	"$(DESTDIR)$(library_C1_large_displacement_plate_modelsincludedir)"
 LTLIBRARIES = $(lib_LTLIBRARIES)
-libC1_basis_la_LIBADD =
+libC1_large_displacement_plate_models_la_LIBADD =
 am__objects_1 =
 am__objects_2 = large_displacement_plate_equations.lo \
 	large_displacement_plate_curved_bell_elements.lo
 am__objects_3 = $(am__objects_1) $(am__objects_2)
-am_libC1_basis_la_OBJECTS = $(am__objects_3)
-libC1_basis_la_OBJECTS = $(am_libC1_basis_la_OBJECTS)
+am_libC1_large_displacement_plate_models_la_OBJECTS =  \
+	$(am__objects_3)
+libC1_large_displacement_plate_models_la_OBJECTS =  \
+	$(am_libC1_large_displacement_plate_models_la_OBJECTS)
 AM_V_lt = $(am__v_lt_@AM_V@)
 am__v_lt_ = $(am__v_lt_@AM_DEFAULT_V@)
 am__v_lt_0 = --silent
@@ -198,15 +202,15 @@ AM_V_CCLD = $(am__v_CCLD_@AM_V@)
 am__v_CCLD_ = $(am__v_CCLD_@AM_DEFAULT_V@)
 am__v_CCLD_0 = @echo "  CCLD    " $@;
 am__v_CCLD_1 = 
-SOURCES = $(libC1_basis_la_SOURCES)
-DIST_SOURCES = $(libC1_basis_la_SOURCES)
+SOURCES = $(libC1_large_displacement_plate_models_la_SOURCES)
+DIST_SOURCES = $(libC1_large_displacement_plate_models_la_SOURCES)
 am__can_run_installinfo = \
   case $$AM_UPDATE_INFO_DIR in \
     n|no|NO) false;; \
     *) (install-info --version) >/dev/null 2>&1;; \
   esac
-HEADERS = $(C1_basisinclude_HEADERS) \
-	$(library_C1_basisinclude_HEADERS)
+HEADERS = $(C1_large_displacement_plate_modelsinclude_HEADERS) \
+	$(library_C1_large_displacement_plate_modelsinclude_HEADERS)
 am__tagged_files = $(HEADERS) $(SOURCES) $(TAGS_FILES) $(LISP)
 # Read a list of newline-separated strings from the standard input,
 # and print each of them once, without duplicates.  Input order is
@@ -401,13 +405,10 @@ top_builddir = @top_builddir@
 top_srcdir = @top_srcdir@
 
 # Define the sources
-sourcesC1 = \
-large_displacement_plate_equations.cc large_displacement_plate_curved_bell_elements.cc
-
+sourcesC1 = large_displacement_plate_equations.cc large_displacement_plate_curved_bell_elements.cc
 
 # Define the headers
-headersC1 = \
-large_displacement_plate_models.h large_displacement_plate_elements.h large_displacement_plate_curved_bell_elements.h \
+headersC1 = large_displacement_plate_models.h large_displacement_plate_elements.h large_displacement_plate_curved_bell_elements.h \
 koiter_steigmann_plate_elements.h
 
 
@@ -419,25 +420,25 @@ headersC1_and_sourcesC1 = $(headersC1) $(sourcesC1)
 
 # Define the library that gets placed in lib directory
 #-----------------------------------------------------
-lib_LTLIBRARIES = libC1_basis.la
+lib_LTLIBRARIES = libC1_large_displacement_plate_models.la
 
 # Sources that the library depends on: 
 #-------------------------------------
-libC1_basis_la_SOURCES = $(headersC1_and_sourcesC1)
+libC1_large_displacement_plate_models_la_SOURCES = $(headersC1_and_sourcesC1)
 
 # The library's include headers:
 #-------------------------------
 # Headers that are to be included in the $(includedir) directory:
 # This is the combined header which contains "#include<...>" commands
 # for the real headers in the subdirectory below $(includedir)
-C1_basisinclude_HEADERS = $(libnameC1).h 
-C1_basisincludedir = $(includedir) 
+C1_large_displacement_plate_modelsinclude_HEADERS = $(libnameC1).h 
+C1_large_displacement_plate_modelsincludedir = $(includedir)
 
 #Here's the subdirectory where the actual header files are placed
-library_C1_basisincludedir = $(includedir)/C1_large_displacement_plate_models.h
+library_C1_large_displacement_plate_modelsincludedir = $(includedir)/C1_large_displacement_plate_models
 
 #These are the header files that are to be placed in subdirectory
-library_C1_basisinclude_HEADERS = $(headersC1) 
+library_C1_large_displacement_plate_modelsinclude_HEADERS = $(headersC1)
 all: all-am
 
 .SUFFIXES:
@@ -507,8 +508,8 @@ clean-libLTLIBRARIES:
 	  rm -f $${locs}; \
 	}
 
-libC1_basis.la: $(libC1_basis_la_OBJECTS) $(libC1_basis_la_DEPENDENCIES) $(EXTRA_libC1_basis_la_DEPENDENCIES) 
-	$(AM_V_CXXLD)$(CXXLINK) -rpath $(libdir) $(libC1_basis_la_OBJECTS) $(libC1_basis_la_LIBADD) $(LIBS)
+libC1_large_displacement_plate_models.la: $(libC1_large_displacement_plate_models_la_OBJECTS) $(libC1_large_displacement_plate_models_la_DEPENDENCIES) $(EXTRA_libC1_large_displacement_plate_models_la_DEPENDENCIES) 
+	$(AM_V_CXXLD)$(CXXLINK) -rpath $(libdir) $(libC1_large_displacement_plate_models_la_OBJECTS) $(libC1_large_displacement_plate_models_la_LIBADD) $(LIBS)
 
 mostlyclean-compile:
 	-rm -f *.$(OBJEXT)
@@ -545,48 +546,48 @@ mostlyclean-libtool:
 
 clean-libtool:
 	-rm -rf .libs _libs
-install-C1_basisincludeHEADERS: $(C1_basisinclude_HEADERS)
+install-C1_large_displacement_plate_modelsincludeHEADERS: $(C1_large_displacement_plate_modelsinclude_HEADERS)
 	@$(NORMAL_INSTALL)
-	@list='$(C1_basisinclude_HEADERS)'; test -n "$(C1_basisincludedir)" || list=; \
+	@list='$(C1_large_displacement_plate_modelsinclude_HEADERS)'; test -n "$(C1_large_displacement_plate_modelsincludedir)" || list=; \
 	if test -n "$$list"; then \
-	  echo " $(MKDIR_P) '$(DESTDIR)$(C1_basisincludedir)'"; \
-	  $(MKDIR_P) "$(DESTDIR)$(C1_basisincludedir)" || exit 1; \
+	  echo " $(MKDIR_P) '$(DESTDIR)$(C1_large_displacement_plate_modelsincludedir)'"; \
+	  $(MKDIR_P) "$(DESTDIR)$(C1_large_displacement_plate_modelsincludedir)" || exit 1; \
 	fi; \
 	for p in $$list; do \
 	  if test -f "$$p"; then d=; else d="$(srcdir)/"; fi; \
 	  echo "$$d$$p"; \
 	done | $(am__base_list) | \
 	while read files; do \
-	  echo " $(INSTALL_HEADER) $$files '$(DESTDIR)$(C1_basisincludedir)'"; \
-	  $(INSTALL_HEADER) $$files "$(DESTDIR)$(C1_basisincludedir)" || exit $$?; \
+	  echo " $(INSTALL_HEADER) $$files '$(DESTDIR)$(C1_large_displacement_plate_modelsincludedir)'"; \
+	  $(INSTALL_HEADER) $$files "$(DESTDIR)$(C1_large_displacement_plate_modelsincludedir)" || exit $$?; \
 	done
 
-uninstall-C1_basisincludeHEADERS:
+uninstall-C1_large_displacement_plate_modelsincludeHEADERS:
 	@$(NORMAL_UNINSTALL)
-	@list='$(C1_basisinclude_HEADERS)'; test -n "$(C1_basisincludedir)" || list=; \
+	@list='$(C1_large_displacement_plate_modelsinclude_HEADERS)'; test -n "$(C1_large_displacement_plate_modelsincludedir)" || list=; \
 	files=`for p in $$list; do echo $$p; done | sed -e 's|^.*/||'`; \
-	dir='$(DESTDIR)$(C1_basisincludedir)'; $(am__uninstall_files_from_dir)
-install-library_C1_basisincludeHEADERS: $(library_C1_basisinclude_HEADERS)
+	dir='$(DESTDIR)$(C1_large_displacement_plate_modelsincludedir)'; $(am__uninstall_files_from_dir)
+install-library_C1_large_displacement_plate_modelsincludeHEADERS: $(library_C1_large_displacement_plate_modelsinclude_HEADERS)
 	@$(NORMAL_INSTALL)
-	@list='$(library_C1_basisinclude_HEADERS)'; test -n "$(library_C1_basisincludedir)" || list=; \
+	@list='$(library_C1_large_displacement_plate_modelsinclude_HEADERS)'; test -n "$(library_C1_large_displacement_plate_modelsincludedir)" || list=; \
 	if test -n "$$list"; then \
-	  echo " $(MKDIR_P) '$(DESTDIR)$(library_C1_basisincludedir)'"; \
-	  $(MKDIR_P) "$(DESTDIR)$(library_C1_basisincludedir)" || exit 1; \
+	  echo " $(MKDIR_P) '$(DESTDIR)$(library_C1_large_displacement_plate_modelsincludedir)'"; \
+	  $(MKDIR_P) "$(DESTDIR)$(library_C1_large_displacement_plate_modelsincludedir)" || exit 1; \
 	fi; \
 	for p in $$list; do \
 	  if test -f "$$p"; then d=; else d="$(srcdir)/"; fi; \
 	  echo "$$d$$p"; \
 	done | $(am__base_list) | \
 	while read files; do \
-	  echo " $(INSTALL_HEADER) $$files '$(DESTDIR)$(library_C1_basisincludedir)'"; \
-	  $(INSTALL_HEADER) $$files "$(DESTDIR)$(library_C1_basisincludedir)" || exit $$?; \
+	  echo " $(INSTALL_HEADER) $$files '$(DESTDIR)$(library_C1_large_displacement_plate_modelsincludedir)'"; \
+	  $(INSTALL_HEADER) $$files "$(DESTDIR)$(library_C1_large_displacement_plate_modelsincludedir)" || exit $$?; \
 	done
 
-uninstall-library_C1_basisincludeHEADERS:
+uninstall-library_C1_large_displacement_plate_modelsincludeHEADERS:
 	@$(NORMAL_UNINSTALL)
-	@list='$(library_C1_basisinclude_HEADERS)'; test -n "$(library_C1_basisincludedir)" || list=; \
+	@list='$(library_C1_large_displacement_plate_modelsinclude_HEADERS)'; test -n "$(library_C1_large_displacement_plate_modelsincludedir)" || list=; \
 	files=`for p in $$list; do echo $$p; done | sed -e 's|^.*/||'`; \
-	dir='$(DESTDIR)$(library_C1_basisincludedir)'; $(am__uninstall_files_from_dir)
+	dir='$(DESTDIR)$(library_C1_large_displacement_plate_modelsincludedir)'; $(am__uninstall_files_from_dir)
 
 ID: $(am__tagged_files)
 	$(am__define_uniq_tagged_files); mkid -fID $$unique
@@ -674,7 +675,7 @@ check-am: all-am
 check: check-am
 all-am: Makefile $(LTLIBRARIES) $(HEADERS)
 installdirs:
-	for dir in "$(DESTDIR)$(libdir)" "$(DESTDIR)$(C1_basisincludedir)" "$(DESTDIR)$(library_C1_basisincludedir)"; do \
+	for dir in "$(DESTDIR)$(libdir)" "$(DESTDIR)$(C1_large_displacement_plate_modelsincludedir)" "$(DESTDIR)$(library_C1_large_displacement_plate_modelsincludedir)"; do \
 	  test -z "$$dir" || $(MKDIR_P) "$$dir"; \
 	done
 install: install-am
@@ -730,8 +731,9 @@ info: info-am
 
 info-am:
 
-install-data-am: install-C1_basisincludeHEADERS \
-	install-library_C1_basisincludeHEADERS
+install-data-am:  \
+	install-C1_large_displacement_plate_modelsincludeHEADERS \
+	install-library_C1_large_displacement_plate_modelsincludeHEADERS
 	@$(NORMAL_INSTALL)
 	$(MAKE) $(AM_MAKEFLAGS) install-data-hook
 install-dvi: install-dvi-am
@@ -778,9 +780,10 @@ ps: ps-am
 
 ps-am:
 
-uninstall-am: uninstall-C1_basisincludeHEADERS \
+uninstall-am:  \
+	uninstall-C1_large_displacement_plate_modelsincludeHEADERS \
 	uninstall-libLTLIBRARIES \
-	uninstall-library_C1_basisincludeHEADERS
+	uninstall-library_C1_large_displacement_plate_modelsincludeHEADERS
 
 .MAKE: install-am install-data-am install-strip
 
@@ -788,19 +791,21 @@ uninstall-am: uninstall-C1_basisincludeHEADERS \
 	clean-libLTLIBRARIES clean-libtool clean-local cscopelist-am \
 	ctags ctags-am distclean distclean-compile distclean-generic \
 	distclean-libtool distclean-tags distdir dvi dvi-am html \
-	html-am info info-am install install-C1_basisincludeHEADERS \
+	html-am info info-am install \
+	install-C1_large_displacement_plate_modelsincludeHEADERS \
 	install-am install-data install-data-am install-data-hook \
 	install-dvi install-dvi-am install-exec install-exec-am \
 	install-html install-html-am install-info install-info-am \
-	install-libLTLIBRARIES install-library_C1_basisincludeHEADERS \
+	install-libLTLIBRARIES \
+	install-library_C1_large_displacement_plate_modelsincludeHEADERS \
 	install-man install-pdf install-pdf-am install-ps \
 	install-ps-am install-strip installcheck installcheck-am \
 	installdirs maintainer-clean maintainer-clean-generic \
 	mostlyclean mostlyclean-compile mostlyclean-generic \
 	mostlyclean-libtool pdf pdf-am ps ps-am tags tags-am uninstall \
-	uninstall-C1_basisincludeHEADERS uninstall-am \
-	uninstall-libLTLIBRARIES \
-	uninstall-library_C1_basisincludeHEADERS
+	uninstall-C1_large_displacement_plate_modelsincludeHEADERS \
+	uninstall-am uninstall-libLTLIBRARIES \
+	uninstall-library_C1_large_displacement_plate_modelsincludeHEADERS
 
 .PRECIOUS: Makefile
 
@@ -821,10 +826,10 @@ dummy_$(libnameC1).h:  $(headersC1)
 # Extra hook for install: Optionally replace headers by symbolic links
 #---------------------------------------------------------------------
 @SYMBOLIC_LINKS_FOR_HEADERS_TRUE@install-data-hook: 
-@SYMBOLIC_LINKS_FOR_HEADERS_TRUE@	(cd $(library_C1_basisincludedir) && rm -f $(headersC1) )
+@SYMBOLIC_LINKS_FOR_HEADERS_TRUE@	(cd $(library_C1_large_displacement_plate_modelsincludedir) && rm -f $(headersC1) )
 @SYMBOLIC_LINKS_FOR_HEADERS_TRUE@	(echo "$(headersC1)" > include_files.list )
 @SYMBOLIC_LINKS_FOR_HEADERS_TRUE@	($(top_builddir)/bin/change_headers_to_links.sh `pwd`)
-@SYMBOLIC_LINKS_FOR_HEADERS_TRUE@	($(LN_S) `cat include_files.list.aux` $(library_C1_basisincludedir) )
+@SYMBOLIC_LINKS_FOR_HEADERS_TRUE@	($(LN_S) `cat include_files.list.aux` $(library_C1_large_displacement_plate_modelsincludedir) )
 @SYMBOLIC_LINKS_FOR_HEADERS_TRUE@	(rm -r include_files.list.aux include_files.list ) 
 @SYMBOLIC_LINKS_FOR_HEADERS_FALSE@install-data-hook: 
 

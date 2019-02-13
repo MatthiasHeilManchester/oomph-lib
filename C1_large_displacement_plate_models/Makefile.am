@@ -2,12 +2,10 @@
 #-----------------------
 
 # Define the sources
-sourcesC1 =  \
-large_displacement_plate_equations.cc large_displacement_plate_curved_bell_elements.cc
+sourcesC1 =large_displacement_plate_equations.cc large_displacement_plate_curved_bell_elements.cc
 
 # Define the headers
-headersC1 =  \
-large_displacement_plate_models.h large_displacement_plate_elements.h large_displacement_plate_curved_bell_elements.h \
+headersC1 = large_displacement_plate_models.h large_displacement_plate_elements.h large_displacement_plate_curved_bell_elements.h \
 koiter_steigmann_plate_elements.h
 
 # Define name of library
@@ -18,26 +16,25 @@ headersC1_and_sourcesC1 = $(headersC1) $(sourcesC1)
 
 # Define the library that gets placed in lib directory
 #-----------------------------------------------------
-lib_LTLIBRARIES = libC1_basis.la
+lib_LTLIBRARIES = libC1_large_displacement_plate_models.la
 
 # Sources that the library depends on: 
 #-------------------------------------
-libC1_basis_la_SOURCES = $(headersC1_and_sourcesC1)
+libC1_large_displacement_plate_models_la_SOURCES = $(headersC1_and_sourcesC1)
 
 # The library's include headers:
 #-------------------------------
 # Headers that are to be included in the $(includedir) directory:
 # This is the combined header which contains "#include<...>" commands
 # for the real headers in the subdirectory below $(includedir)
-C1_basisinclude_HEADERS = $(libnameC1).h 
-C1_basisincludedir = $(includedir) 
+C1_large_displacement_plate_modelsinclude_HEADERS = $(libnameC1).h 
+C1_large_displacement_plate_modelsincludedir = $(includedir)
 
 #Here's the subdirectory where the actual header files are placed
-library_C1_basisincludedir=$(includedir)/C1_large_displacement_plate_models.h
+library_C1_large_displacement_plate_modelsincludedir=$(includedir)/C1_large_displacement_plate_models
 
 #These are the header files that are to be placed in subdirectory
-library_C1_basisinclude_HEADERS=$(headersC1) 
-
+library_C1_large_displacement_plate_modelsinclude_HEADERS=$(headersC1)
 
 # Required libraries -- [assuming that we want to link against stuff in generic
 #-------------------     add other oomph-lib libraries if you need them....]
@@ -64,10 +61,10 @@ dummy_$(libnameC1).h:  $(headersC1)
 #---------------------------------------------------------------------
 if SYMBOLIC_LINKS_FOR_HEADERS
 install-data-hook: 
-	(cd $(library_C1_basisincludedir) && rm -f $(headersC1) )
+	(cd $(library_C1_large_displacement_plate_modelsincludedir) && rm -f $(headersC1) )
 	(echo "$(headersC1)" > include_files.list )
 	($(top_builddir)/bin/change_headers_to_links.sh `pwd`)
-	($(LN_S) `cat include_files.list.aux` $(library_C1_basisincludedir) )
+	($(LN_S) `cat include_files.list.aux` $(library_C1_large_displacement_plate_modelsincludedir) )
 	(rm -r include_files.list.aux include_files.list ) 
 else
 install-data-hook: 
