@@ -125,14 +125,14 @@ protected:
  /// that they correspond to the new rotated dofs
  inline void rotate_shape(Shape& shape, DShape& dshape,
    DShape& d2shape) const;
- 
+
+public: 
  /// \short Get the jth bubble dof at the lth internal point.
  inline double get_u_bubble_dof(const unsigned& l, const unsigned& j) const;
 
  /// \short Get the jth bubble dof at the lth internal point
  int local_u_bubble_equation(const unsigned& l, const unsigned& j) const;
 
-public:
  ///\short  Constructor: Call constructors for C1CurvedBellElement and
  /// Biharmonic equations
  LargeDisplacementPlateC1CurvedBellElement() :
