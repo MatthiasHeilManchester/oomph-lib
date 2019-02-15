@@ -34,45 +34,57 @@ public:
  /// \short get the coordinate
  inline void get_coordinate_x(const Vector<double>& s, Vector<double>& x) const;
 
+ /// \short get the coordinate i
+ double interpolated_x (const Vector<double>& s, const unsigned &i) const 
+  { Vector<double> r(2); get_coordinate_x(s,r); return r[i]; }  
+
+ /// \short get the coordinate i
+ inline void interpolated_zeta (const Vector<double>&s, Vector<double>& zeta) const 
+  {get_coordinate_x(s,zeta); }  
+
+// /// \short get the coordinate i
+//  void interpolated_x (const Vector<double>& s, Vector<double>& r) const 
+//  { get_coordinate_x(s,r);}  
+
  inline void get_internal_dofs_location(const unsigned& s, Vector<double>& x) const;
 
  /// Access to number of internal dofs
  unsigned number_of_internal_dofs() const {return this->Number_of_internal_dofs;}
 
-//=======================================================================
-/// Return FE interpolated position x[] at local coordinate s as Vector
-//=======================================================================
- void interpolated_x(const Vector<double> &s, Vector<double> &x)
-  const
- {
-   //Find the number of nodes
-  const unsigned n_node = this->nnode();
-  //Find the number of positional types
-  const unsigned n_position_type = 1;
-  //Find the dimension stored in the node
-  const unsigned nodal_dim = this->nodal_dimension();
-
-  //Assign storage for the local shape function
-  Shape psi(n_node,n_position_type);
-  //Find the values of shape function
-  this->shape(s,psi);
-
-  //Loop over the dimensions
-  for(unsigned i=0;i<nodal_dim;i++)
-   {
-    //Initilialise value of x[i] to zero
-    x[i] = 0.0;
-    //Loop over the local nodes
-    for(unsigned l=0;l<n_node;l++) 
-     {
-      //Loop over the number of dofs
-      for(unsigned k=0;k<n_position_type;k++)
-       {
-        x[i] += this->nodal_position_gen(l,k,i)*psi(l,k);
-       }
-     }
-   }
- }
+//  //=======================================================================
+//  /// Return FE interpolated position x[] at local coordinate s as Vector
+//  //=======================================================================
+//   void interpolated_x(const Vector<double> &s, Vector<double> &x)
+//    const
+//   {
+//     //Find the number of nodes
+//    const unsigned n_node = this->nnode();
+//    //Find the number of positional types
+//    const unsigned n_position_type = 1;
+//    //Find the dimension stored in the node
+//    const unsigned nodal_dim = this->nodal_dimension();
+//  
+//    //Assign storage for the local shape function
+//    Shape psi(n_node,n_position_type);
+//    //Find the values of shape function
+//    this->shape(s,psi);
+//  
+//    //Loop over the dimensions
+//    for(unsigned i=0;i<nodal_dim;i++)
+//     {
+//      //Initilialise value of x[i] to zero
+//      x[i] = 0.0;
+//      //Loop over the local nodes
+//      for(unsigned l=0;l<n_node;l++) 
+//       {
+//        //Loop over the number of dofs
+//        for(unsigned k=0;k<n_position_type;k++)
+//         {
+//          x[i] += this->nodal_position_gen(l,k,i)*psi(l,k);
+//         }
+//       }
+//     }
+//   }
 
  // HERE wrapper around locate zeta - hacky way to get the interface working
  // needs FIXING
