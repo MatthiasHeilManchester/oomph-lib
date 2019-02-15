@@ -73,13 +73,13 @@ public:
   D_pressure_dn_fct_pt(0), D_pressure_d_grad_u_fct_pt(0), Stress_fct_pt(0), 
   D_stress_fct_pt(0), Error_metric_fct_pt(0), Multiple_error_metric_fct_pt(0),
   Number_of_internal_dofs(0), Number_of_internal_dof_types(0),
-  Association_matrix_pt(0) 
+  Association_matrix_pt(0), Use_finite_difference_jacobian(false), 
+  Association_matrix_is_cached(false)
  {
   // Poisson ratio is 0.5 (incompressible) by default.
   Nu_pt = &Default_Nu_Value;
-  // HERE MOVE ME
-  Eta_u_z_pt = &Default_Eta_Value;
-  Eta_u_xy_pt = &Default_Eta_Value;
+  Eta_u_pt = &Default_Eta_Value;
+  Eta_sigma_pt = &Default_Eta_Value;
 
   // Thickness ratio small (0.001). Might expect thickness independence in this
   // limit depending on the magnitude of the external forcing
@@ -97,6 +97,12 @@ public:
   {
    BrokenCopy::broken_assign("LargeDisplacementPlateEquations");
   }
+
+ /// Enable Finite difference Jacobian
+ void enable_finite_difference_jacobian() {Use_finite_difference_jacobian = true;}
+
+ /// Disable Finite difference Jacobian
+ void disable_finite_difference_jacobian() {Use_finite_difference_jacobian = false;}
 
  /// \short Return the index at which the ith displacement l-type (unknown) value
  /// is stored.
@@ -398,11 +404,15 @@ public:
  /// Add the element's contribution to its residual vector (wrapper)
  void fill_in_contribution_to_residuals(Vector<double> &residuals)
   {
-  // Precompute the association matrix
-  DenseMatrix<double> conversion_matrix (n_basis_functions(),
-   n_basic_basis_functions(),0.0);
-  this->precompute_association_matrix(conversion_matrix);
-  this->Association_matrix_pt=&conversion_matrix;
+   DenseMatrix<double> conversion_matrix (n_basis_functions(),
+    n_basic_basis_functions(),0.0);
+  // Precompute if not cached
+  if(! Association_matrix_is_cached)
+   {
+   // Precompute the association matrix
+   this->precompute_association_matrix(conversion_matrix);
+   this->Association_matrix_pt=&conversion_matrix;
+   }
 
   //Call the generic residuals function with flag set to 0
   //using a dummy matrix argument
@@ -410,7 +420,10 @@ public:
    residuals,GeneralisedElement::Dummy_matrix,0);
 
   // Reset to zero
-  this->Association_matrix_pt=0;
+  if(! Association_matrix_is_cached)
+   {
+    this->Association_matrix_pt=0;
+   }
   }
 
 
@@ -424,32 +437,42 @@ public:
     n_basic_basis_functions(),0.0);
    this->precompute_association_matrix(conversion_matrix);
    this->Association_matrix_pt=&conversion_matrix;
+   Association_matrix_is_cached = true;
  
    //Call the generic routine with the flag set to 1
-   fill_in_generic_residual_contribution_biharmonic(residuals,jacobian,1);
+   if(! Use_finite_difference_jacobian)
+    {
+     fill_in_generic_residual_contribution_biharmonic(residuals,jacobian,1);
+    }
+   else
+    {
+     // Otherwise call the default
+     FiniteElement::fill_in_contribution_to_jacobian(residuals,jacobian);
+    }
  
    // Reset to zero
    this->Association_matrix_pt=0;
+   Association_matrix_is_cached = false;
   }
 
-  /// Add the element's contribution to its residual vector and
-  /// element Jacobian matrix (wrapper)
-  void fill_in_contribution_to_jacobian_and_mass_matrix(Vector<double> &residuals,
-DenseMatrix<double> &jacobian,DenseMatrix<double> &mass_matrix)
-   {
-   //Call fill in Jacobian 
-   fill_in_contribution_to_jacobian(residuals,jacobian);
-   // There is no mass matrix: we will just want J w = 0
- 
-   // -- COPIED FROM DISPLACMENT FVK EQUATIONS --
-   // Dummy diagonal (won't result in global unit matrix but
-   // doesn't matter for zero eigenvalue/eigenvector
-   unsigned ndof=mass_matrix.nrow();
-   for (unsigned i=0;i<ndof;i++)
-    {
-     mass_matrix(i,i)+=1.0;
-    }
-   }
+//  /// Add the element's contribution to its residual vector and
+//  /// element Jacobian matrix (wrapper)
+//  void fill_in_contribution_to_jacobian_and_mass_matrix(Vector<double> &residuals,
+//DenseMatrix<double> &jacobian,DenseMatrix<double> &mass_matrix)
+//   {
+//   //Call fill in Jacobian 
+//   fill_in_contribution_to_jacobian(residuals,jacobian);
+//   // There is no mass matrix: we will just want J w = 0
+// 
+//   // -- COPIED FROM DISPLACMENT FVK EQUATIONS --
+//   // Dummy diagonal (won't result in global unit matrix but
+//   // doesn't matter for zero eigenvalue/eigenvector
+//   unsigned ndof=mass_matrix.nrow();
+//   for (unsigned i=0;i<ndof;i++)
+//    {
+//     mass_matrix(i,i)+=1.0;
+//    }
+//   }
 
  // Return the interpolated unit normal
  virtual void fill_in_metric_tensor(const DenseMatrix<double>& interpolated_drdxi, 
@@ -846,6 +869,21 @@ RankThreeTensor<double>& christoffel_tensor, const RankThreeTensor<double>&
     }
    }  
    }
+
+/// \short HERE eta_u is untested feature so we have disabled it until we
+/// have validated it 
+//  ///Access function to the z displacement scaling in the displacement.
+//  virtual const double*& eta_u_pt() {return Eta_u_pt;}
+
+ ///Access function to the in plane displacment scaling in the displacement.
+ virtual const double*& eta_sigma_pt() {return Eta_sigma_pt;}
+
+ ///Access function to the displacement scaling (HERE always 1. - until valid.).
+ virtual const double& eta_u()const {return *Eta_u_pt;}
+
+ ///Access function to the in plane displacment scaling.
+ virtual const double& eta_sigma()const {return *Eta_sigma_pt;}
+
 protected:
 
  /// \short Shape/test functions and derivs w.r.t. to global coords at
@@ -916,35 +954,27 @@ protected:
 
  static const double Default_Thickness_Value;
 
- /// Pointer to in--plane displacement scaling, which this element cannot modify
- // HERE MOVE THIS OUT
- const double* Eta_u_xy_pt;
+ /// Pointer to displacement scaling
+ const double* Eta_u_pt;
 
- /// Pointer to out--of--plane displacement scaling, which this element 
- //  cannot modify
- const double* Eta_u_z_pt;
-
- ///Access function to the z displacement scaling in the displacement.
- virtual const double*& eta_u_z_pt() {return Eta_u_z_pt;}
-
- ///Access function to the in plane displacment scaling in the displacement.
- virtual const double*& eta_u_xy_pt() {return Eta_u_xy_pt;}
-
- ///Access function to the z displacement scaling.
- virtual const double& eta_u_z()const {return *Eta_u_z_pt;}
-
- ///Access function to the in plane displacment scaling.
- virtual const double& eta_u_xy()const {return *Eta_u_xy_pt;}
+ /// Pointer to stress scaling
+ const double* Eta_sigma_pt;
 
  /// \short unsigned that holds the number of types of degree of freedom at each
  // internal point that the element has zero for Bell Elements and 1
  //// for C1 curved elements
  unsigned Number_of_internal_dof_types;
 
- //protected:
+ protected:
 
- ///// Pointer to precomputed matrix that associates shape functions to monomials
+ /// Pointer to precomputed matrix that associates shape functions to monomials
  DenseMatrix<double> *Association_matrix_pt;
+
+ /// Flag to use finite difference jacobian
+ bool Use_finite_difference_jacobian;
+
+ /// Bool to flag up when assocation matrix is cached
+ bool Association_matrix_is_cached;
 
 };
 

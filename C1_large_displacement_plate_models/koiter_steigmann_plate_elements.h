@@ -29,15 +29,6 @@ public:
   // Default parameters should lead to membrane like behaviour by default:
   // order 1 displacements for small thickness sheet
   // By default the displacements are asumed to be of order 1
-  Eta_gamma_pt = &Default_Eta_Value;
-  Eta_e_z_pt = &Default_Eta_Value;
-  Eta_e_xy_pt = &Default_Eta_Value;
-  Eta_u_z_pt = &Default_Eta_Value; //HERE move to HERE
-  Eta_u_xy_pt = &Default_Eta_Value;
-  Eta_u_z_in_t_pt = &Default_Eta_Value;
-  Eta_u_xy_in_t_pt = &Default_Eta_Value;
-  Eta_g_z_pt = &Default_Eta_Value;
-  Eta_g_xy_pt = &Default_Eta_Value;
  } 
 
  /// Broken copy constructor
@@ -64,60 +55,6 @@ public:
 //    "There is no time-dependent output_fct() for these elements ",
 //    OOMPH_CURRENT_FUNCTION, OOMPH_EXCEPTION_LOCATION);
 //  }
-
- ///Access for the eta_t pt which varies gamma scaling.
- const double*& eta_gamma_pt() {return Eta_gamma_pt;}
-
- ///Access function to the z displacement scaling in strain.
- const double*& eta_e_z_pt() {return Eta_e_z_pt;}
-
- ///Access function to the in plane displacment scaling in strain.
- const double*& eta_e_xy_pt() {return Eta_e_xy_pt;}
-
- ///Access function to the z displacement scaling in the displacement.
- const double*& eta_u_z_pt() {return Eta_u_z_pt;}
-
- ///Access function to the in plane displacment scaling in the displacement.
- const double*& eta_u_xy_pt() {return Eta_u_xy_pt;}
-
- ///Access function to the z displacement scaling in the displacement.
- const double*& eta_u_z_in_t_pt() {return Eta_u_z_in_t_pt;}
-
- ///Access function to the in plane displacment scaling in the displacement.
- const double*& eta_u_xy_in_t_pt() {return Eta_u_xy_in_t_pt;}
-
- ///Access function to the z displacement scaling in the tangent.
- const double*& eta_g_z_pt() {return Eta_g_z_pt;}
-
- ///Access function to the in plane displacment scaling in the tangent.
- const double*& eta_g_xy_pt() {return Eta_g_xy_pt;}
-
- ///Access function to the z displacement scaling.
- const double& eta_gamma()const {return *Eta_gamma_pt;}
-
- ///Access function to the z displacement scaling.
- const double& eta_e_z()const {return *Eta_e_z_pt;}
-
- ///Access function to the in plane displacment scaling.
- const double& eta_e_xy()const {return *Eta_e_xy_pt;}
-
- ///Access function to the z displacement scaling.
- const double& eta_u_z()const {return *Eta_u_z_pt;}
-
- ///Access function to the in plane displacment scaling.
- const double& eta_u_xy()const {return *Eta_u_xy_pt;}
-
- ///Access function to the z displacement scaling.
- const double& eta_u_z_in_t()const {return *Eta_u_z_in_t_pt;}
-
- ///Access function to the in plane displacment scaling.
- const double& eta_u_xy_in_t()const {return *Eta_u_xy_in_t_pt;}
-
- ///Access function to the z displacement scaling.
- const double& eta_g_z()const {return *Eta_g_z_pt;}
-
- ///Access function to the in plane displacment scaling.
- const double& eta_g_xy()const {return *Eta_g_xy_pt;}
 
  // Return the interpolated unit normal
  inline void fill_in_metric_tensor(const DenseMatrix<double>& interpolated_drdxi, 
@@ -160,9 +97,9 @@ DenseMatrix<double>& g_tensor)
   for(unsigned beta=0;beta<2;++beta)
    {
    // Scale the displacements
-   const double eta =(i==2 ? eta_g_z() : eta_g_xy());
+   const double eta_u =this->eta_u();
    // The displacement part
-   interpolated_drdxi(i,beta) += eta*interpolated_dudxi(i,beta);
+   interpolated_drdxi(i,beta) += eta_u*interpolated_dudxi(i,beta);
    // The coordinate part
    interpolated_drdxi(i,beta) += (i==beta ? 1 : 0);
    }
@@ -223,6 +160,7 @@ DenseMatrix<double>& g_tensor)
   {
   // Determinant of metric tensor
   const double g =  metric_tensor_determinant(interpolated_drdxi);
+  const double sqrt_g = sqrt(g);
 
   // Zero the normal 
   for(unsigned i=0;i<this->Number_of_displacements;++i)
@@ -247,7 +185,7 @@ DenseMatrix<double>& g_tensor)
     VectorHelpers::cross(g_alpha,g_beta,tmp);
     // And fill in the normal 
    for(unsigned i=0;i<this->Number_of_displacements;++i)
-    { normal[i] +=  tmp[i]/(2*sqrt(g)) * (alpha == 0 ? 1 : -1) ;} 
+    { normal[i] +=  tmp[i]/(2*sqrt_g) * (alpha == 0 ? 1 : -1) ;} 
    } 
   }
 
@@ -267,7 +205,8 @@ inline void fill_in_d_unit_normal_du_unknown(const DenseMatrix<double>&
    }
     
   // Determinant of metric tensor
-  const double g (LargeDisplacementPlateEquations<DIM,NNODE_1D>::two_by_two_determinant(g_tensor));
+  const double g (LargeDisplacementPlateEquations<DIM,NNODE_1D>::
+    two_by_two_determinant(g_tensor));
   const double sqrt_g_inv (1/sqrt(g));
   const double sqrt_g_cubed_inv (1/std::pow(g,1.5));
 
@@ -281,7 +220,7 @@ inline void fill_in_d_unit_normal_du_unknown(const DenseMatrix<double>&
   for(unsigned j=0;j<this->Number_of_displacements;++j)
    {
    // Eta parameter
-   const double eta =(j==2 ? eta_g_z() : eta_g_xy());
+   const double eta_u = this->eta_u();
    for(unsigned alpha=0;alpha<2;++alpha)
     {
     // Beta != Alpha
@@ -290,10 +229,10 @@ inline void fill_in_d_unit_normal_du_unknown(const DenseMatrix<double>&
     // Cross product between g_alpha and d_g_beta_du_unknown
     // NB:  dg_beta_duj_unknown[j]  = d2uidx_du_unknown[beta] 
     // Error could be here somewhere 
-    tmp = interpolated_drdxi(i,alpha) * eta;// * d2uidx_du_unknown[beta];
+    tmp = interpolated_drdxi(i,alpha) * eta_u;// * d2uidx_du_unknown[beta];
     d_normal_du_unknown(k,j,beta) +=  tmp * (sqrt_g_inv) * (alpha == 0 ? 1 : -1) ; 
 
-    tmp = interpolated_drdxi(k,beta) * eta;// *  d2uidx_du_unknown[alpha];
+    tmp = interpolated_drdxi(k,beta) * eta_u;// *  d2uidx_du_unknown[alpha];
     d_normal_du_unknown(i,j,alpha) +=  tmp * (sqrt_g_inv) * (alpha == 0 ? 1 : -1) ; 
 
     // Loop over displacement components
@@ -339,9 +278,9 @@ inline void fill_in_d_unit_normal_du_unknown(const DenseMatrix<double>&
     for(unsigned i=0;i<this->Number_of_displacements; ++i)
      {
      // Scale the displacements
-     const double eta =(i==2 ? eta_e_z() : eta_e_xy());
+     const double eta_u = this->eta_u();
      // Nonlinear terms
-     strain(alpha,beta) += eta*interpolated_dudxi(i,alpha)
+     strain(alpha,beta) += eta_u*interpolated_dudxi(i,alpha)
       *interpolated_dudxi(i,beta)/2.;
      }
     }
@@ -364,18 +303,19 @@ inline void fill_in_d_g_tensor_du_unknown(const DenseMatrix<double>&
     d_g_tensor_du_unknown(alpha,beta,i,1) = 0.0;
     }
    // Fill in linear terms relating to u_\alpha,\beta
-   d_g_tensor_du_unknown(alpha,beta,beta,alpha)  +=eta_g_xy() ;
-   d_g_tensor_du_unknown(alpha,beta,alpha,beta) +=eta_g_xy() ;
+   const unsigned eta_u = this->eta_u();
+   d_g_tensor_du_unknown(alpha,beta,beta,alpha)  +=eta_u;
+   d_g_tensor_du_unknown(alpha,beta,alpha,beta)  +=eta_u;
 
    // Loop over displacements
    for(unsigned i=0;i<this->Number_of_displacements; ++i)
     {
     // Scale the displacements
-    const double eta =(i==2 ? eta_g_z() : eta_g_xy());
+    const double eta_u = this->eta_u();
     // Nonlinear terms
-    d_g_tensor_du_unknown(alpha,beta,i,alpha) += eta*eta*interpolated_dudxi(i
+    d_g_tensor_du_unknown(alpha,beta,i,alpha) += eta_u*eta_u*interpolated_dudxi(i
      ,beta);
-    d_g_tensor_du_unknown(alpha,beta,i,beta) += eta*eta*interpolated_dudxi(i
+    d_g_tensor_du_unknown(alpha,beta,i,beta) += eta_u*eta_u*interpolated_dudxi(i
      ,alpha);
     }
    }
@@ -405,11 +345,11 @@ inline void fill_in_d_strain_tensor_du_unknown(const DenseMatrix<double>&
    for(unsigned i=0;i<this->Number_of_displacements; ++i)
     {
      // Scale the displacements
-     const double eta =(i==2 ? eta_e_z() : eta_e_xy());
+     const double eta_u = this->eta_u();
      // Nonlinear terms
-     d_epsilon_tensor_du_unknown(alpha,beta,i,alpha) += eta*interpolated_dudxi(i
+     d_epsilon_tensor_du_unknown(alpha,beta,i,alpha) += eta_u*interpolated_dudxi(i
       ,beta)/2.;
-     d_epsilon_tensor_du_unknown(alpha,beta,i,beta) += eta*interpolated_dudxi(i
+     d_epsilon_tensor_du_unknown(alpha,beta,i,beta) += eta_u*interpolated_dudxi(i
       ,alpha)/2.;
     }
    }
@@ -435,8 +375,7 @@ inline void fill_in_d_strain_tensor_du_unknown(const DenseMatrix<double>&
     for(unsigned beta=0;beta<2;++beta)
      {
       // Scale the displacements
-      const double eta =(i==2 ? eta_u_z() : eta_u_xy());
-      curvature(alpha,beta) += eta*unit_normal[i]
+      curvature(alpha,beta) += unit_normal[i]
        *interpolated_d2rdxi2(i,alpha+beta);
      }
     }
@@ -466,18 +405,17 @@ inline void fill_in_d_strain_tensor_du_unknown(const DenseMatrix<double>&
   for(unsigned i=0;i<this->Number_of_displacements;++i)
    {
    // Scale the displacements
-   const double eta =(i==2 ? eta_u_z() : eta_u_xy());
    for(unsigned alpha=0;alpha<2;++alpha)
     {
     for(unsigned beta=0;beta<2;++beta)
      {
-      d_curvature_du_unknown(alpha,beta,i,2+alpha+beta) += eta*unit_normal[i];
+      d_curvature_du_unknown(alpha,beta,i,2+alpha+beta) += unit_normal[i];
      for(unsigned j=0;j<this->Number_of_displacements;++j)
       {
        // Note here i is the component (that and we have eta_u_i) and j is
        // unknown
       for(unsigned gamma=0;gamma<2;++gamma)
-       d_curvature_du_unknown(alpha,beta,j,gamma) += eta*d_unit_normal_dunknown(i,j,gamma)
+       d_curvature_du_unknown(alpha,beta,j,gamma) += d_unit_normal_dunknown(i,j,gamma)
         *interpolated_d2rdxi2(i,alpha+beta);
       }
      }
@@ -596,8 +534,6 @@ inline void fill_in_d_strain_tensor_du_unknown(const DenseMatrix<double>&
  // Loop over displacement components
  for(unsigned i=0;i<this->Number_of_displacements;++i)
   {
-   const double eta = (i==2 ? eta_u_z_in_t() : eta_u_xy_in_t());
-   const double eta_u = (i==2 ? eta_u_z() : eta_u_xy());
   // Loop over inplane components
   for(unsigned gamma=0;gamma<2;++gamma)
    {
@@ -606,14 +542,17 @@ inline void fill_in_d_strain_tensor_du_unknown(const DenseMatrix<double>&
     {
     // Kronecker Delta: delta_{i\beta} 
     delta_ibeta = (i==beta? 1.0:0.0);
+    // Local copy of eta_u and eta_sigma
+    const unsigned eta_u = this->eta_u();
+    const unsigned eta_sigma = this->eta_sigma();
     // The diagonal parts of the tangent matrix
-    tension_vectors(i,gamma) += (delta_ibeta + eta*interpolated_dudxi(i,beta))
-     *stress(gamma,beta);
+    tension_vectors(i,gamma) += (delta_ibeta + eta_u*interpolated_dudxi(i,beta))
+     *eta_sigma*stress(gamma,beta);
 
     for(unsigned alpha=0;alpha<2;++alpha)
      {
      // Shouldn't this be -M_{i \al \be} \Ga^\ga_{\al \be} ?
-     tension_vectors(i,gamma) -= eta_u*eta_gamma()*moment_tensors(i,alpha,beta)*
+     tension_vectors(i,gamma) -= eta_u*moment_tensors(i,alpha,beta)*
         christoffel_tensor(gamma,alpha,beta);
      }
     }
@@ -647,8 +586,6 @@ inline void fill_in_d_strain_tensor_du_unknown(const DenseMatrix<double>&
   // Loop over displacement components
   for(unsigned i=0;i<this->Number_of_displacements;++i)
    {
-   const double eta = (i==2 ? eta_u_z_in_t() : eta_u_xy_in_t());
-   const double eta_u = (i==2 ? eta_u_z() : eta_u_xy());
    // Because we don't use a d_tangent_dunknown
    //  const double eta_g =(i==2 ? eta_g_z() : eta_g_xy());
    // Loop over inplane components
@@ -660,14 +597,19 @@ inline void fill_in_d_strain_tensor_du_unknown(const DenseMatrix<double>&
      {
      // Kronecker Delta: delta_{i\beta} 
      delta_ibeta = (i==beta? 1.0:0.0);
-     d_tension_vectors_du_unknown(i,gamma,i,1+beta) += eta*stress(gamma,beta);
+     // Local copy
+     const unsigned eta_u = this->eta_u();
+    const unsigned eta_sigma = this->eta_sigma();
+     // Fill in dtension_du_unknown
+     d_tension_vectors_du_unknown(i,gamma,i,1+beta) += eta_sigma*eta_u*stress(gamma,beta);
      for(unsigned j=0;j<this->Number_of_displacements;++j)
       {
       // The diagonal parts of the tangent matrix
       for(unsigned mu=0;mu<3;++mu)
        {
-        d_tension_vectors_du_unknown(i,gamma,j,mu) +=d_stress_du_unknown(gamma,beta,j,mu)
-         *(delta_ibeta + eta* interpolated_dudxi(i,beta));
+        d_tension_vectors_du_unknown(i,gamma,j,mu) +=
+         eta_sigma*d_stress_du_unknown(gamma,beta,j,mu)
+          *(delta_ibeta + eta_u* interpolated_dudxi(i,beta));
        }
       }
     for(unsigned alpha=0;alpha<2;++alpha)
@@ -676,10 +618,10 @@ inline void fill_in_d_strain_tensor_du_unknown(const DenseMatrix<double>&
       {
       for(unsigned k=0;k<5;++k)
        {
-       d_tension_vectors_du_unknown(i,gamma,j,1+k) -= eta_u*eta_gamma()
+       d_tension_vectors_du_unknown(i,gamma,j,1+k) -= eta_u
           *d_moment_tensors_du_unknown(i,alpha,beta,j,k)
           *christoffel_tensor(gamma,alpha,beta);
-       d_tension_vectors_du_unknown(i,gamma,j,1+k) -= eta_u*eta_gamma()
+       d_tension_vectors_du_unknown(i,gamma,j,1+k) -= eta_u
           *moment_tensors(i,alpha,beta)
           *d_christoffel_tensor_du_unknown(gamma,alpha,beta,j,k);
        }
@@ -726,11 +668,11 @@ inline void fill_in_d_strain_tensor_du_unknown(const DenseMatrix<double>&
      for(unsigned i=0;i<this->Number_of_displacements; ++i)
       {
       // Scale the displacements
-      const double eta =(i==2 ? eta_e_z() : eta_e_xy());
+      const double eta_u = this->eta_u();
       // Nonlinear terms
-      strain_gradient(alpha,beta,gamma) += eta*(interpolated_dudxi(i,alpha)
+      strain_gradient(alpha,beta,gamma) += eta_u*(interpolated_dudxi(i,alpha)
        *interpolated_d2udxi2(i,beta+gamma))/2.;
-      strain_gradient(alpha,beta,gamma) += eta*(interpolated_dudxi(i,beta)
+      strain_gradient(alpha,beta,gamma) += eta_u*(interpolated_dudxi(i,beta)
        *interpolated_d2udxi2(i,alpha+gamma))/2.;
       }
      }
@@ -791,15 +733,15 @@ inline void fill_in_d_strain_tensor_du_unknown(const DenseMatrix<double>&
      for(unsigned i=0;i<this->Number_of_displacements; ++i)
       {
        // Scale the displacements
-       const double eta =(i==2 ? eta_e_z() : eta_e_xy());
+       const double eta_u =this->eta_u();
        // Nonlinear terms
-       d_strain_gradient_du_unknown(alpha,beta,gamma,i,alpha) += eta*
+       d_strain_gradient_du_unknown(alpha,beta,gamma,i,alpha) += eta_u*
         (interpolated_d2udxi2(i,beta+gamma))/2.;
-       d_strain_gradient_du_unknown(alpha,beta,gamma,i,beta) += eta*
+       d_strain_gradient_du_unknown(alpha,beta,gamma,i,beta) += eta_u*
         (interpolated_d2udxi2(i,alpha+gamma))/2.;
-       d_strain_gradient_du_unknown(alpha,beta,gamma,i,2+beta+gamma) += eta*
+       d_strain_gradient_du_unknown(alpha,beta,gamma,i,2+beta+gamma) += eta_u*
          (interpolated_dudxi(i,alpha))/2. ;
-       d_strain_gradient_du_unknown(alpha,beta,gamma,i,2+alpha+gamma) += eta*
+       d_strain_gradient_du_unknown(alpha,beta,gamma,i,2+alpha+gamma) += eta_u*
          (interpolated_dudxi(i,beta))/2. ;
       }
      }
@@ -850,37 +792,6 @@ protected:
  /// \short Shape/test functions at local coordinate s
  virtual void shape_and_test_biharmonic(const Vector<double> &s,
   Shape &psi, Shape& psi_b, Shape &test, Shape& test_b) const=0;
-
- /// Pointer to Christoffel scaling, which this element cannot modify
- const double* Eta_gamma_pt;
-
- /// Pointer to in--plane displacement scaling in strain, which this element cannot modify
- const double* Eta_e_xy_pt;
-
- /// Pointer to z strain scaling relative to the tangent, which this 
- //  element cannot modify
- const double* Eta_e_z_pt;
-
- /// Pointer to in--plane displacement relative to the tangent scaling, which
- //  this element cannot modify
- const double* Eta_g_xy_pt;
-
- /// Pointer to z displacment scaling, which this element cannot modify
- const double* Eta_g_z_pt;
-
- /// Pointer to in--plane displacement scaling, which this element cannot modify
- const double* Eta_u_xy_pt;
-
- /// Pointer to out--of--plane displacement scaling, which this element 
- //  cannot modify
- const double* Eta_u_z_pt;
-
- /// Pointer to in--plane displacement scaling, which this element cannot modify
- const double* Eta_u_xy_in_t_pt;
-
- /// Pointer to out--of--plane displacement scaling, which this element 
- //  cannot modify
- const double* Eta_u_z_in_t_pt;
 
  static const double Default_Eta_Value;
 };

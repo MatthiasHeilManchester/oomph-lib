@@ -295,7 +295,6 @@ fill_in_generic_residual_contribution_biharmonic(Vector<double> &residuals,
     {
      for(unsigned i=0;i<Number_of_displacements; ++i)
       {
-     const double eta_u =(i==2 ? eta_u_z() : eta_u_xy());
      //Get the local equation
      unsigned u_index = u_index_koiter_model(k,i); 
      local_eqn = this->nodal_local_eqn(l,u_index);
@@ -303,7 +302,7 @@ fill_in_generic_residual_contribution_biharmonic(Vector<double> &residuals,
      if(local_eqn >= 0)
       {
       // Add body force/pressure term here
-      residuals[local_eqn] -= pressure[i]*test(l,k)*eta_u*W;
+      residuals[local_eqn] -= pressure[i]*test(l,k)*W;
       for(unsigned alpha=0;alpha<2;++alpha)
        {
        // w_{,\alpha\beta} \delta \kappa_\alpha\beta
@@ -312,8 +311,8 @@ fill_in_generic_residual_contribution_biharmonic(Vector<double> &residuals,
        for(unsigned beta=0; beta<2;++beta)
         {
         // w_{,\alpha\beta} \delta \kappa_\alpha\beta
-        residuals[local_eqn] += /*eta_m()**/m_tensors(i,alpha,beta) 
-                               *d2test_dxi2(l,k,alpha+beta)*eta_u*W;
+        residuals[local_eqn] += m_tensors(i,alpha,beta) 
+                               *d2test_dxi2(l,k,alpha+beta)*W;
         }
        }
       // Calculate the jacobian
@@ -353,12 +352,12 @@ fill_in_generic_residual_contribution_biharmonic(Vector<double> &residuals,
            {
            // Add body force/pressure term here
            jacobian(local_eqn,local_unknown) -= d_pressure_dr(i,i2)
-             *du_dui_unknown[0]*test(l,k)*eta_u*W;
+             *du_dui_unknown[0]*test(l,k)*W;
            // Loop over first derivatives of basis
            for(unsigned mu=0;mu<2;++mu)
             {
             jacobian(local_eqn,local_unknown) -= d_pressure_d_grad_u(i,i2,mu)
-              *du_dui_unknown[1+mu]*test(l,k)*eta_u*W;
+              *du_dui_unknown[1+mu]*test(l,k)*W;
             }
            for(unsigned j=0;j<Number_of_displacements;++j)
             {
@@ -367,7 +366,7 @@ fill_in_generic_residual_contribution_biharmonic(Vector<double> &residuals,
              {
               jacobian(local_eqn,local_unknown) -= d_pressure_dn(i,j)
                 *d_n_vector_du_unknown(j,i2,mu)*du_dui_unknown[1+mu]*test(l,k)
-                *eta_u*W;
+                *W;
              }
             }
            // Loop over inplane coordinates
@@ -388,7 +387,7 @@ fill_in_generic_residual_contribution_biharmonic(Vector<double> &residuals,
               // w_{,\alpha\beta} \delta \kappa_\alpha\beta
               jacobian(local_eqn,local_unknown) +=  d_m_tensors_du_unknown(i
                ,alpha,beta,i2,m2)*du_dui_unknown[1+m2]
-               *d2test_dxi2(l,k,alpha+beta)*eta_u*W;
+               *d2test_dxi2(l,k,alpha+beta)*W;
               }
              }
             }
@@ -426,12 +425,12 @@ fill_in_generic_residual_contribution_biharmonic(Vector<double> &residuals,
            {
             // Add body force/pressure term here
             jacobian(local_eqn,local_unknown) -= d_pressure_dr(i,i2)
-              *du_dui_unknown[0]*test(l,k)*eta_u*W;
+              *du_dui_unknown[0]*test(l,k)*W;
            // Loop over first derivatives of basis
            for(unsigned mu=0;mu<2;++mu)
             {
             jacobian(local_eqn,local_unknown) -= d_pressure_d_grad_u(i,i2,mu)
-              *du_dui_unknown[1+mu]*test(l,k)*eta_u*W;
+              *du_dui_unknown[1+mu]*test(l,k)*W;
             }
             // Loop over displacement components
             for(unsigned j=0;j<Number_of_displacements;++j)
@@ -441,7 +440,7 @@ fill_in_generic_residual_contribution_biharmonic(Vector<double> &residuals,
               {
               jacobian(local_eqn,local_unknown) -= d_pressure_dn(i,j)
                 *d_n_vector_du_unknown(j,i2,mu)*du_dui_unknown[1+mu]
-                *test(l,k)*eta_u*W;
+                *test(l,k)*W;
               }
              }
            // Loop over inplane coordinates
@@ -463,7 +462,7 @@ fill_in_generic_residual_contribution_biharmonic(Vector<double> &residuals,
               // w_{,\alpha\beta} \delta \kappa_\alpha\beta
               jacobian(local_eqn,local_unknown) += d_m_tensors_du_unknown(i
                 ,alpha,beta,i2,m2)*du_dui_unknown[1+m2]
-                *d2test_dxi2(l,k,alpha+beta)*eta_u*W;
+                *d2test_dxi2(l,k,alpha+beta)*W;
               }
              }
             }
@@ -485,14 +484,13 @@ fill_in_generic_residual_contribution_biharmonic(Vector<double> &residuals,
     // Loop over equation (i.e. displacement variation) components i2
     for(unsigned i=0;i<Number_of_displacements; ++i)
      {
-    const double eta_u =(i==2 ? eta_u_z() : eta_u_xy());
     //Get the local equation
     local_eqn = local_u_bubble_equation(l,i);
     //IF it's not a boundary condition
     if(local_eqn >= 0)
      {
      // Add body force/pressure term here
-     residuals[local_eqn] -= pressure[i]*test_b(l,k)*eta_u*W;
+     residuals[local_eqn] -= pressure[i]*test_b(l,k)*W;
 
      for(unsigned alpha=0;alpha<2;++alpha)
       {
@@ -503,7 +501,7 @@ fill_in_generic_residual_contribution_biharmonic(Vector<double> &residuals,
        {
        // w_{,\alpha\beta} \delta \kappa_\alpha\beta
        residuals[local_eqn] += m_tensors(i,alpha,beta) 
-                              *d2test_b_dxi2(l,k,alpha+beta)*eta_u*W;
+                              *d2test_b_dxi2(l,k,alpha+beta)*W;
        }
       }
       // Calculate the jacobian
@@ -543,7 +541,7 @@ fill_in_generic_residual_contribution_biharmonic(Vector<double> &residuals,
            {
            // Add body force/pressure term here
            jacobian(local_eqn,local_unknown) -= d_pressure_dr(i,i2)
-             *du_dui_unknown[0]*test_b(l,k)*eta_u*W;
+             *du_dui_unknown[0]*test_b(l,k)*W;
            for(unsigned j=0;j<Number_of_displacements;++j)
             {
             // Loop over first derivatives of basis
@@ -551,7 +549,7 @@ fill_in_generic_residual_contribution_biharmonic(Vector<double> &residuals,
              {
              jacobian(local_eqn,local_unknown) -= d_pressure_dn(i,j)
                *d_n_vector_du_unknown(j,i2,mu)*du_dui_unknown[1+mu]
-               *test_b(l,k)*eta_u*W;
+               *test_b(l,k)*W;
              }
             }
            // Loop over inplane coordinates
@@ -573,7 +571,7 @@ fill_in_generic_residual_contribution_biharmonic(Vector<double> &residuals,
               // w_{,\alpha\beta} \delta \kappa_\alpha\beta
               jacobian(local_eqn,local_unknown) += d_m_tensors_du_unknown(i
                 ,alpha,beta,i2,m2)*du_dui_unknown[1+m2]
-                *d2test_b_dxi2(l,k,alpha+beta)*eta_u*W;
+                *d2test_b_dxi2(l,k,alpha+beta)*W;
               }
              }
             }
@@ -611,12 +609,12 @@ fill_in_generic_residual_contribution_biharmonic(Vector<double> &residuals,
            {
            // Add body force/pressure term here
            jacobian(local_eqn,local_unknown) -= d_pressure_dr(i,i2)
-             *du_dui_unknown[0]*test_b(l,k)*eta_u*W;
+             *du_dui_unknown[0]*test_b(l,k)*W;
            // Loop over first derivatives of basis
            for(unsigned mu=0;mu<2;++mu)
             {
             jacobian(local_eqn,local_unknown) -= d_pressure_d_grad_u(i,i2,mu)
-              *du_dui_unknown[1+mu]*test_b(l,k)*eta_u*W;
+              *du_dui_unknown[1+mu]*test_b(l,k)*W;
             }
            for(unsigned j=0;j<Number_of_displacements;++j)
             {
@@ -624,7 +622,7 @@ fill_in_generic_residual_contribution_biharmonic(Vector<double> &residuals,
              {
              jacobian(local_eqn,local_unknown) -= d_pressure_dn(i,j)
               *d_n_vector_du_unknown(j,i2,mu)*du_dui_unknown[1+mu]
-              *test_b(l,k)*eta_u*W;
+              *test_b(l,k)*W;
              }
             }
            for(unsigned alpha=0; alpha<2;++alpha)
@@ -635,7 +633,7 @@ fill_in_generic_residual_contribution_biharmonic(Vector<double> &residuals,
             for(unsigned m2=0; m2<5;++m2)
              {
              // w_{,\alpha\beta} \delta \kappa_\alpha\beta
-             //   alpha,i2)*dtest_b_dxi(l,k,alpha)*eta_u*W;
+             //   alpha,i2)*dtest_b_dxi(l,k,alpha)*W;
              jacobian(local_eqn,local_unknown) += d_t_vectors_du_unknown(i,
                 alpha,i2,1+m2)*du_dui_unknown[1+m2]*dtest_b_dxi(l,k,alpha)*W;
              
@@ -644,7 +642,7 @@ fill_in_generic_residual_contribution_biharmonic(Vector<double> &residuals,
               // w_{,\alpha\beta} \delta \kappa_\alpha\beta
               jacobian(local_eqn,local_unknown) += d_m_tensors_du_unknown(i
                 ,alpha,beta,i2,m2)*du_dui_unknown[1+m2]
-                *d2test_b_dxi2(l,k,alpha+beta)*eta_u*W;
+                *d2test_b_dxi2(l,k,alpha+beta)*W;
               }
              }
             }
