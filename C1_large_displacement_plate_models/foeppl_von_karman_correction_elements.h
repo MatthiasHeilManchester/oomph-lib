@@ -1,6 +1,6 @@
 // Header file for the Biharmonic Bell elements
-#ifndef OOMPH_KOITER_STEIGMANN_PLATE_ELEMENTS_HEADER
-#define OOMPH_KOITER_STEIGMANN_PLATE_ELEMENTS_HEADER
+#ifndef OOMPH_FOEPPL_VON_KARMAN_CORRECTION_ELEMENTS_HEADER
+#define OOMPH_FOEPPL_VON_KARMAN_CORRECTION_ELEMENTS_HEADER
 
 
 #include<sstream>
@@ -20,27 +20,27 @@ namespace oomph
 /// mapping etc. must get implemented in derived class.
 //=============================================================
 template <unsigned DIM, unsigned NNODE_1D>
-class KoiterSteigmannPlateEquations : public virtual LargeDisplacementPlateEquations<DIM,NNODE_1D>
+class FoepplVonKarmanCorrectionEquations : public virtual LargeDisplacementPlateEquations<DIM,NNODE_1D>
 {
 
 public:
  /// Constructor (must initialise the Pressure_fct_pt to null)
- KoiterSteigmannPlateEquations() : LargeDisplacementPlateEquations<DIM,NNODE_1D>()  {
+ FoepplVonKarmanCorrectionEquations() : LargeDisplacementPlateEquations<DIM,NNODE_1D>()  {
   // Default parameters should lead to membrane like behaviour by default:
   // order 1 displacements for small thickness sheet
   // By default the displacements are asumed to be of order 1
  } 
 
  /// Broken copy constructor
- KoiterSteigmannPlateEquations(const KoiterSteigmannPlateEquations& dummy)
+ FoepplVonKarmanCorrectionEquations(const FoepplVonKarmanCorrectionEquations& dummy)
   {
-   BrokenCopy::broken_copy("KoiterSteigmannPlateEquations");
+   BrokenCopy::broken_copy("FoepplVonKarmanCorrectionEquations");
   }
 
  /// Broken assignment operator
- void operator=(const KoiterSteigmannPlateEquations&)
+ void operator=(const FoepplVonKarmanCorrectionEquations&)
   {
-   BrokenCopy::broken_assign("KoiterSteigmannPlateEquations");
+   BrokenCopy::broken_assign("FoepplVonKarmanCorrectionEquations");
   }
 
 // /// \short Output exact soln: x,y,u_exact or x,y,z,u_exact at
@@ -106,7 +106,6 @@ DenseMatrix<double>& g_tensor)
   }
  } 
 
-
  // Return the determinant of the metric tensor
  inline double metric_tensor_determinant(const DenseMatrix<double>& 
   interpolated_drdxi)
@@ -158,35 +157,18 @@ DenseMatrix<double>& g_tensor)
  inline void fill_in_unit_normal(const DenseMatrix<double>&
   interpolated_drdxi, Vector<double>& normal)
   {
-  // Determinant of metric tensor
-  const double g =  metric_tensor_determinant(interpolated_drdxi);
-  const double sqrt_g = sqrt(g);
-
-  // Zero the normal 
-  for(unsigned i=0;i<this->Number_of_displacements;++i)
-   { normal[i]=0.0; }
-
-  // Loop over plane tangent vectors
+  // Local copy of thickness parameter
+  const double eta_u = this->eta_u();
+  // The leading order
+  normal[2] = 1.0;
+  // Loop over coordinate components
   for(unsigned alpha=0;alpha<2;++alpha)
-   {
-   // Beta != Alpha
-   const unsigned beta = (alpha + 1) % 2;
-   Vector<double> g_alpha(3),g_beta(3);
-
-   // Loop over displacement components
-   for(unsigned i=0;i<this->Number_of_displacements;++i)
-    {
-    // Now fill in the tangent vectors
-    g_alpha[i] = interpolated_drdxi(i,alpha);
-    g_beta[i]  = interpolated_drdxi(i,beta);  
-    }
-    // Compute the cross product
-    Vector<double> tmp(this->Number_of_displacements,0.0);
-    VectorHelpers::cross(g_alpha,g_beta,tmp);
-    // And fill in the normal 
-   for(unsigned i=0;i<this->Number_of_displacements;++i)
-    { normal[i] +=  tmp[i]/(2*sqrt_g) * (alpha == 0 ? 1 : -1) ;} 
-   } 
+   { 
+   // The in-plane  correction: n_alpha = - h w_{,\alpha}
+   normal[alpha] =-eta_u*interpolated_drdxi(2,alpha); 
+   // The out of plane correction: n_z - 1 = h^2 (w_{,\alpha} w_{,\alpha}/2)
+   normal[2] -= eta_u*eta_u*interpolated_drdxi(2,alpha)*interpolated_drdxi(2,alpha)/2.0;
+   }
   }
 
  // Return the interpolated unit normal
@@ -194,7 +176,7 @@ inline void fill_in_d_unit_normal_du_unknown(const DenseMatrix<double>&
   interpolated_drdxi, const DenseMatrix<double>& g_tensor,  const RankFourTensor<double>&
   d_g_tensor_du_unknown, RankThreeTensor<double>& d_normal_du_unknown)
   {
-  // Loop over plane tangent vectors
+  // Zero the tensors
   for(unsigned i=0;i<this->Number_of_displacements;++i)
    {
     for(unsigned j=0;j<this->Number_of_displacements;++j)
@@ -203,55 +185,17 @@ inline void fill_in_d_unit_normal_du_unknown(const DenseMatrix<double>&
      d_normal_du_unknown(i,j,1) =0.0; 
     }
    }
-    
-  // Determinant of metric tensor
-  const double g (LargeDisplacementPlateEquations<DIM,NNODE_1D>::
-    two_by_two_determinant(g_tensor));
-  const double sqrt_g_inv (1/sqrt(g));
-  const double sqrt_g_cubed_inv (1/std::pow(g,1.5));
-
-  // Get the metric tensor determinant
-  DenseMatrix<double> d_g_du_unknown(this->Number_of_displacements,2,0.0);
-  d_metric_tensor_determinant_du_unknown(g_tensor,d_g_tensor_du_unknown,
-   d_g_du_unknown);
-
-  // Loop over plane tangent vectors
-  double tmp;
-  for(unsigned j=0;j<this->Number_of_displacements;++j)
-   {
-   // Eta parameter
-   const double eta_u = this->eta_u();
-   for(unsigned alpha=0;alpha<2;++alpha)
-    {
-    // Beta != Alpha
-    const unsigned beta = (alpha + 1) % 2, k = (j+1)%3, i = (j+2)%3 ;
-
-    // Cross product between g_alpha and d_g_beta_du_unknown
-    // NB:  dg_beta_duj_unknown[j]  = d2uidx_du_unknown[beta] 
-    // Error could be here somewhere 
-    tmp = interpolated_drdxi(i,alpha) * eta_u;// * d2uidx_du_unknown[beta];
-    d_normal_du_unknown(k,j,beta) +=  tmp * (sqrt_g_inv) * (alpha == 0 ? 1 : -1) ; 
-
-    tmp = interpolated_drdxi(k,beta) * eta_u;// *  d2uidx_du_unknown[alpha];
-    d_normal_du_unknown(i,j,alpha) +=  tmp * (sqrt_g_inv) * (alpha == 0 ? 1 : -1) ; 
-
-    // Loop over displacement components
-    // And fill in the normal 
-    for(unsigned ii=0;ii<this->Number_of_displacements;++ii)
-     {
-     // The cross product will be epsilon_ijk vj vk
-     const unsigned jj=(ii+1)%3,kk=(ii+2)%3;
-     // Error could be in 'tmp'
-     // Cross product between g_alpha and g_beta
-     tmp = interpolated_drdxi(jj,alpha) * interpolated_drdxi(kk,beta) - 
-           interpolated_drdxi(kk,alpha) * interpolated_drdxi(jj,beta);
-     for(unsigned gamma=0;gamma<2;++gamma)
-      {
-      d_normal_du_unknown(ii,j,gamma) -= tmp/(4)*sqrt_g_cubed_inv
-       * d_g_du_unknown(j,gamma) * (alpha == 0 ? 1 : -1) ; 
-      }
-     } 
-    }
+  // Local copy of thickness parameter
+  const double eta_u = this->eta_u();
+  // The leading order does not depend on unknowns
+  // Loop over coordinate components
+  for(unsigned alpha=0;alpha<2;++alpha)
+   { 
+   // The in-plane  correction: 
+   // d n_\alpha dri_{,\beta} = - h^2 \psi_{,\alpha}\delta_{\alpha\beta}
+   d_normal_du_unknown(alpha,2,alpha) =-eta_u; 
+   // The out of plane correction: n_z - 1 = h^2 (w_{,\alpha} \psi_{,\alpha})
+   d_normal_du_unknown(2 ,2 ,alpha) -= eta_u*eta_u*interpolated_drdxi(2,alpha);
    }
   }
 
@@ -530,32 +474,45 @@ inline void fill_in_d_strain_tensor_du_unknown(const DenseMatrix<double>&
    { tension_vectors(i,gamma) =0.0; }
   }
 
+ // Initialise linear curvature
+ // Fill in linear moment
+ Vector<double> mlinear(3);
+ // Initialise the bending modulus and local parameters
+ const double nu = this->get_nu(), h = this->get_thickness(), 
+   b_modulus = h*h/(12.*(1-nu*nu));
+
+ // Fill in the bending moment
+ mlinear[0] = b_modulus*(interpolated_d2rdxi2(2,0)+nu*interpolated_d2rdxi2(2,2));
+ mlinear[1] = b_modulus*(1.-nu)*interpolated_d2rdxi2(2,1);
+ mlinear[2] = b_modulus*(interpolated_d2rdxi2(2,2)+nu*interpolated_d2rdxi2(2,0));
+
  double delta_ibeta;
- // Loop over displacement components
- for(unsigned i=0;i<this->Number_of_displacements;++i)
+ // Loop over inplane components
+ for(unsigned gamma=0;gamma<2;++gamma)
   {
+  // Local copy of eta_u and eta_sigma
+  const double eta_u = this->eta_u();
+  const double eta_sigma = this->eta_sigma();
   // Loop over inplane components
-  for(unsigned gamma=0;gamma<2;++gamma)
+  for(unsigned beta=0;beta<2;++beta)
    {
-   // Loop over inplane components
-   for(unsigned beta=0;beta<2;++beta)
+   // Loop over displacement components
+   for(unsigned i=0;i<this->Number_of_displacements;++i)
     {
     // Kronecker Delta: delta_{i\beta} 
     delta_ibeta = (i==beta? 1.0:0.0);
-    // Local copy of eta_u and eta_sigma
-    const double eta_u = this->eta_u();
-    const double eta_sigma = this->eta_sigma();
     // The diagonal parts of the tangent matrix
     tension_vectors(i,gamma) += (delta_ibeta + eta_u*interpolated_dudxi(i,beta))
      *eta_sigma*stress(gamma,beta);
-
-    for(unsigned alpha=0;alpha<2;++alpha)
-     {
-     // Shouldn't this be -M_{i \al \be} \Ga^\ga_{\al \be} ?
-     tension_vectors(i,gamma) -= eta_u*moment_tensors(i,alpha,beta)*
-        christoffel_tensor(gamma,alpha,beta);
      }
-    }
+//    // Just the final displacement component
+//    unsigned i=2; 
+//    for(unsigned alpha=0;alpha<2;++alpha)
+//     {
+//     // Shouldn't this be -M_{i \al \be} \Ga^\ga_{\al \be} ?
+//     tension_vectors(i,gamma) -= eta_u*eta_sigma*mlinear[alpha+beta]*
+//        christoffel_tensor(gamma,alpha,beta);
+//    }
    }
   }
  }
@@ -583,23 +540,44 @@ inline void fill_in_d_strain_tensor_du_unknown(const DenseMatrix<double>&
     }
    }
 
-  // Loop over displacement components
-  for(unsigned i=0;i<this->Number_of_displacements;++i)
+   // Initialise linear curvature
+   // Fill in linear moment
+   Vector<double> mlinear(3);
+   DenseMatrix<double> d_mlinear(3,3,0.0);
+   // Initialise the bending modulus and local parameters
+   const double nu = this->get_nu(), h = this->get_thickness(), 
+     b_modulus = h*h/(12.*(1-nu*nu));
+
+   // Fill in the bending moment
+   mlinear[0] = b_modulus*(interpolated_d2udxi2(2,0)+nu*interpolated_d2udxi2(2,2));
+   mlinear[1] = b_modulus*(1.-nu)*interpolated_d2udxi2(2,1);
+   mlinear[2] = b_modulus*(interpolated_d2udxi2(2,2)+nu*interpolated_d2udxi2(2,0));
+
+   // Fill in d_bending moment
+   d_mlinear(0,0) = b_modulus;
+   d_mlinear(0,2) = b_modulus*nu;
+   d_mlinear(1,1) = b_modulus*(1.-nu);
+   d_mlinear(2,0) = b_modulus*nu;
+   d_mlinear(2,2) = b_modulus;
+
+
+  // Because we don't use a d_tangent_dunknown
+  //  const double eta_g =(i==2 ? eta_g_z() : eta_g_xy());
+  double delta_ibeta;
+  // Loop over inplane components
+  for(unsigned gamma=0;gamma<2;++gamma)
    {
-   // Because we don't use a d_tangent_dunknown
-   //  const double eta_g =(i==2 ? eta_g_z() : eta_g_xy());
+   // Local copy
+   const double eta_u = this->eta_u();
+   const double eta_sigma = this->eta_sigma();
    // Loop over inplane components
-   double delta_ibeta;
-   for(unsigned gamma=0;gamma<2;++gamma)
+   for(unsigned beta=0;beta<2;++beta)
     {
-    // Loop over inplane components
-    for(unsigned beta=0;beta<2;++beta)
+    // Loop over displacement components
+    for(unsigned i=0;i<this->Number_of_displacements;++i)
      {
      // Kronecker Delta: delta_{i\beta} 
      delta_ibeta = (i==beta? 1.0:0.0);
-     // Local copy
-     const double eta_u = this->eta_u();
-     const double eta_sigma = this->eta_sigma();
      // Fill in dtension_du_unknown
      d_tension_vectors_du_unknown(i,gamma,i,1+beta) += eta_sigma*eta_u*stress(gamma,beta);
      for(unsigned j=0;j<this->Number_of_displacements;++j)
@@ -612,24 +590,33 @@ inline void fill_in_d_strain_tensor_du_unknown(const DenseMatrix<double>&
           *(delta_ibeta + eta_u* interpolated_dudxi(i,beta));
        }
       }
-    for(unsigned alpha=0;alpha<2;++alpha)
-     { 
-     for(unsigned j=0;j<this->Number_of_displacements;++j)
-      {
-      for(unsigned k=0;k<5;++k)
-       {
-       d_tension_vectors_du_unknown(i,gamma,j,1+k) -= eta_u
-          *d_moment_tensors_du_unknown(i,alpha,beta,j,k)
-          *christoffel_tensor(gamma,alpha,beta);
-       d_tension_vectors_du_unknown(i,gamma,j,1+k) -= eta_u
-          *moment_tensors(i,alpha,beta)
-          *d_christoffel_tensor_du_unknown(gamma,alpha,beta,j,k);
-       }
-      }
      }
+//    // Only contributes to out-of-plane
+//    const unsigned i = 2;
+//    for(unsigned alpha=0;alpha<2;++alpha)
+//     { 
+//     // Bending moment dpends only on second deriv
+//     for(unsigned k=2;k<5;++k)
+//      {
+//      const unsigned j=i;
+//      d_tension_vectors_du_unknown(i,gamma,j,1+k) -= eta_u
+//         *d_mlinear(alpha+beta,k-2)
+//         *christoffel_tensor(gamma,alpha,beta);
+//      }
+//     // Loop over displacement components
+//     for(unsigned j=0;j<this->Number_of_displacements;++j)
+//      { 
+//      // Bending moment dpends only on second deriv
+//      for(unsigned k=0;k<5;++k)
+//       {
+//       d_tension_vectors_du_unknown(i,gamma,j,1+k) -= eta_u
+//          *mlinear[alpha+beta]
+//          *d_christoffel_tensor_du_unknown(gamma,alpha,beta,j,k);
+//       }
+//      }
+//     }
     }
    }
-  }
  }
 
  // Get the Christtoffel tensor of the second kind
@@ -664,15 +651,16 @@ inline void fill_in_d_strain_tensor_du_unknown(const DenseMatrix<double>&
      // Fill in linear terms
      strain_gradient(alpha,beta,gamma) += interpolated_d2udxi2
        (alpha,beta+gamma)/2. + interpolated_d2udxi2(beta,alpha+gamma)/2.;
-     // Loop over displacements
-     for(unsigned i=0;i<this->Number_of_displacements; ++i)
+     // Loop over OUT OF PLANE displacements
+     //for(unsigned i=2;i<this->Number_of_displacements; ++i)
       {
+      unsigned i=2;
       // Scale the displacements
-      const double eta_u = this->eta_u();
+      const double eta = this->eta_u();
       // Nonlinear terms
-      strain_gradient(alpha,beta,gamma) += eta_u*(interpolated_dudxi(i,alpha)
+      strain_gradient(alpha,beta,gamma) += eta*(interpolated_dudxi(i,alpha)
        *interpolated_d2udxi2(i,beta+gamma))/2.;
-      strain_gradient(alpha,beta,gamma) += eta_u*(interpolated_dudxi(i,beta)
+      strain_gradient(alpha,beta,gamma) += eta*(interpolated_dudxi(i,beta)
        *interpolated_d2udxi2(i,alpha+gamma))/2.;
       }
      }
@@ -729,19 +717,20 @@ inline void fill_in_d_strain_tensor_du_unknown(const DenseMatrix<double>&
      // Fill in linear terms
      d_strain_gradient_du_unknown(alpha,beta,gamma,alpha,2+beta+gamma) += 1/2. ;
      d_strain_gradient_du_unknown(alpha,beta,gamma,beta,2+alpha+gamma) += 1/2. ;
-     // Loop over displacements
-     for(unsigned i=0;i<this->Number_of_displacements; ++i)
+     // Loop over ONLY OUT OF PLANE displacements
+     // for(unsigned i=2;i<this->Number_of_displacements; ++i)
       {
+       unsigned i=2;
        // Scale the displacements
-       const double eta_u =this->eta_u();
+       const double eta = this->eta_u();
        // Nonlinear terms
-       d_strain_gradient_du_unknown(alpha,beta,gamma,i,alpha) += eta_u*
+       d_strain_gradient_du_unknown(alpha,beta,gamma,i,alpha) += eta*
         (interpolated_d2udxi2(i,beta+gamma))/2.;
-       d_strain_gradient_du_unknown(alpha,beta,gamma,i,beta) += eta_u*
+       d_strain_gradient_du_unknown(alpha,beta,gamma,i,beta) += eta*
         (interpolated_d2udxi2(i,alpha+gamma))/2.;
-       d_strain_gradient_du_unknown(alpha,beta,gamma,i,2+beta+gamma) += eta_u*
+       d_strain_gradient_du_unknown(alpha,beta,gamma,i,2+beta+gamma) += eta*
          (interpolated_dudxi(i,alpha))/2. ;
-       d_strain_gradient_du_unknown(alpha,beta,gamma,i,2+alpha+gamma) += eta_u*
+       d_strain_gradient_du_unknown(alpha,beta,gamma,i,2+alpha+gamma) += eta*
          (interpolated_dudxi(i,beta))/2. ;
       }
      }

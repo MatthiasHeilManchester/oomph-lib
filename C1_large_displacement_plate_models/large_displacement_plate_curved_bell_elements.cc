@@ -18,7 +18,7 @@ template <unsigned DIM, unsigned NNODE_1D, unsigned BOUNDARY_ORDER, template
 //====================================================================
 template class LargeDisplacementPlateC1CurvedBellElement<2,2,3,KoiterSteigmannPlateEquations>;
 template class LargeDisplacementPlateC1CurvedBellElement<2,2,5,KoiterSteigmannPlateEquations>;
-// template class LargeDisplacementPlateC1CurvedBellElement<2,2,3,FoepplVonKarmanCorrectionEquations>;
-// template class LargeDisplacementPlateC1CurvedBellElement<2,2,5,FoepplVonKarmanCorrectionEquations>;
+template class LargeDisplacementPlateC1CurvedBellElement<2,2,3,FoepplVonKarmanCorrectionEquations>;
+template class LargeDisplacementPlateC1CurvedBellElement<2,2,5,FoepplVonKarmanCorrectionEquations>;
 
 }

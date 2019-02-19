@@ -1974,7 +1974,7 @@ void LargeDisplacementPlateEquations<DIM,NNODE_1D>::check_christoffel_error(
 }
 
 template class KoiterSteigmannPlateEquations<2,2>;
-// template class FoepplVonKarmanCorrectionEquations<2,2>;
+template class FoepplVonKarmanCorrectionEquations<2,2>;
 template class LargeDisplacementPlateEquations<2,2>;
 
 }

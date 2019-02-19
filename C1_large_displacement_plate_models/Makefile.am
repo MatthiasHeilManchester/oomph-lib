@@ -6,7 +6,7 @@ sourcesC1 =large_displacement_plate_equations.cc large_displacement_plate_curved
 
 # Define the headers
 headersC1 = large_displacement_plate_models.h large_displacement_plate_elements.h large_displacement_plate_curved_bell_elements.h \
-koiter_steigmann_plate_elements.h
+koiter_steigmann_plate_elements.h foeppl_von_karman_correction_elements.h
 
 # Define name of library
 libnameC1 = C1_large_displacement_plate_models
