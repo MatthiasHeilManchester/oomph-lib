@@ -163,30 +163,6 @@ public:
                     FiniteElement::SteadyExactSolutionFctPt exact_soln_pt,
                     Vector<double>& error, Vector<double>& norm);
 
- /// Get error against and norm of exact solution
- void check_unit_normal_error(double& error, double& norm);
-
- /// Get error against and norm of exact solution
- void check_strain_error(double& error, double& norm);
-
- /// Get error against and norm of exact solution
- void check_christoffel_error(double& error, double& norm);
-
- /// Get error against and norm of exact solution
- void check_curvature_error(double& error, double& norm);
-
- /// Get error against and norm of exact solution
- void check_total_tension_error(double& error, double& norm);
-
- /// Get error against and norm of exact solution
- void check_moment_error(double& error, double& norm);
-
- /// Get error against and norm of exact solution
- void check_stress_error(double& error, double& norm);
-
- /// Get error against and norm of exact solution
- void check_tangent_error(double& error, double& norm);
-
  /// Dummy, time dependent error checker
  inline void compute_error(std::ostream &outfile,
  FiniteElement::UnsteadyExactSolutionFctPt exact_soln_pt, const double& time, 
