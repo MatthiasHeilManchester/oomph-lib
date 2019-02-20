@@ -25,7 +25,8 @@ class FoepplVonKarmanCorrectionEquations : public virtual LargeDisplacementPlate
 
 public:
  /// Constructor (must initialise the Pressure_fct_pt to null)
- FoepplVonKarmanCorrectionEquations() : LargeDisplacementPlateEquations<DIM,NNODE_1D>()  {
+ FoepplVonKarmanCorrectionEquations() : LargeDisplacementPlateEquations<DIM,NNODE_1D>()
+ , Do_christoffel_terms(true), Do_proper_truncation(true)  {
   // Default parameters should lead to membrane like behaviour by default:
   // order 1 displacements for small thickness sheet
   // By default the displacements are asumed to be of order 1
@@ -42,6 +43,20 @@ public:
   {
    BrokenCopy::broken_assign("FoepplVonKarmanCorrectionEquations");
   }
+  
+ /// Enable the Christoffel terms
+ void enable_christoffel_terms(){ Do_christoffel_terms =true;}
+
+ /// Disable the Christoffel terms
+ void disable_christoffel_terms(){ Do_christoffel_terms =false;}
+
+ /// Enable the Christoffel terms
+ void enable_proper_truncation(){ Do_proper_truncation =true;}
+ 
+ /// Disable the Christoffel terms
+ void disable_proper_truncation(){ Do_proper_truncation =false;}
+
+
 
 // /// \short Output exact soln: x,y,u_exact or x,y,z,u_exact at
 // /// n_plot^DIM plot points (dummy time-dependent version to
@@ -368,7 +383,7 @@ inline void fill_in_d_strain_tensor_du_unknown(const DenseMatrix<double>&
   }
 
  // Fill in the moment tensor
- inline void fill_in_moment_tensor(const DenseMatrix<double>& interpolated_drxi,
+ inline void fill_in_moment_tensor(const DenseMatrix<double>& interpolated_d2rdxi2,
   const Vector<double>& unit_normal,
   const DenseMatrix<double>& curvature, RankThreeTensor<double>& 
   moment)
@@ -384,18 +399,38 @@ inline void fill_in_d_strain_tensor_du_unknown(const DenseMatrix<double>&
    }
   // Get thickness
   const double h = this->get_thickness(), nu = this->get_nu();
+  Vector<double> normal_correction(unit_normal);
+  normal_correction[2] -= 1.0;
+
   // Loop over displacements and then coordinates
-  for(unsigned i=0;i<this->Number_of_displacements;++i)
-   {
    for(unsigned alpha=0;alpha<2;++alpha)
     {
-    for(unsigned beta=0;beta<2;++beta)
+   for(unsigned beta=0;beta<2;++beta)
+    {
+    // If we are using the fully truncated bending moment
+    if(Do_proper_truncation)
      {
+      moment(2,alpha,beta) += h*h*(1-nu)*curvature(alpha,beta)/(12.*(1-nu*nu));
+      moment(2,alpha,alpha)+= h*h*nu*curvature(beta,beta)/(12.*(1-nu*nu));
+     }
+    for(unsigned i=0;i<this->Number_of_displacements;++i)
+     {
+     if(Do_proper_truncation)
+      {
+      // Add linear curvature *  unit_normal correction
+      moment(i,alpha,beta) += h*h*(1-nu)*(normal_correction[i])
+              *interpolated_d2rdxi2(2,alpha+beta)/(12.*(1-nu*nu));
+      moment(i,alpha,alpha)+= h*h*nu*(normal_correction[i])
+             *interpolated_d2rdxi2(2,beta+beta)/(12.*(1-nu*nu));
+      }
+      else
+      {
       // Get moment i
       moment(i,alpha,beta) += h*h*(1-nu)*unit_normal[i]*curvature(alpha,beta)
             /(12.*(1-nu*nu));
       moment(i,alpha,alpha)+= h*h*nu*unit_normal[i]*curvature(beta,beta)
             /(12.*(1-nu*nu));
+      }
      }
     }
    }
@@ -403,7 +438,7 @@ inline void fill_in_d_strain_tensor_du_unknown(const DenseMatrix<double>&
 
  // Fill in the moment tensor
  inline void fill_in_d_moment_tensor_du_unknown(const DenseMatrix<double>&
-  interpolated_d2rxi2, const Vector<double>& unit_normal,
+  interpolated_d2r_dxi2, const Vector<double>& unit_normal,
   const DenseMatrix<double>& curvature, const RankThreeTensor<double>&
   d_unit_normal_du_unknown,  const RankFourTensor<double>& d_curvature_du_unknown,
   RankFiveTensor<double>&  d_moment_du_unknown)
@@ -433,6 +468,15 @@ inline void fill_in_d_strain_tensor_du_unknown(const DenseMatrix<double>&
     {
     for(unsigned beta=0;beta<2;++beta)
      {
+     // Do the d_(ncorr.blinear)_du_i_ab terms
+     if(Do_proper_truncation)
+      {
+       const double e_z = (i==2 ? 1.0 : 0);
+       d_moment_du_unknown(i,alpha,beta,2,2+alpha+beta) += (1-nu)* 
+          h*h*(unit_normal[i] - e_z)/(12.*(1-nu*nu));
+       d_moment_du_unknown(i,alpha,alpha,2,2+beta+beta) += nu* 
+          h*h*(unit_normal[i] - e_z)/(12.*(1-nu*nu));
+      }
      // Loop over displacements and then coordinates
      for(unsigned j=0;j<this->Number_of_displacements;++j)
       {
@@ -440,19 +484,48 @@ inline void fill_in_d_strain_tensor_du_unknown(const DenseMatrix<double>&
       // Construct the tensor
       for(unsigned k=0;k<5;++k)
       {
-       // First terms
+       // If we are doing the 'proper' truncation 
+       if(Do_proper_truncation)
+       {
+       // Uses constant unit normal
+       if(i == 2)
+        {
+        d_moment_du_unknown(2,alpha,beta,j,k) += (1-nu)* 
+           h*h*d_curvature_du_unknown(alpha,beta,j,k)/(12.*(1-nu*nu));
+        d_moment_du_unknown(2,alpha,alpha,j,k) += nu* 
+           h*h*d_curvature_du_unknown(beta,beta,j,k)/(12.*(1-nu*nu));
+        }
+       }
+       // Put it all in 
+       else
+       {
        d_moment_du_unknown(i,alpha,beta,j,k) += (1-nu)* 
           h*h*unit_normal[i]*d_curvature_du_unknown(alpha,beta,j,k)/(12.*(1-nu*nu));
        d_moment_du_unknown(i,alpha,alpha,j,k) += nu* 
           h*h*unit_normal[i]*d_curvature_du_unknown(beta,beta,j,k)/(12.*(1-nu*nu));
+       }
       }
       // Second terms
       for(unsigned gamma=0;gamma<2;++gamma)
        {
+       // If we are doing the 'proper' truncation 
+       if(Do_proper_truncation)
+       {
+       // Use the linear moment
+       d_moment_du_unknown(i,alpha,beta,j,gamma) += (1-nu)*h*h
+        *d_unit_normal_du_unknown(i,j,gamma)*interpolated_d2r_dxi2(2,alpha+beta)
+         /(12.*(1-nu*nu));
+       d_moment_du_unknown(i,alpha,alpha,j,gamma) += nu*h*h
+        *d_unit_normal_du_unknown(i,j,gamma)*interpolated_d2r_dxi2(2,beta+beta)
+        /(12.*(1-nu*nu));
+       }
+       else
+        {
        d_moment_du_unknown(i,alpha,beta,j,gamma) += (1-nu)* 
           h*h*d_unit_normal_du_unknown(i,j,gamma)*curvature(alpha,beta)/(12.*(1-nu*nu));
        d_moment_du_unknown(i,alpha,alpha,j,gamma) += nu* 
           h*h*d_unit_normal_du_unknown(i,j,gamma)*curvature(beta,beta)/(12.*(1-nu*nu));
+       }
        }
       }
      }
@@ -505,14 +578,17 @@ inline void fill_in_d_strain_tensor_du_unknown(const DenseMatrix<double>&
     tension_vectors(i,gamma) += (delta_ibeta + eta_u*interpolated_dudxi(i,beta))
      *eta_sigma*stress(gamma,beta);
      }
-//    // Just the final displacement component
-//    unsigned i=2; 
-//    for(unsigned alpha=0;alpha<2;++alpha)
-//     {
-//     // Shouldn't this be -M_{i \al \be} \Ga^\ga_{\al \be} ?
-//     tension_vectors(i,gamma) -= eta_u*eta_sigma*mlinear[alpha+beta]*
-//        christoffel_tensor(gamma,alpha,beta);
-//    }
+    // Just the final displacement component
+    if(Do_christoffel_terms)
+    {
+    unsigned i=2; 
+    for(unsigned alpha=0;alpha<2;++alpha)
+     {
+     // Shouldn't this be -M_{i \al \be} \Ga^\ga_{\al \be} ?
+     tension_vectors(i,gamma) -= eta_u*eta_sigma*mlinear[alpha+beta]*
+        christoffel_tensor(gamma,alpha,beta);
+     }
+    }
    }
   }
  }
@@ -591,30 +667,34 @@ inline void fill_in_d_strain_tensor_du_unknown(const DenseMatrix<double>&
        }
       }
      }
-//    // Only contributes to out-of-plane
-//    const unsigned i = 2;
-//    for(unsigned alpha=0;alpha<2;++alpha)
-//     { 
-//     // Bending moment dpends only on second deriv
-//     for(unsigned k=2;k<5;++k)
-//      {
-//      const unsigned j=i;
-//      d_tension_vectors_du_unknown(i,gamma,j,1+k) -= eta_u
-//         *d_mlinear(alpha+beta,k-2)
-//         *christoffel_tensor(gamma,alpha,beta);
-//      }
-//     // Loop over displacement components
-//     for(unsigned j=0;j<this->Number_of_displacements;++j)
-//      { 
-//      // Bending moment dpends only on second deriv
-//      for(unsigned k=0;k<5;++k)
-//       {
-//       d_tension_vectors_du_unknown(i,gamma,j,1+k) -= eta_u
-//          *mlinear[alpha+beta]
-//          *d_christoffel_tensor_du_unknown(gamma,alpha,beta,j,k);
-//       }
-//      }
-//     }
+    // If we are using the christoffel terms
+    if(Do_christoffel_terms)
+    {
+    // Only contributes to out-of-plane
+    const unsigned i = 2;
+    for(unsigned alpha=0;alpha<2;++alpha)
+     { 
+     // Bending moment dpends only on second deriv
+     for(unsigned k=2;k<5;++k)
+      {
+      const unsigned j=i;
+      d_tension_vectors_du_unknown(i,gamma,j,1+k) -= eta_u
+         *d_mlinear(alpha+beta,k-2)
+         *christoffel_tensor(gamma,alpha,beta);
+      }
+     // Loop over displacement components
+     for(unsigned j=0;j<this->Number_of_displacements;++j)
+      { 
+      // Bending moment dpends only on second deriv
+      for(unsigned k=0;k<5;++k)
+       {
+       d_tension_vectors_du_unknown(i,gamma,j,1+k) -= eta_u
+          *mlinear[alpha+beta]
+          *d_christoffel_tensor_du_unknown(gamma,alpha,beta,j,k);
+       }
+      }
+     }
+   }
     }
    }
  }
@@ -783,6 +863,13 @@ protected:
   Shape &psi, Shape& psi_b, Shape &test, Shape& test_b) const=0;
 
  static const double Default_Eta_Value;
+
+ /// \short Flag to turn on/off christtoffel terms which are order h^7
+ bool Do_christoffel_terms;
+
+ /// \short Flag to turn on/off proper trunctation of to order h^7
+ /// may actually be SLOWER
+ bool Do_proper_truncation;
 };
 
 } //end namespace oomph
