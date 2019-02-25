@@ -413,14 +413,6 @@ PLATE_EQUATIONS>::upgrade_to_curved_element
    "Cannot upgrade more than a single edge to be curved in C1 Curved Bell \
 Elements.",OOMPH_CURRENT_FUNCTION,  OOMPH_EXCEPTION_LOCATION);
   }
- // Check if higher order element
- if(BOUNDARY_ORDER == 5 && d2_parametric_edge == 0)
-  {
-   // SCREAM
-   throw OomphLibError(
-   "Need to supply a none null d2_parametric_edge function pointer for fifth\
-order Elements.",OOMPH_CURRENT_FUNCTION,  OOMPH_EXCEPTION_LOCATION);
-  }
  #endif
  using namespace MyC1CurvedElements;
  // Add the curved edge
