@@ -431,24 +431,24 @@ public:
    Association_matrix_is_cached = false;
   }
 
-//  /// Add the element's contribution to its residual vector and
-//  /// element Jacobian matrix (wrapper)
-//  void fill_in_contribution_to_jacobian_and_mass_matrix(Vector<double> &residuals,
-//DenseMatrix<double> &jacobian,DenseMatrix<double> &mass_matrix)
-//   {
-//   //Call fill in Jacobian 
-//   fill_in_contribution_to_jacobian(residuals,jacobian);
-//   // There is no mass matrix: we will just want J w = 0
-// 
-//   // -- COPIED FROM DISPLACMENT FVK EQUATIONS --
-//   // Dummy diagonal (won't result in global unit matrix but
-//   // doesn't matter for zero eigenvalue/eigenvector
-//   unsigned ndof=mass_matrix.nrow();
-//   for (unsigned i=0;i<ndof;i++)
-//    {
-//     mass_matrix(i,i)+=1.0;
-//    }
-//   }
+  /// Add the element's contribution to its residual vector and
+  /// element Jacobian matrix (wrapper)
+  void fill_in_contribution_to_jacobian_and_mass_matrix(Vector<double> &residuals,
+DenseMatrix<double> &jacobian,DenseMatrix<double> &mass_matrix)
+   {
+   //Call fill in Jacobian 
+   fill_in_contribution_to_jacobian(residuals,jacobian);
+   // There is no mass matrix: we will just want J w = 0
+ 
+   // -- COPIED FROM DISPLACMENT FVK EQUATIONS --
+   // Dummy diagonal (won't result in global unit matrix but
+   // doesn't matter for zero eigenvalue/eigenvector
+   unsigned ndof=mass_matrix.nrow();
+   for (unsigned i=0;i<ndof;i++)
+    {
+     mass_matrix(i,i)+=1.0;
+    }
+   }
 
  // Return the interpolated unit normal
  virtual void fill_in_metric_tensor(const DenseMatrix<double>& interpolated_drdxi, 
