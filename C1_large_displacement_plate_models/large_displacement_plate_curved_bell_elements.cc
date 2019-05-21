@@ -8,7 +8,7 @@ namespace oomph
 /// Set the data for the number of Variables at each node
 //======================================================================
 template <unsigned DIM, unsigned NNODE_1D, unsigned BOUNDARY_ORDER, template
-<unsigned DIM, unsigned NNODE_1D> class PLATE_EQUATIONS >
+<unsigned DIM_, unsigned NNODE_1D_> class PLATE_EQUATIONS >
  const unsigned LargeDisplacementPlateC1CurvedBellElement<DIM,NNODE_1D,BOUNDARY_ORDER,PLATE_EQUATIONS>
   ::Initial_Nvalue = 18;
 

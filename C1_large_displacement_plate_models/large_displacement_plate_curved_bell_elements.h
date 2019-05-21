@@ -15,7 +15,7 @@ namespace oomph
 //==============================================================================
 
 template <unsigned DIM, unsigned NNODE_1D, unsigned BOUNDARY_ORDER, template
-<unsigned DIM, unsigned NNODE_1D> class PLATE_EQUATIONS >
+<unsigned DIM_, unsigned NNODE_1D_> class PLATE_EQUATIONS >
 class LargeDisplacementPlateC1CurvedBellElement : public virtual
  PLATE_EQUATIONS<DIM,NNODE_1D>
 {
@@ -330,7 +330,7 @@ private:
  /// element but they have the same number of points along their 1D edges.
  //==============================================================================
 template <unsigned DIM, unsigned NNODE_1D, unsigned BOUNDARY_ORDER, template
-<unsigned DIM, unsigned NNODE_1D> class PLATE_EQUATIONS >
+<unsigned DIM_, unsigned NNODE_1D_> class PLATE_EQUATIONS >
  class
 FaceGeometry<LargeDisplacementPlateC1CurvedBellElement<DIM,NNODE_1D,BOUNDARY_ORDER,PLATE_EQUATIONS> >:
   public virtual TElement<DIM-1,NNODE_1D>
@@ -356,7 +356,7 @@ FaceGeometry<LargeDisplacementPlateC1CurvedBellElement<DIM,NNODE_1D,BOUNDARY_ORD
 /// and affine mapping.
 //==============================================================================
 template <unsigned DIM, unsigned NNODE_1D, unsigned BOUNDARY_ORDER, template
-<unsigned DIM, unsigned NNODE_1D> class PLATE_EQUATIONS >
+<unsigned DIM_, unsigned NNODE_1D_> class PLATE_EQUATIONS >
 void LargeDisplacementPlateC1CurvedBellElement<DIM,NNODE_1D,BOUNDARY_ORDER,
 PLATE_EQUATIONS>::get_coordinate_x(const
  Vector<double>& s, Vector<double>& x) const
@@ -374,7 +374,7 @@ PLATE_EQUATIONS>::get_coordinate_x(const
 /// and affine mapping.
 //==============================================================================
 template <unsigned DIM, unsigned NNODE_1D, unsigned BOUNDARY_ORDER, template
-<unsigned DIM, unsigned NNODE_1D> class PLATE_EQUATIONS >
+<unsigned DIM_, unsigned NNODE_1D_> class PLATE_EQUATIONS >
 void
 LargeDisplacementPlateC1CurvedBellElement<DIM,NNODE_1D,BOUNDARY_ORDER, PLATE_EQUATIONS>::
 get_internal_dofs_location(const unsigned& dof, Vector<double>& s) const
@@ -396,7 +396,7 @@ upgraded to curved elements.",
 /// elements and upgrades the shape class data member.
 //==============================================================================
 template <unsigned DIM, unsigned NNODE_1D, unsigned BOUNDARY_ORDER, template
-<unsigned DIM, unsigned NNODE_1D> class PLATE_EQUATIONS >
+<unsigned DIM_, unsigned NNODE_1D_> class PLATE_EQUATIONS >
 inline void LargeDisplacementPlateC1CurvedBellElement<DIM,NNODE_1D,BOUNDARY_ORDER,
 PLATE_EQUATIONS>::upgrade_to_curved_element
  (const Edge& curved_edge, const double& s_ubar, const double& s_obar,
@@ -494,7 +494,7 @@ one side defined by a parametric function.", OOMPH_CURRENT_FUNCTION,
 /// the case where there is no curved edge
 //==============================================================================
 template <unsigned DIM, unsigned NNODE_1D, unsigned BOUNDARY_ORDER, template
-<unsigned DIM, unsigned NNODE_1D> class PLATE_EQUATIONS >
+<unsigned DIM_, unsigned NNODE_1D_> class PLATE_EQUATIONS >
 double
 LargeDisplacementPlateC1CurvedBellElement<DIM,NNODE_1D,BOUNDARY_ORDER,PLATE_EQUATIONS>::get_u_bubble_dof
  (const unsigned& l, const unsigned& j) const
@@ -531,7 +531,7 @@ element.", OOMPH_CURRENT_FUNCTION, OOMPH_EXCEPTION_LOCATION);
 /// case when there is no curved edge.
 //==============================================================================
 template <unsigned DIM, unsigned NNODE_1D, unsigned BOUNDARY_ORDER, template
-<unsigned DIM, unsigned NNODE_1D> class PLATE_EQUATIONS >
+<unsigned DIM_, unsigned NNODE_1D_> class PLATE_EQUATIONS >
 int
 LargeDisplacementPlateC1CurvedBellElement<DIM,NNODE_1D,BOUNDARY_ORDER,PLATE_EQUATIONS>::local_u_bubble_equation(const
   unsigned& l, const unsigned& j) const
@@ -569,7 +569,7 @@ element.", OOMPH_CURRENT_FUNCTION,OOMPH_EXCEPTION_LOCATION);
 /// rotation nodes being greater than three.
 //==============================================================================
 template <unsigned DIM, unsigned NNODE_1D, unsigned BOUNDARY_ORDER, template
-<unsigned DIM, unsigned NNODE_1D> class PLATE_EQUATIONS >
+<unsigned DIM_, unsigned NNODE_1D_> class PLATE_EQUATIONS >
 void LargeDisplacementPlateC1CurvedBellElement<DIM,NNODE_1D,BOUNDARY_ORDER,PLATE_EQUATIONS>::set_up_rotated_dofs(const unsigned&
   nnodes_to_rotate, const Vector<unsigned>& nodes_to_rotate, const
   BasisVectorsFctPt& basis_vectors_fct_pt)
@@ -599,7 +599,7 @@ void LargeDisplacementPlateC1CurvedBellElement<DIM,NNODE_1D,BOUNDARY_ORDER,PLATE
 /// Galerkin: Test functions = shape functions
 //==============================================================================
 template <unsigned DIM, unsigned NNODE_1D, unsigned BOUNDARY_ORDER, template
-<unsigned DIM, unsigned NNODE_1D> class PLATE_EQUATIONS >
+<unsigned DIM_, unsigned NNODE_1D_> class PLATE_EQUATIONS >
 void
 LargeDisplacementPlateC1CurvedBellElement<DIM,NNODE_1D,BOUNDARY_ORDER,PLATE_EQUATIONS>::
  rotation_matrix_at_node (const unsigned& inode, DenseDoubleMatrix&
@@ -692,7 +692,7 @@ LargeDisplacementPlateC1CurvedBellElement<DIM,NNODE_1D,BOUNDARY_ORDER,PLATE_EQUA
 /// Galerkin: Test functions = shape functions
 //======================================================================
 template <unsigned DIM, unsigned NNODE_1D, unsigned BOUNDARY_ORDER, template
-<unsigned DIM, unsigned NNODE_1D> class PLATE_EQUATIONS >
+<unsigned DIM_, unsigned NNODE_1D_> class PLATE_EQUATIONS >
  void LargeDisplacementPlateC1CurvedBellElement<DIM,NNODE_1D,BOUNDARY_ORDER,PLATE_EQUATIONS>::shape_and_test_biharmonic(
   const Vector<double> &s, Shape &psi, Shape& psi_b,  Shape &test, Shape& test_b
   ) const
@@ -744,7 +744,7 @@ shape_and_test_biharmonic(...)", OOMPH_EXCEPTION_LOCATION); // HERE
 /// Galerkin: Test functions = shape functions
 //======================================================================
 template <unsigned DIM, unsigned NNODE_1D, unsigned BOUNDARY_ORDER, template
-<unsigned DIM, unsigned NNODE_1D> class PLATE_EQUATIONS >
+<unsigned DIM_, unsigned NNODE_1D_> class PLATE_EQUATIONS >
  double LargeDisplacementPlateC1CurvedBellElement<DIM,NNODE_1D,BOUNDARY_ORDER,
 PLATE_EQUATIONS>::
  dshape_and_dtest_eulerian_biharmonic(const Vector<double> &s, Shape &psi,
@@ -795,7 +795,7 @@ dshape_and_dtest_biharmonic(...)",
 }
 
 template <unsigned DIM, unsigned NNODE_1D, unsigned BOUNDARY_ORDER, template
-<unsigned DIM, unsigned NNODE_1D> class PLATE_EQUATIONS >
+<unsigned DIM_, unsigned NNODE_1D_> class PLATE_EQUATIONS >
  double
 LargeDisplacementPlateC1CurvedBellElement<DIM,NNODE_1D,BOUNDARY_ORDER,PLATE_EQUATIONS>::
   d2shape_and_d2test_eulerian_biharmonic(const Vector<double> &s,  Shape &psi,
@@ -856,7 +856,7 @@ LargeDisplacementPlateC1CurvedBellElement<DIM,NNODE_1D,BOUNDARY_ORDER,PLATE_EQUA
 /// up and performing the LU decomposition only once
 //======================================================================
 template <unsigned DIM, unsigned NNODE_1D, unsigned BOUNDARY_ORDER, template
-<unsigned DIM, unsigned NNODE_1D> class PLATE_EQUATIONS >
+<unsigned DIM_, unsigned NNODE_1D_> class PLATE_EQUATIONS >
 inline void
 LargeDisplacementPlateC1CurvedBellElement<DIM,NNODE_1D,BOUNDARY_ORDER,PLATE_EQUATIONS>::
  rotate_shape(Shape& psi) const
@@ -892,7 +892,7 @@ LargeDisplacementPlateC1CurvedBellElement<DIM,NNODE_1D,BOUNDARY_ORDER,PLATE_EQUA
 /// up and performing the LU decomposition only once
 //======================================================================
 template <unsigned DIM, unsigned NNODE_1D, unsigned BOUNDARY_ORDER, template
-<unsigned DIM, unsigned NNODE_1D> class PLATE_EQUATIONS >
+<unsigned DIM_, unsigned NNODE_1D_> class PLATE_EQUATIONS >
 inline void LargeDisplacementPlateC1CurvedBellElement<DIM,NNODE_1D,BOUNDARY_ORDER,PLATE_EQUATIONS>::
  rotate_shape(Shape& psi, DShape& dpsidx) const
 {
@@ -944,7 +944,7 @@ inline void LargeDisplacementPlateC1CurvedBellElement<DIM,NNODE_1D,BOUNDARY_ORDE
 /// up and performing the LU decomposition only once
 //======================================================================
 template <unsigned DIM, unsigned NNODE_1D, unsigned BOUNDARY_ORDER, template
-<unsigned DIM, unsigned NNODE_1D> class PLATE_EQUATIONS >
+<unsigned DIM_, unsigned NNODE_1D_> class PLATE_EQUATIONS >
 inline void
 LargeDisplacementPlateC1CurvedBellElement<DIM,NNODE_1D,BOUNDARY_ORDER,PLATE_EQUATIONS>::
  rotate_shape(Shape& psi, DShape& dpsidx, DShape& d2psidx) const
