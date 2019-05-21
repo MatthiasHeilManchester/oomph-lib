@@ -280,6 +280,179 @@ private:
  bool Clockwise_zeta;
 
 };
+
+/// \short Specialisation of CurvilineGeomObject for half a circle.
+class CurvilineEllipseTop : public CurvilineGeomObject
+{
+public:
+ /// \short Constructor: Pass dimension of geometric object (# of Eulerian
+ /// coords = # of Lagrangian coords; no time history available/needed)
+ CurvilineEllipseTop() : CurvilineGeomObject(), Radius1(1.0), Radius2(1.0), 
+   Clockwise_zeta(false)
+  { }
+
+ /// \short Constructor: Pass dimension of geometric object (# of Eulerian
+ /// coords = # of Lagrangian coords; no time history available/needed)
+ CurvilineEllipseTop(const double& radius1, const double& radius2, const bool& clockwise_zeta=false) : 
+   CurvilineGeomObject(), Radius1(radius1), Radius2(radius2), Clockwise_zeta(clockwise_zeta)
+  { }
+ /// \short Constructor: pass # of Eulerian and Lagrangian coordinates
+ /// and pointer to time-stepper which is used to handle the
+ /// position at previous timesteps and allows the evaluation
+ /// of veloc/acceleration etc. in cases where the GeomData
+ /// varies with time.
+ CurvilineEllipseTop(TimeStepper* time_stepper_pt) : CurvilineGeomObject(time_stepper_pt)
+   { }
+
+ /// Broken copy constructor
+ CurvilineEllipseTop(const CurvilineEllipseTop& dummy) 
+  { 
+   BrokenCopy::broken_copy("CurvilineEllipseTop");
+  } 
+ 
+ /// Broken assignment operator
+ void operator=(const CurvilineEllipseTop&) 
+  {
+   BrokenCopy::broken_assign("CurvilineEllipseTop");
+  }
+
+ /// (Empty) destructor
+ virtual ~CurvilineEllipseTop(){}
+
+ /// \short Position Vector w.r.t. to zeta: 
+ virtual void position(const Vector<double>& zeta, 
+                        Vector<double> &r) const
+  { 
+   r[0] =-Radius1*std::sin(zeta[0]);  r[1] = Radius2*std::cos(zeta[0]);
+   // Zeta -> - Zeta 
+   if(Clockwise_zeta)
+    { r[0]*= -1; }
+  }
+
+ /// \short Derivative of position Vector w.r.t. to zeta: 
+ virtual void dposition(const Vector<double>& zeta, 
+                        Vector<double> &drdzeta) const
+  { 
+   drdzeta[0] =-Radius1*std::cos(zeta[0]);  
+   drdzeta[1] =-Radius2*std::sin(zeta[0]);
+   // Zeta -> - Zeta 
+   if(Clockwise_zeta)
+    { drdzeta[0]*= -1; }
+  }
+
+
+ /// \short 2nd derivative of position Vector w.r.t. to coordinates: 
+ /// \f$ \frac{d^2R_i}{d \zeta_\alpha d \zeta_\beta}\f$ = 
+ /// ddrdzeta(alpha,beta,i). 
+ /// Evaluated at current time.
+ virtual void d2position(const Vector<double>& zeta, 
+                         Vector<double> &drdzeta) const
+  { 
+    drdzeta[0] = Radius1*std::sin(zeta[0]);  
+    drdzeta[1] =-Radius2*std::cos(zeta[0]);
+    // Zeta -> - Zeta 
+    if(Clockwise_zeta)
+     { drdzeta[0]*= -1; }
+  }
+
+ /// Get s from x for part 0 of the boundary (inverse mapping - for convenience)
+ double get_zeta(const Vector<double>& x)
+ {
+ // The arc length (parametric parameter) for the upper semi circular arc
+  return (Clockwise_zeta ? atan2(x[0]/Radius1,x[1]/Radius2) : atan2(-x[0]/Radius1,x[1]/Radius2));
+ }
+
+private:
+ double Radius1;
+ double Radius2;
+ bool Clockwise_zeta;
+  
+
+};
+
+/// \short Specialisation of CurvilineGeomObject for half a circle.
+class CurvilineEllipseBottom : public CurvilineGeomObject
+{
+public:
+ /// \short Constructor: Pass dimension of geometric object (# of Eulerian
+ /// coords = # of Lagrangian coords; no time history available/needed)
+ CurvilineEllipseBottom() : CurvilineGeomObject(), Radius1(1.0), Radius2(1.0), Clockwise_zeta(false)
+  { }
+
+ /// \short Constructor: Pass dimension of geometric object (# of Eulerian
+ /// coords = # of Lagrangian coords; no time history available/needed)
+ CurvilineEllipseBottom(const double& radius1, const double& radius2, const bool& clockwise_zeta=false) : 
+   CurvilineGeomObject(), Radius1(radius1), Radius2(radius2), Clockwise_zeta(clockwise_zeta)
+  { }
+
+ /// \short Constructor: pass # of Eulerian and Lagrangian coordinates
+ /// and pointer to time-stepper which is used to handle the
+ /// position at previous timesteps and allows the evaluation
+ /// of veloc/acceleration etc. in cases where the GeomData
+ /// varies with time.
+ CurvilineEllipseBottom(TimeStepper* time_stepper_pt) : CurvilineGeomObject(time_stepper_pt)
+   { }
+
+ /// Broken copy constructor
+ CurvilineEllipseBottom(const CurvilineEllipseBottom& dummy) 
+  { 
+   BrokenCopy::broken_copy("CurvilineEllipseBottom");
+  } 
+ 
+ /// Broken assignment operator
+ void operator=(const CurvilineEllipseBottom&) 
+  {
+   BrokenCopy::broken_assign("CurvilineEllipseBottom");
+  }
+
+ /// (Empty) destructor
+ virtual ~CurvilineEllipseBottom(){}
+
+ /// \short Position Vector w.r.t. to zeta: 
+ virtual void position(const Vector<double>& zeta, 
+                        Vector<double> &r) const
+  { 
+   r[0] = Radius1*std::sin(zeta[0]);  r[1] =-Radius2*std::cos(zeta[0]);
+   // Zeta -> - Zeta 
+   if(Clockwise_zeta)
+    { r[1]*= -1; }
+  }
+
+ /// \short Derivative of position Vector w.r.t. to zeta: 
+ virtual void dposition(const Vector<double>& zeta, 
+                        Vector<double> &drdzeta) const
+  { 
+   drdzeta[0] = Radius1*std::cos(zeta[0]);  drdzeta[1] = Radius2*std::sin(zeta[0]);
+   if(Clockwise_zeta)
+    { drdzeta[1]*= -1; }
+  }
+
+
+ /// \short 2nd derivative of position Vector w.r.t. to coordinates: 
+ /// \f$ \frac{d^2R_i}{d \zeta_\alpha d \zeta_\beta}\f$ = 
+ /// ddrdzeta(alpha,beta,i). 
+ /// Evaluated at current time.
+ virtual void d2position(const Vector<double>& zeta, 
+                         Vector<double> &drdzeta) const
+  { 
+   drdzeta[0] =-Radius1*std::sin(zeta[0]);  drdzeta[1] = Radius2*std::cos(zeta[0]);
+   if(Clockwise_zeta)
+    { drdzeta[1]*= -1; }
+   }
+
+ /// Get s from x for part 0 of the boundary (inverse mapping - for convenience)
+ double get_zeta(const Vector<double>& x)
+ {
+ // The arc length (parametric parameter) for the upper semi circular arc
+  return  (Clockwise_zeta ?atan2(x[0]/Radius1,x[1]/Radius2) : atan2(x[0]/Radius1,-x[1]/Radius2));
+ }
+  
+private:
+ double Radius1;
+ double Radius2;
+ bool Clockwise_zeta;
+
+};
 }
 
 #endif
