@@ -198,8 +198,7 @@ public:
   }
 
 
-protected:
-
+public:
  /// Shape, test functions & derivs. w.r.t. to global coords. Return Jacobian.
  void shape_and_test_biharmonic(const Vector<double> &s, Shape &psi,
   Shape& psi_b, Shape& test, Shape& test_b) const;
@@ -216,6 +215,7 @@ protected:
   Shape &test, Shape &test_b, DShape &dtest_dx, DShape &dtest_b_dx,
   DShape &d2test_dx2, DShape &d2test_b_dx2) const;
 
+protected:
 // /// \short Shape, test functions & derivs. w.r.t. to global coords. at
 // /// integration point ipt. Return Jacobian.
 // inline double d2shape_and_d2test_eulerian_at_knot_biharmonic(const unsigned& ipt,
