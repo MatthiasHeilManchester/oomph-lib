@@ -350,11 +350,6 @@ void KirchhoffPlateBendingC1CurvedBellElement::
    const Vector<double> &s, Shape &psi, Shape& psi_b,  Shape &test, Shape& test_b
    ) const
  {
-  throw OomphLibError(
-  "This still needs testing for curved elements.",
-  "void KirchhoffPlateBendingC1CurvedBellElement::\
- shape_and_test_biharmonic(...)", OOMPH_EXCEPTION_LOCATION); // HERE
- 
   // Get dummy shape functions for the Bell call
   DShape dpsidx(3,6,2);
   DShape d2psidx(3,6,3);
@@ -382,13 +377,6 @@ void KirchhoffPlateBendingC1CurvedBellElement::
   Shape& psi_b, DShape &dpsidx, DShape& dpsi_b_dx,  Shape &test, Shape& test_b,
   DShape &dtestdx,DShape &dtest_b_dx) const
  {
-  // Throw if called 
-  throw OomphLibError(
-  "This still needs testing for curved elements.",
-  "void KirchhoffPlateBendingC1CurvedBellElement::\
- dshape_and_dtest_biharmonic(...)",
-   OOMPH_EXCEPTION_LOCATION);// HERE
-
  // Get the basis 
  double J=this->d_basis_eulerian(s,psi,psi_b,dpsidx,dpsi_b_dx);
  

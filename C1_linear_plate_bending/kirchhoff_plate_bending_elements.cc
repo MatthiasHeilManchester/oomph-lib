@@ -18,6 +18,8 @@ fill_in_generic_residual_contribution_biharmonic(Vector<double> &residuals,
  unsigned n_basis_type = nnodal_basis_type();
  // Find the internal dofs
  const unsigned n_b_position_type = nbubble_basis_type();
+ // Guaranteed to be an integer
+ const unsigned n_2ndderiv = (dim()*(dim()+1))/2;
 
  //Get the Poisson ratio of the plate
  const double nu=get_nu();
@@ -28,8 +30,8 @@ fill_in_generic_residual_contribution_biharmonic(Vector<double> &residuals,
  
  DShape dpsi_dxi(n_node,n_basis_type,dim()),dtest_dxi(n_node,n_basis_type,dim()),
   dpsi_b_dxi(n_b_node,n_b_position_type,dim()),dtest_b_dxi(n_b_node,n_b_position_type,dim()),
-  d2psi_dxi2(n_node,n_basis_type,3), d2test_dxi2(n_node,n_basis_type,3),
-  d2psi_b_dxi2(n_b_node,n_b_position_type,3), d2test_b_dxi2(n_b_node,n_b_position_type,3);
+  d2psi_dxi2(n_node,n_basis_type,n_2ndderiv), d2test_dxi2(n_node,n_basis_type,n_2ndderiv),
+  d2psi_b_dxi2(n_b_node,n_b_position_type,n_2ndderiv), d2test_b_dxi2(n_b_node,n_b_position_type,n_2ndderiv);
 
  //Set the value of n_intpt
  const unsigned n_intpt = this->integral_pt()->nweight();
@@ -46,7 +48,7 @@ fill_in_generic_residual_contribution_biharmonic(Vector<double> &residuals,
    //Calculate values of unknown
    Vector<double> interpolated_u(1,0.0);
    DenseMatrix<double> interpolated_dudxi(1,dim(),0.0);
-   DenseMatrix<double> interpolated_d2udxi2(1,3,0.0);
+   DenseMatrix<double> interpolated_d2udxi2(1,n_2ndderiv,0.0);
 
    //Allocate and initialise to zero
    Vector<double> interpolated_x(dim(),0.0);
@@ -78,7 +80,7 @@ fill_in_generic_residual_contribution_biharmonic(Vector<double> &residuals,
         {
          interpolated_dudxi(0,j) += u_value*dpsi_dxi(l,k,j);
         }
-       for(unsigned j=0;j<3;j++)
+       for(unsigned j=0;j<n_2ndderiv;j++)
         {
           interpolated_d2udxi2(0,j) += u_value*d2psi_dxi2(l,k,j);
         }
@@ -98,7 +100,7 @@ fill_in_generic_residual_contribution_biharmonic(Vector<double> &residuals,
        {
         interpolated_dudxi(0,j) += u_value*dpsi_b_dxi(l,k,j);
        }
-      for(unsigned j=0;j<3;j++)
+      for(unsigned j=0;j<n_2ndderiv;j++)
        {
         interpolated_d2udxi2(0,j) += u_value*d2psi_b_dxi2(l,k,j);
        }
@@ -329,7 +331,7 @@ void  KirchhoffPlateBendingEquations::output(std::ostream &outfile,
 
  // Loop over plot points
  unsigned num_plot_points=this->nplot_points(nplot);
- Vector<double> r(3);
+ Vector<double> r(dim()+1);
 
  for (unsigned iplot=0;iplot<num_plot_points;iplot++)
   {
@@ -480,14 +482,16 @@ void KirchhoffPlateBendingEquations::compute_error(std::ostream &outfile,
  unsigned n_basis_type = nnodal_basis_type();
  // Find the internal dofs
  const unsigned n_b_position_type = nbubble_basis_type();
+ // Guaranteed to be an integer
+ const unsigned n_2ndderiv = (dim()*(dim()+1))/2;
  //Local c1-shape funtion
  Shape psi(n_node,n_basis_type),test(n_node,n_basis_type),
   psi_b(n_b_node,n_b_position_type),test_b(n_b_node,n_b_position_type);
  
  DShape dpsi_dxi(n_node,n_basis_type,dim()),dtest_dxi(n_node,n_basis_type,dim()),
   dpsi_b_dxi(n_b_node,n_b_position_type,dim()),dtest_b_dxi(n_b_node,n_b_position_type,dim()),
-  d2psi_dxi2(n_node,n_basis_type,3), d2test_dxi2(n_node,n_basis_type,3),
-  d2psi_b_dxi2(n_b_node,n_b_position_type,3), d2test_b_dxi2(n_b_node,n_b_position_type,3);
+  d2psi_dxi2(n_node,n_basis_type,n_2ndderiv), d2test_dxi2(n_node,n_basis_type,n_2ndderiv),
+  d2psi_b_dxi2(n_b_node,n_b_position_type,n_2ndderiv), d2test_b_dxi2(n_b_node,n_b_position_type,n_2ndderiv);
 
  //Vector of local coordinates
  Vector<double> s(dim());
