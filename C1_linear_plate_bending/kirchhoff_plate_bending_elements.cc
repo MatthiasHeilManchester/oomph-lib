@@ -15,22 +15,22 @@ fill_in_generic_residual_contribution_biharmonic(Vector<double> &residuals,
  //Find out how many nodes there are
  const unsigned n_node = this->nnode();
  //Find out how many bubble nodes there are
- const unsigned n_b_node = this->Number_of_internal_dofs;
+ const unsigned n_b_node = nbubble_basis();
  //Find out how many nodes positional dofs there are
- unsigned n_position_type = this->nnodal_position_type();
+ unsigned n_basis_type = nnodal_basis_type();
  // Find the internal dofs
- const unsigned n_b_position_type = this->Number_of_internal_dof_types;
+ const unsigned n_b_position_type = nbubble_basis_type();
 
  //Get the Poisson ratio of the plate
  const double nu=get_nu();
 
  //Local c1-shape funtion
- Shape psi(n_node,n_position_type),test(n_node,n_position_type),
+ Shape psi(n_node,n_basis_type),test(n_node,n_basis_type),
   psi_b(n_b_node,n_b_position_type),test_b(n_b_node,n_b_position_type);
  
- DShape dpsi_dxi(n_node,n_position_type,DIM),dtest_dxi(n_node,n_position_type,DIM),
+ DShape dpsi_dxi(n_node,n_basis_type,DIM),dtest_dxi(n_node,n_basis_type,DIM),
   dpsi_b_dxi(n_b_node,n_b_position_type,DIM),dtest_b_dxi(n_b_node,n_b_position_type,DIM),
-  d2psi_dxi2(n_node,n_position_type,3), d2test_dxi2(n_node,n_position_type,3),
+  d2psi_dxi2(n_node,n_basis_type,3), d2test_dxi2(n_node,n_basis_type,3),
   d2psi_b_dxi2(n_b_node,n_b_position_type,3), d2test_b_dxi2(n_b_node,n_b_position_type,3);
 
  //Set the value of n_intpt
@@ -55,13 +55,25 @@ fill_in_generic_residual_contribution_biharmonic(Vector<double> &residuals,
    Vector<double> s(DIM);
    s[0] = this->integral_pt()->knot(ipt,0);
    s[1] = this->integral_pt()->knot(ipt,1);
-   this->get_coordinate_x(s,interpolated_x);
+   this->interpolated_x(s,interpolated_x);
    // CALL MODIFIED SHAPE (THAT TAKES ASSOCIATION MATRIX AS AN ARGUMENT) HERE
    // MAKE SURE THAT THE MULTIPLICATION IS EFFICIENT USING BLOCK STRUCTURE
    //Call the derivatives of the shape and test functions for the unknown
    double J = d2shape_and_d2test_eulerian_biharmonic(s,
     psi, psi_b, dpsi_dxi, dpsi_b_dxi, d2psi_dxi2, d2psi_b_dxi2,
     test, test_b, dtest_dxi, dtest_b_dxi, d2test_dxi2, d2test_b_dxi2);
+
+   // double J = d2_basis_eulerian(s,
+   //  psi, psi_b, dpsi_dxi, dpsi_b_dxi, d2psi_dxi2, d2psi_b_dxi2);
+   //    test, test_b, dtest_dxi, dtest_b_dxi, d2test_dxi2, d2test_b_dxi2);
+   // // Galerkin
+   // // (Shallow) copy the basis functions
+   // test = psi;
+   // test_b = psi_b;
+   // dtest_dxi = dpsi_dxi;
+   // dtest_b_dxi = dpsi_b_dxi;
+   // d2test_dxi2 = d2psi_dxi2;
+   // d2test_b_dxi2 = d2psi_b_dxi2;
 
    //Premultiply the weights and the Jacobian
    double W = w*J;
@@ -71,7 +83,7 @@ fill_in_generic_residual_contribution_biharmonic(Vector<double> &residuals,
    // Loop over nodes
    for(unsigned l=0;l<n_node;l++)
     {
-     for(unsigned k=0;k<n_position_type;k++)
+     for(unsigned k=0;k<n_basis_type;k++)
       {
        //Get the nodal value of the unknown
        double u_value = this->raw_nodal_value(l,k);
@@ -89,12 +101,12 @@ fill_in_generic_residual_contribution_biharmonic(Vector<double> &residuals,
     }
 
    // Loop over internal dofs
-   for(unsigned l=0;l<Number_of_internal_dofs;l++)
+   for(unsigned l=0;l<nbubble_basis();l++)
    {
     for(unsigned k=0;k<n_b_position_type;k++)
      {
       //Get the nodal value of the unknown
-      double u_value = get_w_bubble_dof(l,k);
+      double u_value = get_bubble_dof(l,k);
       interpolated_u[0] += u_value*psi_b(l,k);
       // Loop over directions
       for(unsigned j=0;j<DIM;j++)
@@ -116,7 +128,7 @@ fill_in_generic_residual_contribution_biharmonic(Vector<double> &residuals,
    // Loop over the nodal test functions
    for(unsigned l=0;l<n_node;l++)
     {
-     for(unsigned k=0;k<n_position_type;k++)
+     for(unsigned k=0;k<n_basis_type;k++)
       {
        //Get the local equation
        local_eqn = this->nodal_local_eqn(l,k);
@@ -145,7 +157,7 @@ fill_in_generic_residual_contribution_biharmonic(Vector<double> &residuals,
            for(unsigned l2=0;l2<n_node;l2++)
             {
              // Loop over position dofs
-             for(unsigned k2=0;k2<n_position_type;k2++)
+             for(unsigned k2=0;k2<n_basis_type;k2++)
               {
                local_unknown = this->nodal_local_eqn(l2,k2);
                // If at a non-zero degree of freedom add in the entry
@@ -168,7 +180,7 @@ fill_in_generic_residual_contribution_biharmonic(Vector<double> &residuals,
               }
             }
             //Loop over the internal test functions
-            for(unsigned l2=0;l2<Number_of_internal_dofs;l2++)
+            for(unsigned l2=0;l2<nbubble_basis();l2++)
             {
              for(unsigned k2=0;k2<n_b_position_type;k2++)
               {
@@ -198,7 +210,7 @@ fill_in_generic_residual_contribution_biharmonic(Vector<double> &residuals,
     }
 
     // Loop over the internal test functions
-    for(unsigned l=0;l<Number_of_internal_dofs;l++)
+    for(unsigned l=0;l<nbubble_basis();l++)
     {
      for(unsigned k=0;k<n_b_position_type;k++)
       {
@@ -230,7 +242,7 @@ fill_in_generic_residual_contribution_biharmonic(Vector<double> &residuals,
            for(unsigned l2=0;l2<n_node;l2++)
             {
              // Loop over position dofs
-             for(unsigned k2=0;k2<n_position_type;k2++)
+             for(unsigned k2=0;k2<n_basis_type;k2++)
               {
                local_unknown = this->nodal_local_eqn(l2,k2);
                //If at a non-zero degree of freedom add in the entry
@@ -253,7 +265,7 @@ fill_in_generic_residual_contribution_biharmonic(Vector<double> &residuals,
               }
             }
            //Loop over the test functions again
-           for(unsigned l2=0;l2<Number_of_internal_dofs;l2++)
+           for(unsigned l2=0;l2<nbubble_basis();l2++)
             {
              // Loop over position dofs
              for(unsigned k2=0;k2<n_b_position_type;k2++)
@@ -344,7 +356,7 @@ void  KirchhoffPlateBendingEquations<DIM,NNODE_1D>::output(std::ostream &outfile
    interpolated_u_biharmonic(s,u);
 
    // Get x position as Vector
-   this->get_coordinate_x(s,x);
+   this->interpolated_x(s,x);
    for(unsigned i=0;i<DIM;i++)
     {
      outfile << x[i] << " ";
@@ -390,7 +402,7 @@ void  KirchhoffPlateBendingEquations<DIM,NNODE_1D>::output(FILE* file_pt,
    this->get_s_plot(iplot,nplot,s);
 
    // Get x position as Vector
-   this->get_coordinate_x(s,x);
+   this->interpolated_x(s,x);
 
    for(unsigned i=0;i<DIM;i++)
     {
@@ -440,7 +452,7 @@ void KirchhoffPlateBendingEquations<DIM,NNODE_1D>::output_fct(std::ostream &outf
    this->get_s_plot(iplot,nplot,s);
 
    // Get x position as Vector
-   this->get_coordinate_x(s,x);
+   this->interpolated_x(s,x);
 
    // Get exact solution at this point
    (*exact_soln_pt)(x,exact_soln);
@@ -483,18 +495,18 @@ void KirchhoffPlateBendingEquations<DIM,NNODE_1D>::compute_error(std::ostream &o
  //Find out how many nodes there are
  const unsigned n_node = this->nnode();
  //Find out how many bubble nodes there are
- const unsigned n_b_node = this->Number_of_internal_dofs;
+ const unsigned n_b_node = nbubble_basis();
  //Find out how many nodes positional dofs there are
- unsigned n_position_type = this->nnodal_position_type();
+ unsigned n_basis_type = nnodal_basis_type();
  // Find the internal dofs
- const unsigned n_b_position_type = this->Number_of_internal_dof_types;
+ const unsigned n_b_position_type = nbubble_basis_type();
  //Local c1-shape funtion
- Shape psi(n_node,n_position_type),test(n_node,n_position_type),
+ Shape psi(n_node,n_basis_type),test(n_node,n_basis_type),
   psi_b(n_b_node,n_b_position_type),test_b(n_b_node,n_b_position_type);
  
- DShape dpsi_dxi(n_node,n_position_type,DIM),dtest_dxi(n_node,n_position_type,DIM),
+ DShape dpsi_dxi(n_node,n_basis_type,DIM),dtest_dxi(n_node,n_basis_type,DIM),
   dpsi_b_dxi(n_b_node,n_b_position_type,DIM),dtest_b_dxi(n_b_node,n_b_position_type,DIM),
-  d2psi_dxi2(n_node,n_position_type,3), d2test_dxi2(n_node,n_position_type,3),
+  d2psi_dxi2(n_node,n_basis_type,3), d2test_dxi2(n_node,n_basis_type,3),
   d2psi_b_dxi2(n_b_node,n_b_position_type,3), d2test_b_dxi2(n_b_node,n_b_position_type,3);
 
  //Vector of local coordinates
@@ -538,7 +550,7 @@ void KirchhoffPlateBendingEquations<DIM,NNODE_1D>::compute_error(std::ostream &o
    // double Wlin = w*Jlin;
 
    // Get x position as Vector
-   this->get_coordinate_x(s,x);
+   this->interpolated_x(s,x);
 
    // Get FE function value
    Vector<double> u_fe(this->required_nvalue(0),0.0);

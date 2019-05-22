@@ -9,7 +9,7 @@
 #include "../generic/nodes.h"
 #include "../generic/oomph_utilities.h"
 #include "../generic/Telements.h"
-#include "../generic/Subparametric_Telements.h"
+#include "../C1_basis/SubparametricTElement.h"
 
 
 
@@ -25,7 +25,7 @@ namespace oomph
 /// mapping etc. must get implemented in derived class.
 //=============================================================
 template <unsigned DIM, unsigned NNODE_1D>
-class KirchhoffPlateBendingEquations : public virtual BellElement<DIM,NNODE_1D>
+class KirchhoffPlateBendingEquations : public CurvableBellElement //SubparametricTElement 
 {
 
 public:
@@ -43,8 +43,9 @@ public:
 
  /// Constructor (must initialise the Pressure_fct_pt to null)
  KirchhoffPlateBendingEquations() : Pressure_fct_pt(0),
-   Pressure_fct_gradient_pt(0),Number_of_internal_dofs(0),
-   Number_of_internal_dof_types(0), Association_matrix_pt(0)  {}
+   Pressure_fct_gradient_pt(0)
+//   ,Number_of_internal_dofs(0), Number_of_internal_dof_types(0) 
+    {}
 
  /// Broken copy constructor
  KirchhoffPlateBendingEquations(const KirchhoffPlateBendingEquations& dummy)
@@ -122,9 +123,6 @@ public:
     OOMPH_CURRENT_FUNCTION, OOMPH_EXCEPTION_LOCATION);
   }
 
- // Get pointer to association matrix 
- DenseMatrix<double> *get_association_matrix_pt()const {return Association_matrix_pt;}
-
  /// Access function: Pointer to pressure function
  PressureFctPt& pressure_fct_pt() {return Pressure_fct_pt;}
 
@@ -145,19 +143,19 @@ public:
  ///Access function to the Poisson ratio (const version)
  const double& get_nu() const {return *Nu_pt;}
 
- // Get the kth dof type at internal point l
- virtual double get_w_bubble_dof(const unsigned& l, const unsigned& k) const =0;
+// // Get the kth dof type at internal point l
+// virtual double get_w_bubble_dof(const unsigned& l, const unsigned& k) const =0;
 
  // Get the kth equation at internal point l
  virtual int local_w_bubble_equation(const unsigned& l, const unsigned& k)
    const =0;
 
- // Precompute the association matrix, pure virtual
- virtual void precompute_association_matrix(DenseMatrix<double>& m)=0;
- // Get the number of basis functions, pure virtual
- virtual double n_basis_functions()=0;
- // Get the number of basic basis functions, pure virtual
- virtual double n_basic_basis_functions()=0;
+// // Precompute the association matrix, pure virtual
+// virtual void precompute_association_matrix(DenseMatrix<double>& m)=0;
+// // Get the number of basis functions, pure virtual
+// virtual double n_basis_functions()=0;
+// // Get the number of basic basis functions, pure virtual
+// virtual double n_basic_basis_functions()=0;
 
  /// Get pressure term at (Eulerian) position x. This function is
  /// virtual to allow overloading in multi-physics problems where
@@ -180,21 +178,12 @@ public:
   }
 
  /// Add the element's contribution to its residual vector (wrapper)
- void fill_in_contribution_to_residuals(Vector<double> &residuals)
+ virtual void fill_in_contribution_to_residuals(Vector<double> &residuals)
   {
-   // Precompute the association matrix
-   DenseMatrix<double> conversion_matrix (n_basis_functions(),
-    n_basic_basis_functions(),0.0);
-   this->precompute_association_matrix(conversion_matrix);
-   this->Association_matrix_pt=&conversion_matrix;
-
    //Call the generic residuals function with flag set to 0
    //using a dummy matrix argument
    fill_in_generic_residual_contribution_biharmonic(
     residuals,GeneralisedElement::Dummy_matrix,0);
-
-   // Reset to zero
-   this->Association_matrix_pt=0;
   }
 
 
@@ -203,17 +192,8 @@ public:
  void fill_in_contribution_to_jacobian(Vector<double> &residuals,
                                    DenseMatrix<double> &jacobian)
   {
-   // Precompute the association matrix
-   DenseMatrix<double> conversion_matrix (n_basis_functions(),
-    n_basic_basis_functions(),0.0);
-   this->precompute_association_matrix(conversion_matrix);
-   this->Association_matrix_pt=&conversion_matrix;
-
    //Call the generic routine with the flag set to 1
    fill_in_generic_residual_contribution_biharmonic(residuals,jacobian,1);
-
-   // Reset to zero
-   this->Association_matrix_pt=0;
   }
 
 
@@ -224,24 +204,24 @@ public:
 interpolated_u) const
   {
    //Find number of position dofs
-   const unsigned n_position_type = this->nnodal_position_type();
+   const unsigned n_basis_type = this->nnodal_basis_type();
    // Find the internal dofs
-   const unsigned n_b_position_type = this->Number_of_internal_dof_types;
+   const unsigned n_b_position_type = this->nbubble_basis_type();
    //Find out how many nodes there are
    const unsigned n_node = this->nnode();
    //Find out how many internal points there are
-   const unsigned n_b_node = this->Number_of_internal_dofs;
+   const unsigned n_b_node = this->nbubble_basis();
 
    //Get the index at which the unknown is stored
    //const unsigned u_length= 6; //Hierher
 
    //Local c1-shape funtion
-   Shape psi(n_node,n_position_type),test(n_node,n_position_type),
+   Shape psi(n_node,n_basis_type),test(n_node,n_basis_type),
     psi_b(n_b_node,n_b_position_type),test_b(n_b_node,n_b_position_type);
 
-   DShape dpsi_dxi(n_node,n_position_type,DIM),dtest_dxi(n_node,n_position_type,DIM),
+   DShape dpsi_dxi(n_node,n_basis_type,DIM),dtest_dxi(n_node,n_basis_type,DIM),
     dpsi_b_dxi(n_b_node,n_b_position_type,DIM),dtest_b_dxi(n_b_node,n_b_position_type,DIM),
-    d2psi_dxi2(n_node,n_position_type,3), d2test_dxi2(n_node,n_position_type,3),
+    d2psi_dxi2(n_node,n_basis_type,3), d2test_dxi2(n_node,n_basis_type,3),
     d2psi_b_dxi2(n_b_node,n_b_position_type,3), d2test_b_dxi2(n_b_node,n_b_position_type,3);
 
    //Initialise value of u
@@ -255,7 +235,7 @@ interpolated_u) const
    //Interpolated unknown
    for(unsigned l=0;l<n_node;l++)
    {
-    for(unsigned k=0;k<n_position_type;k++)
+    for(unsigned k=0;k<n_basis_type;k++)
      {
       // Get the kth nodal value at node l for displacement i
       double u_value_kl = this->raw_nodal_value(l,u_index_biharmonic(k));
@@ -269,11 +249,11 @@ interpolated_u) const
    }
 
    // Bubble dofs
-   for(unsigned l=0;l<Number_of_internal_dofs;l++)
+   for(unsigned l=0;l<nbubble_basis();l++)
    {
-    for(unsigned k=0;k<Number_of_internal_dof_types;k++)
+    for(unsigned k=0;k<nbubble_basis_type();k++)
      {
-      double u_value = get_w_bubble_dof(l,k);
+      double u_value = get_bubble_dof(l,k);
       interpolated_u[0] += u_value * psi_b(l,k);
       interpolated_u[1] += u_value*dpsi_b_dxi(l,k,0);
       interpolated_u[2] += u_value*dpsi_b_dxi(l,k,1);
@@ -290,7 +270,7 @@ interpolated_u) const
  unsigned self_test();
 
  /// \short get the coordinate
- virtual void get_coordinate_x(const Vector<double>& s, Vector<double>& x) const=0;
+// virtual void get_coordinate_x(const Vector<double>& s, Vector<double>& x) const=0;
 
 protected:
 
@@ -328,20 +308,20 @@ protected:
  const double* Nu_pt;
 
 
- /// \short unsigned that holds the internal 'bubble' dofs the element has -
- // zero for Bell Elements and 3 for C1 curved elements
- unsigned Number_of_internal_dofs;
-
- /// \short unsigned that holds the number of types of degree of freedom at each
- // internal point that the element has zero for Bell Elements and 1
- // for C1 curved elements
- unsigned Number_of_internal_dof_types;
-
- protected:
-
- /// Pointer to precomputed matrix that associates shape functions to monomials
- DenseMatrix<double> *Association_matrix_pt;
-
+//  /// \short unsigned that holds the internal 'bubble' dofs the element has -
+//  // zero for Bell Elements and 3 for C1 curved elements
+//  unsigned Number_of_internal_dofs;
+// 
+//  /// \short unsigned that holds the number of types of degree of freedom at each
+//  // internal point that the element has zero for Bell Elements and 1
+//  // for C1 curved elements
+//  unsigned Number_of_internal_dof_types;
+// 
+//  protected:
+// 
+//  /// Pointer to precomputed matrix that associates shape functions to monomials
+//  DenseMatrix<double> *Association_matrix_pt;
+// 
 };
 
 

@@ -239,7 +239,8 @@ AMTAR = @AMTAR@
 # Include path for library headers -- need to refer to include files
 # in their respective source directories as they will not have been 
 # installed yet! 
-AM_CPPFLAGS = @AM_CPPFLAGS@ -I$(top_builddir)/src/generic
+AM_CPPFLAGS = @AM_CPPFLAGS@ -I$(top_builddir)/src/generic # -g \
+	-DPARANOID -DRANGE_CHECK
 AM_CXXFLAGS = @AM_CXXFLAGS@
 AM_DEFAULT_VERBOSITY = @AM_DEFAULT_VERBOSITY@
 AM_FFLAGS = @AM_FFLAGS@
@@ -407,7 +408,7 @@ top_srcdir = @top_srcdir@
 sourcesLPB = kirchhoff_plate_bending_elements.cc kirchhoff_plate_bending_curved_bell_elements.cc
 
 # Define the headers
-headersLPB = kirchhoff_plate_bending.h kirchhoff_plate_bending_elements.h kirchhoff_plate_bending_curved_bell_elements.h
+headersLPB = kirchhoff_plate_bending_elements.h kirchhoff_plate_bending_curved_bell_elements.h
 
 # Define name of library
 libnameLPB = C1_linear_plate_bending

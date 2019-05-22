@@ -29,9 +29,10 @@
 //LIC//====================================================================
 
 //oomph-lib headers
-#include "generic/shape.h"
-#include "C1_basis/C1_curved_elements.h"
-#include "C1_basis/my_geom_object.h"
+#include "../generic/shape.h"
+#include "C1_curved_elements.h"
+#include "my_geom_object.h"
+#include "../generic/prettyprint98.h"
 
 #ifndef SUBPARAMETRIC_TELEMENTS
 #define SUBPARAMETRIC_TELEMENTS
@@ -80,21 +81,22 @@ public:
  virtual void basis(const Vector<double>& s, Shape& nodal_basis, Shape& bubble_basis) const = 0;
 
  /// Get the local derivative of the basis for the unknowns
- virtual void d_basis_local(const Vector<double>& s,Shape& nodal_basis, DShape& dnodal_basis, Shape& bubble_basis,
+ virtual void d_basis_local(const Vector<double>& s, Shape& nodal_basis, Shape& bubble_basis, DShape& dnodal_basis,
     DShape& dbubble_basis) const = 0;
 
  /// Get the local second derivative of the basis for the unknowns
- virtual void d2_basis_local(const Vector<double>& s,Shape& nodal_basis, DShape& dnodal_basis, DShape& d2nodal_basis,
-    Shape& bubble_basis, DShape& dbubble_basis, DShape& d2bubble_basis) const = 0;
+ virtual void d2_basis_local(const Vector<double>& s, Shape& nodal_basis, 
+   Shape& bubble_basis, DShape& dnodal_basis, DShape& dbubble_basis, DShape&
+    d2nodal_basis, DShape& d2bubble_basis) const  = 0;
 
  /// Get the global (Eulerian) derivative of the basis for the unknowns
- virtual double d_basis_eulerian(const Vector<double>& s, Shape& nodal_basis, DShape& dnodal_basis, Shape& bubble_basis,
+ virtual double d_basis_eulerian(const Vector<double>& s, Shape& nodal_basis, Shape& bubble_basis, DShape& dnodal_basis,
     DShape& dbubble_basis) const = 0;
 
  /// Get the global (Eulerian) second derivative of the basis for the unknowns
- virtual double d2_basis_eulerian(const Vector<double>& s, Shape& nodal_basis, DShape& dnodal_basis, DShape& 
-    d2nodal_basis, Shape& bubble_basis, DShape& dbubble_basis, 
-    DShape& d2bubble_basis) const = 0;
+ virtual double d2_basis_eulerian(const Vector<double>& s, Shape& nodal_basis, 
+   Shape& bubble_basis, DShape& dnodal_basis, DShape& dbubble_basis, DShape&
+    d2nodal_basis, DShape& d2bubble_basis) const  = 0;
 
 }; //End of Subparametric TElement class
 
@@ -108,8 +110,21 @@ public:
  /// Constructor
  CurvableBellElement() : Curved_edge(MyC1CurvedElements::none)
   { 
+   // Add the (zero) bubble dofs
+   Internal_data_index = this->add_internal_data(new Data(0));
    Bernadou_element_basis_pt=0;
    Association_matrix_pt=0;
+  //  // Store the vertices (TMP) for Bell
+  //  Verts = (Vector<Vector<double> >(nvertex_node(),Vector<double>(dim(),0.0)));
+  //  // Fill in
+  //  for(unsigned ivert=0;ivert<nvertex_node();++ivert)
+  //    {
+  //    Verts[ivert][0] =nodal_position(ivert,0);
+  //    Verts[ivert][1] =nodal_position(ivert,1);
+  //    }
+  // std::cout<<"{"<<Verts[0][0]<<","<<Verts[0][1]<<"} ";
+  // std::cout<<"{"<<Verts[1][0]<<","<<Verts[1][1]<<"} ";
+  // std::cout<<"{"<<Verts[1][0]<<","<<Verts[1][1]<<"}\n";
   };
 
  ///Destructor 
@@ -196,6 +211,10 @@ to access interpolated eulerian coordinate",
       }
     else
       { //HERE
+      Vector<Vector<double> > Verts = (Vector<Vector<double> >(nvertex_node(),Vector<double>(dim(),0.0)));
+      for(unsigned ivert=0;ivert<nvertex_node();++ivert)
+         for(unsigned icoord=0;icoord<dim();++icoord)
+           Verts[ivert][icoord] =nodal_position(ivert,icoord);
       DShape dummydshape(nvertex_node(),nnodal_basis_type(),dim());
       DShape dummyd2shape(nvertex_node(),nnodal_basis_type(),dim()*dim()-1);
       Bell_basis.d2_basis_eulerian(s,Verts,nodal_basis,dummydshape,dummyd2shape);
@@ -203,21 +222,22 @@ to access interpolated eulerian coordinate",
    };
 
  /// Get the local derivative of the basis for the unknowns
- virtual void d_basis_local(const Vector<double>& s,Shape& nodal_basis, DShape& dnodal_basis, Shape& bubble_basis,
+ virtual void d_basis_local(const Vector<double>& s, Shape& nodal_basis, Shape& bubble_basis, DShape& dnodal_basis,
     DShape& dbubble_basis) const
   {
    throw OomphLibError("Needs implementing. BLAME DAVID.",OOMPH_CURRENT_FUNCTION, OOMPH_EXCEPTION_LOCATION);
   }
 
  /// Get the local second derivative of the basis for the unknowns
- virtual void d2_basis_local(const Vector<double>& s,Shape& nodal_basis, DShape& dnodal_basis, DShape& d2nodal_basis,
-    Shape& bubble_basis, DShape& dbubble_basis, DShape& d2bubble_basis) const
+ virtual void d2_basis_local(const Vector<double>& s, Shape& nodal_basis, 
+   Shape& bubble_basis, DShape& dnodal_basis, DShape& dbubble_basis, DShape&
+    d2nodal_basis, DShape& d2bubble_basis) const
   {
    throw OomphLibError("Needs implementing. BLAME DAVID.",OOMPH_CURRENT_FUNCTION, OOMPH_EXCEPTION_LOCATION);
   }
 
  /// Get the global (Eulerian) derivative of the basis for the unknowns
- virtual double d_basis_eulerian(const Vector<double>& s, Shape& nodal_basis, DShape& dnodal_basis, Shape& bubble_basis,
+ virtual double d_basis_eulerian(const Vector<double>& s, Shape& nodal_basis, Shape& bubble_basis, DShape& dnodal_basis,
     DShape& dbubble_basis) const
     {
     if(element_is_curved())
@@ -227,6 +247,10 @@ to access interpolated eulerian coordinate",
       }
     else
       { //HERE
+      Vector<Vector<double> > Verts = (Vector<Vector<double> >(nvertex_node(),Vector<double>(dim(),0.0)));
+      for(unsigned ivert=0;ivert<nvertex_node();++ivert)
+         for(unsigned icoord=0;icoord<dim();++icoord)
+           Verts[ivert][icoord] =nodal_position(ivert,icoord);
       DShape dummyd2shape(nvertex_node(),nnodal_basis_type(),dim()*dim()-1);
       Bell_basis.d2_basis_eulerian(s,Verts,nodal_basis,dnodal_basis,dummyd2shape);
       return TElement<2,2>::J_eulerian(s);
@@ -234,9 +258,9 @@ to access interpolated eulerian coordinate",
      }
 
  /// Get the global (Eulerian) second derivative of the basis for the unknowns
- virtual double d2_basis_eulerian(const Vector<double>& s, Shape& nodal_basis, DShape& dnodal_basis, DShape& 
-    d2nodal_basis, Shape& bubble_basis, DShape& dbubble_basis, 
-    DShape& d2bubble_basis) const  
+ virtual double d2_basis_eulerian(const Vector<double>& s, Shape& nodal_basis, 
+   Shape& bubble_basis, DShape& dnodal_basis, DShape& dbubble_basis, DShape&
+    d2nodal_basis, DShape& d2bubble_basis) const  
     {
     if(element_is_curved())
       {
@@ -257,6 +281,10 @@ to access interpolated eulerian coordinate",
      // Use the Bell basis functions if not upgraded
     else
       { 
+      Vector<Vector<double> > Verts = (Vector<Vector<double> >(nvertex_node(),Vector<double>(dim(),0.0)));
+      for(unsigned ivert=0;ivert<nvertex_node();++ivert)
+         for(unsigned icoord=0;icoord<dim();++icoord)
+           Verts[ivert][icoord] =nodal_position(ivert,icoord);
       Bell_basis.d2_basis_eulerian(s,Verts,nodal_basis,dnodal_basis,d2nodal_basis);
       return TElement<2,2>::J_eulerian(s);
       }
@@ -299,7 +327,7 @@ to access interpolated eulerian coordinate",
  /// for un-upgraded elements. Upgrading introduces nbubble_dof additional basis 
  /// functions depending on the basis 
  unsigned nbubble_basis() const 
-  {return (element_is_curved() ? 0 : Bernadou_element_basis_pt->n_internal_dofs());}; 
+  {return (element_is_curved() ? Bernadou_element_basis_pt->n_internal_dofs() : 0);}; 
 
  // Return number of bubble dof types
  unsigned nbubble_basis_type() const {return 1;}; 
@@ -343,7 +371,11 @@ element.", OOMPH_CURRENT_FUNCTION, OOMPH_EXCEPTION_LOCATION);
   else
    {return this->internal_data_pt(Internal_data_index)->value(ibdof);}
   }
-
+ 
+ /// Index of the internal data
+ virtual unsigned index_of_internal_data() const 
+  {return Internal_data_index;}
+  
  /// Add the a curved element pointer of type BERNADOU_BASIS
  template<typename BERNADOU_BASIS>
  void add_new_curved_basis()
@@ -375,20 +407,24 @@ Elements.",OOMPH_CURRENT_FUNCTION,  OOMPH_EXCEPTION_LOCATION);
   // Add the curved edge
   Curved_edge = curved_edge;
 
+  Integral* new_integral_pt; 
   // Switch for the boundary order
   switch(boundary_order)
    {
    case 3:
     add_new_curved_basis<BernadouElementBasis<3> >();
+    new_integral_pt = new TGauss<2,13>;
    break;
    case 5:
     add_new_curved_basis<BernadouElementBasis<5> >();
+    new_integral_pt = new TGauss<2,16>;
    break;
    default:
     throw OomphLibError(
     "Currently only BernadouElementBasis<3> and BernadouElementBasis<5> are implemented."
      ,OOMPH_CURRENT_FUNCTION,  OOMPH_EXCEPTION_LOCATION);
    } 
+   this->set_integration_scheme(new_integral_pt); 
   // Set the number of internal dofs to nbubble
   // Number_of_internal_dof_types = 1;
   // Number_of_internal_dofs = basis_pt->ninternal_dofs;
@@ -440,7 +476,7 @@ private:
  DenseMatrix<double>* Association_matrix_pt;
 
  /// HERE these neeedn't be here
- Vector<Vector<double> > Verts;
+// Vector<Vector<double> > Verts;
 
 }; //End of Subparametric TElement class
 

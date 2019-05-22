@@ -5,7 +5,7 @@
 sourcesLPB = kirchhoff_plate_bending_elements.cc kirchhoff_plate_bending_curved_bell_elements.cc
 
 # Define the headers
-headersLPB = kirchhoff_plate_bending.h kirchhoff_plate_bending_elements.h kirchhoff_plate_bending_curved_bell_elements.h
+headersLPB = kirchhoff_plate_bending_elements.h kirchhoff_plate_bending_curved_bell_elements.h
 
 # Define name of library
 libnameLPB = C1_linear_plate_bending
@@ -42,7 +42,7 @@ library_C1_linear_plate_bendinginclude_HEADERS=$(headersLPB)
 # Include path for library headers -- need to refer to include files
 # in their respective source directories as they will not have been 
 # installed yet! 
-AM_CPPFLAGS += -I$(top_builddir)/src/generic
+AM_CPPFLAGS += -I$(top_builddir)/src/generic # -g -DPARANOID -DRANGE_CHECK
 
 
 # Combined header file
