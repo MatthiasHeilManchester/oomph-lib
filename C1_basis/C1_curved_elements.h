@@ -40,8 +40,58 @@ namespace oomph {
 
 namespace MyC1CurvedElements {
 
+// HERE replace with class enum in c++11?
 /// \short enum to enumerate the possible edges that could be curved
 enum Edge {none=-1,zero=0,one=1,two=2};
+
+class BernadouElementBasisBase
+{
+public:
+ BernadouElementBasisBase() {};
+ virtual ~BernadouElementBasisBase() {};
+
+ /// \short Shorthand for a vector of vectors containining the vertices
+ typedef Vector<Vector<double> > VertexList;
+
+ /// Get the basis for the  unknowns
+ virtual void shape(const Vector<double>& s, Shape& nodal_basis, Shape& bubble_basis) const = 0;
+
+ /// Get the Eulerian first derivatives of the basis functions
+ virtual double d_shape_dx(const Vector<double>& s, Shape& psi, Shape& bpsi, DShape& dpsi,
+   DShape& dbpsi) const = 0;
+
+ /// Get the Eulerian second derivatives of the basis functions
+ virtual double d2_shape_dx2(const Vector<double>& s, Shape& psi, Shape& bpsi, DShape& dpsi
+   , DShape& dbpsi, DShape& d2psi, DShape& d2bpsi) const = 0;
+
+ /// Get the Eulerian second derivatives of the basis functions, returning the
+ /// association matrix used to assemble the basis. 
+ virtual double d2_shape_dx2(const Vector<double>& s, Shape& psi, Shape& bpsi, DShape& dpsi
+   , DShape& dbpsi, DShape& d2psi, DShape& d2bpsi, const DenseMatrix<double>& m) const = 0;
+
+ virtual  void coordinate_x(const Vector<double>& s, Vector<double>& fk) const = 0;
+
+ virtual void get_jacobian(const Vector<double>& s, DenseMatrix<double>& jacobian) const = 0;
+
+ virtual void upgrade_element(const VertexList& verts, const double& su, const double& so, 
+    const Edge& curved_edge,
+    const CurvilineGeomObject& parametric_curve) = 0;
+
+  /// Check the element
+  virtual void self_check(const CurvilineGeomObject& parametric_curve) const = 0;
+
+  /// Return the number of basis functions on the physical triangle
+  virtual unsigned n_basis_functions() const = 0;
+
+  /// Return the number of bubble basis functions triangle
+  virtual unsigned n_internal_dofs() const = 0;
+
+  /// Return the number of basis functions on the basic triangle
+  virtual unsigned n_basic_basis_functions() const = 0;
+
+  /// Fill in the association matrix between monomials and unknowns
+  virtual void fill_in_full_association_matrix(DenseMatrix<double>& conversion_matrix) const = 0;
+};
 
 /// The BernadouElementBasis class.
 /// These are based on the curved C1 elements of Bernadou and Boisserie 1994 but
@@ -89,7 +139,7 @@ enum Edge {none=-1,zero=0,one=1,two=2};
 /// The solution is then represented on the curved element as a seventh order
 /// bivariate polynomial that is constrained to have the aforementioned traces.
 template <unsigned BOUNDARY_ORDER>
-class BernadouElementBasis
+class BernadouElementBasis : public BernadouElementBasisBase
 {
 public:
   /// \short typedef for the edge curve
@@ -192,7 +242,7 @@ public:
   void psi_h  (const double& s1, Vector<double>& psi_h) const;
 
   /// Fill in the full association matrix 
-  void fill_in_full_association_matrix(DenseMatrix<double>& conversion_matrix);
+  void fill_in_full_association_matrix(DenseMatrix<double>& conversion_matrix) const;
 
   /// Return the order of the polynomial on the curved boudnary
   inline unsigned boundary_order() const {return BOUNDARY_ORDER;}

@@ -2197,7 +2197,7 @@ void BernadouElementBasis<BOUNDARY_ORDER>::d2_shape_ds2(const Vector<double>& s,
 /// basic monomials/ shape functions to the physical basic functions.
 template <unsigned BOUNDARY_ORDER>
 void BernadouElementBasis<BOUNDARY_ORDER>::fill_in_full_association_matrix(DenseMatrix<double>&
-conversion_matrix)
+conversion_matrix)const
  {
   // check the construction of the elements is complete
   #ifdef paranoid

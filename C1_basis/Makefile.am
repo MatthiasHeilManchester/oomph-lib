@@ -12,7 +12,7 @@ C1_curved_association_matrix.cc
 
 # Define the headers
 headersC1 =  \
-Bell_element_basis.h C1_curved_elements.h my_geom_object.h
+Bell_element_basis.h C1_curved_elements.h my_geom_object.h  SubparametricTElement.h
 
 # Define name of library
 libnameC1 = C1_basis
