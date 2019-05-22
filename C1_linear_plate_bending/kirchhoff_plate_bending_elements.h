@@ -22,7 +22,7 @@ namespace oomph
 /// This contains the generic maths. Shape functions, geometric
 /// mapping etc. must get implemented in derived class.
 //=============================================================
-class KirchhoffPlateBendingEquations : public CurvableBellElement //SubparametricTElement 
+class KirchhoffPlateBendingEquations : public virtual FiniteElement 
 {
 public:
  /// \short Function pointer to pressure function fct(x,f(x)) --
@@ -134,17 +134,21 @@ public:
  ///Access function to the Poisson ratio (const version)
  const double& get_nu() const {return *Nu_pt;}
 
-// // Get the kth dof type at internal point l
-// virtual double get_w_bubble_dof(const unsigned& l, const unsigned& k) const =0;
+ // Get the kth dof type at internal point l
+ virtual double get_w_bubble_dof(const unsigned& l, const unsigned& k) const =0;
 
  // Get the kth equation at internal point l
  virtual int local_w_bubble_equation(const unsigned& l, const unsigned& k)
    const =0;
 
-// // Get the number of basis functions, pure virtual
-// virtual double n_basis_functions()=0;
-// // Get the number of basic basis functions, pure virtual
-// virtual double n_basic_basis_functions()=0;
+ // Get the number of basis functions, pure virtual
+ virtual unsigned nnodal_basis_type() const =  0;
+
+ // Get the number of internal basis functions, pure virtual
+ virtual unsigned nbubble_basis() const = 0;
+
+ // Get the number of internal basis functions, pure virtual
+ virtual unsigned nbubble_basis_type() const = 0;
 
  /// Get pressure term at (Eulerian) position x. This function is
  /// virtual to allow overloading in multi-physics problems where
@@ -237,7 +241,7 @@ interpolated_u) const
    {
     for(unsigned k=0;k<nbubble_basis_type();k++)
      {
-      double u_value = get_bubble_dof(l,k);
+      double u_value = get_w_bubble_dof(l,k);
       interpolated_u[0] += u_value * psi_b(l,k);
       interpolated_u[1] += u_value*dpsi_b_dxi(l,k,0);
       interpolated_u[2] += u_value*dpsi_b_dxi(l,k,1);

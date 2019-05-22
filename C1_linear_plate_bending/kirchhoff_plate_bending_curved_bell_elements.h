@@ -16,38 +16,27 @@ namespace oomph
 //==============================================================================
 
 class KirchhoffPlateBendingC1CurvedBellElement : 
-  public virtual KirchhoffPlateBendingEquations 
+  public virtual CurvableBellElement, 
+  public virtual KirchhoffPlateBendingEquations
 {
 public:
  ///\short  Constructor: Call constructors for C1CurvedBellElement and
  /// Biharmonic equations
- KirchhoffPlateBendingC1CurvedBellElement() : KirchhoffPlateBendingEquations(), 
-  Rotated_basis_fct_pt(0),  Nnodes_to_rotate(0)
-  {
-  // Use the higher order integration scheme
-  TGauss<2,4>* new_integral_pt = new TGauss<2,4>;
-  this->set_integration_scheme(new_integral_pt); 
-  }
+ KirchhoffPlateBendingC1CurvedBellElement() : CurvableBellElement(), 
+  KirchhoffPlateBendingEquations(), Rotated_basis_fct_pt(0), Nnodes_to_rotate(0)
+  {  }
 
  // Destructor
- ~KirchhoffPlateBendingC1CurvedBellElement() 
-  {
-   // Clean up allocation of integration scheme
-   delete this->integral_pt(); 
-  }
+ ~KirchhoffPlateBendingC1CurvedBellElement() { }
 
  /// Broken copy constructor
  KirchhoffPlateBendingC1CurvedBellElement(const
   KirchhoffPlateBendingC1CurvedBellElement& dummy)
-  {
-   BrokenCopy::broken_copy("KirchhoffPlateBendingC1CurvedBellElement");
-  }
+  { BrokenCopy::broken_copy(OOMPH_CURRENT_FUNCTION);}
 
  /// Broken assignment operator
  void operator=(const KirchhoffPlateBendingC1CurvedBellElement&)
-  {
-   BrokenCopy::broken_assign("KirchhoffPlateBendingC1CurvedBellElement");
-  }
+  { BrokenCopy::broken_assign(OOMPH_CURRENT_FUNCTION);}
 
  /// \short Function pointer to basis vectors function which sets  basis vectors
  /// b1 and b2 (which are in general functions of x)
@@ -79,11 +68,14 @@ public:
    this->delete_association_matrix();
   }
 
-// // Get the number of basis functions, wrapper
-// double n_basis_functions(){return Curved_shape.n_basis_functions();};
-//
-// // Get the number of basic basis functions, wrapper
-// double n_basic_basis_functions(){return Curved_shape.n_basic_basis_functions();};
+  // Get the number of nodal basis types, wrapper
+  unsigned nnodal_basis_type() const {return CurvableBellElement::nnodal_basis_type();};
+
+  // Get the number of internal basis types, wrapper
+  unsigned nbubble_basis_type() const {return CurvableBellElement::nbubble_basis_type();};
+
+  // Get the number of internal bases, wrapper
+  unsigned nbubble_basis() const {return CurvableBellElement::nbubble_basis();};
 
 protected:
  /// Get rotation matrices that change the degrees of freedom to the basis set
@@ -105,10 +97,12 @@ protected:
    DShape& d2shape) const;
  
  /// \short Get the jth bubble dof at the lth internal point.
-// inline double get_w_bubble_dof(const unsigned& l, const unsigned& j) const;
+ inline double get_w_bubble_dof(const unsigned& l, const unsigned& j) const
+  {return CurvableBellElement::get_bubble_dof(l,j);} 
 
  /// \short Get the jth bubble dof at the lth internal point
- inline int local_w_bubble_equation(const unsigned& l, const unsigned& j) const;
+ inline int local_w_bubble_equation(const unsigned& l, const unsigned& j) const
+  {return CurvableBellElement::local_bubble_equation(l,j);}
 
 public:
  /// \short Set up the rotated degrees of freedom
@@ -232,39 +226,6 @@ class FaceGeometry<KirchhoffPlateBendingC1CurvedBellElement > :
 ////////////////////////////////////////////////////////////////////////////////
 
 //==============================================================================
-/// Get the jth bubble dof at the lth internal point. Deliberately broken for
-/// case when there is no curved edge.
-//==============================================================================
-int KirchhoffPlateBendingC1CurvedBellElement::local_w_bubble_equation(const
-  unsigned& l, const unsigned& j) const
- {
-  // Deliberately break this function for the below cases
-  // If there is no curved edge then we cannot return anything meaningful
-  if(!CurvableBellElement::element_is_curved())
-  {
-  throw OomphLibError(
-   "There are no time-dependent internal 'bubble' dofs for this element.",
-    OOMPH_CURRENT_FUNCTION,  OOMPH_EXCEPTION_LOCATION);
-   // Return dummy value -2
-   return -2;
-   }
-   // For these elements we only have a single dof at each internal point
-   else if(j!=0)
-   {
-   throw OomphLibError(
-    "There is only a single degree of equation at the internal points in this \
-element.", OOMPH_CURRENT_FUNCTION,OOMPH_EXCEPTION_LOCATION);
-   // Return dummy value -2
-   return -2;
-   }
-   // Now give the lth internal equation number
-   else
-   {
-    return this->internal_local_eqn(CurvableBellElement::index_of_internal_data(),l);
-   }
-  }
-
-//==============================================================================
 /// Set up the rotated degrees of freedom: includes a check for the number of
 /// rotation nodes being greater than three.
 //==============================================================================
@@ -304,7 +265,7 @@ void KirchhoffPlateBendingC1CurvedBellElement::
  Vector<double> x(2,0.0);
 
  // Get the node pointer
- Node* nod_pt=this->node_pt(inode);
+ Node* nod_pt=this->CurvableBellElement::node_pt(inode);
 
  // Get the position of the vertex
  x[0]=nod_pt->x(0);

@@ -91,7 +91,7 @@ fill_in_generic_residual_contribution_biharmonic(Vector<double> &residuals,
     for(unsigned k=0;k<n_b_position_type;k++)
      {
       //Get the nodal value of the unknown
-      double u_value = get_bubble_dof(l,k);
+      double u_value = get_w_bubble_dof(l,k);
       interpolated_u[0] += u_value*psi_b(l,k);
       // Loop over directions
       for(unsigned j=0;j<dim();j++)

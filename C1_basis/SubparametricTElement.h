@@ -118,8 +118,11 @@ public:
  /// Constructor
  CurvableBellElement() : Curved_edge(MyC1CurvedElements::none)
   { 
+   // Use the higher order integration scheme
+   TGauss<2,4>* new_integral_pt = new TGauss<2,4>;
+   this->set_integration_scheme(new_integral_pt); 
    // Add the (zero) bubble dofs
-   Internal_data_index = this->add_internal_data(new Data(0));
+   Index_of_internal_data = this->add_internal_data(new Data(0));
    Bernadou_element_basis_pt=0;
    Association_matrix_pt=0;
   };
@@ -130,6 +133,8 @@ public:
    // Clean Up
    delete Association_matrix_pt;
    delete Bernadou_element_basis_pt;
+   // Clean up allocation of integration scheme
+   delete this->integral_pt(); 
   }
 
  /// Broken copy constructor
@@ -386,12 +391,40 @@ element.", OOMPH_CURRENT_FUNCTION, OOMPH_EXCEPTION_LOCATION);
   }
   // Now give the lth internal degree of freedom
   else
-   {return this->internal_data_pt(Internal_data_index)->value(ibdof);}
+   {return this->internal_data_pt(Index_of_internal_data)->value(ibdof);}
+  }
+
+///\short Get the jth bubble dof at the lth internal point. Deliberately broken 
+/// for case when there is no curved edge.
+ int local_bubble_equation(const  unsigned& l, const unsigned& j) const
+ {
+  // Deliberately break this function for the below cases
+  // If there is no curved edge then we cannot return anything meaningful
+  if(!element_is_curved())
+  {
+  throw OomphLibError(
+   "There are no time-dependent internal 'bubble' dofs for this element.",
+    OOMPH_CURRENT_FUNCTION,  OOMPH_EXCEPTION_LOCATION);
+   // Return dummy value -2
+   return -2;
+   }
+   // For these elements we only have a single dof at each internal point
+   else if(j!=0)
+   {
+   throw OomphLibError(
+    "There is only a single degree of equation at the internal points in this \
+element.", OOMPH_CURRENT_FUNCTION,OOMPH_EXCEPTION_LOCATION);
+   // Return dummy value -2
+   return -2;
+   }
+   // Now give the lth internal equation number
+   else
+   { return this->internal_local_eqn(Index_of_internal_data,l); }
   }
  
  /// Index of the internal data
  virtual unsigned index_of_internal_data() const 
-  {return Internal_data_index;}
+  {return Index_of_internal_data;}
   
  /// Add the a curved element pointer of type BERNADOU_BASIS
  template<typename BERNADOU_BASIS>
@@ -452,7 +485,7 @@ Elements.",OOMPH_CURRENT_FUNCTION,  OOMPH_EXCEPTION_LOCATION);
   // Number_of_internal_dofs = basis_pt->ninternal_dofs;
   // Nbubble_basis =  nbubble;
   unsigned n_bubble = Bernadou_element_basis_pt->n_internal_dofs();
-  Internal_data_index = this->add_internal_data(new Data(n_bubble));
+  Index_of_internal_data = this->add_internal_data(new Data(n_bubble));
  
   // Vector to store nodes
   Vector<Vector<double> > vertices(Vector<Vector<double> >(nvertex_node(),Vector<double>(dim(),0.0)));
@@ -486,7 +519,7 @@ private:
  MyC1CurvedElements::Edge Curved_edge;
 
  /// Index at which the added internal data is storedj
- unsigned Internal_data_index;
+ unsigned Index_of_internal_data;
 
  /// Pointer to Bernadou Element Basis
  MyC1CurvedElements::BernadouElementBasisBase* Bernadou_element_basis_pt;
