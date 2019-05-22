@@ -11,8 +11,6 @@
 #include "../generic/Telements.h"
 #include "../C1_basis/SubparametricTElement.h"
 
-
-
 namespace oomph
 {
 //=============================================================
@@ -26,24 +24,18 @@ namespace oomph
 //=============================================================
 class KirchhoffPlateBendingEquations : public CurvableBellElement //SubparametricTElement 
 {
-
 public:
-
  /// \short Function pointer to pressure function fct(x,f(x)) --
  /// x is a Vector!
  typedef void (*PressureFctPt)(const Vector<double>& x, double& f);
-
 
  /// \short Function pointer to gradient of pressure function  fct(x,g(x)) --
  /// x is a Vector!
  typedef void (*PressureFctGradientPt)(const Vector<double>& x,
                                             Vector<double>& gradient);
 
-
  /// Constructor (must initialise the Pressure_fct_pt to null)
- KirchhoffPlateBendingEquations() : Pressure_fct_pt(0),
-   Pressure_fct_gradient_pt(0)
-//   ,Number_of_internal_dofs(0), Number_of_internal_dof_types(0) 
+ KirchhoffPlateBendingEquations() : Pressure_fct_pt(0), Pressure_fct_gradient_pt(0)
     {}
 
  /// Broken copy constructor
@@ -149,8 +141,6 @@ public:
  virtual int local_w_bubble_equation(const unsigned& l, const unsigned& k)
    const =0;
 
-// // Precompute the association matrix, pure virtual
-// virtual void precompute_association_matrix(DenseMatrix<double>& m)=0;
 // // Get the number of basis functions, pure virtual
 // virtual double n_basis_functions()=0;
 // // Get the number of basic basis functions, pure virtual
@@ -185,7 +175,6 @@ public:
     residuals,GeneralisedElement::Dummy_matrix,0);
   }
 
-
  /// Add the element's contribution to its residual vector and
  /// element Jacobian matrix (wrapper)
  void fill_in_contribution_to_jacobian(Vector<double> &residuals,
@@ -194,8 +183,6 @@ public:
    //Call the generic routine with the flag set to 1
    fill_in_generic_residual_contribution_biharmonic(residuals,jacobian,1);
   }
-
-
 
  /// \short Return FE representation of unknown values u(s)
  /// at local coordinate s
@@ -224,8 +211,6 @@ interpolated_u) const
     d2psi_b_dxi2(n_b_node,n_b_position_type,3), d2test_b_dxi2(n_b_node,n_b_position_type,3);
 
    //Initialise value of u
-   //Vector<double> interpolated_u(u_length,0.0);
-
    //Find values of c1-shape function
    d2shape_and_d2test_eulerian_biharmonic(s,psi,psi_b,dpsi_dxi,dpsi_b_dxi,
     d2psi_dxi2,d2psi_b_dxi2,test,test_b,dtest_dxi,dtest_b_dxi,d2test_dxi2,
@@ -261,18 +246,12 @@ interpolated_u) const
       interpolated_u[5] += u_value*d2psi_b_dxi2(l,k,2);
      }
    }
-
-   //return(interpolated_u);
   }
 
  /// \short Self-test: Return 0 for OK
  unsigned self_test();
 
- /// \short get the coordinate
-// virtual void get_coordinate_x(const Vector<double>& s, Vector<double>& x) const=0;
-
 protected:
-
  /// \short Shape/test functions and derivs w.r.t. to global coords at
  /// local coord. s; return  Jacobian of mapping
  virtual double d2shape_and_d2test_eulerian_biharmonic(const Vector<double> &s,
@@ -305,25 +284,6 @@ protected:
 
  /// Pointer to Poisson ratio, which this element cannot modify
  const double* Nu_pt;
-
-
-//  /// \short unsigned that holds the internal 'bubble' dofs the element has -
-//  // zero for Bell Elements and 3 for C1 curved elements
-//  unsigned Number_of_internal_dofs;
-// 
-//  /// \short unsigned that holds the number of types of degree of freedom at each
-//  // internal point that the element has zero for Bell Elements and 1
-//  // for C1 curved elements
-//  unsigned Number_of_internal_dof_types;
-// 
-//  protected:
-// 
-//  /// Pointer to precomputed matrix that associates shape functions to monomials
-//  DenseMatrix<double> *Association_matrix_pt;
-// 
 };
-
-
 } //end namespace oomph
 #endif
-

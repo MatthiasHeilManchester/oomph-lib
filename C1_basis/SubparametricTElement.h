@@ -56,6 +56,14 @@ public:
  /// Destructor
  ~SubparametricTElement() {}; 
 
+ // Broken Copy Constructor
+ SubparametricTElement(const SubparametricTElement& dummy)
+   { BrokenCopy::broken_copy(OOMPH_CURRENT_FUNCTION); }
+
+ // Broken assignment operator
+ void operator=(const SubparametricTElement& dummy)
+   { BrokenCopy::broken_assign(OOMPH_CURRENT_FUNCTION); }
+
  /// Return total number of basis functions 
  virtual unsigned nbasis()const 
    {return nvertex_node()*nnodal_basis_type()+nbubble_basis()*nbubble_basis_type();} 
@@ -114,17 +122,6 @@ public:
    Internal_data_index = this->add_internal_data(new Data(0));
    Bernadou_element_basis_pt=0;
    Association_matrix_pt=0;
-  //  // Store the vertices (TMP) for Bell
-  //  Verts = (Vector<Vector<double> >(nvertex_node(),Vector<double>(dim(),0.0)));
-  //  // Fill in
-  //  for(unsigned ivert=0;ivert<nvertex_node();++ivert)
-  //    {
-  //    Verts[ivert][0] =nodal_position(ivert,0);
-  //    Verts[ivert][1] =nodal_position(ivert,1);
-  //    }
-  // std::cout<<"{"<<Verts[0][0]<<","<<Verts[0][1]<<"} ";
-  // std::cout<<"{"<<Verts[1][0]<<","<<Verts[1][1]<<"} ";
-  // std::cout<<"{"<<Verts[1][0]<<","<<Verts[1][1]<<"}\n";
   };
 
  ///Destructor 
@@ -135,13 +132,21 @@ public:
    delete Bernadou_element_basis_pt;
   }
 
+ /// Broken copy constructor
+ CurvableBellElement(const CurvableBellElement& dummy)
+ { BrokenCopy::broken_copy(OOMPH_CURRENT_FUNCTION); }
+
+ /// Broken copy assignment 
+ void operator = (const CurvableBellElement& dummy)
+ { BrokenCopy::broken_assign(OOMPH_CURRENT_FUNCTION); }
+
  /// \short Alias for enum to enumerate the possible edges that could be curved
  typedef typename MyC1CurvedElements::Edge Edge; 
 
  ///  Boolean function indicating whether element is curved or not
  bool element_is_curved() const {return Curved_edge != MyC1CurvedElements::none; }
 
- /// \short get the coordinate i
+ /// \short get the coordinate x
  void interpolated_x (const Vector<double>& s, Vector<double>& x) const 
   {
    // Wrapper: call the BernadouElement curved basis if curved 
@@ -149,6 +154,13 @@ public:
     {Bernadou_element_basis_pt->coordinate_x(s,x);}
    else 
     {TElement<2,2>::interpolated_x(s,x);}
+  }
+
+ /// \short get the coordinate i
+ double interpolated_x (const Vector<double>& s, const unsigned& i) const 
+  {
+   // Just call interpolated_x and discard the other component (slow)
+   Vector<double> x(2,0.0); interpolated_x(s,x); return x[i];
   }
 
  /// Overloaded shape. Thin wrapper which breaks shape for upgraded elements,
@@ -182,7 +194,8 @@ to access interpolated eulerian coordinate",
 
  /// Local_to_eulerian mapping with local coordinate argument: when upgraded this 
  /// uses the Bernadou implementation of the Jacobian 
- virtual double local_to_eulerian_mapping(const Vector<double>& s, DenseMatrix<double>& jacobian,
+ virtual double local_to_eulerian_mapping(const Vector<double>& s, 
+   DenseMatrix<double>& jacobian,
    DenseMatrix<double>& inverse_jacobian)
   {
    if(element_is_curved())
@@ -222,10 +235,11 @@ to access interpolated eulerian coordinate",
    };
 
  /// Get the local derivative of the basis for the unknowns
- virtual void d_basis_local(const Vector<double>& s, Shape& nodal_basis, Shape& bubble_basis, DShape& dnodal_basis,
-    DShape& dbubble_basis) const
+ virtual void d_basis_local(const Vector<double>& s, Shape& nodal_basis, 
+   Shape& bubble_basis, DShape& dnodal_basis, DShape& dbubble_basis) const
   {
-   throw OomphLibError("Needs implementing. BLAME DAVID.",OOMPH_CURRENT_FUNCTION, OOMPH_EXCEPTION_LOCATION);
+   throw OomphLibError("Needs implementing. BLAME DAVID.",OOMPH_CURRENT_FUNCTION,
+     OOMPH_EXCEPTION_LOCATION);
   }
 
  /// Get the local second derivative of the basis for the unknowns
@@ -233,11 +247,13 @@ to access interpolated eulerian coordinate",
    Shape& bubble_basis, DShape& dnodal_basis, DShape& dbubble_basis, DShape&
     d2nodal_basis, DShape& d2bubble_basis) const
   {
-   throw OomphLibError("Needs implementing. BLAME DAVID.",OOMPH_CURRENT_FUNCTION, OOMPH_EXCEPTION_LOCATION);
+   throw OomphLibError("Needs implementing. BLAME DAVID.",OOMPH_CURRENT_FUNCTION, 
+     OOMPH_EXCEPTION_LOCATION);
   }
 
  /// Get the global (Eulerian) derivative of the basis for the unknowns
- virtual double d_basis_eulerian(const Vector<double>& s, Shape& nodal_basis, Shape& bubble_basis, DShape& dnodal_basis,
+ virtual double d_basis_eulerian(const Vector<double>& s, Shape& nodal_basis, 
+   Shape& bubble_basis, DShape& dnodal_basis,
     DShape& dbubble_basis) const
     {
     if(element_is_curved())
@@ -268,14 +284,14 @@ to access interpolated eulerian coordinate",
        // so use the `slow' version
        if(Association_matrix_pt==0) 
         {
-         return Bernadou_element_basis_pt->d2_shape_dx2(s,nodal_basis,bubble_basis, dnodal_basis,
-         dbubble_basis,d2nodal_basis,d2bubble_basis);
+        return Bernadou_element_basis_pt->d2_shape_dx2(s,nodal_basis,bubble_basis, 
+         dnodal_basis,dbubble_basis,d2nodal_basis,d2bubble_basis);
         }
        // Else use the cached association matrix to compute
        else 
         {
-         return Bernadou_element_basis_pt->d2_shape_dx2(s,nodal_basis,bubble_basis, dnodal_basis,
-         dbubble_basis,d2nodal_basis,d2bubble_basis,*Association_matrix_pt);
+        return Bernadou_element_basis_pt->d2_shape_dx2(s,nodal_basis,bubble_basis, 
+         dnodal_basis,dbubble_basis,d2nodal_basis,d2bubble_basis,*Association_matrix_pt);
         }
       }
      // Use the Bell basis functions if not upgraded
@@ -299,7 +315,8 @@ to access interpolated eulerian coordinate",
     if(element_is_curved())
      { 
       // Create the matrix
-      Association_matrix_pt =  new DenseMatrix<double>(Bernadou_element_basis_pt->n_basis_functions(),
+      Association_matrix_pt =  new DenseMatrix<double>(
+        Bernadou_element_basis_pt->n_basis_functions(),
         Bernadou_element_basis_pt->n_basic_basis_functions(),0.0);
       // Fill in the matrix
       Bernadou_element_basis_pt->fill_in_full_association_matrix(*Association_matrix_pt);
@@ -392,7 +409,8 @@ element.", OOMPH_CURRENT_FUNCTION, OOMPH_EXCEPTION_LOCATION);
 
  /// Upgrade the element to be curved
  virtual void upgrade_element_to_curved(const Edge& curved_edge, const double& s_ubar,
-  const double& s_obar,  CurvilineGeomObject* parametric_edge, const unsigned& boundary_order)
+  const double& s_obar,  CurvilineGeomObject* parametric_edge, 
+  const unsigned& boundary_order)
   {
    using namespace MyC1CurvedElements;
   #ifdef PARANOID
@@ -424,6 +442,10 @@ Elements.",OOMPH_CURRENT_FUNCTION,  OOMPH_EXCEPTION_LOCATION);
     "Currently only BernadouElementBasis<3> and BernadouElementBasis<5> are implemented."
      ,OOMPH_CURRENT_FUNCTION,  OOMPH_EXCEPTION_LOCATION);
    } 
+
+   // Cannot Null this pointer but we immediatly reset it.
+   // Should we have a delete Integral_pt function?
+   delete this->integral_pt(); 
    this->set_integration_scheme(new_integral_pt); 
   // Set the number of internal dofs to nbubble
   // Number_of_internal_dof_types = 1;
@@ -475,11 +497,6 @@ private:
  /// Pointer to Stored Association matrix
  DenseMatrix<double>* Association_matrix_pt;
 
- /// HERE these neeedn't be here
-// Vector<Vector<double> > Verts;
-
 }; //End of Subparametric TElement class
-
-
 } //End of namespace extension
 #endif

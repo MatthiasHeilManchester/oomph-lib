@@ -19,13 +19,40 @@ class KirchhoffPlateBendingC1CurvedBellElement :
   public virtual KirchhoffPlateBendingEquations 
 {
 public:
+ ///\short  Constructor: Call constructors for C1CurvedBellElement and
+ /// Biharmonic equations
+ KirchhoffPlateBendingC1CurvedBellElement() : KirchhoffPlateBendingEquations(), 
+  Rotated_basis_fct_pt(0),  Nnodes_to_rotate(0)
+  {
+  // Use the higher order integration scheme
+  TGauss<2,4>* new_integral_pt = new TGauss<2,4>;
+  this->set_integration_scheme(new_integral_pt); 
+  }
+
+ // Destructor
+ ~KirchhoffPlateBendingC1CurvedBellElement() 
+  {
+   // Clean up allocation of integration scheme
+   delete this->integral_pt(); 
+  }
+
+ /// Broken copy constructor
+ KirchhoffPlateBendingC1CurvedBellElement(const
+  KirchhoffPlateBendingC1CurvedBellElement& dummy)
+  {
+   BrokenCopy::broken_copy("KirchhoffPlateBendingC1CurvedBellElement");
+  }
+
+ /// Broken assignment operator
+ void operator=(const KirchhoffPlateBendingC1CurvedBellElement&)
+  {
+   BrokenCopy::broken_assign("KirchhoffPlateBendingC1CurvedBellElement");
+  }
+
  /// \short Function pointer to basis vectors function which sets  basis vectors
  /// b1 and b2 (which are in general functions of x)
  typedef void (*BasisVectorsFctPt) (const Vector<double>& x, Vector<double>& b1,
   Vector<double>& b2, DenseMatrix<double>& Db1, DenseMatrix<double>& Db2);
-
- /// \short enum to enumerate the possible edges that could be curved
- typedef  typename MyC1CurvedElements::Edge Edge; 
 
  /// Add the element's contribution to its residual vector (wrapper) with cached
  /// association matrix
@@ -52,31 +79,6 @@ public:
    this->delete_association_matrix();
   }
 
- /// \short get the coordinate
-// inline void get_coordinate_x(const Vector<double>& s, Vector<double>& x) const;
-
- /// \short get the coordinate i
- double interpolated_x (const Vector<double>& s, const unsigned &i) const 
-  { Vector<double> r(2); CurvableBellElement::interpolated_x(s,r); return r[i]; }  
-
- /// \short get the coordinate i
- inline void interpolated_zeta (const Vector<double>&s, Vector<double>& zeta) const 
-  {CurvableBellElement::interpolated_x(s,zeta); }  
-
-//  // Upgrade an element to its curved counterpart
-//  inline void upgrade_to_curved_element(const Edge& curved_edge, const double& s_ubar,
-//   const double& s_obar,  CurvilineGeomObject* parametric_edge);
-
-//  // Precompute the association matrix
-//  void precompute_association_matrix(DenseMatrix<double>& m)
-//   {
-//    // If the element has been upgraded
-//    if(Curved_edge ==MyC1CurvedElements::none)
-//     {} // Do nothing
-//    else 
-//     {Curved_shape.fill_in_full_association_matrix(m);}
-//   }; 
- 
 // // Get the number of basis functions, wrapper
 // double n_basis_functions(){return Curved_shape.n_basis_functions();};
 //
@@ -109,55 +111,6 @@ protected:
  inline int local_w_bubble_equation(const unsigned& l, const unsigned& j) const;
 
 public:
- ///\short  Constructor: Call constructors for C1CurvedBellElement and
- /// Biharmonic equations
- KirchhoffPlateBendingC1CurvedBellElement() :
-  KirchhoffPlateBendingEquations(), 
-  Rotated_basis_fct_pt(0),  Nnodes_to_rotate(0)
-  {
-   // Add the (zero) bubble dofs
-   Bubble_w_internal_index = this->add_internal_data(new Data(0));
-
-  // Use the higher order integration scheme
-  // (d^2 p5 / dxi dxj)^2 is element of p6
-  TGauss<2,4>* new_integral_pt = new TGauss<2,4>;
-//  delete this->integral_pt(); 
-  this->set_integration_scheme(new_integral_pt); 
-  }
-
- // Destructor
- ~KirchhoffPlateBendingC1CurvedBellElement() 
-  {
-   // Clean up allocation of integration scheme
-   delete this->integral_pt(); 
-  }
-
- // HERE wrapper around locate zeta - hacky way to get the interface working
- // needs FIXING
- void locate_zeta(const Vector<double> &zeta,                     
-                                GeomObject*& geom_object_pt, Vector<double> &s, 
-                                const bool& use_coordinate_as_initial_guess)  
-   {
-//   // Temporarily set nnodal_position_type to be one
-//   this->set_nnodal_position_type(1);
-   FiniteElement::locate_zeta(zeta,geom_object_pt,s,use_coordinate_as_initial_guess);
-//   // Set it back to six
-//   this->set_nnodal_position_type(6);
-   }
-
- /// Broken copy constructor
- KirchhoffPlateBendingC1CurvedBellElement(const
-  KirchhoffPlateBendingC1CurvedBellElement& dummy)
-  {
-   BrokenCopy::broken_copy("KirchhoffPlateBendingC1CurvedBellElement");
-  }
-
- /// Broken assignment operator
- void operator=(const KirchhoffPlateBendingC1CurvedBellElement&)
-  {
-   BrokenCopy::broken_assign("KirchhoffPlateBendingC1CurvedBellElement");
-  }
-
  /// \short Set up the rotated degrees of freedom
  inline void set_up_rotated_dofs(const unsigned& nnodes_to_rotate ,
   const Vector<unsigned>& nodes_to_rotate, const BasisVectorsFctPt&
@@ -214,7 +167,6 @@ public:
     exact_soln_pt);
   }
 
-
 public:
  /// Shape, test functions & derivs. w.r.t. to global coords. Return Jacobian.
  inline void shape_and_test_biharmonic(const Vector<double> &s, Shape &psi,
@@ -232,46 +184,16 @@ public:
   Shape &test, Shape &test_b, DShape &dtest_dx, DShape &dtest_b_dx,
   DShape &d2test_dx2, DShape &d2test_b_dx2) const;
 
-protected:
-// /// \short Shape, test functions & derivs. w.r.t. to global coords. at
-// /// integration point ipt. Return Jacobian.
-// inline double d2shape_and_d2test_eulerian_at_knot_biharmonic(const unsigned& ipt,
-//                                                         Shape &psi,
-//                                                         DShape &dpsidx,
-//                                                         DShape &d2psidx,
-//                                                         Shape &test,
-//                                                         DShape &dtestdx,
-//                                                         DShape &d2testdx)
-//  const;
-//
-// inline double dshape_and_dtest_eulerian_at_knot_biharmonic(const unsigned &ipt,
-//                                                         Shape &psi,
-//                                                         DShape &dpsidx,
-//                                                         Shape &test,
-//                                                         DShape &dtestdx)
-//  const;
-
 // Private Data Members
 private:
-
- #ifdef PARANOID
- // Internal counter to check consistency
- unsigned Curved_edge_counter;
- #endif
 
  /// \short Static int that holds the number of variables at
  /// nodes: always the same
  static const unsigned Initial_Nvalue;
 
- /// \short unsigned that holds the index the 'bubble' dofs of the element are
- // stored
- unsigned Bubble_w_internal_index;
-
- //  Which edge is curved, none by default
- Edge Curved_edge;
-
- /// Basis functions
- MyShape::BellElementBasis Bell_basis;
+//  /// \short unsigned that holds the index the 'bubble' dofs of the element are
+//  // stored
+//  unsigned Bubble_w_internal_index;
 
  /// A Pointer to the function that sets up the rotated basis at point x
  BasisVectorsFctPt Rotated_basis_fct_pt;
@@ -281,17 +203,11 @@ private:
 
  // Number of nodes to rotate
  unsigned Nnodes_to_rotate;
-
-
 };
 
-
-
-
 ////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////
-
 
 //==============================================================================
 /// Face geometry for the KirchhoffPlateBendingC1CurvedBellElement elements: The
@@ -311,154 +227,9 @@ class FaceGeometry<KirchhoffPlateBendingC1CurvedBellElement > :
 
 };
 
-
-
 /////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////
-
-//Inline functions:
-//==============================================================================
-/// Get the mapped position in the element. For straight sided elements this is
-/// and affine mapping.
-// //==============================================================================
-// template <unsigned DIM, unsigned NNODE_1D, unsigned BOUNDARY_ORDER>
-// void KirchhoffPlateBendingC1CurvedBellElement<DIM,NNODE_1D,BOUNDARY_ORDER>::get_coordinate_x(const
-//  Vector<double>& s, Vector<double>& x) const
-// {
-//  // If the element has been upgraded
-//  if(Curved_edge ==MyC1CurvedElements::none)
-//   {this-> my_interpolated_x(s,x);}
-//  else 
-//   {Curved_shape.coordinate_x(s,x);}
-// };
-
-// //==============================================================================
-// /// Upgrade an element to its curved counterpart: this adds internal data to
-// /// elements and upgrades the shape class data member.
-// //==============================================================================
-// template <unsigned DIM, unsigned NNODE_1D, unsigned BOUNDARY_ORDER>
-// inline void KirchhoffPlateBendingC1CurvedBellElement<DIM,NNODE_1D,BOUNDARY_ORDER>::upgrade_to_curved_element
-//  (const Edge& curved_edge, const double& s_ubar, const double& s_obar,
-//   CurvilineGeomObject* parametric_edge)
-// {
-//  #ifdef PARANOID
-//  // When upgrading add to count
-//  Curved_edge_counter+=1;
-//  // Check that we haven't upgraded this element already
-//  if(Curved_edge_counter>1)
-//   {
-//    // SCREAM
-//    throw OomphLibError(
-//    "Cannot upgrade more than a single edge to be curved in C1 Curved Bell \
-// Elements.",OOMPH_CURRENT_FUNCTION,  OOMPH_EXCEPTION_LOCATION);
-//   }
-//  #endif
-//  using namespace MyC1CurvedElements;
-//  // Add the curved edge
-//  Curved_edge = curved_edge;
-// 
-//  // Set the integral pointer
-//  // HERE implement order 10 accuracy for faster 3rd order elements in clamped 
-//  // problems
-//  delete this->integral_pt();
-//  // (d^2 p7 / dxi dxj)^2 is element of p10
-//  if(BOUNDARY_ORDER==3)
-//  {
-//   TGauss<2,13>* new_integral_pt = new TGauss<2,13>;
-//   this->set_integration_scheme(new_integral_pt); 
-//  }
-//  // (d^2 p9 / dxi dxj)^2 is element of p14
-//  else
-//  {
-//   TGauss<2,16>* new_integral_pt = new TGauss<2,16>;
-//   this->set_integration_scheme(new_integral_pt); 
-//  }
-// 
-//  // Set the number of internal dofs to 3
-//  this->Number_of_internal_dof_types = 1;
-//  this->Number_of_internal_dofs = Curved_shape.n_internal_dofs();
-//  Bubble_w_internal_index = this->add_internal_data(new Data(this->Number_of_internal_dofs));
-// 
-//  // Set up the data of the element
-//  typename BernadouElementBasis<BOUNDARY_ORDER>::VertexList  vertices(3,Vector<double>(2,0.0));
-// 
-//  // Now switch to upgrade
-//  // The shape functions are designed such that the curved edge is always edge
-//  // two. So this is where we set that up. This is temporary and not the final
-//  // solution we want
-//  switch(curved_edge)
-//   {
-//    // Throw an error if an edge is upgraded to none
-//    case none:
-//     throw OomphLibError( "Cannot upgrade edge 'none'. Curved elements must have\
-// one side defined by a parametric function.", OOMPH_CURRENT_FUNCTION,  
-//      OOMPH_EXCEPTION_LOCATION);
-//    break;
-//    case zero:
-//    // Everything cyclicly permutes
-//     for(unsigned i=0;i<2;++i)
-//      {
-//       vertices[2][i]=this->node_pt(0)->x(i);
-//       vertices[0][i]=this->node_pt(1)->x(i);
-//       vertices[1][i]=this->node_pt(2)->x(i);
-//      }
-//    break;
-//    case one:
-//    // Everything cyclicly permutes
-//     for(unsigned i=0;i<2;++i)
-//      {
-//       vertices[2][i]=this->node_pt(1)->x(i);
-//       vertices[0][i]=this->node_pt(2)->x(i);
-//       vertices[1][i]=this->node_pt(0)->x(i);
-//      }
-//    break;
-//    case two:
-//    // Everything is just copied over
-//     for(unsigned i=0;i<2;++i)
-//      {
-//       vertices[2][i]=this->node_pt(2)->x(i);
-//       vertices[0][i]=this->node_pt(0)->x(i);
-//       vertices[1][i]=this->node_pt(1)->x(i);
-//      }
-//    break;
-//   }
-//  // Add the vertices to make the shape functions fully functional
-//  Curved_shape.upgrade_element(vertices, s_ubar,s_obar,curved_edge,*parametric_edge);
-// }
-
-// //==============================================================================
-// /// Get the jth bubble dof at the lth internal point. Deliberately broken for
-// /// the case where there is no curved edge
-// //==============================================================================
-// template <unsigned DIM, unsigned NNODE_1D, unsigned BOUNDARY_ORDER>
-// double KirchhoffPlateBendingC1CurvedBellElement<DIM,NNODE_1D,BOUNDARY_ORDER>::get_w_bubble_dof
-//  (const unsigned& l, const unsigned& j) const
-// {
-//   // Deliberately break this function for the below cases
-//   // If there is no curved edge then we cannot return anything meaningful
-//   if(Curved_edge==MyC1CurvedElements::none)
-//   {
-//   throw OomphLibError("There are no time-dependent internal 'bubble' dofs for \
-// this element.",OOMPH_CURRENT_FUNCTION, OOMPH_EXCEPTION_LOCATION);
-//   // Return dummy value 0.0
-//   return 0;
-//   }
-//   // For these elements we only have a single dof at each internal point
-//   else if(j!=0)
-//   {
-//   throw OomphLibError(
-//    "There is only a single degree of freedom at the internal points in this \
-// element.", OOMPH_CURRENT_FUNCTION, OOMPH_EXCEPTION_LOCATION);
-//   // Return dummy value 0.0
-//   return 0;
-//   }
-//   // Now give the lth internal degree of freedom
-//   else
-//   {
-//    return this->internal_data_pt(Bubble_w_internal_index)->value(l);
-//   }
-// }
 
 //==============================================================================
 /// Get the jth bubble dof at the lth internal point. Deliberately broken for
@@ -608,7 +379,6 @@ void KirchhoffPlateBendingC1CurvedBellElement::
   }
 }
 
-
  //======================================================================
  /// Define the shape functions and test functions and derivatives
  /// w.r.t. global coordinates and return Jacobian of mapping.
@@ -627,27 +397,8 @@ void KirchhoffPlateBendingC1CurvedBellElement::
   // Get dummy shape functions for the Bell call
   DShape dpsidx(3,6,2);
   DShape d2psidx(3,6,3);
- 
-  // Vertices
-  Vector<Vector<double> > v(3,Vector<double>(2));
-  for (unsigned inode=0;inode<3;++inode)
-   {
-    // Get the position vector
-    Node* nod_pt=this->node_pt(inode);
-    v[inode][0]=nod_pt->x(0);
-    v[inode][1]=nod_pt->x(1);
-   }
    
-   this->basis(s,psi,psi_b); 
-//  // If the element has not been upgraded
-//  if(Curved_edge ==MyC1CurvedElements::none)
-//   { 
-//   // Get J
-//   this->J_eulerian1(s);
-//   Bell_basis.d2_basis_eulerian(s,v,psi,dpsidx,d2psidx);
-//   }
-//  else // i.e if has curved edge
-//   {Curved_shape.shape(s,psi,psi_b);}
+  this->basis(s,psi,psi_b); 
   
   // Rotate the degrees of freedom
   rotate_shape(psi);
@@ -656,7 +407,6 @@ void KirchhoffPlateBendingC1CurvedBellElement::
   // (Shallow) copy the basis functions
   test = psi;
   test_b = psi_b;
- 
  }
  
  
@@ -677,32 +427,9 @@ void KirchhoffPlateBendingC1CurvedBellElement::
   "void KirchhoffPlateBendingC1CurvedBellElement::\
  dshape_and_dtest_biharmonic(...)",
    OOMPH_EXCEPTION_LOCATION);// HERE
- 
- // // Now set up dummy DShape so we can call Bell
- // DShape d2psidx(3,6,3);
- double J; // =this->J_eulerian1(s);
- //
- // // Vertices
- // Vector<Vector<double> > v(3,Vector<double>(2));
- // for (unsigned inode=0;inode<3;++inode)
- //  {
- //   // Get the position vector
- //   Node* nod_pt=this->node_pt(inode);
- //   v[inode][0]=nod_pt->x(0);
- //   v[inode][1]=nod_pt->x(1);
- //  }
- 
- // // If the element has been upgraded
- // if(Curved_edge ==MyC1CurvedElements::none)
- //  { 
- //  // Get J
- //  J=this->J_eulerian1(s);
- //  Bell_basis.d2_basis_eulerian(s,v,psi,dpsidx,d2psidx);
- //  }
- // else // i.e if has curved edge
- //  {J=Curved_shape.d_shape_dx(s,psi,psi_b,dpsidx,dpsi_b_dx);}
-   
- J=this->d_basis_eulerian(s,psi,psi_b,dpsidx,dpsi_b_dx);
+
+ // Get the basis 
+ double J=this->d_basis_eulerian(s,psi,psi_b,dpsidx,dpsi_b_dx);
  
   // Rotate the degrees of freedom
   rotate_shape(psi, dpsidx);
@@ -724,34 +451,7 @@ void KirchhoffPlateBendingC1CurvedBellElement::
    DShape &d2testdx, DShape &d2test_bdx) const
  {
   //Call the geometrical shape functions and derivatives
-  double J;//this->J_eulerian1(s);
-//  // Vertices
-//  Vector<Vector<double> > v(3,Vector<double>(2));
-//  for (unsigned inode=0;inode<3;++inode)
-//   {
-//    // Get the position vector
-//    Node* nod_pt=this->node_pt(inode);
-//    v[inode][0]=nod_pt->x(0);
-//    v[inode][1]=nod_pt->x(1);
-//   }
- 
- // // If the element has been upgraded
- // if(Curved_edge ==MyC1CurvedElements::none)
- //  { 
- //  // Get J
- //  J=this->J_eulerian1(s);
- //  Bell_basis.d2_basis_eulerian(s,v,psi,dpsidx,d2psidx);
- //  }
- // // i.e if has curved edge and precomputed matrix
- // else if (this->get_association_matrix_pt() != 0)
- //  {
- //   J=Curved_shape.d2_shape_dx2(s,psi,psi_b,dpsidx,dpsi_bdx,d2psidx,d2psi_bdx,
- //     *(this->get_association_matrix_pt()));
- //  }
- // // i.e if has curved edge but no precomputed matrix
- // else
- //  {J=Curved_shape.d2_shape_dx2(s,psi,psi_b,dpsidx,dpsi_bdx,d2psidx,d2psi_bdx);}
-  J=this->d2_basis_eulerian(s,psi,psi_b,dpsidx,dpsi_bdx,d2psidx,d2psi_bdx);
+  double J=this->d2_basis_eulerian(s,psi,psi_b,dpsidx,dpsi_bdx,d2psidx,d2psi_bdx);
   
   // Rotate the dofs
   rotate_shape(psi, dpsidx, d2psidx);
@@ -883,7 +583,6 @@ inline void KirchhoffPlateBendingC1CurvedBellElement::
      for(unsigned k=0;k<6;++k)
       {
       // Copy over shape functions
-     // psi_vector[l]=psi(inode,l);
       psi_vector[l]+=psi(inode,k)*rotation_matrix(l,k); 
       // Copy over first derivatives
       for(unsigned i=0;i<2; ++i)
@@ -907,52 +606,8 @@ inline void KirchhoffPlateBendingC1CurvedBellElement::
     }
   }
 }
-
-// //==============================================================================
-// /// Define the shape functions and test functions and derivatives
-// /// w.r.t. global coordinates and return Jacobian of mapping.
-// ///
-// /// Galerkin: Test functions = shape functions
-// //==============================================================================
-// template<unsigned DIM, unsigned NNODE_1D, unsigned BOUNDARY_ORDER>
-// double KirchhoffPlateBendingC1CurvedBellElement<DIM,NNODE_1D,BOUNDARY_ORDER>::
-//  dshape_and_dtest_eulerian_at_knot_biharmonic(
-//   const unsigned &ipt,
-//   Shape &psi,
-//   DShape &dpsidx,
-//   Shape &test,
-//   DShape &dtestdx) const
-// {
-//  const double J = this->dshape_and_dtest_eulerian_at_knot(ipt,psi,dpsidx,test
-//   ,dtestdx);
-// 
-//  return J;
-// }
-
-// template<unsigned DIM, unsigned NNODE_1D, unsigned BOUNDARY_ORDER>
-// double KirchhoffPlateBendingC1CurvedBellElement<DIM,NNODE_1D,BOUNDARY_ORDER>::
-//  d2shape_and_d2test_eulerian_at_knot_biharmonic(
-//   const unsigned &ipt,
-//   Shape &psi,
-//   DShape &dpsidx,
-//   DShape &d2psidx,
-//   Shape &test,
-//   DShape &dtestdx,
-//   DShape &d2testdx) const
-// {
-//  //Call the geometrical shape functions and derivatives
-//  const double J = this->d2shape_and_d2test_eulerian_at_knot(ipt,psi,dpsidx,
-//   d2psidx,test,dtestdx,d2testdx);
-// 
-//  //Return the jacobian
-//  return J;
-// }
-
 ////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////
-
 }
-
-
 #endif

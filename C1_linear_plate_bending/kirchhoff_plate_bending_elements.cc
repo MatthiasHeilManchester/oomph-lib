@@ -10,7 +10,6 @@ fill_in_generic_residual_contribution_biharmonic(Vector<double> &residuals,
                                               DenseMatrix<double> &jacobian,
                                               const unsigned& flag)
 {
- // CALL GET SHAPE ASSOCIATION MATRIX HERE
  //Find out how many nodes there are
  const unsigned n_node = this->nnode();
  //Find out how many bubble nodes there are
@@ -55,24 +54,11 @@ fill_in_generic_residual_contribution_biharmonic(Vector<double> &residuals,
    s[0] = this->integral_pt()->knot(ipt,0);
    s[1] = this->integral_pt()->knot(ipt,1);
    this->interpolated_x(s,interpolated_x);
-   // CALL MODIFIED SHAPE (THAT TAKES ASSOCIATION MATRIX AS AN ARGUMENT) HERE
-   // MAKE SURE THAT THE MULTIPLICATION IS EFFICIENT USING BLOCK STRUCTURE
+
    //Call the derivatives of the shape and test functions for the unknown
    double J = d2shape_and_d2test_eulerian_biharmonic(s,
     psi, psi_b, dpsi_dxi, dpsi_b_dxi, d2psi_dxi2, d2psi_b_dxi2,
     test, test_b, dtest_dxi, dtest_b_dxi, d2test_dxi2, d2test_b_dxi2);
-
-   // double J = d2_basis_eulerian(s,
-   //  psi, psi_b, dpsi_dxi, dpsi_b_dxi, d2psi_dxi2, d2psi_b_dxi2);
-   //    test, test_b, dtest_dxi, dtest_b_dxi, d2test_dxi2, d2test_b_dxi2);
-   // // Galerkin
-   // // (Shallow) copy the basis functions
-   // test = psi;
-   // test_b = psi_b;
-   // dtest_dxi = dpsi_dxi;
-   // dtest_b_dxi = dpsi_b_dxi;
-   // d2test_dxi2 = d2psi_dxi2;
-   // d2test_b_dxi2 = d2psi_b_dxi2;
 
    //Premultiply the weights and the Jacobian
    double W = w*J;
