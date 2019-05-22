@@ -5,8 +5,7 @@ namespace oomph
 {
 
 //======================================================================
-template <unsigned DIM, unsigned NNODE_1D>
-void  KirchhoffPlateBendingEquations<DIM,NNODE_1D>::
+void  KirchhoffPlateBendingEquations::
 fill_in_generic_residual_contribution_biharmonic(Vector<double> &residuals,
                                               DenseMatrix<double> &jacobian,
                                               const unsigned& flag)
@@ -28,8 +27,8 @@ fill_in_generic_residual_contribution_biharmonic(Vector<double> &residuals,
  Shape psi(n_node,n_basis_type),test(n_node,n_basis_type),
   psi_b(n_b_node,n_b_position_type),test_b(n_b_node,n_b_position_type);
  
- DShape dpsi_dxi(n_node,n_basis_type,DIM),dtest_dxi(n_node,n_basis_type,DIM),
-  dpsi_b_dxi(n_b_node,n_b_position_type,DIM),dtest_b_dxi(n_b_node,n_b_position_type,DIM),
+ DShape dpsi_dxi(n_node,n_basis_type,dim()),dtest_dxi(n_node,n_basis_type,dim()),
+  dpsi_b_dxi(n_b_node,n_b_position_type,dim()),dtest_b_dxi(n_b_node,n_b_position_type,dim()),
   d2psi_dxi2(n_node,n_basis_type,3), d2test_dxi2(n_node,n_basis_type,3),
   d2psi_b_dxi2(n_b_node,n_b_position_type,3), d2test_b_dxi2(n_b_node,n_b_position_type,3);
 
@@ -47,12 +46,12 @@ fill_in_generic_residual_contribution_biharmonic(Vector<double> &residuals,
 
    //Calculate values of unknown
    Vector<double> interpolated_u(1,0.0);
-   DenseMatrix<double> interpolated_dudxi(1,DIM,0.0);
+   DenseMatrix<double> interpolated_dudxi(1,dim(),0.0);
    DenseMatrix<double> interpolated_d2udxi2(1,3,0.0);
 
    //Allocate and initialise to zero
-   Vector<double> interpolated_x(DIM,0.0);
-   Vector<double> s(DIM);
+   Vector<double> interpolated_x(dim(),0.0);
+   Vector<double> s(dim());
    s[0] = this->integral_pt()->knot(ipt,0);
    s[1] = this->integral_pt()->knot(ipt,1);
    this->interpolated_x(s,interpolated_x);
@@ -89,7 +88,7 @@ fill_in_generic_residual_contribution_biharmonic(Vector<double> &residuals,
        double u_value = this->raw_nodal_value(l,k);
        interpolated_u[0] += u_value*psi(l,k);
        // Loop over directions
-       for(unsigned j=0;j<DIM;j++)
+       for(unsigned j=0;j<dim();j++)
         {
          interpolated_dudxi(0,j) += u_value*dpsi_dxi(l,k,j);
         }
@@ -109,7 +108,7 @@ fill_in_generic_residual_contribution_biharmonic(Vector<double> &residuals,
       double u_value = get_bubble_dof(l,k);
       interpolated_u[0] += u_value*psi_b(l,k);
       // Loop over directions
-      for(unsigned j=0;j<DIM;j++)
+      for(unsigned j=0;j<dim();j++)
        {
         interpolated_dudxi(0,j) += u_value*dpsi_b_dxi(l,k,j);
        }
@@ -302,8 +301,7 @@ fill_in_generic_residual_contribution_biharmonic(Vector<double> &residuals,
 //======================================================================
 /// Self-test:  Return 0 for OK
 //======================================================================
-template <unsigned DIM, unsigned NNODE_1D>
-unsigned  KirchhoffPlateBendingEquations<DIM,NNODE_1D>::self_test()
+unsigned  KirchhoffPlateBendingEquations::self_test()
 {
 
  bool passed=true;
@@ -333,13 +331,12 @@ unsigned  KirchhoffPlateBendingEquations<DIM,NNODE_1D>::self_test()
 ///
 /// nplot points in each coordinate direction
 //======================================================================
-template <unsigned DIM, unsigned NNODE_1D>
-void  KirchhoffPlateBendingEquations<DIM,NNODE_1D>::output(std::ostream &outfile,
+void  KirchhoffPlateBendingEquations::output(std::ostream &outfile,
                                     const unsigned &nplot)
 {
 
  //Vector of local coordinates
- Vector<double> s(DIM),x(DIM);
+ Vector<double> s(dim()),x(dim());
 
  // Tecplot header info
  outfile << this->tecplot_zone_string(nplot);
@@ -357,7 +354,7 @@ void  KirchhoffPlateBendingEquations<DIM,NNODE_1D>::output(std::ostream &outfile
 
    // Get x position as Vector
    this->interpolated_x(s,x);
-   for(unsigned i=0;i<DIM;i++)
+   for(unsigned i=0;i<dim();i++)
     {
      outfile << x[i] << " ";
     }
@@ -383,12 +380,11 @@ void  KirchhoffPlateBendingEquations<DIM,NNODE_1D>::output(std::ostream &outfile
 ///
 /// nplot points in each coordinate direction
 //======================================================================
-template <unsigned DIM, unsigned NNODE_1D>
-void  KirchhoffPlateBendingEquations<DIM,NNODE_1D>::output(FILE* file_pt,
+void  KirchhoffPlateBendingEquations::output(FILE* file_pt,
                                     const unsigned &nplot)
 {
  //Vector of local coordinates
- Vector<double> s(DIM), x(DIM);;
+ Vector<double> s(dim()), x(dim());;
 
  // Tecplot header info
  fprintf(file_pt,"%s",this->tecplot_zone_string(nplot).c_str());
@@ -404,7 +400,7 @@ void  KirchhoffPlateBendingEquations<DIM,NNODE_1D>::output(FILE* file_pt,
    // Get x position as Vector
    this->interpolated_x(s,x);
 
-   for(unsigned i=0;i<DIM;i++)
+   for(unsigned i=0;i<dim();i++)
     {
      fprintf(file_pt,"%g ",x[i]);
     }
@@ -426,16 +422,15 @@ void  KirchhoffPlateBendingEquations<DIM,NNODE_1D>::output(FILE* file_pt,
  ///
  ///   x,y,u_exact    or    x,y,z,u_exact
 //======================================================================
-template <unsigned DIM, unsigned NNODE_1D>
-void KirchhoffPlateBendingEquations<DIM,NNODE_1D>::output_fct(std::ostream &outfile,
+void KirchhoffPlateBendingEquations::output_fct(std::ostream &outfile,
                                        const unsigned &nplot,
                   FiniteElement::SteadyExactSolutionFctPt exact_soln_pt)
 {
  //Vector of local coordinates
- Vector<double> s(DIM);
+ Vector<double> s(dim());
 
   // Vector for coordintes
-  Vector<double> x(DIM);
+  Vector<double> x(dim());
 
  // Tecplot header info
  outfile << this->tecplot_zone_string(nplot);
@@ -458,7 +453,7 @@ void KirchhoffPlateBendingEquations<DIM,NNODE_1D>::output_fct(std::ostream &outf
    (*exact_soln_pt)(x,exact_soln);
 
    //Output x,y,...,u_exact
-   for(unsigned i=0;i<DIM;i++)
+   for(unsigned i=0;i<dim();i++)
     {
      outfile << x[i] << " ";
     }
@@ -484,8 +479,7 @@ void KirchhoffPlateBendingEquations<DIM,NNODE_1D>::output_fct(std::ostream &outf
  /// Plot error at a given number of plot points.
  ///
 //======================================================================
-template <unsigned DIM, unsigned NNODE_1D>
-void KirchhoffPlateBendingEquations<DIM,NNODE_1D>::compute_error(std::ostream &outfile,
+void KirchhoffPlateBendingEquations::compute_error(std::ostream &outfile,
                                           FiniteElement::SteadyExactSolutionFctPt exact_soln_pt,
                                           double& error, double& norm)
 {
@@ -504,16 +498,16 @@ void KirchhoffPlateBendingEquations<DIM,NNODE_1D>::compute_error(std::ostream &o
  Shape psi(n_node,n_basis_type),test(n_node,n_basis_type),
   psi_b(n_b_node,n_b_position_type),test_b(n_b_node,n_b_position_type);
  
- DShape dpsi_dxi(n_node,n_basis_type,DIM),dtest_dxi(n_node,n_basis_type,DIM),
-  dpsi_b_dxi(n_b_node,n_b_position_type,DIM),dtest_b_dxi(n_b_node,n_b_position_type,DIM),
+ DShape dpsi_dxi(n_node,n_basis_type,dim()),dtest_dxi(n_node,n_basis_type,dim()),
+  dpsi_b_dxi(n_b_node,n_b_position_type,dim()),dtest_b_dxi(n_b_node,n_b_position_type,dim()),
   d2psi_dxi2(n_node,n_basis_type,3), d2test_dxi2(n_node,n_basis_type,3),
   d2psi_b_dxi2(n_b_node,n_b_position_type,3), d2test_b_dxi2(n_b_node,n_b_position_type,3);
 
  //Vector of local coordinates
- Vector<double> s(DIM);
+ Vector<double> s(dim());
 
  // Vector for coordintes
- Vector<double> x(DIM);
+ Vector<double> x(dim());
 
  //Set the value of n_intpt
  unsigned n_intpt = this->integral_pt()->nweight();
@@ -529,7 +523,7 @@ void KirchhoffPlateBendingEquations<DIM,NNODE_1D>::compute_error(std::ostream &o
   {
 
    //Assign values of s
-   for(unsigned i=0;i<DIM;i++)
+   for(unsigned i=0;i<dim();i++)
     {
      s[i] = this->integral_pt()->knot(ipt,i);
     }
@@ -560,7 +554,7 @@ void KirchhoffPlateBendingEquations<DIM,NNODE_1D>::compute_error(std::ostream &o
    (*exact_soln_pt)(x,exact_soln);
 
    //Output x,y,...,error
-   for(unsigned i=0;i<DIM;i++)
+   for(unsigned i=0;i<dim();i++)
     {
      outfile << x[i] << " ";
     }
@@ -582,8 +576,5 @@ void KirchhoffPlateBendingEquations<DIM,NNODE_1D>::compute_error(std::ostream &o
     }
   } //End of loop over integration pts
 }
-
-
-template class KirchhoffPlateBendingEquations<2,2>;
 
 }

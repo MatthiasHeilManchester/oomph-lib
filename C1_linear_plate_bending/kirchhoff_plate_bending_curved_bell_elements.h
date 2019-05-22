@@ -15,10 +15,8 @@ namespace oomph
 /// the C1-functions for approximating variables.
 //==============================================================================
 
-template <unsigned DIM, unsigned NNODE_1D, unsigned BOUNDARY_ORDER>
 class KirchhoffPlateBendingC1CurvedBellElement : 
-  public virtual KirchhoffPlateBendingEquations<DIM,NNODE_1D>//, 
-//  public virtual CurvableBellElement
+  public virtual KirchhoffPlateBendingEquations 
 {
 public:
  /// \short Function pointer to basis vectors function which sets  basis vectors
@@ -29,8 +27,30 @@ public:
  /// \short enum to enumerate the possible edges that could be curved
  typedef  typename MyC1CurvedElements::Edge Edge; 
 
- /// \short Get the pointer to the Curved shape class data member
- const MyC1CurvedElements::BernadouElementBasis<BOUNDARY_ORDER>* curved_shape_pt(){return &Curved_shape;};
+ /// Add the element's contribution to its residual vector (wrapper) with cached
+ /// association matrix
+ void fill_in_contribution_to_residuals(Vector<double> &residuals)
+  {
+   // Store the expensive-to-construct matrix
+   this->store_association_matrix();
+   //Call the generic routine with the flag set to 1
+   KirchhoffPlateBendingEquations::fill_in_contribution_to_residuals(residuals);
+   // Remove the expensive-to-construct matrix
+   this->delete_association_matrix();
+  }
+
+ /// Add the element's contribution to its residual vector and
+ /// element Jacobian matrix (wrapper) with caching of association matrix
+ void fill_in_contribution_to_jacobian(Vector<double> &residuals,
+                                   DenseMatrix<double> &jacobian)
+  {
+   // Store the expensive-to-construct matrix
+   this->store_association_matrix();
+   //Call the generic routine with the flag set to 1
+   KirchhoffPlateBendingEquations::fill_in_contribution_to_jacobian(residuals,jacobian);
+   // Remove the expensive-to-construct matrix
+   this->delete_association_matrix();
+  }
 
  /// \short get the coordinate
 // inline void get_coordinate_x(const Vector<double>& s, Vector<double>& x) const;
@@ -86,13 +106,13 @@ protected:
 // inline double get_w_bubble_dof(const unsigned& l, const unsigned& j) const;
 
  /// \short Get the jth bubble dof at the lth internal point
- int local_w_bubble_equation(const unsigned& l, const unsigned& j) const;
+ inline int local_w_bubble_equation(const unsigned& l, const unsigned& j) const;
 
 public:
  ///\short  Constructor: Call constructors for C1CurvedBellElement and
  /// Biharmonic equations
  KirchhoffPlateBendingC1CurvedBellElement() :
-  KirchhoffPlateBendingEquations<DIM,NNODE_1D>(), 
+  KirchhoffPlateBendingEquations(), 
   Rotated_basis_fct_pt(0),  Nnodes_to_rotate(0)
   {
    // Add the (zero) bubble dofs
@@ -127,13 +147,13 @@ public:
 
  /// Broken copy constructor
  KirchhoffPlateBendingC1CurvedBellElement(const
-  KirchhoffPlateBendingC1CurvedBellElement<DIM,NNODE_1D,BOUNDARY_ORDER>& dummy)
+  KirchhoffPlateBendingC1CurvedBellElement& dummy)
   {
    BrokenCopy::broken_copy("KirchhoffPlateBendingC1CurvedBellElement");
   }
 
  /// Broken assignment operator
- void operator=(const KirchhoffPlateBendingC1CurvedBellElement<DIM,NNODE_1D,BOUNDARY_ORDER>&)
+ void operator=(const KirchhoffPlateBendingC1CurvedBellElement&)
   {
    BrokenCopy::broken_assign("KirchhoffPlateBendingC1CurvedBellElement");
   }
@@ -151,12 +171,12 @@ public:
  /// \short Output function:
  ///  x,y,u   or    x,y,z,u
  void output(std::ostream &outfile)
-  {KirchhoffPlateBendingEquations<DIM,NNODE_1D>::output(outfile);}
+  {KirchhoffPlateBendingEquations::output(outfile);}
 
  ///  \short Output function:
  ///   x,y,u   or    x,y,z,u at n_plot^DIM plot points
  void output(std::ostream &outfile, const unsigned &n_plot)
-  {KirchhoffPlateBendingEquations<DIM,NNODE_1D>::output(outfile,n_plot);}
+  {KirchhoffPlateBendingEquations::output(outfile,n_plot);}
 
  ///  \short Output function:
  ///   x,y,u   or    x,y,z,u at n_plot^DIM plot points
@@ -166,12 +186,12 @@ public:
  /// \short C-style output function:
  ///  x,y,u   or    x,y,z,u
  void output(FILE* file_pt)
-  {KirchhoffPlateBendingEquations<DIM,NNODE_1D>::output(file_pt);}
+  {KirchhoffPlateBendingEquations::output(file_pt);}
 
  ///  \short C-style output function:
  ///   x,y,u   or    x,y,z,u at n_plot^DIM plot points
  void output(FILE* file_pt, const unsigned &n_plot)
-  {KirchhoffPlateBendingEquations<DIM,NNODE_1D>::output(file_pt,n_plot);}
+  {KirchhoffPlateBendingEquations::output(file_pt,n_plot);}
 
 
  /// \short Output function for an exact solution:
@@ -179,7 +199,7 @@ public:
  void output_fct(std::ostream &outfile, const unsigned &n_plot,
                  FiniteElement::SteadyExactSolutionFctPt exact_soln_pt)
   {
-   KirchhoffPlateBendingEquations<DIM,NNODE_1D>::output_fct(outfile,n_plot,
+   KirchhoffPlateBendingEquations::output_fct(outfile,n_plot,
     exact_soln_pt);
   }
 
@@ -190,14 +210,14 @@ public:
                  const double& time,
                  FiniteElement::UnsteadyExactSolutionFctPt exact_soln_pt)
   {
-   KirchhoffPlateBendingEquations<DIM,NNODE_1D>::output_fct(outfile,n_plot,time,
+   KirchhoffPlateBendingEquations::output_fct(outfile,n_plot,time,
     exact_soln_pt);
   }
 
 
 public:
  /// Shape, test functions & derivs. w.r.t. to global coords. Return Jacobian.
- void shape_and_test_biharmonic(const Vector<double> &s, Shape &psi,
+ inline void shape_and_test_biharmonic(const Vector<double> &s, Shape &psi,
   Shape& psi_b, Shape& test, Shape& test_b) const;
 
  /// Shape, test functions & derivs. w.r.t. to global coords. Return Jacobian.
@@ -250,9 +270,6 @@ private:
  //  Which edge is curved, none by default
  Edge Curved_edge;
 
- /// Curved Shape function
- MyC1CurvedElements::BernadouElementBasis<BOUNDARY_ORDER> Curved_shape;
-
  /// Basis functions
  MyShape::BellElementBasis Bell_basis;
 
@@ -281,16 +298,16 @@ private:
 /// spatial dimension of the face elements is one lower than that of the bulk
 /// element but they have the same number of points along their 1D edges.
 //==============================================================================
-template<unsigned DIM, unsigned NNODE_1D, unsigned BOUNDARY_ORDER>
-class FaceGeometry<KirchhoffPlateBendingC1CurvedBellElement<DIM,NNODE_1D,BOUNDARY_ORDER> >:
- public virtual TElement<DIM-1,NNODE_1D>
+template<>
+class FaceGeometry<KirchhoffPlateBendingC1CurvedBellElement > :
+ public virtual TElement<1,2>
 {
 
   public:
 
  /// \short Constructor: Call the constructor for the
  /// appropriate lower-dimensional TElement
- FaceGeometry() : TElement<DIM-1,NNODE_1D>() {}
+ FaceGeometry() : TElement<1,2>() {}
 
 };
 
@@ -447,8 +464,7 @@ class FaceGeometry<KirchhoffPlateBendingC1CurvedBellElement<DIM,NNODE_1D,BOUNDAR
 /// Get the jth bubble dof at the lth internal point. Deliberately broken for
 /// case when there is no curved edge.
 //==============================================================================
-template <unsigned DIM, unsigned NNODE_1D, unsigned BOUNDARY_ORDER>
-int KirchhoffPlateBendingC1CurvedBellElement<DIM,NNODE_1D,BOUNDARY_ORDER>::local_w_bubble_equation(const
+int KirchhoffPlateBendingC1CurvedBellElement::local_w_bubble_equation(const
   unsigned& l, const unsigned& j) const
  {
   // Deliberately break this function for the below cases
@@ -481,8 +497,7 @@ element.", OOMPH_CURRENT_FUNCTION,OOMPH_EXCEPTION_LOCATION);
 /// Set up the rotated degrees of freedom: includes a check for the number of
 /// rotation nodes being greater than three.
 //==============================================================================
-template <unsigned DIM, unsigned NNODE_1D, unsigned BOUNDARY_ORDER>
-void KirchhoffPlateBendingC1CurvedBellElement<DIM,NNODE_1D,BOUNDARY_ORDER>::set_up_rotated_dofs(const unsigned&
+void KirchhoffPlateBendingC1CurvedBellElement::set_up_rotated_dofs(const unsigned&
   nnodes_to_rotate, const Vector<unsigned>& nodes_to_rotate, const
   BasisVectorsFctPt& basis_vectors_fct_pt)
 {
@@ -510,8 +525,7 @@ void KirchhoffPlateBendingC1CurvedBellElement<DIM,NNODE_1D,BOUNDARY_ORDER>::set_
 ///
 /// Galerkin: Test functions = shape functions
 //==============================================================================
-template<unsigned DIM, unsigned NNODE_1D, unsigned BOUNDARY_ORDER>
-void KirchhoffPlateBendingC1CurvedBellElement<DIM,NNODE_1D,BOUNDARY_ORDER>::
+void KirchhoffPlateBendingC1CurvedBellElement::
  rotation_matrix_at_node (const unsigned& inode, DenseDoubleMatrix&
  rotation_matrix) const
 {
@@ -601,14 +615,13 @@ void KirchhoffPlateBendingC1CurvedBellElement<DIM,NNODE_1D,BOUNDARY_ORDER>::
  ///
  /// Galerkin: Test functions = shape functions
  //======================================================================
- template<unsigned DIM, unsigned NNODE_1D, unsigned BOUNDARY_ORDER>
-  void KirchhoffPlateBendingC1CurvedBellElement<DIM,NNODE_1D,BOUNDARY_ORDER>::shape_and_test_biharmonic(
+  void KirchhoffPlateBendingC1CurvedBellElement::shape_and_test_biharmonic(
    const Vector<double> &s, Shape &psi, Shape& psi_b,  Shape &test, Shape& test_b
    ) const
  {
   throw OomphLibError(
   "This still needs testing for curved elements.",
-  "void KirchhoffPlateBendingC1CurvedBellElement<DIM,NNODE_1D,BOUNDARY_ORDER>::\
+  "void KirchhoffPlateBendingC1CurvedBellElement::\
  shape_and_test_biharmonic(...)", OOMPH_EXCEPTION_LOCATION); // HERE
  
   // Get dummy shape functions for the Bell call
@@ -653,8 +666,7 @@ void KirchhoffPlateBendingC1CurvedBellElement<DIM,NNODE_1D,BOUNDARY_ORDER>::
  ///
  /// Galerkin: Test functions = shape functions
  //======================================================================
- template<unsigned DIM, unsigned NNODE_1D, unsigned BOUNDARY_ORDER>
-  double KirchhoffPlateBendingC1CurvedBellElement<DIM,NNODE_1D,BOUNDARY_ORDER>::
+  double KirchhoffPlateBendingC1CurvedBellElement::
   dshape_and_dtest_eulerian_biharmonic(const Vector<double> &s, Shape &psi,
   Shape& psi_b, DShape &dpsidx, DShape& dpsi_b_dx,  Shape &test, Shape& test_b,
   DShape &dtestdx,DShape &dtest_b_dx) const
@@ -662,7 +674,7 @@ void KirchhoffPlateBendingC1CurvedBellElement<DIM,NNODE_1D,BOUNDARY_ORDER>::
   // Throw if called 
   throw OomphLibError(
   "This still needs testing for curved elements.",
-  "void KirchhoffPlateBendingC1CurvedBellElement<DIM,NNODE_1D,BOUNDARY_ORDER>::\
+  "void KirchhoffPlateBendingC1CurvedBellElement::\
  dshape_and_dtest_biharmonic(...)",
    OOMPH_EXCEPTION_LOCATION);// HERE
  
@@ -704,8 +716,7 @@ void KirchhoffPlateBendingC1CurvedBellElement<DIM,NNODE_1D,BOUNDARY_ORDER>::
   return J;
  }
  
- template<unsigned DIM, unsigned NNODE_1D, unsigned BOUNDARY_ORDER>
-  double KirchhoffPlateBendingC1CurvedBellElement<DIM,NNODE_1D,BOUNDARY_ORDER>::
+  double KirchhoffPlateBendingC1CurvedBellElement::
    d2shape_and_d2test_eulerian_biharmonic(const Vector<double> &s,  Shape &psi,
    Shape &psi_b, DShape &dpsidx, DShape &dpsi_bdx,  DShape &d2psidx,
    DShape &d2psi_bdx,
@@ -764,8 +775,7 @@ void KirchhoffPlateBendingC1CurvedBellElement<DIM,NNODE_1D,BOUNDARY_ORDER>::
 /// new basis - which could be speeded up by caching the matrices higher
 /// up and performing the LU decomposition only once
 //======================================================================
-template<unsigned DIM, unsigned NNODE_1D, unsigned BOUNDARY_ORDER>
-inline void KirchhoffPlateBendingC1CurvedBellElement<DIM,NNODE_1D,BOUNDARY_ORDER>::
+inline void KirchhoffPlateBendingC1CurvedBellElement::
  rotate_shape(Shape& psi) const
 {
  // Loop over the nodes with rotated dofs
@@ -798,8 +808,7 @@ inline void KirchhoffPlateBendingC1CurvedBellElement<DIM,NNODE_1D,BOUNDARY_ORDER
 /// new basis - which could be speeded up by caching the matrices higher
 /// up and performing the LU decomposition only once
 //======================================================================
-template<unsigned DIM, unsigned NNODE_1D, unsigned BOUNDARY_ORDER>
-inline void KirchhoffPlateBendingC1CurvedBellElement<DIM,NNODE_1D,BOUNDARY_ORDER>::
+inline void KirchhoffPlateBendingC1CurvedBellElement::
  rotate_shape(Shape& psi, DShape& dpsidx) const
 {
  // Loop over the nodes with rotated dofs
@@ -849,8 +858,7 @@ inline void KirchhoffPlateBendingC1CurvedBellElement<DIM,NNODE_1D,BOUNDARY_ORDER
 /// new basis - which could be speeded up by caching the matrices higher
 /// up and performing the LU decomposition only once
 //======================================================================
-template<unsigned DIM, unsigned NNODE_1D, unsigned BOUNDARY_ORDER>
-inline void KirchhoffPlateBendingC1CurvedBellElement<DIM,NNODE_1D,BOUNDARY_ORDER>::
+inline void KirchhoffPlateBendingC1CurvedBellElement::
  rotate_shape(Shape& psi, DShape& dpsidx, DShape& d2psidx) const
 {
  // Loop over the nodes with rotated dofs

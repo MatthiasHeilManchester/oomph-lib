@@ -24,7 +24,6 @@ namespace oomph
 /// This contains the generic maths. Shape functions, geometric
 /// mapping etc. must get implemented in derived class.
 //=============================================================
-template <unsigned DIM, unsigned NNODE_1D>
 class KirchhoffPlateBendingEquations : public CurvableBellElement //SubparametricTElement 
 {
 
@@ -219,8 +218,8 @@ interpolated_u) const
    Shape psi(n_node,n_basis_type),test(n_node,n_basis_type),
     psi_b(n_b_node,n_b_position_type),test_b(n_b_node,n_b_position_type);
 
-   DShape dpsi_dxi(n_node,n_basis_type,DIM),dtest_dxi(n_node,n_basis_type,DIM),
-    dpsi_b_dxi(n_b_node,n_b_position_type,DIM),dtest_b_dxi(n_b_node,n_b_position_type,DIM),
+   DShape dpsi_dxi(n_node,n_basis_type,dim()),dtest_dxi(n_node,n_basis_type,dim()),
+    dpsi_b_dxi(n_b_node,n_b_position_type,dim()),dtest_b_dxi(n_b_node,n_b_position_type,dim()),
     d2psi_dxi2(n_node,n_basis_type,3), d2test_dxi2(n_node,n_basis_type,3),
     d2psi_b_dxi2(n_b_node,n_b_position_type,3), d2test_b_dxi2(n_b_node,n_b_position_type,3);
 
