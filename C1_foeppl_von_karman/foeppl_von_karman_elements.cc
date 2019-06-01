@@ -50,29 +50,29 @@ fill_in_generic_residual_contribution_foeppl_von_karman(Vector<double> &residual
 {
  // CALL GET SHAPE ASSOCIATION MATRIX HERE
  //Find out how many nodes there are
- const unsigned n_node = this->nnode();
- const unsigned n_node_w = 3; // HERE
+ const unsigned n_u_node = nnode_inplane();
+ const unsigned n_w_node = nnode_outofplane(); // HERE
  //Find out how many bubble nodes there are
- const unsigned n_b_node = this->nbubble_basis();
+ const unsigned n_b_node = nbubble_basis();
  //Find out how many nodes positional dofs there are
- unsigned n_basis_type = this->nnodal_basis_type();
+ unsigned n_basis_type = nnodal_basis_type();
  // Find the internal dofs
- const unsigned n_b_position_type = this->nbubble_basis_type();
+ const unsigned n_b_position_type = nbubble_basis_type();
 
  //Get the Poisson ratio of the plate
  const double nu=get_nu();
 
  //Set up memory for the shape and test functions
- Shape psi_u(n_node), test_u(n_node);
- DShape dpsi_udxi(n_node,this->dim()), dtest_udxi(n_node,this->dim());
+ Shape psi_u(n_u_node), test_u(n_u_node);
+ DShape dpsi_udxi(n_u_node,this->dim()), dtest_udxi(n_u_node,this->dim());
 
  //Local c1-shape funtion
- Shape psi(n_node_w,n_basis_type),test(n_node_w,n_basis_type),
+ Shape psi(n_w_node,n_basis_type),test(n_w_node,n_basis_type),
   psi_b(n_b_node,n_b_position_type),test_b(n_b_node,n_b_position_type);
  
- DShape dpsi_dxi(n_node_w,n_basis_type,this->dim()),dtest_dxi(n_node_w,n_basis_type,this->dim()),
+ DShape dpsi_dxi(n_w_node,n_basis_type,this->dim()),dtest_dxi(n_w_node,n_basis_type,this->dim()),
   dpsi_b_dxi(n_b_node,n_b_position_type,this->dim()),dtest_b_dxi(n_b_node,n_b_position_type,this->dim()),
-  d2psi_dxi2(n_node_w,n_basis_type,3), d2test_dxi2(n_node_w,n_basis_type,3),
+  d2psi_dxi2(n_w_node,n_basis_type,3), d2test_dxi2(n_w_node,n_basis_type,3),
   d2psi_b_dxi2(n_b_node,n_b_position_type,3), d2test_b_dxi2(n_b_node,n_b_position_type,3);
 
  //Set the value of n_intpt
@@ -115,7 +115,7 @@ fill_in_generic_residual_contribution_foeppl_von_karman(Vector<double> &residual
    //Calculate function value and derivatives
    //-----------------------------------------
    // Loop over nodes
-   for(unsigned l=0;l<n_node_w;l++)
+   for(unsigned l=0;l<n_w_node;l++)
     {
      for(unsigned k=0;k<n_basis_type;k++)
       {
@@ -155,7 +155,7 @@ fill_in_generic_residual_contribution_foeppl_von_karman(Vector<double> &residual
     }
 
    // Loop over nodes
-   for(unsigned l=0;l<n_node;l++)
+   for(unsigned l=0;l<n_u_node;l++)
     {
      for(unsigned alpha=0;alpha<2;alpha++)
       {
@@ -191,7 +191,7 @@ fill_in_generic_residual_contribution_foeppl_von_karman(Vector<double> &residual
    get_in_plane_forcing_foeppl_von_karman(ipt,interp_x,pressure_gradient);
 
    // Loop over the nodal test functions
-   for(unsigned l=0;l<n_node_w;l++)
+   for(unsigned l=0;l<n_w_node;l++)
     {
     for(unsigned k=0;k<n_basis_type;k++)
      {
@@ -222,7 +222,7 @@ fill_in_generic_residual_contribution_foeppl_von_karman(Vector<double> &residual
       if(flag)
       {
        //Loop over the in--plane unknowns again
-       for(unsigned ll=0;ll<n_node;ll++)
+       for(unsigned ll=0;ll<n_u_node;ll++)
         {
         // Loop over displacements
         for(unsigned gamma=0;gamma<2;++gamma)
@@ -260,7 +260,7 @@ fill_in_generic_residual_contribution_foeppl_von_karman(Vector<double> &residual
         }
 
        //Loop over the test functions again
-       for(unsigned l2=0;l2<n_node_w;l2++)
+       for(unsigned l2=0;l2<n_w_node;l2++)
         {
         // Loop over position dofs
         for(unsigned k2=0;k2<n_basis_type;k2++)
@@ -377,7 +377,7 @@ fill_in_generic_residual_contribution_foeppl_von_karman(Vector<double> &residual
       if(flag)
        {
        //Loop over the in--plane unknowns again
-       for(unsigned ll=0;ll<n_node;ll++)
+       for(unsigned ll=0;ll<n_u_node;ll++)
         {
         // Loop over displacements
         for(unsigned gamma=0;gamma<2;++gamma)
@@ -415,7 +415,7 @@ fill_in_generic_residual_contribution_foeppl_von_karman(Vector<double> &residual
 
         }
        //Loop over the test functions again
-       for(unsigned l2=0;l2<n_node_w;l2++)
+       for(unsigned l2=0;l2<n_w_node;l2++)
         {
          // Loop over position dofs
          for(unsigned k2=0;k2<n_basis_type;k2++)
@@ -498,7 +498,7 @@ fill_in_generic_residual_contribution_foeppl_von_karman(Vector<double> &residual
       }
      }
     } //end loop over nodes
-  for(unsigned l=0;l<n_node;++l)
+  for(unsigned l=0;l<n_u_node;++l)
    {
     // Now loop over displacement equations
     for(unsigned alpha=0; alpha<2 ; ++alpha)
@@ -520,7 +520,7 @@ fill_in_generic_residual_contribution_foeppl_von_karman(Vector<double> &residual
       // Now loop over Jacobian
       if(flag)
        {
-       for(unsigned ll=0;ll<n_node;++ll)
+       for(unsigned ll=0;ll<n_u_node;++ll)
         {
         // Now loop over displacement equations
         for(unsigned gamma=0; gamma<2 ; ++gamma)
@@ -555,7 +555,7 @@ fill_in_generic_residual_contribution_foeppl_von_karman(Vector<double> &residual
         }// End loop nodal dofs
        
        //Loop over the w nodal dofs
-       for(unsigned l2=0;l2<n_node_w;l2++)
+       for(unsigned l2=0;l2<n_w_node;l2++)
         {
         // Loop over position dofs
         for(unsigned k2=0;k2<n_basis_type;k2++)
@@ -805,14 +805,14 @@ void FoepplVonKarmanEquations::compute_error_in_deflection(std::ostream &outfile
  error=0.0;
  norm=0.0;
  //Find out how many nodes there are
- // const unsigned n_node = this->nnode();
- const unsigned n_node_w = 3; // HERE
+ // const unsigned n_u_node = this->nnode();
+ const unsigned n_w_node = nnode_outofplane();
  //Find out how many bubble nodes there are
- const unsigned n_b_node = this->nbubble_basis();
+ const unsigned n_b_node = nbubble_basis();
  //Find out how many nodes positional dofs there are
- unsigned n_basis_type = this->nnodal_basis_type();
+ unsigned n_basis_type = nnodal_basis_type();
  // Find the internal dofs
- const unsigned n_b_position_type = this->nbubble_basis_type();
+ const unsigned n_b_position_type = nbubble_basis_type();
 
  //Vector of local coordinates
  Vector<double> s(this->dim());
@@ -843,13 +843,13 @@ void FoepplVonKarmanEquations::compute_error_in_deflection(std::ostream &outfile
    double J;
    {
    //Local c1-shape funtion
-   Shape psi(n_node_w,n_basis_type),test(n_node_w,n_basis_type),
+   Shape psi(n_w_node,n_basis_type),test(n_w_node,n_basis_type),
     psi_b(n_b_node,n_b_position_type),test_b(n_b_node,n_b_position_type);
    
 
-   DShape dpsi_dxi(n_node_w,n_basis_type,this->dim()),dtest_dxi(n_node_w,n_basis_type,this->dim()),
+   DShape dpsi_dxi(n_w_node,n_basis_type,this->dim()),dtest_dxi(n_w_node,n_basis_type,this->dim()),
     dpsi_b_dxi(n_b_node,n_b_position_type,this->dim()),dtest_b_dxi(n_b_node,n_b_position_type,this->dim()),
-    d2psi_dxi2(n_node_w,n_basis_type,3), d2test_dxi2(n_node_w,n_basis_type,3),
+    d2psi_dxi2(n_w_node,n_basis_type,3), d2test_dxi2(n_w_node,n_basis_type,3),
     d2psi_b_dxi2(n_b_node,n_b_position_type,3), d2test_b_dxi2(n_b_node,n_b_position_type,3);
 
    J=this-> d2shape_and_d2test_eulerian_foeppl_von_karman(s,
@@ -912,14 +912,14 @@ void FoepplVonKarmanEquations::compute_error(std::ostream &outfile,
  norm=0.0;
 
  //Find out how many nodes there are
- // const unsigned n_node = this->nnode();
- const unsigned n_node_w = 3; // HERE
+ // const unsigned n_u_node = this->nnode();
+ const unsigned n_w_node = nnode_outofplane(); // HERE
  //Find out how many bubble nodes there are
- const unsigned n_b_node = this->nbubble_basis();
+ const unsigned n_b_node = nbubble_basis();
  //Find out how many nodes positional dofs there are
- unsigned n_basis_type = this->nnodal_basis_type();
+ unsigned n_basis_type = nnodal_basis_type();
  // Find the internal dofs
- const unsigned n_b_position_type = this->nbubble_basis_type();
+ const unsigned n_b_position_type = nbubble_basis_type();
 
  //Vector of local coordinates
  Vector<double> s(this->dim());
@@ -954,13 +954,13 @@ void FoepplVonKarmanEquations::compute_error(std::ostream &outfile,
    // double Jlin = this->J_eulerian1(s);// Nope
    {
    //Local c1-shape funtion
-   Shape psi(n_node_w,n_basis_type),test(n_node_w,n_basis_type),
+   Shape psi(n_w_node,n_basis_type),test(n_w_node,n_basis_type),
     psi_b(n_b_node,n_b_position_type),test_b(n_b_node,n_b_position_type);
    
 
-   DShape dpsi_dxi(n_node_w,n_basis_type,this->dim()),dtest_dxi(n_node_w,n_basis_type,this->dim()),
+   DShape dpsi_dxi(n_w_node,n_basis_type,this->dim()),dtest_dxi(n_w_node,n_basis_type,this->dim()),
     dpsi_b_dxi(n_b_node,n_b_position_type,this->dim()),dtest_b_dxi(n_b_node,n_b_position_type,this->dim()),
-    d2psi_dxi2(n_node_w,n_basis_type,3), d2test_dxi2(n_node_w,n_basis_type,3),
+    d2psi_dxi2(n_w_node,n_basis_type,3), d2test_dxi2(n_w_node,n_basis_type,3),
     d2psi_b_dxi2(n_b_node,n_b_position_type,3), d2test_b_dxi2(n_b_node,n_b_position_type,3);
 
 

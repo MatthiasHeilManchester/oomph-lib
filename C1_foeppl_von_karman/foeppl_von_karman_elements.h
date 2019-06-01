@@ -89,6 +89,13 @@ const unsigned& boundary_number, const PressureFctPt& u)=0;
  
  /// \short (Read only) Access to number of internal dofs
 // unsigned number_of_internal_dofs() const {return this->nbubble_basis();}
+//
+//
+ // Get the number of nodes of the out-of-plane functions, pure virtual
+ virtual unsigned nnode_outofplane() const =  0;
+
+ // Get the number of nodes of the out-of-plane functions, pure virtual
+ virtual unsigned nnode_inplane() const =  0;
 
  // Get the number of basis functions, pure virtual
  virtual unsigned nnodal_basis_type() const =  0;
@@ -375,15 +382,15 @@ const unsigned& boundary_number, const PressureFctPt& u)=0;
  virtual inline Vector<double> interpolated_u_foeppl_von_karman(const Vector<double> &s) const
   {
    //Find number of position dofs
-   const unsigned n_basis_type = this->nnodal_basis_type();
+   const unsigned n_basis_type = nnodal_basis_type();
    // Find the internal dofs
-   const unsigned n_b_position_type = this->nbubble_basis_type();
+   const unsigned n_b_position_type = nbubble_basis_type();
    //Find out how many nodes there are
-   const unsigned n_w_node = 3;
+   const unsigned n_w_node = nnode_outofplane();
   //Find out how many nodes there are
-   const unsigned n_node = this->nnode();
+   const unsigned n_u_node = nnode_inplane();
    //Find out how many internal points there are
-   const unsigned n_b_node = this->nbubble_basis();
+   const unsigned n_b_node = nbubble_basis();
    //Get the index at which the unknown is stored
    const unsigned u_nodal_index = u_nodal_index_foeppl_von_karman();
    //Get the index at which the unknown is stored
@@ -403,10 +410,10 @@ const unsigned& boundary_number, const PressureFctPt& u)=0;
     d2psi_b_dxi2(n_b_node,n_b_position_type,n_second_deriv), d2test_b_dxi2(n_b_node,n_b_position_type,n_second_deriv);
    
    // In--plane dofs
-   Shape psi_u(n_node);
-   DShape dpsi_u(n_node,this->dim());
-   Shape test_u(n_node);
-   DShape dtest_u(n_node,this->dim());
+   Shape psi_u(n_u_node);
+   DShape dpsi_u(n_u_node,this->dim());
+   Shape test_u(n_u_node);
+   DShape dtest_u(n_u_node,this->dim());
 
    // Number of in-plane displacement fields is equal to dimension
    const unsigned n_u_fields = 2;// DIM;
@@ -460,7 +467,7 @@ const unsigned& boundary_number, const PressureFctPt& u)=0;
      }
    }
    // Now for the displacement 
-   for(unsigned l=0; l< n_node;++l)
+   for(unsigned l=0; l< n_u_node;++l)
     {
      // Now for the two in--plane displacements
      interpolated_u[6] += this->nodal_value(l,u_nodal_index+0)*psi_u(l);
@@ -477,15 +484,6 @@ const unsigned& boundary_number, const PressureFctPt& u)=0;
 
  /// \short Self-test: Return 0 for OK
  unsigned self_test();
-
-// /// \short get the coordinate
-// virtual void get_coordinate_x(const Vector<double>& s, Vector<double>& x) const=0;
- 
-// /// Wrapper
-// void interpolated_x(const Vector<double>& s, Vector<double>& x) const
-//  {
-//   this->get_coordinate_x(s,x);
-//  }
 
 protected:
  /// Pure virtual interface to the basis for the in--plane displacement 
@@ -513,25 +511,6 @@ protected:
  virtual double dshape_u_and_dtest_u_eulerian_foeppl_von_karman(const Vector<double> &s,
   Shape &psi,DShape &dpsidx, Shape &test,DShape &dtestdx) const=0;
 
-/// HERE BREAK THESE
-// /// \short Shape/test functions and derivs w.r.t. to global coords at
-// /// local coord. s; return  Jacobian of mapping
-// virtual double d2shape_and_d2test_eulerian_at_knot_foeppl_von_karman(const
-//  unsigned ipt, Shape &psi, Shape& psi_b, DShape &dpsi_dx, DShape &dpsi_b_dx,
-//  DShape &d2psi_dx2,DShape& d2psi_b_dx2,
-//  Shape &test, Shape& test_b, DShape &dtest_dx, DShape &dtest_b_dx,
-//  DShape &d2test_dx2,DShape& d2test_b_dx2) const=0;
-//
-// /// \short Shape/test functions and derivs w.r.t. to global coords at
-// /// local coord. s; return  Jacobian of mapping
-// virtual double dshape_and_dtest_eulerian__at_knot_foeppl_von_karman(const
-//  unsigned& ipt, Shape &psi, Shape& psi_b, DShape &dpsi_dx, DShape &dpsi_b_dx,
-//  Shape &test, Shape& test_b, DShape &dtest_dx, DShape &dtest_b_dx) const=0;
-//
-// /// \short Shape/test functions at integral point ipt
-// virtual void shape_and_test_foeppl_von_karman_at_knot(const unsigned& ipt,
-//  Shape &psi, Shape& psi_b, Shape &test, Shape& test_b) const=0;
-
  /// \short Compute element residual Vector only (if flag=and/or element
  /// Jacobian matrix
  virtual void fill_in_generic_residual_contribution_foeppl_von_karman(
@@ -550,13 +529,6 @@ protected:
 
  /// Pointer to global eta
  const double *Eta_pt;
-
- /// \short unsigned that holds the internal 'bubble' dofs the element has -
- // zero for Bell Elements and 3 for C1 curved elements
-
- /// \short unsigned that holds the number of types of degree of freedom at each
- // internal point that the element has zero for Bell Elements and 1
- // for C1 curved elements
 
  /// Default value for physical constant: Poisson ratio. 
  static const double Default_Nu_Value;
