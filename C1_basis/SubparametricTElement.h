@@ -205,7 +205,7 @@ public:
 
  /// Overloaded shape. Thin wrapper which breaks shape for upgraded elements,
  /// which have a mapping but no shape function defined.
- virtual void shape(const Vector<double>& s, Shape& shape)
+ virtual void shape(const Vector<double>& s, Shape& shape) const
   {
    if(element_is_curved())
      { 
@@ -255,7 +255,7 @@ to access interpolated eulerian coordinate",
 
  /// Overloaded shape. Thin wrapper which breaks shape for upgraded elements,
  /// which have a mapping but no shape function defined.
- virtual void dshape_local(const Vector<double>& s, Shape& shape, DShape& dshape)
+ virtual void dshape_local(const Vector<double>& s, Shape& shape, DShape& dshape)const
   {
    if(element_is_curved())
      { 
@@ -271,20 +271,25 @@ to access interpolated eulerian coordinate",
  /// uses the Bernadou implementation of the Jacobian 
  virtual double local_to_eulerian_mapping(const Vector<double>& s, 
    DenseMatrix<double>& jacobian,
-   DenseMatrix<double>& inverse_jacobian)
+   DenseMatrix<double>& inverse_jacobian) const
   {
    if(element_is_curved())
     { 
-     // Fill in the Jacobian
+     // Fill in the Jacobian // HERE this provides TRANSVERSE of oomph definition 
+     // fix lower down if possible
      Bernadou_element_basis_pt->get_jacobian(s,jacobian); 
+     // Temporary fix - just transpose
+     double tmp =  jacobian(0,1);
+     jacobian(0,1) = jacobian(1,0);
+     jacobian(1,0) = tmp;
      // Invert the Jacobian and return the determinant
      return FiniteElement::invert_jacobian<2>(jacobian,inverse_jacobian);
     }
    else
      {
       // Assemble dshape to get the mapping
-      Shape psi(this->nvertex_node());
-      DShape dpsi(this->nvertex_node(),this->dim());
+      Shape psi(this->nnode());
+      DShape dpsi(this->nnode(),this->dim());
       dsimplex_shape_local(s,psi,dpsi);
       return TElement<2,NNODE_1D>::local_to_eulerian_mapping(dpsi,jacobian,inverse_jacobian);
      }
@@ -348,7 +353,7 @@ to access interpolated eulerian coordinate",
         }
       DShape dummyd2shape(this->nvertex_node(),nnodal_basis_type(),this->dim()*this->dim()-1);
       Bell_basis.d2_basis_eulerian(s,Verts,nodal_basis,dnodal_basis,dummyd2shape);
-      return TElement<2,2>::J_eulerian(s);
+      return TElement<2,NNODE_1D>::J_eulerian(s);
       }
      }
 
@@ -383,7 +388,7 @@ to access interpolated eulerian coordinate",
          {  Verts[ivert][icoord] = this->nodal_position(ivert,icoord); }
        }
       Bell_basis.d2_basis_eulerian(s,Verts,nodal_basis,dnodal_basis,d2nodal_basis);
-      return TElement<2,2>::J_eulerian(s);
+      return TElement<2,NNODE_1D>::J_eulerian(s);
       }
      }
 

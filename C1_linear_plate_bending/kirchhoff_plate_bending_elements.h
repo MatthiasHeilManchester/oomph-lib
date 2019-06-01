@@ -9,7 +9,6 @@
 #include "../generic/nodes.h"
 #include "../generic/oomph_utilities.h"
 #include "../generic/Telements.h"
-#include "../C1_basis/SubparametricTElement.h"
 
 namespace oomph
 {

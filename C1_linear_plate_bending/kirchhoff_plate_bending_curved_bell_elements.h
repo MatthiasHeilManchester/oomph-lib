@@ -4,6 +4,7 @@
 
 #include "kirchhoff_plate_bending_elements.h"
 #include "../C1_basis/Bell_element_basis.h"
+#include "../C1_basis/SubparametricTElement.h"
 #include "../C1_basis/C1_curved_elements.h"
 #include "../C1_basis/my_geom_object.h"
 
@@ -69,13 +70,13 @@ public:
   }
 
   // Get the number of nodal basis types, wrapper
-  unsigned nnodal_basis_type() const {return CurvableBellElement::nnodal_basis_type();};
+  unsigned nnodal_basis_type() const {return CurvableBellElement<2>::nnodal_basis_type();};
 
   // Get the number of internal basis types, wrapper
-  unsigned nbubble_basis_type() const {return CurvableBellElement::nbubble_basis_type();};
+  unsigned nbubble_basis_type() const {return CurvableBellElement<2>::nbubble_basis_type();};
 
   // Get the number of internal bases, wrapper
-  unsigned nbubble_basis() const {return CurvableBellElement::nbubble_basis();};
+  unsigned nbubble_basis() const {return CurvableBellElement<2>::nbubble_basis();};
 
 protected:
  /// Get rotation matrices that change the degrees of freedom to the basis set
@@ -98,11 +99,11 @@ protected:
  
  /// \short Get the jth bubble dof at the lth internal point.
  inline double get_w_bubble_dof(const unsigned& l, const unsigned& j) const
-  {return CurvableBellElement::get_bubble_dof(l,j);} 
+  {return CurvableBellElement<2>::get_bubble_dof(l,j);} 
 
  /// \short Get the jth bubble dof at the lth internal point
  inline int local_w_bubble_equation(const unsigned& l, const unsigned& j) const
-  {return CurvableBellElement::local_bubble_equation(l,j);}
+  {return CurvableBellElement<2>::local_bubble_equation(l,j);}
 
 public:
  /// \short Set up the rotated degrees of freedom
@@ -265,7 +266,7 @@ void KirchhoffPlateBendingC1CurvedBellElement::
  Vector<double> x(2,0.0);
 
  // Get the node pointer
- Node* nod_pt=this->CurvableBellElement::node_pt(inode);
+ Node* nod_pt=this->CurvableBellElement<2>::node_pt(inode);
 
  // Get the position of the vertex
  x[0]=nod_pt->x(0);
