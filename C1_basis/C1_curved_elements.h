@@ -91,6 +91,9 @@ public:
 
   /// Fill in the association matrix between monomials and unknowns
   virtual void fill_in_full_association_matrix(DenseMatrix<double>& conversion_matrix) const = 0;
+
+  /// Get the reference location of the internal dofs for a permuted shape
+  virtual void get_internal_dofs_location(const unsigned& idof,Vector<double>& s_permute) const = 0;
 };
 
 /// The BernadouElementBasis class.
@@ -656,13 +659,13 @@ public:
  void shape(const Vector<double>& s, Shape& psi, Shape& bpsi) const
   {
   // check the construction of the elements is complete
-  #ifdef paranoid
-   if(curved_edge==none)
+  #ifdef PARANOID
+   if(Curved_edge==none)
     {
-     throw oomphliberror(
+     throw OomphLibError(
      "the element has not been upgraded yet. did \
   you forget to set upe the curved_edge?",
-  oomph_current_function, oomph_exception_location);
+  OOMPH_CURRENT_FUNCTION, OOMPH_EXCEPTION_LOCATION);
     }
   #endif
    /// Permute the local coordinate 
@@ -674,13 +677,13 @@ public:
  void get_jacobian(const Vector<double>& s, DenseMatrix<double>& jacobian) const
   {
   // check the construction of the elements is complete
-  #ifdef paranoid
-   if(curved_edge==none)
+  #ifdef PARANOID
+   if(Curved_edge==none)
     {
-     throw oomphliberror(
+     throw OomphLibError(
      "the element has not been upgraded yet. did \
   you forget to set upe the curved_edge?",
-  oomph_current_function, oomph_exception_location);
+  OOMPH_CURRENT_FUNCTION, OOMPH_EXCEPTION_LOCATION);
     }
   #endif
    // Permute the local coordinate 
@@ -746,15 +749,26 @@ public:
  void get_internal_dofs_location(const unsigned& idof,Vector<double>& s_permute) const
   {
   // check the construction of the elements is complete
-  #ifdef paranoid
-   if(curved_edge==none)
+  #ifdef PARANOID
+   if(Curved_edge==none)
     {
-     throw oomphliberror(
-     "the element has not been upgraded yet. did \
-  you forget to set upe the curved_edge?",
-  oomph_current_function, oomph_exception_location);
+     throw OomphLibError(
+     "The element has not been upgraded yet. did \
+  you forget to set up the curved_edge?",
+  OOMPH_CURRENT_FUNCTION, OOMPH_EXCEPTION_LOCATION);
     }
   #endif
+ #ifdef RANGE_CHECK
+   if(idof>n_internal_dofs()-1)
+    {
+     // Output Sensible error message
+     char message[100];
+     sprintf(message,"Internal dof %i out of bound %i for curved element internal `bubble' dofs.",
+       idof,n_internal_dofs());
+     throw OomphLibError(message,OOMPH_CURRENT_FUNCTION, OOMPH_EXCEPTION_LOCATION);
+    }
+   #endif
+
    // Get the shape 
    Vector<double> s_basic(2);
    s_basic[0] = Internal_dof_knots[idof][0]; // HERE RANGE CHECK 

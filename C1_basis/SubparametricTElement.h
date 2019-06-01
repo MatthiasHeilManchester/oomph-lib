@@ -594,6 +594,21 @@ Elements.",OOMPH_CURRENT_FUNCTION,  OOMPH_EXCEPTION_LOCATION);
    curved_edge,*parametric_edge);
  }
 
+ /// \short Get the reference location of the internal curved Bell dofs, dof
+ void get_internal_dofs_location(const unsigned& dof, Vector<double>& s) const
+ {
+  // If the element has been upgraded
+  if(element_is_curved())
+   {
+    throw OomphLibError(
+     "There are no internal dofs for these elements as they have not been\
+ upgraded to curved elements.",
+     OOMPH_CURRENT_FUNCTION, OOMPH_EXCEPTION_LOCATION);
+   }
+  else 
+   {get_internal_dofs_location(dof,s);}
+ };
+
 private:
  /// Enum to store which edge is curved set to none when element has no curved
  /// edges
