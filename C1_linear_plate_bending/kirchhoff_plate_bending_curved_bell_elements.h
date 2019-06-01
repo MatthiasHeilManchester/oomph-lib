@@ -16,7 +16,7 @@ namespace oomph
 //==============================================================================
 
 class KirchhoffPlateBendingC1CurvedBellElement : 
-  public virtual CurvableBellElement, 
+  public virtual CurvableBellElement<2>, 
   public virtual KirchhoffPlateBendingEquations
 {
 public:

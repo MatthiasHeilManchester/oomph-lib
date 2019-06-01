@@ -47,7 +47,8 @@ namespace oomph
 
 /// \short Class for subparametric element that has a seprate basis for the 
 // unknowns and a shape for the interpolation of the coordinates.
-class SubparametricTElement : public TElement<2,2>
+template<unsigned NNODE_1D>
+class SubparametricTElement : public TElement<2,NNODE_1D>
 {
 public:
  /// Constructor
@@ -66,7 +67,7 @@ public:
 
  /// Return total number of basis functions 
  virtual unsigned nbasis()const 
-   {return nvertex_node()*nnodal_basis_type()+nbubble_basis()*nbubble_basis_type();} 
+   {return this->nvertex_node()*nnodal_basis_type()+nbubble_basis()*nbubble_basis_type();} 
 
  /// Return number of basis function types 
  virtual unsigned nnodal_basis_type()const = 0 ; 
@@ -112,7 +113,8 @@ public:
 /// simplex Bell element with 6dofs per node. The element can be upgraded
 /// to provide accurate representation of boundary conditions, which adds
 /// additional (bubble) unknowns to the interior.
-class CurvableBellElement : public SubparametricTElement
+template<unsigned NNODE_1D>
+class CurvableBellElement : public SubparametricTElement<NNODE_1D>
 {
 public:
  /// Constructor
@@ -151,6 +153,39 @@ public:
  ///  Boolean function indicating whether element is curved or not
  bool element_is_curved() const {return Curved_edge != MyC1CurvedElements::none; }
 
+ /// \short get the simplex coordinate x
+ void simplex_interpolated_x (const Vector<double>& s, Vector<double>& x) const 
+  {
+   //Find the number of nodes
+  const unsigned n_node = this->nvertex_node();
+  //Find the number of positional types
+  const unsigned n_position_type = this->nnodal_position_type();
+  //Find the dimension stored in the node
+  const unsigned nodal_dim = this->nodal_dimension();
+
+  //Assign storage for the local shape function
+  Shape psi(this->nnode(),n_position_type);
+  //Find the values of shape function
+  simplex_shape(s,psi);
+
+  //Loop over the dimensions
+  for(unsigned i=0;i<nodal_dim;i++)
+   {
+    //Initilialise value of x[i] to zero
+    x[i] = 0.0;
+    //Loop over the local nodes, vertex nodes are ALWAYS nodes 0 1 2
+    for(unsigned l=0;l<n_node;l++) 
+     {
+      //Loop over the number of dofs
+      for(unsigned k=0;k<n_position_type;k++)
+       {
+        x[i] += this->nodal_position_gen(l,k,i)*psi(l,k);
+       }
+     }
+   }
+   
+  }
+
  /// \short get the coordinate x
  void interpolated_x (const Vector<double>& s, Vector<double>& x) const 
   {
@@ -158,7 +193,7 @@ public:
    if(element_is_curved()) 
     {Bernadou_element_basis_pt->coordinate_x(s,x);}
    else 
-    {TElement<2,2>::interpolated_x(s,x);}
+    {simplex_interpolated_x(s,x);}
   }
 
  /// \short get the coordinate i
@@ -180,8 +215,43 @@ to access interpolated eulerian coordinate",
      }
    // Default to TElement shape
    else
-     {TElement<2,2>::shape(s,shape);}
+     {simplex_shape(s,shape);}
   }
+
+
+ /// \short TElement<2,2> shape functions, because un-upgraded Bell elements are 
+ /// straight sided
+ void simplex_shape(const Vector<double>& s, Shape& psi) const
+   {
+    psi[0] = s[0];
+    psi[1] = s[1];
+    psi[2] = 1.0-s[0]-s[1];
+    // Set the rest of shape to zero 
+    for(unsigned i=this->nvertex_node(); i<this->nnode();++i)
+     { psi[i] = 0.0; }
+   }
+
+ /// \short TElement<2,2> dshape functions, because un-upgraded Bell elements 
+ /// are straight sided
+ void dsimplex_shape_local(const Vector<double> &s,
+                   Shape &psi, DShape &dpsids) const
+   {
+    this->simplex_shape(s, psi);
+    
+    // Derivatives
+    dpsids(0,0) = 1.0;
+    dpsids(0,1) = 0.0;
+    dpsids(1,0) = 0.0;
+    dpsids(1,1) = 1.0;
+    dpsids(2,0) = -1.0;
+    dpsids(2,1) = -1.0;
+    // Set the rest of shape functions to zero 
+    for(unsigned i=this->nvertex_node(); i<this->nnode();++i)
+     { 
+      dpsids(i,0) = 0.0; 
+      dpsids(i,1) = 0.0; 
+     }
+   }
 
  /// Overloaded shape. Thin wrapper which breaks shape for upgraded elements,
  /// which have a mapping but no shape function defined.
@@ -194,7 +264,7 @@ to access interpolated eulerian coordinate",
        OOMPH_CURRENT_FUNCTION, OOMPH_EXCEPTION_LOCATION);
      }
    else
-     {TElement<2,2>::dshape_local(s,shape,dshape);}
+     {dsimplex_shape_local(s,shape,dshape);}
   }
 
  /// Local_to_eulerian mapping with local coordinate argument: when upgraded this 
@@ -208,15 +278,15 @@ to access interpolated eulerian coordinate",
      // Fill in the Jacobian
      Bernadou_element_basis_pt->get_jacobian(s,jacobian); 
      // Invert the Jacobian and return the determinant
-     return invert_jacobian<2>(jacobian,inverse_jacobian);
+     return FiniteElement::invert_jacobian<2>(jacobian,inverse_jacobian);
     }
    else
      {
       // Assemble dshape to get the mapping
-      Shape psi(nvertex_node());
-      DShape dpsi(nvertex_node(),dim());
-      TElement<2,2>::dshape_local(s,psi,dpsi);
-      return TElement<2,2>::local_to_eulerian_mapping(dpsi,jacobian,inverse_jacobian);
+      Shape psi(this->nvertex_node());
+      DShape dpsi(this->nvertex_node(),this->dim());
+      dsimplex_shape_local(s,psi,dpsi);
+      return TElement<2,NNODE_1D>::local_to_eulerian_mapping(dpsi,jacobian,inverse_jacobian);
      }
   }
 
@@ -229,12 +299,14 @@ to access interpolated eulerian coordinate",
       }
     else
       { //HERE
-      Vector<Vector<double> > Verts = (Vector<Vector<double> >(nvertex_node(),Vector<double>(dim(),0.0)));
-      for(unsigned ivert=0;ivert<nvertex_node();++ivert)
-         for(unsigned icoord=0;icoord<dim();++icoord)
-           Verts[ivert][icoord] =nodal_position(ivert,icoord);
-      DShape dummydshape(nvertex_node(),nnodal_basis_type(),dim());
-      DShape dummyd2shape(nvertex_node(),nnodal_basis_type(),dim()*dim()-1);
+      Vector<Vector<double> > Verts = (Vector<Vector<double> >(this->nvertex_node(),Vector<double>(this->dim(),0.0)));
+      for(unsigned ivert=0;ivert<this->nvertex_node();++ivert)
+        {
+         for(unsigned icoord=0;icoord<this->dim();++icoord)
+           {Verts[ivert][icoord] =this-> nodal_position(ivert,icoord);}
+        }
+      DShape dummydshape(this->nvertex_node(),nnodal_basis_type(),this->dim());
+      DShape dummyd2shape(this->nvertex_node(),nnodal_basis_type(),this->dim()*this->dim()-1);
       Bell_basis.d2_basis_eulerian(s,Verts,nodal_basis,dummydshape,dummyd2shape);
       }
    };
@@ -268,11 +340,13 @@ to access interpolated eulerian coordinate",
       }
     else
       { //HERE
-      Vector<Vector<double> > Verts = (Vector<Vector<double> >(nvertex_node(),Vector<double>(dim(),0.0)));
-      for(unsigned ivert=0;ivert<nvertex_node();++ivert)
-         for(unsigned icoord=0;icoord<dim();++icoord)
-           Verts[ivert][icoord] =nodal_position(ivert,icoord);
-      DShape dummyd2shape(nvertex_node(),nnodal_basis_type(),dim()*dim()-1);
+      Vector<Vector<double> > Verts = (Vector<Vector<double> >(this->nvertex_node(),Vector<double>(this->dim(),0.0)));
+      for(unsigned ivert=0;ivert<this->nvertex_node();++ivert)
+        {
+         for(unsigned icoord=0;icoord<this->dim();++icoord)
+           {Verts[ivert][icoord] =this-> nodal_position(ivert,icoord);}
+        }
+      DShape dummyd2shape(this->nvertex_node(),nnodal_basis_type(),this->dim()*this->dim()-1);
       Bell_basis.d2_basis_eulerian(s,Verts,nodal_basis,dnodal_basis,dummyd2shape);
       return TElement<2,2>::J_eulerian(s);
       }
@@ -302,10 +376,12 @@ to access interpolated eulerian coordinate",
      // Use the Bell basis functions if not upgraded
     else
       { 
-      Vector<Vector<double> > Verts = (Vector<Vector<double> >(nvertex_node(),Vector<double>(dim(),0.0)));
-      for(unsigned ivert=0;ivert<nvertex_node();++ivert)
-         for(unsigned icoord=0;icoord<dim();++icoord)
-           Verts[ivert][icoord] =nodal_position(ivert,icoord);
+      Vector<Vector<double> > Verts = (Vector<Vector<double> >(this->nvertex_node(),Vector<double>(this->dim(),0.0)));
+      for(unsigned ivert=0;ivert<this->nvertex_node();++ivert)
+       {
+        for(unsigned icoord=0;icoord<this->dim();++icoord)
+         {  Verts[ivert][icoord] = this->nodal_position(ivert,icoord); }
+       }
       Bell_basis.d2_basis_eulerian(s,Verts,nodal_basis,dnodal_basis,d2nodal_basis);
       return TElement<2,2>::J_eulerian(s);
       }
@@ -488,7 +564,7 @@ Elements.",OOMPH_CURRENT_FUNCTION,  OOMPH_EXCEPTION_LOCATION);
   Index_of_internal_data = this->add_internal_data(new Data(n_bubble));
  
   // Vector to store nodes
-  Vector<Vector<double> > vertices(Vector<Vector<double> >(nvertex_node(),Vector<double>(dim(),0.0)));
+  Vector<Vector<double> > vertices(Vector<Vector<double> >(this->nvertex_node(),Vector<double>(this->dim(),0.0)));
   // Now switch to upgrade
   // The shape functions are designed such that the curved edge is always edge
   // two. So this is where we set that up. 
@@ -504,7 +580,7 @@ Elements.",OOMPH_CURRENT_FUNCTION,  OOMPH_EXCEPTION_LOCATION);
     // Loop over coordinate components then vertices and permute vertices
     for(unsigned i=0;i<2;++i)
      {
-     for(unsigned ivert=0;ivert<nvertex_node();++ivert)
+     for(unsigned ivert=0;ivert<this->nvertex_node();++ivert)
       {vertices[ivert][i]=this->node_pt((ivert+unsigned(curved_edge)+1)%3)->x(i);}
      }
     }
