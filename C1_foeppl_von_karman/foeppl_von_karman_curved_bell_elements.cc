@@ -60,7 +60,7 @@ namespace oomph
  void FoepplVonKarmanC1CurvedBellElement<NNODE,BOUNDARY_ORDER>::shape_u(const Vector<double> &s, Shape &psi) const
    {
     // Use the base TElement version of shape
-    this->shape(s,psi);
+    TElement<2,NNODE>::shape(s,psi);
    }
 //=======================================================================
 /// Derivatives of shape functions for specific TElement<2,2,BOUNDARY_ORDER>
@@ -70,7 +70,7 @@ namespace oomph
                     Shape &psi, DShape &dpsids) const
    {
     // Use the base TElement version of dshape_local
-    this->dshape_local(s,psi,dpsids);
+    TElement<2,NNODE>::dshape_local(s,psi,dpsids);
    }
 //====================================================================
 // Force build of templates

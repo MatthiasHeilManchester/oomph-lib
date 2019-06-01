@@ -35,6 +35,7 @@
 #include "../C1_basis/Bell_element_basis.h"
 #include "../C1_basis/C1_curved_elements.h"
 #include "../C1_basis/my_geom_object.h"
+#include "../C1_basis/SubparametricTElement.h"
 
 namespace oomph
 {
@@ -45,8 +46,9 @@ namespace oomph
 //==============================================================================
 
 template <unsigned NNODE_1D, unsigned BOUNDARY_ORDER>
-class FoepplVonKarmanC1CurvedBellElement : public virtual
- FoepplVonKarmanEquations<NNODE_1D>
+class FoepplVonKarmanC1CurvedBellElement :
+  public virtual CurvableBellElement<NNODE_1D>, 
+  public virtual FoepplVonKarmanEquations
 {
 public:
  /// \short Function pointer to pressure function fct(x,f(x)) --
@@ -68,43 +70,25 @@ b, const DisplacementFctPt& u);
  unsigned boundary_order() {return BOUNDARY_ORDER;}
  
  /// \short get the location of the internal dofs
- inline void get_internal_dofs_location(const unsigned& s, Vector<double>& x) const;
+// inline void get_internal_dofs_location(const unsigned& s, Vector<double>& x) const;
 
  /// \short Function pointer to basis vectors function which sets  basis vectors
  /// b1 and b2 (which are in general functions of x)
  typedef void (*BasisVectorsFctPt) (const Vector<double>& x, Vector<double>& b1,
   Vector<double>& b2, DenseMatrix<double>& Db1, DenseMatrix<double>& Db2);
 
- /// \short enum to enumerate the possible edges that could be curved
- typedef typename MyC1CurvedElements::Edge Edge; 
+/// \short Get the zeta coordinate
+inline void interpolated_zeta(const Vector<double> &s
+ ,Vector<double> &zeta) const // Higher
+{
+ /*
+ // If there is a macro element use it
+ if(this->Macro_elem_pt!=0) {this->get_x_from_macro_element(s,zeta);}
+ */
+ //Otherwise interpolate zeta_nodal using the shape functions
+ /*else*/ {interpolated_x(s,zeta);}
+}
 
- /// \short Get the pointer to the Curved shape class data member
- const MyC1CurvedElements::BernadouElementBasis<BOUNDARY_ORDER>* curved_shape_pt(){return &Curved_shape;};
-
- /// \short get the coordinate
- inline void get_coordinate_x(const Vector<double>& s, Vector<double>& x) const;
-
- /// \short get the coordinate i
- double interpolated_x (const Vector<double>s, const unsigned &i) const 
-  { Vector<double> r(2); get_coordinate_x(s,r); return r[i]; }  
-
- /// \short Get the zeta coordinate
- inline void interpolated_zeta(const Vector<double> &s
-  ,Vector<double> &zeta) const
- {
-  /*
-  // If there is a macro element use it
-  if(this->Macro_elem_pt!=0) {this->get_x_from_macro_element(s,zeta);}
-  */
-  //Otherwise interpolate zeta_nodal using the shape functions
-  /*else*/ {get_coordinate_x(s,zeta);}
- }
-
- // Upgrade an element to its curved counterpart
- inline void upgrade_to_curved_element(const Edge& curved_edge, const double& s_ubar,
-  const double& s_obar,
-  CurvilineGeomObject* parametric_edge);
- 
  /// Lagrange interpolated shape for in--plane displacements
  void shape_u(const Vector<double> &s, Shape &psi) const;
   
@@ -112,40 +96,40 @@ b, const DisplacementFctPt& u);
  void dshape_u_local(const Vector<double> &s,
                     Shape &psi, DShape &dpsids) const;
 
- /// Linear lagrange shape used for mapping  
- void Lshape(const Vector<double> &s, Shape &psi) const;
-  
- /// Linear lagrange dshape used for mapping  
- void dLshape_local(const Vector<double> &s,
-                    Shape &psi, DShape &dpsids) const;
+ /// Add the element's contribution to its residual vector (wrapper) with cached
+ /// association matrix
+ void fill_in_contribution_to_residuals(Vector<double> &residuals)
+  {
+   // Store the expensive-to-construct matrix
+   this->store_association_matrix();
+   //Call the generic routine with the flag set to 1
+   FoepplVonKarmanEquations::fill_in_contribution_to_residuals(residuals);
+   // Remove the expensive-to-construct matrix
+   this->delete_association_matrix();
+  }
 
- /// \short Get the Bell local to eulerian Jacobian determinant (based on 
- /// linear Lagrange shape)
- double J_eulerian1(const Vector<double> &s) const;
+ /// Add the element's contribution to its residual vector and
+ /// element Jacobian matrix (wrapper) with caching of association matrix
+ void fill_in_contribution_to_jacobian(Vector<double> &residuals,
+                                   DenseMatrix<double> &jacobian)
+  {
+   // Store the expensive-to-construct matrix
+   this->store_association_matrix();
+   //Call the generic routine with the flag set to 1
+   FoepplVonKarmanEquations::fill_in_contribution_to_jacobian(residuals,jacobian);
+   // Remove the expensive-to-construct matrix
+   this->delete_association_matrix();
+  }
 
- /// \short Get the Bell local to eulerian Jacobian (based on linear 
- /// Lagrange shape)
- double local_to_eulerian_mapping2(const DShape &dpsids,
-                                           DenseMatrix<double> &jacobian,
-                                           DenseMatrix<double>
-&inverse_jacobian) const;
+  // Get the number of nodal basis types, wrapper
+  unsigned nnodal_basis_type() const {return CurvableBellElement<NNODE_1D>::nnodal_basis_type();};
 
-  /// \short Get the bell shape (not basis) this is the linear Lagrange shape
-  void my_interpolated_x(const Vector<double> &s, Vector<double> &x) const;
+  // Get the number of internal basis types, wrapper
+  unsigned nbubble_basis_type() const {return CurvableBellElement<NNODE_1D>::nbubble_basis_type();};
 
-  ///\short Precompute the association matrix
-  void precompute_association_matrix(DenseMatrix<double>& m)
-   {
-    // If the element has been upgraded
-    if(Curved_edge ==MyC1CurvedElements::none)
-     {} // Do nothing
-    else 
-     {Curved_shape.fill_in_full_association_matrix(m);}
-   }; 
+  // Get the number of internal bases, wrapper
+  unsigned nbubble_basis() const {return CurvableBellElement<NNODE_1D>::nbubble_basis();};
  
- /// Wrappers
- double n_basis_functions(){return Curved_shape.n_basis_functions();};
- double n_basic_basis_functions(){return Curved_shape.n_basic_basis_functions();};
 protected:
  /// Get rotation matrices that change the degrees of freedom to the basis set
  /// by Rotated_basis_fct_pt
@@ -175,21 +159,13 @@ public:
  ///\short  Constructor: Call constructors for C1CurvedBellElement and
  /// Biharmonic equations
  FoepplVonKarmanC1CurvedBellElement() :
-  FoepplVonKarmanEquations<NNODE_1D>(), 
-  Curved_edge(MyC1CurvedElements::none),
-  Curved_shape(), Bell_basis(), Rotated_basis_fct_pt(0),  Nnodes_to_rotate(0)
+  FoepplVonKarmanEquations(), 
+  Rotated_basis_fct_pt(0),  Nnodes_to_rotate(0)
   {
-   this->set_nnodal_position_type(6);
-   // Add the (zero) bubble dofs
-   Bubble_w_internal_index = this->add_internal_data(new Data(0));
-   #ifdef PARANOID
-   Curved_edge_counter=0;
-   #endif
-
-  // Use the higher order integration scheme
-  // delete this->integral_pt(); 
-  TGauss<2,4>* new_integral_pt = new TGauss<2,4>;
-  this->set_integration_scheme(new_integral_pt); 
+  // // Use the higher order integration scheme
+  // // delete this->integral_pt(); 
+  // TGauss<2,4>* new_integral_pt = new TGauss<2,4>;
+  // this->set_integration_scheme(new_integral_pt); 
   }
 
  ///\short  Destructor: clean up alloacations
@@ -199,7 +175,7 @@ public:
    //  Bubble_w_internal_index = this->add_internal_data(new Data(0));
 
    // Clean up allocation of integration scheme
-   delete this->integral_pt(); 
+  //   delete this->integral_pt(); 
   }
 
  /// Broken copy constructor
@@ -228,12 +204,12 @@ public:
  /// \short Output function:
  ///  x,y,u   or    x,y,z,u
  void output(std::ostream &outfile)
-  {FoepplVonKarmanEquations<NNODE_1D>::output(outfile);}
+  {FoepplVonKarmanEquations::output(outfile);}
 
  ///  \short Output function:
  ///   x,y,u   or    x,y,z,u at n_plot^DIM plot points
  void output(std::ostream &outfile, const unsigned &n_plot)
-  {FoepplVonKarmanEquations<NNODE_1D>::output(outfile,n_plot);}
+  {FoepplVonKarmanEquations::output(outfile,n_plot);}
 
  ///  \short Output function:
  ///   x,y,u   or    x,y,z,u at n_plot^DIM plot points
@@ -243,12 +219,12 @@ public:
  /// \short C-style output function:
  ///  x,y,u   or    x,y,z,u
  void output(FILE* file_pt)
-  {FoepplVonKarmanEquations<NNODE_1D>::output(file_pt);}
+  {FoepplVonKarmanEquations::output(file_pt);}
 
  ///  \short C-style output function:
  ///   x,y,u   or    x,y,z,u at n_plot^DIM plot points
  void output(FILE* file_pt, const unsigned &n_plot)
-  {FoepplVonKarmanEquations<NNODE_1D>::output(file_pt,n_plot);}
+  {FoepplVonKarmanEquations::output(file_pt,n_plot);}
 
 
  /// \short Output function for an exact solution:
@@ -256,7 +232,7 @@ public:
  void output_fct(std::ostream &outfile, const unsigned &n_plot,
                  FiniteElement::SteadyExactSolutionFctPt exact_soln_pt)
   {
-   FoepplVonKarmanEquations<NNODE_1D>::output_fct(outfile,n_plot,
+   FoepplVonKarmanEquations::output_fct(outfile,n_plot,
     exact_soln_pt);
   }
 
@@ -267,8 +243,7 @@ public:
                  const double& time,
                  FiniteElement::UnsteadyExactSolutionFctPt exact_soln_pt)
   {
-   FoepplVonKarmanEquations<NNODE_1D>::output_fct(outfile,n_plot,time,
-    exact_soln_pt);
+   FoepplVonKarmanEquations::output_fct(outfile,n_plot,time,exact_soln_pt);
   }
 
 
@@ -314,11 +289,6 @@ protected:
 // Private Data Members
 private:
 
- #ifdef PARANOID
- /// Internal counter to check consistency
- unsigned Curved_edge_counter;
- #endif
-
  /// \short Static int that holds the number of variables at
  /// nodes: always the same
  static const unsigned Initial_Nvalue[];
@@ -326,15 +296,6 @@ private:
  /// \short unsigned that holds the index the 'bubble' dofs of the element are
  /// stored
  unsigned Bubble_w_internal_index;
-
- ///  Which edge is curved, none by default
- Edge Curved_edge;
-
- /// Curved Shape function
- MyC1CurvedElements::BernadouElementBasis<BOUNDARY_ORDER> Curved_shape;
- 
- /// Basis functions
- MyShape::BellElementBasis Bell_basis;
 
  /// A Pointer to the function that sets up the rotated basis at point x
  BasisVectorsFctPt Rotated_basis_fct_pt;
@@ -382,148 +343,26 @@ class FaceGeometry<FoepplVonKarmanC1CurvedBellElement<NNODE_1D,BOUNDARY_ORDER> >
 
 //Inline functions:
 
-//==============================================================================
-/// Get the mapped position in the element. For straight sided elements this is
-/// and affine mapping.
-//==============================================================================
-template < unsigned NNODE_1D, unsigned BOUNDARY_ORDER>
-void
-FoepplVonKarmanC1CurvedBellElement<NNODE_1D,BOUNDARY_ORDER>::
-get_internal_dofs_location(const unsigned& dof, Vector<double>& s) const
-{
- // If the element has been upgraded
- if(Curved_edge ==MyC1CurvedElements::none)
-  {
-   throw OomphLibError(
-    "There are no internal dofs for these elements as they have not been\
-upgraded to curved elements.",
-    OOMPH_CURRENT_FUNCTION, OOMPH_EXCEPTION_LOCATION);
-  }
- else 
-  {Curved_shape.get_internal_dofs_location(dof,s);}
-};
-
-//==============================================================================
-/// Get the mapped position in the element. For straight sided elements this is
-/// and affine mapping.
-//==============================================================================
-template < unsigned NNODE_1D, unsigned BOUNDARY_ORDER>
-void FoepplVonKarmanC1CurvedBellElement<NNODE_1D,BOUNDARY_ORDER>::get_coordinate_x(const
- Vector<double>& s, Vector<double>& x) const
-{
- // If the element has been upgraded
- if(Curved_edge ==MyC1CurvedElements::none)
-  {this-> my_interpolated_x(s,x);}
- else 
-  {Curved_shape.coordinate_x(s,x);}
-};
-
-//==============================================================================
-/// Upgrade an element to its curved counterpart: this adds internal data to
-/// elements and upgrades the shape class data member.
-//==============================================================================
-template < unsigned NNODE_1D, unsigned BOUNDARY_ORDER>
-inline void FoepplVonKarmanC1CurvedBellElement<NNODE_1D,BOUNDARY_ORDER>::upgrade_to_curved_element
- (const Edge& curved_edge, const double& s_ubar, const double& s_obar,
-  CurvilineGeomObject* parametric_edge)
-{
- #ifdef PARANOID
- // When upgrading add to count
- Curved_edge_counter+=1;
- // Check that we haven't upgraded this element already - we should introduce
- // a new function for this I think.
- if(Curved_edge_counter>1)
-  {
-   // SCREAM
-   throw OomphLibError(
-   "Cannot upgrade more than a single edge to be curved in C1 Curved Bell \
-Elements.",OOMPH_CURRENT_FUNCTION,  OOMPH_EXCEPTION_LOCATION);
-  }
- #endif
- using namespace MyC1CurvedElements;
- // Add the curved edge
- Curved_edge = curved_edge;
-
- // Set the integral pointer
- // HERE implement order 10 accuracy for faster 3rd order elements in clamped 
- // problems
- delete this->integral_pt();
- TGauss<2,13>* new_integral_pt = new TGauss<2,13>;
- this->set_integration_scheme(new_integral_pt); 
-
- // Set the number of internal dofs to 3
- this->Number_of_internal_dof_types = 1;
- this->Number_of_internal_dofs = Curved_shape.n_internal_dofs();
- Bubble_w_internal_index = this->add_internal_data(new Data(Curved_shape.n_internal_dofs()));
-
- // Set up the data of the element
- typename BernadouElementBasis<BOUNDARY_ORDER>::VertexList  vertices(3,Vector<double>(2,0.0));
- typename BernadouElementBasis<BOUNDARY_ORDER>::VertexList lvertices(3,Vector<double>(2,0.0));
-
- // Set up the local vertices
- lvertices[0][0]=1.0;
- lvertices[1][1]=1.0;
-
- // Now switch to upgrade
- // The shape functions are designed such that the curved edge is always edge
- // two. So this is where we set that up. This is temporary and not the final
- // solution we want
- switch(curved_edge)
-  {
-   // Throw an error if an edge is upgraded to none
-   case none:
-    throw OomphLibError( "Cannot upgrade edge 'none'. Curved elements must have\
-one side defined by a parametric function.", OOMPH_CURRENT_FUNCTION,  
-     OOMPH_EXCEPTION_LOCATION);
-   break;
-   case zero:
-   // Everything cyclicly permutes
-    for(unsigned i=0;i<2;++i)
-     {
-      vertices[2][i]=this->node_pt(0)->x(i);
-      vertices[0][i]=this->node_pt(1)->x(i);
-      vertices[1][i]=this->node_pt(2)->x(i);
-     }
-   break;
-   case one:
-   // Everything cyclicly permutes
-    for(unsigned i=0;i<2;++i)
-     {
-      vertices[2][i]=this->node_pt(1)->x(i);
-      vertices[0][i]=this->node_pt(2)->x(i);
-      vertices[1][i]=this->node_pt(0)->x(i);
-     }
-   break;
-   case two:
-   // // Everything is just copied over
-    for(unsigned i=0;i<2;++i)
-     {
-      vertices[2][i]=this->node_pt(2)->x(i);
-      vertices[0][i]=this->node_pt(0)->x(i);
-      vertices[1][i]=this->node_pt(1)->x(i);
-     }
-   break;
-  }
- // Add the vertices to make the shape functions fully functional
- Curved_shape.upgrade_element(vertices, s_ubar,s_obar,curved_edge,*parametric_edge);
- // Now shift the nodes to be consistent with the new vertices
- unsigned n_node=this->nnode();
- // Only do the none--vertex nodes!
- for(unsigned l=0;l<n_node; ++l)
-  {
-   // Get local coordinate of node l
-   Vector<double> s(2,0.0);
-   Vector<double> x(2,0.0);
-   this->local_coordinate_of_node(l,s);
-   // Now use the curved mapping to reset the position
-   Curved_shape.coordinate_x(s,x);
-   // Now get the node
-   Node* nod_pt=this->node_pt(l);
-   // Reset its position
-   nod_pt->x(0)=x[0];
-   nod_pt->x(1)=x[1];
-  }
-}
+// //==============================================================================
+// /// Get the mapped position in the element. For straight sided elements this is
+// /// and affine mapping.
+// //==============================================================================
+// template < unsigned NNODE_1D, unsigned BOUNDARY_ORDER>
+// void
+// FoepplVonKarmanC1CurvedBellElement<NNODE_1D,BOUNDARY_ORDER>::
+// get_internal_dofs_location(const unsigned& dof, Vector<double>& s) const
+// {
+//  // If the element has been upgraded
+//  if(element_is_curved())
+//   {
+//    throw OomphLibError(
+//     "There are no internal dofs for these elements as they have not been\
+// upgraded to curved elements.",
+//     OOMPH_CURRENT_FUNCTION, OOMPH_EXCEPTION_LOCATION);
+//   }
+//  else 
+//   {get_internal_dofs_location(dof,s);}
+// };
 
 //==============================================================================
 /// Get the jth bubble dof at the lth internal point. Deliberately broken for
@@ -532,31 +371,7 @@ one side defined by a parametric function.", OOMPH_CURRENT_FUNCTION,
 template < unsigned NNODE_1D, unsigned BOUNDARY_ORDER>
 double FoepplVonKarmanC1CurvedBellElement<NNODE_1D,BOUNDARY_ORDER>::get_w_bubble_dof
  (const unsigned& l, const unsigned& j) const
-{
-  // Deliberately break this function for the below cases
-  // If there is no curved edge then we cannot return anything meaningful
-  if(Curved_edge==MyC1CurvedElements::none)
-  {
-  throw OomphLibError("There are no time-dependent internal 'bubble' dofs for \
-this element.",OOMPH_CURRENT_FUNCTION, OOMPH_EXCEPTION_LOCATION);
-  // Return dummy value 0.0
-  return 0;
-  }
-  // For these elements we only have a single dof at each internal point
-  else if(j!=0)
-  {
-  throw OomphLibError(
-   "There is only a single degree of freedom at the internal points in this \
-element.", OOMPH_CURRENT_FUNCTION, OOMPH_EXCEPTION_LOCATION);
-  // Return dummy value 0.0
-  return 0;
-  }
-  // Now give the lth internal degree of freedom
-  else
-  {
-   return this->internal_data_pt(Bubble_w_internal_index)->value(l);
-  }
-}
+  {return CurvableBellElement<NNODE_1D>::get_bubble_dof(l,j);} 
 
 //==============================================================================
 /// Get the jth bubble dof at the lth internal point. Deliberately broken for
@@ -565,32 +380,7 @@ element.", OOMPH_CURRENT_FUNCTION, OOMPH_EXCEPTION_LOCATION);
 template < unsigned NNODE_1D, unsigned BOUNDARY_ORDER>
 int FoepplVonKarmanC1CurvedBellElement<NNODE_1D,BOUNDARY_ORDER>::local_w_bubble_equation(const
   unsigned& l, const unsigned& j) const
- {
-  // Deliberately break this function for the below cases
-  // If there is no curved edge then we cannot return anything meaningful
-  if(Curved_edge==MyC1CurvedElements::none)
-  {
-  throw OomphLibError(
-   "There are no time-dependent internal 'bubble' dofs for this element.",
-    OOMPH_CURRENT_FUNCTION,  OOMPH_EXCEPTION_LOCATION);
-   // Return dummy value -2
-   return -2;
-   }
-   // For these elements we only have a single dof at each internal point
-   else if(j!=0)
-   {
-   throw OomphLibError(
-    "There is only a single degree of equation at the internal points in this \
-element.", OOMPH_CURRENT_FUNCTION,OOMPH_EXCEPTION_LOCATION);
-   // Return dummy value -2
-   return -2;
-   }
-   // Now give the lth internal equation number
-   else
-   {
-    return this->internal_local_eqn(Bubble_w_internal_index,l);
-   }
-  }
+  {return CurvableBellElement<NNODE_1D>::local_bubble_equation(l,j);}
 
 //==============================================================================
 /// Set up the rotated degrees of freedom: includes a check for the number of
@@ -730,27 +520,8 @@ shape_and_test_foeppl_von_karman(...)", OOMPH_EXCEPTION_LOCATION); // HERE
  // Get dummy shape functions for the Bell call
  DShape dpsidx(3,6,2);
  DShape d2psidx(3,6,3);
-
- // Vertices
- Vector<Vector<double> > v(3,Vector<double>(2));
- for (unsigned inode=0;inode<3;++inode)
-  {
-   // Get the position vector
-   Node* nod_pt=this->node_pt(inode);
-   v[inode][0]=nod_pt->x(0);
-   v[inode][1]=nod_pt->x(1);
-  }
-
- // If the element has not been upgraded
- if(Curved_edge ==MyC1CurvedElements::none)
-  { 
-  // Get J
-  this->J_eulerian1(s);
-  // Get the Bell element basis
-  Bell_basis.d2_basis_eulerian(s,v,psi,dpsidx,d2psidx);
-  }
- else // i.e if has curved edge
-  {Curved_shape.shape(s,psi,psi_b);}
+   
+ this->basis(s,psi,psi_b); 
  
  // Rotate the degrees of freedom
  rotate_shape(psi);
@@ -782,30 +553,9 @@ template < unsigned NNODE_1D, unsigned BOUNDARY_ORDER>
 dshape_and_dtest_foeppl_von_karman(...)",
   OOMPH_EXCEPTION_LOCATION);// HERE
 
- // Now set up dummy DShape so we can call Bell
- DShape d2psidx(3,6,3);
- double J =this->J_eulerian1(s);
-
- // Vertices
- Vector<Vector<double> > v(3,Vector<double>(2));
- for (unsigned inode=0;inode<3;++inode)
-  {
-   // Get the position vector
-   Node* nod_pt=this->node_pt(inode);
-   v[inode][0]=nod_pt->x(0);
-   v[inode][1]=nod_pt->x(1);
-  }
-
- // If the element has been upgraded
- if(Curved_edge ==MyC1CurvedElements::none)
-  { 
-  // Get J
-  J=this->J_eulerian1(s);
-  Bell_basis.d2_basis_eulerian(s,v,psi,dpsidx,d2psidx);
-  }
- else // i.e if has curved edge
-  {J=Curved_shape.d_shape_dx(s,psi,psi_b,dpsidx,dpsi_b_dx);}
-
+ // Get the basis 
+ double J=this->d_basis_eulerian(s,psi,psi_b,dpsidx,dpsi_b_dx);
+ 
  // Rotate the degrees of freedom
  rotate_shape(psi, dpsidx);
  // Galerkin
@@ -827,32 +577,7 @@ template < unsigned NNODE_1D, unsigned BOUNDARY_ORDER>
   DShape &d2testdx, DShape &d2test_bdx) const
 {
  //Call the geometrical shape functions and derivatives
- double J=this->J_eulerian1(s);
- // Vertices
- Vector<Vector<double> > v(3,Vector<double>(2));
- for (unsigned inode=0;inode<3;++inode)
-  {
-   // Get the position vector
-   Node* nod_pt=this->node_pt(inode);
-   v[inode][0]=nod_pt->x(0);
-   v[inode][1]=nod_pt->x(1);
-  }
-
- // If the element has been upgraded
- if(Curved_edge ==MyC1CurvedElements::none)
-  { 
-  // Get J
-  J=this->J_eulerian1(s);
-  Bell_basis.d2_basis_eulerian(s,v,psi,dpsidx,d2psidx);
-  }
- else if(this->get_association_matrix_pt() != 0)// i.e if has curved edge and precomputed matrix
-  {
-   // Temporary
-  // DenseMatrix<double> m=*(this->get_association_matrix_pt());
-  J=Curved_shape.d2_shape_dx2(s,psi,psi_b,dpsidx,dpsi_bdx,d2psidx,d2psi_bdx,*(this->get_association_matrix_pt()));
-  }
- else 
-  {J=Curved_shape.d2_shape_dx2(s,psi,psi_b,dpsidx,dpsi_bdx,d2psidx,d2psi_bdx);}
+ double J=this->d2_basis_eulerian(s,psi,psi_b,dpsidx,dpsi_bdx,d2psidx,d2psi_bdx);
  // Rotate the dofs
  rotate_shape(psi, dpsidx, d2psidx);
  
@@ -1038,55 +763,26 @@ template < unsigned NNODE_1D, unsigned BOUNDARY_ORDER>
  dshape_u_local(s,psi,dpsids);
  double J;
 
- Shape shape(3);
- DShape dshape_ds(3,this->dim());
- this->dLshape_local(s,shape, dshape_ds);
-
- // Get the inverse jacobian
+ // Get the Jacobian
+ DenseMatrix<double> jacobian(this->dim(),this->dim(),0.0),
+             inverse_jacobian(this->dim(),this->dim(),0.0); //HERE
+ J = CurvableBellElement<NNODE_1D>::local_to_eulerian_mapping(s,jacobian,inverse_jacobian);
  // If the element has been upgraded
- DenseMatrix<double> jacobian(this->dim(),this->dim(),0.0),inverse_jacobian(this->dim(),this->dim(),0.0);
- if(Curved_edge ==MyC1CurvedElements::none)
+ // Now find the global derivatives
+  for(unsigned l=0;l<n_node;++l)
   { 
-   // Get the Affine jacobian
-   J = this->local_to_eulerian_mapping2(dshape_ds,jacobian,
-   inverse_jacobian);
-   // Now find the global derivatives
-    for(unsigned l=0;l<n_node;++l)
-    { 
-      for(unsigned i=0; i<this->dim(); ++i)
-       {
-        // Initialise to zero
-        dpsidx(l,i)=0.0;
-        for(unsigned j=0; j<this->dim(); ++j)
-         {
-          // NB MyJ = oomphJ' consider fixing?
-          // Convert to local coordinates
-          dpsidx(l,i)+=inverse_jacobian(i,j)*dpsids(l,j);
-         }
-       }
+   for(unsigned i=0; i<this->dim(); ++i)
+    {
+     // Initialise to zero
+     dpsidx(l,i)=0.0;
+     for(unsigned j=0; j<this->dim(); ++j)
+      {
+       // NB MyJ = oomphJ' consider fixing? // HERE
+       // Convert to local coordinates
+       dpsidx(l,i)+=inverse_jacobian(i,j)*dpsids(l,j);
+      }
     }
   }
- else // i.e if has curved edge
-  {
-   Curved_shape.get_jacobian(s,jacobian);
-   J = MyShape::invert_two_by_two(jacobian,inverse_jacobian);
-   // Now find the global derivatives
-    for(unsigned l=0;l<n_node;++l)
-    { 
-      for(unsigned i=0; i<this->dim(); ++i)
-       {
-        // Initialise to zero
-        dpsidx(l,i)=0.0;
-        for(unsigned j=0; j<this->dim(); ++j)
-         {
-          // NB MyJ = oomphJ' consider fixing?
-          // Convert to local coordinates
-          dpsidx(l,i)+=dpsids(l,j)*inverse_jacobian(j,i);
-         }
-       }
-    }
-  }
-
  test = psi;
  dtestdx = dpsidx;
 
@@ -1112,7 +808,7 @@ template < unsigned NNODE_1D, unsigned BOUNDARY_ORDER>
    }
 
   // Get number of internal dofs
-  const unsigned n_b_node=this->Number_of_internal_dofs;
+  const unsigned n_b_node=nbubble_basis();
   // const unsigned n_b_position_type = this->Number_of_internal_dof_types;
   // Now fix internal dofs
   for(unsigned n=0; n<n_b_node; ++n)
@@ -1193,7 +889,7 @@ of freedom at internal points. They are {w ; w,x ; w,y ; w,xx ; w,xy ; w,yy}",
       // is not necessarily correct?
       Vector<double> x(dim),s(dim);
       this->local_coordinate_of_node(n,s);
-      get_coordinate_x(s, x); 
+      interpolated_x(s, x); 
       // Fill in value
       double value;
       specified_displacement_fct_pt(x,value);
@@ -1248,206 +944,206 @@ of freedom at internal points. They are {w ; w,x ; w,y ; w,xx ; w,xy ; w,yy}",
 ////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////
 
-//=======================================================================
-/// Shape function for specific TElement<2,2>
-//=======================================================================
-template < unsigned NNODE_1D, unsigned BOUNDARY_ORDER>
-  void FoepplVonKarmanC1CurvedBellElement<NNODE_1D,BOUNDARY_ORDER>::Lshape(const Vector<double> &s, Shape &psi) const
-   {
-    psi[0] = s[0];
-    psi[1] = s[1];
-    psi[2] = 1.0-s[0]-s[1];
-   }
-  
+// //=======================================================================
+// /// Shape function for specific TElement<2,2>
+// //=======================================================================
+// template < unsigned NNODE_1D, unsigned BOUNDARY_ORDER>
+//   void FoepplVonKarmanC1CurvedBellElement<NNODE_1D,BOUNDARY_ORDER>::Lshape(const Vector<double> &s, Shape &psi) const
+//    {
+//     psi[0] = s[0];
+//     psi[1] = s[1];
+//     psi[2] = 1.0-s[0]-s[1];
+//    }
+//   
+// 
+// //=======================================================================
+// /// Derivatives of shape functions for specific TElement<2,2>
+// //=======================================================================
+// template < unsigned NNODE_1D, unsigned BOUNDARY_ORDER>
+//   void FoepplVonKarmanC1CurvedBellElement<NNODE_1D,BOUNDARY_ORDER>::dLshape_local(const Vector<double> &s,
+//                     Shape &psi, DShape &dpsids) const
+//    {
+//     this->Lshape(s, psi);
+//     
+//     // Derivatives
+//     dpsids(0,0) = 1.0;
+//     dpsids(0,1) = 0.0;
+//     dpsids(1,0) = 0.0;
+//     dpsids(1,1) = 1.0;
+//     dpsids(2,0) = -1.0;
+//     dpsids(2,1) = -1.0;
+//    }
+//   
+// 
+// 
+// template < unsigned NNODE_1D, unsigned BOUNDARY_ORDER>
+// double FoepplVonKarmanC1CurvedBellElement<NNODE_1D,BOUNDARY_ORDER>::local_to_eulerian_mapping2(const DShape &dpsids,
+//                                            DenseMatrix<double> &jacobian,
+//                                            DenseMatrix<double> &inverse_jacobian) const
+//   {
+//     //Assemble the jacobian
+//     //Locally cache the elemental dimension
+//    const unsigned el_dim = this->dim();
+//    //The number of shape functions must be equal to the number
+//    //of nodes (by definition)
+//    const unsigned n_shape = 3;
+//    //The number of shape function types must be equal to the number
+//    //of nodal position types (by definition)
+//    const unsigned n_shape_type = 1;
+//   
+//    //Loop over the rows of the jacobian
+//    for(unsigned i=0;i<el_dim;i++)
+//     {
+//      //Loop over the columns of the jacobian
+//      for(unsigned j=0;j<el_dim;j++)
+//       {
+//        //Zero the entry
+//        jacobian(i,j) = 0.0;
+//        //Loop over the shape functions
+//        for(unsigned l=0;l<n_shape;l++)
+//         {
+//          for(unsigned k=0;k<n_shape_type;k++)
+//           {
+//            //Jacobian is dx_j/ds_i, which is represented by the sum
+//            //over the dpsi/ds_i of the nodal points X j
+//            //Call the Non-hanging version of positions
+//            //This is overloaded in refineable elements
+//            jacobian(i,j) += this->raw_nodal_position_gen(l,k,j)*dpsids(l,k,i);
+//           }
+//         }
+//       }
+//     }
+//  
+//   //Invert the jacobian (use the template-free interface)
+//   return this->invert_jacobian_mapping(jacobian,inverse_jacobian);
+//  }
 
-//=======================================================================
-/// Derivatives of shape functions for specific TElement<2,2>
-//=======================================================================
-template < unsigned NNODE_1D, unsigned BOUNDARY_ORDER>
-  void FoepplVonKarmanC1CurvedBellElement<NNODE_1D,BOUNDARY_ORDER>::dLshape_local(const Vector<double> &s,
-                    Shape &psi, DShape &dpsids) const
-   {
-    this->Lshape(s, psi);
-    
-    // Derivatives
-    dpsids(0,0) = 1.0;
-    dpsids(0,1) = 0.0;
-    dpsids(1,0) = 0.0;
-    dpsids(1,1) = 1.0;
-    dpsids(2,0) = -1.0;
-    dpsids(2,1) = -1.0;
-   }
-  
-
-
-template < unsigned NNODE_1D, unsigned BOUNDARY_ORDER>
-double FoepplVonKarmanC1CurvedBellElement<NNODE_1D,BOUNDARY_ORDER>::local_to_eulerian_mapping2(const DShape &dpsids,
-                                           DenseMatrix<double> &jacobian,
-                                           DenseMatrix<double> &inverse_jacobian) const
-  {
-    //Assemble the jacobian
-    //Locally cache the elemental dimension
-   const unsigned el_dim = this->dim();
-   //The number of shape functions must be equal to the number
-   //of nodes (by definition)
-   const unsigned n_shape = 3;
-   //The number of shape function types must be equal to the number
-   //of nodal position types (by definition)
-   const unsigned n_shape_type = 1;
-  
-   //Loop over the rows of the jacobian
-   for(unsigned i=0;i<el_dim;i++)
-    {
-     //Loop over the columns of the jacobian
-     for(unsigned j=0;j<el_dim;j++)
-      {
-       //Zero the entry
-       jacobian(i,j) = 0.0;
-       //Loop over the shape functions
-       for(unsigned l=0;l<n_shape;l++)
-        {
-         for(unsigned k=0;k<n_shape_type;k++)
-          {
-           //Jacobian is dx_j/ds_i, which is represented by the sum
-           //over the dpsi/ds_i of the nodal points X j
-           //Call the Non-hanging version of positions
-           //This is overloaded in refineable elements
-           jacobian(i,j) += this->raw_nodal_position_gen(l,k,j)*dpsids(l,k,i);
-          }
-        }
-      }
-    }
-  
-   //Invert the jacobian (use the template-free interface)
-   return this->invert_jacobian_mapping(jacobian,inverse_jacobian);
-  }
-
- //========================================================================
- /// \short Calculate the Jacobian of the mapping between local and global
- /// coordinates at the position s
- //========================================================================
-template < unsigned NNODE_1D, unsigned BOUNDARY_ORDER>
- double FoepplVonKarmanC1CurvedBellElement<NNODE_1D,BOUNDARY_ORDER>::J_eulerian1(const Vector<double> &s) const
-  {
-   //Find the number of nodes and position types
-   const unsigned n_node = 3;
-   const unsigned n_position_type = 1;
-   //Find the dimension of the node and element
-   const unsigned n_dim_node = this->dim();//nodal_dimension();
-   const unsigned n_dim_element = this->dim();
-   
-   
-   //Set up dummy memory for the shape functions
-   Shape psi(n_node,n_position_type);
-   DShape dpsids(n_node,n_position_type,n_dim_element);
-   //Get the shape functions and local derivatives
-   this->dLshape_local(s,psi,dpsids);
-   
-   //Right calculate the base vectors
-   DenseMatrix<double> interpolated_G(n_dim_element,n_dim_node);
-   
-   //Loop over the dimensions and compute the entries of the 
-   //base vector matrix
-   for(unsigned i=0;i<n_dim_element;i++)
-    {
-     for(unsigned j=0;j<n_dim_node;j++)
-      {
-       //Initialise the j-th component of the i-th base vector to zero
-       interpolated_G(i,j) = 0.0;
-       for(unsigned l=0;l<n_node;l++)
-        {
-         for(unsigned k=0;k<n_position_type;k++)
-          {
-           interpolated_G(i,j) += this->raw_nodal_position_gen(l,k,j)*dpsids(l,k,i);
-          }
-        }
-      }
-    }
-
-   //Calculate the metric tensor of the element
-   DenseMatrix<double> G(n_dim_element);
-   for(unsigned i=0;i<n_dim_element;i++)
-    {
-     for(unsigned j=0;j<n_dim_element;j++)
-      {
-       //Initialise to zero
-       G(i,j) = 0.0;
-       for(unsigned k=0;k<n_dim_node;k++) 
-        {
-         G(i,j) += interpolated_G(i,k)*interpolated_G(j,k);
-        }
-      }
-    }
-   
-   //Calculate the determinant of the metric tensor
-   double det = 0.0;
-   switch(n_dim_element)
-    {
-    case 0:
-     throw OomphLibError("Cannot calculate J_eulerian() for point element\n",
-                         "FiniteElement::J_eulerian()",
-                         OOMPH_EXCEPTION_LOCATION);
-     break;
-    case 1:
-     det = G(0,0);
-     break;
-    case 2:
-     det = G(0,0)*G(1,1) - G(0,1)*G(1,0);
-     break;
-    case 3:
-     det = G(0,0)*G(1,1)*G(2,2) + G(0,1)*G(1,2)*G(2,0) + G(0,2)*G(1,0)*G(2,1)
-      - G(0,0)*G(1,2)*G(2,1) - G(0,1)*G(1,0)*G(2,2) - G(0,2)*G(1,1)*G(2,0);
-     break;
-    default:
-     oomph_info << "More than 3 dimensions in J_eulerian()" << std::endl;
-     break;
-    }
-   
-#ifdef PARANOID
-   this->check_jacobian(det);
-#endif
-   
-   //Return the Jacobian (square-root of the determinant of the metric tensor)
-   return sqrt(det);
-   
-  }
-
-//=======================================================================
-/// Return FE interpolated position x[] at local coordinate s as Vector
-// (using linear Lagrange interpolation)
-//=======================================================================
-template < unsigned NNODE_1D, unsigned BOUNDARY_ORDER>
-  void FoepplVonKarmanC1CurvedBellElement<NNODE_1D,BOUNDARY_ORDER>::my_interpolated_x(const Vector<double> &s, Vector<double> &x)
-   const
-  {
-   //Find the number of nodes
-   const unsigned n_node = 3;
-   //Find the number of positional types
-   const unsigned n_position_type = 1;
-   
-   //Find the dimension stored in the node
-   const unsigned nodal_dim = this->dim();
-   
-   //Assign storage for the local shape function
-   Shape psi(n_node);
-   //Find the values of shape function
-   Lshape(s,psi);
-   
-   //Loop over the dimensions
-   for(unsigned i=0;i<nodal_dim;i++)
-    {
-     //Initilialise value of x[i] to zero
-     x[i] = 0.0;
-     //Loop over the local nodes
-     for(unsigned l=0;l<n_node;l++) 
-      {
-       for(unsigned k=0;k<n_position_type;k++)
-        {
-         x[i] += this->nodal_position_gen(l,k,i)*psi[l];
-        }
-      }
-    }
-  }
+//  //========================================================================
+//  /// \short Calculate the Jacobian of the mapping between local and global
+//  /// coordinates at the position s
+//  //========================================================================
+// template < unsigned NNODE_1D, unsigned BOUNDARY_ORDER>
+//  double FoepplVonKarmanC1CurvedBellElement<NNODE_1D,BOUNDARY_ORDER>::J_eulerian1(const Vector<double> &s) const
+//   {
+//    //Find the number of nodes and position types
+//    const unsigned n_node = 3;
+//    const unsigned n_position_type = 1;
+//    //Find the dimension of the node and element
+//    const unsigned n_dim_node = this->dim();//nodal_dimension();
+//    const unsigned n_dim_element = this->dim();
+//    
+//    
+//    //Set up dummy memory for the shape functions
+//    Shape psi(n_node,n_position_type);
+//    DShape dpsids(n_node,n_position_type,n_dim_element);
+//    //Get the shape functions and local derivatives
+//    this->dLshape_local(s,psi,dpsids);
+//    
+//    //Right calculate the base vectors
+//    DenseMatrix<double> interpolated_G(n_dim_element,n_dim_node);
+//    
+//    //Loop over the dimensions and compute the entries of the 
+//    //base vector matrix
+//    for(unsigned i=0;i<n_dim_element;i++)
+//     {
+//      for(unsigned j=0;j<n_dim_node;j++)
+//       {
+//        //Initialise the j-th component of the i-th base vector to zero
+//        interpolated_G(i,j) = 0.0;
+//        for(unsigned l=0;l<n_node;l++)
+//         {
+//          for(unsigned k=0;k<n_position_type;k++)
+//           {
+//            interpolated_G(i,j) += this->raw_nodal_position_gen(l,k,j)*dpsids(l,k,i);
+//           }
+//         }
+//       }
+//     }
+// 
+//    //Calculate the metric tensor of the element
+//    DenseMatrix<double> G(n_dim_element);
+//    for(unsigned i=0;i<n_dim_element;i++)
+//     {
+//      for(unsigned j=0;j<n_dim_element;j++)
+//       {
+//        //Initialise to zero
+//        G(i,j) = 0.0;
+//        for(unsigned k=0;k<n_dim_node;k++) 
+//         {
+//          G(i,j) += interpolated_G(i,k)*interpolated_G(j,k);
+//         }
+//       }
+//     }
+//    
+//    //Calculate the determinant of the metric tensor
+//    double det = 0.0;
+//    switch(n_dim_element)
+//     {
+//     case 0:
+//      throw OomphLibError("Cannot calculate J_eulerian() for point element\n",
+//                          "FiniteElement::J_eulerian()",
+//                          OOMPH_EXCEPTION_LOCATION);
+//      break;
+//     case 1:
+//      det = G(0,0);
+//      break;
+//     case 2:
+//      det = G(0,0)*G(1,1) - G(0,1)*G(1,0);
+//      break;
+//     case 3:
+//      det = G(0,0)*G(1,1)*G(2,2) + G(0,1)*G(1,2)*G(2,0) + G(0,2)*G(1,0)*G(2,1)
+//       - G(0,0)*G(1,2)*G(2,1) - G(0,1)*G(1,0)*G(2,2) - G(0,2)*G(1,1)*G(2,0);
+//      break;
+//     default:
+//      oomph_info << "More than 3 dimensions in J_eulerian()" << std::endl;
+//      break;
+//     }
+//    
+// #ifdef PARANOID
+//    this->check_jacobian(det);
+// #endif
+//    
+//    //Return the Jacobian (square-root of the determinant of the metric tensor)
+//    return sqrt(det);
+//    
+//   }
+// 
+// //=======================================================================
+// /// Return FE interpolated position x[] at local coordinate s as Vector
+// // (using linear Lagrange interpolation)
+// //=======================================================================
+// template < unsigned NNODE_1D, unsigned BOUNDARY_ORDER>
+//   void FoepplVonKarmanC1CurvedBellElement<NNODE_1D,BOUNDARY_ORDER>::my_interpolated_x(const Vector<double> &s, Vector<double> &x)
+//    const
+//   {
+//    //Find the number of nodes
+//    const unsigned n_node = 3;
+//    //Find the number of positional types
+//    const unsigned n_position_type = 1;
+//    
+//    //Find the dimension stored in the node
+//    const unsigned nodal_dim = this->dim();
+//    
+//    //Assign storage for the local shape function
+//    Shape psi(n_node);
+//    //Find the values of shape function
+//    Lshape(s,psi);
+//    
+//    //Loop over the dimensions
+//    for(unsigned i=0;i<nodal_dim;i++)
+//     {
+//      //Initilialise value of x[i] to zero
+//      x[i] = 0.0;
+//      //Loop over the local nodes
+//      for(unsigned l=0;l<n_node;l++) 
+//       {
+//        for(unsigned k=0;k<n_position_type;k++)
+//         {
+//          x[i] += this->nodal_position_gen(l,k,i)*psi[l];
+//         }
+//       }
+//     }
+//   }
 }
 
 

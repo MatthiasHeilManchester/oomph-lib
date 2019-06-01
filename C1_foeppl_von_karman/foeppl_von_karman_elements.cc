@@ -33,20 +33,17 @@
 namespace oomph
 {
  /// \short Default to incompressible sheet Poisson ratio
- template <unsigned NNODE_1D>
- const double FoepplVonKarmanEquations<NNODE_1D>::Default_Nu_Value=0.5;
+ const double FoepplVonKarmanEquations::Default_Nu_Value=0.5;
  
  /// \short Default to 'natural' FvK nondimensionalisation which is h 
  /// independent (NB NOT the same as in JFM paper)
- template <unsigned NNODE_1D>
- const double FoepplVonKarmanEquations<NNODE_1D>::Default_Eta_Value=1;
+ const double FoepplVonKarmanEquations::Default_Eta_Value=1;
 
 
 //======================================================================
 /// Fill in generic residual and jacobian contribution 
 //======================================================================
-template <unsigned NNODE_1D>
-void  FoepplVonKarmanEquations<NNODE_1D>::
+void  FoepplVonKarmanEquations::
 fill_in_generic_residual_contribution_foeppl_von_karman(Vector<double> &residuals,
                                               DenseMatrix<double> &jacobian,
                                               const unsigned& flag)
@@ -56,11 +53,11 @@ fill_in_generic_residual_contribution_foeppl_von_karman(Vector<double> &residual
  const unsigned n_node = this->nnode();
  const unsigned n_node_w = 3; // HERE
  //Find out how many bubble nodes there are
- const unsigned n_b_node = this->Number_of_internal_dofs;
+ const unsigned n_b_node = this->nbubble_basis();
  //Find out how many nodes positional dofs there are
- unsigned n_position_type = this->nnodal_position_type();
+ unsigned n_basis_type = this->nnodal_basis_type();
  // Find the internal dofs
- const unsigned n_b_position_type = this->Number_of_internal_dof_types;
+ const unsigned n_b_position_type = this->nbubble_basis_type();
 
  //Get the Poisson ratio of the plate
  const double nu=get_nu();
@@ -70,12 +67,12 @@ fill_in_generic_residual_contribution_foeppl_von_karman(Vector<double> &residual
  DShape dpsi_udxi(n_node,this->dim()), dtest_udxi(n_node,this->dim());
 
  //Local c1-shape funtion
- Shape psi(n_node_w,n_position_type),test(n_node_w,n_position_type),
+ Shape psi(n_node_w,n_basis_type),test(n_node_w,n_basis_type),
   psi_b(n_b_node,n_b_position_type),test_b(n_b_node,n_b_position_type);
  
- DShape dpsi_dxi(n_node_w,n_position_type,this->dim()),dtest_dxi(n_node_w,n_position_type,this->dim()),
+ DShape dpsi_dxi(n_node_w,n_basis_type,this->dim()),dtest_dxi(n_node_w,n_basis_type,this->dim()),
   dpsi_b_dxi(n_b_node,n_b_position_type,this->dim()),dtest_b_dxi(n_b_node,n_b_position_type,this->dim()),
-  d2psi_dxi2(n_node_w,n_position_type,3), d2test_dxi2(n_node_w,n_position_type,3),
+  d2psi_dxi2(n_node_w,n_basis_type,3), d2test_dxi2(n_node_w,n_basis_type,3),
   d2psi_b_dxi2(n_b_node,n_b_position_type,3), d2test_b_dxi2(n_b_node,n_b_position_type,3);
 
  //Set the value of n_intpt
@@ -99,11 +96,11 @@ fill_in_generic_residual_contribution_foeppl_von_karman(Vector<double> &residual
    DenseMatrix<double> interpolated_duidxj(2,this->dim(),0.0);
 
    //Allocate and initialise to zero
-   Vector<double> interpolated_x(this->dim(),0.0);
+   Vector<double> interp_x(this->dim(),0.0);
    Vector<double> s(this->dim());
    s[0] = this->integral_pt()->knot(ipt,0);
    s[1] = this->integral_pt()->knot(ipt,1);
-   this->get_coordinate_x(s,interpolated_x);
+   interpolated_x(s,interp_x);
    // CALL MODIFIED SHAPE (THAT TAKES ASSOCIATION MATRIX AS AN ARGUMENT) HERE
    // MAKE SURE THAT THE MULTIPLICATION IS EFFICIENT USING BLOCK STRUCTURE
    //Call the derivatives of the shape and test functions for the unknown
@@ -120,7 +117,7 @@ fill_in_generic_residual_contribution_foeppl_von_karman(Vector<double> &residual
    // Loop over nodes
    for(unsigned l=0;l<n_node_w;l++)
     {
-     for(unsigned k=0;k<n_position_type;k++)
+     for(unsigned k=0;k<n_basis_type;k++)
       {
        //Get the nodal value of the unknown
        double w_value = this->raw_nodal_value(l,k+2);
@@ -138,7 +135,7 @@ fill_in_generic_residual_contribution_foeppl_von_karman(Vector<double> &residual
     }
 
    // Loop over internal dofs
-   for(unsigned l=0;l<Number_of_internal_dofs;l++)
+   for(unsigned l=0;l<nbubble_basis();l++)
    {
     for(unsigned k=0;k<n_b_position_type;k++)
      {
@@ -190,13 +187,13 @@ fill_in_generic_residual_contribution_foeppl_von_karman(Vector<double> &residual
    //-------------------
    double pressure(0.0);
    Vector<double> pressure_gradient(2,0.0);
-   get_pressure_foeppl_von_karman(ipt,interpolated_x,pressure);
-   get_in_plane_forcing_foeppl_von_karman(ipt,interpolated_x,pressure_gradient);
+   get_pressure_foeppl_von_karman(ipt,interp_x,pressure);
+   get_in_plane_forcing_foeppl_von_karman(ipt,interp_x,pressure_gradient);
 
    // Loop over the nodal test functions
    for(unsigned l=0;l<n_node_w;l++)
     {
-    for(unsigned k=0;k<n_position_type;k++)
+    for(unsigned k=0;k<n_basis_type;k++)
      {
      //Get the local equation
      local_eqn = this->nodal_local_eqn(l,k+2);
@@ -266,7 +263,7 @@ fill_in_generic_residual_contribution_foeppl_von_karman(Vector<double> &residual
        for(unsigned l2=0;l2<n_node_w;l2++)
         {
         // Loop over position dofs
-        for(unsigned k2=0;k2<n_position_type;k2++)
+        for(unsigned k2=0;k2<n_basis_type;k2++)
          {
           local_unknown = this->nodal_local_eqn(l2,k2+2);
           // If at a non-zero degree of freedom add in the entry
@@ -303,7 +300,7 @@ fill_in_generic_residual_contribution_foeppl_von_karman(Vector<double> &residual
          }
         }
        //Loop over the internal test functions
-       for(unsigned l2=0;l2<Number_of_internal_dofs;l2++)
+       for(unsigned l2=0;l2<nbubble_basis();l2++)
         {
         for(unsigned k2=0;k2<n_b_position_type;k2++)
          {
@@ -347,7 +344,7 @@ fill_in_generic_residual_contribution_foeppl_von_karman(Vector<double> &residual
     }
 
     // Loop over the internal test functions
-    for(unsigned l=0;l<Number_of_internal_dofs;l++)
+    for(unsigned l=0;l<nbubble_basis();l++)
     {
     for(unsigned k=0;k<n_b_position_type;k++)
      {
@@ -421,7 +418,7 @@ fill_in_generic_residual_contribution_foeppl_von_karman(Vector<double> &residual
        for(unsigned l2=0;l2<n_node_w;l2++)
         {
          // Loop over position dofs
-         for(unsigned k2=0;k2<n_position_type;k2++)
+         for(unsigned k2=0;k2<n_basis_type;k2++)
           {
           local_unknown = this->nodal_local_eqn(l2,k2+2);
           //If at a non-zero degree of freedom add in the entry
@@ -458,7 +455,7 @@ fill_in_generic_residual_contribution_foeppl_von_karman(Vector<double> &residual
           }
          }
        //Loop over the test functions again
-       for(unsigned l2=0;l2<Number_of_internal_dofs;l2++)
+       for(unsigned l2=0;l2<nbubble_basis();l2++)
         {
         // Loop over position dofs
         for(unsigned k2=0;k2<n_b_position_type;k2++)
@@ -561,7 +558,7 @@ fill_in_generic_residual_contribution_foeppl_von_karman(Vector<double> &residual
        for(unsigned l2=0;l2<n_node_w;l2++)
         {
         // Loop over position dofs
-        for(unsigned k2=0;k2<n_position_type;k2++)
+        for(unsigned k2=0;k2<n_basis_type;k2++)
          {
          //If at a non-zero degree of freedom add in the entry
          //Get the local equation
@@ -585,7 +582,7 @@ fill_in_generic_residual_contribution_foeppl_von_karman(Vector<double> &residual
         }// End loop w nodal dofs
        
        //Loop over the w internal dofs
-       for(unsigned l2=0;l2<Number_of_internal_dofs;l2++)
+       for(unsigned l2=0;l2<nbubble_basis();l2++)
         {
         // Loop over position dofs
         for(unsigned k2=0;k2<n_b_position_type;k2++)
@@ -622,8 +619,7 @@ fill_in_generic_residual_contribution_foeppl_von_karman(Vector<double> &residual
 //======================================================================
 /// Self-test:  Return 0 for OK
 //======================================================================
-template <unsigned NNODE_1D>
-unsigned  FoepplVonKarmanEquations<NNODE_1D>::self_test()
+unsigned  FoepplVonKarmanEquations::self_test()
 {
 
  bool passed=true;
@@ -653,8 +649,7 @@ unsigned  FoepplVonKarmanEquations<NNODE_1D>::self_test()
 ///
 /// nplot points in each coordinate direction
 //======================================================================
-template <unsigned NNODE_1D>
-void  FoepplVonKarmanEquations<NNODE_1D>::output(std::ostream &outfile,
+void  FoepplVonKarmanEquations::output(std::ostream &outfile,
                                     const unsigned &nplot)
 {
 
@@ -676,7 +671,7 @@ void  FoepplVonKarmanEquations<NNODE_1D>::output(std::ostream &outfile,
    u = interpolated_u_foeppl_von_karman(s);
 
    // Get x position as Vector
-   this->get_coordinate_x(s,x);
+   interpolated_x(s,x);
 
    for(unsigned i=0;i<this->dim();i++)
     {
@@ -704,8 +699,7 @@ void  FoepplVonKarmanEquations<NNODE_1D>::output(std::ostream &outfile,
 ///
 /// nplot points in each coordinate direction
 //======================================================================
-template <unsigned NNODE_1D>
-void  FoepplVonKarmanEquations<NNODE_1D>::output(FILE* file_pt,
+void  FoepplVonKarmanEquations::output(FILE* file_pt,
                                     const unsigned &nplot)
 {
  //Vector of local coordinates
@@ -723,7 +717,7 @@ void  FoepplVonKarmanEquations<NNODE_1D>::output(FILE* file_pt,
    this->get_s_plot(iplot,nplot,s);
 
    // Get x position as Vector
-   this->get_coordinate_x(s,x);
+   interpolated_x(s,x);
 
    for(unsigned i=0;i<this->dim();i++)
     {
@@ -747,8 +741,7 @@ void  FoepplVonKarmanEquations<NNODE_1D>::output(FILE* file_pt,
  ///
  ///   x,y,u_exact    or    x,y,z,u_exact
 //======================================================================
-template <unsigned NNODE_1D>
-void FoepplVonKarmanEquations<NNODE_1D>::output_fct(std::ostream &outfile,
+void FoepplVonKarmanEquations::output_fct(std::ostream &outfile,
                                        const unsigned &nplot,
                   FiniteElement::SteadyExactSolutionFctPt exact_soln_pt)
 {
@@ -773,7 +766,7 @@ void FoepplVonKarmanEquations<NNODE_1D>::output_fct(std::ostream &outfile,
    this->get_s_plot(iplot,nplot,s);
 
    // Get x position as Vector
-   this->get_coordinate_x(s,x);
+   interpolated_x(s,x);
 
    // Get exact solution at this point
    (*exact_soln_pt)(x,exact_soln);
@@ -804,8 +797,7 @@ void FoepplVonKarmanEquations<NNODE_1D>::output_fct(std::ostream &outfile,
 ///
 /// HERE THIS MAY BE SUPERFLUOUS NOW
 //======================================================================
-template <unsigned NNODE_1D>
-void FoepplVonKarmanEquations<NNODE_1D>::compute_error_in_deflection(std::ostream &outfile,
+void FoepplVonKarmanEquations::compute_error_in_deflection(std::ostream &outfile,
                                           FiniteElement::SteadyExactSolutionFctPt exact_soln_pt,
                                           double& error, double& norm)
 {
@@ -816,11 +808,11 @@ void FoepplVonKarmanEquations<NNODE_1D>::compute_error_in_deflection(std::ostrea
  // const unsigned n_node = this->nnode();
  const unsigned n_node_w = 3; // HERE
  //Find out how many bubble nodes there are
- const unsigned n_b_node = this->Number_of_internal_dofs;
+ const unsigned n_b_node = this->nbubble_basis();
  //Find out how many nodes positional dofs there are
- unsigned n_position_type = this->nnodal_position_type();
+ unsigned n_basis_type = this->nnodal_basis_type();
  // Find the internal dofs
- const unsigned n_b_position_type = this->Number_of_internal_dof_types;
+ const unsigned n_b_position_type = this->nbubble_basis_type();
 
  //Vector of local coordinates
  Vector<double> s(this->dim());
@@ -851,13 +843,13 @@ void FoepplVonKarmanEquations<NNODE_1D>::compute_error_in_deflection(std::ostrea
    double J;
    {
    //Local c1-shape funtion
-   Shape psi(n_node_w,n_position_type),test(n_node_w,n_position_type),
+   Shape psi(n_node_w,n_basis_type),test(n_node_w,n_basis_type),
     psi_b(n_b_node,n_b_position_type),test_b(n_b_node,n_b_position_type);
    
 
-   DShape dpsi_dxi(n_node_w,n_position_type,this->dim()),dtest_dxi(n_node_w,n_position_type,this->dim()),
+   DShape dpsi_dxi(n_node_w,n_basis_type,this->dim()),dtest_dxi(n_node_w,n_basis_type,this->dim()),
     dpsi_b_dxi(n_b_node,n_b_position_type,this->dim()),dtest_b_dxi(n_b_node,n_b_position_type,this->dim()),
-    d2psi_dxi2(n_node_w,n_position_type,3), d2test_dxi2(n_node_w,n_position_type,3),
+    d2psi_dxi2(n_node_w,n_basis_type,3), d2test_dxi2(n_node_w,n_basis_type,3),
     d2psi_b_dxi2(n_b_node,n_b_position_type,3), d2test_b_dxi2(n_b_node,n_b_position_type,3);
 
    J=this-> d2shape_and_d2test_eulerian_foeppl_von_karman(s,
@@ -869,7 +861,7 @@ void FoepplVonKarmanEquations<NNODE_1D>::compute_error_in_deflection(std::ostrea
    // double Wlin = w*Jlin;
 
    // Get x position as Vector
-   this->get_coordinate_x(s,x);
+   interpolated_x(s,x);
 
    // Get FE function value
    Vector<double> u_fe(this->required_nvalue(0),0.0);
@@ -911,8 +903,7 @@ void FoepplVonKarmanEquations<NNODE_1D>::compute_error_in_deflection(std::ostrea
  /// Plot error at a given number of plot points.
  ///
 //======================================================================
-template <unsigned NNODE_1D>
-void FoepplVonKarmanEquations<NNODE_1D>::compute_error(std::ostream &outfile,
+void FoepplVonKarmanEquations::compute_error(std::ostream &outfile,
                                           FiniteElement::SteadyExactSolutionFctPt exact_soln_pt,
                                           double& error, double& norm)
 {
@@ -924,11 +915,11 @@ void FoepplVonKarmanEquations<NNODE_1D>::compute_error(std::ostream &outfile,
  // const unsigned n_node = this->nnode();
  const unsigned n_node_w = 3; // HERE
  //Find out how many bubble nodes there are
- const unsigned n_b_node = this->Number_of_internal_dofs;
+ const unsigned n_b_node = this->nbubble_basis();
  //Find out how many nodes positional dofs there are
- unsigned n_position_type = this->nnodal_position_type();
+ unsigned n_basis_type = this->nnodal_basis_type();
  // Find the internal dofs
- const unsigned n_b_position_type = this->Number_of_internal_dof_types;
+ const unsigned n_b_position_type = this->nbubble_basis_type();
 
  //Vector of local coordinates
  Vector<double> s(this->dim());
@@ -963,13 +954,13 @@ void FoepplVonKarmanEquations<NNODE_1D>::compute_error(std::ostream &outfile,
    // double Jlin = this->J_eulerian1(s);// Nope
    {
    //Local c1-shape funtion
-   Shape psi(n_node_w,n_position_type),test(n_node_w,n_position_type),
+   Shape psi(n_node_w,n_basis_type),test(n_node_w,n_basis_type),
     psi_b(n_b_node,n_b_position_type),test_b(n_b_node,n_b_position_type);
    
 
-   DShape dpsi_dxi(n_node_w,n_position_type,this->dim()),dtest_dxi(n_node_w,n_position_type,this->dim()),
+   DShape dpsi_dxi(n_node_w,n_basis_type,this->dim()),dtest_dxi(n_node_w,n_basis_type,this->dim()),
     dpsi_b_dxi(n_b_node,n_b_position_type,this->dim()),dtest_b_dxi(n_b_node,n_b_position_type,this->dim()),
-    d2psi_dxi2(n_node_w,n_position_type,3), d2test_dxi2(n_node_w,n_position_type,3),
+    d2psi_dxi2(n_node_w,n_basis_type,3), d2test_dxi2(n_node_w,n_basis_type,3),
     d2psi_b_dxi2(n_b_node,n_b_position_type,3), d2test_b_dxi2(n_b_node,n_b_position_type,3);
 
 
@@ -982,7 +973,7 @@ void FoepplVonKarmanEquations<NNODE_1D>::compute_error(std::ostream &outfile,
    // double Wlin = w*Jlin;
 
    // Get x position as Vector
-   this->get_coordinate_x(s,x);
+   interpolated_x(s,x);
 
    // Get FE function value
    Vector<double> u_fe(this->required_nvalue(0),0.0);
@@ -1022,12 +1013,4 @@ void FoepplVonKarmanEquations<NNODE_1D>::compute_error(std::ostream &outfile,
    error += tmp2*W;
   } //End of loop over integration pts
 }
-
-
-template class FoepplVonKarmanEquations<2>;
-
-template class FoepplVonKarmanEquations<3>;
-
-template class FoepplVonKarmanEquations<4>;
-
 }

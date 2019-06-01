@@ -51,9 +51,7 @@ namespace oomph
 /// This contains the generic maths. Shape functions, geometric
 /// mapping etc. must get implemented in derived class.
 //=============================================================
-//HERE should we get rid of DIM as template? Seems misleading
-template <unsigned NNODE_1D>
-class FoepplVonKarmanEquations : public virtual TElement<2,NNODE_1D>
+class FoepplVonKarmanEquations : public virtual FiniteElement
 {
 
 public:
@@ -90,20 +88,16 @@ const unsigned& boundary_number, const PressureFctPt& u)=0;
  // NB do we need this?
  
  /// \short (Read only) Access to number of internal dofs
- unsigned number_of_internal_dofs() const {return this->Number_of_internal_dofs;}
+// unsigned number_of_internal_dofs() const {return this->nbubble_basis();}
 
- /// \short (pure virtual) function that precomputes association matrix between
- /// the basis functions of the basic element and the physical element.
- virtual void precompute_association_matrix(DenseMatrix<double>& m)=0;
- 
- /// short (pure virtual) function that returns the number of basis functions in 
- /// the physical element
- virtual double n_basis_functions()=0;
+ // Get the number of basis functions, pure virtual
+ virtual unsigned nnodal_basis_type() const =  0;
 
- /// short (pure virtual) function that returns the number of basis functions in
- /// the basic element
- virtual double n_basic_basis_functions()=0;
+ // Get the number of internal basis functions, pure virtual
+ virtual unsigned nbubble_basis() const = 0;
 
+ // Get the number of internal basis functions, pure virtual
+ virtual unsigned nbubble_basis_type() const = 0;
  
  public:
 
@@ -123,8 +117,7 @@ const unsigned& boundary_number, const PressureFctPt& u)=0;
 
  /// Constructor (must initialise the Pressure_fct_pt to null)
  FoepplVonKarmanEquations() : Pressure_fct_pt(0),
-   In_plane_forcing_fct_pt(0),Number_of_internal_dofs(0),
-   Number_of_internal_dof_types(0), Error_metric_fct_pt(0),
+   In_plane_forcing_fct_pt(0), Error_metric_fct_pt(0),
     Multiple_error_metric_fct_pt(0), Association_matrix_pt(0) 
   {
    Eta_pt = &Default_Eta_Value;
@@ -341,18 +334,10 @@ const unsigned& boundary_number, const PressureFctPt& u)=0;
  /// Add the element's contribution to its residual vector (wrapper)
  void fill_in_contribution_to_residuals(Vector<double> &residuals)
   {
-   // Precompute the association matrix
-   DenseMatrix<double> conversion_matrix (n_basis_functions(),
-    n_basic_basis_functions(),0.0);
-   this->precompute_association_matrix(conversion_matrix);
-   this->Association_matrix_pt=&conversion_matrix;
-
    //Call the generic residuals function with flag set to 0
    //using a dummy matrix argument
    fill_in_generic_residual_contribution_foeppl_von_karman(
     residuals,GeneralisedElement::Dummy_matrix,0);
-
-   Association_matrix_pt=0;
   }
 
 
@@ -361,15 +346,8 @@ const unsigned& boundary_number, const PressureFctPt& u)=0;
  void fill_in_contribution_to_jacobian(Vector<double> &residuals,
                                    DenseMatrix<double> &jacobian)
   {
-   DenseMatrix<double> conversion_matrix (n_basis_functions(),
-    n_basic_basis_functions(),0.0);
-   this->precompute_association_matrix(conversion_matrix);
-   this->Association_matrix_pt=&conversion_matrix;
-
    //Call the generic routine with the flag set to 1
    fill_in_generic_residual_contribution_foeppl_von_karman(residuals,jacobian,1);
-
-   Association_matrix_pt=0;
   }
 
  /// Add the element's contribution to its residual vector and
@@ -397,15 +375,15 @@ const unsigned& boundary_number, const PressureFctPt& u)=0;
  virtual inline Vector<double> interpolated_u_foeppl_von_karman(const Vector<double> &s) const
   {
    //Find number of position dofs
-   const unsigned n_position_type = this->nnodal_position_type();
+   const unsigned n_basis_type = this->nnodal_basis_type();
    // Find the internal dofs
-   const unsigned n_b_position_type = this->Number_of_internal_dof_types;
+   const unsigned n_b_position_type = this->nbubble_basis_type();
    //Find out how many nodes there are
    const unsigned n_w_node = 3;
   //Find out how many nodes there are
    const unsigned n_node = this->nnode();
    //Find out how many internal points there are
-   const unsigned n_b_node = this->Number_of_internal_dofs;
+   const unsigned n_b_node = this->nbubble_basis();
    //Get the index at which the unknown is stored
    const unsigned u_nodal_index = u_nodal_index_foeppl_von_karman();
    //Get the index at which the unknown is stored
@@ -416,12 +394,12 @@ const unsigned& boundary_number, const PressureFctPt& u)=0;
    const unsigned n_second_deriv = (this->dim()*(this->dim()+1))/2;
 
    //Local c1-shape funtion
-   Shape psi(n_w_node,n_position_type),test(n_w_node,n_position_type),
+   Shape psi(n_w_node,n_basis_type),test(n_w_node,n_basis_type),
     psi_b(n_b_node,n_b_position_type),test_b(n_b_node,n_b_position_type);
    
-   DShape dpsi_dxi(n_w_node,n_position_type,this->dim()),dtest_dxi(n_w_node,n_position_type,this->dim()),
+   DShape dpsi_dxi(n_w_node,n_basis_type,this->dim()),dtest_dxi(n_w_node,n_basis_type,this->dim()),
     dpsi_b_dxi(n_b_node,n_b_position_type,this->dim()),dtest_b_dxi(n_b_node,n_b_position_type,this->dim()),
-    d2psi_dxi2(n_w_node,n_position_type,n_second_deriv), d2test_dxi2(n_w_node,n_position_type,n_second_deriv),
+    d2psi_dxi2(n_w_node,n_basis_type,n_second_deriv), d2test_dxi2(n_w_node,n_basis_type,n_second_deriv),
     d2psi_b_dxi2(n_b_node,n_b_position_type,n_second_deriv), d2test_b_dxi2(n_b_node,n_b_position_type,n_second_deriv);
    
    // In--plane dofs
@@ -447,7 +425,7 @@ const unsigned& boundary_number, const PressureFctPt& u)=0;
    //Interpolated unknown
    for(unsigned l=0;l<n_w_node;l++)
    {
-    for(unsigned k=0;k<n_position_type;k++)
+    for(unsigned k=0;k<n_basis_type;k++)
      {
      // u_3
      interpolated_u[0] += this->nodal_value(l,w_nodal_index+k)*psi(l,k);
@@ -464,9 +442,9 @@ const unsigned& boundary_number, const PressureFctPt& u)=0;
    }
 
    // Bubble dofs
-   for(unsigned l=0;l<Number_of_internal_dofs;l++)
+   for(unsigned l=0;l<nbubble_basis();l++)
    {
-    for(unsigned k=0;k<Number_of_internal_dof_types;k++)
+    for(unsigned k=0;k<nbubble_basis_type();k++)
      {
       double u_value = get_w_bubble_dof(l,w_bubble_index+k);
       // u_3
@@ -500,8 +478,8 @@ const unsigned& boundary_number, const PressureFctPt& u)=0;
  /// \short Self-test: Return 0 for OK
  unsigned self_test();
 
- /// \short get the coordinate
- virtual void get_coordinate_x(const Vector<double>& s, Vector<double>& x) const=0;
+// /// \short get the coordinate
+// virtual void get_coordinate_x(const Vector<double>& s, Vector<double>& x) const=0;
  
 // /// Wrapper
 // void interpolated_x(const Vector<double>& s, Vector<double>& x) const
@@ -575,12 +553,10 @@ protected:
 
  /// \short unsigned that holds the internal 'bubble' dofs the element has -
  // zero for Bell Elements and 3 for C1 curved elements
- unsigned Number_of_internal_dofs;
 
  /// \short unsigned that holds the number of types of degree of freedom at each
  // internal point that the element has zero for Bell Elements and 1
  // for C1 curved elements
- unsigned Number_of_internal_dof_types;
 
  /// Default value for physical constant: Poisson ratio. 
  static const double Default_Nu_Value;
