@@ -476,10 +476,6 @@ template < unsigned NNODE_1D>
  "void FoepplVonKarmanC1CurvedBellElement<NNODE_1D>::\
 shape_and_test_foeppl_von_karman(...)", OOMPH_EXCEPTION_LOCATION); // HERE
 
- // Get dummy shape functions for the Bell call
- DShape dpsidx(3,6,2);
- DShape d2psidx(3,6,3);
-   
  this->basis(s,psi,psi_b); 
  
  // Rotate the degrees of freedom
@@ -563,6 +559,7 @@ template < unsigned NNODE_1D>
 inline void FoepplVonKarmanC1CurvedBellElement<NNODE_1D>::
  rotate_shape(Shape& psi) const
 {
+ const unsigned n_dof_types  = nnodal_basis_type();
  // Loop over the nodes with rotated dofs
  for(unsigned i=0; i<Nnodes_to_rotate; ++i)
   {
@@ -570,17 +567,17 @@ inline void FoepplVonKarmanC1CurvedBellElement<NNODE_1D>::
    unsigned inode = Nodes_to_rotate[i];
 
    // Construct the vectors to hold the shape functions
-   Vector<double> psi_vector(6);
+   Vector<double> psi_vector(n_dof_types);
 
    // Get the rotation matrix
-   DenseDoubleMatrix  rotation_matrix(6,6,0.0);
+   DenseDoubleMatrix  rotation_matrix(n_dof_types,n_dof_types,0.0);
    this->rotation_matrix_at_node(inode,rotation_matrix);
 
    // Copy to the vectors
-   for(unsigned l=0;l<6;++l)
+   for(unsigned l=0;l<n_dof_types;++l)
     {
      // Copy to the vectors
-     for(unsigned k=0;k<6;++k)
+     for(unsigned k=0;k<n_dof_types;++k)
       {
       // Copy over shape functions
      // psi_vector[l]=psi(inode,l);
@@ -589,7 +586,7 @@ inline void FoepplVonKarmanC1CurvedBellElement<NNODE_1D>::
     }
 
    // Copy back to shape the rotated vetcors
-   for(unsigned l=0;l<6;++l)
+   for(unsigned l=0;l<n_dof_types;++l)
     {
       // Copy over shape functions
       psi(inode,l)=psi_vector[l];
@@ -607,6 +604,8 @@ template < unsigned NNODE_1D>
 inline void FoepplVonKarmanC1CurvedBellElement<NNODE_1D>::
  rotate_shape(Shape& psi, DShape& dpsidx) const
 {
+ const unsigned n_dof_types  = nnodal_basis_type();
+ const unsigned n_dim  = this->dim();
  // Loop over the nodes with rotated dofs
  for(unsigned i=0; i<Nnodes_to_rotate; ++i)
   {
@@ -614,35 +613,35 @@ inline void FoepplVonKarmanC1CurvedBellElement<NNODE_1D>::
    unsigned inode = Nodes_to_rotate[i];
 
    // Construct the vectors to hold the shape functions
-   Vector<double> psi_vector(6);
-   Vector<Vector<double> > dpsi_vector_dxi(2,Vector<double>(6));
+   Vector<double> psi_vector(n_dof_types);
+   Vector<Vector<double> > dpsi_vector_dxi(n_dim,Vector<double>(n_dof_types));
 
    // Get the rotation matrix
-   DenseDoubleMatrix  rotation_matrix(6,6,0.0);
+   DenseDoubleMatrix  rotation_matrix(n_dof_types,n_dof_types,0.0);
    this->rotation_matrix_at_node(inode,rotation_matrix);
 
    // Copy to the vectors
-   for(unsigned l=0;l<6;++l)
+   for(unsigned l=0;l<n_dof_types;++l)
     {
      // Copy to the vectors
-     for(unsigned k=0;k<6;++k)
+     for(unsigned k=0;k<n_dof_types;++k)
       {
       // Copy over shape functions
      // psi_vector[l]=psi(inode,l);
       psi_vector[l]+=psi(inode,k)*rotation_matrix(l,k); 
       // Copy over first derivatives
-      for(unsigned i=0;i<2; ++i)
+      for(unsigned i=0;i<n_dim; ++i)
        {dpsi_vector_dxi[i][l]+=dpsidx(inode,k,i)*rotation_matrix(l,k);}
       }
     }
 
    // Copy back to shape the rotated vetcors
-   for(unsigned l=0;l<6;++l)
+   for(unsigned l=0;l<n_dof_types;++l)
     {
       // Copy over shape functions
       psi(inode,l)=psi_vector[l];
       // Copy over first derivatives
-      for(unsigned i=0;i<2; ++i)
+      for(unsigned i=0;i<n_dim; ++i)
         {dpsidx(inode,l,i)=dpsi_vector_dxi[i][l];}
     }
   }
@@ -658,6 +657,10 @@ template < unsigned NNODE_1D>
 inline void FoepplVonKarmanC1CurvedBellElement<NNODE_1D>::
  rotate_shape(Shape& psi, DShape& dpsidx, DShape& d2psidx) const
 {
+ const unsigned n_dof_types  = nnodal_basis_type();
+ const unsigned n_dim  = this->dim();
+ // n_dimth triangle number
+ const unsigned n_2ndderiv = ((n_dim+1)*(n_dim))/2; // Guaranteed to be positive
  // Loop over the nodes with rotated dofs
  for(unsigned i=0; i<Nnodes_to_rotate; ++i)
   {
@@ -665,41 +668,41 @@ inline void FoepplVonKarmanC1CurvedBellElement<NNODE_1D>::
    unsigned inode = Nodes_to_rotate[i];
 
    // Construct the vectors to hold the shape functions
-   Vector<double> psi_vector(6);
-   Vector<Vector<double> > dpsi_vector_dxi(2,Vector<double>(6));
-   Vector<Vector<double> > d2psi_vector_dxidxj(3,Vector<double>(6));
+   Vector<double> psi_vector(n_dof_types);
+   Vector<Vector<double> > dpsi_vector_dxi(n_dim,Vector<double>(n_dof_types));
+   Vector<Vector<double> > d2psi_vector_dxidxj(n_2ndderiv,Vector<double>(n_dof_types));
 
    // Get the rotation matrix
-   DenseDoubleMatrix  rotation_matrix(6,6,0.0);
+   DenseDoubleMatrix  rotation_matrix(n_dof_types,n_dof_types,0.0);
    this->rotation_matrix_at_node(inode,rotation_matrix);
 
    // Copy to the vectors
-   for(unsigned l=0;l<6;++l)
+   for(unsigned l=0;l<n_dof_types;++l)
     {
      // Copy to the vectors
-     for(unsigned k=0;k<6;++k)
+     for(unsigned k=0;k<n_dof_types;++k)
       {
       // Copy over shape functions
      // psi_vector[l]=psi(inode,l);
       psi_vector[l]+=psi(inode,k)*rotation_matrix(l,k); 
       // Copy over first derivatives
-      for(unsigned i=0;i<2; ++i)
+      for(unsigned i=0;i<n_dim; ++i)
        {dpsi_vector_dxi[i][l]+=dpsidx(inode,k,i)*rotation_matrix(l,k);}
-      for(unsigned i=0;i<3; ++i)
+      for(unsigned i=0;i<n_2ndderiv; ++i)
        {d2psi_vector_dxidxj[i][l]+=d2psidx(inode,k,i)*rotation_matrix(l,k);}
       }
     }
 
    // Copy back to shape the rotated vetcors
-   for(unsigned l=0;l<6;++l)
+   for(unsigned l=0;l<n_dof_types;++l)
     {
       // Copy over shape functions
       psi(inode,l)=psi_vector[l];
       // Copy over first derivatives
-      for(unsigned i=0;i<2; ++i)
+      for(unsigned i=0;i<n_dim; ++i)
         {dpsidx(inode,l,i)=dpsi_vector_dxi[i][l];}
       // Copy over second derivatives
-      for(unsigned i=0;i<3; ++i)
+      for(unsigned i=0;i<n_2ndderiv; ++i)
         {d2psidx(inode,l,i)=d2psi_vector_dxidxj[i][l];}
     }
   }
@@ -723,8 +726,8 @@ template < unsigned NNODE_1D>
  double J;
 
  // Get the Jacobian
- DenseMatrix<double> jacobian(this->dim(),this->dim(),0.0),
-             inverse_jacobian(this->dim(),this->dim(),0.0); //HERE
+ DenseMatrix<double> jacobian(this->dim(),this->dim()),
+             inverse_jacobian(this->dim(),this->dim());
  J = CurvableBellElement<NNODE_1D>::local_to_eulerian_mapping(s,jacobian,inverse_jacobian);
  // If the element has been upgraded
  // Now find the global derivatives
@@ -736,7 +739,6 @@ template < unsigned NNODE_1D>
      dpsidx(l,i)=0.0;
      for(unsigned j=0; j<this->dim(); ++j)
       {
-       // NB MyJ = oomphJ' consider fixing? // HERE
        // Convert to local coordinates
        dpsidx(l,i)+=inverse_jacobian(i,j)*dpsids(l,j);
       }
@@ -750,14 +752,13 @@ template < unsigned NNODE_1D>
 template < unsigned NNODE_1D>
  void FoepplVonKarmanC1CurvedBellElement<NNODE_1D>::pin_all_deflection_dofs() const
  {
-  // CHECK HERE
   // Curved Bell elements only have deflection dofs at vertices
-  for(unsigned n=0; n<3; ++n)
+  for(unsigned n=0; n<nnode_outofplane(); ++n)
    {
     // Get node
     Node* nod_pt=this->node_pt(n);
     // Check if it is on the boundary
-    for(unsigned i=0;i<6;++i)
+    for(unsigned i=0;i<nnodal_basis_type();++i)
      {
       // Pin and set the value
       nod_pt->pin(2+i);
@@ -767,16 +768,14 @@ template < unsigned NNODE_1D>
 
   // Get number of internal dofs
   const unsigned n_b_node=nbubble_basis();
-  // const unsigned n_b_position_type = this->Number_of_internal_dof_types;
+  // In general - but we only have one type
+  /* const unsigned n_b_position_type = nbubble_basis_type(); */
   // Now fix internal dofs
   for(unsigned n=0; n<n_b_node; ++n)
    {
-    // Get node
-    // Pin and set the value
-   // for(unsigned l=0;l<n_b_position_type;++l)
-   //  {
-      this->internal_data_pt(Bubble_w_internal_index)->pin(n);
-   //  }
+   // Get node
+   // Pin and set the value
+   this->internal_data_pt(Bubble_w_internal_index)->pin(n);
    }
  }
 
@@ -786,7 +785,7 @@ template < unsigned NNODE_1D>
  fix_out_of_plane_displacement_dof(const unsigned& dof_number, const unsigned&
 b,const DisplacementFctPt& specified_deflection_fct_pt)
  {
-  const unsigned n_vertices = 3, n_dof_types = 6;
+  const unsigned n_vertices = nnode_outofplane(), n_dof_types = nnodal_basis_type();
   // Check that the dof number is a sensible value
   if(dof_number >= n_dof_types)
    {

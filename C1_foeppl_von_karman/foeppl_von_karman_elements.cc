@@ -48,10 +48,9 @@ fill_in_generic_residual_contribution_foeppl_von_karman(Vector<double> &residual
                                               DenseMatrix<double> &jacobian,
                                               const unsigned& flag)
 {
- // CALL GET SHAPE ASSOCIATION MATRIX HERE
  //Find out how many nodes there are
  const unsigned n_u_node = nnode_inplane();
- const unsigned n_w_node = nnode_outofplane(); // HERE
+ const unsigned n_w_node = nnode_outofplane(); 
  //Find out how many bubble nodes there are
  const unsigned n_b_node = nbubble_basis();
  //Find out how many nodes positional dofs there are
@@ -101,8 +100,6 @@ fill_in_generic_residual_contribution_foeppl_von_karman(Vector<double> &residual
    s[0] = this->integral_pt()->knot(ipt,0);
    s[1] = this->integral_pt()->knot(ipt,1);
    interpolated_x(s,interp_x);
-   // CALL MODIFIED SHAPE (THAT TAKES ASSOCIATION MATRIX AS AN ARGUMENT) HERE
-   // MAKE SURE THAT THE MULTIPLICATION IS EFFICIENT USING BLOCK STRUCTURE
    //Call the derivatives of the shape and test functions for the unknown
    double J = d2shape_and_d2test_eulerian_foeppl_von_karman(s,
     psi, psi_b, dpsi_dxi, dpsi_b_dxi, d2psi_dxi2, d2psi_b_dxi2,
@@ -913,7 +910,7 @@ void FoepplVonKarmanEquations::compute_error(std::ostream &outfile,
 
  //Find out how many nodes there are
  // const unsigned n_u_node = this->nnode();
- const unsigned n_w_node = nnode_outofplane(); // HERE
+ const unsigned n_w_node = nnode_outofplane(); 
  //Find out how many bubble nodes there are
  const unsigned n_b_node = nbubble_basis();
  //Find out how many nodes positional dofs there are
