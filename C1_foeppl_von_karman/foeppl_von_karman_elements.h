@@ -52,8 +52,8 @@ namespace oomph
 /// mapping etc. must get implemented in derived class.
 //=============================================================
 //HERE should we get rid of DIM as template? Seems misleading
-template <unsigned DIM, unsigned NNODE_1D>
-class FoepplVonKarmanEquations : public virtual TElement<DIM,NNODE_1D>
+template <unsigned NNODE_1D>
+class FoepplVonKarmanEquations : public virtual TElement<2,NNODE_1D>
 {
 
 public:
@@ -227,10 +227,10 @@ const unsigned& boundary_number, const PressureFctPt& u)=0;
    // Poisson ratio
    double nu(get_nu());
    // Truncated Green Lagrange strain tensor
-   DenseMatrix<double> epsilon(DIM,DIM,0.0);
-   for(unsigned alpha=0;alpha<DIM;++alpha)
+   DenseMatrix<double> epsilon(this->dim(),this->dim(),0.0);
+   for(unsigned alpha=0;alpha<this->dim();++alpha)
     {
-     for(unsigned beta=0;beta<DIM;++beta)
+     for(unsigned beta=0;beta<this->dim();++beta)
       {
        // Truncated Green Lagrange strain tensor
        epsilon(alpha,beta) += 0.5* grad_u(alpha,beta) + 0.5*grad_u(beta,alpha)
@@ -239,9 +239,9 @@ const unsigned& boundary_number, const PressureFctPt& u)=0;
     }
    
    // Now construct the Stress
-   for(unsigned alpha=0;alpha<DIM;++alpha)
+   for(unsigned alpha=0;alpha<this->dim();++alpha)
     {
-     for(unsigned beta=0;beta<DIM;++beta)
+     for(unsigned beta=0;beta<this->dim();++beta)
       {
        // The Laplacian term: Trace[ \epsilon ] I
        // \nu * \epsilon_{\alpha \beta} delta_{\gamma \gamma}
@@ -324,7 +324,7 @@ const unsigned& boundary_number, const PressureFctPt& u)=0;
                                         Vector<double>& pressure) const
   {
    //In plane is same as DIM of problem (2)
-   pressure.resize(DIM);
+   pressure.resize(this->dim());
    //If no pressure function has been set, return zero
    if(In_plane_forcing_fct_pt==0)
     {
@@ -413,22 +413,22 @@ const unsigned& boundary_number, const PressureFctPt& u)=0;
    //Get the index at which the unknown is stored
    const unsigned w_bubble_index = 0; //w_index_foeppl_von_karman();
    // Number of unique second deriv. will be the DIMth triangle number
-   const unsigned n_second_deriv = (DIM*(DIM+1))/2;
+   const unsigned n_second_deriv = (this->dim()*(this->dim()+1))/2;
 
    //Local c1-shape funtion
    Shape psi(n_w_node,n_position_type),test(n_w_node,n_position_type),
     psi_b(n_b_node,n_b_position_type),test_b(n_b_node,n_b_position_type);
    
-   DShape dpsi_dxi(n_w_node,n_position_type,DIM),dtest_dxi(n_w_node,n_position_type,DIM),
-    dpsi_b_dxi(n_b_node,n_b_position_type,DIM),dtest_b_dxi(n_b_node,n_b_position_type,DIM),
+   DShape dpsi_dxi(n_w_node,n_position_type,this->dim()),dtest_dxi(n_w_node,n_position_type,this->dim()),
+    dpsi_b_dxi(n_b_node,n_b_position_type,this->dim()),dtest_b_dxi(n_b_node,n_b_position_type,this->dim()),
     d2psi_dxi2(n_w_node,n_position_type,n_second_deriv), d2test_dxi2(n_w_node,n_position_type,n_second_deriv),
     d2psi_b_dxi2(n_b_node,n_b_position_type,n_second_deriv), d2test_b_dxi2(n_b_node,n_b_position_type,n_second_deriv);
    
    // In--plane dofs
    Shape psi_u(n_node);
-   DShape dpsi_u(n_node,DIM);
+   DShape dpsi_u(n_node,this->dim());
    Shape test_u(n_node);
-   DShape dtest_u(n_node,DIM);
+   DShape dtest_u(n_node,this->dim());
 
    // Number of in-plane displacement fields is equal to dimension
    const unsigned n_u_fields = 2;// DIM;
@@ -452,12 +452,12 @@ const unsigned& boundary_number, const PressureFctPt& u)=0;
      // u_3
      interpolated_u[0] += this->nodal_value(l,w_nodal_index+k)*psi(l,k);
      // d_u_3_dx_alpha
-     for(unsigned alpha=0;alpha<DIM;++alpha)
+     for(unsigned alpha=0;alpha<this->dim();++alpha)
       {interpolated_u[1+alpha] += this->nodal_value(l,w_nodal_index+k)*dpsi_dxi(l,k,alpha);}
      // d2_u_3_dx_alpha dx_beta
      for(unsigned alphabeta=0;alphabeta<n_second_deriv;++alphabeta)
       {
-      interpolated_u[DIM+1+alphabeta] += this->nodal_value(l,w_nodal_index+k)
+      interpolated_u[this->dim()+1+alphabeta] += this->nodal_value(l,w_nodal_index+k)
          *d2psi_dxi2(l,k,alphabeta);
       }
      }
@@ -472,12 +472,12 @@ const unsigned& boundary_number, const PressureFctPt& u)=0;
       // u_3
       interpolated_u[0] += u_value * psi_b(l,w_bubble_index+k);
       // d_u_3_dx_alpha
-      for(unsigned alpha=0;alpha<DIM;++alpha)
+      for(unsigned alpha=0;alpha<this->dim();++alpha)
        { interpolated_u[1+alpha] += u_value*dpsi_b_dxi(l,w_bubble_index+k,alpha); }
       // d2_u_3_dx_alpha dx_beta
      for(unsigned alphabeta=0;alphabeta<n_second_deriv;++alphabeta)
       {
-       interpolated_u[DIM+1+alphabeta] += u_value*d2psi_b_dxi2(l,w_bubble_index+k,alphabeta);
+       interpolated_u[this->dim()+1+alphabeta] += u_value*d2psi_b_dxi2(l,w_bubble_index+k,alphabeta);
       }
      }
    }
@@ -488,7 +488,7 @@ const unsigned& boundary_number, const PressureFctPt& u)=0;
      interpolated_u[6] += this->nodal_value(l,u_nodal_index+0)*psi_u(l);
      interpolated_u[7] += this->nodal_value(l,u_nodal_index+1)*psi_u(l);
     // // Also output the in--plane displacement derivatives
-    // for(unsigned i=0; i<DIM; ++i)
+    // for(unsigned i=0; i<this->dim(); ++i)
     //  {
     //  interpolated_u[8 +i] += this->nodal_value(l,u_nodal_index+0)*dpsi_u(l,i);
     //  interpolated_u[10+i] += this->nodal_value(l,u_nodal_index+1)*dpsi_u(l,i);

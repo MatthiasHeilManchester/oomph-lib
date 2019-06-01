@@ -33,20 +33,20 @@
 namespace oomph
 {
  /// \short Default to incompressible sheet Poisson ratio
- template <unsigned DIM, unsigned NNODE_1D>
- const double FoepplVonKarmanEquations<DIM,NNODE_1D>::Default_Nu_Value=0.5;
+ template <unsigned NNODE_1D>
+ const double FoepplVonKarmanEquations<NNODE_1D>::Default_Nu_Value=0.5;
  
  /// \short Default to 'natural' FvK nondimensionalisation which is h 
  /// independent (NB NOT the same as in JFM paper)
- template <unsigned DIM, unsigned NNODE_1D>
- const double FoepplVonKarmanEquations<DIM,NNODE_1D>::Default_Eta_Value=1;
+ template <unsigned NNODE_1D>
+ const double FoepplVonKarmanEquations<NNODE_1D>::Default_Eta_Value=1;
 
 
 //======================================================================
 /// Fill in generic residual and jacobian contribution 
 //======================================================================
-template <unsigned DIM, unsigned NNODE_1D>
-void  FoepplVonKarmanEquations<DIM,NNODE_1D>::
+template <unsigned NNODE_1D>
+void  FoepplVonKarmanEquations<NNODE_1D>::
 fill_in_generic_residual_contribution_foeppl_von_karman(Vector<double> &residuals,
                                               DenseMatrix<double> &jacobian,
                                               const unsigned& flag)
@@ -67,14 +67,14 @@ fill_in_generic_residual_contribution_foeppl_von_karman(Vector<double> &residual
 
  //Set up memory for the shape and test functions
  Shape psi_u(n_node), test_u(n_node);
- DShape dpsi_udxi(n_node,DIM), dtest_udxi(n_node,DIM);
+ DShape dpsi_udxi(n_node,this->dim()), dtest_udxi(n_node,this->dim());
 
  //Local c1-shape funtion
  Shape psi(n_node_w,n_position_type),test(n_node_w,n_position_type),
   psi_b(n_b_node,n_b_position_type),test_b(n_b_node,n_b_position_type);
  
- DShape dpsi_dxi(n_node_w,n_position_type,DIM),dtest_dxi(n_node_w,n_position_type,DIM),
-  dpsi_b_dxi(n_b_node,n_b_position_type,DIM),dtest_b_dxi(n_b_node,n_b_position_type,DIM),
+ DShape dpsi_dxi(n_node_w,n_position_type,this->dim()),dtest_dxi(n_node_w,n_position_type,this->dim()),
+  dpsi_b_dxi(n_b_node,n_b_position_type,this->dim()),dtest_b_dxi(n_b_node,n_b_position_type,this->dim()),
   d2psi_dxi2(n_node_w,n_position_type,3), d2test_dxi2(n_node_w,n_position_type,3),
   d2psi_b_dxi2(n_b_node,n_b_position_type,3), d2test_b_dxi2(n_b_node,n_b_position_type,3);
 
@@ -91,16 +91,16 @@ fill_in_generic_residual_contribution_foeppl_von_karman(Vector<double> &residual
 
    //Calculate values of unknown
    Vector<double> interpolated_w(1,0.0);
-   DenseMatrix<double> interpolated_dwdxi(1,DIM,0.0);
+   DenseMatrix<double> interpolated_dwdxi(1,this->dim(),0.0);
    DenseMatrix<double> interpolated_d2wdxi2(1,3,0.0);
    
    //Calculate values of unknown
    Vector<double> interpolated_u(2,0.0);
-   DenseMatrix<double> interpolated_duidxj(2,DIM,0.0);
+   DenseMatrix<double> interpolated_duidxj(2,this->dim(),0.0);
 
    //Allocate and initialise to zero
-   Vector<double> interpolated_x(DIM,0.0);
-   Vector<double> s(DIM);
+   Vector<double> interpolated_x(this->dim(),0.0);
+   Vector<double> s(this->dim());
    s[0] = this->integral_pt()->knot(ipt,0);
    s[1] = this->integral_pt()->knot(ipt,1);
    this->get_coordinate_x(s,interpolated_x);
@@ -126,7 +126,7 @@ fill_in_generic_residual_contribution_foeppl_von_karman(Vector<double> &residual
        double w_value = this->raw_nodal_value(l,k+2);
        interpolated_w[0] += w_value*psi(l,k);
        // Loop over directions
-       for(unsigned j=0;j<DIM;j++)
+       for(unsigned j=0;j<this->dim();j++)
         {
          interpolated_dwdxi(0,j) += w_value*dpsi_dxi(l,k,j);
         }
@@ -146,7 +146,7 @@ fill_in_generic_residual_contribution_foeppl_von_karman(Vector<double> &residual
       double u_value = get_w_bubble_dof(l,k);
       interpolated_w[0] += u_value*psi_b(l,k);
       // Loop over directions
-      for(unsigned j=0;j<DIM;j++)
+      for(unsigned j=0;j<this->dim();j++)
        {
         interpolated_dwdxi(0,j) += u_value*dpsi_b_dxi(l,k,j);
        }
@@ -166,7 +166,7 @@ fill_in_generic_residual_contribution_foeppl_von_karman(Vector<double> &residual
        interpolated_u[alpha] += u_value*psi_u(l);
   
         // Loop over directions
-        for(unsigned beta=0; beta<DIM; beta++)
+        for(unsigned beta=0; beta<this->dim(); beta++)
          {
           interpolated_duidxj(alpha,beta) += u_value*dpsi_udxi(l,beta);
          }
@@ -622,8 +622,8 @@ fill_in_generic_residual_contribution_foeppl_von_karman(Vector<double> &residual
 //======================================================================
 /// Self-test:  Return 0 for OK
 //======================================================================
-template <unsigned DIM, unsigned NNODE_1D>
-unsigned  FoepplVonKarmanEquations<DIM,NNODE_1D>::self_test()
+template <unsigned NNODE_1D>
+unsigned  FoepplVonKarmanEquations<NNODE_1D>::self_test()
 {
 
  bool passed=true;
@@ -653,13 +653,13 @@ unsigned  FoepplVonKarmanEquations<DIM,NNODE_1D>::self_test()
 ///
 /// nplot points in each coordinate direction
 //======================================================================
-template <unsigned DIM, unsigned NNODE_1D>
-void  FoepplVonKarmanEquations<DIM,NNODE_1D>::output(std::ostream &outfile,
+template <unsigned NNODE_1D>
+void  FoepplVonKarmanEquations<NNODE_1D>::output(std::ostream &outfile,
                                     const unsigned &nplot)
 {
 
  //Vector of local coordinates
- Vector<double> s(DIM),x(DIM);
+ Vector<double> s(this->dim()),x(this->dim());
 
  // Tecplot header info
  outfile << this->tecplot_zone_string(nplot);
@@ -678,7 +678,7 @@ void  FoepplVonKarmanEquations<DIM,NNODE_1D>::output(std::ostream &outfile,
    // Get x position as Vector
    this->get_coordinate_x(s,x);
 
-   for(unsigned i=0;i<DIM;i++)
+   for(unsigned i=0;i<this->dim();i++)
     {
      outfile << x[i] << " ";
     }
@@ -704,12 +704,12 @@ void  FoepplVonKarmanEquations<DIM,NNODE_1D>::output(std::ostream &outfile,
 ///
 /// nplot points in each coordinate direction
 //======================================================================
-template <unsigned DIM, unsigned NNODE_1D>
-void  FoepplVonKarmanEquations<DIM,NNODE_1D>::output(FILE* file_pt,
+template <unsigned NNODE_1D>
+void  FoepplVonKarmanEquations<NNODE_1D>::output(FILE* file_pt,
                                     const unsigned &nplot)
 {
  //Vector of local coordinates
- Vector<double> s(DIM), x(DIM);;
+ Vector<double> s(this->dim()), x(this->dim());;
 
  // Tecplot header info
  fprintf(file_pt,"%s",this->tecplot_zone_string(nplot).c_str());
@@ -725,7 +725,7 @@ void  FoepplVonKarmanEquations<DIM,NNODE_1D>::output(FILE* file_pt,
    // Get x position as Vector
    this->get_coordinate_x(s,x);
 
-   for(unsigned i=0;i<DIM;i++)
+   for(unsigned i=0;i<this->dim();i++)
     {
      fprintf(file_pt,"%g ",x[i]);
     }
@@ -747,16 +747,16 @@ void  FoepplVonKarmanEquations<DIM,NNODE_1D>::output(FILE* file_pt,
  ///
  ///   x,y,u_exact    or    x,y,z,u_exact
 //======================================================================
-template <unsigned DIM, unsigned NNODE_1D>
-void FoepplVonKarmanEquations<DIM,NNODE_1D>::output_fct(std::ostream &outfile,
+template <unsigned NNODE_1D>
+void FoepplVonKarmanEquations<NNODE_1D>::output_fct(std::ostream &outfile,
                                        const unsigned &nplot,
                   FiniteElement::SteadyExactSolutionFctPt exact_soln_pt)
 {
  //Vector of local coordinates
- Vector<double> s(DIM);
+ Vector<double> s(this->dim());
 
   // Vector for coordintes
-  Vector<double> x(DIM);
+  Vector<double> x(this->dim());
 
  // Tecplot header info
  outfile << this->tecplot_zone_string(nplot);
@@ -779,7 +779,7 @@ void FoepplVonKarmanEquations<DIM,NNODE_1D>::output_fct(std::ostream &outfile,
    (*exact_soln_pt)(x,exact_soln);
 
    //Output x,y,...,u_exact
-   for(unsigned i=0;i<DIM;i++)
+   for(unsigned i=0;i<this->dim();i++)
     {
      outfile << x[i] << " ";
     }
@@ -804,8 +804,8 @@ void FoepplVonKarmanEquations<DIM,NNODE_1D>::output_fct(std::ostream &outfile,
 ///
 /// HERE THIS MAY BE SUPERFLUOUS NOW
 //======================================================================
-template <unsigned DIM, unsigned NNODE_1D>
-void FoepplVonKarmanEquations<DIM,NNODE_1D>::compute_error_in_deflection(std::ostream &outfile,
+template <unsigned NNODE_1D>
+void FoepplVonKarmanEquations<NNODE_1D>::compute_error_in_deflection(std::ostream &outfile,
                                           FiniteElement::SteadyExactSolutionFctPt exact_soln_pt,
                                           double& error, double& norm)
 {
@@ -823,10 +823,10 @@ void FoepplVonKarmanEquations<DIM,NNODE_1D>::compute_error_in_deflection(std::os
  const unsigned n_b_position_type = this->Number_of_internal_dof_types;
 
  //Vector of local coordinates
- Vector<double> s(DIM);
+ Vector<double> s(this->dim());
 
  // Vector for coordintes
- Vector<double> x(DIM);
+ Vector<double> x(this->dim());
 
  //Set the value of n_intpt
  unsigned n_intpt = this->integral_pt()->nweight();
@@ -839,7 +839,7 @@ void FoepplVonKarmanEquations<DIM,NNODE_1D>::compute_error_in_deflection(std::os
   {
 
    //Assign values of s
-   for(unsigned i=0;i<DIM;i++)
+   for(unsigned i=0;i<this->dim();i++)
     {
      s[i] = this->integral_pt()->knot(ipt,i);
     }
@@ -855,8 +855,8 @@ void FoepplVonKarmanEquations<DIM,NNODE_1D>::compute_error_in_deflection(std::os
     psi_b(n_b_node,n_b_position_type),test_b(n_b_node,n_b_position_type);
    
 
-   DShape dpsi_dxi(n_node_w,n_position_type,DIM),dtest_dxi(n_node_w,n_position_type,DIM),
-    dpsi_b_dxi(n_b_node,n_b_position_type,DIM),dtest_b_dxi(n_b_node,n_b_position_type,DIM),
+   DShape dpsi_dxi(n_node_w,n_position_type,this->dim()),dtest_dxi(n_node_w,n_position_type,this->dim()),
+    dpsi_b_dxi(n_b_node,n_b_position_type,this->dim()),dtest_b_dxi(n_b_node,n_b_position_type,this->dim()),
     d2psi_dxi2(n_node_w,n_position_type,3), d2test_dxi2(n_node_w,n_position_type,3),
     d2psi_b_dxi2(n_b_node,n_b_position_type,3), d2test_b_dxi2(n_b_node,n_b_position_type,3);
 
@@ -879,7 +879,7 @@ void FoepplVonKarmanEquations<DIM,NNODE_1D>::compute_error_in_deflection(std::os
    (*exact_soln_pt)(x,exact_soln);
 
    //Output x,y,...,error
-   for(unsigned i=0;i<DIM;i++)
+   for(unsigned i=0;i<this->dim();i++)
     {
      outfile << x[i] << " ";
     }
@@ -911,8 +911,8 @@ void FoepplVonKarmanEquations<DIM,NNODE_1D>::compute_error_in_deflection(std::os
  /// Plot error at a given number of plot points.
  ///
 //======================================================================
-template <unsigned DIM, unsigned NNODE_1D>
-void FoepplVonKarmanEquations<DIM,NNODE_1D>::compute_error(std::ostream &outfile,
+template <unsigned NNODE_1D>
+void FoepplVonKarmanEquations<NNODE_1D>::compute_error(std::ostream &outfile,
                                           FiniteElement::SteadyExactSolutionFctPt exact_soln_pt,
                                           double& error, double& norm)
 {
@@ -931,10 +931,10 @@ void FoepplVonKarmanEquations<DIM,NNODE_1D>::compute_error(std::ostream &outfile
  const unsigned n_b_position_type = this->Number_of_internal_dof_types;
 
  //Vector of local coordinates
- Vector<double> s(DIM);
+ Vector<double> s(this->dim());
 
  // Vector for coordintes
- Vector<double> x(DIM);
+ Vector<double> x(this->dim());
 
  //Set the value of n_intpt
  unsigned n_intpt = this->integral_pt()->nweight();
@@ -950,7 +950,7 @@ void FoepplVonKarmanEquations<DIM,NNODE_1D>::compute_error(std::ostream &outfile
   {
 
    //Assign values of s
-   for(unsigned i=0;i<DIM;i++)
+   for(unsigned i=0;i<this->dim();i++)
     {
      s[i] = this->integral_pt()->knot(ipt,i);
     }
@@ -967,8 +967,8 @@ void FoepplVonKarmanEquations<DIM,NNODE_1D>::compute_error(std::ostream &outfile
     psi_b(n_b_node,n_b_position_type),test_b(n_b_node,n_b_position_type);
    
 
-   DShape dpsi_dxi(n_node_w,n_position_type,DIM),dtest_dxi(n_node_w,n_position_type,DIM),
-    dpsi_b_dxi(n_b_node,n_b_position_type,DIM),dtest_b_dxi(n_b_node,n_b_position_type,DIM),
+   DShape dpsi_dxi(n_node_w,n_position_type,this->dim()),dtest_dxi(n_node_w,n_position_type,this->dim()),
+    dpsi_b_dxi(n_b_node,n_b_position_type,this->dim()),dtest_b_dxi(n_b_node,n_b_position_type,this->dim()),
     d2psi_dxi2(n_node_w,n_position_type,3), d2test_dxi2(n_node_w,n_position_type,3),
     d2psi_b_dxi2(n_b_node,n_b_position_type,3), d2test_b_dxi2(n_b_node,n_b_position_type,3);
 
@@ -996,7 +996,7 @@ void FoepplVonKarmanEquations<DIM,NNODE_1D>::compute_error(std::ostream &outfile
    if(Error_metric_fct_pt==0)
    {
    //Output x,y,...,error
-   for(unsigned i=0;i<DIM;i++)
+   for(unsigned i=0;i<this->dim();i++)
     {
      outfile << x[i] << " ";
     }
@@ -1024,10 +1024,10 @@ void FoepplVonKarmanEquations<DIM,NNODE_1D>::compute_error(std::ostream &outfile
 }
 
 
-template class FoepplVonKarmanEquations<2,2>;
+template class FoepplVonKarmanEquations<2>;
 
-template class FoepplVonKarmanEquations<2,3>;
+template class FoepplVonKarmanEquations<3>;
 
-template class FoepplVonKarmanEquations<2,4>;
+template class FoepplVonKarmanEquations<4>;
 
 }
