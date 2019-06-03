@@ -99,7 +99,7 @@ public:
   }
 
  /// Get s from x for part 0 of the boundary (inverse mapping - for convenience)
- virtual double get_zeta(const Vector<double>& x)
+ virtual double get_zeta(const Vector<double>& x) const
  {
    throw OomphLibError(
     "You must specify get_zeta() for your own object! \n",
@@ -185,7 +185,7 @@ public:
   }
 
  /// Get s from x for part 0 of the boundary (inverse mapping - for convenience)
- double get_zeta(const Vector<double>& x)
+ double get_zeta(const Vector<double>& x) const 
  {
  // The arc length (parametric parameter) for the upper semi circular arc
   return (Clockwise_zeta ? atan2(x[0],x[1]) : atan2(-x[0],x[1]));
@@ -269,7 +269,7 @@ public:
    }
 
  /// Get s from x for part 0 of the boundary (inverse mapping - for convenience)
- double get_zeta(const Vector<double>& x)
+ double get_zeta(const Vector<double>& x) const
  {
  // The arc length (parametric parameter) for the upper semi circular arc
   return  (Clockwise_zeta ?atan2(x[0],x[1]) : atan2(x[0],-x[1]));
@@ -356,7 +356,7 @@ public:
   }
 
  /// Get s from x for part 0 of the boundary (inverse mapping - for convenience)
- double get_zeta(const Vector<double>& x)
+ double get_zeta(const Vector<double>& x) const
  {
  // The arc length (parametric parameter) for the upper semi circular arc
   return (Clockwise_zeta ? atan2(x[0]/Radius1,x[1]/Radius2) : atan2(-x[0]/Radius1,x[1]/Radius2));
@@ -441,7 +441,7 @@ public:
    }
 
  /// Get s from x for part 0 of the boundary (inverse mapping - for convenience)
- double get_zeta(const Vector<double>& x)
+ double get_zeta(const Vector<double>& x) const
  {
  // The arc length (parametric parameter) for the upper semi circular arc
   return  (Clockwise_zeta ?atan2(x[0]/Radius1,x[1]/Radius2) : atan2(x[0]/Radius1,-x[1]/Radius2));
