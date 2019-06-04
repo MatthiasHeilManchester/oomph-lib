@@ -24,8 +24,7 @@ public:
  ///\short  Constructor: Call constructors for C1CurvedBellElement and
  /// Biharmonic equations
  KirchhoffPlateBendingC1CurvedBellElement() : CurvableBellElement(), 
-  KirchhoffPlateBendingEquations(), Rotated_basis_fct_pt(0), Nnodes_to_rotate(0)
-  {  }
+  KirchhoffPlateBendingEquations(), Rotated_basis_fct_pt_lookup()   {  }
 
  // Destructor
  ~KirchhoffPlateBendingC1CurvedBellElement() { }
@@ -107,9 +106,8 @@ protected:
 
 public:
  /// \short Set up the rotated degrees of freedom
- inline void set_up_rotated_dofs(const unsigned& nnodes_to_rotate ,
-  const Vector<unsigned>& nodes_to_rotate, const BasisVectorsFctPt&
-  basis_vectors_fct_pt);
+ inline void set_up_rotated_dofs(const Vector<std::pair <unsigned, BasisVectorsFctPt> >&
+  rotated_basis_vectors_fct_pt_lookup);
 
  /// \short  Required  # of `values' (pinned or dofs)
  /// at node n
@@ -190,14 +188,14 @@ private:
 //  // stored
 //  unsigned Bubble_w_internal_index;
 
- /// A Pointer to the function that sets up the rotated basis at point x
- BasisVectorsFctPt Rotated_basis_fct_pt;
+ /// A Pointer to the set that sets up the rotated basis at point x
+ Vector<std::pair<unsigned,BasisVectorsFctPt> > Rotated_basis_fct_pt_lookup;
 
- /// Which nodes are we rotating
- Vector<unsigned> Nodes_to_rotate;
-
- // Number of nodes to rotate
- unsigned Nnodes_to_rotate;
+// /// Which nodes are we rotating
+// Vector<unsigned> Nodes_to_rotate;
+//
+// // Number of nodes to rotate
+// unsigned Nnodes_to_rotate;
 };
 
 ////////////////////////////////////////////////////////////////////
@@ -230,15 +228,13 @@ class FaceGeometry<KirchhoffPlateBendingC1CurvedBellElement > :
 /// Set up the rotated degrees of freedom: includes a check for the number of
 /// rotation nodes being greater than three.
 //==============================================================================
-void KirchhoffPlateBendingC1CurvedBellElement::set_up_rotated_dofs(const unsigned&
-  nnodes_to_rotate, const Vector<unsigned>& nodes_to_rotate, const
-  BasisVectorsFctPt& basis_vectors_fct_pt)
+void KirchhoffPlateBendingC1CurvedBellElement::set_up_rotated_dofs(const 
+  Vector<std::pair<unsigned, BasisVectorsFctPt> >&
+  rotated_basis_vectors_fct_pt_lookup)
 {
- // Change the member Nnode_to_rotate
- Nnodes_to_rotate=nnodes_to_rotate;
  #ifdef PARANOID
   // Check that the number of nodes is smaller than 3
-  if( nnodes_to_rotate > 3 )
+  if( rotated_basis_vectors_fct_pt_lookup.size() > 3 )
    {
     throw OomphLibError(
      "There are only three nodes per element, so we cannot rotate more than\
@@ -246,10 +242,11 @@ void KirchhoffPlateBendingC1CurvedBellElement::set_up_rotated_dofs(const unsigne
    }
  #endif
 
- Nodes_to_rotate = nodes_to_rotate;
-
- // Point to the basis vectors function
- Rotated_basis_fct_pt = basis_vectors_fct_pt;
+ // Copy the basis vectors lookup
+// for(unsigned ilookup=0;ilookup<rotated_basis_vectors_fct_pt_lookup.size();++ilookup)
+//   {
+    Rotated_basis_fct_pt_lookup=rotated_basis_vectors_fct_pt_lookup;
+//    }
 }
 
 //==============================================================================
@@ -259,13 +256,22 @@ void KirchhoffPlateBendingC1CurvedBellElement::set_up_rotated_dofs(const unsigne
 /// Galerkin: Test functions = shape functions
 //==============================================================================
 void KirchhoffPlateBendingC1CurvedBellElement::
- rotation_matrix_at_node (const unsigned& inode, DenseDoubleMatrix&
+ rotation_matrix_at_node (const unsigned& ilookup, DenseDoubleMatrix&
  rotation_matrix) const
 {
  // Initialise x normal and tangent
  Vector<double> x(2,0.0);
 
  // Get the node pointer
+ #ifdef RANGE_CHECK
+  if(ilookup >= Rotated_basis_fct_pt_lookup.size())
+   {
+    throw OomphLibError(
+     "Out of range error in rotation matrix lookup.",
+   OOMPH_CURRENT_FUNCTION,OOMPH_EXCEPTION_LOCATION);
+   }
+ #endif 
+ const unsigned inode = Rotated_basis_fct_pt_lookup[ilookup].first ;
  Node* nod_pt=this->CurvableBellElement<2>::node_pt(inode);
 
  // Get the position of the vertex
@@ -278,7 +284,7 @@ void KirchhoffPlateBendingC1CurvedBellElement::
 
  // Now find the two new basis vectors
  // Get the normal - overload if not continuous
- (*Rotated_basis_fct_pt)(x,bi[0],bi[1], Dbi[0], Dbi[1]);
+ (Rotated_basis_fct_pt_lookup[ilookup].second)(x,bi[0],bi[1], Dbi[0], Dbi[1]);
 
  // Rotation matrix, B
  DenseMatrix<double> b1(2,2,0.0),b22(3,3,0.0), b21(3,2,0.0);
@@ -429,17 +435,19 @@ inline void KirchhoffPlateBendingC1CurvedBellElement::
  rotate_shape(Shape& psi) const
 {
  // Loop over the nodes with rotated dofs
- for(unsigned i=0; i<Nnodes_to_rotate; ++i)
+ unsigned  nnodes_to_rotate = Rotated_basis_fct_pt_lookup.size();
+ // NB use c++11 const iterator here alternatively
+ for(unsigned inod2rotate; inod2rotate<nnodes_to_rotate; ++inod2rotate)
   {
    // Get the nodes
-   unsigned inode = Nodes_to_rotate[i];
+   unsigned inode = Rotated_basis_fct_pt_lookup[inod2rotate].first;
 
    // Construct the vectors to hold the shape functions
    Vector<double> psi_vector(6,0);
    
    // Get the rotation matrix
    DenseDoubleMatrix  rotation_matrix(6,6,0.0);
-   this->rotation_matrix_at_node(inode,rotation_matrix);
+   rotation_matrix_at_node(inod2rotate,rotation_matrix);
 
    // Copy to the vectors
    for(unsigned l=0;l<6;++l)
@@ -462,10 +470,11 @@ inline void KirchhoffPlateBendingC1CurvedBellElement::
  rotate_shape(Shape& psi, DShape& dpsidx) const
 {
  // Loop over the nodes with rotated dofs
- for(unsigned i=0; i<Nnodes_to_rotate; ++i)
+ unsigned  nnodes_to_rotate = Rotated_basis_fct_pt_lookup.size();
+ for(unsigned inod2rotate=0; inod2rotate<nnodes_to_rotate; ++inod2rotate)
   {
    // Get the nodes
-   unsigned inode = Nodes_to_rotate[i];
+   unsigned inode = Rotated_basis_fct_pt_lookup[inod2rotate].first;
 
    // Construct the vectors to hold the shape functions
    Vector<double> psi_vector(6,0);
@@ -473,7 +482,7 @@ inline void KirchhoffPlateBendingC1CurvedBellElement::
 
    // Get the rotation matrix
    DenseDoubleMatrix  rotation_matrix(6,6,0.0);
-   this->rotation_matrix_at_node(inode,rotation_matrix);
+   rotation_matrix_at_node(inod2rotate,rotation_matrix);
 
    // Copy to the vectors
    for(unsigned l=0;l<6;++l)
@@ -512,10 +521,11 @@ inline void KirchhoffPlateBendingC1CurvedBellElement::
  rotate_shape(Shape& psi, DShape& dpsidx, DShape& d2psidx) const
 {
  // Loop over the nodes with rotated dofs
- for(unsigned i=0; i<Nnodes_to_rotate; ++i)
+ unsigned  nnodes_to_rotate = Rotated_basis_fct_pt_lookup.size();
+ for(unsigned inod2rotate=0; inod2rotate<nnodes_to_rotate; ++inod2rotate)
   {
    // Get the nodes
-   unsigned inode = Nodes_to_rotate[i];
+   unsigned inode = Rotated_basis_fct_pt_lookup[inod2rotate].first;
 
    // Construct the vectors to hold the shape functions
    Vector<double> psi_vector(6,0);
@@ -524,7 +534,7 @@ inline void KirchhoffPlateBendingC1CurvedBellElement::
 
    // Get the rotation matrix
    DenseDoubleMatrix  rotation_matrix(6,6,0.0);
-   this->rotation_matrix_at_node(inode,rotation_matrix);
+   this->rotation_matrix_at_node(inod2rotate,rotation_matrix);
 
    // Copy to the vectors
    for(unsigned l=0;l<6;++l)
