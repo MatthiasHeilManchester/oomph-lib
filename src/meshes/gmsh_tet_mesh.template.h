@@ -2314,46 +2314,45 @@ namespace oomph
     void adapt(const Vector<double>& elem_error);
 
 
-/// Unrefine uniformly
-  unsigned unrefine_uniformly()
-  {
-    // Set the element error to something small
-    unsigned nelem=this->nelement();
-    Vector<double> elem_error(nelem,this->min_permitted_error()/10.0);
+    /// Unrefine uniformly
+    unsigned unrefine_uniformly()
+    {
+      // Set the element error to something small
+      unsigned nelem = this->nelement();
+      Vector<double> elem_error(nelem, this->min_permitted_error() / 10.0);
 
-    // Do it...
-    adapt(elem_error);
+      // Do it...
+      adapt(elem_error);
 
-    return 0;
-  }
+      return 0;
+    }
 
 
-  /// Refine uniformly
-  void refine_uniformly()
-  {
-   // hierher
-   DocInfo doc_info;
-   refine_uniformly(doc_info);
-  }
+    /// Refine uniformly
+    void refine_uniformly()
+    {
+      // hierher
+      DocInfo doc_info;
+      refine_uniformly(doc_info);
+    }
 
-  /// Refine uniformly
-  void refine_uniformly(DocInfo& doc_info)
-  {
-   double backup=this->Min_element_size;
-   this->Min_element_size=0.0;
-   
-   // Set the element error to something big
-   unsigned nelem=this->nelement();
-   Vector<double> elem_error(nelem,DBL_MAX);
-   
-   // Do it...
-   adapt(elem_error);
-   
-   this->Min_element_size=backup;
-  }
+    /// Refine uniformly
+    void refine_uniformly(DocInfo& doc_info)
+    {
+      double backup = this->Min_element_size;
+      this->Min_element_size = 0.0;
+
+      // Set the element error to something big
+      unsigned nelem = this->nelement();
+      Vector<double> elem_error(nelem, DBL_MAX);
+
+      // Do it...
+      adapt(elem_error);
+
+      this->Min_element_size = backup;
+    }
 
   protected:
-  
     /// Helper function to initialise data associated with adaptation
     void initialise_adaptation_data()
     {

@@ -181,49 +181,49 @@ namespace oomph
     virtual ~RefineableTetgenMesh() {}
 
 
-// hierher put in some base class? Same as gmsh
-   /// Refine uniformly
-   void refine_uniformly()
-   {
-    // hierher
-    DocInfo doc_info;
-    refine_uniformly(doc_info);
-   }
+    // hierher put in some base class? Same as gmsh
+    /// Refine uniformly
+    void refine_uniformly()
+    {
+      // hierher
+      DocInfo doc_info;
+      refine_uniformly(doc_info);
+    }
 
-   /// Refine mesh uniformly and doc process
-   void refine_uniformly(DocInfo& doc_info)
-   {
-    double backup=this->Min_element_size;
-    this->Min_element_size=0.0;
-   
-    // Set the element error to something big
-    unsigned nelem=this->nelement();
-    Vector<double> elem_error(nelem,DBL_MAX);
-    
-    // Do it...
-    adapt(elem_error);
-    
-    this->Min_element_size=backup;
-   }    
-   
+    /// Refine mesh uniformly and doc process
+    void refine_uniformly(DocInfo& doc_info)
+    {
+      double backup = this->Min_element_size;
+      this->Min_element_size = 0.0;
 
-   // hierher merge with gmsh version
+      // Set the element error to something big
+      unsigned nelem = this->nelement();
+      Vector<double> elem_error(nelem, DBL_MAX);
 
-   /// \short Unrefine mesh uniformly: Return 0 for success,
-   /// 1 for failure (if unrefinement has reached the coarsest permitted
-   /// level)
-   unsigned unrefine_uniformly()
-   {
-    // Set the element error to something small
-    unsigned nelem=this->nelement();
-    Vector<double> elem_error(nelem,this->min_permitted_error()/10.0);
+      // Do it...
+      adapt(elem_error);
 
-    // Do it...
-    adapt(elem_error);
+      this->Min_element_size = backup;
+    }
 
-    // dummy return
-    return 0;
-   }
+
+    // hierher merge with gmsh version
+
+    /// \short Unrefine mesh uniformly: Return 0 for success,
+    /// 1 for failure (if unrefinement has reached the coarsest permitted
+    /// level)
+    unsigned unrefine_uniformly()
+    {
+      // Set the element error to something small
+      unsigned nelem = this->nelement();
+      Vector<double> elem_error(nelem, this->min_permitted_error() / 10.0);
+
+      // Do it...
+      adapt(elem_error);
+
+      // dummy return
+      return 0;
+    }
 
 
     /// Adapt mesh, based on elemental error provided

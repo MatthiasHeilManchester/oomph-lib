@@ -483,10 +483,10 @@ namespace oomph
     DummyErrorEstimator(Mesh* mesh_pt,
                         const Vector<unsigned>& elements_to_refine,
                         const unsigned& central_node_number,
-                    const bool& use_lagrangian_coordinates=false) :
- Use_lagrangian_coordinates(use_lagrangian_coordinates),
-  Central_node_number(central_node_number),
-  Error_in_target_region(1.0)
+                        const bool& use_lagrangian_coordinates = false)
+      : Use_lagrangian_coordinates(use_lagrangian_coordinates),
+        Central_node_number(central_node_number),
+        Error_in_target_region(1.0)
     {
 #ifdef PARANOID
 #ifdef OOMPH_HAS_MPI
@@ -570,10 +570,10 @@ namespace oomph
                         const Vector<double>& lower_left,
                         const Vector<double>& upper_right,
                         const unsigned& central_node_number,
-                     const bool& use_lagrangian_coordinates=false) :
-  Use_lagrangian_coordinates(use_lagrangian_coordinates),
-   Central_node_number(central_node_number),
-   Error_in_target_region(1.0)
+                        const bool& use_lagrangian_coordinates = false)
+      : Use_lagrangian_coordinates(use_lagrangian_coordinates),
+        Central_node_number(central_node_number),
+        Error_in_target_region(1.0)
     {
 #ifdef PARANOID
       if (mesh_pt->nelement() == 0)
@@ -592,26 +592,26 @@ namespace oomph
       Region_upp_bound[0] = upper_right;
     }
 
- /// \short Constructor. Provide vectors to "lower left" and "upper right" 
- /// vertices of refinement region. Decision if an element is
- /// in the region where refinement is supposed to take place
- /// is based on whether or not ANY of its nodes are in that box
- /// Optional boolean flag (defaulting to false) indicates that 
- /// refinement decision is based on Lagrangian coordinates -- only 
- /// applicable to solid meshes.
- DummyErrorEstimator(const Vector<double>& lower_left, 
-                     const Vector<double>& upper_right, 
-                     const bool& use_lagrangian_coordinates=false) :
-  Use_lagrangian_coordinates(use_lagrangian_coordinates),
-   Central_node_number(-1),
-   Error_in_target_region(1.0)
-   {
-    unsigned nregion=1;
-    Region_low_bound.resize(nregion);
-    Region_upp_bound.resize(nregion);
-    Region_low_bound[0]=lower_left;
-    Region_upp_bound[0]=upper_right;
-   }
+    /// \short Constructor. Provide vectors to "lower left" and "upper right"
+    /// vertices of refinement region. Decision if an element is
+    /// in the region where refinement is supposed to take place
+    /// is based on whether or not ANY of its nodes are in that box
+    /// Optional boolean flag (defaulting to false) indicates that
+    /// refinement decision is based on Lagrangian coordinates -- only
+    /// applicable to solid meshes.
+    DummyErrorEstimator(const Vector<double>& lower_left,
+                        const Vector<double>& upper_right,
+                        const bool& use_lagrangian_coordinates = false)
+      : Use_lagrangian_coordinates(use_lagrangian_coordinates),
+        Central_node_number(-1),
+        Error_in_target_region(1.0)
+    {
+      unsigned nregion = 1;
+      Region_low_bound.resize(nregion);
+      Region_upp_bound.resize(nregion);
+      Region_low_bound[0] = lower_left;
+      Region_upp_bound[0] = upper_right;
+    }
 
 
     /// Broken copy constructor
@@ -630,19 +630,19 @@ namespace oomph
 
     /// Empty virtual destructor
     virtual ~DummyErrorEstimator() {}
- 
 
- /// Set error to specified value
- void set_error_in_target_region(const double& error_in_target_region)
- {
-  Error_in_target_region=error_in_target_region;
- }
 
- /// Error in target region
- double error_in_target_region() const
- {
-  return Error_in_target_region;
- }
+    /// Set error to specified value
+    void set_error_in_target_region(const double& error_in_target_region)
+    {
+      Error_in_target_region = error_in_target_region;
+    }
+
+    /// Error in target region
+    double error_in_target_region() const
+    {
+      return Error_in_target_region;
+    }
 
 
     /// \short Compute the elemental error measures for a given mesh
@@ -669,94 +669,95 @@ namespace oomph
       {
         elemental_error[e] = 0.0;
 
-     FiniteElement* fe_pt=mesh_pt->finite_element_pt(e);
-     Vector<unsigned> node_number;
-     if (Central_node_number<0)
-      {
-       unsigned nnod=fe_pt->nnode();
-       node_number.resize(nnod);
-       for (unsigned i=0;i<nnod;i++)
+        FiniteElement* fe_pt = mesh_pt->finite_element_pt(e);
+        Vector<unsigned> node_number;
+        if (Central_node_number < 0)
         {
-         node_number[i]=i;
+          unsigned nnod = fe_pt->nnode();
+          node_number.resize(nnod);
+          for (unsigned i = 0; i < nnod; i++)
+          {
+            node_number[i] = i;
+          }
         }
-      }
-     else
-      {
-       node_number.push_back(unsigned(Central_node_number));
-      }
+        else
+        {
+          node_number.push_back(unsigned(Central_node_number));
+        }
 
         // Check if element is in the regions to be refined
-     unsigned nnod=node_number.size();
-     for (unsigned j=0;j<nnod;j++)
-      {
-       Node* nod_pt=mesh_pt->finite_element_pt(e)->node_pt(node_number[j]); // Central_node_number);
-        for (unsigned r = 0; r < nregion; r++)
+        unsigned nnod = node_number.size();
+        for (unsigned j = 0; j < nnod; j++)
         {
-          bool is_inside = true;
-          unsigned dim = Region_low_bound[r].size();
-          for (unsigned i = 0; i < dim; i++)
+          Node* nod_pt = mesh_pt->finite_element_pt(e)->node_pt(
+            node_number[j]); // Central_node_number);
+          for (unsigned r = 0; r < nregion; r++)
           {
-            double x = nod_pt->x(i);
-            if (Use_lagrangian_coordinates)
+            bool is_inside = true;
+            unsigned dim = Region_low_bound[r].size();
+            for (unsigned i = 0; i < dim; i++)
             {
-              SolidNode* solid_nod_pt = dynamic_cast<SolidNode*>(nod_pt);
-              if (solid_nod_pt != 0)
+              double x = nod_pt->x(i);
+              if (Use_lagrangian_coordinates)
               {
-                x = solid_nod_pt->xi(i);
+                SolidNode* solid_nod_pt = dynamic_cast<SolidNode*>(nod_pt);
+                if (solid_nod_pt != 0)
+                {
+                  x = solid_nod_pt->xi(i);
+                }
+              }
+              if (x < Region_low_bound[r][i])
+              {
+                is_inside = false;
+                break;
+              }
+              if (x > Region_upp_bound[r][i])
+              {
+                is_inside = false;
+                break;
               }
             }
-            if (x < Region_low_bound[r][i])
+            if (is_inside)
             {
-              is_inside = false;
+              elemental_error[e] = Error_in_target_region;
               break;
             }
-            if (x > Region_upp_bound[r][i])
-            {
-              is_inside = false;
-              break;
-            }
-          }
-          if (is_inside)
-          {
-           elemental_error[e]=Error_in_target_region;
-            break;
           }
         }
       }
     }
 
-  }
 
- 
- /// \short Set lower left and upper right corners of box bounding
- /// refinement region
- void set_bounding_box(const Vector<double>& lower_left, 
-                       const Vector<double>& upper_right)
- {     
-  unsigned nregion=1;
-  Region_low_bound.resize(nregion);
-  Region_upp_bound.resize(nregion);  
-  Region_low_bound[0]=lower_left;
-  Region_upp_bound[0]=upper_right;
- }
+    /// \short Set lower left and upper right corners of box bounding
+    /// refinement region
+    void set_bounding_box(const Vector<double>& lower_left,
+                          const Vector<double>& upper_right)
+    {
+      unsigned nregion = 1;
+      Region_low_bound.resize(nregion);
+      Region_upp_bound.resize(nregion);
+      Region_low_bound[0] = lower_left;
+      Region_upp_bound[0] = upper_right;
+    }
 
- /// \short Set lower left corner of box bounding
- /// refinement region
- void set_lower_left_corner_of_bounding_box(const Vector<double>& lower_left)
- {
-  unsigned nregion=1;
-  Region_low_bound.resize(nregion);
-  Region_low_bound[0]=lower_left;
- }
+    /// \short Set lower left corner of box bounding
+    /// refinement region
+    void set_lower_left_corner_of_bounding_box(const Vector<double>& lower_left)
+    {
+      unsigned nregion = 1;
+      Region_low_bound.resize(nregion);
+      Region_low_bound[0] = lower_left;
+    }
 
- /// \short Set upper right corner of box bounding
- /// refinement region
- void set_upper_right_corner_of_bounding_box(const Vector<double>& upper_right)
- {
-  unsigned nregion=1;
-  Region_upp_bound.resize(nregion);
-  Region_upp_bound[0]=upper_right;
- }
+    /// \short Set upper right corner of box bounding
+    /// refinement region
+    void set_upper_right_corner_of_bounding_box(
+      const Vector<double>& upper_right)
+    {
+      unsigned nregion = 1;
+      Region_upp_bound.resize(nregion);
+      Region_upp_bound[0] = upper_right;
+    }
 
 
   private:
@@ -765,9 +766,9 @@ namespace oomph
     bool Use_lagrangian_coordinates;
 
     /// \short Number of local node that is used to identify if an element
- /// is located in the refinement region (negative if decision is based
- /// on all of the element's nodes
- int Central_node_number;
+    /// is located in the refinement region (negative if decision is based
+    /// on all of the element's nodes
+    int Central_node_number;
 
     /// Upper bounds for the coordinates of the refinement regions
     Vector<Vector<double>> Region_upp_bound;
@@ -776,8 +777,8 @@ namespace oomph
     Vector<Vector<double>> Region_low_bound;
 
 
- /// Error in target region
- double Error_in_target_region;
+    /// Error in target region
+    double Error_in_target_region;
   };
 
 
