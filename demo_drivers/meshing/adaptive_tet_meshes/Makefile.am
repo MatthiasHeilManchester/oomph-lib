@@ -15,9 +15,35 @@ check_PROGRAMS+=\
 planar_facet_bounded_mesh_from_gmsh  \
 planar_facet_bounded_mesh_from_tetgen \
 curved_facet_bounded_mesh_from_gmsh  \
-curved_facet_bounded_mesh_from_tetgen
+curved_facet_bounded_mesh_from_tetgen \
+assess_tet_mesh_volume_gmsh \
+assess_tet_mesh_volume_tetgen
+
 
 endif
+
+# THE EXECUTABLE:
+#----------------
+
+# Local sources that code depends on:
+assess_tet_mesh_volume_gmsh_SOURCES = assess_tet_mesh_volume.cc \
+tetmesh_faceted_surfaces.h
+
+# Required libraries: 
+assess_tet_mesh_volume_gmsh_LDADD = -L@libdir@  -lpoisson -lgeneric $(EXTERNAL_LIBS) $(FLIBS)
+
+# THE EXECUTABLE:
+#----------------
+
+# Local sources that code depends on:
+assess_tet_mesh_volume_tetgen_SOURCES = assess_tet_mesh_volume.cc \
+tetmesh_faceted_surfaces.h
+
+# Required libraries: 
+assess_tet_mesh_volume_tetgen_LDADD = -L@libdir@  -lpoisson -lgeneric $(EXTERNAL_LIBS) $(FLIBS)
+
+# Macro to switch to tetgen
+assess_tet_mesh_volume_tetgen_CXXFLAGS=-DDO_TETGEN
 
 
 # THE EXECUTABLE:

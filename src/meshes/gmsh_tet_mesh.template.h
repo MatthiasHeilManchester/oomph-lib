@@ -2313,26 +2313,47 @@ namespace oomph
     /// Adapt mesh, based on elemental error provided
     void adapt(const Vector<double>& elem_error);
 
-    /// Refine uniformly
-    unsigned unrefine_uniformly()
-    {
-      // hierher do it!
-      std::string error_msg("Not written yet...");
-      throw OomphLibError(
-        error_msg, OOMPH_CURRENT_FUNCTION, OOMPH_EXCEPTION_LOCATION);
-    }
 
-    /// Unrefine uniformly
-    void refine_uniformly(DocInfo& doc_info)
-    {
-      // hierher do it!
-      std::string error_msg("Not written yet...");
-      throw OomphLibError(
-        error_msg, OOMPH_CURRENT_FUNCTION, OOMPH_EXCEPTION_LOCATION);
-    }
+/// Unrefine uniformly
+  unsigned unrefine_uniformly()
+  {
+    // Set the element error to something small
+    unsigned nelem=this->nelement();
+    Vector<double> elem_error(nelem,this->min_permitted_error()/10.0);
 
+    // Do it...
+    adapt(elem_error);
+
+    return 0;
+  }
+
+
+  /// Refine uniformly
+  void refine_uniformly()
+  {
+   // hierher
+   DocInfo doc_info;
+   refine_uniformly(doc_info);
+  }
+
+  /// Refine uniformly
+  void refine_uniformly(DocInfo& doc_info)
+  {
+   double backup=this->Min_element_size;
+   this->Min_element_size=0.0;
+   
+   // Set the element error to something big
+   unsigned nelem=this->nelement();
+   Vector<double> elem_error(nelem,DBL_MAX);
+   
+   // Do it...
+   adapt(elem_error);
+   
+   this->Min_element_size=backup;
+  }
 
   protected:
+  
     /// Helper function to initialise data associated with adaptation
     void initialise_adaptation_data()
     {
