@@ -330,7 +330,7 @@ docdir = ${datarootdir}/doc/${PACKAGE_TARNAME}
 dvidir = ${docdir}
 exec_prefix = ${prefix}
 have_cmake = true
-have_doxygen = true
+have_doxygen = false
 have_libtool = true
 have_online_triangle = false
 have_pdf_latex = true
@@ -378,7 +378,6 @@ intro \
 FAQ \
 meshes \
 tar_files \
-download \
 the_distribution \
 example_code_list \
 the_data_structure \
@@ -402,7 +401,6 @@ hijacking \
 change_log \
 bugs \
 linear_solvers \
-subversion \
 paraview \
 preconditioners \
 to_be_written \
@@ -412,7 +410,6 @@ creating_doc \
 linear_elasticity \
 time_harmonic_fourier_decomposed_linear_elasticity \
 fourier_decomposed_helmholtz \
-c1_element \
 time_harmonic_linear_elasticity \
 pml_fourier_decomposed_helmholtz \
 pml_helmholtz \
@@ -765,7 +762,8 @@ html/index.html: $(docfile).txt_doxygenified.h oomph-lib_header.html
 	if [ "${suppress_latex_in_this_directory}" != "1" ]; then sed "s/\*\*\//\n<hr>\n<hr>\n\\\section pdf PDF file\nA <a href=\"..\/latex\/refman.pdf\">pdf version<\/a> of this document is available.\n\*\*\//g" $(docfile).txt_doxygenified.h.junk > $(docfile).txt_doxygenified.h; fi
 	rm $(docfile).txt_doxygenified.h.junk
 	doxygen
-	if [ "${suppress_latex_in_this_directory}" != "1" ]; then (cd latex; rm -f refman.pdf; echo "\end{document}" >> index.tex; mv refman.tex refman.tex.back; $(top_builddir)/../bin/customise_latex.bash refman.tex.back > refman.tex; $(top_builddir)/../bin/tweak_doxygen_latex_style_file.bash;  make; mv refman.pdf ../$(docfile).pdf; ln -s ../$(docfile).pdf refman.pdf); fi
+        # Truncate the file after the main text by inserting end document at theend of index tex, then do some further customisation; then run make with "-i" to keep going after errors (of the fake variety from pdflatex)
+	if [ "${suppress_latex_in_this_directory}" != "1" ]; then (cd latex; rm -f refman.pdf; echo "\end{document}" >> index.tex; mv refman.tex refman.tex.back; $(top_builddir)/../bin/customise_latex.bash refman.tex.back > refman.tex; $(top_builddir)/../bin/tweak_doxygen_latex_style_file.bash;  make -i ; mv refman.pdf ../$(docfile).pdf; ln -s ../$(docfile).pdf refman.pdf); fi
 .txt.txt_doxygenified.h:
 	$(top_builddir)/bin/txt2h.sh $<
 

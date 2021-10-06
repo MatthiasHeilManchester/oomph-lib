@@ -1,10 +1,10 @@
-\hypertarget{classoomph_1_1PoissonEquations}{}\doxysection{oomph\+::Poisson\+Equations$<$ D\+IM $>$ Class Template Reference}
+\hypertarget{classoomph_1_1PoissonEquations}{}\doxysection{oomph\+::Poisson\+Equations\texorpdfstring{$<$}{<} DIM \texorpdfstring{$>$}{>} Class Template Reference}
 \label{classoomph_1_1PoissonEquations}\index{oomph::PoissonEquations$<$ DIM $>$@{oomph::PoissonEquations$<$ DIM $>$}}
 
 
 {\ttfamily \#include $<$poisson\+\_\+elements.\+h$>$}
 
-Inheritance diagram for oomph\+::Poisson\+Equations$<$ D\+IM $>$\+:\begin{figure}[H]
+Inheritance diagram for oomph\+::Poisson\+Equations\texorpdfstring{$<$}{<} DIM \texorpdfstring{$>$}{>}\+:\begin{figure}[H]
 \begin{center}
 \leavevmode
 \includegraphics[height=1.190476cm]{classoomph_1_1PoissonEquations}
@@ -22,13 +22,13 @@ typedef void($\ast$ \mbox{\hyperlink{classoomph_1_1PoissonEquations_a6182c46eb07
 \item 
 \mbox{\hyperlink{classoomph_1_1PoissonEquations_a338ad18dee2ce6f7afb55211b66b1634}{Poisson\+Equations}} ()
 \begin{DoxyCompactList}\small\item\em Constructor (must initialise the Source\+\_\+fct\+\_\+pt to null) \end{DoxyCompactList}\item 
-\mbox{\hyperlink{classoomph_1_1PoissonEquations_ad41c83d9d92cb124d50b24dc237854cf}{Poisson\+Equations}} (const \mbox{\hyperlink{classoomph_1_1PoissonEquations}{Poisson\+Equations}} \&dummy)
+\mbox{\hyperlink{classoomph_1_1PoissonEquations_aff0376dc28613ca937cc25eba9d8ced1}{Poisson\+Equations}} (const \mbox{\hyperlink{classoomph_1_1PoissonEquations}{Poisson\+Equations}} \&dummy)=delete
 \begin{DoxyCompactList}\small\item\em Broken copy constructor. \end{DoxyCompactList}\item 
-void \mbox{\hyperlink{classoomph_1_1PoissonEquations_a80817f45bd1db3758570964f11dd5c74}{operator=}} (const \mbox{\hyperlink{classoomph_1_1PoissonEquations}{Poisson\+Equations}} \&)
+void \mbox{\hyperlink{classoomph_1_1PoissonEquations_a870cdd96f9cb4756d5106a6afc963067}{operator=}} (const \mbox{\hyperlink{classoomph_1_1PoissonEquations}{Poisson\+Equations}} \&)=delete
 \begin{DoxyCompactList}\small\item\em Broken assignment operator. \end{DoxyCompactList}\item 
 virtual unsigned \mbox{\hyperlink{classoomph_1_1PoissonEquations_ae2e4e133bde4c4cbddf00de6c4feb72c}{u\+\_\+index\+\_\+poisson}} () const
 \begin{DoxyCompactList}\small\item\em Return the index at which the unknown value is stored. The default value, 0, is appropriate for single-\/physics problems, when there is only one variable, the value that satisfies the poisson equation. In derived multi-\/physics elements, this function should be overloaded to reflect the chosen storage scheme. Note that these equations require that the unknown is always stored at the same index at each node. \end{DoxyCompactList}\item 
-void \mbox{\hyperlink{classoomph_1_1PoissonEquations_a03685536047faa97412f86030ffd91cb}{point\+\_\+output\+\_\+data}} (const \mbox{\hyperlink{classoomph_1_1Vector}{Vector}}$<$ double $>$ \&\mbox{\hyperlink{the__data__structure_8txt_acdf437512dc428cd2c5e8b3aa8b92896}{s}}, \mbox{\hyperlink{classoomph_1_1Vector}{Vector}}$<$ double $>$ \&data)
+void \mbox{\hyperlink{classoomph_1_1PoissonEquations_a03685536047faa97412f86030ffd91cb}{point\+\_\+output\+\_\+data}} (const \mbox{\hyperlink{classoomph_1_1Vector}{Vector}}$<$ double $>$ \&\mbox{\hyperlink{cfortran_8h_ab7123126e4885ef647dd9c6e3807a21c}{s}}, \mbox{\hyperlink{classoomph_1_1Vector}{Vector}}$<$ double $>$ \&data)
 \begin{DoxyCompactList}\small\item\em Output solution in data vector at local cordinates s\+: x,y \mbox{[},z\mbox{]}, u. \end{DoxyCompactList}\item 
 unsigned \mbox{\hyperlink{classoomph_1_1PoissonEquations_a8a34f70a57c1aad552a9624ea0fb0906}{nscalar\+\_\+paraview}} () const
 \begin{DoxyCompactList}\small\item\em Number of scalars/fields output by this element. Reimplements broken virtual function in base class. \end{DoxyCompactList}\item 
@@ -41,26 +41,26 @@ void \mbox{\hyperlink{classoomph_1_1PoissonEquations_afcf08b45211a5a3bcf0c80919e
 void \mbox{\hyperlink{classoomph_1_1PoissonEquations_a2417afb77d428846d7a1eada342ea8bb}{output}} (std\+::ostream \&outfile)
 \begin{DoxyCompactList}\small\item\em Output with default number of plot points. \end{DoxyCompactList}\item 
 void \mbox{\hyperlink{classoomph_1_1PoissonEquations_a6683dd0afc16bfddf4e79b6e0e449d43}{output}} (std\+::ostream \&outfile, const unsigned \&n\+\_\+plot)
-\begin{DoxyCompactList}\small\item\em Output FE representation of soln\+: x,y,u or x,y,z,u at n\+\_\+plot$^\wedge$\+D\+IM plot points. \end{DoxyCompactList}\item 
-void \mbox{\hyperlink{classoomph_1_1PoissonEquations_afeaa8b136b9cc9649635b41bde1b5cda}{output}} (F\+I\+LE $\ast$file\+\_\+pt)
+\begin{DoxyCompactList}\small\item\em Output FE representation of soln\+: x,y,u or x,y,z,u at n\+\_\+plot$^\wedge$\+DIM plot points. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classoomph_1_1PoissonEquations_afeaa8b136b9cc9649635b41bde1b5cda}{output}} (FILE $\ast$file\+\_\+pt)
 \begin{DoxyCompactList}\small\item\em C\+\_\+style output with default number of plot points. \end{DoxyCompactList}\item 
-void \mbox{\hyperlink{classoomph_1_1PoissonEquations_abc30eee5faaa50a65b272012d17ba604}{output}} (F\+I\+LE $\ast$file\+\_\+pt, const unsigned \&n\+\_\+plot)
-\begin{DoxyCompactList}\small\item\em C-\/style output FE representation of soln\+: x,y,u or x,y,z,u at n\+\_\+plot$^\wedge$\+D\+IM plot points. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classoomph_1_1PoissonEquations_abc30eee5faaa50a65b272012d17ba604}{output}} (FILE $\ast$file\+\_\+pt, const unsigned \&n\+\_\+plot)
+\begin{DoxyCompactList}\small\item\em C-\/style output FE representation of soln\+: x,y,u or x,y,z,u at n\+\_\+plot$^\wedge$\+DIM plot points. \end{DoxyCompactList}\item 
 void \mbox{\hyperlink{classoomph_1_1PoissonEquations_ad6c637c8a5221313c2220e8e8c27ec42}{output\+\_\+fct}} (std\+::ostream \&outfile, const unsigned \&n\+\_\+plot, \mbox{\hyperlink{classoomph_1_1FiniteElement_a690fd33af26cc3e84f39bba6d5a85202}{Finite\+Element\+::\+Steady\+Exact\+Solution\+Fct\+Pt}} exact\+\_\+soln\+\_\+pt)
 \item 
 virtual void \mbox{\hyperlink{classoomph_1_1PoissonEquations_a6d98964a14b38f4b2e89a2744478f706}{output\+\_\+fct}} (std\+::ostream \&outfile, const unsigned \&n\+\_\+plot, const double \&time, \mbox{\hyperlink{classoomph_1_1FiniteElement_ad4ecf2b61b158a4b4d351a60d23c633e}{Finite\+Element\+::\+Unsteady\+Exact\+Solution\+Fct\+Pt}} exact\+\_\+soln\+\_\+pt)
-\begin{DoxyCompactList}\small\item\em Output exact soln\+: x,y,u\+\_\+exact or x,y,z,u\+\_\+exact at n\+\_\+plot$^\wedge$\+D\+IM plot points (dummy time-\/dependent version to keep intel compiler happy) \end{DoxyCompactList}\item 
+\begin{DoxyCompactList}\small\item\em Output exact soln\+: x,y,u\+\_\+exact or x,y,z,u\+\_\+exact at n\+\_\+plot$^\wedge$\+DIM plot points (dummy time-\/dependent version to keep intel compiler happy) \end{DoxyCompactList}\item 
 void \mbox{\hyperlink{classoomph_1_1PoissonEquations_a44cc8368f1e4008997908134300ab13f}{compute\+\_\+norm}} (double \&norm)
 \begin{DoxyCompactList}\small\item\em Compute norm of solution\+: square of the L2 norm. \end{DoxyCompactList}\item 
 void \mbox{\hyperlink{classoomph_1_1PoissonEquations_aa80d68fe086a9adba93ac67afa1bb2f7}{compute\+\_\+error}} (std\+::ostream \&outfile, \mbox{\hyperlink{classoomph_1_1FiniteElement_a690fd33af26cc3e84f39bba6d5a85202}{Finite\+Element\+::\+Steady\+Exact\+Solution\+Fct\+Pt}} exact\+\_\+soln\+\_\+pt, double \&error, double \&norm)
 \begin{DoxyCompactList}\small\item\em Get error against and norm of exact solution. \end{DoxyCompactList}\item 
 void \mbox{\hyperlink{classoomph_1_1PoissonEquations_a529901bcc5464c599fb0155619e56ed2}{compute\+\_\+error}} (std\+::ostream \&outfile, \mbox{\hyperlink{classoomph_1_1FiniteElement_ad4ecf2b61b158a4b4d351a60d23c633e}{Finite\+Element\+::\+Unsteady\+Exact\+Solution\+Fct\+Pt}} exact\+\_\+soln\+\_\+pt, const double \&time, double \&error, double \&norm)
 \begin{DoxyCompactList}\small\item\em Dummy, time dependent error checker. \end{DoxyCompactList}\item 
-\mbox{\hyperlink{classoomph_1_1PoissonEquations_a1e3a857c1f506c99d437fb932a24c828}{Poisson\+Source\+Fct\+Pt}} \& \mbox{\hyperlink{classoomph_1_1PoissonEquations_aeeffc9c64ab0be478d2fe1d6e9d0f959}{source\+\_\+fct\+\_\+pt}} ()
+\mbox{\hyperlink{classoomph_1_1PoissonEquations_a1e3a857c1f506c99d437fb932a24c828}{Poisson\+Source\+Fct\+Pt}} \& \mbox{\hyperlink{classoomph_1_1PoissonEquations_a4221606c99576ad2ef8ef82a8dcc14ca}{source\+\_\+fct\+\_\+pt}} ()
 \begin{DoxyCompactList}\small\item\em Access function\+: Pointer to source function. \end{DoxyCompactList}\item 
 \mbox{\hyperlink{classoomph_1_1PoissonEquations_a1e3a857c1f506c99d437fb932a24c828}{Poisson\+Source\+Fct\+Pt}} \mbox{\hyperlink{classoomph_1_1PoissonEquations_a3b726ee15516f4cf86d2aea3e153c20b}{source\+\_\+fct\+\_\+pt}} () const
 \begin{DoxyCompactList}\small\item\em Access function\+: Pointer to source function. Const version. \end{DoxyCompactList}\item 
-\mbox{\hyperlink{classoomph_1_1PoissonEquations_a6182c46eb07d6219d6f939f0962724c4}{Poisson\+Source\+Fct\+Gradient\+Pt}} \& \mbox{\hyperlink{classoomph_1_1PoissonEquations_a6beea1917ccf0bd6fd794e2aaee36a9b}{source\+\_\+fct\+\_\+gradient\+\_\+pt}} ()
+\mbox{\hyperlink{classoomph_1_1PoissonEquations_a6182c46eb07d6219d6f939f0962724c4}{Poisson\+Source\+Fct\+Gradient\+Pt}} \& \mbox{\hyperlink{classoomph_1_1PoissonEquations_a8971438f9915e20335c9f0dde045b5b7}{source\+\_\+fct\+\_\+gradient\+\_\+pt}} ()
 \begin{DoxyCompactList}\small\item\em Access function\+: Pointer to gradient of source function. \end{DoxyCompactList}\item 
 \mbox{\hyperlink{classoomph_1_1PoissonEquations_a6182c46eb07d6219d6f939f0962724c4}{Poisson\+Source\+Fct\+Gradient\+Pt}} \mbox{\hyperlink{classoomph_1_1PoissonEquations_a0c3464f9f803d3a0366d0b254b8cddc4}{source\+\_\+fct\+\_\+gradient\+\_\+pt}} () const
 \begin{DoxyCompactList}\small\item\em Access function\+: Pointer to gradient source function. Const version. \end{DoxyCompactList}\item 
@@ -68,15 +68,15 @@ virtual void \mbox{\hyperlink{classoomph_1_1PoissonEquations_a06dbfe005c721c1562
 \item 
 virtual void \mbox{\hyperlink{classoomph_1_1PoissonEquations_a05d8a527a6fe79e7506c5756d9fddd77}{get\+\_\+source\+\_\+gradient\+\_\+poisson}} (const unsigned \&ipt, const \mbox{\hyperlink{classoomph_1_1Vector}{Vector}}$<$ double $>$ \&x, \mbox{\hyperlink{classoomph_1_1Vector}{Vector}}$<$ double $>$ \&gradient) const
 \item 
-void \mbox{\hyperlink{classoomph_1_1PoissonEquations_aa11374daca090943d5abc70fa73cc763}{get\+\_\+flux}} (const \mbox{\hyperlink{classoomph_1_1Vector}{Vector}}$<$ double $>$ \&\mbox{\hyperlink{the__data__structure_8txt_acdf437512dc428cd2c5e8b3aa8b92896}{s}}, \mbox{\hyperlink{classoomph_1_1Vector}{Vector}}$<$ double $>$ \&flux) const
+void \mbox{\hyperlink{classoomph_1_1PoissonEquations_aa11374daca090943d5abc70fa73cc763}{get\+\_\+flux}} (const \mbox{\hyperlink{classoomph_1_1Vector}{Vector}}$<$ double $>$ \&\mbox{\hyperlink{cfortran_8h_ab7123126e4885ef647dd9c6e3807a21c}{s}}, \mbox{\hyperlink{classoomph_1_1Vector}{Vector}}$<$ double $>$ \&flux) const
 \begin{DoxyCompactList}\small\item\em Get flux\+: flux\mbox{[}i\mbox{]} = du/dx\+\_\+i. \end{DoxyCompactList}\item 
-void \mbox{\hyperlink{classoomph_1_1PoissonEquations_a13f8517264deb559ef820e35b199e732}{get\+\_\+dflux\+\_\+dnodal\+\_\+u}} (const \mbox{\hyperlink{classoomph_1_1Vector}{Vector}}$<$ double $>$ \&\mbox{\hyperlink{the__data__structure_8txt_acdf437512dc428cd2c5e8b3aa8b92896}{s}}, \mbox{\hyperlink{classoomph_1_1Vector}{Vector}}$<$ \mbox{\hyperlink{classoomph_1_1Vector}{Vector}}$<$ double $>$$>$ \&dflux\+\_\+dnodal\+\_\+u) const
+void \mbox{\hyperlink{classoomph_1_1PoissonEquations_a09faa6578f076ca5fb4b20aef5e2b4c6}{get\+\_\+dflux\+\_\+dnodal\+\_\+u}} (const \mbox{\hyperlink{classoomph_1_1Vector}{Vector}}$<$ double $>$ \&\mbox{\hyperlink{cfortran_8h_ab7123126e4885ef647dd9c6e3807a21c}{s}}, \mbox{\hyperlink{classoomph_1_1Vector}{Vector}}$<$ \mbox{\hyperlink{classoomph_1_1Vector}{Vector}}$<$ double $>$ $>$ \&dflux\+\_\+dnodal\+\_\+u) const
 \item 
-void \mbox{\hyperlink{classoomph_1_1PoissonEquations_a2b6578ce3ddd81293242becba40aaf3f}{fill\+\_\+in\+\_\+contribution\+\_\+to\+\_\+residuals}} (\mbox{\hyperlink{classoomph_1_1Vector}{Vector}}$<$ double $>$ \&\mbox{\hyperlink{the__data__structure_8txt_a1400a973def57b85051cfe1070be1810}{residuals}})
+void \mbox{\hyperlink{classoomph_1_1PoissonEquations_a2b6578ce3ddd81293242becba40aaf3f}{fill\+\_\+in\+\_\+contribution\+\_\+to\+\_\+residuals}} (\mbox{\hyperlink{classoomph_1_1Vector}{Vector}}$<$ double $>$ \&residuals)
 \begin{DoxyCompactList}\small\item\em Add the element\textquotesingle{}s contribution to its residual vector (wrapper) \end{DoxyCompactList}\item 
-void \mbox{\hyperlink{classoomph_1_1PoissonEquations_ad5e268cfc535826603e868612f892c49}{fill\+\_\+in\+\_\+contribution\+\_\+to\+\_\+jacobian}} (\mbox{\hyperlink{classoomph_1_1Vector}{Vector}}$<$ double $>$ \&\mbox{\hyperlink{the__data__structure_8txt_a1400a973def57b85051cfe1070be1810}{residuals}}, \mbox{\hyperlink{classoomph_1_1DenseMatrix}{Dense\+Matrix}}$<$ double $>$ \&jacobian)
+void \mbox{\hyperlink{classoomph_1_1PoissonEquations_ad5e268cfc535826603e868612f892c49}{fill\+\_\+in\+\_\+contribution\+\_\+to\+\_\+jacobian}} (\mbox{\hyperlink{classoomph_1_1Vector}{Vector}}$<$ double $>$ \&residuals, \mbox{\hyperlink{classoomph_1_1DenseMatrix}{Dense\+Matrix}}$<$ double $>$ \&jacobian)
 \item 
-virtual double \mbox{\hyperlink{classoomph_1_1PoissonEquations_a9f31492636bebfe62cdacaab4b529c69}{interpolated\+\_\+u\+\_\+poisson}} (const \mbox{\hyperlink{classoomph_1_1Vector}{Vector}}$<$ double $>$ \&\mbox{\hyperlink{the__data__structure_8txt_acdf437512dc428cd2c5e8b3aa8b92896}{s}}) const
+virtual double \mbox{\hyperlink{classoomph_1_1PoissonEquations_a9f31492636bebfe62cdacaab4b529c69}{interpolated\+\_\+u\+\_\+poisson}} (const \mbox{\hyperlink{classoomph_1_1Vector}{Vector}}$<$ double $>$ \&\mbox{\hyperlink{cfortran_8h_ab7123126e4885ef647dd9c6e3807a21c}{s}}) const
 \begin{DoxyCompactList}\small\item\em Return FE representation of function value u\+\_\+poisson(s) at local coordinate s. \end{DoxyCompactList}\item 
 virtual void \mbox{\hyperlink{classoomph_1_1PoissonEquations_a566350ffaf9170d934ae02b0c3cb7064}{get\+\_\+dresidual\+\_\+dnodal\+\_\+coordinates}} (\mbox{\hyperlink{classoomph_1_1RankThreeTensor}{Rank\+Three\+Tensor}}$<$ double $>$ \&dresidual\+\_\+dnodal\+\_\+coordinates)
 \begin{DoxyCompactList}\small\item\em Compute derivatives of elemental residual vector with respect to nodal coordinates. Overwrites default implementation in \mbox{\hyperlink{classoomph_1_1FiniteElement}{Finite\+Element}} base class. dresidual\+\_\+dnodal\+\_\+coordinates(l,i,j) = d res(l) / d\+X\+\_\+\{ij\}. \end{DoxyCompactList}\item 
@@ -85,13 +85,13 @@ unsigned \mbox{\hyperlink{classoomph_1_1PoissonEquations_a04816974542e5764e1ec3f
 \doxysubsection*{Protected Member Functions}
 \begin{DoxyCompactItemize}
 \item 
-virtual double \mbox{\hyperlink{classoomph_1_1PoissonEquations_a88afb41d8733fb3488754cb579f44770}{dshape\+\_\+and\+\_\+dtest\+\_\+eulerian\+\_\+poisson}} (const \mbox{\hyperlink{classoomph_1_1Vector}{Vector}}$<$ double $>$ \&\mbox{\hyperlink{the__data__structure_8txt_acdf437512dc428cd2c5e8b3aa8b92896}{s}}, \mbox{\hyperlink{classoomph_1_1Shape}{Shape}} \&psi, \mbox{\hyperlink{classoomph_1_1DShape}{D\+Shape}} \&dpsidx, \mbox{\hyperlink{classoomph_1_1Shape}{Shape}} \&test, \mbox{\hyperlink{classoomph_1_1DShape}{D\+Shape}} \&dtestdx) const =0
+virtual double \mbox{\hyperlink{classoomph_1_1PoissonEquations_a88afb41d8733fb3488754cb579f44770}{dshape\+\_\+and\+\_\+dtest\+\_\+eulerian\+\_\+poisson}} (const \mbox{\hyperlink{classoomph_1_1Vector}{Vector}}$<$ double $>$ \&\mbox{\hyperlink{cfortran_8h_ab7123126e4885ef647dd9c6e3807a21c}{s}}, \mbox{\hyperlink{classoomph_1_1Shape}{Shape}} \&psi, \mbox{\hyperlink{classoomph_1_1DShape}{DShape}} \&dpsidx, \mbox{\hyperlink{classoomph_1_1Shape}{Shape}} \&test, \mbox{\hyperlink{classoomph_1_1DShape}{DShape}} \&dtestdx) const =0
 \begin{DoxyCompactList}\small\item\em Shape/test functions and derivs w.\+r.\+t. to global coords at local coord. s; return Jacobian of mapping. \end{DoxyCompactList}\item 
-virtual double \mbox{\hyperlink{classoomph_1_1PoissonEquations_af68ad067d9a9d1bcbcc1ee3094b77a7a}{dshape\+\_\+and\+\_\+dtest\+\_\+eulerian\+\_\+at\+\_\+knot\+\_\+poisson}} (const unsigned \&ipt, \mbox{\hyperlink{classoomph_1_1Shape}{Shape}} \&psi, \mbox{\hyperlink{classoomph_1_1DShape}{D\+Shape}} \&dpsidx, \mbox{\hyperlink{classoomph_1_1Shape}{Shape}} \&test, \mbox{\hyperlink{classoomph_1_1DShape}{D\+Shape}} \&dtestdx) const =0
+virtual double \mbox{\hyperlink{classoomph_1_1PoissonEquations_af68ad067d9a9d1bcbcc1ee3094b77a7a}{dshape\+\_\+and\+\_\+dtest\+\_\+eulerian\+\_\+at\+\_\+knot\+\_\+poisson}} (const unsigned \&ipt, \mbox{\hyperlink{classoomph_1_1Shape}{Shape}} \&psi, \mbox{\hyperlink{classoomph_1_1DShape}{DShape}} \&dpsidx, \mbox{\hyperlink{classoomph_1_1Shape}{Shape}} \&test, \mbox{\hyperlink{classoomph_1_1DShape}{DShape}} \&dtestdx) const =0
 \begin{DoxyCompactList}\small\item\em Shape/test functions and derivs w.\+r.\+t. to global coords at integration point ipt; return Jacobian of mapping. \end{DoxyCompactList}\item 
-virtual double \mbox{\hyperlink{classoomph_1_1PoissonEquations_a09f816da9c9b23fd6a308601fe536cef}{dshape\+\_\+and\+\_\+dtest\+\_\+eulerian\+\_\+at\+\_\+knot\+\_\+poisson}} (const unsigned \&ipt, \mbox{\hyperlink{classoomph_1_1Shape}{Shape}} \&psi, \mbox{\hyperlink{classoomph_1_1DShape}{D\+Shape}} \&dpsidx, \mbox{\hyperlink{classoomph_1_1RankFourTensor}{Rank\+Four\+Tensor}}$<$ double $>$ \&d\+\_\+dpsidx\+\_\+dX, \mbox{\hyperlink{classoomph_1_1Shape}{Shape}} \&test, \mbox{\hyperlink{classoomph_1_1DShape}{D\+Shape}} \&dtestdx, \mbox{\hyperlink{classoomph_1_1RankFourTensor}{Rank\+Four\+Tensor}}$<$ double $>$ \&d\+\_\+dtestdx\+\_\+dX, \mbox{\hyperlink{classoomph_1_1DenseMatrix}{Dense\+Matrix}}$<$ double $>$ \&djacobian\+\_\+dX) const =0
+virtual double \mbox{\hyperlink{classoomph_1_1PoissonEquations_a09f816da9c9b23fd6a308601fe536cef}{dshape\+\_\+and\+\_\+dtest\+\_\+eulerian\+\_\+at\+\_\+knot\+\_\+poisson}} (const unsigned \&ipt, \mbox{\hyperlink{classoomph_1_1Shape}{Shape}} \&psi, \mbox{\hyperlink{classoomph_1_1DShape}{DShape}} \&dpsidx, \mbox{\hyperlink{classoomph_1_1RankFourTensor}{Rank\+Four\+Tensor}}$<$ double $>$ \&d\+\_\+dpsidx\+\_\+dX, \mbox{\hyperlink{classoomph_1_1Shape}{Shape}} \&test, \mbox{\hyperlink{classoomph_1_1DShape}{DShape}} \&dtestdx, \mbox{\hyperlink{classoomph_1_1RankFourTensor}{Rank\+Four\+Tensor}}$<$ double $>$ \&d\+\_\+dtestdx\+\_\+dX, \mbox{\hyperlink{classoomph_1_1DenseMatrix}{Dense\+Matrix}}$<$ double $>$ \&djacobian\+\_\+dX) const =0
 \begin{DoxyCompactList}\small\item\em Shape/test functions and derivs w.\+r.\+t. to global coords at integration point ipt; return Jacobian of mapping (J). Also compute derivatives of dpsidx, dtestdx and J w.\+r.\+t. nodal coordinates. \end{DoxyCompactList}\item 
-virtual void \mbox{\hyperlink{classoomph_1_1PoissonEquations_a02c40bfa9b59fa7935677999623da633}{fill\+\_\+in\+\_\+generic\+\_\+residual\+\_\+contribution\+\_\+poisson}} (\mbox{\hyperlink{classoomph_1_1Vector}{Vector}}$<$ double $>$ \&\mbox{\hyperlink{the__data__structure_8txt_a1400a973def57b85051cfe1070be1810}{residuals}}, \mbox{\hyperlink{classoomph_1_1DenseMatrix}{Dense\+Matrix}}$<$ double $>$ \&jacobian, const unsigned \&flag)
+virtual void \mbox{\hyperlink{classoomph_1_1PoissonEquations_a02c40bfa9b59fa7935677999623da633}{fill\+\_\+in\+\_\+generic\+\_\+residual\+\_\+contribution\+\_\+poisson}} (\mbox{\hyperlink{classoomph_1_1Vector}{Vector}}$<$ double $>$ \&residuals, \mbox{\hyperlink{classoomph_1_1DenseMatrix}{Dense\+Matrix}}$<$ double $>$ \&jacobian, const unsigned \&flag)
 \begin{DoxyCompactList}\small\item\em Compute element residual \mbox{\hyperlink{classoomph_1_1Vector}{Vector}} only (if flag=and/or element Jacobian matrix. \end{DoxyCompactList}\end{DoxyCompactItemize}
 \doxysubsection*{Protected Attributes}
 \begin{DoxyCompactItemize}
@@ -104,12 +104,11 @@ virtual void \mbox{\hyperlink{classoomph_1_1PoissonEquations_a02c40bfa9b59fa7935
 
 
 \doxysubsection{Detailed Description}
-\subsubsection*{template$<$unsigned D\+IM$>$\newline
-class oomph\+::\+Poisson\+Equations$<$ D\+I\+M $>$}
-
+\subsubsection*{template$<$unsigned DIM$>$\newline
+class oomph\+::\+Poisson\+Equations$<$ DIM $>$}
 A class for all isoparametric elements that solve the Poisson equations. \[ \frac{\partial^2 u}{\partial x_i^2} = f(x_j) \] This contains the generic maths. \mbox{\hyperlink{classoomph_1_1Shape}{Shape}} functions, geometric mapping etc. must get implemented in derived class. 
 
-Definition at line 57 of file poisson\+\_\+elements.\+h.
+Definition at line \mbox{\hyperlink{poisson__elements_8h_source_l00057}{57}} of file \mbox{\hyperlink{poisson__elements_8h_source}{poisson\+\_\+elements.\+h}}.
 
 
 
@@ -118,8 +117,8 @@ Definition at line 57 of file poisson\+\_\+elements.\+h.
 \index{oomph::PoissonEquations$<$ DIM $>$@{oomph::PoissonEquations$<$ DIM $>$}!PoissonSourceFctGradientPt@{PoissonSourceFctGradientPt}}
 \index{PoissonSourceFctGradientPt@{PoissonSourceFctGradientPt}!oomph::PoissonEquations$<$ DIM $>$@{oomph::PoissonEquations$<$ DIM $>$}}
 \doxysubsubsection{\texorpdfstring{PoissonSourceFctGradientPt}{PoissonSourceFctGradientPt}}
-{\footnotesize\ttfamily template$<$unsigned D\+IM$>$ \\
-typedef void($\ast$ \mbox{\hyperlink{classoomph_1_1PoissonEquations}{oomph\+::\+Poisson\+Equations}}$<$ D\+IM $>$\+::Poisson\+Source\+Fct\+Gradient\+Pt) (const \mbox{\hyperlink{classoomph_1_1Vector}{Vector}}$<$ double $>$ \&x, \mbox{\hyperlink{classoomph_1_1Vector}{Vector}}$<$ double $>$ \&gradient)}
+{\footnotesize\ttfamily template$<$unsigned DIM$>$ \\
+typedef void($\ast$ \mbox{\hyperlink{classoomph_1_1PoissonEquations}{oomph\+::\+Poisson\+Equations}}$<$ DIM $>$\+::Poisson\+Source\+Fct\+Gradient\+Pt) (const \mbox{\hyperlink{classoomph_1_1Vector}{Vector}}$<$ double $>$ \&x, \mbox{\hyperlink{classoomph_1_1Vector}{Vector}}$<$ double $>$ \&gradient)}
 
 
 
@@ -127,14 +126,14 @@ Function pointer to gradient of source function fct(x,g(x)) -- x is a Vector!
 
 
 
-Definition at line 67 of file poisson\+\_\+elements.\+h.
+Definition at line \mbox{\hyperlink{poisson__elements_8h_source_l00067}{67}} of file \mbox{\hyperlink{poisson__elements_8h_source}{poisson\+\_\+elements.\+h}}.
 
 \mbox{\Hypertarget{classoomph_1_1PoissonEquations_a1e3a857c1f506c99d437fb932a24c828}\label{classoomph_1_1PoissonEquations_a1e3a857c1f506c99d437fb932a24c828}} 
 \index{oomph::PoissonEquations$<$ DIM $>$@{oomph::PoissonEquations$<$ DIM $>$}!PoissonSourceFctPt@{PoissonSourceFctPt}}
 \index{PoissonSourceFctPt@{PoissonSourceFctPt}!oomph::PoissonEquations$<$ DIM $>$@{oomph::PoissonEquations$<$ DIM $>$}}
 \doxysubsubsection{\texorpdfstring{PoissonSourceFctPt}{PoissonSourceFctPt}}
-{\footnotesize\ttfamily template$<$unsigned D\+IM$>$ \\
-typedef void($\ast$ \mbox{\hyperlink{classoomph_1_1PoissonEquations}{oomph\+::\+Poisson\+Equations}}$<$ D\+IM $>$\+::Poisson\+Source\+Fct\+Pt) (const \mbox{\hyperlink{classoomph_1_1Vector}{Vector}}$<$ double $>$ \&x, double \&f)}
+{\footnotesize\ttfamily template$<$unsigned DIM$>$ \\
+typedef void($\ast$ \mbox{\hyperlink{classoomph_1_1PoissonEquations}{oomph\+::\+Poisson\+Equations}}$<$ DIM $>$\+::Poisson\+Source\+Fct\+Pt) (const \mbox{\hyperlink{classoomph_1_1Vector}{Vector}}$<$ double $>$ \&x, double \&f)}
 
 
 
@@ -142,7 +141,7 @@ Function pointer to source function fct(x,f(x)) -- x is a Vector!
 
 
 
-Definition at line 62 of file poisson\+\_\+elements.\+h.
+Definition at line \mbox{\hyperlink{poisson__elements_8h_source_l00062}{62}} of file \mbox{\hyperlink{poisson__elements_8h_source}{poisson\+\_\+elements.\+h}}.
 
 
 
@@ -151,8 +150,8 @@ Definition at line 62 of file poisson\+\_\+elements.\+h.
 \index{oomph::PoissonEquations$<$ DIM $>$@{oomph::PoissonEquations$<$ DIM $>$}!PoissonEquations@{PoissonEquations}}
 \index{PoissonEquations@{PoissonEquations}!oomph::PoissonEquations$<$ DIM $>$@{oomph::PoissonEquations$<$ DIM $>$}}
 \doxysubsubsection{\texorpdfstring{PoissonEquations()}{PoissonEquations()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
-{\footnotesize\ttfamily template$<$unsigned D\+IM$>$ \\
-\mbox{\hyperlink{classoomph_1_1PoissonEquations}{oomph\+::\+Poisson\+Equations}}$<$ D\+IM $>$\+::\mbox{\hyperlink{classoomph_1_1PoissonEquations}{Poisson\+Equations}} (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+{\footnotesize\ttfamily template$<$unsigned DIM$>$ \\
+\mbox{\hyperlink{classoomph_1_1PoissonEquations}{oomph\+::\+Poisson\+Equations}}$<$ DIM $>$\+::\mbox{\hyperlink{classoomph_1_1PoissonEquations}{Poisson\+Equations}} (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
 
 
 
@@ -160,26 +159,18 @@ Constructor (must initialise the Source\+\_\+fct\+\_\+pt to null)
 
 
 
-Definition at line 72 of file poisson\+\_\+elements.\+h.
+Definition at line \mbox{\hyperlink{poisson__elements_8h_source_l00072}{72}} of file \mbox{\hyperlink{poisson__elements_8h_source}{poisson\+\_\+elements.\+h}}.
 
-\mbox{\Hypertarget{classoomph_1_1PoissonEquations_ad41c83d9d92cb124d50b24dc237854cf}\label{classoomph_1_1PoissonEquations_ad41c83d9d92cb124d50b24dc237854cf}} 
+\mbox{\Hypertarget{classoomph_1_1PoissonEquations_aff0376dc28613ca937cc25eba9d8ced1}\label{classoomph_1_1PoissonEquations_aff0376dc28613ca937cc25eba9d8ced1}} 
 \index{oomph::PoissonEquations$<$ DIM $>$@{oomph::PoissonEquations$<$ DIM $>$}!PoissonEquations@{PoissonEquations}}
 \index{PoissonEquations@{PoissonEquations}!oomph::PoissonEquations$<$ DIM $>$@{oomph::PoissonEquations$<$ DIM $>$}}
 \doxysubsubsection{\texorpdfstring{PoissonEquations()}{PoissonEquations()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
-{\footnotesize\ttfamily template$<$unsigned D\+IM$>$ \\
-\mbox{\hyperlink{classoomph_1_1PoissonEquations}{oomph\+::\+Poisson\+Equations}}$<$ D\+IM $>$\+::\mbox{\hyperlink{classoomph_1_1PoissonEquations}{Poisson\+Equations}} (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{classoomph_1_1PoissonEquations}{Poisson\+Equations}}$<$ D\+IM $>$ \&}]{dummy }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+{\footnotesize\ttfamily template$<$unsigned DIM$>$ \\
+\mbox{\hyperlink{classoomph_1_1PoissonEquations}{oomph\+::\+Poisson\+Equations}}$<$ DIM $>$\+::\mbox{\hyperlink{classoomph_1_1PoissonEquations}{Poisson\+Equations}} (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{classoomph_1_1PoissonEquations}{Poisson\+Equations}}$<$ DIM $>$ \&}]{dummy }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [delete]}}
 
 
 
 Broken copy constructor. 
-
-
-
-Definition at line 75 of file poisson\+\_\+elements.\+h.
-
-
-
-References oomph\+::\+Broken\+Copy\+::broken\+\_\+copy().
 
 
 
@@ -188,8 +179,8 @@ References oomph\+::\+Broken\+Copy\+::broken\+\_\+copy().
 \index{oomph::PoissonEquations$<$ DIM $>$@{oomph::PoissonEquations$<$ DIM $>$}!compute\_error@{compute\_error}}
 \index{compute\_error@{compute\_error}!oomph::PoissonEquations$<$ DIM $>$@{oomph::PoissonEquations$<$ DIM $>$}}
 \doxysubsubsection{\texorpdfstring{compute\_error()}{compute\_error()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
-{\footnotesize\ttfamily template$<$unsigned D\+IM$>$ \\
-void \mbox{\hyperlink{classoomph_1_1PoissonEquations}{oomph\+::\+Poisson\+Equations}}$<$ D\+IM $>$\+::compute\+\_\+error (\begin{DoxyParamCaption}\item[{std\+::ostream \&}]{outfile,  }\item[{\mbox{\hyperlink{classoomph_1_1FiniteElement_a690fd33af26cc3e84f39bba6d5a85202}{Finite\+Element\+::\+Steady\+Exact\+Solution\+Fct\+Pt}}}]{exact\+\_\+soln\+\_\+pt,  }\item[{double \&}]{error,  }\item[{double \&}]{norm }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [virtual]}}
+{\footnotesize\ttfamily template$<$unsigned DIM$>$ \\
+void \mbox{\hyperlink{classoomph_1_1PoissonEquations}{oomph\+::\+Poisson\+Equations}}$<$ DIM $>$\+::compute\+\_\+error (\begin{DoxyParamCaption}\item[{std\+::ostream \&}]{outfile,  }\item[{\mbox{\hyperlink{classoomph_1_1FiniteElement_a690fd33af26cc3e84f39bba6d5a85202}{Finite\+Element\+::\+Steady\+Exact\+Solution\+Fct\+Pt}}}]{exact\+\_\+soln\+\_\+pt,  }\item[{double \&}]{error,  }\item[{double \&}]{norm }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [virtual]}}
 
 
 
@@ -203,18 +194,18 @@ Reimplemented from \mbox{\hyperlink{classoomph_1_1FiniteElement_a73c79a1f1e5b1d3
 
 
 
-Definition at line 500 of file poisson\+\_\+elements.\+cc.
+Definition at line \mbox{\hyperlink{poisson__elements_8cc_source_l00500}{500}} of file \mbox{\hyperlink{poisson__elements_8cc_source}{poisson\+\_\+elements.\+cc}}.
 
 
 
-References i, s, and oomph\+::\+Quad\+Tree\+Names\+::W.
+References \mbox{\hyperlink{cfortran_8h_source_l00603}{i}}, \mbox{\hyperlink{cfortran_8h_source_l00568}{s}}, and \mbox{\hyperlink{quadtree_8h_source_l00063}{oomph\+::\+Quad\+Tree\+Names\+::W}}.
 
 \mbox{\Hypertarget{classoomph_1_1PoissonEquations_a529901bcc5464c599fb0155619e56ed2}\label{classoomph_1_1PoissonEquations_a529901bcc5464c599fb0155619e56ed2}} 
 \index{oomph::PoissonEquations$<$ DIM $>$@{oomph::PoissonEquations$<$ DIM $>$}!compute\_error@{compute\_error}}
 \index{compute\_error@{compute\_error}!oomph::PoissonEquations$<$ DIM $>$@{oomph::PoissonEquations$<$ DIM $>$}}
 \doxysubsubsection{\texorpdfstring{compute\_error()}{compute\_error()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
-{\footnotesize\ttfamily template$<$unsigned D\+IM$>$ \\
-void \mbox{\hyperlink{classoomph_1_1PoissonEquations}{oomph\+::\+Poisson\+Equations}}$<$ D\+IM $>$\+::compute\+\_\+error (\begin{DoxyParamCaption}\item[{std\+::ostream \&}]{outfile,  }\item[{\mbox{\hyperlink{classoomph_1_1FiniteElement_ad4ecf2b61b158a4b4d351a60d23c633e}{Finite\+Element\+::\+Unsteady\+Exact\+Solution\+Fct\+Pt}}}]{exact\+\_\+soln\+\_\+pt,  }\item[{const double \&}]{time,  }\item[{double \&}]{error,  }\item[{double \&}]{norm }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [virtual]}}
+{\footnotesize\ttfamily template$<$unsigned DIM$>$ \\
+void \mbox{\hyperlink{classoomph_1_1PoissonEquations}{oomph\+::\+Poisson\+Equations}}$<$ DIM $>$\+::compute\+\_\+error (\begin{DoxyParamCaption}\item[{std\+::ostream \&}]{outfile,  }\item[{\mbox{\hyperlink{classoomph_1_1FiniteElement_ad4ecf2b61b158a4b4d351a60d23c633e}{Finite\+Element\+::\+Unsteady\+Exact\+Solution\+Fct\+Pt}}}]{exact\+\_\+soln\+\_\+pt,  }\item[{const double \&}]{time,  }\item[{double \&}]{error,  }\item[{double \&}]{norm }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [virtual]}}
 
 
 
@@ -226,14 +217,14 @@ Reimplemented from \mbox{\hyperlink{classoomph_1_1FiniteElement_a7f67853506dc73f
 
 
 
-Definition at line 276 of file poisson\+\_\+elements.\+h.
+Definition at line \mbox{\hyperlink{poisson__elements_8h_source_l00270}{270}} of file \mbox{\hyperlink{poisson__elements_8h_source}{poisson\+\_\+elements.\+h}}.
 
 \mbox{\Hypertarget{classoomph_1_1PoissonEquations_a44cc8368f1e4008997908134300ab13f}\label{classoomph_1_1PoissonEquations_a44cc8368f1e4008997908134300ab13f}} 
 \index{oomph::PoissonEquations$<$ DIM $>$@{oomph::PoissonEquations$<$ DIM $>$}!compute\_norm@{compute\_norm}}
 \index{compute\_norm@{compute\_norm}!oomph::PoissonEquations$<$ DIM $>$@{oomph::PoissonEquations$<$ DIM $>$}}
 \doxysubsubsection{\texorpdfstring{compute\_norm()}{compute\_norm()}}
-{\footnotesize\ttfamily template$<$unsigned D\+IM$>$ \\
-void \mbox{\hyperlink{classoomph_1_1PoissonEquations}{oomph\+::\+Poisson\+Equations}}$<$ D\+IM $>$\+::compute\+\_\+norm (\begin{DoxyParamCaption}\item[{double \&}]{norm }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [virtual]}}
+{\footnotesize\ttfamily template$<$unsigned DIM$>$ \\
+void \mbox{\hyperlink{classoomph_1_1PoissonEquations}{oomph\+::\+Poisson\+Equations}}$<$ DIM $>$\+::compute\+\_\+norm (\begin{DoxyParamCaption}\item[{double \&}]{norm }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [virtual]}}
 
 
 
@@ -245,18 +236,18 @@ Reimplemented from \mbox{\hyperlink{classoomph_1_1GeneralisedElement_af2025a472d
 
 
 
-Definition at line 447 of file poisson\+\_\+elements.\+cc.
+Definition at line \mbox{\hyperlink{poisson__elements_8cc_source_l00447}{447}} of file \mbox{\hyperlink{poisson__elements_8cc_source}{poisson\+\_\+elements.\+cc}}.
 
 
 
-References i, s, u(), and oomph\+::\+Quad\+Tree\+Names\+::W.
+References \mbox{\hyperlink{cfortran_8h_source_l00603}{i}}, \mbox{\hyperlink{cfortran_8h_source_l00568}{s}}, and \mbox{\hyperlink{quadtree_8h_source_l00063}{oomph\+::\+Quad\+Tree\+Names\+::W}}.
 
 \mbox{\Hypertarget{classoomph_1_1PoissonEquations_a09f816da9c9b23fd6a308601fe536cef}\label{classoomph_1_1PoissonEquations_a09f816da9c9b23fd6a308601fe536cef}} 
 \index{oomph::PoissonEquations$<$ DIM $>$@{oomph::PoissonEquations$<$ DIM $>$}!dshape\_and\_dtest\_eulerian\_at\_knot\_poisson@{dshape\_and\_dtest\_eulerian\_at\_knot\_poisson}}
 \index{dshape\_and\_dtest\_eulerian\_at\_knot\_poisson@{dshape\_and\_dtest\_eulerian\_at\_knot\_poisson}!oomph::PoissonEquations$<$ DIM $>$@{oomph::PoissonEquations$<$ DIM $>$}}
 \doxysubsubsection{\texorpdfstring{dshape\_and\_dtest\_eulerian\_at\_knot\_poisson()}{dshape\_and\_dtest\_eulerian\_at\_knot\_poisson()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
-{\footnotesize\ttfamily template$<$unsigned D\+IM$>$ \\
-virtual double \mbox{\hyperlink{classoomph_1_1PoissonEquations}{oomph\+::\+Poisson\+Equations}}$<$ D\+IM $>$\+::dshape\+\_\+and\+\_\+dtest\+\_\+eulerian\+\_\+at\+\_\+knot\+\_\+poisson (\begin{DoxyParamCaption}\item[{const unsigned \&}]{ipt,  }\item[{\mbox{\hyperlink{classoomph_1_1Shape}{Shape}} \&}]{psi,  }\item[{\mbox{\hyperlink{classoomph_1_1DShape}{D\+Shape}} \&}]{dpsidx,  }\item[{\mbox{\hyperlink{classoomph_1_1RankFourTensor}{Rank\+Four\+Tensor}}$<$ double $>$ \&}]{d\+\_\+dpsidx\+\_\+dX,  }\item[{\mbox{\hyperlink{classoomph_1_1Shape}{Shape}} \&}]{test,  }\item[{\mbox{\hyperlink{classoomph_1_1DShape}{D\+Shape}} \&}]{dtestdx,  }\item[{\mbox{\hyperlink{classoomph_1_1RankFourTensor}{Rank\+Four\+Tensor}}$<$ double $>$ \&}]{d\+\_\+dtestdx\+\_\+dX,  }\item[{\mbox{\hyperlink{classoomph_1_1DenseMatrix}{Dense\+Matrix}}$<$ double $>$ \&}]{djacobian\+\_\+dX }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [protected]}, {\ttfamily [pure virtual]}}
+{\footnotesize\ttfamily template$<$unsigned DIM$>$ \\
+virtual double \mbox{\hyperlink{classoomph_1_1PoissonEquations}{oomph\+::\+Poisson\+Equations}}$<$ DIM $>$\+::dshape\+\_\+and\+\_\+dtest\+\_\+eulerian\+\_\+at\+\_\+knot\+\_\+poisson (\begin{DoxyParamCaption}\item[{const unsigned \&}]{ipt,  }\item[{\mbox{\hyperlink{classoomph_1_1Shape}{Shape}} \&}]{psi,  }\item[{\mbox{\hyperlink{classoomph_1_1DShape}{DShape}} \&}]{dpsidx,  }\item[{\mbox{\hyperlink{classoomph_1_1RankFourTensor}{Rank\+Four\+Tensor}}$<$ double $>$ \&}]{d\+\_\+dpsidx\+\_\+dX,  }\item[{\mbox{\hyperlink{classoomph_1_1Shape}{Shape}} \&}]{test,  }\item[{\mbox{\hyperlink{classoomph_1_1DShape}{DShape}} \&}]{dtestdx,  }\item[{\mbox{\hyperlink{classoomph_1_1RankFourTensor}{Rank\+Four\+Tensor}}$<$ double $>$ \&}]{d\+\_\+dtestdx\+\_\+dX,  }\item[{\mbox{\hyperlink{classoomph_1_1DenseMatrix}{Dense\+Matrix}}$<$ double $>$ \&}]{djacobian\+\_\+dX }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [protected]}, {\ttfamily [pure virtual]}}
 
 
 
@@ -264,14 +255,14 @@ Shape/test functions and derivs w.\+r.\+t. to global coords at integration point
 
 
 
-Implemented in \mbox{\hyperlink{classoomph_1_1QPoissonElement_a0e919ee36672fdf05dedad29d8e53b8a}{oomph\+::\+Q\+Poisson\+Element$<$ D\+I\+M, N\+N\+O\+D\+E\+\_\+1\+D $>$}}, \mbox{\hyperlink{classoomph_1_1QPoissonElement_a0e919ee36672fdf05dedad29d8e53b8a}{oomph\+::\+Q\+Poisson\+Element$<$ D\+I\+M, 2 $>$}}, \mbox{\hyperlink{classoomph_1_1QSpectralPoissonElement_a20e5c72a2d391708edb7dd2e53666810}{oomph\+::\+Q\+Spectral\+Poisson\+Element$<$ D\+I\+M, N\+N\+O\+D\+E\+\_\+1\+D $>$}}, and \mbox{\hyperlink{classoomph_1_1TPoissonElement_af4a23d9088cdc834530545fd554ab906}{oomph\+::\+T\+Poisson\+Element$<$ D\+I\+M, N\+N\+O\+D\+E\+\_\+1\+D $>$}}.
+Implemented in \mbox{\hyperlink{classoomph_1_1QPoissonElement_a0e919ee36672fdf05dedad29d8e53b8a}{oomph\+::\+QPoisson\+Element$<$ DIM, NNODE\+\_\+1\+D $>$}}, \mbox{\hyperlink{classoomph_1_1QPoissonElement_a0e919ee36672fdf05dedad29d8e53b8a}{oomph\+::\+QPoisson\+Element$<$ DIM, 2 $>$}}, \mbox{\hyperlink{classoomph_1_1QSpectralPoissonElement_a20e5c72a2d391708edb7dd2e53666810}{oomph\+::\+QSpectral\+Poisson\+Element$<$ DIM, NNODE\+\_\+1\+D $>$}}, and \mbox{\hyperlink{classoomph_1_1TPoissonElement_af4a23d9088cdc834530545fd554ab906}{oomph\+::\+TPoisson\+Element$<$ DIM, NNODE\+\_\+1\+D $>$}}.
 
 \mbox{\Hypertarget{classoomph_1_1PoissonEquations_af68ad067d9a9d1bcbcc1ee3094b77a7a}\label{classoomph_1_1PoissonEquations_af68ad067d9a9d1bcbcc1ee3094b77a7a}} 
 \index{oomph::PoissonEquations$<$ DIM $>$@{oomph::PoissonEquations$<$ DIM $>$}!dshape\_and\_dtest\_eulerian\_at\_knot\_poisson@{dshape\_and\_dtest\_eulerian\_at\_knot\_poisson}}
 \index{dshape\_and\_dtest\_eulerian\_at\_knot\_poisson@{dshape\_and\_dtest\_eulerian\_at\_knot\_poisson}!oomph::PoissonEquations$<$ DIM $>$@{oomph::PoissonEquations$<$ DIM $>$}}
 \doxysubsubsection{\texorpdfstring{dshape\_and\_dtest\_eulerian\_at\_knot\_poisson()}{dshape\_and\_dtest\_eulerian\_at\_knot\_poisson()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
-{\footnotesize\ttfamily template$<$unsigned D\+IM$>$ \\
-virtual double \mbox{\hyperlink{classoomph_1_1PoissonEquations}{oomph\+::\+Poisson\+Equations}}$<$ D\+IM $>$\+::dshape\+\_\+and\+\_\+dtest\+\_\+eulerian\+\_\+at\+\_\+knot\+\_\+poisson (\begin{DoxyParamCaption}\item[{const unsigned \&}]{ipt,  }\item[{\mbox{\hyperlink{classoomph_1_1Shape}{Shape}} \&}]{psi,  }\item[{\mbox{\hyperlink{classoomph_1_1DShape}{D\+Shape}} \&}]{dpsidx,  }\item[{\mbox{\hyperlink{classoomph_1_1Shape}{Shape}} \&}]{test,  }\item[{\mbox{\hyperlink{classoomph_1_1DShape}{D\+Shape}} \&}]{dtestdx }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [protected]}, {\ttfamily [pure virtual]}}
+{\footnotesize\ttfamily template$<$unsigned DIM$>$ \\
+virtual double \mbox{\hyperlink{classoomph_1_1PoissonEquations}{oomph\+::\+Poisson\+Equations}}$<$ DIM $>$\+::dshape\+\_\+and\+\_\+dtest\+\_\+eulerian\+\_\+at\+\_\+knot\+\_\+poisson (\begin{DoxyParamCaption}\item[{const unsigned \&}]{ipt,  }\item[{\mbox{\hyperlink{classoomph_1_1Shape}{Shape}} \&}]{psi,  }\item[{\mbox{\hyperlink{classoomph_1_1DShape}{DShape}} \&}]{dpsidx,  }\item[{\mbox{\hyperlink{classoomph_1_1Shape}{Shape}} \&}]{test,  }\item[{\mbox{\hyperlink{classoomph_1_1DShape}{DShape}} \&}]{dtestdx }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [protected]}, {\ttfamily [pure virtual]}}
 
 
 
@@ -279,14 +270,14 @@ Shape/test functions and derivs w.\+r.\+t. to global coords at integration point
 
 
 
-Implemented in \mbox{\hyperlink{classoomph_1_1QPoissonElement_a0f51d1468383a7af95b82522038d4e20}{oomph\+::\+Q\+Poisson\+Element$<$ D\+I\+M, N\+N\+O\+D\+E\+\_\+1\+D $>$}}, \mbox{\hyperlink{classoomph_1_1QPoissonElement_a0f51d1468383a7af95b82522038d4e20}{oomph\+::\+Q\+Poisson\+Element$<$ D\+I\+M, 2 $>$}}, \mbox{\hyperlink{classoomph_1_1QSpectralPoissonElement_a294aee49389f189dc34724737aa26efe}{oomph\+::\+Q\+Spectral\+Poisson\+Element$<$ D\+I\+M, N\+N\+O\+D\+E\+\_\+1\+D $>$}}, and \mbox{\hyperlink{classoomph_1_1TPoissonElement_a957fae1b510200732d7da2594d1a69c2}{oomph\+::\+T\+Poisson\+Element$<$ D\+I\+M, N\+N\+O\+D\+E\+\_\+1\+D $>$}}.
+Implemented in \mbox{\hyperlink{classoomph_1_1QPoissonElement_a0f51d1468383a7af95b82522038d4e20}{oomph\+::\+QPoisson\+Element$<$ DIM, NNODE\+\_\+1\+D $>$}}, \mbox{\hyperlink{classoomph_1_1QPoissonElement_a0f51d1468383a7af95b82522038d4e20}{oomph\+::\+QPoisson\+Element$<$ DIM, 2 $>$}}, \mbox{\hyperlink{classoomph_1_1QSpectralPoissonElement_a294aee49389f189dc34724737aa26efe}{oomph\+::\+QSpectral\+Poisson\+Element$<$ DIM, NNODE\+\_\+1\+D $>$}}, and \mbox{\hyperlink{classoomph_1_1TPoissonElement_a957fae1b510200732d7da2594d1a69c2}{oomph\+::\+TPoisson\+Element$<$ DIM, NNODE\+\_\+1\+D $>$}}.
 
 \mbox{\Hypertarget{classoomph_1_1PoissonEquations_a88afb41d8733fb3488754cb579f44770}\label{classoomph_1_1PoissonEquations_a88afb41d8733fb3488754cb579f44770}} 
 \index{oomph::PoissonEquations$<$ DIM $>$@{oomph::PoissonEquations$<$ DIM $>$}!dshape\_and\_dtest\_eulerian\_poisson@{dshape\_and\_dtest\_eulerian\_poisson}}
 \index{dshape\_and\_dtest\_eulerian\_poisson@{dshape\_and\_dtest\_eulerian\_poisson}!oomph::PoissonEquations$<$ DIM $>$@{oomph::PoissonEquations$<$ DIM $>$}}
 \doxysubsubsection{\texorpdfstring{dshape\_and\_dtest\_eulerian\_poisson()}{dshape\_and\_dtest\_eulerian\_poisson()}}
-{\footnotesize\ttfamily template$<$unsigned D\+IM$>$ \\
-virtual double \mbox{\hyperlink{classoomph_1_1PoissonEquations}{oomph\+::\+Poisson\+Equations}}$<$ D\+IM $>$\+::dshape\+\_\+and\+\_\+dtest\+\_\+eulerian\+\_\+poisson (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{classoomph_1_1Vector}{Vector}}$<$ double $>$ \&}]{s,  }\item[{\mbox{\hyperlink{classoomph_1_1Shape}{Shape}} \&}]{psi,  }\item[{\mbox{\hyperlink{classoomph_1_1DShape}{D\+Shape}} \&}]{dpsidx,  }\item[{\mbox{\hyperlink{classoomph_1_1Shape}{Shape}} \&}]{test,  }\item[{\mbox{\hyperlink{classoomph_1_1DShape}{D\+Shape}} \&}]{dtestdx }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [protected]}, {\ttfamily [pure virtual]}}
+{\footnotesize\ttfamily template$<$unsigned DIM$>$ \\
+virtual double \mbox{\hyperlink{classoomph_1_1PoissonEquations}{oomph\+::\+Poisson\+Equations}}$<$ DIM $>$\+::dshape\+\_\+and\+\_\+dtest\+\_\+eulerian\+\_\+poisson (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{classoomph_1_1Vector}{Vector}}$<$ double $>$ \&}]{s,  }\item[{\mbox{\hyperlink{classoomph_1_1Shape}{Shape}} \&}]{psi,  }\item[{\mbox{\hyperlink{classoomph_1_1DShape}{DShape}} \&}]{dpsidx,  }\item[{\mbox{\hyperlink{classoomph_1_1Shape}{Shape}} \&}]{test,  }\item[{\mbox{\hyperlink{classoomph_1_1DShape}{DShape}} \&}]{dtestdx }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [protected]}, {\ttfamily [pure virtual]}}
 
 
 
@@ -294,14 +285,14 @@ Shape/test functions and derivs w.\+r.\+t. to global coords at local coord. s; r
 
 
 
-Implemented in \mbox{\hyperlink{classoomph_1_1QPoissonElement_aa3ae03aec64e427b10b791acaf36ae74}{oomph\+::\+Q\+Poisson\+Element$<$ D\+I\+M, N\+N\+O\+D\+E\+\_\+1\+D $>$}}, \mbox{\hyperlink{classoomph_1_1QPoissonElement_aa3ae03aec64e427b10b791acaf36ae74}{oomph\+::\+Q\+Poisson\+Element$<$ D\+I\+M, 2 $>$}}, \mbox{\hyperlink{classoomph_1_1QSpectralPoissonElement_ab2600e7f60d8a8c4b5c32109e9174e8f}{oomph\+::\+Q\+Spectral\+Poisson\+Element$<$ D\+I\+M, N\+N\+O\+D\+E\+\_\+1\+D $>$}}, and \mbox{\hyperlink{classoomph_1_1TPoissonElement_aa15655fd7d9489a77b6d6c82f18946e4}{oomph\+::\+T\+Poisson\+Element$<$ D\+I\+M, N\+N\+O\+D\+E\+\_\+1\+D $>$}}.
+Implemented in \mbox{\hyperlink{classoomph_1_1QPoissonElement_aa3ae03aec64e427b10b791acaf36ae74}{oomph\+::\+QPoisson\+Element$<$ DIM, NNODE\+\_\+1\+D $>$}}, \mbox{\hyperlink{classoomph_1_1QPoissonElement_aa3ae03aec64e427b10b791acaf36ae74}{oomph\+::\+QPoisson\+Element$<$ DIM, 2 $>$}}, \mbox{\hyperlink{classoomph_1_1QSpectralPoissonElement_ab2600e7f60d8a8c4b5c32109e9174e8f}{oomph\+::\+QSpectral\+Poisson\+Element$<$ DIM, NNODE\+\_\+1\+D $>$}}, and \mbox{\hyperlink{classoomph_1_1TPoissonElement_aa15655fd7d9489a77b6d6c82f18946e4}{oomph\+::\+TPoisson\+Element$<$ DIM, NNODE\+\_\+1\+D $>$}}.
 
 \mbox{\Hypertarget{classoomph_1_1PoissonEquations_ad5e268cfc535826603e868612f892c49}\label{classoomph_1_1PoissonEquations_ad5e268cfc535826603e868612f892c49}} 
 \index{oomph::PoissonEquations$<$ DIM $>$@{oomph::PoissonEquations$<$ DIM $>$}!fill\_in\_contribution\_to\_jacobian@{fill\_in\_contribution\_to\_jacobian}}
 \index{fill\_in\_contribution\_to\_jacobian@{fill\_in\_contribution\_to\_jacobian}!oomph::PoissonEquations$<$ DIM $>$@{oomph::PoissonEquations$<$ DIM $>$}}
 \doxysubsubsection{\texorpdfstring{fill\_in\_contribution\_to\_jacobian()}{fill\_in\_contribution\_to\_jacobian()}}
-{\footnotesize\ttfamily template$<$unsigned D\+IM$>$ \\
-void \mbox{\hyperlink{classoomph_1_1PoissonEquations}{oomph\+::\+Poisson\+Equations}}$<$ D\+IM $>$\+::fill\+\_\+in\+\_\+contribution\+\_\+to\+\_\+jacobian (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classoomph_1_1Vector}{Vector}}$<$ double $>$ \&}]{residuals,  }\item[{\mbox{\hyperlink{classoomph_1_1DenseMatrix}{Dense\+Matrix}}$<$ double $>$ \&}]{jacobian }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [virtual]}}
+{\footnotesize\ttfamily template$<$unsigned DIM$>$ \\
+void \mbox{\hyperlink{classoomph_1_1PoissonEquations}{oomph\+::\+Poisson\+Equations}}$<$ DIM $>$\+::fill\+\_\+in\+\_\+contribution\+\_\+to\+\_\+jacobian (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classoomph_1_1Vector}{Vector}}$<$ double $>$ \&}]{residuals,  }\item[{\mbox{\hyperlink{classoomph_1_1DenseMatrix}{Dense\+Matrix}}$<$ double $>$ \&}]{jacobian }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [virtual]}}
 
 Add the element\textquotesingle{}s contribution to its residual vector and element Jacobian matrix (wrapper) 
 
@@ -309,18 +300,18 @@ Reimplemented from \mbox{\hyperlink{classoomph_1_1FiniteElement_a0ae7af222af38a0
 
 
 
-Definition at line 443 of file poisson\+\_\+elements.\+h.
+Definition at line \mbox{\hyperlink{poisson__elements_8h_source_l00437}{437}} of file \mbox{\hyperlink{poisson__elements_8h_source}{poisson\+\_\+elements.\+h}}.
 
 
 
-References oomph\+::\+Poisson\+Equations$<$ D\+I\+M $>$\+::fill\+\_\+in\+\_\+generic\+\_\+residual\+\_\+contribution\+\_\+poisson(), and residuals().
+References \mbox{\hyperlink{poisson__elements_8cc_source_l00049}{oomph\+::\+Poisson\+Equations$<$ DIM $>$\+::fill\+\_\+in\+\_\+generic\+\_\+residual\+\_\+contribution\+\_\+poisson()}}.
 
 \mbox{\Hypertarget{classoomph_1_1PoissonEquations_a2b6578ce3ddd81293242becba40aaf3f}\label{classoomph_1_1PoissonEquations_a2b6578ce3ddd81293242becba40aaf3f}} 
 \index{oomph::PoissonEquations$<$ DIM $>$@{oomph::PoissonEquations$<$ DIM $>$}!fill\_in\_contribution\_to\_residuals@{fill\_in\_contribution\_to\_residuals}}
 \index{fill\_in\_contribution\_to\_residuals@{fill\_in\_contribution\_to\_residuals}!oomph::PoissonEquations$<$ DIM $>$@{oomph::PoissonEquations$<$ DIM $>$}}
 \doxysubsubsection{\texorpdfstring{fill\_in\_contribution\_to\_residuals()}{fill\_in\_contribution\_to\_residuals()}}
-{\footnotesize\ttfamily template$<$unsigned D\+IM$>$ \\
-void \mbox{\hyperlink{classoomph_1_1PoissonEquations}{oomph\+::\+Poisson\+Equations}}$<$ D\+IM $>$\+::fill\+\_\+in\+\_\+contribution\+\_\+to\+\_\+residuals (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classoomph_1_1Vector}{Vector}}$<$ double $>$ \&}]{residuals }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [virtual]}}
+{\footnotesize\ttfamily template$<$unsigned DIM$>$ \\
+void \mbox{\hyperlink{classoomph_1_1PoissonEquations}{oomph\+::\+Poisson\+Equations}}$<$ DIM $>$\+::fill\+\_\+in\+\_\+contribution\+\_\+to\+\_\+residuals (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classoomph_1_1Vector}{Vector}}$<$ double $>$ \&}]{residuals }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [virtual]}}
 
 
 
@@ -332,18 +323,18 @@ Reimplemented from \mbox{\hyperlink{classoomph_1_1GeneralisedElement_a310c97f515
 
 
 
-Definition at line 432 of file poisson\+\_\+elements.\+h.
+Definition at line \mbox{\hyperlink{poisson__elements_8h_source_l00426}{426}} of file \mbox{\hyperlink{poisson__elements_8h_source}{poisson\+\_\+elements.\+h}}.
 
 
 
-References oomph\+::\+Generalised\+Element\+::\+Dummy\+\_\+matrix, oomph\+::\+Poisson\+Equations$<$ D\+I\+M $>$\+::fill\+\_\+in\+\_\+generic\+\_\+residual\+\_\+contribution\+\_\+poisson(), and residuals().
+References \mbox{\hyperlink{elements_8h_source_l00227}{oomph\+::\+Generalised\+Element\+::\+Dummy\+\_\+matrix}}, and \mbox{\hyperlink{poisson__elements_8cc_source_l00049}{oomph\+::\+Poisson\+Equations$<$ DIM $>$\+::fill\+\_\+in\+\_\+generic\+\_\+residual\+\_\+contribution\+\_\+poisson()}}.
 
 \mbox{\Hypertarget{classoomph_1_1PoissonEquations_a02c40bfa9b59fa7935677999623da633}\label{classoomph_1_1PoissonEquations_a02c40bfa9b59fa7935677999623da633}} 
 \index{oomph::PoissonEquations$<$ DIM $>$@{oomph::PoissonEquations$<$ DIM $>$}!fill\_in\_generic\_residual\_contribution\_poisson@{fill\_in\_generic\_residual\_contribution\_poisson}}
 \index{fill\_in\_generic\_residual\_contribution\_poisson@{fill\_in\_generic\_residual\_contribution\_poisson}!oomph::PoissonEquations$<$ DIM $>$@{oomph::PoissonEquations$<$ DIM $>$}}
 \doxysubsubsection{\texorpdfstring{fill\_in\_generic\_residual\_contribution\_poisson()}{fill\_in\_generic\_residual\_contribution\_poisson()}}
-{\footnotesize\ttfamily template$<$unsigned D\+IM$>$ \\
-void \mbox{\hyperlink{classoomph_1_1PoissonEquations}{oomph\+::\+Poisson\+Equations}}$<$ D\+IM $>$\+::fill\+\_\+in\+\_\+generic\+\_\+residual\+\_\+contribution\+\_\+poisson (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classoomph_1_1Vector}{Vector}}$<$ double $>$ \&}]{residuals,  }\item[{\mbox{\hyperlink{classoomph_1_1DenseMatrix}{Dense\+Matrix}}$<$ double $>$ \&}]{jacobian,  }\item[{const unsigned \&}]{flag }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [protected]}, {\ttfamily [virtual]}}
+{\footnotesize\ttfamily template$<$unsigned DIM$>$ \\
+void \mbox{\hyperlink{classoomph_1_1PoissonEquations}{oomph\+::\+Poisson\+Equations}}$<$ DIM $>$\+::fill\+\_\+in\+\_\+generic\+\_\+residual\+\_\+contribution\+\_\+poisson (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classoomph_1_1Vector}{Vector}}$<$ double $>$ \&}]{residuals,  }\item[{\mbox{\hyperlink{classoomph_1_1DenseMatrix}{Dense\+Matrix}}$<$ double $>$ \&}]{jacobian,  }\item[{const unsigned \&}]{flag }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [protected]}, {\ttfamily [virtual]}}
 
 
 
@@ -355,68 +346,68 @@ flag=1\+: compute both flag=0\+: compute only residual \mbox{\hyperlink{classoom
 
 Pure version without hanging nodes 
 
-Reimplemented in \mbox{\hyperlink{classoomph_1_1RefineablePoissonEquations_a1cea3422561cd3016aa4cc04c0e5be56}{oomph\+::\+Refineable\+Poisson\+Equations$<$ D\+I\+M $>$}}.
+Reimplemented in \mbox{\hyperlink{classoomph_1_1RefineablePoissonEquations_a1cea3422561cd3016aa4cc04c0e5be56}{oomph\+::\+Refineable\+Poisson\+Equations$<$ DIM $>$}}.
 
 
 
-Definition at line 49 of file poisson\+\_\+elements.\+cc.
+Definition at line \mbox{\hyperlink{poisson__elements_8cc_source_l00049}{49}} of file \mbox{\hyperlink{poisson__elements_8cc_source}{poisson\+\_\+elements.\+cc}}.
 
 
 
-References i, interpolated\+\_\+u(), residuals(), and oomph\+::\+Quad\+Tree\+Names\+::W.
+References \mbox{\hyperlink{cfortran_8h_source_l00603}{i}}, and \mbox{\hyperlink{quadtree_8h_source_l00063}{oomph\+::\+Quad\+Tree\+Names\+::W}}.
 
 
 
-Referenced by oomph\+::\+Poisson\+Equations$<$ D\+I\+M $>$\+::fill\+\_\+in\+\_\+contribution\+\_\+to\+\_\+jacobian(), and oomph\+::\+Poisson\+Equations$<$ D\+I\+M $>$\+::fill\+\_\+in\+\_\+contribution\+\_\+to\+\_\+residuals().
+Referenced by \mbox{\hyperlink{poisson__elements_8h_source_l00437}{oomph\+::\+Poisson\+Equations$<$ DIM $>$\+::fill\+\_\+in\+\_\+contribution\+\_\+to\+\_\+jacobian()}}, and \mbox{\hyperlink{poisson__elements_8h_source_l00426}{oomph\+::\+Poisson\+Equations$<$ DIM $>$\+::fill\+\_\+in\+\_\+contribution\+\_\+to\+\_\+residuals()}}.
 
-\mbox{\Hypertarget{classoomph_1_1PoissonEquations_a13f8517264deb559ef820e35b199e732}\label{classoomph_1_1PoissonEquations_a13f8517264deb559ef820e35b199e732}} 
+\mbox{\Hypertarget{classoomph_1_1PoissonEquations_a09faa6578f076ca5fb4b20aef5e2b4c6}\label{classoomph_1_1PoissonEquations_a09faa6578f076ca5fb4b20aef5e2b4c6}} 
 \index{oomph::PoissonEquations$<$ DIM $>$@{oomph::PoissonEquations$<$ DIM $>$}!get\_dflux\_dnodal\_u@{get\_dflux\_dnodal\_u}}
 \index{get\_dflux\_dnodal\_u@{get\_dflux\_dnodal\_u}!oomph::PoissonEquations$<$ DIM $>$@{oomph::PoissonEquations$<$ DIM $>$}}
 \doxysubsubsection{\texorpdfstring{get\_dflux\_dnodal\_u()}{get\_dflux\_dnodal\_u()}}
-{\footnotesize\ttfamily template$<$unsigned D\+IM$>$ \\
-void \mbox{\hyperlink{classoomph_1_1PoissonEquations}{oomph\+::\+Poisson\+Equations}}$<$ D\+IM $>$\+::get\+\_\+dflux\+\_\+dnodal\+\_\+u (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{classoomph_1_1Vector}{Vector}}$<$ double $>$ \&}]{s,  }\item[{\mbox{\hyperlink{classoomph_1_1Vector}{Vector}}$<$ \mbox{\hyperlink{classoomph_1_1Vector}{Vector}}$<$ double $>$$>$ \&}]{dflux\+\_\+dnodal\+\_\+u }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+{\footnotesize\ttfamily template$<$unsigned DIM$>$ \\
+void \mbox{\hyperlink{classoomph_1_1PoissonEquations}{oomph\+::\+Poisson\+Equations}}$<$ DIM $>$\+::get\+\_\+dflux\+\_\+dnodal\+\_\+u (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{classoomph_1_1Vector}{Vector}}$<$ double $>$ \&}]{s,  }\item[{\mbox{\hyperlink{classoomph_1_1Vector}{Vector}}$<$ \mbox{\hyperlink{classoomph_1_1Vector}{Vector}}$<$ double $>$ $>$ \&}]{dflux\+\_\+dnodal\+\_\+u }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
 
 Get derivative of flux w.\+r.\+t. to nodal values\+: dflux\+\_\+dnodal\+\_\+u\mbox{[}i\mbox{]}\mbox{[}j\mbox{]} = d ( du/dx\+\_\+i ) / d\+U\+\_\+j 
 
-Definition at line 407 of file poisson\+\_\+elements.\+h.
+Definition at line \mbox{\hyperlink{poisson__elements_8h_source_l00401}{401}} of file \mbox{\hyperlink{poisson__elements_8h_source}{poisson\+\_\+elements.\+h}}.
 
 
 
-References oomph\+::\+Finite\+Element\+::dshape\+\_\+eulerian(), i, oomph\+::\+Finite\+Element\+::nnode(), and s.
+References \mbox{\hyperlink{elements_8cc_source_l03302}{oomph\+::\+Finite\+Element\+::dshape\+\_\+eulerian()}}, \mbox{\hyperlink{cfortran_8h_source_l00603}{i}}, \mbox{\hyperlink{elements_8h_source_l02215}{oomph\+::\+Finite\+Element\+::nnode()}}, and \mbox{\hyperlink{cfortran_8h_source_l00568}{s}}.
 
 \mbox{\Hypertarget{classoomph_1_1PoissonEquations_a566350ffaf9170d934ae02b0c3cb7064}\label{classoomph_1_1PoissonEquations_a566350ffaf9170d934ae02b0c3cb7064}} 
 \index{oomph::PoissonEquations$<$ DIM $>$@{oomph::PoissonEquations$<$ DIM $>$}!get\_dresidual\_dnodal\_coordinates@{get\_dresidual\_dnodal\_coordinates}}
 \index{get\_dresidual\_dnodal\_coordinates@{get\_dresidual\_dnodal\_coordinates}!oomph::PoissonEquations$<$ DIM $>$@{oomph::PoissonEquations$<$ DIM $>$}}
 \doxysubsubsection{\texorpdfstring{get\_dresidual\_dnodal\_coordinates()}{get\_dresidual\_dnodal\_coordinates()}}
-{\footnotesize\ttfamily template$<$unsigned D\+IM$>$ \\
-void \mbox{\hyperlink{classoomph_1_1PoissonEquations}{oomph\+::\+Poisson\+Equations}}$<$ D\+IM $>$\+::get\+\_\+dresidual\+\_\+dnodal\+\_\+coordinates (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classoomph_1_1RankThreeTensor}{Rank\+Three\+Tensor}}$<$ double $>$ \&}]{dresidual\+\_\+dnodal\+\_\+coordinates }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [virtual]}}
+{\footnotesize\ttfamily template$<$unsigned DIM$>$ \\
+void \mbox{\hyperlink{classoomph_1_1PoissonEquations}{oomph\+::\+Poisson\+Equations}}$<$ DIM $>$\+::get\+\_\+dresidual\+\_\+dnodal\+\_\+coordinates (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classoomph_1_1RankThreeTensor}{Rank\+Three\+Tensor}}$<$ double $>$ \&}]{dresidual\+\_\+dnodal\+\_\+coordinates }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [virtual]}}
 
 
 
 Compute derivatives of elemental residual vector with respect to nodal coordinates. Overwrites default implementation in \mbox{\hyperlink{classoomph_1_1FiniteElement}{Finite\+Element}} base class. dresidual\+\_\+dnodal\+\_\+coordinates(l,i,j) = d res(l) / d\+X\+\_\+\{ij\}. 
 
-Compute derivatives of elemental residual vector with respect to nodal coordinates (fully analytical). dresidual\+\_\+dnodal\+\_\+coordinates(l,i,j) = d res(l) / d\+X\+\_\+\{ij\} Overloads the F\+D-\/based version in the FE base class. 
+Compute derivatives of elemental residual vector with respect to nodal coordinates (fully analytical). dresidual\+\_\+dnodal\+\_\+coordinates(l,i,j) = d res(l) / d\+X\+\_\+\{ij\} Overloads the FD-\/based version in the FE base class. 
 
 Reimplemented from \mbox{\hyperlink{classoomph_1_1FiniteElement_ae4b85a31a983a52d3010930f9e0851b8}{oomph\+::\+Finite\+Element}}.
 
 
 
-Reimplemented in \mbox{\hyperlink{classoomph_1_1RefineablePoissonEquations_a1cb1cf52a2332954f69199c7e0c219b4}{oomph\+::\+Refineable\+Poisson\+Equations$<$ D\+I\+M $>$}}.
+Reimplemented in \mbox{\hyperlink{classoomph_1_1RefineablePoissonEquations_a1cb1cf52a2332954f69199c7e0c219b4}{oomph\+::\+Refineable\+Poisson\+Equations$<$ DIM $>$}}.
 
 
 
-Definition at line 165 of file poisson\+\_\+elements.\+cc.
+Definition at line \mbox{\hyperlink{poisson__elements_8cc_source_l00165}{165}} of file \mbox{\hyperlink{poisson__elements_8cc_source}{poisson\+\_\+elements.\+cc}}.
 
 
 
-References i.
+References \mbox{\hyperlink{cfortran_8h_source_l00603}{i}}.
 
 \mbox{\Hypertarget{classoomph_1_1PoissonEquations_aa11374daca090943d5abc70fa73cc763}\label{classoomph_1_1PoissonEquations_aa11374daca090943d5abc70fa73cc763}} 
 \index{oomph::PoissonEquations$<$ DIM $>$@{oomph::PoissonEquations$<$ DIM $>$}!get\_flux@{get\_flux}}
 \index{get\_flux@{get\_flux}!oomph::PoissonEquations$<$ DIM $>$@{oomph::PoissonEquations$<$ DIM $>$}}
 \doxysubsubsection{\texorpdfstring{get\_flux()}{get\_flux()}}
-{\footnotesize\ttfamily template$<$unsigned D\+IM$>$ \\
-void \mbox{\hyperlink{classoomph_1_1PoissonEquations}{oomph\+::\+Poisson\+Equations}}$<$ D\+IM $>$\+::get\+\_\+flux (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{classoomph_1_1Vector}{Vector}}$<$ double $>$ \&}]{s,  }\item[{\mbox{\hyperlink{classoomph_1_1Vector}{Vector}}$<$ double $>$ \&}]{flux }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+{\footnotesize\ttfamily template$<$unsigned DIM$>$ \\
+void \mbox{\hyperlink{classoomph_1_1PoissonEquations}{oomph\+::\+Poisson\+Equations}}$<$ DIM $>$\+::get\+\_\+flux (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{classoomph_1_1Vector}{Vector}}$<$ double $>$ \&}]{s,  }\item[{\mbox{\hyperlink{classoomph_1_1Vector}{Vector}}$<$ double $>$ \&}]{flux }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
 
 
 
@@ -424,56 +415,56 @@ Get flux\+: flux\mbox{[}i\mbox{]} = du/dx\+\_\+i.
 
 
 
-Definition at line 372 of file poisson\+\_\+elements.\+h.
+Definition at line \mbox{\hyperlink{poisson__elements_8h_source_l00366}{366}} of file \mbox{\hyperlink{poisson__elements_8h_source}{poisson\+\_\+elements.\+h}}.
 
 
 
-References oomph\+::\+Finite\+Element\+::dshape\+\_\+eulerian(), oomph\+::\+Finite\+Element\+::nnode(), oomph\+::\+Finite\+Element\+::nodal\+\_\+value(), s, and oomph\+::\+Poisson\+Equations$<$ D\+I\+M $>$\+::u\+\_\+index\+\_\+poisson().
+References \mbox{\hyperlink{elements_8cc_source_l03302}{oomph\+::\+Finite\+Element\+::dshape\+\_\+eulerian()}}, \mbox{\hyperlink{elements_8h_source_l02215}{oomph\+::\+Finite\+Element\+::nnode()}}, \mbox{\hyperlink{elements_8h_source_l02598}{oomph\+::\+Finite\+Element\+::nodal\+\_\+value()}}, \mbox{\hyperlink{cfortran_8h_source_l00568}{s}}, and \mbox{\hyperlink{poisson__elements_8h_source_l00087}{oomph\+::\+Poisson\+Equations$<$ DIM $>$\+::u\+\_\+index\+\_\+poisson()}}.
 
 
 
-Referenced by oomph\+::\+P\+Refineable\+Q\+Poisson\+Element$<$ D\+I\+M $>$\+::compute\+\_\+energy\+\_\+error(), oomph\+::\+Refineable\+Poisson\+Equations$<$ D\+I\+M $>$\+::get\+\_\+\+Z2\+\_\+flux(), and oomph\+::\+T\+Poisson\+Element$<$ D\+I\+M, N\+N\+O\+D\+E\+\_\+1\+D $>$\+::get\+\_\+\+Z2\+\_\+flux().
+Referenced by \mbox{\hyperlink{refineable__poisson__elements_8cc_source_l00529}{oomph\+::\+PRefineable\+QPoisson\+Element$<$ DIM $>$\+::compute\+\_\+energy\+\_\+error()}}, \mbox{\hyperlink{refineable__poisson__elements_8h_source_l00083}{oomph\+::\+Refineable\+Poisson\+Equations$<$ DIM $>$\+::get\+\_\+\+Z2\+\_\+flux()}}, and \mbox{\hyperlink{Tpoisson__elements_8h_source_l00179}{oomph\+::\+TPoisson\+Element$<$ DIM, NNODE\+\_\+1\+D $>$\+::get\+\_\+\+Z2\+\_\+flux()}}.
 
 \mbox{\Hypertarget{classoomph_1_1PoissonEquations_a05d8a527a6fe79e7506c5756d9fddd77}\label{classoomph_1_1PoissonEquations_a05d8a527a6fe79e7506c5756d9fddd77}} 
 \index{oomph::PoissonEquations$<$ DIM $>$@{oomph::PoissonEquations$<$ DIM $>$}!get\_source\_gradient\_poisson@{get\_source\_gradient\_poisson}}
 \index{get\_source\_gradient\_poisson@{get\_source\_gradient\_poisson}!oomph::PoissonEquations$<$ DIM $>$@{oomph::PoissonEquations$<$ DIM $>$}}
 \doxysubsubsection{\texorpdfstring{get\_source\_gradient\_poisson()}{get\_source\_gradient\_poisson()}}
-{\footnotesize\ttfamily template$<$unsigned D\+IM$>$ \\
-virtual void \mbox{\hyperlink{classoomph_1_1PoissonEquations}{oomph\+::\+Poisson\+Equations}}$<$ D\+IM $>$\+::get\+\_\+source\+\_\+gradient\+\_\+poisson (\begin{DoxyParamCaption}\item[{const unsigned \&}]{ipt,  }\item[{const \mbox{\hyperlink{classoomph_1_1Vector}{Vector}}$<$ double $>$ \&}]{x,  }\item[{\mbox{\hyperlink{classoomph_1_1Vector}{Vector}}$<$ double $>$ \&}]{gradient }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [virtual]}}
+{\footnotesize\ttfamily template$<$unsigned DIM$>$ \\
+virtual void \mbox{\hyperlink{classoomph_1_1PoissonEquations}{oomph\+::\+Poisson\+Equations}}$<$ DIM $>$\+::get\+\_\+source\+\_\+gradient\+\_\+poisson (\begin{DoxyParamCaption}\item[{const unsigned \&}]{ipt,  }\item[{const \mbox{\hyperlink{classoomph_1_1Vector}{Vector}}$<$ double $>$ \&}]{x,  }\item[{\mbox{\hyperlink{classoomph_1_1Vector}{Vector}}$<$ double $>$ \&}]{gradient }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [virtual]}}
 
 Get gradient of source term at (Eulerian) position x. This function is virtual to allow overloading in multi-\/physics problems where the strength of the source function might be determined by another system of equations. Computed via function pointer (if set) or by finite differencing (default) 
 
-Definition at line 339 of file poisson\+\_\+elements.\+h.
+Definition at line \mbox{\hyperlink{poisson__elements_8h_source_l00333}{333}} of file \mbox{\hyperlink{poisson__elements_8h_source}{poisson\+\_\+elements.\+h}}.
 
 
 
-References oomph\+::\+Generalised\+Element\+::\+Default\+\_\+fd\+\_\+jacobian\+\_\+step, oomph\+::\+Poisson\+Equations$<$ D\+I\+M $>$\+::get\+\_\+source\+\_\+poisson(), i, and oomph\+::\+Poisson\+Equations$<$ D\+I\+M $>$\+::\+Source\+\_\+fct\+\_\+gradient\+\_\+pt.
+References \mbox{\hyperlink{elements_8h_source_l01198}{oomph\+::\+Generalised\+Element\+::\+Default\+\_\+fd\+\_\+jacobian\+\_\+step}}, \mbox{\hyperlink{poisson__elements_8h_source_l00311}{oomph\+::\+Poisson\+Equations$<$ DIM $>$\+::get\+\_\+source\+\_\+poisson()}}, \mbox{\hyperlink{cfortran_8h_source_l00603}{i}}, and \mbox{\hyperlink{poisson__elements_8h_source_l00528}{oomph\+::\+Poisson\+Equations$<$ DIM $>$\+::\+Source\+\_\+fct\+\_\+gradient\+\_\+pt}}.
 
 \mbox{\Hypertarget{classoomph_1_1PoissonEquations_a06dbfe005c721c1562f13a48fb7dfb29}\label{classoomph_1_1PoissonEquations_a06dbfe005c721c1562f13a48fb7dfb29}} 
 \index{oomph::PoissonEquations$<$ DIM $>$@{oomph::PoissonEquations$<$ DIM $>$}!get\_source\_poisson@{get\_source\_poisson}}
 \index{get\_source\_poisson@{get\_source\_poisson}!oomph::PoissonEquations$<$ DIM $>$@{oomph::PoissonEquations$<$ DIM $>$}}
 \doxysubsubsection{\texorpdfstring{get\_source\_poisson()}{get\_source\_poisson()}}
-{\footnotesize\ttfamily template$<$unsigned D\+IM$>$ \\
-virtual void \mbox{\hyperlink{classoomph_1_1PoissonEquations}{oomph\+::\+Poisson\+Equations}}$<$ D\+IM $>$\+::get\+\_\+source\+\_\+poisson (\begin{DoxyParamCaption}\item[{const unsigned \&}]{ipt,  }\item[{const \mbox{\hyperlink{classoomph_1_1Vector}{Vector}}$<$ double $>$ \&}]{x,  }\item[{double \&}]{source }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [virtual]}}
+{\footnotesize\ttfamily template$<$unsigned DIM$>$ \\
+virtual void \mbox{\hyperlink{classoomph_1_1PoissonEquations}{oomph\+::\+Poisson\+Equations}}$<$ DIM $>$\+::get\+\_\+source\+\_\+poisson (\begin{DoxyParamCaption}\item[{const unsigned \&}]{ipt,  }\item[{const \mbox{\hyperlink{classoomph_1_1Vector}{Vector}}$<$ double $>$ \&}]{x,  }\item[{double \&}]{source }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [virtual]}}
 
 Get source term at (Eulerian) position x. This function is virtual to allow overloading in multi-\/physics problems where the strength of the source function might be determined by another system of equations. 
 
-Definition at line 317 of file poisson\+\_\+elements.\+h.
+Definition at line \mbox{\hyperlink{poisson__elements_8h_source_l00311}{311}} of file \mbox{\hyperlink{poisson__elements_8h_source}{poisson\+\_\+elements.\+h}}.
 
 
 
-References oomph\+::\+Poisson\+Equations$<$ D\+I\+M $>$\+::\+Source\+\_\+fct\+\_\+pt.
+References \mbox{\hyperlink{poisson__elements_8h_source_l00525}{oomph\+::\+Poisson\+Equations$<$ DIM $>$\+::\+Source\+\_\+fct\+\_\+pt}}.
 
 
 
-Referenced by oomph\+::\+Poisson\+Equations$<$ D\+I\+M $>$\+::get\+\_\+source\+\_\+gradient\+\_\+poisson().
+Referenced by \mbox{\hyperlink{poisson__elements_8h_source_l00333}{oomph\+::\+Poisson\+Equations$<$ DIM $>$\+::get\+\_\+source\+\_\+gradient\+\_\+poisson()}}.
 
 \mbox{\Hypertarget{classoomph_1_1PoissonEquations_a9f31492636bebfe62cdacaab4b529c69}\label{classoomph_1_1PoissonEquations_a9f31492636bebfe62cdacaab4b529c69}} 
 \index{oomph::PoissonEquations$<$ DIM $>$@{oomph::PoissonEquations$<$ DIM $>$}!interpolated\_u\_poisson@{interpolated\_u\_poisson}}
 \index{interpolated\_u\_poisson@{interpolated\_u\_poisson}!oomph::PoissonEquations$<$ DIM $>$@{oomph::PoissonEquations$<$ DIM $>$}}
 \doxysubsubsection{\texorpdfstring{interpolated\_u\_poisson()}{interpolated\_u\_poisson()}}
-{\footnotesize\ttfamily template$<$unsigned D\+IM$>$ \\
-virtual double \mbox{\hyperlink{classoomph_1_1PoissonEquations}{oomph\+::\+Poisson\+Equations}}$<$ D\+IM $>$\+::interpolated\+\_\+u\+\_\+poisson (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{classoomph_1_1Vector}{Vector}}$<$ double $>$ \&}]{s }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [virtual]}}
+{\footnotesize\ttfamily template$<$unsigned DIM$>$ \\
+virtual double \mbox{\hyperlink{classoomph_1_1PoissonEquations}{oomph\+::\+Poisson\+Equations}}$<$ DIM $>$\+::interpolated\+\_\+u\+\_\+poisson (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{classoomph_1_1Vector}{Vector}}$<$ double $>$ \&}]{s }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [virtual]}}
 
 
 
@@ -481,22 +472,22 @@ Return FE representation of function value u\+\_\+poisson(s) at local coordinate
 
 
 
-Definition at line 453 of file poisson\+\_\+elements.\+h.
+Definition at line \mbox{\hyperlink{poisson__elements_8h_source_l00447}{447}} of file \mbox{\hyperlink{poisson__elements_8h_source}{poisson\+\_\+elements.\+h}}.
 
 
 
-References interpolated\+\_\+u(), oomph\+::\+Finite\+Element\+::nnode(), oomph\+::\+Finite\+Element\+::nodal\+\_\+value(), s, oomph\+::\+Finite\+Element\+::shape(), and oomph\+::\+Poisson\+Equations$<$ D\+I\+M $>$\+::u\+\_\+index\+\_\+poisson().
+References \mbox{\hyperlink{elements_8h_source_l02215}{oomph\+::\+Finite\+Element\+::nnode()}}, \mbox{\hyperlink{elements_8h_source_l02598}{oomph\+::\+Finite\+Element\+::nodal\+\_\+value()}}, \mbox{\hyperlink{cfortran_8h_source_l00568}{s}}, \mbox{\hyperlink{classoomph_1_1FiniteElement_a58a25b6859ddd43b7bfe64a19fee5023}{oomph\+::\+Finite\+Element\+::shape()}}, and \mbox{\hyperlink{poisson__elements_8h_source_l00087}{oomph\+::\+Poisson\+Equations$<$ DIM $>$\+::u\+\_\+index\+\_\+poisson()}}.
 
 
 
-Referenced by oomph\+::\+Poisson\+Equations$<$ D\+I\+M $>$\+::point\+\_\+output\+\_\+data(), and oomph\+::\+Poisson\+Equations$<$ D\+I\+M $>$\+::scalar\+\_\+value\+\_\+paraview().
+Referenced by \mbox{\hyperlink{poisson__elements_8h_source_l00095}{oomph\+::\+Poisson\+Equations$<$ DIM $>$\+::point\+\_\+output\+\_\+data()}}, and \mbox{\hyperlink{poisson__elements_8h_source_l00121}{oomph\+::\+Poisson\+Equations$<$ DIM $>$\+::scalar\+\_\+value\+\_\+paraview()}}.
 
 \mbox{\Hypertarget{classoomph_1_1PoissonEquations_a8a34f70a57c1aad552a9624ea0fb0906}\label{classoomph_1_1PoissonEquations_a8a34f70a57c1aad552a9624ea0fb0906}} 
 \index{oomph::PoissonEquations$<$ DIM $>$@{oomph::PoissonEquations$<$ DIM $>$}!nscalar\_paraview@{nscalar\_paraview}}
 \index{nscalar\_paraview@{nscalar\_paraview}!oomph::PoissonEquations$<$ DIM $>$@{oomph::PoissonEquations$<$ DIM $>$}}
 \doxysubsubsection{\texorpdfstring{nscalar\_paraview()}{nscalar\_paraview()}}
-{\footnotesize\ttfamily template$<$unsigned D\+IM$>$ \\
-unsigned \mbox{\hyperlink{classoomph_1_1PoissonEquations}{oomph\+::\+Poisson\+Equations}}$<$ D\+IM $>$\+::nscalar\+\_\+paraview (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [virtual]}}
+{\footnotesize\ttfamily template$<$unsigned DIM$>$ \\
+unsigned \mbox{\hyperlink{classoomph_1_1PoissonEquations}{oomph\+::\+Poisson\+Equations}}$<$ DIM $>$\+::nscalar\+\_\+paraview (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [virtual]}}
 
 
 
@@ -508,33 +499,25 @@ Reimplemented from \mbox{\hyperlink{classoomph_1_1FiniteElement_a865e2e5586552ba
 
 
 
-Definition at line 120 of file poisson\+\_\+elements.\+h.
+Definition at line \mbox{\hyperlink{poisson__elements_8h_source_l00114}{114}} of file \mbox{\hyperlink{poisson__elements_8h_source}{poisson\+\_\+elements.\+h}}.
 
-\mbox{\Hypertarget{classoomph_1_1PoissonEquations_a80817f45bd1db3758570964f11dd5c74}\label{classoomph_1_1PoissonEquations_a80817f45bd1db3758570964f11dd5c74}} 
+\mbox{\Hypertarget{classoomph_1_1PoissonEquations_a870cdd96f9cb4756d5106a6afc963067}\label{classoomph_1_1PoissonEquations_a870cdd96f9cb4756d5106a6afc963067}} 
 \index{oomph::PoissonEquations$<$ DIM $>$@{oomph::PoissonEquations$<$ DIM $>$}!operator=@{operator=}}
 \index{operator=@{operator=}!oomph::PoissonEquations$<$ DIM $>$@{oomph::PoissonEquations$<$ DIM $>$}}
 \doxysubsubsection{\texorpdfstring{operator=()}{operator=()}}
-{\footnotesize\ttfamily template$<$unsigned D\+IM$>$ \\
-void \mbox{\hyperlink{classoomph_1_1PoissonEquations}{oomph\+::\+Poisson\+Equations}}$<$ D\+IM $>$\+::operator= (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{classoomph_1_1PoissonEquations}{Poisson\+Equations}}$<$ D\+IM $>$ \&}]{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+{\footnotesize\ttfamily template$<$unsigned DIM$>$ \\
+void \mbox{\hyperlink{classoomph_1_1PoissonEquations}{oomph\+::\+Poisson\+Equations}}$<$ DIM $>$\+::operator= (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{classoomph_1_1PoissonEquations}{Poisson\+Equations}}$<$ DIM $>$ \&}]{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [delete]}}
 
 
 
 Broken assignment operator. 
 
-
-
-Definition at line 81 of file poisson\+\_\+elements.\+h.
-
-
-
-References oomph\+::\+Broken\+Copy\+::broken\+\_\+assign().
-
 \mbox{\Hypertarget{classoomph_1_1PoissonEquations_afeaa8b136b9cc9649635b41bde1b5cda}\label{classoomph_1_1PoissonEquations_afeaa8b136b9cc9649635b41bde1b5cda}} 
 \index{oomph::PoissonEquations$<$ DIM $>$@{oomph::PoissonEquations$<$ DIM $>$}!output@{output}}
 \index{output@{output}!oomph::PoissonEquations$<$ DIM $>$@{oomph::PoissonEquations$<$ DIM $>$}}
 \doxysubsubsection{\texorpdfstring{output()}{output()}\hspace{0.1cm}{\footnotesize\ttfamily [1/4]}}
-{\footnotesize\ttfamily template$<$unsigned D\+IM$>$ \\
-void \mbox{\hyperlink{classoomph_1_1PoissonEquations}{oomph\+::\+Poisson\+Equations}}$<$ D\+IM $>$\+::output (\begin{DoxyParamCaption}\item[{F\+I\+LE $\ast$}]{file\+\_\+pt }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [virtual]}}
+{\footnotesize\ttfamily template$<$unsigned DIM$>$ \\
+void \mbox{\hyperlink{classoomph_1_1PoissonEquations}{oomph\+::\+Poisson\+Equations}}$<$ DIM $>$\+::output (\begin{DoxyParamCaption}\item[{FILE $\ast$}]{file\+\_\+pt }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [virtual]}}
 
 
 
@@ -546,26 +529,26 @@ Reimplemented from \mbox{\hyperlink{classoomph_1_1FiniteElement_a72cddd09f8ddbee
 
 
 
-Reimplemented in \mbox{\hyperlink{classoomph_1_1QPoissonElement_adb597acc7de1a1b09eb25af0bce0fe9d}{oomph\+::\+Q\+Poisson\+Element$<$ D\+I\+M, N\+N\+O\+D\+E\+\_\+1\+D $>$}}, \mbox{\hyperlink{classoomph_1_1QPoissonElement_adb597acc7de1a1b09eb25af0bce0fe9d}{oomph\+::\+Q\+Poisson\+Element$<$ D\+I\+M, 2 $>$}}, \mbox{\hyperlink{classoomph_1_1QSpectralPoissonElement_ac5588896f64d8c24a896dc0b30e7ec29}{oomph\+::\+Q\+Spectral\+Poisson\+Element$<$ D\+I\+M, N\+N\+O\+D\+E\+\_\+1\+D $>$}}, and \mbox{\hyperlink{classoomph_1_1TPoissonElement_a289c196b8a84337341e306887c82e3db}{oomph\+::\+T\+Poisson\+Element$<$ D\+I\+M, N\+N\+O\+D\+E\+\_\+1\+D $>$}}.
+Reimplemented in \mbox{\hyperlink{classoomph_1_1QPoissonElement_adb597acc7de1a1b09eb25af0bce0fe9d}{oomph\+::\+QPoisson\+Element$<$ DIM, NNODE\+\_\+1\+D $>$}}, \mbox{\hyperlink{classoomph_1_1QPoissonElement_adb597acc7de1a1b09eb25af0bce0fe9d}{oomph\+::\+QPoisson\+Element$<$ DIM, 2 $>$}}, \mbox{\hyperlink{classoomph_1_1QSpectralPoissonElement_ac5588896f64d8c24a896dc0b30e7ec29}{oomph\+::\+QSpectral\+Poisson\+Element$<$ DIM, NNODE\+\_\+1\+D $>$}}, and \mbox{\hyperlink{classoomph_1_1TPoissonElement_a289c196b8a84337341e306887c82e3db}{oomph\+::\+TPoisson\+Element$<$ DIM, NNODE\+\_\+1\+D $>$}}.
 
 
 
-Definition at line 233 of file poisson\+\_\+elements.\+h.
+Definition at line \mbox{\hyperlink{poisson__elements_8h_source_l00227}{227}} of file \mbox{\hyperlink{poisson__elements_8h_source}{poisson\+\_\+elements.\+h}}.
 
 
 
-References oomph\+::\+Poisson\+Equations$<$ D\+I\+M $>$\+::output().
+References \mbox{\hyperlink{poisson__elements_8h_source_l00216}{oomph\+::\+Poisson\+Equations$<$ DIM $>$\+::output()}}.
 
 \mbox{\Hypertarget{classoomph_1_1PoissonEquations_abc30eee5faaa50a65b272012d17ba604}\label{classoomph_1_1PoissonEquations_abc30eee5faaa50a65b272012d17ba604}} 
 \index{oomph::PoissonEquations$<$ DIM $>$@{oomph::PoissonEquations$<$ DIM $>$}!output@{output}}
 \index{output@{output}!oomph::PoissonEquations$<$ DIM $>$@{oomph::PoissonEquations$<$ DIM $>$}}
 \doxysubsubsection{\texorpdfstring{output()}{output()}\hspace{0.1cm}{\footnotesize\ttfamily [2/4]}}
-{\footnotesize\ttfamily template$<$unsigned D\+IM$>$ \\
-void \mbox{\hyperlink{classoomph_1_1PoissonEquations}{oomph\+::\+Poisson\+Equations}}$<$ D\+IM $>$\+::output (\begin{DoxyParamCaption}\item[{F\+I\+LE $\ast$}]{file\+\_\+pt,  }\item[{const unsigned \&}]{nplot }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [virtual]}}
+{\footnotesize\ttfamily template$<$unsigned DIM$>$ \\
+void \mbox{\hyperlink{classoomph_1_1PoissonEquations}{oomph\+::\+Poisson\+Equations}}$<$ DIM $>$\+::output (\begin{DoxyParamCaption}\item[{FILE $\ast$}]{file\+\_\+pt,  }\item[{const unsigned \&}]{nplot }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [virtual]}}
 
 
 
-C-\/style output FE representation of soln\+: x,y,u or x,y,z,u at n\+\_\+plot$^\wedge$\+D\+IM plot points. 
+C-\/style output FE representation of soln\+: x,y,u or x,y,z,u at n\+\_\+plot$^\wedge$\+DIM plot points. 
 
 C-\/style output function\+:
 
@@ -577,22 +560,22 @@ Reimplemented from \mbox{\hyperlink{classoomph_1_1FiniteElement_adfaee690bb0608f
 
 
 
-Reimplemented in \mbox{\hyperlink{classoomph_1_1QPoissonElement_af6fd3511d4cd349ffa7dff0549fdaefe}{oomph\+::\+Q\+Poisson\+Element$<$ D\+I\+M, N\+N\+O\+D\+E\+\_\+1\+D $>$}}, \mbox{\hyperlink{classoomph_1_1QPoissonElement_af6fd3511d4cd349ffa7dff0549fdaefe}{oomph\+::\+Q\+Poisson\+Element$<$ D\+I\+M, 2 $>$}}, \mbox{\hyperlink{classoomph_1_1QSpectralPoissonElement_aa3a03bc9793e976facde1a49396f5b43}{oomph\+::\+Q\+Spectral\+Poisson\+Element$<$ D\+I\+M, N\+N\+O\+D\+E\+\_\+1\+D $>$}}, and \mbox{\hyperlink{classoomph_1_1TPoissonElement_a9abacba6348984ea82fa08bdf8ff2f9e}{oomph\+::\+T\+Poisson\+Element$<$ D\+I\+M, N\+N\+O\+D\+E\+\_\+1\+D $>$}}.
+Reimplemented in \mbox{\hyperlink{classoomph_1_1QPoissonElement_af6fd3511d4cd349ffa7dff0549fdaefe}{oomph\+::\+QPoisson\+Element$<$ DIM, NNODE\+\_\+1\+D $>$}}, \mbox{\hyperlink{classoomph_1_1QPoissonElement_af6fd3511d4cd349ffa7dff0549fdaefe}{oomph\+::\+QPoisson\+Element$<$ DIM, 2 $>$}}, \mbox{\hyperlink{classoomph_1_1QSpectralPoissonElement_aa3a03bc9793e976facde1a49396f5b43}{oomph\+::\+QSpectral\+Poisson\+Element$<$ DIM, NNODE\+\_\+1\+D $>$}}, and \mbox{\hyperlink{classoomph_1_1TPoissonElement_a9abacba6348984ea82fa08bdf8ff2f9e}{oomph\+::\+TPoisson\+Element$<$ DIM, NNODE\+\_\+1\+D $>$}}.
 
 
 
-Definition at line 364 of file poisson\+\_\+elements.\+cc.
+Definition at line \mbox{\hyperlink{poisson__elements_8cc_source_l00364}{364}} of file \mbox{\hyperlink{poisson__elements_8cc_source}{poisson\+\_\+elements.\+cc}}.
 
 
 
-References i, and s.
+References \mbox{\hyperlink{cfortran_8h_source_l00603}{i}}, and \mbox{\hyperlink{cfortran_8h_source_l00568}{s}}.
 
 \mbox{\Hypertarget{classoomph_1_1PoissonEquations_a2417afb77d428846d7a1eada342ea8bb}\label{classoomph_1_1PoissonEquations_a2417afb77d428846d7a1eada342ea8bb}} 
 \index{oomph::PoissonEquations$<$ DIM $>$@{oomph::PoissonEquations$<$ DIM $>$}!output@{output}}
 \index{output@{output}!oomph::PoissonEquations$<$ DIM $>$@{oomph::PoissonEquations$<$ DIM $>$}}
 \doxysubsubsection{\texorpdfstring{output()}{output()}\hspace{0.1cm}{\footnotesize\ttfamily [3/4]}}
-{\footnotesize\ttfamily template$<$unsigned D\+IM$>$ \\
-void \mbox{\hyperlink{classoomph_1_1PoissonEquations}{oomph\+::\+Poisson\+Equations}}$<$ D\+IM $>$\+::output (\begin{DoxyParamCaption}\item[{std\+::ostream \&}]{outfile }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [virtual]}}
+{\footnotesize\ttfamily template$<$unsigned DIM$>$ \\
+void \mbox{\hyperlink{classoomph_1_1PoissonEquations}{oomph\+::\+Poisson\+Equations}}$<$ DIM $>$\+::output (\begin{DoxyParamCaption}\item[{std\+::ostream \&}]{outfile }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [virtual]}}
 
 
 
@@ -604,26 +587,30 @@ Reimplemented from \mbox{\hyperlink{classoomph_1_1FiniteElement_a2ad98a3d2ef4999
 
 
 
-Reimplemented in \mbox{\hyperlink{classoomph_1_1QPoissonElement_a8ca8f7f4c9e4ba9f5558391a8e22d170}{oomph\+::\+Q\+Poisson\+Element$<$ D\+I\+M, N\+N\+O\+D\+E\+\_\+1\+D $>$}}, \mbox{\hyperlink{classoomph_1_1QPoissonElement_a8ca8f7f4c9e4ba9f5558391a8e22d170}{oomph\+::\+Q\+Poisson\+Element$<$ D\+I\+M, 2 $>$}}, \mbox{\hyperlink{classoomph_1_1QSpectralPoissonElement_aa102e31f1f3c1f3040d69842aa0ad75a}{oomph\+::\+Q\+Spectral\+Poisson\+Element$<$ D\+I\+M, N\+N\+O\+D\+E\+\_\+1\+D $>$}}, and \mbox{\hyperlink{classoomph_1_1TPoissonElement_a44da26efce008c0c7c986f9277cd3302}{oomph\+::\+T\+Poisson\+Element$<$ D\+I\+M, N\+N\+O\+D\+E\+\_\+1\+D $>$}}.
+Reimplemented in \mbox{\hyperlink{classoomph_1_1QPoissonElement_a8ca8f7f4c9e4ba9f5558391a8e22d170}{oomph\+::\+QPoisson\+Element$<$ DIM, NNODE\+\_\+1\+D $>$}}, \mbox{\hyperlink{classoomph_1_1QPoissonElement_a8ca8f7f4c9e4ba9f5558391a8e22d170}{oomph\+::\+QPoisson\+Element$<$ DIM, 2 $>$}}, \mbox{\hyperlink{classoomph_1_1QSpectralPoissonElement_aa102e31f1f3c1f3040d69842aa0ad75a}{oomph\+::\+QSpectral\+Poisson\+Element$<$ DIM, NNODE\+\_\+1\+D $>$}}, and \mbox{\hyperlink{classoomph_1_1TPoissonElement_a44da26efce008c0c7c986f9277cd3302}{oomph\+::\+TPoisson\+Element$<$ DIM, NNODE\+\_\+1\+D $>$}}.
 
 
 
-Definition at line 222 of file poisson\+\_\+elements.\+h.
+Definition at line \mbox{\hyperlink{poisson__elements_8h_source_l00216}{216}} of file \mbox{\hyperlink{poisson__elements_8h_source}{poisson\+\_\+elements.\+h}}.
 
 
 
-Referenced by oomph\+::\+T\+Poisson\+Element$<$ D\+I\+M, N\+N\+O\+D\+E\+\_\+1\+D $>$\+::output(), oomph\+::\+Q\+Spectral\+Poisson\+Element$<$ D\+I\+M, N\+N\+O\+D\+E\+\_\+1\+D $>$\+::output(), oomph\+::\+Poisson\+Equations$<$ D\+I\+M $>$\+::output(), and oomph\+::\+Q\+Poisson\+Element$<$ D\+I\+M, 2 $>$\+::output().
+References \mbox{\hyperlink{poisson__elements_8h_source_l00216}{oomph\+::\+Poisson\+Equations$<$ DIM $>$\+::output()}}.
+
+
+
+Referenced by \mbox{\hyperlink{poisson__elements_8h_source_l00216}{oomph\+::\+Poisson\+Equations$<$ DIM $>$\+::output()}}, \mbox{\hyperlink{poisson__elements_8h_source_l00570}{oomph\+::\+QPoisson\+Element$<$ DIM, NNODE\+\_\+1\+D $>$\+::output()}}, \mbox{\hyperlink{spectral__poisson__elements_8h_source_l00088}{oomph\+::\+QSpectral\+Poisson\+Element$<$ DIM, NNODE\+\_\+1\+D $>$\+::output()}}, and \mbox{\hyperlink{Tpoisson__elements_8h_source_l00084}{oomph\+::\+TPoisson\+Element$<$ DIM, NNODE\+\_\+1\+D $>$\+::output()}}.
 
 \mbox{\Hypertarget{classoomph_1_1PoissonEquations_a6683dd0afc16bfddf4e79b6e0e449d43}\label{classoomph_1_1PoissonEquations_a6683dd0afc16bfddf4e79b6e0e449d43}} 
 \index{oomph::PoissonEquations$<$ DIM $>$@{oomph::PoissonEquations$<$ DIM $>$}!output@{output}}
 \index{output@{output}!oomph::PoissonEquations$<$ DIM $>$@{oomph::PoissonEquations$<$ DIM $>$}}
 \doxysubsubsection{\texorpdfstring{output()}{output()}\hspace{0.1cm}{\footnotesize\ttfamily [4/4]}}
-{\footnotesize\ttfamily template$<$unsigned D\+IM$>$ \\
-void \mbox{\hyperlink{classoomph_1_1PoissonEquations}{oomph\+::\+Poisson\+Equations}}$<$ D\+IM $>$\+::output (\begin{DoxyParamCaption}\item[{std\+::ostream \&}]{outfile,  }\item[{const unsigned \&}]{nplot }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [virtual]}}
+{\footnotesize\ttfamily template$<$unsigned DIM$>$ \\
+void \mbox{\hyperlink{classoomph_1_1PoissonEquations}{oomph\+::\+Poisson\+Equations}}$<$ DIM $>$\+::output (\begin{DoxyParamCaption}\item[{std\+::ostream \&}]{outfile,  }\item[{const unsigned \&}]{nplot }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [virtual]}}
 
 
 
-Output FE representation of soln\+: x,y,u or x,y,z,u at n\+\_\+plot$^\wedge$\+D\+IM plot points. 
+Output FE representation of soln\+: x,y,u or x,y,z,u at n\+\_\+plot$^\wedge$\+DIM plot points. 
 
 Output function\+:
 
@@ -635,26 +622,26 @@ Reimplemented from \mbox{\hyperlink{classoomph_1_1FiniteElement_afa9d9b2670f999b
 
 
 
-Reimplemented in \mbox{\hyperlink{classoomph_1_1QPoissonElement_a1b9e0f365936b175ed3405369f05b4af}{oomph\+::\+Q\+Poisson\+Element$<$ D\+I\+M, N\+N\+O\+D\+E\+\_\+1\+D $>$}}, \mbox{\hyperlink{classoomph_1_1QPoissonElement_a1b9e0f365936b175ed3405369f05b4af}{oomph\+::\+Q\+Poisson\+Element$<$ D\+I\+M, 2 $>$}}, \mbox{\hyperlink{classoomph_1_1QSpectralPoissonElement_a09f0813f51286ed47f4e89536e8c4e2e}{oomph\+::\+Q\+Spectral\+Poisson\+Element$<$ D\+I\+M, N\+N\+O\+D\+E\+\_\+1\+D $>$}}, and \mbox{\hyperlink{classoomph_1_1TPoissonElement_a8a9139cd1265c160c2c88df86fae8b6c}{oomph\+::\+T\+Poisson\+Element$<$ D\+I\+M, N\+N\+O\+D\+E\+\_\+1\+D $>$}}.
+Reimplemented in \mbox{\hyperlink{classoomph_1_1QPoissonElement_a1b9e0f365936b175ed3405369f05b4af}{oomph\+::\+QPoisson\+Element$<$ DIM, NNODE\+\_\+1\+D $>$}}, \mbox{\hyperlink{classoomph_1_1QPoissonElement_a1b9e0f365936b175ed3405369f05b4af}{oomph\+::\+QPoisson\+Element$<$ DIM, 2 $>$}}, \mbox{\hyperlink{classoomph_1_1QSpectralPoissonElement_a09f0813f51286ed47f4e89536e8c4e2e}{oomph\+::\+QSpectral\+Poisson\+Element$<$ DIM, NNODE\+\_\+1\+D $>$}}, and \mbox{\hyperlink{classoomph_1_1TPoissonElement_a8a9139cd1265c160c2c88df86fae8b6c}{oomph\+::\+TPoisson\+Element$<$ DIM, NNODE\+\_\+1\+D $>$}}.
 
 
 
-Definition at line 328 of file poisson\+\_\+elements.\+cc.
+Definition at line \mbox{\hyperlink{poisson__elements_8cc_source_l00328}{328}} of file \mbox{\hyperlink{poisson__elements_8cc_source}{poisson\+\_\+elements.\+cc}}.
 
 
 
-References i, and s.
+References \mbox{\hyperlink{cfortran_8h_source_l00603}{i}}, and \mbox{\hyperlink{cfortran_8h_source_l00568}{s}}.
 
 \mbox{\Hypertarget{classoomph_1_1PoissonEquations_a6d98964a14b38f4b2e89a2744478f706}\label{classoomph_1_1PoissonEquations_a6d98964a14b38f4b2e89a2744478f706}} 
 \index{oomph::PoissonEquations$<$ DIM $>$@{oomph::PoissonEquations$<$ DIM $>$}!output\_fct@{output\_fct}}
 \index{output\_fct@{output\_fct}!oomph::PoissonEquations$<$ DIM $>$@{oomph::PoissonEquations$<$ DIM $>$}}
 \doxysubsubsection{\texorpdfstring{output\_fct()}{output\_fct()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
-{\footnotesize\ttfamily template$<$unsigned D\+IM$>$ \\
-virtual void \mbox{\hyperlink{classoomph_1_1PoissonEquations}{oomph\+::\+Poisson\+Equations}}$<$ D\+IM $>$\+::output\+\_\+fct (\begin{DoxyParamCaption}\item[{std\+::ostream \&}]{outfile,  }\item[{const unsigned \&}]{n\+\_\+plot,  }\item[{const double \&}]{time,  }\item[{\mbox{\hyperlink{classoomph_1_1FiniteElement_ad4ecf2b61b158a4b4d351a60d23c633e}{Finite\+Element\+::\+Unsteady\+Exact\+Solution\+Fct\+Pt}}}]{exact\+\_\+soln\+\_\+pt }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [virtual]}}
+{\footnotesize\ttfamily template$<$unsigned DIM$>$ \\
+virtual void \mbox{\hyperlink{classoomph_1_1PoissonEquations}{oomph\+::\+Poisson\+Equations}}$<$ DIM $>$\+::output\+\_\+fct (\begin{DoxyParamCaption}\item[{std\+::ostream \&}]{outfile,  }\item[{const unsigned \&}]{n\+\_\+plot,  }\item[{const double \&}]{time,  }\item[{\mbox{\hyperlink{classoomph_1_1FiniteElement_ad4ecf2b61b158a4b4d351a60d23c633e}{Finite\+Element\+::\+Unsteady\+Exact\+Solution\+Fct\+Pt}}}]{exact\+\_\+soln\+\_\+pt }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [virtual]}}
 
 
 
-Output exact soln\+: x,y,u\+\_\+exact or x,y,z,u\+\_\+exact at n\+\_\+plot$^\wedge$\+D\+IM plot points (dummy time-\/dependent version to keep intel compiler happy) 
+Output exact soln\+: x,y,u\+\_\+exact or x,y,z,u\+\_\+exact at n\+\_\+plot$^\wedge$\+DIM plot points (dummy time-\/dependent version to keep intel compiler happy) 
 
 
 
@@ -662,20 +649,20 @@ Reimplemented from \mbox{\hyperlink{classoomph_1_1FiniteElement_a2a8426dccd57b92
 
 
 
-Reimplemented in \mbox{\hyperlink{classoomph_1_1QPoissonElement_a11884e74fcb40b630380daa52aa6d2d7}{oomph\+::\+Q\+Poisson\+Element$<$ D\+I\+M, N\+N\+O\+D\+E\+\_\+1\+D $>$}}, \mbox{\hyperlink{classoomph_1_1QPoissonElement_a11884e74fcb40b630380daa52aa6d2d7}{oomph\+::\+Q\+Poisson\+Element$<$ D\+I\+M, 2 $>$}}, \mbox{\hyperlink{classoomph_1_1QSpectralPoissonElement_aa18ae34af7cc2aee225d5e30a76edb10}{oomph\+::\+Q\+Spectral\+Poisson\+Element$<$ D\+I\+M, N\+N\+O\+D\+E\+\_\+1\+D $>$}}, and \mbox{\hyperlink{classoomph_1_1TPoissonElement_a06d4e2f4c6bf67caf316af96e85b61d8}{oomph\+::\+T\+Poisson\+Element$<$ D\+I\+M, N\+N\+O\+D\+E\+\_\+1\+D $>$}}.
+Reimplemented in \mbox{\hyperlink{classoomph_1_1QPoissonElement_a11884e74fcb40b630380daa52aa6d2d7}{oomph\+::\+QPoisson\+Element$<$ DIM, NNODE\+\_\+1\+D $>$}}, \mbox{\hyperlink{classoomph_1_1QPoissonElement_a11884e74fcb40b630380daa52aa6d2d7}{oomph\+::\+QPoisson\+Element$<$ DIM, 2 $>$}}, \mbox{\hyperlink{classoomph_1_1QSpectralPoissonElement_aa18ae34af7cc2aee225d5e30a76edb10}{oomph\+::\+QSpectral\+Poisson\+Element$<$ DIM, NNODE\+\_\+1\+D $>$}}, and \mbox{\hyperlink{classoomph_1_1TPoissonElement_a06d4e2f4c6bf67caf316af96e85b61d8}{oomph\+::\+TPoisson\+Element$<$ DIM, NNODE\+\_\+1\+D $>$}}.
 
 
 
-Definition at line 252 of file poisson\+\_\+elements.\+h.
+Definition at line \mbox{\hyperlink{poisson__elements_8h_source_l00246}{246}} of file \mbox{\hyperlink{poisson__elements_8h_source}{poisson\+\_\+elements.\+h}}.
 
 \mbox{\Hypertarget{classoomph_1_1PoissonEquations_ad6c637c8a5221313c2220e8e8c27ec42}\label{classoomph_1_1PoissonEquations_ad6c637c8a5221313c2220e8e8c27ec42}} 
 \index{oomph::PoissonEquations$<$ DIM $>$@{oomph::PoissonEquations$<$ DIM $>$}!output\_fct@{output\_fct}}
 \index{output\_fct@{output\_fct}!oomph::PoissonEquations$<$ DIM $>$@{oomph::PoissonEquations$<$ DIM $>$}}
 \doxysubsubsection{\texorpdfstring{output\_fct()}{output\_fct()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
-{\footnotesize\ttfamily template$<$unsigned D\+IM$>$ \\
-void \mbox{\hyperlink{classoomph_1_1PoissonEquations}{oomph\+::\+Poisson\+Equations}}$<$ D\+IM $>$\+::output\+\_\+fct (\begin{DoxyParamCaption}\item[{std\+::ostream \&}]{outfile,  }\item[{const unsigned \&}]{nplot,  }\item[{\mbox{\hyperlink{classoomph_1_1FiniteElement_a690fd33af26cc3e84f39bba6d5a85202}{Finite\+Element\+::\+Steady\+Exact\+Solution\+Fct\+Pt}}}]{exact\+\_\+soln\+\_\+pt }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [virtual]}}
+{\footnotesize\ttfamily template$<$unsigned DIM$>$ \\
+void \mbox{\hyperlink{classoomph_1_1PoissonEquations}{oomph\+::\+Poisson\+Equations}}$<$ DIM $>$\+::output\+\_\+fct (\begin{DoxyParamCaption}\item[{std\+::ostream \&}]{outfile,  }\item[{const unsigned \&}]{nplot,  }\item[{\mbox{\hyperlink{classoomph_1_1FiniteElement_a690fd33af26cc3e84f39bba6d5a85202}{Finite\+Element\+::\+Steady\+Exact\+Solution\+Fct\+Pt}}}]{exact\+\_\+soln\+\_\+pt }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [virtual]}}
 
-Output exact soln\+: x,y,u\+\_\+exact or x,y,z,u\+\_\+exact at n\+\_\+plot$^\wedge$\+D\+IM plot points
+Output exact soln\+: x,y,u\+\_\+exact or x,y,z,u\+\_\+exact at n\+\_\+plot$^\wedge$\+DIM plot points
 
 Output exact solution
 
@@ -687,26 +674,26 @@ Reimplemented from \mbox{\hyperlink{classoomph_1_1FiniteElement_a22b695c714f60ee
 
 
 
-Reimplemented in \mbox{\hyperlink{classoomph_1_1QPoissonElement_a42738c2ce76bf1abc782c51b6c775904}{oomph\+::\+Q\+Poisson\+Element$<$ D\+I\+M, N\+N\+O\+D\+E\+\_\+1\+D $>$}}, \mbox{\hyperlink{classoomph_1_1QPoissonElement_a42738c2ce76bf1abc782c51b6c775904}{oomph\+::\+Q\+Poisson\+Element$<$ D\+I\+M, 2 $>$}}, \mbox{\hyperlink{classoomph_1_1QSpectralPoissonElement_a112f8c43964b2514296974a90dc4b587}{oomph\+::\+Q\+Spectral\+Poisson\+Element$<$ D\+I\+M, N\+N\+O\+D\+E\+\_\+1\+D $>$}}, and \mbox{\hyperlink{classoomph_1_1TPoissonElement_a69344016c42eb40d39a0061175a6db94}{oomph\+::\+T\+Poisson\+Element$<$ D\+I\+M, N\+N\+O\+D\+E\+\_\+1\+D $>$}}.
+Reimplemented in \mbox{\hyperlink{classoomph_1_1QPoissonElement_a42738c2ce76bf1abc782c51b6c775904}{oomph\+::\+QPoisson\+Element$<$ DIM, NNODE\+\_\+1\+D $>$}}, \mbox{\hyperlink{classoomph_1_1QPoissonElement_a42738c2ce76bf1abc782c51b6c775904}{oomph\+::\+QPoisson\+Element$<$ DIM, 2 $>$}}, \mbox{\hyperlink{classoomph_1_1QSpectralPoissonElement_a112f8c43964b2514296974a90dc4b587}{oomph\+::\+QSpectral\+Poisson\+Element$<$ DIM, NNODE\+\_\+1\+D $>$}}, and \mbox{\hyperlink{classoomph_1_1TPoissonElement_a69344016c42eb40d39a0061175a6db94}{oomph\+::\+TPoisson\+Element$<$ DIM, NNODE\+\_\+1\+D $>$}}.
 
 
 
-Definition at line 400 of file poisson\+\_\+elements.\+cc.
+Definition at line \mbox{\hyperlink{poisson__elements_8cc_source_l00400}{400}} of file \mbox{\hyperlink{poisson__elements_8cc_source}{poisson\+\_\+elements.\+cc}}.
 
 
 
-References i, and s.
+References \mbox{\hyperlink{cfortran_8h_source_l00603}{i}}, and \mbox{\hyperlink{cfortran_8h_source_l00568}{s}}.
 
 
 
-Referenced by oomph\+::\+T\+Poisson\+Element$<$ D\+I\+M, N\+N\+O\+D\+E\+\_\+1\+D $>$\+::output\+\_\+fct(), oomph\+::\+Q\+Spectral\+Poisson\+Element$<$ D\+I\+M, N\+N\+O\+D\+E\+\_\+1\+D $>$\+::output\+\_\+fct(), and oomph\+::\+Q\+Poisson\+Element$<$ D\+I\+M, 2 $>$\+::output\+\_\+fct().
+Referenced by \mbox{\hyperlink{poisson__elements_8h_source_l00602}{oomph\+::\+QPoisson\+Element$<$ DIM, NNODE\+\_\+1\+D $>$\+::output\+\_\+fct()}}, \mbox{\hyperlink{spectral__poisson__elements_8h_source_l00119}{oomph\+::\+QSpectral\+Poisson\+Element$<$ DIM, NNODE\+\_\+1\+D $>$\+::output\+\_\+fct()}}, and \mbox{\hyperlink{Tpoisson__elements_8h_source_l00115}{oomph\+::\+TPoisson\+Element$<$ DIM, NNODE\+\_\+1\+D $>$\+::output\+\_\+fct()}}.
 
 \mbox{\Hypertarget{classoomph_1_1PoissonEquations_a03685536047faa97412f86030ffd91cb}\label{classoomph_1_1PoissonEquations_a03685536047faa97412f86030ffd91cb}} 
 \index{oomph::PoissonEquations$<$ DIM $>$@{oomph::PoissonEquations$<$ DIM $>$}!point\_output\_data@{point\_output\_data}}
 \index{point\_output\_data@{point\_output\_data}!oomph::PoissonEquations$<$ DIM $>$@{oomph::PoissonEquations$<$ DIM $>$}}
 \doxysubsubsection{\texorpdfstring{point\_output\_data()}{point\_output\_data()}}
-{\footnotesize\ttfamily template$<$unsigned D\+IM$>$ \\
-void \mbox{\hyperlink{classoomph_1_1PoissonEquations}{oomph\+::\+Poisson\+Equations}}$<$ D\+IM $>$\+::point\+\_\+output\+\_\+data (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{classoomph_1_1Vector}{Vector}}$<$ double $>$ \&}]{s,  }\item[{\mbox{\hyperlink{classoomph_1_1Vector}{Vector}}$<$ double $>$ \&}]{data }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [virtual]}}
+{\footnotesize\ttfamily template$<$unsigned DIM$>$ \\
+void \mbox{\hyperlink{classoomph_1_1PoissonEquations}{oomph\+::\+Poisson\+Equations}}$<$ DIM $>$\+::point\+\_\+output\+\_\+data (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{classoomph_1_1Vector}{Vector}}$<$ double $>$ \&}]{s,  }\item[{\mbox{\hyperlink{classoomph_1_1Vector}{Vector}}$<$ double $>$ \&}]{data }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [virtual]}}
 
 
 
@@ -718,18 +705,18 @@ Reimplemented from \mbox{\hyperlink{classoomph_1_1FiniteElement_a8bf3f75b55d4e67
 
 
 
-Definition at line 101 of file poisson\+\_\+elements.\+h.
+Definition at line \mbox{\hyperlink{poisson__elements_8h_source_l00095}{95}} of file \mbox{\hyperlink{poisson__elements_8h_source}{poisson\+\_\+elements.\+h}}.
 
 
 
-References oomph\+::\+Finite\+Element\+::dim(), i, oomph\+::\+Poisson\+Equations$<$ D\+I\+M $>$\+::interpolated\+\_\+u\+\_\+poisson(), oomph\+::\+Finite\+Element\+::interpolated\+\_\+x(), and s.
+References \mbox{\hyperlink{elements_8h_source_l02616}{oomph\+::\+Finite\+Element\+::dim()}}, \mbox{\hyperlink{cfortran_8h_source_l00603}{i}}, \mbox{\hyperlink{poisson__elements_8h_source_l00447}{oomph\+::\+Poisson\+Equations$<$ DIM $>$\+::interpolated\+\_\+u\+\_\+poisson()}}, \mbox{\hyperlink{elements_8cc_source_l03966}{oomph\+::\+Finite\+Element\+::interpolated\+\_\+x()}}, and \mbox{\hyperlink{cfortran_8h_source_l00568}{s}}.
 
 \mbox{\Hypertarget{classoomph_1_1PoissonEquations_ac52b68b17f7545128bfdeecf60838188}\label{classoomph_1_1PoissonEquations_ac52b68b17f7545128bfdeecf60838188}} 
 \index{oomph::PoissonEquations$<$ DIM $>$@{oomph::PoissonEquations$<$ DIM $>$}!scalar\_name\_paraview@{scalar\_name\_paraview}}
 \index{scalar\_name\_paraview@{scalar\_name\_paraview}!oomph::PoissonEquations$<$ DIM $>$@{oomph::PoissonEquations$<$ DIM $>$}}
 \doxysubsubsection{\texorpdfstring{scalar\_name\_paraview()}{scalar\_name\_paraview()}}
-{\footnotesize\ttfamily template$<$unsigned D\+IM$>$ \\
-std\+::string \mbox{\hyperlink{classoomph_1_1PoissonEquations}{oomph\+::\+Poisson\+Equations}}$<$ D\+IM $>$\+::scalar\+\_\+name\+\_\+paraview (\begin{DoxyParamCaption}\item[{const unsigned \&}]{i }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [virtual]}}
+{\footnotesize\ttfamily template$<$unsigned DIM$>$ \\
+std\+::string \mbox{\hyperlink{classoomph_1_1PoissonEquations}{oomph\+::\+Poisson\+Equations}}$<$ DIM $>$\+::scalar\+\_\+name\+\_\+paraview (\begin{DoxyParamCaption}\item[{const unsigned \&}]{i }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [virtual]}}
 
 
 
@@ -741,18 +728,18 @@ Reimplemented from \mbox{\hyperlink{classoomph_1_1FiniteElement_a49cc2d4f7ed5772
 
 
 
-Definition at line 157 of file poisson\+\_\+elements.\+h.
+Definition at line \mbox{\hyperlink{poisson__elements_8h_source_l00151}{151}} of file \mbox{\hyperlink{poisson__elements_8h_source}{poisson\+\_\+elements.\+h}}.
 
 
 
-References i.
+References \mbox{\hyperlink{cfortran_8h_source_l00603}{i}}.
 
 \mbox{\Hypertarget{classoomph_1_1PoissonEquations_afcf08b45211a5a3bcf0c80919e50c9fe}\label{classoomph_1_1PoissonEquations_afcf08b45211a5a3bcf0c80919e50c9fe}} 
 \index{oomph::PoissonEquations$<$ DIM $>$@{oomph::PoissonEquations$<$ DIM $>$}!scalar\_value\_fct\_paraview@{scalar\_value\_fct\_paraview}}
 \index{scalar\_value\_fct\_paraview@{scalar\_value\_fct\_paraview}!oomph::PoissonEquations$<$ DIM $>$@{oomph::PoissonEquations$<$ DIM $>$}}
 \doxysubsubsection{\texorpdfstring{scalar\_value\_fct\_paraview()}{scalar\_value\_fct\_paraview()}}
-{\footnotesize\ttfamily template$<$unsigned D\+IM$>$ \\
-void \mbox{\hyperlink{classoomph_1_1PoissonEquations}{oomph\+::\+Poisson\+Equations}}$<$ D\+IM $>$\+::scalar\+\_\+value\+\_\+fct\+\_\+paraview (\begin{DoxyParamCaption}\item[{std\+::ofstream \&}]{file\+\_\+out,  }\item[{const unsigned \&}]{i,  }\item[{const unsigned \&}]{nplot,  }\item[{\mbox{\hyperlink{classoomph_1_1FiniteElement_a690fd33af26cc3e84f39bba6d5a85202}{Finite\+Element\+::\+Steady\+Exact\+Solution\+Fct\+Pt}}}]{exact\+\_\+soln\+\_\+pt }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [virtual]}}
+{\footnotesize\ttfamily template$<$unsigned DIM$>$ \\
+void \mbox{\hyperlink{classoomph_1_1PoissonEquations}{oomph\+::\+Poisson\+Equations}}$<$ DIM $>$\+::scalar\+\_\+value\+\_\+fct\+\_\+paraview (\begin{DoxyParamCaption}\item[{std\+::ofstream \&}]{file\+\_\+out,  }\item[{const unsigned \&}]{i,  }\item[{const unsigned \&}]{nplot,  }\item[{\mbox{\hyperlink{classoomph_1_1FiniteElement_a690fd33af26cc3e84f39bba6d5a85202}{Finite\+Element\+::\+Steady\+Exact\+Solution\+Fct\+Pt}}}]{exact\+\_\+soln\+\_\+pt }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [virtual]}}
 
 
 
@@ -764,18 +751,18 @@ Reimplemented from \mbox{\hyperlink{classoomph_1_1FiniteElement_ac6ce34f52481195
 
 
 
-Definition at line 177 of file poisson\+\_\+elements.\+h.
+Definition at line \mbox{\hyperlink{poisson__elements_8h_source_l00171}{171}} of file \mbox{\hyperlink{poisson__elements_8h_source}{poisson\+\_\+elements.\+h}}.
 
 
 
-References oomph\+::\+Finite\+Element\+::get\+\_\+s\+\_\+plot(), i, oomph\+::\+Finite\+Element\+::interpolated\+\_\+x(), oomph\+::\+Finite\+Element\+::nplot\+\_\+points\+\_\+paraview(), and s.
+References \mbox{\hyperlink{elements_8h_source_l03153}{oomph\+::\+Finite\+Element\+::get\+\_\+s\+\_\+plot()}}, \mbox{\hyperlink{cfortran_8h_source_l00603}{i}}, \mbox{\hyperlink{elements_8cc_source_l03966}{oomph\+::\+Finite\+Element\+::interpolated\+\_\+x()}}, \mbox{\hyperlink{elements_8h_source_l02867}{oomph\+::\+Finite\+Element\+::nplot\+\_\+points\+\_\+paraview()}}, and \mbox{\hyperlink{cfortran_8h_source_l00568}{s}}.
 
 \mbox{\Hypertarget{classoomph_1_1PoissonEquations_a302df9f1a73fb1404f686a75b2fe58be}\label{classoomph_1_1PoissonEquations_a302df9f1a73fb1404f686a75b2fe58be}} 
 \index{oomph::PoissonEquations$<$ DIM $>$@{oomph::PoissonEquations$<$ DIM $>$}!scalar\_value\_paraview@{scalar\_value\_paraview}}
 \index{scalar\_value\_paraview@{scalar\_value\_paraview}!oomph::PoissonEquations$<$ DIM $>$@{oomph::PoissonEquations$<$ DIM $>$}}
 \doxysubsubsection{\texorpdfstring{scalar\_value\_paraview()}{scalar\_value\_paraview()}}
-{\footnotesize\ttfamily template$<$unsigned D\+IM$>$ \\
-void \mbox{\hyperlink{classoomph_1_1PoissonEquations}{oomph\+::\+Poisson\+Equations}}$<$ D\+IM $>$\+::scalar\+\_\+value\+\_\+paraview (\begin{DoxyParamCaption}\item[{std\+::ofstream \&}]{file\+\_\+out,  }\item[{const unsigned \&}]{i,  }\item[{const unsigned \&}]{nplot }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [virtual]}}
+{\footnotesize\ttfamily template$<$unsigned DIM$>$ \\
+void \mbox{\hyperlink{classoomph_1_1PoissonEquations}{oomph\+::\+Poisson\+Equations}}$<$ DIM $>$\+::scalar\+\_\+value\+\_\+paraview (\begin{DoxyParamCaption}\item[{std\+::ofstream \&}]{file\+\_\+out,  }\item[{const unsigned \&}]{i,  }\item[{const unsigned \&}]{nplot }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [virtual]}}
 
 
 
@@ -787,18 +774,18 @@ Reimplemented from \mbox{\hyperlink{classoomph_1_1FiniteElement_a02cf8832a5e2886
 
 
 
-Definition at line 127 of file poisson\+\_\+elements.\+h.
+Definition at line \mbox{\hyperlink{poisson__elements_8h_source_l00121}{121}} of file \mbox{\hyperlink{poisson__elements_8h_source}{poisson\+\_\+elements.\+h}}.
 
 
 
-References oomph\+::\+Finite\+Element\+::get\+\_\+s\+\_\+plot(), i, oomph\+::\+Poisson\+Equations$<$ D\+I\+M $>$\+::interpolated\+\_\+u\+\_\+poisson(), oomph\+::\+Finite\+Element\+::nplot\+\_\+points\+\_\+paraview(), and s.
+References \mbox{\hyperlink{elements_8h_source_l03153}{oomph\+::\+Finite\+Element\+::get\+\_\+s\+\_\+plot()}}, \mbox{\hyperlink{cfortran_8h_source_l00603}{i}}, \mbox{\hyperlink{poisson__elements_8h_source_l00447}{oomph\+::\+Poisson\+Equations$<$ DIM $>$\+::interpolated\+\_\+u\+\_\+poisson()}}, \mbox{\hyperlink{elements_8h_source_l02867}{oomph\+::\+Finite\+Element\+::nplot\+\_\+points\+\_\+paraview()}}, and \mbox{\hyperlink{cfortran_8h_source_l00568}{s}}.
 
 \mbox{\Hypertarget{classoomph_1_1PoissonEquations_a04816974542e5764e1ec3f88d69b99ab}\label{classoomph_1_1PoissonEquations_a04816974542e5764e1ec3f88d69b99ab}} 
 \index{oomph::PoissonEquations$<$ DIM $>$@{oomph::PoissonEquations$<$ DIM $>$}!self\_test@{self\_test}}
 \index{self\_test@{self\_test}!oomph::PoissonEquations$<$ DIM $>$@{oomph::PoissonEquations$<$ DIM $>$}}
 \doxysubsubsection{\texorpdfstring{self\_test()}{self\_test()}}
-{\footnotesize\ttfamily template$<$unsigned D\+IM$>$ \\
-unsigned \mbox{\hyperlink{classoomph_1_1PoissonEquations}{oomph\+::\+Poisson\+Equations}}$<$ D\+IM $>$\+::self\+\_\+test\hspace{0.3cm}{\ttfamily [virtual]}}
+{\footnotesize\ttfamily template$<$unsigned DIM$>$ \\
+unsigned \mbox{\hyperlink{classoomph_1_1PoissonEquations}{oomph\+::\+Poisson\+Equations}}$<$ DIM $>$\+::self\+\_\+test\hspace{0.3cm}{\ttfamily [virtual]}}
 
 
 
@@ -810,18 +797,18 @@ Reimplemented from \mbox{\hyperlink{classoomph_1_1FiniteElement_af94c5a5e22175d5
 
 
 
-Definition at line 298 of file poisson\+\_\+elements.\+cc.
+Definition at line \mbox{\hyperlink{poisson__elements_8cc_source_l00298}{298}} of file \mbox{\hyperlink{poisson__elements_8cc_source}{poisson\+\_\+elements.\+cc}}.
 
 
 
-References oomph\+::\+Finite\+Element\+::self\+\_\+test().
+References \mbox{\hyperlink{elements_8cc_source_l04444}{oomph\+::\+Finite\+Element\+::self\+\_\+test()}}.
 
-\mbox{\Hypertarget{classoomph_1_1PoissonEquations_a6beea1917ccf0bd6fd794e2aaee36a9b}\label{classoomph_1_1PoissonEquations_a6beea1917ccf0bd6fd794e2aaee36a9b}} 
+\mbox{\Hypertarget{classoomph_1_1PoissonEquations_a8971438f9915e20335c9f0dde045b5b7}\label{classoomph_1_1PoissonEquations_a8971438f9915e20335c9f0dde045b5b7}} 
 \index{oomph::PoissonEquations$<$ DIM $>$@{oomph::PoissonEquations$<$ DIM $>$}!source\_fct\_gradient\_pt@{source\_fct\_gradient\_pt}}
 \index{source\_fct\_gradient\_pt@{source\_fct\_gradient\_pt}!oomph::PoissonEquations$<$ DIM $>$@{oomph::PoissonEquations$<$ DIM $>$}}
 \doxysubsubsection{\texorpdfstring{source\_fct\_gradient\_pt()}{source\_fct\_gradient\_pt()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
-{\footnotesize\ttfamily template$<$unsigned D\+IM$>$ \\
-\mbox{\hyperlink{classoomph_1_1PoissonEquations_a6182c46eb07d6219d6f939f0962724c4}{Poisson\+Source\+Fct\+Gradient\+Pt}}\& \mbox{\hyperlink{classoomph_1_1PoissonEquations}{oomph\+::\+Poisson\+Equations}}$<$ D\+IM $>$\+::source\+\_\+fct\+\_\+gradient\+\_\+pt (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+{\footnotesize\ttfamily template$<$unsigned DIM$>$ \\
+\mbox{\hyperlink{classoomph_1_1PoissonEquations_a6182c46eb07d6219d6f939f0962724c4}{Poisson\+Source\+Fct\+Gradient\+Pt}} \& \mbox{\hyperlink{classoomph_1_1PoissonEquations}{oomph\+::\+Poisson\+Equations}}$<$ DIM $>$\+::source\+\_\+fct\+\_\+gradient\+\_\+pt (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
 
 
 
@@ -829,18 +816,18 @@ Access function\+: Pointer to gradient of source function.
 
 
 
-Definition at line 301 of file poisson\+\_\+elements.\+h.
+Definition at line \mbox{\hyperlink{poisson__elements_8h_source_l00295}{295}} of file \mbox{\hyperlink{poisson__elements_8h_source}{poisson\+\_\+elements.\+h}}.
 
 
 
-References oomph\+::\+Poisson\+Equations$<$ D\+I\+M $>$\+::\+Source\+\_\+fct\+\_\+gradient\+\_\+pt.
+References \mbox{\hyperlink{poisson__elements_8h_source_l00528}{oomph\+::\+Poisson\+Equations$<$ DIM $>$\+::\+Source\+\_\+fct\+\_\+gradient\+\_\+pt}}.
 
 \mbox{\Hypertarget{classoomph_1_1PoissonEquations_a0c3464f9f803d3a0366d0b254b8cddc4}\label{classoomph_1_1PoissonEquations_a0c3464f9f803d3a0366d0b254b8cddc4}} 
 \index{oomph::PoissonEquations$<$ DIM $>$@{oomph::PoissonEquations$<$ DIM $>$}!source\_fct\_gradient\_pt@{source\_fct\_gradient\_pt}}
 \index{source\_fct\_gradient\_pt@{source\_fct\_gradient\_pt}!oomph::PoissonEquations$<$ DIM $>$@{oomph::PoissonEquations$<$ DIM $>$}}
 \doxysubsubsection{\texorpdfstring{source\_fct\_gradient\_pt()}{source\_fct\_gradient\_pt()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
-{\footnotesize\ttfamily template$<$unsigned D\+IM$>$ \\
-\mbox{\hyperlink{classoomph_1_1PoissonEquations_a6182c46eb07d6219d6f939f0962724c4}{Poisson\+Source\+Fct\+Gradient\+Pt}} \mbox{\hyperlink{classoomph_1_1PoissonEquations}{oomph\+::\+Poisson\+Equations}}$<$ D\+IM $>$\+::source\+\_\+fct\+\_\+gradient\+\_\+pt (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+{\footnotesize\ttfamily template$<$unsigned DIM$>$ \\
+\mbox{\hyperlink{classoomph_1_1PoissonEquations_a6182c46eb07d6219d6f939f0962724c4}{Poisson\+Source\+Fct\+Gradient\+Pt}} \mbox{\hyperlink{classoomph_1_1PoissonEquations}{oomph\+::\+Poisson\+Equations}}$<$ DIM $>$\+::source\+\_\+fct\+\_\+gradient\+\_\+pt (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
 
 
 
@@ -848,18 +835,18 @@ Access function\+: Pointer to gradient source function. Const version.
 
 
 
-Definition at line 307 of file poisson\+\_\+elements.\+h.
+Definition at line \mbox{\hyperlink{poisson__elements_8h_source_l00301}{301}} of file \mbox{\hyperlink{poisson__elements_8h_source}{poisson\+\_\+elements.\+h}}.
 
 
 
-References oomph\+::\+Poisson\+Equations$<$ D\+I\+M $>$\+::\+Source\+\_\+fct\+\_\+gradient\+\_\+pt.
+References \mbox{\hyperlink{poisson__elements_8h_source_l00528}{oomph\+::\+Poisson\+Equations$<$ DIM $>$\+::\+Source\+\_\+fct\+\_\+gradient\+\_\+pt}}.
 
-\mbox{\Hypertarget{classoomph_1_1PoissonEquations_aeeffc9c64ab0be478d2fe1d6e9d0f959}\label{classoomph_1_1PoissonEquations_aeeffc9c64ab0be478d2fe1d6e9d0f959}} 
+\mbox{\Hypertarget{classoomph_1_1PoissonEquations_a4221606c99576ad2ef8ef82a8dcc14ca}\label{classoomph_1_1PoissonEquations_a4221606c99576ad2ef8ef82a8dcc14ca}} 
 \index{oomph::PoissonEquations$<$ DIM $>$@{oomph::PoissonEquations$<$ DIM $>$}!source\_fct\_pt@{source\_fct\_pt}}
 \index{source\_fct\_pt@{source\_fct\_pt}!oomph::PoissonEquations$<$ DIM $>$@{oomph::PoissonEquations$<$ DIM $>$}}
 \doxysubsubsection{\texorpdfstring{source\_fct\_pt()}{source\_fct\_pt()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
-{\footnotesize\ttfamily template$<$unsigned D\+IM$>$ \\
-\mbox{\hyperlink{classoomph_1_1PoissonEquations_a1e3a857c1f506c99d437fb932a24c828}{Poisson\+Source\+Fct\+Pt}}\& \mbox{\hyperlink{classoomph_1_1PoissonEquations}{oomph\+::\+Poisson\+Equations}}$<$ D\+IM $>$\+::source\+\_\+fct\+\_\+pt (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+{\footnotesize\ttfamily template$<$unsigned DIM$>$ \\
+\mbox{\hyperlink{classoomph_1_1PoissonEquations_a1e3a857c1f506c99d437fb932a24c828}{Poisson\+Source\+Fct\+Pt}} \& \mbox{\hyperlink{classoomph_1_1PoissonEquations}{oomph\+::\+Poisson\+Equations}}$<$ DIM $>$\+::source\+\_\+fct\+\_\+pt (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
 
 
 
@@ -867,22 +854,22 @@ Access function\+: Pointer to source function.
 
 
 
-Definition at line 289 of file poisson\+\_\+elements.\+h.
+Definition at line \mbox{\hyperlink{poisson__elements_8h_source_l00283}{283}} of file \mbox{\hyperlink{poisson__elements_8h_source}{poisson\+\_\+elements.\+h}}.
 
 
 
-References oomph\+::\+Poisson\+Equations$<$ D\+I\+M $>$\+::\+Source\+\_\+fct\+\_\+pt.
+References \mbox{\hyperlink{poisson__elements_8h_source_l00525}{oomph\+::\+Poisson\+Equations$<$ DIM $>$\+::\+Source\+\_\+fct\+\_\+pt}}.
 
 
 
-Referenced by oomph\+::\+Refineable\+Poisson\+Equations$<$ D\+I\+M $>$\+::further\+\_\+build().
+Referenced by \mbox{\hyperlink{refineable__poisson__elements_8h_source_l00156}{oomph\+::\+Refineable\+Poisson\+Equations$<$ DIM $>$\+::further\+\_\+build()}}.
 
 \mbox{\Hypertarget{classoomph_1_1PoissonEquations_a3b726ee15516f4cf86d2aea3e153c20b}\label{classoomph_1_1PoissonEquations_a3b726ee15516f4cf86d2aea3e153c20b}} 
 \index{oomph::PoissonEquations$<$ DIM $>$@{oomph::PoissonEquations$<$ DIM $>$}!source\_fct\_pt@{source\_fct\_pt}}
 \index{source\_fct\_pt@{source\_fct\_pt}!oomph::PoissonEquations$<$ DIM $>$@{oomph::PoissonEquations$<$ DIM $>$}}
 \doxysubsubsection{\texorpdfstring{source\_fct\_pt()}{source\_fct\_pt()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
-{\footnotesize\ttfamily template$<$unsigned D\+IM$>$ \\
-\mbox{\hyperlink{classoomph_1_1PoissonEquations_a1e3a857c1f506c99d437fb932a24c828}{Poisson\+Source\+Fct\+Pt}} \mbox{\hyperlink{classoomph_1_1PoissonEquations}{oomph\+::\+Poisson\+Equations}}$<$ D\+IM $>$\+::source\+\_\+fct\+\_\+pt (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+{\footnotesize\ttfamily template$<$unsigned DIM$>$ \\
+\mbox{\hyperlink{classoomph_1_1PoissonEquations_a1e3a857c1f506c99d437fb932a24c828}{Poisson\+Source\+Fct\+Pt}} \mbox{\hyperlink{classoomph_1_1PoissonEquations}{oomph\+::\+Poisson\+Equations}}$<$ DIM $>$\+::source\+\_\+fct\+\_\+pt (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
 
 
 
@@ -890,18 +877,18 @@ Access function\+: Pointer to source function. Const version.
 
 
 
-Definition at line 295 of file poisson\+\_\+elements.\+h.
+Definition at line \mbox{\hyperlink{poisson__elements_8h_source_l00289}{289}} of file \mbox{\hyperlink{poisson__elements_8h_source}{poisson\+\_\+elements.\+h}}.
 
 
 
-References oomph\+::\+Poisson\+Equations$<$ D\+I\+M $>$\+::\+Source\+\_\+fct\+\_\+pt.
+References \mbox{\hyperlink{poisson__elements_8h_source_l00525}{oomph\+::\+Poisson\+Equations$<$ DIM $>$\+::\+Source\+\_\+fct\+\_\+pt}}.
 
 \mbox{\Hypertarget{classoomph_1_1PoissonEquations_ae2e4e133bde4c4cbddf00de6c4feb72c}\label{classoomph_1_1PoissonEquations_ae2e4e133bde4c4cbddf00de6c4feb72c}} 
 \index{oomph::PoissonEquations$<$ DIM $>$@{oomph::PoissonEquations$<$ DIM $>$}!u\_index\_poisson@{u\_index\_poisson}}
 \index{u\_index\_poisson@{u\_index\_poisson}!oomph::PoissonEquations$<$ DIM $>$@{oomph::PoissonEquations$<$ DIM $>$}}
 \doxysubsubsection{\texorpdfstring{u\_index\_poisson()}{u\_index\_poisson()}}
-{\footnotesize\ttfamily template$<$unsigned D\+IM$>$ \\
-virtual unsigned \mbox{\hyperlink{classoomph_1_1PoissonEquations}{oomph\+::\+Poisson\+Equations}}$<$ D\+IM $>$\+::u\+\_\+index\+\_\+poisson (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [virtual]}}
+{\footnotesize\ttfamily template$<$unsigned DIM$>$ \\
+virtual unsigned \mbox{\hyperlink{classoomph_1_1PoissonEquations}{oomph\+::\+Poisson\+Equations}}$<$ DIM $>$\+::u\+\_\+index\+\_\+poisson (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [virtual]}}
 
 
 
@@ -909,11 +896,11 @@ Return the index at which the unknown value is stored. The default value, 0, is 
 
 
 
-Definition at line 93 of file poisson\+\_\+elements.\+h.
+Definition at line \mbox{\hyperlink{poisson__elements_8h_source_l00087}{87}} of file \mbox{\hyperlink{poisson__elements_8h_source}{poisson\+\_\+elements.\+h}}.
 
 
 
-Referenced by oomph\+::\+Poisson\+Equations$<$ D\+I\+M $>$\+::get\+\_\+flux(), oomph\+::\+Refineable\+Poisson\+Equations$<$ D\+I\+M $>$\+::get\+\_\+interpolated\+\_\+values(), oomph\+::\+Poisson\+Equations$<$ D\+I\+M $>$\+::interpolated\+\_\+u\+\_\+poisson(), and oomph\+::\+Poisson\+Flux\+Element$<$ E\+L\+E\+M\+E\+N\+T $>$\+::\+Poisson\+Flux\+Element().
+Referenced by \mbox{\hyperlink{poisson__elements_8h_source_l00366}{oomph\+::\+Poisson\+Equations$<$ DIM $>$\+::get\+\_\+flux()}}, \mbox{\hyperlink{refineable__poisson__elements_8h_source_l00099}{oomph\+::\+Refineable\+Poisson\+Equations$<$ DIM $>$\+::get\+\_\+interpolated\+\_\+values()}}, \mbox{\hyperlink{poisson__elements_8h_source_l00447}{oomph\+::\+Poisson\+Equations$<$ DIM $>$\+::interpolated\+\_\+u\+\_\+poisson()}}, and \mbox{\hyperlink{poisson__flux__elements_8h_source_l00271}{oomph\+::\+Poisson\+Flux\+Element$<$ ELEMENT $>$\+::\+Poisson\+Flux\+Element()}}.
 
 
 
@@ -922,8 +909,8 @@ Referenced by oomph\+::\+Poisson\+Equations$<$ D\+I\+M $>$\+::get\+\_\+flux(), o
 \index{oomph::PoissonEquations$<$ DIM $>$@{oomph::PoissonEquations$<$ DIM $>$}!Source\_fct\_gradient\_pt@{Source\_fct\_gradient\_pt}}
 \index{Source\_fct\_gradient\_pt@{Source\_fct\_gradient\_pt}!oomph::PoissonEquations$<$ DIM $>$@{oomph::PoissonEquations$<$ DIM $>$}}
 \doxysubsubsection{\texorpdfstring{Source\_fct\_gradient\_pt}{Source\_fct\_gradient\_pt}}
-{\footnotesize\ttfamily template$<$unsigned D\+IM$>$ \\
-\mbox{\hyperlink{classoomph_1_1PoissonEquations_a6182c46eb07d6219d6f939f0962724c4}{Poisson\+Source\+Fct\+Gradient\+Pt}} \mbox{\hyperlink{classoomph_1_1PoissonEquations}{oomph\+::\+Poisson\+Equations}}$<$ D\+IM $>$\+::Source\+\_\+fct\+\_\+gradient\+\_\+pt\hspace{0.3cm}{\ttfamily [protected]}}
+{\footnotesize\ttfamily template$<$unsigned DIM$>$ \\
+\mbox{\hyperlink{classoomph_1_1PoissonEquations_a6182c46eb07d6219d6f939f0962724c4}{Poisson\+Source\+Fct\+Gradient\+Pt}} \mbox{\hyperlink{classoomph_1_1PoissonEquations}{oomph\+::\+Poisson\+Equations}}$<$ DIM $>$\+::Source\+\_\+fct\+\_\+gradient\+\_\+pt\hspace{0.3cm}{\ttfamily [protected]}}
 
 
 
@@ -931,18 +918,18 @@ Pointer to gradient of source function.
 
 
 
-Definition at line 534 of file poisson\+\_\+elements.\+h.
+Definition at line \mbox{\hyperlink{poisson__elements_8h_source_l00528}{528}} of file \mbox{\hyperlink{poisson__elements_8h_source}{poisson\+\_\+elements.\+h}}.
 
 
 
-Referenced by oomph\+::\+Poisson\+Equations$<$ D\+I\+M $>$\+::get\+\_\+source\+\_\+gradient\+\_\+poisson(), and oomph\+::\+Poisson\+Equations$<$ D\+I\+M $>$\+::source\+\_\+fct\+\_\+gradient\+\_\+pt().
+Referenced by \mbox{\hyperlink{poisson__elements_8h_source_l00333}{oomph\+::\+Poisson\+Equations$<$ DIM $>$\+::get\+\_\+source\+\_\+gradient\+\_\+poisson()}}, and \mbox{\hyperlink{poisson__elements_8h_source_l00295}{oomph\+::\+Poisson\+Equations$<$ DIM $>$\+::source\+\_\+fct\+\_\+gradient\+\_\+pt()}}.
 
 \mbox{\Hypertarget{classoomph_1_1PoissonEquations_a4e177939f01ea418aa8a965811877b13}\label{classoomph_1_1PoissonEquations_a4e177939f01ea418aa8a965811877b13}} 
 \index{oomph::PoissonEquations$<$ DIM $>$@{oomph::PoissonEquations$<$ DIM $>$}!Source\_fct\_pt@{Source\_fct\_pt}}
 \index{Source\_fct\_pt@{Source\_fct\_pt}!oomph::PoissonEquations$<$ DIM $>$@{oomph::PoissonEquations$<$ DIM $>$}}
 \doxysubsubsection{\texorpdfstring{Source\_fct\_pt}{Source\_fct\_pt}}
-{\footnotesize\ttfamily template$<$unsigned D\+IM$>$ \\
-\mbox{\hyperlink{classoomph_1_1PoissonEquations_a1e3a857c1f506c99d437fb932a24c828}{Poisson\+Source\+Fct\+Pt}} \mbox{\hyperlink{classoomph_1_1PoissonEquations}{oomph\+::\+Poisson\+Equations}}$<$ D\+IM $>$\+::Source\+\_\+fct\+\_\+pt\hspace{0.3cm}{\ttfamily [protected]}}
+{\footnotesize\ttfamily template$<$unsigned DIM$>$ \\
+\mbox{\hyperlink{classoomph_1_1PoissonEquations_a1e3a857c1f506c99d437fb932a24c828}{Poisson\+Source\+Fct\+Pt}} \mbox{\hyperlink{classoomph_1_1PoissonEquations}{oomph\+::\+Poisson\+Equations}}$<$ DIM $>$\+::Source\+\_\+fct\+\_\+pt\hspace{0.3cm}{\ttfamily [protected]}}
 
 
 
@@ -950,11 +937,11 @@ Pointer to source function\+:
 
 
 
-Definition at line 531 of file poisson\+\_\+elements.\+h.
+Definition at line \mbox{\hyperlink{poisson__elements_8h_source_l00525}{525}} of file \mbox{\hyperlink{poisson__elements_8h_source}{poisson\+\_\+elements.\+h}}.
 
 
 
-Referenced by oomph\+::\+Refineable\+Poisson\+Equations$<$ D\+I\+M $>$\+::further\+\_\+build(), oomph\+::\+Poisson\+Equations$<$ D\+I\+M $>$\+::get\+\_\+source\+\_\+poisson(), and oomph\+::\+Poisson\+Equations$<$ D\+I\+M $>$\+::source\+\_\+fct\+\_\+pt().
+Referenced by \mbox{\hyperlink{refineable__poisson__elements_8h_source_l00156}{oomph\+::\+Refineable\+Poisson\+Equations$<$ DIM $>$\+::further\+\_\+build()}}, \mbox{\hyperlink{poisson__elements_8h_source_l00311}{oomph\+::\+Poisson\+Equations$<$ DIM $>$\+::get\+\_\+source\+\_\+poisson()}}, and \mbox{\hyperlink{poisson__elements_8h_source_l00283}{oomph\+::\+Poisson\+Equations$<$ DIM $>$\+::source\+\_\+fct\+\_\+pt()}}.
 
 
 

@@ -327,7 +327,7 @@ docdir = ${datarootdir}/doc/${PACKAGE_TARNAME}
 dvidir = ${docdir}
 exec_prefix = ${prefix}
 have_cmake = true
-have_doxygen = true
+have_doxygen = false
 have_libtool = true
 have_online_triangle = false
 have_pdf_latex = true
@@ -362,10 +362,7 @@ target_alias =
 top_build_prefix = ../../
 top_builddir = ../..
 top_srcdir = ../..
-SUBDIRS = \
- clamped_shell \
- linear_shell
-
+SUBDIRS = clamped_shell
 all: all-recursive
 
 .SUFFIXES:

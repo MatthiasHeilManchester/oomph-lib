@@ -11,7 +11,6 @@ intro \
 FAQ \
 meshes \
 tar_files \
-download \
 the_distribution \
 example_code_list \
 the_data_structure \
@@ -35,7 +34,6 @@ hijacking \
 change_log \
 bugs \
 linear_solvers \
-subversion \
 paraview \
 preconditioners \
 to_be_written \
@@ -45,7 +43,6 @@ creating_doc \
 linear_elasticity \
 time_harmonic_fourier_decomposed_linear_elasticity \
 fourier_decomposed_helmholtz \
-c1_element \
 time_harmonic_linear_elasticity \
 pml_fourier_decomposed_helmholtz \
 pml_helmholtz \

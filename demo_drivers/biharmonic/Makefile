@@ -327,7 +327,7 @@ docdir = ${datarootdir}/doc/${PACKAGE_TARNAME}
 dvidir = ${docdir}
 exec_prefix = ${prefix}
 have_cmake = true
-have_doxygen = true
+have_doxygen = false
 have_libtool = true
 have_online_triangle = false
 have_pdf_latex = true
@@ -363,9 +363,7 @@ top_build_prefix = ../../
 top_builddir = ../..
 top_srcdir = ../..
 SUBDIRS = \
-two_d_biharmonic \
-unstructured_2d_biharmonic \
-structured_2d_biharmonic
+two_d_biharmonic
 
 all: all-recursive
 

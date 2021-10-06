@@ -1,4 +1,4 @@
-\hypertarget{classoomph_1_1GeneralisedAdvectionDiffusionEquations}{}\doxysection{oomph\+::Generalised\+Advection\+Diffusion\+Equations$<$ D\+IM $>$ Class Template Reference}
+\hypertarget{classoomph_1_1GeneralisedAdvectionDiffusionEquations}{}\doxysection{oomph\+::Generalised\+Advection\+Diffusion\+Equations\texorpdfstring{$<$}{<} DIM \texorpdfstring{$>$}{>} Class Template Reference}
 \label{classoomph_1_1GeneralisedAdvectionDiffusionEquations}\index{oomph::GeneralisedAdvectionDiffusionEquations$<$ DIM $>$@{oomph::GeneralisedAdvectionDiffusionEquations$<$ DIM $>$}}
 
 
@@ -9,7 +9,7 @@ A class for all elements that solve the Advection Diffusion equations in conserv
 
 {\ttfamily \#include $<$gen\+\_\+advection\+\_\+diffusion\+\_\+elements.\+h$>$}
 
-Inheritance diagram for oomph\+::Generalised\+Advection\+Diffusion\+Equations$<$ D\+IM $>$\+:\begin{figure}[H]
+Inheritance diagram for oomph\+::Generalised\+Advection\+Diffusion\+Equations\texorpdfstring{$<$}{<} DIM \texorpdfstring{$>$}{>}\+:\begin{figure}[H]
 \begin{center}
 \leavevmode
 \includegraphics[height=2.941177cm]{classoomph_1_1GeneralisedAdvectionDiffusionEquations}
@@ -29,90 +29,90 @@ typedef void($\ast$ \mbox{\hyperlink{classoomph_1_1GeneralisedAdvectionDiffusion
 \item 
 \mbox{\hyperlink{classoomph_1_1GeneralisedAdvectionDiffusionEquations_a396bf7221fdeddac42b41599ba81e9f3}{Generalised\+Advection\+Diffusion\+Equations}} ()
 \begin{DoxyCompactList}\small\item\em Constructor\+: Initialise the Source\+\_\+fct\+\_\+pt and Wind\+\_\+fct\+\_\+pt to null and set (pointer to) Peclet number to default. \end{DoxyCompactList}\item 
-\mbox{\hyperlink{classoomph_1_1GeneralisedAdvectionDiffusionEquations_aef7658dd59b51751779fbae3197a82fe}{Generalised\+Advection\+Diffusion\+Equations}} (const \mbox{\hyperlink{classoomph_1_1GeneralisedAdvectionDiffusionEquations}{Generalised\+Advection\+Diffusion\+Equations}} \&dummy)
+\mbox{\hyperlink{classoomph_1_1GeneralisedAdvectionDiffusionEquations_aa9ca21a7f4752694f8eb179c30e5cdf6}{Generalised\+Advection\+Diffusion\+Equations}} (const \mbox{\hyperlink{classoomph_1_1GeneralisedAdvectionDiffusionEquations}{Generalised\+Advection\+Diffusion\+Equations}} \&dummy)=delete
 \begin{DoxyCompactList}\small\item\em Broken copy constructor. \end{DoxyCompactList}\item 
-void \mbox{\hyperlink{classoomph_1_1GeneralisedAdvectionDiffusionEquations_aaaf6bd002cd50464a9e6087f8f58e65d}{operator=}} (const \mbox{\hyperlink{classoomph_1_1GeneralisedAdvectionDiffusionEquations}{Generalised\+Advection\+Diffusion\+Equations}} \&)
+void \mbox{\hyperlink{classoomph_1_1GeneralisedAdvectionDiffusionEquations_ab93a1c0be0625257fbd6520322d51913}{operator=}} (const \mbox{\hyperlink{classoomph_1_1GeneralisedAdvectionDiffusionEquations}{Generalised\+Advection\+Diffusion\+Equations}} \&)=delete
 \begin{DoxyCompactList}\small\item\em Broken assignment operator. \end{DoxyCompactList}\item 
 virtual unsigned \mbox{\hyperlink{classoomph_1_1GeneralisedAdvectionDiffusionEquations_a95e7c3bb9ff924a284fd83850f464967}{u\+\_\+index\+\_\+cons\+\_\+adv\+\_\+diff}} () const
 \begin{DoxyCompactList}\small\item\em Return the index at which the unknown value is stored. The default value, 0, is appropriate for single-\/physics problems, when there is only one variable, the value that satisfies the advection-\/diffusion equation. In derived multi-\/physics elements, this function should be overloaded to reflect the chosen storage scheme. Note that these equations require that the unknown is always stored at the same index at each node. \end{DoxyCompactList}\item 
-double \mbox{\hyperlink{classoomph_1_1GeneralisedAdvectionDiffusionEquations_a7341d08424050525cfe3430001c1dced}{du\+\_\+dt\+\_\+cons\+\_\+adv\+\_\+diff}} (const unsigned \&\mbox{\hyperlink{the__data__structure_8txt_af88b2d950fae19ab641bd1690e08445c}{n}}) const
+double \mbox{\hyperlink{classoomph_1_1GeneralisedAdvectionDiffusionEquations_a7341d08424050525cfe3430001c1dced}{du\+\_\+dt\+\_\+cons\+\_\+adv\+\_\+diff}} (const unsigned \&n) const
 \begin{DoxyCompactList}\small\item\em du/dt at local node n. Uses suitably interpolated value for hanging nodes. \end{DoxyCompactList}\item 
-void \mbox{\hyperlink{classoomph_1_1GeneralisedAdvectionDiffusionEquations_a25fde0b26b7d44ef2edff08e0d124037}{disable\+\_\+\+A\+LE}} ()
-\begin{DoxyCompactList}\small\item\em Disable A\+LE, i.\+e. assert the mesh is not moving -- you do this at your own risk! \end{DoxyCompactList}\item 
-void \mbox{\hyperlink{classoomph_1_1GeneralisedAdvectionDiffusionEquations_ad9a64a539984e8f0a1d3ab0b5c0d84c9}{enable\+\_\+\+A\+LE}} ()
-\begin{DoxyCompactList}\small\item\em (Re-\/)enable A\+LE, i.\+e. take possible mesh motion into account when evaluating the time-\/derivative. Note\+: By default, A\+LE is enabled, at the expense of possibly creating unnecessary work in problems where the mesh is, in fact, stationary. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classoomph_1_1GeneralisedAdvectionDiffusionEquations_a25fde0b26b7d44ef2edff08e0d124037}{disable\+\_\+\+ALE}} ()
+\begin{DoxyCompactList}\small\item\em Disable ALE, i.\+e. assert the mesh is not moving -- you do this at your own risk! \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classoomph_1_1GeneralisedAdvectionDiffusionEquations_ad9a64a539984e8f0a1d3ab0b5c0d84c9}{enable\+\_\+\+ALE}} ()
+\begin{DoxyCompactList}\small\item\em (Re-\/)enable ALE, i.\+e. take possible mesh motion into account when evaluating the time-\/derivative. Note\+: By default, ALE is enabled, at the expense of possibly creating unnecessary work in problems where the mesh is, in fact, stationary. \end{DoxyCompactList}\item 
 void \mbox{\hyperlink{classoomph_1_1GeneralisedAdvectionDiffusionEquations_a6a225f0d19451429969ba92705bce96e}{output}} (std\+::ostream \&outfile)
 \begin{DoxyCompactList}\small\item\em Output with default number of plot points. \end{DoxyCompactList}\item 
 void \mbox{\hyperlink{classoomph_1_1GeneralisedAdvectionDiffusionEquations_a44995055f98a97ce229609832a03867e}{output}} (std\+::ostream \&outfile, const unsigned \&nplot)
-\begin{DoxyCompactList}\small\item\em Output FE representation of soln\+: x,y,u or x,y,z,u at nplot$^\wedge$\+D\+IM plot points. \end{DoxyCompactList}\item 
-void \mbox{\hyperlink{classoomph_1_1GeneralisedAdvectionDiffusionEquations_a299369dd1b578aa3634623c636440dde}{output}} (F\+I\+LE $\ast$file\+\_\+pt)
+\begin{DoxyCompactList}\small\item\em Output FE representation of soln\+: x,y,u or x,y,z,u at nplot$^\wedge$\+DIM plot points. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classoomph_1_1GeneralisedAdvectionDiffusionEquations_a299369dd1b578aa3634623c636440dde}{output}} (FILE $\ast$file\+\_\+pt)
 \begin{DoxyCompactList}\small\item\em C\+\_\+style output with default number of plot points. \end{DoxyCompactList}\item 
-void \mbox{\hyperlink{classoomph_1_1GeneralisedAdvectionDiffusionEquations_afcc8b4ee77728a11e26f8cd512874832}{output}} (F\+I\+LE $\ast$file\+\_\+pt, const unsigned \&n\+\_\+plot)
-\begin{DoxyCompactList}\small\item\em C-\/style output FE representation of soln\+: x,y,u or x,y,z,u at n\+\_\+plot$^\wedge$\+D\+IM plot points. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classoomph_1_1GeneralisedAdvectionDiffusionEquations_afcc8b4ee77728a11e26f8cd512874832}{output}} (FILE $\ast$file\+\_\+pt, const unsigned \&n\+\_\+plot)
+\begin{DoxyCompactList}\small\item\em C-\/style output FE representation of soln\+: x,y,u or x,y,z,u at n\+\_\+plot$^\wedge$\+DIM plot points. \end{DoxyCompactList}\item 
 void \mbox{\hyperlink{classoomph_1_1GeneralisedAdvectionDiffusionEquations_ac7bae95f78ecec53436902a7da1f6a92}{output\+\_\+fct}} (std\+::ostream \&outfile, const unsigned \&nplot, \mbox{\hyperlink{classoomph_1_1FiniteElement_a690fd33af26cc3e84f39bba6d5a85202}{Finite\+Element\+::\+Steady\+Exact\+Solution\+Fct\+Pt}} exact\+\_\+soln\+\_\+pt)
-\begin{DoxyCompactList}\small\item\em Output exact soln\+: x,y,u\+\_\+exact or x,y,z,u\+\_\+exact at nplot$^\wedge$\+D\+IM plot points. \end{DoxyCompactList}\item 
+\begin{DoxyCompactList}\small\item\em Output exact soln\+: x,y,u\+\_\+exact or x,y,z,u\+\_\+exact at nplot$^\wedge$\+DIM plot points. \end{DoxyCompactList}\item 
 virtual void \mbox{\hyperlink{classoomph_1_1GeneralisedAdvectionDiffusionEquations_a41914c83c67c4de8d2d504c918e04872}{output\+\_\+fct}} (std\+::ostream \&outfile, const unsigned \&nplot, const double \&time, \mbox{\hyperlink{classoomph_1_1FiniteElement_ad4ecf2b61b158a4b4d351a60d23c633e}{Finite\+Element\+::\+Unsteady\+Exact\+Solution\+Fct\+Pt}} exact\+\_\+soln\+\_\+pt)
-\begin{DoxyCompactList}\small\item\em Output exact soln\+: x,y,u\+\_\+exact or x,y,z,u\+\_\+exact at nplot$^\wedge$\+D\+IM plot points (dummy time-\/dependent version to keep intel compiler happy) \end{DoxyCompactList}\item 
+\begin{DoxyCompactList}\small\item\em Output exact soln\+: x,y,u\+\_\+exact or x,y,z,u\+\_\+exact at nplot$^\wedge$\+DIM plot points (dummy time-\/dependent version to keep intel compiler happy) \end{DoxyCompactList}\item 
 void \mbox{\hyperlink{classoomph_1_1GeneralisedAdvectionDiffusionEquations_a2cdd1b0c5ad536a0f2e20fb24474bd8c}{compute\+\_\+error}} (std\+::ostream \&outfile, \mbox{\hyperlink{classoomph_1_1FiniteElement_a690fd33af26cc3e84f39bba6d5a85202}{Finite\+Element\+::\+Steady\+Exact\+Solution\+Fct\+Pt}} exact\+\_\+soln\+\_\+pt, double \&error, double \&norm)
 \begin{DoxyCompactList}\small\item\em Get error against and norm of exact solution. \end{DoxyCompactList}\item 
 void \mbox{\hyperlink{classoomph_1_1GeneralisedAdvectionDiffusionEquations_ac7ebfa809051e73ec064fea8231811a3}{compute\+\_\+error}} (std\+::ostream \&outfile, \mbox{\hyperlink{classoomph_1_1FiniteElement_ad4ecf2b61b158a4b4d351a60d23c633e}{Finite\+Element\+::\+Unsteady\+Exact\+Solution\+Fct\+Pt}} exact\+\_\+soln\+\_\+pt, const double \&time, double \&error, double \&norm)
 \begin{DoxyCompactList}\small\item\em Dummy, time dependent error checker. \end{DoxyCompactList}\item 
 double \mbox{\hyperlink{classoomph_1_1GeneralisedAdvectionDiffusionEquations_ad4651d1bd8d4da68f5d3d5acb45f659b}{integrate\+\_\+u}} ()
 \begin{DoxyCompactList}\small\item\em Integrate the concentration over the element. \end{DoxyCompactList}\item 
-\mbox{\hyperlink{classoomph_1_1GeneralisedAdvectionDiffusionEquations_ad65d34bc0348f8b297c185d1772eafd9}{Generalised\+Advection\+Diffusion\+Source\+Fct\+Pt}} \& \mbox{\hyperlink{classoomph_1_1GeneralisedAdvectionDiffusionEquations_aa25d13de883e0ee197b050eb6e1c22b0}{source\+\_\+fct\+\_\+pt}} ()
+\mbox{\hyperlink{classoomph_1_1GeneralisedAdvectionDiffusionEquations_ad65d34bc0348f8b297c185d1772eafd9}{Generalised\+Advection\+Diffusion\+Source\+Fct\+Pt}} \& \mbox{\hyperlink{classoomph_1_1GeneralisedAdvectionDiffusionEquations_a233e6cb6293707f73e002a69a7a1eab4}{source\+\_\+fct\+\_\+pt}} ()
 \begin{DoxyCompactList}\small\item\em Access function\+: Pointer to source function. \end{DoxyCompactList}\item 
 \mbox{\hyperlink{classoomph_1_1GeneralisedAdvectionDiffusionEquations_ad65d34bc0348f8b297c185d1772eafd9}{Generalised\+Advection\+Diffusion\+Source\+Fct\+Pt}} \mbox{\hyperlink{classoomph_1_1GeneralisedAdvectionDiffusionEquations_ad6c539f5291e125e41ead1323c4f89bd}{source\+\_\+fct\+\_\+pt}} () const
 \begin{DoxyCompactList}\small\item\em Access function\+: Pointer to source function. Const version. \end{DoxyCompactList}\item 
-\mbox{\hyperlink{classoomph_1_1GeneralisedAdvectionDiffusionEquations_ac5a63eb03aee5957e7b14a4578423cfc}{Generalised\+Advection\+Diffusion\+Wind\+Fct\+Pt}} \& \mbox{\hyperlink{classoomph_1_1GeneralisedAdvectionDiffusionEquations_a03c11fe6f8c2244b831b0a240e6b42ef}{wind\+\_\+fct\+\_\+pt}} ()
+\mbox{\hyperlink{classoomph_1_1GeneralisedAdvectionDiffusionEquations_ac5a63eb03aee5957e7b14a4578423cfc}{Generalised\+Advection\+Diffusion\+Wind\+Fct\+Pt}} \& \mbox{\hyperlink{classoomph_1_1GeneralisedAdvectionDiffusionEquations_a96c2aea38e57787792b7c3a756476c1b}{wind\+\_\+fct\+\_\+pt}} ()
 \begin{DoxyCompactList}\small\item\em Access function\+: Pointer to wind function. \end{DoxyCompactList}\item 
 \mbox{\hyperlink{classoomph_1_1GeneralisedAdvectionDiffusionEquations_ac5a63eb03aee5957e7b14a4578423cfc}{Generalised\+Advection\+Diffusion\+Wind\+Fct\+Pt}} \mbox{\hyperlink{classoomph_1_1GeneralisedAdvectionDiffusionEquations_a51b286f75d62c1d9b62961555615d560}{wind\+\_\+fct\+\_\+pt}} () const
 \begin{DoxyCompactList}\small\item\em Access function\+: Pointer to wind function. Const version. \end{DoxyCompactList}\item 
-\mbox{\hyperlink{classoomph_1_1GeneralisedAdvectionDiffusionEquations_ac5a63eb03aee5957e7b14a4578423cfc}{Generalised\+Advection\+Diffusion\+Wind\+Fct\+Pt}} \& \mbox{\hyperlink{classoomph_1_1GeneralisedAdvectionDiffusionEquations_ad30d41db43db57884cac9a0223715b50}{conserved\+\_\+wind\+\_\+fct\+\_\+pt}} ()
+\mbox{\hyperlink{classoomph_1_1GeneralisedAdvectionDiffusionEquations_ac5a63eb03aee5957e7b14a4578423cfc}{Generalised\+Advection\+Diffusion\+Wind\+Fct\+Pt}} \& \mbox{\hyperlink{classoomph_1_1GeneralisedAdvectionDiffusionEquations_ab259f0836c0868087e7e6cdb5f7e6507}{conserved\+\_\+wind\+\_\+fct\+\_\+pt}} ()
 \begin{DoxyCompactList}\small\item\em Access function\+: Pointer to additional (conservative) wind function. \end{DoxyCompactList}\item 
 \mbox{\hyperlink{classoomph_1_1GeneralisedAdvectionDiffusionEquations_ac5a63eb03aee5957e7b14a4578423cfc}{Generalised\+Advection\+Diffusion\+Wind\+Fct\+Pt}} \mbox{\hyperlink{classoomph_1_1GeneralisedAdvectionDiffusionEquations_a94a89a5a56af79c7924af36e2adc0038}{conserved\+\_\+wind\+\_\+fct\+\_\+pt}} () const
 \begin{DoxyCompactList}\small\item\em Access function\+: Pointer to additoinal (conservative) wind function. Const version. \end{DoxyCompactList}\item 
-\mbox{\hyperlink{classoomph_1_1GeneralisedAdvectionDiffusionEquations_a637371a9eebc399023c6a652e8219263}{Generalised\+Advection\+Diffusion\+Diff\+Fct\+Pt}} \& \mbox{\hyperlink{classoomph_1_1GeneralisedAdvectionDiffusionEquations_aa0d22a83b060ea55524c198f7be2c73c}{diff\+\_\+fct\+\_\+pt}} ()
+\mbox{\hyperlink{classoomph_1_1GeneralisedAdvectionDiffusionEquations_a637371a9eebc399023c6a652e8219263}{Generalised\+Advection\+Diffusion\+Diff\+Fct\+Pt}} \& \mbox{\hyperlink{classoomph_1_1GeneralisedAdvectionDiffusionEquations_a0875f6fb21a1aa078bb8b1cd127ae182}{diff\+\_\+fct\+\_\+pt}} ()
 \begin{DoxyCompactList}\small\item\em Access function\+: Pointer to diffusion function. \end{DoxyCompactList}\item 
 \mbox{\hyperlink{classoomph_1_1GeneralisedAdvectionDiffusionEquations_a637371a9eebc399023c6a652e8219263}{Generalised\+Advection\+Diffusion\+Diff\+Fct\+Pt}} \mbox{\hyperlink{classoomph_1_1GeneralisedAdvectionDiffusionEquations_a7e2bcd1880f2e58986c230aea5fa0e0a}{diff\+\_\+fct\+\_\+pt}} () const
 \begin{DoxyCompactList}\small\item\em Access function\+: Pointer to diffusion function. Const version. \end{DoxyCompactList}\item 
-const double \& \mbox{\hyperlink{classoomph_1_1GeneralisedAdvectionDiffusionEquations_a690a83d5a63684541aac450255eed7e1}{pe}} () const
+const double \& \mbox{\hyperlink{classoomph_1_1GeneralisedAdvectionDiffusionEquations_ae53bc90b317c7cea5f7ff2e5558c7673}{pe}} () const
 \begin{DoxyCompactList}\small\item\em Peclet number. \end{DoxyCompactList}\item 
-double $\ast$\& \mbox{\hyperlink{classoomph_1_1GeneralisedAdvectionDiffusionEquations_a076653c85aab1117cd2c0a922849ba28}{pe\+\_\+pt}} ()
+double $\ast$\& \mbox{\hyperlink{classoomph_1_1GeneralisedAdvectionDiffusionEquations_a5050c7a67b6c41a36148fb18307603d0}{pe\+\_\+pt}} ()
 \begin{DoxyCompactList}\small\item\em Pointer to Peclet number. \end{DoxyCompactList}\item 
-const double \& \mbox{\hyperlink{classoomph_1_1GeneralisedAdvectionDiffusionEquations_a9ba19e458e9afa3774437709951aada9}{pe\+\_\+st}} () const
+const double \& \mbox{\hyperlink{classoomph_1_1GeneralisedAdvectionDiffusionEquations_aa945b40276085312a341288098e21faf}{pe\+\_\+st}} () const
 \begin{DoxyCompactList}\small\item\em Peclet number multiplied by Strouhal number. \end{DoxyCompactList}\item 
-double $\ast$\& \mbox{\hyperlink{classoomph_1_1GeneralisedAdvectionDiffusionEquations_a4aad48b9b07ec2a8cdaf8d2222ab099f}{pe\+\_\+st\+\_\+pt}} ()
+double $\ast$\& \mbox{\hyperlink{classoomph_1_1GeneralisedAdvectionDiffusionEquations_acb1e23d0c2ec07409f2405cf878f66f0}{pe\+\_\+st\+\_\+pt}} ()
 \begin{DoxyCompactList}\small\item\em Pointer to Peclet number multipled by Strouha number. \end{DoxyCompactList}\item 
 virtual void \mbox{\hyperlink{classoomph_1_1GeneralisedAdvectionDiffusionEquations_a33989015fe6f130fc51cc845b6367c39}{get\+\_\+source\+\_\+cons\+\_\+adv\+\_\+diff}} (const unsigned \&ipt, const \mbox{\hyperlink{classoomph_1_1Vector}{Vector}}$<$ double $>$ \&x, double \&source) const
 \begin{DoxyCompactList}\small\item\em Get source term at (Eulerian) position x. This function is virtual to allow overloading in multi-\/physics problems where the strength of the source function might be determined by another system of equations. \end{DoxyCompactList}\item 
-virtual void \mbox{\hyperlink{classoomph_1_1GeneralisedAdvectionDiffusionEquations_a1be1bf36e263379cf99eb1ee703d4337}{get\+\_\+wind\+\_\+cons\+\_\+adv\+\_\+diff}} (const unsigned \&ipt, const \mbox{\hyperlink{classoomph_1_1Vector}{Vector}}$<$ double $>$ \&\mbox{\hyperlink{the__data__structure_8txt_acdf437512dc428cd2c5e8b3aa8b92896}{s}}, const \mbox{\hyperlink{classoomph_1_1Vector}{Vector}}$<$ double $>$ \&x, \mbox{\hyperlink{classoomph_1_1Vector}{Vector}}$<$ double $>$ \&wind) const
+virtual void \mbox{\hyperlink{classoomph_1_1GeneralisedAdvectionDiffusionEquations_a1be1bf36e263379cf99eb1ee703d4337}{get\+\_\+wind\+\_\+cons\+\_\+adv\+\_\+diff}} (const unsigned \&ipt, const \mbox{\hyperlink{classoomph_1_1Vector}{Vector}}$<$ double $>$ \&\mbox{\hyperlink{cfortran_8h_ab7123126e4885ef647dd9c6e3807a21c}{s}}, const \mbox{\hyperlink{classoomph_1_1Vector}{Vector}}$<$ double $>$ \&x, \mbox{\hyperlink{classoomph_1_1Vector}{Vector}}$<$ double $>$ \&wind) const
 \begin{DoxyCompactList}\small\item\em Get wind at (Eulerian) position x and/or local coordinate s. This function is virtual to allow overloading in multi-\/physics problems where the wind function might be determined by another system of equations. \end{DoxyCompactList}\item 
-virtual void \mbox{\hyperlink{classoomph_1_1GeneralisedAdvectionDiffusionEquations_aff553670fb9ced08f958005b611f80cb}{get\+\_\+conserved\+\_\+wind\+\_\+cons\+\_\+adv\+\_\+diff}} (const unsigned \&ipt, const \mbox{\hyperlink{classoomph_1_1Vector}{Vector}}$<$ double $>$ \&\mbox{\hyperlink{the__data__structure_8txt_acdf437512dc428cd2c5e8b3aa8b92896}{s}}, const \mbox{\hyperlink{classoomph_1_1Vector}{Vector}}$<$ double $>$ \&x, \mbox{\hyperlink{classoomph_1_1Vector}{Vector}}$<$ double $>$ \&wind) const
+virtual void \mbox{\hyperlink{classoomph_1_1GeneralisedAdvectionDiffusionEquations_aff553670fb9ced08f958005b611f80cb}{get\+\_\+conserved\+\_\+wind\+\_\+cons\+\_\+adv\+\_\+diff}} (const unsigned \&ipt, const \mbox{\hyperlink{classoomph_1_1Vector}{Vector}}$<$ double $>$ \&\mbox{\hyperlink{cfortran_8h_ab7123126e4885ef647dd9c6e3807a21c}{s}}, const \mbox{\hyperlink{classoomph_1_1Vector}{Vector}}$<$ double $>$ \&x, \mbox{\hyperlink{classoomph_1_1Vector}{Vector}}$<$ double $>$ \&wind) const
 \begin{DoxyCompactList}\small\item\em Get additional (conservative) wind at (Eulerian) position x and/or local coordinate s. This function is virtual to allow overloading in multi-\/physics problems where the wind function might be determined by another system of equations. \end{DoxyCompactList}\item 
-virtual void \mbox{\hyperlink{classoomph_1_1GeneralisedAdvectionDiffusionEquations_a1d9266d37b622068414bda1e71f9f090}{get\+\_\+diff\+\_\+cons\+\_\+adv\+\_\+diff}} (const unsigned \&ipt, const \mbox{\hyperlink{classoomph_1_1Vector}{Vector}}$<$ double $>$ \&\mbox{\hyperlink{the__data__structure_8txt_acdf437512dc428cd2c5e8b3aa8b92896}{s}}, const \mbox{\hyperlink{classoomph_1_1Vector}{Vector}}$<$ double $>$ \&x, \mbox{\hyperlink{classoomph_1_1DenseMatrix}{Dense\+Matrix}}$<$ double $>$ \&D) const
+virtual void \mbox{\hyperlink{classoomph_1_1GeneralisedAdvectionDiffusionEquations_a1d9266d37b622068414bda1e71f9f090}{get\+\_\+diff\+\_\+cons\+\_\+adv\+\_\+diff}} (const unsigned \&ipt, const \mbox{\hyperlink{classoomph_1_1Vector}{Vector}}$<$ double $>$ \&\mbox{\hyperlink{cfortran_8h_ab7123126e4885ef647dd9c6e3807a21c}{s}}, const \mbox{\hyperlink{classoomph_1_1Vector}{Vector}}$<$ double $>$ \&x, \mbox{\hyperlink{classoomph_1_1DenseMatrix}{Dense\+Matrix}}$<$ double $>$ \&D) const
 \begin{DoxyCompactList}\small\item\em Get diffusivity tensor at (Eulerian) position x and/or local coordinate s. This function is virtual to allow overloading in multi-\/physics problems where the wind function might be determined by another system of equations. \end{DoxyCompactList}\item 
-void \mbox{\hyperlink{classoomph_1_1GeneralisedAdvectionDiffusionEquations_a708e237798252ad6b207b14a627e7ec0}{get\+\_\+flux}} (const \mbox{\hyperlink{classoomph_1_1Vector}{Vector}}$<$ double $>$ \&\mbox{\hyperlink{the__data__structure_8txt_acdf437512dc428cd2c5e8b3aa8b92896}{s}}, \mbox{\hyperlink{classoomph_1_1Vector}{Vector}}$<$ double $>$ \&flux) const
+void \mbox{\hyperlink{classoomph_1_1GeneralisedAdvectionDiffusionEquations_a708e237798252ad6b207b14a627e7ec0}{get\+\_\+flux}} (const \mbox{\hyperlink{classoomph_1_1Vector}{Vector}}$<$ double $>$ \&\mbox{\hyperlink{cfortran_8h_ab7123126e4885ef647dd9c6e3807a21c}{s}}, \mbox{\hyperlink{classoomph_1_1Vector}{Vector}}$<$ double $>$ \&flux) const
 \begin{DoxyCompactList}\small\item\em Get flux\+: $\mbox{flux}[i] = \mbox{d}u / \mbox{d}x_i $. \end{DoxyCompactList}\item 
-void \mbox{\hyperlink{classoomph_1_1GeneralisedAdvectionDiffusionEquations_a79bce0d40bdc46e998729332ceefb889}{get\+\_\+total\+\_\+flux}} (const \mbox{\hyperlink{classoomph_1_1Vector}{Vector}}$<$ double $>$ \&\mbox{\hyperlink{the__data__structure_8txt_acdf437512dc428cd2c5e8b3aa8b92896}{s}}, \mbox{\hyperlink{classoomph_1_1Vector}{Vector}}$<$ double $>$ \&total\+\_\+flux) const
+void \mbox{\hyperlink{classoomph_1_1GeneralisedAdvectionDiffusionEquations_a79bce0d40bdc46e998729332ceefb889}{get\+\_\+total\+\_\+flux}} (const \mbox{\hyperlink{classoomph_1_1Vector}{Vector}}$<$ double $>$ \&\mbox{\hyperlink{cfortran_8h_ab7123126e4885ef647dd9c6e3807a21c}{s}}, \mbox{\hyperlink{classoomph_1_1Vector}{Vector}}$<$ double $>$ \&total\+\_\+flux) const
 \begin{DoxyCompactList}\small\item\em Get flux\+: $\mbox{flux}[i] = \mbox{d}u / \mbox{d}x_i $. \end{DoxyCompactList}\item 
-void \mbox{\hyperlink{classoomph_1_1GeneralisedAdvectionDiffusionEquations_a322c49659ad14f656165f7e777d3368a}{fill\+\_\+in\+\_\+contribution\+\_\+to\+\_\+residuals}} (\mbox{\hyperlink{classoomph_1_1Vector}{Vector}}$<$ double $>$ \&\mbox{\hyperlink{the__data__structure_8txt_a1400a973def57b85051cfe1070be1810}{residuals}})
+void \mbox{\hyperlink{classoomph_1_1GeneralisedAdvectionDiffusionEquations_a322c49659ad14f656165f7e777d3368a}{fill\+\_\+in\+\_\+contribution\+\_\+to\+\_\+residuals}} (\mbox{\hyperlink{classoomph_1_1Vector}{Vector}}$<$ double $>$ \&residuals)
 \begin{DoxyCompactList}\small\item\em Add the element\textquotesingle{}s contribution to its residual vector (wrapper) \end{DoxyCompactList}\item 
-void \mbox{\hyperlink{classoomph_1_1GeneralisedAdvectionDiffusionEquations_a02fc6950a91d90a60b44e9e7a5e1db3f}{fill\+\_\+in\+\_\+contribution\+\_\+to\+\_\+jacobian}} (\mbox{\hyperlink{classoomph_1_1Vector}{Vector}}$<$ double $>$ \&\mbox{\hyperlink{the__data__structure_8txt_a1400a973def57b85051cfe1070be1810}{residuals}}, \mbox{\hyperlink{classoomph_1_1DenseMatrix}{Dense\+Matrix}}$<$ double $>$ \&jacobian)
+void \mbox{\hyperlink{classoomph_1_1GeneralisedAdvectionDiffusionEquations_a02fc6950a91d90a60b44e9e7a5e1db3f}{fill\+\_\+in\+\_\+contribution\+\_\+to\+\_\+jacobian}} (\mbox{\hyperlink{classoomph_1_1Vector}{Vector}}$<$ double $>$ \&residuals, \mbox{\hyperlink{classoomph_1_1DenseMatrix}{Dense\+Matrix}}$<$ double $>$ \&jacobian)
 \begin{DoxyCompactList}\small\item\em Add the element\textquotesingle{}s contribution to its residual vector and the element Jacobian matrix (wrapper) \end{DoxyCompactList}\item 
-void \mbox{\hyperlink{classoomph_1_1GeneralisedAdvectionDiffusionEquations_a773339fec529d9779bb88146a4e9c641}{fill\+\_\+in\+\_\+contribution\+\_\+to\+\_\+jacobian\+\_\+and\+\_\+mass\+\_\+matrix}} (\mbox{\hyperlink{classoomph_1_1Vector}{Vector}}$<$ double $>$ \&\mbox{\hyperlink{the__data__structure_8txt_a1400a973def57b85051cfe1070be1810}{residuals}}, \mbox{\hyperlink{classoomph_1_1DenseMatrix}{Dense\+Matrix}}$<$ double $>$ \&jacobian, \mbox{\hyperlink{classoomph_1_1DenseMatrix}{Dense\+Matrix}}$<$ double $>$ \&mass\+\_\+matrix)
+void \mbox{\hyperlink{classoomph_1_1GeneralisedAdvectionDiffusionEquations_a773339fec529d9779bb88146a4e9c641}{fill\+\_\+in\+\_\+contribution\+\_\+to\+\_\+jacobian\+\_\+and\+\_\+mass\+\_\+matrix}} (\mbox{\hyperlink{classoomph_1_1Vector}{Vector}}$<$ double $>$ \&residuals, \mbox{\hyperlink{classoomph_1_1DenseMatrix}{Dense\+Matrix}}$<$ double $>$ \&jacobian, \mbox{\hyperlink{classoomph_1_1DenseMatrix}{Dense\+Matrix}}$<$ double $>$ \&mass\+\_\+matrix)
 \item 
-double \mbox{\hyperlink{classoomph_1_1GeneralisedAdvectionDiffusionEquations_af71ceecd19ee6ea4e8978b9441fb1d42}{interpolated\+\_\+u\+\_\+cons\+\_\+adv\+\_\+diff}} (const \mbox{\hyperlink{classoomph_1_1Vector}{Vector}}$<$ double $>$ \&\mbox{\hyperlink{the__data__structure_8txt_acdf437512dc428cd2c5e8b3aa8b92896}{s}}) const
+double \mbox{\hyperlink{classoomph_1_1GeneralisedAdvectionDiffusionEquations_af71ceecd19ee6ea4e8978b9441fb1d42}{interpolated\+\_\+u\+\_\+cons\+\_\+adv\+\_\+diff}} (const \mbox{\hyperlink{classoomph_1_1Vector}{Vector}}$<$ double $>$ \&\mbox{\hyperlink{cfortran_8h_ab7123126e4885ef647dd9c6e3807a21c}{s}}) const
 \begin{DoxyCompactList}\small\item\em Return FE representation of function value u(s) at local coordinate s. \end{DoxyCompactList}\item 
 unsigned \mbox{\hyperlink{classoomph_1_1GeneralisedAdvectionDiffusionEquations_a77d006ee2f3f4097ad74b180366ddc77}{self\+\_\+test}} ()
 \begin{DoxyCompactList}\small\item\em Self-\/test\+: Return 0 for OK. \end{DoxyCompactList}\end{DoxyCompactItemize}
 \doxysubsection*{Protected Member Functions}
 \begin{DoxyCompactItemize}
 \item 
-virtual double \mbox{\hyperlink{classoomph_1_1GeneralisedAdvectionDiffusionEquations_a7d1b7d414a32173038a7b31b65ff5e8a}{dshape\+\_\+and\+\_\+dtest\+\_\+eulerian\+\_\+cons\+\_\+adv\+\_\+diff}} (const \mbox{\hyperlink{classoomph_1_1Vector}{Vector}}$<$ double $>$ \&\mbox{\hyperlink{the__data__structure_8txt_acdf437512dc428cd2c5e8b3aa8b92896}{s}}, \mbox{\hyperlink{classoomph_1_1Shape}{Shape}} \&psi, \mbox{\hyperlink{classoomph_1_1DShape}{D\+Shape}} \&dpsidx, \mbox{\hyperlink{classoomph_1_1Shape}{Shape}} \&test, \mbox{\hyperlink{classoomph_1_1DShape}{D\+Shape}} \&dtestdx) const =0
+virtual double \mbox{\hyperlink{classoomph_1_1GeneralisedAdvectionDiffusionEquations_a7d1b7d414a32173038a7b31b65ff5e8a}{dshape\+\_\+and\+\_\+dtest\+\_\+eulerian\+\_\+cons\+\_\+adv\+\_\+diff}} (const \mbox{\hyperlink{classoomph_1_1Vector}{Vector}}$<$ double $>$ \&\mbox{\hyperlink{cfortran_8h_ab7123126e4885ef647dd9c6e3807a21c}{s}}, \mbox{\hyperlink{classoomph_1_1Shape}{Shape}} \&psi, \mbox{\hyperlink{classoomph_1_1DShape}{DShape}} \&dpsidx, \mbox{\hyperlink{classoomph_1_1Shape}{Shape}} \&test, \mbox{\hyperlink{classoomph_1_1DShape}{DShape}} \&dtestdx) const =0
 \begin{DoxyCompactList}\small\item\em Shape/test functions and derivs w.\+r.\+t. to global coords at local coord. s; return Jacobian of mapping. \end{DoxyCompactList}\item 
-virtual double \mbox{\hyperlink{classoomph_1_1GeneralisedAdvectionDiffusionEquations_a0e891c570cc7fa21f6b489bc5b2b77c0}{dshape\+\_\+and\+\_\+dtest\+\_\+eulerian\+\_\+at\+\_\+knot\+\_\+cons\+\_\+adv\+\_\+diff}} (const unsigned \&ipt, \mbox{\hyperlink{classoomph_1_1Shape}{Shape}} \&psi, \mbox{\hyperlink{classoomph_1_1DShape}{D\+Shape}} \&dpsidx, \mbox{\hyperlink{classoomph_1_1Shape}{Shape}} \&test, \mbox{\hyperlink{classoomph_1_1DShape}{D\+Shape}} \&dtestdx) const =0
+virtual double \mbox{\hyperlink{classoomph_1_1GeneralisedAdvectionDiffusionEquations_a0e891c570cc7fa21f6b489bc5b2b77c0}{dshape\+\_\+and\+\_\+dtest\+\_\+eulerian\+\_\+at\+\_\+knot\+\_\+cons\+\_\+adv\+\_\+diff}} (const unsigned \&ipt, \mbox{\hyperlink{classoomph_1_1Shape}{Shape}} \&psi, \mbox{\hyperlink{classoomph_1_1DShape}{DShape}} \&dpsidx, \mbox{\hyperlink{classoomph_1_1Shape}{Shape}} \&test, \mbox{\hyperlink{classoomph_1_1DShape}{DShape}} \&dtestdx) const =0
 \begin{DoxyCompactList}\small\item\em Shape/test functions and derivs w.\+r.\+t. to global coords at integration point ipt; return Jacobian of mapping. \end{DoxyCompactList}\item 
-virtual void \mbox{\hyperlink{classoomph_1_1GeneralisedAdvectionDiffusionEquations_ae05de6e681f20f04f5ad9821f3a572c0}{fill\+\_\+in\+\_\+generic\+\_\+residual\+\_\+contribution\+\_\+cons\+\_\+adv\+\_\+diff}} (\mbox{\hyperlink{classoomph_1_1Vector}{Vector}}$<$ double $>$ \&\mbox{\hyperlink{the__data__structure_8txt_a1400a973def57b85051cfe1070be1810}{residuals}}, \mbox{\hyperlink{classoomph_1_1DenseMatrix}{Dense\+Matrix}}$<$ double $>$ \&jacobian, \mbox{\hyperlink{classoomph_1_1DenseMatrix}{Dense\+Matrix}}$<$ double $>$ \&mass\+\_\+matrix, unsigned flag)
+virtual void \mbox{\hyperlink{classoomph_1_1GeneralisedAdvectionDiffusionEquations_ae05de6e681f20f04f5ad9821f3a572c0}{fill\+\_\+in\+\_\+generic\+\_\+residual\+\_\+contribution\+\_\+cons\+\_\+adv\+\_\+diff}} (\mbox{\hyperlink{classoomph_1_1Vector}{Vector}}$<$ double $>$ \&residuals, \mbox{\hyperlink{classoomph_1_1DenseMatrix}{Dense\+Matrix}}$<$ double $>$ \&jacobian, \mbox{\hyperlink{classoomph_1_1DenseMatrix}{Dense\+Matrix}}$<$ double $>$ \&mass\+\_\+matrix, unsigned flag)
 \begin{DoxyCompactList}\small\item\em Add the element\textquotesingle{}s contribution to its residual vector only (if flag=and/or element Jacobian matrix. \end{DoxyCompactList}\end{DoxyCompactItemize}
 \doxysubsection*{Protected Attributes}
 \begin{DoxyCompactItemize}
@@ -129,8 +129,8 @@ double $\ast$ \mbox{\hyperlink{classoomph_1_1GeneralisedAdvectionDiffusionEquati
 \begin{DoxyCompactList}\small\item\em Pointer to additional (conservative) wind function\+: \end{DoxyCompactList}\item 
 \mbox{\hyperlink{classoomph_1_1GeneralisedAdvectionDiffusionEquations_a637371a9eebc399023c6a652e8219263}{Generalised\+Advection\+Diffusion\+Diff\+Fct\+Pt}} \mbox{\hyperlink{classoomph_1_1GeneralisedAdvectionDiffusionEquations_a461bd7e2efcdd4620aa94ba70961bcc0}{Diff\+\_\+fct\+\_\+pt}}
 \begin{DoxyCompactList}\small\item\em Pointer to diffusivity funciton. \end{DoxyCompactList}\item 
-bool \mbox{\hyperlink{classoomph_1_1GeneralisedAdvectionDiffusionEquations_aa984fe8aeae0f3aedfd8e92c76ce9cd0}{A\+L\+E\+\_\+is\+\_\+disabled}}
-\begin{DoxyCompactList}\small\item\em Boolean flag to indicate if A\+LE formulation is disabled when time-\/derivatives are computed. Only set to false if you\textquotesingle{}re sure that the mesh is stationary. \end{DoxyCompactList}\end{DoxyCompactItemize}
+bool \mbox{\hyperlink{classoomph_1_1GeneralisedAdvectionDiffusionEquations_aa984fe8aeae0f3aedfd8e92c76ce9cd0}{ALE\+\_\+is\+\_\+disabled}}
+\begin{DoxyCompactList}\small\item\em Boolean flag to indicate if ALE formulation is disabled when time-\/derivatives are computed. Only set to false if you\textquotesingle{}re sure that the mesh is stationary. \end{DoxyCompactList}\end{DoxyCompactItemize}
 \doxysubsection*{Static Private Attributes}
 \begin{DoxyCompactItemize}
 \item 
@@ -140,14 +140,13 @@ static double \mbox{\hyperlink{classoomph_1_1GeneralisedAdvectionDiffusionEquati
 
 
 \doxysubsection{Detailed Description}
-\subsubsection*{template$<$unsigned D\+IM$>$\newline
-class oomph\+::\+Generalised\+Advection\+Diffusion\+Equations$<$ D\+I\+M $>$}
-
+\subsubsection*{template$<$unsigned DIM$>$\newline
+class oomph\+::\+Generalised\+Advection\+Diffusion\+Equations$<$ DIM $>$}
 A class for all elements that solve the Advection Diffusion equations in conservative form using isoparametric elements. 
 
 \[ \frac{\partial}{\partial x_{i}}\left( Pe w_{i}(x_{k}) u - D_{ij}(x_{k})\frac{\partial u}{\partial x_{j}}\right) = f(x_{j}) \] This contains the generic maths. \mbox{\hyperlink{classoomph_1_1Shape}{Shape}} functions, geometric mapping etc. must get implemented in derived class. 
 
-Definition at line 55 of file gen\+\_\+advection\+\_\+diffusion\+\_\+elements.\+h.
+Definition at line \mbox{\hyperlink{gen__advection__diffusion__elements_8h_source_l00055}{55}} of file \mbox{\hyperlink{gen__advection__diffusion__elements_8h_source}{gen\+\_\+advection\+\_\+diffusion\+\_\+elements.\+h}}.
 
 
 
@@ -156,8 +155,8 @@ Definition at line 55 of file gen\+\_\+advection\+\_\+diffusion\+\_\+elements.\+
 \index{oomph::GeneralisedAdvectionDiffusionEquations$<$ DIM $>$@{oomph::GeneralisedAdvectionDiffusionEquations$<$ DIM $>$}!GeneralisedAdvectionDiffusionDiffFctPt@{GeneralisedAdvectionDiffusionDiffFctPt}}
 \index{GeneralisedAdvectionDiffusionDiffFctPt@{GeneralisedAdvectionDiffusionDiffFctPt}!oomph::GeneralisedAdvectionDiffusionEquations$<$ DIM $>$@{oomph::GeneralisedAdvectionDiffusionEquations$<$ DIM $>$}}
 \doxysubsubsection{\texorpdfstring{GeneralisedAdvectionDiffusionDiffFctPt}{GeneralisedAdvectionDiffusionDiffFctPt}}
-{\footnotesize\ttfamily template$<$unsigned D\+IM$>$ \\
-typedef void($\ast$ \mbox{\hyperlink{classoomph_1_1GeneralisedAdvectionDiffusionEquations}{oomph\+::\+Generalised\+Advection\+Diffusion\+Equations}}$<$ D\+IM $>$\+::Generalised\+Advection\+Diffusion\+Diff\+Fct\+Pt) (const \mbox{\hyperlink{classoomph_1_1Vector}{Vector}}$<$ double $>$ \&x, \mbox{\hyperlink{classoomph_1_1DenseMatrix}{Dense\+Matrix}}$<$ double $>$ \&D)}
+{\footnotesize\ttfamily template$<$unsigned DIM$>$ \\
+typedef void($\ast$ \mbox{\hyperlink{classoomph_1_1GeneralisedAdvectionDiffusionEquations}{oomph\+::\+Generalised\+Advection\+Diffusion\+Equations}}$<$ DIM $>$\+::Generalised\+Advection\+Diffusion\+Diff\+Fct\+Pt) (const \mbox{\hyperlink{classoomph_1_1Vector}{Vector}}$<$ double $>$ \&x, \mbox{\hyperlink{classoomph_1_1DenseMatrix}{Dense\+Matrix}}$<$ double $>$ \&D)}
 
 
 
@@ -165,14 +164,14 @@ Funciton pointer to a diffusivity function.
 
 
 
-Definition at line 70 of file gen\+\_\+advection\+\_\+diffusion\+\_\+elements.\+h.
+Definition at line \mbox{\hyperlink{gen__advection__diffusion__elements_8h_source_l00070}{70}} of file \mbox{\hyperlink{gen__advection__diffusion__elements_8h_source}{gen\+\_\+advection\+\_\+diffusion\+\_\+elements.\+h}}.
 
 \mbox{\Hypertarget{classoomph_1_1GeneralisedAdvectionDiffusionEquations_ad65d34bc0348f8b297c185d1772eafd9}\label{classoomph_1_1GeneralisedAdvectionDiffusionEquations_ad65d34bc0348f8b297c185d1772eafd9}} 
 \index{oomph::GeneralisedAdvectionDiffusionEquations$<$ DIM $>$@{oomph::GeneralisedAdvectionDiffusionEquations$<$ DIM $>$}!GeneralisedAdvectionDiffusionSourceFctPt@{GeneralisedAdvectionDiffusionSourceFctPt}}
 \index{GeneralisedAdvectionDiffusionSourceFctPt@{GeneralisedAdvectionDiffusionSourceFctPt}!oomph::GeneralisedAdvectionDiffusionEquations$<$ DIM $>$@{oomph::GeneralisedAdvectionDiffusionEquations$<$ DIM $>$}}
 \doxysubsubsection{\texorpdfstring{GeneralisedAdvectionDiffusionSourceFctPt}{GeneralisedAdvectionDiffusionSourceFctPt}}
-{\footnotesize\ttfamily template$<$unsigned D\+IM$>$ \\
-typedef void($\ast$ \mbox{\hyperlink{classoomph_1_1GeneralisedAdvectionDiffusionEquations}{oomph\+::\+Generalised\+Advection\+Diffusion\+Equations}}$<$ D\+IM $>$\+::Generalised\+Advection\+Diffusion\+Source\+Fct\+Pt) (const \mbox{\hyperlink{classoomph_1_1Vector}{Vector}}$<$ double $>$ \&x, double \&f)}
+{\footnotesize\ttfamily template$<$unsigned DIM$>$ \\
+typedef void($\ast$ \mbox{\hyperlink{classoomph_1_1GeneralisedAdvectionDiffusionEquations}{oomph\+::\+Generalised\+Advection\+Diffusion\+Equations}}$<$ DIM $>$\+::Generalised\+Advection\+Diffusion\+Source\+Fct\+Pt) (const \mbox{\hyperlink{classoomph_1_1Vector}{Vector}}$<$ double $>$ \&x, double \&f)}
 
 
 
@@ -180,14 +179,14 @@ Function pointer to source function fct(x,f(x)) -- x is a Vector!
 
 
 
-Definition at line 60 of file gen\+\_\+advection\+\_\+diffusion\+\_\+elements.\+h.
+Definition at line \mbox{\hyperlink{gen__advection__diffusion__elements_8h_source_l00060}{60}} of file \mbox{\hyperlink{gen__advection__diffusion__elements_8h_source}{gen\+\_\+advection\+\_\+diffusion\+\_\+elements.\+h}}.
 
 \mbox{\Hypertarget{classoomph_1_1GeneralisedAdvectionDiffusionEquations_ac5a63eb03aee5957e7b14a4578423cfc}\label{classoomph_1_1GeneralisedAdvectionDiffusionEquations_ac5a63eb03aee5957e7b14a4578423cfc}} 
 \index{oomph::GeneralisedAdvectionDiffusionEquations$<$ DIM $>$@{oomph::GeneralisedAdvectionDiffusionEquations$<$ DIM $>$}!GeneralisedAdvectionDiffusionWindFctPt@{GeneralisedAdvectionDiffusionWindFctPt}}
 \index{GeneralisedAdvectionDiffusionWindFctPt@{GeneralisedAdvectionDiffusionWindFctPt}!oomph::GeneralisedAdvectionDiffusionEquations$<$ DIM $>$@{oomph::GeneralisedAdvectionDiffusionEquations$<$ DIM $>$}}
 \doxysubsubsection{\texorpdfstring{GeneralisedAdvectionDiffusionWindFctPt}{GeneralisedAdvectionDiffusionWindFctPt}}
-{\footnotesize\ttfamily template$<$unsigned D\+IM$>$ \\
-typedef void($\ast$ \mbox{\hyperlink{classoomph_1_1GeneralisedAdvectionDiffusionEquations}{oomph\+::\+Generalised\+Advection\+Diffusion\+Equations}}$<$ D\+IM $>$\+::Generalised\+Advection\+Diffusion\+Wind\+Fct\+Pt) (const \mbox{\hyperlink{classoomph_1_1Vector}{Vector}}$<$ double $>$ \&x, \mbox{\hyperlink{classoomph_1_1Vector}{Vector}}$<$ double $>$ \&wind)}
+{\footnotesize\ttfamily template$<$unsigned DIM$>$ \\
+typedef void($\ast$ \mbox{\hyperlink{classoomph_1_1GeneralisedAdvectionDiffusionEquations}{oomph\+::\+Generalised\+Advection\+Diffusion\+Equations}}$<$ DIM $>$\+::Generalised\+Advection\+Diffusion\+Wind\+Fct\+Pt) (const \mbox{\hyperlink{classoomph_1_1Vector}{Vector}}$<$ double $>$ \&x, \mbox{\hyperlink{classoomph_1_1Vector}{Vector}}$<$ double $>$ \&wind)}
 
 
 
@@ -195,7 +194,7 @@ Function pointer to wind function fct(x,w(x)) -- x is a Vector!
 
 
 
-Definition at line 65 of file gen\+\_\+advection\+\_\+diffusion\+\_\+elements.\+h.
+Definition at line \mbox{\hyperlink{gen__advection__diffusion__elements_8h_source_l00065}{65}} of file \mbox{\hyperlink{gen__advection__diffusion__elements_8h_source}{gen\+\_\+advection\+\_\+diffusion\+\_\+elements.\+h}}.
 
 
 
@@ -204,8 +203,8 @@ Definition at line 65 of file gen\+\_\+advection\+\_\+diffusion\+\_\+elements.\+
 \index{oomph::GeneralisedAdvectionDiffusionEquations$<$ DIM $>$@{oomph::GeneralisedAdvectionDiffusionEquations$<$ DIM $>$}!GeneralisedAdvectionDiffusionEquations@{GeneralisedAdvectionDiffusionEquations}}
 \index{GeneralisedAdvectionDiffusionEquations@{GeneralisedAdvectionDiffusionEquations}!oomph::GeneralisedAdvectionDiffusionEquations$<$ DIM $>$@{oomph::GeneralisedAdvectionDiffusionEquations$<$ DIM $>$}}
 \doxysubsubsection{\texorpdfstring{GeneralisedAdvectionDiffusionEquations()}{GeneralisedAdvectionDiffusionEquations()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
-{\footnotesize\ttfamily template$<$unsigned D\+IM$>$ \\
-\mbox{\hyperlink{classoomph_1_1GeneralisedAdvectionDiffusionEquations}{oomph\+::\+Generalised\+Advection\+Diffusion\+Equations}}$<$ D\+IM $>$\+::\mbox{\hyperlink{classoomph_1_1GeneralisedAdvectionDiffusionEquations}{Generalised\+Advection\+Diffusion\+Equations}} (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+{\footnotesize\ttfamily template$<$unsigned DIM$>$ \\
+\mbox{\hyperlink{classoomph_1_1GeneralisedAdvectionDiffusionEquations}{oomph\+::\+Generalised\+Advection\+Diffusion\+Equations}}$<$ DIM $>$\+::\mbox{\hyperlink{classoomph_1_1GeneralisedAdvectionDiffusionEquations}{Generalised\+Advection\+Diffusion\+Equations}} (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
 
 
 
@@ -213,30 +212,22 @@ Constructor\+: Initialise the Source\+\_\+fct\+\_\+pt and Wind\+\_\+fct\+\_\+pt 
 
 
 
-Definition at line 75 of file gen\+\_\+advection\+\_\+diffusion\+\_\+elements.\+h.
+Definition at line \mbox{\hyperlink{gen__advection__diffusion__elements_8h_source_l00075}{75}} of file \mbox{\hyperlink{gen__advection__diffusion__elements_8h_source}{gen\+\_\+advection\+\_\+diffusion\+\_\+elements.\+h}}.
 
 
 
-References oomph\+::\+Generalised\+Advection\+Diffusion\+Equations$<$ D\+I\+M $>$\+::\+Default\+\_\+peclet\+\_\+number, oomph\+::\+Generalised\+Advection\+Diffusion\+Equations$<$ D\+I\+M $>$\+::\+Pe\+\_\+pt, and oomph\+::\+Generalised\+Advection\+Diffusion\+Equations$<$ D\+I\+M $>$\+::\+Pe\+St\+\_\+pt.
+References \mbox{\hyperlink{gen__advection__diffusion__elements_8h_source_l00627}{oomph\+::\+Generalised\+Advection\+Diffusion\+Equations$<$ DIM $>$\+::\+Default\+\_\+peclet\+\_\+number}}, \mbox{\hyperlink{gen__advection__diffusion__elements_8h_source_l00603}{oomph\+::\+Generalised\+Advection\+Diffusion\+Equations$<$ DIM $>$\+::\+Pe\+\_\+pt}}, and \mbox{\hyperlink{gen__advection__diffusion__elements_8h_source_l00606}{oomph\+::\+Generalised\+Advection\+Diffusion\+Equations$<$ DIM $>$\+::\+Pe\+St\+\_\+pt}}.
 
-\mbox{\Hypertarget{classoomph_1_1GeneralisedAdvectionDiffusionEquations_aef7658dd59b51751779fbae3197a82fe}\label{classoomph_1_1GeneralisedAdvectionDiffusionEquations_aef7658dd59b51751779fbae3197a82fe}} 
+\mbox{\Hypertarget{classoomph_1_1GeneralisedAdvectionDiffusionEquations_aa9ca21a7f4752694f8eb179c30e5cdf6}\label{classoomph_1_1GeneralisedAdvectionDiffusionEquations_aa9ca21a7f4752694f8eb179c30e5cdf6}} 
 \index{oomph::GeneralisedAdvectionDiffusionEquations$<$ DIM $>$@{oomph::GeneralisedAdvectionDiffusionEquations$<$ DIM $>$}!GeneralisedAdvectionDiffusionEquations@{GeneralisedAdvectionDiffusionEquations}}
 \index{GeneralisedAdvectionDiffusionEquations@{GeneralisedAdvectionDiffusionEquations}!oomph::GeneralisedAdvectionDiffusionEquations$<$ DIM $>$@{oomph::GeneralisedAdvectionDiffusionEquations$<$ DIM $>$}}
 \doxysubsubsection{\texorpdfstring{GeneralisedAdvectionDiffusionEquations()}{GeneralisedAdvectionDiffusionEquations()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
-{\footnotesize\ttfamily template$<$unsigned D\+IM$>$ \\
-\mbox{\hyperlink{classoomph_1_1GeneralisedAdvectionDiffusionEquations}{oomph\+::\+Generalised\+Advection\+Diffusion\+Equations}}$<$ D\+IM $>$\+::\mbox{\hyperlink{classoomph_1_1GeneralisedAdvectionDiffusionEquations}{Generalised\+Advection\+Diffusion\+Equations}} (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{classoomph_1_1GeneralisedAdvectionDiffusionEquations}{Generalised\+Advection\+Diffusion\+Equations}}$<$ D\+IM $>$ \&}]{dummy }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+{\footnotesize\ttfamily template$<$unsigned DIM$>$ \\
+\mbox{\hyperlink{classoomph_1_1GeneralisedAdvectionDiffusionEquations}{oomph\+::\+Generalised\+Advection\+Diffusion\+Equations}}$<$ DIM $>$\+::\mbox{\hyperlink{classoomph_1_1GeneralisedAdvectionDiffusionEquations}{Generalised\+Advection\+Diffusion\+Equations}} (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{classoomph_1_1GeneralisedAdvectionDiffusionEquations}{Generalised\+Advection\+Diffusion\+Equations}}$<$ DIM $>$ \&}]{dummy }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [delete]}}
 
 
 
 Broken copy constructor. 
-
-
-
-Definition at line 89 of file gen\+\_\+advection\+\_\+diffusion\+\_\+elements.\+h.
-
-
-
-References oomph\+::\+Broken\+Copy\+::broken\+\_\+copy().
 
 
 
@@ -245,8 +236,8 @@ References oomph\+::\+Broken\+Copy\+::broken\+\_\+copy().
 \index{oomph::GeneralisedAdvectionDiffusionEquations$<$ DIM $>$@{oomph::GeneralisedAdvectionDiffusionEquations$<$ DIM $>$}!compute\_error@{compute\_error}}
 \index{compute\_error@{compute\_error}!oomph::GeneralisedAdvectionDiffusionEquations$<$ DIM $>$@{oomph::GeneralisedAdvectionDiffusionEquations$<$ DIM $>$}}
 \doxysubsubsection{\texorpdfstring{compute\_error()}{compute\_error()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
-{\footnotesize\ttfamily template$<$unsigned D\+IM$>$ \\
-void \mbox{\hyperlink{classoomph_1_1GeneralisedAdvectionDiffusionEquations}{oomph\+::\+Generalised\+Advection\+Diffusion\+Equations}}$<$ D\+IM $>$\+::compute\+\_\+error (\begin{DoxyParamCaption}\item[{std\+::ostream \&}]{outfile,  }\item[{\mbox{\hyperlink{classoomph_1_1FiniteElement_a690fd33af26cc3e84f39bba6d5a85202}{Finite\+Element\+::\+Steady\+Exact\+Solution\+Fct\+Pt}}}]{exact\+\_\+soln\+\_\+pt,  }\item[{double \&}]{error,  }\item[{double \&}]{norm }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [virtual]}}
+{\footnotesize\ttfamily template$<$unsigned DIM$>$ \\
+void \mbox{\hyperlink{classoomph_1_1GeneralisedAdvectionDiffusionEquations}{oomph\+::\+Generalised\+Advection\+Diffusion\+Equations}}$<$ DIM $>$\+::compute\+\_\+error (\begin{DoxyParamCaption}\item[{std\+::ostream \&}]{outfile,  }\item[{\mbox{\hyperlink{classoomph_1_1FiniteElement_a690fd33af26cc3e84f39bba6d5a85202}{Finite\+Element\+::\+Steady\+Exact\+Solution\+Fct\+Pt}}}]{exact\+\_\+soln\+\_\+pt,  }\item[{double \&}]{error,  }\item[{double \&}]{norm }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [virtual]}}
 
 
 
@@ -260,18 +251,18 @@ Reimplemented from \mbox{\hyperlink{classoomph_1_1FiniteElement_a73c79a1f1e5b1d3
 
 
 
-Definition at line 449 of file gen\+\_\+advection\+\_\+diffusion\+\_\+elements.\+cc.
+Definition at line \mbox{\hyperlink{gen__advection__diffusion__elements_8cc_source_l00449}{449}} of file \mbox{\hyperlink{gen__advection__diffusion__elements_8cc_source}{gen\+\_\+advection\+\_\+diffusion\+\_\+elements.\+cc}}.
 
 
 
-References i, s, and oomph\+::\+Quad\+Tree\+Names\+::W.
+References \mbox{\hyperlink{cfortran_8h_source_l00603}{i}}, \mbox{\hyperlink{cfortran_8h_source_l00568}{s}}, and \mbox{\hyperlink{quadtree_8h_source_l00063}{oomph\+::\+Quad\+Tree\+Names\+::W}}.
 
 \mbox{\Hypertarget{classoomph_1_1GeneralisedAdvectionDiffusionEquations_ac7ebfa809051e73ec064fea8231811a3}\label{classoomph_1_1GeneralisedAdvectionDiffusionEquations_ac7ebfa809051e73ec064fea8231811a3}} 
 \index{oomph::GeneralisedAdvectionDiffusionEquations$<$ DIM $>$@{oomph::GeneralisedAdvectionDiffusionEquations$<$ DIM $>$}!compute\_error@{compute\_error}}
 \index{compute\_error@{compute\_error}!oomph::GeneralisedAdvectionDiffusionEquations$<$ DIM $>$@{oomph::GeneralisedAdvectionDiffusionEquations$<$ DIM $>$}}
 \doxysubsubsection{\texorpdfstring{compute\_error()}{compute\_error()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
-{\footnotesize\ttfamily template$<$unsigned D\+IM$>$ \\
-void \mbox{\hyperlink{classoomph_1_1GeneralisedAdvectionDiffusionEquations}{oomph\+::\+Generalised\+Advection\+Diffusion\+Equations}}$<$ D\+IM $>$\+::compute\+\_\+error (\begin{DoxyParamCaption}\item[{std\+::ostream \&}]{outfile,  }\item[{\mbox{\hyperlink{classoomph_1_1FiniteElement_ad4ecf2b61b158a4b4d351a60d23c633e}{Finite\+Element\+::\+Unsteady\+Exact\+Solution\+Fct\+Pt}}}]{exact\+\_\+soln\+\_\+pt,  }\item[{const double \&}]{time,  }\item[{double \&}]{error,  }\item[{double \&}]{norm }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [virtual]}}
+{\footnotesize\ttfamily template$<$unsigned DIM$>$ \\
+void \mbox{\hyperlink{classoomph_1_1GeneralisedAdvectionDiffusionEquations}{oomph\+::\+Generalised\+Advection\+Diffusion\+Equations}}$<$ DIM $>$\+::compute\+\_\+error (\begin{DoxyParamCaption}\item[{std\+::ostream \&}]{outfile,  }\item[{\mbox{\hyperlink{classoomph_1_1FiniteElement_ad4ecf2b61b158a4b4d351a60d23c633e}{Finite\+Element\+::\+Unsteady\+Exact\+Solution\+Fct\+Pt}}}]{exact\+\_\+soln\+\_\+pt,  }\item[{const double \&}]{time,  }\item[{double \&}]{error,  }\item[{double \&}]{norm }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [virtual]}}
 
 
 
@@ -283,14 +274,14 @@ Reimplemented from \mbox{\hyperlink{classoomph_1_1FiniteElement_a7f67853506dc73f
 
 
 
-Definition at line 211 of file gen\+\_\+advection\+\_\+diffusion\+\_\+elements.\+h.
+Definition at line \mbox{\hyperlink{gen__advection__diffusion__elements_8h_source_l00205}{205}} of file \mbox{\hyperlink{gen__advection__diffusion__elements_8h_source}{gen\+\_\+advection\+\_\+diffusion\+\_\+elements.\+h}}.
 
-\mbox{\Hypertarget{classoomph_1_1GeneralisedAdvectionDiffusionEquations_ad30d41db43db57884cac9a0223715b50}\label{classoomph_1_1GeneralisedAdvectionDiffusionEquations_ad30d41db43db57884cac9a0223715b50}} 
+\mbox{\Hypertarget{classoomph_1_1GeneralisedAdvectionDiffusionEquations_ab259f0836c0868087e7e6cdb5f7e6507}\label{classoomph_1_1GeneralisedAdvectionDiffusionEquations_ab259f0836c0868087e7e6cdb5f7e6507}} 
 \index{oomph::GeneralisedAdvectionDiffusionEquations$<$ DIM $>$@{oomph::GeneralisedAdvectionDiffusionEquations$<$ DIM $>$}!conserved\_wind\_fct\_pt@{conserved\_wind\_fct\_pt}}
 \index{conserved\_wind\_fct\_pt@{conserved\_wind\_fct\_pt}!oomph::GeneralisedAdvectionDiffusionEquations$<$ DIM $>$@{oomph::GeneralisedAdvectionDiffusionEquations$<$ DIM $>$}}
 \doxysubsubsection{\texorpdfstring{conserved\_wind\_fct\_pt()}{conserved\_wind\_fct\_pt()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
-{\footnotesize\ttfamily template$<$unsigned D\+IM$>$ \\
-\mbox{\hyperlink{classoomph_1_1GeneralisedAdvectionDiffusionEquations_ac5a63eb03aee5957e7b14a4578423cfc}{Generalised\+Advection\+Diffusion\+Wind\+Fct\+Pt}}\& \mbox{\hyperlink{classoomph_1_1GeneralisedAdvectionDiffusionEquations}{oomph\+::\+Generalised\+Advection\+Diffusion\+Equations}}$<$ D\+IM $>$\+::conserved\+\_\+wind\+\_\+fct\+\_\+pt (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+{\footnotesize\ttfamily template$<$unsigned DIM$>$ \\
+\mbox{\hyperlink{classoomph_1_1GeneralisedAdvectionDiffusionEquations_ac5a63eb03aee5957e7b14a4578423cfc}{Generalised\+Advection\+Diffusion\+Wind\+Fct\+Pt}} \& \mbox{\hyperlink{classoomph_1_1GeneralisedAdvectionDiffusionEquations}{oomph\+::\+Generalised\+Advection\+Diffusion\+Equations}}$<$ DIM $>$\+::conserved\+\_\+wind\+\_\+fct\+\_\+pt (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
 
 
 
@@ -298,22 +289,22 @@ Access function\+: Pointer to additional (conservative) wind function.
 
 
 
-Definition at line 256 of file gen\+\_\+advection\+\_\+diffusion\+\_\+elements.\+h.
+Definition at line \mbox{\hyperlink{gen__advection__diffusion__elements_8h_source_l00250}{250}} of file \mbox{\hyperlink{gen__advection__diffusion__elements_8h_source}{gen\+\_\+advection\+\_\+diffusion\+\_\+elements.\+h}}.
 
 
 
-References oomph\+::\+Generalised\+Advection\+Diffusion\+Equations$<$ D\+I\+M $>$\+::\+Conserved\+\_\+wind\+\_\+fct\+\_\+pt.
+References \mbox{\hyperlink{gen__advection__diffusion__elements_8h_source_l00615}{oomph\+::\+Generalised\+Advection\+Diffusion\+Equations$<$ DIM $>$\+::\+Conserved\+\_\+wind\+\_\+fct\+\_\+pt}}.
 
 
 
-Referenced by oomph\+::\+Refineable\+Generalised\+Advection\+Diffusion\+Equations$<$ D\+I\+M $>$\+::further\+\_\+build().
+Referenced by \mbox{\hyperlink{refineable__gen__advection__diffusion__elements_8h_source_l00159}{oomph\+::\+Refineable\+Generalised\+Advection\+Diffusion\+Equations$<$ DIM $>$\+::further\+\_\+build()}}.
 
 \mbox{\Hypertarget{classoomph_1_1GeneralisedAdvectionDiffusionEquations_a94a89a5a56af79c7924af36e2adc0038}\label{classoomph_1_1GeneralisedAdvectionDiffusionEquations_a94a89a5a56af79c7924af36e2adc0038}} 
 \index{oomph::GeneralisedAdvectionDiffusionEquations$<$ DIM $>$@{oomph::GeneralisedAdvectionDiffusionEquations$<$ DIM $>$}!conserved\_wind\_fct\_pt@{conserved\_wind\_fct\_pt}}
 \index{conserved\_wind\_fct\_pt@{conserved\_wind\_fct\_pt}!oomph::GeneralisedAdvectionDiffusionEquations$<$ DIM $>$@{oomph::GeneralisedAdvectionDiffusionEquations$<$ DIM $>$}}
 \doxysubsubsection{\texorpdfstring{conserved\_wind\_fct\_pt()}{conserved\_wind\_fct\_pt()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
-{\footnotesize\ttfamily template$<$unsigned D\+IM$>$ \\
-\mbox{\hyperlink{classoomph_1_1GeneralisedAdvectionDiffusionEquations_ac5a63eb03aee5957e7b14a4578423cfc}{Generalised\+Advection\+Diffusion\+Wind\+Fct\+Pt}} \mbox{\hyperlink{classoomph_1_1GeneralisedAdvectionDiffusionEquations}{oomph\+::\+Generalised\+Advection\+Diffusion\+Equations}}$<$ D\+IM $>$\+::conserved\+\_\+wind\+\_\+fct\+\_\+pt (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+{\footnotesize\ttfamily template$<$unsigned DIM$>$ \\
+\mbox{\hyperlink{classoomph_1_1GeneralisedAdvectionDiffusionEquations_ac5a63eb03aee5957e7b14a4578423cfc}{Generalised\+Advection\+Diffusion\+Wind\+Fct\+Pt}} \mbox{\hyperlink{classoomph_1_1GeneralisedAdvectionDiffusionEquations}{oomph\+::\+Generalised\+Advection\+Diffusion\+Equations}}$<$ DIM $>$\+::conserved\+\_\+wind\+\_\+fct\+\_\+pt (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
 
 
 
@@ -321,18 +312,18 @@ Access function\+: Pointer to additoinal (conservative) wind function. Const ver
 
 
 
-Definition at line 265 of file gen\+\_\+advection\+\_\+diffusion\+\_\+elements.\+h.
+Definition at line \mbox{\hyperlink{gen__advection__diffusion__elements_8h_source_l00259}{259}} of file \mbox{\hyperlink{gen__advection__diffusion__elements_8h_source}{gen\+\_\+advection\+\_\+diffusion\+\_\+elements.\+h}}.
 
 
 
-References oomph\+::\+Generalised\+Advection\+Diffusion\+Equations$<$ D\+I\+M $>$\+::\+Conserved\+\_\+wind\+\_\+fct\+\_\+pt.
+References \mbox{\hyperlink{gen__advection__diffusion__elements_8h_source_l00615}{oomph\+::\+Generalised\+Advection\+Diffusion\+Equations$<$ DIM $>$\+::\+Conserved\+\_\+wind\+\_\+fct\+\_\+pt}}.
 
-\mbox{\Hypertarget{classoomph_1_1GeneralisedAdvectionDiffusionEquations_aa0d22a83b060ea55524c198f7be2c73c}\label{classoomph_1_1GeneralisedAdvectionDiffusionEquations_aa0d22a83b060ea55524c198f7be2c73c}} 
+\mbox{\Hypertarget{classoomph_1_1GeneralisedAdvectionDiffusionEquations_a0875f6fb21a1aa078bb8b1cd127ae182}\label{classoomph_1_1GeneralisedAdvectionDiffusionEquations_a0875f6fb21a1aa078bb8b1cd127ae182}} 
 \index{oomph::GeneralisedAdvectionDiffusionEquations$<$ DIM $>$@{oomph::GeneralisedAdvectionDiffusionEquations$<$ DIM $>$}!diff\_fct\_pt@{diff\_fct\_pt}}
 \index{diff\_fct\_pt@{diff\_fct\_pt}!oomph::GeneralisedAdvectionDiffusionEquations$<$ DIM $>$@{oomph::GeneralisedAdvectionDiffusionEquations$<$ DIM $>$}}
 \doxysubsubsection{\texorpdfstring{diff\_fct\_pt()}{diff\_fct\_pt()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
-{\footnotesize\ttfamily template$<$unsigned D\+IM$>$ \\
-\mbox{\hyperlink{classoomph_1_1GeneralisedAdvectionDiffusionEquations_a637371a9eebc399023c6a652e8219263}{Generalised\+Advection\+Diffusion\+Diff\+Fct\+Pt}}\& \mbox{\hyperlink{classoomph_1_1GeneralisedAdvectionDiffusionEquations}{oomph\+::\+Generalised\+Advection\+Diffusion\+Equations}}$<$ D\+IM $>$\+::diff\+\_\+fct\+\_\+pt (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+{\footnotesize\ttfamily template$<$unsigned DIM$>$ \\
+\mbox{\hyperlink{classoomph_1_1GeneralisedAdvectionDiffusionEquations_a637371a9eebc399023c6a652e8219263}{Generalised\+Advection\+Diffusion\+Diff\+Fct\+Pt}} \& \mbox{\hyperlink{classoomph_1_1GeneralisedAdvectionDiffusionEquations}{oomph\+::\+Generalised\+Advection\+Diffusion\+Equations}}$<$ DIM $>$\+::diff\+\_\+fct\+\_\+pt (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
 
 
 
@@ -340,22 +331,22 @@ Access function\+: Pointer to diffusion function.
 
 
 
-Definition at line 271 of file gen\+\_\+advection\+\_\+diffusion\+\_\+elements.\+h.
+Definition at line \mbox{\hyperlink{gen__advection__diffusion__elements_8h_source_l00265}{265}} of file \mbox{\hyperlink{gen__advection__diffusion__elements_8h_source}{gen\+\_\+advection\+\_\+diffusion\+\_\+elements.\+h}}.
 
 
 
-References oomph\+::\+Generalised\+Advection\+Diffusion\+Equations$<$ D\+I\+M $>$\+::\+Diff\+\_\+fct\+\_\+pt.
+References \mbox{\hyperlink{gen__advection__diffusion__elements_8h_source_l00618}{oomph\+::\+Generalised\+Advection\+Diffusion\+Equations$<$ DIM $>$\+::\+Diff\+\_\+fct\+\_\+pt}}.
 
 
 
-Referenced by oomph\+::\+Refineable\+Generalised\+Advection\+Diffusion\+Equations$<$ D\+I\+M $>$\+::further\+\_\+build().
+Referenced by \mbox{\hyperlink{refineable__gen__advection__diffusion__elements_8h_source_l00159}{oomph\+::\+Refineable\+Generalised\+Advection\+Diffusion\+Equations$<$ DIM $>$\+::further\+\_\+build()}}.
 
 \mbox{\Hypertarget{classoomph_1_1GeneralisedAdvectionDiffusionEquations_a7e2bcd1880f2e58986c230aea5fa0e0a}\label{classoomph_1_1GeneralisedAdvectionDiffusionEquations_a7e2bcd1880f2e58986c230aea5fa0e0a}} 
 \index{oomph::GeneralisedAdvectionDiffusionEquations$<$ DIM $>$@{oomph::GeneralisedAdvectionDiffusionEquations$<$ DIM $>$}!diff\_fct\_pt@{diff\_fct\_pt}}
 \index{diff\_fct\_pt@{diff\_fct\_pt}!oomph::GeneralisedAdvectionDiffusionEquations$<$ DIM $>$@{oomph::GeneralisedAdvectionDiffusionEquations$<$ DIM $>$}}
 \doxysubsubsection{\texorpdfstring{diff\_fct\_pt()}{diff\_fct\_pt()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
-{\footnotesize\ttfamily template$<$unsigned D\+IM$>$ \\
-\mbox{\hyperlink{classoomph_1_1GeneralisedAdvectionDiffusionEquations_a637371a9eebc399023c6a652e8219263}{Generalised\+Advection\+Diffusion\+Diff\+Fct\+Pt}} \mbox{\hyperlink{classoomph_1_1GeneralisedAdvectionDiffusionEquations}{oomph\+::\+Generalised\+Advection\+Diffusion\+Equations}}$<$ D\+IM $>$\+::diff\+\_\+fct\+\_\+pt (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+{\footnotesize\ttfamily template$<$unsigned DIM$>$ \\
+\mbox{\hyperlink{classoomph_1_1GeneralisedAdvectionDiffusionEquations_a637371a9eebc399023c6a652e8219263}{Generalised\+Advection\+Diffusion\+Diff\+Fct\+Pt}} \mbox{\hyperlink{classoomph_1_1GeneralisedAdvectionDiffusionEquations}{oomph\+::\+Generalised\+Advection\+Diffusion\+Equations}}$<$ DIM $>$\+::diff\+\_\+fct\+\_\+pt (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
 
 
 
@@ -363,22 +354,22 @@ Access function\+: Pointer to diffusion function. Const version.
 
 
 
-Definition at line 277 of file gen\+\_\+advection\+\_\+diffusion\+\_\+elements.\+h.
+Definition at line \mbox{\hyperlink{gen__advection__diffusion__elements_8h_source_l00271}{271}} of file \mbox{\hyperlink{gen__advection__diffusion__elements_8h_source}{gen\+\_\+advection\+\_\+diffusion\+\_\+elements.\+h}}.
 
 
 
-References oomph\+::\+Generalised\+Advection\+Diffusion\+Equations$<$ D\+I\+M $>$\+::\+Diff\+\_\+fct\+\_\+pt.
+References \mbox{\hyperlink{gen__advection__diffusion__elements_8h_source_l00618}{oomph\+::\+Generalised\+Advection\+Diffusion\+Equations$<$ DIM $>$\+::\+Diff\+\_\+fct\+\_\+pt}}.
 
 \mbox{\Hypertarget{classoomph_1_1GeneralisedAdvectionDiffusionEquations_a25fde0b26b7d44ef2edff08e0d124037}\label{classoomph_1_1GeneralisedAdvectionDiffusionEquations_a25fde0b26b7d44ef2edff08e0d124037}} 
 \index{oomph::GeneralisedAdvectionDiffusionEquations$<$ DIM $>$@{oomph::GeneralisedAdvectionDiffusionEquations$<$ DIM $>$}!disable\_ALE@{disable\_ALE}}
 \index{disable\_ALE@{disable\_ALE}!oomph::GeneralisedAdvectionDiffusionEquations$<$ DIM $>$@{oomph::GeneralisedAdvectionDiffusionEquations$<$ DIM $>$}}
 \doxysubsubsection{\texorpdfstring{disable\_ALE()}{disable\_ALE()}}
-{\footnotesize\ttfamily template$<$unsigned D\+IM$>$ \\
-void \mbox{\hyperlink{classoomph_1_1GeneralisedAdvectionDiffusionEquations}{oomph\+::\+Generalised\+Advection\+Diffusion\+Equations}}$<$ D\+IM $>$\+::disable\+\_\+\+A\+LE (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [virtual]}}
+{\footnotesize\ttfamily template$<$unsigned DIM$>$ \\
+void \mbox{\hyperlink{classoomph_1_1GeneralisedAdvectionDiffusionEquations}{oomph\+::\+Generalised\+Advection\+Diffusion\+Equations}}$<$ DIM $>$\+::disable\+\_\+\+ALE (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [virtual]}}
 
 
 
-Disable A\+LE, i.\+e. assert the mesh is not moving -- you do this at your own risk! 
+Disable ALE, i.\+e. assert the mesh is not moving -- you do this at your own risk! 
 
 
 
@@ -386,18 +377,18 @@ Reimplemented from \mbox{\hyperlink{classoomph_1_1FiniteElement_a625ea6d3f9baccf
 
 
 
-Definition at line 142 of file gen\+\_\+advection\+\_\+diffusion\+\_\+elements.\+h.
+Definition at line \mbox{\hyperlink{gen__advection__diffusion__elements_8h_source_l00136}{136}} of file \mbox{\hyperlink{gen__advection__diffusion__elements_8h_source}{gen\+\_\+advection\+\_\+diffusion\+\_\+elements.\+h}}.
 
 
 
-References oomph\+::\+Generalised\+Advection\+Diffusion\+Equations$<$ D\+I\+M $>$\+::\+A\+L\+E\+\_\+is\+\_\+disabled.
+References \mbox{\hyperlink{gen__advection__diffusion__elements_8h_source_l00623}{oomph\+::\+Generalised\+Advection\+Diffusion\+Equations$<$ DIM $>$\+::\+ALE\+\_\+is\+\_\+disabled}}.
 
 \mbox{\Hypertarget{classoomph_1_1GeneralisedAdvectionDiffusionEquations_a0e891c570cc7fa21f6b489bc5b2b77c0}\label{classoomph_1_1GeneralisedAdvectionDiffusionEquations_a0e891c570cc7fa21f6b489bc5b2b77c0}} 
 \index{oomph::GeneralisedAdvectionDiffusionEquations$<$ DIM $>$@{oomph::GeneralisedAdvectionDiffusionEquations$<$ DIM $>$}!dshape\_and\_dtest\_eulerian\_at\_knot\_cons\_adv\_diff@{dshape\_and\_dtest\_eulerian\_at\_knot\_cons\_adv\_diff}}
 \index{dshape\_and\_dtest\_eulerian\_at\_knot\_cons\_adv\_diff@{dshape\_and\_dtest\_eulerian\_at\_knot\_cons\_adv\_diff}!oomph::GeneralisedAdvectionDiffusionEquations$<$ DIM $>$@{oomph::GeneralisedAdvectionDiffusionEquations$<$ DIM $>$}}
 \doxysubsubsection{\texorpdfstring{dshape\_and\_dtest\_eulerian\_at\_knot\_cons\_adv\_diff()}{dshape\_and\_dtest\_eulerian\_at\_knot\_cons\_adv\_diff()}}
-{\footnotesize\ttfamily template$<$unsigned D\+IM$>$ \\
-virtual double \mbox{\hyperlink{classoomph_1_1GeneralisedAdvectionDiffusionEquations}{oomph\+::\+Generalised\+Advection\+Diffusion\+Equations}}$<$ D\+IM $>$\+::dshape\+\_\+and\+\_\+dtest\+\_\+eulerian\+\_\+at\+\_\+knot\+\_\+cons\+\_\+adv\+\_\+diff (\begin{DoxyParamCaption}\item[{const unsigned \&}]{ipt,  }\item[{\mbox{\hyperlink{classoomph_1_1Shape}{Shape}} \&}]{psi,  }\item[{\mbox{\hyperlink{classoomph_1_1DShape}{D\+Shape}} \&}]{dpsidx,  }\item[{\mbox{\hyperlink{classoomph_1_1Shape}{Shape}} \&}]{test,  }\item[{\mbox{\hyperlink{classoomph_1_1DShape}{D\+Shape}} \&}]{dtestdx }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [protected]}, {\ttfamily [pure virtual]}}
+{\footnotesize\ttfamily template$<$unsigned DIM$>$ \\
+virtual double \mbox{\hyperlink{classoomph_1_1GeneralisedAdvectionDiffusionEquations}{oomph\+::\+Generalised\+Advection\+Diffusion\+Equations}}$<$ DIM $>$\+::dshape\+\_\+and\+\_\+dtest\+\_\+eulerian\+\_\+at\+\_\+knot\+\_\+cons\+\_\+adv\+\_\+diff (\begin{DoxyParamCaption}\item[{const unsigned \&}]{ipt,  }\item[{\mbox{\hyperlink{classoomph_1_1Shape}{Shape}} \&}]{psi,  }\item[{\mbox{\hyperlink{classoomph_1_1DShape}{DShape}} \&}]{dpsidx,  }\item[{\mbox{\hyperlink{classoomph_1_1Shape}{Shape}} \&}]{test,  }\item[{\mbox{\hyperlink{classoomph_1_1DShape}{DShape}} \&}]{dtestdx }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [protected]}, {\ttfamily [pure virtual]}}
 
 
 
@@ -405,14 +396,14 @@ Shape/test functions and derivs w.\+r.\+t. to global coords at integration point
 
 
 
-Implemented in \mbox{\hyperlink{classoomph_1_1QGeneralisedAdvectionDiffusionElement_a86385db741884733eb3ec459cc40290d}{oomph\+::\+Q\+Generalised\+Advection\+Diffusion\+Element$<$ D\+I\+M, N\+N\+O\+D\+E\+\_\+1\+D $>$}}.
+Implemented in \mbox{\hyperlink{classoomph_1_1QGeneralisedAdvectionDiffusionElement_a86385db741884733eb3ec459cc40290d}{oomph\+::\+QGeneralised\+Advection\+Diffusion\+Element$<$ DIM, NNODE\+\_\+1\+D $>$}}.
 
 \mbox{\Hypertarget{classoomph_1_1GeneralisedAdvectionDiffusionEquations_a7d1b7d414a32173038a7b31b65ff5e8a}\label{classoomph_1_1GeneralisedAdvectionDiffusionEquations_a7d1b7d414a32173038a7b31b65ff5e8a}} 
 \index{oomph::GeneralisedAdvectionDiffusionEquations$<$ DIM $>$@{oomph::GeneralisedAdvectionDiffusionEquations$<$ DIM $>$}!dshape\_and\_dtest\_eulerian\_cons\_adv\_diff@{dshape\_and\_dtest\_eulerian\_cons\_adv\_diff}}
 \index{dshape\_and\_dtest\_eulerian\_cons\_adv\_diff@{dshape\_and\_dtest\_eulerian\_cons\_adv\_diff}!oomph::GeneralisedAdvectionDiffusionEquations$<$ DIM $>$@{oomph::GeneralisedAdvectionDiffusionEquations$<$ DIM $>$}}
 \doxysubsubsection{\texorpdfstring{dshape\_and\_dtest\_eulerian\_cons\_adv\_diff()}{dshape\_and\_dtest\_eulerian\_cons\_adv\_diff()}}
-{\footnotesize\ttfamily template$<$unsigned D\+IM$>$ \\
-virtual double \mbox{\hyperlink{classoomph_1_1GeneralisedAdvectionDiffusionEquations}{oomph\+::\+Generalised\+Advection\+Diffusion\+Equations}}$<$ D\+IM $>$\+::dshape\+\_\+and\+\_\+dtest\+\_\+eulerian\+\_\+cons\+\_\+adv\+\_\+diff (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{classoomph_1_1Vector}{Vector}}$<$ double $>$ \&}]{s,  }\item[{\mbox{\hyperlink{classoomph_1_1Shape}{Shape}} \&}]{psi,  }\item[{\mbox{\hyperlink{classoomph_1_1DShape}{D\+Shape}} \&}]{dpsidx,  }\item[{\mbox{\hyperlink{classoomph_1_1Shape}{Shape}} \&}]{test,  }\item[{\mbox{\hyperlink{classoomph_1_1DShape}{D\+Shape}} \&}]{dtestdx }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [protected]}, {\ttfamily [pure virtual]}}
+{\footnotesize\ttfamily template$<$unsigned DIM$>$ \\
+virtual double \mbox{\hyperlink{classoomph_1_1GeneralisedAdvectionDiffusionEquations}{oomph\+::\+Generalised\+Advection\+Diffusion\+Equations}}$<$ DIM $>$\+::dshape\+\_\+and\+\_\+dtest\+\_\+eulerian\+\_\+cons\+\_\+adv\+\_\+diff (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{classoomph_1_1Vector}{Vector}}$<$ double $>$ \&}]{s,  }\item[{\mbox{\hyperlink{classoomph_1_1Shape}{Shape}} \&}]{psi,  }\item[{\mbox{\hyperlink{classoomph_1_1DShape}{DShape}} \&}]{dpsidx,  }\item[{\mbox{\hyperlink{classoomph_1_1Shape}{Shape}} \&}]{test,  }\item[{\mbox{\hyperlink{classoomph_1_1DShape}{DShape}} \&}]{dtestdx }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [protected]}, {\ttfamily [pure virtual]}}
 
 
 
@@ -420,14 +411,14 @@ Shape/test functions and derivs w.\+r.\+t. to global coords at local coord. s; r
 
 
 
-Implemented in \mbox{\hyperlink{classoomph_1_1QGeneralisedAdvectionDiffusionElement_ac3743f95fd8a381bb86b2a1fd08673f4}{oomph\+::\+Q\+Generalised\+Advection\+Diffusion\+Element$<$ D\+I\+M, N\+N\+O\+D\+E\+\_\+1\+D $>$}}.
+Implemented in \mbox{\hyperlink{classoomph_1_1QGeneralisedAdvectionDiffusionElement_ac3743f95fd8a381bb86b2a1fd08673f4}{oomph\+::\+QGeneralised\+Advection\+Diffusion\+Element$<$ DIM, NNODE\+\_\+1\+D $>$}}.
 
 \mbox{\Hypertarget{classoomph_1_1GeneralisedAdvectionDiffusionEquations_a7341d08424050525cfe3430001c1dced}\label{classoomph_1_1GeneralisedAdvectionDiffusionEquations_a7341d08424050525cfe3430001c1dced}} 
 \index{oomph::GeneralisedAdvectionDiffusionEquations$<$ DIM $>$@{oomph::GeneralisedAdvectionDiffusionEquations$<$ DIM $>$}!du\_dt\_cons\_adv\_diff@{du\_dt\_cons\_adv\_diff}}
 \index{du\_dt\_cons\_adv\_diff@{du\_dt\_cons\_adv\_diff}!oomph::GeneralisedAdvectionDiffusionEquations$<$ DIM $>$@{oomph::GeneralisedAdvectionDiffusionEquations$<$ DIM $>$}}
 \doxysubsubsection{\texorpdfstring{du\_dt\_cons\_adv\_diff()}{du\_dt\_cons\_adv\_diff()}}
-{\footnotesize\ttfamily template$<$unsigned D\+IM$>$ \\
-double \mbox{\hyperlink{classoomph_1_1GeneralisedAdvectionDiffusionEquations}{oomph\+::\+Generalised\+Advection\+Diffusion\+Equations}}$<$ D\+IM $>$\+::du\+\_\+dt\+\_\+cons\+\_\+adv\+\_\+diff (\begin{DoxyParamCaption}\item[{const unsigned \&}]{n }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+{\footnotesize\ttfamily template$<$unsigned DIM$>$ \\
+double \mbox{\hyperlink{classoomph_1_1GeneralisedAdvectionDiffusionEquations}{oomph\+::\+Generalised\+Advection\+Diffusion\+Equations}}$<$ DIM $>$\+::du\+\_\+dt\+\_\+cons\+\_\+adv\+\_\+diff (\begin{DoxyParamCaption}\item[{const unsigned \&}]{n }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
 
 
 
@@ -435,22 +426,22 @@ du/dt at local node n. Uses suitably interpolated value for hanging nodes.
 
 
 
-Definition at line 115 of file gen\+\_\+advection\+\_\+diffusion\+\_\+elements.\+h.
+Definition at line \mbox{\hyperlink{gen__advection__diffusion__elements_8h_source_l00109}{109}} of file \mbox{\hyperlink{gen__advection__diffusion__elements_8h_source}{gen\+\_\+advection\+\_\+diffusion\+\_\+elements.\+h}}.
 
 
 
-References oomph\+::\+Time\+Stepper\+::is\+\_\+steady(), n, oomph\+::\+Finite\+Element\+::nodal\+\_\+value(), oomph\+::\+Finite\+Element\+::node\+\_\+pt(), oomph\+::\+Time\+Stepper\+::ntstorage(), t, oomph\+::\+Geom\+Object\+::time\+\_\+stepper\+\_\+pt(), oomph\+::\+Data\+::time\+\_\+stepper\+\_\+pt(), oomph\+::\+Generalised\+Advection\+Diffusion\+Equations$<$ D\+I\+M $>$\+::u\+\_\+index\+\_\+cons\+\_\+adv\+\_\+diff(), and oomph\+::\+Time\+Stepper\+::weight().
+References \mbox{\hyperlink{timesteppers_8h_source_l00389}{oomph\+::\+Time\+Stepper\+::is\+\_\+steady()}}, \mbox{\hyperlink{elements_8h_source_l02598}{oomph\+::\+Finite\+Element\+::nodal\+\_\+value()}}, \mbox{\hyperlink{elements_8h_source_l02180}{oomph\+::\+Finite\+Element\+::node\+\_\+pt()}}, \mbox{\hyperlink{timesteppers_8h_source_l00601}{oomph\+::\+Time\+Stepper\+::ntstorage()}}, \mbox{\hyperlink{cfortran_8h_source_l00568}{t}}, \mbox{\hyperlink{geom__objects_8h_source_l00192}{oomph\+::\+Geom\+Object\+::time\+\_\+stepper\+\_\+pt()}}, \mbox{\hyperlink{nodes_8h_source_l00238}{oomph\+::\+Data\+::time\+\_\+stepper\+\_\+pt()}}, \mbox{\hyperlink{gen__advection__diffusion__elements_8h_source_l00102}{oomph\+::\+Generalised\+Advection\+Diffusion\+Equations$<$ DIM $>$\+::u\+\_\+index\+\_\+cons\+\_\+adv\+\_\+diff()}}, and \mbox{\hyperlink{timesteppers_8h_source_l00594}{oomph\+::\+Time\+Stepper\+::weight()}}.
 
 \mbox{\Hypertarget{classoomph_1_1GeneralisedAdvectionDiffusionEquations_ad9a64a539984e8f0a1d3ab0b5c0d84c9}\label{classoomph_1_1GeneralisedAdvectionDiffusionEquations_ad9a64a539984e8f0a1d3ab0b5c0d84c9}} 
 \index{oomph::GeneralisedAdvectionDiffusionEquations$<$ DIM $>$@{oomph::GeneralisedAdvectionDiffusionEquations$<$ DIM $>$}!enable\_ALE@{enable\_ALE}}
 \index{enable\_ALE@{enable\_ALE}!oomph::GeneralisedAdvectionDiffusionEquations$<$ DIM $>$@{oomph::GeneralisedAdvectionDiffusionEquations$<$ DIM $>$}}
 \doxysubsubsection{\texorpdfstring{enable\_ALE()}{enable\_ALE()}}
-{\footnotesize\ttfamily template$<$unsigned D\+IM$>$ \\
-void \mbox{\hyperlink{classoomph_1_1GeneralisedAdvectionDiffusionEquations}{oomph\+::\+Generalised\+Advection\+Diffusion\+Equations}}$<$ D\+IM $>$\+::enable\+\_\+\+A\+LE (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [virtual]}}
+{\footnotesize\ttfamily template$<$unsigned DIM$>$ \\
+void \mbox{\hyperlink{classoomph_1_1GeneralisedAdvectionDiffusionEquations}{oomph\+::\+Generalised\+Advection\+Diffusion\+Equations}}$<$ DIM $>$\+::enable\+\_\+\+ALE (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [virtual]}}
 
 
 
-(Re-\/)enable A\+LE, i.\+e. take possible mesh motion into account when evaluating the time-\/derivative. Note\+: By default, A\+LE is enabled, at the expense of possibly creating unnecessary work in problems where the mesh is, in fact, stationary. 
+(Re-\/)enable ALE, i.\+e. take possible mesh motion into account when evaluating the time-\/derivative. Note\+: By default, ALE is enabled, at the expense of possibly creating unnecessary work in problems where the mesh is, in fact, stationary. 
 
 
 
@@ -458,18 +449,18 @@ Reimplemented from \mbox{\hyperlink{classoomph_1_1FiniteElement_a92ef8967fa4e2d6
 
 
 
-Definition at line 152 of file gen\+\_\+advection\+\_\+diffusion\+\_\+elements.\+h.
+Definition at line \mbox{\hyperlink{gen__advection__diffusion__elements_8h_source_l00146}{146}} of file \mbox{\hyperlink{gen__advection__diffusion__elements_8h_source}{gen\+\_\+advection\+\_\+diffusion\+\_\+elements.\+h}}.
 
 
 
-References oomph\+::\+Generalised\+Advection\+Diffusion\+Equations$<$ D\+I\+M $>$\+::\+A\+L\+E\+\_\+is\+\_\+disabled.
+References \mbox{\hyperlink{gen__advection__diffusion__elements_8h_source_l00623}{oomph\+::\+Generalised\+Advection\+Diffusion\+Equations$<$ DIM $>$\+::\+ALE\+\_\+is\+\_\+disabled}}.
 
 \mbox{\Hypertarget{classoomph_1_1GeneralisedAdvectionDiffusionEquations_a02fc6950a91d90a60b44e9e7a5e1db3f}\label{classoomph_1_1GeneralisedAdvectionDiffusionEquations_a02fc6950a91d90a60b44e9e7a5e1db3f}} 
 \index{oomph::GeneralisedAdvectionDiffusionEquations$<$ DIM $>$@{oomph::GeneralisedAdvectionDiffusionEquations$<$ DIM $>$}!fill\_in\_contribution\_to\_jacobian@{fill\_in\_contribution\_to\_jacobian}}
 \index{fill\_in\_contribution\_to\_jacobian@{fill\_in\_contribution\_to\_jacobian}!oomph::GeneralisedAdvectionDiffusionEquations$<$ DIM $>$@{oomph::GeneralisedAdvectionDiffusionEquations$<$ DIM $>$}}
 \doxysubsubsection{\texorpdfstring{fill\_in\_contribution\_to\_jacobian()}{fill\_in\_contribution\_to\_jacobian()}}
-{\footnotesize\ttfamily template$<$unsigned D\+IM$>$ \\
-void \mbox{\hyperlink{classoomph_1_1GeneralisedAdvectionDiffusionEquations}{oomph\+::\+Generalised\+Advection\+Diffusion\+Equations}}$<$ D\+IM $>$\+::fill\+\_\+in\+\_\+contribution\+\_\+to\+\_\+jacobian (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classoomph_1_1Vector}{Vector}}$<$ double $>$ \&}]{residuals,  }\item[{\mbox{\hyperlink{classoomph_1_1DenseMatrix}{Dense\+Matrix}}$<$ double $>$ \&}]{jacobian }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [virtual]}}
+{\footnotesize\ttfamily template$<$unsigned DIM$>$ \\
+void \mbox{\hyperlink{classoomph_1_1GeneralisedAdvectionDiffusionEquations}{oomph\+::\+Generalised\+Advection\+Diffusion\+Equations}}$<$ DIM $>$\+::fill\+\_\+in\+\_\+contribution\+\_\+to\+\_\+jacobian (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classoomph_1_1Vector}{Vector}}$<$ double $>$ \&}]{residuals,  }\item[{\mbox{\hyperlink{classoomph_1_1DenseMatrix}{Dense\+Matrix}}$<$ double $>$ \&}]{jacobian }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [virtual]}}
 
 
 
@@ -481,18 +472,18 @@ Reimplemented from \mbox{\hyperlink{classoomph_1_1GeneralisedElement_a6ae09fc0d6
 
 
 
-Definition at line 528 of file gen\+\_\+advection\+\_\+diffusion\+\_\+elements.\+h.
+Definition at line \mbox{\hyperlink{gen__advection__diffusion__elements_8h_source_l00522}{522}} of file \mbox{\hyperlink{gen__advection__diffusion__elements_8h_source}{gen\+\_\+advection\+\_\+diffusion\+\_\+elements.\+h}}.
 
 
 
-References oomph\+::\+Generalised\+Element\+::\+Dummy\+\_\+matrix, oomph\+::\+Generalised\+Advection\+Diffusion\+Equations$<$ D\+I\+M $>$\+::fill\+\_\+in\+\_\+generic\+\_\+residual\+\_\+contribution\+\_\+cons\+\_\+adv\+\_\+diff(), and residuals().
+References \mbox{\hyperlink{elements_8h_source_l00227}{oomph\+::\+Generalised\+Element\+::\+Dummy\+\_\+matrix}}, and \mbox{\hyperlink{gen__advection__diffusion__elements_8cc_source_l00049}{oomph\+::\+Generalised\+Advection\+Diffusion\+Equations$<$ DIM $>$\+::fill\+\_\+in\+\_\+generic\+\_\+residual\+\_\+contribution\+\_\+cons\+\_\+adv\+\_\+diff()}}.
 
 \mbox{\Hypertarget{classoomph_1_1GeneralisedAdvectionDiffusionEquations_a773339fec529d9779bb88146a4e9c641}\label{classoomph_1_1GeneralisedAdvectionDiffusionEquations_a773339fec529d9779bb88146a4e9c641}} 
 \index{oomph::GeneralisedAdvectionDiffusionEquations$<$ DIM $>$@{oomph::GeneralisedAdvectionDiffusionEquations$<$ DIM $>$}!fill\_in\_contribution\_to\_jacobian\_and\_mass\_matrix@{fill\_in\_contribution\_to\_jacobian\_and\_mass\_matrix}}
 \index{fill\_in\_contribution\_to\_jacobian\_and\_mass\_matrix@{fill\_in\_contribution\_to\_jacobian\_and\_mass\_matrix}!oomph::GeneralisedAdvectionDiffusionEquations$<$ DIM $>$@{oomph::GeneralisedAdvectionDiffusionEquations$<$ DIM $>$}}
 \doxysubsubsection{\texorpdfstring{fill\_in\_contribution\_to\_jacobian\_and\_mass\_matrix()}{fill\_in\_contribution\_to\_jacobian\_and\_mass\_matrix()}}
-{\footnotesize\ttfamily template$<$unsigned D\+IM$>$ \\
-void \mbox{\hyperlink{classoomph_1_1GeneralisedAdvectionDiffusionEquations}{oomph\+::\+Generalised\+Advection\+Diffusion\+Equations}}$<$ D\+IM $>$\+::fill\+\_\+in\+\_\+contribution\+\_\+to\+\_\+jacobian\+\_\+and\+\_\+mass\+\_\+matrix (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classoomph_1_1Vector}{Vector}}$<$ double $>$ \&}]{residuals,  }\item[{\mbox{\hyperlink{classoomph_1_1DenseMatrix}{Dense\+Matrix}}$<$ double $>$ \&}]{jacobian,  }\item[{\mbox{\hyperlink{classoomph_1_1DenseMatrix}{Dense\+Matrix}}$<$ double $>$ \&}]{mass\+\_\+matrix }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [virtual]}}
+{\footnotesize\ttfamily template$<$unsigned DIM$>$ \\
+void \mbox{\hyperlink{classoomph_1_1GeneralisedAdvectionDiffusionEquations}{oomph\+::\+Generalised\+Advection\+Diffusion\+Equations}}$<$ DIM $>$\+::fill\+\_\+in\+\_\+contribution\+\_\+to\+\_\+jacobian\+\_\+and\+\_\+mass\+\_\+matrix (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classoomph_1_1Vector}{Vector}}$<$ double $>$ \&}]{residuals,  }\item[{\mbox{\hyperlink{classoomph_1_1DenseMatrix}{Dense\+Matrix}}$<$ double $>$ \&}]{jacobian,  }\item[{\mbox{\hyperlink{classoomph_1_1DenseMatrix}{Dense\+Matrix}}$<$ double $>$ \&}]{mass\+\_\+matrix }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [virtual]}}
 
 Add the element\textquotesingle{}s contribution to its residuals vector, jacobian matrix and mass matrix 
 
@@ -500,18 +491,18 @@ Reimplemented from \mbox{\hyperlink{classoomph_1_1GeneralisedElement_a2b6294a730
 
 
 
-Definition at line 539 of file gen\+\_\+advection\+\_\+diffusion\+\_\+elements.\+h.
+Definition at line \mbox{\hyperlink{gen__advection__diffusion__elements_8h_source_l00533}{533}} of file \mbox{\hyperlink{gen__advection__diffusion__elements_8h_source}{gen\+\_\+advection\+\_\+diffusion\+\_\+elements.\+h}}.
 
 
 
-References oomph\+::\+Generalised\+Advection\+Diffusion\+Equations$<$ D\+I\+M $>$\+::fill\+\_\+in\+\_\+generic\+\_\+residual\+\_\+contribution\+\_\+cons\+\_\+adv\+\_\+diff(), and residuals().
+References \mbox{\hyperlink{gen__advection__diffusion__elements_8cc_source_l00049}{oomph\+::\+Generalised\+Advection\+Diffusion\+Equations$<$ DIM $>$\+::fill\+\_\+in\+\_\+generic\+\_\+residual\+\_\+contribution\+\_\+cons\+\_\+adv\+\_\+diff()}}.
 
 \mbox{\Hypertarget{classoomph_1_1GeneralisedAdvectionDiffusionEquations_a322c49659ad14f656165f7e777d3368a}\label{classoomph_1_1GeneralisedAdvectionDiffusionEquations_a322c49659ad14f656165f7e777d3368a}} 
 \index{oomph::GeneralisedAdvectionDiffusionEquations$<$ DIM $>$@{oomph::GeneralisedAdvectionDiffusionEquations$<$ DIM $>$}!fill\_in\_contribution\_to\_residuals@{fill\_in\_contribution\_to\_residuals}}
 \index{fill\_in\_contribution\_to\_residuals@{fill\_in\_contribution\_to\_residuals}!oomph::GeneralisedAdvectionDiffusionEquations$<$ DIM $>$@{oomph::GeneralisedAdvectionDiffusionEquations$<$ DIM $>$}}
 \doxysubsubsection{\texorpdfstring{fill\_in\_contribution\_to\_residuals()}{fill\_in\_contribution\_to\_residuals()}}
-{\footnotesize\ttfamily template$<$unsigned D\+IM$>$ \\
-void \mbox{\hyperlink{classoomph_1_1GeneralisedAdvectionDiffusionEquations}{oomph\+::\+Generalised\+Advection\+Diffusion\+Equations}}$<$ D\+IM $>$\+::fill\+\_\+in\+\_\+contribution\+\_\+to\+\_\+residuals (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classoomph_1_1Vector}{Vector}}$<$ double $>$ \&}]{residuals }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [virtual]}}
+{\footnotesize\ttfamily template$<$unsigned DIM$>$ \\
+void \mbox{\hyperlink{classoomph_1_1GeneralisedAdvectionDiffusionEquations}{oomph\+::\+Generalised\+Advection\+Diffusion\+Equations}}$<$ DIM $>$\+::fill\+\_\+in\+\_\+contribution\+\_\+to\+\_\+residuals (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classoomph_1_1Vector}{Vector}}$<$ double $>$ \&}]{residuals }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [virtual]}}
 
 
 
@@ -523,18 +514,18 @@ Reimplemented from \mbox{\hyperlink{classoomph_1_1GeneralisedElement_a310c97f515
 
 
 
-Definition at line 514 of file gen\+\_\+advection\+\_\+diffusion\+\_\+elements.\+h.
+Definition at line \mbox{\hyperlink{gen__advection__diffusion__elements_8h_source_l00508}{508}} of file \mbox{\hyperlink{gen__advection__diffusion__elements_8h_source}{gen\+\_\+advection\+\_\+diffusion\+\_\+elements.\+h}}.
 
 
 
-References oomph\+::\+Generalised\+Element\+::\+Dummy\+\_\+matrix, oomph\+::\+Generalised\+Advection\+Diffusion\+Equations$<$ D\+I\+M $>$\+::fill\+\_\+in\+\_\+generic\+\_\+residual\+\_\+contribution\+\_\+cons\+\_\+adv\+\_\+diff(), and residuals().
+References \mbox{\hyperlink{elements_8h_source_l00227}{oomph\+::\+Generalised\+Element\+::\+Dummy\+\_\+matrix}}, and \mbox{\hyperlink{gen__advection__diffusion__elements_8cc_source_l00049}{oomph\+::\+Generalised\+Advection\+Diffusion\+Equations$<$ DIM $>$\+::fill\+\_\+in\+\_\+generic\+\_\+residual\+\_\+contribution\+\_\+cons\+\_\+adv\+\_\+diff()}}.
 
 \mbox{\Hypertarget{classoomph_1_1GeneralisedAdvectionDiffusionEquations_ae05de6e681f20f04f5ad9821f3a572c0}\label{classoomph_1_1GeneralisedAdvectionDiffusionEquations_ae05de6e681f20f04f5ad9821f3a572c0}} 
 \index{oomph::GeneralisedAdvectionDiffusionEquations$<$ DIM $>$@{oomph::GeneralisedAdvectionDiffusionEquations$<$ DIM $>$}!fill\_in\_generic\_residual\_contribution\_cons\_adv\_diff@{fill\_in\_generic\_residual\_contribution\_cons\_adv\_diff}}
 \index{fill\_in\_generic\_residual\_contribution\_cons\_adv\_diff@{fill\_in\_generic\_residual\_contribution\_cons\_adv\_diff}!oomph::GeneralisedAdvectionDiffusionEquations$<$ DIM $>$@{oomph::GeneralisedAdvectionDiffusionEquations$<$ DIM $>$}}
 \doxysubsubsection{\texorpdfstring{fill\_in\_generic\_residual\_contribution\_cons\_adv\_diff()}{fill\_in\_generic\_residual\_contribution\_cons\_adv\_diff()}}
-{\footnotesize\ttfamily template$<$unsigned D\+IM$>$ \\
-void \mbox{\hyperlink{classoomph_1_1GeneralisedAdvectionDiffusionEquations}{oomph\+::\+Generalised\+Advection\+Diffusion\+Equations}}$<$ D\+IM $>$\+::fill\+\_\+in\+\_\+generic\+\_\+residual\+\_\+contribution\+\_\+cons\+\_\+adv\+\_\+diff (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classoomph_1_1Vector}{Vector}}$<$ double $>$ \&}]{residuals,  }\item[{\mbox{\hyperlink{classoomph_1_1DenseMatrix}{Dense\+Matrix}}$<$ double $>$ \&}]{jacobian,  }\item[{\mbox{\hyperlink{classoomph_1_1DenseMatrix}{Dense\+Matrix}}$<$ double $>$ \&}]{mass\+\_\+matrix,  }\item[{unsigned}]{flag }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [protected]}, {\ttfamily [virtual]}}
+{\footnotesize\ttfamily template$<$unsigned DIM$>$ \\
+void \mbox{\hyperlink{classoomph_1_1GeneralisedAdvectionDiffusionEquations}{oomph\+::\+Generalised\+Advection\+Diffusion\+Equations}}$<$ DIM $>$\+::fill\+\_\+in\+\_\+generic\+\_\+residual\+\_\+contribution\+\_\+cons\+\_\+adv\+\_\+diff (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classoomph_1_1Vector}{Vector}}$<$ double $>$ \&}]{residuals,  }\item[{\mbox{\hyperlink{classoomph_1_1DenseMatrix}{Dense\+Matrix}}$<$ double $>$ \&}]{jacobian,  }\item[{\mbox{\hyperlink{classoomph_1_1DenseMatrix}{Dense\+Matrix}}$<$ double $>$ \&}]{mass\+\_\+matrix,  }\item[{unsigned}]{flag }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [protected]}, {\ttfamily [virtual]}}
 
 
 
@@ -546,26 +537,26 @@ flag=1\+: compute both flag=0\+: compute only residual \mbox{\hyperlink{classoom
 
 Pure version without hanging nodes 
 
-Reimplemented in \mbox{\hyperlink{classoomph_1_1RefineableGeneralisedAdvectionDiffusionEquations_abd0535533c7133651ac18ad8e025f139}{oomph\+::\+Refineable\+Generalised\+Advection\+Diffusion\+Equations$<$ D\+I\+M $>$}}.
+Reimplemented in \mbox{\hyperlink{classoomph_1_1RefineableGeneralisedAdvectionDiffusionEquations_abd0535533c7133651ac18ad8e025f139}{oomph\+::\+Refineable\+Generalised\+Advection\+Diffusion\+Equations$<$ DIM $>$}}.
 
 
 
-Definition at line 49 of file gen\+\_\+advection\+\_\+diffusion\+\_\+elements.\+cc.
+Definition at line \mbox{\hyperlink{gen__advection__diffusion__elements_8cc_source_l00048}{48}} of file \mbox{\hyperlink{gen__advection__diffusion__elements_8cc_source}{gen\+\_\+advection\+\_\+diffusion\+\_\+elements.\+cc}}.
 
 
 
-References oomph\+::\+A\+L\+E\+\_\+is\+\_\+disabled, oomph\+::\+Oc\+Tree\+Names\+::D, i, interpolated\+\_\+u(), oomph\+::pe(), oomph\+::pe\+\_\+st(), residuals(), s, and oomph\+::\+Quad\+Tree\+Names\+::W.
+References \mbox{\hyperlink{gen__axisym__advection__diffusion__elements_8h_source_l00638}{oomph\+::\+ALE\+\_\+is\+\_\+disabled}}, \mbox{\hyperlink{octree_8h_source_l00071}{oomph\+::\+Oc\+Tree\+Names\+::D}}, \mbox{\hyperlink{cfortran_8h_source_l00603}{i}}, \mbox{\hyperlink{gen__axisym__advection__diffusion__elements_8h_source_l00284}{oomph\+::pe()}}, \mbox{\hyperlink{gen__axisym__advection__diffusion__elements_8h_source_l00296}{oomph\+::pe\+\_\+st()}}, \mbox{\hyperlink{cfortran_8h_source_l00568}{s}}, and \mbox{\hyperlink{quadtree_8h_source_l00063}{oomph\+::\+Quad\+Tree\+Names\+::W}}.
 
 
 
-Referenced by oomph\+::\+Generalised\+Advection\+Diffusion\+Equations$<$ D\+I\+M $>$\+::fill\+\_\+in\+\_\+contribution\+\_\+to\+\_\+jacobian(), oomph\+::\+Generalised\+Advection\+Diffusion\+Equations$<$ D\+I\+M $>$\+::fill\+\_\+in\+\_\+contribution\+\_\+to\+\_\+jacobian\+\_\+and\+\_\+mass\+\_\+matrix(), and oomph\+::\+Generalised\+Advection\+Diffusion\+Equations$<$ D\+I\+M $>$\+::fill\+\_\+in\+\_\+contribution\+\_\+to\+\_\+residuals().
+Referenced by \mbox{\hyperlink{gen__advection__diffusion__elements_8h_source_l00522}{oomph\+::\+Generalised\+Advection\+Diffusion\+Equations$<$ DIM $>$\+::fill\+\_\+in\+\_\+contribution\+\_\+to\+\_\+jacobian()}}, \mbox{\hyperlink{gen__advection__diffusion__elements_8h_source_l00533}{oomph\+::\+Generalised\+Advection\+Diffusion\+Equations$<$ DIM $>$\+::fill\+\_\+in\+\_\+contribution\+\_\+to\+\_\+jacobian\+\_\+and\+\_\+mass\+\_\+matrix()}}, and \mbox{\hyperlink{gen__advection__diffusion__elements_8h_source_l00508}{oomph\+::\+Generalised\+Advection\+Diffusion\+Equations$<$ DIM $>$\+::fill\+\_\+in\+\_\+contribution\+\_\+to\+\_\+residuals()}}.
 
 \mbox{\Hypertarget{classoomph_1_1GeneralisedAdvectionDiffusionEquations_aff553670fb9ced08f958005b611f80cb}\label{classoomph_1_1GeneralisedAdvectionDiffusionEquations_aff553670fb9ced08f958005b611f80cb}} 
 \index{oomph::GeneralisedAdvectionDiffusionEquations$<$ DIM $>$@{oomph::GeneralisedAdvectionDiffusionEquations$<$ DIM $>$}!get\_conserved\_wind\_cons\_adv\_diff@{get\_conserved\_wind\_cons\_adv\_diff}}
 \index{get\_conserved\_wind\_cons\_adv\_diff@{get\_conserved\_wind\_cons\_adv\_diff}!oomph::GeneralisedAdvectionDiffusionEquations$<$ DIM $>$@{oomph::GeneralisedAdvectionDiffusionEquations$<$ DIM $>$}}
 \doxysubsubsection{\texorpdfstring{get\_conserved\_wind\_cons\_adv\_diff()}{get\_conserved\_wind\_cons\_adv\_diff()}}
-{\footnotesize\ttfamily template$<$unsigned D\+IM$>$ \\
-virtual void \mbox{\hyperlink{classoomph_1_1GeneralisedAdvectionDiffusionEquations}{oomph\+::\+Generalised\+Advection\+Diffusion\+Equations}}$<$ D\+IM $>$\+::get\+\_\+conserved\+\_\+wind\+\_\+cons\+\_\+adv\+\_\+diff (\begin{DoxyParamCaption}\item[{const unsigned \&}]{ipt,  }\item[{const \mbox{\hyperlink{classoomph_1_1Vector}{Vector}}$<$ double $>$ \&}]{s,  }\item[{const \mbox{\hyperlink{classoomph_1_1Vector}{Vector}}$<$ double $>$ \&}]{x,  }\item[{\mbox{\hyperlink{classoomph_1_1Vector}{Vector}}$<$ double $>$ \&}]{wind }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [virtual]}}
+{\footnotesize\ttfamily template$<$unsigned DIM$>$ \\
+virtual void \mbox{\hyperlink{classoomph_1_1GeneralisedAdvectionDiffusionEquations}{oomph\+::\+Generalised\+Advection\+Diffusion\+Equations}}$<$ DIM $>$\+::get\+\_\+conserved\+\_\+wind\+\_\+cons\+\_\+adv\+\_\+diff (\begin{DoxyParamCaption}\item[{const unsigned \&}]{ipt,  }\item[{const \mbox{\hyperlink{classoomph_1_1Vector}{Vector}}$<$ double $>$ \&}]{s,  }\item[{const \mbox{\hyperlink{classoomph_1_1Vector}{Vector}}$<$ double $>$ \&}]{x,  }\item[{\mbox{\hyperlink{classoomph_1_1Vector}{Vector}}$<$ double $>$ \&}]{wind }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [virtual]}}
 
 
 
@@ -573,22 +564,22 @@ Get additional (conservative) wind at (Eulerian) position x and/or local coordin
 
 
 
-Definition at line 358 of file gen\+\_\+advection\+\_\+diffusion\+\_\+elements.\+h.
+Definition at line \mbox{\hyperlink{gen__advection__diffusion__elements_8h_source_l00352}{352}} of file \mbox{\hyperlink{gen__advection__diffusion__elements_8h_source}{gen\+\_\+advection\+\_\+diffusion\+\_\+elements.\+h}}.
 
 
 
-References oomph\+::\+Generalised\+Advection\+Diffusion\+Equations$<$ D\+I\+M $>$\+::\+Conserved\+\_\+wind\+\_\+fct\+\_\+pt, and i.
+References \mbox{\hyperlink{gen__advection__diffusion__elements_8h_source_l00615}{oomph\+::\+Generalised\+Advection\+Diffusion\+Equations$<$ DIM $>$\+::\+Conserved\+\_\+wind\+\_\+fct\+\_\+pt}}, and \mbox{\hyperlink{cfortran_8h_source_l00603}{i}}.
 
 
 
-Referenced by oomph\+::\+Generalised\+Advection\+Diffusion\+Equations$<$ D\+I\+M $>$\+::get\+\_\+total\+\_\+flux().
+Referenced by \mbox{\hyperlink{gen__advection__diffusion__elements_8h_source_l00445}{oomph\+::\+Generalised\+Advection\+Diffusion\+Equations$<$ DIM $>$\+::get\+\_\+total\+\_\+flux()}}.
 
 \mbox{\Hypertarget{classoomph_1_1GeneralisedAdvectionDiffusionEquations_a1d9266d37b622068414bda1e71f9f090}\label{classoomph_1_1GeneralisedAdvectionDiffusionEquations_a1d9266d37b622068414bda1e71f9f090}} 
 \index{oomph::GeneralisedAdvectionDiffusionEquations$<$ DIM $>$@{oomph::GeneralisedAdvectionDiffusionEquations$<$ DIM $>$}!get\_diff\_cons\_adv\_diff@{get\_diff\_cons\_adv\_diff}}
 \index{get\_diff\_cons\_adv\_diff@{get\_diff\_cons\_adv\_diff}!oomph::GeneralisedAdvectionDiffusionEquations$<$ DIM $>$@{oomph::GeneralisedAdvectionDiffusionEquations$<$ DIM $>$}}
 \doxysubsubsection{\texorpdfstring{get\_diff\_cons\_adv\_diff()}{get\_diff\_cons\_adv\_diff()}}
-{\footnotesize\ttfamily template$<$unsigned D\+IM$>$ \\
-virtual void \mbox{\hyperlink{classoomph_1_1GeneralisedAdvectionDiffusionEquations}{oomph\+::\+Generalised\+Advection\+Diffusion\+Equations}}$<$ D\+IM $>$\+::get\+\_\+diff\+\_\+cons\+\_\+adv\+\_\+diff (\begin{DoxyParamCaption}\item[{const unsigned \&}]{ipt,  }\item[{const \mbox{\hyperlink{classoomph_1_1Vector}{Vector}}$<$ double $>$ \&}]{s,  }\item[{const \mbox{\hyperlink{classoomph_1_1Vector}{Vector}}$<$ double $>$ \&}]{x,  }\item[{\mbox{\hyperlink{classoomph_1_1DenseMatrix}{Dense\+Matrix}}$<$ double $>$ \&}]{D }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [virtual]}}
+{\footnotesize\ttfamily template$<$unsigned DIM$>$ \\
+virtual void \mbox{\hyperlink{classoomph_1_1GeneralisedAdvectionDiffusionEquations}{oomph\+::\+Generalised\+Advection\+Diffusion\+Equations}}$<$ DIM $>$\+::get\+\_\+diff\+\_\+cons\+\_\+adv\+\_\+diff (\begin{DoxyParamCaption}\item[{const unsigned \&}]{ipt,  }\item[{const \mbox{\hyperlink{classoomph_1_1Vector}{Vector}}$<$ double $>$ \&}]{s,  }\item[{const \mbox{\hyperlink{classoomph_1_1Vector}{Vector}}$<$ double $>$ \&}]{x,  }\item[{\mbox{\hyperlink{classoomph_1_1DenseMatrix}{Dense\+Matrix}}$<$ double $>$ \&}]{D }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [virtual]}}
 
 
 
@@ -596,22 +587,22 @@ Get diffusivity tensor at (Eulerian) position x and/or local coordinate s. This 
 
 
 
-Definition at line 386 of file gen\+\_\+advection\+\_\+diffusion\+\_\+elements.\+h.
+Definition at line \mbox{\hyperlink{gen__advection__diffusion__elements_8h_source_l00380}{380}} of file \mbox{\hyperlink{gen__advection__diffusion__elements_8h_source}{gen\+\_\+advection\+\_\+diffusion\+\_\+elements.\+h}}.
 
 
 
-References oomph\+::\+Oc\+Tree\+Names\+::D, oomph\+::\+Generalised\+Advection\+Diffusion\+Equations$<$ D\+I\+M $>$\+::\+Diff\+\_\+fct\+\_\+pt, and i.
+References \mbox{\hyperlink{octree_8h_source_l00071}{oomph\+::\+Oc\+Tree\+Names\+::D}}, \mbox{\hyperlink{gen__advection__diffusion__elements_8h_source_l00618}{oomph\+::\+Generalised\+Advection\+Diffusion\+Equations$<$ DIM $>$\+::\+Diff\+\_\+fct\+\_\+pt}}, and \mbox{\hyperlink{cfortran_8h_source_l00603}{i}}.
 
 
 
-Referenced by oomph\+::\+Generalised\+Advection\+Diffusion\+Equations$<$ D\+I\+M $>$\+::get\+\_\+total\+\_\+flux().
+Referenced by \mbox{\hyperlink{gen__advection__diffusion__elements_8h_source_l00445}{oomph\+::\+Generalised\+Advection\+Diffusion\+Equations$<$ DIM $>$\+::get\+\_\+total\+\_\+flux()}}.
 
 \mbox{\Hypertarget{classoomph_1_1GeneralisedAdvectionDiffusionEquations_a708e237798252ad6b207b14a627e7ec0}\label{classoomph_1_1GeneralisedAdvectionDiffusionEquations_a708e237798252ad6b207b14a627e7ec0}} 
 \index{oomph::GeneralisedAdvectionDiffusionEquations$<$ DIM $>$@{oomph::GeneralisedAdvectionDiffusionEquations$<$ DIM $>$}!get\_flux@{get\_flux}}
 \index{get\_flux@{get\_flux}!oomph::GeneralisedAdvectionDiffusionEquations$<$ DIM $>$@{oomph::GeneralisedAdvectionDiffusionEquations$<$ DIM $>$}}
 \doxysubsubsection{\texorpdfstring{get\_flux()}{get\_flux()}}
-{\footnotesize\ttfamily template$<$unsigned D\+IM$>$ \\
-void \mbox{\hyperlink{classoomph_1_1GeneralisedAdvectionDiffusionEquations}{oomph\+::\+Generalised\+Advection\+Diffusion\+Equations}}$<$ D\+IM $>$\+::get\+\_\+flux (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{classoomph_1_1Vector}{Vector}}$<$ double $>$ \&}]{s,  }\item[{\mbox{\hyperlink{classoomph_1_1Vector}{Vector}}$<$ double $>$ \&}]{flux }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+{\footnotesize\ttfamily template$<$unsigned DIM$>$ \\
+void \mbox{\hyperlink{classoomph_1_1GeneralisedAdvectionDiffusionEquations}{oomph\+::\+Generalised\+Advection\+Diffusion\+Equations}}$<$ DIM $>$\+::get\+\_\+flux (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{classoomph_1_1Vector}{Vector}}$<$ double $>$ \&}]{s,  }\item[{\mbox{\hyperlink{classoomph_1_1Vector}{Vector}}$<$ double $>$ \&}]{flux }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
 
 
 
@@ -619,22 +610,22 @@ Get flux\+: $\mbox{flux}[i] = \mbox{d}u / \mbox{d}x_i $.
 
 
 
-Definition at line 418 of file gen\+\_\+advection\+\_\+diffusion\+\_\+elements.\+h.
+Definition at line \mbox{\hyperlink{gen__advection__diffusion__elements_8h_source_l00412}{412}} of file \mbox{\hyperlink{gen__advection__diffusion__elements_8h_source}{gen\+\_\+advection\+\_\+diffusion\+\_\+elements.\+h}}.
 
 
 
-References oomph\+::\+Finite\+Element\+::dshape\+\_\+eulerian(), oomph\+::\+Finite\+Element\+::nnode(), oomph\+::\+Finite\+Element\+::nodal\+\_\+value(), s, and oomph\+::\+Generalised\+Advection\+Diffusion\+Equations$<$ D\+I\+M $>$\+::u\+\_\+index\+\_\+cons\+\_\+adv\+\_\+diff().
+References \mbox{\hyperlink{elements_8cc_source_l03302}{oomph\+::\+Finite\+Element\+::dshape\+\_\+eulerian()}}, \mbox{\hyperlink{elements_8h_source_l02215}{oomph\+::\+Finite\+Element\+::nnode()}}, \mbox{\hyperlink{elements_8h_source_l02598}{oomph\+::\+Finite\+Element\+::nodal\+\_\+value()}}, \mbox{\hyperlink{cfortran_8h_source_l00568}{s}}, and \mbox{\hyperlink{gen__advection__diffusion__elements_8h_source_l00102}{oomph\+::\+Generalised\+Advection\+Diffusion\+Equations$<$ DIM $>$\+::u\+\_\+index\+\_\+cons\+\_\+adv\+\_\+diff()}}.
 
 
 
-Referenced by oomph\+::\+Refineable\+Generalised\+Advection\+Diffusion\+Equations$<$ D\+I\+M $>$\+::get\+\_\+\+Z2\+\_\+flux().
+Referenced by \mbox{\hyperlink{refineable__gen__advection__diffusion__elements_8h_source_l00086}{oomph\+::\+Refineable\+Generalised\+Advection\+Diffusion\+Equations$<$ DIM $>$\+::get\+\_\+\+Z2\+\_\+flux()}}.
 
 \mbox{\Hypertarget{classoomph_1_1GeneralisedAdvectionDiffusionEquations_a33989015fe6f130fc51cc845b6367c39}\label{classoomph_1_1GeneralisedAdvectionDiffusionEquations_a33989015fe6f130fc51cc845b6367c39}} 
 \index{oomph::GeneralisedAdvectionDiffusionEquations$<$ DIM $>$@{oomph::GeneralisedAdvectionDiffusionEquations$<$ DIM $>$}!get\_source\_cons\_adv\_diff@{get\_source\_cons\_adv\_diff}}
 \index{get\_source\_cons\_adv\_diff@{get\_source\_cons\_adv\_diff}!oomph::GeneralisedAdvectionDiffusionEquations$<$ DIM $>$@{oomph::GeneralisedAdvectionDiffusionEquations$<$ DIM $>$}}
 \doxysubsubsection{\texorpdfstring{get\_source\_cons\_adv\_diff()}{get\_source\_cons\_adv\_diff()}}
-{\footnotesize\ttfamily template$<$unsigned D\+IM$>$ \\
-virtual void \mbox{\hyperlink{classoomph_1_1GeneralisedAdvectionDiffusionEquations}{oomph\+::\+Generalised\+Advection\+Diffusion\+Equations}}$<$ D\+IM $>$\+::get\+\_\+source\+\_\+cons\+\_\+adv\+\_\+diff (\begin{DoxyParamCaption}\item[{const unsigned \&}]{ipt,  }\item[{const \mbox{\hyperlink{classoomph_1_1Vector}{Vector}}$<$ double $>$ \&}]{x,  }\item[{double \&}]{source }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [virtual]}}
+{\footnotesize\ttfamily template$<$unsigned DIM$>$ \\
+virtual void \mbox{\hyperlink{classoomph_1_1GeneralisedAdvectionDiffusionEquations}{oomph\+::\+Generalised\+Advection\+Diffusion\+Equations}}$<$ DIM $>$\+::get\+\_\+source\+\_\+cons\+\_\+adv\+\_\+diff (\begin{DoxyParamCaption}\item[{const unsigned \&}]{ipt,  }\item[{const \mbox{\hyperlink{classoomph_1_1Vector}{Vector}}$<$ double $>$ \&}]{x,  }\item[{double \&}]{source }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [virtual]}}
 
 
 
@@ -642,18 +633,18 @@ Get source term at (Eulerian) position x. This function is virtual to allow over
 
 
 
-Definition at line 310 of file gen\+\_\+advection\+\_\+diffusion\+\_\+elements.\+h.
+Definition at line \mbox{\hyperlink{gen__advection__diffusion__elements_8h_source_l00304}{304}} of file \mbox{\hyperlink{gen__advection__diffusion__elements_8h_source}{gen\+\_\+advection\+\_\+diffusion\+\_\+elements.\+h}}.
 
 
 
-References oomph\+::\+Generalised\+Advection\+Diffusion\+Equations$<$ D\+I\+M $>$\+::\+Source\+\_\+fct\+\_\+pt.
+References \mbox{\hyperlink{gen__advection__diffusion__elements_8h_source_l00609}{oomph\+::\+Generalised\+Advection\+Diffusion\+Equations$<$ DIM $>$\+::\+Source\+\_\+fct\+\_\+pt}}.
 
 \mbox{\Hypertarget{classoomph_1_1GeneralisedAdvectionDiffusionEquations_a79bce0d40bdc46e998729332ceefb889}\label{classoomph_1_1GeneralisedAdvectionDiffusionEquations_a79bce0d40bdc46e998729332ceefb889}} 
 \index{oomph::GeneralisedAdvectionDiffusionEquations$<$ DIM $>$@{oomph::GeneralisedAdvectionDiffusionEquations$<$ DIM $>$}!get\_total\_flux@{get\_total\_flux}}
 \index{get\_total\_flux@{get\_total\_flux}!oomph::GeneralisedAdvectionDiffusionEquations$<$ DIM $>$@{oomph::GeneralisedAdvectionDiffusionEquations$<$ DIM $>$}}
 \doxysubsubsection{\texorpdfstring{get\_total\_flux()}{get\_total\_flux()}}
-{\footnotesize\ttfamily template$<$unsigned D\+IM$>$ \\
-void \mbox{\hyperlink{classoomph_1_1GeneralisedAdvectionDiffusionEquations}{oomph\+::\+Generalised\+Advection\+Diffusion\+Equations}}$<$ D\+IM $>$\+::get\+\_\+total\+\_\+flux (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{classoomph_1_1Vector}{Vector}}$<$ double $>$ \&}]{s,  }\item[{\mbox{\hyperlink{classoomph_1_1Vector}{Vector}}$<$ double $>$ \&}]{total\+\_\+flux }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+{\footnotesize\ttfamily template$<$unsigned DIM$>$ \\
+void \mbox{\hyperlink{classoomph_1_1GeneralisedAdvectionDiffusionEquations}{oomph\+::\+Generalised\+Advection\+Diffusion\+Equations}}$<$ DIM $>$\+::get\+\_\+total\+\_\+flux (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{classoomph_1_1Vector}{Vector}}$<$ double $>$ \&}]{s,  }\item[{\mbox{\hyperlink{classoomph_1_1Vector}{Vector}}$<$ double $>$ \&}]{total\+\_\+flux }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
 
 
 
@@ -661,18 +652,18 @@ Get flux\+: $\mbox{flux}[i] = \mbox{d}u / \mbox{d}x_i $.
 
 
 
-Definition at line 451 of file gen\+\_\+advection\+\_\+diffusion\+\_\+elements.\+h.
+Definition at line \mbox{\hyperlink{gen__advection__diffusion__elements_8h_source_l00445}{445}} of file \mbox{\hyperlink{gen__advection__diffusion__elements_8h_source}{gen\+\_\+advection\+\_\+diffusion\+\_\+elements.\+h}}.
 
 
 
-References oomph\+::\+Oc\+Tree\+Names\+::D, oomph\+::\+Finite\+Element\+::dshape\+\_\+eulerian(), oomph\+::\+Generalised\+Advection\+Diffusion\+Equations$<$ D\+I\+M $>$\+::get\+\_\+conserved\+\_\+wind\+\_\+cons\+\_\+adv\+\_\+diff(), oomph\+::\+Generalised\+Advection\+Diffusion\+Equations$<$ D\+I\+M $>$\+::get\+\_\+diff\+\_\+cons\+\_\+adv\+\_\+diff(), i, interpolated\+\_\+u(), oomph\+::\+Finite\+Element\+::interpolated\+\_\+x(), oomph\+::\+Finite\+Element\+::nnode(), oomph\+::\+Finite\+Element\+::nodal\+\_\+position(), oomph\+::\+Finite\+Element\+::nodal\+\_\+value(), s, and oomph\+::\+Generalised\+Advection\+Diffusion\+Equations$<$ D\+I\+M $>$\+::u\+\_\+index\+\_\+cons\+\_\+adv\+\_\+diff().
+References \mbox{\hyperlink{octree_8h_source_l00071}{oomph\+::\+Oc\+Tree\+Names\+::D}}, \mbox{\hyperlink{elements_8cc_source_l03302}{oomph\+::\+Finite\+Element\+::dshape\+\_\+eulerian()}}, \mbox{\hyperlink{gen__advection__diffusion__elements_8h_source_l00352}{oomph\+::\+Generalised\+Advection\+Diffusion\+Equations$<$ DIM $>$\+::get\+\_\+conserved\+\_\+wind\+\_\+cons\+\_\+adv\+\_\+diff()}}, \mbox{\hyperlink{gen__advection__diffusion__elements_8h_source_l00380}{oomph\+::\+Generalised\+Advection\+Diffusion\+Equations$<$ DIM $>$\+::get\+\_\+diff\+\_\+cons\+\_\+adv\+\_\+diff()}}, \mbox{\hyperlink{cfortran_8h_source_l00603}{i}}, \mbox{\hyperlink{elements_8cc_source_l03966}{oomph\+::\+Finite\+Element\+::interpolated\+\_\+x()}}, \mbox{\hyperlink{elements_8h_source_l02215}{oomph\+::\+Finite\+Element\+::nnode()}}, \mbox{\hyperlink{elements_8h_source_l02322}{oomph\+::\+Finite\+Element\+::nodal\+\_\+position()}}, \mbox{\hyperlink{elements_8h_source_l02598}{oomph\+::\+Finite\+Element\+::nodal\+\_\+value()}}, \mbox{\hyperlink{cfortran_8h_source_l00568}{s}}, and \mbox{\hyperlink{gen__advection__diffusion__elements_8h_source_l00102}{oomph\+::\+Generalised\+Advection\+Diffusion\+Equations$<$ DIM $>$\+::u\+\_\+index\+\_\+cons\+\_\+adv\+\_\+diff()}}.
 
 \mbox{\Hypertarget{classoomph_1_1GeneralisedAdvectionDiffusionEquations_a1be1bf36e263379cf99eb1ee703d4337}\label{classoomph_1_1GeneralisedAdvectionDiffusionEquations_a1be1bf36e263379cf99eb1ee703d4337}} 
 \index{oomph::GeneralisedAdvectionDiffusionEquations$<$ DIM $>$@{oomph::GeneralisedAdvectionDiffusionEquations$<$ DIM $>$}!get\_wind\_cons\_adv\_diff@{get\_wind\_cons\_adv\_diff}}
 \index{get\_wind\_cons\_adv\_diff@{get\_wind\_cons\_adv\_diff}!oomph::GeneralisedAdvectionDiffusionEquations$<$ DIM $>$@{oomph::GeneralisedAdvectionDiffusionEquations$<$ DIM $>$}}
 \doxysubsubsection{\texorpdfstring{get\_wind\_cons\_adv\_diff()}{get\_wind\_cons\_adv\_diff()}}
-{\footnotesize\ttfamily template$<$unsigned D\+IM$>$ \\
-virtual void \mbox{\hyperlink{classoomph_1_1GeneralisedAdvectionDiffusionEquations}{oomph\+::\+Generalised\+Advection\+Diffusion\+Equations}}$<$ D\+IM $>$\+::get\+\_\+wind\+\_\+cons\+\_\+adv\+\_\+diff (\begin{DoxyParamCaption}\item[{const unsigned \&}]{ipt,  }\item[{const \mbox{\hyperlink{classoomph_1_1Vector}{Vector}}$<$ double $>$ \&}]{s,  }\item[{const \mbox{\hyperlink{classoomph_1_1Vector}{Vector}}$<$ double $>$ \&}]{x,  }\item[{\mbox{\hyperlink{classoomph_1_1Vector}{Vector}}$<$ double $>$ \&}]{wind }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [virtual]}}
+{\footnotesize\ttfamily template$<$unsigned DIM$>$ \\
+virtual void \mbox{\hyperlink{classoomph_1_1GeneralisedAdvectionDiffusionEquations}{oomph\+::\+Generalised\+Advection\+Diffusion\+Equations}}$<$ DIM $>$\+::get\+\_\+wind\+\_\+cons\+\_\+adv\+\_\+diff (\begin{DoxyParamCaption}\item[{const unsigned \&}]{ipt,  }\item[{const \mbox{\hyperlink{classoomph_1_1Vector}{Vector}}$<$ double $>$ \&}]{s,  }\item[{const \mbox{\hyperlink{classoomph_1_1Vector}{Vector}}$<$ double $>$ \&}]{x,  }\item[{\mbox{\hyperlink{classoomph_1_1Vector}{Vector}}$<$ double $>$ \&}]{wind }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [virtual]}}
 
 
 
@@ -680,18 +671,18 @@ Get wind at (Eulerian) position x and/or local coordinate s. This function is vi
 
 
 
-Definition at line 331 of file gen\+\_\+advection\+\_\+diffusion\+\_\+elements.\+h.
+Definition at line \mbox{\hyperlink{gen__advection__diffusion__elements_8h_source_l00325}{325}} of file \mbox{\hyperlink{gen__advection__diffusion__elements_8h_source}{gen\+\_\+advection\+\_\+diffusion\+\_\+elements.\+h}}.
 
 
 
-References i, and oomph\+::\+Generalised\+Advection\+Diffusion\+Equations$<$ D\+I\+M $>$\+::\+Wind\+\_\+fct\+\_\+pt.
+References \mbox{\hyperlink{cfortran_8h_source_l00603}{i}}, and \mbox{\hyperlink{gen__advection__diffusion__elements_8h_source_l00612}{oomph\+::\+Generalised\+Advection\+Diffusion\+Equations$<$ DIM $>$\+::\+Wind\+\_\+fct\+\_\+pt}}.
 
 \mbox{\Hypertarget{classoomph_1_1GeneralisedAdvectionDiffusionEquations_ad4651d1bd8d4da68f5d3d5acb45f659b}\label{classoomph_1_1GeneralisedAdvectionDiffusionEquations_ad4651d1bd8d4da68f5d3d5acb45f659b}} 
 \index{oomph::GeneralisedAdvectionDiffusionEquations$<$ DIM $>$@{oomph::GeneralisedAdvectionDiffusionEquations$<$ DIM $>$}!integrate\_u@{integrate\_u}}
 \index{integrate\_u@{integrate\_u}!oomph::GeneralisedAdvectionDiffusionEquations$<$ DIM $>$@{oomph::GeneralisedAdvectionDiffusionEquations$<$ DIM $>$}}
 \doxysubsubsection{\texorpdfstring{integrate\_u()}{integrate\_u()}}
-{\footnotesize\ttfamily template$<$unsigned D\+IM$>$ \\
-double \mbox{\hyperlink{classoomph_1_1GeneralisedAdvectionDiffusionEquations}{oomph\+::\+Generalised\+Advection\+Diffusion\+Equations}}$<$ D\+IM $>$\+::integrate\+\_\+u}
+{\footnotesize\ttfamily template$<$unsigned DIM$>$ \\
+double \mbox{\hyperlink{classoomph_1_1GeneralisedAdvectionDiffusionEquations}{oomph\+::\+Generalised\+Advection\+Diffusion\+Equations}}$<$ DIM $>$\+::integrate\+\_\+u}
 
 
 
@@ -699,18 +690,18 @@ Integrate the concentration over the element.
 
 Calculate the integrated value of the unknown over the element. 
 
-Definition at line 524 of file gen\+\_\+advection\+\_\+diffusion\+\_\+elements.\+cc.
+Definition at line \mbox{\hyperlink{gen__advection__diffusion__elements_8cc_source_l00524}{524}} of file \mbox{\hyperlink{gen__advection__diffusion__elements_8cc_source}{gen\+\_\+advection\+\_\+diffusion\+\_\+elements.\+cc}}.
 
 
 
-References interpolated\+\_\+u(), and s.
+References \mbox{\hyperlink{cfortran_8h_source_l00568}{s}}.
 
 \mbox{\Hypertarget{classoomph_1_1GeneralisedAdvectionDiffusionEquations_af71ceecd19ee6ea4e8978b9441fb1d42}\label{classoomph_1_1GeneralisedAdvectionDiffusionEquations_af71ceecd19ee6ea4e8978b9441fb1d42}} 
 \index{oomph::GeneralisedAdvectionDiffusionEquations$<$ DIM $>$@{oomph::GeneralisedAdvectionDiffusionEquations$<$ DIM $>$}!interpolated\_u\_cons\_adv\_diff@{interpolated\_u\_cons\_adv\_diff}}
 \index{interpolated\_u\_cons\_adv\_diff@{interpolated\_u\_cons\_adv\_diff}!oomph::GeneralisedAdvectionDiffusionEquations$<$ DIM $>$@{oomph::GeneralisedAdvectionDiffusionEquations$<$ DIM $>$}}
 \doxysubsubsection{\texorpdfstring{interpolated\_u\_cons\_adv\_diff()}{interpolated\_u\_cons\_adv\_diff()}}
-{\footnotesize\ttfamily template$<$unsigned D\+IM$>$ \\
-double \mbox{\hyperlink{classoomph_1_1GeneralisedAdvectionDiffusionEquations}{oomph\+::\+Generalised\+Advection\+Diffusion\+Equations}}$<$ D\+IM $>$\+::interpolated\+\_\+u\+\_\+cons\+\_\+adv\+\_\+diff (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{classoomph_1_1Vector}{Vector}}$<$ double $>$ \&}]{s }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+{\footnotesize\ttfamily template$<$unsigned DIM$>$ \\
+double \mbox{\hyperlink{classoomph_1_1GeneralisedAdvectionDiffusionEquations}{oomph\+::\+Generalised\+Advection\+Diffusion\+Equations}}$<$ DIM $>$\+::interpolated\+\_\+u\+\_\+cons\+\_\+adv\+\_\+diff (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{classoomph_1_1Vector}{Vector}}$<$ double $>$ \&}]{s }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
 
 
 
@@ -718,37 +709,29 @@ Return FE representation of function value u(s) at local coordinate s.
 
 
 
-Definition at line 551 of file gen\+\_\+advection\+\_\+diffusion\+\_\+elements.\+h.
+Definition at line \mbox{\hyperlink{gen__advection__diffusion__elements_8h_source_l00545}{545}} of file \mbox{\hyperlink{gen__advection__diffusion__elements_8h_source}{gen\+\_\+advection\+\_\+diffusion\+\_\+elements.\+h}}.
 
 
 
-References interpolated\+\_\+u(), oomph\+::\+Finite\+Element\+::nnode(), oomph\+::\+Finite\+Element\+::nodal\+\_\+value(), s, oomph\+::\+Finite\+Element\+::shape(), and oomph\+::\+Generalised\+Advection\+Diffusion\+Equations$<$ D\+I\+M $>$\+::u\+\_\+index\+\_\+cons\+\_\+adv\+\_\+diff().
+References \mbox{\hyperlink{elements_8h_source_l02215}{oomph\+::\+Finite\+Element\+::nnode()}}, \mbox{\hyperlink{elements_8h_source_l02598}{oomph\+::\+Finite\+Element\+::nodal\+\_\+value()}}, \mbox{\hyperlink{cfortran_8h_source_l00568}{s}}, \mbox{\hyperlink{classoomph_1_1FiniteElement_a58a25b6859ddd43b7bfe64a19fee5023}{oomph\+::\+Finite\+Element\+::shape()}}, and \mbox{\hyperlink{gen__advection__diffusion__elements_8h_source_l00102}{oomph\+::\+Generalised\+Advection\+Diffusion\+Equations$<$ DIM $>$\+::u\+\_\+index\+\_\+cons\+\_\+adv\+\_\+diff()}}.
 
-\mbox{\Hypertarget{classoomph_1_1GeneralisedAdvectionDiffusionEquations_aaaf6bd002cd50464a9e6087f8f58e65d}\label{classoomph_1_1GeneralisedAdvectionDiffusionEquations_aaaf6bd002cd50464a9e6087f8f58e65d}} 
+\mbox{\Hypertarget{classoomph_1_1GeneralisedAdvectionDiffusionEquations_ab93a1c0be0625257fbd6520322d51913}\label{classoomph_1_1GeneralisedAdvectionDiffusionEquations_ab93a1c0be0625257fbd6520322d51913}} 
 \index{oomph::GeneralisedAdvectionDiffusionEquations$<$ DIM $>$@{oomph::GeneralisedAdvectionDiffusionEquations$<$ DIM $>$}!operator=@{operator=}}
 \index{operator=@{operator=}!oomph::GeneralisedAdvectionDiffusionEquations$<$ DIM $>$@{oomph::GeneralisedAdvectionDiffusionEquations$<$ DIM $>$}}
 \doxysubsubsection{\texorpdfstring{operator=()}{operator=()}}
-{\footnotesize\ttfamily template$<$unsigned D\+IM$>$ \\
-void \mbox{\hyperlink{classoomph_1_1GeneralisedAdvectionDiffusionEquations}{oomph\+::\+Generalised\+Advection\+Diffusion\+Equations}}$<$ D\+IM $>$\+::operator= (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{classoomph_1_1GeneralisedAdvectionDiffusionEquations}{Generalised\+Advection\+Diffusion\+Equations}}$<$ D\+IM $>$ \&}]{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+{\footnotesize\ttfamily template$<$unsigned DIM$>$ \\
+void \mbox{\hyperlink{classoomph_1_1GeneralisedAdvectionDiffusionEquations}{oomph\+::\+Generalised\+Advection\+Diffusion\+Equations}}$<$ DIM $>$\+::operator= (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{classoomph_1_1GeneralisedAdvectionDiffusionEquations}{Generalised\+Advection\+Diffusion\+Equations}}$<$ DIM $>$ \&}]{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [delete]}}
 
 
 
 Broken assignment operator. 
 
-
-
-Definition at line 96 of file gen\+\_\+advection\+\_\+diffusion\+\_\+elements.\+h.
-
-
-
-References oomph\+::\+Broken\+Copy\+::broken\+\_\+assign().
-
 \mbox{\Hypertarget{classoomph_1_1GeneralisedAdvectionDiffusionEquations_a299369dd1b578aa3634623c636440dde}\label{classoomph_1_1GeneralisedAdvectionDiffusionEquations_a299369dd1b578aa3634623c636440dde}} 
 \index{oomph::GeneralisedAdvectionDiffusionEquations$<$ DIM $>$@{oomph::GeneralisedAdvectionDiffusionEquations$<$ DIM $>$}!output@{output}}
 \index{output@{output}!oomph::GeneralisedAdvectionDiffusionEquations$<$ DIM $>$@{oomph::GeneralisedAdvectionDiffusionEquations$<$ DIM $>$}}
 \doxysubsubsection{\texorpdfstring{output()}{output()}\hspace{0.1cm}{\footnotesize\ttfamily [1/4]}}
-{\footnotesize\ttfamily template$<$unsigned D\+IM$>$ \\
-void \mbox{\hyperlink{classoomph_1_1GeneralisedAdvectionDiffusionEquations}{oomph\+::\+Generalised\+Advection\+Diffusion\+Equations}}$<$ D\+IM $>$\+::output (\begin{DoxyParamCaption}\item[{F\+I\+LE $\ast$}]{file\+\_\+pt }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [virtual]}}
+{\footnotesize\ttfamily template$<$unsigned DIM$>$ \\
+void \mbox{\hyperlink{classoomph_1_1GeneralisedAdvectionDiffusionEquations}{oomph\+::\+Generalised\+Advection\+Diffusion\+Equations}}$<$ DIM $>$\+::output (\begin{DoxyParamCaption}\item[{FILE $\ast$}]{file\+\_\+pt }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [virtual]}}
 
 
 
@@ -760,26 +743,26 @@ Reimplemented from \mbox{\hyperlink{classoomph_1_1FiniteElement_a72cddd09f8ddbee
 
 
 
-Reimplemented in \mbox{\hyperlink{classoomph_1_1QGeneralisedAdvectionDiffusionElement_a291f773ee4bab3e9323b64c27448e89d}{oomph\+::\+Q\+Generalised\+Advection\+Diffusion\+Element$<$ D\+I\+M, N\+N\+O\+D\+E\+\_\+1\+D $>$}}.
+Reimplemented in \mbox{\hyperlink{classoomph_1_1QGeneralisedAdvectionDiffusionElement_a291f773ee4bab3e9323b64c27448e89d}{oomph\+::\+QGeneralised\+Advection\+Diffusion\+Element$<$ DIM, NNODE\+\_\+1\+D $>$}}.
 
 
 
-Definition at line 171 of file gen\+\_\+advection\+\_\+diffusion\+\_\+elements.\+h.
+Definition at line \mbox{\hyperlink{gen__advection__diffusion__elements_8h_source_l00165}{165}} of file \mbox{\hyperlink{gen__advection__diffusion__elements_8h_source}{gen\+\_\+advection\+\_\+diffusion\+\_\+elements.\+h}}.
 
 
 
-References oomph\+::\+Generalised\+Advection\+Diffusion\+Equations$<$ D\+I\+M $>$\+::output().
+References \mbox{\hyperlink{gen__advection__diffusion__elements_8h_source_l00153}{oomph\+::\+Generalised\+Advection\+Diffusion\+Equations$<$ DIM $>$\+::output()}}.
 
 \mbox{\Hypertarget{classoomph_1_1GeneralisedAdvectionDiffusionEquations_afcc8b4ee77728a11e26f8cd512874832}\label{classoomph_1_1GeneralisedAdvectionDiffusionEquations_afcc8b4ee77728a11e26f8cd512874832}} 
 \index{oomph::GeneralisedAdvectionDiffusionEquations$<$ DIM $>$@{oomph::GeneralisedAdvectionDiffusionEquations$<$ DIM $>$}!output@{output}}
 \index{output@{output}!oomph::GeneralisedAdvectionDiffusionEquations$<$ DIM $>$@{oomph::GeneralisedAdvectionDiffusionEquations$<$ DIM $>$}}
 \doxysubsubsection{\texorpdfstring{output()}{output()}\hspace{0.1cm}{\footnotesize\ttfamily [2/4]}}
-{\footnotesize\ttfamily template$<$unsigned D\+IM$>$ \\
-void \mbox{\hyperlink{classoomph_1_1GeneralisedAdvectionDiffusionEquations}{oomph\+::\+Generalised\+Advection\+Diffusion\+Equations}}$<$ D\+IM $>$\+::output (\begin{DoxyParamCaption}\item[{F\+I\+LE $\ast$}]{file\+\_\+pt,  }\item[{const unsigned \&}]{nplot }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [virtual]}}
+{\footnotesize\ttfamily template$<$unsigned DIM$>$ \\
+void \mbox{\hyperlink{classoomph_1_1GeneralisedAdvectionDiffusionEquations}{oomph\+::\+Generalised\+Advection\+Diffusion\+Equations}}$<$ DIM $>$\+::output (\begin{DoxyParamCaption}\item[{FILE $\ast$}]{file\+\_\+pt,  }\item[{const unsigned \&}]{nplot }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [virtual]}}
 
 
 
-C-\/style output FE representation of soln\+: x,y,u or x,y,z,u at n\+\_\+plot$^\wedge$\+D\+IM plot points. 
+C-\/style output FE representation of soln\+: x,y,u or x,y,z,u at n\+\_\+plot$^\wedge$\+DIM plot points. 
 
 C-\/style output function\+:
 
@@ -791,22 +774,22 @@ Reimplemented from \mbox{\hyperlink{classoomph_1_1FiniteElement_adfaee690bb0608f
 
 
 
-Reimplemented in \mbox{\hyperlink{classoomph_1_1QGeneralisedAdvectionDiffusionElement_a40f61af18b55e3570fec3ea7e11c7127}{oomph\+::\+Q\+Generalised\+Advection\+Diffusion\+Element$<$ D\+I\+M, N\+N\+O\+D\+E\+\_\+1\+D $>$}}.
+Reimplemented in \mbox{\hyperlink{classoomph_1_1QGeneralisedAdvectionDiffusionElement_a40f61af18b55e3570fec3ea7e11c7127}{oomph\+::\+QGeneralised\+Advection\+Diffusion\+Element$<$ DIM, NNODE\+\_\+1\+D $>$}}.
 
 
 
-Definition at line 361 of file gen\+\_\+advection\+\_\+diffusion\+\_\+elements.\+cc.
+Definition at line \mbox{\hyperlink{gen__advection__diffusion__elements_8cc_source_l00361}{361}} of file \mbox{\hyperlink{gen__advection__diffusion__elements_8cc_source}{gen\+\_\+advection\+\_\+diffusion\+\_\+elements.\+cc}}.
 
 
 
-References i, and s.
+References \mbox{\hyperlink{cfortran_8h_source_l00603}{i}}, and \mbox{\hyperlink{cfortran_8h_source_l00568}{s}}.
 
 \mbox{\Hypertarget{classoomph_1_1GeneralisedAdvectionDiffusionEquations_a6a225f0d19451429969ba92705bce96e}\label{classoomph_1_1GeneralisedAdvectionDiffusionEquations_a6a225f0d19451429969ba92705bce96e}} 
 \index{oomph::GeneralisedAdvectionDiffusionEquations$<$ DIM $>$@{oomph::GeneralisedAdvectionDiffusionEquations$<$ DIM $>$}!output@{output}}
 \index{output@{output}!oomph::GeneralisedAdvectionDiffusionEquations$<$ DIM $>$@{oomph::GeneralisedAdvectionDiffusionEquations$<$ DIM $>$}}
 \doxysubsubsection{\texorpdfstring{output()}{output()}\hspace{0.1cm}{\footnotesize\ttfamily [3/4]}}
-{\footnotesize\ttfamily template$<$unsigned D\+IM$>$ \\
-void \mbox{\hyperlink{classoomph_1_1GeneralisedAdvectionDiffusionEquations}{oomph\+::\+Generalised\+Advection\+Diffusion\+Equations}}$<$ D\+IM $>$\+::output (\begin{DoxyParamCaption}\item[{std\+::ostream \&}]{outfile }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [virtual]}}
+{\footnotesize\ttfamily template$<$unsigned DIM$>$ \\
+void \mbox{\hyperlink{classoomph_1_1GeneralisedAdvectionDiffusionEquations}{oomph\+::\+Generalised\+Advection\+Diffusion\+Equations}}$<$ DIM $>$\+::output (\begin{DoxyParamCaption}\item[{std\+::ostream \&}]{outfile }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [virtual]}}
 
 
 
@@ -818,26 +801,30 @@ Reimplemented from \mbox{\hyperlink{classoomph_1_1FiniteElement_a2ad98a3d2ef4999
 
 
 
-Reimplemented in \mbox{\hyperlink{classoomph_1_1QGeneralisedAdvectionDiffusionElement_adcbd395387f1665caeede9ee8020a8cc}{oomph\+::\+Q\+Generalised\+Advection\+Diffusion\+Element$<$ D\+I\+M, N\+N\+O\+D\+E\+\_\+1\+D $>$}}.
+Reimplemented in \mbox{\hyperlink{classoomph_1_1QGeneralisedAdvectionDiffusionElement_adcbd395387f1665caeede9ee8020a8cc}{oomph\+::\+QGeneralised\+Advection\+Diffusion\+Element$<$ DIM, NNODE\+\_\+1\+D $>$}}.
 
 
 
-Definition at line 159 of file gen\+\_\+advection\+\_\+diffusion\+\_\+elements.\+h.
+Definition at line \mbox{\hyperlink{gen__advection__diffusion__elements_8h_source_l00153}{153}} of file \mbox{\hyperlink{gen__advection__diffusion__elements_8h_source}{gen\+\_\+advection\+\_\+diffusion\+\_\+elements.\+h}}.
 
 
 
-Referenced by oomph\+::\+Generalised\+Advection\+Diffusion\+Equations$<$ D\+I\+M $>$\+::output(), and oomph\+::\+Q\+Generalised\+Advection\+Diffusion\+Element$<$ D\+I\+M, N\+N\+O\+D\+E\+\_\+1\+D $>$\+::output().
+References \mbox{\hyperlink{gen__advection__diffusion__elements_8h_source_l00153}{oomph\+::\+Generalised\+Advection\+Diffusion\+Equations$<$ DIM $>$\+::output()}}.
+
+
+
+Referenced by \mbox{\hyperlink{gen__advection__diffusion__elements_8h_source_l00153}{oomph\+::\+Generalised\+Advection\+Diffusion\+Equations$<$ DIM $>$\+::output()}}, and \mbox{\hyperlink{gen__advection__diffusion__elements_8h_source_l00677}{oomph\+::\+QGeneralised\+Advection\+Diffusion\+Element$<$ DIM, NNODE\+\_\+1\+D $>$\+::output()}}.
 
 \mbox{\Hypertarget{classoomph_1_1GeneralisedAdvectionDiffusionEquations_a44995055f98a97ce229609832a03867e}\label{classoomph_1_1GeneralisedAdvectionDiffusionEquations_a44995055f98a97ce229609832a03867e}} 
 \index{oomph::GeneralisedAdvectionDiffusionEquations$<$ DIM $>$@{oomph::GeneralisedAdvectionDiffusionEquations$<$ DIM $>$}!output@{output}}
 \index{output@{output}!oomph::GeneralisedAdvectionDiffusionEquations$<$ DIM $>$@{oomph::GeneralisedAdvectionDiffusionEquations$<$ DIM $>$}}
 \doxysubsubsection{\texorpdfstring{output()}{output()}\hspace{0.1cm}{\footnotesize\ttfamily [4/4]}}
-{\footnotesize\ttfamily template$<$unsigned D\+IM$>$ \\
-void \mbox{\hyperlink{classoomph_1_1GeneralisedAdvectionDiffusionEquations}{oomph\+::\+Generalised\+Advection\+Diffusion\+Equations}}$<$ D\+IM $>$\+::output (\begin{DoxyParamCaption}\item[{std\+::ostream \&}]{outfile,  }\item[{const unsigned \&}]{nplot }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [virtual]}}
+{\footnotesize\ttfamily template$<$unsigned DIM$>$ \\
+void \mbox{\hyperlink{classoomph_1_1GeneralisedAdvectionDiffusionEquations}{oomph\+::\+Generalised\+Advection\+Diffusion\+Equations}}$<$ DIM $>$\+::output (\begin{DoxyParamCaption}\item[{std\+::ostream \&}]{outfile,  }\item[{const unsigned \&}]{nplot }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [virtual]}}
 
 
 
-Output FE representation of soln\+: x,y,u or x,y,z,u at nplot$^\wedge$\+D\+IM plot points. 
+Output FE representation of soln\+: x,y,u or x,y,z,u at nplot$^\wedge$\+DIM plot points. 
 
 Output function\+:
 
@@ -849,26 +836,26 @@ Reimplemented from \mbox{\hyperlink{classoomph_1_1FiniteElement_afa9d9b2670f999b
 
 
 
-Reimplemented in \mbox{\hyperlink{classoomph_1_1QGeneralisedAdvectionDiffusionElement_ae9327403058a327074ab0de659dc4609}{oomph\+::\+Q\+Generalised\+Advection\+Diffusion\+Element$<$ D\+I\+M, N\+N\+O\+D\+E\+\_\+1\+D $>$}}.
+Reimplemented in \mbox{\hyperlink{classoomph_1_1QGeneralisedAdvectionDiffusionElement_ae9327403058a327074ab0de659dc4609}{oomph\+::\+QGeneralised\+Advection\+Diffusion\+Element$<$ DIM, NNODE\+\_\+1\+D $>$}}.
 
 
 
-Definition at line 288 of file gen\+\_\+advection\+\_\+diffusion\+\_\+elements.\+cc.
+Definition at line \mbox{\hyperlink{gen__advection__diffusion__elements_8cc_source_l00288}{288}} of file \mbox{\hyperlink{gen__advection__diffusion__elements_8cc_source}{gen\+\_\+advection\+\_\+diffusion\+\_\+elements.\+cc}}.
 
 
 
-References i, n, and s.
+References \mbox{\hyperlink{cfortran_8h_source_l00603}{i}}, and \mbox{\hyperlink{cfortran_8h_source_l00568}{s}}.
 
 \mbox{\Hypertarget{classoomph_1_1GeneralisedAdvectionDiffusionEquations_a41914c83c67c4de8d2d504c918e04872}\label{classoomph_1_1GeneralisedAdvectionDiffusionEquations_a41914c83c67c4de8d2d504c918e04872}} 
 \index{oomph::GeneralisedAdvectionDiffusionEquations$<$ DIM $>$@{oomph::GeneralisedAdvectionDiffusionEquations$<$ DIM $>$}!output\_fct@{output\_fct}}
 \index{output\_fct@{output\_fct}!oomph::GeneralisedAdvectionDiffusionEquations$<$ DIM $>$@{oomph::GeneralisedAdvectionDiffusionEquations$<$ DIM $>$}}
 \doxysubsubsection{\texorpdfstring{output\_fct()}{output\_fct()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
-{\footnotesize\ttfamily template$<$unsigned D\+IM$>$ \\
-virtual void \mbox{\hyperlink{classoomph_1_1GeneralisedAdvectionDiffusionEquations}{oomph\+::\+Generalised\+Advection\+Diffusion\+Equations}}$<$ D\+IM $>$\+::output\+\_\+fct (\begin{DoxyParamCaption}\item[{std\+::ostream \&}]{outfile,  }\item[{const unsigned \&}]{nplot,  }\item[{const double \&}]{time,  }\item[{\mbox{\hyperlink{classoomph_1_1FiniteElement_ad4ecf2b61b158a4b4d351a60d23c633e}{Finite\+Element\+::\+Unsteady\+Exact\+Solution\+Fct\+Pt}}}]{exact\+\_\+soln\+\_\+pt }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [virtual]}}
+{\footnotesize\ttfamily template$<$unsigned DIM$>$ \\
+virtual void \mbox{\hyperlink{classoomph_1_1GeneralisedAdvectionDiffusionEquations}{oomph\+::\+Generalised\+Advection\+Diffusion\+Equations}}$<$ DIM $>$\+::output\+\_\+fct (\begin{DoxyParamCaption}\item[{std\+::ostream \&}]{outfile,  }\item[{const unsigned \&}]{nplot,  }\item[{const double \&}]{time,  }\item[{\mbox{\hyperlink{classoomph_1_1FiniteElement_ad4ecf2b61b158a4b4d351a60d23c633e}{Finite\+Element\+::\+Unsteady\+Exact\+Solution\+Fct\+Pt}}}]{exact\+\_\+soln\+\_\+pt }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [virtual]}}
 
 
 
-Output exact soln\+: x,y,u\+\_\+exact or x,y,z,u\+\_\+exact at nplot$^\wedge$\+D\+IM plot points (dummy time-\/dependent version to keep intel compiler happy) 
+Output exact soln\+: x,y,u\+\_\+exact or x,y,z,u\+\_\+exact at nplot$^\wedge$\+DIM plot points (dummy time-\/dependent version to keep intel compiler happy) 
 
 
 
@@ -876,22 +863,22 @@ Reimplemented from \mbox{\hyperlink{classoomph_1_1FiniteElement_a2a8426dccd57b92
 
 
 
-Reimplemented in \mbox{\hyperlink{classoomph_1_1QGeneralisedAdvectionDiffusionElement_ab8bec1be15a037df4628282d01ca57a7}{oomph\+::\+Q\+Generalised\+Advection\+Diffusion\+Element$<$ D\+I\+M, N\+N\+O\+D\+E\+\_\+1\+D $>$}}.
+Reimplemented in \mbox{\hyperlink{classoomph_1_1QGeneralisedAdvectionDiffusionElement_ab8bec1be15a037df4628282d01ca57a7}{oomph\+::\+QGeneralised\+Advection\+Diffusion\+Element$<$ DIM, NNODE\+\_\+1\+D $>$}}.
 
 
 
-Definition at line 190 of file gen\+\_\+advection\+\_\+diffusion\+\_\+elements.\+h.
+Definition at line \mbox{\hyperlink{gen__advection__diffusion__elements_8h_source_l00184}{184}} of file \mbox{\hyperlink{gen__advection__diffusion__elements_8h_source}{gen\+\_\+advection\+\_\+diffusion\+\_\+elements.\+h}}.
 
 \mbox{\Hypertarget{classoomph_1_1GeneralisedAdvectionDiffusionEquations_ac7bae95f78ecec53436902a7da1f6a92}\label{classoomph_1_1GeneralisedAdvectionDiffusionEquations_ac7bae95f78ecec53436902a7da1f6a92}} 
 \index{oomph::GeneralisedAdvectionDiffusionEquations$<$ DIM $>$@{oomph::GeneralisedAdvectionDiffusionEquations$<$ DIM $>$}!output\_fct@{output\_fct}}
 \index{output\_fct@{output\_fct}!oomph::GeneralisedAdvectionDiffusionEquations$<$ DIM $>$@{oomph::GeneralisedAdvectionDiffusionEquations$<$ DIM $>$}}
 \doxysubsubsection{\texorpdfstring{output\_fct()}{output\_fct()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
-{\footnotesize\ttfamily template$<$unsigned D\+IM$>$ \\
-void \mbox{\hyperlink{classoomph_1_1GeneralisedAdvectionDiffusionEquations}{oomph\+::\+Generalised\+Advection\+Diffusion\+Equations}}$<$ D\+IM $>$\+::output\+\_\+fct (\begin{DoxyParamCaption}\item[{std\+::ostream \&}]{outfile,  }\item[{const unsigned \&}]{nplot,  }\item[{\mbox{\hyperlink{classoomph_1_1FiniteElement_a690fd33af26cc3e84f39bba6d5a85202}{Finite\+Element\+::\+Steady\+Exact\+Solution\+Fct\+Pt}}}]{exact\+\_\+soln\+\_\+pt }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [virtual]}}
+{\footnotesize\ttfamily template$<$unsigned DIM$>$ \\
+void \mbox{\hyperlink{classoomph_1_1GeneralisedAdvectionDiffusionEquations}{oomph\+::\+Generalised\+Advection\+Diffusion\+Equations}}$<$ DIM $>$\+::output\+\_\+fct (\begin{DoxyParamCaption}\item[{std\+::ostream \&}]{outfile,  }\item[{const unsigned \&}]{nplot,  }\item[{\mbox{\hyperlink{classoomph_1_1FiniteElement_a690fd33af26cc3e84f39bba6d5a85202}{Finite\+Element\+::\+Steady\+Exact\+Solution\+Fct\+Pt}}}]{exact\+\_\+soln\+\_\+pt }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [virtual]}}
 
 
 
-Output exact soln\+: x,y,u\+\_\+exact or x,y,z,u\+\_\+exact at nplot$^\wedge$\+D\+IM plot points. 
+Output exact soln\+: x,y,u\+\_\+exact or x,y,z,u\+\_\+exact at nplot$^\wedge$\+DIM plot points. 
 
 Output exact solution.
 
@@ -903,26 +890,26 @@ Reimplemented from \mbox{\hyperlink{classoomph_1_1FiniteElement_a22b695c714f60ee
 
 
 
-Reimplemented in \mbox{\hyperlink{classoomph_1_1QGeneralisedAdvectionDiffusionElement_ad45f14c0a13af6ac3cefd0a065bcec7c}{oomph\+::\+Q\+Generalised\+Advection\+Diffusion\+Element$<$ D\+I\+M, N\+N\+O\+D\+E\+\_\+1\+D $>$}}.
+Reimplemented in \mbox{\hyperlink{classoomph_1_1QGeneralisedAdvectionDiffusionElement_ad45f14c0a13af6ac3cefd0a065bcec7c}{oomph\+::\+QGeneralised\+Advection\+Diffusion\+Element$<$ DIM, NNODE\+\_\+1\+D $>$}}.
 
 
 
-Definition at line 398 of file gen\+\_\+advection\+\_\+diffusion\+\_\+elements.\+cc.
+Definition at line \mbox{\hyperlink{gen__advection__diffusion__elements_8cc_source_l00398}{398}} of file \mbox{\hyperlink{gen__advection__diffusion__elements_8cc_source}{gen\+\_\+advection\+\_\+diffusion\+\_\+elements.\+cc}}.
 
 
 
-References i, and s.
+References \mbox{\hyperlink{cfortran_8h_source_l00603}{i}}, and \mbox{\hyperlink{cfortran_8h_source_l00568}{s}}.
 
 
 
-Referenced by oomph\+::\+Q\+Generalised\+Advection\+Diffusion\+Element$<$ D\+I\+M, N\+N\+O\+D\+E\+\_\+1\+D $>$\+::output\+\_\+fct().
+Referenced by \mbox{\hyperlink{gen__advection__diffusion__elements_8h_source_l00706}{oomph\+::\+QGeneralised\+Advection\+Diffusion\+Element$<$ DIM, NNODE\+\_\+1\+D $>$\+::output\+\_\+fct()}}.
 
-\mbox{\Hypertarget{classoomph_1_1GeneralisedAdvectionDiffusionEquations_a690a83d5a63684541aac450255eed7e1}\label{classoomph_1_1GeneralisedAdvectionDiffusionEquations_a690a83d5a63684541aac450255eed7e1}} 
+\mbox{\Hypertarget{classoomph_1_1GeneralisedAdvectionDiffusionEquations_ae53bc90b317c7cea5f7ff2e5558c7673}\label{classoomph_1_1GeneralisedAdvectionDiffusionEquations_ae53bc90b317c7cea5f7ff2e5558c7673}} 
 \index{oomph::GeneralisedAdvectionDiffusionEquations$<$ DIM $>$@{oomph::GeneralisedAdvectionDiffusionEquations$<$ DIM $>$}!pe@{pe}}
 \index{pe@{pe}!oomph::GeneralisedAdvectionDiffusionEquations$<$ DIM $>$@{oomph::GeneralisedAdvectionDiffusionEquations$<$ DIM $>$}}
 \doxysubsubsection{\texorpdfstring{pe()}{pe()}}
-{\footnotesize\ttfamily template$<$unsigned D\+IM$>$ \\
-const double\& \mbox{\hyperlink{classoomph_1_1GeneralisedAdvectionDiffusionEquations}{oomph\+::\+Generalised\+Advection\+Diffusion\+Equations}}$<$ D\+IM $>$\+::pe (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+{\footnotesize\ttfamily template$<$unsigned DIM$>$ \\
+const double \& \mbox{\hyperlink{classoomph_1_1GeneralisedAdvectionDiffusionEquations}{oomph\+::\+Generalised\+Advection\+Diffusion\+Equations}}$<$ DIM $>$\+::pe (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
 
 
 
@@ -930,18 +917,18 @@ Peclet number.
 
 
 
-Definition at line 283 of file gen\+\_\+advection\+\_\+diffusion\+\_\+elements.\+h.
+Definition at line \mbox{\hyperlink{gen__advection__diffusion__elements_8h_source_l00277}{277}} of file \mbox{\hyperlink{gen__advection__diffusion__elements_8h_source}{gen\+\_\+advection\+\_\+diffusion\+\_\+elements.\+h}}.
 
 
 
-References oomph\+::\+Generalised\+Advection\+Diffusion\+Equations$<$ D\+I\+M $>$\+::\+Pe\+\_\+pt.
+References \mbox{\hyperlink{gen__advection__diffusion__elements_8h_source_l00603}{oomph\+::\+Generalised\+Advection\+Diffusion\+Equations$<$ DIM $>$\+::\+Pe\+\_\+pt}}.
 
-\mbox{\Hypertarget{classoomph_1_1GeneralisedAdvectionDiffusionEquations_a076653c85aab1117cd2c0a922849ba28}\label{classoomph_1_1GeneralisedAdvectionDiffusionEquations_a076653c85aab1117cd2c0a922849ba28}} 
+\mbox{\Hypertarget{classoomph_1_1GeneralisedAdvectionDiffusionEquations_a5050c7a67b6c41a36148fb18307603d0}\label{classoomph_1_1GeneralisedAdvectionDiffusionEquations_a5050c7a67b6c41a36148fb18307603d0}} 
 \index{oomph::GeneralisedAdvectionDiffusionEquations$<$ DIM $>$@{oomph::GeneralisedAdvectionDiffusionEquations$<$ DIM $>$}!pe\_pt@{pe\_pt}}
 \index{pe\_pt@{pe\_pt}!oomph::GeneralisedAdvectionDiffusionEquations$<$ DIM $>$@{oomph::GeneralisedAdvectionDiffusionEquations$<$ DIM $>$}}
 \doxysubsubsection{\texorpdfstring{pe\_pt()}{pe\_pt()}}
-{\footnotesize\ttfamily template$<$unsigned D\+IM$>$ \\
-double$\ast$\& \mbox{\hyperlink{classoomph_1_1GeneralisedAdvectionDiffusionEquations}{oomph\+::\+Generalised\+Advection\+Diffusion\+Equations}}$<$ D\+IM $>$\+::pe\+\_\+pt (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+{\footnotesize\ttfamily template$<$unsigned DIM$>$ \\
+double $\ast$\& \mbox{\hyperlink{classoomph_1_1GeneralisedAdvectionDiffusionEquations}{oomph\+::\+Generalised\+Advection\+Diffusion\+Equations}}$<$ DIM $>$\+::pe\+\_\+pt (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
 
 
 
@@ -949,22 +936,22 @@ Pointer to Peclet number.
 
 
 
-Definition at line 289 of file gen\+\_\+advection\+\_\+diffusion\+\_\+elements.\+h.
+Definition at line \mbox{\hyperlink{gen__advection__diffusion__elements_8h_source_l00283}{283}} of file \mbox{\hyperlink{gen__advection__diffusion__elements_8h_source}{gen\+\_\+advection\+\_\+diffusion\+\_\+elements.\+h}}.
 
 
 
-References oomph\+::\+Generalised\+Advection\+Diffusion\+Equations$<$ D\+I\+M $>$\+::\+Pe\+\_\+pt.
+References \mbox{\hyperlink{gen__advection__diffusion__elements_8h_source_l00603}{oomph\+::\+Generalised\+Advection\+Diffusion\+Equations$<$ DIM $>$\+::\+Pe\+\_\+pt}}.
 
 
 
-Referenced by oomph\+::\+Refineable\+Generalised\+Advection\+Diffusion\+Equations$<$ D\+I\+M $>$\+::further\+\_\+build().
+Referenced by \mbox{\hyperlink{refineable__gen__advection__diffusion__elements_8h_source_l00159}{oomph\+::\+Refineable\+Generalised\+Advection\+Diffusion\+Equations$<$ DIM $>$\+::further\+\_\+build()}}.
 
-\mbox{\Hypertarget{classoomph_1_1GeneralisedAdvectionDiffusionEquations_a9ba19e458e9afa3774437709951aada9}\label{classoomph_1_1GeneralisedAdvectionDiffusionEquations_a9ba19e458e9afa3774437709951aada9}} 
+\mbox{\Hypertarget{classoomph_1_1GeneralisedAdvectionDiffusionEquations_aa945b40276085312a341288098e21faf}\label{classoomph_1_1GeneralisedAdvectionDiffusionEquations_aa945b40276085312a341288098e21faf}} 
 \index{oomph::GeneralisedAdvectionDiffusionEquations$<$ DIM $>$@{oomph::GeneralisedAdvectionDiffusionEquations$<$ DIM $>$}!pe\_st@{pe\_st}}
 \index{pe\_st@{pe\_st}!oomph::GeneralisedAdvectionDiffusionEquations$<$ DIM $>$@{oomph::GeneralisedAdvectionDiffusionEquations$<$ DIM $>$}}
 \doxysubsubsection{\texorpdfstring{pe\_st()}{pe\_st()}}
-{\footnotesize\ttfamily template$<$unsigned D\+IM$>$ \\
-const double\& \mbox{\hyperlink{classoomph_1_1GeneralisedAdvectionDiffusionEquations}{oomph\+::\+Generalised\+Advection\+Diffusion\+Equations}}$<$ D\+IM $>$\+::pe\+\_\+st (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+{\footnotesize\ttfamily template$<$unsigned DIM$>$ \\
+const double \& \mbox{\hyperlink{classoomph_1_1GeneralisedAdvectionDiffusionEquations}{oomph\+::\+Generalised\+Advection\+Diffusion\+Equations}}$<$ DIM $>$\+::pe\+\_\+st (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
 
 
 
@@ -972,18 +959,18 @@ Peclet number multiplied by Strouhal number.
 
 
 
-Definition at line 295 of file gen\+\_\+advection\+\_\+diffusion\+\_\+elements.\+h.
+Definition at line \mbox{\hyperlink{gen__advection__diffusion__elements_8h_source_l00289}{289}} of file \mbox{\hyperlink{gen__advection__diffusion__elements_8h_source}{gen\+\_\+advection\+\_\+diffusion\+\_\+elements.\+h}}.
 
 
 
-References oomph\+::\+Generalised\+Advection\+Diffusion\+Equations$<$ D\+I\+M $>$\+::\+Pe\+St\+\_\+pt.
+References \mbox{\hyperlink{gen__advection__diffusion__elements_8h_source_l00606}{oomph\+::\+Generalised\+Advection\+Diffusion\+Equations$<$ DIM $>$\+::\+Pe\+St\+\_\+pt}}.
 
-\mbox{\Hypertarget{classoomph_1_1GeneralisedAdvectionDiffusionEquations_a4aad48b9b07ec2a8cdaf8d2222ab099f}\label{classoomph_1_1GeneralisedAdvectionDiffusionEquations_a4aad48b9b07ec2a8cdaf8d2222ab099f}} 
+\mbox{\Hypertarget{classoomph_1_1GeneralisedAdvectionDiffusionEquations_acb1e23d0c2ec07409f2405cf878f66f0}\label{classoomph_1_1GeneralisedAdvectionDiffusionEquations_acb1e23d0c2ec07409f2405cf878f66f0}} 
 \index{oomph::GeneralisedAdvectionDiffusionEquations$<$ DIM $>$@{oomph::GeneralisedAdvectionDiffusionEquations$<$ DIM $>$}!pe\_st\_pt@{pe\_st\_pt}}
 \index{pe\_st\_pt@{pe\_st\_pt}!oomph::GeneralisedAdvectionDiffusionEquations$<$ DIM $>$@{oomph::GeneralisedAdvectionDiffusionEquations$<$ DIM $>$}}
 \doxysubsubsection{\texorpdfstring{pe\_st\_pt()}{pe\_st\_pt()}}
-{\footnotesize\ttfamily template$<$unsigned D\+IM$>$ \\
-double$\ast$\& \mbox{\hyperlink{classoomph_1_1GeneralisedAdvectionDiffusionEquations}{oomph\+::\+Generalised\+Advection\+Diffusion\+Equations}}$<$ D\+IM $>$\+::pe\+\_\+st\+\_\+pt (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+{\footnotesize\ttfamily template$<$unsigned DIM$>$ \\
+double $\ast$\& \mbox{\hyperlink{classoomph_1_1GeneralisedAdvectionDiffusionEquations}{oomph\+::\+Generalised\+Advection\+Diffusion\+Equations}}$<$ DIM $>$\+::pe\+\_\+st\+\_\+pt (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
 
 
 
@@ -991,22 +978,22 @@ Pointer to Peclet number multipled by Strouha number.
 
 
 
-Definition at line 301 of file gen\+\_\+advection\+\_\+diffusion\+\_\+elements.\+h.
+Definition at line \mbox{\hyperlink{gen__advection__diffusion__elements_8h_source_l00295}{295}} of file \mbox{\hyperlink{gen__advection__diffusion__elements_8h_source}{gen\+\_\+advection\+\_\+diffusion\+\_\+elements.\+h}}.
 
 
 
-References oomph\+::\+Generalised\+Advection\+Diffusion\+Equations$<$ D\+I\+M $>$\+::\+Pe\+St\+\_\+pt.
+References \mbox{\hyperlink{gen__advection__diffusion__elements_8h_source_l00606}{oomph\+::\+Generalised\+Advection\+Diffusion\+Equations$<$ DIM $>$\+::\+Pe\+St\+\_\+pt}}.
 
 
 
-Referenced by oomph\+::\+Refineable\+Generalised\+Advection\+Diffusion\+Equations$<$ D\+I\+M $>$\+::further\+\_\+build().
+Referenced by \mbox{\hyperlink{refineable__gen__advection__diffusion__elements_8h_source_l00159}{oomph\+::\+Refineable\+Generalised\+Advection\+Diffusion\+Equations$<$ DIM $>$\+::further\+\_\+build()}}.
 
 \mbox{\Hypertarget{classoomph_1_1GeneralisedAdvectionDiffusionEquations_a77d006ee2f3f4097ad74b180366ddc77}\label{classoomph_1_1GeneralisedAdvectionDiffusionEquations_a77d006ee2f3f4097ad74b180366ddc77}} 
 \index{oomph::GeneralisedAdvectionDiffusionEquations$<$ DIM $>$@{oomph::GeneralisedAdvectionDiffusionEquations$<$ DIM $>$}!self\_test@{self\_test}}
 \index{self\_test@{self\_test}!oomph::GeneralisedAdvectionDiffusionEquations$<$ DIM $>$@{oomph::GeneralisedAdvectionDiffusionEquations$<$ DIM $>$}}
 \doxysubsubsection{\texorpdfstring{self\_test()}{self\_test()}}
-{\footnotesize\ttfamily template$<$unsigned D\+IM$>$ \\
-unsigned \mbox{\hyperlink{classoomph_1_1GeneralisedAdvectionDiffusionEquations}{oomph\+::\+Generalised\+Advection\+Diffusion\+Equations}}$<$ D\+IM $>$\+::self\+\_\+test\hspace{0.3cm}{\ttfamily [virtual]}}
+{\footnotesize\ttfamily template$<$unsigned DIM$>$ \\
+unsigned \mbox{\hyperlink{classoomph_1_1GeneralisedAdvectionDiffusionEquations}{oomph\+::\+Generalised\+Advection\+Diffusion\+Equations}}$<$ DIM $>$\+::self\+\_\+test\hspace{0.3cm}{\ttfamily [virtual]}}
 
 
 
@@ -1018,18 +1005,18 @@ Reimplemented from \mbox{\hyperlink{classoomph_1_1FiniteElement_af94c5a5e22175d5
 
 
 
-Definition at line 258 of file gen\+\_\+advection\+\_\+diffusion\+\_\+elements.\+cc.
+Definition at line \mbox{\hyperlink{gen__advection__diffusion__elements_8cc_source_l00258}{258}} of file \mbox{\hyperlink{gen__advection__diffusion__elements_8cc_source}{gen\+\_\+advection\+\_\+diffusion\+\_\+elements.\+cc}}.
 
 
 
-References oomph\+::\+Finite\+Element\+::self\+\_\+test().
+References \mbox{\hyperlink{elements_8cc_source_l04444}{oomph\+::\+Finite\+Element\+::self\+\_\+test()}}.
 
-\mbox{\Hypertarget{classoomph_1_1GeneralisedAdvectionDiffusionEquations_aa25d13de883e0ee197b050eb6e1c22b0}\label{classoomph_1_1GeneralisedAdvectionDiffusionEquations_aa25d13de883e0ee197b050eb6e1c22b0}} 
+\mbox{\Hypertarget{classoomph_1_1GeneralisedAdvectionDiffusionEquations_a233e6cb6293707f73e002a69a7a1eab4}\label{classoomph_1_1GeneralisedAdvectionDiffusionEquations_a233e6cb6293707f73e002a69a7a1eab4}} 
 \index{oomph::GeneralisedAdvectionDiffusionEquations$<$ DIM $>$@{oomph::GeneralisedAdvectionDiffusionEquations$<$ DIM $>$}!source\_fct\_pt@{source\_fct\_pt}}
 \index{source\_fct\_pt@{source\_fct\_pt}!oomph::GeneralisedAdvectionDiffusionEquations$<$ DIM $>$@{oomph::GeneralisedAdvectionDiffusionEquations$<$ DIM $>$}}
 \doxysubsubsection{\texorpdfstring{source\_fct\_pt()}{source\_fct\_pt()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
-{\footnotesize\ttfamily template$<$unsigned D\+IM$>$ \\
-\mbox{\hyperlink{classoomph_1_1GeneralisedAdvectionDiffusionEquations_ad65d34bc0348f8b297c185d1772eafd9}{Generalised\+Advection\+Diffusion\+Source\+Fct\+Pt}}\& \mbox{\hyperlink{classoomph_1_1GeneralisedAdvectionDiffusionEquations}{oomph\+::\+Generalised\+Advection\+Diffusion\+Equations}}$<$ D\+IM $>$\+::source\+\_\+fct\+\_\+pt (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+{\footnotesize\ttfamily template$<$unsigned DIM$>$ \\
+\mbox{\hyperlink{classoomph_1_1GeneralisedAdvectionDiffusionEquations_ad65d34bc0348f8b297c185d1772eafd9}{Generalised\+Advection\+Diffusion\+Source\+Fct\+Pt}} \& \mbox{\hyperlink{classoomph_1_1GeneralisedAdvectionDiffusionEquations}{oomph\+::\+Generalised\+Advection\+Diffusion\+Equations}}$<$ DIM $>$\+::source\+\_\+fct\+\_\+pt (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
 
 
 
@@ -1037,22 +1024,22 @@ Access function\+: Pointer to source function.
 
 
 
-Definition at line 228 of file gen\+\_\+advection\+\_\+diffusion\+\_\+elements.\+h.
+Definition at line \mbox{\hyperlink{gen__advection__diffusion__elements_8h_source_l00222}{222}} of file \mbox{\hyperlink{gen__advection__diffusion__elements_8h_source}{gen\+\_\+advection\+\_\+diffusion\+\_\+elements.\+h}}.
 
 
 
-References oomph\+::\+Generalised\+Advection\+Diffusion\+Equations$<$ D\+I\+M $>$\+::\+Source\+\_\+fct\+\_\+pt.
+References \mbox{\hyperlink{gen__advection__diffusion__elements_8h_source_l00609}{oomph\+::\+Generalised\+Advection\+Diffusion\+Equations$<$ DIM $>$\+::\+Source\+\_\+fct\+\_\+pt}}.
 
 
 
-Referenced by oomph\+::\+Refineable\+Generalised\+Advection\+Diffusion\+Equations$<$ D\+I\+M $>$\+::further\+\_\+build().
+Referenced by \mbox{\hyperlink{refineable__gen__advection__diffusion__elements_8h_source_l00159}{oomph\+::\+Refineable\+Generalised\+Advection\+Diffusion\+Equations$<$ DIM $>$\+::further\+\_\+build()}}.
 
 \mbox{\Hypertarget{classoomph_1_1GeneralisedAdvectionDiffusionEquations_ad6c539f5291e125e41ead1323c4f89bd}\label{classoomph_1_1GeneralisedAdvectionDiffusionEquations_ad6c539f5291e125e41ead1323c4f89bd}} 
 \index{oomph::GeneralisedAdvectionDiffusionEquations$<$ DIM $>$@{oomph::GeneralisedAdvectionDiffusionEquations$<$ DIM $>$}!source\_fct\_pt@{source\_fct\_pt}}
 \index{source\_fct\_pt@{source\_fct\_pt}!oomph::GeneralisedAdvectionDiffusionEquations$<$ DIM $>$@{oomph::GeneralisedAdvectionDiffusionEquations$<$ DIM $>$}}
 \doxysubsubsection{\texorpdfstring{source\_fct\_pt()}{source\_fct\_pt()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
-{\footnotesize\ttfamily template$<$unsigned D\+IM$>$ \\
-\mbox{\hyperlink{classoomph_1_1GeneralisedAdvectionDiffusionEquations_ad65d34bc0348f8b297c185d1772eafd9}{Generalised\+Advection\+Diffusion\+Source\+Fct\+Pt}} \mbox{\hyperlink{classoomph_1_1GeneralisedAdvectionDiffusionEquations}{oomph\+::\+Generalised\+Advection\+Diffusion\+Equations}}$<$ D\+IM $>$\+::source\+\_\+fct\+\_\+pt (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+{\footnotesize\ttfamily template$<$unsigned DIM$>$ \\
+\mbox{\hyperlink{classoomph_1_1GeneralisedAdvectionDiffusionEquations_ad65d34bc0348f8b297c185d1772eafd9}{Generalised\+Advection\+Diffusion\+Source\+Fct\+Pt}} \mbox{\hyperlink{classoomph_1_1GeneralisedAdvectionDiffusionEquations}{oomph\+::\+Generalised\+Advection\+Diffusion\+Equations}}$<$ DIM $>$\+::source\+\_\+fct\+\_\+pt (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
 
 
 
@@ -1060,18 +1047,18 @@ Access function\+: Pointer to source function. Const version.
 
 
 
-Definition at line 235 of file gen\+\_\+advection\+\_\+diffusion\+\_\+elements.\+h.
+Definition at line \mbox{\hyperlink{gen__advection__diffusion__elements_8h_source_l00229}{229}} of file \mbox{\hyperlink{gen__advection__diffusion__elements_8h_source}{gen\+\_\+advection\+\_\+diffusion\+\_\+elements.\+h}}.
 
 
 
-References oomph\+::\+Generalised\+Advection\+Diffusion\+Equations$<$ D\+I\+M $>$\+::\+Source\+\_\+fct\+\_\+pt.
+References \mbox{\hyperlink{gen__advection__diffusion__elements_8h_source_l00609}{oomph\+::\+Generalised\+Advection\+Diffusion\+Equations$<$ DIM $>$\+::\+Source\+\_\+fct\+\_\+pt}}.
 
 \mbox{\Hypertarget{classoomph_1_1GeneralisedAdvectionDiffusionEquations_a95e7c3bb9ff924a284fd83850f464967}\label{classoomph_1_1GeneralisedAdvectionDiffusionEquations_a95e7c3bb9ff924a284fd83850f464967}} 
 \index{oomph::GeneralisedAdvectionDiffusionEquations$<$ DIM $>$@{oomph::GeneralisedAdvectionDiffusionEquations$<$ DIM $>$}!u\_index\_cons\_adv\_diff@{u\_index\_cons\_adv\_diff}}
 \index{u\_index\_cons\_adv\_diff@{u\_index\_cons\_adv\_diff}!oomph::GeneralisedAdvectionDiffusionEquations$<$ DIM $>$@{oomph::GeneralisedAdvectionDiffusionEquations$<$ DIM $>$}}
 \doxysubsubsection{\texorpdfstring{u\_index\_cons\_adv\_diff()}{u\_index\_cons\_adv\_diff()}}
-{\footnotesize\ttfamily template$<$unsigned D\+IM$>$ \\
-virtual unsigned \mbox{\hyperlink{classoomph_1_1GeneralisedAdvectionDiffusionEquations}{oomph\+::\+Generalised\+Advection\+Diffusion\+Equations}}$<$ D\+IM $>$\+::u\+\_\+index\+\_\+cons\+\_\+adv\+\_\+diff (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [virtual]}}
+{\footnotesize\ttfamily template$<$unsigned DIM$>$ \\
+virtual unsigned \mbox{\hyperlink{classoomph_1_1GeneralisedAdvectionDiffusionEquations}{oomph\+::\+Generalised\+Advection\+Diffusion\+Equations}}$<$ DIM $>$\+::u\+\_\+index\+\_\+cons\+\_\+adv\+\_\+diff (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [virtual]}}
 
 
 
@@ -1079,18 +1066,18 @@ Return the index at which the unknown value is stored. The default value, 0, is 
 
 
 
-Definition at line 108 of file gen\+\_\+advection\+\_\+diffusion\+\_\+elements.\+h.
+Definition at line \mbox{\hyperlink{gen__advection__diffusion__elements_8h_source_l00102}{102}} of file \mbox{\hyperlink{gen__advection__diffusion__elements_8h_source}{gen\+\_\+advection\+\_\+diffusion\+\_\+elements.\+h}}.
 
 
 
-Referenced by oomph\+::\+Generalised\+Advection\+Diffusion\+Equations$<$ D\+I\+M $>$\+::du\+\_\+dt\+\_\+cons\+\_\+adv\+\_\+diff(), oomph\+::\+Generalised\+Advection\+Diffusion\+Equations$<$ D\+I\+M $>$\+::get\+\_\+flux(), oomph\+::\+Refineable\+Generalised\+Advection\+Diffusion\+Equations$<$ D\+I\+M $>$\+::get\+\_\+interpolated\+\_\+values(), oomph\+::\+Generalised\+Advection\+Diffusion\+Equations$<$ D\+I\+M $>$\+::get\+\_\+total\+\_\+flux(), and oomph\+::\+Generalised\+Advection\+Diffusion\+Equations$<$ D\+I\+M $>$\+::interpolated\+\_\+u\+\_\+cons\+\_\+adv\+\_\+diff().
+Referenced by \mbox{\hyperlink{gen__advection__diffusion__elements_8h_source_l00109}{oomph\+::\+Generalised\+Advection\+Diffusion\+Equations$<$ DIM $>$\+::du\+\_\+dt\+\_\+cons\+\_\+adv\+\_\+diff()}}, \mbox{\hyperlink{gen__advection__diffusion__elements_8h_source_l00412}{oomph\+::\+Generalised\+Advection\+Diffusion\+Equations$<$ DIM $>$\+::get\+\_\+flux()}}, \mbox{\hyperlink{refineable__gen__advection__diffusion__elements_8h_source_l00096}{oomph\+::\+Refineable\+Generalised\+Advection\+Diffusion\+Equations$<$ DIM $>$\+::get\+\_\+interpolated\+\_\+values()}}, \mbox{\hyperlink{gen__advection__diffusion__elements_8h_source_l00445}{oomph\+::\+Generalised\+Advection\+Diffusion\+Equations$<$ DIM $>$\+::get\+\_\+total\+\_\+flux()}}, and \mbox{\hyperlink{gen__advection__diffusion__elements_8h_source_l00545}{oomph\+::\+Generalised\+Advection\+Diffusion\+Equations$<$ DIM $>$\+::interpolated\+\_\+u\+\_\+cons\+\_\+adv\+\_\+diff()}}.
 
-\mbox{\Hypertarget{classoomph_1_1GeneralisedAdvectionDiffusionEquations_a03c11fe6f8c2244b831b0a240e6b42ef}\label{classoomph_1_1GeneralisedAdvectionDiffusionEquations_a03c11fe6f8c2244b831b0a240e6b42ef}} 
+\mbox{\Hypertarget{classoomph_1_1GeneralisedAdvectionDiffusionEquations_a96c2aea38e57787792b7c3a756476c1b}\label{classoomph_1_1GeneralisedAdvectionDiffusionEquations_a96c2aea38e57787792b7c3a756476c1b}} 
 \index{oomph::GeneralisedAdvectionDiffusionEquations$<$ DIM $>$@{oomph::GeneralisedAdvectionDiffusionEquations$<$ DIM $>$}!wind\_fct\_pt@{wind\_fct\_pt}}
 \index{wind\_fct\_pt@{wind\_fct\_pt}!oomph::GeneralisedAdvectionDiffusionEquations$<$ DIM $>$@{oomph::GeneralisedAdvectionDiffusionEquations$<$ DIM $>$}}
 \doxysubsubsection{\texorpdfstring{wind\_fct\_pt()}{wind\_fct\_pt()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
-{\footnotesize\ttfamily template$<$unsigned D\+IM$>$ \\
-\mbox{\hyperlink{classoomph_1_1GeneralisedAdvectionDiffusionEquations_ac5a63eb03aee5957e7b14a4578423cfc}{Generalised\+Advection\+Diffusion\+Wind\+Fct\+Pt}}\& \mbox{\hyperlink{classoomph_1_1GeneralisedAdvectionDiffusionEquations}{oomph\+::\+Generalised\+Advection\+Diffusion\+Equations}}$<$ D\+IM $>$\+::wind\+\_\+fct\+\_\+pt (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+{\footnotesize\ttfamily template$<$unsigned DIM$>$ \\
+\mbox{\hyperlink{classoomph_1_1GeneralisedAdvectionDiffusionEquations_ac5a63eb03aee5957e7b14a4578423cfc}{Generalised\+Advection\+Diffusion\+Wind\+Fct\+Pt}} \& \mbox{\hyperlink{classoomph_1_1GeneralisedAdvectionDiffusionEquations}{oomph\+::\+Generalised\+Advection\+Diffusion\+Equations}}$<$ DIM $>$\+::wind\+\_\+fct\+\_\+pt (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
 
 
 
@@ -1098,22 +1085,22 @@ Access function\+: Pointer to wind function.
 
 
 
-Definition at line 242 of file gen\+\_\+advection\+\_\+diffusion\+\_\+elements.\+h.
+Definition at line \mbox{\hyperlink{gen__advection__diffusion__elements_8h_source_l00236}{236}} of file \mbox{\hyperlink{gen__advection__diffusion__elements_8h_source}{gen\+\_\+advection\+\_\+diffusion\+\_\+elements.\+h}}.
 
 
 
-References oomph\+::\+Generalised\+Advection\+Diffusion\+Equations$<$ D\+I\+M $>$\+::\+Wind\+\_\+fct\+\_\+pt.
+References \mbox{\hyperlink{gen__advection__diffusion__elements_8h_source_l00612}{oomph\+::\+Generalised\+Advection\+Diffusion\+Equations$<$ DIM $>$\+::\+Wind\+\_\+fct\+\_\+pt}}.
 
 
 
-Referenced by oomph\+::\+Refineable\+Generalised\+Advection\+Diffusion\+Equations$<$ D\+I\+M $>$\+::further\+\_\+build().
+Referenced by \mbox{\hyperlink{refineable__gen__advection__diffusion__elements_8h_source_l00159}{oomph\+::\+Refineable\+Generalised\+Advection\+Diffusion\+Equations$<$ DIM $>$\+::further\+\_\+build()}}.
 
 \mbox{\Hypertarget{classoomph_1_1GeneralisedAdvectionDiffusionEquations_a51b286f75d62c1d9b62961555615d560}\label{classoomph_1_1GeneralisedAdvectionDiffusionEquations_a51b286f75d62c1d9b62961555615d560}} 
 \index{oomph::GeneralisedAdvectionDiffusionEquations$<$ DIM $>$@{oomph::GeneralisedAdvectionDiffusionEquations$<$ DIM $>$}!wind\_fct\_pt@{wind\_fct\_pt}}
 \index{wind\_fct\_pt@{wind\_fct\_pt}!oomph::GeneralisedAdvectionDiffusionEquations$<$ DIM $>$@{oomph::GeneralisedAdvectionDiffusionEquations$<$ DIM $>$}}
 \doxysubsubsection{\texorpdfstring{wind\_fct\_pt()}{wind\_fct\_pt()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
-{\footnotesize\ttfamily template$<$unsigned D\+IM$>$ \\
-\mbox{\hyperlink{classoomph_1_1GeneralisedAdvectionDiffusionEquations_ac5a63eb03aee5957e7b14a4578423cfc}{Generalised\+Advection\+Diffusion\+Wind\+Fct\+Pt}} \mbox{\hyperlink{classoomph_1_1GeneralisedAdvectionDiffusionEquations}{oomph\+::\+Generalised\+Advection\+Diffusion\+Equations}}$<$ D\+IM $>$\+::wind\+\_\+fct\+\_\+pt (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+{\footnotesize\ttfamily template$<$unsigned DIM$>$ \\
+\mbox{\hyperlink{classoomph_1_1GeneralisedAdvectionDiffusionEquations_ac5a63eb03aee5957e7b14a4578423cfc}{Generalised\+Advection\+Diffusion\+Wind\+Fct\+Pt}} \mbox{\hyperlink{classoomph_1_1GeneralisedAdvectionDiffusionEquations}{oomph\+::\+Generalised\+Advection\+Diffusion\+Equations}}$<$ DIM $>$\+::wind\+\_\+fct\+\_\+pt (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
 
 
 
@@ -1121,11 +1108,11 @@ Access function\+: Pointer to wind function. Const version.
 
 
 
-Definition at line 249 of file gen\+\_\+advection\+\_\+diffusion\+\_\+elements.\+h.
+Definition at line \mbox{\hyperlink{gen__advection__diffusion__elements_8h_source_l00243}{243}} of file \mbox{\hyperlink{gen__advection__diffusion__elements_8h_source}{gen\+\_\+advection\+\_\+diffusion\+\_\+elements.\+h}}.
 
 
 
-References oomph\+::\+Generalised\+Advection\+Diffusion\+Equations$<$ D\+I\+M $>$\+::\+Wind\+\_\+fct\+\_\+pt.
+References \mbox{\hyperlink{gen__advection__diffusion__elements_8h_source_l00612}{oomph\+::\+Generalised\+Advection\+Diffusion\+Equations$<$ DIM $>$\+::\+Wind\+\_\+fct\+\_\+pt}}.
 
 
 
@@ -1134,27 +1121,27 @@ References oomph\+::\+Generalised\+Advection\+Diffusion\+Equations$<$ D\+I\+M $>
 \index{oomph::GeneralisedAdvectionDiffusionEquations$<$ DIM $>$@{oomph::GeneralisedAdvectionDiffusionEquations$<$ DIM $>$}!ALE\_is\_disabled@{ALE\_is\_disabled}}
 \index{ALE\_is\_disabled@{ALE\_is\_disabled}!oomph::GeneralisedAdvectionDiffusionEquations$<$ DIM $>$@{oomph::GeneralisedAdvectionDiffusionEquations$<$ DIM $>$}}
 \doxysubsubsection{\texorpdfstring{ALE\_is\_disabled}{ALE\_is\_disabled}}
-{\footnotesize\ttfamily template$<$unsigned D\+IM$>$ \\
-bool \mbox{\hyperlink{classoomph_1_1GeneralisedAdvectionDiffusionEquations}{oomph\+::\+Generalised\+Advection\+Diffusion\+Equations}}$<$ D\+IM $>$\+::A\+L\+E\+\_\+is\+\_\+disabled\hspace{0.3cm}{\ttfamily [protected]}}
+{\footnotesize\ttfamily template$<$unsigned DIM$>$ \\
+bool \mbox{\hyperlink{classoomph_1_1GeneralisedAdvectionDiffusionEquations}{oomph\+::\+Generalised\+Advection\+Diffusion\+Equations}}$<$ DIM $>$\+::ALE\+\_\+is\+\_\+disabled\hspace{0.3cm}{\ttfamily [protected]}}
 
 
 
-Boolean flag to indicate if A\+LE formulation is disabled when time-\/derivatives are computed. Only set to false if you\textquotesingle{}re sure that the mesh is stationary. 
+Boolean flag to indicate if ALE formulation is disabled when time-\/derivatives are computed. Only set to false if you\textquotesingle{}re sure that the mesh is stationary. 
 
 
 
-Definition at line 629 of file gen\+\_\+advection\+\_\+diffusion\+\_\+elements.\+h.
+Definition at line \mbox{\hyperlink{gen__advection__diffusion__elements_8h_source_l00623}{623}} of file \mbox{\hyperlink{gen__advection__diffusion__elements_8h_source}{gen\+\_\+advection\+\_\+diffusion\+\_\+elements.\+h}}.
 
 
 
-Referenced by oomph\+::\+Generalised\+Advection\+Diffusion\+Equations$<$ D\+I\+M $>$\+::disable\+\_\+\+A\+L\+E(), oomph\+::\+Generalised\+Advection\+Diffusion\+Equations$<$ D\+I\+M $>$\+::enable\+\_\+\+A\+L\+E(), and oomph\+::\+Refineable\+Generalised\+Advection\+Diffusion\+Equations$<$ D\+I\+M $>$\+::further\+\_\+build().
+Referenced by \mbox{\hyperlink{gen__advection__diffusion__elements_8h_source_l00136}{oomph\+::\+Generalised\+Advection\+Diffusion\+Equations$<$ DIM $>$\+::disable\+\_\+\+ALE()}}, \mbox{\hyperlink{gen__advection__diffusion__elements_8h_source_l00146}{oomph\+::\+Generalised\+Advection\+Diffusion\+Equations$<$ DIM $>$\+::enable\+\_\+\+ALE()}}, and \mbox{\hyperlink{refineable__gen__advection__diffusion__elements_8h_source_l00159}{oomph\+::\+Refineable\+Generalised\+Advection\+Diffusion\+Equations$<$ DIM $>$\+::further\+\_\+build()}}.
 
 \mbox{\Hypertarget{classoomph_1_1GeneralisedAdvectionDiffusionEquations_a56787086fb90a6af6e7e2e3e4e1e3a59}\label{classoomph_1_1GeneralisedAdvectionDiffusionEquations_a56787086fb90a6af6e7e2e3e4e1e3a59}} 
 \index{oomph::GeneralisedAdvectionDiffusionEquations$<$ DIM $>$@{oomph::GeneralisedAdvectionDiffusionEquations$<$ DIM $>$}!Conserved\_wind\_fct\_pt@{Conserved\_wind\_fct\_pt}}
 \index{Conserved\_wind\_fct\_pt@{Conserved\_wind\_fct\_pt}!oomph::GeneralisedAdvectionDiffusionEquations$<$ DIM $>$@{oomph::GeneralisedAdvectionDiffusionEquations$<$ DIM $>$}}
 \doxysubsubsection{\texorpdfstring{Conserved\_wind\_fct\_pt}{Conserved\_wind\_fct\_pt}}
-{\footnotesize\ttfamily template$<$unsigned D\+IM$>$ \\
-\mbox{\hyperlink{classoomph_1_1GeneralisedAdvectionDiffusionEquations_ac5a63eb03aee5957e7b14a4578423cfc}{Generalised\+Advection\+Diffusion\+Wind\+Fct\+Pt}} \mbox{\hyperlink{classoomph_1_1GeneralisedAdvectionDiffusionEquations}{oomph\+::\+Generalised\+Advection\+Diffusion\+Equations}}$<$ D\+IM $>$\+::Conserved\+\_\+wind\+\_\+fct\+\_\+pt\hspace{0.3cm}{\ttfamily [protected]}}
+{\footnotesize\ttfamily template$<$unsigned DIM$>$ \\
+\mbox{\hyperlink{classoomph_1_1GeneralisedAdvectionDiffusionEquations_ac5a63eb03aee5957e7b14a4578423cfc}{Generalised\+Advection\+Diffusion\+Wind\+Fct\+Pt}} \mbox{\hyperlink{classoomph_1_1GeneralisedAdvectionDiffusionEquations}{oomph\+::\+Generalised\+Advection\+Diffusion\+Equations}}$<$ DIM $>$\+::Conserved\+\_\+wind\+\_\+fct\+\_\+pt\hspace{0.3cm}{\ttfamily [protected]}}
 
 
 
@@ -1162,18 +1149,18 @@ Pointer to additional (conservative) wind function\+:
 
 
 
-Definition at line 621 of file gen\+\_\+advection\+\_\+diffusion\+\_\+elements.\+h.
+Definition at line \mbox{\hyperlink{gen__advection__diffusion__elements_8h_source_l00615}{615}} of file \mbox{\hyperlink{gen__advection__diffusion__elements_8h_source}{gen\+\_\+advection\+\_\+diffusion\+\_\+elements.\+h}}.
 
 
 
-Referenced by oomph\+::\+Generalised\+Advection\+Diffusion\+Equations$<$ D\+I\+M $>$\+::conserved\+\_\+wind\+\_\+fct\+\_\+pt(), oomph\+::\+Refineable\+Generalised\+Advection\+Diffusion\+Equations$<$ D\+I\+M $>$\+::further\+\_\+build(), and oomph\+::\+Generalised\+Advection\+Diffusion\+Equations$<$ D\+I\+M $>$\+::get\+\_\+conserved\+\_\+wind\+\_\+cons\+\_\+adv\+\_\+diff().
+Referenced by \mbox{\hyperlink{gen__advection__diffusion__elements_8h_source_l00250}{oomph\+::\+Generalised\+Advection\+Diffusion\+Equations$<$ DIM $>$\+::conserved\+\_\+wind\+\_\+fct\+\_\+pt()}}, \mbox{\hyperlink{refineable__gen__advection__diffusion__elements_8h_source_l00159}{oomph\+::\+Refineable\+Generalised\+Advection\+Diffusion\+Equations$<$ DIM $>$\+::further\+\_\+build()}}, and \mbox{\hyperlink{gen__advection__diffusion__elements_8h_source_l00352}{oomph\+::\+Generalised\+Advection\+Diffusion\+Equations$<$ DIM $>$\+::get\+\_\+conserved\+\_\+wind\+\_\+cons\+\_\+adv\+\_\+diff()}}.
 
 \mbox{\Hypertarget{classoomph_1_1GeneralisedAdvectionDiffusionEquations_a2d278b9e194799a8b83602c37b61cc23}\label{classoomph_1_1GeneralisedAdvectionDiffusionEquations_a2d278b9e194799a8b83602c37b61cc23}} 
 \index{oomph::GeneralisedAdvectionDiffusionEquations$<$ DIM $>$@{oomph::GeneralisedAdvectionDiffusionEquations$<$ DIM $>$}!Default\_peclet\_number@{Default\_peclet\_number}}
 \index{Default\_peclet\_number@{Default\_peclet\_number}!oomph::GeneralisedAdvectionDiffusionEquations$<$ DIM $>$@{oomph::GeneralisedAdvectionDiffusionEquations$<$ DIM $>$}}
 \doxysubsubsection{\texorpdfstring{Default\_peclet\_number}{Default\_peclet\_number}}
-{\footnotesize\ttfamily template$<$unsigned D\+IM$>$ \\
-double \mbox{\hyperlink{classoomph_1_1GeneralisedAdvectionDiffusionEquations}{oomph\+::\+Generalised\+Advection\+Diffusion\+Equations}}$<$ D\+IM $>$\+::Default\+\_\+peclet\+\_\+number\hspace{0.3cm}{\ttfamily [static]}, {\ttfamily [private]}}
+{\footnotesize\ttfamily template$<$unsigned DIM$>$ \\
+double \mbox{\hyperlink{classoomph_1_1GeneralisedAdvectionDiffusionEquations}{oomph\+::\+Generalised\+Advection\+Diffusion\+Equations}}$<$ DIM $>$\+::Default\+\_\+peclet\+\_\+number\hspace{0.3cm}{\ttfamily [static]}, {\ttfamily [private]}}
 
 {\bfseries Initial value\+:}
 \begin{DoxyCode}{0}
@@ -1189,18 +1176,18 @@ Static default value for the Peclet number.
 
 Default value for Peclet number 
 
-Definition at line 633 of file gen\+\_\+advection\+\_\+diffusion\+\_\+elements.\+h.
+Definition at line \mbox{\hyperlink{gen__advection__diffusion__elements_8h_source_l00627}{627}} of file \mbox{\hyperlink{gen__advection__diffusion__elements_8h_source}{gen\+\_\+advection\+\_\+diffusion\+\_\+elements.\+h}}.
 
 
 
-Referenced by oomph\+::\+Generalised\+Advection\+Diffusion\+Equations$<$ D\+I\+M $>$\+::\+Generalised\+Advection\+Diffusion\+Equations().
+Referenced by \mbox{\hyperlink{gen__advection__diffusion__elements_8h_source_l00075}{oomph\+::\+Generalised\+Advection\+Diffusion\+Equations$<$ DIM $>$\+::\+Generalised\+Advection\+Diffusion\+Equations()}}.
 
 \mbox{\Hypertarget{classoomph_1_1GeneralisedAdvectionDiffusionEquations_a461bd7e2efcdd4620aa94ba70961bcc0}\label{classoomph_1_1GeneralisedAdvectionDiffusionEquations_a461bd7e2efcdd4620aa94ba70961bcc0}} 
 \index{oomph::GeneralisedAdvectionDiffusionEquations$<$ DIM $>$@{oomph::GeneralisedAdvectionDiffusionEquations$<$ DIM $>$}!Diff\_fct\_pt@{Diff\_fct\_pt}}
 \index{Diff\_fct\_pt@{Diff\_fct\_pt}!oomph::GeneralisedAdvectionDiffusionEquations$<$ DIM $>$@{oomph::GeneralisedAdvectionDiffusionEquations$<$ DIM $>$}}
 \doxysubsubsection{\texorpdfstring{Diff\_fct\_pt}{Diff\_fct\_pt}}
-{\footnotesize\ttfamily template$<$unsigned D\+IM$>$ \\
-\mbox{\hyperlink{classoomph_1_1GeneralisedAdvectionDiffusionEquations_a637371a9eebc399023c6a652e8219263}{Generalised\+Advection\+Diffusion\+Diff\+Fct\+Pt}} \mbox{\hyperlink{classoomph_1_1GeneralisedAdvectionDiffusionEquations}{oomph\+::\+Generalised\+Advection\+Diffusion\+Equations}}$<$ D\+IM $>$\+::Diff\+\_\+fct\+\_\+pt\hspace{0.3cm}{\ttfamily [protected]}}
+{\footnotesize\ttfamily template$<$unsigned DIM$>$ \\
+\mbox{\hyperlink{classoomph_1_1GeneralisedAdvectionDiffusionEquations_a637371a9eebc399023c6a652e8219263}{Generalised\+Advection\+Diffusion\+Diff\+Fct\+Pt}} \mbox{\hyperlink{classoomph_1_1GeneralisedAdvectionDiffusionEquations}{oomph\+::\+Generalised\+Advection\+Diffusion\+Equations}}$<$ DIM $>$\+::Diff\+\_\+fct\+\_\+pt\hspace{0.3cm}{\ttfamily [protected]}}
 
 
 
@@ -1208,18 +1195,18 @@ Pointer to diffusivity funciton.
 
 
 
-Definition at line 624 of file gen\+\_\+advection\+\_\+diffusion\+\_\+elements.\+h.
+Definition at line \mbox{\hyperlink{gen__advection__diffusion__elements_8h_source_l00618}{618}} of file \mbox{\hyperlink{gen__advection__diffusion__elements_8h_source}{gen\+\_\+advection\+\_\+diffusion\+\_\+elements.\+h}}.
 
 
 
-Referenced by oomph\+::\+Generalised\+Advection\+Diffusion\+Equations$<$ D\+I\+M $>$\+::diff\+\_\+fct\+\_\+pt(), oomph\+::\+Refineable\+Generalised\+Advection\+Diffusion\+Equations$<$ D\+I\+M $>$\+::further\+\_\+build(), and oomph\+::\+Generalised\+Advection\+Diffusion\+Equations$<$ D\+I\+M $>$\+::get\+\_\+diff\+\_\+cons\+\_\+adv\+\_\+diff().
+Referenced by \mbox{\hyperlink{gen__advection__diffusion__elements_8h_source_l00265}{oomph\+::\+Generalised\+Advection\+Diffusion\+Equations$<$ DIM $>$\+::diff\+\_\+fct\+\_\+pt()}}, \mbox{\hyperlink{refineable__gen__advection__diffusion__elements_8h_source_l00159}{oomph\+::\+Refineable\+Generalised\+Advection\+Diffusion\+Equations$<$ DIM $>$\+::further\+\_\+build()}}, and \mbox{\hyperlink{gen__advection__diffusion__elements_8h_source_l00380}{oomph\+::\+Generalised\+Advection\+Diffusion\+Equations$<$ DIM $>$\+::get\+\_\+diff\+\_\+cons\+\_\+adv\+\_\+diff()}}.
 
 \mbox{\Hypertarget{classoomph_1_1GeneralisedAdvectionDiffusionEquations_a1d8bbbe41954ea99f8eec70882f84932}\label{classoomph_1_1GeneralisedAdvectionDiffusionEquations_a1d8bbbe41954ea99f8eec70882f84932}} 
 \index{oomph::GeneralisedAdvectionDiffusionEquations$<$ DIM $>$@{oomph::GeneralisedAdvectionDiffusionEquations$<$ DIM $>$}!Pe\_pt@{Pe\_pt}}
 \index{Pe\_pt@{Pe\_pt}!oomph::GeneralisedAdvectionDiffusionEquations$<$ DIM $>$@{oomph::GeneralisedAdvectionDiffusionEquations$<$ DIM $>$}}
 \doxysubsubsection{\texorpdfstring{Pe\_pt}{Pe\_pt}}
-{\footnotesize\ttfamily template$<$unsigned D\+IM$>$ \\
-double$\ast$ \mbox{\hyperlink{classoomph_1_1GeneralisedAdvectionDiffusionEquations}{oomph\+::\+Generalised\+Advection\+Diffusion\+Equations}}$<$ D\+IM $>$\+::Pe\+\_\+pt\hspace{0.3cm}{\ttfamily [protected]}}
+{\footnotesize\ttfamily template$<$unsigned DIM$>$ \\
+double$\ast$ \mbox{\hyperlink{classoomph_1_1GeneralisedAdvectionDiffusionEquations}{oomph\+::\+Generalised\+Advection\+Diffusion\+Equations}}$<$ DIM $>$\+::Pe\+\_\+pt\hspace{0.3cm}{\ttfamily [protected]}}
 
 
 
@@ -1227,18 +1214,18 @@ Pointer to global Peclet number.
 
 
 
-Definition at line 609 of file gen\+\_\+advection\+\_\+diffusion\+\_\+elements.\+h.
+Definition at line \mbox{\hyperlink{gen__advection__diffusion__elements_8h_source_l00603}{603}} of file \mbox{\hyperlink{gen__advection__diffusion__elements_8h_source}{gen\+\_\+advection\+\_\+diffusion\+\_\+elements.\+h}}.
 
 
 
-Referenced by oomph\+::\+Refineable\+Generalised\+Advection\+Diffusion\+Equations$<$ D\+I\+M $>$\+::further\+\_\+build(), oomph\+::\+Generalised\+Advection\+Diffusion\+Equations$<$ D\+I\+M $>$\+::\+Generalised\+Advection\+Diffusion\+Equations(), oomph\+::\+Generalised\+Advection\+Diffusion\+Equations$<$ D\+I\+M $>$\+::pe(), and oomph\+::\+Generalised\+Advection\+Diffusion\+Equations$<$ D\+I\+M $>$\+::pe\+\_\+pt().
+Referenced by \mbox{\hyperlink{refineable__gen__advection__diffusion__elements_8h_source_l00159}{oomph\+::\+Refineable\+Generalised\+Advection\+Diffusion\+Equations$<$ DIM $>$\+::further\+\_\+build()}}, \mbox{\hyperlink{gen__advection__diffusion__elements_8h_source_l00075}{oomph\+::\+Generalised\+Advection\+Diffusion\+Equations$<$ DIM $>$\+::\+Generalised\+Advection\+Diffusion\+Equations()}}, \mbox{\hyperlink{gen__advection__diffusion__elements_8h_source_l00277}{oomph\+::\+Generalised\+Advection\+Diffusion\+Equations$<$ DIM $>$\+::pe()}}, and \mbox{\hyperlink{gen__advection__diffusion__elements_8h_source_l00283}{oomph\+::\+Generalised\+Advection\+Diffusion\+Equations$<$ DIM $>$\+::pe\+\_\+pt()}}.
 
 \mbox{\Hypertarget{classoomph_1_1GeneralisedAdvectionDiffusionEquations_a8f77e17bba1c7666679abf0fa6150733}\label{classoomph_1_1GeneralisedAdvectionDiffusionEquations_a8f77e17bba1c7666679abf0fa6150733}} 
 \index{oomph::GeneralisedAdvectionDiffusionEquations$<$ DIM $>$@{oomph::GeneralisedAdvectionDiffusionEquations$<$ DIM $>$}!PeSt\_pt@{PeSt\_pt}}
 \index{PeSt\_pt@{PeSt\_pt}!oomph::GeneralisedAdvectionDiffusionEquations$<$ DIM $>$@{oomph::GeneralisedAdvectionDiffusionEquations$<$ DIM $>$}}
 \doxysubsubsection{\texorpdfstring{PeSt\_pt}{PeSt\_pt}}
-{\footnotesize\ttfamily template$<$unsigned D\+IM$>$ \\
-double$\ast$ \mbox{\hyperlink{classoomph_1_1GeneralisedAdvectionDiffusionEquations}{oomph\+::\+Generalised\+Advection\+Diffusion\+Equations}}$<$ D\+IM $>$\+::Pe\+St\+\_\+pt\hspace{0.3cm}{\ttfamily [protected]}}
+{\footnotesize\ttfamily template$<$unsigned DIM$>$ \\
+double$\ast$ \mbox{\hyperlink{classoomph_1_1GeneralisedAdvectionDiffusionEquations}{oomph\+::\+Generalised\+Advection\+Diffusion\+Equations}}$<$ DIM $>$\+::Pe\+St\+\_\+pt\hspace{0.3cm}{\ttfamily [protected]}}
 
 
 
@@ -1246,18 +1233,18 @@ Pointer to global Peclet number multiplied by Strouhal number.
 
 
 
-Definition at line 612 of file gen\+\_\+advection\+\_\+diffusion\+\_\+elements.\+h.
+Definition at line \mbox{\hyperlink{gen__advection__diffusion__elements_8h_source_l00606}{606}} of file \mbox{\hyperlink{gen__advection__diffusion__elements_8h_source}{gen\+\_\+advection\+\_\+diffusion\+\_\+elements.\+h}}.
 
 
 
-Referenced by oomph\+::\+Refineable\+Generalised\+Advection\+Diffusion\+Equations$<$ D\+I\+M $>$\+::further\+\_\+build(), oomph\+::\+Generalised\+Advection\+Diffusion\+Equations$<$ D\+I\+M $>$\+::\+Generalised\+Advection\+Diffusion\+Equations(), oomph\+::\+Generalised\+Advection\+Diffusion\+Equations$<$ D\+I\+M $>$\+::pe\+\_\+st(), and oomph\+::\+Generalised\+Advection\+Diffusion\+Equations$<$ D\+I\+M $>$\+::pe\+\_\+st\+\_\+pt().
+Referenced by \mbox{\hyperlink{refineable__gen__advection__diffusion__elements_8h_source_l00159}{oomph\+::\+Refineable\+Generalised\+Advection\+Diffusion\+Equations$<$ DIM $>$\+::further\+\_\+build()}}, \mbox{\hyperlink{gen__advection__diffusion__elements_8h_source_l00075}{oomph\+::\+Generalised\+Advection\+Diffusion\+Equations$<$ DIM $>$\+::\+Generalised\+Advection\+Diffusion\+Equations()}}, \mbox{\hyperlink{gen__advection__diffusion__elements_8h_source_l00289}{oomph\+::\+Generalised\+Advection\+Diffusion\+Equations$<$ DIM $>$\+::pe\+\_\+st()}}, and \mbox{\hyperlink{gen__advection__diffusion__elements_8h_source_l00295}{oomph\+::\+Generalised\+Advection\+Diffusion\+Equations$<$ DIM $>$\+::pe\+\_\+st\+\_\+pt()}}.
 
 \mbox{\Hypertarget{classoomph_1_1GeneralisedAdvectionDiffusionEquations_a7ceace6c5f2b7d02e118d0cdd9b69125}\label{classoomph_1_1GeneralisedAdvectionDiffusionEquations_a7ceace6c5f2b7d02e118d0cdd9b69125}} 
 \index{oomph::GeneralisedAdvectionDiffusionEquations$<$ DIM $>$@{oomph::GeneralisedAdvectionDiffusionEquations$<$ DIM $>$}!Source\_fct\_pt@{Source\_fct\_pt}}
 \index{Source\_fct\_pt@{Source\_fct\_pt}!oomph::GeneralisedAdvectionDiffusionEquations$<$ DIM $>$@{oomph::GeneralisedAdvectionDiffusionEquations$<$ DIM $>$}}
 \doxysubsubsection{\texorpdfstring{Source\_fct\_pt}{Source\_fct\_pt}}
-{\footnotesize\ttfamily template$<$unsigned D\+IM$>$ \\
-\mbox{\hyperlink{classoomph_1_1GeneralisedAdvectionDiffusionEquations_ad65d34bc0348f8b297c185d1772eafd9}{Generalised\+Advection\+Diffusion\+Source\+Fct\+Pt}} \mbox{\hyperlink{classoomph_1_1GeneralisedAdvectionDiffusionEquations}{oomph\+::\+Generalised\+Advection\+Diffusion\+Equations}}$<$ D\+IM $>$\+::Source\+\_\+fct\+\_\+pt\hspace{0.3cm}{\ttfamily [protected]}}
+{\footnotesize\ttfamily template$<$unsigned DIM$>$ \\
+\mbox{\hyperlink{classoomph_1_1GeneralisedAdvectionDiffusionEquations_ad65d34bc0348f8b297c185d1772eafd9}{Generalised\+Advection\+Diffusion\+Source\+Fct\+Pt}} \mbox{\hyperlink{classoomph_1_1GeneralisedAdvectionDiffusionEquations}{oomph\+::\+Generalised\+Advection\+Diffusion\+Equations}}$<$ DIM $>$\+::Source\+\_\+fct\+\_\+pt\hspace{0.3cm}{\ttfamily [protected]}}
 
 
 
@@ -1265,18 +1252,18 @@ Pointer to source function\+:
 
 
 
-Definition at line 615 of file gen\+\_\+advection\+\_\+diffusion\+\_\+elements.\+h.
+Definition at line \mbox{\hyperlink{gen__advection__diffusion__elements_8h_source_l00609}{609}} of file \mbox{\hyperlink{gen__advection__diffusion__elements_8h_source}{gen\+\_\+advection\+\_\+diffusion\+\_\+elements.\+h}}.
 
 
 
-Referenced by oomph\+::\+Refineable\+Generalised\+Advection\+Diffusion\+Equations$<$ D\+I\+M $>$\+::further\+\_\+build(), oomph\+::\+Generalised\+Advection\+Diffusion\+Equations$<$ D\+I\+M $>$\+::get\+\_\+source\+\_\+cons\+\_\+adv\+\_\+diff(), and oomph\+::\+Generalised\+Advection\+Diffusion\+Equations$<$ D\+I\+M $>$\+::source\+\_\+fct\+\_\+pt().
+Referenced by \mbox{\hyperlink{refineable__gen__advection__diffusion__elements_8h_source_l00159}{oomph\+::\+Refineable\+Generalised\+Advection\+Diffusion\+Equations$<$ DIM $>$\+::further\+\_\+build()}}, \mbox{\hyperlink{gen__advection__diffusion__elements_8h_source_l00304}{oomph\+::\+Generalised\+Advection\+Diffusion\+Equations$<$ DIM $>$\+::get\+\_\+source\+\_\+cons\+\_\+adv\+\_\+diff()}}, and \mbox{\hyperlink{gen__advection__diffusion__elements_8h_source_l00222}{oomph\+::\+Generalised\+Advection\+Diffusion\+Equations$<$ DIM $>$\+::source\+\_\+fct\+\_\+pt()}}.
 
 \mbox{\Hypertarget{classoomph_1_1GeneralisedAdvectionDiffusionEquations_a50dd69aaff906d837a29171c6b1690c9}\label{classoomph_1_1GeneralisedAdvectionDiffusionEquations_a50dd69aaff906d837a29171c6b1690c9}} 
 \index{oomph::GeneralisedAdvectionDiffusionEquations$<$ DIM $>$@{oomph::GeneralisedAdvectionDiffusionEquations$<$ DIM $>$}!Wind\_fct\_pt@{Wind\_fct\_pt}}
 \index{Wind\_fct\_pt@{Wind\_fct\_pt}!oomph::GeneralisedAdvectionDiffusionEquations$<$ DIM $>$@{oomph::GeneralisedAdvectionDiffusionEquations$<$ DIM $>$}}
 \doxysubsubsection{\texorpdfstring{Wind\_fct\_pt}{Wind\_fct\_pt}}
-{\footnotesize\ttfamily template$<$unsigned D\+IM$>$ \\
-\mbox{\hyperlink{classoomph_1_1GeneralisedAdvectionDiffusionEquations_ac5a63eb03aee5957e7b14a4578423cfc}{Generalised\+Advection\+Diffusion\+Wind\+Fct\+Pt}} \mbox{\hyperlink{classoomph_1_1GeneralisedAdvectionDiffusionEquations}{oomph\+::\+Generalised\+Advection\+Diffusion\+Equations}}$<$ D\+IM $>$\+::Wind\+\_\+fct\+\_\+pt\hspace{0.3cm}{\ttfamily [protected]}}
+{\footnotesize\ttfamily template$<$unsigned DIM$>$ \\
+\mbox{\hyperlink{classoomph_1_1GeneralisedAdvectionDiffusionEquations_ac5a63eb03aee5957e7b14a4578423cfc}{Generalised\+Advection\+Diffusion\+Wind\+Fct\+Pt}} \mbox{\hyperlink{classoomph_1_1GeneralisedAdvectionDiffusionEquations}{oomph\+::\+Generalised\+Advection\+Diffusion\+Equations}}$<$ DIM $>$\+::Wind\+\_\+fct\+\_\+pt\hspace{0.3cm}{\ttfamily [protected]}}
 
 
 
@@ -1284,11 +1271,11 @@ Pointer to wind function\+:
 
 
 
-Definition at line 618 of file gen\+\_\+advection\+\_\+diffusion\+\_\+elements.\+h.
+Definition at line \mbox{\hyperlink{gen__advection__diffusion__elements_8h_source_l00612}{612}} of file \mbox{\hyperlink{gen__advection__diffusion__elements_8h_source}{gen\+\_\+advection\+\_\+diffusion\+\_\+elements.\+h}}.
 
 
 
-Referenced by oomph\+::\+Refineable\+Generalised\+Advection\+Diffusion\+Equations$<$ D\+I\+M $>$\+::further\+\_\+build(), oomph\+::\+Generalised\+Advection\+Diffusion\+Equations$<$ D\+I\+M $>$\+::get\+\_\+wind\+\_\+cons\+\_\+adv\+\_\+diff(), and oomph\+::\+Generalised\+Advection\+Diffusion\+Equations$<$ D\+I\+M $>$\+::wind\+\_\+fct\+\_\+pt().
+Referenced by \mbox{\hyperlink{refineable__gen__advection__diffusion__elements_8h_source_l00159}{oomph\+::\+Refineable\+Generalised\+Advection\+Diffusion\+Equations$<$ DIM $>$\+::further\+\_\+build()}}, \mbox{\hyperlink{gen__advection__diffusion__elements_8h_source_l00325}{oomph\+::\+Generalised\+Advection\+Diffusion\+Equations$<$ DIM $>$\+::get\+\_\+wind\+\_\+cons\+\_\+adv\+\_\+diff()}}, and \mbox{\hyperlink{gen__advection__diffusion__elements_8h_source_l00236}{oomph\+::\+Generalised\+Advection\+Diffusion\+Equations$<$ DIM $>$\+::wind\+\_\+fct\+\_\+pt()}}.
 
 
 
