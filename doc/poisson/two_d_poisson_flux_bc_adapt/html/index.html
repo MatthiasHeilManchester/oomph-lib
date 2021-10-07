@@ -240,8 +240,96 @@ The problem class</h1>
 <h1><a class="anchor" id="constructor"></a>
 The Problem constructor</h1>
 <p >We create the bulk mesh and surface mesh as <a href="../../two_d_poisson_flux_bc2/html/index.html#constructor">before</a>. Next we create the spatial error estimator and pass it to the bulk mesh.</p>
-<div class="fragment"></div><!-- fragment --><p> Apart from this, the problem is constructed as in the <a href="../../two_d_poisson_flux_bc2/html/index.html#constructor">non-adaptive previous example.</a></p>
-<div class="fragment"></div><!-- fragment --> <hr  />
+ <div class="fragment"><div class="line"><span class="comment">//=======start_of_constructor=============================================</span></div>
+<div class="line"><span class="comment">/// Constructor for Poisson problem: Pass pointer to source function.</span></div>
+<div class="line"><span class="comment">//========================================================================</span></div>
+<div class="line"><span class="keyword">template</span>&lt;<span class="keyword">class</span> ELEMENT&gt;</div>
+<div class="line"><a class="code hl_function" href="classRefineableTwoMeshFluxPoissonProblem.html#a6568980564c4e39544b1c2bcb71cf3b6">RefineableTwoMeshFluxPoissonProblem&lt;ELEMENT&gt;::</a></div>
+<div class="line"><a class="code hl_function" href="classRefineableTwoMeshFluxPoissonProblem.html#a6568980564c4e39544b1c2bcb71cf3b6">RefineableTwoMeshFluxPoissonProblem</a>(PoissonEquations&lt;2&gt;::PoissonSourceFctPt source_fct_pt)</div>
+<div class="line"> :  Source_fct_pt(source_fct_pt)</div>
+<div class="line">{ </div>
+<div class="line"> </div>
+<div class="line"> <span class="comment">// Setup &quot;bulk&quot; mesh</span></div>
+<div class="line"> </div>
+<div class="line"> <span class="comment">// # of elements in x-direction</span></div>
+<div class="line"> <span class="keywordtype">unsigned</span> n_x=4;</div>
+<div class="line"> </div>
+<div class="line"> <span class="comment">// # of elements in y-direction</span></div>
+<div class="line"> <span class="keywordtype">unsigned</span> n_y=4;</div>
+<div class="line"> </div>
+<div class="line"> <span class="comment">// Domain length in x-direction</span></div>
+<div class="line"> <span class="keywordtype">double</span> l_x=1.0;</div>
+<div class="line"> </div>
+<div class="line"> <span class="comment">// Domain length in y-direction</span></div>
+<div class="line"> <span class="keywordtype">double</span> l_y=2.0;</div>
+<div class="line"> </div>
+<div class="line"> <span class="comment">// Build &quot;bulk&quot; mesh</span></div>
+<div class="line"> Bulk_mesh_pt=<span class="keyword">new</span> </div>
+<div class="line">  <a class="code hl_class" href="classSimpleRefineableRectangularQuadMesh.html">SimpleRefineableRectangularQuadMesh&lt;ELEMENT&gt;</a>(n_x,n_y,l_x,l_y);</div>
+<div class="line"> </div>
+<div class="line"> <span class="comment">// Create/set error estimator</span></div>
+<div class="line"> Bulk_mesh_pt-&gt;spatial_error_estimator_pt()=<span class="keyword">new</span> Z2ErrorEstimator;</div>
+</div><!-- fragment --><p> Apart from this, the problem is constructed as in the <a href="../../two_d_poisson_flux_bc2/html/index.html#constructor">non-adaptive previous example.</a></p>
+<div class="fragment"><div class="line">  </div>
+<div class="line"> <span class="comment">// Create &quot;surface mesh&quot; that will contain only the prescribed-flux </span></div>
+<div class="line"> <span class="comment">// elements. The constructor just creates the mesh without</span></div>
+<div class="line"> <span class="comment">// giving it any elements, nodes, etc.</span></div>
+<div class="line"> Surface_mesh_pt = <span class="keyword">new</span> Mesh;</div>
+<div class="line"> </div>
+<div class="line"> <span class="comment">// Create prescribed-flux elements from all elements that are </span></div>
+<div class="line"> <span class="comment">// adjacent to boundary 1, but add them to a separate mesh.</span></div>
+<div class="line"> <span class="comment">// Note that this is exactly the same function as used in the </span></div>
+<div class="line"> <span class="comment">// single mesh version of the problem, we merely pass different Mesh pointers.</span></div>
+<div class="line"> create_flux_elements(1,Bulk_mesh_pt,Surface_mesh_pt);</div>
+<div class="line"> </div>
+<div class="line"> <span class="comment">// Add the two sub meshes to the problem</span></div>
+<div class="line"> add_sub_mesh(Bulk_mesh_pt);</div>
+<div class="line"> add_sub_mesh(Surface_mesh_pt);</div>
+<div class="line"> </div>
+<div class="line"> <span class="comment">// Rebuild the Problem&#39;s global mesh from its various sub-meshes</span></div>
+<div class="line"> build_global_mesh();</div>
+<div class="line"> </div>
+<div class="line"> </div>
+<div class="line"> <span class="comment">// Set the boundary conditions for this problem: All nodes are</span></div>
+<div class="line"> <span class="comment">// free by default -- just pin the ones that have Dirichlet conditions</span></div>
+<div class="line"> <span class="comment">// here. </span></div>
+<div class="line"> <span class="keywordtype">unsigned</span> n_bound = Bulk_mesh_pt-&gt;nboundary();</div>
+<div class="line"> <span class="keywordflow">for</span>(<span class="keywordtype">unsigned</span> b=0;b&lt;n_bound;b++)</div>
+<div class="line">  {</div>
+<div class="line">   <span class="comment">//Leave nodes on boundary 1 free</span></div>
+<div class="line">   <span class="keywordflow">if</span> (b!=1)</div>
+<div class="line">    {</div>
+<div class="line">     <span class="keywordtype">unsigned</span> n_node = Bulk_mesh_pt-&gt;nboundary_node(b);</div>
+<div class="line">     <span class="keywordflow">for</span> (<span class="keywordtype">unsigned</span> n=0;n&lt;n_node;n++)</div>
+<div class="line">      {</div>
+<div class="line">       Bulk_mesh_pt-&gt;boundary_node_pt(b,n)-&gt;pin(0); </div>
+<div class="line">      }</div>
+<div class="line">    }</div>
+<div class="line">  }</div>
+<div class="line"> </div>
+<div class="line"> <span class="comment">// Complete the build of all elements so they are fully functional</span></div>
+<div class="line"> </div>
+<div class="line"> <span class="comment">// Loop over the Poisson bulk elements to set up element-specific </span></div>
+<div class="line"> <span class="comment">// things that cannot be handled by constructor: Pass pointer to </span></div>
+<div class="line"> <span class="comment">// source function</span></div>
+<div class="line"> <span class="keywordtype">unsigned</span> n_element = Bulk_mesh_pt-&gt;nelement();</div>
+<div class="line"> <span class="keywordflow">for</span>(<span class="keywordtype">unsigned</span> e=0;e&lt;n_element;e++)</div>
+<div class="line">  {</div>
+<div class="line">   <span class="comment">// Upcast from GeneralisedElement to Poisson bulk element</span></div>
+<div class="line">   ELEMENT *el_pt = <span class="keyword">dynamic_cast&lt;</span>ELEMENT*<span class="keyword">&gt;</span>(Bulk_mesh_pt-&gt;element_pt(e));</div>
+<div class="line"> </div>
+<div class="line">   <span class="comment">//Set the source function pointer</span></div>
+<div class="line">   el_pt-&gt;source_fct_pt() = Source_fct_pt;</div>
+<div class="line">  }</div>
+<div class="line"> </div>
+<div class="line"> <span class="comment">// Set pointer to prescribed flux function for flux elements</span></div>
+<div class="line"> set_prescribed_flux_pt();</div>
+<div class="line"> </div>
+<div class="line"> <span class="comment">// Setup equation numbering scheme</span></div>
+<div class="line"> cout &lt;&lt;<span class="stringliteral">&quot;Number of equations: &quot;</span> &lt;&lt; assign_eqn_numbers() &lt;&lt; std::endl; </div>
+<div class="line"> </div>
+<div class="line">} <span class="comment">// end of constructor</span></div>
+</div><!-- fragment --> <hr  />
  <hr  />
 <h1><a class="anchor" id="before_adapt"></a>
 Actions before adaptation</h1>
@@ -374,7 +462,7 @@ PDF file</h1>
     <footer>
       <div class="container">
         <div class="text-muted" style="float:right;">Generated by <a href="http://www.doxygen.org/index.html">
-          <img style="height:18px;" class="footer-img" src="doxygen.png" alt="doxygen"></a> on Wed Oct 6 2021 09:54:14
+          <img style="height:18px;" class="footer-img" src="doxygen.png" alt="doxygen"></a> on Thu Oct 7 2021 15:26:10
         </div>
       </div>
     </footer>

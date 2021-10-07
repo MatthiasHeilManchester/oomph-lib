@@ -391,14 +391,83 @@ The problem class</h1>
 <h1><a class="anchor" id="constructor"></a>
 The Problem constructor</h1>
 <p >We start by creating the mesh, using <code>oomph-lib's</code> <code>RefineableFishMesh</code> object:</p>
-<div class="fragment"></div><!-- fragment --><p> Next, we create an error estimator for the problem. The <code>Z2ErrorEstimator</code> is based on Zhu and Zienkiewicz's flux recovery technique and can be used with all elements that are derived from the <code>ElementWithZ2ErrorEstimator</code> base class (or with functions that implement the pure virtual functions that are defined in this class) &ndash; the <code>RefineableQPoissonElement</code> is an element of this type.</p>
-<div class="fragment"></div><!-- fragment --><p> Next we pin the nodal values on all boundaries, apply the homogeneous Dirichlet boundary conditions, pass the pointer to the source function to the elements, and set up the equation numbering scheme.</p>
-<div class="fragment"></div><!-- fragment --><hr  />
+<div class="fragment"><div class="line"><span class="comment">//===========start_of_constructor=========================================</span></div>
+<div class="line"><span class="comment">/// Constructor for adaptive Poisson problem in fish-shaped</span><span class="comment"></span></div>
+<div class="line"><span class="comment">/// domain.</span></div>
+<div class="line"><span class="comment"></span><span class="comment">//========================================================================</span></div>
+<div class="line"><span class="keyword">template</span>&lt;<span class="keyword">class</span> ELEMENT&gt;</div>
+<div class="line"><a class="code hl_function" href="classRefineableFishPoissonProblem.html#a7a9c8258a867de6b3c8b9d00a7c965f1">RefineableFishPoissonProblem&lt;ELEMENT&gt;::RefineableFishPoissonProblem</a>()</div>
+<div class="line">{ </div>
+<div class="line">    </div>
+<div class="line"> <span class="comment">// Build fish mesh -- this is a coarse base mesh consisting </span></div>
+<div class="line"> <span class="comment">// of four elements. We&#39;ll refine/adapt the mesh later.</span></div>
+<div class="line"> Problem::mesh_pt()=<span class="keyword">new</span> RefineableFishMesh&lt;ELEMENT&gt;;</div>
+</div><!-- fragment --><p> Next, we create an error estimator for the problem. The <code>Z2ErrorEstimator</code> is based on Zhu and Zienkiewicz's flux recovery technique and can be used with all elements that are derived from the <code>ElementWithZ2ErrorEstimator</code> base class (or with functions that implement the pure virtual functions that are defined in this class) &ndash; the <code>RefineableQPoissonElement</code> is an element of this type.</p>
+<div class="fragment"><div class="line"> <span class="comment">// Create/set error estimator</span></div>
+<div class="line"> mesh_pt()-&gt;spatial_error_estimator_pt()=<span class="keyword">new</span> Z2ErrorEstimator;</div>
+</div><!-- fragment --><p> Next we pin the nodal values on all boundaries, apply the homogeneous Dirichlet boundary conditions, pass the pointer to the source function to the elements, and set up the equation numbering scheme.</p>
+<div class="fragment"><div class="line"> <span class="comment">// Set the boundary conditions for this problem: All nodes are</span></div>
+<div class="line"> <span class="comment">// free by default -- just pin the ones that have Dirichlet conditions</span></div>
+<div class="line"> <span class="comment">// here. Since the boundary values are never changed, we set</span></div>
+<div class="line"> <span class="comment">// them here rather than in actions_before_newton_solve(). </span></div>
+<div class="line"> <span class="keywordtype">unsigned</span> n_bound = mesh_pt()-&gt;nboundary();</div>
+<div class="line"> <span class="keywordflow">for</span>(<span class="keywordtype">unsigned</span> i=0;i&lt;n_bound;i++)</div>
+<div class="line">  {</div>
+<div class="line">   <span class="keywordtype">unsigned</span> n_node = mesh_pt()-&gt;nboundary_node(i);</div>
+<div class="line">   <span class="keywordflow">for</span> (<span class="keywordtype">unsigned</span> n=0;n&lt;n_node;n++)</div>
+<div class="line">    {</div>
+<div class="line">     <span class="comment">// Pin the single scalar value at this node</span></div>
+<div class="line">     mesh_pt()-&gt;boundary_node_pt(i,n)-&gt;pin(0); </div>
+<div class="line"> </div>
+<div class="line">     <span class="comment">// Assign the homogenous boundary condition for the one and only</span></div>
+<div class="line">     <span class="comment">// nodal value</span></div>
+<div class="line">     mesh_pt()-&gt;boundary_node_pt(i,n)-&gt;set_value(0,0.0); </div>
+<div class="line">    }</div>
+<div class="line">  }</div>
+<div class="line"> </div>
+<div class="line"> <span class="comment">// Loop over elements and set pointers to source function</span></div>
+<div class="line"> <span class="keywordtype">unsigned</span> n_element = mesh_pt()-&gt;nelement();</div>
+<div class="line"> <span class="keywordflow">for</span>(<span class="keywordtype">unsigned</span> e=0;e&lt;n_element;e++)</div>
+<div class="line">  {</div>
+<div class="line">   <span class="comment">// Upcast from FiniteElement to the present element</span></div>
+<div class="line">   ELEMENT *el_pt = <span class="keyword">dynamic_cast&lt;</span>ELEMENT*<span class="keyword">&gt;</span>(mesh_pt()-&gt;element_pt(e));</div>
+<div class="line"> </div>
+<div class="line">   <span class="comment">//Set the source function pointer</span></div>
+<div class="line">   el_pt-&gt;source_fct_pt() = &amp;<a class="code hl_function" href="namespaceConstSourceForPoisson.html#aeaa1153817bde9598372b803342f3299">ConstSourceForPoisson::source_function</a>;</div>
+<div class="line">  }</div>
+<div class="line"> </div>
+<div class="line"> <span class="comment">// Setup the equation numbering scheme</span></div>
+<div class="line"> cout &lt;&lt;<span class="stringliteral">&quot;Number of equations: &quot;</span> &lt;&lt; assign_eqn_numbers() &lt;&lt; std::endl; </div>
+<div class="line"> </div>
+<div class="line">} <span class="comment">// end of constructor</span></div>
+</div><!-- fragment --><hr  />
  <hr  />
 <h1><a class="anchor" id="doc"></a>
 Post-processing</h1>
 <p >The post-processing routine writes the computed result to an output file, labeled with the identifiers specified in the <code>DocInfo</code> object.</p>
-<div class="fragment"></div><!-- fragment --><hr  />
+<div class="fragment"><div class="line"><span class="comment">//=======start_of_doc=====================================================</span></div>
+<div class="line"><span class="comment">/// Doc the solution in tecplot format.</span></div>
+<div class="line"><span class="comment">//========================================================================</span></div>
+<div class="line"><span class="keyword">template</span>&lt;<span class="keyword">class</span> ELEMENT&gt;</div>
+<div class="line"><span class="keywordtype">void</span> <a class="code hl_function" href="classRefineableFishPoissonProblem.html#aeee1bf23216971b50b8822c45e62c48b">RefineableFishPoissonProblem&lt;ELEMENT&gt;::doc_solution</a>(DocInfo&amp; doc_info)</div>
+<div class="line">{ </div>
+<div class="line"> </div>
+<div class="line"> ofstream some_file;</div>
+<div class="line"> <span class="keywordtype">char</span> filename[100];</div>
+<div class="line"> </div>
+<div class="line"> <span class="comment">// Number of plot points in each coordinate direction.</span></div>
+<div class="line"> <span class="keywordtype">unsigned</span> npts;</div>
+<div class="line"> npts=5; </div>
+<div class="line"> </div>
+<div class="line"> <span class="comment">// Output solution </span></div>
+<div class="line"> sprintf(filename,<span class="stringliteral">&quot;%s/soln%i.dat&quot;</span>,doc_info.directory().c_str(),</div>
+<div class="line">         doc_info.number());</div>
+<div class="line"> some_file.open(filename);</div>
+<div class="line"> mesh_pt()-&gt;output(some_file,npts);</div>
+<div class="line"> some_file.close();</div>
+<div class="line"> </div>
+<div class="line">} <span class="comment">// end of doc</span></div>
+</div><!-- fragment --><hr  />
  <hr  />
 <h1><a class="anchor" id="comments"></a>
 Comments and Exercises</h1>
@@ -483,7 +552,7 @@ PDF file</h1>
     <footer>
       <div class="container">
         <div class="text-muted" style="float:right;">Generated by <a href="http://www.doxygen.org/index.html">
-          <img style="height:18px;" class="footer-img" src="doxygen.png" alt="doxygen"></a> on Wed Oct 6 2021 09:53:28
+          <img style="height:18px;" class="footer-img" src="doxygen.png" alt="doxygen"></a> on Thu Oct 7 2021 15:25:24
         </div>
       </div>
     </footer>

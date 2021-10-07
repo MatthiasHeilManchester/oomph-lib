@@ -478,6 +478,68 @@ As an example, {\ttfamily BDF$<$4$>$\+::ntstorage()} returns 5.   \\\cline{1-1}
 Here is the source code for the {\ttfamily set\+\_\+initial\+\_\+condition()} function\+: 
 \begin{DoxyCodeInclude}{0}
 \DoxyCodeLine{\textcolor{comment}{//======================start\_of\_set\_initial\_condition====================}}
+\DoxyCodeLine{\textcolor{comment}{/// \(\backslash\)short Set initial condition: Assign previous and current values}\textcolor{comment}{}}
+\DoxyCodeLine{\textcolor{comment}{/// from exact solution.}}
+\DoxyCodeLine{\textcolor{comment}{}\textcolor{comment}{//========================================================================}}
+\DoxyCodeLine{\textcolor{keyword}{template}<\textcolor{keyword}{class} ELEMENT>}
+\DoxyCodeLine{\textcolor{keywordtype}{void} \mbox{\hyperlink{classUnsteadyHeatProblem_a98de3ed2d9cf5409323121bbb482bc1b}{UnsteadyHeatProblem<ELEMENT>::set\_initial\_condition}}()}
+\DoxyCodeLine{\{ }
+\DoxyCodeLine{ \textcolor{comment}{// Backup time in global Time object}}
+\DoxyCodeLine{ \textcolor{keywordtype}{double} backed\_up\_time=time\_pt()-\/>time();}
+\DoxyCodeLine{         }
+\DoxyCodeLine{ \textcolor{comment}{// Past history needs to be established for t=time0-\/deltat, ...}}
+\DoxyCodeLine{ \textcolor{comment}{// Then provide current values (at t=time0) which will also form}}
+\DoxyCodeLine{ \textcolor{comment}{// the initial guess for the first solve at t=time0+deltat}}
+\DoxyCodeLine{ }
+\DoxyCodeLine{ \textcolor{comment}{// Vector of exact solution value}}
+\DoxyCodeLine{ Vector<double> soln(1);}
+\DoxyCodeLine{ Vector<double> x(2);}
+\DoxyCodeLine{}
+\DoxyCodeLine{ \textcolor{comment}{//Find number of nodes in mesh}}
+\DoxyCodeLine{ \textcolor{keywordtype}{unsigned} num\_nod = mesh\_pt()-\/>nnode();}
+\DoxyCodeLine{}
+\DoxyCodeLine{ \textcolor{comment}{// Set continuous times at previous timesteps:}}
+\DoxyCodeLine{ \textcolor{comment}{// How many previous timesteps does the timestepper use?}}
+\DoxyCodeLine{ \textcolor{keywordtype}{int} nprev\_steps=time\_stepper\_pt()-\/>nprev\_values();}
+\DoxyCodeLine{ Vector<double> prev\_time(nprev\_steps+1);}
+\DoxyCodeLine{ \textcolor{keywordflow}{for} (\textcolor{keywordtype}{int} t=nprev\_steps;t>=0;t-\/-\/)}
+\DoxyCodeLine{  \{}
+\DoxyCodeLine{   prev\_time[t]=time\_pt()-\/>time(\textcolor{keywordtype}{unsigned}(t));}
+\DoxyCodeLine{  \} }
+\DoxyCodeLine{}
+\DoxyCodeLine{ \textcolor{comment}{// Loop over current \& previous timesteps}}
+\DoxyCodeLine{ \textcolor{keywordflow}{for} (\textcolor{keywordtype}{int} t=nprev\_steps;t>=0;t-\/-\/)}
+\DoxyCodeLine{  \{}
+\DoxyCodeLine{   \textcolor{comment}{// Continuous time}}
+\DoxyCodeLine{   \textcolor{keywordtype}{double} time=prev\_time[t];}
+\DoxyCodeLine{   cout << \textcolor{stringliteral}{"{}setting IC at time ="{}} << time << std::endl;}
+\DoxyCodeLine{   }
+\DoxyCodeLine{   \textcolor{comment}{// Loop over the nodes to set initial guess everywhere}}
+\DoxyCodeLine{   \textcolor{keywordflow}{for} (\textcolor{keywordtype}{unsigned} n=0;n<num\_nod;n++)}
+\DoxyCodeLine{    \{}
+\DoxyCodeLine{     \textcolor{comment}{// Get nodal coordinates}}
+\DoxyCodeLine{     x[0]=mesh\_pt()-\/>node\_pt(n)-\/>x(0);}
+\DoxyCodeLine{     x[1]=mesh\_pt()-\/>node\_pt(n)-\/>x(1);}
+\DoxyCodeLine{}
+\DoxyCodeLine{     \textcolor{comment}{// Get exact solution at previous time}}
+\DoxyCodeLine{     \mbox{\hyperlink{namespaceExactSolnForUnsteadyHeat_a1d5b22857bd2a7825397daf1cf9c89eb}{ExactSolnForUnsteadyHeat::get\_exact\_u}}(time,x,soln);}
+\DoxyCodeLine{     }
+\DoxyCodeLine{     \textcolor{comment}{// Assign solution}}
+\DoxyCodeLine{     mesh\_pt()-\/>node\_pt(n)-\/>set\_value(t,0,soln[0]);}
+\DoxyCodeLine{     }
+\DoxyCodeLine{     \textcolor{comment}{// Loop over coordinate directions: Mesh doesn't move, so }}
+\DoxyCodeLine{     \textcolor{comment}{// previous position = present position}}
+\DoxyCodeLine{     \textcolor{keywordflow}{for} (\textcolor{keywordtype}{unsigned} i=0;i<2;i++)}
+\DoxyCodeLine{      \{}
+\DoxyCodeLine{       mesh\_pt()-\/>node\_pt(n)-\/>x(t,i)=x[i];}
+\DoxyCodeLine{      \}}
+\DoxyCodeLine{    \} }
+\DoxyCodeLine{  \}}
+\DoxyCodeLine{}
+\DoxyCodeLine{ \textcolor{comment}{// Reset backed up time for global timestepper}}
+\DoxyCodeLine{ time\_pt()-\/>time()=backed\_up\_time;}
+\DoxyCodeLine{}
+\DoxyCodeLine{\} \textcolor{comment}{// end of set\_initial\_condition}}
 
 \end{DoxyCodeInclude}
  \DoxyHorRuler{0}
@@ -487,6 +549,86 @@ As in many previous examples, this member function outputs the computed solution
 
 
 \begin{DoxyCodeInclude}{0}
+\DoxyCodeLine{\textcolor{comment}{//=======start\_of\_doc\_solution============================================}}
+\DoxyCodeLine{\textcolor{comment}{/// Doc the solution}}
+\DoxyCodeLine{\textcolor{comment}{//========================================================================}}
+\DoxyCodeLine{\textcolor{keyword}{template}<\textcolor{keyword}{class} ELEMENT>}
+\DoxyCodeLine{\textcolor{keywordtype}{void} \mbox{\hyperlink{classUnsteadyHeatProblem_a2c0c4b762d2dbde7396dca2a6750f433}{UnsteadyHeatProblem<ELEMENT>::}}}
+\DoxyCodeLine{\mbox{\hyperlink{classUnsteadyHeatProblem_a2c0c4b762d2dbde7396dca2a6750f433}{doc\_solution}}(DocInfo\& doc\_info,ofstream\& trace\_file)}
+\DoxyCodeLine{\{ }
+\DoxyCodeLine{ ofstream some\_file;}
+\DoxyCodeLine{ \textcolor{keywordtype}{char} filename[100];}
+\DoxyCodeLine{}
+\DoxyCodeLine{ \textcolor{comment}{// Number of plot points}}
+\DoxyCodeLine{ \textcolor{keywordtype}{unsigned} npts;}
+\DoxyCodeLine{ npts=5;}
+\DoxyCodeLine{}
+\DoxyCodeLine{}
+\DoxyCodeLine{ cout << std::endl;}
+\DoxyCodeLine{ cout << \textcolor{stringliteral}{"{}================================================="{}} << std::endl;}
+\DoxyCodeLine{ cout << \textcolor{stringliteral}{"{}Docing solution for t="{}} << time\_pt()-\/>time() << std::endl;}
+\DoxyCodeLine{ cout << \textcolor{stringliteral}{"{}================================================="{}} << std::endl;}
+\DoxyCodeLine{}
+\DoxyCodeLine{}
+\DoxyCodeLine{ \textcolor{comment}{// Output solution }}
+\DoxyCodeLine{ \textcolor{comment}{//-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/}}
+\DoxyCodeLine{ sprintf(filename,\textcolor{stringliteral}{"{}\%s/soln\%i.dat"{}},doc\_info.directory().c\_str(),}
+\DoxyCodeLine{         doc\_info.number());}
+\DoxyCodeLine{ some\_file.open(filename);}
+\DoxyCodeLine{ mesh\_pt()-\/>output(some\_file,npts);}
+\DoxyCodeLine{}
+\DoxyCodeLine{ \textcolor{comment}{// Write file as a tecplot text object}}
+\DoxyCodeLine{ some\_file << \textcolor{stringliteral}{"{}TEXT X=2.5,Y=93.6,F=HELV,HU=POINT,C=BLUE,H=26,T=\(\backslash\)"{}time = "{}} }
+\DoxyCodeLine{           << time\_pt()-\/>time() << \textcolor{stringliteral}{"{}\(\backslash\)"{}"{}};}
+\DoxyCodeLine{ \textcolor{comment}{// ...and draw a horizontal line whose length is proportional}}
+\DoxyCodeLine{ \textcolor{comment}{// to the elapsed time}}
+\DoxyCodeLine{ some\_file << \textcolor{stringliteral}{"{}GEOMETRY X=2.5,Y=98,T=LINE,C=BLUE,LT=0.4"{}} << std::endl;}
+\DoxyCodeLine{ some\_file << \textcolor{stringliteral}{"{}1"{}} << std::endl;}
+\DoxyCodeLine{ some\_file << \textcolor{stringliteral}{"{}2"{}} << std::endl;}
+\DoxyCodeLine{ some\_file << \textcolor{stringliteral}{"{} 0 0"{}} << std::endl;}
+\DoxyCodeLine{ some\_file << time\_pt()-\/>time()*20.0 << \textcolor{stringliteral}{"{} 0"{}} << std::endl;}
+\DoxyCodeLine{ some\_file.close();}
+\DoxyCodeLine{}
+\DoxyCodeLine{}
+\DoxyCodeLine{ \textcolor{comment}{// Output exact solution }}
+\DoxyCodeLine{ \textcolor{comment}{//-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/}}
+\DoxyCodeLine{ sprintf(filename,\textcolor{stringliteral}{"{}\%s/exact\_soln\%i.dat"{}},doc\_info.directory().c\_str(),}
+\DoxyCodeLine{         doc\_info.number());}
+\DoxyCodeLine{ some\_file.open(filename);}
+\DoxyCodeLine{ mesh\_pt()-\/>output\_fct(some\_file,npts,time\_pt()-\/>time(),}
+\DoxyCodeLine{                       \mbox{\hyperlink{namespaceExactSolnForUnsteadyHeat_a1d5b22857bd2a7825397daf1cf9c89eb}{ExactSolnForUnsteadyHeat::get\_exact\_u}}); }
+\DoxyCodeLine{ some\_file.close();}
+\DoxyCodeLine{}
+\DoxyCodeLine{ \textcolor{comment}{// Doc error}}
+\DoxyCodeLine{ \textcolor{comment}{//-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/}}
+\DoxyCodeLine{ \textcolor{keywordtype}{double} error,norm;}
+\DoxyCodeLine{ sprintf(filename,\textcolor{stringliteral}{"{}\%s/error\%i.dat"{}},doc\_info.directory().c\_str(),}
+\DoxyCodeLine{         doc\_info.number());}
+\DoxyCodeLine{ some\_file.open(filename);}
+\DoxyCodeLine{ mesh\_pt()-\/>compute\_error(some\_file,}
+\DoxyCodeLine{                          \mbox{\hyperlink{namespaceExactSolnForUnsteadyHeat_a1d5b22857bd2a7825397daf1cf9c89eb}{ExactSolnForUnsteadyHeat::get\_exact\_u}},}
+\DoxyCodeLine{                          time\_pt()-\/>time(),}
+\DoxyCodeLine{                          error,norm); }
+\DoxyCodeLine{ some\_file.close();}
+\DoxyCodeLine{}
+\DoxyCodeLine{ \textcolor{comment}{// Doc solution and error}}
+\DoxyCodeLine{ \textcolor{comment}{//-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/}}
+\DoxyCodeLine{ cout << \textcolor{stringliteral}{"{}error: "{}} << error << std::endl; }
+\DoxyCodeLine{ cout << \textcolor{stringliteral}{"{}norm : "{}} << norm << std::endl << std::endl;}
+\DoxyCodeLine{}
+\DoxyCodeLine{ \textcolor{comment}{// Get exact solution at control node}}
+\DoxyCodeLine{ Vector<double> x\_ctrl(2);}
+\DoxyCodeLine{ x\_ctrl[0]=Control\_node\_pt-\/>x(0);}
+\DoxyCodeLine{ x\_ctrl[1]=Control\_node\_pt-\/>x(1);}
+\DoxyCodeLine{ \textcolor{keywordtype}{double} u\_exact;}
+\DoxyCodeLine{ \mbox{\hyperlink{namespaceExactSolnForUnsteadyHeat_a1d5b22857bd2a7825397daf1cf9c89eb}{ExactSolnForUnsteadyHeat::get\_exact\_u}}(time\_pt()-\/>time(),x\_ctrl,u\_exact);}
+\DoxyCodeLine{ trace\_file << time\_pt()-\/>time() << \textcolor{stringliteral}{"{} "{}} }
+\DoxyCodeLine{            << Control\_node\_pt-\/>value(0) << \textcolor{stringliteral}{"{} "{}} }
+\DoxyCodeLine{            << u\_exact << \textcolor{stringliteral}{"{} "{}} }
+\DoxyCodeLine{            << error   << \textcolor{stringliteral}{"{} "{}} }
+\DoxyCodeLine{            << norm    << std::endl;}
+\DoxyCodeLine{}
+\DoxyCodeLine{\} \textcolor{comment}{// end of doc\_solution}}
 
 \end{DoxyCodeInclude}
  \DoxyHorRuler{0}

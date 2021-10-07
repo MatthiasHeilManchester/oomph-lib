@@ -321,18 +321,65 @@ We start by creating the mesh, using {\ttfamily oomph-\/lib\textquotesingle{}s} 
 
 
 \begin{DoxyCodeInclude}{0}
+\DoxyCodeLine{\textcolor{comment}{//===========start\_of\_constructor=========================================}}
+\DoxyCodeLine{\textcolor{comment}{/// Constructor for adaptive Poisson problem in fish-\/shaped}\textcolor{comment}{}}
+\DoxyCodeLine{\textcolor{comment}{/// domain.}}
+\DoxyCodeLine{\textcolor{comment}{}\textcolor{comment}{//========================================================================}}
+\DoxyCodeLine{\textcolor{keyword}{template}<\textcolor{keyword}{class} ELEMENT>}
+\DoxyCodeLine{\mbox{\hyperlink{classRefineableFishPoissonProblem_a7a9c8258a867de6b3c8b9d00a7c965f1}{RefineableFishPoissonProblem<ELEMENT>::RefineableFishPoissonProblem}}()}
+\DoxyCodeLine{\{ }
+\DoxyCodeLine{    }
+\DoxyCodeLine{ \textcolor{comment}{// Build fish mesh -\/-\/ this is a coarse base mesh consisting }}
+\DoxyCodeLine{ \textcolor{comment}{// of four elements. We'll refine/adapt the mesh later.}}
+\DoxyCodeLine{ Problem::mesh\_pt()=\textcolor{keyword}{new} RefineableFishMesh<ELEMENT>;}
 
 \end{DoxyCodeInclude}
  Next, we create an error estimator for the problem. The {\ttfamily Z2\+Error\+Estimator} is based on Zhu and Zienkiewicz\textquotesingle{}s flux recovery technique and can be used with all elements that are derived from the {\ttfamily Element\+With\+Z2\+Error\+Estimator} base class (or with functions that implement the pure virtual functions that are defined in this class) -- the {\ttfamily Refineable\+QPoisson\+Element} is an element of this type.
 
 
 \begin{DoxyCodeInclude}{0}
+\DoxyCodeLine{ \textcolor{comment}{// Create/set error estimator}}
+\DoxyCodeLine{ mesh\_pt()-\/>spatial\_error\_estimator\_pt()=\textcolor{keyword}{new} Z2ErrorEstimator;}
 
 \end{DoxyCodeInclude}
  Next we pin the nodal values on all boundaries, apply the homogeneous Dirichlet boundary conditions, pass the pointer to the source function to the elements, and set up the equation numbering scheme.
 
 
 \begin{DoxyCodeInclude}{0}
+\DoxyCodeLine{ \textcolor{comment}{// Set the boundary conditions for this problem: All nodes are}}
+\DoxyCodeLine{ \textcolor{comment}{// free by default -\/-\/ just pin the ones that have Dirichlet conditions}}
+\DoxyCodeLine{ \textcolor{comment}{// here. Since the boundary values are never changed, we set}}
+\DoxyCodeLine{ \textcolor{comment}{// them here rather than in actions\_before\_newton\_solve(). }}
+\DoxyCodeLine{ \textcolor{keywordtype}{unsigned} n\_bound = mesh\_pt()-\/>nboundary();}
+\DoxyCodeLine{ \textcolor{keywordflow}{for}(\textcolor{keywordtype}{unsigned} i=0;i<n\_bound;i++)}
+\DoxyCodeLine{  \{}
+\DoxyCodeLine{   \textcolor{keywordtype}{unsigned} n\_node = mesh\_pt()-\/>nboundary\_node(i);}
+\DoxyCodeLine{   \textcolor{keywordflow}{for} (\textcolor{keywordtype}{unsigned} n=0;n<n\_node;n++)}
+\DoxyCodeLine{    \{}
+\DoxyCodeLine{     \textcolor{comment}{// Pin the single scalar value at this node}}
+\DoxyCodeLine{     mesh\_pt()-\/>boundary\_node\_pt(i,n)-\/>pin(0); }
+\DoxyCodeLine{}
+\DoxyCodeLine{     \textcolor{comment}{// Assign the homogenous boundary condition for the one and only}}
+\DoxyCodeLine{     \textcolor{comment}{// nodal value}}
+\DoxyCodeLine{     mesh\_pt()-\/>boundary\_node\_pt(i,n)-\/>set\_value(0,0.0); }
+\DoxyCodeLine{    \}}
+\DoxyCodeLine{  \}}
+\DoxyCodeLine{}
+\DoxyCodeLine{ \textcolor{comment}{// Loop over elements and set pointers to source function}}
+\DoxyCodeLine{ \textcolor{keywordtype}{unsigned} n\_element = mesh\_pt()-\/>nelement();}
+\DoxyCodeLine{ \textcolor{keywordflow}{for}(\textcolor{keywordtype}{unsigned} e=0;e<n\_element;e++)}
+\DoxyCodeLine{  \{}
+\DoxyCodeLine{   \textcolor{comment}{// Upcast from FiniteElement to the present element}}
+\DoxyCodeLine{   ELEMENT *el\_pt = \textcolor{keyword}{dynamic\_cast<}ELEMENT*\textcolor{keyword}{>}(mesh\_pt()-\/>element\_pt(e));}
+\DoxyCodeLine{}
+\DoxyCodeLine{   \textcolor{comment}{//Set the source function pointer}}
+\DoxyCodeLine{   el\_pt-\/>source\_fct\_pt() = \&\mbox{\hyperlink{namespaceConstSourceForPoisson_aeaa1153817bde9598372b803342f3299}{ConstSourceForPoisson::source\_function}};}
+\DoxyCodeLine{  \}}
+\DoxyCodeLine{}
+\DoxyCodeLine{ \textcolor{comment}{// Setup the equation numbering scheme}}
+\DoxyCodeLine{ cout <<\textcolor{stringliteral}{"{}Number of equations: "{}} << assign\_eqn\_numbers() << std::endl; }
+\DoxyCodeLine{}
+\DoxyCodeLine{\} \textcolor{comment}{// end of constructor}}
 
 \end{DoxyCodeInclude}
 
@@ -344,6 +391,28 @@ The post-\/processing routine writes the computed result to an output file, labe
 
 
 \begin{DoxyCodeInclude}{0}
+\DoxyCodeLine{\textcolor{comment}{//=======start\_of\_doc=====================================================}}
+\DoxyCodeLine{\textcolor{comment}{/// Doc the solution in tecplot format.}}
+\DoxyCodeLine{\textcolor{comment}{//========================================================================}}
+\DoxyCodeLine{\textcolor{keyword}{template}<\textcolor{keyword}{class} ELEMENT>}
+\DoxyCodeLine{\textcolor{keywordtype}{void} \mbox{\hyperlink{classRefineableFishPoissonProblem_aeee1bf23216971b50b8822c45e62c48b}{RefineableFishPoissonProblem<ELEMENT>::doc\_solution}}(DocInfo\& doc\_info)}
+\DoxyCodeLine{\{ }
+\DoxyCodeLine{}
+\DoxyCodeLine{ ofstream some\_file;}
+\DoxyCodeLine{ \textcolor{keywordtype}{char} filename[100];}
+\DoxyCodeLine{}
+\DoxyCodeLine{ \textcolor{comment}{// Number of plot points in each coordinate direction.}}
+\DoxyCodeLine{ \textcolor{keywordtype}{unsigned} npts;}
+\DoxyCodeLine{ npts=5; }
+\DoxyCodeLine{}
+\DoxyCodeLine{ \textcolor{comment}{// Output solution }}
+\DoxyCodeLine{ sprintf(filename,\textcolor{stringliteral}{"{}\%s/soln\%i.dat"{}},doc\_info.directory().c\_str(),}
+\DoxyCodeLine{         doc\_info.number());}
+\DoxyCodeLine{ some\_file.open(filename);}
+\DoxyCodeLine{ mesh\_pt()-\/>output(some\_file,npts);}
+\DoxyCodeLine{ some\_file.close();}
+\DoxyCodeLine{ }
+\DoxyCodeLine{\} \textcolor{comment}{// end of doc}}
 
 \end{DoxyCodeInclude}
 

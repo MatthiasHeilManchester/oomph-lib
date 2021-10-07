@@ -159,36 +159,141 @@ We start by determining the x and y-\/coordinates of the nodes and decide if the
  
 \begin{DoxyCodeInclude}{0}
 \DoxyCodeLine{  \textcolor{comment}{//=====start\_setup=================================================}}
+\DoxyCodeLine{\textcolor{comment}{  /// Setup algebraic mesh update -\/-\/ assumes that mesh has}\textcolor{comment}{}}
+\DoxyCodeLine{\textcolor{comment}{  /// initially been set up with a flush upper wall}}
+\DoxyCodeLine{\textcolor{comment}{}  \textcolor{comment}{//=================================================================}}
+\DoxyCodeLine{  \textcolor{keyword}{template}<\textcolor{keyword}{class} ELEMENT>}
+\DoxyCodeLine{  \textcolor{keywordtype}{void} AlgebraicCollapsibleChannelMesh<ELEMENT>::setup\_algebraic\_node\_update()}
+\DoxyCodeLine{  \{}
+\DoxyCodeLine{    \textcolor{comment}{// Shorthand for some geometric data:}}
+\DoxyCodeLine{    \textcolor{keywordtype}{double} l\_up = this-\/>domain\_pt()-\/>l\_up();}
+\DoxyCodeLine{    \textcolor{keywordtype}{double} l\_collapsible = this-\/>domain\_pt()-\/>l\_collapsible();}
+\DoxyCodeLine{}
+\DoxyCodeLine{    \textcolor{comment}{// Loop over all nodes in mesh}}
+\DoxyCodeLine{    \textcolor{keywordtype}{unsigned} nnod = this-\/>nnode();}
+\DoxyCodeLine{    \textcolor{keywordflow}{for} (\textcolor{keywordtype}{unsigned} j = 0; j < nnod; j++)}
+\DoxyCodeLine{    \{}
+\DoxyCodeLine{      \textcolor{comment}{// Get pointer to node -\/-\/ recall that that Mesh::node\_pt(...) has been}}
+\DoxyCodeLine{      \textcolor{comment}{// overloaded in the AlgebraicMesh class to return a pointer to}}
+\DoxyCodeLine{      \textcolor{comment}{// an AlgebraicNode.}}
+\DoxyCodeLine{      AlgebraicNode* nod\_pt = node\_pt(j);}
+\DoxyCodeLine{}
+\DoxyCodeLine{      \textcolor{comment}{// Get coordinates}}
+\DoxyCodeLine{      \textcolor{keywordtype}{double} x = nod\_pt-\/>x(0);}
+\DoxyCodeLine{      \textcolor{keywordtype}{double} y = nod\_pt-\/>x(1);}
+\DoxyCodeLine{}
+\DoxyCodeLine{      \textcolor{comment}{// Check if it's in the collapsible part:}}
+\DoxyCodeLine{      \textcolor{keywordflow}{if} ((x >= l\_up) \&\& (x <= (l\_up + l\_collapsible)))}
 
 \end{DoxyCodeInclude}
  Assuming that the wall is in its undeformed position (we\textquotesingle{}ll check this in a second...), we determine the intrinsic coordinate of the reference point on the upper wall (taking the offset between $ x$ and $ \zeta$ into account\+: The left end of the elastic wall is located at $ \zeta=0$ and at $ x = L_{up} $ ), and identify the sub -\/ {\ttfamily Geom\+Object} within which the reference point is located.
 
 
 \begin{DoxyCodeInclude}{0}
+\DoxyCodeLine{      \{}
+\DoxyCodeLine{        \textcolor{comment}{// Get zeta coordinate on the undeformed wall}}
+\DoxyCodeLine{        Vector<double> zeta(1);}
+\DoxyCodeLine{        zeta[0] = x -\/ l\_up;}
+\DoxyCodeLine{}
+\DoxyCodeLine{        \textcolor{comment}{// Get pointer to geometric (sub-\/)object and Lagrangian coordinate}}
+\DoxyCodeLine{        \textcolor{comment}{// on that sub-\/object. For a wall that is represented by}}
+\DoxyCodeLine{        \textcolor{comment}{// a single geom object, this simply returns the input.}}
+\DoxyCodeLine{        \textcolor{comment}{// If the geom object consists of sub-\/objects (e.g.}}
+\DoxyCodeLine{        \textcolor{comment}{// if it is a finite element mesh representing a wall,}}
+\DoxyCodeLine{        \textcolor{comment}{// then we'll obtain the pointer to the finite element}}
+\DoxyCodeLine{        \textcolor{comment}{// (in its incarnation as a GeomObject) and the}}
+\DoxyCodeLine{        \textcolor{comment}{// local coordinate in that element.}}
+\DoxyCodeLine{        GeomObject* geom\_obj\_pt;}
+\DoxyCodeLine{        Vector<double> s(1);}
+\DoxyCodeLine{        this-\/>Wall\_pt-\/>locate\_zeta(zeta, geom\_obj\_pt, s);}
 
 \end{DoxyCodeInclude}
  Just to be on the safe side, we double check that the wall is still in its undeformed position\+:
 
 
 \begin{DoxyCodeInclude}{0}
+\DoxyCodeLine{}
+\DoxyCodeLine{        \textcolor{comment}{// Get position vector to wall:}}
+\DoxyCodeLine{        Vector<double> r\_wall(2);}
+\DoxyCodeLine{        geom\_obj\_pt-\/>position(s, r\_wall);}
+\DoxyCodeLine{}
+\DoxyCodeLine{        \textcolor{comment}{// Sanity check: Confirm that the wall is in its undeformed position}}
+\DoxyCodeLine{\textcolor{preprocessor}{\#ifdef PARANOID}}
+\DoxyCodeLine{        \textcolor{keywordflow}{if} ((std::fabs(r\_wall[0] -\/ x) > 1.0e-\/15) \&\&}
+\DoxyCodeLine{            (std::fabs(r\_wall[1] -\/ y) > 1.0e-\/15))}
+\DoxyCodeLine{        \{}
+\DoxyCodeLine{          std::ostringstream error\_stream;}
+\DoxyCodeLine{          error\_stream << \textcolor{stringliteral}{"{}Wall must be in its undeformed position when\(\backslash\)n"{}}}
+\DoxyCodeLine{                       << \textcolor{stringliteral}{"{}algebraic node update information is set up!\(\backslash\)n "{}}}
+\DoxyCodeLine{                       << \textcolor{stringliteral}{"{}x-\/discrepancy: "{}} << std::fabs(r\_wall[0] -\/ x)}
+\DoxyCodeLine{                       << std::endl}
+\DoxyCodeLine{                       << \textcolor{stringliteral}{"{}y-\/discrepancy: "{}} << std::fabs(r\_wall[1] -\/ y)}
+\DoxyCodeLine{                       << std::endl;}
+\DoxyCodeLine{}
+\DoxyCodeLine{          \textcolor{keywordflow}{throw} OomphLibError(error\_stream.str(),}
+\DoxyCodeLine{                              OOMPH\_CURRENT\_FUNCTION,}
+\DoxyCodeLine{                              OOMPH\_EXCEPTION\_LOCATION);}
+\DoxyCodeLine{        \}}
+\DoxyCodeLine{\textcolor{preprocessor}{\#endif}}
 
 \end{DoxyCodeInclude}
  Now we can create the node update data for the present {\ttfamily Algebraic\+Node}. The node update function involves a single {\ttfamily Geom\+Object\+:} The (sub-\/){\ttfamily Geom\+Object} within which the reference point on the upper wall is located.
 
 
 \begin{DoxyCodeInclude}{0}
+\DoxyCodeLine{}
+\DoxyCodeLine{}
+\DoxyCodeLine{        \textcolor{comment}{// One geometric object is involved in update operation}}
+\DoxyCodeLine{        Vector<GeomObject*> geom\_object\_pt(1);}
+\DoxyCodeLine{}
+\DoxyCodeLine{        \textcolor{comment}{// The actual geometric object (If the wall is simple GeomObject}}
+\DoxyCodeLine{        \textcolor{comment}{// this is the same as Wall\_pt; if it's a compound GeomObject}}
+\DoxyCodeLine{        \textcolor{comment}{// this points to the sub-\/object)}}
+\DoxyCodeLine{        geom\_object\_pt[0] = geom\_obj\_pt;}
 
 \end{DoxyCodeInclude}
  As in the mesh used in the \href{../../../navier_stokes/algebraic_collapsible_channel/html/index.html}{\texttt{ non-\/\+FSI example}} we store the x-\/coordinate of the reference point on the lower wall, the fractional height of the node, and its intrinsic coordinate in the (sub-\/){\ttfamily Geom\+Object} on the upper wall. We also store the intrinsic coordinate of the reference point in the compound {\ttfamily Geom\+Object} (i.\+e. the Lagrangian coordinate of the reference point in the continuous beam). This will turn out to be useful in the refineable version of this mesh, to be discussed in \href{../../fsi_collapsible_channel_adapt/html/index.html}{\texttt{ the next example.}}
 
 
 \begin{DoxyCodeInclude}{0}
+\DoxyCodeLine{}
+\DoxyCodeLine{        \textcolor{comment}{// The update function requires four  parameters:}}
+\DoxyCodeLine{        Vector<double> ref\_value(4);}
+\DoxyCodeLine{}
+\DoxyCodeLine{        \textcolor{comment}{// First reference value: Original x-\/position}}
+\DoxyCodeLine{        ref\_value[0] = r\_wall[0];}
+\DoxyCodeLine{}
+\DoxyCodeLine{        \textcolor{comment}{// Second  reference value: fractional position along}}
+\DoxyCodeLine{        \textcolor{comment}{// straight line from the bottom (at the original x position)}}
+\DoxyCodeLine{        \textcolor{comment}{// to the point on the wall)}}
+\DoxyCodeLine{        ref\_value[1] = y / r\_wall[1];}
+\DoxyCodeLine{}
+\DoxyCodeLine{        \textcolor{comment}{// Third reference value: Reference local coordinate}}
+\DoxyCodeLine{        \textcolor{comment}{// in wall element (local coordinate in FE if we're dealing}}
+\DoxyCodeLine{        \textcolor{comment}{// with a wall mesh)}}
+\DoxyCodeLine{        ref\_value[2] = s[0];}
+\DoxyCodeLine{}
+\DoxyCodeLine{        \textcolor{comment}{// Fourth reference value: zeta coordinate on wall}}
+\DoxyCodeLine{        \textcolor{comment}{// If the wall is a simple GeomObject, zeta[0]=s[0]}}
+\DoxyCodeLine{        \textcolor{comment}{// but if it's a compound GeomObject (e.g. a finite element mesh)}}
+\DoxyCodeLine{        \textcolor{comment}{// zeta scales during mesh refinement, whereas s[0] and the}}
+\DoxyCodeLine{        \textcolor{comment}{// pointer to the geom object have to be re-\/computed.}}
+\DoxyCodeLine{        ref\_value[3] = zeta[0];}
 
 \end{DoxyCodeInclude}
  Finally, we create the node update information by passing the pointer to the mesh, the pointer to the {\ttfamily Geom\+Object} and the reference values to the {\ttfamily Algebraic\+Node}.
 
 
 \begin{DoxyCodeInclude}{0}
+\DoxyCodeLine{}
+\DoxyCodeLine{        \textcolor{comment}{// Setup algebraic update for node: Pass update information}}
+\DoxyCodeLine{        nod\_pt-\/>add\_node\_update\_info(\textcolor{keyword}{this}, \textcolor{comment}{// mesh}}
+\DoxyCodeLine{                                     geom\_object\_pt, \textcolor{comment}{// vector of geom objects}}
+\DoxyCodeLine{                                     ref\_value); \textcolor{comment}{// vector of  ref. values}}
+\DoxyCodeLine{      \}}
+\DoxyCodeLine{    \}}
+\DoxyCodeLine{}
+\DoxyCodeLine{  \} \textcolor{comment}{// end of setup\_algebraic\_node\_update}}
 
 \end{DoxyCodeInclude}
 

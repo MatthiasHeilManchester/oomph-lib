@@ -89,6 +89,140 @@ We start by checking the validity of the command line arguments, accessible via 
 
 \begin{DoxyCodeInclude}{0}
 \DoxyCodeLine{\textcolor{comment}{//======================start\_of\_set\_initial\_condition====================}}
+\DoxyCodeLine{\textcolor{comment}{/// \(\backslash\)short Set initial condition: Assign previous and current values}\textcolor{comment}{}}
+\DoxyCodeLine{\textcolor{comment}{/// from exact solution or from restart file.}}
+\DoxyCodeLine{\textcolor{comment}{}\textcolor{comment}{//========================================================================}}
+\DoxyCodeLine{\textcolor{keyword}{template}<\textcolor{keyword}{class} ELEMENT>}
+\DoxyCodeLine{\textcolor{keywordtype}{void} \mbox{\hyperlink{classUnsteadyHeatProblem_a98de3ed2d9cf5409323121bbb482bc1b}{UnsteadyHeatProblem<ELEMENT>::set\_initial\_condition}}()}
+\DoxyCodeLine{\{ }
+\DoxyCodeLine{}
+\DoxyCodeLine{ \textcolor{comment}{// Pointer to restart file}}
+\DoxyCodeLine{ ifstream* restart\_file\_pt=0;}
+\DoxyCodeLine{}
+\DoxyCodeLine{ \textcolor{comment}{// Restart?}}
+\DoxyCodeLine{ \textcolor{comment}{//-\/-\/-\/-\/-\/-\/-\/-\/-\/}}
+\DoxyCodeLine{ \textcolor{comment}{// Restart file specified via command line [all programs have at least}}
+\DoxyCodeLine{ \textcolor{comment}{// a single command line argument: their name. Ignore this here.]}}
+\DoxyCodeLine{ \textcolor{keywordflow}{if} (CommandLineArgs::Argc==1)}
+\DoxyCodeLine{  \{}
+\DoxyCodeLine{   cout << \textcolor{stringliteral}{"{}No restart -\/-\/ setting IC from exact solution"{}} << std::endl;}
+\DoxyCodeLine{  \}}
+\DoxyCodeLine{ \textcolor{keywordflow}{else} \textcolor{keywordflow}{if} (CommandLineArgs::Argc==2)}
+\DoxyCodeLine{  \{}
+\DoxyCodeLine{   \textcolor{comment}{// Open restart file}}
+\DoxyCodeLine{   restart\_file\_pt= \textcolor{keyword}{new} ifstream(CommandLineArgs::Argv[1],ios\_base::in);}
+\DoxyCodeLine{   \textcolor{keywordflow}{if} (restart\_file\_pt!=0)}
+\DoxyCodeLine{    \{}
+\DoxyCodeLine{     cout << \textcolor{stringliteral}{"{}Have opened "{}} << CommandLineArgs::Argv[1] << }
+\DoxyCodeLine{      \textcolor{stringliteral}{"{} for restart. "{}} << std::endl;}
+\DoxyCodeLine{    \}}
+\DoxyCodeLine{   \textcolor{keywordflow}{else}}
+\DoxyCodeLine{    \{}
+\DoxyCodeLine{     std::ostringstream error\_stream;}
+\DoxyCodeLine{     error\_stream }
+\DoxyCodeLine{      << \textcolor{stringliteral}{"{}ERROR while trying to open "{}} << CommandLineArgs::Argv[1] << }
+\DoxyCodeLine{      \textcolor{stringliteral}{"{} for restart."{}} << std::endl;}
+\DoxyCodeLine{}
+\DoxyCodeLine{     \textcolor{keywordflow}{throw} OomphLibError(}
+\DoxyCodeLine{      error\_stream.str(),}
+\DoxyCodeLine{      OOMPH\_CURRENT\_FUNCTION,}
+\DoxyCodeLine{      OOMPH\_EXCEPTION\_LOCATION);}
+\DoxyCodeLine{    \}}
+\DoxyCodeLine{  \}}
+\DoxyCodeLine{ \textcolor{comment}{// More than one command line argument?}}
+\DoxyCodeLine{ \textcolor{keywordflow}{else} }
+\DoxyCodeLine{  \{}
+\DoxyCodeLine{   std::ostringstream error\_stream;}
+\DoxyCodeLine{   error\_stream << \textcolor{stringliteral}{"{}Can only specify one input file\(\backslash\)n"{}} }
+\DoxyCodeLine{                << \textcolor{stringliteral}{"{}You specified the following command line arguments:\(\backslash\)n"{}};}
+\DoxyCodeLine{   \textcolor{comment}{//Fix this}}
+\DoxyCodeLine{   CommandLineArgs::output();}
+\DoxyCodeLine{}
+\DoxyCodeLine{   \textcolor{keywordflow}{throw} OomphLibError( }
+\DoxyCodeLine{    error\_stream.str(),}
+\DoxyCodeLine{    OOMPH\_CURRENT\_FUNCTION,}
+\DoxyCodeLine{    OOMPH\_EXCEPTION\_LOCATION);}
+\DoxyCodeLine{  \}}
+\DoxyCodeLine{}
+\DoxyCodeLine{}
+\DoxyCodeLine{ \textcolor{comment}{// Read restart data:}}
+\DoxyCodeLine{ \textcolor{comment}{//-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/}}
+\DoxyCodeLine{ \textcolor{keywordflow}{if} (restart\_file\_pt!=0)}
+\DoxyCodeLine{  \{}
+\DoxyCodeLine{}
+\DoxyCodeLine{   \textcolor{comment}{// Read the problem data from the restart file}}
+\DoxyCodeLine{   restart(*restart\_file\_pt);}
+\DoxyCodeLine{}
+\DoxyCodeLine{  \}}
+\DoxyCodeLine{ \textcolor{comment}{// Assign initial condition from exact solution}}
+\DoxyCodeLine{ \textcolor{comment}{//-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/}}
+\DoxyCodeLine{ \textcolor{keywordflow}{else}}
+\DoxyCodeLine{  \{}
+\DoxyCodeLine{   }
+\DoxyCodeLine{   \textcolor{comment}{// Choose timestep}}
+\DoxyCodeLine{   \textcolor{keywordtype}{double} dt=0.01;}
+\DoxyCodeLine{   }
+\DoxyCodeLine{   \textcolor{comment}{// Initialise timestep -\/-\/ also sets the weights for all timesteppers}}
+\DoxyCodeLine{   \textcolor{comment}{// in the problem.}}
+\DoxyCodeLine{   initialise\_dt(dt);}
+\DoxyCodeLine{   }
+\DoxyCodeLine{   \textcolor{comment}{// Backup time in global Time object}}
+\DoxyCodeLine{   \textcolor{keywordtype}{double} backed\_up\_time=time\_pt()-\/>time();}
+\DoxyCodeLine{   }
+\DoxyCodeLine{   \textcolor{comment}{// Past history fo needs to be established for t=time0-\/deltat, ...}}
+\DoxyCodeLine{   \textcolor{comment}{// Then provide current values (at t=time0) which will also form}}
+\DoxyCodeLine{   \textcolor{comment}{// the initial guess for the first solve at t=time0+deltat}}
+\DoxyCodeLine{   }
+\DoxyCodeLine{   \textcolor{comment}{// Vector of exact solution value}}
+\DoxyCodeLine{   Vector<double> soln(1);}
+\DoxyCodeLine{   Vector<double> x(2);}
+\DoxyCodeLine{   }
+\DoxyCodeLine{   \textcolor{comment}{//Find number of nodes in mesh}}
+\DoxyCodeLine{   \textcolor{keywordtype}{unsigned} num\_nod = mesh\_pt()-\/>nnode();}
+\DoxyCodeLine{   }
+\DoxyCodeLine{   \textcolor{comment}{// Set continuous times at previous timesteps}}
+\DoxyCodeLine{   \textcolor{keywordtype}{int} nprev\_steps=time\_stepper\_pt()-\/>nprev\_values();}
+\DoxyCodeLine{   Vector<double> prev\_time(nprev\_steps+1);}
+\DoxyCodeLine{   \textcolor{keywordflow}{for} (\textcolor{keywordtype}{int} itime=nprev\_steps;itime>=0;itime-\/-\/)}
+\DoxyCodeLine{    \{}
+\DoxyCodeLine{     prev\_time[itime]=time\_pt()-\/>time(\textcolor{keywordtype}{unsigned}(itime));}
+\DoxyCodeLine{    \} }
+\DoxyCodeLine{   }
+\DoxyCodeLine{   \textcolor{comment}{// Loop over current \& previous timesteps}}
+\DoxyCodeLine{   \textcolor{keywordflow}{for} (\textcolor{keywordtype}{int} itime=nprev\_steps;itime>=0;itime-\/-\/)}
+\DoxyCodeLine{    \{}
+\DoxyCodeLine{     \textcolor{comment}{// Continuous time}}
+\DoxyCodeLine{     \textcolor{keywordtype}{double} time=prev\_time[itime];}
+\DoxyCodeLine{     cout << \textcolor{stringliteral}{"{}setting IC at time ="{}} << time << std::endl;}
+\DoxyCodeLine{     }
+\DoxyCodeLine{     \textcolor{comment}{// Loop over the nodes to set initial guess everywhere}}
+\DoxyCodeLine{     \textcolor{keywordflow}{for} (\textcolor{keywordtype}{unsigned} n=0;n<num\_nod;n++)}
+\DoxyCodeLine{      \{}
+\DoxyCodeLine{       \textcolor{comment}{// Get nodal coordinates}}
+\DoxyCodeLine{       x[0]=mesh\_pt()-\/>node\_pt(n)-\/>x(0);}
+\DoxyCodeLine{       x[1]=mesh\_pt()-\/>node\_pt(n)-\/>x(1);}
+\DoxyCodeLine{       }
+\DoxyCodeLine{       \textcolor{comment}{// Get intial solution}}
+\DoxyCodeLine{       \mbox{\hyperlink{namespaceExactSolnForUnsteadyHeat_a1d5b22857bd2a7825397daf1cf9c89eb}{ExactSolnForUnsteadyHeat::get\_exact\_u}}(time,x,soln);}
+\DoxyCodeLine{       }
+\DoxyCodeLine{       \textcolor{comment}{// Assign solution}}
+\DoxyCodeLine{       mesh\_pt()-\/>node\_pt(n)-\/>set\_value(itime,0,soln[0]);}
+\DoxyCodeLine{       }
+\DoxyCodeLine{       \textcolor{comment}{// Loop over coordinate directions: Previous position = present position}}
+\DoxyCodeLine{       \textcolor{keywordflow}{for} (\textcolor{keywordtype}{unsigned} i=0;i<2;i++)}
+\DoxyCodeLine{        \{}
+\DoxyCodeLine{         mesh\_pt()-\/>node\_pt(n)-\/>x(itime,i)=x[i];}
+\DoxyCodeLine{        \}}
+\DoxyCodeLine{      \} }
+\DoxyCodeLine{    \}}
+\DoxyCodeLine{   }
+\DoxyCodeLine{   \textcolor{comment}{// Reset backed up time for global timestepper}}
+\DoxyCodeLine{   time\_pt()-\/>time()=backed\_up\_time;}
+\DoxyCodeLine{}
+\DoxyCodeLine{  \}}
+\DoxyCodeLine{}
+\DoxyCodeLine{}
+\DoxyCodeLine{\} \textcolor{comment}{// end of set\_initial\_condition}}
 
 \end{DoxyCodeInclude}
  \DoxyHorRuler{0}
@@ -98,6 +232,12 @@ The Problem member function {\ttfamily doc\+\_\+solution(...)} is identical to t
 
 
 \begin{DoxyCodeInclude}{0}
+\DoxyCodeLine{ \textcolor{comment}{// Write restart file}}
+\DoxyCodeLine{ sprintf(filename,\textcolor{stringliteral}{"{}\%s/restart\%i.dat"{}},doc\_info.directory().c\_str(),}
+\DoxyCodeLine{         doc\_info.number());}
+\DoxyCodeLine{ some\_file.open(filename);}
+\DoxyCodeLine{ dump\_it(some\_file);}
+\DoxyCodeLine{ some\_file.close();}
 
 \end{DoxyCodeInclude}
  \DoxyHorRuler{0}
@@ -117,6 +257,17 @@ In the present problem, the generic {\ttfamily Problem\+::dump(...)} function is
 
 
 \begin{DoxyCodeInclude}{0}
+\DoxyCodeLine{\textcolor{comment}{//=====start\_of\_dump\_it===================================================}}
+\DoxyCodeLine{\textcolor{comment}{/// Dump the solution to disk to allow for restart}}
+\DoxyCodeLine{\textcolor{comment}{//========================================================================}}
+\DoxyCodeLine{\textcolor{keyword}{template}<\textcolor{keyword}{class} ELEMENT>}
+\DoxyCodeLine{\textcolor{keywordtype}{void} \mbox{\hyperlink{classUnsteadyHeatProblem_a9a60874a6471414819301705f1a2afd1}{UnsteadyHeatProblem<ELEMENT>::dump\_it}}(ofstream\& dump\_file)}
+\DoxyCodeLine{\{}
+\DoxyCodeLine{}
+\DoxyCodeLine{ \textcolor{comment}{// Call generic dump()}}
+\DoxyCodeLine{ Problem::dump(dump\_file); }
+\DoxyCodeLine{}
+\DoxyCodeLine{\} \textcolor{comment}{// end of dump\_it}}
 
 \end{DoxyCodeInclude}
 
@@ -128,6 +279,17 @@ Since the restart file was written by the generic {\ttfamily Problem\+::dump(...
 
 
 \begin{DoxyCodeInclude}{0}
+\DoxyCodeLine{\textcolor{comment}{//=================start\_of\_restart=======================================}}
+\DoxyCodeLine{\textcolor{comment}{/// Read solution from disk for restart}}
+\DoxyCodeLine{\textcolor{comment}{//========================================================================}}
+\DoxyCodeLine{\textcolor{keyword}{template}<\textcolor{keyword}{class} ELEMENT>}
+\DoxyCodeLine{\textcolor{keywordtype}{void} \mbox{\hyperlink{classUnsteadyHeatProblem_ad0a4a1c1da24f6d62f64b0d40be31709}{UnsteadyHeatProblem<ELEMENT>::restart}}(ifstream\& restart\_file)}
+\DoxyCodeLine{\{}
+\DoxyCodeLine{}
+\DoxyCodeLine{ \textcolor{comment}{// Read the generic problem data from restart file}}
+\DoxyCodeLine{ Problem::read(restart\_file);}
+\DoxyCodeLine{}
+\DoxyCodeLine{\} \textcolor{comment}{// end of restart}}
 
 \end{DoxyCodeInclude}
  \DoxyHorRuler{0}

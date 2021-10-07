@@ -523,7 +523,7 @@ html/index.html: $(docfile).txt_doxygenified.h oomph-lib_header.html
 	if [ "${suppress_latex_in_this_directory}" != "1" ]; then sed "s/\*\*\//\n<hr>\n<hr>\n\\\section pdf PDF file\nA <a href=\"..\/latex\/refman.pdf\">pdf version<\/a> of this document is available.\n\*\*\//g" $(docfile).txt_doxygenified.h.junk > $(docfile).txt_doxygenified.h; fi
 	rm $(docfile).txt_doxygenified.h.junk
 	doxygen
-        # Truncate the file after the main text by inserting end document at theend of index tex, then do some further customisation; then run make with "-i" to keep going after errors (of the fake variety from pdflatex)
+        # Truncate the file after the main text by inserting end document at the end of index tex, then do some further customisation; then run make with "-i" to keep going after errors (of the fake variety from pdflatex)
 	if [ "${suppress_latex_in_this_directory}" != "1" ]; then (cd latex; rm -f refman.pdf; echo "\end{document}" >> index.tex; mv refman.tex refman.tex.back; $(top_builddir)/../bin/customise_latex.bash refman.tex.back > refman.tex; $(top_builddir)/../bin/tweak_doxygen_latex_style_file.bash;  make -i ; mv refman.pdf ../$(docfile).pdf; ln -s ../$(docfile).pdf refman.pdf); fi
 .txt.txt_doxygenified.h:
 	$(top_builddir)/bin/txt2h.sh $<
@@ -537,6 +537,16 @@ clean-local:
 	rm -f oomph-lib_header.html
 	rm -f oomph-lib_footer.html
 	if [ -L extra_latex_style_files ]; then rm -f extra_latex_style_files; fi
+
+all:
+        # Patch the class list (missing linebreak)
+	cp html/classes.html html/classes.html.back
+	sed 's/<div class="classindex">/<p style="color:White;">.<\/p><p style="color:White;">.<\/p><div class="classindex">/g' html/classes.html.back  > html/classes.html
+	rm  html/classes.html.back
+
+        # Add the alphabetical index of member functions
+	cp html/functions.html html/functions_a.html 
+	sed 's/they belong to:<\/div>/they belong to:<\/div><ul><li> <a href="functions_a.html">A<\/a><li> <a href="functions_b.html">B<\/a><li> <a href="functions_c.html">C<\/a><li> <a href="functions_d.html">D<\/a><li> <a href="functions_e.html">E<\/a><li> <a href="functions_f.html">F<\/a><li> <a href="functions_g.html">G<\/a><li> <a href="functions_h.html">H<\/a><li> <a href="functions_i.html">I<\/a><li> <a href="functions_j.html">J<\/a><li> <a href="functions_k.html">K<\/a><li> <a href="functions_l.html">L<\/a><li> <a href="functions_m.html">M<\/a><li> <a href="functions_n.html">N<\/a><li> <a href="functions_o.html">O<\/a><li> <a href="functions_p.html">P<\/a><li> <a href="functions_q.html">Q<\/a><li> <a href="functions_r.html">R<\/a><li> <a href="functions_s.html">S<\/a><li> <a href="functions_t.html">T<\/a><li> <a href="functions_u.html">U<\/a><li> <a href="functions_v.html">V<\/a><li> <a href="functions_x.html">X<\/a><li> <a href="functions_y.html">Y<\/a><li> <a href="functions_z.html">Z<\/a><\/ul>/g' html/functions_a.html > html/functions.html
 
 # Tell versions [3.59,3.63) of GNU make to not export all variables.
 # Otherwise a system limit (for SysV at least) may be exceeded.

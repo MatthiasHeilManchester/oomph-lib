@@ -469,17 +469,161 @@ The problem class</h1>
 <h1><a class="anchor" id="constructor"></a>
 The Problem constructor</h1>
 <p >We start by creating the undeformed centreline of the beam as a <code>StraightLine</code>, one of <code>oomph-lib's</code> standard geometric objects.</p>
-<div class="fragment"></div><!-- fragment --><p> We then construct the a one-dimensional Lagrangian mesh in two-dimensional space, using the previously-constructed geometric object to set the initial positions of the nodes.</p>
-<div class="fragment"></div><!-- fragment --><p> The <code>OneDLagrangianMesh</code> is a <code>SolidMesh</code> whose constituent nodes are <code>SolidNodes</code>. These nodes store not only their (variable) 2D Eulerian position, accessible via <code>SolidNode::x(...)</code>, but also their (fixed) 1D Lagrangian coordinates, accessible via <code>SolidNode::xi(...)</code>. The <code>OneDLagrangianMesh</code> constructor assigns the nodes' Lagrangian coordinate, <img class="formulaInl" alt="$ \xi $" src="form_66.png" width="8" height="13"/>, by spacing them evenly in the range <img class="formulaInl" alt="$ \xi \in [0,L] $" src="form_87.png" width="49" height="14"/>. The <code>GeomObject</code> pointed to by <code>Undef_beam_pt</code>, provides a parametrisation of the beam's undeformed shape in the form <img class="formulaInl" alt="$ {\bf r}(\xi) $" src="form_88.png" width="21" height="14"/>, and this is used to determine the nodes's initial Eulerian position.</p>
+<div class="fragment"><div class="line"><span class="comment">//=============start_of_constructor=====================================</span></div>
+<div class="line"><span class="comment">/// Constructor for elastic beam problem</span></div>
+<div class="line"><span class="comment">//======================================================================</span></div>
+<div class="line"><a class="code hl_function" href="classElasticBeamProblem.html#a1c62c2a14c9a5528a649700d16dac2ea">ElasticBeamProblem::ElasticBeamProblem</a>(<span class="keyword">const</span> <span class="keywordtype">unsigned</span> &amp;n_elem,</div>
+<div class="line">                                       <span class="keyword">const</span> <span class="keywordtype">double</span> &amp;length) : Length(length)</div>
+<div class="line">{</div>
+<div class="line"> <span class="comment">// Set the undeformed beam to be a straight line at y=0</span></div>
+<div class="line"> Undef_beam_pt=<span class="keyword">new</span> StraightLine(0.0); </div>
+</div><!-- fragment --><p> We then construct the a one-dimensional Lagrangian mesh in two-dimensional space, using the previously-constructed geometric object to set the initial positions of the nodes.</p>
+<div class="fragment"><div class="line"> <span class="comment">// Create the (Lagrangian!) mesh, using the geometric object</span></div>
+<div class="line"> <span class="comment">// Undef_beam_pt to specify the initial (Eulerian) position of the</span></div>
+<div class="line"> <span class="comment">// nodes.</span></div>
+<div class="line"> Problem::mesh_pt() = </div>
+<div class="line">  <span class="keyword">new</span> OneDLagrangianMesh&lt;HermiteBeamElement&gt;(n_elem,length,Undef_beam_pt);</div>
+</div><!-- fragment --><p> The <code>OneDLagrangianMesh</code> is a <code>SolidMesh</code> whose constituent nodes are <code>SolidNodes</code>. These nodes store not only their (variable) 2D Eulerian position, accessible via <code>SolidNode::x(...)</code>, but also their (fixed) 1D Lagrangian coordinates, accessible via <code>SolidNode::xi(...)</code>. The <code>OneDLagrangianMesh</code> constructor assigns the nodes' Lagrangian coordinate, <img class="formulaInl" alt="$ \xi $" src="form_66.png" width="8" height="13"/>, by spacing them evenly in the range <img class="formulaInl" alt="$ \xi \in [0,L] $" src="form_87.png" width="49" height="14"/>. The <code>GeomObject</code> pointed to by <code>Undef_beam_pt</code>, provides a parametrisation of the beam's undeformed shape in the form <img class="formulaInl" alt="$ {\bf r}(\xi) $" src="form_88.png" width="21" height="14"/>, and this is used to determine the nodes's initial Eulerian position.</p>
 <p >Next we pin the nodal positions on both boundaries</p>
-<div class="fragment"></div><!-- fragment --><p> We then loop over the elements and set the pointers to the physical parameters (the pre-stress and the thickness), the function pointer to the load vector, and the pointer to the geometric object that specifies the undeformed beam shape. </p><div class="fragment"></div><!-- fragment --><p> We choose a node near the centre of the beam to monitor the displacements. (If the total number of nodes is even, the control node will not be located at the beam's exact centre; its vertical displacement will therefore differ from the analytical solution that we output in <code>doc_solution(...)</code> &ndash; in this case we issue a suitable warning.) </p><div class="fragment"></div><!-- fragment --><p> Finally, we assign the equation numbers </p><div class="fragment"></div><!-- fragment --><hr  />
+<div class="fragment"><div class="line"> <span class="comment">// Set the boundary conditions: Each end of the beam is fixed in space</span></div>
+<div class="line"> <span class="comment">// Loop over the boundaries (ends of the beam)</span></div>
+<div class="line"> <span class="keywordflow">for</span>(<span class="keywordtype">unsigned</span> b=0;b&lt;2;b++)</div>
+<div class="line">  {</div>
+<div class="line">   <span class="comment">// Pin displacements in both x and y directions</span></div>
+<div class="line">   <span class="comment">// [Note: The mesh_pt() function has been overloaded</span></div>
+<div class="line">   <span class="comment">//  to return a pointer to the actual mesh, rather than</span></div>
+<div class="line">   <span class="comment">//  a pointer to the Mesh base class. The current mesh is derived</span></div>
+<div class="line">   <span class="comment">//  from the SolidMesh class. In such meshes, all access functions</span></div>
+<div class="line">   <span class="comment">//  to the nodes, such as boundary_node_pt(...), are overloaded</span></div>
+<div class="line">   <span class="comment">//  to return pointers to SolidNodes (whose position can be</span></div>
+<div class="line">   <span class="comment">//  pinned) rather than &quot;normal&quot; Nodes.]</span></div>
+<div class="line">   mesh_pt()-&gt;boundary_node_pt(b,0)-&gt;pin_position(0); </div>
+<div class="line">   mesh_pt()-&gt;boundary_node_pt(b,0)-&gt;pin_position(1); </div>
+<div class="line">  }</div>
+</div><!-- fragment --><p> We then loop over the elements and set the pointers to the physical parameters (the pre-stress and the thickness), the function pointer to the load vector, and the pointer to the geometric object that specifies the undeformed beam shape. </p><div class="fragment"><div class="line"> <span class="comment">//Loop over the elements to set physical parameters etc.</span></div>
+<div class="line"> <span class="keywordflow">for</span>(<span class="keywordtype">unsigned</span> e=0;e&lt;n_element;e++)</div>
+<div class="line">  {</div>
+<div class="line">   <span class="comment">// Upcast to the specific element type</span></div>
+<div class="line">   HermiteBeamElement *elem_pt = </div>
+<div class="line">    <span class="keyword">dynamic_cast&lt;</span>HermiteBeamElement*<span class="keyword">&gt;</span>(mesh_pt()-&gt;element_pt(e));</div>
+<div class="line">   </div>
+<div class="line">   <span class="comment">// Set physical parameters for each element:</span></div>
+<div class="line">   elem_pt-&gt;sigma0_pt() = &amp;<a class="code hl_variable" href="namespaceGlobal__Physical__Variables.html#a417dc688a70c4f06ef0faed047068ba2">Global_Physical_Variables::Sigma0</a>;</div>
+<div class="line">   elem_pt-&gt;h_pt() = &amp;<a class="code hl_variable" href="namespaceGlobal__Physical__Variables.html#af6e07423e22c0991084d9a2f43727805">Global_Physical_Variables::H</a>;</div>
+<div class="line"> </div>
+<div class="line">   <span class="comment">// Set the load Vector for each element</span></div>
+<div class="line">   elem_pt-&gt;load_vector_fct_pt() = &amp;<a class="code hl_function" href="namespaceGlobal__Physical__Variables.html#a321267e1efb30b5d586302509354fb07">Global_Physical_Variables::load</a>;</div>
+<div class="line"> </div>
+<div class="line">   <span class="comment">// Set the undeformed shape for each element</span></div>
+<div class="line">   elem_pt-&gt;undeformed_beam_pt() = Undef_beam_pt;</div>
+<div class="line">  } <span class="comment">// end of loop over elements</span></div>
+</div><!-- fragment --><p> We choose a node near the centre of the beam to monitor the displacements. (If the total number of nodes is even, the control node will not be located at the beam's exact centre; its vertical displacement will therefore differ from the analytical solution that we output in <code>doc_solution(...)</code> &ndash; in this case we issue a suitable warning.) </p><div class="fragment"><div class="line"> <span class="comment">// Choose node at which displacement is documented (halfway along -- provided</span></div>
+<div class="line"> <span class="comment">// we have an odd number of nodes; complain if this is not the</span></div>
+<div class="line"> <span class="comment">// case because the comparison with the exact solution will be wrong </span></div>
+<div class="line"> <span class="comment">// otherwise!)</span></div>
+<div class="line"> <span class="keywordtype">unsigned</span> n_nod=mesh_pt()-&gt;nnode();</div>
+<div class="line"> <span class="keywordflow">if</span> (n_nod%2!=1)</div>
+<div class="line">  {</div>
+<div class="line">   cout &lt;&lt; <span class="stringliteral">&quot;Warning: Even number of nodes &quot;</span> &lt;&lt; n_nod &lt;&lt; std::endl;</div>
+<div class="line">   cout &lt;&lt; <span class="stringliteral">&quot;Comparison with exact solution will be misleading...&quot;</span> &lt;&lt; std::endl;</div>
+<div class="line">  }</div>
+<div class="line"> Doc_node_pt=mesh_pt()-&gt;node_pt((n_nod+1)/2-1);</div>
+</div><!-- fragment --><p> Finally, we assign the equation numbers </p><div class="fragment"><div class="line"> <span class="comment">// Assign the global and local equation numbers</span></div>
+<div class="line"> cout &lt;&lt; <span class="stringliteral">&quot;# of dofs &quot;</span> &lt;&lt; assign_eqn_numbers() &lt;&lt; std::endl;</div>
+<div class="line"> </div>
+<div class="line">} <span class="comment">// end of constructor</span></div>
+</div><!-- fragment --><hr  />
  <hr  />
 <h1><a class="anchor" id="param"></a>
 The Parameter Study</h1>
 <p >The function <a class="el" href="classElasticBeamProblem.html#a2da3cb02ce953da67fb27742e20774a5" title="Conduct a parameter study.">ElasticBeamProblem::parameter_study()</a> is used to perform a parameter study, computing the beam's deformation for a range of external pressures. During the solution of this particular problem, the maximum residual in the Newton iteration can be greater than the default maximum value of 10.0. We increase the default value by assigning a (much) larger value to <code>Problem::Max_residuals</code>.</p>
 <p >Next, we choose the increment in the control parameter (the external pressure), set its initial value and open an output file that will contain the value of the external pressure, the mid-point displacement and external pressure computed from the analytical solution. We also create an output stream and a string that will be used to write the complete solution for each value of the external pressure.</p>
 <p >In the loop, we increment the external pressure <img class="formulaInl" alt="$ P_{ext} $" src="form_89.png" width="21" height="13"/>, solve the problem, calculate the analytical prediction for the pressure that is required to achieve the computed deformation, plot the solution and write the pressure, the displacement and exact pressure to the trace file.</p>
-<div class="fragment"></div><!-- fragment --><hr  />
+<div class="fragment"><div class="line"><span class="comment">//=======start_of_parameter_study==========================================</span></div>
+<div class="line"><span class="comment">/// Solver loop to perform parameter study</span></div>
+<div class="line"><span class="comment">//=========================================================================</span></div>
+<div class="line"><span class="keywordtype">void</span> <a class="code hl_function" href="classElasticBeamProblem.html#a2da3cb02ce953da67fb27742e20774a5">ElasticBeamProblem::parameter_study</a>()</div>
+<div class="line">{</div>
+<div class="line"> <span class="comment">// Over-ride the default maximum value for the residuals</span></div>
+<div class="line"> Problem::Max_residuals = 1.0e10;</div>
+<div class="line"> </div>
+<div class="line"> <span class="comment">// Set the increments in control parameters</span></div>
+<div class="line"> <span class="keywordtype">double</span> pext_increment = 0.001;</div>
+<div class="line"> </div>
+<div class="line"> <span class="comment">// Set initial values for control parameters </span></div>
+<div class="line"> <a class="code hl_variable" href="namespaceGlobal__Physical__Variables.html#a0406c0cbd463d1df2458fe5de98a00eb">Global_Physical_Variables::P_ext</a> = 0.0 - pext_increment;</div>
+<div class="line"> </div>
+<div class="line"> <span class="comment">// Create label for output</span></div>
+<div class="line"> DocInfo doc_info;</div>
+<div class="line"> </div>
+<div class="line"> <span class="comment">// Set output directory -- this function checks if the output</span></div>
+<div class="line"> <span class="comment">// directory exists and issues a warning if it doesn&#39;t.</span></div>
+<div class="line"> doc_info.set_directory(<span class="stringliteral">&quot;RESLT&quot;</span>);</div>
+<div class="line"> </div>
+<div class="line"> <span class="comment">// Open a trace file</span></div>
+<div class="line"> ofstream trace(<span class="stringliteral">&quot;RESLT/trace_beam.dat&quot;</span>);</div>
+<div class="line"> </div>
+<div class="line"> <span class="comment">// Write a header for the trace file</span></div>
+<div class="line"> trace &lt;&lt; </div>
+<div class="line">  <span class="stringliteral">&quot;VARIABLES=\&quot;p_e_x_t\&quot;,\&quot;d\&quot;&quot;</span> &lt;&lt; </div>
+<div class="line">  <span class="stringliteral">&quot;, \&quot;p_e_x_t_(_e_x_a_c_t_)\&quot;&quot;</span> &lt;&lt; std::endl;</div>
+<div class="line"> </div>
+<div class="line"> <span class="comment">// Output file stream used for writing results</span></div>
+<div class="line"> ofstream file;</div>
+<div class="line"> <span class="comment">// String used for the filename</span></div>
+<div class="line"> <span class="keywordtype">char</span> filename[100]; </div>
+<div class="line"> </div>
+<div class="line"> <span class="comment">// Loop over parameter increments</span></div>
+<div class="line"> <span class="keywordtype">unsigned</span> nstep=10;</div>
+<div class="line"> <span class="keywordflow">for</span>(<span class="keywordtype">unsigned</span> i=1;i&lt;=nstep;i++)</div>
+<div class="line">  {</div>
+<div class="line">   <span class="comment">// Increment pressure</span></div>
+<div class="line">   <a class="code hl_variable" href="namespaceGlobal__Physical__Variables.html#a0406c0cbd463d1df2458fe5de98a00eb">Global_Physical_Variables::P_ext</a> += pext_increment;</div>
+<div class="line">   </div>
+<div class="line">   <span class="comment">// Solve the system</span></div>
+<div class="line">   newton_solve();</div>
+<div class="line">    </div>
+<div class="line">   <span class="comment">// Calculate exact solution for `string under tension&#39; (applicable for</span></div>
+<div class="line">   <span class="comment">// small wall thickness and pinned ends)</span></div>
+<div class="line"> </div>
+<div class="line">   <span class="comment">// The tangent of the angle beta</span></div>
+<div class="line">   <span class="keywordtype">double</span> tanbeta =-2.0*<a class="code hl_variable" href="classElasticBeamProblem.html#a9c96cab7e71243e51f7c4040a84cdd5d">Doc_node_pt</a>-&gt;x(1)/<a class="code hl_variable" href="classElasticBeamProblem.html#aa68b1c77e0aa1571fe956d62bd8cf096">Length</a>;</div>
+<div class="line"> </div>
+<div class="line">   <span class="keywordtype">double</span> exact_pressure = 0.0;</div>
+<div class="line">   <span class="comment">//If the beam has deformed, calculate the pressure required</span></div>
+<div class="line">   <span class="keywordflow">if</span>(tanbeta!=0)</div>
+<div class="line">    {</div>
+<div class="line">      </div>
+<div class="line">      <span class="comment">//Calculate the opening angle alpha</span></div>
+<div class="line">      <span class="keywordtype">double</span> alpha = 2.0*atan(2.0*tanbeta/(1.0-tanbeta*tanbeta));</div>
+<div class="line"> </div>
+<div class="line">      <span class="comment">// Jump back onto the main branch if alpha&gt;180 degrees</span></div>
+<div class="line">      <span class="keywordflow">if</span> (alpha&lt;0) alpha+=2.0*MathematicalConstants::Pi;</div>
+<div class="line"> </div>
+<div class="line">     <span class="comment">// Green strain:</span></div>
+<div class="line">     <span class="keywordtype">double</span> gamma=0.5*(0.25*alpha*alpha/(sin(0.5*alpha)*sin(0.5*alpha))-1.0);</div>
+<div class="line"> </div>
+<div class="line">     <span class="comment">//Calculate the exact pressure</span></div>
+<div class="line">     exact_pressure=<a class="code hl_variable" href="namespaceGlobal__Physical__Variables.html#af6e07423e22c0991084d9a2f43727805">Global_Physical_Variables::H</a>*</div>
+<div class="line">      (<a class="code hl_variable" href="namespaceGlobal__Physical__Variables.html#a417dc688a70c4f06ef0faed047068ba2">Global_Physical_Variables::Sigma0</a>+gamma)*alpha/<a class="code hl_variable" href="classElasticBeamProblem.html#aa68b1c77e0aa1571fe956d62bd8cf096">Length</a>;</div>
+<div class="line">    } </div>
+<div class="line">   </div>
+<div class="line">   <span class="comment">// Document the solution</span></div>
+<div class="line">   sprintf(filename,<span class="stringliteral">&quot;RESLT/beam%i.dat&quot;</span>,i);</div>
+<div class="line">   file.open(filename);</div>
+<div class="line">   <a class="code hl_function" href="classElasticBeamProblem.html#a884541822d7272d343971d2b2e79a7c4">mesh_pt</a>()-&gt;output(file,5);</div>
+<div class="line">   file.close();</div>
+<div class="line">   </div>
+<div class="line">   <span class="comment">// Write trace file: Pressure, displacement and exact solution</span></div>
+<div class="line">   <span class="comment">// (for string under tension)</span></div>
+<div class="line">   trace &lt;&lt; <a class="code hl_variable" href="namespaceGlobal__Physical__Variables.html#a0406c0cbd463d1df2458fe5de98a00eb">Global_Physical_Variables::P_ext</a>  &lt;&lt; <span class="stringliteral">&quot; &quot;</span> </div>
+<div class="line">         &lt;&lt; abs(<a class="code hl_variable" href="classElasticBeamProblem.html#a9c96cab7e71243e51f7c4040a84cdd5d">Doc_node_pt</a>-&gt;x(1))</div>
+<div class="line">         &lt;&lt; <span class="stringliteral">&quot; &quot;</span> &lt;&lt; exact_pressure </div>
+<div class="line">         &lt;&lt; std::endl;</div>
+<div class="line">  }</div>
+<div class="line"> </div>
+<div class="line">} <span class="comment">// end of parameter study</span></div>
+</div><!-- fragment --><hr  />
  <hr  />
 <h1><a class="anchor" id="comments"></a>
 Exercises and Comments</h1>
@@ -550,7 +694,7 @@ PDF file</h1>
     <footer>
       <div class="container">
         <div class="text-muted" style="float:right;">Generated by <a href="http://www.doxygen.org/index.html">
-          <img style="height:18px;" class="footer-img" src="doxygen.png" alt="doxygen"></a> on Wed Oct 6 2021 10:04:29
+          <img style="height:18px;" class="footer-img" src="doxygen.png" alt="doxygen"></a> on Thu Oct 7 2021 15:36:21
         </div>
       </div>
     </footer>

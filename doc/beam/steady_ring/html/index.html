@@ -496,34 +496,240 @@ The constructor</h1>
 <br  />
  This version of the constructor creates the load <code>Data</code> object whose one-and-only value stores the adjustable load. We obtain a pointer to the newly-created <code>Data</code> object from the access function <code>DisplacementControlElement::displacement_control_load_pt()</code> and store it in <code><a class="el" href="namespaceGlobal__Physical__Variables.html#a9d598320fb3d7ecf94101088e8f376d2" title="Pointer to pressure load (stored in Data so it can become an unknown in the problem when displacement...">Global_Physical_Variables::Pext_data_pt</a></code> to make it accessible to the load function <code>Global_Physical_Variables::press_load(...)</code> <br  />
 <br  />
- <div class="fragment"></div><!-- fragment --> <br  />
+ <div class="fragment"><div class="line">     <span class="comment">// The constructor of the  DisplacementControlElement has created</span></div>
+<div class="line">     <span class="comment">// a new Data object whose one-and-only value contains the</span></div>
+<div class="line">     <span class="comment">// adjustable load: Use this Data object in the load function:</span></div>
+<div class="line">     <a class="code hl_variable" href="namespaceGlobal__Physical__Variables.html#a9d598320fb3d7ecf94101088e8f376d2">Global_Physical_Variables::Pext_data_pt</a>=displ_control_el_pt-&gt;</div>
+<div class="line">      displacement_control_load_pt();</div>
+</div><!-- fragment --> <br  />
 <br  />
 </li>
 <li><b>Case 2b: The load <code>Data</code> already exists</b> <br  />
 <br  />
  In some applications, the <code>Data</code> object that specifies the adjustable load level might already have been created elsewhere in the <code>Problem</code>. For such cases, <code>oomph-lib</code> provides an alternative constructor whose argument list includes the pointer to the already-existing load <code>Data</code> object. To demonstrate its use we create a suitable <code>Data</code> object and store it in the <code>Problem's</code> "global" <code>Data</code> (see <a class="el" href="index.html#global_data">"Internal" and "external" Data in elements and "global" Data in Problems</a> for a more detailed discussion of this step) and pass it to the constructor: <br  />
 <br  />
- <div class="fragment"></div><!-- fragment --></li>
+ <div class="fragment"><div class="line">   <span class="comment">// Demonstrate use of displacement control with some existing data </span></div>
+<div class="line">   <span class="comment">//----------------------------------------------------------------</span></div>
+<div class="line">   <span class="keywordflow">else</span></div>
+<div class="line">    {</div>
+<div class="line">     <span class="comment">// Create Data object whose one-and-only value contains the</span></div>
+<div class="line">     <span class="comment">// adjustable load</span></div>
+<div class="line">     <a class="code hl_variable" href="namespaceGlobal__Physical__Variables.html#a9d598320fb3d7ecf94101088e8f376d2">Global_Physical_Variables::Pext_data_pt</a>=<span class="keyword">new</span> Data(1);</div>
+<div class="line">     </div>
+<div class="line">     <span class="comment">// Currently, nobody&#39;s &quot;in charge of&quot; this Data so it won&#39;t</span></div>
+<div class="line">     <span class="comment">// get included in any equation numbering schemes etc.</span></div>
+<div class="line">     <span class="comment">// --&gt; declare it to be &quot;global Data&quot; for the Problem</span></div>
+<div class="line">     <span class="comment">// so the Problem is in charge and will perform such tasks.</span></div>
+<div class="line">     add_global_data(<a class="code hl_variable" href="namespaceGlobal__Physical__Variables.html#a9d598320fb3d7ecf94101088e8f376d2">Global_Physical_Variables::Pext_data_pt</a>);</div>
+<div class="line">     </div>
+<div class="line">     <span class="comment">// Build displacement control element and pass pointer to the</span></div>
+<div class="line">     <span class="comment">// already existing adjustable load Data. </span></div>
+<div class="line">     displ_control_el_pt=</div>
+<div class="line">      <span class="keyword">new</span>  DisplacementControlElement(controlled_element_pt,</div>
+<div class="line">                                      s_displ_control,</div>
+<div class="line">                                      controlled_direction,</div>
+<div class="line">                                      &amp;<a class="code hl_variable" href="namespaceGlobal__Physical__Variables.html#a1c774c9cb221df909201e81e84b15f40">Global_Physical_Variables::Xprescr</a>,</div>
+<div class="line">                                      <a class="code hl_variable" href="namespaceGlobal__Physical__Variables.html#a9d598320fb3d7ecf94101088e8f376d2">Global_Physical_Variables::Pext_data_pt</a>);</div>
+<div class="line">    }</div>
+</div><!-- fragment --></li>
 </ul>
 <br  />
 <br  />
  In both cases, we add the newly created <code>DisplacementControlElement</code> to the mesh to ensure that it is included in the <code>Problem</code>. <br  />
 <br  />
- <div class="fragment"></div><!-- fragment --></li>
+ <div class="fragment"><div class="line">   <span class="comment">// Add the displacement-control element to the mesh</span></div>
+<div class="line">   mesh_pt()-&gt;add_element_pt(displ_control_el_pt); </div>
+<div class="line">  }</div>
+</div><!-- fragment --></li>
 </ul>
 <p>Next, we execute the usual loop over the elements to pass the pointers to the problem's non-dimensional parameters the elements. If displacement control is used, we also pass the pointer to the load <code>Data</code> object to the elements' external <code>Data</code> to indicate that the element's residual vectors depends on the unknown load. Finally, we set up the equation numbering scheme.</p>
-<div class="fragment"></div><!-- fragment --> <hr  />
+<div class="fragment"><div class="line"> <span class="comment">//Loop over the elements to set physical parameters etc.</span></div>
+<div class="line"> <span class="keywordflow">for</span>(<span class="keywordtype">unsigned</span> i=0;i&lt;Nbeam_element;i++)</div>
+<div class="line">  {</div>
+<div class="line">   <span class="comment">//Cast to proper element type</span></div>
+<div class="line">   ELEMENT *elem_pt = <span class="keyword">dynamic_cast&lt;</span>ELEMENT*<span class="keyword">&gt;</span>(mesh_pt()-&gt;element_pt(i));</div>
+<div class="line"> </div>
+<div class="line">   <span class="comment">// Set wall thickness</span></div>
+<div class="line">   elem_pt-&gt;h_pt() = &amp;<a class="code hl_variable" href="namespaceGlobal__Physical__Variables.html#af6e07423e22c0991084d9a2f43727805">Global_Physical_Variables::H</a>;</div>
+<div class="line">   </div>
+<div class="line">   <span class="comment">// Function that specifies load Vector</span></div>
+<div class="line">   elem_pt-&gt;load_vector_fct_pt() = &amp;<a class="code hl_function" href="namespaceGlobal__Physical__Variables.html#a86fd8f502cb8c4c7939ffae742f023eb">Global_Physical_Variables::press_load</a>;</div>
+<div class="line"> </div>
+<div class="line">   <span class="comment">//Assign the undeformed beam shape</span></div>
+<div class="line">   elem_pt-&gt;undeformed_beam_pt() = Undef_geom_pt;</div>
+<div class="line"> </div>
+<div class="line">   <span class="comment">// Displacement control? If so, the load on *all* elements</span></div>
+<div class="line">   <span class="comment">// is affected by an unknown -- the external pressure, stored</span></div>
+<div class="line">   <span class="comment">// as the one-and-only value in a Data object: Add it to the</span></div>
+<div class="line">   <span class="comment">// elements&#39; external Data.</span></div>
+<div class="line">   <span class="keywordflow">if</span> (Displ_control)</div>
+<div class="line">    {</div>
+<div class="line">     <span class="comment">//The external pressure is external data for all elements</span></div>
+<div class="line">     elem_pt-&gt;add_external_data(<a class="code hl_variable" href="namespaceGlobal__Physical__Variables.html#a9d598320fb3d7ecf94101088e8f376d2">Global_Physical_Variables::Pext_data_pt</a>);</div>
+<div class="line">    }</div>
+<div class="line">  } </div>
+<div class="line"> </div>
+<div class="line"> <span class="comment">// Do equation numbering</span></div>
+<div class="line"> cout &lt;&lt; <span class="stringliteral">&quot;# of dofs &quot;</span> &lt;&lt; assign_eqn_numbers() &lt;&lt; std::endl;</div>
+<div class="line"> </div>
+<div class="line">} <span class="comment">// end of constructor</span></div>
+</div><!-- fragment --> <hr  />
 <h1><a class="anchor" id="doc"></a>
 Post-processing</h1>
-<p >The post-processing function documents the ring shapes and adds the load/displacement characteristics of the two material points on the ring's symmetry lines to the trace file. </p><div class="fragment"></div><!-- fragment --><hr  />
+<p >The post-processing function documents the ring shapes and adds the load/displacement characteristics of the two material points on the ring's symmetry lines to the trace file. </p><div class="fragment"><div class="line"><span class="comment">//=======start_of_doc=====================================================</span></div>
+<div class="line"><span class="comment">/// Document solution</span></div>
+<div class="line"><span class="comment">//========================================================================</span></div>
+<div class="line"><span class="keyword">template</span>&lt;<span class="keyword">class</span> ELEMENT&gt;</div>
+<div class="line"><span class="keywordtype">void</span> <a class="code hl_function" href="classElasticRingProblem.html#ab644c5fd57310f2d4c858f64d8c5a223">ElasticRingProblem&lt;ELEMENT&gt;::doc_solution</a>(DocInfo&amp; doc_info,</div>
+<div class="line">                                               ofstream&amp; trace_file)</div>
+<div class="line">{ </div>
+<div class="line"> ofstream some_file;</div>
+<div class="line"> <span class="keywordtype">char</span> filename[100];</div>
+<div class="line"> </div>
+<div class="line"> <span class="comment">// Number of plot points</span></div>
+<div class="line"> <span class="keywordtype">unsigned</span> npts=5;</div>
+<div class="line"> </div>
+<div class="line"> <span class="comment">// Output solution </span></div>
+<div class="line"> sprintf(filename,<span class="stringliteral">&quot;%s/ring%i.dat&quot;</span>,doc_info.directory().c_str(),</div>
+<div class="line">         doc_info.number());</div>
+<div class="line"> some_file.open(filename);</div>
+<div class="line"> mesh_pt()-&gt;output(some_file,npts);</div>
+<div class="line"> some_file.close();</div>
+<div class="line"> </div>
+<div class="line"> <span class="comment">// Local coordinates of plot points at left and right end of domain</span></div>
+<div class="line"> Vector&lt;double&gt; s_left(1);</div>
+<div class="line"> s_left[0]=-1.0;</div>
+<div class="line"> Vector&lt;double&gt; s_right(1);</div>
+<div class="line"> s_right[0]=1.0;</div>
+<div class="line"> </div>
+<div class="line"> <span class="comment">// Write trace file: Pressure, two radii</span></div>
+<div class="line"> trace_file </div>
+<div class="line">  &lt;&lt; <a class="code hl_variable" href="namespaceGlobal__Physical__Variables.html#a9d598320fb3d7ecf94101088e8f376d2">Global_Physical_Variables::Pext_data_pt</a>-&gt;value(0)/</div>
+<div class="line">  (pow(<a class="code hl_variable" href="namespaceGlobal__Physical__Variables.html#af6e07423e22c0991084d9a2f43727805">Global_Physical_Variables::H</a>,3)/12.0)  </div>
+<div class="line">  &lt;&lt; <span class="stringliteral">&quot; &quot;</span> </div>
+<div class="line">  &lt;&lt; <span class="keyword">dynamic_cast&lt;</span>ELEMENT*<span class="keyword">&gt;</span>(mesh_pt()-&gt;</div>
+<div class="line">                            element_pt(0))-&gt;interpolated_x(s_left,0)</div>
+<div class="line">  &lt;&lt; <span class="stringliteral">&quot; &quot;</span> </div>
+<div class="line">  &lt;&lt; <span class="keyword">dynamic_cast&lt;</span>ELEMENT*<span class="keyword">&gt;</span></div>
+<div class="line">  (mesh_pt()-&gt;element_pt(Nbeam_element-1))-&gt;interpolated_x(s_right,1)</div>
+<div class="line">  &lt;&lt; std::endl;</div>
+<div class="line"> </div>
+<div class="line">  </div>
+<div class="line">} <span class="comment">// end of doc</span></div>
+</div><!-- fragment --><hr  />
 <h1><a class="anchor" id="parameter"></a>
 The parameter study</h1>
 <p >We start by opening a trace file to record the load/displacement characteristics, and output the initial configuration.</p>
-<div class="fragment"></div><!-- fragment --><p> Next we set up the increment of the control parameter, choosing the displacement or load increments such that the ring's deformation is increased from the axisymmetric initial state to total collapse with opposite wall contact in 11 steps.</p>
-<div class="fragment"></div><!-- fragment --><p> Without displacement-control the Newton method can require a large number of iterations, therefore we increment the maximum number of iterations.</p>
-<div class="fragment"></div><!-- fragment --><p> We start the parameter study by increasing the ring's compression (either by increasing the external pressure or by reducing the <img class="formulaInl" alt="$ x_2$" src="form_41.png" width="13" height="9"/> - coordinate of the control point) with <img class="formulaInl" alt="$ p_{cos} &gt; 0 $" src="form_42.png" width="45" height="11"/> to induce buckling in the desired direction.</p>
-<div class="fragment"></div><!-- fragment --><p >Then we reset the perturbation pressure to zero and reduce the ring's collapse by decreasing the external pressure (or by increasing the <img class="formulaInl" alt="$ x_2$" src="form_41.png" width="13" height="9"/> - coordinate of the control point).</p>
-<div class="fragment"></div><!-- fragment --><p> Done!</p>
+<div class="fragment"><div class="line"><span class="comment">//========start_of_run=====================================================</span></div>
+<div class="line"><span class="comment">/// Solver loop to perform parameter study</span></div>
+<div class="line"><span class="comment">//=========================================================================</span></div>
+<div class="line"><span class="keyword">template</span>&lt;<span class="keyword">class</span> ELEMENT&gt;</div>
+<div class="line"><span class="keywordtype">void</span> <a class="code hl_function" href="classElasticRingProblem.html#afed9c0948c535c315c3e22e92e3266d3">ElasticRingProblem&lt;ELEMENT&gt;::parameter_study</a>(DocInfo&amp; doc_info)</div>
+<div class="line">{</div>
+<div class="line"> </div>
+<div class="line"> <span class="comment">//Open a trace file</span></div>
+<div class="line"> <span class="keywordtype">char</span> filename[100];</div>
+<div class="line"> sprintf(filename,<span class="stringliteral">&quot;%s/trace.dat&quot;</span>,doc_info.directory().c_str());</div>
+<div class="line"> ofstream trace_file(filename);</div>
+<div class="line"> trace_file &lt;&lt; <span class="stringliteral">&quot;VARIABLES=\&quot;p_e_x_t\&quot;,\&quot;R_1\&quot;,\&quot;R_2\&quot;&quot;</span> &lt;&lt; std::endl;</div>
+<div class="line"> trace_file &lt;&lt; <span class="stringliteral">&quot;ZONE&quot;</span> &lt;&lt; std::endl;</div>
+<div class="line"> </div>
+<div class="line"> <span class="comment">//Output initial data</span></div>
+<div class="line"> doc_solution(doc_info,trace_file);</div>
+</div><!-- fragment --><p> Next we set up the increment of the control parameter, choosing the displacement or load increments such that the ring's deformation is increased from the axisymmetric initial state to total collapse with opposite wall contact in 11 steps.</p>
+<div class="fragment"><div class="line"> <span class="comment">// Number of steps</span></div>
+<div class="line"> <span class="keywordtype">unsigned</span> nstep= 11; <span class="comment">//51;</span></div>
+<div class="line"> </div>
+<div class="line"> <span class="comment">// Increments</span></div>
+<div class="line"> <span class="keywordtype">double</span> displ_increment=1.0/double(nstep-1);</div>
+<div class="line"> <span class="keywordtype">double</span> p_buckl=3.00*pow(<a class="code hl_variable" href="namespaceGlobal__Physical__Variables.html#af6e07423e22c0991084d9a2f43727805">Global_Physical_Variables::H</a>,3)/12.0;</div>
+<div class="line"> <span class="keywordtype">double</span> p_owc  =5.22*pow(<a class="code hl_variable" href="namespaceGlobal__Physical__Variables.html#af6e07423e22c0991084d9a2f43727805">Global_Physical_Variables::H</a>,3)/12.0;</div>
+<div class="line"> <span class="keywordtype">double</span> pext_increment=(p_owc-p_buckl)/<span class="keywordtype">double</span>(nstep-1); </div>
+<div class="line"> </div>
+<div class="line"> <span class="comment">// Set initial values for parameters that are to be incremented</span></div>
+<div class="line"> <a class="code hl_variable" href="namespaceGlobal__Physical__Variables.html#a1c774c9cb221df909201e81e84b15f40">Global_Physical_Variables::Xprescr</a>=1.0+displ_increment;</div>
+<div class="line"> <a class="code hl_variable" href="namespaceGlobal__Physical__Variables.html#a9d598320fb3d7ecf94101088e8f376d2">Global_Physical_Variables::Pext_data_pt</a>-&gt;set_value(0,p_buckl-pext_increment);</div>
+</div><!-- fragment --><p> Without displacement-control the Newton method can require a large number of iterations, therefore we increment the maximum number of iterations.</p>
+<div class="fragment"><div class="line"> <span class="comment">// Without displacement control the Newton method converges very slowly</span></div>
+<div class="line"> <span class="comment">// as we approach the axisymmetric state: Allow more iterations before</span></div>
+<div class="line"> <span class="comment">// calling it a day...</span></div>
+<div class="line"> <span class="keywordflow">if</span> (Displ_control)</div>
+<div class="line">  {</div>
+<div class="line">   Max_newton_iterations=100;</div>
+<div class="line">  }</div>
+</div><!-- fragment --><p> We start the parameter study by increasing the ring's compression (either by increasing the external pressure or by reducing the <img class="formulaInl" alt="$ x_2$" src="form_41.png" width="13" height="9"/> - coordinate of the control point) with <img class="formulaInl" alt="$ p_{cos} &gt; 0 $" src="form_42.png" width="45" height="11"/> to induce buckling in the desired direction.</p>
+<div class="fragment"><div class="line"> <span class="comment">// Downward loop over parameter incrementation with pcos&gt;0 </span></div>
+<div class="line"> <span class="comment">//--------------------------------------------------------</span></div>
+<div class="line"> <span class="comment"></span></div>
+<div class="line"><span class="comment"> /// Perturbation pressure</span></div>
+<div class="line"><span class="comment"></span> <a class="code hl_variable" href="namespaceGlobal__Physical__Variables.html#ab55734aaa66260cd9d4bf68a4ecafdd5">Global_Physical_Variables::Pcos</a>=1.0e-5; </div>
+<div class="line"> </div>
+<div class="line"> </div>
+<div class="line"> <span class="comment">// Downward loop over parameter incrementation</span></div>
+<div class="line"> <span class="comment">//---------------------------------------------</span></div>
+<div class="line"> <span class="keywordflow">for</span>(<span class="keywordtype">unsigned</span> i=1;i&lt;=nstep;i++)</div>
+<div class="line">  {</div>
+<div class="line">   </div>
+<div class="line">   <span class="comment">// Displacement control?</span></div>
+<div class="line">   <span class="keywordflow">if</span> (!Displ_control) </div>
+<div class="line">    {</div>
+<div class="line">     <span class="comment">// Increment pressure</span></div>
+<div class="line">     <a class="code hl_function" href="namespaceGlobal__Physical__Variables.html#accc1e6e92957e427340871d606b8835d">Global_Physical_Variables::external_pressure</a>() += pext_increment;</div>
+<div class="line">    }</div>
+<div class="line">   <span class="keywordflow">else</span></div>
+<div class="line">    {</div>
+<div class="line">     <span class="comment">// Increment control displacement</span></div>
+<div class="line">     <a class="code hl_variable" href="namespaceGlobal__Physical__Variables.html#a1c774c9cb221df909201e81e84b15f40">Global_Physical_Variables::Xprescr</a>-=displ_increment;</div>
+<div class="line">    } </div>
+<div class="line">   </div>
+<div class="line">   <span class="comment">// Solve</span></div>
+<div class="line">   newton_solve();</div>
+<div class="line">   </div>
+<div class="line">   <span class="comment">// Doc solution</span></div>
+<div class="line">   doc_info.number()++;</div>
+<div class="line">   doc_solution(doc_info,trace_file);</div>
+<div class="line">   </div>
+<div class="line">  } <span class="comment">// end of downward loop</span></div>
+</div><!-- fragment --><p >Then we reset the perturbation pressure to zero and reduce the ring's collapse by decreasing the external pressure (or by increasing the <img class="formulaInl" alt="$ x_2$" src="form_41.png" width="13" height="9"/> - coordinate of the control point).</p>
+<div class="fragment"><div class="line"> <span class="comment">// Reset perturbation pressure</span></div>
+<div class="line"> <span class="comment">//----------------------------</span></div>
+<div class="line"> <a class="code hl_variable" href="namespaceGlobal__Physical__Variables.html#ab55734aaa66260cd9d4bf68a4ecafdd5">Global_Physical_Variables::Pcos</a>=0.0;</div>
+<div class="line"> </div>
+<div class="line"> <span class="comment">// Set initial values for parameters that are to be incremented</span></div>
+<div class="line"> <a class="code hl_variable" href="namespaceGlobal__Physical__Variables.html#a1c774c9cb221df909201e81e84b15f40">Global_Physical_Variables::Xprescr</a>-=displ_increment;</div>
+<div class="line"> <a class="code hl_function" href="namespaceGlobal__Physical__Variables.html#accc1e6e92957e427340871d606b8835d">Global_Physical_Variables::external_pressure</a>() += pext_increment;</div>
+<div class="line"> </div>
+<div class="line"> <span class="comment">// Start new zone for tecplot</span></div>
+<div class="line"> trace_file &lt;&lt; <span class="stringliteral">&quot;ZONE&quot;</span> &lt;&lt; std::endl;</div>
+<div class="line"> </div>
+<div class="line"> <span class="comment">// Upward loop over parameter incrementation</span></div>
+<div class="line"> <span class="comment">//------------------------------------------</span></div>
+<div class="line"> <span class="keywordflow">for</span>(<span class="keywordtype">unsigned</span> i=nstep;i&lt;2*nstep;i++)</div>
+<div class="line">  {</div>
+<div class="line">   </div>
+<div class="line">   <span class="comment">// Displacement control?</span></div>
+<div class="line">   <span class="keywordflow">if</span> (!Displ_control) </div>
+<div class="line">    {</div>
+<div class="line">     <span class="comment">// Increment pressure</span></div>
+<div class="line">     <a class="code hl_function" href="namespaceGlobal__Physical__Variables.html#accc1e6e92957e427340871d606b8835d">Global_Physical_Variables::external_pressure</a>() -= pext_increment;</div>
+<div class="line">    }</div>
+<div class="line">   <span class="keywordflow">else</span></div>
+<div class="line">    {</div>
+<div class="line">     <span class="comment">// Increment control displacement</span></div>
+<div class="line">     <a class="code hl_variable" href="namespaceGlobal__Physical__Variables.html#a1c774c9cb221df909201e81e84b15f40">Global_Physical_Variables::Xprescr</a>+=displ_increment;</div>
+<div class="line">    }</div>
+<div class="line">   </div>
+<div class="line">   <span class="comment">// Solve</span></div>
+<div class="line">   newton_solve();</div>
+<div class="line">   </div>
+<div class="line">   <span class="comment">// Doc solution</span></div>
+<div class="line">   doc_info.number()++;</div>
+<div class="line">   doc_solution(doc_info,trace_file);</div>
+<div class="line">   </div>
+<div class="line">  } </div>
+<div class="line"> </div>
+<div class="line">} <span class="comment">// end of run</span></div>
+</div><!-- fragment --><p> Done!</p>
 <hr  />
  <hr  />
 <h1><a class="anchor" id="further"></a>
@@ -610,7 +816,7 @@ PDF file</h1>
     <footer>
       <div class="container">
         <div class="text-muted" style="float:right;">Generated by <a href="http://www.doxygen.org/index.html">
-          <img style="height:18px;" class="footer-img" src="doxygen.png" alt="doxygen"></a> on Wed Oct 6 2021 10:04:46
+          <img style="height:18px;" class="footer-img" src="doxygen.png" alt="doxygen"></a> on Thu Oct 7 2021 15:36:39
         </div>
       </div>
     </footer>

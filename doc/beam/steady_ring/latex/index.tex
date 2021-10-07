@@ -417,6 +417,11 @@ The first half of the constructor is similar to the one used in \href{../../tens
 ~\newline
  
 \begin{DoxyCodeInclude}{0}
+\DoxyCodeLine{     \textcolor{comment}{// The constructor of the  DisplacementControlElement has created}}
+\DoxyCodeLine{     \textcolor{comment}{// a new Data object whose one-\/and-\/only value contains the}}
+\DoxyCodeLine{     \textcolor{comment}{// adjustable load: Use this Data object in the load function:}}
+\DoxyCodeLine{     \mbox{\hyperlink{namespaceGlobal__Physical__Variables_a9d598320fb3d7ecf94101088e8f376d2}{Global\_Physical\_Variables::Pext\_data\_pt}}=displ\_control\_el\_pt-\/>}
+\DoxyCodeLine{      displacement\_control\_load\_pt();}
 
 \end{DoxyCodeInclude}
  ~\newline
@@ -428,6 +433,29 @@ The first half of the constructor is similar to the one used in \href{../../tens
 ~\newline
  
 \begin{DoxyCodeInclude}{0}
+\DoxyCodeLine{   \textcolor{comment}{// Demonstrate use of displacement control with some existing data }}
+\DoxyCodeLine{   \textcolor{comment}{//-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/}}
+\DoxyCodeLine{   \textcolor{keywordflow}{else}}
+\DoxyCodeLine{    \{}
+\DoxyCodeLine{     \textcolor{comment}{// Create Data object whose one-\/and-\/only value contains the}}
+\DoxyCodeLine{     \textcolor{comment}{// adjustable load}}
+\DoxyCodeLine{     \mbox{\hyperlink{namespaceGlobal__Physical__Variables_a9d598320fb3d7ecf94101088e8f376d2}{Global\_Physical\_Variables::Pext\_data\_pt}}=\textcolor{keyword}{new} Data(1);}
+\DoxyCodeLine{     }
+\DoxyCodeLine{     \textcolor{comment}{// Currently, nobody's "{}in charge of"{} this Data so it won't}}
+\DoxyCodeLine{     \textcolor{comment}{// get included in any equation numbering schemes etc.}}
+\DoxyCodeLine{     \textcolor{comment}{// -\/-\/> declare it to be "{}global Data"{} for the Problem}}
+\DoxyCodeLine{     \textcolor{comment}{// so the Problem is in charge and will perform such tasks.}}
+\DoxyCodeLine{     add\_global\_data(\mbox{\hyperlink{namespaceGlobal__Physical__Variables_a9d598320fb3d7ecf94101088e8f376d2}{Global\_Physical\_Variables::Pext\_data\_pt}});}
+\DoxyCodeLine{     }
+\DoxyCodeLine{     \textcolor{comment}{// Build displacement control element and pass pointer to the}}
+\DoxyCodeLine{     \textcolor{comment}{// already existing adjustable load Data. }}
+\DoxyCodeLine{     displ\_control\_el\_pt=}
+\DoxyCodeLine{      \textcolor{keyword}{new}  DisplacementControlElement(controlled\_element\_pt,}
+\DoxyCodeLine{                                      s\_displ\_control,}
+\DoxyCodeLine{                                      controlled\_direction,}
+\DoxyCodeLine{                                      \&\mbox{\hyperlink{namespaceGlobal__Physical__Variables_a1c774c9cb221df909201e81e84b15f40}{Global\_Physical\_Variables::Xprescr}},}
+\DoxyCodeLine{                                      \mbox{\hyperlink{namespaceGlobal__Physical__Variables_a9d598320fb3d7ecf94101088e8f376d2}{Global\_Physical\_Variables::Pext\_data\_pt}});}
+\DoxyCodeLine{    \}}
 
 \end{DoxyCodeInclude}
 
@@ -437,6 +465,9 @@ The first half of the constructor is similar to the one used in \href{../../tens
 ~\newline
  
 \begin{DoxyCodeInclude}{0}
+\DoxyCodeLine{   \textcolor{comment}{// Add the displacement-\/control element to the mesh}}
+\DoxyCodeLine{   mesh\_pt()-\/>add\_element\_pt(displ\_control\_el\_pt); }
+\DoxyCodeLine{  \}}
 
 \end{DoxyCodeInclude}
 
@@ -444,12 +475,82 @@ The first half of the constructor is similar to the one used in \href{../../tens
 
 
 \begin{DoxyCodeInclude}{0}
+\DoxyCodeLine{ \textcolor{comment}{//Loop over the elements to set physical parameters etc.}}
+\DoxyCodeLine{ \textcolor{keywordflow}{for}(\textcolor{keywordtype}{unsigned} i=0;i<Nbeam\_element;i++)}
+\DoxyCodeLine{  \{}
+\DoxyCodeLine{   \textcolor{comment}{//Cast to proper element type}}
+\DoxyCodeLine{   ELEMENT *elem\_pt = \textcolor{keyword}{dynamic\_cast<}ELEMENT*\textcolor{keyword}{>}(mesh\_pt()-\/>element\_pt(i));}
+\DoxyCodeLine{}
+\DoxyCodeLine{   \textcolor{comment}{// Set wall thickness}}
+\DoxyCodeLine{   elem\_pt-\/>h\_pt() = \&\mbox{\hyperlink{namespaceGlobal__Physical__Variables_af6e07423e22c0991084d9a2f43727805}{Global\_Physical\_Variables::H}};}
+\DoxyCodeLine{   }
+\DoxyCodeLine{   \textcolor{comment}{// Function that specifies load Vector}}
+\DoxyCodeLine{   elem\_pt-\/>load\_vector\_fct\_pt() = \&\mbox{\hyperlink{namespaceGlobal__Physical__Variables_a86fd8f502cb8c4c7939ffae742f023eb}{Global\_Physical\_Variables::press\_load}};}
+\DoxyCodeLine{}
+\DoxyCodeLine{   \textcolor{comment}{//Assign the undeformed beam shape}}
+\DoxyCodeLine{   elem\_pt-\/>undeformed\_beam\_pt() = Undef\_geom\_pt;}
+\DoxyCodeLine{}
+\DoxyCodeLine{   \textcolor{comment}{// Displacement control? If so, the load on *all* elements}}
+\DoxyCodeLine{   \textcolor{comment}{// is affected by an unknown -\/-\/ the external pressure, stored}}
+\DoxyCodeLine{   \textcolor{comment}{// as the one-\/and-\/only value in a Data object: Add it to the}}
+\DoxyCodeLine{   \textcolor{comment}{// elements' external Data.}}
+\DoxyCodeLine{   \textcolor{keywordflow}{if} (Displ\_control)}
+\DoxyCodeLine{    \{}
+\DoxyCodeLine{     \textcolor{comment}{//The external pressure is external data for all elements}}
+\DoxyCodeLine{     elem\_pt-\/>add\_external\_data(\mbox{\hyperlink{namespaceGlobal__Physical__Variables_a9d598320fb3d7ecf94101088e8f376d2}{Global\_Physical\_Variables::Pext\_data\_pt}});}
+\DoxyCodeLine{    \}}
+\DoxyCodeLine{  \} }
+\DoxyCodeLine{ }
+\DoxyCodeLine{ \textcolor{comment}{// Do equation numbering}}
+\DoxyCodeLine{ cout << \textcolor{stringliteral}{"{}\# of dofs "{}} << assign\_eqn\_numbers() << std::endl;}
+\DoxyCodeLine{}
+\DoxyCodeLine{\} \textcolor{comment}{// end of constructor}}
 
 \end{DoxyCodeInclude}
  \DoxyHorRuler{0}
 \hypertarget{index_doc}{}\doxysection{Post-\/processing}\label{index_doc}
 The post-\/processing function documents the ring shapes and adds the load/displacement characteristics of the two material points on the ring\textquotesingle{}s symmetry lines to the trace file. 
 \begin{DoxyCodeInclude}{0}
+\DoxyCodeLine{\textcolor{comment}{//=======start\_of\_doc=====================================================}}
+\DoxyCodeLine{\textcolor{comment}{/// Document solution}}
+\DoxyCodeLine{\textcolor{comment}{//========================================================================}}
+\DoxyCodeLine{\textcolor{keyword}{template}<\textcolor{keyword}{class} ELEMENT>}
+\DoxyCodeLine{\textcolor{keywordtype}{void} \mbox{\hyperlink{classElasticRingProblem_ab644c5fd57310f2d4c858f64d8c5a223}{ElasticRingProblem<ELEMENT>::doc\_solution}}(DocInfo\& doc\_info,}
+\DoxyCodeLine{                                               ofstream\& trace\_file)}
+\DoxyCodeLine{\{ }
+\DoxyCodeLine{ ofstream some\_file;}
+\DoxyCodeLine{ \textcolor{keywordtype}{char} filename[100];}
+\DoxyCodeLine{ }
+\DoxyCodeLine{ \textcolor{comment}{// Number of plot points}}
+\DoxyCodeLine{ \textcolor{keywordtype}{unsigned} npts=5;}
+\DoxyCodeLine{ }
+\DoxyCodeLine{ \textcolor{comment}{// Output solution }}
+\DoxyCodeLine{ sprintf(filename,\textcolor{stringliteral}{"{}\%s/ring\%i.dat"{}},doc\_info.directory().c\_str(),}
+\DoxyCodeLine{         doc\_info.number());}
+\DoxyCodeLine{ some\_file.open(filename);}
+\DoxyCodeLine{ mesh\_pt()-\/>output(some\_file,npts);}
+\DoxyCodeLine{ some\_file.close();}
+\DoxyCodeLine{}
+\DoxyCodeLine{ \textcolor{comment}{// Local coordinates of plot points at left and right end of domain}}
+\DoxyCodeLine{ Vector<double> s\_left(1);}
+\DoxyCodeLine{ s\_left[0]=-\/1.0;}
+\DoxyCodeLine{ Vector<double> s\_right(1);}
+\DoxyCodeLine{ s\_right[0]=1.0;}
+\DoxyCodeLine{}
+\DoxyCodeLine{ \textcolor{comment}{// Write trace file: Pressure, two radii}}
+\DoxyCodeLine{ trace\_file }
+\DoxyCodeLine{  << \mbox{\hyperlink{namespaceGlobal__Physical__Variables_a9d598320fb3d7ecf94101088e8f376d2}{Global\_Physical\_Variables::Pext\_data\_pt}}-\/>value(0)/}
+\DoxyCodeLine{  (pow(\mbox{\hyperlink{namespaceGlobal__Physical__Variables_af6e07423e22c0991084d9a2f43727805}{Global\_Physical\_Variables::H}},3)/12.0)  }
+\DoxyCodeLine{  << \textcolor{stringliteral}{"{} "{}} }
+\DoxyCodeLine{  << \textcolor{keyword}{dynamic\_cast<}ELEMENT*\textcolor{keyword}{>}(mesh\_pt()-\/>}
+\DoxyCodeLine{                            element\_pt(0))-\/>interpolated\_x(s\_left,0)}
+\DoxyCodeLine{  << \textcolor{stringliteral}{"{} "{}} }
+\DoxyCodeLine{  << \textcolor{keyword}{dynamic\_cast<}ELEMENT*\textcolor{keyword}{>}}
+\DoxyCodeLine{  (mesh\_pt()-\/>element\_pt(Nbeam\_element-\/1))-\/>interpolated\_x(s\_right,1)}
+\DoxyCodeLine{  << std::endl;}
+\DoxyCodeLine{}
+\DoxyCodeLine{  }
+\DoxyCodeLine{\} \textcolor{comment}{// end of doc}}
 
 \end{DoxyCodeInclude}
 
@@ -460,24 +561,91 @@ We start by opening a trace file to record the load/displacement characteristics
 
 
 \begin{DoxyCodeInclude}{0}
+\DoxyCodeLine{\textcolor{comment}{//========start\_of\_run=====================================================}}
+\DoxyCodeLine{\textcolor{comment}{/// Solver loop to perform parameter study}}
+\DoxyCodeLine{\textcolor{comment}{//=========================================================================}}
+\DoxyCodeLine{\textcolor{keyword}{template}<\textcolor{keyword}{class} ELEMENT>}
+\DoxyCodeLine{\textcolor{keywordtype}{void} \mbox{\hyperlink{classElasticRingProblem_afed9c0948c535c315c3e22e92e3266d3}{ElasticRingProblem<ELEMENT>::parameter\_study}}(DocInfo\& doc\_info)}
+\DoxyCodeLine{\{}
+\DoxyCodeLine{}
+\DoxyCodeLine{ \textcolor{comment}{//Open a trace file}}
+\DoxyCodeLine{ \textcolor{keywordtype}{char} filename[100];}
+\DoxyCodeLine{ sprintf(filename,\textcolor{stringliteral}{"{}\%s/trace.dat"{}},doc\_info.directory().c\_str());}
+\DoxyCodeLine{ ofstream trace\_file(filename);}
+\DoxyCodeLine{ trace\_file << \textcolor{stringliteral}{"{}VARIABLES=\(\backslash\)"{}p\_e\_x\_t\(\backslash\)"{},\(\backslash\)"{}R\_1\(\backslash\)"{},\(\backslash\)"{}R\_2\(\backslash\)"{}"{}} << std::endl;}
+\DoxyCodeLine{ trace\_file << \textcolor{stringliteral}{"{}ZONE"{}} << std::endl;}
+\DoxyCodeLine{}
+\DoxyCodeLine{ \textcolor{comment}{//Output initial data}}
+\DoxyCodeLine{ doc\_solution(doc\_info,trace\_file);}
 
 \end{DoxyCodeInclude}
  Next we set up the increment of the control parameter, choosing the displacement or load increments such that the ring\textquotesingle{}s deformation is increased from the axisymmetric initial state to total collapse with opposite wall contact in 11 steps.
 
 
 \begin{DoxyCodeInclude}{0}
+\DoxyCodeLine{ \textcolor{comment}{// Number of steps}}
+\DoxyCodeLine{ \textcolor{keywordtype}{unsigned} nstep= 11; \textcolor{comment}{//51;}}
+\DoxyCodeLine{ }
+\DoxyCodeLine{ \textcolor{comment}{// Increments}}
+\DoxyCodeLine{ \textcolor{keywordtype}{double} displ\_increment=1.0/double(nstep-\/1);}
+\DoxyCodeLine{ \textcolor{keywordtype}{double} p\_buckl=3.00*pow(\mbox{\hyperlink{namespaceGlobal__Physical__Variables_af6e07423e22c0991084d9a2f43727805}{Global\_Physical\_Variables::H}},3)/12.0;}
+\DoxyCodeLine{ \textcolor{keywordtype}{double} p\_owc  =5.22*pow(\mbox{\hyperlink{namespaceGlobal__Physical__Variables_af6e07423e22c0991084d9a2f43727805}{Global\_Physical\_Variables::H}},3)/12.0;}
+\DoxyCodeLine{ \textcolor{keywordtype}{double} pext\_increment=(p\_owc-\/p\_buckl)/\textcolor{keywordtype}{double}(nstep-\/1); }
+\DoxyCodeLine{ }
+\DoxyCodeLine{ \textcolor{comment}{// Set initial values for parameters that are to be incremented}}
+\DoxyCodeLine{ \mbox{\hyperlink{namespaceGlobal__Physical__Variables_a1c774c9cb221df909201e81e84b15f40}{Global\_Physical\_Variables::Xprescr}}=1.0+displ\_increment;}
+\DoxyCodeLine{ \mbox{\hyperlink{namespaceGlobal__Physical__Variables_a9d598320fb3d7ecf94101088e8f376d2}{Global\_Physical\_Variables::Pext\_data\_pt}}-\/>set\_value(0,p\_buckl-\/pext\_increment);}
 
 \end{DoxyCodeInclude}
  Without displacement-\/control the Newton method can require a large number of iterations, therefore we increment the maximum number of iterations.
 
 
 \begin{DoxyCodeInclude}{0}
+\DoxyCodeLine{ \textcolor{comment}{// Without displacement control the Newton method converges very slowly}}
+\DoxyCodeLine{ \textcolor{comment}{// as we approach the axisymmetric state: Allow more iterations before}}
+\DoxyCodeLine{ \textcolor{comment}{// calling it a day...}}
+\DoxyCodeLine{ \textcolor{keywordflow}{if} (Displ\_control)}
+\DoxyCodeLine{  \{}
+\DoxyCodeLine{   Max\_newton\_iterations=100;}
+\DoxyCodeLine{  \}}
 
 \end{DoxyCodeInclude}
  We start the parameter study by increasing the ring\textquotesingle{}s compression (either by increasing the external pressure or by reducing the $ x_2$ -\/ coordinate of the control point) with $ p_{cos} > 0 $ to induce buckling in the desired direction.
 
 
 \begin{DoxyCodeInclude}{0}
+\DoxyCodeLine{ \textcolor{comment}{// Downward loop over parameter incrementation with pcos>0 }}
+\DoxyCodeLine{ \textcolor{comment}{//-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/}}
+\DoxyCodeLine{ \textcolor{comment}{}}
+\DoxyCodeLine{\textcolor{comment}{ /// Perturbation pressure}}
+\DoxyCodeLine{\textcolor{comment}{} \mbox{\hyperlink{namespaceGlobal__Physical__Variables_ab55734aaa66260cd9d4bf68a4ecafdd5}{Global\_Physical\_Variables::Pcos}}=1.0e-\/5; }
+\DoxyCodeLine{}
+\DoxyCodeLine{}
+\DoxyCodeLine{ \textcolor{comment}{// Downward loop over parameter incrementation}}
+\DoxyCodeLine{ \textcolor{comment}{//-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/}}
+\DoxyCodeLine{ \textcolor{keywordflow}{for}(\textcolor{keywordtype}{unsigned} i=1;i<=nstep;i++)}
+\DoxyCodeLine{  \{}
+\DoxyCodeLine{   }
+\DoxyCodeLine{   \textcolor{comment}{// Displacement control?}}
+\DoxyCodeLine{   \textcolor{keywordflow}{if} (!Displ\_control) }
+\DoxyCodeLine{    \{}
+\DoxyCodeLine{     \textcolor{comment}{// Increment pressure}}
+\DoxyCodeLine{     \mbox{\hyperlink{namespaceGlobal__Physical__Variables_accc1e6e92957e427340871d606b8835d}{Global\_Physical\_Variables::external\_pressure}}() += pext\_increment;}
+\DoxyCodeLine{    \}}
+\DoxyCodeLine{   \textcolor{keywordflow}{else}}
+\DoxyCodeLine{    \{}
+\DoxyCodeLine{     \textcolor{comment}{// Increment control displacement}}
+\DoxyCodeLine{     \mbox{\hyperlink{namespaceGlobal__Physical__Variables_a1c774c9cb221df909201e81e84b15f40}{Global\_Physical\_Variables::Xprescr}}-\/=displ\_increment;}
+\DoxyCodeLine{    \} }
+\DoxyCodeLine{   }
+\DoxyCodeLine{   \textcolor{comment}{// Solve}}
+\DoxyCodeLine{   newton\_solve();}
+\DoxyCodeLine{   }
+\DoxyCodeLine{   \textcolor{comment}{// Doc solution}}
+\DoxyCodeLine{   doc\_info.number()++;}
+\DoxyCodeLine{   doc\_solution(doc\_info,trace\_file);}
+\DoxyCodeLine{   }
+\DoxyCodeLine{  \} \textcolor{comment}{// end of downward loop}}
 
 \end{DoxyCodeInclude}
 
@@ -486,6 +654,44 @@ Then we reset the perturbation pressure to zero and reduce the ring\textquotesin
 
 
 \begin{DoxyCodeInclude}{0}
+\DoxyCodeLine{ \textcolor{comment}{// Reset perturbation pressure}}
+\DoxyCodeLine{ \textcolor{comment}{//-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/}}
+\DoxyCodeLine{ \mbox{\hyperlink{namespaceGlobal__Physical__Variables_ab55734aaa66260cd9d4bf68a4ecafdd5}{Global\_Physical\_Variables::Pcos}}=0.0;}
+\DoxyCodeLine{ }
+\DoxyCodeLine{ \textcolor{comment}{// Set initial values for parameters that are to be incremented}}
+\DoxyCodeLine{ \mbox{\hyperlink{namespaceGlobal__Physical__Variables_a1c774c9cb221df909201e81e84b15f40}{Global\_Physical\_Variables::Xprescr}}-\/=displ\_increment;}
+\DoxyCodeLine{ \mbox{\hyperlink{namespaceGlobal__Physical__Variables_accc1e6e92957e427340871d606b8835d}{Global\_Physical\_Variables::external\_pressure}}() += pext\_increment;}
+\DoxyCodeLine{}
+\DoxyCodeLine{ \textcolor{comment}{// Start new zone for tecplot}}
+\DoxyCodeLine{ trace\_file << \textcolor{stringliteral}{"{}ZONE"{}} << std::endl;}
+\DoxyCodeLine{}
+\DoxyCodeLine{ \textcolor{comment}{// Upward loop over parameter incrementation}}
+\DoxyCodeLine{ \textcolor{comment}{//-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/}}
+\DoxyCodeLine{ \textcolor{keywordflow}{for}(\textcolor{keywordtype}{unsigned} i=nstep;i<2*nstep;i++)}
+\DoxyCodeLine{  \{}
+\DoxyCodeLine{   }
+\DoxyCodeLine{   \textcolor{comment}{// Displacement control?}}
+\DoxyCodeLine{   \textcolor{keywordflow}{if} (!Displ\_control) }
+\DoxyCodeLine{    \{}
+\DoxyCodeLine{     \textcolor{comment}{// Increment pressure}}
+\DoxyCodeLine{     \mbox{\hyperlink{namespaceGlobal__Physical__Variables_accc1e6e92957e427340871d606b8835d}{Global\_Physical\_Variables::external\_pressure}}() -\/= pext\_increment;}
+\DoxyCodeLine{    \}}
+\DoxyCodeLine{   \textcolor{keywordflow}{else}}
+\DoxyCodeLine{    \{}
+\DoxyCodeLine{     \textcolor{comment}{// Increment control displacement}}
+\DoxyCodeLine{     \mbox{\hyperlink{namespaceGlobal__Physical__Variables_a1c774c9cb221df909201e81e84b15f40}{Global\_Physical\_Variables::Xprescr}}+=displ\_increment;}
+\DoxyCodeLine{    \}}
+\DoxyCodeLine{   }
+\DoxyCodeLine{   \textcolor{comment}{// Solve}}
+\DoxyCodeLine{   newton\_solve();}
+\DoxyCodeLine{   }
+\DoxyCodeLine{   \textcolor{comment}{// Doc solution}}
+\DoxyCodeLine{   doc\_info.number()++;}
+\DoxyCodeLine{   doc\_solution(doc\_info,trace\_file);}
+\DoxyCodeLine{   }
+\DoxyCodeLine{  \} }
+\DoxyCodeLine{ }
+\DoxyCodeLine{\} \textcolor{comment}{// end of run}}
 
 \end{DoxyCodeInclude}
  Done!

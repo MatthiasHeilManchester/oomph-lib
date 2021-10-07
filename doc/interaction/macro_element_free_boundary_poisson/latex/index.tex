@@ -283,6 +283,32 @@ We start by creating the {\ttfamily Geom\+Object/\+Generalised\+Element} that wi
 
 
 \begin{DoxyCodeInclude}{0}
+\DoxyCodeLine{\textcolor{comment}{//=========start\_of\_constructor===========================================}}
+\DoxyCodeLine{\textcolor{comment}{/// Constructor for adaptive free-\/boundary Poisson problem in }\textcolor{comment}{}}
+\DoxyCodeLine{\textcolor{comment}{/// deformable fish-\/shaped domain. }}
+\DoxyCodeLine{\textcolor{comment}{}\textcolor{comment}{//========================================================================}}
+\DoxyCodeLine{\textcolor{keyword}{template}<\textcolor{keyword}{class} ELEMENT>}
+\DoxyCodeLine{\mbox{\hyperlink{classFreeBoundaryPoissonProblem_a0efe7c342eea790fc0240830bc3c4ebc}{FreeBoundaryPoissonProblem<ELEMENT>::FreeBoundaryPoissonProblem}}()}
+\DoxyCodeLine{\{ }
+\DoxyCodeLine{}
+\DoxyCodeLine{ \textcolor{comment}{// Set coordinates and radius for the circle that will become the fish back}}
+\DoxyCodeLine{ \textcolor{keywordtype}{double} x\_c=0.5;}
+\DoxyCodeLine{ \textcolor{keywordtype}{double} y\_c=0.0;}
+\DoxyCodeLine{ \textcolor{keywordtype}{double} r\_back=1.0;}
+\DoxyCodeLine{}
+\DoxyCodeLine{ \textcolor{comment}{// Build geometric object that will become the fish back}}
+\DoxyCodeLine{ ElasticallySupportedRingElement* fish\_back\_pt=}
+\DoxyCodeLine{  \textcolor{keyword}{new} ElasticallySupportedRingElement(x\_c,y\_c,r\_back);}
+\DoxyCodeLine{}
+\DoxyCodeLine{ \textcolor{comment}{// Build fish mesh with geometric object that specifies the fish back }}
+\DoxyCodeLine{ Fish\_mesh\_pt=\textcolor{keyword}{new} }
+\DoxyCodeLine{  \mbox{\hyperlink{classMyMacroElementNodeUpdateRefineableFishMesh}{MyMacroElementNodeUpdateRefineableFishMesh<ELEMENT>}}(fish\_back\_pt);}
+\DoxyCodeLine{}
+\DoxyCodeLine{ \textcolor{comment}{// Add the fish mesh to the problem's collection of submeshes:}}
+\DoxyCodeLine{ add\_sub\_mesh(Fish\_mesh\_pt);}
+\DoxyCodeLine{}
+\DoxyCodeLine{ \textcolor{comment}{// Create/set error estimator for the fish mesh}}
+\DoxyCodeLine{ fish\_mesh\_pt()-\/>spatial\_error\_estimator\_pt()=\textcolor{keyword}{new} Z2ErrorEstimator;}
 
 \end{DoxyCodeInclude}
 
@@ -291,18 +317,75 @@ Next we store the pointer to the {\ttfamily Elastically\+Supported\+Ring\+Elemen
 
 
 \begin{DoxyCodeInclude}{0}
+\DoxyCodeLine{ \textcolor{comment}{// Build mesh that will store only the geometric wall element}}
+\DoxyCodeLine{ Fish\_back\_mesh\_pt=\textcolor{keyword}{new} Mesh;}
+\DoxyCodeLine{}
+\DoxyCodeLine{ \textcolor{comment}{// So far, the mesh is completely empty. Let's add the }}
+\DoxyCodeLine{ \textcolor{comment}{// GeneralisedElement that represents the shape}}
+\DoxyCodeLine{ \textcolor{comment}{// of the fish's back to it:}}
+\DoxyCodeLine{ Fish\_back\_mesh\_pt-\/>add\_element\_pt(fish\_back\_pt);}
+\DoxyCodeLine{}
+\DoxyCodeLine{ \textcolor{comment}{// Add the fish back mesh to the problem's collection of submeshes:}}
+\DoxyCodeLine{ add\_sub\_mesh(Fish\_back\_mesh\_pt);}
+\DoxyCodeLine{}
+\DoxyCodeLine{ \textcolor{comment}{// Now build global mesh from the submeshes}}
+\DoxyCodeLine{ build\_global\_mesh();}
 
 \end{DoxyCodeInclude}
  We choose the central node in the Poisson mesh as the control node and use it (in its role as {\ttfamily Data}) as the \char`\"{}load\char`\"{} for the {\ttfamily Elastically\+Supported\+Ring\+Element}.
 
 
 \begin{DoxyCodeInclude}{0}
+\DoxyCodeLine{ \textcolor{comment}{// Choose a control node: We'll use the}}
+\DoxyCodeLine{ \textcolor{comment}{// central node that is shared by all four elements in}}
+\DoxyCodeLine{ \textcolor{comment}{// the base mesh because it exists at all refinement levels.}}
+\DoxyCodeLine{ }
+\DoxyCodeLine{ \textcolor{comment}{// How many nodes does element 0 have?}}
+\DoxyCodeLine{ \textcolor{keywordtype}{unsigned} nnod=fish\_mesh\_pt()-\/>finite\_element\_pt(0)-\/>nnode();}
+\DoxyCodeLine{}
+\DoxyCodeLine{ \textcolor{comment}{// The central node is the last node in element 0:}}
+\DoxyCodeLine{ Node* control\_node\_pt=fish\_mesh\_pt()-\/>finite\_element\_pt(0)-\/>node\_pt(nnod-\/1);}
+\DoxyCodeLine{ }
+\DoxyCodeLine{ \textcolor{comment}{// Use the solution (value 0) at the control node as the load}}
+\DoxyCodeLine{ \textcolor{comment}{// that acts on the ring. [Note: Node == Data by inheritance]}}
+\DoxyCodeLine{ \textcolor{keyword}{dynamic\_cast<}ElasticallySupportedRingElement*\textcolor{keyword}{>}(Fish\_mesh\_pt-\/>fish\_back\_pt())-\/>}
+\DoxyCodeLine{  set\_load\_pt(control\_node\_pt);}
 
 \end{DoxyCodeInclude}
  Finally, we pin the nodal values on all boundaries, apply the homogeneous Dirichlet boundary conditions, pass the pointer to the source function to the elements, and set up the equation numbering scheme.
 
 
 \begin{DoxyCodeInclude}{0}
+\DoxyCodeLine{ \textcolor{comment}{// Set the boundary conditions for this problem: All nodes are}}
+\DoxyCodeLine{ \textcolor{comment}{// free by default -\/-\/ just pin the ones that have Dirichlet conditions}}
+\DoxyCodeLine{ \textcolor{comment}{// here.  Set homogeneous boundary conditions everywhere}}
+\DoxyCodeLine{ \textcolor{keywordtype}{unsigned} num\_bound = fish\_mesh\_pt()-\/>nboundary();}
+\DoxyCodeLine{ \textcolor{keywordflow}{for}(\textcolor{keywordtype}{unsigned} ibound=0;ibound<num\_bound;ibound++)}
+\DoxyCodeLine{  \{}
+\DoxyCodeLine{   \textcolor{keywordtype}{unsigned} num\_nod= fish\_mesh\_pt()-\/>nboundary\_node(ibound);}
+\DoxyCodeLine{   \textcolor{keywordflow}{for} (\textcolor{keywordtype}{unsigned} inod=0;inod<num\_nod;inod++)}
+\DoxyCodeLine{    \{}
+\DoxyCodeLine{     fish\_mesh\_pt()-\/>boundary\_node\_pt(ibound,inod)-\/>pin(0); }
+\DoxyCodeLine{     fish\_mesh\_pt()-\/>boundary\_node\_pt(ibound,inod)-\/>set\_value(0,0.0);}
+\DoxyCodeLine{}
+\DoxyCodeLine{    \}}
+\DoxyCodeLine{  \}}
+\DoxyCodeLine{ \textcolor{comment}{}}
+\DoxyCodeLine{\textcolor{comment}{ /// Loop over elements and set pointers to source function}}
+\DoxyCodeLine{\textcolor{comment}{} \textcolor{keywordtype}{unsigned} n\_element = fish\_mesh\_pt()-\/>nelement();}
+\DoxyCodeLine{ \textcolor{keywordflow}{for}(\textcolor{keywordtype}{unsigned} i=0;i<n\_element;i++)}
+\DoxyCodeLine{  \{}
+\DoxyCodeLine{   \textcolor{comment}{// Upcast from FiniteElement to the present element}}
+\DoxyCodeLine{   ELEMENT *el\_pt = \textcolor{keyword}{dynamic\_cast<}ELEMENT*\textcolor{keyword}{>}(fish\_mesh\_pt()-\/>element\_pt(i));}
+\DoxyCodeLine{   }
+\DoxyCodeLine{   \textcolor{comment}{//Set the source function pointer}}
+\DoxyCodeLine{   el\_pt-\/>source\_fct\_pt() = \&\mbox{\hyperlink{namespaceConstSourceForPoisson_a40ef79083874b58ed42b4df2ca0f4c10}{ConstSourceForPoisson::get\_source}};}
+\DoxyCodeLine{  \}}
+\DoxyCodeLine{}
+\DoxyCodeLine{ \textcolor{comment}{// Do equation numbering}}
+\DoxyCodeLine{ cout << \textcolor{stringliteral}{"{}Number of equations: "{}} << assign\_eqn\_numbers() << std::endl; }
+\DoxyCodeLine{}
+\DoxyCodeLine{\} \textcolor{comment}{// end of constructor}}
 
 \end{DoxyCodeInclude}
  \DoxyHorRuler{0}
@@ -312,6 +395,22 @@ The post-\/processing routine writes the computed result to an output file.
 
 
 \begin{DoxyCodeInclude}{0}
+\DoxyCodeLine{\textcolor{comment}{//============start\_of\_doc================================================}}
+\DoxyCodeLine{\textcolor{comment}{/// Doc the solution in tecplot format.}}
+\DoxyCodeLine{\textcolor{comment}{//========================================================================}}
+\DoxyCodeLine{\textcolor{keyword}{template}<\textcolor{keyword}{class} ELEMENT>}
+\DoxyCodeLine{\textcolor{keywordtype}{void} \mbox{\hyperlink{classFreeBoundaryPoissonProblem_a2282d8ac1d5753771a9a3cfc0417f6b6}{FreeBoundaryPoissonProblem<ELEMENT>::doc\_solution}}()}
+\DoxyCodeLine{\{ }
+\DoxyCodeLine{}
+\DoxyCodeLine{ \textcolor{comment}{// Number of plot points in each coordinate direction.}}
+\DoxyCodeLine{ \textcolor{keywordtype}{unsigned} npts=5;}
+\DoxyCodeLine{}
+\DoxyCodeLine{ \textcolor{comment}{// Output solution }}
+\DoxyCodeLine{ ofstream some\_file(\textcolor{stringliteral}{"{}RESLT/soln0.dat"{}});}
+\DoxyCodeLine{ fish\_mesh\_pt()-\/>output(some\_file,npts);}
+\DoxyCodeLine{ some\_file.close();}
+\DoxyCodeLine{}
+\DoxyCodeLine{\} \textcolor{comment}{// end of doc}}
 
 \end{DoxyCodeInclude}
 
