@@ -777,6 +777,11 @@ clean-local:
 	rm -f oomph-lib_footer.html
 	if [ -L extra_latex_style_files ]; then rm -f extra_latex_style_files; fi
 
+all:
+        # Create index.html in demo_drivers directory (needed for github
+        # github-hosted webpages
+	../bin/make_index_html_in_demo_driver_dirs.bash
+
 # Tell versions [3.59,3.63) of GNU make to not export all variables.
 # Otherwise a system limit (for SysV at least) may be exceeded.
 .NOEXPORT:
