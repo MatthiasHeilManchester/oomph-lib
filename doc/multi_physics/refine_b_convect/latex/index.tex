@@ -89,13 +89,13 @@ The problem class contains the constructor and (empty) destructor, the usual act
 \DoxyCodeLine{\textcolor{comment}{ /// Destructor. Empty}}
 \DoxyCodeLine{\textcolor{comment}{} \mbox{\hyperlink{classRefineableConvectionProblem_a43fc2693230601928578d5b0c6380943}{\string~RefineableConvectionProblem}}() \{\}}
 \DoxyCodeLine{\textcolor{comment}{}}
-\DoxyCodeLine{\textcolor{comment}{ /// \(\backslash\)short Update the problem specs before solve:}}
+\DoxyCodeLine{\textcolor{comment}{ ///  Update the problem specs before solve:}}
 \DoxyCodeLine{\textcolor{comment}{} \textcolor{keywordtype}{void} \mbox{\hyperlink{classRefineableConvectionProblem_a694f0be87fe09a30d94e92acfce85eee}{actions\_before\_newton\_solve}}();}
 \DoxyCodeLine{\textcolor{comment}{}}
 \DoxyCodeLine{\textcolor{comment}{ /// Update the problem after solve (empty)}}
 \DoxyCodeLine{\textcolor{comment}{} \textcolor{keywordtype}{void} \mbox{\hyperlink{classRefineableConvectionProblem_a13bda5e5e75928efa88433902ccab7ee}{actions\_after\_newton\_solve}}()\{\}}
 \DoxyCodeLine{\textcolor{comment}{}}
-\DoxyCodeLine{\textcolor{comment}{ /// \(\backslash\)short Overloaded version of the problem's access function to }}
+\DoxyCodeLine{\textcolor{comment}{ ///  Overloaded version of the problem's access function to }}
 \DoxyCodeLine{\textcolor{comment}{ /// the mesh. Recasts the pointer to the base Mesh object to }}
 \DoxyCodeLine{\textcolor{comment}{ /// the actual mesh type.}}
 \DoxyCodeLine{\textcolor{comment}{} RectangularQuadMesh<ELEMENT>* \mbox{\hyperlink{classRefineableConvectionProblem_ab39a08708e152e4f119832dc5e1bc96c}{mesh\_pt}}() }
@@ -113,7 +113,7 @@ The problem class contains the constructor and (empty) destructor, the usual act
 \DoxyCodeLine{\textcolor{comment}{ /// Actions before adapt:(empty)}}
 \DoxyCodeLine{\textcolor{comment}{} \textcolor{keywordtype}{void} actions\_before\_adapt() \{\}}
 \DoxyCodeLine{\textcolor{comment}{}}
-\DoxyCodeLine{\textcolor{comment}{ /// \(\backslash\)short Actions after adaptation,}}
+\DoxyCodeLine{\textcolor{comment}{ ///  Actions after adaptation,}}
 \DoxyCodeLine{\textcolor{comment}{ /// Re-\/pin a single pressure degree of freedom}}
 \DoxyCodeLine{\textcolor{comment}{} \textcolor{keywordtype}{void} actions\_after\_adapt()}
 \DoxyCodeLine{  \{}
@@ -141,16 +141,16 @@ The problem class contains the constructor and (empty) destructor, the usual act
 
 \begin{DoxyCodeInclude}{0}
 \DoxyCodeLine{\textcolor{comment}{}}
-\DoxyCodeLine{\textcolor{comment}{ /// \(\backslash\)short Set the}}
+\DoxyCodeLine{\textcolor{comment}{ ///  Set the}}
 \DoxyCodeLine{\textcolor{comment}{ /// boundary condition on the upper wall to be perturbed slightly}}
 \DoxyCodeLine{\textcolor{comment}{ /// to force the solution into the symmetry broken state.}}
 \DoxyCodeLine{\textcolor{comment}{} \textcolor{keywordtype}{void} enable\_imperfection() \{Imperfect = \textcolor{keyword}{true};\}}
 \DoxyCodeLine{\textcolor{comment}{}}
-\DoxyCodeLine{\textcolor{comment}{ /// \(\backslash\)short Set the}}
+\DoxyCodeLine{\textcolor{comment}{ ///  Set the}}
 \DoxyCodeLine{\textcolor{comment}{ /// boundary condition on the upper wall to be unperturbed.}}
 \DoxyCodeLine{\textcolor{comment}{} \textcolor{keywordtype}{void} disable\_imperfection() \{Imperfect = \textcolor{keyword}{false};\}}
 \DoxyCodeLine{ \textcolor{comment}{}}
-\DoxyCodeLine{\textcolor{comment}{ /// \(\backslash\)short Doc the solution.}}
+\DoxyCodeLine{\textcolor{comment}{ ///  Doc the solution.}}
 \DoxyCodeLine{\textcolor{comment}{} \textcolor{keywordtype}{void} doc\_solution();}
 \DoxyCodeLine{ }
 \DoxyCodeLine{\textcolor{keyword}{private}:}
@@ -444,7 +444,7 @@ Both constituent elements are derived from the {\ttfamily Element\+With\+Z2\+Err
 \DoxyCodeLine{      \textcolor{keywordflow}{return} RefineableQCrouzeixRaviartElement<DIM>::nrecovery\_order();}
 \DoxyCodeLine{    \}}
 \DoxyCodeLine{\textcolor{comment}{}}
-\DoxyCodeLine{\textcolor{comment}{    /// \(\backslash\)short The number of Z2 flux terms is the same as that in}}
+\DoxyCodeLine{\textcolor{comment}{    ///  The number of Z2 flux terms is the same as that in}}
 \DoxyCodeLine{\textcolor{comment}{    /// the fluid element plus that in the advection-\/diffusion element}}
 \DoxyCodeLine{\textcolor{comment}{}    \textcolor{keywordtype}{unsigned} num\_Z2\_flux\_terms()}
 \DoxyCodeLine{    \{}
@@ -454,7 +454,7 @@ Both constituent elements are derived from the {\ttfamily Element\+With\+Z2\+Err
 \DoxyCodeLine{    \}}
 \DoxyCodeLine{}
 \DoxyCodeLine{\textcolor{comment}{}}
-\DoxyCodeLine{\textcolor{comment}{    /// \(\backslash\)short Get the Z2 flux by concatenating the fluxes from the fluid and}}
+\DoxyCodeLine{\textcolor{comment}{    ///  Get the Z2 flux by concatenating the fluxes from the fluid and}}
 \DoxyCodeLine{\textcolor{comment}{    /// the advection diffusion elements.}}
 \DoxyCodeLine{\textcolor{comment}{}    \textcolor{keywordtype}{void} get\_Z2\_flux(\textcolor{keyword}{const} Vector<double>\& s, Vector<double>\& flux)}
 \DoxyCodeLine{    \{}
@@ -486,14 +486,14 @@ Both constituent elements are derived from the {\ttfamily Element\+With\+Z2\+Err
 
  
 \begin{DoxyCodeInclude}{0}
-\DoxyCodeLine{\textcolor{comment}{    /// \(\backslash\)short The number of compound fluxes is two (one for the fluid and}}
+\DoxyCodeLine{\textcolor{comment}{    ///  The number of compound fluxes is two (one for the fluid and}}
 \DoxyCodeLine{\textcolor{comment}{    /// one for the temperature)}}
 \DoxyCodeLine{    \textcolor{keywordtype}{unsigned} ncompound\_fluxes()}
 \DoxyCodeLine{    \{}
 \DoxyCodeLine{      \textcolor{keywordflow}{return} 2;}
 \DoxyCodeLine{    \}}
 \DoxyCodeLine{\textcolor{comment}{}}
-\DoxyCodeLine{\textcolor{comment}{    /// \(\backslash\)short Fill in which flux components are associated with the fluid}}
+\DoxyCodeLine{\textcolor{comment}{    ///  Fill in which flux components are associated with the fluid}}
 \DoxyCodeLine{\textcolor{comment}{    /// measure and which are associated with the temperature measure}}
 \DoxyCodeLine{\textcolor{comment}{}    \textcolor{keywordtype}{void} get\_Z2\_compound\_flux\_indices(Vector<unsigned>\& flux\_index)}
 \DoxyCodeLine{    \{}
@@ -528,7 +528,7 @@ The vertex nodes are defined by the underlying geometric element, but require a 
 
  
 \begin{DoxyCodeInclude}{0}
-\DoxyCodeLine{\textcolor{comment}{    /// \(\backslash\)short Number of vertex nodes in the element is obtained from the}}
+\DoxyCodeLine{\textcolor{comment}{    ///  Number of vertex nodes in the element is obtained from the}}
 \DoxyCodeLine{\textcolor{comment}{    /// geometric element.}}
 \DoxyCodeLine{    \textcolor{keywordtype}{unsigned} nvertex\_node()\textcolor{keyword}{ const}}
 \DoxyCodeLine{\textcolor{keyword}{    }\{}
@@ -538,7 +538,7 @@ The vertex nodes are defined by the underlying geometric element, but require a 
 \end{DoxyCodeInclude}
   
 \begin{DoxyCodeInclude}{0}
-\DoxyCodeLine{\textcolor{comment}{    /// \(\backslash\)short Pointer to the j-\/th vertex node in the element,}}
+\DoxyCodeLine{\textcolor{comment}{    ///  Pointer to the j-\/th vertex node in the element,}}
 \DoxyCodeLine{\textcolor{comment}{    /// Call the geometric element's function.}}
 \DoxyCodeLine{    Node* vertex\_node\_pt(\textcolor{keyword}{const} \textcolor{keywordtype}{unsigned}\& j)\textcolor{keyword}{ const}}
 \DoxyCodeLine{\textcolor{keyword}{    }\{}
@@ -558,7 +558,7 @@ The vertex nodes are defined by the underlying geometric element, but require a 
 
  
 \begin{DoxyCodeInclude}{0}
-\DoxyCodeLine{\textcolor{comment}{    /// \(\backslash\)short Get the continuously interpolated values at the local coordinate}}
+\DoxyCodeLine{\textcolor{comment}{    ///  Get the continuously interpolated values at the local coordinate}}
 \DoxyCodeLine{\textcolor{comment}{    /// s. We choose to put the fluid velocities first, followed by the}\textcolor{comment}{}}
 \DoxyCodeLine{\textcolor{comment}{    /// temperature.}}
 \DoxyCodeLine{\textcolor{comment}{}    \textcolor{keywordtype}{void} get\_interpolated\_values(\textcolor{keyword}{const} Vector<double>\& s,}
@@ -589,7 +589,7 @@ The vertex nodes are defined by the underlying geometric element, but require a 
 \DoxyCodeLine{    \}}
 \DoxyCodeLine{}
 \DoxyCodeLine{\textcolor{comment}{}}
-\DoxyCodeLine{\textcolor{comment}{    /// \(\backslash\)short Get all continuously interpolated values at the local}}
+\DoxyCodeLine{\textcolor{comment}{    ///  Get all continuously interpolated values at the local}}
 \DoxyCodeLine{\textcolor{comment}{    /// coordinate s at time level t (t=0: present; t>0: previous).}}
 \DoxyCodeLine{\textcolor{comment}{    /// We choose to put the fluid velocities first, followed by the}}
 \DoxyCodeLine{\textcolor{comment}{    /// temperature}}
@@ -627,7 +627,7 @@ The vertex nodes are defined by the underlying geometric element, but require a 
 
  
 \begin{DoxyCodeInclude}{0}
-\DoxyCodeLine{\textcolor{comment}{    /// \(\backslash\)short The additional hanging node information must be set up}}
+\DoxyCodeLine{\textcolor{comment}{    ///  The additional hanging node information must be set up}}
 \DoxyCodeLine{\textcolor{comment}{    /// for both single-\/physics elements.}}
 \DoxyCodeLine{    \textcolor{keywordtype}{void} further\_setup\_hanging\_nodes()}
 \DoxyCodeLine{    \{}
@@ -637,7 +637,7 @@ The vertex nodes are defined by the underlying geometric element, but require a 
 \DoxyCodeLine{    \}}
 \DoxyCodeLine{}
 \DoxyCodeLine{\textcolor{comment}{}}
-\DoxyCodeLine{\textcolor{comment}{    /// \(\backslash\)short Call the rebuild\_from\_sons functions for each of the}}
+\DoxyCodeLine{\textcolor{comment}{    ///  Call the rebuild\_from\_sons functions for each of the}}
 \DoxyCodeLine{\textcolor{comment}{    /// constituent multi-\/physics elements.}}
 \DoxyCodeLine{\textcolor{comment}{}    \textcolor{keywordtype}{void} rebuild\_from\_sons(Mesh*\& mesh\_pt)}
 \DoxyCodeLine{    \{}
@@ -646,7 +646,7 @@ The vertex nodes are defined by the underlying geometric element, but require a 
 \DoxyCodeLine{    \}}
 \DoxyCodeLine{}
 \DoxyCodeLine{\textcolor{comment}{}}
-\DoxyCodeLine{\textcolor{comment}{    /// \(\backslash\)short Call the underlying single-\/physics element's further\_build()}}
+\DoxyCodeLine{\textcolor{comment}{    ///  Call the underlying single-\/physics element's further\_build()}}
 \DoxyCodeLine{\textcolor{comment}{    /// functions and make sure that the pointer to the Rayleigh number}}
 \DoxyCodeLine{\textcolor{comment}{    /// is passed to the sons}}
 \DoxyCodeLine{\textcolor{comment}{}    \textcolor{keywordtype}{void} further\_build()}

@@ -2,6 +2,11 @@
 \label{classoomph_1_1TetMeshFacet}\index{oomph::TetMeshFacet@{oomph::TetMeshFacet}}
 
 
+Facet for Tet mesh generation. Can lie on boundary (identified via one-\/based enumeration!) and can have \mbox{\hyperlink{classoomph_1_1GeomObject}{Geom\+Object}} associated with those boundaries.  
+
+
+
+
 {\ttfamily \#include $<$tet\+\_\+mesh.\+h$>$}
 
 \doxysubsection*{Public Member Functions}
@@ -14,7 +19,7 @@ unsigned \mbox{\hyperlink{classoomph_1_1TetMeshFacet_aa6f08ddc938cd6a52f601c6383
 \mbox{\hyperlink{classoomph_1_1TetMeshVertex}{Tet\+Mesh\+Vertex}} $\ast$ \mbox{\hyperlink{classoomph_1_1TetMeshFacet_ac3e8bb06cabd39c2108af501b163df48}{vertex\+\_\+pt}} (const unsigned \&j) const
 \begin{DoxyCompactList}\small\item\em Pointer to j-\/th vertex (const) \end{DoxyCompactList}\item 
 void \mbox{\hyperlink{classoomph_1_1TetMeshFacet_a08ca13e75ab395de75eab807d2f680b5}{set\+\_\+vertex\+\_\+pt}} (const unsigned \&j, \mbox{\hyperlink{classoomph_1_1TetMeshVertex}{Tet\+Mesh\+Vertex}} $\ast$\mbox{\hyperlink{classoomph_1_1TetMeshFacet_ac3e8bb06cabd39c2108af501b163df48}{vertex\+\_\+pt}})
-\item 
+\begin{DoxyCompactList}\small\item\em Set pointer to j-\/th vertex and pass one-\/based boundary id that may already have been set for this facet. \end{DoxyCompactList}\item 
 unsigned \mbox{\hyperlink{classoomph_1_1TetMeshFacet_a77738b43364fd6f1196e47928f57de65}{one\+\_\+based\+\_\+boundary\+\_\+id}} () const
 \begin{DoxyCompactList}\small\item\em Constant access to (one-\/based!) boundary IDs this facet lives on. \end{DoxyCompactList}\item 
 void \mbox{\hyperlink{classoomph_1_1TetMeshFacet_a578058c44b79c484e14be087f4f0a77f}{set\+\_\+one\+\_\+based\+\_\+boundary\+\_\+id}} (const unsigned \&one\+\_\+based\+\_\+id)
@@ -28,7 +33,7 @@ bool \mbox{\hyperlink{classoomph_1_1TetMeshFacet_a511eb9fd9ae134075c0736486fd8b6
 void \mbox{\hyperlink{classoomph_1_1TetMeshFacet_a3b81b5e50eae3d6494d43c8e74318b93}{set\+\_\+one\+\_\+based\+\_\+region\+\_\+that\+\_\+facet\+\_\+is\+\_\+embedded\+\_\+in}} (const unsigned \&one\+\_\+based\+\_\+region\+\_\+id)
 \begin{DoxyCompactList}\small\item\em Facet is to be embedded in specified one-\/based region. \end{DoxyCompactList}\item 
 unsigned \mbox{\hyperlink{classoomph_1_1TetMeshFacet_acbceefd4c9afbd31c0a163e7a008e6e4}{one\+\_\+based\+\_\+region\+\_\+that\+\_\+facet\+\_\+is\+\_\+embedded\+\_\+in}} ()
-\item 
+\begin{DoxyCompactList}\small\item\em Which (one-\/based) region is facet embedded in (if zero, it\textquotesingle{}s not embedded in any region) \end{DoxyCompactList}\item 
 void \mbox{\hyperlink{classoomph_1_1TetMeshFacet_a10fc468ac2700b4fdd96168a5b17eca3}{output}} (std\+::ostream \&outfile) const
 \begin{DoxyCompactList}\small\item\em Output. \end{DoxyCompactList}\end{DoxyCompactItemize}
 \doxysubsection*{Private Attributes}
@@ -163,7 +168,11 @@ References \mbox{\hyperlink{tet__mesh_8h_source_l00283}{One\+\_\+based\+\_\+boun
 \doxysubsubsection{\texorpdfstring{one\_based\_region\_that\_facet\_is\_embedded\_in()}{one\_based\_region\_that\_facet\_is\_embedded\_in()}}
 {\footnotesize\ttfamily unsigned oomph\+::\+Tet\+Mesh\+Facet\+::one\+\_\+based\+\_\+region\+\_\+that\+\_\+facet\+\_\+is\+\_\+embedded\+\_\+in (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
 
+
+
 Which (one-\/based) region is facet embedded in (if zero, it\textquotesingle{}s not embedded in any region) 
+
+
 
 Definition at line \mbox{\hyperlink{tet__mesh_8h_source_l00257}{257}} of file \mbox{\hyperlink{tet__mesh_8h_source}{tet\+\_\+mesh.\+h}}.
 
@@ -253,7 +262,11 @@ References \mbox{\hyperlink{tet__mesh_8h_source_l00292}{One\+\_\+based\+\_\+regi
 \doxysubsubsection{\texorpdfstring{set\_vertex\_pt()}{set\_vertex\_pt()}}
 {\footnotesize\ttfamily void oomph\+::\+Tet\+Mesh\+Facet\+::set\+\_\+vertex\+\_\+pt (\begin{DoxyParamCaption}\item[{const unsigned \&}]{j,  }\item[{\mbox{\hyperlink{classoomph_1_1TetMeshVertex}{Tet\+Mesh\+Vertex}} $\ast$}]{vertex\+\_\+pt }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
 
+
+
 Set pointer to j-\/th vertex and pass one-\/based boundary id that may already have been set for this facet. 
+
+
 
 Definition at line \mbox{\hyperlink{tet__mesh_8h_source_l00194}{194}} of file \mbox{\hyperlink{tet__mesh_8h_source}{tet\+\_\+mesh.\+h}}.
 

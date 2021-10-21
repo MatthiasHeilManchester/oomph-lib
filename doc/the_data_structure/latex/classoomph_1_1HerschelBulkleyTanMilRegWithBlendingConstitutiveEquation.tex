@@ -2,6 +2,11 @@
 \label{classoomph_1_1HerschelBulkleyTanMilRegWithBlendingConstitutiveEquation}\index{oomph::HerschelBulkleyTanMilRegWithBlendingConstitutiveEquation$<$ DIM $>$@{oomph::HerschelBulkleyTanMilRegWithBlendingConstitutiveEquation$<$ DIM $>$}}
 
 
+A \mbox{\hyperlink{classoomph_1_1GeneralisedNewtonianConstitutiveEquation}{Generalised\+Newtonian\+Constitutive\+Equation}} class defining a Herschel-\/\+Bulkley fluid using Tanner and Milthorpe\textquotesingle{}s (1983) regularisation with a smooth transition using a quadratic.  
+
+
+
+
 {\ttfamily \#include $<$generalised\+\_\+newtonian\+\_\+constitutive\+\_\+models.\+h$>$}
 
 Inheritance diagram for oomph\+::Herschel\+Bulkley\+Tan\+Mil\+Reg\+With\+Blending\+Constitutive\+Equation\texorpdfstring{$<$}{<} DIM \texorpdfstring{$>$}{>}\+:\begin{figure}[H]
@@ -16,7 +21,7 @@ Inheritance diagram for oomph\+::Herschel\+Bulkley\+Tan\+Mil\+Reg\+With\+Blendin
 \mbox{\hyperlink{classoomph_1_1HerschelBulkleyTanMilRegWithBlendingConstitutiveEquation_a2d0011d44b05f948caa84c2ad0e8e907}{Herschel\+Bulkley\+Tan\+Mil\+Reg\+With\+Blending\+Constitutive\+Equation}} (double $\ast$yield\+\_\+stress\+\_\+pt, double $\ast$flow\+\_\+index\+\_\+pt, double $\ast$critical\+\_\+second\+\_\+invariant\+\_\+pt)
 \begin{DoxyCompactList}\small\item\em \char`\"{}\+Cutoff regularised\char`\"{} Herschel Bulkley constitutive equation \end{DoxyCompactList}\item 
 double \mbox{\hyperlink{classoomph_1_1HerschelBulkleyTanMilRegWithBlendingConstitutiveEquation_a505f8b8eba6c70c101087c8809953e51}{calculate\+\_\+cutoff\+\_\+viscosity}} ()
-\item 
+\begin{DoxyCompactList}\small\item\em Function that calculates the viscosity at the cutoff invariant Note\+: this is NOT the viscosity at zero I2. \end{DoxyCompactList}\item 
 double \mbox{\hyperlink{classoomph_1_1HerschelBulkleyTanMilRegWithBlendingConstitutiveEquation_abdb90aeb25f63f03cef5e0a070da0cd5}{calculate\+\_\+zero\+\_\+shear\+\_\+viscosity}} ()
 \begin{DoxyCompactList}\small\item\em Function that calculates the viscosity at zero I2. \end{DoxyCompactList}\item 
 void \mbox{\hyperlink{classoomph_1_1HerschelBulkleyTanMilRegWithBlendingConstitutiveEquation_aa53287839852e8fe36575cc593327499}{report\+\_\+cut\+\_\+off\+\_\+values}} (double \&cut\+\_\+off\+\_\+invariant, double \&cut\+\_\+off\+\_\+viscosity, double \&zero\+\_\+shear\+\_\+viscosity)
@@ -33,21 +38,21 @@ double $\ast$ \mbox{\hyperlink{classoomph_1_1HerschelBulkleyTanMilRegWithBlendin
 double $\ast$ \mbox{\hyperlink{classoomph_1_1HerschelBulkleyTanMilRegWithBlendingConstitutiveEquation_a2e1af77859cb590e608fd0d47d5ce366}{Flow\+\_\+index\+\_\+pt}}
 \begin{DoxyCompactList}\small\item\em power law index n \end{DoxyCompactList}\item 
 double $\ast$ \mbox{\hyperlink{classoomph_1_1HerschelBulkleyTanMilRegWithBlendingConstitutiveEquation_a2fcbea7454274274c607039540a3da49}{Critical\+\_\+second\+\_\+invariant\+\_\+pt}}
-\item 
+\begin{DoxyCompactList}\small\item\em value of the second invariant below which we have constant (Newtonian) viscosity -- assumed to be always positive \end{DoxyCompactList}\item 
 double \mbox{\hyperlink{classoomph_1_1HerschelBulkleyTanMilRegWithBlendingConstitutiveEquation_a9a5f7c5ceb537eb307ef35c1a46e23f5}{a}}
-\item 
+\begin{DoxyCompactList}\small\item\em We use a quadratic function to smoothly blend from the Herschel Bulkley model at the cut-\/off to a constant viscosity as the strain rate /approaches zero; this way we avoid the discontinuity of the gradient at the cut-\/off, which is present in the classic Tanner Milthorpe regularisation. \end{DoxyCompactList}\item 
 double \mbox{\hyperlink{classoomph_1_1HerschelBulkleyTanMilRegWithBlendingConstitutiveEquation_ad4d1279adf2dd40a3b7ec23dc091a40a}{b}}
 \item 
 double \mbox{\hyperlink{classoomph_1_1HerschelBulkleyTanMilRegWithBlendingConstitutiveEquation_ad4f68871469f8e9b63dea77341cbcf68}{c}}
 \item 
 double \mbox{\hyperlink{classoomph_1_1HerschelBulkleyTanMilRegWithBlendingConstitutiveEquation_a9e24b69a4f0da4b8d6a5b874c47fde39}{alpha}}
-\end{DoxyCompactItemize}
+\begin{DoxyCompactList}\small\item\em Fraction of the cut-\/off strain rate below which the viscosity is constant 0 \texorpdfstring{$<$}{<}= \textbackslash{}alpha \texorpdfstring{$<$}{<} 1. \end{DoxyCompactList}\end{DoxyCompactItemize}
 
 
 \doxysubsection{Detailed Description}
 \subsubsection*{template$<$unsigned DIM$>$\newline
 class oomph\+::\+Herschel\+Bulkley\+Tan\+Mil\+Reg\+With\+Blending\+Constitutive\+Equation$<$ DIM $>$}
-A \mbox{\hyperlink{classoomph_1_1GeneralisedNewtonianConstitutiveEquation}{Generalised\+Newtonian\+Constitutive\+Equation}} class defining a Herschel-\/\+Bulkley fluid using Tanner and Milthorpe\textquotesingle{}s (1983) regularisation with a smooth transition using a quadratic 
+A \mbox{\hyperlink{classoomph_1_1GeneralisedNewtonianConstitutiveEquation}{Generalised\+Newtonian\+Constitutive\+Equation}} class defining a Herschel-\/\+Bulkley fluid using Tanner and Milthorpe\textquotesingle{}s (1983) regularisation with a smooth transition using a quadratic. 
 
 Definition at line \mbox{\hyperlink{generalised__newtonian__constitutive__models_8h_source_l00358}{358}} of file \mbox{\hyperlink{generalised__newtonian__constitutive__models_8h_source}{generalised\+\_\+newtonian\+\_\+constitutive\+\_\+models.\+h}}.
 
@@ -89,7 +94,11 @@ References \mbox{\hyperlink{generalised__newtonian__constitutive__models_8h_sour
 {\footnotesize\ttfamily template$<$unsigned DIM$>$ \\
 double \mbox{\hyperlink{classoomph_1_1HerschelBulkleyTanMilRegWithBlendingConstitutiveEquation}{oomph\+::\+Herschel\+Bulkley\+Tan\+Mil\+Reg\+With\+Blending\+Constitutive\+Equation}}$<$ DIM $>$\+::calculate\+\_\+cutoff\+\_\+viscosity (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
 
-Function that calculates the viscosity at the cutoff invariant Note\+: this is NOT the viscosity at zero I2 
+
+
+Function that calculates the viscosity at the cutoff invariant Note\+: this is NOT the viscosity at zero I2. 
+
+
 
 Definition at line \mbox{\hyperlink{generalised__newtonian__constitutive__models_8h_source_l00441}{441}} of file \mbox{\hyperlink{generalised__newtonian__constitutive__models_8h_source}{generalised\+\_\+newtonian\+\_\+constitutive\+\_\+models.\+h}}.
 
@@ -199,7 +208,11 @@ References \mbox{\hyperlink{generalised__newtonian__constitutive__models_8h_sour
 {\footnotesize\ttfamily template$<$unsigned DIM$>$ \\
 double \mbox{\hyperlink{classoomph_1_1HerschelBulkleyTanMilRegWithBlendingConstitutiveEquation}{oomph\+::\+Herschel\+Bulkley\+Tan\+Mil\+Reg\+With\+Blending\+Constitutive\+Equation}}$<$ DIM $>$\+::a\hspace{0.3cm}{\ttfamily [private]}}
 
-We use a quadratic function to smoothly blend from the Herschel Bulkley model at the cut-\/off to a constant viscosity as the strain rate approaches zero; this way we avoid the discontinuity of the gradient at the cut-\/off, which is present in the classic Tanner Milthorpe regularisation 
+
+
+We use a quadratic function to smoothly blend from the Herschel Bulkley model at the cut-\/off to a constant viscosity as the strain rate /approaches zero; this way we avoid the discontinuity of the gradient at the cut-\/off, which is present in the classic Tanner Milthorpe regularisation. 
+
+
 
 Definition at line \mbox{\hyperlink{generalised__newtonian__constitutive__models_8h_source_l00377}{377}} of file \mbox{\hyperlink{generalised__newtonian__constitutive__models_8h_source}{generalised\+\_\+newtonian\+\_\+constitutive\+\_\+models.\+h}}.
 
@@ -214,7 +227,11 @@ Referenced by \mbox{\hyperlink{generalised__newtonian__constitutive__models_8h_s
 {\footnotesize\ttfamily template$<$unsigned DIM$>$ \\
 double \mbox{\hyperlink{classoomph_1_1HerschelBulkleyTanMilRegWithBlendingConstitutiveEquation}{oomph\+::\+Herschel\+Bulkley\+Tan\+Mil\+Reg\+With\+Blending\+Constitutive\+Equation}}$<$ DIM $>$\+::alpha\hspace{0.3cm}{\ttfamily [private]}}
 
-Fraction of the cut-\/off strain rate below which the viscosity is constant 0 \texorpdfstring{$<$}{<}= \textbackslash{}alpha \texorpdfstring{$<$}{<} 1 
+
+
+Fraction of the cut-\/off strain rate below which the viscosity is constant 0 \texorpdfstring{$<$}{<}= \textbackslash{}alpha \texorpdfstring{$<$}{<} 1. 
+
+
 
 Definition at line \mbox{\hyperlink{generalised__newtonian__constitutive__models_8h_source_l00383}{383}} of file \mbox{\hyperlink{generalised__newtonian__constitutive__models_8h_source}{generalised\+\_\+newtonian\+\_\+constitutive\+\_\+models.\+h}}.
 
@@ -259,7 +276,11 @@ Referenced by \mbox{\hyperlink{generalised__newtonian__constitutive__models_8h_s
 {\footnotesize\ttfamily template$<$unsigned DIM$>$ \\
 double$\ast$ \mbox{\hyperlink{classoomph_1_1HerschelBulkleyTanMilRegWithBlendingConstitutiveEquation}{oomph\+::\+Herschel\+Bulkley\+Tan\+Mil\+Reg\+With\+Blending\+Constitutive\+Equation}}$<$ DIM $>$\+::Critical\+\_\+second\+\_\+invariant\+\_\+pt\hspace{0.3cm}{\ttfamily [private]}}
 
+
+
 value of the second invariant below which we have constant (Newtonian) viscosity -- assumed to be always positive 
+
+
 
 Definition at line \mbox{\hyperlink{generalised__newtonian__constitutive__models_8h_source_l00370}{370}} of file \mbox{\hyperlink{generalised__newtonian__constitutive__models_8h_source}{generalised\+\_\+newtonian\+\_\+constitutive\+\_\+models.\+h}}.
 

@@ -132,6 +132,9 @@ $(function() {
 </div><!--header-->
 <div class="contents">
 
+<p>Base class for all linear solvers. This merely defines standard interfaces for linear solvers, so that different solvers can be used in a clean and transparent manner. Note that LinearSolvers are primarily used to solve the linear systems arising in oomph-lib's Newton iteration. Their primary solve function therefore takes a pointer to the associated problem, construct its Jacobian matrix and residual vector, and return the solution of the linear system formed by the Jacobian and the residual vector. We also provide broken virtual interfaces to a linear-algebra-type solve function in which the matrix and the rhs can be specified, but this are not guaranteed to implemented for all linear solvers (e.g. for frontal solvers).  
+ <a href="classoomph_1_1LinearSolver.html#details">More...</a></p>
+
 <p><code>#include &lt;<a class="el" href="linear__solver_8h_source.html">linear_solver.h</a>&gt;</code></p>
 <div id="dynsection-0" onclick="return toggleVisibility(this)" class="dynheader closed" style="cursor:pointer;">
   <img id="dynsection-0-trigger" src="closed.png" alt="+"/> Inheritance diagram for oomph::LinearSolver:</div>
@@ -142,13 +145,13 @@ $(function() {
   <img src="classoomph_1_1LinearSolver.png" usemap="#oomph::LinearSolver_map" alt=""/>
   <map id="oomph::LinearSolver_map" name="oomph::LinearSolver_map">
 <area href="classoomph_1_1DistributableLinearAlgebraObject.html" title="Base class for any linear algebra object that is distributable. Just contains storage for the LinearA..." alt="oomph::DistributableLinearAlgebraObject" shape="rect" coords="0,0,276,24"/>
-<area href="classoomph_1_1AugmentedBlockFoldLinearSolver.html" alt="oomph::AugmentedBlockFoldLinearSolver" shape="rect" coords="286,112,562,136"/>
-<area href="classoomph_1_1AugmentedBlockPitchForkLinearSolver.html" alt="oomph::AugmentedBlockPitchForkLinearSolver" shape="rect" coords="286,168,562,192"/>
-<area href="classoomph_1_1BlockHopfLinearSolver.html" alt="oomph::BlockHopfLinearSolver" shape="rect" coords="286,224,562,248"/>
-<area href="classoomph_1_1BlockPitchForkLinearSolver.html" alt="oomph::BlockPitchForkLinearSolver" shape="rect" coords="286,280,562,304"/>
+<area href="classoomph_1_1AugmentedBlockFoldLinearSolver.html" title="A custom linear solver class that is used to solve a block-factorised version of the Fold bifurcation..." alt="oomph::AugmentedBlockFoldLinearSolver" shape="rect" coords="286,112,562,136"/>
+<area href="classoomph_1_1AugmentedBlockPitchForkLinearSolver.html" title="A custom linear solver class that is used to solve a block-factorised version of the PitchFork bifurc..." alt="oomph::AugmentedBlockPitchForkLinearSolver" shape="rect" coords="286,168,562,192"/>
+<area href="classoomph_1_1BlockHopfLinearSolver.html" title="A custom linear solver class that is used to solve a block-factorised version of the Hopf bifurcation..." alt="oomph::BlockHopfLinearSolver" shape="rect" coords="286,224,562,248"/>
+<area href="classoomph_1_1BlockPitchForkLinearSolver.html" title="A custom linear solver class that is used to solve a block-factorised version of the PitchFork bifurc..." alt="oomph::BlockPitchForkLinearSolver" shape="rect" coords="286,280,562,304"/>
 <area href="classoomph_1_1DenseLU.html" title="Dense LU decomposition-based solve of full assembled linear system. VERY inefficient but useful to il..." alt="oomph::DenseLU" shape="rect" coords="286,336,562,360"/>
-<area href="classoomph_1_1HSL__MA42.html" alt="oomph::HSL_MA42" shape="rect" coords="286,392,562,416"/>
-<area href="classoomph_1_1HypreSolver.html" alt="oomph::HypreSolver" shape="rect" coords="286,448,562,472"/>
+<area href="classoomph_1_1HSL__MA42.html" title="Linear solver class that provides a wrapper to the frontal solver MA42 from the HSL library; see http..." alt="oomph::HSL_MA42" shape="rect" coords="286,392,562,416"/>
+<area href="classoomph_1_1HypreSolver.html" title="An LinearSolver class using the suite of Hypre solvers to allow." alt="oomph::HypreSolver" shape="rect" coords="286,448,562,472"/>
 <area href="classoomph_1_1IterativeLinearSolver.html" title="Base class for all linear iterative solvers. This merely defines standard interfaces for linear itera..." alt="oomph::IterativeLinearSolver" shape="rect" coords="286,504,562,528"/>
 <area href="classoomph_1_1MumpsSolver.html" title="Wrapper to Mumps solver." alt="oomph::MumpsSolver" shape="rect" coords="286,560,562,584"/>
 <area href="classoomph_1_1SuperLUSolver.html" title=". SuperLU Project Solver class. This is a combined wrapper for both SuperLU and SuperLU Dist...." alt="oomph::SuperLUSolver" shape="rect" coords="286,616,562,640"/>
@@ -267,6 +270,7 @@ Public Member Functions</h2></td></tr>
 <tr class="memdesc:a5505731e7e73d7e4251c67c7adec6bf5 inherit pub_methods_classoomph_1_1DistributableLinearAlgebraObject"><td class="mdescLeft">&#160;</td><td class="mdescRight">distribution is serial or distributed  <a href="classoomph_1_1DistributableLinearAlgebraObject.html#a5505731e7e73d7e4251c67c7adec6bf5">More...</a><br /></td></tr>
 <tr class="separator:a5505731e7e73d7e4251c67c7adec6bf5 inherit pub_methods_classoomph_1_1DistributableLinearAlgebraObject"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a8c35baa65e335043f62954c92c090a5a inherit pub_methods_classoomph_1_1DistributableLinearAlgebraObject"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classoomph_1_1DistributableLinearAlgebraObject.html#a8c35baa65e335043f62954c92c090a5a">distribution_built</a> () const</td></tr>
+<tr class="memdesc:a8c35baa65e335043f62954c92c090a5a inherit pub_methods_classoomph_1_1DistributableLinearAlgebraObject"><td class="mdescLeft">&#160;</td><td class="mdescRight">if the communicator_pt is null then the distribution is not setup then false is returned, otherwise return true  <a href="classoomph_1_1DistributableLinearAlgebraObject.html#a8c35baa65e335043f62954c92c090a5a">More...</a><br /></td></tr>
 <tr class="separator:a8c35baa65e335043f62954c92c090a5a inherit pub_methods_classoomph_1_1DistributableLinearAlgebraObject"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ac5340bac40b9559b0378037b57005203 inherit pub_methods_classoomph_1_1DistributableLinearAlgebraObject"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classoomph_1_1DistributableLinearAlgebraObject.html#ac5340bac40b9559b0378037b57005203">build_distribution</a> (const <a class="el" href="classoomph_1_1LinearAlgebraDistribution.html">LinearAlgebraDistribution</a> *const dist_pt)</td></tr>
 <tr class="memdesc:ac5340bac40b9559b0378037b57005203 inherit pub_methods_classoomph_1_1DistributableLinearAlgebraObject"><td class="mdescLeft">&#160;</td><td class="mdescRight">setup the distribution of this distributable linear algebra object  <a href="classoomph_1_1DistributableLinearAlgebraObject.html#ac5340bac40b9559b0378037b57005203">More...</a><br /></td></tr>
@@ -1378,7 +1382,7 @@ Additional Inherited Members</h2></td></tr>
     <footer>
       <div class="container">
         <div class="text-muted" style="float:right;">Generated by <a href="http://www.doxygen.org/index.html">
-          <img style="height:18px;" class="footer-img" src="doxygen.png" alt="doxygen"></a> on Wed Oct 13 2021 08:46:44
+          <img style="height:18px;" class="footer-img" src="doxygen.png" alt="doxygen"></a> on Thu Oct 21 2021 17:35:08
         </div>
       </div>
     </footer>

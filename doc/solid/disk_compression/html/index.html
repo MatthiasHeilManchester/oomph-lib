@@ -269,7 +269,7 @@ The driver code</h1>
 <div class="line">  problem.<a class="code hl_function" href="classStaticDiskCompressionProblem.html#ac64db4786efde78e70b1110422331b02">parameter_study</a>(0);</div>
 <div class="line">  </div>
 <div class="line"> } <span class="comment">// done case 0</span></div>
-<div class="ttc" id="aclassStaticDiskCompressionProblem_html"><div class="ttname"><a href="classStaticDiskCompressionProblem.html">StaticDiskCompressionProblem</a></div><div class="ttdef"><b>Definition:</b> <a href="disk__compression_8cc_source.html#l00170">disk_compression.cc:171</a></div></div>
+<div class="ttc" id="aclassStaticDiskCompressionProblem_html"><div class="ttname"><a href="classStaticDiskCompressionProblem.html">StaticDiskCompressionProblem</a></div><div class="ttdoc">Uniform compression of a circular disk in a state of plane strain, subject to uniform growth.</div><div class="ttdef"><b>Definition:</b> <a href="disk__compression_8cc_source.html#l00170">disk_compression.cc:171</a></div></div>
 <div class="ttc" id="aclassStaticDiskCompressionProblem_html_ac64db4786efde78e70b1110422331b02"><div class="ttname"><a href="classStaticDiskCompressionProblem.html#ac64db4786efde78e70b1110422331b02">StaticDiskCompressionProblem::parameter_study</a></div><div class="ttdeci">void parameter_study(const unsigned &amp;case_number)</div><div class="ttdoc">Run simulation: Pass case number to label output files.</div><div class="ttdef"><b>Definition:</b> <a href="disk__compression_8cc_source.html#l00356">disk_compression.cc:356</a></div></div>
 </div><!-- fragment --><p> We repeat the exercise with elements from the <code>RefineableQPVDElementWithContinuousPressure</code> family which discretise the principle of virtual displacements (PVD) in the pressure/displacement formulation, using continuous pressures (Q2Q1; Taylor Hood).</p>
 <div class="fragment"><div class="line"> </div>
@@ -388,13 +388,13 @@ The mesh</h1>
 <div class="line"> <span class="keyword">public</span> <span class="keyword">virtual</span> RefineableQuarterCircleSectorMesh&lt;ELEMENT&gt;,</div>
 <div class="line"> <span class="keyword">public</span> <span class="keyword">virtual</span> SolidMesh</div>
 <div class="line">{</div>
-<div class="ttc" id="aclassElasticRefineableQuarterCircleSectorMesh_html"><div class="ttname"><a href="classElasticRefineableQuarterCircleSectorMesh.html">ElasticRefineableQuarterCircleSectorMesh</a></div><div class="ttdef"><b>Definition:</b> <a href="disk__compression_8cc_source.html#l00112">disk_compression.cc:115</a></div></div>
+<div class="ttc" id="aclassElasticRefineableQuarterCircleSectorMesh_html"><div class="ttname"><a href="classElasticRefineableQuarterCircleSectorMesh.html">ElasticRefineableQuarterCircleSectorMesh</a></div><div class="ttdoc">Elastic quarter circle sector mesh with functionality to attach traction elements to the curved surfa...</div><div class="ttdef"><b>Definition:</b> <a href="disk__compression_8cc_source.html#l00112">disk_compression.cc:115</a></div></div>
 </div><!-- fragment --><p> The constructor calls the constructor of the underlying <code>RefineableQuarterCircleSectorMesh</code> and sets the Lagrangian coordinates of the nodes to their current Eulerian positions, making the initial configuration stress-free.</p>
 <div class="fragment"><div class="line"> </div>
 <div class="line"> </div>
 <div class="line"><span class="keyword">public</span>:</div>
 <div class="line"><span class="comment"></span> </div>
-<div class="line"><span class="comment"> /// \short Constructor: Build mesh and copy Eulerian coords to Lagrangian</span></div>
+<div class="line"><span class="comment"> ///  Constructor: Build mesh and copy Eulerian coords to Lagrangian</span></div>
 <div class="line"><span class="comment"> /// ones so that the initial configuration is the stress-free one.</span></div>
 <div class="line"><span class="comment"></span> <a class="code hl_class" href="classElasticRefineableQuarterCircleSectorMesh.html">ElasticRefineableQuarterCircleSectorMesh&lt;ELEMENT&gt;</a>(GeomObject* wall_pt,</div>
 <div class="line">                                         <span class="keyword">const</span> <span class="keywordtype">double</span>&amp; xi_lo,</div>
@@ -529,7 +529,7 @@ The Constructor</h1>
 <div class="line"> Trace_node_pt.resize(n_boundary_node);</div>
 <div class="line"> <span class="keywordflow">for</span>(<span class="keywordtype">unsigned</span> j=0;j&lt;n_boundary_node;j++)</div>
 <div class="line">  {Trace_node_pt[j]=Solid_mesh_pt-&gt;boundary_node_pt(1,j);}</div>
-</div><!-- fragment --><p> The <code>QuarterCircleSectorMesh</code> that forms the basis of the "bulk" mesh contains only three elements &ndash; not enough to expect the solution to be accurate. Therefore we apply one round of uniform mesh refinement before attaching the <code>SolidTractionElements</code> to the mesh boundary 1, using the function <code>make_traction_element_mesh()</code> in the <code><a class="el" href="classElasticRefineableQuarterCircleSectorMesh.html">ElasticRefineableQuarterCircleSectorMesh</a></code>.</p>
+</div><!-- fragment --><p> The <code>QuarterCircleSectorMesh</code> that forms the basis of the "bulk" mesh contains only three elements &ndash; not enough to expect the solution to be accurate. Therefore we apply one round of uniform mesh refinement before attaching the <code>SolidTractionElements</code> to the mesh boundary 1, using the function <code>make_traction_element_mesh()</code> in the <code><a class="el" href="classElasticRefineableQuarterCircleSectorMesh.html" title="Elastic quarter circle sector mesh with functionality to attach traction elements to the curved surfa...">ElasticRefineableQuarterCircleSectorMesh</a></code>.</p>
 <div class="fragment"><div class="line"> </div>
 <div class="line"> <span class="comment">// Refine the mesh uniformly</span></div>
 <div class="line"> Solid_mesh_pt-&gt;refine_uniformly();</div>
@@ -772,7 +772,7 @@ PDF file</h1>
     <footer>
       <div class="container">
         <div class="text-muted" style="float:right;">Generated by <a href="http://www.doxygen.org/index.html">
-          <img style="height:18px;" class="footer-img" src="doxygen.png" alt="doxygen"></a> on Wed Oct 13 2021 09:02:36
+          <img style="height:18px;" class="footer-img" src="doxygen.png" alt="doxygen"></a> on Thu Oct 21 2021 17:49:59
         </div>
       </div>
     </footer>

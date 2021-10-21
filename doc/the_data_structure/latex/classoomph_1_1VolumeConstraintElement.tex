@@ -2,6 +2,11 @@
 \label{classoomph_1_1VolumeConstraintElement}\index{oomph::VolumeConstraintElement@{oomph::VolumeConstraintElement}}
 
 
+A class that is used to implement the constraint that the fluid volume in a region bounded by associated Face\+Elements (attached, e.\+g., to the mesh boundaries that enclose a bubble) must take a specific value. This \mbox{\hyperlink{classoomph_1_1GeneralisedElement}{Generalised\+Element}} is used only to store the desired volume and a pointer to the (usually pressure) freedom that must be traded for the volume constraint.  
+
+
+
+
 {\ttfamily \#include $<$constrained\+\_\+volume\+\_\+elements.\+h$>$}
 
 Inheritance diagram for oomph\+::Volume\+Constraint\+Element\+:\begin{figure}[H]
@@ -48,7 +53,7 @@ unsigned \mbox{\hyperlink{classoomph_1_1VolumeConstraintElement_a51d3b504e028422
 bool \mbox{\hyperlink{classoomph_1_1VolumeConstraintElement_ac4275cd18ae758b71ba4191aa2ff9a28}{Traded\+\_\+pressure\+\_\+stored\+\_\+as\+\_\+internal\+\_\+data}}
 \begin{DoxyCompactList}\small\item\em The \mbox{\hyperlink{classoomph_1_1Data}{Data}} that contains the traded pressure is stored as external or internal \mbox{\hyperlink{classoomph_1_1Data}{Data}} for the element. Which one? \end{DoxyCompactList}\item 
 unsigned \mbox{\hyperlink{classoomph_1_1VolumeConstraintElement_a4f2dd24f0ae52cc665daab425bf94745}{Index\+\_\+of\+\_\+traded\+\_\+pressure\+\_\+value}}
-\end{DoxyCompactItemize}
+\begin{DoxyCompactList}\small\item\em Index of the value in traded pressure data that corresponds to the traded pressure. \end{DoxyCompactList}\end{DoxyCompactItemize}
 \doxysubsection*{Additional Inherited Members}
 
 
@@ -312,7 +317,11 @@ Referenced by \mbox{\hyperlink{constrained__volume__elements_8h_source_l00124}{p
 \doxysubsubsection{\texorpdfstring{Index\_of\_traded\_pressure\_value}{Index\_of\_traded\_pressure\_value}}
 {\footnotesize\ttfamily unsigned oomph\+::\+Volume\+Constraint\+Element\+::\+Index\+\_\+of\+\_\+traded\+\_\+pressure\+\_\+value\hspace{0.3cm}{\ttfamily [private]}}
 
-Index of the value in traded pressure data that corresponds to the traded pressure 
+
+
+Index of the value in traded pressure data that corresponds to the traded pressure. 
+
+
 
 Definition at line \mbox{\hyperlink{constrained__volume__elements_8h_source_l00082}{82}} of file \mbox{\hyperlink{constrained__volume__elements_8h_source}{constrained\+\_\+volume\+\_\+elements.\+h}}.
 

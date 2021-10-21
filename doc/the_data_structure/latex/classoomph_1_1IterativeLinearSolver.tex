@@ -59,9 +59,9 @@ void \mbox{\hyperlink{classoomph_1_1IterativeLinearSolver_a68983fd17ca417843b9ba
 void \mbox{\hyperlink{classoomph_1_1IterativeLinearSolver_a4b6ee927fcefefee7271798a6ed6f5af}{disable\+\_\+error\+\_\+after\+\_\+max\+\_\+iter}} ()
 \begin{DoxyCompactList}\small\item\em Don\textquotesingle{}t throw an error if we don\textquotesingle{}t converge within max\+\_\+iter (default). \end{DoxyCompactList}\item 
 void \mbox{\hyperlink{classoomph_1_1IterativeLinearSolver_a5992bf9fde252add8d3be2970093905b}{enable\+\_\+iterative\+\_\+solver\+\_\+as\+\_\+preconditioner}} ()
-\item 
+\begin{DoxyCompactList}\small\item\em Enables the iterative solver be used as preconditioner (when calling the solve method it bypass the setup solver method -- currently only used by Trilinos solver ---) \end{DoxyCompactList}\item 
 void \mbox{\hyperlink{classoomph_1_1IterativeLinearSolver_a96b5e3f30fd7bdc9b52a22cdac02a570}{disable\+\_\+iterative\+\_\+solver\+\_\+as\+\_\+preconditioner}} ()
-\end{DoxyCompactItemize}
+\begin{DoxyCompactList}\small\item\em Disables the iterative solver be used as preconditioner (when calling the solve method it bypass the setup solver method -- currently only used by Trilinos solver ---) \end{DoxyCompactList}\end{DoxyCompactItemize}
 \doxysubsection*{Protected Attributes}
 \begin{DoxyCompactItemize}
 \item 
@@ -88,7 +88,7 @@ bool \mbox{\hyperlink{classoomph_1_1IterativeLinearSolver_a76284ada37aafb9ab3983
 bool \mbox{\hyperlink{classoomph_1_1IterativeLinearSolver_a10af0af774e98543b7ecd6a563018ff8}{Use\+\_\+iterative\+\_\+solver\+\_\+as\+\_\+preconditioner}}
 \begin{DoxyCompactList}\small\item\em Use the iterative solver as preconditioner. \end{DoxyCompactList}\item 
 bool \mbox{\hyperlink{classoomph_1_1IterativeLinearSolver_a18f24e4d07f783ddd1f6a8153f39024a}{First\+\_\+time\+\_\+solve\+\_\+when\+\_\+used\+\_\+as\+\_\+preconditioner}}
-\end{DoxyCompactItemize}
+\begin{DoxyCompactList}\small\item\em When the iterative solver is used a preconditioner then we call the setup of solver method only once (the first time the solve method is called) \end{DoxyCompactList}\end{DoxyCompactItemize}
 \doxysubsection*{Static Protected Attributes}
 \begin{DoxyCompactItemize}
 \item 
@@ -210,7 +210,11 @@ References \mbox{\hyperlink{iterative__linear__solver_8h_source_l00262}{Throw\+\
 \doxysubsubsection{\texorpdfstring{disable\_iterative\_solver\_as\_preconditioner()}{disable\_iterative\_solver\_as\_preconditioner()}}
 {\footnotesize\ttfamily void oomph\+::\+Iterative\+Linear\+Solver\+::disable\+\_\+iterative\+\_\+solver\+\_\+as\+\_\+preconditioner (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
 
+
+
 Disables the iterative solver be used as preconditioner (when calling the solve method it bypass the setup solver method -- currently only used by Trilinos solver ---) 
+
+
 
 Definition at line \mbox{\hyperlink{iterative__linear__solver_8h_source_l00220}{220}} of file \mbox{\hyperlink{iterative__linear__solver_8h_source}{iterative\+\_\+linear\+\_\+solver.\+h}}.
 
@@ -278,7 +282,11 @@ References \mbox{\hyperlink{iterative__linear__solver_8h_source_l00262}{Throw\+\
 \doxysubsubsection{\texorpdfstring{enable\_iterative\_solver\_as\_preconditioner()}{enable\_iterative\_solver\_as\_preconditioner()}}
 {\footnotesize\ttfamily void oomph\+::\+Iterative\+Linear\+Solver\+::enable\+\_\+iterative\+\_\+solver\+\_\+as\+\_\+preconditioner (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
 
+
+
 Enables the iterative solver be used as preconditioner (when calling the solve method it bypass the setup solver method -- currently only used by Trilinos solver ---) 
+
+
 
 Definition at line \mbox{\hyperlink{iterative__linear__solver_8h_source_l00212}{212}} of file \mbox{\hyperlink{iterative__linear__solver_8h_source}{iterative\+\_\+linear\+\_\+solver.\+h}}.
 
@@ -490,7 +498,7 @@ References \mbox{\hyperlink{iterative__linear__solver_8h_source_l00239}{Toleranc
 
 
 
-Referenced by \mbox{\hyperlink{complex__smoother_8h_source_l00333}{oomph\+::\+Complex\+Damped\+Jacobi$<$ MATRIX $>$\+::calculate\+\_\+omega()}}, \mbox{\hyperlink{complex__smoother_8h_source_l01128}{oomph\+::\+Complex\+GMRES$<$ MATRIX $>$\+::generate\+\_\+plane\+\_\+rotation()}}, \mbox{\hyperlink{complex__smoother_8h_source_l02381}{oomph\+::\+Helmholtz\+GMRESMG$<$ MATRIX $>$\+::generate\+\_\+plane\+\_\+rotation()}}, \mbox{\hyperlink{geometric__multigrid_8h_source_l01360}{oomph\+::\+MGSolver$<$ DIM $>$\+::setup\+\_\+smoothers()}}, and \mbox{\hyperlink{helmholtz__geometric__multigrid_8h_source_l02541}{oomph\+::\+Helmholtz\+MGPreconditioner$<$ DIM $>$\+::setup\+\_\+smoothers()}}.
+Referenced by \mbox{\hyperlink{complex__smoother_8h_source_l00333}{oomph\+::\+Complex\+Damped\+Jacobi$<$ MATRIX $>$\+::calculate\+\_\+omega()}}, \mbox{\hyperlink{geometric__multigrid_8h_source_l01360}{oomph\+::\+MGSolver$<$ DIM $>$\+::setup\+\_\+smoothers()}}, and \mbox{\hyperlink{helmholtz__geometric__multigrid_8h_source_l02541}{oomph\+::\+Helmholtz\+MGPreconditioner$<$ DIM $>$\+::setup\+\_\+smoothers()}}.
 
 
 
@@ -537,7 +545,11 @@ Referenced by \mbox{\hyperlink{iterative__linear__solver_8h_source_l00128}{disab
 \doxysubsubsection{\texorpdfstring{First\_time\_solve\_when\_used\_as\_preconditioner}{First\_time\_solve\_when\_used\_as\_preconditioner}}
 {\footnotesize\ttfamily bool oomph\+::\+Iterative\+Linear\+Solver\+::\+First\+\_\+time\+\_\+solve\+\_\+when\+\_\+used\+\_\+as\+\_\+preconditioner\hspace{0.3cm}{\ttfamily [protected]}}
 
+
+
 When the iterative solver is used a preconditioner then we call the setup of solver method only once (the first time the solve method is called) 
+
+
 
 Definition at line \mbox{\hyperlink{iterative__linear__solver_8h_source_l00270}{270}} of file \mbox{\hyperlink{iterative__linear__solver_8h_source}{iterative\+\_\+linear\+\_\+solver.\+h}}.
 

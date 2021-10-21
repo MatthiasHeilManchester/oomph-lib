@@ -275,8 +275,8 @@ The driver code</h1>
 <div class="line">  }</div>
 <div class="line"> </div>
 <div class="line">} <span class="comment">//end of main</span></div>
-<div class="ttc" id="aclassFluxPoissonProblem_html"><div class="ttname"><a href="classFluxPoissonProblem.html">FluxPoissonProblem</a></div><div class="ttdef"><b>Definition:</b> <a href="two__d__poisson__flux__bc_8cc_source.html#l00093">two_d_poisson_flux_bc.cc:94</a></div></div>
-<div class="ttc" id="atwo__d__poisson__flux__bc_8cc_html_ae66f6b31b5ad750f1fe042a706a4e3d4"><div class="ttname"><a href="two__d__poisson__flux__bc_8cc.html#ae66f6b31b5ad750f1fe042a706a4e3d4">main</a></div><div class="ttdeci">int main()</div><div class="ttdef"><b>Definition:</b> <a href="two__d__poisson__flux__bc_8cc_source.html#l00339">two_d_poisson_flux_bc.cc:339</a></div></div>
+<div class="ttc" id="aclassFluxPoissonProblem_html"><div class="ttname"><a href="classFluxPoissonProblem.html">FluxPoissonProblem</a></div><div class="ttdoc">2D Poisson problem on rectangular domain, discretised with 2D QPoisson elements. Flux boundary condit...</div><div class="ttdef"><b>Definition:</b> <a href="two__d__poisson__flux__bc_8cc_source.html#l00093">two_d_poisson_flux_bc.cc:94</a></div></div>
+<div class="ttc" id="atwo__d__poisson__flux__bc_8cc_html_ae66f6b31b5ad750f1fe042a706a4e3d4"><div class="ttname"><a href="two__d__poisson__flux__bc_8cc.html#ae66f6b31b5ad750f1fe042a706a4e3d4">main</a></div><div class="ttdeci">int main()</div><div class="ttdoc">Demonstrate how to solve 2D Poisson problem with flux boundary conditions.</div><div class="ttdef"><b>Definition:</b> <a href="two__d__poisson__flux__bc_8cc_source.html#l00339">two_d_poisson_flux_bc.cc:339</a></div></div>
 </div><!-- fragment --><hr  />
  <hr  />
 <h1><a class="anchor" id="problem"></a>
@@ -306,18 +306,18 @@ The problem class</h1>
 <div class="line"> </div>
 <div class="line"><span class="keyword">private</span>:</div>
 <div class="line"><span class="comment"></span> </div>
-<div class="line"><span class="comment"> /// \short Update the problem specs before solve: Reset boundary conditions</span></div>
+<div class="line"><span class="comment"> ///  Update the problem specs before solve: Reset boundary conditions</span></div>
 <div class="line"><span class="comment"> /// to the values from the exact solution.</span></div>
 <div class="line"><span class="comment"></span> <span class="keywordtype">void</span> <a class="code hl_function" href="classFluxPoissonProblem.html#aaea8f7f6f7a2e1aedfd2854e1ae12338">actions_before_newton_solve</a>();</div>
 <div class="line"><span class="comment"></span> </div>
 <div class="line"><span class="comment"> /// Update the problem specs after solve (empty)</span></div>
 <div class="line"><span class="comment"></span> <span class="keywordtype">void</span> <a class="code hl_function" href="classFluxPoissonProblem.html#aa52ae9abbe805520a697929ab115f114">actions_after_newton_solve</a>(){}</div>
 <div class="line"><span class="comment"></span> </div>
-<div class="line"><span class="comment"> /// \short Create Poisson flux elements on the b-th boundary of the </span></div>
+<div class="line"><span class="comment"> ///  Create Poisson flux elements on the b-th boundary of the </span></div>
 <div class="line"><span class="comment"> /// problem&#39;s mesh</span></div>
 <div class="line"><span class="comment"></span> <span class="keywordtype">void</span> <a class="code hl_function" href="classFluxPoissonProblem.html#a542ce9cc1c4e17eae68d51d2e13ac0c3">create_flux_elements</a>(<span class="keyword">const</span> <span class="keywordtype">unsigned</span> &amp;b);</div>
 <div class="line"><span class="comment"></span> </div>
-<div class="line"><span class="comment"> /// \short Number of Poisson &quot;bulk&quot; elements (We&#39;re attaching the flux </span></div>
+<div class="line"><span class="comment"> ///  Number of Poisson &quot;bulk&quot; elements (We&#39;re attaching the flux </span></div>
 <div class="line"><span class="comment"> /// elements to the bulk mesh --&gt; only the first Npoisson_elements elements</span></div>
 <div class="line"><span class="comment"> /// in the mesh are bulk elements!)</span></div>
 <div class="line"><span class="comment"></span> <span class="keywordtype">unsigned</span> <a class="code hl_variable" href="classFluxPoissonProblem.html#a1ee0cfcbc307252430a3a5ba7ab7fd6e">Npoisson_elements</a>;</div>
@@ -332,7 +332,7 @@ The problem class</h1>
 <div class="ttc" id="aclassFluxPoissonProblem_html_aa52ae9abbe805520a697929ab115f114"><div class="ttname"><a href="classFluxPoissonProblem.html#aa52ae9abbe805520a697929ab115f114">FluxPoissonProblem::actions_after_newton_solve</a></div><div class="ttdeci">void actions_after_newton_solve()</div><div class="ttdoc">Update the problem specs after solve (empty)</div><div class="ttdef"><b>Definition:</b> <a href="two__d__poisson__flux__bc_8cc_source.html#l00115">two_d_poisson_flux_bc.cc:115</a></div></div>
 <div class="ttc" id="aclassFluxPoissonProblem_html_aaea8f7f6f7a2e1aedfd2854e1ae12338"><div class="ttname"><a href="classFluxPoissonProblem.html#aaea8f7f6f7a2e1aedfd2854e1ae12338">FluxPoissonProblem::actions_before_newton_solve</a></div><div class="ttdeci">void actions_before_newton_solve()</div><div class="ttdoc">Update the problem specs before solve: Reset boundary conditions to the values from the exact solutio...</div><div class="ttdef"><b>Definition:</b> <a href="two__d__poisson__flux__bc_8cc_source.html#l00254">two_d_poisson_flux_bc.cc:254</a></div></div>
 <div class="ttc" id="aclassFluxPoissonProblem_html_ad003b34801b1c58b762bec0fe00b86aa"><div class="ttname"><a href="classFluxPoissonProblem.html#ad003b34801b1c58b762bec0fe00b86aa">FluxPoissonProblem::Source_fct_pt</a></div><div class="ttdeci">PoissonEquations&lt; 2 &gt;::PoissonSourceFctPt Source_fct_pt</div><div class="ttdoc">Pointer to source function.</div><div class="ttdef"><b>Definition:</b> <a href="two__d__poisson__flux__bc_8cc_source.html#l00127">two_d_poisson_flux_bc.cc:127</a></div></div>
-<div class="ttc" id="aclassFluxPoissonProblem_html_ae410950b9dc1f2bd4991480df15a1586"><div class="ttname"><a href="classFluxPoissonProblem.html#ae410950b9dc1f2bd4991480df15a1586">FluxPoissonProblem::doc_solution</a></div><div class="ttdeci">void doc_solution(DocInfo &amp;doc_info)</div><div class="ttdoc">Doc the solution: doc_info contains labels/output directory etc.</div><div class="ttdef"><b>Definition:</b> <a href="two__d__poisson__flux__bc_8cc_source.html#l00296">two_d_poisson_flux_bc.cc:296</a></div></div>
+<div class="ttc" id="aclassFluxPoissonProblem_html_ae410950b9dc1f2bd4991480df15a1586"><div class="ttname"><a href="classFluxPoissonProblem.html#ae410950b9dc1f2bd4991480df15a1586">FluxPoissonProblem::doc_solution</a></div><div class="ttdeci">void doc_solution(DocInfo &amp;doc_info)</div><div class="ttdoc">Doc the solution. DocInfo object stores flags/labels for where the output gets written to.</div><div class="ttdef"><b>Definition:</b> <a href="two__d__poisson__flux__bc_8cc_source.html#l00296">two_d_poisson_flux_bc.cc:296</a></div></div>
 <div class="ttc" id="aclassFluxPoissonProblem_html_afe4848aa1478883fa4dd59abbd7c7547"><div class="ttname"><a href="classFluxPoissonProblem.html#afe4848aa1478883fa4dd59abbd7c7547">FluxPoissonProblem::~FluxPoissonProblem</a></div><div class="ttdeci">~FluxPoissonProblem()</div><div class="ttdoc">Destructor (empty)</div><div class="ttdef"><b>Definition:</b> <a href="two__d__poisson__flux__bc_8cc_source.html#l00102">two_d_poisson_flux_bc.cc:102</a></div></div>
 </div><!-- fragment --><p> [See the discussion of the <a href="../../../poisson/one_d_poisson/html/index.html">1D Poisson problem</a> for a more detailed discussion of the function type PoissonEquations&lt;2&gt;::PoissonSourceFctPt.]</p>
 <hr  />
@@ -626,7 +626,7 @@ PDF file</h1>
     <footer>
       <div class="container">
         <div class="text-muted" style="float:right;">Generated by <a href="http://www.doxygen.org/index.html">
-          <img style="height:18px;" class="footer-img" src="doxygen.png" alt="doxygen"></a> on Wed Oct 13 2021 08:49:27
+          <img style="height:18px;" class="footer-img" src="doxygen.png" alt="doxygen"></a> on Thu Oct 21 2021 17:37:46
         </div>
       </div>
     </footer>

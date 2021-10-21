@@ -187,9 +187,9 @@ is performed automatically until the solution satisfies the required error bound
 <div class="line"> <a class="code hl_function" href="fish__poisson_8cc.html#a79a1cfcdcd821bd277276d163b85acfb">solve_with_fully_automatic_adaptation</a>();</div>
 <div class="line"> </div>
 <div class="line">} <span class="comment">// end of main</span></div>
-<div class="ttc" id="afish__poisson_8cc_html_a79a1cfcdcd821bd277276d163b85acfb"><div class="ttname"><a href="fish__poisson_8cc.html#a79a1cfcdcd821bd277276d163b85acfb">solve_with_fully_automatic_adaptation</a></div><div class="ttdeci">void solve_with_fully_automatic_adaptation()</div><div class="ttdef"><b>Definition:</b> <a href="fish__poisson_8cc_source.html#l00282">fish_poisson.cc:282</a></div></div>
-<div class="ttc" id="afish__poisson_8cc_html_a9f5ae2c03a7f02e61857d322177ce5d5"><div class="ttname"><a href="fish__poisson_8cc.html#a9f5ae2c03a7f02e61857d322177ce5d5">solve_with_incremental_adaptation</a></div><div class="ttdeci">void solve_with_incremental_adaptation()</div><div class="ttdef"><b>Definition:</b> <a href="fish__poisson_8cc_source.html#l00191">fish_poisson.cc:191</a></div></div>
-<div class="ttc" id="afish__poisson_8cc_html_ae66f6b31b5ad750f1fe042a706a4e3d4"><div class="ttname"><a href="fish__poisson_8cc.html#ae66f6b31b5ad750f1fe042a706a4e3d4">main</a></div><div class="ttdeci">int main()</div><div class="ttdef"><b>Definition:</b> <a href="fish__poisson_8cc_source.html#l00325">fish_poisson.cc:325</a></div></div>
+<div class="ttc" id="afish__poisson_8cc_html_a79a1cfcdcd821bd277276d163b85acfb"><div class="ttname"><a href="fish__poisson_8cc.html#a79a1cfcdcd821bd277276d163b85acfb">solve_with_fully_automatic_adaptation</a></div><div class="ttdeci">void solve_with_fully_automatic_adaptation()</div><div class="ttdoc">Demonstrate how to solve 2D Poisson problem in fish-shaped domain with fully automatic mesh adaptatio...</div><div class="ttdef"><b>Definition:</b> <a href="fish__poisson_8cc_source.html#l00282">fish_poisson.cc:282</a></div></div>
+<div class="ttc" id="afish__poisson_8cc_html_a9f5ae2c03a7f02e61857d322177ce5d5"><div class="ttname"><a href="fish__poisson_8cc.html#a9f5ae2c03a7f02e61857d322177ce5d5">solve_with_incremental_adaptation</a></div><div class="ttdeci">void solve_with_incremental_adaptation()</div><div class="ttdoc">Demonstrate how to solve 2D Poisson problem in fish-shaped domain with mesh adaptation....</div><div class="ttdef"><b>Definition:</b> <a href="fish__poisson_8cc_source.html#l00191">fish_poisson.cc:191</a></div></div>
+<div class="ttc" id="afish__poisson_8cc_html_ae66f6b31b5ad750f1fe042a706a4e3d4"><div class="ttname"><a href="fish__poisson_8cc.html#ae66f6b31b5ad750f1fe042a706a4e3d4">main</a></div><div class="ttdeci">int main()</div><div class="ttdoc">Demonstrate how to solve 2D Poisson problem in fish-shaped domain with mesh adaptation.</div><div class="ttdef"><b>Definition:</b> <a href="fish__poisson_8cc_source.html#l00325">fish_poisson.cc:325</a></div></div>
 </div><!-- fragment --> <hr  />
 <h2><a class="anchor" id="black_box"></a>
 Black-box adaptation</h2>
@@ -203,7 +203,7 @@ Black-box adaptation</h2>
 <div class="line"> </div>
 <div class="line">  <span class="comment">//Set up the problem with nine-node refineable Poisson elements</span></div>
 <div class="line">  <a class="code hl_class" href="classRefineableFishPoissonProblem.html">RefineableFishPoissonProblem&lt;RefineableQPoissonElement&lt;2,3&gt;</a> &gt; problem;</div>
-<div class="ttc" id="aclassRefineableFishPoissonProblem_html"><div class="ttname"><a href="classRefineableFishPoissonProblem.html">RefineableFishPoissonProblem</a></div><div class="ttdef"><b>Definition:</b> <a href="fish__poisson_8cc_source.html#l00069">fish_poisson.cc:70</a></div></div>
+<div class="ttc" id="aclassRefineableFishPoissonProblem_html"><div class="ttname"><a href="classRefineableFishPoissonProblem.html">RefineableFishPoissonProblem</a></div><div class="ttdoc">Refineable Poisson problem in fish-shaped domain. Template parameter identifies the element type.</div><div class="ttdef"><b>Definition:</b> <a href="fish__poisson_8cc_source.html#l00069">fish_poisson.cc:70</a></div></div>
 </div><!-- fragment --><p >After creating the <code>DocInfo</code> object, we document the (default) adaptivity targets:</p>
 <div class="fragment"><div class="line">  <span class="comment">// Setup labels for output</span></div>
 <div class="line">  <span class="comment">//------------------------</span></div>
@@ -369,7 +369,7 @@ The problem class</h1>
 <div class="line"><span class="comment"> /// Update the problem specs before solve (empty)</span></div>
 <div class="line"><span class="comment"></span> <span class="keywordtype">void</span> <a class="code hl_function" href="classRefineableFishPoissonProblem.html#a58098181f3b88c2fc65f24fb15c1a529">actions_before_newton_solve</a>() {}</div>
 <div class="line"><span class="comment"></span> </div>
-<div class="line"><span class="comment"> /// \short Overloaded version of the problem&#39;s access function to </span></div>
+<div class="line"><span class="comment"> ///  Overloaded version of the problem&#39;s access function to </span></div>
 <div class="line"><span class="comment"> /// the mesh. Recasts the pointer to the base Mesh object to </span></div>
 <div class="line"><span class="comment"> /// the actual mesh type.</span></div>
 <div class="line"><span class="comment"></span> RefineableFishMesh&lt;ELEMENT&gt;* <a class="code hl_function" href="classRefineableFishPoissonProblem.html#a6331b79c5c77d3f2fa7c37c3bb5308d9">mesh_pt</a>() </div>
@@ -377,7 +377,7 @@ The problem class</h1>
 <div class="line">   <span class="keywordflow">return</span> <span class="keyword">dynamic_cast&lt;</span>RefineableFishMesh&lt;ELEMENT&gt;*<span class="keyword">&gt;</span>(Problem::mesh_pt());</div>
 <div class="line">  }</div>
 <div class="line"><span class="comment"></span> </div>
-<div class="line"><span class="comment"> /// \short Doc the solution. Output directory and labels are specified </span></div>
+<div class="line"><span class="comment"> ///  Doc the solution. Output directory and labels are specified </span></div>
 <div class="line"><span class="comment"> /// by DocInfo object</span></div>
 <div class="line"><span class="comment"></span> <span class="keywordtype">void</span> <a class="code hl_function" href="classRefineableFishPoissonProblem.html#aeee1bf23216971b50b8822c45e62c48b">doc_solution</a>(DocInfo&amp; doc_info);</div>
 <div class="line"> </div>
@@ -552,7 +552,7 @@ PDF file</h1>
     <footer>
       <div class="container">
         <div class="text-muted" style="float:right;">Generated by <a href="http://www.doxygen.org/index.html">
-          <img style="height:18px;" class="footer-img" src="doxygen.png" alt="doxygen"></a> on Wed Oct 13 2021 08:49:39
+          <img style="height:18px;" class="footer-img" src="doxygen.png" alt="doxygen"></a> on Thu Oct 21 2021 17:37:57
         </div>
       </div>
     </footer>

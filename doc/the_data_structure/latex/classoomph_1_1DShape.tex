@@ -2,6 +2,11 @@
 \label{classoomph_1_1DShape}\index{oomph::DShape@{oomph::DShape}}
 
 
+A Class for the derivatives of shape functions The class design is essentially the same as \mbox{\hyperlink{classoomph_1_1Shape}{Shape}}, but there is on additional index that is used to indicate the coordinate direction in which the derivative is taken.  
+
+
+
+
 {\ttfamily \#include $<$shape.\+h$>$}
 
 \doxysubsection*{Public Member Functions}
@@ -12,17 +17,17 @@
 \mbox{\hyperlink{classoomph_1_1DShape_a9b448ecb15766d223b7cd4b668729174}{DShape}} (const unsigned \&N, const unsigned \&M, const unsigned \&P)
 \begin{DoxyCompactList}\small\item\em Constructor with three paramters\+: a two-\/index shape function. \end{DoxyCompactList}\item 
 \mbox{\hyperlink{classoomph_1_1DShape_a7a9884025650edf558112081e53d4dbb}{DShape}} ()
-\item 
+\begin{DoxyCompactList}\small\item\em Default constructor -\/ just assigns a null pointers and zero index sizes. \end{DoxyCompactList}\item 
 \mbox{\hyperlink{classoomph_1_1DShape_ad8cb8be9ae8a2cbc5baa041f5476619a}{DShape}} (const \mbox{\hyperlink{classoomph_1_1DShape}{DShape}} \&dshape)=delete
 \begin{DoxyCompactList}\small\item\em Broken copy constructor. \end{DoxyCompactList}\item 
 void \mbox{\hyperlink{classoomph_1_1DShape_a65273775f2720c51a7d4c2e9b5d5a8a9}{operator=}} (const \mbox{\hyperlink{classoomph_1_1DShape}{DShape}} \&dshape)
-\item 
+\begin{DoxyCompactList}\small\item\em The assignment operator does a shallow copy (resets the pointer to the data) \end{DoxyCompactList}\item 
 void \mbox{\hyperlink{classoomph_1_1DShape_a50bb345fa38feb3b72244d94a0dbaf50}{operator=}} (\mbox{\hyperlink{classoomph_1_1DShape}{DShape}} $\ast$const \&dshape\+\_\+pt)
-\item 
+\begin{DoxyCompactList}\small\item\em The assignment operator does a shallow copy (resets the pointer to the data) \end{DoxyCompactList}\item 
 \mbox{\hyperlink{classoomph_1_1DShape_a438b78cc767e134d1837bbf181cf4c07}{$\sim$\+DShape}} ()
 \begin{DoxyCompactList}\small\item\em Destructor, clean up the memory allocated by this object. \end{DoxyCompactList}\item 
 void \mbox{\hyperlink{classoomph_1_1DShape_a8332362ef8b25fbdad13fe2b81b5cca9}{resize}} (const unsigned \&N, const unsigned \&P, const unsigned \&M=1)
-\item 
+\begin{DoxyCompactList}\small\item\em Change the size of the storage. Note that (for some strange reason) index2 is the \char`\"{}optional\char`\"{} index, to conform with the existing constructor. \end{DoxyCompactList}\item 
 double \& \mbox{\hyperlink{classoomph_1_1DShape_afc1aee846033fc85d72e4e8f8fa5f9bb}{operator()}} (const unsigned \&\mbox{\hyperlink{cfortran_8h_adb50e893b86b3e55e751a42eab3cba82}{i}}, const unsigned \&k)
 \begin{DoxyCompactList}\small\item\em Overload the round bracket operator for access to the data. \end{DoxyCompactList}\item 
 const double \& \mbox{\hyperlink{classoomph_1_1DShape_a425d8e4bc02db0dffccfbacc4dabcbf9}{operator()}} (const unsigned \&\mbox{\hyperlink{cfortran_8h_adb50e893b86b3e55e751a42eab3cba82}{i}}, const unsigned \&k) const
@@ -113,7 +118,11 @@ References \mbox{\hyperlink{shape_8h_source_l00288}{Allocated\+\_\+storage}}, \m
 \doxysubsubsection{\texorpdfstring{DShape()}{DShape()}\hspace{0.1cm}{\footnotesize\ttfamily [3/4]}}
 {\footnotesize\ttfamily oomph\+::\+DShape\+::\+DShape (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
 
+
+
 Default constructor -\/ just assigns a null pointers and zero index sizes. 
+
+
 
 Definition at line \mbox{\hyperlink{shape_8h_source_l00349}{349}} of file \mbox{\hyperlink{shape_8h_source}{shape.\+h}}.
 
@@ -166,10 +175,6 @@ Definition at line \mbox{\hyperlink{shape_8h_source_l00494}{494}} of file \mbox{
 
 References \mbox{\hyperlink{shape_8h_source_l00291}{Index1}}.
 
-
-
-Referenced by \mbox{\hyperlink{shell__elements_8h_source_l00694}{oomph\+::\+Clamped\+Hermite\+Shell\+Boundary\+Condition\+Element\+::dshape\+\_\+local()}}, \mbox{\hyperlink{elements_8cc_source_l02837}{oomph\+::\+Finite\+Element\+::transform\+\_\+derivatives()}}, \mbox{\hyperlink{elements_8cc_source_l02881}{oomph\+::\+Finite\+Element\+::transform\+\_\+derivatives\+\_\+diagonal()}}, \mbox{\hyperlink{elements_8cc_source_l03082}{oomph\+::\+Finite\+Element\+::transform\+\_\+second\+\_\+derivatives\+\_\+diagonal()}}, and \mbox{\hyperlink{elements_8cc_source_l02913}{oomph\+::\+Finite\+Element\+::transform\+\_\+second\+\_\+derivatives\+\_\+template()}}.
-
 \mbox{\Hypertarget{classoomph_1_1DShape_a1ce1aa1abc964aaea4b21d7de2aa559e}\label{classoomph_1_1DShape_a1ce1aa1abc964aaea4b21d7de2aa559e}} 
 \index{oomph::DShape@{oomph::DShape}!nindex2@{nindex2}}
 \index{nindex2@{nindex2}!oomph::DShape@{oomph::DShape}}
@@ -188,10 +193,6 @@ Definition at line \mbox{\hyperlink{shape_8h_source_l00500}{500}} of file \mbox{
 
 References \mbox{\hyperlink{shape_8h_source_l00294}{Index2}}.
 
-
-
-Referenced by \mbox{\hyperlink{shell__elements_8h_source_l00694}{oomph\+::\+Clamped\+Hermite\+Shell\+Boundary\+Condition\+Element\+::dshape\+\_\+local()}}, \mbox{\hyperlink{elements_8cc_source_l02837}{oomph\+::\+Finite\+Element\+::transform\+\_\+derivatives()}}, \mbox{\hyperlink{elements_8cc_source_l02881}{oomph\+::\+Finite\+Element\+::transform\+\_\+derivatives\+\_\+diagonal()}}, \mbox{\hyperlink{elements_8cc_source_l03082}{oomph\+::\+Finite\+Element\+::transform\+\_\+second\+\_\+derivatives\+\_\+diagonal()}}, and \mbox{\hyperlink{elements_8cc_source_l02913}{oomph\+::\+Finite\+Element\+::transform\+\_\+second\+\_\+derivatives\+\_\+template()}}.
-
 \mbox{\Hypertarget{classoomph_1_1DShape_a1a5a3dc7227cdf09f16484e7125df913}\label{classoomph_1_1DShape_a1a5a3dc7227cdf09f16484e7125df913}} 
 \index{oomph::DShape@{oomph::DShape}!nindex3@{nindex3}}
 \index{nindex3@{nindex3}!oomph::DShape@{oomph::DShape}}
@@ -209,10 +210,6 @@ Definition at line \mbox{\hyperlink{shape_8h_source_l00506}{506}} of file \mbox{
 
 
 References \mbox{\hyperlink{shape_8h_source_l00297}{Index3}}.
-
-
-
-Referenced by \mbox{\hyperlink{shell__elements_8h_source_l00694}{oomph\+::\+Clamped\+Hermite\+Shell\+Boundary\+Condition\+Element\+::dshape\+\_\+local()}}.
 
 \mbox{\Hypertarget{classoomph_1_1DShape_a2ab233f026b70956e8ab520470ef20ec}\label{classoomph_1_1DShape_a2ab233f026b70956e8ab520470ef20ec}} 
 \index{oomph::DShape@{oomph::DShape}!offset@{offset}}
@@ -314,7 +311,11 @@ References \mbox{\hyperlink{shape_8h_source_l00283}{DPsi}}, \mbox{\hyperlink{cfo
 \doxysubsubsection{\texorpdfstring{operator=()}{operator=()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
 {\footnotesize\ttfamily void oomph\+::\+DShape\+::operator= (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{classoomph_1_1DShape}{DShape}} \&}]{dshape }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
 
+
+
 The assignment operator does a shallow copy (resets the pointer to the data) 
+
+
 
 Definition at line \mbox{\hyperlink{shape_8h_source_l00356}{356}} of file \mbox{\hyperlink{shape_8h_source}{shape.\+h}}.
 
@@ -328,7 +329,11 @@ References \mbox{\hyperlink{shape_8h_source_l00283}{DPsi}}, \mbox{\hyperlink{sha
 \doxysubsubsection{\texorpdfstring{operator=()}{operator=()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
 {\footnotesize\ttfamily void oomph\+::\+DShape\+::operator= (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classoomph_1_1DShape}{DShape}} $\ast$const \&}]{dshape\+\_\+pt }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
 
+
+
 The assignment operator does a shallow copy (resets the pointer to the data) 
+
+
 
 Definition at line \mbox{\hyperlink{shape_8h_source_l00378}{378}} of file \mbox{\hyperlink{shape_8h_source}{shape.\+h}}.
 
@@ -404,7 +409,11 @@ References \mbox{\hyperlink{shape_8h_source_l00283}{DPsi}}, and \mbox{\hyperlink
 \doxysubsubsection{\texorpdfstring{resize()}{resize()}}
 {\footnotesize\ttfamily void oomph\+::\+DShape\+::resize (\begin{DoxyParamCaption}\item[{const unsigned \&}]{N,  }\item[{const unsigned \&}]{P,  }\item[{const unsigned \&}]{M = {\ttfamily 1} }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
 
+
+
 Change the size of the storage. Note that (for some strange reason) index2 is the \char`\"{}optional\char`\"{} index, to conform with the existing constructor. 
+
+
 
 Definition at line \mbox{\hyperlink{shape_8h_source_l00410}{410}} of file \mbox{\hyperlink{shape_8h_source}{shape.\+h}}.
 

@@ -225,11 +225,11 @@ Global parameters and functions</h1>
 <div class="line"><span class="comment"> /// Product of Reynolds number and inverse of Froude number</span></div>
 <div class="line"><span class="comment"></span> <span class="keywordtype">double</span> <a class="code hl_variable" href="namespaceGlobal__Physical__Variables.html#aa6286f02b476912dd7550eced538331a">ReInvFr</a> = 5.0;</div>
 <div class="line"><span class="comment"></span> </div>
-<div class="line"><span class="comment"> /// \short Ratio of viscosity in upper fluid to viscosity in lower</span></div>
+<div class="line"><span class="comment"> ///  Ratio of viscosity in upper fluid to viscosity in lower</span></div>
 <div class="line"><span class="comment"> /// fluid. Reynolds number etc. is based on viscosity in lower fluid.</span></div>
 <div class="line"><span class="comment"></span> <span class="keywordtype">double</span> <a class="code hl_variable" href="namespaceGlobal__Physical__Variables.html#adb51428300a01b19395c43c0d3586d6f">Viscosity_Ratio</a> = 0.1;</div>
 <div class="line"><span class="comment"></span> </div>
-<div class="line"><span class="comment"> /// \short Ratio of density in upper fluid to density in lower</span></div>
+<div class="line"><span class="comment"> ///  Ratio of density in upper fluid to density in lower</span></div>
 <div class="line"><span class="comment"> /// fluid. Reynolds number etc. is based on density in lower fluid.</span></div>
 <div class="line"><span class="comment"></span> <span class="keywordtype">double</span> <a class="code hl_variable" href="namespaceGlobal__Physical__Variables.html#a80a34b6dfb7e1501966b8d6c7501e718">Density_Ratio</a> = 0.5;</div>
 <div class="line"><span class="comment"></span> </div>
@@ -321,7 +321,7 @@ The driver code</h1>
 <div class="line"> problem.<a class="code hl_function" href="classInterfaceProblem.html#adf1f4e43d10939e4323e0e315b711085">unsteady_run</a>(t_max,dt);</div>
 <div class="line"> </div>
 <div class="line">} <span class="comment">// End of main</span></div>
-<div class="ttc" id="aclassInterfaceProblem_html"><div class="ttname"><a href="classInterfaceProblem.html">InterfaceProblem</a></div><div class="ttdef"><b>Definition:</b> <a href="elastic__two__layer__interface_8cc_source.html#l00173">elastic_two_layer_interface.cc:174</a></div></div>
+<div class="ttc" id="aclassInterfaceProblem_html"><div class="ttname"><a href="classInterfaceProblem.html">InterfaceProblem</a></div><div class="ttdoc">Two fluid interface problem in a rectangular domain which is periodic in the x direction.</div><div class="ttdef"><b>Definition:</b> <a href="elastic__two__layer__interface_8cc_source.html#l00173">elastic_two_layer_interface.cc:174</a></div></div>
 <div class="ttc" id="aclassInterfaceProblem_html_adf1f4e43d10939e4323e0e315b711085"><div class="ttname"><a href="classInterfaceProblem.html#adf1f4e43d10939e4323e0e315b711085">InterfaceProblem::unsteady_run</a></div><div class="ttdeci">void unsteady_run(const double &amp;t_max, const double &amp;dt)</div><div class="ttdoc">Do unsteady run up to maximum time t_max with given timestep dt.</div><div class="ttdef"><b>Definition:</b> <a href="elastic__two__layer__interface_8cc_source.html#l00722">elastic_two_layer_interface.cc:723</a></div></div>
 </div><!-- fragment --> <hr  />
  <hr  />
@@ -338,11 +338,11 @@ The mesh class</h1>
 <div class="line"><span class="keyword">class </span><a class="code hl_class" href="classElasticRefineableTwoLayerMesh.html">ElasticRefineableTwoLayerMesh</a> :</div>
 <div class="line"> <span class="keyword">public</span> <span class="keyword">virtual</span> ElasticRefineableRectangularQuadMesh&lt;ELEMENT&gt;</div>
 <div class="line">{</div>
-<div class="ttc" id="aclassElasticRefineableTwoLayerMesh_html"><div class="ttname"><a href="classElasticRefineableTwoLayerMesh.html">ElasticRefineableTwoLayerMesh</a></div><div class="ttdef"><b>Definition:</b> <a href="elastic__two__layer__interface_8cc_source.html#l00102">elastic_two_layer_interface.cc:104</a></div></div>
+<div class="ttc" id="aclassElasticRefineableTwoLayerMesh_html"><div class="ttname"><a href="classElasticRefineableTwoLayerMesh.html">ElasticRefineableTwoLayerMesh</a></div><div class="ttdoc">Two layer mesh which employs a pseudo-solid node-update strategy. This class is essentially a wrapper...</div><div class="ttdef"><b>Definition:</b> <a href="elastic__two__layer__interface_8cc_source.html#l00102">elastic_two_layer_interface.cc:104</a></div></div>
 </div><!-- fragment --><p> Next we define the mesh's constructor. We pass it the usual parameters, including a boolean flag which indicates whether or not the mesh is periodic in the <img class="formulaInl" alt="$ x $" src="form_60.png" width="8" height="6"/> direction.</p>
 <div class="fragment"><div class="line"><span class="keyword">public</span>:</div>
 <div class="line"><span class="comment"></span> </div>
-<div class="line"><span class="comment"> /// \short Constructor: Pass number of elements in x-direction, number of</span></div>
+<div class="line"><span class="comment"> ///  Constructor: Pass number of elements in x-direction, number of</span></div>
 <div class="line"><span class="comment"> /// elements in y-direction in bottom and top layer, respectively,</span></div>
 <div class="line"><span class="comment"> /// axial length and height of top and bottom layers, a boolean</span></div>
 <div class="line"><span class="comment"> /// flag to make the mesh periodic in the x-direction, and pointer </span></div>
@@ -672,7 +672,7 @@ Actions after adapt</h1>
 Create interface elements</h1>
 <p >This function is used to &lsquo;attach&rsquo; interface elements to the upper face of those bulk elements in the lower fluid which are adjacent to the interface. Firstly, we loop over all bulk elements (in either fluid) which are adjacent to the interface.</p>
 <div class="fragment"><div class="line"><span class="comment">//==start_of_create_interface_elements====================================</span></div>
-<div class="line"><span class="comment">/// \short Create interface elements between the two fluids in the mesh</span><span class="comment"></span></div>
+<div class="line"><span class="comment">///  Create interface elements between the two fluids in the mesh</span><span class="comment"></span></div>
 <div class="line"><span class="comment">/// pointed to by Bulk_mesh_pt and add the elements to the Mesh object</span></div>
 <div class="line"><span class="comment">/// pointed to by Surface_mesh_pt.</span></div>
 <div class="line"><span class="comment"></span><span class="comment">//========================================================================</span></div>
@@ -937,7 +937,7 @@ PDF file</h1>
     <footer>
       <div class="container">
         <div class="text-muted" style="float:right;">Generated by <a href="http://www.doxygen.org/index.html">
-          <img style="height:18px;" class="footer-img" src="doxygen.png" alt="doxygen"></a> on Wed Oct 13 2021 08:55:47
+          <img style="height:18px;" class="footer-img" src="doxygen.png" alt="doxygen"></a> on Thu Oct 21 2021 17:43:38
         </div>
       </div>
     </footer>

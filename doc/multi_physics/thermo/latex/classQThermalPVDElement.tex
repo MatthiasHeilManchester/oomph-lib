@@ -1,5 +1,10 @@
 \hypertarget{classQThermalPVDElement}{}\doxysection{QThermal\+PVDElement\texorpdfstring{$<$}{<} DIM \texorpdfstring{$>$}{>} Class Template Reference}
 \label{classQThermalPVDElement}\index{QThermalPVDElement$<$ DIM $>$@{QThermalPVDElement$<$ DIM $>$}}
+
+
+A class that solves the equations of steady thermoelasticity by combining the Unsteady\+Heat and PVD equations into a single element. A temperature-\/dependent growth term is added to the PVD equations by overloading the member function get\+\_\+istotropic\+\_\+growth()  
+
+
 Inheritance diagram for QThermal\+PVDElement\texorpdfstring{$<$}{<} DIM \texorpdfstring{$>$}{>}\+:\begin{figure}[H]
 \begin{center}
 \leavevmode
@@ -31,8 +36,7 @@ void \mbox{\hyperlink{classQThermalPVDElement_accda081c3fb783b2c24715ec0c8e8e19}
 void \mbox{\hyperlink{classQThermalPVDElement_a0bb6609214fc7991950848806f9fb742}{output\+\_\+fct}} (ostream \&outfile, const unsigned \&Nplot, const double \&time, Finite\+Element\+::\+Unsteady\+Exact\+Solution\+Fct\+Pt exact\+\_\+soln\+\_\+pt)
 \begin{DoxyCompactList}\small\item\em Output function for a time-\/dependent exact solution\+: Broken default. \end{DoxyCompactList}\item 
 void \mbox{\hyperlink{classQThermalPVDElement_a7824ab9fd50480c1eb8b20e57620afe5}{compute\+\_\+norm}} (double \&el\+\_\+norm)
-\begin{DoxyCompactList}\small\item\em Compute norm of solution\+: use the version in the unsteady heat class ~\newline
- \end{DoxyCompactList}\item 
+\begin{DoxyCompactList}\small\item\em Compute norm of solution\+: use the version in the unsteady heat class. \end{DoxyCompactList}\item 
 void \mbox{\hyperlink{classQThermalPVDElement_a64e5047e9a054544b61a6e8cf5534364}{compute\+\_\+error}} (ostream \&outfile, Finite\+Element\+::\+Unsteady\+Exact\+Solution\+Fct\+Pt exact\+\_\+soln\+\_\+pt, const double \&time, double \&error, double \&norm)
 \begin{DoxyCompactList}\small\item\em Validate against exact solution at given time Solution is provided via function pointer. Plot at a given number of plot points and compute L2 error and L2 norm of velocity solution over element Call the broken default. \end{DoxyCompactList}\item 
 void \mbox{\hyperlink{classQThermalPVDElement_abbfb260a0c8dbf1dbfa797f15d98e0af}{compute\+\_\+error}} (ostream \&outfile, Finite\+Element\+::\+Steady\+Exact\+Solution\+Fct\+Pt exact\+\_\+soln\+\_\+pt, double \&error, double \&norm)
@@ -169,8 +173,7 @@ void \mbox{\hyperlink{classQThermalPVDElement}{QThermal\+PVDElement}}$<$ DIM $>$
 
 
 
-Compute norm of solution\+: use the version in the unsteady heat class ~\newline
- 
+Compute norm of solution\+: use the version in the unsteady heat class. 
 
 
 

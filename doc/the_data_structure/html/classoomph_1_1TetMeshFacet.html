@@ -132,6 +132,9 @@ $(function() {
 </div><!--header-->
 <div class="contents">
 
+<p>Facet for Tet mesh generation. Can lie on boundary (identified via one-based enumeration!) and can have <a class="el" href="classoomph_1_1GeomObject.html" title="A geometric object is an object that provides a parametrised description of its shape via the functio...">GeomObject</a> associated with those boundaries.  
+ <a href="classoomph_1_1TetMeshFacet.html#details">More...</a></p>
+
 <p><code>#include &lt;<a class="el" href="tet__mesh_8h_source.html">tet_mesh.h</a>&gt;</code></p>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pub-methods" name="pub-methods"></a>
@@ -146,6 +149,7 @@ Public Member Functions</h2></td></tr>
 <tr class="memdesc:ac3e8bb06cabd39c2108af501b163df48"><td class="mdescLeft">&#160;</td><td class="mdescRight">Pointer to j-th vertex (const)  <a href="classoomph_1_1TetMeshFacet.html#ac3e8bb06cabd39c2108af501b163df48">More...</a><br /></td></tr>
 <tr class="separator:ac3e8bb06cabd39c2108af501b163df48"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a08ca13e75ab395de75eab807d2f680b5"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classoomph_1_1TetMeshFacet.html#a08ca13e75ab395de75eab807d2f680b5">set_vertex_pt</a> (const unsigned &amp;j, <a class="el" href="classoomph_1_1TetMeshVertex.html">TetMeshVertex</a> *<a class="el" href="classoomph_1_1TetMeshFacet.html#ac3e8bb06cabd39c2108af501b163df48">vertex_pt</a>)</td></tr>
+<tr class="memdesc:a08ca13e75ab395de75eab807d2f680b5"><td class="mdescLeft">&#160;</td><td class="mdescRight">Set pointer to j-th vertex and pass one-based boundary id that may already have been set for this facet.  <a href="classoomph_1_1TetMeshFacet.html#a08ca13e75ab395de75eab807d2f680b5">More...</a><br /></td></tr>
 <tr class="separator:a08ca13e75ab395de75eab807d2f680b5"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a77738b43364fd6f1196e47928f57de65"><td class="memItemLeft" align="right" valign="top">unsigned&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classoomph_1_1TetMeshFacet.html#a77738b43364fd6f1196e47928f57de65">one_based_boundary_id</a> () const</td></tr>
 <tr class="memdesc:a77738b43364fd6f1196e47928f57de65"><td class="mdescLeft">&#160;</td><td class="mdescRight">Constant access to (one-based!) boundary IDs this facet lives on.  <a href="classoomph_1_1TetMeshFacet.html#a77738b43364fd6f1196e47928f57de65">More...</a><br /></td></tr>
@@ -166,6 +170,7 @@ Public Member Functions</h2></td></tr>
 <tr class="memdesc:a3b81b5e50eae3d6494d43c8e74318b93"><td class="mdescLeft">&#160;</td><td class="mdescRight">Facet is to be embedded in specified one-based region.  <a href="classoomph_1_1TetMeshFacet.html#a3b81b5e50eae3d6494d43c8e74318b93">More...</a><br /></td></tr>
 <tr class="separator:a3b81b5e50eae3d6494d43c8e74318b93"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:acbceefd4c9afbd31c0a163e7a008e6e4"><td class="memItemLeft" align="right" valign="top">unsigned&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classoomph_1_1TetMeshFacet.html#acbceefd4c9afbd31c0a163e7a008e6e4">one_based_region_that_facet_is_embedded_in</a> ()</td></tr>
+<tr class="memdesc:acbceefd4c9afbd31c0a163e7a008e6e4"><td class="mdescLeft">&#160;</td><td class="mdescRight">Which (one-based) region is facet embedded in (if zero, it's not embedded in any region)  <a href="classoomph_1_1TetMeshFacet.html#acbceefd4c9afbd31c0a163e7a008e6e4">More...</a><br /></td></tr>
 <tr class="separator:acbceefd4c9afbd31c0a163e7a008e6e4"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a10fc468ac2700b4fdd96168a5b17eca3"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classoomph_1_1TetMeshFacet.html#a10fc468ac2700b4fdd96168a5b17eca3">output</a> (std::ostream &amp;outfile) const</td></tr>
 <tr class="memdesc:a10fc468ac2700b4fdd96168a5b17eca3"><td class="mdescLeft">&#160;</td><td class="mdescRight">Output.  <a href="classoomph_1_1TetMeshFacet.html#a10fc468ac2700b4fdd96168a5b17eca3">More...</a><br /></td></tr>
@@ -187,7 +192,7 @@ Private Attributes</h2></td></tr>
 <tr class="separator:ac3fcb94904c86c64b391bb15ceca1706"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
-<div class="textblock"><p >Facet for Tet mesh generation. Can lie on boundary (identified via one-based enumeration!) and can have <a class="el" href="classoomph_1_1GeomObject.html">GeomObject</a> associated with those boundaries. </p>
+<div class="textblock"><p >Facet for Tet mesh generation. Can lie on boundary (identified via one-based enumeration!) and can have <a class="el" href="classoomph_1_1GeomObject.html" title="A geometric object is an object that provides a parametrised description of its shape via the functio...">GeomObject</a> associated with those boundaries. </p>
 
 <p class="definition">Definition at line <a class="el" href="tet__mesh_8h_source.html#l00167">167</a> of file <a class="el" href="tet__mesh_8h_source.html">tet_mesh.h</a>.</p>
 </div><h2 class="groupheader">Constructor &amp; Destructor Documentation</h2>
@@ -376,7 +381,8 @@ Private Attributes</h2></td></tr>
   </tr>
 </table>
 </div><div class="memdoc">
-<p >Which (one-based) region is facet embedded in (if zero, it's not embedded in any region) </p>
+
+<p>Which (one-based) region is facet embedded in (if zero, it's not embedded in any region) </p>
 
 <p class="definition">Definition at line <a class="el" href="tet__mesh_8h_source.html#l00257">257</a> of file <a class="el" href="tet__mesh_8h_source.html">tet_mesh.h</a>.</p>
 
@@ -547,7 +553,8 @@ Private Attributes</h2></td></tr>
   </tr>
 </table>
 </div><div class="memdoc">
-<p >Set pointer to j-th vertex and pass one-based boundary id that may already have been set for this facet. </p>
+
+<p>Set pointer to j-th vertex and pass one-based boundary id that may already have been set for this facet. </p>
 
 <p class="definition">Definition at line <a class="el" href="tet__mesh_8h_source.html#l00194">194</a> of file <a class="el" href="tet__mesh_8h_source.html">tet_mesh.h</a>.</p>
 
@@ -733,7 +740,7 @@ Private Attributes</h2></td></tr>
     <footer>
       <div class="container">
         <div class="text-muted" style="float:right;">Generated by <a href="http://www.doxygen.org/index.html">
-          <img style="height:18px;" class="footer-img" src="doxygen.png" alt="doxygen"></a> on Wed Oct 13 2021 08:48:22
+          <img style="height:18px;" class="footer-img" src="doxygen.png" alt="doxygen"></a> on Thu Oct 21 2021 17:36:41
         </div>
       </div>
     </footer>

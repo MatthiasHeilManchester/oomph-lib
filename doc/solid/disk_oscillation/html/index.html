@@ -200,7 +200,7 @@ Global parameters</h1>
 <div class="line"><span class="comment"> /// Pointer to constitutive law</span></div>
 <div class="line"><span class="comment"></span> ConstitutiveLaw* <a class="code hl_variable" href="namespaceGlobal__Physical__Variables.html#a2a37fb040c832ee7a086bb13bb02a100">Constitutive_law_pt</a>=0;</div>
 <div class="line"><span class="comment"></span> </div>
-<div class="line"><span class="comment"> /// \short Multiplier for inertia terms (needed for consistent assignment </span></div>
+<div class="line"><span class="comment"> ///  Multiplier for inertia terms (needed for consistent assignment </span></div>
 <div class="line"><span class="comment"> /// of initial conditions in Newmark scheme)</span></div>
 <div class="line"><span class="comment"></span> <span class="keywordtype">double</span> <a class="code hl_function" href="namespaceGlobal__Physical__Variables.html#a01099bce3441c7fe79ac6926800097a8">multiplier</a>(<span class="keyword">const</span> Vector&lt;double&gt;&amp; xi)</div>
 <div class="line"> {</div>
@@ -257,7 +257,7 @@ The driver code</h1>
 Specifying the initial condition via a time-dependent GeomObject</h1>
 <p >The equations of solid mechanics require the assignment of initial conditions for the position and the velocity of all material particles at some initial time. Within <code>oomph-lib</code>, such initial conditions are most naturally specified in the form of time-dependent <code>GeomObjects</code>. Here is the specification of an axisymmetric, oscillating disk of unit radius whose displacement field is given by the analytical solution derived in the <a class="el" href="index.html#theory">Theory</a> section. The analytical solution requires the specification of the amplitude of the oscillation and the Poisson's ratio &ndash; these suffice to compute the time-dependent position, velocity and acceleration as a function of the current time, specified by the <code>TimeStepper</code> object.</p>
  <div class="fragment"><div class="line"><span class="comment">//================disk_as_geom_object======================================</span></div>
-<div class="line"><span class="comment">/// \short Axisymmetrially oscillating disk with displacement</span><span class="comment"></span></div>
+<div class="line"><span class="comment">///  Axisymmetrially oscillating disk with displacement</span><span class="comment"></span></div>
 <div class="line"><span class="comment">/// field according to linear elasticity.</span></div>
 <div class="line"><span class="comment"></span><span class="comment">//=========================================================================</span></div>
 <div class="line"><span class="keyword">class </span><a class="code hl_class" href="classAxisymOscillatingDisk.html">AxisymOscillatingDisk</a> : <span class="keyword">public</span> GeomObject</div>
@@ -265,7 +265,7 @@ Specifying the initial condition via a time-dependent GeomObject</h1>
 <div class="line"> </div>
 <div class="line"><span class="keyword">public</span>:</div>
 <div class="line"><span class="comment"></span> </div>
-<div class="line"><span class="comment"> /// \short Constructor: 2 Lagrangian coordinate, 2 Eulerian coords. Pass </span></div>
+<div class="line"><span class="comment"> ///  Constructor: 2 Lagrangian coordinate, 2 Eulerian coords. Pass </span></div>
 <div class="line"><span class="comment"> /// amplitude of oscillation, Poisson ratio nu, and pointer to </span></div>
 <div class="line"><span class="comment"> /// global timestepper.</span></div>
 <div class="line"><span class="comment"></span> <a class="code hl_function" href="classAxisymOscillatingDisk.html#a7671a9c1b8d4d854752ea14aa4f5865d">AxisymOscillatingDisk</a>(<span class="keyword">const</span> <span class="keywordtype">double</span>&amp; ampl, <span class="keyword">const</span> <span class="keywordtype">double</span>&amp; nu, </div>
@@ -274,14 +274,14 @@ Specifying the initial condition via a time-dependent GeomObject</h1>
 <div class="line"><span class="comment"> /// Destructor (empty)</span></div>
 <div class="line"><span class="comment"></span> <a class="code hl_function" href="classAxisymOscillatingDisk.html#ab79de13fa0dcfac5d04d6ff371241c5d">~AxisymOscillatingDisk</a>(){}</div>
 <div class="line"><span class="comment"></span> </div>
-<div class="line"><span class="comment"> /// \short Position vector at Lagrangian coordinate xi at present</span></div>
+<div class="line"><span class="comment"> ///  Position vector at Lagrangian coordinate xi at present</span></div>
 <div class="line"><span class="comment"> /// time</span></div>
 <div class="line"><span class="comment"></span> <span class="keywordtype">void</span> <a class="code hl_function" href="classAxisymOscillatingDisk.html#ab63d762c8fecce8de5a2b7dc4b3b677a">position</a>(<span class="keyword">const</span> Vector&lt;double&gt;&amp; xi, Vector&lt;double&gt;&amp; r) <span class="keyword">const</span>;</div>
 <div class="line"><span class="comment"></span> </div>
-<div class="line"><span class="comment"> ///\short Parametrised velocity on object at current time: veloc = d r(xi)/dt.</span></div>
+<div class="line"><span class="comment"> /// Parametrised velocity on object at current time: veloc = d r(xi)/dt.</span></div>
 <div class="line"><span class="comment"></span> <span class="keywordtype">void</span> <a class="code hl_function" href="classAxisymOscillatingDisk.html#a7b39985cb0658924472700f4383b53aa">veloc</a>(<span class="keyword">const</span> Vector&lt;double&gt;&amp; xi, Vector&lt;double&gt;&amp; <a class="code hl_function" href="classAxisymOscillatingDisk.html#a7b39985cb0658924472700f4383b53aa">veloc</a>);</div>
 <div class="line"><span class="comment"></span> </div>
-<div class="line"><span class="comment"> /// \short Parametrised acceleration on object at current time: </span></div>
+<div class="line"><span class="comment"> ///  Parametrised acceleration on object at current time: </span></div>
 <div class="line"><span class="comment"> /// accel = d^2 r(xi)/dt^2.</span></div>
 <div class="line"><span class="comment"></span> <span class="keywordtype">void</span> <a class="code hl_function" href="classAxisymOscillatingDisk.html#a92993399b50f818c9045fe7cecf47fcb">accel</a>(<span class="keyword">const</span> Vector&lt;double&gt;&amp; xi, Vector&lt;double&gt;&amp; <a class="code hl_function" href="classAxisymOscillatingDisk.html#a92993399b50f818c9045fe7cecf47fcb">accel</a>);</div>
 <div class="ttc" id="aclassAxisymOscillatingDisk_html"><div class="ttname"><a href="classAxisymOscillatingDisk.html">AxisymOscillatingDisk</a></div><div class="ttdoc">Axisymmetrially oscillating disk with displacement field according to linear elasticity.</div><div class="ttdef"><b>Definition:</b> <a href="disk__oscillation_8cc_source.html#l00084">disk_oscillation.cc:85</a></div></div>
@@ -292,7 +292,7 @@ Specifying the initial condition via a time-dependent GeomObject</h1>
 <div class="ttc" id="aclassAxisymOscillatingDisk_html_ab79de13fa0dcfac5d04d6ff371241c5d"><div class="ttname"><a href="classAxisymOscillatingDisk.html#ab79de13fa0dcfac5d04d6ff371241c5d">AxisymOscillatingDisk::~AxisymOscillatingDisk</a></div><div class="ttdeci">~AxisymOscillatingDisk()</div><div class="ttdoc">Destructor (empty)</div><div class="ttdef"><b>Definition:</b> <a href="disk__oscillation_8cc_source.html#l00096">disk_oscillation.cc:96</a></div></div>
 </div><!-- fragment --><p> The class provides a static member function <code>residual_for_dispersion(...)</code> which is used to solve the nonlinear dispersion relation for the disk's eigenfrequency <img class="formulaInl" alt="$ \omega $" src="form_19.png" width="9" height="6"/>. The function is static (and thus essentially a global function) because it interacts with <code>oomph-lib's</code> black-box Newton solver.</p>
 <div class="fragment"><div class="line"> <span class="comment"></span></div>
-<div class="line"><span class="comment"> /// \short Parametrised j-th time-derivative on object at current time: </span></div>
+<div class="line"><span class="comment"> ///  Parametrised j-th time-derivative on object at current time: </span></div>
 <div class="line"><span class="comment"> /// \f$ \frac{d^{j} r(\zeta)}{dt^j} \f$.</span></div>
 <div class="line"><span class="comment"></span> <span class="keywordtype">void</span> dposition_dt(<span class="keyword">const</span> Vector&lt;double&gt;&amp; xi, <span class="keyword">const</span> <span class="keywordtype">unsigned</span>&amp; j, </div>
 <div class="line">                  Vector&lt;double&gt;&amp; drdt)</div>
@@ -325,7 +325,7 @@ Specifying the initial condition via a time-dependent GeomObject</h1>
 <div class="line">  }</div>
 <div class="line"> </div>
 <div class="line">   <span class="comment"></span></div>
-<div class="line"><span class="comment"> /// \short Residual of dispersion relation for use in black-box Newton method</span></div>
+<div class="line"><span class="comment"> ///  Residual of dispersion relation for use in black-box Newton method</span></div>
 <div class="line"><span class="comment"> /// which requires global (or static) functions. </span></div>
 <div class="line"><span class="comment"> /// Poisson&#39;s ratio is  passed as parameter.</span></div>
 <div class="line"><span class="comment"></span> <span class="keyword">static</span> <span class="keywordtype">void</span> residual_for_dispersion(<span class="keyword">const</span> Vector&lt;double&gt;&amp; param, </div>
@@ -417,7 +417,7 @@ The dispersion relation</h2>
 The position(...), veloc(...) and accel(...) functions</h2>
 <p >The <code>position(...)</code>, <code>veloc(...)</code> and <code>accel(...)</code> functions specify the motion of the <code>GeomObject</code>, according to the solution of the linearised equations derived in the <a class="el" href="index.html#theory">Theory</a> section. Here is a listing of the <code>position(...)</code> function:</p>
  <div class="fragment"><div class="line"><span class="comment">//===============start_position===========================================</span></div>
-<div class="line"><span class="comment">/// \short Position Vector at Lagrangian coordinate xi at present</span><span class="comment"></span></div>
+<div class="line"><span class="comment">///  Position Vector at Lagrangian coordinate xi at present</span><span class="comment"></span></div>
 <div class="line"><span class="comment">/// time</span></div>
 <div class="line"><span class="comment"></span><span class="comment">//========================================================================</span></div>
 <div class="line"><span class="keywordtype">void</span> <a class="code hl_function" href="classAxisymOscillatingDisk.html#ab63d762c8fecce8de5a2b7dc4b3b677a">AxisymOscillatingDisk::position</a>(<span class="keyword">const</span> Vector&lt;double&gt;&amp; xi,</div>
@@ -471,13 +471,13 @@ The mesh</h1>
 <div class="line"> <span class="keyword">public</span> <span class="keyword">virtual</span> RefineableQuarterCircleSectorMesh&lt;ELEMENT&gt;,</div>
 <div class="line"> <span class="keyword">public</span> <span class="keyword">virtual</span> SolidMesh</div>
 <div class="line">{</div>
-<div class="ttc" id="aclassElasticRefineableQuarterCircleSectorMesh_html"><div class="ttname"><a href="classElasticRefineableQuarterCircleSectorMesh.html">ElasticRefineableQuarterCircleSectorMesh</a></div><div class="ttdef"><b>Definition:</b> <a href="disk__oscillation_8cc_source.html#l00359">disk_oscillation.cc:362</a></div></div>
+<div class="ttc" id="aclassElasticRefineableQuarterCircleSectorMesh_html"><div class="ttname"><a href="classElasticRefineableQuarterCircleSectorMesh.html">ElasticRefineableQuarterCircleSectorMesh</a></div><div class="ttdoc">Elastic quarter circle sector mesh: We &quot;upgrade&quot; the RefineableQuarterCircleSectorMesh to become an S...</div><div class="ttdef"><b>Definition:</b> <a href="disk__oscillation_8cc_source.html#l00359">disk_oscillation.cc:362</a></div></div>
 </div><!-- fragment --><p> The constructor calls the constructor of the underlying non-solid mesh, checks that the element type, specified by the template argument, is a <code>SolidFiniteElement</code>, and sets the Lagrangian coordinates of all nodes to their Eulerian positions, making the current configuration stress-free.</p>
 <div class="fragment"><div class="line"> </div>
 <div class="line"> </div>
 <div class="line"><span class="keyword">public</span>:</div>
 <div class="line"><span class="comment"></span> </div>
-<div class="line"><span class="comment"> /// \short Constructor: Build mesh and copy Eulerian coords to Lagrangian</span></div>
+<div class="line"><span class="comment"> ///  Constructor: Build mesh and copy Eulerian coords to Lagrangian</span></div>
 <div class="line"><span class="comment"> /// ones so that the initial configuration is the stress-free one.</span></div>
 <div class="line"><span class="comment"></span> <a class="code hl_class" href="classElasticRefineableQuarterCircleSectorMesh.html">ElasticRefineableQuarterCircleSectorMesh&lt;ELEMENT&gt;</a>(GeomObject* wall_pt,</div>
 <div class="line">                                         <span class="keyword">const</span> <span class="keywordtype">double</span>&amp; xi_lo,</div>
@@ -514,7 +514,7 @@ The mesh</h1>
 The Problem class</h1>
 <p >The <code>Problem</code> class has the usual member functions which will be discussed in more detail below.</p>
  <div class="fragment"><div class="line"><span class="comment">//========start_class=================================================== </span></div>
-<div class="line"><span class="comment">/// \short Problem class to simulate small-amplitude oscillations of </span><span class="comment"></span></div>
+<div class="line"><span class="comment">///  Problem class to simulate small-amplitude oscillations of </span><span class="comment"></span></div>
 <div class="line"><span class="comment">/// a circular disk.</span></div>
 <div class="line"><span class="comment"></span><span class="comment">//====================================================================== </span></div>
 <div class="line"><span class="keyword">template</span>&lt;<span class="keyword">class</span> ELEMENT&gt;</div>
@@ -915,7 +915,7 @@ PDF file</h1>
     <footer>
       <div class="container">
         <div class="text-muted" style="float:right;">Generated by <a href="http://www.doxygen.org/index.html">
-          <img style="height:18px;" class="footer-img" src="doxygen.png" alt="doxygen"></a> on Wed Oct 13 2021 09:02:55
+          <img style="height:18px;" class="footer-img" src="doxygen.png" alt="doxygen"></a> on Thu Oct 21 2021 17:50:17
         </div>
       </div>
     </footer>

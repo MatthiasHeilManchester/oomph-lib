@@ -2,6 +2,11 @@
 \label{classoomph_1_1BrethertonSpineMesh}\index{oomph::BrethertonSpineMesh$<$ ELEMENT, INTERFACE\_ELEMENT $>$@{oomph::BrethertonSpineMesh$<$ ELEMENT, INTERFACE\_ELEMENT $>$}}
 
 
+Mesh for 2D Bretherton problem -- based on single layer mesh. Templated by spine-\/ified Navier-\/\+Stokes element type (e.\+g. Spine\+Element\texorpdfstring{$<$}{<}QCrouzeix\+Raviart\+Element$<$2$>$ \texorpdfstring{$>$}{>} and the corresponding interface element (e.\+g. Spine\+Line\+Fluid\+Interface\+Element\texorpdfstring{$<$}{<}Spine\+Element\texorpdfstring{$<$}{<}QCrouzeix\+Raviart\+Element$<$2$>$ \texorpdfstring{$>$}{>} \texorpdfstring{$>$}{>}  
+
+
+
+
 {\ttfamily \#include $<$bretherton\+\_\+spine\+\_\+mesh.\+template.\+h$>$}
 
 Inheritance diagram for oomph\+::Bretherton\+Spine\+Mesh\texorpdfstring{$<$}{<} ELEMENT, INTERFACE\+\_\+\+ELEMENT \texorpdfstring{$>$}{>}\+:\begin{figure}[H]
@@ -24,13 +29,13 @@ Finite\+Element $\ast$\& \mbox{\hyperlink{classoomph_1_1BrethertonSpineMesh_a2ff
 unsigned long \mbox{\hyperlink{classoomph_1_1BrethertonSpineMesh_a47184866746a1fce6dd0ca27ab7e17ce}{nbulk}} () const
 \begin{DoxyCompactList}\small\item\em Number of elements in bulk. \end{DoxyCompactList}\item 
 unsigned \mbox{\hyperlink{classoomph_1_1BrethertonSpineMesh_ade4d0f2933beddda517b949d80928a18}{nfree\+\_\+surface\+\_\+spines}} ()
-\item 
+\begin{DoxyCompactList}\small\item\em Number of free-\/surface spines (i.\+e. excluding the dummy spines in the channel region) \end{DoxyCompactList}\item 
 double \mbox{\hyperlink{classoomph_1_1BrethertonSpineMesh_ac80488ae4db2da00e1b38f6f07e0ff9d}{find\+\_\+distance\+\_\+to\+\_\+free\+\_\+surface}} (Geom\+Object $\ast$const \&fs\+\_\+geom\+\_\+object\+\_\+pt, Vector$<$ double $>$ \&initial\+\_\+zeta, const Vector$<$ double $>$ \&spine\+\_\+base, const Vector$<$ double $>$ \&spine\+\_\+end)
 \begin{DoxyCompactList}\small\item\em Recalculate the spine lengths after repositioning. \end{DoxyCompactList}\item 
 void \mbox{\hyperlink{classoomph_1_1BrethertonSpineMesh_a0dfeac5bc9a4fa4bfdcd443def30dcdb}{reposition\+\_\+spines}} (const double \&zeta\+\_\+lo\+\_\+transition\+\_\+start, const double \&zeta\+\_\+lo\+\_\+transition\+\_\+end, const double \&zeta\+\_\+up\+\_\+transition\+\_\+start, const double \&zeta\+\_\+up\+\_\+transition\+\_\+end)
 \begin{DoxyCompactList}\small\item\em Reposition the spines in response to changes in geometry. \end{DoxyCompactList}\item 
 void \mbox{\hyperlink{classoomph_1_1BrethertonSpineMesh_a507ea97977b837f2f0d9647407d770cd}{pin\+\_\+all\+\_\+spines}} ()
-\item 
+\begin{DoxyCompactList}\small\item\em Pin all spines so the mesh can be used for computation without free surfaces. \end{DoxyCompactList}\item 
 void \mbox{\hyperlink{classoomph_1_1BrethertonSpineMesh_a981301706d4940cfb24d3d769a7a523b}{spine\+\_\+node\+\_\+update}} (Spine\+Node $\ast$spine\+\_\+node\+\_\+pt)
 \begin{DoxyCompactList}\small\item\em General node update function implements pure virtual function defined in Spine\+Mesh base class and performs specific update actions, depending on the node update fct id stored for each node. \end{DoxyCompactList}\item 
 ELEMENT $\ast$ \mbox{\hyperlink{classoomph_1_1BrethertonSpineMesh_a43b6d36e20b03ed1de5917d40f32f09e}{control\+\_\+element\+\_\+pt}} ()
@@ -132,10 +137,6 @@ Constructor. Arguments\+:
 \item lower\+\_\+wall\+\_\+pt\+: Pointer to geometric object that represents the lower wall
 \item upper\+\_\+wall\+\_\+pt\+: Pointer to geometric object that represents the upper wall
 \item time\+\_\+stepper\+\_\+pt\+: Pointer to timestepper; defaults to Steady
-\end{DoxyItemize}
-
-Constructor. Arguments\+:
-\begin{DoxyItemize}
 \item nx1\+: Number of elements along wall in deposited film region
 \item nx2\+: Number of elements along wall in horizontal transition region
 \item nx3\+: Number of elements along wall in channel region
@@ -276,7 +277,11 @@ References \mbox{\hyperlink{bretherton__spine__mesh_8template_8h_source_l00543}{
 {\footnotesize\ttfamily template$<$class ELEMENT , class INTERFACE\+\_\+\+ELEMENT $>$ \\
 unsigned \mbox{\hyperlink{classoomph_1_1BrethertonSpineMesh}{oomph\+::\+Bretherton\+Spine\+Mesh}}$<$ ELEMENT, INTERFACE\+\_\+\+ELEMENT $>$\+::nfree\+\_\+surface\+\_\+spines (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
 
+
+
 Number of free-\/surface spines (i.\+e. excluding the dummy spines in the channel region) 
+
+
 
 Definition at line \mbox{\hyperlink{bretherton__spine__mesh_8template_8h_source_l00107}{107}} of file \mbox{\hyperlink{bretherton__spine__mesh_8template_8h_source}{bretherton\+\_\+spine\+\_\+mesh.\+template.\+h}}.
 
@@ -310,7 +315,11 @@ References \mbox{\hyperlink{bretherton__spine__mesh_8template_8h_source_l00546}{
 {\footnotesize\ttfamily template$<$class ELEMENT , class INTERFACE\+\_\+\+ELEMENT $>$ \\
 void \mbox{\hyperlink{classoomph_1_1BrethertonSpineMesh}{oomph\+::\+Bretherton\+Spine\+Mesh}}$<$ ELEMENT, INTERFACE\+\_\+\+ELEMENT $>$\+::pin\+\_\+all\+\_\+spines (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
 
-Pin all spines so the mesh can be used for computation without free surfaces 
+
+
+Pin all spines so the mesh can be used for computation without free surfaces. 
+
+
 
 Definition at line \mbox{\hyperlink{bretherton__spine__mesh_8template_8h_source_l00128}{128}} of file \mbox{\hyperlink{bretherton__spine__mesh_8template_8h_source}{bretherton\+\_\+spine\+\_\+mesh.\+template.\+h}}.
 

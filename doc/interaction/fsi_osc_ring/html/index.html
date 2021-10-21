@@ -198,7 +198,7 @@
 <div class="line"><span class="comment"> /// Stress ratio</span></div>
 <div class="line"><span class="comment"></span> <span class="keywordtype">double</span> <a class="code hl_variable" href="namespaceGlobal__Physical__Variables.html#a66cb7ecda9ba0cd72367dd697f154545">Q</a>;</div>
 <div class="line"><span class="comment"></span> </div>
-<div class="line"><span class="comment"> /// \short Set the parameters that are used in the code as a function</span></div>
+<div class="line"><span class="comment"> ///  Set the parameters that are used in the code as a function</span></div>
 <div class="line"><span class="comment"> /// of the Womersley number, the density ratio and H</span></div>
 <div class="line"><span class="comment"></span> <span class="keywordtype">void</span> <a class="code hl_function" href="namespaceGlobal__Physical__Variables.html#a5928252d8e7440b329065c223926d4d2">set_params</a>()</div>
 <div class="line"> {</div>
@@ -255,13 +255,13 @@
 <div class="line"><span class="comment"></span><span class="comment">//======================================================================</span></div>
 <div class="line"><span class="keyword">class </span><a class="code hl_class" href="classFSIRingProblem.html">FSIRingProblem</a> : <span class="keyword">public</span> Problem</div>
 <div class="line">{<span class="comment"></span></div>
-<div class="line"><span class="comment"> /// \short There are very few element types that will work for this problem.</span></div>
+<div class="line"><span class="comment"> ///  There are very few element types that will work for this problem.</span></div>
 <div class="line"><span class="comment"> /// Rather than passing the element type as a template parameter to the</span></div>
 <div class="line"><span class="comment"> /// problem, we choose instead to use a typedef to specify the</span></div>
 <div class="line"><span class="comment"> /// particular element fluid used.</span></div>
 <div class="line"><span class="comment"></span> <span class="keyword">typedef</span> AlgebraicElement&lt;RefineableQCrouzeixRaviartElement&lt;2&gt; &gt; <a class="code hl_typedef" href="classFSIRingProblem.html#a2ce9ba3122272853bfa6ec3fcf39b78a">FLUID_ELEMENT</a>;</div>
 <div class="line"><span class="comment"></span> </div>
-<div class="line"><span class="comment"> /// \short Typedef to specify the solid element used</span></div>
+<div class="line"><span class="comment"> ///  Typedef to specify the solid element used</span></div>
 <div class="line"><span class="comment"></span> <span class="keyword">typedef</span> FSIHermiteBeamElement <a class="code hl_typedef" href="classFSIRingProblem.html#a96528378f3baf6100aeb6b4fe83bc870">SOLID_ELEMENT</a>;</div>
 <div class="line"> </div>
 <div class="line"><span class="keyword">public</span>:</div>
@@ -275,10 +275,10 @@
 <div class="line"><span class="comment"> /// Update after solve (empty)</span></div>
 <div class="line"><span class="comment"></span> <span class="keywordtype">void</span> <a class="code hl_function" href="classFSIRingProblem.html#a63a3da079b167ccdc288372bee6bdbc3">actions_after_newton_solve</a>() {}</div>
 <div class="line"><span class="comment"></span> </div>
-<div class="line"><span class="comment"> /// \short Update before solve (empty)</span></div>
+<div class="line"><span class="comment"> ///  Update before solve (empty)</span></div>
 <div class="line"><span class="comment"></span> <span class="keywordtype">void</span> <a class="code hl_function" href="classFSIRingProblem.html#a9fd26120e4e078bca685a5c94482ee12">actions_before_newton_solve</a>() {}</div>
 <div class="line"><span class="comment"></span> </div>
-<div class="line"><span class="comment"> /// \short Update the problem specs before checking Newton</span></div>
+<div class="line"><span class="comment"> ///  Update the problem specs before checking Newton</span></div>
 <div class="line"><span class="comment"> /// convergence</span></div>
 <div class="line"><span class="comment"></span> <span class="keywordtype">void</span> <a class="code hl_function" href="classFSIRingProblem.html#afaf315a9b0feb319cf66b21f959e465e">actions_before_newton_convergence_check</a>() </div>
 <div class="line"> {</div>
@@ -287,7 +287,7 @@
 <div class="line">  <a class="code hl_variable" href="classFSIRingProblem.html#a33eec722bed7a0b02444c64d3e6c66fe">Fluid_mesh_pt</a>-&gt;node_update(); </div>
 <div class="line"> }</div>
 <div class="line"><span class="comment"></span> </div>
-<div class="line"><span class="comment"> /// \short Update the problem specs after adaptation:</span></div>
+<div class="line"><span class="comment"> ///  Update the problem specs after adaptation:</span></div>
 <div class="line"><span class="comment"></span> <span class="keywordtype">void</span> <a class="code hl_function" href="classFSIRingProblem.html#af4ffa3d628230ef064a84b7c6e6a5fb8">actions_after_adapt</a>() </div>
 <div class="line">  {</div>
 <div class="line">   <span class="comment">// The functions used to update the no slip boundary conditions </span></div>
@@ -321,7 +321,7 @@
 <div class="line">    (<span class="keyword">this</span>,1,<a class="code hl_variable" href="classFSIRingProblem.html#a33eec722bed7a0b02444c64d3e6c66fe">Fluid_mesh_pt</a>,<a class="code hl_variable" href="classFSIRingProblem.html#a112c5285b6ea49d0e003fc3bdd817332">Wall_mesh_pt</a>);</div>
 <div class="line">  }</div>
 <div class="line"><span class="comment"></span> </div>
-<div class="line"><span class="comment"> /// \short Doc solution: Pass number of timestep, i (we append to tracefile</span></div>
+<div class="line"><span class="comment"> ///  Doc solution: Pass number of timestep, i (we append to tracefile</span></div>
 <div class="line"><span class="comment"> /// after every timestep but do a full doc only at certain intervals),</span></div>
 <div class="line"><span class="comment"> /// DocInfo object and tracefile</span></div>
 <div class="line"><span class="comment"></span> <span class="keywordtype">void</span> <a class="code hl_function" href="classFSIRingProblem.html#a686782b9af582b68e55c288e1fe4660e">doc_solution</a>(<span class="keyword">const</span> <span class="keywordtype">unsigned</span>&amp; i, DocInfo&amp; doc_info, ofstream&amp; trace_file);</div>
@@ -340,7 +340,7 @@
 <div class="line"><span class="comment"> /// Setup initial condition for fluid</span></div>
 <div class="line"><span class="comment"></span> <span class="keywordtype">void</span> <a class="code hl_function" href="classFSIRingProblem.html#ad397e4e3b92845240dd6a996856f33e7">set_fluid_initial_condition</a>();</div>
 <div class="line"><span class="comment"></span> </div>
-<div class="line"><span class="comment"> /// \short Element used for documenting displacement</span></div>
+<div class="line"><span class="comment"> ///  Element used for documenting displacement</span></div>
 <div class="line"><span class="comment"></span> <a class="code hl_typedef" href="classFSIRingProblem.html#a96528378f3baf6100aeb6b4fe83bc870">SOLID_ELEMENT</a>* <a class="code hl_variable" href="classFSIRingProblem.html#a85d9441c676456c71dffc27500bd0fec">Doc_displacement_elem_pt</a>;</div>
 <div class="line"><span class="comment"></span> </div>
 <div class="line"><span class="comment"> /// Pointer to wall mesh</span></div>
@@ -959,7 +959,7 @@
 <div class="line"> </div>
 <div class="line"> </div>
 <div class="line"> </div>
-<div class="ttc" id="aclassFSIRingProblem_html"><div class="ttname"><a href="classFSIRingProblem.html">FSIRingProblem</a></div><div class="ttdef"><b>Definition:</b> <a href="fsi__osc__ring_8cc_source.html#l00140">fsi_osc_ring.cc:141</a></div></div>
+<div class="ttc" id="aclassFSIRingProblem_html"><div class="ttname"><a href="classFSIRingProblem.html">FSIRingProblem</a></div><div class="ttdoc">FSI Ring problem: a fluid-structure interaction problem in which a viscous fluid bounded by an initia...</div><div class="ttdef"><b>Definition:</b> <a href="fsi__osc__ring_8cc_source.html#l00140">fsi_osc_ring.cc:141</a></div></div>
 <div class="ttc" id="aclassFSIRingProblem_html_a109eb6d9804264294357d6b76aa50ab6"><div class="ttname"><a href="classFSIRingProblem.html#a109eb6d9804264294357d6b76aa50ab6">FSIRingProblem::Pcos_initial</a></div><div class="ttdeci">double Pcos_initial</div><div class="ttdoc">Initial pcos.</div><div class="ttdef"><b>Definition:</b> <a href="fsi__osc__ring_8cc_source.html#l00252">fsi_osc_ring.cc:252</a></div></div>
 <div class="ttc" id="aclassFSIRingProblem_html_a112c5285b6ea49d0e003fc3bdd817332"><div class="ttname"><a href="classFSIRingProblem.html#a112c5285b6ea49d0e003fc3bdd817332">FSIRingProblem::Wall_mesh_pt</a></div><div class="ttdeci">OneDLagrangianMesh&lt; SOLID_ELEMENT &gt; * Wall_mesh_pt</div><div class="ttdoc">Pointer to wall mesh.</div><div class="ttdef"><b>Definition:</b> <a href="fsi__osc__ring_8cc_source.html#l00231">fsi_osc_ring.cc:231</a></div></div>
 <div class="ttc" id="aclassFSIRingProblem_html_a1c7dfd9d2798fb518403e5ef99f1f69c"><div class="ttname"><a href="classFSIRingProblem.html#a1c7dfd9d2798fb518403e5ef99f1f69c">FSIRingProblem::Undef_geom_pt</a></div><div class="ttdeci">GeomObject * Undef_geom_pt</div><div class="ttdoc">Pointer to geometric object that represents the undeformed wall shape.</div><div class="ttdef"><b>Definition:</b> <a href="fsi__osc__ring_8cc_source.html#l00237">fsi_osc_ring.cc:237</a></div></div>
@@ -974,7 +974,7 @@
 <div class="ttc" id="aclassFSIRingProblem_html_a6abf3345b68a0b4b671758439340138e"><div class="ttname"><a href="classFSIRingProblem.html#a6abf3345b68a0b4b671758439340138e">FSIRingProblem::Fluid_time_stepper_pt</a></div><div class="ttdeci">BDF&lt; 2 &gt; * Fluid_time_stepper_pt</div><div class="ttdoc">Pointer to fluid timestepper.</div><div class="ttdef"><b>Definition:</b> <a href="fsi__osc__ring_8cc_source.html#l00243">fsi_osc_ring.cc:243</a></div></div>
 <div class="ttc" id="aclassFSIRingProblem_html_a6e14af107a8f5b5a5254a55f0707ff4c"><div class="ttname"><a href="classFSIRingProblem.html#a6e14af107a8f5b5a5254a55f0707ff4c">FSIRingProblem::Eps_ampl</a></div><div class="ttdeci">double Eps_ampl</div><div class="ttdoc">Amplitude of initial deformation.</div><div class="ttdef"><b>Definition:</b> <a href="fsi__osc__ring_8cc_source.html#l00249">fsi_osc_ring.cc:249</a></div></div>
 <div class="ttc" id="aclassFSIRingProblem_html_a85d9441c676456c71dffc27500bd0fec"><div class="ttname"><a href="classFSIRingProblem.html#a85d9441c676456c71dffc27500bd0fec">FSIRingProblem::Doc_displacement_elem_pt</a></div><div class="ttdeci">SOLID_ELEMENT * Doc_displacement_elem_pt</div><div class="ttdoc">Element used for documenting displacement.</div><div class="ttdef"><b>Definition:</b> <a href="fsi__osc__ring_8cc_source.html#l00228">fsi_osc_ring.cc:228</a></div></div>
-<div class="ttc" id="aclassFSIRingProblem_html_a8f4969c6397bebe8afa2b9285ec908e6"><div class="ttname"><a href="classFSIRingProblem.html#a8f4969c6397bebe8afa2b9285ec908e6">FSIRingProblem::FSIRingProblem</a></div><div class="ttdeci">FSIRingProblem(const unsigned &amp;nelement_wall, const double &amp;eps_ampl, const double &amp;pcos_initial, const double &amp;pcos_duration)</div><div class="ttdef"><b>Definition:</b> <a href="fsi__osc__ring_8cc_source.html#l00430">fsi_osc_ring.cc:430</a></div></div>
+<div class="ttc" id="aclassFSIRingProblem_html_a8f4969c6397bebe8afa2b9285ec908e6"><div class="ttname"><a href="classFSIRingProblem.html#a8f4969c6397bebe8afa2b9285ec908e6">FSIRingProblem::FSIRingProblem</a></div><div class="ttdeci">FSIRingProblem(const unsigned &amp;nelement_wall, const double &amp;eps_ampl, const double &amp;pcos_initial, const double &amp;pcos_duration)</div><div class="ttdoc">Constructor: Number of elements in wall mesh, amplitude of the initial wall deformation,...</div><div class="ttdef"><b>Definition:</b> <a href="fsi__osc__ring_8cc_source.html#l00430">fsi_osc_ring.cc:430</a></div></div>
 <div class="ttc" id="aclassFSIRingProblem_html_a90ff979880dbecb47f8830f4217eb17f"><div class="ttname"><a href="classFSIRingProblem.html#a90ff979880dbecb47f8830f4217eb17f">FSIRingProblem::Pcos_duration</a></div><div class="ttdeci">double Pcos_duration</div><div class="ttdoc">Duration of initial pcos.</div><div class="ttdef"><b>Definition:</b> <a href="fsi__osc__ring_8cc_source.html#l00255">fsi_osc_ring.cc:255</a></div></div>
 <div class="ttc" id="aclassFSIRingProblem_html_a96528378f3baf6100aeb6b4fe83bc870"><div class="ttname"><a href="classFSIRingProblem.html#a96528378f3baf6100aeb6b4fe83bc870">FSIRingProblem::SOLID_ELEMENT</a></div><div class="ttdeci">FSIHermiteBeamElement SOLID_ELEMENT</div><div class="ttdoc">Typedef to specify the solid element used.</div><div class="ttdef"><b>Definition:</b> <a href="fsi__osc__ring_8cc_source.html#l00149">fsi_osc_ring.cc:149</a></div></div>
 <div class="ttc" id="aclassFSIRingProblem_html_a9fd26120e4e078bca685a5c94482ee12"><div class="ttname"><a href="classFSIRingProblem.html#a9fd26120e4e078bca685a5c94482ee12">FSIRingProblem::actions_before_newton_solve</a></div><div class="ttdeci">void actions_before_newton_solve()</div><div class="ttdoc">Update before solve (empty)</div><div class="ttdef"><b>Definition:</b> <a href="fsi__osc__ring_8cc_source.html#l00163">fsi_osc_ring.cc:163</a></div></div>
@@ -991,7 +991,7 @@
 <div class="ttc" id="anamespaceGlobal__Physical__Variables_html_a5928252d8e7440b329065c223926d4d2"><div class="ttname"><a href="namespaceGlobal__Physical__Variables.html#a5928252d8e7440b329065c223926d4d2">Global_Physical_Variables::set_params</a></div><div class="ttdeci">void set_params()</div><div class="ttdoc">Set the parameters that are used in the code as a function of the Womersley number,...</div><div class="ttdef"><b>Definition:</b> <a href="fsi__osc__ring_8cc_source.html#l00087">fsi_osc_ring.cc:87</a></div></div>
 <div class="ttc" id="anamespaceGlobal__Physical__Variables_html_a66cb7ecda9ba0cd72367dd697f154545"><div class="ttname"><a href="namespaceGlobal__Physical__Variables.html#a66cb7ecda9ba0cd72367dd697f154545">Global_Physical_Variables::Q</a></div><div class="ttdeci">double Q</div><div class="ttdoc">Stress ratio.</div><div class="ttdef"><b>Definition:</b> <a href="fsi__osc__ring_8cc_source.html#l00083">fsi_osc_ring.cc:83</a></div></div>
 <div class="ttc" id="anamespaceGlobal__Physical__Variables_html_a6fe17557ceb32dd353827fba60408363"><div class="ttname"><a href="namespaceGlobal__Physical__Variables.html#a6fe17557ceb32dd353827fba60408363">Global_Physical_Variables::Lambda_sq</a></div><div class="ttdeci">double Lambda_sq</div><div class="ttdoc">Timescale ratio (non-dimensation density)</div><div class="ttdef"><b>Definition:</b> <a href="fsi__osc__ring_8cc_source.html#l00080">fsi_osc_ring.cc:80</a></div></div>
-<div class="ttc" id="anamespaceGlobal__Physical__Variables_html_aa08c246eac99f59be33ef4a6ee924990"><div class="ttname"><a href="namespaceGlobal__Physical__Variables.html#aa08c246eac99f59be33ef4a6ee924990">Global_Physical_Variables::pcos_load</a></div><div class="ttdeci">void pcos_load(const Vector&lt; double &gt; &amp;xi, const Vector&lt; double &gt; &amp;x, const Vector&lt; double &gt; &amp;N, Vector&lt; double &gt; &amp;load)</div><div class="ttdef"><b>Definition:</b> <a href="fsi__osc__ring_8cc_source.html#l00125">fsi_osc_ring.cc:125</a></div></div>
+<div class="ttc" id="anamespaceGlobal__Physical__Variables_html_aa08c246eac99f59be33ef4a6ee924990"><div class="ttname"><a href="namespaceGlobal__Physical__Variables.html#aa08c246eac99f59be33ef4a6ee924990">Global_Physical_Variables::pcos_load</a></div><div class="ttdeci">void pcos_load(const Vector&lt; double &gt; &amp;xi, const Vector&lt; double &gt; &amp;x, const Vector&lt; double &gt; &amp;N, Vector&lt; double &gt; &amp;load)</div><div class="ttdoc">Non-FSI load function, a constant external pressure plus a (small) sinusoidal perturbation of wavenum...</div><div class="ttdef"><b>Definition:</b> <a href="fsi__osc__ring_8cc_source.html#l00125">fsi_osc_ring.cc:125</a></div></div>
 <div class="ttc" id="anamespaceGlobal__Physical__Variables_html_ab55734aaa66260cd9d4bf68a4ecafdd5"><div class="ttname"><a href="namespaceGlobal__Physical__Variables.html#ab55734aaa66260cd9d4bf68a4ecafdd5">Global_Physical_Variables::Pcos</a></div><div class="ttdeci">double Pcos</div><div class="ttdoc">Perturbation pressure.</div><div class="ttdef"><b>Definition:</b> <a href="fsi__osc__ring_8cc_source.html#l00067">fsi_osc_ring.cc:67</a></div></div>
 <div class="ttc" id="anamespaceGlobal__Physical__Variables_html_ab814e627d2eb5bc50318879d19ab16b9"><div class="ttname"><a href="namespaceGlobal__Physical__Variables.html#ab814e627d2eb5bc50318879d19ab16b9">Global_Physical_Variables::Re</a></div><div class="ttdeci">double Re</div><div class="ttdoc">Reynolds number.</div><div class="ttdef"><b>Definition:</b> <a href="fsi__osc__ring_8cc_source.html#l00074">fsi_osc_ring.cc:74</a></div></div>
 <div class="ttc" id="anamespaceGlobal__Physical__Variables_html_af5163137c5b98c6ebb942973cba4e297"><div class="ttname"><a href="namespaceGlobal__Physical__Variables.html#af5163137c5b98c6ebb942973cba4e297">Global_Physical_Variables::Density_ratio</a></div><div class="ttdeci">double Density_ratio</div><div class="ttdoc">Density ratio of the solid and the fluid.</div><div class="ttdef"><b>Definition:</b> <a href="fsi__osc__ring_8cc_source.html#l00055">fsi_osc_ring.cc:55</a></div></div>
@@ -1032,7 +1032,7 @@ PDF file</h1>
     <footer>
       <div class="container">
         <div class="text-muted" style="float:right;">Generated by <a href="http://www.doxygen.org/index.html">
-          <img style="height:18px;" class="footer-img" src="doxygen.png" alt="doxygen"></a> on Wed Oct 13 2021 09:05:51
+          <img style="height:18px;" class="footer-img" src="doxygen.png" alt="doxygen"></a> on Thu Oct 21 2021 17:52:56
         </div>
       </div>
     </footer>

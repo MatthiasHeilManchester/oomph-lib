@@ -2,6 +2,11 @@
 \label{classoomph_1_1TreeBasedRefineableMesh}\index{oomph::TreeBasedRefineableMesh$<$ ELEMENT $>$@{oomph::TreeBasedRefineableMesh$<$ ELEMENT $>$}}
 
 
+Templated base class for refineable meshes. The use of the template parameter is required only for creating new elements during mesh adaptation. This class overloaded the template-\/free inteface to the function \mbox{\hyperlink{classoomph_1_1TreeBasedRefineableMesh_a43f134cb974f25f25d5ddfa88d56ef95}{split\+\_\+elements\+\_\+if\+\_\+required()}} to make use of the template parameter. All refineable meshes should inherit directly from Tree\+Based\+Refineable\+Mesh$<$\+ELEMENT$>$  
+
+
+
+
 {\ttfamily \#include $<$refineable\+\_\+mesh.\+h$>$}
 
 Inheritance diagram for oomph\+::Tree\+Based\+Refineable\+Mesh\texorpdfstring{$<$}{<} ELEMENT \texorpdfstring{$>$}{>}\+:\begin{figure}[H]
@@ -23,7 +28,7 @@ virtual \mbox{\hyperlink{classoomph_1_1TreeBasedRefineableMesh_a0c7736c1b102c369
 \begin{DoxyCompactItemize}
 \item 
 void \mbox{\hyperlink{classoomph_1_1TreeBasedRefineableMesh_a1af8d6a53048bd0d376f6a56bbd4c125}{additional\+\_\+synchronise\+\_\+hanging\+\_\+nodes}} (const unsigned \&ncont\+\_\+interpolated\+\_\+values)
-\end{DoxyCompactItemize}
+\begin{DoxyCompactList}\small\item\em Additional setup of shared node scheme This is Required for reconcilliation of hanging nodes acrross processor boundaries when using elements with nonuniformly spaced nodes. ELEMENT template parameter is required so that Macro\+Element\+Node\+Update\+Nodes which are added as external halo master nodes can be made fully functional. \end{DoxyCompactList}\end{DoxyCompactItemize}
 \doxysubsection*{Private Member Functions}
 \begin{DoxyCompactItemize}
 \item 
@@ -95,7 +100,9 @@ Definition at line \mbox{\hyperlink{refineable__mesh_8h_source_l00868}{868}} of 
 {\footnotesize\ttfamily template$<$class ELEMENT $>$ \\
 void \mbox{\hyperlink{classoomph_1_1TreeBasedRefineableMesh}{oomph\+::\+Tree\+Based\+Refineable\+Mesh}}$<$ ELEMENT $>$\+::additional\+\_\+synchronise\+\_\+hanging\+\_\+nodes (\begin{DoxyParamCaption}\item[{const unsigned \&}]{ncont\+\_\+interpolated\+\_\+values }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [protected]}, {\ttfamily [virtual]}}
 
-Additional setup of shared node scheme This is Required for reconcilliation of hanging nodes acrross processor boundaries when using elements with nonuniformly spaced nodes. ELEMENT template parameter is required so that Macro\+Element\+Node\+Update\+Nodes which are added as external halo master nodes can be made fully functional
+
+
+Additional setup of shared node scheme This is Required for reconcilliation of hanging nodes acrross processor boundaries when using elements with nonuniformly spaced nodes. ELEMENT template parameter is required so that Macro\+Element\+Node\+Update\+Nodes which are added as external halo master nodes can be made fully functional. 
 
 Additional actions required to synchronise halo nodes where master nodes could not be found during \mbox{\hyperlink{classoomph_1_1TreeBasedRefineableMeshBase_a0ba902eb4b63aaa8c4da1aadcf25709a}{synchronise\+\_\+hanging\+\_\+nodes()}}. Overloaded from \mbox{\hyperlink{classoomph_1_1Mesh}{Mesh}} class to take care of master nodes on the outer edge of the halo layer which do not exist on that processor. This fixes problems with the synchronisation of hanging nodes for elements with non-\/uniformly spaced nodes. 
 
@@ -107,7 +114,7 @@ Definition at line \mbox{\hyperlink{refineable__mesh_8template_8cc_source_l00055
 
 
 
-References \mbox{\hyperlink{oomph__definitions_8cc_source_l00049}{oomph\+::\+Global\+\_\+timings\+::\+Doc\+\_\+comprehensive\+\_\+timings}}, \mbox{\hyperlink{nodes_8h_source_l01229}{oomph\+::\+Node\+::hanging\+\_\+pt()}}, \mbox{\hyperlink{cfortran_8h_source_l00603}{i}}, \mbox{\hyperlink{nodes_8h_source_l01286}{oomph\+::\+Node\+::is\+\_\+hanging()}}, \mbox{\hyperlink{nodes_8h_source_l00785}{oomph\+::\+Hang\+Info\+::nmaster()}}, \mbox{\hyperlink{oomph__definitions_8cc_source_l00319}{oomph\+::oomph\+\_\+info}}, \mbox{\hyperlink{missing__masters_8cc_source_l00106}{oomph\+::\+Missing\+\_\+masters\+\_\+functions\+::recursively\+\_\+add\+\_\+masters\+\_\+of\+\_\+external\+\_\+haloed\+\_\+node()}}, and \mbox{\hyperlink{oomph__utilities_8cc_source_l01295}{oomph\+::\+Timing\+Helpers\+::timer()}}.
+References \mbox{\hyperlink{oomph__definitions_8cc_source_l00049}{oomph\+::\+Global\+\_\+timings\+::\+Doc\+\_\+comprehensive\+\_\+timings}}, \mbox{\hyperlink{cfortran_8h_source_l00603}{i}}, \mbox{\hyperlink{oomph__definitions_8cc_source_l00319}{oomph\+::oomph\+\_\+info}}, \mbox{\hyperlink{missing__masters_8cc_source_l00106}{oomph\+::\+Missing\+\_\+masters\+\_\+functions\+::recursively\+\_\+add\+\_\+masters\+\_\+of\+\_\+external\+\_\+haloed\+\_\+node()}}, and \mbox{\hyperlink{oomph__utilities_8cc_source_l01295}{oomph\+::\+Timing\+Helpers\+::timer()}}.
 
 \mbox{\Hypertarget{classoomph_1_1TreeBasedRefineableMesh_aa47363e7700089d4b8756b2339c4893c}\label{classoomph_1_1TreeBasedRefineableMesh_aa47363e7700089d4b8756b2339c4893c}} 
 \index{oomph::TreeBasedRefineableMesh$<$ ELEMENT $>$@{oomph::TreeBasedRefineableMesh$<$ ELEMENT $>$}!p\_refine\_elements\_if\_required@{p\_refine\_elements\_if\_required}}

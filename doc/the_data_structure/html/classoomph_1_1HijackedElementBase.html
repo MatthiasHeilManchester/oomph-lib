@@ -134,6 +134,9 @@ $(function() {
 </div><!--header-->
 <div class="contents">
 
+<p>HijackedElement base class that provides storage and access funcitons for pointers to the global equation numbers that are hijacked by the HijackedElement. A default residuals multiplier is also provided.  
+ <a href="classoomph_1_1HijackedElementBase.html#details">More...</a></p>
+
 <p><code>#include &lt;<a class="el" href="hijacked__elements_8h_source.html">hijacked_elements.h</a>&gt;</code></p>
 <div id="dynsection-0" onclick="return toggleVisibility(this)" class="dynheader closed" style="cursor:pointer;">
   <img id="dynsection-0-trigger" src="closed.png" alt="+"/> Inheritance diagram for oomph::HijackedElementBase:</div>
@@ -194,6 +197,7 @@ Protected Member Functions</h2></td></tr>
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pro-attribs" name="pro-attribs"></a>
 Protected Attributes</h2></td></tr>
 <tr class="memitem:a9c3a9a4e39ee5e3af0f5594c31f532c5"><td class="memItemLeft" align="right" valign="top">std::set&lt; long * &gt; *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classoomph_1_1HijackedElementBase.html#a9c3a9a4e39ee5e3af0f5594c31f532c5">Hijacked_global_eqn_number_pt</a></td></tr>
+<tr class="memdesc:a9c3a9a4e39ee5e3af0f5594c31f532c5"><td class="mdescLeft">&#160;</td><td class="mdescRight">Pointer to a Set of pointers to the equation numbers that will be hijacked by this element. Note that these MUST be pointers because hijacking information is set BEFORE global equation numbers have been assigned.  <a href="classoomph_1_1HijackedElementBase.html#a9c3a9a4e39ee5e3af0f5594c31f532c5">More...</a><br /></td></tr>
 <tr class="separator:a9c3a9a4e39ee5e3af0f5594c31f532c5"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ae604da2f744f328f3866a2cefa3aa80c"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classoomph_1_1Vector.html">Vector</a>&lt; int &gt; *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classoomph_1_1HijackedElementBase.html#ae604da2f744f328f3866a2cefa3aa80c">Hijacked_local_eqn_number_pt</a></td></tr>
 <tr class="memdesc:ae604da2f744f328f3866a2cefa3aa80c"><td class="mdescLeft">&#160;</td><td class="mdescRight">Pointer to a vector of integers containing the local equation numbers of any hijacked variables in the element.  <a href="classoomph_1_1HijackedElementBase.html#ae604da2f744f328f3866a2cefa3aa80c">More...</a><br /></td></tr>
@@ -205,6 +209,7 @@ Protected Attributes</h2></td></tr>
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pro-static-attribs" name="pro-static-attribs"></a>
 Static Protected Attributes</h2></td></tr>
 <tr class="memitem:afd87cc7c33c2b846c5f7a373c352f13a"><td class="memItemLeft" align="right" valign="top">static double&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classoomph_1_1HijackedElementBase.html#afd87cc7c33c2b846c5f7a373c352f13a">Default_residual_multiplier</a> = 0.0</td></tr>
+<tr class="memdesc:afd87cc7c33c2b846c5f7a373c352f13a"><td class="mdescLeft">&#160;</td><td class="mdescRight">Static default value for the double that multiplies the original residuals.  <a href="classoomph_1_1HijackedElementBase.html#afd87cc7c33c2b846c5f7a373c352f13a">More...</a><br /></td></tr>
 <tr class="separator:afd87cc7c33c2b846c5f7a373c352f13a"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
@@ -301,7 +306,6 @@ Static Protected Attributes</h2></td></tr>
 </div><div class="memdoc">
 
 <p>Mark the global equation, addressed by global_eqn_pt, as hijacked by this element. </p>
-<p >Mark the global equation, addressed by global_eqn_pt, as hijacked by this element. </p>
 
 <p class="definition">Definition at line <a class="el" href="hijacked__elements_8cc_source.html#l00062">62</a> of file <a class="el" href="hijacked__elements_8cc_source.html">hijacked_elements.cc</a>.</p>
 
@@ -431,7 +435,6 @@ Static Protected Attributes</h2></td></tr>
 </div><div class="memdoc">
 
 <p>The global equation, addressed by global_eqn_pt, is no longer hijacked by this element. </p>
-<p >The global equation, addressed by global_eqn_pt, is no longer hijacked by this element. </p>
 
 <p class="definition">Definition at line <a class="el" href="hijacked__elements_8cc_source.html#l00079">79</a> of file <a class="el" href="hijacked__elements_8cc_source.html">hijacked_elements.cc</a>.</p>
 
@@ -459,8 +462,9 @@ Static Protected Attributes</h2></td></tr>
   </tr>
 </table>
 </div><div class="memdoc">
-<p >Static default value for the double that multiplies the original residuals</p>
-<p >Static default value of the multiplier for the original residuals The contribution to the total residuals is the product of the multiplier and the original value of the residuals </p>
+
+<p>Static default value for the double that multiplies the original residuals. </p>
+<p >Static default value of the multiplier for the original residuals The contribution to the total residuals is the product of the multiplier and the original value of the residuals. </p>
 
 <p class="definition">Definition at line <a class="el" href="hijacked__elements_8h_source.html#l00102">102</a> of file <a class="el" href="hijacked__elements_8h_source.html">hijacked_elements.h</a>.</p>
 
@@ -487,7 +491,8 @@ Static Protected Attributes</h2></td></tr>
   </tr>
 </table>
 </div><div class="memdoc">
-<p >Pointer to a Set of pointers to the equation numbers that will be hijacked by this element. Note that these MUST be pointers because hijacking information is set BEFORE global equation numbers have been assigned. </p>
+
+<p>Pointer to a Set of pointers to the equation numbers that will be hijacked by this element. Note that these MUST be pointers because hijacking information is set BEFORE global equation numbers have been assigned. </p>
 
 <p class="definition">Definition at line <a class="el" href="hijacked__elements_8h_source.html#l00086">86</a> of file <a class="el" href="hijacked__elements_8h_source.html">hijacked_elements.h</a>.</p>
 
@@ -583,7 +588,7 @@ Static Protected Attributes</h2></td></tr>
     <footer>
       <div class="container">
         <div class="text-muted" style="float:right;">Generated by <a href="http://www.doxygen.org/index.html">
-          <img style="height:18px;" class="footer-img" src="doxygen.png" alt="doxygen"></a> on Wed Oct 13 2021 08:46:36
+          <img style="height:18px;" class="footer-img" src="doxygen.png" alt="doxygen"></a> on Thu Oct 21 2021 17:35:00
         </div>
       </div>
     </footer>

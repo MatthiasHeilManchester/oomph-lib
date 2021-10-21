@@ -82,7 +82,7 @@ These are already implemented for many elements. If not, the functions are easy 
 \DoxyCodeLine{ }
 \DoxyCodeLine{\textcolor{keyword}{public}: }
 \DoxyCodeLine{\textcolor{comment}{}}
-\DoxyCodeLine{\textcolor{comment}{ /// \(\backslash\)short The number of "{}DOF types"{} that degrees of freedom in this element}}
+\DoxyCodeLine{\textcolor{comment}{ ///  The number of "{}DOF types"{} that degrees of freedom in this element}}
 \DoxyCodeLine{\textcolor{comment}{ /// are sub-\/divided into: The displacement components}}
 \DoxyCodeLine{\textcolor{comment}{} \textcolor{keywordtype}{unsigned} ndof\_types()\textcolor{keyword}{ const}}
 \DoxyCodeLine{\textcolor{keyword}{  }\{}
@@ -204,7 +204,7 @@ Here is a sample implementation of the diagonal block preconditioner as a class 
  
 \begin{DoxyCodeInclude}{0}
 \DoxyCodeLine{\textcolor{comment}{//=========================start\_of\_diagonal\_class=============================}}
-\DoxyCodeLine{\textcolor{comment}{/// \(\backslash\)short Simple proof-\/of-\/concept block diagonal preconditioner for}\textcolor{comment}{}}
+\DoxyCodeLine{\textcolor{comment}{///  Simple proof-\/of-\/concept block diagonal preconditioner for}\textcolor{comment}{}}
 \DoxyCodeLine{\textcolor{comment}{/// demo purposes. There's a much better version in src/generic!}}
 \DoxyCodeLine{\textcolor{comment}{}\textcolor{comment}{//=============================================================================}}
 \DoxyCodeLine{ \textcolor{keyword}{template}<\textcolor{keyword}{typename} MATRIX> }
@@ -220,7 +220,7 @@ Here is a sample implementation of the diagonal block preconditioner as a class 
 \DoxyCodeLine{   \} \textcolor{comment}{// end\_of\_constructor}}
 \DoxyCodeLine{}
 \DoxyCodeLine{ \textcolor{comment}{}}
-\DoxyCodeLine{\textcolor{comment}{  /// \(\backslash\)short Destructor -\/ delete the subsidiary preconditioners (solvers for}}
+\DoxyCodeLine{\textcolor{comment}{  ///  Destructor -\/ delete the subsidiary preconditioners (solvers for}}
 \DoxyCodeLine{\textcolor{comment}{  /// linear systems involving diagonal block)}}
 \DoxyCodeLine{\textcolor{comment}{}  \string~Diagonal()}
 \DoxyCodeLine{   \{}
@@ -243,7 +243,7 @@ Here is a sample implementation of the diagonal block preconditioner as a class 
 \DoxyCodeLine{   \}}
 \DoxyCodeLine{}
 \DoxyCodeLine{\textcolor{comment}{}}
-\DoxyCodeLine{\textcolor{comment}{  /// \(\backslash\)short Setup the preconditioner }}
+\DoxyCodeLine{\textcolor{comment}{  ///  Setup the preconditioner }}
 \DoxyCodeLine{\textcolor{comment}{}  \textcolor{keywordtype}{void} setup();}
 \DoxyCodeLine{  }
 \DoxyCodeLine{  \textcolor{comment}{// Use the version in the Preconditioner base class for the alternative}}
@@ -262,11 +262,11 @@ Here is a sample implementation of the diagonal block preconditioner as a class 
 \DoxyCodeLine{}
 \DoxyCodeLine{ private :}
 \DoxyCodeLine{  \textcolor{comment}{}}
-\DoxyCodeLine{\textcolor{comment}{  /// \(\backslash\)short Vector of pointers to preconditioners/inexact solvers }}
+\DoxyCodeLine{\textcolor{comment}{  ///  Vector of pointers to preconditioners/inexact solvers }}
 \DoxyCodeLine{\textcolor{comment}{  /// for each diagonal block}}
 \DoxyCodeLine{\textcolor{comment}{}  Vector<Preconditioner*> Diagonal\_block\_preconditioner\_pt;}
 \DoxyCodeLine{  \textcolor{comment}{}}
-\DoxyCodeLine{\textcolor{comment}{  /// \(\backslash\)short Mesh pointers with preconditionable elements used}}
+\DoxyCodeLine{\textcolor{comment}{  ///  Mesh pointers with preconditionable elements used}}
 \DoxyCodeLine{\textcolor{comment}{  /// for classification of dof types.}}
 \DoxyCodeLine{\textcolor{comment}{}  Mesh* Multi\_poisson\_mesh\_pt;}
 \DoxyCodeLine{}
@@ -454,7 +454,7 @@ Here is a sample implementation of the upper triangular block preconditioner as 
  
 \begin{DoxyCodeInclude}{0}
 \DoxyCodeLine{\textcolor{comment}{//=========================start\_of\_upper\_triangular\_class=====================}}
-\DoxyCodeLine{\textcolor{comment}{/// \(\backslash\)short Upper triangular preconditioner for a system }\textcolor{comment}{}}
+\DoxyCodeLine{\textcolor{comment}{///  Upper triangular preconditioner for a system }\textcolor{comment}{}}
 \DoxyCodeLine{\textcolor{comment}{/// with any number of dof types.}}
 \DoxyCodeLine{\textcolor{comment}{}\textcolor{comment}{//=============================================================================}}
 \DoxyCodeLine{ \textcolor{keyword}{template}<\textcolor{keyword}{typename} MATRIX> }
@@ -493,7 +493,7 @@ Here is a sample implementation of the upper triangular block preconditioner as 
 \DoxyCodeLine{\textcolor{comment}{  /// Apply preconditioner to r}}
 \DoxyCodeLine{\textcolor{comment}{}  \textcolor{keywordtype}{void} preconditioner\_solve(\textcolor{keyword}{const} DoubleVector \&r, DoubleVector \&z);}
 \DoxyCodeLine{ \textcolor{comment}{}}
-\DoxyCodeLine{\textcolor{comment}{  /// \(\backslash\)short Setup the preconditioner }}
+\DoxyCodeLine{\textcolor{comment}{  ///  Setup the preconditioner }}
 \DoxyCodeLine{\textcolor{comment}{}  \textcolor{keywordtype}{void} setup();}
 \DoxyCodeLine{  }
 \DoxyCodeLine{  \textcolor{comment}{// Use the version in the Preconditioner base class for the alternative}}
@@ -511,11 +511,11 @@ Here is a sample implementation of the upper triangular block preconditioner as 
 \DoxyCodeLine{\textcolor{comment}{  /// Pointers to matrix vector product operators for the off diagonals}}
 \DoxyCodeLine{\textcolor{comment}{}  DenseMatrix<MatrixVectorProduct*> Off\_diagonal\_matrix\_vector\_product\_pt;}
 \DoxyCodeLine{\textcolor{comment}{}}
-\DoxyCodeLine{\textcolor{comment}{  /// \(\backslash\)short Vector of pointers to preconditioners/inexact solvers }}
+\DoxyCodeLine{\textcolor{comment}{  ///  Vector of pointers to preconditioners/inexact solvers }}
 \DoxyCodeLine{\textcolor{comment}{  /// for each diagonal block}}
 \DoxyCodeLine{\textcolor{comment}{}  Vector<Preconditioner*> Block\_preconditioner\_pt;}
 \DoxyCodeLine{\textcolor{comment}{}}
-\DoxyCodeLine{\textcolor{comment}{  /// \(\backslash\)short Pointer to mesh with preconditionable elements used}}
+\DoxyCodeLine{\textcolor{comment}{  ///  Pointer to mesh with preconditionable elements used}}
 \DoxyCodeLine{\textcolor{comment}{  /// for classification of dof types.}}
 \DoxyCodeLine{\textcolor{comment}{}  Mesh* Multi\_poisson\_mesh\_pt;}
 \DoxyCodeLine{}
@@ -755,7 +755,7 @@ The implementation of the preconditioner closely follows that of the block diago
 
 \begin{DoxyCodeInclude}{0}
 \DoxyCodeLine{\textcolor{comment}{//=======================start\_of\_two\_plus\_three\_class=========================}\textcolor{comment}{}}
-\DoxyCodeLine{\textcolor{comment}{/// \(\backslash\)short Block diagonal preconditioner for system with 5 dof types}}
+\DoxyCodeLine{\textcolor{comment}{///  Block diagonal preconditioner for system with 5 dof types}}
 \DoxyCodeLine{\textcolor{comment}{/// assembled into a 2x2 block system, with (0,0) block containing the }}
 \DoxyCodeLine{\textcolor{comment}{/// first two dof types and the (1,1) block the remaining three dof types.}}
 \DoxyCodeLine{\textcolor{comment}{}\textcolor{comment}{//=============================================================================}}
@@ -796,7 +796,7 @@ The implementation of the preconditioner closely follows that of the block diago
 \DoxyCodeLine{\textcolor{comment}{  /// Apply preconditioner to r, i.e. return z such that P z = r}}
 \DoxyCodeLine{\textcolor{comment}{}  \textcolor{keywordtype}{void} preconditioner\_solve(\textcolor{keyword}{const} DoubleVector \&r, DoubleVector \&z);}
 \DoxyCodeLine{  \textcolor{comment}{}}
-\DoxyCodeLine{\textcolor{comment}{  /// \(\backslash\)short Setup the preconditioner }}
+\DoxyCodeLine{\textcolor{comment}{  ///  Setup the preconditioner }}
 \DoxyCodeLine{\textcolor{comment}{}  \textcolor{keyword}{virtual} \textcolor{keywordtype}{void} setup();}
 \DoxyCodeLine{ \textcolor{comment}{}}
 \DoxyCodeLine{\textcolor{comment}{  /// Specify the mesh that contains multi-\/poisson elements}}
@@ -807,15 +807,15 @@ The implementation of the preconditioner closely follows that of the block diago
 \DoxyCodeLine{}
 \DoxyCodeLine{ private :}
 \DoxyCodeLine{  \textcolor{comment}{}}
-\DoxyCodeLine{\textcolor{comment}{  /// \(\backslash\)short Pointer to preconditioners/inexact solver}}
+\DoxyCodeLine{\textcolor{comment}{  ///  Pointer to preconditioners/inexact solver}}
 \DoxyCodeLine{\textcolor{comment}{  /// for (0,0) block}}
 \DoxyCodeLine{\textcolor{comment}{}  Preconditioner* First\_subsidiary\_preconditioner\_pt;}
 \DoxyCodeLine{  \textcolor{comment}{}}
-\DoxyCodeLine{\textcolor{comment}{  /// \(\backslash\)short Pointer to preconditioners/inexact solver}}
+\DoxyCodeLine{\textcolor{comment}{  ///  Pointer to preconditioners/inexact solver}}
 \DoxyCodeLine{\textcolor{comment}{  /// for (1,1) block}}
 \DoxyCodeLine{\textcolor{comment}{}  Preconditioner* Second\_subsidiary\_preconditioner\_pt;}
 \DoxyCodeLine{\textcolor{comment}{}}
-\DoxyCodeLine{\textcolor{comment}{  /// \(\backslash\)short Pointer to mesh with preconditionable elements used}}
+\DoxyCodeLine{\textcolor{comment}{  ///  Pointer to mesh with preconditionable elements used}}
 \DoxyCodeLine{\textcolor{comment}{  /// for classification of dof types.  }}
 \DoxyCodeLine{\textcolor{comment}{}  Mesh* Multi\_poisson\_mesh\_pt; }
 \DoxyCodeLine{ \};}
@@ -1008,7 +1008,7 @@ The implementation is very similar to that in the previous example -- we simply 
 
 \begin{DoxyCodeInclude}{0}
 \DoxyCodeLine{\textcolor{comment}{//=================start\_of\_two\_plus\_three\_upper\_triangular\_class==============}\textcolor{comment}{}}
-\DoxyCodeLine{\textcolor{comment}{/// \(\backslash\)short Upper triangular two plus three triangular preconditioner for a }}
+\DoxyCodeLine{\textcolor{comment}{///  Upper triangular two plus three triangular preconditioner for a }}
 \DoxyCodeLine{\textcolor{comment}{/// system with  5 dof types.}}
 \DoxyCodeLine{\textcolor{comment}{}\textcolor{comment}{//=============================================================================}}
 \DoxyCodeLine{ \textcolor{keyword}{template}<\textcolor{keyword}{typename} MATRIX> }
@@ -1052,7 +1052,7 @@ The implementation is very similar to that in the previous example -- we simply 
 \DoxyCodeLine{\textcolor{comment}{  /// Apply preconditioner to r}}
 \DoxyCodeLine{\textcolor{comment}{}  \textcolor{keywordtype}{void} preconditioner\_solve(\textcolor{keyword}{const} DoubleVector \&r, DoubleVector \&z);}
 \DoxyCodeLine{ \textcolor{comment}{}}
-\DoxyCodeLine{\textcolor{comment}{  /// \(\backslash\)short Setup the preconditioner }}
+\DoxyCodeLine{\textcolor{comment}{  ///  Setup the preconditioner }}
 \DoxyCodeLine{\textcolor{comment}{}  \textcolor{keywordtype}{void} setup();}
 \DoxyCodeLine{  }
 \DoxyCodeLine{  \textcolor{comment}{// Use the version in the Preconditioner base class for the alternative}}
@@ -1070,15 +1070,15 @@ The implementation is very similar to that in the previous example -- we simply 
 \DoxyCodeLine{\textcolor{comment}{  /// Pointer to matrix vector product operator for the single off diagonals}}
 \DoxyCodeLine{\textcolor{comment}{}  MatrixVectorProduct* Off\_diagonal\_matrix\_vector\_product\_pt;}
 \DoxyCodeLine{\textcolor{comment}{}}
-\DoxyCodeLine{\textcolor{comment}{  /// \(\backslash\)short Pointer to preconditioners/inexact solver}}
+\DoxyCodeLine{\textcolor{comment}{  ///  Pointer to preconditioners/inexact solver}}
 \DoxyCodeLine{\textcolor{comment}{  /// for (0,0) block}}
 \DoxyCodeLine{\textcolor{comment}{}  Preconditioner* First\_subsidiary\_preconditioner\_pt;}
 \DoxyCodeLine{  \textcolor{comment}{}}
-\DoxyCodeLine{\textcolor{comment}{  /// \(\backslash\)short Pointer to preconditioners/inexact solver}}
+\DoxyCodeLine{\textcolor{comment}{  ///  Pointer to preconditioners/inexact solver}}
 \DoxyCodeLine{\textcolor{comment}{  /// for (1,1) block}}
 \DoxyCodeLine{\textcolor{comment}{}  Preconditioner* Second\_subsidiary\_preconditioner\_pt;}
 \DoxyCodeLine{\textcolor{comment}{}}
-\DoxyCodeLine{\textcolor{comment}{  /// \(\backslash\)short Pointer to mesh with preconditionable elements used}}
+\DoxyCodeLine{\textcolor{comment}{  ///  Pointer to mesh with preconditionable elements used}}
 \DoxyCodeLine{\textcolor{comment}{  /// for classification of dof types.}}
 \DoxyCodeLine{\textcolor{comment}{}  Mesh* Multi\_poisson\_mesh\_pt;}
 \DoxyCodeLine{}
@@ -1316,7 +1316,7 @@ The implementation of the preconditioner is completely equivalent to the corresp
 
 \begin{DoxyCodeInclude}{0}
 \DoxyCodeLine{\textcolor{comment}{//=========start\_of\_two\_plus\_three\_upper\_triangular\_with\_sub\_class=============}\textcolor{comment}{}}
-\DoxyCodeLine{\textcolor{comment}{/// \(\backslash\)short Upper block triangular with subsidiary block preconditioners }}
+\DoxyCodeLine{\textcolor{comment}{///  Upper block triangular with subsidiary block preconditioners }}
 \DoxyCodeLine{\textcolor{comment}{/// for a system with 5 dof types.}}
 \DoxyCodeLine{\textcolor{comment}{}\textcolor{comment}{//=============================================================================}}
 \DoxyCodeLine{ \textcolor{keyword}{template}<\textcolor{keyword}{typename} MATRIX> }
@@ -1364,7 +1364,7 @@ The implementation of the preconditioner is completely equivalent to the corresp
 \DoxyCodeLine{\textcolor{comment}{  /// Apply preconditioner to r}}
 \DoxyCodeLine{\textcolor{comment}{}  \textcolor{keywordtype}{void} preconditioner\_solve(\textcolor{keyword}{const} DoubleVector \&r, DoubleVector \&z);}
 \DoxyCodeLine{ \textcolor{comment}{}}
-\DoxyCodeLine{\textcolor{comment}{  /// \(\backslash\)short Setup the preconditioner }}
+\DoxyCodeLine{\textcolor{comment}{  ///  Setup the preconditioner }}
 \DoxyCodeLine{\textcolor{comment}{}  \textcolor{keywordtype}{void} setup();}
 \DoxyCodeLine{}
 \DoxyCodeLine{  \textcolor{comment}{// Use the version in the Preconditioner base class for the alternative}}
@@ -1382,15 +1382,15 @@ The implementation of the preconditioner is completely equivalent to the corresp
 \DoxyCodeLine{\textcolor{comment}{  /// Pointer to matrix vector product operators for the off diagonal block}}
 \DoxyCodeLine{\textcolor{comment}{}  MatrixVectorProduct* Off\_diagonal\_matrix\_vector\_product\_pt;}
 \DoxyCodeLine{\textcolor{comment}{}}
-\DoxyCodeLine{\textcolor{comment}{  /// \(\backslash\)short Pointer to preconditioners/inexact solver}}
+\DoxyCodeLine{\textcolor{comment}{  ///  Pointer to preconditioners/inexact solver}}
 \DoxyCodeLine{\textcolor{comment}{  /// for (0,0) block}}
 \DoxyCodeLine{\textcolor{comment}{}  Preconditioner* First\_subsidiary\_preconditioner\_pt;}
 \DoxyCodeLine{  \textcolor{comment}{}}
-\DoxyCodeLine{\textcolor{comment}{  /// \(\backslash\)short Pointer to preconditioners/inexact solver}}
+\DoxyCodeLine{\textcolor{comment}{  ///  Pointer to preconditioners/inexact solver}}
 \DoxyCodeLine{\textcolor{comment}{  /// for (1,1) block}}
 \DoxyCodeLine{\textcolor{comment}{}  Preconditioner* Second\_subsidiary\_preconditioner\_pt;}
 \DoxyCodeLine{\textcolor{comment}{}}
-\DoxyCodeLine{\textcolor{comment}{  /// \(\backslash\)short Pointer to mesh with preconditionable elements used}}
+\DoxyCodeLine{\textcolor{comment}{  ///  Pointer to mesh with preconditionable elements used}}
 \DoxyCodeLine{\textcolor{comment}{  /// for classification of dof types.}}
 \DoxyCodeLine{\textcolor{comment}{}  Mesh* Multi\_poisson\_mesh\_pt;}
 \DoxyCodeLine{}
@@ -1699,7 +1699,7 @@ The implementation of the preconditioner is completely equivalent to the precond
 
 \begin{DoxyCodeInclude}{0}
 \DoxyCodeLine{\textcolor{comment}{//=============start\_of\_two\_plus\_three\_upper\_triangular\_with\_replace\_class=====}\textcolor{comment}{}}
-\DoxyCodeLine{\textcolor{comment}{/// \(\backslash\)short Block diagonal preconditioner for system with 5 dof types}}
+\DoxyCodeLine{\textcolor{comment}{///  Block diagonal preconditioner for system with 5 dof types}}
 \DoxyCodeLine{\textcolor{comment}{/// assembled into a 2x2 block system, with (0,0) block containing}}
 \DoxyCodeLine{\textcolor{comment}{/// the first two dof types, the (1,1) block the remaining dof types.}}
 \DoxyCodeLine{\textcolor{comment}{/// The blocks are solved by upper block triangular preconditioners.}}
@@ -1752,7 +1752,7 @@ The implementation of the preconditioner is completely equivalent to the precond
 \DoxyCodeLine{\textcolor{comment}{  /// Apply preconditioner to r, i.e. return z such that P z = r}}
 \DoxyCodeLine{\textcolor{comment}{}  \textcolor{keywordtype}{void} preconditioner\_solve(\textcolor{keyword}{const} DoubleVector \&r, DoubleVector \&z);}
 \DoxyCodeLine{  \textcolor{comment}{}}
-\DoxyCodeLine{\textcolor{comment}{  /// \(\backslash\)short Setup the preconditioner }}
+\DoxyCodeLine{\textcolor{comment}{  ///  Setup the preconditioner }}
 \DoxyCodeLine{\textcolor{comment}{}  \textcolor{keywordtype}{void} setup();}
 \DoxyCodeLine{ \textcolor{comment}{}}
 \DoxyCodeLine{\textcolor{comment}{  /// Specify the mesh that contains multi-\/poisson elements}}
@@ -1763,22 +1763,22 @@ The implementation of the preconditioner is completely equivalent to the precond
 \DoxyCodeLine{}
 \DoxyCodeLine{   private :}
 \DoxyCodeLine{  \textcolor{comment}{}}
-\DoxyCodeLine{\textcolor{comment}{  /// \(\backslash\)short Pointer to preconditioners/inexact solver}}
+\DoxyCodeLine{\textcolor{comment}{  ///  Pointer to preconditioners/inexact solver}}
 \DoxyCodeLine{\textcolor{comment}{  /// for compound  (0,0) block}}
 \DoxyCodeLine{\textcolor{comment}{}  Preconditioner* First\_subsidiary\_preconditioner\_pt;}
 \DoxyCodeLine{  \textcolor{comment}{}}
-\DoxyCodeLine{\textcolor{comment}{  /// \(\backslash\)short Pointer to preconditioners/inexact solver}}
+\DoxyCodeLine{\textcolor{comment}{  ///  Pointer to preconditioners/inexact solver}}
 \DoxyCodeLine{\textcolor{comment}{  /// for compound (1,1) block}}
 \DoxyCodeLine{\textcolor{comment}{}  Preconditioner* Second\_subsidiary\_preconditioner\_pt;}
 \DoxyCodeLine{\textcolor{comment}{}}
-\DoxyCodeLine{\textcolor{comment}{  /// \(\backslash\)short Matrix vector product operator with the compound }}
+\DoxyCodeLine{\textcolor{comment}{  ///  Matrix vector product operator with the compound }}
 \DoxyCodeLine{\textcolor{comment}{  /// (0,1) off diagonal block.}}
 \DoxyCodeLine{\textcolor{comment}{}  MatrixVectorProduct* Off\_diagonal\_matrix\_vector\_product\_pt;}
 \DoxyCodeLine{}
 \DoxyCodeLine{  \textcolor{comment}{// Matrix of pointers to replacement matrix blocks}}
 \DoxyCodeLine{  DenseMatrix<CRDoubleMatrix*> Replacement\_matrix\_pt;}
 \DoxyCodeLine{\textcolor{comment}{}}
-\DoxyCodeLine{\textcolor{comment}{  /// \(\backslash\)short Pointer to mesh with preconditionable elements used}}
+\DoxyCodeLine{\textcolor{comment}{  ///  Pointer to mesh with preconditionable elements used}}
 \DoxyCodeLine{\textcolor{comment}{  /// for classification of dof types.}}
 \DoxyCodeLine{\textcolor{comment}{}  Mesh* Multi\_poisson\_mesh\_pt;}
 \DoxyCodeLine{  }
@@ -2028,7 +2028,7 @@ The implementation of the preconditioner is completely equivalent to the precond
 
 \begin{DoxyCodeInclude}{0}
 \DoxyCodeLine{\textcolor{comment}{//==================start\_of\_coarse\_two\_plus\_two\_plus\_one\_class================}\textcolor{comment}{}}
-\DoxyCodeLine{\textcolor{comment}{/// \(\backslash\)short Block diagonal preconditioner for system with 5 dof types}}
+\DoxyCodeLine{\textcolor{comment}{///  Block diagonal preconditioner for system with 5 dof types}}
 \DoxyCodeLine{\textcolor{comment}{/// assembled into a 2x2 block system, with the (0,0) block containing}}
 \DoxyCodeLine{\textcolor{comment}{/// the first two dof types, the (1,1) block containing the three remaining }}
 \DoxyCodeLine{\textcolor{comment}{/// ones.}}
@@ -2079,7 +2079,7 @@ The implementation of the preconditioner is completely equivalent to the precond
 \DoxyCodeLine{\textcolor{comment}{  /// Apply preconditioner to r, i.e. return z such that P z = r}}
 \DoxyCodeLine{\textcolor{comment}{}  \textcolor{keywordtype}{void} preconditioner\_solve(\textcolor{keyword}{const} DoubleVector \&r, DoubleVector \&z);}
 \DoxyCodeLine{  \textcolor{comment}{}}
-\DoxyCodeLine{\textcolor{comment}{  /// \(\backslash\)short Setup the preconditioner }}
+\DoxyCodeLine{\textcolor{comment}{  ///  Setup the preconditioner }}
 \DoxyCodeLine{\textcolor{comment}{}  \textcolor{keyword}{virtual} \textcolor{keywordtype}{void} setup();}
 \DoxyCodeLine{ \textcolor{comment}{}}
 \DoxyCodeLine{\textcolor{comment}{  /// Specify the mesh that contains multi-\/poisson elements}}
@@ -2090,11 +2090,11 @@ The implementation of the preconditioner is completely equivalent to the precond
 \DoxyCodeLine{}
 \DoxyCodeLine{ private :}
 \DoxyCodeLine{  \textcolor{comment}{}}
-\DoxyCodeLine{\textcolor{comment}{  /// \(\backslash\)short Pointer to preconditioners/inexact solver}}
+\DoxyCodeLine{\textcolor{comment}{  ///  Pointer to preconditioners/inexact solver}}
 \DoxyCodeLine{\textcolor{comment}{  /// for (0,0) block}}
 \DoxyCodeLine{\textcolor{comment}{}  Preconditioner* First\_subsidiary\_preconditioner\_pt;}
 \DoxyCodeLine{  \textcolor{comment}{}}
-\DoxyCodeLine{\textcolor{comment}{  /// \(\backslash\)short Pointer to preconditioners/inexact solver}}
+\DoxyCodeLine{\textcolor{comment}{  ///  Pointer to preconditioners/inexact solver}}
 \DoxyCodeLine{\textcolor{comment}{  /// for (1,1) block}}
 \DoxyCodeLine{\textcolor{comment}{}  Preconditioner* Second\_subsidiary\_preconditioner\_pt;}
 \DoxyCodeLine{}
@@ -2104,7 +2104,7 @@ The implementation of the preconditioner is completely equivalent to the precond
 \DoxyCodeLine{\textcolor{comment}{  /// Matrix vector product operator}}
 \DoxyCodeLine{\textcolor{comment}{}  MatrixVectorProduct* Off\_diagonal\_matrix\_vector\_product\_pt;}
 \DoxyCodeLine{\textcolor{comment}{}}
-\DoxyCodeLine{\textcolor{comment}{  /// \(\backslash\)short Pointer to mesh with preconditionable elements used}}
+\DoxyCodeLine{\textcolor{comment}{  ///  Pointer to mesh with preconditionable elements used}}
 \DoxyCodeLine{\textcolor{comment}{  /// for classification of dof types.  }}
 \DoxyCodeLine{\textcolor{comment}{}  Mesh* Multi\_poisson\_mesh\_pt;}
 \DoxyCodeLine{ \};}
@@ -2372,7 +2372,7 @@ The overall structure of the class is similar to that of the preconditioners con
  
 \begin{DoxyCodeInclude}{0}
 \DoxyCodeLine{\textcolor{comment}{//=start\_of\_simple\_fsi\_preconditioner========================================== }}
-\DoxyCodeLine{\textcolor{comment}{/// \(\backslash\)short Simple FSI preconditioner. A block uppper triangular preconditioner}\textcolor{comment}{}}
+\DoxyCodeLine{\textcolor{comment}{///  Simple FSI preconditioner. A block uppper triangular preconditioner}\textcolor{comment}{}}
 \DoxyCodeLine{\textcolor{comment}{/// for the 2x2 FSI block system -\/-\/ DOFs are decomposed into fluid DOFs and }}
 \DoxyCodeLine{\textcolor{comment}{/// solid DOFs. The fluid subisidiary system is solved with the }}
 \DoxyCodeLine{\textcolor{comment}{/// Navier Stokes Preconditioner and the solid subsidiary system with the}}
@@ -2384,7 +2384,7 @@ The overall structure of the class is similar to that of the preconditioners con
 \DoxyCodeLine{ }
 \DoxyCodeLine{public :}
 \DoxyCodeLine{ \textcolor{comment}{}}
-\DoxyCodeLine{\textcolor{comment}{ /// \(\backslash\)short Constructor for SimpleFSIPreconditioner}}
+\DoxyCodeLine{\textcolor{comment}{ ///  Constructor for SimpleFSIPreconditioner}}
 \DoxyCodeLine{\textcolor{comment}{} SimpleFSIPreconditioner(Problem* problem\_pt)}
 \DoxyCodeLine{  : BlockPreconditioner<MATRIX>(), Navier\_stokes\_preconditioner\_pt(0),}
 \DoxyCodeLine{    Solid\_preconditioner\_pt(0), Fluid\_solid\_coupling\_matvec\_pt(0),}
@@ -2423,24 +2423,24 @@ The overall structure of the class is similar to that of the preconditioners con
 \DoxyCodeLine{  \}}
 \DoxyCodeLine{ }
 \DoxyCodeLine{  \textcolor{comment}{}}
-\DoxyCodeLine{\textcolor{comment}{ /// \(\backslash\)short Access function to mesh containing the block-\/preconditionable}}
+\DoxyCodeLine{\textcolor{comment}{ ///  Access function to mesh containing the block-\/preconditionable}}
 \DoxyCodeLine{\textcolor{comment}{ /// Navier-\/Stokes elements. }}
 \DoxyCodeLine{\textcolor{comment}{} \textcolor{keywordtype}{void} set\_navier\_stokes\_mesh(Mesh* mesh\_pt) }
 \DoxyCodeLine{  \{}
 \DoxyCodeLine{   Navier\_stokes\_mesh\_pt = mesh\_pt;}
 \DoxyCodeLine{  \}}
 \DoxyCodeLine{\textcolor{comment}{}}
-\DoxyCodeLine{\textcolor{comment}{ /// \(\backslash\)short Access function to mesh containing the block-\/preconditionable}}
+\DoxyCodeLine{\textcolor{comment}{ ///  Access function to mesh containing the block-\/preconditionable}}
 \DoxyCodeLine{\textcolor{comment}{ /// FSI solid elements. }}
 \DoxyCodeLine{\textcolor{comment}{} \textcolor{keywordtype}{void} set\_solid\_mesh(Mesh* mesh\_pt) }
 \DoxyCodeLine{  \{}
 \DoxyCodeLine{   Solid\_mesh\_pt = mesh\_pt;}
 \DoxyCodeLine{  \}}
 \DoxyCodeLine{\textcolor{comment}{}}
-\DoxyCodeLine{\textcolor{comment}{ /// \(\backslash\)short Setup the preconditioner}}
+\DoxyCodeLine{\textcolor{comment}{ ///  Setup the preconditioner}}
 \DoxyCodeLine{\textcolor{comment}{} \textcolor{keywordtype}{void} setup();}
 \DoxyCodeLine{ \textcolor{comment}{}}
-\DoxyCodeLine{\textcolor{comment}{ /// \(\backslash\)short Apply preconditioner to r}}
+\DoxyCodeLine{\textcolor{comment}{ ///  Apply preconditioner to r}}
 \DoxyCodeLine{\textcolor{comment}{} \textcolor{keywordtype}{void} preconditioner\_solve(\textcolor{keyword}{const} DoubleVector \&r,}
 \DoxyCodeLine{                           DoubleVector \&z);}
 \DoxyCodeLine{}

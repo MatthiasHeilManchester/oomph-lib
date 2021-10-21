@@ -2,6 +2,11 @@
 \label{classoomph_1_1OneDLagrangianMesh}\index{oomph::OneDLagrangianMesh$<$ ELEMENT $>$@{oomph::OneDLagrangianMesh$<$ ELEMENT $>$}}
 
 
+1D mesh parametrised in terms of a 1D Lagrangian coordinate. The Eulerian positions of the nodes are determined by the Geom\+Object.  
+
+
+
+
 {\ttfamily \#include $<$one\+\_\+d\+\_\+lagrangian\+\_\+mesh.\+template.\+h$>$}
 
 Inheritance diagram for oomph\+::One\+DLagrangian\+Mesh\texorpdfstring{$<$}{<} ELEMENT \texorpdfstring{$>$}{>}\+:\begin{figure}[H]
@@ -53,7 +58,7 @@ Definition at line \mbox{\hyperlink{one__d__lagrangian__mesh_8template_8h_source
 
 Constructor\+: Pass number of elements, length, pointer to Geom\+Object that defines the undeformed Eulerian position, and the timestepper -- defaults to (Steady) default timestepper defined in the Mesh base class. 
 
-Constructor for 1D mesh\+: n\+\_\+element \+: number of elements length \+: length of domain undef\+\_\+eulerian\+\_\+posn\+\_\+pt\+: pointer to geom object that describes the initial Eulerian position of the mesh. time\+\_\+stepper\+\_\+pt \+: timestepper 
+Constructor for 1D mesh\+: n\+\_\+element \+: number of elements length \+: length of domain undef\+\_\+eulerian\+\_\+posn\+\_\+pt\+: pointer to geom object that describes the initial Eulerian position of the mesh. time\+\_\+stepper\+\_\+pt \+: timestepper. 
 
 Definition at line \mbox{\hyperlink{one__d__lagrangian__mesh_8template_8cc_source_l00047}{47}} of file \mbox{\hyperlink{one__d__lagrangian__mesh_8template_8cc_source}{one\+\_\+d\+\_\+lagrangian\+\_\+mesh.\+template.\+cc}}.
 
@@ -72,7 +77,7 @@ References \mbox{\hyperlink{one__d__lagrangian__mesh_8template_8cc_source_l00108
 
 Constructor\+: Pass number of elements, xmin, xmax pointer to Geom\+Object that defines the undeformed Eulerian position, and the timestepper -- defaults to (Steady) default timestepper defined in the Mesh base class. 
 
-Constructor for 1D mesh\+: n\+\_\+element \+: number of elements xmin \+: minimum coordinate value (LH end) xmax \+: maximum coordinate value (RH end) undef\+\_\+eulerian\+\_\+posn\+\_\+pt\+: pointer to geom object that describes the initial Eulerian position of the mesh. time\+\_\+stepper\+\_\+pt \+: timestepper 
+Constructor for 1D mesh\+: n\+\_\+element \+: number of elements xmin \+: minimum coordinate value (LH end) xmax \+: maximum coordinate value (RH end) undef\+\_\+eulerian\+\_\+posn\+\_\+pt\+: pointer to geom object that describes the initial Eulerian position of the mesh. time\+\_\+stepper\+\_\+pt \+: timestepper. 
 
 Definition at line \mbox{\hyperlink{one__d__lagrangian__mesh_8template_8cc_source_l00078}{78}} of file \mbox{\hyperlink{one__d__lagrangian__mesh_8template_8cc_source}{one\+\_\+d\+\_\+lagrangian\+\_\+mesh.\+template.\+cc}}.
 
@@ -94,7 +99,7 @@ void \mbox{\hyperlink{classoomph_1_1OneDLagrangianMesh}{oomph\+::\+One\+DLagrang
 
 Set the default gradients of the elements. 
 
-Set the default (initial) gradients within each element, which are merely the distances between the nodes, scaled by 0.\+5 because the elements have length 2 in local coordinates. N.\+B. This only works for QHermite\+Elements at the moment 
+Set the default (initial) gradients within each element, which are merely the distances between the nodes, scaled by 0.\+5 because the elements have length 2 in local coordinates. N.\+B. This only works for QHermite\+Elements at the moment. 
 
 Definition at line \mbox{\hyperlink{one__d__lagrangian__mesh_8template_8cc_source_l00108}{108}} of file \mbox{\hyperlink{one__d__lagrangian__mesh_8template_8cc_source}{one\+\_\+d\+\_\+lagrangian\+\_\+mesh.\+template.\+cc}}.
 

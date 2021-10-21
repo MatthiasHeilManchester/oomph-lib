@@ -2,6 +2,11 @@
 \label{classoomph_1_1DoubleVectorWithHaloEntries}\index{oomph::DoubleVectorWithHaloEntries@{oomph::DoubleVectorWithHaloEntries}}
 
 
+===================================================================== An extension of \mbox{\hyperlink{classoomph_1_1DoubleVector}{Double\+Vector}} that allows access to certain global entries that are not stored locally. Synchronisation of these values must be performed manually by calling the \mbox{\hyperlink{classoomph_1_1DoubleVectorWithHaloEntries_a6d5b6e2c1c80d4fb468c851030d62492}{synchronise()}} function. Synchronisation can only be from the haloed to the halo, but the local halo entries can all be summed and stored in the  
+
+
+
+
 {\ttfamily \#include $<$double\+\_\+vector\+\_\+with\+\_\+halo.\+h$>$}
 
 Inheritance diagram for oomph\+::Double\+Vector\+With\+Halo\+Entries\+:\begin{figure}[H]
@@ -34,7 +39,7 @@ const double \& \mbox{\hyperlink{classoomph_1_1DoubleVectorWithHaloEntries_ad98f
 void \mbox{\hyperlink{classoomph_1_1DoubleVectorWithHaloEntries_a6d5b6e2c1c80d4fb468c851030d62492}{synchronise}} ()
 \begin{DoxyCompactList}\small\item\em Synchronise the halo data. \end{DoxyCompactList}\item 
 void \mbox{\hyperlink{classoomph_1_1DoubleVectorWithHaloEntries_a7165745d3397b6ea9d87f123cc97e5c9}{sum\+\_\+all\+\_\+halo\+\_\+and\+\_\+haloed\+\_\+values}} ()
-\item 
+\begin{DoxyCompactList}\small\item\em Sum all the data, store in the master (haloed) data and then synchronise. \end{DoxyCompactList}\item 
 \mbox{\hyperlink{classoomph_1_1DoubleVectorHaloScheme}{Double\+Vector\+Halo\+Scheme}} $\ast$\& \mbox{\hyperlink{classoomph_1_1DoubleVectorWithHaloEntries_a7d753121acddfdc4b29d04812b91b5ec}{halo\+\_\+scheme\+\_\+pt}} ()
 \begin{DoxyCompactList}\small\item\em Access function for halo scheme. \end{DoxyCompactList}\item 
 \mbox{\hyperlink{classoomph_1_1DoubleVectorHaloScheme}{Double\+Vector\+Halo\+Scheme}} $\ast$const \& \mbox{\hyperlink{classoomph_1_1DoubleVectorWithHaloEntries_a227b3502b01bf9719cceff99ac38c7f5}{halo\+\_\+scheme\+\_\+pt}} () const
@@ -52,7 +57,9 @@ void \mbox{\hyperlink{classoomph_1_1DoubleVectorWithHaloEntries_a1aab1a84c6a82a7
 
 
 \doxysubsection{Detailed Description}
-===================================================================== An extension of \mbox{\hyperlink{classoomph_1_1DoubleVector}{Double\+Vector}} that allows access to certain global entries that are not stored locally. Synchronisation of these values must be performed manually by calling the \mbox{\hyperlink{classoomph_1_1DoubleVectorWithHaloEntries_a6d5b6e2c1c80d4fb468c851030d62492}{synchronise()}} function. Synchronisation can only be from the haloed to the halo, but the local halo entries can all be summed and stored in the \hypertarget{classoomph_1_1DoubleVectorWithHaloEntries_autotoc_md3}{}\doxysubsection{haloed value.}\label{classoomph_1_1DoubleVectorWithHaloEntries_autotoc_md3}
+===================================================================== An extension of \mbox{\hyperlink{classoomph_1_1DoubleVector}{Double\+Vector}} that allows access to certain global entries that are not stored locally. Synchronisation of these values must be performed manually by calling the \mbox{\hyperlink{classoomph_1_1DoubleVectorWithHaloEntries_a6d5b6e2c1c80d4fb468c851030d62492}{synchronise()}} function. Synchronisation can only be from the haloed to the halo, but the local halo entries can all be summed and stored in the 
+
+\hypertarget{classoomph_1_1DoubleVectorWithHaloEntries_autotoc_md2}{}\doxysubsection{haloed value.}\label{classoomph_1_1DoubleVectorWithHaloEntries_autotoc_md2}
 
 
 Definition at line \mbox{\hyperlink{double__vector__with__halo_8h_source_l00149}{149}} of file \mbox{\hyperlink{double__vector__with__halo_8h_source}{double\+\_\+vector\+\_\+with\+\_\+halo.\+h}}.
@@ -289,9 +296,11 @@ References \mbox{\hyperlink{double__vector_8cc_source_l00035}{oomph\+::\+Double\
 \doxysubsubsection{\texorpdfstring{sum\_all\_halo\_and\_haloed\_values()}{sum\_all\_halo\_and\_haloed\_values()}}
 {\footnotesize\ttfamily void oomph\+::\+Double\+Vector\+With\+Halo\+Entries\+::sum\+\_\+all\+\_\+halo\+\_\+and\+\_\+haloed\+\_\+values (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
 
-Sum all the data, store in the master (haloed) data and then synchronise
 
-Gather all ther data from multiple processors and sum the result which will be stored in the master copy and then synchronised to all copies. This requires two \char`\"{}all to all\char`\"{} communications 
+
+Sum all the data, store in the master (haloed) data and then synchronise. 
+
+Gather all ther data from multiple processors and sum the result which will be stored in the master copy and then synchronised to all copies. This requires two \char`\"{}all to all\char`\"{} communications. 
 
 Definition at line \mbox{\hyperlink{double__vector__with__halo_8cc_source_l00323}{323}} of file \mbox{\hyperlink{double__vector__with__halo_8cc_source}{double\+\_\+vector\+\_\+with\+\_\+halo.\+cc}}.
 

@@ -2,6 +2,11 @@
 \label{classoomph_1_1AxisymmetricQAdvectionCrouzeixRaviartElement}\index{oomph::AxisymmetricQAdvectionCrouzeixRaviartElement@{oomph::AxisymmetricQAdvectionCrouzeixRaviartElement}}
 
 
+A class that solves the Boussinesq approximation of the Navier--Stokes and energy equations by coupling two pre-\/existing classes. The QAdvection\+Diffusion\+Reaction\+Element with bi-\/quadratic interpolation for the scalar variables (temperature and concentration) and QCrouzeix\+Raviart\+Element which solves the Navier--Stokes equations using bi-\/quadratic interpolation for the velocities and a discontinuous bi-\/linear interpolation for the pressure. Note that we are free to choose the order in which we store the variables at the nodes. In this case we choose to store the variables in the order fluid velocities followed by temperature. We must, therefore, overload the function Advection\+Diffusion\+Reaction\+Equations$<$2,\+DIM$>$\+::u\+\_\+index\+\_\+adv\+\_\+diff\+\_\+react() to indicate that the temperature is stored at the DIM-\/th position not the 0-\/th. We do not need to overload the corresponding function in the Navier\+Stokes\+Equations$<$\+DIM$>$ class because the velocities are stored first.  
+
+
+
+
 {\ttfamily \#include $<$axisymmetric\+\_\+advection\+\_\+navier\+\_\+stokes\+\_\+elements.\+h$>$}
 
 Inheritance diagram for oomph\+::Axisymmetric\+QAdvection\+Crouzeix\+Raviart\+Element\+:\begin{figure}[H]
@@ -41,8 +46,7 @@ void \mbox{\hyperlink{classoomph_1_1AxisymmetricQAdvectionCrouzeixRaviartElement
 void \mbox{\hyperlink{classoomph_1_1AxisymmetricQAdvectionCrouzeixRaviartElement_a1ab78e3429b2fd6ce55cd2392d99a270}{output\+\_\+fct}} (std\+::ostream \&outfile, const unsigned \&Nplot, const double \&time, Finite\+Element\+::\+Unsteady\+Exact\+Solution\+Fct\+Pt exact\+\_\+soln\+\_\+pt)
 \begin{DoxyCompactList}\small\item\em Output function for a time-\/dependent exact solution\+: Broken default. \end{DoxyCompactList}\item 
 unsigned \mbox{\hyperlink{classoomph_1_1AxisymmetricQAdvectionCrouzeixRaviartElement_a7a78a6fac9d174eef5c29328f1a212c8}{u\+\_\+index\+\_\+axi\+\_\+adv\+\_\+diff}} () const
-\begin{DoxyCompactList}\small\item\em Overload the index at which the temperature and solute concentration variables are stored. ~\newline
- \end{DoxyCompactList}\item 
+\begin{DoxyCompactList}\small\item\em Overload the index at which the temperature and solute concentration variables are stored. \end{DoxyCompactList}\item 
 void \mbox{\hyperlink{classoomph_1_1AxisymmetricQAdvectionCrouzeixRaviartElement_ac56ff55d63b4461f18dbee517b69cf58}{compute\+\_\+norm}} (double \&norm)
 \item 
 void \mbox{\hyperlink{classoomph_1_1AxisymmetricQAdvectionCrouzeixRaviartElement_a396031ab3a4a50d6a9f3b8a465ecba3a}{compute\+\_\+error}} (std\+::ostream \&outfile, Finite\+Element\+::\+Unsteady\+Exact\+Solution\+Fct\+Pt exact\+\_\+soln\+\_\+pt, const double \&time, double \&error, double \&norm)
@@ -60,7 +64,7 @@ void \mbox{\hyperlink{classoomph_1_1AxisymmetricQAdvectionCrouzeixRaviartElement
 void \mbox{\hyperlink{classoomph_1_1AxisymmetricQAdvectionCrouzeixRaviartElement_a89c5d3e012d9a8ca36e4e54fd26197b8}{fill\+\_\+in\+\_\+contribution\+\_\+to\+\_\+jacobian}} (Vector$<$ double $>$ \&residuals, Dense\+Matrix$<$ double $>$ \&jacobian)
 \begin{DoxyCompactList}\small\item\em Compute the element\textquotesingle{}s residual Vector and the Jacobian matrix. Use finite-\/differencing only for the off-\/diagonal blocks. \end{DoxyCompactList}\item 
 void \mbox{\hyperlink{classoomph_1_1AxisymmetricQAdvectionCrouzeixRaviartElement_a4b312d9e599923029c0c3f1362488ea4}{fill\+\_\+in\+\_\+contribution\+\_\+to\+\_\+jacobian\+\_\+and\+\_\+mass\+\_\+matrix}} (Vector$<$ double $>$ \&residuals, Dense\+Matrix$<$ double $>$ \&jacobian, Dense\+Matrix$<$ double $>$ \&mass\+\_\+matrix)
-\end{DoxyCompactItemize}
+\begin{DoxyCompactList}\small\item\em Add the element\textquotesingle{}s contribution to its residuals vector, jacobian matrix and mass matrix. \end{DoxyCompactList}\end{DoxyCompactItemize}
 
 
 \doxysubsection{Detailed Description}
@@ -192,7 +196,11 @@ References \mbox{\hyperlink{axisymmetric__advection__navier__stokes__elements_8h
 \doxysubsubsection{\texorpdfstring{fill\_in\_contribution\_to\_jacobian\_and\_mass\_matrix()}{fill\_in\_contribution\_to\_jacobian\_and\_mass\_matrix()}}
 {\footnotesize\ttfamily void oomph\+::\+Axisymmetric\+QAdvection\+Crouzeix\+Raviart\+Element\+::fill\+\_\+in\+\_\+contribution\+\_\+to\+\_\+jacobian\+\_\+and\+\_\+mass\+\_\+matrix (\begin{DoxyParamCaption}\item[{Vector$<$ double $>$ \&}]{residuals,  }\item[{Dense\+Matrix$<$ double $>$ \&}]{jacobian,  }\item[{Dense\+Matrix$<$ double $>$ \&}]{mass\+\_\+matrix }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
 
-Add the element\textquotesingle{}s contribution to its residuals vector, jacobian matrix and mass matrix 
+
+
+Add the element\textquotesingle{}s contribution to its residuals vector, jacobian matrix and mass matrix. 
+
+
 
 Definition at line \mbox{\hyperlink{axisymmetric__advection__navier__stokes__elements_8h_source_l00377}{377}} of file \mbox{\hyperlink{axisymmetric__advection__navier__stokes__elements_8h_source}{axisymmetric\+\_\+advection\+\_\+navier\+\_\+stokes\+\_\+elements.\+h}}.
 
@@ -395,8 +403,7 @@ Definition at line \mbox{\hyperlink{axisymmetric__advection__navier__stokes__ele
 
 
 
-Overload the index at which the temperature and solute concentration variables are stored. ~\newline
- 
+Overload the index at which the temperature and solute concentration variables are stored. 
 
 
 

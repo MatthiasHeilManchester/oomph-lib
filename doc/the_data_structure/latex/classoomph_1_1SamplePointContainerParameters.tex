@@ -37,9 +37,9 @@ unsigned \& \mbox{\hyperlink{classoomph_1_1SamplePointContainerParameters_a38d9a
 bool \mbox{\hyperlink{classoomph_1_1SamplePointContainerParameters_a946a3657f6c50f2e14dccf421ed5e178}{use\+\_\+eulerian\+\_\+coordinates\+\_\+during\+\_\+setup}} () const
 \begin{DoxyCompactList}\small\item\em Use eulerian coordinates (via interpolated\+\_\+x) during setup (otherwise use interpolated\+\_\+zeta())? \end{DoxyCompactList}\item 
 void \mbox{\hyperlink{classoomph_1_1SamplePointContainerParameters_a8aa712173bb8242b17e49df97c0072e3}{enable\+\_\+use\+\_\+eulerian\+\_\+coordinates\+\_\+during\+\_\+setup}} ()
-\item 
+\begin{DoxyCompactList}\small\item\em Enable use of eulerian coordinates (via interpolated\+\_\+x) during setup (otherwise use interpolated\+\_\+zeta()) \end{DoxyCompactList}\item 
 void \mbox{\hyperlink{classoomph_1_1SamplePointContainerParameters_a9c59f44fa07b7f79e8b854d5b918e3bd}{disable\+\_\+use\+\_\+eulerian\+\_\+coordinates\+\_\+during\+\_\+setup}} ()
-\item 
+\begin{DoxyCompactList}\small\item\em Disable use of eulerian coordinates (via interpolated\+\_\+x) during setup (otherwise use interpolated\+\_\+zeta()) \end{DoxyCompactList}\item 
 bool \mbox{\hyperlink{classoomph_1_1SamplePointContainerParameters_a436175c53c2801c510673146cdb75761}{ignore\+\_\+halo\+\_\+elements\+\_\+during\+\_\+locate\+\_\+zeta\+\_\+search}} () const
 \begin{DoxyCompactList}\small\item\em Ignore halo elements? (MPI only) \end{DoxyCompactList}\item 
 void \mbox{\hyperlink{classoomph_1_1SamplePointContainerParameters_a6585db241b22e087222ca3b09e99b663}{enable\+\_\+ignore\+\_\+halo\+\_\+elements\+\_\+during\+\_\+locate\+\_\+zeta\+\_\+search}} ()
@@ -57,7 +57,7 @@ static unsigned \mbox{\hyperlink{classoomph_1_1SamplePointContainerParameters_ad
 \mbox{\hyperlink{classoomph_1_1Mesh}{Mesh}} $\ast$ \mbox{\hyperlink{classoomph_1_1SamplePointContainerParameters_a9047299fdfac8074a9996267d66e901e}{Mesh\+\_\+pt}}
 \begin{DoxyCompactList}\small\item\em Pointer to mesh from whose Finite\+Elements sample points are created. \end{DoxyCompactList}\item 
 \mbox{\hyperlink{classoomph_1_1Vector}{Vector}}$<$ std\+::pair$<$ double, double $>$ $>$ \mbox{\hyperlink{classoomph_1_1SamplePointContainerParameters_a980161906be89a1cf50835fe45949cfe}{Min\+\_\+and\+\_\+max\+\_\+coordinates}}
-\item 
+\begin{DoxyCompactList}\small\item\em \mbox{\hyperlink{classoomph_1_1Vector}{Vector}} of pairs of doubles for min and maximum coordinates. Call\+: Min\+\_\+and\+\_\+max\+\_\+coordinates\mbox{[}j\mbox{]} gives me the pair of min (first) and max. (second) coordinates in the j-\/th coordinate direction. \end{DoxyCompactList}\item 
 unsigned \mbox{\hyperlink{classoomph_1_1SamplePointContainerParameters_a68141123ff5252ad3dd1a8a5279282c4}{Nsample\+\_\+points\+\_\+generated\+\_\+per\+\_\+element}}
 \begin{DoxyCompactList}\small\item\em \char`\"{}\+Measure of\char`\"{} number of sample points generated in each element \end{DoxyCompactList}\item 
 bool \mbox{\hyperlink{classoomph_1_1SamplePointContainerParameters_ab8757aae90e85b2a860fd07acd19a92a}{Use\+\_\+eulerian\+\_\+coordinates\+\_\+during\+\_\+setup}}
@@ -171,7 +171,11 @@ References \mbox{\hyperlink{sample__point__parameters_8h_source_l00193}{Ignore\+
 \doxysubsubsection{\texorpdfstring{disable\_use\_eulerian\_coordinates\_during\_setup()}{disable\_use\_eulerian\_coordinates\_during\_setup()}}
 {\footnotesize\ttfamily void oomph\+::\+Sample\+Point\+Container\+Parameters\+::disable\+\_\+use\+\_\+eulerian\+\_\+coordinates\+\_\+during\+\_\+setup (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
 
+
+
 Disable use of eulerian coordinates (via interpolated\+\_\+x) during setup (otherwise use interpolated\+\_\+zeta()) 
+
+
 
 Definition at line \mbox{\hyperlink{sample__point__parameters_8h_source_l00144}{144}} of file \mbox{\hyperlink{sample__point__parameters_8h_source}{sample\+\_\+point\+\_\+parameters.\+h}}.
 
@@ -203,7 +207,11 @@ References \mbox{\hyperlink{sample__point__parameters_8h_source_l00193}{Ignore\+
 \doxysubsubsection{\texorpdfstring{enable\_use\_eulerian\_coordinates\_during\_setup()}{enable\_use\_eulerian\_coordinates\_during\_setup()}}
 {\footnotesize\ttfamily void oomph\+::\+Sample\+Point\+Container\+Parameters\+::enable\+\_\+use\+\_\+eulerian\+\_\+coordinates\+\_\+during\+\_\+setup (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
 
+
+
 Enable use of eulerian coordinates (via interpolated\+\_\+x) during setup (otherwise use interpolated\+\_\+zeta()) 
+
+
 
 Definition at line \mbox{\hyperlink{sample__point__parameters_8h_source_l00137}{137}} of file \mbox{\hyperlink{sample__point__parameters_8h_source}{sample\+\_\+point\+\_\+parameters.\+h}}.
 
@@ -461,7 +469,11 @@ Referenced by \mbox{\hyperlink{sample__point__parameters_8h_source_l00092}{mesh\
 \doxysubsubsection{\texorpdfstring{Min\_and\_max\_coordinates}{Min\_and\_max\_coordinates}}
 {\footnotesize\ttfamily \mbox{\hyperlink{classoomph_1_1Vector}{Vector}}$<$std\+::pair$<$double, double$>$ $>$ oomph\+::\+Sample\+Point\+Container\+Parameters\+::\+Min\+\_\+and\+\_\+max\+\_\+coordinates\hspace{0.3cm}{\ttfamily [protected]}}
 
+
+
 \mbox{\hyperlink{classoomph_1_1Vector}{Vector}} of pairs of doubles for min and maximum coordinates. Call\+: Min\+\_\+and\+\_\+max\+\_\+coordinates\mbox{[}j\mbox{]} gives me the pair of min (first) and max. (second) coordinates in the j-\/th coordinate direction. 
+
+
 
 Definition at line \mbox{\hyperlink{sample__point__parameters_8h_source_l00178}{178}} of file \mbox{\hyperlink{sample__point__parameters_8h_source}{sample\+\_\+point\+\_\+parameters.\+h}}.
 

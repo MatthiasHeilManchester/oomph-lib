@@ -123,6 +123,9 @@
 </div><!--header-->
 <div class="contents">
 
+<p>1D mesh consisting of N one-dimensional elements from the QElement family.  
+ <a href="classoomph_1_1OneDMesh.html#details">More...</a></p>
+
 <p><code>#include &lt;<a class="el" href="one__d__mesh_8template_8h_source.html">one_d_mesh.template.h</a>&gt;</code></p>
 <div class="dynheader">
 Inheritance diagram for oomph::OneDMesh&lt; ELEMENT &gt;:</div>
@@ -130,7 +133,7 @@ Inheritance diagram for oomph::OneDMesh&lt; ELEMENT &gt;:</div>
  <div class="center">
   <img src="classoomph_1_1OneDMesh.png" usemap="#oomph::OneDMesh_3C_20ELEMENT_20_3E_map" alt=""/>
   <map id="oomph::OneDMesh_3C_20ELEMENT_20_3E_map" name="oomph::OneDMesh_3C_20ELEMENT_20_3E_map">
-<area href="classoomph_1_1OneDLagrangianMesh.html" alt="oomph::OneDLagrangianMesh&lt; ELEMENT &gt;" shape="rect" coords="0,112,265,136"/>
+<area href="classoomph_1_1OneDLagrangianMesh.html" title="1D mesh parametrised in terms of a 1D Lagrangian coordinate. The Eulerian positions of the nodes are ..." alt="oomph::OneDLagrangianMesh&lt; ELEMENT &gt;" shape="rect" coords="0,112,265,136"/>
 <area href="classoomph_1_1RefineableOneDMesh.html" title="Refineable version of the OneDMesh." alt="oomph::RefineableOneDMesh&lt; ELEMENT &gt;" shape="rect" coords="275,112,540,136"/>
   </map>
 </div></div>
@@ -147,6 +150,7 @@ Public Member Functions</h2></td></tr>
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pro-methods" name="pro-methods"></a>
 Protected Member Functions</h2></td></tr>
 <tr class="memitem:a780eb2a0fdf02690aa5e93efe5ff3848"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classoomph_1_1OneDMesh.html#a780eb2a0fdf02690aa5e93efe5ff3848">check_1d</a> () const</td></tr>
+<tr class="memdesc:a780eb2a0fdf02690aa5e93efe5ff3848"><td class="mdescLeft">&#160;</td><td class="mdescRight">Mesh can only be built with 1D elements (but can be either T or Q so can't use the normal assert_geometric_element function.  <a href="classoomph_1_1OneDMesh.html#a780eb2a0fdf02690aa5e93efe5ff3848">More...</a><br /></td></tr>
 <tr class="separator:a780eb2a0fdf02690aa5e93efe5ff3848"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a5a1a27eaa9d58bb85facb617127e9f0a"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classoomph_1_1OneDMesh.html#a5a1a27eaa9d58bb85facb617127e9f0a">build_mesh</a> (TimeStepper *time_stepper_pt=&amp;Mesh::Default_TimeStepper)</td></tr>
 <tr class="memdesc:a5a1a27eaa9d58bb85facb617127e9f0a"><td class="mdescLeft">&#160;</td><td class="mdescRight">Generic mesh constuction routine, called by all constructors.  <a href="classoomph_1_1OneDMesh.html#a5a1a27eaa9d58bb85facb617127e9f0a">More...</a><br /></td></tr>
@@ -169,12 +173,13 @@ Protected Attributes</h2></td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock"><div class="compoundTemplParams">template&lt;class ELEMENT&gt;<br />
-class oomph::OneDMesh&lt; ELEMENT &gt;</div><p >1D mesh consisting of N one-dimensional elements from the QElement family. </p><p class="formulaDsp">
-<img class="formulaDsp" alt="\[ x \in [Xmin,Xmax] \]" src="form_10.png" width="105" height="14"/>
+class oomph::OneDMesh&lt; ELEMENT &gt;</div><p >1D mesh consisting of N one-dimensional elements from the QElement family. </p>
+<p class="formulaDsp">
+<img class="formulaDsp" alt="\[ x \in [Xmin,Xmax] \]" src="form_9.png" width="105" height="14"/>
 </p>
 <p> The mesh has two boundaries:</p><ul>
-<li>Boundary 0 is at <img class="formulaInl" alt="$x=Xmin$" src="form_11.png" width="59" height="10"/>.</li>
-<li>Boundary 1 is at <img class="formulaInl" alt="$x=Xmax$" src="form_12.png" width="61" height="10"/>.</li>
+<li>Boundary 0 is at <img class="formulaInl" alt="$x=Xmin$" src="form_10.png" width="59" height="10"/>.</li>
+<li>Boundary 1 is at <img class="formulaInl" alt="$x=Xmax$" src="form_11.png" width="61" height="10"/>.</li>
 </ul>
 <p>There is one node on each of these boundaries. </p>
 
@@ -314,7 +319,7 @@ template&lt;class ELEMENT &gt; </div>
 </div><div class="memdoc">
 
 <p>Generic mesh constuction routine, called by all constructors. </p>
-<p >The generic mesh construction routine &mdash; this contains all the hard work and is called by all constructors </p>
+<p >The generic mesh construction routine &mdash; this contains all the hard work and is called by all constructors. </p>
 
 <p class="definition">Definition at line <a class="el" href="one__d__mesh_8template_8cc_source.html#l00039">39</a> of file <a class="el" href="one__d__mesh_8template_8cc_source.html">one_d_mesh.template.cc</a>.</p>
 
@@ -346,7 +351,8 @@ template&lt;class ELEMENT &gt; </div>
   </tr>
 </table>
 </div><div class="memdoc">
-<p >Mesh can only be built with 1D elements (but can be either T or Q so can't use the normal assert_geometric_element function. </p>
+
+<p>Mesh can only be built with 1D elements (but can be either T or Q so can't use the normal assert_geometric_element function. </p>
 
 <p class="definition">Definition at line <a class="el" href="one__d__mesh_8template_8h_source.html#l00085">85</a> of file <a class="el" href="one__d__mesh_8template_8h_source.html">one_d_mesh.template.h</a>.</p>
 
@@ -499,7 +505,7 @@ template&lt;class ELEMENT &gt; </div>
     <footer>
       <div class="container">
         <div class="text-muted" style="float:right;">Generated by <a href="http://www.doxygen.org/index.html">
-          <img style="height:18px;" class="footer-img" src="doxygen.png" alt="doxygen"></a> on Wed Oct 13 2021 08:43:32
+          <img style="height:18px;" class="footer-img" src="doxygen.png" alt="doxygen"></a> on Thu Oct 21 2021 17:30:41
         </div>
       </div>
     </footer>

@@ -154,14 +154,14 @@
 <div class="line"><a id="l00035" name="l00035"></a><span class="lineno">   35</span><span class="keyword">namespace </span><a class="code hl_namespace" href="namespaceoomph.html">oomph</a></div>
 <div class="line"><a id="l00036" name="l00036"></a><span class="lineno">   36</span>{</div>
 <div class="line"><a id="l00037" name="l00037"></a><span class="lineno">   37</span>  <span class="comment">//=================================================================</span><span class="comment"></span></div>
-<div class="line"><a id="l00038" name="l00038"></a><span class="lineno">   38</span><span class="comment">  /// \short Quarter tube as domain. Domain is bounded by</span></div>
+<div class="line"><a id="l00038" name="l00038"></a><span class="lineno">   38</span><span class="comment">  ///  Quarter tube as domain. Domain is bounded by</span></div>
 <div class="line"><a id="l00039" name="l00039"></a><span class="lineno">   39</span><span class="comment">  /// curved boundary which is represented by a GeomObject. Domain is</span></div>
 <div class="line"><a id="l00040" name="l00040"></a><span class="lineno">   40</span><span class="comment">  /// parametrised by three macro elements in each of the nlayer slices</span></div>
 <div class="line"><a id="l00041" name="l00041"></a><span class="lineno">   41</span><span class="comment"></span>  <span class="comment">//=================================================================</span></div>
 <div class="line"><a id="l00042" name="l00042"></a><span class="lineno"><a class="line" href="classoomph_1_1QuarterTubeDomain.html">   42</a></span>  <span class="keyword">class </span><a class="code hl_class" href="classoomph_1_1QuarterTubeDomain.html">QuarterTubeDomain</a> : <span class="keyword">public</span> Domain</div>
 <div class="line"><a id="l00043" name="l00043"></a><span class="lineno">   43</span>  {</div>
 <div class="line"><a id="l00044" name="l00044"></a><span class="lineno">   44</span>  <span class="keyword">public</span>:<span class="comment"></span></div>
-<div class="line"><a id="l00045" name="l00045"></a><span class="lineno">   45</span><span class="comment">    /// \short Constructor: Pass boundary object and start and end coordinates</span></div>
+<div class="line"><a id="l00045" name="l00045"></a><span class="lineno">   45</span><span class="comment">    ///  Constructor: Pass boundary object and start and end coordinates</span></div>
 <div class="line"><a id="l00046" name="l00046"></a><span class="lineno">   46</span><span class="comment">    /// and fraction along boundary object where outer ring is divided.</span></div>
 <div class="line"><a id="l00047" name="l00047"></a><span class="lineno">   47</span><span class="comment">    /// We form nlayer axial slices.</span></div>
 <div class="line"><a id="l00048" name="l00048"></a><span class="lineno"><a class="line" href="classoomph_1_1QuarterTubeDomain.html#a51cea676b1cdf56cc3f1ff5fbec952f8">   48</a></span><span class="comment"></span>    <a class="code hl_function" href="classoomph_1_1QuarterTubeDomain.html#a51cea676b1cdf56cc3f1ff5fbec952f8">QuarterTubeDomain</a>(GeomObject* boundary_geom_object_pt,</div>
@@ -199,14 +199,14 @@
 <div class="line"><a id="l00080" name="l00080"></a><span class="lineno">   80</span><span class="comment">    /// Destructor: empty; cleanup done in base class</span></div>
 <div class="line"><a id="l00081" name="l00081"></a><span class="lineno"><a class="line" href="classoomph_1_1QuarterTubeDomain.html#a191be8daa569473cebcc1466d8235175">   81</a></span><span class="comment"></span>    <a class="code hl_function" href="classoomph_1_1QuarterTubeDomain.html#a191be8daa569473cebcc1466d8235175">~QuarterTubeDomain</a>() {}</div>
 <div class="line"><a id="l00082" name="l00082"></a><span class="lineno">   82</span><span class="comment"></span> </div>
-<div class="line"><a id="l00083" name="l00083"></a><span class="lineno">   83</span><span class="comment">    /// \short Typedef for function pointer for function that squashes</span></div>
+<div class="line"><a id="l00083" name="l00083"></a><span class="lineno">   83</span><span class="comment">    ///  Typedef for function pointer for function that squashes</span></div>
 <div class="line"><a id="l00084" name="l00084"></a><span class="lineno">   84</span><span class="comment">    /// the outer two macro elements towards</span></div>
 <div class="line"><a id="l00085" name="l00085"></a><span class="lineno">   85</span><span class="comment">    /// the wall by mapping the input value of the &quot;radial&quot; macro element</span></div>
 <div class="line"><a id="l00086" name="l00086"></a><span class="lineno">   86</span><span class="comment">    /// coordinate to the return value</span></div>
 <div class="line"><a id="l00087" name="l00087"></a><span class="lineno"><a class="line" href="classoomph_1_1QuarterTubeDomain.html#a3d8c15c17d9912d8c519c028437c0b2c">   87</a></span><span class="comment"></span>    <span class="keyword">typedef</span> double (*<a class="code hl_typedef" href="classoomph_1_1QuarterTubeDomain.html#a3d8c15c17d9912d8c519c028437c0b2c">BLSquashFctPt</a>)(<span class="keyword">const</span> <span class="keywordtype">double</span>&amp; s);</div>
 <div class="line"><a id="l00088" name="l00088"></a><span class="lineno">   88</span> </div>
 <div class="line"><a id="l00089" name="l00089"></a><span class="lineno">   89</span><span class="comment"></span> </div>
-<div class="line"><a id="l00090" name="l00090"></a><span class="lineno">   90</span><span class="comment">    /// \short Function pointer for function that squashes</span></div>
+<div class="line"><a id="l00090" name="l00090"></a><span class="lineno">   90</span><span class="comment">    ///  Function pointer for function that squashes</span></div>
 <div class="line"><a id="l00091" name="l00091"></a><span class="lineno">   91</span><span class="comment">    /// the outer two macro elements towards</span></div>
 <div class="line"><a id="l00092" name="l00092"></a><span class="lineno">   92</span><span class="comment">    /// the wall by mapping the input value of the &quot;radial&quot; macro element</span></div>
 <div class="line"><a id="l00093" name="l00093"></a><span class="lineno">   93</span><span class="comment">    /// coordinate to the return value</span></div>
@@ -216,7 +216,7 @@
 <div class="line"><a id="l00097" name="l00097"></a><span class="lineno">   97</span>    }</div>
 <div class="line"><a id="l00098" name="l00098"></a><span class="lineno">   98</span> </div>
 <div class="line"><a id="l00099" name="l00099"></a><span class="lineno">   99</span><span class="comment"></span> </div>
-<div class="line"><a id="l00100" name="l00100"></a><span class="lineno">  100</span><span class="comment">    /// \short Function that squashes the outer two macro elements towards</span></div>
+<div class="line"><a id="l00100" name="l00100"></a><span class="lineno">  100</span><span class="comment">    ///  Function that squashes the outer two macro elements towards</span></div>
 <div class="line"><a id="l00101" name="l00101"></a><span class="lineno">  101</span><span class="comment">    /// the wall by mapping the input value of the &quot;radial&quot; macro element</span></div>
 <div class="line"><a id="l00102" name="l00102"></a><span class="lineno">  102</span><span class="comment">    /// coordinate to the return value.</span></div>
 <div class="line"><a id="l00103" name="l00103"></a><span class="lineno"><a class="line" href="classoomph_1_1QuarterTubeDomain.html#a6ecbb8cd59208abef45384d7780853e1">  103</a></span><span class="comment"></span>    <span class="keywordtype">double</span> <a class="code hl_function" href="classoomph_1_1QuarterTubeDomain.html#a6ecbb8cd59208abef45384d7780853e1">s_squashed</a>(<span class="keyword">const</span> <span class="keywordtype">double</span>&amp; s)</div>
@@ -225,19 +225,19 @@
 <div class="line"><a id="l00106" name="l00106"></a><span class="lineno">  106</span>    }</div>
 <div class="line"><a id="l00107" name="l00107"></a><span class="lineno">  107</span> </div>
 <div class="line"><a id="l00108" name="l00108"></a><span class="lineno">  108</span><span class="comment"></span> </div>
-<div class="line"><a id="l00109" name="l00109"></a><span class="lineno">  109</span><span class="comment">    /// \short Typedef for function pointer for function that implements</span></div>
+<div class="line"><a id="l00109" name="l00109"></a><span class="lineno">  109</span><span class="comment">    ///  Typedef for function pointer for function that implements</span></div>
 <div class="line"><a id="l00110" name="l00110"></a><span class="lineno">  110</span><span class="comment">    /// axial spacing of macro elements</span></div>
 <div class="line"><a id="l00111" name="l00111"></a><span class="lineno"><a class="line" href="classoomph_1_1QuarterTubeDomain.html#ae347af42a5dcb9b3b82c2247975b01db">  111</a></span><span class="comment"></span>    <span class="keyword">typedef</span> double (*<a class="code hl_typedef" href="classoomph_1_1QuarterTubeDomain.html#ae347af42a5dcb9b3b82c2247975b01db">AxialSpacingFctPt</a>)(<span class="keyword">const</span> <span class="keywordtype">double</span>&amp; xi);</div>
 <div class="line"><a id="l00112" name="l00112"></a><span class="lineno">  112</span> </div>
 <div class="line"><a id="l00113" name="l00113"></a><span class="lineno">  113</span><span class="comment"></span> </div>
-<div class="line"><a id="l00114" name="l00114"></a><span class="lineno">  114</span><span class="comment">    /// \short Function pointer for function that  implements</span></div>
+<div class="line"><a id="l00114" name="l00114"></a><span class="lineno">  114</span><span class="comment">    ///  Function pointer for function that  implements</span></div>
 <div class="line"><a id="l00115" name="l00115"></a><span class="lineno">  115</span><span class="comment">    /// axial spacing of macro elements</span></div>
 <div class="line"><a id="l00116" name="l00116"></a><span class="lineno"><a class="line" href="classoomph_1_1QuarterTubeDomain.html#a38e86ecf50aba889ac8e32ba2d109e91">  116</a></span><span class="comment"></span>    <a class="code hl_typedef" href="classoomph_1_1QuarterTubeDomain.html#ae347af42a5dcb9b3b82c2247975b01db">AxialSpacingFctPt</a>&amp; <a class="code hl_function" href="classoomph_1_1QuarterTubeDomain.html#a38e86ecf50aba889ac8e32ba2d109e91">axial_spacing_fct_pt</a>()</div>
 <div class="line"><a id="l00117" name="l00117"></a><span class="lineno">  117</span>    {</div>
 <div class="line"><a id="l00118" name="l00118"></a><span class="lineno">  118</span>      <span class="keywordflow">return</span> <a class="code hl_variable" href="classoomph_1_1QuarterTubeDomain.html#ad084b0e50d50b1948c2e9a600e3dcbd0">Axial_spacing_fct_pt</a>;</div>
 <div class="line"><a id="l00119" name="l00119"></a><span class="lineno">  119</span>    }</div>
 <div class="line"><a id="l00120" name="l00120"></a><span class="lineno">  120</span><span class="comment"></span> </div>
-<div class="line"><a id="l00121" name="l00121"></a><span class="lineno">  121</span><span class="comment">    /// \short Function that implements</span></div>
+<div class="line"><a id="l00121" name="l00121"></a><span class="lineno">  121</span><span class="comment">    ///  Function that implements</span></div>
 <div class="line"><a id="l00122" name="l00122"></a><span class="lineno">  122</span><span class="comment">    /// axial spacing of macro elements</span></div>
 <div class="line"><a id="l00123" name="l00123"></a><span class="lineno"><a class="line" href="classoomph_1_1QuarterTubeDomain.html#a3574feea9f42e4ec95b6edec36da245a">  123</a></span><span class="comment"></span>    <span class="keywordtype">double</span> <a class="code hl_function" href="classoomph_1_1QuarterTubeDomain.html#a3574feea9f42e4ec95b6edec36da245a">axial_spacing_fct</a>(<span class="keyword">const</span> <span class="keywordtype">double</span>&amp; xi)</div>
 <div class="line"><a id="l00124" name="l00124"></a><span class="lineno">  124</span>    {</div>
@@ -245,7 +245,7 @@
 <div class="line"><a id="l00126" name="l00126"></a><span class="lineno">  126</span>    }</div>
 <div class="line"><a id="l00127" name="l00127"></a><span class="lineno">  127</span> </div>
 <div class="line"><a id="l00128" name="l00128"></a><span class="lineno">  128</span><span class="comment"></span> </div>
-<div class="line"><a id="l00129" name="l00129"></a><span class="lineno">  129</span><span class="comment">    /// \short Vector representation of the  i_macro-th macro element</span></div>
+<div class="line"><a id="l00129" name="l00129"></a><span class="lineno">  129</span><span class="comment">    ///  Vector representation of the  i_macro-th macro element</span></div>
 <div class="line"><a id="l00130" name="l00130"></a><span class="lineno">  130</span><span class="comment">    /// boundary i_direct (L/R/D/U/B/F) at time level t</span></div>
 <div class="line"><a id="l00131" name="l00131"></a><span class="lineno">  131</span><span class="comment">    /// (t=0: present; t&gt;0: previous):</span></div>
 <div class="line"><a id="l00132" name="l00132"></a><span class="lineno">  132</span><span class="comment">    /// f(s).</span></div>
@@ -272,14 +272,14 @@
 <div class="line"><a id="l00153" name="l00153"></a><span class="lineno"><a class="line" href="classoomph_1_1QuarterTubeDomain.html#af394493bc3c3b0f06d9f591e1d02c0f9">  153</a></span><span class="comment"></span>    GeomObject* <a class="code hl_variable" href="classoomph_1_1QuarterTubeDomain.html#af394493bc3c3b0f06d9f591e1d02c0f9">Wall_pt</a>;</div>
 <div class="line"><a id="l00154" name="l00154"></a><span class="lineno">  154</span> </div>
 <div class="line"><a id="l00155" name="l00155"></a><span class="lineno">  155</span><span class="comment"></span> </div>
-<div class="line"><a id="l00156" name="l00156"></a><span class="lineno">  156</span><span class="comment">    /// \short Function pointer for function that squashes</span></div>
+<div class="line"><a id="l00156" name="l00156"></a><span class="lineno">  156</span><span class="comment">    ///  Function pointer for function that squashes</span></div>
 <div class="line"><a id="l00157" name="l00157"></a><span class="lineno">  157</span><span class="comment">    /// the outer two macro elements towards</span></div>
 <div class="line"><a id="l00158" name="l00158"></a><span class="lineno">  158</span><span class="comment">    /// the wall by mapping the input value of the &quot;radial&quot; macro element</span></div>
 <div class="line"><a id="l00159" name="l00159"></a><span class="lineno">  159</span><span class="comment">    /// coordinate to the return value</span></div>
 <div class="line"><a id="l00160" name="l00160"></a><span class="lineno"><a class="line" href="classoomph_1_1QuarterTubeDomain.html#a2c55367b6f92fa1928326b8e0c62115b">  160</a></span><span class="comment"></span>    <a class="code hl_typedef" href="classoomph_1_1QuarterTubeDomain.html#a3d8c15c17d9912d8c519c028437c0b2c">BLSquashFctPt</a> <a class="code hl_variable" href="classoomph_1_1QuarterTubeDomain.html#a2c55367b6f92fa1928326b8e0c62115b">BL_squash_fct_pt</a>;</div>
 <div class="line"><a id="l00161" name="l00161"></a><span class="lineno">  161</span> </div>
 <div class="line"><a id="l00162" name="l00162"></a><span class="lineno">  162</span><span class="comment"></span> </div>
-<div class="line"><a id="l00163" name="l00163"></a><span class="lineno">  163</span><span class="comment">    /// \short Default for function that squashes</span></div>
+<div class="line"><a id="l00163" name="l00163"></a><span class="lineno">  163</span><span class="comment">    ///  Default for function that squashes</span></div>
 <div class="line"><a id="l00164" name="l00164"></a><span class="lineno">  164</span><span class="comment">    /// the outer two macro elements towards</span></div>
 <div class="line"><a id="l00165" name="l00165"></a><span class="lineno">  165</span><span class="comment">    /// the wall by mapping the input value of the &quot;radial&quot; macro element</span></div>
 <div class="line"><a id="l00166" name="l00166"></a><span class="lineno">  166</span><span class="comment">    /// coordinate to the return value: Identity.</span></div>
@@ -289,12 +289,12 @@
 <div class="line"><a id="l00170" name="l00170"></a><span class="lineno">  170</span>    }</div>
 <div class="line"><a id="l00171" name="l00171"></a><span class="lineno">  171</span> </div>
 <div class="line"><a id="l00172" name="l00172"></a><span class="lineno">  172</span><span class="comment"></span> </div>
-<div class="line"><a id="l00173" name="l00173"></a><span class="lineno">  173</span><span class="comment">    /// \short Function pointer for function that implements</span></div>
+<div class="line"><a id="l00173" name="l00173"></a><span class="lineno">  173</span><span class="comment">    ///  Function pointer for function that implements</span></div>
 <div class="line"><a id="l00174" name="l00174"></a><span class="lineno">  174</span><span class="comment">    /// axial spacing of macro elements</span></div>
 <div class="line"><a id="l00175" name="l00175"></a><span class="lineno"><a class="line" href="classoomph_1_1QuarterTubeDomain.html#ad084b0e50d50b1948c2e9a600e3dcbd0">  175</a></span><span class="comment"></span>    <a class="code hl_typedef" href="classoomph_1_1QuarterTubeDomain.html#ae347af42a5dcb9b3b82c2247975b01db">AxialSpacingFctPt</a> <a class="code hl_variable" href="classoomph_1_1QuarterTubeDomain.html#ad084b0e50d50b1948c2e9a600e3dcbd0">Axial_spacing_fct_pt</a>;</div>
 <div class="line"><a id="l00176" name="l00176"></a><span class="lineno">  176</span> </div>
 <div class="line"><a id="l00177" name="l00177"></a><span class="lineno">  177</span><span class="comment"></span> </div>
-<div class="line"><a id="l00178" name="l00178"></a><span class="lineno">  178</span><span class="comment">    /// \short Default for function that  implements</span></div>
+<div class="line"><a id="l00178" name="l00178"></a><span class="lineno">  178</span><span class="comment">    ///  Default for function that  implements</span></div>
 <div class="line"><a id="l00179" name="l00179"></a><span class="lineno">  179</span><span class="comment">    /// axial spacing of macro elements</span></div>
 <div class="line"><a id="l00180" name="l00180"></a><span class="lineno"><a class="line" href="classoomph_1_1QuarterTubeDomain.html#ae568259fc1321c4bcbfae24e42e3b0f6">  180</a></span><span class="comment"></span>    <span class="keyword">static</span> <span class="keywordtype">double</span> <a class="code hl_function" href="classoomph_1_1QuarterTubeDomain.html#ae568259fc1321c4bcbfae24e42e3b0f6">default_axial_spacing_fct</a>(<span class="keyword">const</span> <span class="keywordtype">double</span>&amp; xi)</div>
 <div class="line"><a id="l00181" name="l00181"></a><span class="lineno">  181</span>    {</div>
@@ -302,42 +302,42 @@
 <div class="line"><a id="l00183" name="l00183"></a><span class="lineno">  183</span>    }</div>
 <div class="line"><a id="l00184" name="l00184"></a><span class="lineno">  184</span> </div>
 <div class="line"><a id="l00185" name="l00185"></a><span class="lineno">  185</span><span class="comment"></span> </div>
-<div class="line"><a id="l00186" name="l00186"></a><span class="lineno">  186</span><span class="comment">    /// \short Boundary of central box macro element in layer i_layer</span></div>
+<div class="line"><a id="l00186" name="l00186"></a><span class="lineno">  186</span><span class="comment">    ///  Boundary of central box macro element in layer i_layer</span></div>
 <div class="line"><a id="l00187" name="l00187"></a><span class="lineno">  187</span><span class="comment">    /// zeta \f$ \in [-1,1]^2 \f$</span></div>
 <div class="line"><a id="l00188" name="l00188"></a><span class="lineno">  188</span><span class="comment"></span>    <span class="keywordtype">void</span> <a class="code hl_function" href="classoomph_1_1QuarterTubeDomain.html#ad150b2df8858d3936e7b6fb856de7ce1">r_centr_L</a>(<span class="keyword">const</span> <span class="keywordtype">unsigned</span>&amp; t,</div>
 <div class="line"><a id="l00189" name="l00189"></a><span class="lineno">  189</span>                   <span class="keyword">const</span> Vector&lt;double&gt;&amp; zeta,</div>
 <div class="line"><a id="l00190" name="l00190"></a><span class="lineno">  190</span>                   <span class="keyword">const</span> <span class="keywordtype">unsigned</span>&amp; i_layer,</div>
 <div class="line"><a id="l00191" name="l00191"></a><span class="lineno">  191</span>                   Vector&lt;double&gt;&amp; f);</div>
 <div class="line"><a id="l00192" name="l00192"></a><span class="lineno">  192</span><span class="comment"></span> </div>
-<div class="line"><a id="l00193" name="l00193"></a><span class="lineno">  193</span><span class="comment">    /// \short Boundary of central box macro element in layer i_layer</span></div>
+<div class="line"><a id="l00193" name="l00193"></a><span class="lineno">  193</span><span class="comment">    ///  Boundary of central box macro element in layer i_layer</span></div>
 <div class="line"><a id="l00194" name="l00194"></a><span class="lineno">  194</span><span class="comment">    /// zeta \f$ \in [-1,1]^2 \f$</span></div>
 <div class="line"><a id="l00195" name="l00195"></a><span class="lineno">  195</span><span class="comment"></span>    <span class="keywordtype">void</span> <a class="code hl_function" href="classoomph_1_1QuarterTubeDomain.html#ae7312c0c8754d36a69e475cbf97e479e">r_centr_R</a>(<span class="keyword">const</span> <span class="keywordtype">unsigned</span>&amp; t,</div>
 <div class="line"><a id="l00196" name="l00196"></a><span class="lineno">  196</span>                   <span class="keyword">const</span> Vector&lt;double&gt;&amp; zeta,</div>
 <div class="line"><a id="l00197" name="l00197"></a><span class="lineno">  197</span>                   <span class="keyword">const</span> <span class="keywordtype">unsigned</span>&amp; i_layer,</div>
 <div class="line"><a id="l00198" name="l00198"></a><span class="lineno">  198</span>                   Vector&lt;double&gt;&amp; f);</div>
 <div class="line"><a id="l00199" name="l00199"></a><span class="lineno">  199</span><span class="comment"></span> </div>
-<div class="line"><a id="l00200" name="l00200"></a><span class="lineno">  200</span><span class="comment">    /// \short Boundary of central box macro element in layer i_layer</span></div>
+<div class="line"><a id="l00200" name="l00200"></a><span class="lineno">  200</span><span class="comment">    ///  Boundary of central box macro element in layer i_layer</span></div>
 <div class="line"><a id="l00201" name="l00201"></a><span class="lineno">  201</span><span class="comment">    /// zeta \f$ \in [-1,1]^2 \f$</span></div>
 <div class="line"><a id="l00202" name="l00202"></a><span class="lineno">  202</span><span class="comment"></span>    <span class="keywordtype">void</span> <a class="code hl_function" href="classoomph_1_1QuarterTubeDomain.html#a4012aa5d6f8c535150823478164639c3">r_centr_D</a>(<span class="keyword">const</span> <span class="keywordtype">unsigned</span>&amp; t,</div>
 <div class="line"><a id="l00203" name="l00203"></a><span class="lineno">  203</span>                   <span class="keyword">const</span> Vector&lt;double&gt;&amp; zeta,</div>
 <div class="line"><a id="l00204" name="l00204"></a><span class="lineno">  204</span>                   <span class="keyword">const</span> <span class="keywordtype">unsigned</span>&amp; i_layer,</div>
 <div class="line"><a id="l00205" name="l00205"></a><span class="lineno">  205</span>                   Vector&lt;double&gt;&amp; f);</div>
 <div class="line"><a id="l00206" name="l00206"></a><span class="lineno">  206</span><span class="comment"></span> </div>
-<div class="line"><a id="l00207" name="l00207"></a><span class="lineno">  207</span><span class="comment">    /// \short Boundary of central box macro element in layer i_layer</span></div>
+<div class="line"><a id="l00207" name="l00207"></a><span class="lineno">  207</span><span class="comment">    ///  Boundary of central box macro element in layer i_layer</span></div>
 <div class="line"><a id="l00208" name="l00208"></a><span class="lineno">  208</span><span class="comment">    /// zeta \f$ \in [-1,1]^2 \f$</span></div>
 <div class="line"><a id="l00209" name="l00209"></a><span class="lineno">  209</span><span class="comment"></span>    <span class="keywordtype">void</span> <a class="code hl_function" href="classoomph_1_1QuarterTubeDomain.html#afb2013af63e8207676102ee16d856dca">r_centr_U</a>(<span class="keyword">const</span> <span class="keywordtype">unsigned</span>&amp; t,</div>
 <div class="line"><a id="l00210" name="l00210"></a><span class="lineno">  210</span>                   <span class="keyword">const</span> Vector&lt;double&gt;&amp; zeta,</div>
 <div class="line"><a id="l00211" name="l00211"></a><span class="lineno">  211</span>                   <span class="keyword">const</span> <span class="keywordtype">unsigned</span>&amp; i_layer,</div>
 <div class="line"><a id="l00212" name="l00212"></a><span class="lineno">  212</span>                   Vector&lt;double&gt;&amp; f);</div>
 <div class="line"><a id="l00213" name="l00213"></a><span class="lineno">  213</span><span class="comment"></span> </div>
-<div class="line"><a id="l00214" name="l00214"></a><span class="lineno">  214</span><span class="comment">    /// \short Boundary of central box macro element in layer i_layer</span></div>
+<div class="line"><a id="l00214" name="l00214"></a><span class="lineno">  214</span><span class="comment">    ///  Boundary of central box macro element in layer i_layer</span></div>
 <div class="line"><a id="l00215" name="l00215"></a><span class="lineno">  215</span><span class="comment">    /// zeta \f$ \in [-1,1]^2 \f$</span></div>
 <div class="line"><a id="l00216" name="l00216"></a><span class="lineno">  216</span><span class="comment"></span>    <span class="keywordtype">void</span> <a class="code hl_function" href="classoomph_1_1QuarterTubeDomain.html#a32896043befe8df1ff01d9de166c1201">r_centr_B</a>(<span class="keyword">const</span> <span class="keywordtype">unsigned</span>&amp; t,</div>
 <div class="line"><a id="l00217" name="l00217"></a><span class="lineno">  217</span>                   <span class="keyword">const</span> Vector&lt;double&gt;&amp; zeta,</div>
 <div class="line"><a id="l00218" name="l00218"></a><span class="lineno">  218</span>                   <span class="keyword">const</span> <span class="keywordtype">unsigned</span>&amp; i_layer,</div>
 <div class="line"><a id="l00219" name="l00219"></a><span class="lineno">  219</span>                   Vector&lt;double&gt;&amp; f);</div>
 <div class="line"><a id="l00220" name="l00220"></a><span class="lineno">  220</span><span class="comment"></span> </div>
-<div class="line"><a id="l00221" name="l00221"></a><span class="lineno">  221</span><span class="comment">    /// \short Boundary of central box macro element in layer i_layer</span></div>
+<div class="line"><a id="l00221" name="l00221"></a><span class="lineno">  221</span><span class="comment">    ///  Boundary of central box macro element in layer i_layer</span></div>
 <div class="line"><a id="l00222" name="l00222"></a><span class="lineno">  222</span><span class="comment">    /// zeta \f$ \in [-1,1]^2 \f$</span></div>
 <div class="line"><a id="l00223" name="l00223"></a><span class="lineno">  223</span><span class="comment"></span>    <span class="keywordtype">void</span> <a class="code hl_function" href="classoomph_1_1QuarterTubeDomain.html#ace2c74d570fcb6a1ddf7a045ab3975c6">r_centr_F</a>(<span class="keyword">const</span> <span class="keywordtype">unsigned</span>&amp; t,</div>
 <div class="line"><a id="l00224" name="l00224"></a><span class="lineno">  224</span>                   <span class="keyword">const</span> Vector&lt;double&gt;&amp; zeta,</div>
@@ -345,42 +345,42 @@
 <div class="line"><a id="l00226" name="l00226"></a><span class="lineno">  226</span>                   Vector&lt;double&gt;&amp; f);</div>
 <div class="line"><a id="l00227" name="l00227"></a><span class="lineno">  227</span> </div>
 <div class="line"><a id="l00228" name="l00228"></a><span class="lineno">  228</span><span class="comment"></span> </div>
-<div class="line"><a id="l00229" name="l00229"></a><span class="lineno">  229</span><span class="comment">    /// \short Boundary of bottom right box macro element in layer i_layer</span></div>
+<div class="line"><a id="l00229" name="l00229"></a><span class="lineno">  229</span><span class="comment">    ///  Boundary of bottom right box macro element in layer i_layer</span></div>
 <div class="line"><a id="l00230" name="l00230"></a><span class="lineno">  230</span><span class="comment">    /// zeta \f$ \in [-1,1]^2 \f$</span></div>
 <div class="line"><a id="l00231" name="l00231"></a><span class="lineno">  231</span><span class="comment"></span>    <span class="keywordtype">void</span> <a class="code hl_function" href="classoomph_1_1QuarterTubeDomain.html#a1c28597fc3361c177620ed914d1731ac">r_bot_right_L</a>(<span class="keyword">const</span> <span class="keywordtype">unsigned</span>&amp; t,</div>
 <div class="line"><a id="l00232" name="l00232"></a><span class="lineno">  232</span>                       <span class="keyword">const</span> Vector&lt;double&gt;&amp; zeta,</div>
 <div class="line"><a id="l00233" name="l00233"></a><span class="lineno">  233</span>                       <span class="keyword">const</span> <span class="keywordtype">unsigned</span>&amp; i_layer,</div>
 <div class="line"><a id="l00234" name="l00234"></a><span class="lineno">  234</span>                       Vector&lt;double&gt;&amp; f);</div>
 <div class="line"><a id="l00235" name="l00235"></a><span class="lineno">  235</span><span class="comment"></span> </div>
-<div class="line"><a id="l00236" name="l00236"></a><span class="lineno">  236</span><span class="comment">    /// \short Boundary of bottom right box macro element in layer i_layer</span></div>
+<div class="line"><a id="l00236" name="l00236"></a><span class="lineno">  236</span><span class="comment">    ///  Boundary of bottom right box macro element in layer i_layer</span></div>
 <div class="line"><a id="l00237" name="l00237"></a><span class="lineno">  237</span><span class="comment">    /// zeta \f$ \in [-1,1]^2 \f$</span></div>
 <div class="line"><a id="l00238" name="l00238"></a><span class="lineno">  238</span><span class="comment"></span>    <span class="keywordtype">void</span> <a class="code hl_function" href="classoomph_1_1QuarterTubeDomain.html#ac269033d05cfc31f78ef6c555723ba3e">r_bot_right_R</a>(<span class="keyword">const</span> <span class="keywordtype">unsigned</span>&amp; t,</div>
 <div class="line"><a id="l00239" name="l00239"></a><span class="lineno">  239</span>                       <span class="keyword">const</span> Vector&lt;double&gt;&amp; zeta,</div>
 <div class="line"><a id="l00240" name="l00240"></a><span class="lineno">  240</span>                       <span class="keyword">const</span> <span class="keywordtype">unsigned</span>&amp; i_layer,</div>
 <div class="line"><a id="l00241" name="l00241"></a><span class="lineno">  241</span>                       Vector&lt;double&gt;&amp; f);</div>
 <div class="line"><a id="l00242" name="l00242"></a><span class="lineno">  242</span><span class="comment"></span> </div>
-<div class="line"><a id="l00243" name="l00243"></a><span class="lineno">  243</span><span class="comment">    /// \short Boundary of bottom right box macro element in layer i_layer</span></div>
+<div class="line"><a id="l00243" name="l00243"></a><span class="lineno">  243</span><span class="comment">    ///  Boundary of bottom right box macro element in layer i_layer</span></div>
 <div class="line"><a id="l00244" name="l00244"></a><span class="lineno">  244</span><span class="comment">    /// zeta \f$ \in [-1,1]^2 \f$</span></div>
 <div class="line"><a id="l00245" name="l00245"></a><span class="lineno">  245</span><span class="comment"></span>    <span class="keywordtype">void</span> <a class="code hl_function" href="classoomph_1_1QuarterTubeDomain.html#a8f4332d868af0473ec2591790e8498ae">r_bot_right_D</a>(<span class="keyword">const</span> <span class="keywordtype">unsigned</span>&amp; t,</div>
 <div class="line"><a id="l00246" name="l00246"></a><span class="lineno">  246</span>                       <span class="keyword">const</span> Vector&lt;double&gt;&amp; zeta,</div>
 <div class="line"><a id="l00247" name="l00247"></a><span class="lineno">  247</span>                       <span class="keyword">const</span> <span class="keywordtype">unsigned</span>&amp; i_layer,</div>
 <div class="line"><a id="l00248" name="l00248"></a><span class="lineno">  248</span>                       Vector&lt;double&gt;&amp; f);</div>
 <div class="line"><a id="l00249" name="l00249"></a><span class="lineno">  249</span><span class="comment"></span> </div>
-<div class="line"><a id="l00250" name="l00250"></a><span class="lineno">  250</span><span class="comment">    /// \short Boundary of bottom right box macro element in layer i_layer</span></div>
+<div class="line"><a id="l00250" name="l00250"></a><span class="lineno">  250</span><span class="comment">    ///  Boundary of bottom right box macro element in layer i_layer</span></div>
 <div class="line"><a id="l00251" name="l00251"></a><span class="lineno">  251</span><span class="comment">    /// zeta \f$ \in [-1,1]^2 \f$</span></div>
 <div class="line"><a id="l00252" name="l00252"></a><span class="lineno">  252</span><span class="comment"></span>    <span class="keywordtype">void</span> <a class="code hl_function" href="classoomph_1_1QuarterTubeDomain.html#aa733400bf322afaa379bad3e21e6ade0">r_bot_right_U</a>(<span class="keyword">const</span> <span class="keywordtype">unsigned</span>&amp; t,</div>
 <div class="line"><a id="l00253" name="l00253"></a><span class="lineno">  253</span>                       <span class="keyword">const</span> Vector&lt;double&gt;&amp; zeta,</div>
 <div class="line"><a id="l00254" name="l00254"></a><span class="lineno">  254</span>                       <span class="keyword">const</span> <span class="keywordtype">unsigned</span>&amp; i_layer,</div>
 <div class="line"><a id="l00255" name="l00255"></a><span class="lineno">  255</span>                       Vector&lt;double&gt;&amp; f);</div>
 <div class="line"><a id="l00256" name="l00256"></a><span class="lineno">  256</span><span class="comment"></span> </div>
-<div class="line"><a id="l00257" name="l00257"></a><span class="lineno">  257</span><span class="comment">    /// \short Boundary of bottom right box macro element in layer i_layer</span></div>
+<div class="line"><a id="l00257" name="l00257"></a><span class="lineno">  257</span><span class="comment">    ///  Boundary of bottom right box macro element in layer i_layer</span></div>
 <div class="line"><a id="l00258" name="l00258"></a><span class="lineno">  258</span><span class="comment">    /// zeta \f$ \in [-1,1]^2 \f$</span></div>
 <div class="line"><a id="l00259" name="l00259"></a><span class="lineno">  259</span><span class="comment"></span>    <span class="keywordtype">void</span> <a class="code hl_function" href="classoomph_1_1QuarterTubeDomain.html#aef8a75f0a0790e2a43f2702524a48e60">r_bot_right_B</a>(<span class="keyword">const</span> <span class="keywordtype">unsigned</span>&amp; t,</div>
 <div class="line"><a id="l00260" name="l00260"></a><span class="lineno">  260</span>                       <span class="keyword">const</span> Vector&lt;double&gt;&amp; zeta,</div>
 <div class="line"><a id="l00261" name="l00261"></a><span class="lineno">  261</span>                       <span class="keyword">const</span> <span class="keywordtype">unsigned</span>&amp; i_layer,</div>
 <div class="line"><a id="l00262" name="l00262"></a><span class="lineno">  262</span>                       Vector&lt;double&gt;&amp; f);</div>
 <div class="line"><a id="l00263" name="l00263"></a><span class="lineno">  263</span><span class="comment"></span> </div>
-<div class="line"><a id="l00264" name="l00264"></a><span class="lineno">  264</span><span class="comment">    /// \short Boundary of bottom right box macro element in layer i_layer</span></div>
+<div class="line"><a id="l00264" name="l00264"></a><span class="lineno">  264</span><span class="comment">    ///  Boundary of bottom right box macro element in layer i_layer</span></div>
 <div class="line"><a id="l00265" name="l00265"></a><span class="lineno">  265</span><span class="comment">    /// zeta \f$ \in [-1,1]^2 \f$</span></div>
 <div class="line"><a id="l00266" name="l00266"></a><span class="lineno">  266</span><span class="comment"></span>    <span class="keywordtype">void</span> <a class="code hl_function" href="classoomph_1_1QuarterTubeDomain.html#a7d71f1ff7b0ea3a9bdbf68b6248a60fe">r_bot_right_F</a>(<span class="keyword">const</span> <span class="keywordtype">unsigned</span>&amp; t,</div>
 <div class="line"><a id="l00267" name="l00267"></a><span class="lineno">  267</span>                       <span class="keyword">const</span> Vector&lt;double&gt;&amp; zeta,</div>
@@ -388,42 +388,42 @@
 <div class="line"><a id="l00269" name="l00269"></a><span class="lineno">  269</span>                       Vector&lt;double&gt;&amp; f);</div>
 <div class="line"><a id="l00270" name="l00270"></a><span class="lineno">  270</span> </div>
 <div class="line"><a id="l00271" name="l00271"></a><span class="lineno">  271</span><span class="comment"></span> </div>
-<div class="line"><a id="l00272" name="l00272"></a><span class="lineno">  272</span><span class="comment">    /// \short Boundary of top left box macro element in layer i_layer</span></div>
+<div class="line"><a id="l00272" name="l00272"></a><span class="lineno">  272</span><span class="comment">    ///  Boundary of top left box macro element in layer i_layer</span></div>
 <div class="line"><a id="l00273" name="l00273"></a><span class="lineno">  273</span><span class="comment">    /// zeta \f$ \in [-1,1]^2 \f$</span></div>
 <div class="line"><a id="l00274" name="l00274"></a><span class="lineno">  274</span><span class="comment"></span>    <span class="keywordtype">void</span> <a class="code hl_function" href="classoomph_1_1QuarterTubeDomain.html#a17a846a90e283ec86538f17145ad7923">r_top_left_L</a>(<span class="keyword">const</span> <span class="keywordtype">unsigned</span>&amp; t,</div>
 <div class="line"><a id="l00275" name="l00275"></a><span class="lineno">  275</span>                      <span class="keyword">const</span> Vector&lt;double&gt;&amp; zeta,</div>
 <div class="line"><a id="l00276" name="l00276"></a><span class="lineno">  276</span>                      <span class="keyword">const</span> <span class="keywordtype">unsigned</span>&amp; i_layer,</div>
 <div class="line"><a id="l00277" name="l00277"></a><span class="lineno">  277</span>                      Vector&lt;double&gt;&amp; f);</div>
 <div class="line"><a id="l00278" name="l00278"></a><span class="lineno">  278</span><span class="comment"></span> </div>
-<div class="line"><a id="l00279" name="l00279"></a><span class="lineno">  279</span><span class="comment">    /// \short Boundary of top left box macro element in layer i_layer</span></div>
+<div class="line"><a id="l00279" name="l00279"></a><span class="lineno">  279</span><span class="comment">    ///  Boundary of top left box macro element in layer i_layer</span></div>
 <div class="line"><a id="l00280" name="l00280"></a><span class="lineno">  280</span><span class="comment">    /// zeta \f$ \in [-1,1]^2 \f$</span></div>
 <div class="line"><a id="l00281" name="l00281"></a><span class="lineno">  281</span><span class="comment"></span>    <span class="keywordtype">void</span> <a class="code hl_function" href="classoomph_1_1QuarterTubeDomain.html#a1aded600b61798fbc080189fadd1c603">r_top_left_R</a>(<span class="keyword">const</span> <span class="keywordtype">unsigned</span>&amp; t,</div>
 <div class="line"><a id="l00282" name="l00282"></a><span class="lineno">  282</span>                      <span class="keyword">const</span> Vector&lt;double&gt;&amp; zeta,</div>
 <div class="line"><a id="l00283" name="l00283"></a><span class="lineno">  283</span>                      <span class="keyword">const</span> <span class="keywordtype">unsigned</span>&amp; i_layer,</div>
 <div class="line"><a id="l00284" name="l00284"></a><span class="lineno">  284</span>                      Vector&lt;double&gt;&amp; f);</div>
 <div class="line"><a id="l00285" name="l00285"></a><span class="lineno">  285</span><span class="comment"></span> </div>
-<div class="line"><a id="l00286" name="l00286"></a><span class="lineno">  286</span><span class="comment">    /// \short Boundary of top left box macro element in layer i_layer</span></div>
+<div class="line"><a id="l00286" name="l00286"></a><span class="lineno">  286</span><span class="comment">    ///  Boundary of top left box macro element in layer i_layer</span></div>
 <div class="line"><a id="l00287" name="l00287"></a><span class="lineno">  287</span><span class="comment">    /// zeta \f$ \in [-1,1]^2 \f$</span></div>
 <div class="line"><a id="l00288" name="l00288"></a><span class="lineno">  288</span><span class="comment"></span>    <span class="keywordtype">void</span> <a class="code hl_function" href="classoomph_1_1QuarterTubeDomain.html#a07e5e6c5549b5cda5adbc91c8c9fdcbb">r_top_left_D</a>(<span class="keyword">const</span> <span class="keywordtype">unsigned</span>&amp; t,</div>
 <div class="line"><a id="l00289" name="l00289"></a><span class="lineno">  289</span>                      <span class="keyword">const</span> Vector&lt;double&gt;&amp; zeta,</div>
 <div class="line"><a id="l00290" name="l00290"></a><span class="lineno">  290</span>                      <span class="keyword">const</span> <span class="keywordtype">unsigned</span>&amp; i_layer,</div>
 <div class="line"><a id="l00291" name="l00291"></a><span class="lineno">  291</span>                      Vector&lt;double&gt;&amp; f);</div>
 <div class="line"><a id="l00292" name="l00292"></a><span class="lineno">  292</span><span class="comment"></span> </div>
-<div class="line"><a id="l00293" name="l00293"></a><span class="lineno">  293</span><span class="comment">    /// \short Boundary of top left box macro element in layer i_layer</span></div>
+<div class="line"><a id="l00293" name="l00293"></a><span class="lineno">  293</span><span class="comment">    ///  Boundary of top left box macro element in layer i_layer</span></div>
 <div class="line"><a id="l00294" name="l00294"></a><span class="lineno">  294</span><span class="comment">    /// zeta \f$ \in [-1,1]^2 \f$</span></div>
 <div class="line"><a id="l00295" name="l00295"></a><span class="lineno">  295</span><span class="comment"></span>    <span class="keywordtype">void</span> <a class="code hl_function" href="classoomph_1_1QuarterTubeDomain.html#ac1cda2361ed175bdf52032dce05f4365">r_top_left_U</a>(<span class="keyword">const</span> <span class="keywordtype">unsigned</span>&amp; t,</div>
 <div class="line"><a id="l00296" name="l00296"></a><span class="lineno">  296</span>                      <span class="keyword">const</span> Vector&lt;double&gt;&amp; zeta,</div>
 <div class="line"><a id="l00297" name="l00297"></a><span class="lineno">  297</span>                      <span class="keyword">const</span> <span class="keywordtype">unsigned</span>&amp; i_layer,</div>
 <div class="line"><a id="l00298" name="l00298"></a><span class="lineno">  298</span>                      Vector&lt;double&gt;&amp; f);</div>
 <div class="line"><a id="l00299" name="l00299"></a><span class="lineno">  299</span><span class="comment"></span> </div>
-<div class="line"><a id="l00300" name="l00300"></a><span class="lineno">  300</span><span class="comment">    /// \short Boundary of top left box macro element in layer i_layer</span></div>
+<div class="line"><a id="l00300" name="l00300"></a><span class="lineno">  300</span><span class="comment">    ///  Boundary of top left box macro element in layer i_layer</span></div>
 <div class="line"><a id="l00301" name="l00301"></a><span class="lineno">  301</span><span class="comment">    /// zeta \f$ \in [-1,1]^2 \f$</span></div>
 <div class="line"><a id="l00302" name="l00302"></a><span class="lineno">  302</span><span class="comment"></span>    <span class="keywordtype">void</span> <a class="code hl_function" href="classoomph_1_1QuarterTubeDomain.html#ab7a0b29926aff44bb26d5544c8dadfb0">r_top_left_B</a>(<span class="keyword">const</span> <span class="keywordtype">unsigned</span>&amp; t,</div>
 <div class="line"><a id="l00303" name="l00303"></a><span class="lineno">  303</span>                      <span class="keyword">const</span> Vector&lt;double&gt;&amp; zeta,</div>
 <div class="line"><a id="l00304" name="l00304"></a><span class="lineno">  304</span>                      <span class="keyword">const</span> <span class="keywordtype">unsigned</span>&amp; i_layer,</div>
 <div class="line"><a id="l00305" name="l00305"></a><span class="lineno">  305</span>                      Vector&lt;double&gt;&amp; f);</div>
 <div class="line"><a id="l00306" name="l00306"></a><span class="lineno">  306</span><span class="comment"></span> </div>
-<div class="line"><a id="l00307" name="l00307"></a><span class="lineno">  307</span><span class="comment">    /// \short Boundary of top left box macro element in layer i_layer</span></div>
+<div class="line"><a id="l00307" name="l00307"></a><span class="lineno">  307</span><span class="comment">    ///  Boundary of top left box macro element in layer i_layer</span></div>
 <div class="line"><a id="l00308" name="l00308"></a><span class="lineno">  308</span><span class="comment">    /// zeta \f$ \in [-1,1]^2 \f$</span></div>
 <div class="line"><a id="l00309" name="l00309"></a><span class="lineno">  309</span><span class="comment"></span>    <span class="keywordtype">void</span> <a class="code hl_function" href="classoomph_1_1QuarterTubeDomain.html#aee4f92da89db4fd8a7ff6e25995e1ca5">r_top_left_F</a>(<span class="keyword">const</span> <span class="keywordtype">unsigned</span>&amp; t,</div>
 <div class="line"><a id="l00310" name="l00310"></a><span class="lineno">  310</span>                      <span class="keyword">const</span> Vector&lt;double&gt;&amp; zeta,</div>
@@ -438,7 +438,7 @@
 <div class="line"><a id="l00319" name="l00319"></a><span class="lineno">  319</span><span class="comment"></span> </div>
 <div class="line"><a id="l00320" name="l00320"></a><span class="lineno">  320</span> </div>
 <div class="line"><a id="l00321" name="l00321"></a><span class="lineno">  321</span>  <span class="comment">//=================================================================</span><span class="comment"></span></div>
-<div class="line"><a id="l00322" name="l00322"></a><span class="lineno">  322</span><span class="comment">  /// \short Vector representation of the  imacro-th macro element</span></div>
+<div class="line"><a id="l00322" name="l00322"></a><span class="lineno">  322</span><span class="comment">  ///  Vector representation of the  imacro-th macro element</span></div>
 <div class="line"><a id="l00323" name="l00323"></a><span class="lineno">  323</span><span class="comment">  /// boundary idirect (L/R/D/U/B/F) at time level t</span></div>
 <div class="line"><a id="l00324" name="l00324"></a><span class="lineno">  324</span><span class="comment">  /// (t=0: present; t&gt;0: previous): f(s)</span></div>
 <div class="line"><a id="l00325" name="l00325"></a><span class="lineno">  325</span><span class="comment"></span>  <span class="comment">//=================================================================</span></div>
@@ -602,7 +602,7 @@
 <div class="line"><a id="l00483" name="l00483"></a><span class="lineno">  483</span> </div>
 <div class="line"><a id="l00484" name="l00484"></a><span class="lineno">  484</span> </div>
 <div class="line"><a id="l00485" name="l00485"></a><span class="lineno">  485</span>  <span class="comment">//=======================================================================</span><span class="comment"></span></div>
-<div class="line"><a id="l00486" name="l00486"></a><span class="lineno">  486</span><span class="comment">  /// \short Boundary of central box macro element in layer i_layer</span></div>
+<div class="line"><a id="l00486" name="l00486"></a><span class="lineno">  486</span><span class="comment">  ///  Boundary of central box macro element in layer i_layer</span></div>
 <div class="line"><a id="l00487" name="l00487"></a><span class="lineno">  487</span><span class="comment">  /// zeta \f$ \in [-1,1]^2 \f$</span></div>
 <div class="line"><a id="l00488" name="l00488"></a><span class="lineno">  488</span><span class="comment"></span>  <span class="comment">//=======================================================================</span></div>
 <div class="line"><a id="l00489" name="l00489"></a><span class="lineno"><a class="line" href="classoomph_1_1QuarterTubeDomain.html#ad150b2df8858d3936e7b6fb856de7ce1">  489</a></span>  <span class="keywordtype">void</span> <a class="code hl_function" href="classoomph_1_1QuarterTubeDomain.html#ad150b2df8858d3936e7b6fb856de7ce1">QuarterTubeDomain::r_centr_L</a>(<span class="keyword">const</span> <span class="keywordtype">unsigned</span>&amp; t,</div>
@@ -634,7 +634,7 @@
 <div class="line"><a id="l00515" name="l00515"></a><span class="lineno">  515</span> </div>
 <div class="line"><a id="l00516" name="l00516"></a><span class="lineno">  516</span> </div>
 <div class="line"><a id="l00517" name="l00517"></a><span class="lineno">  517</span>  <span class="comment">//=======================================================================</span><span class="comment"></span></div>
-<div class="line"><a id="l00518" name="l00518"></a><span class="lineno">  518</span><span class="comment">  /// \short Boundary of central box macro element in layer i_layer</span></div>
+<div class="line"><a id="l00518" name="l00518"></a><span class="lineno">  518</span><span class="comment">  ///  Boundary of central box macro element in layer i_layer</span></div>
 <div class="line"><a id="l00519" name="l00519"></a><span class="lineno">  519</span><span class="comment">  /// zeta \f$ \in [-1,1]^2 \f$</span></div>
 <div class="line"><a id="l00520" name="l00520"></a><span class="lineno">  520</span><span class="comment"></span>  <span class="comment">//=======================================================================</span></div>
 <div class="line"><a id="l00521" name="l00521"></a><span class="lineno"><a class="line" href="classoomph_1_1QuarterTubeDomain.html#ae7312c0c8754d36a69e475cbf97e479e">  521</a></span>  <span class="keywordtype">void</span> <a class="code hl_function" href="classoomph_1_1QuarterTubeDomain.html#ae7312c0c8754d36a69e475cbf97e479e">QuarterTubeDomain::r_centr_R</a>(<span class="keyword">const</span> <span class="keywordtype">unsigned</span>&amp; t,</div>
@@ -680,7 +680,7 @@
 <div class="line"><a id="l00561" name="l00561"></a><span class="lineno">  561</span> </div>
 <div class="line"><a id="l00562" name="l00562"></a><span class="lineno">  562</span> </div>
 <div class="line"><a id="l00563" name="l00563"></a><span class="lineno">  563</span>  <span class="comment">//=======================================================================</span><span class="comment"></span></div>
-<div class="line"><a id="l00564" name="l00564"></a><span class="lineno">  564</span><span class="comment">  /// \short Boundary of central box macro element in layer i_layer</span></div>
+<div class="line"><a id="l00564" name="l00564"></a><span class="lineno">  564</span><span class="comment">  ///  Boundary of central box macro element in layer i_layer</span></div>
 <div class="line"><a id="l00565" name="l00565"></a><span class="lineno">  565</span><span class="comment">  /// zeta \f$ \in [-1,1]^2 \f$</span></div>
 <div class="line"><a id="l00566" name="l00566"></a><span class="lineno">  566</span><span class="comment"></span>  <span class="comment">//=======================================================================</span></div>
 <div class="line"><a id="l00567" name="l00567"></a><span class="lineno"><a class="line" href="classoomph_1_1QuarterTubeDomain.html#a4012aa5d6f8c535150823478164639c3">  567</a></span>  <span class="keywordtype">void</span> <a class="code hl_function" href="classoomph_1_1QuarterTubeDomain.html#a4012aa5d6f8c535150823478164639c3">QuarterTubeDomain::r_centr_D</a>(<span class="keyword">const</span> <span class="keywordtype">unsigned</span>&amp; t,</div>
@@ -712,7 +712,7 @@
 <div class="line"><a id="l00593" name="l00593"></a><span class="lineno">  593</span> </div>
 <div class="line"><a id="l00594" name="l00594"></a><span class="lineno">  594</span> </div>
 <div class="line"><a id="l00595" name="l00595"></a><span class="lineno">  595</span>  <span class="comment">//=======================================================================</span><span class="comment"></span></div>
-<div class="line"><a id="l00596" name="l00596"></a><span class="lineno">  596</span><span class="comment">  /// \short Boundary of central box macro element in layer i_layer</span></div>
+<div class="line"><a id="l00596" name="l00596"></a><span class="lineno">  596</span><span class="comment">  ///  Boundary of central box macro element in layer i_layer</span></div>
 <div class="line"><a id="l00597" name="l00597"></a><span class="lineno">  597</span><span class="comment">  /// zeta \f$ \in [-1,1]^2 \f$</span></div>
 <div class="line"><a id="l00598" name="l00598"></a><span class="lineno">  598</span><span class="comment"></span>  <span class="comment">//=======================================================================</span></div>
 <div class="line"><a id="l00599" name="l00599"></a><span class="lineno"><a class="line" href="classoomph_1_1QuarterTubeDomain.html#afb2013af63e8207676102ee16d856dca">  599</a></span>  <span class="keywordtype">void</span> <a class="code hl_function" href="classoomph_1_1QuarterTubeDomain.html#afb2013af63e8207676102ee16d856dca">QuarterTubeDomain::r_centr_U</a>(<span class="keyword">const</span> <span class="keywordtype">unsigned</span>&amp; t,</div>
@@ -755,7 +755,7 @@
 <div class="line"><a id="l00636" name="l00636"></a><span class="lineno">  636</span> </div>
 <div class="line"><a id="l00637" name="l00637"></a><span class="lineno">  637</span> </div>
 <div class="line"><a id="l00638" name="l00638"></a><span class="lineno">  638</span>  <span class="comment">//=======================================================================</span><span class="comment"></span></div>
-<div class="line"><a id="l00639" name="l00639"></a><span class="lineno">  639</span><span class="comment">  /// \short Boundary of central box macro element in layer i_layer</span></div>
+<div class="line"><a id="l00639" name="l00639"></a><span class="lineno">  639</span><span class="comment">  ///  Boundary of central box macro element in layer i_layer</span></div>
 <div class="line"><a id="l00640" name="l00640"></a><span class="lineno">  640</span><span class="comment">  /// zeta \f$ \in [-1,1]^2 \f$</span></div>
 <div class="line"><a id="l00641" name="l00641"></a><span class="lineno">  641</span><span class="comment"></span>  <span class="comment">//=======================================================================</span></div>
 <div class="line"><a id="l00642" name="l00642"></a><span class="lineno"><a class="line" href="classoomph_1_1QuarterTubeDomain.html#a32896043befe8df1ff01d9de166c1201">  642</a></span>  <span class="keywordtype">void</span> <a class="code hl_function" href="classoomph_1_1QuarterTubeDomain.html#a32896043befe8df1ff01d9de166c1201">QuarterTubeDomain::r_centr_B</a>(<span class="keyword">const</span> <span class="keywordtype">unsigned</span>&amp; t,</div>
@@ -795,7 +795,7 @@
 <div class="line"><a id="l00676" name="l00676"></a><span class="lineno">  676</span> </div>
 <div class="line"><a id="l00677" name="l00677"></a><span class="lineno">  677</span> </div>
 <div class="line"><a id="l00678" name="l00678"></a><span class="lineno">  678</span>  <span class="comment">//=======================================================================</span><span class="comment"></span></div>
-<div class="line"><a id="l00679" name="l00679"></a><span class="lineno">  679</span><span class="comment">  /// \short Boundary of central box macro element in layer i_layer</span></div>
+<div class="line"><a id="l00679" name="l00679"></a><span class="lineno">  679</span><span class="comment">  ///  Boundary of central box macro element in layer i_layer</span></div>
 <div class="line"><a id="l00680" name="l00680"></a><span class="lineno">  680</span><span class="comment">  /// zeta \f$ \in [-1,1]^2 \f$</span></div>
 <div class="line"><a id="l00681" name="l00681"></a><span class="lineno">  681</span><span class="comment"></span>  <span class="comment">//=======================================================================</span></div>
 <div class="line"><a id="l00682" name="l00682"></a><span class="lineno"><a class="line" href="classoomph_1_1QuarterTubeDomain.html#ace2c74d570fcb6a1ddf7a045ab3975c6">  682</a></span>  <span class="keywordtype">void</span> <a class="code hl_function" href="classoomph_1_1QuarterTubeDomain.html#ace2c74d570fcb6a1ddf7a045ab3975c6">QuarterTubeDomain::r_centr_F</a>(<span class="keyword">const</span> <span class="keywordtype">unsigned</span>&amp; t,</div>
@@ -838,7 +838,7 @@
 <div class="line"><a id="l00719" name="l00719"></a><span class="lineno">  719</span> </div>
 <div class="line"><a id="l00720" name="l00720"></a><span class="lineno">  720</span> </div>
 <div class="line"><a id="l00721" name="l00721"></a><span class="lineno">  721</span>  <span class="comment">//=======================================================================</span><span class="comment"></span></div>
-<div class="line"><a id="l00722" name="l00722"></a><span class="lineno">  722</span><span class="comment">  /// \short Boundary of bottom right box macro element in layer i_layer</span></div>
+<div class="line"><a id="l00722" name="l00722"></a><span class="lineno">  722</span><span class="comment">  ///  Boundary of bottom right box macro element in layer i_layer</span></div>
 <div class="line"><a id="l00723" name="l00723"></a><span class="lineno">  723</span><span class="comment">  /// zeta \f$ \in [-1,1]^2 \f$</span></div>
 <div class="line"><a id="l00724" name="l00724"></a><span class="lineno">  724</span><span class="comment"></span>  <span class="comment">//=======================================================================</span></div>
 <div class="line"><a id="l00725" name="l00725"></a><span class="lineno"><a class="line" href="classoomph_1_1QuarterTubeDomain.html#a1c28597fc3361c177620ed914d1731ac">  725</a></span>  <span class="keywordtype">void</span> <a class="code hl_function" href="classoomph_1_1QuarterTubeDomain.html#a1c28597fc3361c177620ed914d1731ac">QuarterTubeDomain::r_bot_right_L</a>(<span class="keyword">const</span> <span class="keywordtype">unsigned</span>&amp; t,</div>
@@ -851,7 +851,7 @@
 <div class="line"><a id="l00732" name="l00732"></a><span class="lineno">  732</span> </div>
 <div class="line"><a id="l00733" name="l00733"></a><span class="lineno">  733</span> </div>
 <div class="line"><a id="l00734" name="l00734"></a><span class="lineno">  734</span>  <span class="comment">//=======================================================================</span><span class="comment"></span></div>
-<div class="line"><a id="l00735" name="l00735"></a><span class="lineno">  735</span><span class="comment">  /// \short Boundary of bottom right box macro element in layer i_layer</span></div>
+<div class="line"><a id="l00735" name="l00735"></a><span class="lineno">  735</span><span class="comment">  ///  Boundary of bottom right box macro element in layer i_layer</span></div>
 <div class="line"><a id="l00736" name="l00736"></a><span class="lineno">  736</span><span class="comment">  /// zeta \f$ \in [-1,1]^2 \f$</span></div>
 <div class="line"><a id="l00737" name="l00737"></a><span class="lineno">  737</span><span class="comment"></span>  <span class="comment">//=======================================================================</span></div>
 <div class="line"><a id="l00738" name="l00738"></a><span class="lineno"><a class="line" href="classoomph_1_1QuarterTubeDomain.html#ac269033d05cfc31f78ef6c555723ba3e">  738</a></span>  <span class="keywordtype">void</span> <a class="code hl_function" href="classoomph_1_1QuarterTubeDomain.html#ac269033d05cfc31f78ef6c555723ba3e">QuarterTubeDomain::r_bot_right_R</a>(<span class="keyword">const</span> <span class="keywordtype">unsigned</span>&amp; t,</div>
@@ -873,7 +873,7 @@
 <div class="line"><a id="l00754" name="l00754"></a><span class="lineno">  754</span> </div>
 <div class="line"><a id="l00755" name="l00755"></a><span class="lineno">  755</span> </div>
 <div class="line"><a id="l00756" name="l00756"></a><span class="lineno">  756</span>  <span class="comment">//=======================================================================</span><span class="comment"></span></div>
-<div class="line"><a id="l00757" name="l00757"></a><span class="lineno">  757</span><span class="comment">  /// \short Boundary of bottom right box macro element in layer i_layer</span></div>
+<div class="line"><a id="l00757" name="l00757"></a><span class="lineno">  757</span><span class="comment">  ///  Boundary of bottom right box macro element in layer i_layer</span></div>
 <div class="line"><a id="l00758" name="l00758"></a><span class="lineno">  758</span><span class="comment">  /// zeta \f$ \in [-1,1]^2 \f$</span></div>
 <div class="line"><a id="l00759" name="l00759"></a><span class="lineno">  759</span><span class="comment"></span>  <span class="comment">//=======================================================================</span></div>
 <div class="line"><a id="l00760" name="l00760"></a><span class="lineno"><a class="line" href="classoomph_1_1QuarterTubeDomain.html#a8f4332d868af0473ec2591790e8498ae">  760</a></span>  <span class="keywordtype">void</span> <a class="code hl_function" href="classoomph_1_1QuarterTubeDomain.html#a8f4332d868af0473ec2591790e8498ae">QuarterTubeDomain::r_bot_right_D</a>(<span class="keyword">const</span> <span class="keywordtype">unsigned</span>&amp; t,</div>
@@ -905,7 +905,7 @@
 <div class="line"><a id="l00786" name="l00786"></a><span class="lineno">  786</span> </div>
 <div class="line"><a id="l00787" name="l00787"></a><span class="lineno">  787</span> </div>
 <div class="line"><a id="l00788" name="l00788"></a><span class="lineno">  788</span>  <span class="comment">//=======================================================================</span><span class="comment"></span></div>
-<div class="line"><a id="l00789" name="l00789"></a><span class="lineno">  789</span><span class="comment">  /// \short Boundary of bottom right box macro element in layer i_layer</span></div>
+<div class="line"><a id="l00789" name="l00789"></a><span class="lineno">  789</span><span class="comment">  ///  Boundary of bottom right box macro element in layer i_layer</span></div>
 <div class="line"><a id="l00790" name="l00790"></a><span class="lineno">  790</span><span class="comment">  /// zeta \f$ \in [-1,1]^2 \f$</span></div>
 <div class="line"><a id="l00791" name="l00791"></a><span class="lineno">  791</span><span class="comment"></span>  <span class="comment">//=======================================================================</span></div>
 <div class="line"><a id="l00792" name="l00792"></a><span class="lineno"><a class="line" href="classoomph_1_1QuarterTubeDomain.html#aa733400bf322afaa379bad3e21e6ade0">  792</a></span>  <span class="keywordtype">void</span> <a class="code hl_function" href="classoomph_1_1QuarterTubeDomain.html#aa733400bf322afaa379bad3e21e6ade0">QuarterTubeDomain::r_bot_right_U</a>(<span class="keyword">const</span> <span class="keywordtype">unsigned</span>&amp; t,</div>
@@ -945,7 +945,7 @@
 <div class="line"><a id="l00826" name="l00826"></a><span class="lineno">  826</span> </div>
 <div class="line"><a id="l00827" name="l00827"></a><span class="lineno">  827</span> </div>
 <div class="line"><a id="l00828" name="l00828"></a><span class="lineno">  828</span>  <span class="comment">//=======================================================================</span><span class="comment"></span></div>
-<div class="line"><a id="l00829" name="l00829"></a><span class="lineno">  829</span><span class="comment">  /// \short Boundary of bottom right box macro element in layer i_layer</span></div>
+<div class="line"><a id="l00829" name="l00829"></a><span class="lineno">  829</span><span class="comment">  ///  Boundary of bottom right box macro element in layer i_layer</span></div>
 <div class="line"><a id="l00830" name="l00830"></a><span class="lineno">  830</span><span class="comment">  /// zeta \f$ \in [-1,1]^2 \f$</span></div>
 <div class="line"><a id="l00831" name="l00831"></a><span class="lineno">  831</span><span class="comment"></span>  <span class="comment">//=======================================================================</span></div>
 <div class="line"><a id="l00832" name="l00832"></a><span class="lineno"><a class="line" href="classoomph_1_1QuarterTubeDomain.html#aef8a75f0a0790e2a43f2702524a48e60">  832</a></span>  <span class="keywordtype">void</span> <a class="code hl_function" href="classoomph_1_1QuarterTubeDomain.html#aef8a75f0a0790e2a43f2702524a48e60">QuarterTubeDomain::r_bot_right_B</a>(<span class="keyword">const</span> <span class="keywordtype">unsigned</span>&amp; t,</div>
@@ -982,7 +982,7 @@
 <div class="line"><a id="l00863" name="l00863"></a><span class="lineno">  863</span> </div>
 <div class="line"><a id="l00864" name="l00864"></a><span class="lineno">  864</span> </div>
 <div class="line"><a id="l00865" name="l00865"></a><span class="lineno">  865</span>  <span class="comment">//=======================================================================</span><span class="comment"></span></div>
-<div class="line"><a id="l00866" name="l00866"></a><span class="lineno">  866</span><span class="comment">  /// \short Boundary of bottom right box macro element in layer i_layer</span></div>
+<div class="line"><a id="l00866" name="l00866"></a><span class="lineno">  866</span><span class="comment">  ///  Boundary of bottom right box macro element in layer i_layer</span></div>
 <div class="line"><a id="l00867" name="l00867"></a><span class="lineno">  867</span><span class="comment">  /// zeta \f$ \in [-1,1]^2 \f$</span></div>
 <div class="line"><a id="l00868" name="l00868"></a><span class="lineno">  868</span><span class="comment"></span>  <span class="comment">//=======================================================================</span></div>
 <div class="line"><a id="l00869" name="l00869"></a><span class="lineno"><a class="line" href="classoomph_1_1QuarterTubeDomain.html#a7d71f1ff7b0ea3a9bdbf68b6248a60fe">  869</a></span>  <span class="keywordtype">void</span> <a class="code hl_function" href="classoomph_1_1QuarterTubeDomain.html#a7d71f1ff7b0ea3a9bdbf68b6248a60fe">QuarterTubeDomain::r_bot_right_F</a>(<span class="keyword">const</span> <span class="keywordtype">unsigned</span>&amp; t,</div>
@@ -1022,7 +1022,7 @@
 <div class="line"><a id="l00903" name="l00903"></a><span class="lineno">  903</span> </div>
 <div class="line"><a id="l00904" name="l00904"></a><span class="lineno">  904</span> </div>
 <div class="line"><a id="l00905" name="l00905"></a><span class="lineno">  905</span>  <span class="comment">//=======================================================================</span><span class="comment"></span></div>
-<div class="line"><a id="l00906" name="l00906"></a><span class="lineno">  906</span><span class="comment">  /// \short Boundary of top left box macro element in layer i_layer</span></div>
+<div class="line"><a id="l00906" name="l00906"></a><span class="lineno">  906</span><span class="comment">  ///  Boundary of top left box macro element in layer i_layer</span></div>
 <div class="line"><a id="l00907" name="l00907"></a><span class="lineno">  907</span><span class="comment">  /// zeta \f$ \in [-1,1]^2 \f$</span></div>
 <div class="line"><a id="l00908" name="l00908"></a><span class="lineno">  908</span><span class="comment"></span>  <span class="comment">//=======================================================================</span></div>
 <div class="line"><a id="l00909" name="l00909"></a><span class="lineno"><a class="line" href="classoomph_1_1QuarterTubeDomain.html#a17a846a90e283ec86538f17145ad7923">  909</a></span>  <span class="keywordtype">void</span> <a class="code hl_function" href="classoomph_1_1QuarterTubeDomain.html#a17a846a90e283ec86538f17145ad7923">QuarterTubeDomain::r_top_left_L</a>(<span class="keyword">const</span> <span class="keywordtype">unsigned</span>&amp; t,</div>
@@ -1054,7 +1054,7 @@
 <div class="line"><a id="l00935" name="l00935"></a><span class="lineno">  935</span> </div>
 <div class="line"><a id="l00936" name="l00936"></a><span class="lineno">  936</span> </div>
 <div class="line"><a id="l00937" name="l00937"></a><span class="lineno">  937</span>  <span class="comment">//=======================================================================</span><span class="comment"></span></div>
-<div class="line"><a id="l00938" name="l00938"></a><span class="lineno">  938</span><span class="comment">  /// \short Boundary of top left box macro element in layer i_layer</span></div>
+<div class="line"><a id="l00938" name="l00938"></a><span class="lineno">  938</span><span class="comment">  ///  Boundary of top left box macro element in layer i_layer</span></div>
 <div class="line"><a id="l00939" name="l00939"></a><span class="lineno">  939</span><span class="comment">  /// zeta \f$ \in [-1,1]^2 \f$</span></div>
 <div class="line"><a id="l00940" name="l00940"></a><span class="lineno">  940</span><span class="comment"></span>  <span class="comment">//=======================================================================</span></div>
 <div class="line"><a id="l00941" name="l00941"></a><span class="lineno"><a class="line" href="classoomph_1_1QuarterTubeDomain.html#a1aded600b61798fbc080189fadd1c603">  941</a></span>  <span class="keywordtype">void</span> <a class="code hl_function" href="classoomph_1_1QuarterTubeDomain.html#a1aded600b61798fbc080189fadd1c603">QuarterTubeDomain::r_top_left_R</a>(<span class="keyword">const</span> <span class="keywordtype">unsigned</span>&amp; t,</div>
@@ -1071,7 +1071,7 @@
 <div class="line"><a id="l00952" name="l00952"></a><span class="lineno">  952</span> </div>
 <div class="line"><a id="l00953" name="l00953"></a><span class="lineno">  953</span> </div>
 <div class="line"><a id="l00954" name="l00954"></a><span class="lineno">  954</span>  <span class="comment">//=======================================================================</span><span class="comment"></span></div>
-<div class="line"><a id="l00955" name="l00955"></a><span class="lineno">  955</span><span class="comment">  /// \short Boundary of top left box macro element in layer i_layer</span></div>
+<div class="line"><a id="l00955" name="l00955"></a><span class="lineno">  955</span><span class="comment">  ///  Boundary of top left box macro element in layer i_layer</span></div>
 <div class="line"><a id="l00956" name="l00956"></a><span class="lineno">  956</span><span class="comment">  /// zeta \f$ \in [-1,1]^2 \f$</span></div>
 <div class="line"><a id="l00957" name="l00957"></a><span class="lineno">  957</span><span class="comment"></span>  <span class="comment">//=======================================================================</span></div>
 <div class="line"><a id="l00958" name="l00958"></a><span class="lineno"><a class="line" href="classoomph_1_1QuarterTubeDomain.html#a07e5e6c5549b5cda5adbc91c8c9fdcbb">  958</a></span>  <span class="keywordtype">void</span> <a class="code hl_function" href="classoomph_1_1QuarterTubeDomain.html#a07e5e6c5549b5cda5adbc91c8c9fdcbb">QuarterTubeDomain::r_top_left_D</a>(<span class="keyword">const</span> <span class="keywordtype">unsigned</span>&amp; t,</div>
@@ -1084,7 +1084,7 @@
 <div class="line"><a id="l00965" name="l00965"></a><span class="lineno">  965</span> </div>
 <div class="line"><a id="l00966" name="l00966"></a><span class="lineno">  966</span> </div>
 <div class="line"><a id="l00967" name="l00967"></a><span class="lineno">  967</span>  <span class="comment">//=======================================================================</span><span class="comment"></span></div>
-<div class="line"><a id="l00968" name="l00968"></a><span class="lineno">  968</span><span class="comment">  /// \short Boundary of top left box macro element in layer i_layer</span></div>
+<div class="line"><a id="l00968" name="l00968"></a><span class="lineno">  968</span><span class="comment">  ///  Boundary of top left box macro element in layer i_layer</span></div>
 <div class="line"><a id="l00969" name="l00969"></a><span class="lineno">  969</span><span class="comment">  /// zeta \f$ \in [-1,1]^2 \f$</span></div>
 <div class="line"><a id="l00970" name="l00970"></a><span class="lineno">  970</span><span class="comment"></span>  <span class="comment">//=======================================================================</span></div>
 <div class="line"><a id="l00971" name="l00971"></a><span class="lineno"><a class="line" href="classoomph_1_1QuarterTubeDomain.html#ac1cda2361ed175bdf52032dce05f4365">  971</a></span>  <span class="keywordtype">void</span> <a class="code hl_function" href="classoomph_1_1QuarterTubeDomain.html#ac1cda2361ed175bdf52032dce05f4365">QuarterTubeDomain::r_top_left_U</a>(<span class="keyword">const</span> <span class="keywordtype">unsigned</span>&amp; t,</div>
@@ -1107,7 +1107,7 @@
 <div class="line"><a id="l00988" name="l00988"></a><span class="lineno">  988</span> </div>
 <div class="line"><a id="l00989" name="l00989"></a><span class="lineno">  989</span> </div>
 <div class="line"><a id="l00990" name="l00990"></a><span class="lineno">  990</span>  <span class="comment">//=======================================================================</span><span class="comment"></span></div>
-<div class="line"><a id="l00991" name="l00991"></a><span class="lineno">  991</span><span class="comment">  /// \short Boundary of top left box macro element in layer i_layer</span></div>
+<div class="line"><a id="l00991" name="l00991"></a><span class="lineno">  991</span><span class="comment">  ///  Boundary of top left box macro element in layer i_layer</span></div>
 <div class="line"><a id="l00992" name="l00992"></a><span class="lineno">  992</span><span class="comment">  /// zeta \f$ \in [-1,1]^2 \f$</span></div>
 <div class="line"><a id="l00993" name="l00993"></a><span class="lineno">  993</span><span class="comment"></span>  <span class="comment">//=======================================================================</span></div>
 <div class="line"><a id="l00994" name="l00994"></a><span class="lineno"><a class="line" href="classoomph_1_1QuarterTubeDomain.html#ab7a0b29926aff44bb26d5544c8dadfb0">  994</a></span>  <span class="keywordtype">void</span> <a class="code hl_function" href="classoomph_1_1QuarterTubeDomain.html#ab7a0b29926aff44bb26d5544c8dadfb0">QuarterTubeDomain::r_top_left_B</a>(<span class="keyword">const</span> <span class="keywordtype">unsigned</span>&amp; t,</div>
@@ -1146,7 +1146,7 @@
 <div class="line"><a id="l01027" name="l01027"></a><span class="lineno"> 1027</span> </div>
 <div class="line"><a id="l01028" name="l01028"></a><span class="lineno"> 1028</span> </div>
 <div class="line"><a id="l01029" name="l01029"></a><span class="lineno"> 1029</span>  <span class="comment">//=======================================================================</span><span class="comment"></span></div>
-<div class="line"><a id="l01030" name="l01030"></a><span class="lineno"> 1030</span><span class="comment">  /// \short Boundary of top left box macro element in layer i_layer</span></div>
+<div class="line"><a id="l01030" name="l01030"></a><span class="lineno"> 1030</span><span class="comment">  ///  Boundary of top left box macro element in layer i_layer</span></div>
 <div class="line"><a id="l01031" name="l01031"></a><span class="lineno"> 1031</span><span class="comment">  /// zeta \f$ \in [-1,1]^2 \f$</span></div>
 <div class="line"><a id="l01032" name="l01032"></a><span class="lineno"> 1032</span><span class="comment"></span>  <span class="comment">//=======================================================================</span></div>
 <div class="line"><a id="l01033" name="l01033"></a><span class="lineno"><a class="line" href="classoomph_1_1QuarterTubeDomain.html#aee4f92da89db4fd8a7ff6e25995e1ca5"> 1033</a></span>  <span class="keywordtype">void</span> <a class="code hl_function" href="classoomph_1_1QuarterTubeDomain.html#aee4f92da89db4fd8a7ff6e25995e1ca5">QuarterTubeDomain::r_top_left_F</a>(<span class="keyword">const</span> <span class="keywordtype">unsigned</span>&amp; t,</div>
@@ -1255,7 +1255,7 @@
     <footer>
       <div class="container">
         <div class="text-muted" style="float:right;">Generated by <a href="http://www.doxygen.org/index.html">
-          <img style="height:18px;" class="footer-img" src="doxygen.png" alt="doxygen"></a> on Wed Oct 13 2021 08:39:51
+          <img style="height:18px;" class="footer-img" src="doxygen.png" alt="doxygen"></a> on Thu Oct 21 2021 17:27:14
         </div>
       </div>
     </footer>

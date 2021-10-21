@@ -2,6 +2,11 @@
 \label{classoomph_1_1IMR}\index{oomph::IMR@{oomph::IMR}}
 
 
+The \char`\"{}real\char`\"{} implementation of the implicit midpoint rule. Implemented by calculation of residuals etc. at half step. This requires non-\/trivial modifications to the element\textquotesingle{}s residual and Jacobian calculation functions to interpolate values to the midpoint. As such \mbox{\hyperlink{classoomph_1_1IMRByBDF}{IMRBy\+BDF}} should be preferred.  
+
+
+
+
 {\ttfamily \#include $<$implicit\+\_\+midpoint\+\_\+rule.\+h$>$}
 
 Inheritance diagram for oomph\+::IMR\+:\begin{figure}[H]
@@ -14,7 +19,7 @@ Inheritance diagram for oomph\+::IMR\+:\begin{figure}[H]
 \begin{DoxyCompactItemize}
 \item 
 \mbox{\hyperlink{classoomph_1_1IMR_aa28c3f9d2eea177280f0868e16127285}{IMR}} (const bool \&adaptive=false)
-\begin{DoxyCompactList}\small\item\em Constructor with initialisation. \end{DoxyCompactList}\item 
+\begin{DoxyCompactList}\small\item\em Common mistakes when using this implementation of midpoint\+: \end{DoxyCompactList}\item 
 virtual \mbox{\hyperlink{classoomph_1_1IMR_a5686334353658c65a1d5e17500f3dc34}{$\sim$\+IMR}} ()
 \begin{DoxyCompactList}\small\item\em Destructor, predictor\+\_\+pt handled by base. \end{DoxyCompactList}\item 
 void \mbox{\hyperlink{classoomph_1_1IMR_aecea8cd9ec75a6e3efde89e451d714c4}{set\+\_\+weights}} ()
@@ -32,7 +37,7 @@ void \mbox{\hyperlink{classoomph_1_1IMR_a694b371e73e3ee940e3473d9a9add90f}{opera
 
 
 \doxysubsection{Detailed Description}
-The \char`\"{}real\char`\"{} implementation of the implicit midpoint rule. Implemented by calculation of residuals etc. at half step. This requires non-\/trivial modifications to the element\textquotesingle{}s residual and Jacobian calculation functions to interpolate values to the midpoint. As such \mbox{\hyperlink{classoomph_1_1IMRByBDF}{IMRBy\+BDF}} should be preferred.
+The \char`\"{}real\char`\"{} implementation of the implicit midpoint rule. Implemented by calculation of residuals etc. at half step. This requires non-\/trivial modifications to the element\textquotesingle{}s residual and Jacobian calculation functions to interpolate values to the midpoint. As such \mbox{\hyperlink{classoomph_1_1IMRByBDF}{IMRBy\+BDF}} should be preferred. 
 
 However this class must be used when multiple different time steppers are being used simultaneously for different parts of the problem. 
 
@@ -49,12 +54,12 @@ Definition at line \mbox{\hyperlink{implicit__midpoint__rule_8h_source_l00166}{1
 
 
 
-Constructor with initialisation. 
+Common mistakes when using this implementation of midpoint\+: 
 
-Common mistakes when using this implementation of midpoint\+:
+
 \begin{DoxyItemize}
 \item Didn\textquotesingle{}t include the d\+\_\+u\+\_\+evaltime\+\_\+by\+\_\+du\+\_\+np1 term in the Jacobian.
-\item Didn\textquotesingle{}t properly interpolate time/values/x/derivatives in jacobian/residual (all of these MUST be evaluated at the midpoint). 
+\item Didn\textquotesingle{}t properly interpolate time/values/x/derivatives in jacobian/residual (all of these MUST be evaluated at the midpoint). Constructor with initialisation 
 \end{DoxyItemize}
 
 Definition at line \mbox{\hyperlink{implicit__midpoint__rule_8h_source_l00176}{176}} of file \mbox{\hyperlink{implicit__midpoint__rule_8h_source}{implicit\+\_\+midpoint\+\_\+rule.\+h}}.

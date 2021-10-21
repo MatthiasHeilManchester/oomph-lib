@@ -2,6 +2,11 @@
 \label{classoomph_1_1FoldHandler}\index{oomph::FoldHandler@{oomph::FoldHandler}}
 
 
+A class that is used to assemble the augmented system that defines a fold (saddle-\/node) or limit point. The \char`\"{}standard\char`\"{} problem must be a function of a global paramter $\lambda$, and a solution is $R(u,\lambda) = 0 $ , where $ u $ are the unknowns in the problem. A limit point is formally specified by the augmented system of size $ 2N+1 $.  
+
+
+
+
 {\ttfamily \#include $<$assembly\+\_\+handler.\+h$>$}
 
 Inheritance diagram for oomph\+::Fold\+Handler\+:\begin{figure}[H]
@@ -18,7 +23,7 @@ Inheritance diagram for oomph\+::Fold\+Handler\+:\begin{figure}[H]
 \mbox{\hyperlink{classoomph_1_1FoldHandler_ac50106424b3fa4e3346231ec41b7a89f}{Fold\+Handler}} (\mbox{\hyperlink{classoomph_1_1Problem}{Problem}} $\ast$const \&problem\+\_\+pt, double $\ast$const \&parameter\+\_\+pt, const \mbox{\hyperlink{classoomph_1_1DoubleVector}{Double\+Vector}} \&eigenvector)
 \begin{DoxyCompactList}\small\item\em Constructor in which initial eigenvector can be passed. \end{DoxyCompactList}\item 
 \mbox{\hyperlink{classoomph_1_1FoldHandler_a0e39e588b48269e4f7272b78fa4b99a7}{Fold\+Handler}} (\mbox{\hyperlink{classoomph_1_1Problem}{Problem}} $\ast$const \&problem\+\_\+pt, double $\ast$const \&parameter\+\_\+pt, const \mbox{\hyperlink{classoomph_1_1DoubleVector}{Double\+Vector}} \&eigenvector, const \mbox{\hyperlink{classoomph_1_1DoubleVector}{Double\+Vector}} \&normalisation)
-\item 
+\begin{DoxyCompactList}\small\item\em Constructor in which initial eigenvector and normalisation can be passed. \end{DoxyCompactList}\item 
 \mbox{\hyperlink{classoomph_1_1FoldHandler_ab582d9ac969e0f7779a285d21a6d8e45}{$\sim$\+Fold\+Handler}} ()
 \begin{DoxyCompactList}\small\item\em Destructor, return the problem to its original state before the augmented system was added. \end{DoxyCompactList}\item 
 unsigned \mbox{\hyperlink{classoomph_1_1FoldHandler_af8e766d1faa7867a0161329566865867}{ndof}} (\mbox{\hyperlink{classoomph_1_1GeneralisedElement}{Generalised\+Element}} $\ast$const \&elem\+\_\+pt)
@@ -54,7 +59,7 @@ enum \{ \mbox{\hyperlink{classoomph_1_1FoldHandler_a860a661fa02e4f000292fa19ea94
 , \mbox{\hyperlink{classoomph_1_1FoldHandler_a860a661fa02e4f000292fa19ea94df3ea28dfb90a98027e2204ea1872c498454c}{Block\+\_\+J}}
 , \mbox{\hyperlink{classoomph_1_1FoldHandler_a860a661fa02e4f000292fa19ea94df3eaf82a4e892f7e8ed53e41dc82acbc92cd}{Block\+\_\+augmented\+\_\+J}}
  \}
-\end{DoxyCompactItemize}
+\begin{DoxyCompactList}\small\item\em A little private enum to determine whether we are solving the block system or not. \end{DoxyCompactList}\end{DoxyCompactItemize}
 \doxysubsection*{Private Attributes}
 \begin{DoxyCompactItemize}
 \item 
@@ -80,7 +85,9 @@ class \mbox{\hyperlink{classoomph_1_1FoldHandler_a29d9c39e6a14d2a4cc4e0d7c716579
 
 
 \doxysubsection{Detailed Description}
-A class that is used to assemble the augmented system that defines a fold (saddle-\/node) or limit point. The \char`\"{}standard\char`\"{} problem must be a function of a global paramter $\lambda$, and a solution is $R(u,\lambda) = 0 $ , where $ u $ are the unknowns in the problem. A limit point is formally specified by the augmented system of size $ 2N+1 $ \[ R(u,\lambda) = 0, \] \[ Jy = 0, \] \[\phi\cdot y = 1. \] In the above $ J $ is the usual Jacobian matrix, $ dR/du $, and $ \phi $ is a constant vector that is chosen to ensure that the null vector, $ y $, is not trivial. 
+A class that is used to assemble the augmented system that defines a fold (saddle-\/node) or limit point. The \char`\"{}standard\char`\"{} problem must be a function of a global paramter $\lambda$, and a solution is $R(u,\lambda) = 0 $ , where $ u $ are the unknowns in the problem. A limit point is formally specified by the augmented system of size $ 2N+1 $. 
+
+\[ R(u,\lambda) = 0, \] \[ Jy = 0, \] \[\phi\cdot y = 1. \] In the above $ J $ is the usual Jacobian matrix, $ dR/du $, and $ \phi $ is a constant vector that is chosen to ensure that the null vector, $ y $, is not trivial. 
 
 Definition at line \mbox{\hyperlink{assembly__handler_8h_source_l00472}{472}} of file \mbox{\hyperlink{assembly__handler_8h_source}{assembly\+\_\+handler.\+h}}.
 
@@ -91,7 +98,11 @@ Definition at line \mbox{\hyperlink{assembly__handler_8h_source_l00472}{472}} of
 \doxysubsubsection{\texorpdfstring{anonymous enum}{anonymous enum}}
 {\footnotesize\ttfamily anonymous enum\hspace{0.3cm}{\ttfamily [private]}}
 
-A little private enum to determine whether we are solving the block system or not \begin{DoxyEnumFields}{Enumerator}
+
+
+A little private enum to determine whether we are solving the block system or not. 
+
+\begin{DoxyEnumFields}{Enumerator}
 \raisebox{\heightof{T}}[0pt][0pt]{\index{Full\_augmented@{Full\_augmented}!oomph::FoldHandler@{oomph::FoldHandler}}\index{oomph::FoldHandler@{oomph::FoldHandler}!Full\_augmented@{Full\_augmented}}}\mbox{\Hypertarget{classoomph_1_1FoldHandler_a860a661fa02e4f000292fa19ea94df3eab20273d36c24fa39780d04503ff186c5}\label{classoomph_1_1FoldHandler_a860a661fa02e4f000292fa19ea94df3eab20273d36c24fa39780d04503ff186c5}} 
 Full\+\_\+augmented&\\
 \hline
@@ -128,7 +139,7 @@ Definition at line \mbox{\hyperlink{assembly__handler_8cc_source_l00864}{864}} o
 
 
 
-References \mbox{\hyperlink{linear__algebra__distribution_8cc_source_l00035}{oomph\+::\+Linear\+Algebra\+Distribution\+::build()}}, \mbox{\hyperlink{problem_8h_source_l01246}{oomph\+::\+Problem\+::communicator\+\_\+pt()}}, \mbox{\hyperlink{assembly__handler_8h_source_l00509}{Count}}, \mbox{\hyperlink{linear__solver_8h_source_l00144}{oomph\+::\+Linear\+Solver\+::disable\+\_\+resolve()}}, \mbox{\hyperlink{problem_8h_source_l00460}{oomph\+::\+Problem\+::\+Dof\+\_\+distribution\+\_\+pt}}, \mbox{\hyperlink{problem_8h_source_l00554}{oomph\+::\+Problem\+::\+Dof\+\_\+pt}}, \mbox{\hyperlink{cfortran_8h_source_l00571}{e}}, \mbox{\hyperlink{mesh_8h_source_l00448}{oomph\+::\+Mesh\+::element\+\_\+pt()}}, \mbox{\hyperlink{linear__solver_8h_source_l00135}{oomph\+::\+Linear\+Solver\+::enable\+\_\+resolve()}}, \mbox{\hyperlink{elements_8h_source_l00704}{oomph\+::\+Generalised\+Element\+::eqn\+\_\+number()}}, \mbox{\hyperlink{problem_8cc_source_l07887}{oomph\+::\+Problem\+::get\+\_\+derivative\+\_\+wrt\+\_\+global\+\_\+parameter()}}, \mbox{\hyperlink{linear__solver_8h_source_l00128}{oomph\+::\+Linear\+Solver\+::is\+\_\+resolve\+\_\+enabled()}}, \mbox{\hyperlink{problem_8h_source_l01466}{oomph\+::\+Problem\+::linear\+\_\+solver\+\_\+pt()}}, \mbox{\hyperlink{problem_8h_source_l01280}{oomph\+::\+Problem\+::mesh\+\_\+pt()}}, \mbox{\hyperlink{assembly__handler_8h_source_l00497}{Ndof}}, \mbox{\hyperlink{elements_8h_source_l00835}{oomph\+::\+Generalised\+Element\+::ndof()}}, \mbox{\hyperlink{problem_8h_source_l01674}{oomph\+::\+Problem\+::ndof()}}, \mbox{\hyperlink{mesh_8h_source_l00590}{oomph\+::\+Mesh\+::nelement()}}, \mbox{\hyperlink{assembly__handler_8h_source_l00501}{Phi}}, \mbox{\hyperlink{assembly__handler_8h_source_l00493}{Problem\+\_\+pt}}, \mbox{\hyperlink{linear__solver_8h_source_l00225}{oomph\+::\+Linear\+Solver\+::resolve()}}, \mbox{\hyperlink{classoomph_1_1LinearSolver_a15ce22542b74ed1826ea485edacbeb6e}{oomph\+::\+Linear\+Solver\+::solve()}}, \mbox{\hyperlink{problem_8h_source_l00667}{oomph\+::\+Problem\+::\+Sparse\+\_\+assemble\+\_\+with\+\_\+arrays\+\_\+previous\+\_\+allocation}}, and \mbox{\hyperlink{assembly__handler_8h_source_l00504}{Y}}.
+References \mbox{\hyperlink{linear__algebra__distribution_8cc_source_l00035}{oomph\+::\+Linear\+Algebra\+Distribution\+::build()}}, \mbox{\hyperlink{problem_8h_source_l01246}{oomph\+::\+Problem\+::communicator\+\_\+pt()}}, \mbox{\hyperlink{assembly__handler_8h_source_l00509}{Count}}, \mbox{\hyperlink{linear__solver_8h_source_l00144}{oomph\+::\+Linear\+Solver\+::disable\+\_\+resolve()}}, \mbox{\hyperlink{problem_8h_source_l00460}{oomph\+::\+Problem\+::\+Dof\+\_\+distribution\+\_\+pt}}, \mbox{\hyperlink{problem_8h_source_l00554}{oomph\+::\+Problem\+::\+Dof\+\_\+pt}}, \mbox{\hyperlink{cfortran_8h_source_l00571}{e}}, \mbox{\hyperlink{mesh_8h_source_l00448}{oomph\+::\+Mesh\+::element\+\_\+pt()}}, \mbox{\hyperlink{linear__solver_8h_source_l00135}{oomph\+::\+Linear\+Solver\+::enable\+\_\+resolve()}}, \mbox{\hyperlink{elements_8h_source_l00704}{oomph\+::\+Generalised\+Element\+::eqn\+\_\+number()}}, \mbox{\hyperlink{problem_8cc_source_l07887}{oomph\+::\+Problem\+::get\+\_\+derivative\+\_\+wrt\+\_\+global\+\_\+parameter()}}, \mbox{\hyperlink{linear__solver_8h_source_l00128}{oomph\+::\+Linear\+Solver\+::is\+\_\+resolve\+\_\+enabled()}}, \mbox{\hyperlink{problem_8h_source_l01466}{oomph\+::\+Problem\+::linear\+\_\+solver\+\_\+pt()}}, \mbox{\hyperlink{problem_8h_source_l01280}{oomph\+::\+Problem\+::mesh\+\_\+pt()}}, \mbox{\hyperlink{assembly__handler_8h_source_l00497}{Ndof}}, \mbox{\hyperlink{elements_8h_source_l00835}{oomph\+::\+Generalised\+Element\+::ndof()}}, \mbox{\hyperlink{problem_8h_source_l01674}{oomph\+::\+Problem\+::ndof()}}, \mbox{\hyperlink{mesh_8h_source_l00590}{oomph\+::\+Mesh\+::nelement()}}, \mbox{\hyperlink{assembly__handler_8h_source_l00501}{Phi}}, \mbox{\hyperlink{assembly__handler_8h_source_l00493}{Problem\+\_\+pt}}, \mbox{\hyperlink{linear__solver_8h_source_l00225}{oomph\+::\+Linear\+Solver\+::resolve()}}, \mbox{\hyperlink{classoomph_1_1LinearSolver_a15ce22542b74ed1826ea485edacbeb6e}{oomph\+::\+Linear\+Solver\+::solve()}}, \mbox{\hyperlink{problem_8h_source_l00667}{oomph\+::\+Problem\+::\+Sparse\+\_\+assemble\+\_\+with\+\_\+arrays\+\_\+previous\+\_\+allocation}}, \mbox{\hyperlink{pseudo__buckling__ring_8h_source_l00049}{oomph\+::x}}, and \mbox{\hyperlink{assembly__handler_8h_source_l00504}{Y}}.
 
 \mbox{\Hypertarget{classoomph_1_1FoldHandler_ac50106424b3fa4e3346231ec41b7a89f}\label{classoomph_1_1FoldHandler_ac50106424b3fa4e3346231ec41b7a89f}} 
 \index{oomph::FoldHandler@{oomph::FoldHandler}!FoldHandler@{FoldHandler}}
@@ -140,7 +151,7 @@ References \mbox{\hyperlink{linear__algebra__distribution_8cc_source_l00035}{oom
 
 Constructor in which initial eigenvector can be passed. 
 
-Constructor in which the eigenvector is passed as an initial guess 
+Constructor in which the eigenvector is passed as an initial guess. 
 
 Definition at line \mbox{\hyperlink{assembly__handler_8cc_source_l00970}{970}} of file \mbox{\hyperlink{assembly__handler_8cc_source}{assembly\+\_\+handler.\+cc}}.
 
@@ -154,9 +165,11 @@ References \mbox{\hyperlink{linear__algebra__distribution_8cc_source_l00035}{oom
 \doxysubsubsection{\texorpdfstring{FoldHandler()}{FoldHandler()}\hspace{0.1cm}{\footnotesize\ttfamily [3/3]}}
 {\footnotesize\ttfamily oomph\+::\+Fold\+Handler\+::\+Fold\+Handler (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classoomph_1_1Problem}{Problem}} $\ast$const \&}]{problem\+\_\+pt,  }\item[{double $\ast$const \&}]{parameter\+\_\+pt,  }\item[{const \mbox{\hyperlink{classoomph_1_1DoubleVector}{Double\+Vector}} \&}]{eigenvector,  }\item[{const \mbox{\hyperlink{classoomph_1_1DoubleVector}{Double\+Vector}} \&}]{normalisation }\end{DoxyParamCaption})}
 
-Constructor in which initial eigenvector and normalisation can be passed
 
-Constructor in which the eigenvector and normalisation vector are passed as an initial guess 
+
+Constructor in which initial eigenvector and normalisation can be passed. 
+
+Constructor in which the eigenvector and normalisation vector are passed as an initial guess. 
 
 Definition at line \mbox{\hyperlink{assembly__handler_8cc_source_l01036}{1036}} of file \mbox{\hyperlink{assembly__handler_8cc_source}{assembly\+\_\+handler.\+cc}}.
 
@@ -261,7 +274,7 @@ Referenced by \mbox{\hyperlink{assembly__handler_8cc_source_l01244}{get\+\_\+jac
 
 Overload the derivative of the residuals and jacobian with respect to a parameter so that it breaks. 
 
-Overload the derivative of the residuals and jacobian with respect to a parameter so that it breaks because it should not be required 
+Overload the derivative of the residuals and jacobian with respect to a parameter so that it breaks because it should not be required. 
 
 Reimplemented from \mbox{\hyperlink{classoomph_1_1AssemblyHandler_aefc0c13a65342806c167c5d53f014803}{oomph\+::\+Assembly\+Handler}}.
 
@@ -279,7 +292,7 @@ Definition at line \mbox{\hyperlink{assembly__handler_8cc_source_l01512}{1512}} 
 
 Overload the derivatives of the residuals with respect to a parameter to apply to the augmented system. 
 
-Formulate the derivatives of the augmented system with respect to a parameter 
+Formulate the derivatives of the augmented system with respect to a parameter. 
 
 Reimplemented from \mbox{\hyperlink{classoomph_1_1AssemblyHandler_a2ee980ccabe0ad82f98e694eecf270bb}{oomph\+::\+Assembly\+Handler}}.
 
@@ -301,7 +314,7 @@ References \mbox{\hyperlink{assembly__handler_8h_source_l00482}{Block\+\_\+augme
 
 Return the eigenfunction(s) associated with the bifurcation that has been detected in bifurcation tracking problems. 
 
-Return the eigenfunction(s) associated with the bifurcation that has been detected in bifurcation tracking problems 
+
 
 Reimplemented from \mbox{\hyperlink{classoomph_1_1AssemblyHandler_a6d614b1b3809d0eb7ceb393e3ae9594f}{oomph\+::\+Assembly\+Handler}}.
 
@@ -323,7 +336,7 @@ References \mbox{\hyperlink{problem_8h_source_l01246}{oomph\+::\+Problem\+::comm
 
 Overload the hessian vector product function so that it breaks. 
 
-Overload the hessian vector product function so that it breaks because it should not be required 
+Overload the hessian vector product function so that it breaks because it should not be required. 
 
 Reimplemented from \mbox{\hyperlink{classoomph_1_1AssemblyHandler_a296bef49838d23522bb660c4c5207f03}{oomph\+::\+Assembly\+Handler}}.
 
@@ -341,7 +354,7 @@ Definition at line \mbox{\hyperlink{assembly__handler_8cc_source_l01533}{1533}} 
 
 Calculate the elemental Jacobian matrix \char`\"{}d equation / d variable\char`\"{}. 
 
-Calculate the elemental Jacobian matrix \char`\"{}d equation / d variable\char`\"{} for the augmented system ALICE
+Calculate the elemental Jacobian matrix \char`\"{}d equation / d variable\char`\"{} for the augmented system. ALICE
 
 ALICE
 
@@ -443,7 +456,7 @@ Referenced by \mbox{\hyperlink{assembly__handler_8cc_source_l00677}{oomph\+::\+A
 
 Set to solve the block system. 
 
-Set to solve the block system. The boolean flag specifies whether the block decomposition should use exactly the same jacobian 
+Set to solve the block system. The boolean flag specifies whether the block decomposition should use exactly the same jacobian. 
 
 Definition at line \mbox{\hyperlink{assembly__handler_8cc_source_l01629}{1629}} of file \mbox{\hyperlink{assembly__handler_8cc_source}{assembly\+\_\+handler.\+cc}}.
 

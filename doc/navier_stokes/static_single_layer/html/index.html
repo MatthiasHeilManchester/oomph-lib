@@ -171,7 +171,7 @@ Problem Parameters</h1>
 <div class="line"><span class="comment"> ///Direction of the wall normal vector</span></div>
 <div class="line"><span class="comment"></span> Vector&lt;double&gt; <a class="code hl_variable" href="namespaceGlobal__Physical__Variables.html#af3a3b98f9f5b354d01228884e49c5bf0">Wall_normal</a>;</div>
 <div class="line"><span class="comment"></span> </div>
-<div class="line"><span class="comment"> /// \short Function that specifies the wall unit normal</span></div>
+<div class="line"><span class="comment"> ///  Function that specifies the wall unit normal</span></div>
 <div class="line"><span class="comment"></span> <span class="keywordtype">void</span> <a class="code hl_function" href="namespaceGlobal__Physical__Variables.html#a0d48e8726fa485de2b2df2d5031ec41b">wall_unit_normal_fct</a>(<span class="keyword">const</span> Vector&lt;double&gt; &amp;x, </div>
 <div class="line">                      Vector&lt;double&gt; &amp;normal)</div>
 <div class="line"> {</div>
@@ -217,7 +217,7 @@ The driver code</h1>
 The problem class</h1>
 <p >The problem class consists of a constructor that takes the aforementioned boolean flag to determine which pressure degree of freedom to use for the volume constraint; a destructor to clean up all memory allocated during the problem construction; a function that performs a parameter study, decreasing the contact angle from <img class="formulaInl" alt="$ \theta_{c} = 90^{\circ} $" src="form_31.png" width="45" height="13"/> in steps of <img class="formulaInl" alt="$ 5^{\circ} $" src="form_32.png" width="11" height="10"/>; and a function that documents the solution.</p>
  <div class="fragment"><div class="line"><span class="comment">//===========start_of_pseudo_elastic_class====================================</span></div>
-<div class="line"><span class="comment">///\short A class that solves the Navier--Stokes equations</span><span class="comment"></span></div>
+<div class="line"><span class="comment">/// A class that solves the Navier--Stokes equations</span><span class="comment"></span></div>
 <div class="line"><span class="comment">///to compute the shape of a static interface in a rectangular container</span></div>
 <div class="line"><span class="comment">///with imposed contact angle at the boundary.</span></div>
 <div class="line"><span class="comment"></span><span class="comment">//============================================================================</span></div>
@@ -240,8 +240,8 @@ The problem class</h1>
 <div class="line"><span class="comment"> /// Doc the solution</span></div>
 <div class="line"><span class="comment"></span> <span class="keywordtype">void</span> <a class="code hl_function" href="classPseudoSolidCapProblem.html#a2fb98a37bde5742cbdf3c91cb1f5eb2f">doc_solution</a>(DocInfo&amp; doc_info);</div>
 <div class="ttc" id="aclassPseudoSolidCapProblem_html_a2fb98a37bde5742cbdf3c91cb1f5eb2f"><div class="ttname"><a href="classPseudoSolidCapProblem.html#a2fb98a37bde5742cbdf3c91cb1f5eb2f">PseudoSolidCapProblem::doc_solution</a></div><div class="ttdeci">void doc_solution(DocInfo &amp;doc_info)</div><div class="ttdoc">Doc the solution.</div><div class="ttdef"><b>Definition:</b> <a href="static__single__layer_8cc_source.html#l00967">static_single_layer.cc:967</a></div></div>
-<div class="ttc" id="aclassPseudoSolidCapProblem_html_a4ac05a07dd55950bb67f7f79cb9fbb77"><div class="ttname"><a href="classPseudoSolidCapProblem.html#a4ac05a07dd55950bb67f7f79cb9fbb77">PseudoSolidCapProblem::PseudoSolidCapProblem</a></div><div class="ttdeci">PseudoSolidCapProblem(const bool &amp;hijack_internal)</div><div class="ttdef"><b>Definition:</b> <a href="static__single__layer_8cc_source.html#l00584">static_single_layer.cc:584</a></div></div>
-<div class="ttc" id="aclassPseudoSolidCapProblem_html_ae86ecaf62fa0920f5d14bf82a7f83b0e"><div class="ttname"><a href="classPseudoSolidCapProblem.html#ae86ecaf62fa0920f5d14bf82a7f83b0e">PseudoSolidCapProblem::parameter_study</a></div><div class="ttdeci">void parameter_study(const string &amp;dir_name)</div><div class="ttdef"><b>Definition:</b> <a href="static__single__layer_8cc_source.html#l00925">static_single_layer.cc:925</a></div></div>
+<div class="ttc" id="aclassPseudoSolidCapProblem_html_a4ac05a07dd55950bb67f7f79cb9fbb77"><div class="ttname"><a href="classPseudoSolidCapProblem.html#a4ac05a07dd55950bb67f7f79cb9fbb77">PseudoSolidCapProblem::PseudoSolidCapProblem</a></div><div class="ttdeci">PseudoSolidCapProblem(const bool &amp;hijack_internal)</div><div class="ttdoc">Constructor: Boolean flag indicates if volume constraint is applied by hijacking internal or external...</div><div class="ttdef"><b>Definition:</b> <a href="static__single__layer_8cc_source.html#l00584">static_single_layer.cc:584</a></div></div>
+<div class="ttc" id="aclassPseudoSolidCapProblem_html_ae86ecaf62fa0920f5d14bf82a7f83b0e"><div class="ttname"><a href="classPseudoSolidCapProblem.html#ae86ecaf62fa0920f5d14bf82a7f83b0e">PseudoSolidCapProblem::parameter_study</a></div><div class="ttdeci">void parameter_study(const string &amp;dir_name)</div><div class="ttdoc">Peform a parameter study: Solve problem for a range of contact angles Pass name of output directory a...</div><div class="ttdef"><b>Definition:</b> <a href="static__single__layer_8cc_source.html#l00925">static_single_layer.cc:925</a></div></div>
 <div class="ttc" id="aclassPseudoSolidCapProblem_html_aec2a79e44dfd785b2978419210b053b8"><div class="ttname"><a href="classPseudoSolidCapProblem.html#aec2a79e44dfd785b2978419210b053b8">PseudoSolidCapProblem::~PseudoSolidCapProblem</a></div><div class="ttdeci">~PseudoSolidCapProblem()</div><div class="ttdoc">Destructor: clean up memory allocated by the object.</div><div class="ttdef"><b>Definition:</b> <a href="static__single__layer_8cc_source.html#l00754">static_single_layer.cc:754</a></div></div>
 </div><!-- fragment --><p> There are also three helper functions that are used to create the <code>FaceElements</code> used to enforce the additional boundary conditions and constraints. The function <code>create_free_surface_elements()</code> adds <code>ElasticLineFluidInterfaceElements</code> to the upper boundary (boundary 2) of the mesh, exactly as in <a href="../../single_layer_free_surface/html/index.html">another tutorial </a>. The function <code>create_volume_constraint_elements()</code> constructs the elements required to enforce the volume constraint. Finally, the function <code>create_contact_angle_element()</code> constructs the <code>PointElement</code> that enforces the contact angle condition at the solid wall of the container.</p>
 <div class="fragment"><div class="line"> </div>
@@ -730,7 +730,7 @@ PDF file</h1>
     <footer>
       <div class="container">
         <div class="text-muted" style="float:right;">Generated by <a href="http://www.doxygen.org/index.html">
-          <img style="height:18px;" class="footer-img" src="doxygen.png" alt="doxygen"></a> on Wed Oct 13 2021 08:56:03
+          <img style="height:18px;" class="footer-img" src="doxygen.png" alt="doxygen"></a> on Thu Oct 21 2021 17:43:54
         </div>
       </div>
     </footer>

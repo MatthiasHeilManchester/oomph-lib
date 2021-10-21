@@ -2,7 +2,7 @@
 \label{classoomph_1_1BoundaryNodeBase}\index{oomph::BoundaryNodeBase@{oomph::BoundaryNodeBase}}
 
 
-A class that contains the information required by Nodes that are located on \mbox{\hyperlink{classoomph_1_1Mesh}{Mesh}} boundaries. A \mbox{\hyperlink{classoomph_1_1BoundaryNode}{Boundary\+Node}} of a particular type is obtained by combining a given \mbox{\hyperlink{classoomph_1_1Node}{Node}} with this class. By differentiating between Nodes and Boundary\+Nodes we avoid a lot of un-\/necessary storage in the bulk Nodes.  
+A class that contains the information required by Nodes that are located on \mbox{\hyperlink{classoomph_1_1Mesh}{Mesh}} boundaries. A \mbox{\hyperlink{classoomph_1_1BoundaryNode}{Boundary\+Node}} of a particular type is obtained by combining a given Node with this class. By differentiating between Nodes and Boundary\+Nodes we avoid a lot of un-\/necessary storage in the bulk Nodes.  
 
 
 
@@ -19,7 +19,7 @@ Inheritance diagram for oomph\+::Boundary\+Node\+Base\+:\begin{figure}[H]
 \begin{DoxyCompactItemize}
 \item 
 virtual void \mbox{\hyperlink{classoomph_1_1BoundaryNodeBase_a2af96b956e59182fe8bfe8e2a87e02ce}{assign\+\_\+additional\+\_\+values\+\_\+with\+\_\+face\+\_\+id}} (const unsigned \&n\+\_\+additional\+\_\+value, const unsigned \&face\+\_\+id=0)=0
-\begin{DoxyCompactList}\small\item\em Member function that allocates storage for a given number of additional degrees of freedom, n\+\_\+additional\+\_\+value, associated with a particular face\+\_\+id to the \mbox{\hyperlink{classoomph_1_1Node}{Node}} node\+\_\+pt. \end{DoxyCompactList}\item 
+\begin{DoxyCompactList}\small\item\em Member function that allocates storage for a given number of additional degrees of freedom, n\+\_\+additional\+\_\+value, associated with a particular face\+\_\+id to the Node node\+\_\+pt. \end{DoxyCompactList}\item 
 std\+::map$<$ unsigned, unsigned $>$ $\ast$\& \mbox{\hyperlink{classoomph_1_1BoundaryNodeBase_a5f73c54dbb9bdfe3538b61117a0cc674}{index\+\_\+of\+\_\+first\+\_\+value\+\_\+assigned\+\_\+by\+\_\+face\+\_\+element\+\_\+pt}} ()
 \begin{DoxyCompactList}\small\item\em Return pointer to the map giving the index of the first face element value. \end{DoxyCompactList}\item 
 unsigned \mbox{\hyperlink{classoomph_1_1BoundaryNodeBase_a67c470bd15750e91775101b5bce65a58}{index\+\_\+of\+\_\+first\+\_\+value\+\_\+assigned\+\_\+by\+\_\+face\+\_\+element}} (const unsigned \&face\+\_\+id=0) const
@@ -61,28 +61,28 @@ void \mbox{\hyperlink{classoomph_1_1BoundaryNodeBase_a45d53bb02ccf50ab551d051b5e
 \doxysubsection*{Protected Member Functions}
 \begin{DoxyCompactItemize}
 \item 
-void \mbox{\hyperlink{classoomph_1_1BoundaryNodeBase_a335936260b9a5d6ed4e191e4c44ab3a2}{make\+\_\+node\+\_\+periodic}} (\mbox{\hyperlink{classoomph_1_1Node}{Node}} $\ast$const \&node\+\_\+pt, \mbox{\hyperlink{classoomph_1_1Node}{Node}} $\ast$const \&original\+\_\+node\+\_\+pt)
+void \mbox{\hyperlink{classoomph_1_1BoundaryNodeBase_a335936260b9a5d6ed4e191e4c44ab3a2}{make\+\_\+node\+\_\+periodic}} (Node $\ast$const \&node\+\_\+pt, Node $\ast$const \&original\+\_\+node\+\_\+pt)
 \begin{DoxyCompactList}\small\item\em Helper function that is used to turn Boundary\+Nodes into peridic boundary nodes by setting the data values of copied\+\_\+node\+\_\+pt to those of original\+\_\+node\+\_\+pt. \end{DoxyCompactList}\item 
-void \mbox{\hyperlink{classoomph_1_1BoundaryNodeBase_a37f55f9018ae7dcd5cb194f030fccfd6}{make\+\_\+nodes\+\_\+periodic}} (\mbox{\hyperlink{classoomph_1_1Node}{Node}} $\ast$const \&node\+\_\+pt, \mbox{\hyperlink{classoomph_1_1Vector}{Vector}}$<$ \mbox{\hyperlink{classoomph_1_1Node}{Node}} $\ast$ $>$ const \&periodic\+\_\+copies\+\_\+pt)
+void \mbox{\hyperlink{classoomph_1_1BoundaryNodeBase_a37f55f9018ae7dcd5cb194f030fccfd6}{make\+\_\+nodes\+\_\+periodic}} (Node $\ast$const \&node\+\_\+pt, \mbox{\hyperlink{classoomph_1_1Vector}{Vector}}$<$ Node $\ast$ $>$ const \&periodic\+\_\+copies\+\_\+pt)
 \begin{DoxyCompactList}\small\item\em Helper function that is used to turn Boundary\+Nodes into periodic boundary nodes by setting the data values of the nodes in the vector periodic\+\_\+copies\+\_\+pt to be the same as those in node\+\_\+pt. \end{DoxyCompactList}\end{DoxyCompactItemize}
 \doxysubsection*{Protected Attributes}
 \begin{DoxyCompactItemize}
 \item 
 std\+::map$<$ unsigned, unsigned $>$ $\ast$ \mbox{\hyperlink{classoomph_1_1BoundaryNodeBase_a950c7d3ab5b9ee0473b45b2a134728a7}{Index\+\_\+of\+\_\+first\+\_\+value\+\_\+assigned\+\_\+by\+\_\+face\+\_\+element\+\_\+pt}}
-\begin{DoxyCompactList}\small\item\em Pointer to a map, indexed by the face element identifier it returns the position of the first face element value. If the \mbox{\hyperlink{classoomph_1_1Node}{Node}} does not lie on a face element this map should never be queried. \end{DoxyCompactList}\item 
-\mbox{\hyperlink{classoomph_1_1Node}{Node}} $\ast$ \mbox{\hyperlink{classoomph_1_1BoundaryNodeBase_a4afcc250ee4d601a60f06d0d39ebaca0}{Copied\+\_\+node\+\_\+pt}}
+\begin{DoxyCompactList}\small\item\em Pointer to a map, indexed by the face element identifier it returns the position of the first face element value. If the Node does not lie on a face element this map should never be queried. \end{DoxyCompactList}\item 
+Node $\ast$ \mbox{\hyperlink{classoomph_1_1BoundaryNodeBase_a4afcc250ee4d601a60f06d0d39ebaca0}{Copied\+\_\+node\+\_\+pt}}
 \begin{DoxyCompactList}\small\item\em If the \mbox{\hyperlink{classoomph_1_1BoundaryNode}{Boundary\+Node}} is periodic, this pointer is set to the \mbox{\hyperlink{classoomph_1_1BoundaryNode}{Boundary\+Node}} whose data it shares. \end{DoxyCompactList}\end{DoxyCompactItemize}
 \doxysubsection*{Private Attributes}
 \begin{DoxyCompactItemize}
 \item 
 std\+::map$<$ unsigned, \mbox{\hyperlink{classoomph_1_1DenseMatrix}{Dense\+Matrix}}$<$ double $>$ $\ast$ $>$ $\ast$ \mbox{\hyperlink{classoomph_1_1BoundaryNodeBase_a732b1ffccbcd7b79097a1779a94e9497}{Boundary\+\_\+coordinates\+\_\+pt}}
-\begin{DoxyCompactList}\small\item\em Pointer to a map of pointers to intrinsic boundary coordinates of the \mbox{\hyperlink{classoomph_1_1Node}{Node}}, indexed by the boundary number. If the \mbox{\hyperlink{classoomph_1_1Node}{Node}} does not lie on a boundary this map should never be queried because unnecessary storage will then be allocated. Hence, it can only be accessed via the appropriate set and get functions. \end{DoxyCompactList}\item 
+\begin{DoxyCompactList}\small\item\em Pointer to a map of pointers to intrinsic boundary coordinates of the Node, indexed by the boundary number. If the Node does not lie on a boundary this map should never be queried because unnecessary storage will then be allocated. Hence, it can only be accessed via the appropriate set and get functions. \end{DoxyCompactList}\item 
 std\+::set$<$ unsigned $>$ $\ast$ \mbox{\hyperlink{classoomph_1_1BoundaryNodeBase_a18163a5bc2e0b6dfc487e249f3c24dd6}{Boundaries\+\_\+pt}}
-\begin{DoxyCompactList}\small\item\em Pointer to set of mesh boundaries occupied by the \mbox{\hyperlink{classoomph_1_1Node}{Node}}; NULL if the \mbox{\hyperlink{classoomph_1_1Node}{Node}} is not on any boundaries. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\begin{DoxyCompactList}\small\item\em Pointer to set of mesh boundaries occupied by the Node; NULL if the Node is not on any boundaries. \end{DoxyCompactList}\end{DoxyCompactItemize}
 
 
 \doxysubsection{Detailed Description}
-A class that contains the information required by Nodes that are located on \mbox{\hyperlink{classoomph_1_1Mesh}{Mesh}} boundaries. A \mbox{\hyperlink{classoomph_1_1BoundaryNode}{Boundary\+Node}} of a particular type is obtained by combining a given \mbox{\hyperlink{classoomph_1_1Node}{Node}} with this class. By differentiating between Nodes and Boundary\+Nodes we avoid a lot of un-\/necessary storage in the bulk Nodes. 
+A class that contains the information required by Nodes that are located on \mbox{\hyperlink{classoomph_1_1Mesh}{Mesh}} boundaries. A \mbox{\hyperlink{classoomph_1_1BoundaryNode}{Boundary\+Node}} of a particular type is obtained by combining a given Node with this class. By differentiating between Nodes and Boundary\+Nodes we avoid a lot of un-\/necessary storage in the bulk Nodes. 
 
 Definition at line \mbox{\hyperlink{nodes_8h_source_l01996}{1996}} of file \mbox{\hyperlink{nodes_8h_source}{nodes.\+h}}.
 
@@ -164,7 +164,7 @@ Referenced by \mbox{\hyperlink{nodes_8h_source_l02546}{oomph\+::\+Boundary\+Node
 
 
 
-Member function that allocates storage for a given number of additional degrees of freedom, n\+\_\+additional\+\_\+value, associated with a particular face\+\_\+id to the \mbox{\hyperlink{classoomph_1_1Node}{Node}} node\+\_\+pt. 
+Member function that allocates storage for a given number of additional degrees of freedom, n\+\_\+additional\+\_\+value, associated with a particular face\+\_\+id to the Node node\+\_\+pt. 
 
 
 
@@ -224,7 +224,7 @@ Referenced by \mbox{\hyperlink{nodes_8h_source_l02526}{oomph\+::\+Boundary\+Node
 
 Return the vector of the k-\/th generalised boundary coordinates on mesh boundary b. 
 
-Given the mesh boundary b, return the k-\/th generalised boundary coordinates of the node in the vector boundary\+\_\+zeta 
+Given the mesh boundary b, return the k-\/th generalised boundary coordinates of the node in the vector boundary\+\_\+zeta. 
 
 Definition at line \mbox{\hyperlink{nodes_8cc_source_l03165}{3165}} of file \mbox{\hyperlink{nodes_8cc_source}{nodes.\+cc}}.
 
@@ -360,7 +360,7 @@ References \mbox{\hyperlink{nodes_8h_source_l02009}{Boundaries\+\_\+pt}}.
 \index{oomph::BoundaryNodeBase@{oomph::BoundaryNodeBase}!make\_node\_periodic@{make\_node\_periodic}}
 \index{make\_node\_periodic@{make\_node\_periodic}!oomph::BoundaryNodeBase@{oomph::BoundaryNodeBase}}
 \doxysubsubsection{\texorpdfstring{make\_node\_periodic()}{make\_node\_periodic()}}
-{\footnotesize\ttfamily void oomph\+::\+Boundary\+Node\+Base\+::make\+\_\+node\+\_\+periodic (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classoomph_1_1Node}{Node}} $\ast$const \&}]{node\+\_\+pt,  }\item[{\mbox{\hyperlink{classoomph_1_1Node}{Node}} $\ast$const \&}]{copied\+\_\+node\+\_\+pt }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [protected]}}
+{\footnotesize\ttfamily void oomph\+::\+Boundary\+Node\+Base\+::make\+\_\+node\+\_\+periodic (\begin{DoxyParamCaption}\item[{Node $\ast$const \&}]{node\+\_\+pt,  }\item[{Node $\ast$const \&}]{original\+\_\+node\+\_\+pt }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [protected]}}
 
 
 
@@ -372,7 +372,7 @@ Definition at line \mbox{\hyperlink{nodes_8cc_source_l02951}{2951}} of file \mbo
 
 
 
-References \mbox{\hyperlink{nodes_8cc_source_l00076}{oomph\+::\+Data\+::add\+\_\+copy()}}, \mbox{\hyperlink{nodes_8h_source_l01108}{oomph\+::\+Node\+::copied\+\_\+node\+\_\+pt()}}, \mbox{\hyperlink{nodes_8h_source_l02022}{Copied\+\_\+node\+\_\+pt}}, \mbox{\hyperlink{nodes_8cc_source_l00187}{oomph\+::\+Data\+::delete\+\_\+value\+\_\+storage()}}, \mbox{\hyperlink{nodes_8h_source_l00116}{oomph\+::\+Data\+::\+Eqn\+\_\+number}}, \mbox{\hyperlink{nodes_8h_source_l00253}{oomph\+::\+Data\+::is\+\_\+a\+\_\+copy()}}, \mbox{\hyperlink{nodes_8cc_source_l02951}{make\+\_\+node\+\_\+periodic()}}, and \mbox{\hyperlink{nodes_8h_source_l00112}{oomph\+::\+Data\+::\+Value}}.
+References \mbox{\hyperlink{nodes_8h_source_l02022}{Copied\+\_\+node\+\_\+pt}}, and \mbox{\hyperlink{nodes_8cc_source_l02951}{make\+\_\+node\+\_\+periodic()}}.
 
 
 
@@ -382,7 +382,7 @@ Referenced by \mbox{\hyperlink{nodes_8cc_source_l02951}{make\+\_\+node\+\_\+peri
 \index{oomph::BoundaryNodeBase@{oomph::BoundaryNodeBase}!make\_nodes\_periodic@{make\_nodes\_periodic}}
 \index{make\_nodes\_periodic@{make\_nodes\_periodic}!oomph::BoundaryNodeBase@{oomph::BoundaryNodeBase}}
 \doxysubsubsection{\texorpdfstring{make\_nodes\_periodic()}{make\_nodes\_periodic()}}
-{\footnotesize\ttfamily void oomph\+::\+Boundary\+Node\+Base\+::make\+\_\+nodes\+\_\+periodic (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classoomph_1_1Node}{Node}} $\ast$const \&}]{node\+\_\+pt,  }\item[{\mbox{\hyperlink{classoomph_1_1Vector}{Vector}}$<$ \mbox{\hyperlink{classoomph_1_1Node}{Node}} $\ast$ $>$ const \&}]{periodic\+\_\+copies\+\_\+pt }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [protected]}}
+{\footnotesize\ttfamily void oomph\+::\+Boundary\+Node\+Base\+::make\+\_\+nodes\+\_\+periodic (\begin{DoxyParamCaption}\item[{Node $\ast$const \&}]{node\+\_\+pt,  }\item[{\mbox{\hyperlink{classoomph_1_1Vector}{Vector}}$<$ Node $\ast$ $>$ const \&}]{periodic\+\_\+copies\+\_\+pt }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [protected]}}
 
 
 
@@ -394,7 +394,7 @@ Definition at line \mbox{\hyperlink{nodes_8cc_source_l02896}{2896}} of file \mbo
 
 
 
-References \mbox{\hyperlink{nodes_8cc_source_l00076}{oomph\+::\+Data\+::add\+\_\+copy()}}, \mbox{\hyperlink{nodes_8h_source_l02022}{Copied\+\_\+node\+\_\+pt}}, \mbox{\hyperlink{nodes_8cc_source_l00187}{oomph\+::\+Data\+::delete\+\_\+value\+\_\+storage()}}, \mbox{\hyperlink{nodes_8h_source_l00116}{oomph\+::\+Data\+::\+Eqn\+\_\+number}}, \mbox{\hyperlink{nodes_8h_source_l00253}{oomph\+::\+Data\+::is\+\_\+a\+\_\+copy()}}, and \mbox{\hyperlink{nodes_8h_source_l00112}{oomph\+::\+Data\+::\+Value}}.
+References \mbox{\hyperlink{nodes_8h_source_l02022}{Copied\+\_\+node\+\_\+pt}}.
 
 
 
@@ -478,7 +478,7 @@ Referenced by \mbox{\hyperlink{nodes_8h_source_l02552}{oomph\+::\+Boundary\+Node
 
 Set the vector of the k-\/th generalised boundary coordinates on mesh boundary b. 
 
-Given the mesh boundary b, set the k-\/th generalised boundary coordinates of the node from the vector boundary\+\_\+zeta 
+Given the mesh boundary b, set the k-\/th generalised boundary coordinates of the node from the vector boundary\+\_\+zeta. 
 
 Definition at line \mbox{\hyperlink{nodes_8cc_source_l03236}{3236}} of file \mbox{\hyperlink{nodes_8cc_source}{nodes.\+cc}}.
 
@@ -519,7 +519,7 @@ Referenced by \mbox{\hyperlink{nodes_8h_source_l02211}{set\+\_\+coordinates\+\_\
 
 
 
-Pointer to set of mesh boundaries occupied by the \mbox{\hyperlink{classoomph_1_1Node}{Node}}; NULL if the \mbox{\hyperlink{classoomph_1_1Node}{Node}} is not on any boundaries. 
+Pointer to set of mesh boundaries occupied by the Node; NULL if the Node is not on any boundaries. 
 
 
 
@@ -537,7 +537,7 @@ Referenced by \mbox{\hyperlink{nodes_8cc_source_l03028}{add\+\_\+to\+\_\+boundar
 
 
 
-Pointer to a map of pointers to intrinsic boundary coordinates of the \mbox{\hyperlink{classoomph_1_1Node}{Node}}, indexed by the boundary number. If the \mbox{\hyperlink{classoomph_1_1Node}{Node}} does not lie on a boundary this map should never be queried because unnecessary storage will then be allocated. Hence, it can only be accessed via the appropriate set and get functions. 
+Pointer to a map of pointers to intrinsic boundary coordinates of the Node, indexed by the boundary number. If the Node does not lie on a boundary this map should never be queried because unnecessary storage will then be allocated. Hence, it can only be accessed via the appropriate set and get functions. 
 
 
 
@@ -551,7 +551,7 @@ Referenced by \mbox{\hyperlink{nodes_8h_source_l02171}{boundary\+\_\+coordinates
 \index{oomph::BoundaryNodeBase@{oomph::BoundaryNodeBase}!Copied\_node\_pt@{Copied\_node\_pt}}
 \index{Copied\_node\_pt@{Copied\_node\_pt}!oomph::BoundaryNodeBase@{oomph::BoundaryNodeBase}}
 \doxysubsubsection{\texorpdfstring{Copied\_node\_pt}{Copied\_node\_pt}}
-{\footnotesize\ttfamily \mbox{\hyperlink{classoomph_1_1Node}{Node}}$\ast$ oomph\+::\+Boundary\+Node\+Base\+::\+Copied\+\_\+node\+\_\+pt\hspace{0.3cm}{\ttfamily [protected]}}
+{\footnotesize\ttfamily Node$\ast$ oomph\+::\+Boundary\+Node\+Base\+::\+Copied\+\_\+node\+\_\+pt\hspace{0.3cm}{\ttfamily [protected]}}
 
 
 
@@ -573,7 +573,7 @@ Referenced by \mbox{\hyperlink{nodes_8h_source_l02829}{oomph\+::\+Boundary\+Node
 
 
 
-Pointer to a map, indexed by the face element identifier it returns the position of the first face element value. If the \mbox{\hyperlink{classoomph_1_1Node}{Node}} does not lie on a face element this map should never be queried. 
+Pointer to a map, indexed by the face element identifier it returns the position of the first face element value. If the Node does not lie on a face element this map should never be queried. 
 
 
 

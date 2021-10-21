@@ -2,6 +2,11 @@
 \label{classoomph_1_1HijackedElementBase}\index{oomph::HijackedElementBase@{oomph::HijackedElementBase}}
 
 
+Hijacked\+Element base class that provides storage and access funcitons for pointers to the global equation numbers that are hijacked by the Hijacked\+Element. A default residuals multiplier is also provided.  
+
+
+
+
 {\ttfamily \#include $<$hijacked\+\_\+elements.\+h$>$}
 
 Inheritance diagram for oomph\+::Hijacked\+Element\+Base\+:\begin{figure}[H]
@@ -34,7 +39,7 @@ void \mbox{\hyperlink{classoomph_1_1HijackedElementBase_aa94e2c93374151302879645
 \begin{DoxyCompactItemize}
 \item 
 std\+::set$<$ long $\ast$ $>$ $\ast$ \mbox{\hyperlink{classoomph_1_1HijackedElementBase_a9c3a9a4e39ee5e3af0f5594c31f532c5}{Hijacked\+\_\+global\+\_\+eqn\+\_\+number\+\_\+pt}}
-\item 
+\begin{DoxyCompactList}\small\item\em Pointer to a Set of pointers to the equation numbers that will be hijacked by this element. Note that these MUST be pointers because hijacking information is set BEFORE global equation numbers have been assigned. \end{DoxyCompactList}\item 
 \mbox{\hyperlink{classoomph_1_1Vector}{Vector}}$<$ int $>$ $\ast$ \mbox{\hyperlink{classoomph_1_1HijackedElementBase_ae604da2f744f328f3866a2cefa3aa80c}{Hijacked\+\_\+local\+\_\+eqn\+\_\+number\+\_\+pt}}
 \begin{DoxyCompactList}\small\item\em Pointer to a vector of integers containing the local equation numbers of any hijacked variables in the element. \end{DoxyCompactList}\item 
 double $\ast$ \mbox{\hyperlink{classoomph_1_1HijackedElementBase_a283509b7af09479e7a1cb8c0e05a8c16}{Residual\+\_\+multiplier\+\_\+pt}}
@@ -43,7 +48,7 @@ double $\ast$ \mbox{\hyperlink{classoomph_1_1HijackedElementBase_a283509b7af0947
 \begin{DoxyCompactItemize}
 \item 
 static double \mbox{\hyperlink{classoomph_1_1HijackedElementBase_afd87cc7c33c2b846c5f7a373c352f13a}{Default\+\_\+residual\+\_\+multiplier}} = 0.\+0
-\end{DoxyCompactItemize}
+\begin{DoxyCompactList}\small\item\em Static default value for the double that multiplies the original residuals. \end{DoxyCompactList}\end{DoxyCompactItemize}
 
 
 \doxysubsection{Detailed Description}
@@ -103,7 +108,7 @@ References \mbox{\hyperlink{hijacked__elements_8h_source_l00086}{Hijacked\+\_\+g
 
 Mark the global equation, addressed by global\+\_\+eqn\+\_\+pt, as hijacked by this element. 
 
-Mark the global equation, addressed by global\+\_\+eqn\+\_\+pt, as hijacked by this element. 
+
 
 Definition at line \mbox{\hyperlink{hijacked__elements_8cc_source_l00062}{62}} of file \mbox{\hyperlink{hijacked__elements_8cc_source}{hijacked\+\_\+elements.\+cc}}.
 
@@ -183,7 +188,7 @@ References \mbox{\hyperlink{hijacked__elements_8h_source_l00086}{Hijacked\+\_\+g
 
 The global equation, addressed by global\+\_\+eqn\+\_\+pt, is no longer hijacked by this element. 
 
-The global equation, addressed by global\+\_\+eqn\+\_\+pt, is no longer hijacked by this element. 
+
 
 Definition at line \mbox{\hyperlink{hijacked__elements_8cc_source_l00079}{79}} of file \mbox{\hyperlink{hijacked__elements_8cc_source}{hijacked\+\_\+elements.\+cc}}.
 
@@ -200,9 +205,11 @@ References \mbox{\hyperlink{hijacked__elements_8h_source_l00086}{Hijacked\+\_\+g
 \doxysubsubsection{\texorpdfstring{Default\_residual\_multiplier}{Default\_residual\_multiplier}}
 {\footnotesize\ttfamily double oomph\+::\+Hijacked\+Element\+Base\+::\+Default\+\_\+residual\+\_\+multiplier = 0.\+0\hspace{0.3cm}{\ttfamily [static]}, {\ttfamily [protected]}}
 
-Static default value for the double that multiplies the original residuals
 
-Static default value of the multiplier for the original residuals The contribution to the total residuals is the product of the multiplier and the original value of the residuals 
+
+Static default value for the double that multiplies the original residuals. 
+
+Static default value of the multiplier for the original residuals The contribution to the total residuals is the product of the multiplier and the original value of the residuals. 
 
 Definition at line \mbox{\hyperlink{hijacked__elements_8h_source_l00102}{102}} of file \mbox{\hyperlink{hijacked__elements_8h_source}{hijacked\+\_\+elements.\+h}}.
 
@@ -216,7 +223,11 @@ Referenced by \mbox{\hyperlink{hijacked__elements_8h_source_l00049}{Hijacked\+El
 \doxysubsubsection{\texorpdfstring{Hijacked\_global\_eqn\_number\_pt}{Hijacked\_global\_eqn\_number\_pt}}
 {\footnotesize\ttfamily std\+::set$<$long$\ast$$>$$\ast$ oomph\+::\+Hijacked\+Element\+Base\+::\+Hijacked\+\_\+global\+\_\+eqn\+\_\+number\+\_\+pt\hspace{0.3cm}{\ttfamily [protected]}}
 
+
+
 Pointer to a Set of pointers to the equation numbers that will be hijacked by this element. Note that these MUST be pointers because hijacking information is set BEFORE global equation numbers have been assigned. 
+
+
 
 Definition at line \mbox{\hyperlink{hijacked__elements_8h_source_l00086}{86}} of file \mbox{\hyperlink{hijacked__elements_8h_source}{hijacked\+\_\+elements.\+h}}.
 

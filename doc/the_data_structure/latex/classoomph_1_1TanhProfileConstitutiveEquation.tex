@@ -2,6 +2,11 @@
 \label{classoomph_1_1TanhProfileConstitutiveEquation}\index{oomph::TanhProfileConstitutiveEquation$<$ DIM $>$@{oomph::TanhProfileConstitutiveEquation$<$ DIM $>$}}
 
 
+A \mbox{\hyperlink{classoomph_1_1GeneralisedNewtonianConstitutiveEquation}{Generalised\+Newtonian\+Constitutive\+Equation}} class defining a fluid following a tanh-\/profile.  
+
+
+
+
 {\ttfamily \#include $<$generalised\+\_\+newtonian\+\_\+constitutive\+\_\+models.\+h$>$}
 
 Inheritance diagram for oomph\+::Tanh\+Profile\+Constitutive\+Equation\texorpdfstring{$<$}{<} DIM \texorpdfstring{$>$}{>}\+:\begin{figure}[H]
@@ -16,9 +21,9 @@ Inheritance diagram for oomph\+::Tanh\+Profile\+Constitutive\+Equation\texorpdfs
 \mbox{\hyperlink{classoomph_1_1TanhProfileConstitutiveEquation_a18cb572bab5a87ab20220ad009ba82eb}{Tanh\+Profile\+Constitutive\+Equation}} (double $\ast$mu\+\_\+inf\+\_\+pt, double $\ast$mu\+\_\+0\+\_\+pt, double $\ast$alpha\+\_\+pt, double $\ast$critical\+\_\+second\+\_\+invariant\+\_\+pt)
 \item 
 double \mbox{\hyperlink{classoomph_1_1TanhProfileConstitutiveEquation_aee5659a24ab4d18f4a90661113528ca3}{viscosity}} (const double \&second\+\_\+invariant\+\_\+of\+\_\+rate\+\_\+of\+\_\+strain\+\_\+tensor)
-\item 
+\begin{DoxyCompactList}\small\item\em Function implementing the constitutive model Input\+: second invariant of the rate of strain Output\+: the viscosity For Newtonian behaviour this returns 1. \end{DoxyCompactList}\item 
 double \mbox{\hyperlink{classoomph_1_1TanhProfileConstitutiveEquation_a5151261b6ec1c3f29f7ee085db955c2f}{dviscosity\+\_\+dinvariant}} (const double \&second\+\_\+invariant\+\_\+of\+\_\+rate\+\_\+of\+\_\+strain\+\_\+tensor)
-\end{DoxyCompactItemize}
+\begin{DoxyCompactList}\small\item\em Function returning the derivative of the viscosity w.\+r.\+t. the second invariant of the rate of strain tensor For Newtonian behaviour this returns 0.\+0. \end{DoxyCompactList}\end{DoxyCompactItemize}
 \doxysubsection*{Private Attributes}
 \begin{DoxyCompactItemize}
 \item 
@@ -27,15 +32,15 @@ double $\ast$ \mbox{\hyperlink{classoomph_1_1TanhProfileConstitutiveEquation_a34
 double $\ast$ \mbox{\hyperlink{classoomph_1_1TanhProfileConstitutiveEquation_a8b44ee78c6c9f700107300f1ac6c4652}{Mu\+\_\+0\+\_\+pt}}
 \begin{DoxyCompactList}\small\item\em zero shear rate viscosity \end{DoxyCompactList}\item 
 double $\ast$ \mbox{\hyperlink{classoomph_1_1TanhProfileConstitutiveEquation_ac131ec2b2026bc93a695d5436e735e14}{Alpha\+\_\+pt}}
-\item 
+\begin{DoxyCompactList}\small\item\em parameter controlling the steepness of the step nb -- I used 10.\+0/($\ast$\+Critical\+\_\+second\+\_\+invariant\+\_\+pt) \end{DoxyCompactList}\item 
 double $\ast$ \mbox{\hyperlink{classoomph_1_1TanhProfileConstitutiveEquation_af08d9a939d835a33e0349def2db64f25}{Critical\+\_\+second\+\_\+invariant\+\_\+pt}}
-\end{DoxyCompactItemize}
+\begin{DoxyCompactList}\small\item\em parameter that controls the location of the step -- assumed to be always positive \end{DoxyCompactList}\end{DoxyCompactItemize}
 
 
 \doxysubsection{Detailed Description}
 \subsubsection*{template$<$unsigned DIM$>$\newline
 class oomph\+::\+Tanh\+Profile\+Constitutive\+Equation$<$ DIM $>$}
-A \mbox{\hyperlink{classoomph_1_1GeneralisedNewtonianConstitutiveEquation}{Generalised\+Newtonian\+Constitutive\+Equation}} class defining a fluid following a tanh-\/profile 
+A \mbox{\hyperlink{classoomph_1_1GeneralisedNewtonianConstitutiveEquation}{Generalised\+Newtonian\+Constitutive\+Equation}} class defining a fluid following a tanh-\/profile. 
 
 Definition at line \mbox{\hyperlink{generalised__newtonian__constitutive__models_8h_source_l01145}{1145}} of file \mbox{\hyperlink{generalised__newtonian__constitutive__models_8h_source}{generalised\+\_\+newtonian\+\_\+constitutive\+\_\+models.\+h}}.
 
@@ -63,7 +68,11 @@ Definition at line \mbox{\hyperlink{generalised__newtonian__constitutive__models
 {\footnotesize\ttfamily template$<$unsigned DIM$>$ \\
 double \mbox{\hyperlink{classoomph_1_1TanhProfileConstitutiveEquation}{oomph\+::\+Tanh\+Profile\+Constitutive\+Equation}}$<$ DIM $>$\+::dviscosity\+\_\+dinvariant (\begin{DoxyParamCaption}\item[{const double \&}]{second\+\_\+invariant\+\_\+of\+\_\+rate\+\_\+of\+\_\+strain\+\_\+tensor }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [virtual]}}
 
-Function returning the derivative of the viscosity w.\+r.\+t. the second invariant of the rate of strain tensor For Newtonian behaviour this returns 0.\+0 
+
+
+Function returning the derivative of the viscosity w.\+r.\+t. the second invariant of the rate of strain tensor For Newtonian behaviour this returns 0.\+0. 
+
+
 
 Implements \mbox{\hyperlink{classoomph_1_1GeneralisedNewtonianConstitutiveEquation_ad0164e6ca57cc986048346e12c4d353a}{oomph\+::\+Generalised\+Newtonian\+Constitutive\+Equation$<$ DIM $>$}}.
 
@@ -82,7 +91,11 @@ References \mbox{\hyperlink{generalised__newtonian__constitutive__models_8h_sour
 {\footnotesize\ttfamily template$<$unsigned DIM$>$ \\
 double \mbox{\hyperlink{classoomph_1_1TanhProfileConstitutiveEquation}{oomph\+::\+Tanh\+Profile\+Constitutive\+Equation}}$<$ DIM $>$\+::viscosity (\begin{DoxyParamCaption}\item[{const double \&}]{second\+\_\+invariant\+\_\+of\+\_\+rate\+\_\+of\+\_\+strain\+\_\+tensor }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [virtual]}}
 
-Function implementing the constitutive model Input\+: second invariant of the rate of strain Output\+: the viscosity For Newtonian behaviour this returns 1 
+
+
+Function implementing the constitutive model Input\+: second invariant of the rate of strain Output\+: the viscosity For Newtonian behaviour this returns 1. 
+
+
 
 Implements \mbox{\hyperlink{classoomph_1_1GeneralisedNewtonianConstitutiveEquation_a3e6d811786e39ca3c3a9b1c46249442f}{oomph\+::\+Generalised\+Newtonian\+Constitutive\+Equation$<$ DIM $>$}}.
 
@@ -104,7 +117,11 @@ References \mbox{\hyperlink{generalised__newtonian__constitutive__models_8h_sour
 {\footnotesize\ttfamily template$<$unsigned DIM$>$ \\
 double$\ast$ \mbox{\hyperlink{classoomph_1_1TanhProfileConstitutiveEquation}{oomph\+::\+Tanh\+Profile\+Constitutive\+Equation}}$<$ DIM $>$\+::Alpha\+\_\+pt\hspace{0.3cm}{\ttfamily [private]}}
 
+
+
 parameter controlling the steepness of the step nb -- I used 10.\+0/($\ast$\+Critical\+\_\+second\+\_\+invariant\+\_\+pt) 
+
+
 
 Definition at line \mbox{\hyperlink{generalised__newtonian__constitutive__models_8h_source_l01157}{1157}} of file \mbox{\hyperlink{generalised__newtonian__constitutive__models_8h_source}{generalised\+\_\+newtonian\+\_\+constitutive\+\_\+models.\+h}}.
 
@@ -119,7 +136,11 @@ Referenced by \mbox{\hyperlink{generalised__newtonian__constitutive__models_8h_s
 {\footnotesize\ttfamily template$<$unsigned DIM$>$ \\
 double$\ast$ \mbox{\hyperlink{classoomph_1_1TanhProfileConstitutiveEquation}{oomph\+::\+Tanh\+Profile\+Constitutive\+Equation}}$<$ DIM $>$\+::Critical\+\_\+second\+\_\+invariant\+\_\+pt\hspace{0.3cm}{\ttfamily [private]}}
 
+
+
 parameter that controls the location of the step -- assumed to be always positive 
+
+
 
 Definition at line \mbox{\hyperlink{generalised__newtonian__constitutive__models_8h_source_l01161}{1161}} of file \mbox{\hyperlink{generalised__newtonian__constitutive__models_8h_source}{generalised\+\_\+newtonian\+\_\+constitutive\+\_\+models.\+h}}.
 

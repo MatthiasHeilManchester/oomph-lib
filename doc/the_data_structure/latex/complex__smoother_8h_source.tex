@@ -55,7 +55,7 @@
 \DoxyCodeLine{\Hypertarget{complex__smoother_8h_source_l00051}00051 \textcolor{comment}{    /// Virtual empty destructor}}
 \DoxyCodeLine{\Hypertarget{complex__smoother_8h_source_l00052}\mbox{\hyperlink{classoomph_1_1HelmholtzSmoother_ac83116186f1a5beffab8faa299b8d4f1}{00052}} \textcolor{comment}{}    \textcolor{keyword}{virtual} \mbox{\hyperlink{classoomph_1_1HelmholtzSmoother_ac83116186f1a5beffab8faa299b8d4f1}{\string~HelmholtzSmoother}}()\{\};}
 \DoxyCodeLine{\Hypertarget{complex__smoother_8h_source_l00053}00053 \textcolor{comment}{}}
-\DoxyCodeLine{\Hypertarget{complex__smoother_8h_source_l00054}00054 \textcolor{comment}{    /// \(\backslash\)short The smoother\_solve function performs fixed number of iterations}}
+\DoxyCodeLine{\Hypertarget{complex__smoother_8h_source_l00054}00054 \textcolor{comment}{    ///  The smoother\_solve function performs fixed number of iterations}}
 \DoxyCodeLine{\Hypertarget{complex__smoother_8h_source_l00055}00055 \textcolor{comment}{    /// on the system A*result=rhs. The number of (smoothing) iterations is}}
 \DoxyCodeLine{\Hypertarget{complex__smoother_8h_source_l00056}00056 \textcolor{comment}{    /// the same as the max. number of iterations in the underlying}}
 \DoxyCodeLine{\Hypertarget{complex__smoother_8h_source_l00057}00057 \textcolor{comment}{    /// IterativeLinearSolver class.}}
@@ -66,12 +66,12 @@
 \DoxyCodeLine{\Hypertarget{complex__smoother_8h_source_l00062}00062 \textcolor{comment}{    /// Setup the smoother for the matrix specified by the pointer}}
 \DoxyCodeLine{\Hypertarget{complex__smoother_8h_source_l00063}\mbox{\hyperlink{classoomph_1_1HelmholtzSmoother_a7c46336fdc3b386b0bab6111a3c55d44}{00063}} \textcolor{comment}{}    \textcolor{keyword}{virtual} \textcolor{keywordtype}{void} \mbox{\hyperlink{classoomph_1_1HelmholtzSmoother_a7c46336fdc3b386b0bab6111a3c55d44}{complex\_smoother\_setup}}(\mbox{\hyperlink{classoomph_1_1Vector}{Vector<CRDoubleMatrix*>}} matrix\_pt) = 0;}
 \DoxyCodeLine{\Hypertarget{complex__smoother_8h_source_l00064}00064 \textcolor{comment}{}}
-\DoxyCodeLine{\Hypertarget{complex__smoother_8h_source_l00065}00065 \textcolor{comment}{    /// \(\backslash\)short Helper function to calculate a complex matrix-\/vector product.}}
+\DoxyCodeLine{\Hypertarget{complex__smoother_8h_source_l00065}00065 \textcolor{comment}{    ///  Helper function to calculate a complex matrix-\/vector product.}}
 \DoxyCodeLine{\Hypertarget{complex__smoother_8h_source_l00066}00066 \textcolor{comment}{    /// Assumes the matrix has been provided as a Vector of length two; the}}
 \DoxyCodeLine{\Hypertarget{complex__smoother_8h_source_l00067}00067 \textcolor{comment}{    /// first entry containing the real part of the system matrix and the}}
 \DoxyCodeLine{\Hypertarget{complex__smoother_8h_source_l00068}00068 \textcolor{comment}{    /// second entry containing the imaginary part}}
 \DoxyCodeLine{\Hypertarget{complex__smoother_8h_source_l00069}\mbox{\hyperlink{classoomph_1_1HelmholtzSmoother_aeabcedb15b9f86681bcbcfbbbcc6b45c}{00069}} \textcolor{comment}{}    \textcolor{keywordtype}{void} \mbox{\hyperlink{classoomph_1_1HelmholtzSmoother_aeabcedb15b9f86681bcbcfbbbcc6b45c}{complex\_matrix\_multiplication}}(\mbox{\hyperlink{classoomph_1_1Vector}{Vector<CRDoubleMatrix*>}} matrices\_pt,}
-\DoxyCodeLine{\Hypertarget{complex__smoother_8h_source_l00070}00070                                        \textcolor{keyword}{const} \mbox{\hyperlink{classoomph_1_1Vector}{Vector<DoubleVector>}}\& x,}
+\DoxyCodeLine{\Hypertarget{complex__smoother_8h_source_l00070}00070                                        \textcolor{keyword}{const} \mbox{\hyperlink{classoomph_1_1Vector}{Vector<DoubleVector>}}\& \mbox{\hyperlink{namespaceoomph_a9d1d2da2b8bb8e73af72b5cadb8fe97c}{x}},}
 \DoxyCodeLine{\Hypertarget{complex__smoother_8h_source_l00071}00071                                        \mbox{\hyperlink{classoomph_1_1Vector}{Vector<DoubleVector>}}\& soln)}
 \DoxyCodeLine{\Hypertarget{complex__smoother_8h_source_l00072}00072     \{}
 \DoxyCodeLine{\Hypertarget{complex__smoother_8h_source_l00073}00073 \textcolor{preprocessor}{\#ifdef PARANOID}}
@@ -91,14 +91,14 @@
 \DoxyCodeLine{\Hypertarget{complex__smoother_8h_source_l00087}00087                             OOMPH\_EXCEPTION\_LOCATION);}
 \DoxyCodeLine{\Hypertarget{complex__smoother_8h_source_l00088}00088       \}}
 \DoxyCodeLine{\Hypertarget{complex__smoother_8h_source_l00089}00089       \textcolor{comment}{// PARANOID check -\/ Make sure the vector x has the right size}}
-\DoxyCodeLine{\Hypertarget{complex__smoother_8h_source_l00090}00090       \textcolor{keywordflow}{if} (x.size() != 2)}
+\DoxyCodeLine{\Hypertarget{complex__smoother_8h_source_l00090}00090       \textcolor{keywordflow}{if} (\mbox{\hyperlink{namespaceoomph_a9d1d2da2b8bb8e73af72b5cadb8fe97c}{x}}.size() != 2)}
 \DoxyCodeLine{\Hypertarget{complex__smoother_8h_source_l00091}00091       \{}
 \DoxyCodeLine{\Hypertarget{complex__smoother_8h_source_l00092}00092         \textcolor{comment}{// Create an output stream}}
 \DoxyCodeLine{\Hypertarget{complex__smoother_8h_source_l00093}00093         std::ostringstream error\_message\_stream;}
 \DoxyCodeLine{\Hypertarget{complex__smoother_8h_source_l00094}00094 }
 \DoxyCodeLine{\Hypertarget{complex__smoother_8h_source_l00095}00095         \textcolor{comment}{// Create the error message}}
 \DoxyCodeLine{\Hypertarget{complex__smoother_8h_source_l00096}00096         error\_message\_stream}
-\DoxyCodeLine{\Hypertarget{complex__smoother_8h_source_l00097}00097           << \textcolor{stringliteral}{"{}Can only deal with two input vectors. You have "{}} << x.size()}
+\DoxyCodeLine{\Hypertarget{complex__smoother_8h_source_l00097}00097           << \textcolor{stringliteral}{"{}Can only deal with two input vectors. You have "{}} << \mbox{\hyperlink{namespaceoomph_a9d1d2da2b8bb8e73af72b5cadb8fe97c}{x}}.size()}
 \DoxyCodeLine{\Hypertarget{complex__smoother_8h_source_l00098}00098           << \textcolor{stringliteral}{"{} vectors."{}} << std::endl;}
 \DoxyCodeLine{\Hypertarget{complex__smoother_8h_source_l00099}00099 }
 \DoxyCodeLine{\Hypertarget{complex__smoother_8h_source_l00100}00100         \textcolor{comment}{// Throw an error}}
@@ -141,28 +141,28 @@
 \DoxyCodeLine{\Hypertarget{complex__smoother_8h_source_l00137}00137       \textcolor{comment}{//-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/}}
 \DoxyCodeLine{\Hypertarget{complex__smoother_8h_source_l00138}00138 }
 \DoxyCodeLine{\Hypertarget{complex__smoother_8h_source_l00139}00139       \textcolor{comment}{// Store the value of A\_r*x\_r in the real part of soln}}
-\DoxyCodeLine{\Hypertarget{complex__smoother_8h_source_l00140}00140       matrices\_pt[0]-\/>multiply(x[0], soln[0]);}
+\DoxyCodeLine{\Hypertarget{complex__smoother_8h_source_l00140}00140       matrices\_pt[0]-\/>multiply(\mbox{\hyperlink{namespaceoomph_a9d1d2da2b8bb8e73af72b5cadb8fe97c}{x}}[0], soln[0]);}
 \DoxyCodeLine{\Hypertarget{complex__smoother_8h_source_l00141}00141 }
 \DoxyCodeLine{\Hypertarget{complex__smoother_8h_source_l00142}00142       \textcolor{comment}{// Store the value of A\_r*x\_c in the imaginary part of soln}}
-\DoxyCodeLine{\Hypertarget{complex__smoother_8h_source_l00143}00143       matrices\_pt[0]-\/>multiply(x[1], soln[1]);}
+\DoxyCodeLine{\Hypertarget{complex__smoother_8h_source_l00143}00143       matrices\_pt[0]-\/>multiply(\mbox{\hyperlink{namespaceoomph_a9d1d2da2b8bb8e73af72b5cadb8fe97c}{x}}[1], soln[1]);}
 \DoxyCodeLine{\Hypertarget{complex__smoother_8h_source_l00144}00144 }
 \DoxyCodeLine{\Hypertarget{complex__smoother_8h_source_l00145}00145       \textcolor{comment}{// Create a temporary vector}}
 \DoxyCodeLine{\Hypertarget{complex__smoother_8h_source_l00146}00146       \mbox{\hyperlink{classoomph_1_1DoubleVector}{DoubleVector}} temp(this-\/>\mbox{\hyperlink{classoomph_1_1DistributableLinearAlgebraObject_abfa9cf25494c796d62b15bad586fab47}{distribution\_pt}}(), 0.0);}
 \DoxyCodeLine{\Hypertarget{complex__smoother_8h_source_l00147}00147 }
 \DoxyCodeLine{\Hypertarget{complex__smoother_8h_source_l00148}00148       \textcolor{comment}{// Calculate the value of A\_c*x\_c}}
-\DoxyCodeLine{\Hypertarget{complex__smoother_8h_source_l00149}00149       matrices\_pt[1]-\/>multiply(x[1], temp);}
+\DoxyCodeLine{\Hypertarget{complex__smoother_8h_source_l00149}00149       matrices\_pt[1]-\/>multiply(\mbox{\hyperlink{namespaceoomph_a9d1d2da2b8bb8e73af72b5cadb8fe97c}{x}}[1], temp);}
 \DoxyCodeLine{\Hypertarget{complex__smoother_8h_source_l00150}00150 }
 \DoxyCodeLine{\Hypertarget{complex__smoother_8h_source_l00151}00151       \textcolor{comment}{// Subtract the value of temp from soln[0] to get the real part of soln}}
 \DoxyCodeLine{\Hypertarget{complex__smoother_8h_source_l00152}00152       soln[0] -\/= temp;}
 \DoxyCodeLine{\Hypertarget{complex__smoother_8h_source_l00153}00153 }
 \DoxyCodeLine{\Hypertarget{complex__smoother_8h_source_l00154}00154       \textcolor{comment}{// Calculate the value of A\_c*x\_r}}
-\DoxyCodeLine{\Hypertarget{complex__smoother_8h_source_l00155}00155       matrices\_pt[1]-\/>multiply(x[0], temp);}
+\DoxyCodeLine{\Hypertarget{complex__smoother_8h_source_l00155}00155       matrices\_pt[1]-\/>multiply(\mbox{\hyperlink{namespaceoomph_a9d1d2da2b8bb8e73af72b5cadb8fe97c}{x}}[0], temp);}
 \DoxyCodeLine{\Hypertarget{complex__smoother_8h_source_l00156}00156 }
 \DoxyCodeLine{\Hypertarget{complex__smoother_8h_source_l00157}00157       \textcolor{comment}{// Add the value of temp to soln[1] to get the imaginary part of soln}}
 \DoxyCodeLine{\Hypertarget{complex__smoother_8h_source_l00158}00158       soln[1] += temp;}
 \DoxyCodeLine{\Hypertarget{complex__smoother_8h_source_l00159}00159     \} \textcolor{comment}{// End of complex\_matrix\_multiplication}}
 \DoxyCodeLine{\Hypertarget{complex__smoother_8h_source_l00160}00160 \textcolor{comment}{}}
-\DoxyCodeLine{\Hypertarget{complex__smoother_8h_source_l00161}00161 \textcolor{comment}{    /// \(\backslash\)short Self-\/test to check that all the dimensions of the inputs to}}
+\DoxyCodeLine{\Hypertarget{complex__smoother_8h_source_l00161}00161 \textcolor{comment}{    ///  Self-\/test to check that all the dimensions of the inputs to}}
 \DoxyCodeLine{\Hypertarget{complex__smoother_8h_source_l00162}00162 \textcolor{comment}{    /// solve helper are consistent and everything that needs to be built, is.}}
 \DoxyCodeLine{\Hypertarget{complex__smoother_8h_source_l00163}00163 \textcolor{comment}{}    \textcolor{keyword}{template}<\textcolor{keyword}{typename} MATRIX>}
 \DoxyCodeLine{\Hypertarget{complex__smoother_8h_source_l00164}00164     \textcolor{keywordtype}{void} \mbox{\hyperlink{classoomph_1_1HelmholtzSmoother_a10dbef9689095e84e92f6864938850f7}{check\_validity\_of\_solve\_helper\_inputs}}(}
@@ -173,7 +173,7 @@
 \DoxyCodeLine{\Hypertarget{complex__smoother_8h_source_l00169}00169       \textcolor{keyword}{const} \textcolor{keywordtype}{double}\& n\_dof);}
 \DoxyCodeLine{\Hypertarget{complex__smoother_8h_source_l00170}00170 }
 \DoxyCodeLine{\Hypertarget{complex__smoother_8h_source_l00171}00171   \textcolor{keyword}{protected}:\textcolor{comment}{}}
-\DoxyCodeLine{\Hypertarget{complex__smoother_8h_source_l00172}00172 \textcolor{comment}{    /// \(\backslash\)short When a derived class object is being used as a smoother in}}
+\DoxyCodeLine{\Hypertarget{complex__smoother_8h_source_l00172}00172 \textcolor{comment}{    ///  When a derived class object is being used as a smoother in}}
 \DoxyCodeLine{\Hypertarget{complex__smoother_8h_source_l00173}00173 \textcolor{comment}{    /// the MG algorithm the residual norm}}
 \DoxyCodeLine{\Hypertarget{complex__smoother_8h_source_l00174}00174 \textcolor{comment}{    /// does not need to be calculated. This boolean is used as a flag to}}
 \DoxyCodeLine{\Hypertarget{complex__smoother_8h_source_l00175}00175 \textcolor{comment}{    /// indicate this in solve\_helper(...)}}
@@ -181,7 +181,7 @@
 \DoxyCodeLine{\Hypertarget{complex__smoother_8h_source_l00177}00177   \};}
 \DoxyCodeLine{\Hypertarget{complex__smoother_8h_source_l00178}00178 }
 \DoxyCodeLine{\Hypertarget{complex__smoother_8h_source_l00179}00179   \textcolor{comment}{//==================================================================}\textcolor{comment}{}}
-\DoxyCodeLine{\Hypertarget{complex__smoother_8h_source_l00180}00180 \textcolor{comment}{  /// \(\backslash\)short Self-\/test to be called inside solve\_helper to ensure}}
+\DoxyCodeLine{\Hypertarget{complex__smoother_8h_source_l00180}00180 \textcolor{comment}{  ///  Self-\/test to be called inside solve\_helper to ensure}}
 \DoxyCodeLine{\Hypertarget{complex__smoother_8h_source_l00181}00181 \textcolor{comment}{  /// that all inputs are consistent and everything that needs to}}
 \DoxyCodeLine{\Hypertarget{complex__smoother_8h_source_l00182}00182 \textcolor{comment}{  /// be built, is.}}
 \DoxyCodeLine{\Hypertarget{complex__smoother_8h_source_l00183}00183 \textcolor{comment}{}  \textcolor{comment}{//==================================================================}}
@@ -325,13 +325,13 @@
 \DoxyCodeLine{\Hypertarget{complex__smoother_8h_source_l00321}00321       \}}
 \DoxyCodeLine{\Hypertarget{complex__smoother_8h_source_l00322}00322     \} \textcolor{comment}{// End of clean\_up\_memory}}
 \DoxyCodeLine{\Hypertarget{complex__smoother_8h_source_l00323}00323 \textcolor{comment}{}}
-\DoxyCodeLine{\Hypertarget{complex__smoother_8h_source_l00324}00324 \textcolor{comment}{    /// \(\backslash\)short Broken copy constructor}}
+\DoxyCodeLine{\Hypertarget{complex__smoother_8h_source_l00324}00324 \textcolor{comment}{    ///  Broken copy constructor}}
 \DoxyCodeLine{\Hypertarget{complex__smoother_8h_source_l00325}\mbox{\hyperlink{classoomph_1_1ComplexDampedJacobi_ae9a1221ec8c0753340946b85a8b8ee01}{00325}} \textcolor{comment}{}    \mbox{\hyperlink{classoomph_1_1ComplexDampedJacobi_ae9a1221ec8c0753340946b85a8b8ee01}{ComplexDampedJacobi}}(\textcolor{keyword}{const} \mbox{\hyperlink{classoomph_1_1ComplexDampedJacobi}{ComplexDampedJacobi}}\&) = \textcolor{keyword}{delete};}
 \DoxyCodeLine{\Hypertarget{complex__smoother_8h_source_l00326}00326 \textcolor{comment}{}}
-\DoxyCodeLine{\Hypertarget{complex__smoother_8h_source_l00327}00327 \textcolor{comment}{    /// \(\backslash\)short Broken assignment operator}}
+\DoxyCodeLine{\Hypertarget{complex__smoother_8h_source_l00327}00327 \textcolor{comment}{    ///  Broken assignment operator}}
 \DoxyCodeLine{\Hypertarget{complex__smoother_8h_source_l00328}\mbox{\hyperlink{classoomph_1_1ComplexDampedJacobi_a22a6a3188f2891fecf464a815dfa4e2e}{00328}} \textcolor{comment}{}    \textcolor{keywordtype}{void} \mbox{\hyperlink{classoomph_1_1ComplexDampedJacobi_a22a6a3188f2891fecf464a815dfa4e2e}{operator=}}(\textcolor{keyword}{const} \mbox{\hyperlink{classoomph_1_1ComplexDampedJacobi}{ComplexDampedJacobi}}\&) = \textcolor{keyword}{delete};}
 \DoxyCodeLine{\Hypertarget{complex__smoother_8h_source_l00329}00329 \textcolor{comment}{}}
-\DoxyCodeLine{\Hypertarget{complex__smoother_8h_source_l00330}00330 \textcolor{comment}{    /// \(\backslash\)short Function to calculate the value of Omega by passing in the}}
+\DoxyCodeLine{\Hypertarget{complex__smoother_8h_source_l00330}00330 \textcolor{comment}{    ///  Function to calculate the value of Omega by passing in the}}
 \DoxyCodeLine{\Hypertarget{complex__smoother_8h_source_l00331}00331 \textcolor{comment}{    /// value of k and h [see Elman et al. "{}A multigrid method enhanced by}}
 \DoxyCodeLine{\Hypertarget{complex__smoother_8h_source_l00332}00332 \textcolor{comment}{    /// Krylov subspace iteration for discrete Helmholtz equations"{}, p.1303]}}
 \DoxyCodeLine{\Hypertarget{complex__smoother_8h_source_l00333}\mbox{\hyperlink{classoomph_1_1ComplexDampedJacobi_af7a53121690e157bdd5bc191a31f9892}{00333}} \textcolor{comment}{}    \textcolor{keywordtype}{void} \mbox{\hyperlink{classoomph_1_1ComplexDampedJacobi_af7a53121690e157bdd5bc191a31f9892}{calculate\_omega}}(\textcolor{keyword}{const} \textcolor{keywordtype}{double}\& k, \textcolor{keyword}{const} \textcolor{keywordtype}{double}\& h)}
@@ -469,7 +469,7 @@
 \DoxyCodeLine{\Hypertarget{complex__smoother_8h_source_l00465}00465       \}}
 \DoxyCodeLine{\Hypertarget{complex__smoother_8h_source_l00466}00466     \} \textcolor{comment}{// End of complex\_smoother\_setup}}
 \DoxyCodeLine{\Hypertarget{complex__smoother_8h_source_l00467}00467 \textcolor{comment}{}}
-\DoxyCodeLine{\Hypertarget{complex__smoother_8h_source_l00468}00468 \textcolor{comment}{    /// \(\backslash\)short The smoother\_solve function performs fixed number of iterations}}
+\DoxyCodeLine{\Hypertarget{complex__smoother_8h_source_l00468}00468 \textcolor{comment}{    ///  The smoother\_solve function performs fixed number of iterations}}
 \DoxyCodeLine{\Hypertarget{complex__smoother_8h_source_l00469}00469 \textcolor{comment}{    /// on the system A*result=rhs. The number of (smoothing) iterations is}}
 \DoxyCodeLine{\Hypertarget{complex__smoother_8h_source_l00470}00470 \textcolor{comment}{    /// the same as the max. number of iterations in the underlying}}
 \DoxyCodeLine{\Hypertarget{complex__smoother_8h_source_l00471}00471 \textcolor{comment}{    /// IterativeLinearSolver class.}}
@@ -483,7 +483,7 @@
 \DoxyCodeLine{\Hypertarget{complex__smoother_8h_source_l00479}00479       \mbox{\hyperlink{classoomph_1_1ComplexDampedJacobi_a09214dc600fe5d261bdb3795aa943aac}{complex\_solve\_helper}}(rhs, solution);}
 \DoxyCodeLine{\Hypertarget{complex__smoother_8h_source_l00480}00480     \} \textcolor{comment}{// End of complex\_smoother\_solve}}
 \DoxyCodeLine{\Hypertarget{complex__smoother_8h_source_l00481}00481 \textcolor{comment}{}}
-\DoxyCodeLine{\Hypertarget{complex__smoother_8h_source_l00482}00482 \textcolor{comment}{    /// \(\backslash\)short Use damped Jacobi iteration as an IterativeLinearSolver:}}
+\DoxyCodeLine{\Hypertarget{complex__smoother_8h_source_l00482}00482 \textcolor{comment}{    ///  Use damped Jacobi iteration as an IterativeLinearSolver:}}
 \DoxyCodeLine{\Hypertarget{complex__smoother_8h_source_l00483}00483 \textcolor{comment}{    /// This obtains the Jacobian matrix J and the residual vector r}}
 \DoxyCodeLine{\Hypertarget{complex__smoother_8h_source_l00484}00484 \textcolor{comment}{    /// (needed for the Newton method) from the problem's get\_jacobian}}
 \DoxyCodeLine{\Hypertarget{complex__smoother_8h_source_l00485}00485 \textcolor{comment}{    /// function and returns the result of Jx=r.}}
@@ -499,11 +499,11 @@
 \DoxyCodeLine{\Hypertarget{complex__smoother_8h_source_l00495}00495     \}}
 \DoxyCodeLine{\Hypertarget{complex__smoother_8h_source_l00496}00496 }
 \DoxyCodeLine{\Hypertarget{complex__smoother_8h_source_l00497}00497   \textcolor{keyword}{private}:\textcolor{comment}{}}
-\DoxyCodeLine{\Hypertarget{complex__smoother_8h_source_l00498}00498 \textcolor{comment}{    /// \(\backslash\)short This is where the actual work is done}}
+\DoxyCodeLine{\Hypertarget{complex__smoother_8h_source_l00498}00498 \textcolor{comment}{    ///  This is where the actual work is done}}
 \DoxyCodeLine{\Hypertarget{complex__smoother_8h_source_l00499}00499 \textcolor{comment}{}    \textcolor{keywordtype}{void} \mbox{\hyperlink{classoomph_1_1ComplexDampedJacobi_a09214dc600fe5d261bdb3795aa943aac}{complex\_solve\_helper}}(\textcolor{keyword}{const} \mbox{\hyperlink{classoomph_1_1Vector}{Vector<DoubleVector>}}\& rhs,}
 \DoxyCodeLine{\Hypertarget{complex__smoother_8h_source_l00500}00500                               \mbox{\hyperlink{classoomph_1_1Vector}{Vector<DoubleVector>}}\& solution);}
 \DoxyCodeLine{\Hypertarget{complex__smoother_8h_source_l00501}00501 \textcolor{comment}{}}
-\DoxyCodeLine{\Hypertarget{complex__smoother_8h_source_l00502}00502 \textcolor{comment}{    /// \(\backslash\)short Boolean flag to indicate if the matrices pointed to by}}
+\DoxyCodeLine{\Hypertarget{complex__smoother_8h_source_l00502}00502 \textcolor{comment}{    ///  Boolean flag to indicate if the matrices pointed to by}}
 \DoxyCodeLine{\Hypertarget{complex__smoother_8h_source_l00503}00503 \textcolor{comment}{    /// Matrix\_real\_pt and Matrix\_imag\_pt can be deleted.}}
 \DoxyCodeLine{\Hypertarget{complex__smoother_8h_source_l00504}\mbox{\hyperlink{classoomph_1_1ComplexDampedJacobi_a36cb47a2cec4a979de7aa93ccc3dfc7f}{00504}} \textcolor{comment}{}    \textcolor{keywordtype}{bool} \mbox{\hyperlink{classoomph_1_1ComplexDampedJacobi_a36cb47a2cec4a979de7aa93ccc3dfc7f}{Matrix\_can\_be\_deleted}};}
 \DoxyCodeLine{\Hypertarget{complex__smoother_8h_source_l00505}00505 \textcolor{comment}{}}
@@ -530,7 +530,7 @@
 \DoxyCodeLine{\Hypertarget{complex__smoother_8h_source_l00526}00526   \};}
 \DoxyCodeLine{\Hypertarget{complex__smoother_8h_source_l00527}00527 }
 \DoxyCodeLine{\Hypertarget{complex__smoother_8h_source_l00528}00528   \textcolor{comment}{//======================================================================}\textcolor{comment}{}}
-\DoxyCodeLine{\Hypertarget{complex__smoother_8h_source_l00529}00529 \textcolor{comment}{  /// \(\backslash\)short This is where the actual work is done.}}
+\DoxyCodeLine{\Hypertarget{complex__smoother_8h_source_l00529}00529 \textcolor{comment}{  ///  This is where the actual work is done.}}
 \DoxyCodeLine{\Hypertarget{complex__smoother_8h_source_l00530}00530 \textcolor{comment}{}  \textcolor{comment}{//======================================================================}}
 \DoxyCodeLine{\Hypertarget{complex__smoother_8h_source_l00531}00531   \textcolor{keyword}{template}<\textcolor{keyword}{typename} MATRIX>}
 \DoxyCodeLine{\Hypertarget{complex__smoother_8h_source_l00532}\mbox{\hyperlink{classoomph_1_1ComplexDampedJacobi_a09214dc600fe5d261bdb3795aa943aac}{00532}}   \textcolor{keywordtype}{void} \mbox{\hyperlink{classoomph_1_1ComplexDampedJacobi_a09214dc600fe5d261bdb3795aa943aac}{ComplexDampedJacobi<MATRIX>::complex\_solve\_helper}}(}
@@ -856,7 +856,7 @@
 \DoxyCodeLine{\Hypertarget{complex__smoother_8h_source_l00852}00852   \} \textcolor{comment}{// End of complex\_solve\_helper function}}
 \DoxyCodeLine{\Hypertarget{complex__smoother_8h_source_l00853}00853 }
 \DoxyCodeLine{\Hypertarget{complex__smoother_8h_source_l00854}00854   \textcolor{comment}{//======================================================================}\textcolor{comment}{}}
-\DoxyCodeLine{\Hypertarget{complex__smoother_8h_source_l00855}00855 \textcolor{comment}{  /// \(\backslash\)short The GMRES method rewritten for complex matrices}}
+\DoxyCodeLine{\Hypertarget{complex__smoother_8h_source_l00855}00855 \textcolor{comment}{  ///  The GMRES method rewritten for complex matrices}}
 \DoxyCodeLine{\Hypertarget{complex__smoother_8h_source_l00856}00856 \textcolor{comment}{}  \textcolor{comment}{//======================================================================}}
 \DoxyCodeLine{\Hypertarget{complex__smoother_8h_source_l00857}00857   \textcolor{keyword}{template}<\textcolor{keyword}{typename} MATRIX>}
 \DoxyCodeLine{\Hypertarget{complex__smoother_8h_source_l00858}\mbox{\hyperlink{classoomph_1_1ComplexGMRES}{00858}}   \textcolor{keyword}{class }\mbox{\hyperlink{classoomph_1_1ComplexGMRES}{ComplexGMRES}} : \textcolor{keyword}{public} \mbox{\hyperlink{classoomph_1_1HelmholtzSmoother}{HelmholtzSmoother}}}
@@ -864,8 +864,8 @@
 \DoxyCodeLine{\Hypertarget{complex__smoother_8h_source_l00860}00860   \textcolor{keyword}{public}:\textcolor{comment}{}}
 \DoxyCodeLine{\Hypertarget{complex__smoother_8h_source_l00861}00861 \textcolor{comment}{    /// Constructor}}
 \DoxyCodeLine{\Hypertarget{complex__smoother_8h_source_l00862}\mbox{\hyperlink{classoomph_1_1ComplexGMRES_a8d0bfc83e16222c1eee97d8118505bae}{00862}} \textcolor{comment}{}    \mbox{\hyperlink{classoomph_1_1ComplexGMRES_a8d0bfc83e16222c1eee97d8118505bae}{ComplexGMRES}}()}
-\DoxyCodeLine{\Hypertarget{complex__smoother_8h_source_l00863}00863       : \mbox{\hyperlink{classoomph_1_1ComplexGMRES_a208aaa9528d6b08afa5324f77ac70581}{Iterations}}(0),}
-\DoxyCodeLine{\Hypertarget{complex__smoother_8h_source_l00864}00864         \mbox{\hyperlink{classoomph_1_1ComplexGMRES_adfd862b611a335b5d6872a9eb37aa193}{Matrices\_storage\_pt}}(0),}
+\DoxyCodeLine{\Hypertarget{complex__smoother_8h_source_l00863}00863       : Iterations(0),}
+\DoxyCodeLine{\Hypertarget{complex__smoother_8h_source_l00864}00864         \mbox{\hyperlink{classoomph_1_1ComplexGMRES_ac734ff0f4a58d864ddbe5d90440d732e}{Matrices\_storage\_pt}}(0),}
 \DoxyCodeLine{\Hypertarget{complex__smoother_8h_source_l00865}00865         \mbox{\hyperlink{classoomph_1_1ComplexGMRES_a2694315efaf2aa353ad4d67f316b1597}{Resolving}}(false),}
 \DoxyCodeLine{\Hypertarget{complex__smoother_8h_source_l00866}00866         \mbox{\hyperlink{classoomph_1_1ComplexGMRES_aa38fa18230fc30f271d59481ccee3b55}{Matrix\_can\_be\_deleted}}(true)}
 \DoxyCodeLine{\Hypertarget{complex__smoother_8h_source_l00867}00867     \{}
@@ -894,7 +894,7 @@
 \DoxyCodeLine{\Hypertarget{complex__smoother_8h_source_l00890}00890       \mbox{\hyperlink{classoomph_1_1ComplexGMRES_a946b88bc1392180c56909b739bfa7b3c}{clean\_up\_memory}}();}
 \DoxyCodeLine{\Hypertarget{complex__smoother_8h_source_l00891}00891     \} \textcolor{comment}{// End of disable resolve}}
 \DoxyCodeLine{\Hypertarget{complex__smoother_8h_source_l00892}00892 \textcolor{comment}{}}
-\DoxyCodeLine{\Hypertarget{complex__smoother_8h_source_l00893}00893 \textcolor{comment}{    /// \(\backslash\)short Solver: Takes pointer to problem and returns the results vector}}
+\DoxyCodeLine{\Hypertarget{complex__smoother_8h_source_l00893}00893 \textcolor{comment}{    ///  Solver: Takes pointer to problem and returns the results vector}}
 \DoxyCodeLine{\Hypertarget{complex__smoother_8h_source_l00894}00894 \textcolor{comment}{    /// which contains the solution of the linear system defined by}}
 \DoxyCodeLine{\Hypertarget{complex__smoother_8h_source_l00895}00895 \textcolor{comment}{    /// the problem's fully assembled Jacobian and residual vector.}}
 \DoxyCodeLine{\Hypertarget{complex__smoother_8h_source_l00896}\mbox{\hyperlink{classoomph_1_1ComplexGMRES_a76987ec784cd80e6605c63ef8d0ec6b7}{00896}} \textcolor{comment}{}    \textcolor{keywordtype}{void} \mbox{\hyperlink{classoomph_1_1ComplexGMRES_a76987ec784cd80e6605c63ef8d0ec6b7}{solve}}(\mbox{\hyperlink{classoomph_1_1Problem}{Problem}}* \textcolor{keyword}{const}\& problem\_pt, \mbox{\hyperlink{classoomph_1_1DoubleVector}{DoubleVector}}\& result)}
@@ -911,7 +911,7 @@
 \DoxyCodeLine{\Hypertarget{complex__smoother_8h_source_l00907}00907         error\_message, OOMPH\_CURRENT\_FUNCTION, OOMPH\_EXCEPTION\_LOCATION);}
 \DoxyCodeLine{\Hypertarget{complex__smoother_8h_source_l00908}00908     \} \textcolor{comment}{// End of solve}}
 \DoxyCodeLine{\Hypertarget{complex__smoother_8h_source_l00909}00909 \textcolor{comment}{}}
-\DoxyCodeLine{\Hypertarget{complex__smoother_8h_source_l00910}00910 \textcolor{comment}{    /// \(\backslash\)short Linear-\/algebra-\/type solver: Takes pointer to a matrix}}
+\DoxyCodeLine{\Hypertarget{complex__smoother_8h_source_l00910}00910 \textcolor{comment}{    ///  Linear-\/algebra-\/type solver: Takes pointer to a matrix}}
 \DoxyCodeLine{\Hypertarget{complex__smoother_8h_source_l00911}00911 \textcolor{comment}{    /// and rhs vector and returns the solution of the linear system}}
 \DoxyCodeLine{\Hypertarget{complex__smoother_8h_source_l00912}00912 \textcolor{comment}{    /// Call the broken base-\/class version. If you want this, please}}
 \DoxyCodeLine{\Hypertarget{complex__smoother_8h_source_l00913}00913 \textcolor{comment}{    /// implement it}}
@@ -926,7 +926,7 @@
 \DoxyCodeLine{\Hypertarget{complex__smoother_8h_source_l00922}\mbox{\hyperlink{classoomph_1_1ComplexGMRES_a10760c61c62771773e2adc57055717aa}{00922}} \textcolor{comment}{}    \textcolor{keywordtype}{unsigned} \mbox{\hyperlink{classoomph_1_1ComplexGMRES_a10760c61c62771773e2adc57055717aa}{iterations}}()\textcolor{keyword}{ const}}
 \DoxyCodeLine{\Hypertarget{complex__smoother_8h_source_l00923}00923 \textcolor{keyword}{    }\{}
 \DoxyCodeLine{\Hypertarget{complex__smoother_8h_source_l00924}00924       \textcolor{comment}{// Return the number of iterations used}}
-\DoxyCodeLine{\Hypertarget{complex__smoother_8h_source_l00925}00925       \textcolor{keywordflow}{return} \mbox{\hyperlink{classoomph_1_1ComplexGMRES_a208aaa9528d6b08afa5324f77ac70581}{Iterations}};}
+\DoxyCodeLine{\Hypertarget{complex__smoother_8h_source_l00925}00925       \textcolor{keywordflow}{return} Iterations;}
 \DoxyCodeLine{\Hypertarget{complex__smoother_8h_source_l00926}00926     \} \textcolor{comment}{// End of iterations}}
 \DoxyCodeLine{\Hypertarget{complex__smoother_8h_source_l00927}00927 \textcolor{comment}{}}
 \DoxyCodeLine{\Hypertarget{complex__smoother_8h_source_l00928}00928 \textcolor{comment}{    /// Setup: Pass pointer to the matrix and store in cast form}}
@@ -956,18 +956,18 @@
 \DoxyCodeLine{\Hypertarget{complex__smoother_8h_source_l00952}00952 \textcolor{preprocessor}{\#endif}}
 \DoxyCodeLine{\Hypertarget{complex__smoother_8h_source_l00953}00953 }
 \DoxyCodeLine{\Hypertarget{complex__smoother_8h_source_l00954}00954       \textcolor{comment}{// Resize the storage for the system matrices}}
-\DoxyCodeLine{\Hypertarget{complex__smoother_8h_source_l00955}00955       \mbox{\hyperlink{classoomph_1_1ComplexGMRES_adfd862b611a335b5d6872a9eb37aa193}{Matrices\_storage\_pt}}.resize(2, 0);}
+\DoxyCodeLine{\Hypertarget{complex__smoother_8h_source_l00955}00955       \mbox{\hyperlink{classoomph_1_1ComplexGMRES_ac734ff0f4a58d864ddbe5d90440d732e}{Matrices\_storage\_pt}}.resize(2, 0);}
 \DoxyCodeLine{\Hypertarget{complex__smoother_8h_source_l00956}00956 }
 \DoxyCodeLine{\Hypertarget{complex__smoother_8h_source_l00957}00957       \textcolor{comment}{// Assign the real matrix pointer}}
-\DoxyCodeLine{\Hypertarget{complex__smoother_8h_source_l00958}00958       \mbox{\hyperlink{classoomph_1_1ComplexGMRES_adfd862b611a335b5d6872a9eb37aa193}{Matrices\_storage\_pt}}[0] = helmholtz\_matrix\_pt[0];}
+\DoxyCodeLine{\Hypertarget{complex__smoother_8h_source_l00958}00958       \mbox{\hyperlink{classoomph_1_1ComplexGMRES_ac734ff0f4a58d864ddbe5d90440d732e}{Matrices\_storage\_pt}}[0] = helmholtz\_matrix\_pt[0];}
 \DoxyCodeLine{\Hypertarget{complex__smoother_8h_source_l00959}00959 }
 \DoxyCodeLine{\Hypertarget{complex__smoother_8h_source_l00960}00960       \textcolor{comment}{// Assign the imaginary matrix pointers}}
-\DoxyCodeLine{\Hypertarget{complex__smoother_8h_source_l00961}00961       \mbox{\hyperlink{classoomph_1_1ComplexGMRES_adfd862b611a335b5d6872a9eb37aa193}{Matrices\_storage\_pt}}[1] = helmholtz\_matrix\_pt[1];}
+\DoxyCodeLine{\Hypertarget{complex__smoother_8h_source_l00961}00961       \mbox{\hyperlink{classoomph_1_1ComplexGMRES_ac734ff0f4a58d864ddbe5d90440d732e}{Matrices\_storage\_pt}}[1] = helmholtz\_matrix\_pt[1];}
 \DoxyCodeLine{\Hypertarget{complex__smoother_8h_source_l00962}00962 }
 \DoxyCodeLine{\Hypertarget{complex__smoother_8h_source_l00963}00963 \textcolor{preprocessor}{\#ifdef PARANOID}}
 \DoxyCodeLine{\Hypertarget{complex__smoother_8h_source_l00964}00964       \textcolor{comment}{// PARANOID check -\/ Make sure that the constituent matrices have the same}}
 \DoxyCodeLine{\Hypertarget{complex__smoother_8h_source_l00965}00965       \textcolor{comment}{// number of rows}}
-\DoxyCodeLine{\Hypertarget{complex__smoother_8h_source_l00966}00966       \textcolor{keywordflow}{if} (\mbox{\hyperlink{classoomph_1_1ComplexGMRES_adfd862b611a335b5d6872a9eb37aa193}{Matrices\_storage\_pt}}[0]-\/>\mbox{\hyperlink{classoomph_1_1DistributableLinearAlgebraObject_a7569556f14fd68b28508920e89bd5eee}{nrow}}() != \mbox{\hyperlink{classoomph_1_1ComplexGMRES_adfd862b611a335b5d6872a9eb37aa193}{Matrices\_storage\_pt}}[1]-\/>\mbox{\hyperlink{classoomph_1_1DistributableLinearAlgebraObject_a7569556f14fd68b28508920e89bd5eee}{nrow}}())}
+\DoxyCodeLine{\Hypertarget{complex__smoother_8h_source_l00966}00966       \textcolor{keywordflow}{if} (\mbox{\hyperlink{classoomph_1_1ComplexGMRES_ac734ff0f4a58d864ddbe5d90440d732e}{Matrices\_storage\_pt}}[0]-\/>\mbox{\hyperlink{classoomph_1_1DistributableLinearAlgebraObject_a7569556f14fd68b28508920e89bd5eee}{nrow}}() != \mbox{\hyperlink{classoomph_1_1ComplexGMRES_ac734ff0f4a58d864ddbe5d90440d732e}{Matrices\_storage\_pt}}[1]-\/>\mbox{\hyperlink{classoomph_1_1DistributableLinearAlgebraObject_a7569556f14fd68b28508920e89bd5eee}{nrow}}())}
 \DoxyCodeLine{\Hypertarget{complex__smoother_8h_source_l00967}00967       \{}
 \DoxyCodeLine{\Hypertarget{complex__smoother_8h_source_l00968}00968         std::ostringstream error\_message\_stream;}
 \DoxyCodeLine{\Hypertarget{complex__smoother_8h_source_l00969}00969         error\_message\_stream << \textcolor{stringliteral}{"{}Incompatible real and imag. matrix sizes."{}};}
@@ -977,7 +977,7 @@
 \DoxyCodeLine{\Hypertarget{complex__smoother_8h_source_l00973}00973       \}}
 \DoxyCodeLine{\Hypertarget{complex__smoother_8h_source_l00974}00974       \textcolor{comment}{// PARANOID check -\/ Make sure that the constituent matrices have the same}}
 \DoxyCodeLine{\Hypertarget{complex__smoother_8h_source_l00975}00975       \textcolor{comment}{// number of columns}}
-\DoxyCodeLine{\Hypertarget{complex__smoother_8h_source_l00976}00976       \textcolor{keywordflow}{if} (\mbox{\hyperlink{classoomph_1_1ComplexGMRES_adfd862b611a335b5d6872a9eb37aa193}{Matrices\_storage\_pt}}[0]-\/>ncol() != \mbox{\hyperlink{classoomph_1_1ComplexGMRES_adfd862b611a335b5d6872a9eb37aa193}{Matrices\_storage\_pt}}[1]-\/>ncol())}
+\DoxyCodeLine{\Hypertarget{complex__smoother_8h_source_l00976}00976       \textcolor{keywordflow}{if} (\mbox{\hyperlink{classoomph_1_1ComplexGMRES_ac734ff0f4a58d864ddbe5d90440d732e}{Matrices\_storage\_pt}}[0]-\/>ncol() != \mbox{\hyperlink{classoomph_1_1ComplexGMRES_ac734ff0f4a58d864ddbe5d90440d732e}{Matrices\_storage\_pt}}[1]-\/>ncol())}
 \DoxyCodeLine{\Hypertarget{complex__smoother_8h_source_l00977}00977       \{}
 \DoxyCodeLine{\Hypertarget{complex__smoother_8h_source_l00978}00978         std::ostringstream error\_message\_stream;}
 \DoxyCodeLine{\Hypertarget{complex__smoother_8h_source_l00979}00979         error\_message\_stream << \textcolor{stringliteral}{"{}Incompatible real and imag. matrix sizes."{}};}
@@ -988,7 +988,7 @@
 \DoxyCodeLine{\Hypertarget{complex__smoother_8h_source_l00984}00984 \textcolor{preprocessor}{\#endif}}
 \DoxyCodeLine{\Hypertarget{complex__smoother_8h_source_l00985}00985     \} \textcolor{comment}{// End of complex\_smoother\_setup}}
 \DoxyCodeLine{\Hypertarget{complex__smoother_8h_source_l00986}00986 \textcolor{comment}{}}
-\DoxyCodeLine{\Hypertarget{complex__smoother_8h_source_l00987}00987 \textcolor{comment}{    /// \(\backslash\)short The smoother\_solve function performs fixed number of iterations}}
+\DoxyCodeLine{\Hypertarget{complex__smoother_8h_source_l00987}00987 \textcolor{comment}{    ///  The smoother\_solve function performs fixed number of iterations}}
 \DoxyCodeLine{\Hypertarget{complex__smoother_8h_source_l00988}00988 \textcolor{comment}{    /// on the system A*result=rhs. The number of (smoothing) iterations is}}
 \DoxyCodeLine{\Hypertarget{complex__smoother_8h_source_l00989}00989 \textcolor{comment}{    /// the same as the max. number of iterations in the underlying}}
 \DoxyCodeLine{\Hypertarget{complex__smoother_8h_source_l00990}00990 \textcolor{comment}{    /// IterativeLinearSolver class.}}
@@ -1008,24 +1008,24 @@
 \DoxyCodeLine{\Hypertarget{complex__smoother_8h_source_l01004}01004     \{}
 \DoxyCodeLine{\Hypertarget{complex__smoother_8h_source_l01005}01005       \textcolor{comment}{// If the real matrix pointer isn't null AND we're allowed to delete}}
 \DoxyCodeLine{\Hypertarget{complex__smoother_8h_source_l01006}01006       \textcolor{comment}{// the matrix which is only when we create the matrix ourselves}}
-\DoxyCodeLine{\Hypertarget{complex__smoother_8h_source_l01007}01007       \textcolor{keywordflow}{if} ((\mbox{\hyperlink{classoomph_1_1ComplexGMRES_adfd862b611a335b5d6872a9eb37aa193}{Matrices\_storage\_pt}}[0] != 0) \&\& (\mbox{\hyperlink{classoomph_1_1ComplexGMRES_aa38fa18230fc30f271d59481ccee3b55}{Matrix\_can\_be\_deleted}}))}
+\DoxyCodeLine{\Hypertarget{complex__smoother_8h_source_l01007}01007       \textcolor{keywordflow}{if} ((\mbox{\hyperlink{classoomph_1_1ComplexGMRES_ac734ff0f4a58d864ddbe5d90440d732e}{Matrices\_storage\_pt}}[0] != 0) \&\& (\mbox{\hyperlink{classoomph_1_1ComplexGMRES_aa38fa18230fc30f271d59481ccee3b55}{Matrix\_can\_be\_deleted}}))}
 \DoxyCodeLine{\Hypertarget{complex__smoother_8h_source_l01008}01008       \{}
 \DoxyCodeLine{\Hypertarget{complex__smoother_8h_source_l01009}01009         \textcolor{comment}{// Delete the matrix}}
-\DoxyCodeLine{\Hypertarget{complex__smoother_8h_source_l01010}01010         \textcolor{keyword}{delete} \mbox{\hyperlink{classoomph_1_1ComplexGMRES_adfd862b611a335b5d6872a9eb37aa193}{Matrices\_storage\_pt}}[0];}
+\DoxyCodeLine{\Hypertarget{complex__smoother_8h_source_l01010}01010         \textcolor{keyword}{delete} \mbox{\hyperlink{classoomph_1_1ComplexGMRES_ac734ff0f4a58d864ddbe5d90440d732e}{Matrices\_storage\_pt}}[0];}
 \DoxyCodeLine{\Hypertarget{complex__smoother_8h_source_l01011}01011 }
 \DoxyCodeLine{\Hypertarget{complex__smoother_8h_source_l01012}01012         \textcolor{comment}{// Assign the associated pointer the value NULL}}
-\DoxyCodeLine{\Hypertarget{complex__smoother_8h_source_l01013}01013         \mbox{\hyperlink{classoomph_1_1ComplexGMRES_adfd862b611a335b5d6872a9eb37aa193}{Matrices\_storage\_pt}}[0] = 0;}
+\DoxyCodeLine{\Hypertarget{complex__smoother_8h_source_l01013}01013         \mbox{\hyperlink{classoomph_1_1ComplexGMRES_ac734ff0f4a58d864ddbe5d90440d732e}{Matrices\_storage\_pt}}[0] = 0;}
 \DoxyCodeLine{\Hypertarget{complex__smoother_8h_source_l01014}01014       \}}
 \DoxyCodeLine{\Hypertarget{complex__smoother_8h_source_l01015}01015 }
 \DoxyCodeLine{\Hypertarget{complex__smoother_8h_source_l01016}01016       \textcolor{comment}{// If the real matrix pointer isn't null AND we're allowed to delete}}
 \DoxyCodeLine{\Hypertarget{complex__smoother_8h_source_l01017}01017       \textcolor{comment}{// the matrix which is only when we create the matrix ourselves}}
-\DoxyCodeLine{\Hypertarget{complex__smoother_8h_source_l01018}01018       \textcolor{keywordflow}{if} ((\mbox{\hyperlink{classoomph_1_1ComplexGMRES_adfd862b611a335b5d6872a9eb37aa193}{Matrices\_storage\_pt}}[1] != 0) \&\& (\mbox{\hyperlink{classoomph_1_1ComplexGMRES_aa38fa18230fc30f271d59481ccee3b55}{Matrix\_can\_be\_deleted}}))}
+\DoxyCodeLine{\Hypertarget{complex__smoother_8h_source_l01018}01018       \textcolor{keywordflow}{if} ((\mbox{\hyperlink{classoomph_1_1ComplexGMRES_ac734ff0f4a58d864ddbe5d90440d732e}{Matrices\_storage\_pt}}[1] != 0) \&\& (\mbox{\hyperlink{classoomph_1_1ComplexGMRES_aa38fa18230fc30f271d59481ccee3b55}{Matrix\_can\_be\_deleted}}))}
 \DoxyCodeLine{\Hypertarget{complex__smoother_8h_source_l01019}01019       \{}
 \DoxyCodeLine{\Hypertarget{complex__smoother_8h_source_l01020}01020         \textcolor{comment}{// Delete the matrix}}
-\DoxyCodeLine{\Hypertarget{complex__smoother_8h_source_l01021}01021         \textcolor{keyword}{delete} \mbox{\hyperlink{classoomph_1_1ComplexGMRES_adfd862b611a335b5d6872a9eb37aa193}{Matrices\_storage\_pt}}[1];}
+\DoxyCodeLine{\Hypertarget{complex__smoother_8h_source_l01021}01021         \textcolor{keyword}{delete} \mbox{\hyperlink{classoomph_1_1ComplexGMRES_ac734ff0f4a58d864ddbe5d90440d732e}{Matrices\_storage\_pt}}[1];}
 \DoxyCodeLine{\Hypertarget{complex__smoother_8h_source_l01022}01022 }
 \DoxyCodeLine{\Hypertarget{complex__smoother_8h_source_l01023}01023         \textcolor{comment}{// Assign the associated pointer the value NULL}}
-\DoxyCodeLine{\Hypertarget{complex__smoother_8h_source_l01024}01024         \mbox{\hyperlink{classoomph_1_1ComplexGMRES_adfd862b611a335b5d6872a9eb37aa193}{Matrices\_storage\_pt}}[1] = 0;}
+\DoxyCodeLine{\Hypertarget{complex__smoother_8h_source_l01024}01024         \mbox{\hyperlink{classoomph_1_1ComplexGMRES_ac734ff0f4a58d864ddbe5d90440d732e}{Matrices\_storage\_pt}}[1] = 0;}
 \DoxyCodeLine{\Hypertarget{complex__smoother_8h_source_l01025}01025       \}}
 \DoxyCodeLine{\Hypertarget{complex__smoother_8h_source_l01026}01026     \} \textcolor{comment}{// End of clean\_up\_memory}}
 \DoxyCodeLine{\Hypertarget{complex__smoother_8h_source_l01027}01027 \textcolor{comment}{}}
@@ -1038,7 +1038,7 @@
 \DoxyCodeLine{\Hypertarget{complex__smoother_8h_source_l01034}01034                 \textcolor{keyword}{const} \mbox{\hyperlink{classoomph_1_1Vector}{Vector}}<\mbox{\hyperlink{classoomph_1_1Vector}{Vector}}<std::complex<double>>>\& hessenberg,}
 \DoxyCodeLine{\Hypertarget{complex__smoother_8h_source_l01035}01035                 \textcolor{keyword}{const} \mbox{\hyperlink{classoomph_1_1Vector}{Vector}}<std::complex<double>>\& \mbox{\hyperlink{cfortran_8h_ab7123126e4885ef647dd9c6e3807a21c}{s}},}
 \DoxyCodeLine{\Hypertarget{complex__smoother_8h_source_l01036}01036                 \textcolor{keyword}{const} \mbox{\hyperlink{classoomph_1_1Vector}{Vector}}<\mbox{\hyperlink{classoomph_1_1Vector}{Vector<DoubleVector>}}>\& v,}
-\DoxyCodeLine{\Hypertarget{complex__smoother_8h_source_l01037}01037                 \mbox{\hyperlink{classoomph_1_1Vector}{Vector<DoubleVector>}}\& x)}
+\DoxyCodeLine{\Hypertarget{complex__smoother_8h_source_l01037}01037                 \mbox{\hyperlink{classoomph_1_1Vector}{Vector<DoubleVector>}}\& \mbox{\hyperlink{namespaceoomph_a9d1d2da2b8bb8e73af72b5cadb8fe97c}{x}})}
 \DoxyCodeLine{\Hypertarget{complex__smoother_8h_source_l01038}01038     \{}
 \DoxyCodeLine{\Hypertarget{complex__smoother_8h_source_l01039}01039       \textcolor{comment}{// Make a local copy of s}}
 \DoxyCodeLine{\Hypertarget{complex__smoother_8h_source_l01040}01040       \mbox{\hyperlink{classoomph_1_1Vector}{Vector<std::complex<double>}}> y(\mbox{\hyperlink{cfortran_8h_ab7123126e4885ef647dd9c6e3807a21c}{s}});}
@@ -1073,7 +1073,7 @@
 \DoxyCodeLine{\Hypertarget{complex__smoother_8h_source_l01069}01069 }
 \DoxyCodeLine{\Hypertarget{complex__smoother_8h_source_l01070}01070       \textcolor{comment}{// Calculate the number of entries in x (simply use the real part as}}
 \DoxyCodeLine{\Hypertarget{complex__smoother_8h_source_l01071}01071       \textcolor{comment}{// both the real and imaginary part should have the same length)}}
-\DoxyCodeLine{\Hypertarget{complex__smoother_8h_source_l01072}01072       \textcolor{keywordtype}{unsigned} n\_row = x[0].nrow();}
+\DoxyCodeLine{\Hypertarget{complex__smoother_8h_source_l01072}01072       \textcolor{keywordtype}{unsigned} n\_row = \mbox{\hyperlink{namespaceoomph_a9d1d2da2b8bb8e73af72b5cadb8fe97c}{x}}[0].nrow();}
 \DoxyCodeLine{\Hypertarget{complex__smoother_8h_source_l01073}01073 }
 \DoxyCodeLine{\Hypertarget{complex__smoother_8h_source_l01074}01074       \textcolor{comment}{// We assume here that the vector x (which is passed in) is actually x\_0}}
 \DoxyCodeLine{\Hypertarget{complex__smoother_8h_source_l01075}01075       \textcolor{comment}{// so we simply need to update its entries to calculate the solution, x}}
@@ -1090,19 +1090,19 @@
 \DoxyCodeLine{\Hypertarget{complex__smoother_8h_source_l01086}01086         \textcolor{keywordflow}{for} (\textcolor{keywordtype}{unsigned} \mbox{\hyperlink{cfortran_8h_adb50e893b86b3e55e751a42eab3cba82}{i}} = 0; \mbox{\hyperlink{cfortran_8h_adb50e893b86b3e55e751a42eab3cba82}{i}} < n\_row; \mbox{\hyperlink{cfortran_8h_adb50e893b86b3e55e751a42eab3cba82}{i}}++)}
 \DoxyCodeLine{\Hypertarget{complex__smoother_8h_source_l01087}01087         \{}
 \DoxyCodeLine{\Hypertarget{complex__smoother_8h_source_l01088}01088           \textcolor{comment}{// Update the real part of the i-\/th entry in x}}
-\DoxyCodeLine{\Hypertarget{complex__smoother_8h_source_l01089}01089           x[0][\mbox{\hyperlink{cfortran_8h_adb50e893b86b3e55e751a42eab3cba82}{i}}] += (vj\_r\_pt[\mbox{\hyperlink{cfortran_8h_adb50e893b86b3e55e751a42eab3cba82}{i}}] * y[j].real()) -\/ (vj\_c\_pt[\mbox{\hyperlink{cfortran_8h_adb50e893b86b3e55e751a42eab3cba82}{i}}] * y[j].imag());}
+\DoxyCodeLine{\Hypertarget{complex__smoother_8h_source_l01089}01089           \mbox{\hyperlink{namespaceoomph_a9d1d2da2b8bb8e73af72b5cadb8fe97c}{x}}[0][\mbox{\hyperlink{cfortran_8h_adb50e893b86b3e55e751a42eab3cba82}{i}}] += (vj\_r\_pt[\mbox{\hyperlink{cfortran_8h_adb50e893b86b3e55e751a42eab3cba82}{i}}] * y[j].real()) -\/ (vj\_c\_pt[\mbox{\hyperlink{cfortran_8h_adb50e893b86b3e55e751a42eab3cba82}{i}}] * y[j].imag());}
 \DoxyCodeLine{\Hypertarget{complex__smoother_8h_source_l01090}01090 }
 \DoxyCodeLine{\Hypertarget{complex__smoother_8h_source_l01091}01091           \textcolor{comment}{// Update the imaginary part of the i-\/th entry in x}}
-\DoxyCodeLine{\Hypertarget{complex__smoother_8h_source_l01092}01092           x[1][\mbox{\hyperlink{cfortran_8h_adb50e893b86b3e55e751a42eab3cba82}{i}}] += (vj\_c\_pt[\mbox{\hyperlink{cfortran_8h_adb50e893b86b3e55e751a42eab3cba82}{i}}] * y[j].real()) + (vj\_r\_pt[\mbox{\hyperlink{cfortran_8h_adb50e893b86b3e55e751a42eab3cba82}{i}}] * y[j].imag());}
+\DoxyCodeLine{\Hypertarget{complex__smoother_8h_source_l01092}01092           \mbox{\hyperlink{namespaceoomph_a9d1d2da2b8bb8e73af72b5cadb8fe97c}{x}}[1][\mbox{\hyperlink{cfortran_8h_adb50e893b86b3e55e751a42eab3cba82}{i}}] += (vj\_c\_pt[\mbox{\hyperlink{cfortran_8h_adb50e893b86b3e55e751a42eab3cba82}{i}}] * y[j].real()) + (vj\_r\_pt[\mbox{\hyperlink{cfortran_8h_adb50e893b86b3e55e751a42eab3cba82}{i}}] * y[j].imag());}
 \DoxyCodeLine{\Hypertarget{complex__smoother_8h_source_l01093}01093         \}}
 \DoxyCodeLine{\Hypertarget{complex__smoother_8h_source_l01094}01094       \} \textcolor{comment}{// for (unsigned j=0;j<=k;j++)}}
 \DoxyCodeLine{\Hypertarget{complex__smoother_8h_source_l01095}01095     \} \textcolor{comment}{// End of update}}
 \DoxyCodeLine{\Hypertarget{complex__smoother_8h_source_l01096}01096 \textcolor{comment}{}}
-\DoxyCodeLine{\Hypertarget{complex__smoother_8h_source_l01097}01097 \textcolor{comment}{    /// \(\backslash\)short Helper function: Generate a plane rotation. This is done by}}
+\DoxyCodeLine{\Hypertarget{complex__smoother_8h_source_l01097}01097 \textcolor{comment}{    ///  Helper function: Generate a plane rotation. This is done by}}
 \DoxyCodeLine{\Hypertarget{complex__smoother_8h_source_l01098}01098 \textcolor{comment}{    /// finding the value of \(\backslash\)f\$ \(\backslash\)cos(\(\backslash\)theta) \(\backslash\)f\$ (i.e. cs) and the value of}}
 \DoxyCodeLine{\Hypertarget{complex__smoother_8h_source_l01099}01099 \textcolor{comment}{    /// \(\backslash\)f\$ \(\backslash\)sin(\(\backslash\)theta) \(\backslash\)f\$ (i.e. sn) such that:}}
 \DoxyCodeLine{\Hypertarget{complex__smoother_8h_source_l01100}01100 \textcolor{comment}{    /// \(\backslash\)f[}}
-\DoxyCodeLine{\Hypertarget{complex__smoother_8h_source_l01101}01101 \textcolor{comment}{    /// \(\backslash\)begin\{bmatrix\}}}
+\DoxyCodeLine{\Hypertarget{complex__smoother_8h_source_l01101}\mbox{\hyperlink{classoomph_1_1ComplexGMRES_a3a3cb80fe9c0c98ae607520eef188ec5}{01101}} \textcolor{comment}{    /// \(\backslash\)begin\{bmatrix\}}}
 \DoxyCodeLine{\Hypertarget{complex__smoother_8h_source_l01102}01102 \textcolor{comment}{    /// \(\backslash\)overline\{\(\backslash\)cos\(\backslash\)theta\} \& \(\backslash\)overline\{\(\backslash\)sin\(\backslash\)theta\} \(\backslash\)cr}}
 \DoxyCodeLine{\Hypertarget{complex__smoother_8h_source_l01103}01103 \textcolor{comment}{    /// -\/\(\backslash\)sin\(\backslash\)theta \& \(\backslash\)cos\(\backslash\)theta}}
 \DoxyCodeLine{\Hypertarget{complex__smoother_8h_source_l01104}01104 \textcolor{comment}{    /// \(\backslash\)end\{bmatrix\}}}
@@ -1129,7 +1129,7 @@
 \DoxyCodeLine{\Hypertarget{complex__smoother_8h_source_l01125}01125 \textcolor{comment}{    /// Taken from: Saad Y."{}Iterative methods for sparse linear systems"{}, p.193.}}
 \DoxyCodeLine{\Hypertarget{complex__smoother_8h_source_l01126}01126 \textcolor{comment}{    /// We also check to see that sn is always a real (nonnegative) number. See}}
 \DoxyCodeLine{\Hypertarget{complex__smoother_8h_source_l01127}01127 \textcolor{comment}{    /// pp.193-\/194 for an explanation.}}
-\DoxyCodeLine{\Hypertarget{complex__smoother_8h_source_l01128}\mbox{\hyperlink{classoomph_1_1ComplexGMRES_a07183636586d7d30fcde380ef88e5fe6}{01128}} \textcolor{comment}{}    \textcolor{keywordtype}{void} \mbox{\hyperlink{classoomph_1_1ComplexGMRES_a07183636586d7d30fcde380ef88e5fe6}{generate\_plane\_rotation}}(std::complex<double>\& dx,}
+\DoxyCodeLine{\Hypertarget{complex__smoother_8h_source_l01128}01128 \textcolor{comment}{}    \textcolor{keywordtype}{void} generate\_plane\_rotation(std::complex<double>\& dx,}
 \DoxyCodeLine{\Hypertarget{complex__smoother_8h_source_l01129}01129                                  std::complex<double>\& dy,}
 \DoxyCodeLine{\Hypertarget{complex__smoother_8h_source_l01130}01130                                  std::complex<double>\& cs,}
 \DoxyCodeLine{\Hypertarget{complex__smoother_8h_source_l01131}01131                                  std::complex<double>\& sn)}
@@ -1204,7 +1204,7 @@
 \DoxyCodeLine{\Hypertarget{complex__smoother_8h_source_l01200}01200       \}}
 \DoxyCodeLine{\Hypertarget{complex__smoother_8h_source_l01201}01201     \} \textcolor{comment}{// End of generate\_plane\_rotation}}
 \DoxyCodeLine{\Hypertarget{complex__smoother_8h_source_l01202}01202 \textcolor{comment}{}}
-\DoxyCodeLine{\Hypertarget{complex__smoother_8h_source_l01203}01203 \textcolor{comment}{    /// \(\backslash\)short Helper function: Apply plane rotation. This is done using the}}
+\DoxyCodeLine{\Hypertarget{complex__smoother_8h_source_l01203}01203 \textcolor{comment}{    ///  Helper function: Apply plane rotation. This is done using the}}
 \DoxyCodeLine{\Hypertarget{complex__smoother_8h_source_l01204}01204 \textcolor{comment}{    /// update:}}
 \DoxyCodeLine{\Hypertarget{complex__smoother_8h_source_l01205}01205 \textcolor{comment}{    /// \(\backslash\)f[}}
 \DoxyCodeLine{\Hypertarget{complex__smoother_8h_source_l01206}01206 \textcolor{comment}{    /// \(\backslash\)begin\{bmatrix\}}}
@@ -1222,7 +1222,7 @@
 \DoxyCodeLine{\Hypertarget{complex__smoother_8h_source_l01218}01218 \textcolor{comment}{    /// \(\backslash\)end\{bmatrix\}.}}
 \DoxyCodeLine{\Hypertarget{complex__smoother_8h_source_l01219}01219 \textcolor{comment}{    /// \(\backslash\)f]}}
 \DoxyCodeLine{\Hypertarget{complex__smoother_8h_source_l01220}01220 \textcolor{comment}{    /// Taken from: Saad Y."{}Iterative methods for sparse linear systems"{}, p.193.}}
-\DoxyCodeLine{\Hypertarget{complex__smoother_8h_source_l01221}\mbox{\hyperlink{classoomph_1_1ComplexGMRES_a8aa80ff477c4b131f8c1a4c74f872df1}{01221}} \textcolor{comment}{}    \textcolor{keywordtype}{void} \mbox{\hyperlink{classoomph_1_1ComplexGMRES_a8aa80ff477c4b131f8c1a4c74f872df1}{apply\_plane\_rotation}}(std::complex<double>\& dx,}
+\DoxyCodeLine{\Hypertarget{complex__smoother_8h_source_l01221}01221 \textcolor{comment}{}    \textcolor{keywordtype}{void} apply\_plane\_rotation(std::complex<double>\& dx,}
 \DoxyCodeLine{\Hypertarget{complex__smoother_8h_source_l01222}01222                               std::complex<double>\& dy,}
 \DoxyCodeLine{\Hypertarget{complex__smoother_8h_source_l01223}01223                               std::complex<double>\& cs,}
 \DoxyCodeLine{\Hypertarget{complex__smoother_8h_source_l01224}01224                               std::complex<double>\& sn)}
@@ -1238,22 +1238,22 @@
 \DoxyCodeLine{\Hypertarget{complex__smoother_8h_source_l01234}01234     \} \textcolor{comment}{// End of apply\_plane\_rotation}}
 \DoxyCodeLine{\Hypertarget{complex__smoother_8h_source_l01235}01235 \textcolor{comment}{}}
 \DoxyCodeLine{\Hypertarget{complex__smoother_8h_source_l01236}01236 \textcolor{comment}{    /// Number of iterations taken}}
-\DoxyCodeLine{\Hypertarget{complex__smoother_8h_source_l01237}\mbox{\hyperlink{classoomph_1_1ComplexGMRES_a208aaa9528d6b08afa5324f77ac70581}{01237}} \textcolor{comment}{}    \textcolor{keywordtype}{unsigned} \mbox{\hyperlink{classoomph_1_1ComplexGMRES_a208aaa9528d6b08afa5324f77ac70581}{Iterations}};}
+\DoxyCodeLine{\Hypertarget{complex__smoother_8h_source_l01237}01237 \textcolor{comment}{}    \textcolor{keywordtype}{unsigned} Iterations;}
 \DoxyCodeLine{\Hypertarget{complex__smoother_8h_source_l01238}01238 \textcolor{comment}{}}
 \DoxyCodeLine{\Hypertarget{complex__smoother_8h_source_l01239}01239 \textcolor{comment}{    /// Vector of pointers to the real and imaginary part of the system matrix}}
-\DoxyCodeLine{\Hypertarget{complex__smoother_8h_source_l01240}\mbox{\hyperlink{classoomph_1_1ComplexGMRES_adfd862b611a335b5d6872a9eb37aa193}{01240}} \textcolor{comment}{}    \mbox{\hyperlink{classoomph_1_1Vector}{Vector<CRDoubleMatrix*>}} \mbox{\hyperlink{classoomph_1_1ComplexGMRES_adfd862b611a335b5d6872a9eb37aa193}{Matrices\_storage\_pt}};}
+\DoxyCodeLine{\Hypertarget{complex__smoother_8h_source_l01240}\mbox{\hyperlink{classoomph_1_1ComplexGMRES_ac734ff0f4a58d864ddbe5d90440d732e}{01240}} \textcolor{comment}{}    \mbox{\hyperlink{classoomph_1_1Vector}{Vector<CRDoubleMatrix*>}} \mbox{\hyperlink{classoomph_1_1ComplexGMRES_ac734ff0f4a58d864ddbe5d90440d732e}{Matrices\_storage\_pt}};}
 \DoxyCodeLine{\Hypertarget{complex__smoother_8h_source_l01241}01241 \textcolor{comment}{}}
-\DoxyCodeLine{\Hypertarget{complex__smoother_8h_source_l01242}01242 \textcolor{comment}{    /// \(\backslash\)short Boolean flag to indicate if the solve is done in re-\/solve mode,}}
+\DoxyCodeLine{\Hypertarget{complex__smoother_8h_source_l01242}01242 \textcolor{comment}{    ///  Boolean flag to indicate if the solve is done in re-\/solve mode,}}
 \DoxyCodeLine{\Hypertarget{complex__smoother_8h_source_l01243}01243 \textcolor{comment}{    /// bypassing setup of matrix and preconditioner}}
 \DoxyCodeLine{\Hypertarget{complex__smoother_8h_source_l01244}\mbox{\hyperlink{classoomph_1_1ComplexGMRES_a2694315efaf2aa353ad4d67f316b1597}{01244}} \textcolor{comment}{}    \textcolor{keywordtype}{bool} \mbox{\hyperlink{classoomph_1_1ComplexGMRES_a2694315efaf2aa353ad4d67f316b1597}{Resolving}};}
 \DoxyCodeLine{\Hypertarget{complex__smoother_8h_source_l01245}01245 \textcolor{comment}{}}
-\DoxyCodeLine{\Hypertarget{complex__smoother_8h_source_l01246}01246 \textcolor{comment}{    /// \(\backslash\)short Boolean flag to indicate if the real and imaginary system}}
+\DoxyCodeLine{\Hypertarget{complex__smoother_8h_source_l01246}01246 \textcolor{comment}{    ///  Boolean flag to indicate if the real and imaginary system}}
 \DoxyCodeLine{\Hypertarget{complex__smoother_8h_source_l01247}01247 \textcolor{comment}{    /// matrices can be deleted}}
 \DoxyCodeLine{\Hypertarget{complex__smoother_8h_source_l01248}\mbox{\hyperlink{classoomph_1_1ComplexGMRES_aa38fa18230fc30f271d59481ccee3b55}{01248}} \textcolor{comment}{}    \textcolor{keywordtype}{bool} \mbox{\hyperlink{classoomph_1_1ComplexGMRES_aa38fa18230fc30f271d59481ccee3b55}{Matrix\_can\_be\_deleted}};}
 \DoxyCodeLine{\Hypertarget{complex__smoother_8h_source_l01249}01249   \};}
 \DoxyCodeLine{\Hypertarget{complex__smoother_8h_source_l01250}01250 }
 \DoxyCodeLine{\Hypertarget{complex__smoother_8h_source_l01251}01251   \textcolor{comment}{//======================================================================}\textcolor{comment}{}}
-\DoxyCodeLine{\Hypertarget{complex__smoother_8h_source_l01252}01252 \textcolor{comment}{  /// \(\backslash\)short This is where the actual work is done}}
+\DoxyCodeLine{\Hypertarget{complex__smoother_8h_source_l01252}01252 \textcolor{comment}{  ///  This is where the actual work is done}}
 \DoxyCodeLine{\Hypertarget{complex__smoother_8h_source_l01253}01253 \textcolor{comment}{}  \textcolor{comment}{//======================================================================}}
 \DoxyCodeLine{\Hypertarget{complex__smoother_8h_source_l01254}01254   \textcolor{keyword}{template}<\textcolor{keyword}{typename} MATRIX>}
 \DoxyCodeLine{\Hypertarget{complex__smoother_8h_source_l01255}\mbox{\hyperlink{classoomph_1_1ComplexGMRES_a848721022a08fde4b2182a143f287ded}{01255}}   \textcolor{keywordtype}{void} \mbox{\hyperlink{classoomph_1_1ComplexGMRES_a848721022a08fde4b2182a143f287ded}{ComplexGMRES<MATRIX>::complex\_solve\_helper}}(}
@@ -1768,7 +1768,7 @@
 \DoxyCodeLine{\Hypertarget{complex__smoother_8h_source_l01764}01764 \textcolor{comment}{}}
 \DoxyCodeLine{\Hypertarget{complex__smoother_8h_source_l01765}01765 }
 \DoxyCodeLine{\Hypertarget{complex__smoother_8h_source_l01766}01766   \textcolor{comment}{//======================================================================}\textcolor{comment}{}}
-\DoxyCodeLine{\Hypertarget{complex__smoother_8h_source_l01767}01767 \textcolor{comment}{  /// \(\backslash\)short The GMRES method for the Helmholtz solver.}}
+\DoxyCodeLine{\Hypertarget{complex__smoother_8h_source_l01767}01767 \textcolor{comment}{  ///  The GMRES method for the Helmholtz solver.}}
 \DoxyCodeLine{\Hypertarget{complex__smoother_8h_source_l01768}01768 \textcolor{comment}{}  \textcolor{comment}{//======================================================================}}
 \DoxyCodeLine{\Hypertarget{complex__smoother_8h_source_l01769}01769   \textcolor{keyword}{template}<\textcolor{keyword}{typename} MATRIX>}
 \DoxyCodeLine{\Hypertarget{complex__smoother_8h_source_l01770}\mbox{\hyperlink{classoomph_1_1HelmholtzGMRESMG}{01770}}   \textcolor{keyword}{class }\mbox{\hyperlink{classoomph_1_1HelmholtzGMRESMG}{HelmholtzGMRESMG}} : \textcolor{keyword}{public} \mbox{\hyperlink{classoomph_1_1IterativeLinearSolver}{IterativeLinearSolver}},}
@@ -1778,7 +1778,7 @@
 \DoxyCodeLine{\Hypertarget{complex__smoother_8h_source_l01774}01774 \textcolor{comment}{    /// Constructor}}
 \DoxyCodeLine{\Hypertarget{complex__smoother_8h_source_l01775}\mbox{\hyperlink{classoomph_1_1HelmholtzGMRESMG_ab686680821fe3c9ac0c0a07ccb0e7550}{01775}} \textcolor{comment}{}    \mbox{\hyperlink{classoomph_1_1HelmholtzGMRESMG_ab686680821fe3c9ac0c0a07ccb0e7550}{HelmholtzGMRESMG}}()}
 \DoxyCodeLine{\Hypertarget{complex__smoother_8h_source_l01776}01776       : \mbox{\hyperlink{classoomph_1_1BlockPreconditioner}{BlockPreconditioner}}<\mbox{\hyperlink{classoomph_1_1CRDoubleMatrix}{CRDoubleMatrix}}>(),}
-\DoxyCodeLine{\Hypertarget{complex__smoother_8h_source_l01777}01777         \mbox{\hyperlink{classoomph_1_1HelmholtzGMRESMG_ae2a4718545bd42acb57aba5baa23d52f}{Iterations}}(0),}
+\DoxyCodeLine{\Hypertarget{complex__smoother_8h_source_l01777}01777         Iterations(0),}
 \DoxyCodeLine{\Hypertarget{complex__smoother_8h_source_l01778}01778         \mbox{\hyperlink{classoomph_1_1HelmholtzGMRESMG_acb64519b62c16bbec32d01c9969f746f}{Resolving}}(false),}
 \DoxyCodeLine{\Hypertarget{complex__smoother_8h_source_l01779}01779         \mbox{\hyperlink{classoomph_1_1HelmholtzGMRESMG_a1550b5147f7fa822e8cbc9de93f1c06f}{Matrix\_can\_be\_deleted}}(true)}
 \DoxyCodeLine{\Hypertarget{complex__smoother_8h_source_l01780}01780     \{}
@@ -1804,7 +1804,7 @@
 \DoxyCodeLine{\Hypertarget{complex__smoother_8h_source_l01800}01800       \mbox{\hyperlink{classoomph_1_1HelmholtzGMRESMG_a81ddd10ccc03d6582dcadbd5cae1edda}{clean\_up\_memory}}();}
 \DoxyCodeLine{\Hypertarget{complex__smoother_8h_source_l01801}01801     \}}
 \DoxyCodeLine{\Hypertarget{complex__smoother_8h_source_l01802}01802 \textcolor{comment}{}}
-\DoxyCodeLine{\Hypertarget{complex__smoother_8h_source_l01803}01803 \textcolor{comment}{    /// \(\backslash\)short Implementation of the pure virtual base class function. The}}
+\DoxyCodeLine{\Hypertarget{complex__smoother_8h_source_l01803}01803 \textcolor{comment}{    ///  Implementation of the pure virtual base class function. The}}
 \DoxyCodeLine{\Hypertarget{complex__smoother_8h_source_l01804}01804 \textcolor{comment}{    /// function has been broken because this is meant to be used as a linear}}
 \DoxyCodeLine{\Hypertarget{complex__smoother_8h_source_l01805}01805 \textcolor{comment}{    /// solver}}
 \DoxyCodeLine{\Hypertarget{complex__smoother_8h_source_l01806}\mbox{\hyperlink{classoomph_1_1HelmholtzGMRESMG_a6050720b0d12f422e4b2983378dc53e5}{01806}} \textcolor{comment}{}    \textcolor{keywordtype}{void} \mbox{\hyperlink{classoomph_1_1HelmholtzGMRESMG_a6050720b0d12f422e4b2983378dc53e5}{preconditioner\_solve}}(\textcolor{keyword}{const} \mbox{\hyperlink{classoomph_1_1DoubleVector}{DoubleVector}}\& r, \mbox{\hyperlink{classoomph_1_1DoubleVector}{DoubleVector}}\& z)}
@@ -1823,7 +1823,7 @@
 \DoxyCodeLine{\Hypertarget{complex__smoother_8h_source_l01819}01819                           OOMPH\_EXCEPTION\_LOCATION);}
 \DoxyCodeLine{\Hypertarget{complex__smoother_8h_source_l01820}01820     \}}
 \DoxyCodeLine{\Hypertarget{complex__smoother_8h_source_l01821}01821 \textcolor{comment}{}}
-\DoxyCodeLine{\Hypertarget{complex__smoother_8h_source_l01822}01822 \textcolor{comment}{    /// \(\backslash\)short Implementation of the pure virtual base class function. This}}
+\DoxyCodeLine{\Hypertarget{complex__smoother_8h_source_l01822}01822 \textcolor{comment}{    ///  Implementation of the pure virtual base class function. This}}
 \DoxyCodeLine{\Hypertarget{complex__smoother_8h_source_l01823}01823 \textcolor{comment}{    /// accompanies the preconditioner\_solve function and so is also broken}}
 \DoxyCodeLine{\Hypertarget{complex__smoother_8h_source_l01824}\mbox{\hyperlink{classoomph_1_1HelmholtzGMRESMG_ae566e34da6aa9ca70a034f7ef93a1aa5}{01824}} \textcolor{comment}{}    \textcolor{keywordtype}{void} \mbox{\hyperlink{classoomph_1_1HelmholtzGMRESMG_ae566e34da6aa9ca70a034f7ef93a1aa5}{setup}}()}
 \DoxyCodeLine{\Hypertarget{complex__smoother_8h_source_l01825}01825     \{}
@@ -1840,7 +1840,7 @@
 \DoxyCodeLine{\Hypertarget{complex__smoother_8h_source_l01836}01836                           OOMPH\_EXCEPTION\_LOCATION);}
 \DoxyCodeLine{\Hypertarget{complex__smoother_8h_source_l01837}01837     \}}
 \DoxyCodeLine{\Hypertarget{complex__smoother_8h_source_l01838}01838 \textcolor{comment}{}}
-\DoxyCodeLine{\Hypertarget{complex__smoother_8h_source_l01839}01839 \textcolor{comment}{    /// \(\backslash\)short Solver: Takes pointer to problem and returns the results vector}}
+\DoxyCodeLine{\Hypertarget{complex__smoother_8h_source_l01839}01839 \textcolor{comment}{    ///  Solver: Takes pointer to problem and returns the results vector}}
 \DoxyCodeLine{\Hypertarget{complex__smoother_8h_source_l01840}01840 \textcolor{comment}{    /// which contains the solution of the linear system defined by}}
 \DoxyCodeLine{\Hypertarget{complex__smoother_8h_source_l01841}01841 \textcolor{comment}{    /// the problem's fully assembled Jacobian and residual vector.}}
 \DoxyCodeLine{\Hypertarget{complex__smoother_8h_source_l01842}\mbox{\hyperlink{classoomph_1_1HelmholtzGMRESMG_a5806236b991ac2d7fe4bc7a4f19e98fb}{01842}} \textcolor{comment}{}    \textcolor{keywordtype}{void} \mbox{\hyperlink{classoomph_1_1HelmholtzGMRESMG_a5806236b991ac2d7fe4bc7a4f19e98fb}{solve}}(\mbox{\hyperlink{classoomph_1_1Problem}{Problem}}* \textcolor{keyword}{const}\& problem\_pt, \mbox{\hyperlink{classoomph_1_1DoubleVector}{DoubleVector}}\& result)}
@@ -1884,19 +1884,19 @@
 \DoxyCodeLine{\Hypertarget{complex__smoother_8h_source_l01880}01880       \textcolor{comment}{// Get Jacobian matrix in format specified by template parameter}}
 \DoxyCodeLine{\Hypertarget{complex__smoother_8h_source_l01881}01881       \textcolor{comment}{// and nonlinear residual vector}}
 \DoxyCodeLine{\Hypertarget{complex__smoother_8h_source_l01882}01882       MATRIX* \mbox{\hyperlink{classoomph_1_1BlockPreconditioner_aec1a6eda2d78d1e3b41ced805534d72d}{matrix\_pt}} = \textcolor{keyword}{new} MATRIX;}
-\DoxyCodeLine{\Hypertarget{complex__smoother_8h_source_l01883}01883       \mbox{\hyperlink{classoomph_1_1DoubleVector}{DoubleVector}} f;}
+\DoxyCodeLine{\Hypertarget{complex__smoother_8h_source_l01883}01883       \mbox{\hyperlink{classoomph_1_1DoubleVector}{DoubleVector}} \mbox{\hyperlink{namespaceoomph_ad835af913df4cbdc5648440f91b794ab}{f}};}
 \DoxyCodeLine{\Hypertarget{complex__smoother_8h_source_l01884}01884       \textcolor{keywordflow}{if} (\textcolor{keyword}{dynamic\_cast<}\mbox{\hyperlink{classoomph_1_1DistributableLinearAlgebraObject}{DistributableLinearAlgebraObject}}*\textcolor{keyword}{>}(\mbox{\hyperlink{classoomph_1_1BlockPreconditioner_aec1a6eda2d78d1e3b41ced805534d72d}{matrix\_pt}}) != 0)}
 \DoxyCodeLine{\Hypertarget{complex__smoother_8h_source_l01885}01885       \{}
 \DoxyCodeLine{\Hypertarget{complex__smoother_8h_source_l01886}01886         \textcolor{keywordflow}{if} (\textcolor{keyword}{dynamic\_cast<}\mbox{\hyperlink{classoomph_1_1CRDoubleMatrix}{CRDoubleMatrix}}*\textcolor{keyword}{>}(\mbox{\hyperlink{classoomph_1_1BlockPreconditioner_aec1a6eda2d78d1e3b41ced805534d72d}{matrix\_pt}}) != 0)}
 \DoxyCodeLine{\Hypertarget{complex__smoother_8h_source_l01887}01887         \{}
 \DoxyCodeLine{\Hypertarget{complex__smoother_8h_source_l01888}01888           \textcolor{keyword}{dynamic\_cast<}\mbox{\hyperlink{classoomph_1_1CRDoubleMatrix}{CRDoubleMatrix}}*\textcolor{keyword}{>}(\mbox{\hyperlink{classoomph_1_1BlockPreconditioner_aec1a6eda2d78d1e3b41ced805534d72d}{matrix\_pt}})-\/>build(}
 \DoxyCodeLine{\Hypertarget{complex__smoother_8h_source_l01889}01889             \mbox{\hyperlink{classoomph_1_1DistributableLinearAlgebraObject_abfa9cf25494c796d62b15bad586fab47}{IterativeLinearSolver::distribution\_pt}}());}
-\DoxyCodeLine{\Hypertarget{complex__smoother_8h_source_l01890}01890           f.\mbox{\hyperlink{classoomph_1_1DoubleVector_a7bcc94c157d6853a0f0502e8a76ed380}{build}}(\mbox{\hyperlink{classoomph_1_1DistributableLinearAlgebraObject_abfa9cf25494c796d62b15bad586fab47}{IterativeLinearSolver::distribution\_pt}}(), 0.0);}
+\DoxyCodeLine{\Hypertarget{complex__smoother_8h_source_l01890}01890           \mbox{\hyperlink{namespaceoomph_ad835af913df4cbdc5648440f91b794ab}{f}}.build(\mbox{\hyperlink{classoomph_1_1DistributableLinearAlgebraObject_abfa9cf25494c796d62b15bad586fab47}{IterativeLinearSolver::distribution\_pt}}(), 0.0);}
 \DoxyCodeLine{\Hypertarget{complex__smoother_8h_source_l01891}01891         \}}
 \DoxyCodeLine{\Hypertarget{complex__smoother_8h_source_l01892}01892       \}}
 \DoxyCodeLine{\Hypertarget{complex__smoother_8h_source_l01893}01893 }
 \DoxyCodeLine{\Hypertarget{complex__smoother_8h_source_l01894}01894       \textcolor{comment}{// Get the Jacobian and residuals vector}}
-\DoxyCodeLine{\Hypertarget{complex__smoother_8h_source_l01895}01895       problem\_pt-\/>\mbox{\hyperlink{classoomph_1_1Problem_a4ba83bbea19db3a530539f3e9f88a7e4}{get\_jacobian}}(f, *\mbox{\hyperlink{classoomph_1_1BlockPreconditioner_aec1a6eda2d78d1e3b41ced805534d72d}{matrix\_pt}});}
+\DoxyCodeLine{\Hypertarget{complex__smoother_8h_source_l01895}01895       problem\_pt-\/>\mbox{\hyperlink{classoomph_1_1Problem_a4ba83bbea19db3a530539f3e9f88a7e4}{get\_jacobian}}(\mbox{\hyperlink{namespaceoomph_ad835af913df4cbdc5648440f91b794ab}{f}}, *\mbox{\hyperlink{classoomph_1_1BlockPreconditioner_aec1a6eda2d78d1e3b41ced805534d72d}{matrix\_pt}});}
 \DoxyCodeLine{\Hypertarget{complex__smoother_8h_source_l01896}01896 }
 \DoxyCodeLine{\Hypertarget{complex__smoother_8h_source_l01897}01897       \textcolor{comment}{// We've made the matrix, we can delete it...}}
 \DoxyCodeLine{\Hypertarget{complex__smoother_8h_source_l01898}01898       \mbox{\hyperlink{classoomph_1_1HelmholtzGMRESMG_a1550b5147f7fa822e8cbc9de93f1c06f}{Matrix\_can\_be\_deleted}} = \textcolor{keyword}{true};}
@@ -1938,7 +1938,7 @@
 \DoxyCodeLine{\Hypertarget{complex__smoother_8h_source_l01934}01934 \textcolor{preprocessor}{\#endif}}
 \DoxyCodeLine{\Hypertarget{complex__smoother_8h_source_l01935}01935 }
 \DoxyCodeLine{\Hypertarget{complex__smoother_8h_source_l01936}01936       \textcolor{comment}{// Resize the storage for the system matrices}}
-\DoxyCodeLine{\Hypertarget{complex__smoother_8h_source_l01937}01937       \mbox{\hyperlink{classoomph_1_1HelmholtzGMRESMG_a5d8ae2181aecf890386ae48d81f90b42}{Matrices\_storage\_pt}}.resize(2, 0);}
+\DoxyCodeLine{\Hypertarget{complex__smoother_8h_source_l01937}01937       \mbox{\hyperlink{classoomph_1_1HelmholtzGMRESMG_a44e50b68a7c2aab02342817c93ee6ad5}{Matrices\_storage\_pt}}.resize(2, 0);}
 \DoxyCodeLine{\Hypertarget{complex__smoother_8h_source_l01938}01938 }
 \DoxyCodeLine{\Hypertarget{complex__smoother_8h_source_l01939}01939       \textcolor{comment}{// Loop over the rows of the block matrix}}
 \DoxyCodeLine{\Hypertarget{complex__smoother_8h_source_l01940}01940       \textcolor{keywordflow}{for} (\textcolor{keywordtype}{unsigned} \mbox{\hyperlink{cfortran_8h_adb50e893b86b3e55e751a42eab3cba82}{i}} = 0; \mbox{\hyperlink{cfortran_8h_adb50e893b86b3e55e751a42eab3cba82}{i}} < \mbox{\hyperlink{classoomph_1_1BlockPreconditioner_a80808d42be8db74fd58af80b019bf317}{nblock\_types}}; \mbox{\hyperlink{cfortran_8h_adb50e893b86b3e55e751a42eab3cba82}{i}}++)}
@@ -1947,10 +1947,10 @@
 \DoxyCodeLine{\Hypertarget{complex__smoother_8h_source_l01943}01943         \textcolor{keywordtype}{unsigned} j = 0;}
 \DoxyCodeLine{\Hypertarget{complex__smoother_8h_source_l01944}01944 }
 \DoxyCodeLine{\Hypertarget{complex__smoother_8h_source_l01945}01945         \textcolor{comment}{// Create new CRDoubleMatrix objects}}
-\DoxyCodeLine{\Hypertarget{complex__smoother_8h_source_l01946}01946         \mbox{\hyperlink{classoomph_1_1HelmholtzGMRESMG_a5d8ae2181aecf890386ae48d81f90b42}{Matrices\_storage\_pt}}[\mbox{\hyperlink{cfortran_8h_adb50e893b86b3e55e751a42eab3cba82}{i}}] = \textcolor{keyword}{new} \mbox{\hyperlink{classoomph_1_1CRDoubleMatrix}{CRDoubleMatrix}};}
+\DoxyCodeLine{\Hypertarget{complex__smoother_8h_source_l01946}01946         \mbox{\hyperlink{classoomph_1_1HelmholtzGMRESMG_a44e50b68a7c2aab02342817c93ee6ad5}{Matrices\_storage\_pt}}[\mbox{\hyperlink{cfortran_8h_adb50e893b86b3e55e751a42eab3cba82}{i}}] = \textcolor{keyword}{new} \mbox{\hyperlink{classoomph_1_1CRDoubleMatrix}{CRDoubleMatrix}};}
 \DoxyCodeLine{\Hypertarget{complex__smoother_8h_source_l01947}01947 }
 \DoxyCodeLine{\Hypertarget{complex__smoother_8h_source_l01948}01948         \textcolor{comment}{// Extract the required blocks, i.e. the first column}}
-\DoxyCodeLine{\Hypertarget{complex__smoother_8h_source_l01949}01949         this-\/>\mbox{\hyperlink{classoomph_1_1BlockPreconditioner_a72b4dbe167da59d9ba12c7eff97d77e6}{get\_block}}(\mbox{\hyperlink{cfortran_8h_adb50e893b86b3e55e751a42eab3cba82}{i}}, j, *\mbox{\hyperlink{classoomph_1_1HelmholtzGMRESMG_a5d8ae2181aecf890386ae48d81f90b42}{Matrices\_storage\_pt}}[\mbox{\hyperlink{cfortran_8h_adb50e893b86b3e55e751a42eab3cba82}{i}}]);}
+\DoxyCodeLine{\Hypertarget{complex__smoother_8h_source_l01949}01949         this-\/>\mbox{\hyperlink{classoomph_1_1BlockPreconditioner_a72b4dbe167da59d9ba12c7eff97d77e6}{get\_block}}(\mbox{\hyperlink{cfortran_8h_adb50e893b86b3e55e751a42eab3cba82}{i}}, j, *\mbox{\hyperlink{classoomph_1_1HelmholtzGMRESMG_a44e50b68a7c2aab02342817c93ee6ad5}{Matrices\_storage\_pt}}[\mbox{\hyperlink{cfortran_8h_adb50e893b86b3e55e751a42eab3cba82}{i}}]);}
 \DoxyCodeLine{\Hypertarget{complex__smoother_8h_source_l01950}01950       \}}
 \DoxyCodeLine{\Hypertarget{complex__smoother_8h_source_l01951}01951 }
 \DoxyCodeLine{\Hypertarget{complex__smoother_8h_source_l01952}01952       \textcolor{comment}{// Doc time for setup}}
@@ -1978,7 +1978,7 @@
 \DoxyCodeLine{\Hypertarget{complex__smoother_8h_source_l01974}01974         result.\mbox{\hyperlink{classoomph_1_1DoubleVector_a7bcc94c157d6853a0f0502e8a76ed380}{build}}(\mbox{\hyperlink{classoomph_1_1DistributableLinearAlgebraObject_abfa9cf25494c796d62b15bad586fab47}{IterativeLinearSolver::distribution\_pt}}(), 0.0);}
 \DoxyCodeLine{\Hypertarget{complex__smoother_8h_source_l01975}01975 }
 \DoxyCodeLine{\Hypertarget{complex__smoother_8h_source_l01976}01976         \textcolor{comment}{// Solve the problem}}
-\DoxyCodeLine{\Hypertarget{complex__smoother_8h_source_l01977}01977         \mbox{\hyperlink{classoomph_1_1HelmholtzGMRESMG_a3147aa77b5e71a0822cc5c661dd07e0d}{solve\_helper}}(\mbox{\hyperlink{classoomph_1_1BlockPreconditioner_aec1a6eda2d78d1e3b41ced805534d72d}{matrix\_pt}}, f, result);}
+\DoxyCodeLine{\Hypertarget{complex__smoother_8h_source_l01977}01977         \mbox{\hyperlink{classoomph_1_1HelmholtzGMRESMG_a3147aa77b5e71a0822cc5c661dd07e0d}{solve\_helper}}(\mbox{\hyperlink{classoomph_1_1BlockPreconditioner_aec1a6eda2d78d1e3b41ced805534d72d}{matrix\_pt}}, \mbox{\hyperlink{namespaceoomph_ad835af913df4cbdc5648440f91b794ab}{f}}, result);}
 \DoxyCodeLine{\Hypertarget{complex__smoother_8h_source_l01978}01978 }
 \DoxyCodeLine{\Hypertarget{complex__smoother_8h_source_l01979}01979         \textcolor{comment}{// Redistribute the vector}}
 \DoxyCodeLine{\Hypertarget{complex__smoother_8h_source_l01980}01980         result.\mbox{\hyperlink{classoomph_1_1DoubleVector_a9396b861977c16606d8eca39056976c8}{redistribute}}(\&temp\_global\_dist);}
@@ -1987,7 +1987,7 @@
 \DoxyCodeLine{\Hypertarget{complex__smoother_8h_source_l01983}01983       \textcolor{keywordflow}{else}}
 \DoxyCodeLine{\Hypertarget{complex__smoother_8h_source_l01984}01984       \{}
 \DoxyCodeLine{\Hypertarget{complex__smoother_8h_source_l01985}01985         \textcolor{comment}{// Solve}}
-\DoxyCodeLine{\Hypertarget{complex__smoother_8h_source_l01986}01986         \mbox{\hyperlink{classoomph_1_1HelmholtzGMRESMG_a3147aa77b5e71a0822cc5c661dd07e0d}{solve\_helper}}(\mbox{\hyperlink{classoomph_1_1BlockPreconditioner_aec1a6eda2d78d1e3b41ced805534d72d}{matrix\_pt}}, f, result);}
+\DoxyCodeLine{\Hypertarget{complex__smoother_8h_source_l01986}01986         \mbox{\hyperlink{classoomph_1_1HelmholtzGMRESMG_a3147aa77b5e71a0822cc5c661dd07e0d}{solve\_helper}}(\mbox{\hyperlink{classoomph_1_1BlockPreconditioner_aec1a6eda2d78d1e3b41ced805534d72d}{matrix\_pt}}, \mbox{\hyperlink{namespaceoomph_ad835af913df4cbdc5648440f91b794ab}{f}}, result);}
 \DoxyCodeLine{\Hypertarget{complex__smoother_8h_source_l01987}01987       \}}
 \DoxyCodeLine{\Hypertarget{complex__smoother_8h_source_l01988}01988 }
 \DoxyCodeLine{\Hypertarget{complex__smoother_8h_source_l01989}01989       \textcolor{comment}{// Kill matrix unless it's still required for resolve}}
@@ -1998,7 +1998,7 @@
 \DoxyCodeLine{\Hypertarget{complex__smoother_8h_source_l01994}01994       \}}
 \DoxyCodeLine{\Hypertarget{complex__smoother_8h_source_l01995}01995     \} \textcolor{comment}{// End of solve}}
 \DoxyCodeLine{\Hypertarget{complex__smoother_8h_source_l01996}01996 \textcolor{comment}{}}
-\DoxyCodeLine{\Hypertarget{complex__smoother_8h_source_l01997}01997 \textcolor{comment}{    /// \(\backslash\)short Linear-\/algebra-\/type solver: Takes pointer to a matrix and rhs}}
+\DoxyCodeLine{\Hypertarget{complex__smoother_8h_source_l01997}01997 \textcolor{comment}{    ///  Linear-\/algebra-\/type solver: Takes pointer to a matrix and rhs}}
 \DoxyCodeLine{\Hypertarget{complex__smoother_8h_source_l01998}01998 \textcolor{comment}{    /// vector and returns the solution of the linear system.}}
 \DoxyCodeLine{\Hypertarget{complex__smoother_8h_source_l01999}\mbox{\hyperlink{classoomph_1_1HelmholtzGMRESMG_a3e6405af2506c7b789ba3208d0a9cf6d}{01999}} \textcolor{comment}{}    \textcolor{keywordtype}{void} \mbox{\hyperlink{classoomph_1_1HelmholtzGMRESMG_a3e6405af2506c7b789ba3208d0a9cf6d}{solve}}(\mbox{\hyperlink{classoomph_1_1DoubleMatrixBase}{DoubleMatrixBase}}* \textcolor{keyword}{const}\& \mbox{\hyperlink{classoomph_1_1BlockPreconditioner_aec1a6eda2d78d1e3b41ced805534d72d}{matrix\_pt}},}
 \DoxyCodeLine{\Hypertarget{complex__smoother_8h_source_l02000}02000                \textcolor{keyword}{const} \mbox{\hyperlink{classoomph_1_1DoubleVector}{DoubleVector}}\& rhs,}
@@ -2019,7 +2019,7 @@
 \DoxyCodeLine{\Hypertarget{complex__smoother_8h_source_l02015}02015     \}}
 \DoxyCodeLine{\Hypertarget{complex__smoother_8h_source_l02016}02016 }
 \DoxyCodeLine{\Hypertarget{complex__smoother_8h_source_l02017}02017 \textcolor{comment}{}}
-\DoxyCodeLine{\Hypertarget{complex__smoother_8h_source_l02018}02018 \textcolor{comment}{    /// \(\backslash\)short Linear-\/algebra-\/type solver: Takes pointer to a matrix}}
+\DoxyCodeLine{\Hypertarget{complex__smoother_8h_source_l02018}02018 \textcolor{comment}{    ///  Linear-\/algebra-\/type solver: Takes pointer to a matrix}}
 \DoxyCodeLine{\Hypertarget{complex__smoother_8h_source_l02019}02019 \textcolor{comment}{    /// and rhs vector and returns the solution of the linear system}}
 \DoxyCodeLine{\Hypertarget{complex__smoother_8h_source_l02020}02020 \textcolor{comment}{    /// Call the broken base-\/class version. If you want this, please}}
 \DoxyCodeLine{\Hypertarget{complex__smoother_8h_source_l02021}02021 \textcolor{comment}{    /// implement it}}
@@ -2030,7 +2030,7 @@
 \DoxyCodeLine{\Hypertarget{complex__smoother_8h_source_l02026}02026       \mbox{\hyperlink{classoomph_1_1LinearSolver_a15ce22542b74ed1826ea485edacbeb6e}{LinearSolver::solve}}(\mbox{\hyperlink{classoomph_1_1BlockPreconditioner_aec1a6eda2d78d1e3b41ced805534d72d}{matrix\_pt}}, rhs, result);}
 \DoxyCodeLine{\Hypertarget{complex__smoother_8h_source_l02027}02027     \}}
 \DoxyCodeLine{\Hypertarget{complex__smoother_8h_source_l02028}02028 \textcolor{comment}{}}
-\DoxyCodeLine{\Hypertarget{complex__smoother_8h_source_l02029}02029 \textcolor{comment}{    /// \(\backslash\)short Re-\/solve the system defined by the last assembled Jacobian}}
+\DoxyCodeLine{\Hypertarget{complex__smoother_8h_source_l02029}02029 \textcolor{comment}{    ///  Re-\/solve the system defined by the last assembled Jacobian}}
 \DoxyCodeLine{\Hypertarget{complex__smoother_8h_source_l02030}02030 \textcolor{comment}{    /// and the rhs vector specified here. Solution is returned in the}}
 \DoxyCodeLine{\Hypertarget{complex__smoother_8h_source_l02031}02031 \textcolor{comment}{    /// vector result.}}
 \DoxyCodeLine{\Hypertarget{complex__smoother_8h_source_l02032}\mbox{\hyperlink{classoomph_1_1HelmholtzGMRESMG_ad6937ea7f72719eb9e33c28c002fa380}{02032}} \textcolor{comment}{}    \textcolor{keywordtype}{void} \mbox{\hyperlink{classoomph_1_1HelmholtzGMRESMG_ad6937ea7f72719eb9e33c28c002fa380}{resolve}}(\textcolor{keyword}{const} \mbox{\hyperlink{classoomph_1_1DoubleVector}{DoubleVector}}\& rhs, \mbox{\hyperlink{classoomph_1_1DoubleVector}{DoubleVector}}\& result)}
@@ -2039,7 +2039,7 @@
 \DoxyCodeLine{\Hypertarget{complex__smoother_8h_source_l02035}02035       \mbox{\hyperlink{classoomph_1_1HelmholtzGMRESMG_acb64519b62c16bbec32d01c9969f746f}{Resolving}} = \textcolor{keyword}{true};}
 \DoxyCodeLine{\Hypertarget{complex__smoother_8h_source_l02036}02036 }
 \DoxyCodeLine{\Hypertarget{complex__smoother_8h_source_l02037}02037 \textcolor{preprocessor}{\#ifdef PARANOID}}
-\DoxyCodeLine{\Hypertarget{complex__smoother_8h_source_l02038}02038       \textcolor{keywordflow}{if} ((\mbox{\hyperlink{classoomph_1_1HelmholtzGMRESMG_a5d8ae2181aecf890386ae48d81f90b42}{Matrices\_storage\_pt}}[0] == 0) || (\mbox{\hyperlink{classoomph_1_1HelmholtzGMRESMG_a5d8ae2181aecf890386ae48d81f90b42}{Matrices\_storage\_pt}}[1] == 0))}
+\DoxyCodeLine{\Hypertarget{complex__smoother_8h_source_l02038}02038       \textcolor{keywordflow}{if} ((\mbox{\hyperlink{classoomph_1_1HelmholtzGMRESMG_a44e50b68a7c2aab02342817c93ee6ad5}{Matrices\_storage\_pt}}[0] == 0) || (\mbox{\hyperlink{classoomph_1_1HelmholtzGMRESMG_a44e50b68a7c2aab02342817c93ee6ad5}{Matrices\_storage\_pt}}[1] == 0))}
 \DoxyCodeLine{\Hypertarget{complex__smoother_8h_source_l02039}02039       \{}
 \DoxyCodeLine{\Hypertarget{complex__smoother_8h_source_l02040}02040         \textcolor{keywordflow}{throw} \mbox{\hyperlink{classoomph_1_1OomphLibError}{OomphLibError}}(\textcolor{stringliteral}{"{}No matrix was stored -\/-\/ cannot re-\/solve"{}},}
 \DoxyCodeLine{\Hypertarget{complex__smoother_8h_source_l02041}02041                             OOMPH\_CURRENT\_FUNCTION,}
@@ -2068,16 +2068,16 @@
 \DoxyCodeLine{\Hypertarget{complex__smoother_8h_source_l02064}02064 \textcolor{comment}{    /// Number of iterations taken}}
 \DoxyCodeLine{\Hypertarget{complex__smoother_8h_source_l02065}\mbox{\hyperlink{classoomph_1_1HelmholtzGMRESMG_ad2ae5c641eae7da8c7556b646fe38d36}{02065}} \textcolor{comment}{}    \textcolor{keywordtype}{unsigned} \mbox{\hyperlink{classoomph_1_1HelmholtzGMRESMG_ad2ae5c641eae7da8c7556b646fe38d36}{iterations}}()\textcolor{keyword}{ const}}
 \DoxyCodeLine{\Hypertarget{complex__smoother_8h_source_l02066}02066 \textcolor{keyword}{    }\{}
-\DoxyCodeLine{\Hypertarget{complex__smoother_8h_source_l02067}02067       \textcolor{keywordflow}{return} \mbox{\hyperlink{classoomph_1_1HelmholtzGMRESMG_ae2a4718545bd42acb57aba5baa23d52f}{Iterations}};}
+\DoxyCodeLine{\Hypertarget{complex__smoother_8h_source_l02067}02067       \textcolor{keywordflow}{return} Iterations;}
 \DoxyCodeLine{\Hypertarget{complex__smoother_8h_source_l02068}02068     \}}
 \DoxyCodeLine{\Hypertarget{complex__smoother_8h_source_l02069}02069 \textcolor{comment}{}}
-\DoxyCodeLine{\Hypertarget{complex__smoother_8h_source_l02070}02070 \textcolor{comment}{    /// \(\backslash\)short Set left preconditioning (the default)}}
+\DoxyCodeLine{\Hypertarget{complex__smoother_8h_source_l02070}02070 \textcolor{comment}{    ///  Set left preconditioning (the default)}}
 \DoxyCodeLine{\Hypertarget{complex__smoother_8h_source_l02071}\mbox{\hyperlink{classoomph_1_1HelmholtzGMRESMG_a86f6bd77359a37117aeb17798b886a81}{02071}} \textcolor{comment}{}    \textcolor{keywordtype}{void} \mbox{\hyperlink{classoomph_1_1HelmholtzGMRESMG_a86f6bd77359a37117aeb17798b886a81}{set\_preconditioner\_LHS}}()}
 \DoxyCodeLine{\Hypertarget{complex__smoother_8h_source_l02072}02072     \{}
 \DoxyCodeLine{\Hypertarget{complex__smoother_8h_source_l02073}02073       \mbox{\hyperlink{classoomph_1_1HelmholtzGMRESMG_a7f151e92397721fc2ae6acdd8253d685}{Preconditioner\_LHS}} = \textcolor{keyword}{true};}
 \DoxyCodeLine{\Hypertarget{complex__smoother_8h_source_l02074}02074     \}}
 \DoxyCodeLine{\Hypertarget{complex__smoother_8h_source_l02075}02075 \textcolor{comment}{}}
-\DoxyCodeLine{\Hypertarget{complex__smoother_8h_source_l02076}02076 \textcolor{comment}{    /// \(\backslash\)short Enable right preconditioning}}
+\DoxyCodeLine{\Hypertarget{complex__smoother_8h_source_l02076}02076 \textcolor{comment}{    ///  Enable right preconditioning}}
 \DoxyCodeLine{\Hypertarget{complex__smoother_8h_source_l02077}\mbox{\hyperlink{classoomph_1_1HelmholtzGMRESMG_ab10551b0e67b40ad91555b1e612208a2}{02077}} \textcolor{comment}{}    \textcolor{keywordtype}{void} \mbox{\hyperlink{classoomph_1_1HelmholtzGMRESMG_ab10551b0e67b40ad91555b1e612208a2}{set\_preconditioner\_RHS}}()}
 \DoxyCodeLine{\Hypertarget{complex__smoother_8h_source_l02078}02078     \{}
 \DoxyCodeLine{\Hypertarget{complex__smoother_8h_source_l02079}02079       \mbox{\hyperlink{classoomph_1_1HelmholtzGMRESMG_a7f151e92397721fc2ae6acdd8253d685}{Preconditioner\_LHS}} = \textcolor{keyword}{false};}
@@ -2093,39 +2093,39 @@
 \DoxyCodeLine{\Hypertarget{complex__smoother_8h_source_l02089}\mbox{\hyperlink{classoomph_1_1HelmholtzGMRESMG_a81ddd10ccc03d6582dcadbd5cae1edda}{02089}} \textcolor{comment}{}    \textcolor{keywordtype}{void} \mbox{\hyperlink{classoomph_1_1HelmholtzGMRESMG_a81ddd10ccc03d6582dcadbd5cae1edda}{clean\_up\_memory}}()}
 \DoxyCodeLine{\Hypertarget{complex__smoother_8h_source_l02090}02090     \{}
 \DoxyCodeLine{\Hypertarget{complex__smoother_8h_source_l02091}02091       \textcolor{comment}{// If the matrix storage has been resized}}
-\DoxyCodeLine{\Hypertarget{complex__smoother_8h_source_l02092}02092       \textcolor{keywordflow}{if} (\mbox{\hyperlink{classoomph_1_1HelmholtzGMRESMG_a5d8ae2181aecf890386ae48d81f90b42}{Matrices\_storage\_pt}}.size() > 0)}
+\DoxyCodeLine{\Hypertarget{complex__smoother_8h_source_l02092}02092       \textcolor{keywordflow}{if} (\mbox{\hyperlink{classoomph_1_1HelmholtzGMRESMG_a44e50b68a7c2aab02342817c93ee6ad5}{Matrices\_storage\_pt}}.size() > 0)}
 \DoxyCodeLine{\Hypertarget{complex__smoother_8h_source_l02093}02093       \{}
 \DoxyCodeLine{\Hypertarget{complex__smoother_8h_source_l02094}02094         \textcolor{comment}{// If the real matrix pointer isn't null AND we're allowed to delete}}
 \DoxyCodeLine{\Hypertarget{complex__smoother_8h_source_l02095}02095         \textcolor{comment}{// the matrix which is only when we create the matrix ourselves}}
-\DoxyCodeLine{\Hypertarget{complex__smoother_8h_source_l02096}02096         \textcolor{keywordflow}{if} ((\mbox{\hyperlink{classoomph_1_1HelmholtzGMRESMG_a5d8ae2181aecf890386ae48d81f90b42}{Matrices\_storage\_pt}}[0] != 0) \&\& (\mbox{\hyperlink{classoomph_1_1HelmholtzGMRESMG_a1550b5147f7fa822e8cbc9de93f1c06f}{Matrix\_can\_be\_deleted}}))}
+\DoxyCodeLine{\Hypertarget{complex__smoother_8h_source_l02096}02096         \textcolor{keywordflow}{if} ((\mbox{\hyperlink{classoomph_1_1HelmholtzGMRESMG_a44e50b68a7c2aab02342817c93ee6ad5}{Matrices\_storage\_pt}}[0] != 0) \&\& (\mbox{\hyperlink{classoomph_1_1HelmholtzGMRESMG_a1550b5147f7fa822e8cbc9de93f1c06f}{Matrix\_can\_be\_deleted}}))}
 \DoxyCodeLine{\Hypertarget{complex__smoother_8h_source_l02097}02097         \{}
 \DoxyCodeLine{\Hypertarget{complex__smoother_8h_source_l02098}02098           \textcolor{comment}{// Delete the matrix}}
-\DoxyCodeLine{\Hypertarget{complex__smoother_8h_source_l02099}02099           \textcolor{keyword}{delete} \mbox{\hyperlink{classoomph_1_1HelmholtzGMRESMG_a5d8ae2181aecf890386ae48d81f90b42}{Matrices\_storage\_pt}}[0];}
+\DoxyCodeLine{\Hypertarget{complex__smoother_8h_source_l02099}02099           \textcolor{keyword}{delete} \mbox{\hyperlink{classoomph_1_1HelmholtzGMRESMG_a44e50b68a7c2aab02342817c93ee6ad5}{Matrices\_storage\_pt}}[0];}
 \DoxyCodeLine{\Hypertarget{complex__smoother_8h_source_l02100}02100 }
 \DoxyCodeLine{\Hypertarget{complex__smoother_8h_source_l02101}02101           \textcolor{comment}{// Assign the associated pointer the value NULL}}
-\DoxyCodeLine{\Hypertarget{complex__smoother_8h_source_l02102}02102           \mbox{\hyperlink{classoomph_1_1HelmholtzGMRESMG_a5d8ae2181aecf890386ae48d81f90b42}{Matrices\_storage\_pt}}[0] = 0;}
+\DoxyCodeLine{\Hypertarget{complex__smoother_8h_source_l02102}02102           \mbox{\hyperlink{classoomph_1_1HelmholtzGMRESMG_a44e50b68a7c2aab02342817c93ee6ad5}{Matrices\_storage\_pt}}[0] = 0;}
 \DoxyCodeLine{\Hypertarget{complex__smoother_8h_source_l02103}02103         \}}
 \DoxyCodeLine{\Hypertarget{complex__smoother_8h_source_l02104}02104 }
 \DoxyCodeLine{\Hypertarget{complex__smoother_8h_source_l02105}02105         \textcolor{comment}{// If the real matrix pointer isn't null AND we're allowed to delete}}
 \DoxyCodeLine{\Hypertarget{complex__smoother_8h_source_l02106}02106         \textcolor{comment}{// the matrix which is only when we create the matrix ourselves}}
-\DoxyCodeLine{\Hypertarget{complex__smoother_8h_source_l02107}02107         \textcolor{keywordflow}{if} ((\mbox{\hyperlink{classoomph_1_1HelmholtzGMRESMG_a5d8ae2181aecf890386ae48d81f90b42}{Matrices\_storage\_pt}}[1] != 0) \&\& (\mbox{\hyperlink{classoomph_1_1HelmholtzGMRESMG_a1550b5147f7fa822e8cbc9de93f1c06f}{Matrix\_can\_be\_deleted}}))}
+\DoxyCodeLine{\Hypertarget{complex__smoother_8h_source_l02107}02107         \textcolor{keywordflow}{if} ((\mbox{\hyperlink{classoomph_1_1HelmholtzGMRESMG_a44e50b68a7c2aab02342817c93ee6ad5}{Matrices\_storage\_pt}}[1] != 0) \&\& (\mbox{\hyperlink{classoomph_1_1HelmholtzGMRESMG_a1550b5147f7fa822e8cbc9de93f1c06f}{Matrix\_can\_be\_deleted}}))}
 \DoxyCodeLine{\Hypertarget{complex__smoother_8h_source_l02108}02108         \{}
 \DoxyCodeLine{\Hypertarget{complex__smoother_8h_source_l02109}02109           \textcolor{comment}{// Delete the matrix}}
-\DoxyCodeLine{\Hypertarget{complex__smoother_8h_source_l02110}02110           \textcolor{keyword}{delete} \mbox{\hyperlink{classoomph_1_1HelmholtzGMRESMG_a5d8ae2181aecf890386ae48d81f90b42}{Matrices\_storage\_pt}}[1];}
+\DoxyCodeLine{\Hypertarget{complex__smoother_8h_source_l02110}02110           \textcolor{keyword}{delete} \mbox{\hyperlink{classoomph_1_1HelmholtzGMRESMG_a44e50b68a7c2aab02342817c93ee6ad5}{Matrices\_storage\_pt}}[1];}
 \DoxyCodeLine{\Hypertarget{complex__smoother_8h_source_l02111}02111 }
 \DoxyCodeLine{\Hypertarget{complex__smoother_8h_source_l02112}02112           \textcolor{comment}{// Assign the associated pointer the value NULL}}
-\DoxyCodeLine{\Hypertarget{complex__smoother_8h_source_l02113}02113           \mbox{\hyperlink{classoomph_1_1HelmholtzGMRESMG_a5d8ae2181aecf890386ae48d81f90b42}{Matrices\_storage\_pt}}[1] = 0;}
+\DoxyCodeLine{\Hypertarget{complex__smoother_8h_source_l02113}02113           \mbox{\hyperlink{classoomph_1_1HelmholtzGMRESMG_a44e50b68a7c2aab02342817c93ee6ad5}{Matrices\_storage\_pt}}[1] = 0;}
 \DoxyCodeLine{\Hypertarget{complex__smoother_8h_source_l02114}02114         \}}
 \DoxyCodeLine{\Hypertarget{complex__smoother_8h_source_l02115}02115       \}}
 \DoxyCodeLine{\Hypertarget{complex__smoother_8h_source_l02116}02116     \} \textcolor{comment}{// End of clean\_up\_memory}}
 \DoxyCodeLine{\Hypertarget{complex__smoother_8h_source_l02117}02117 \textcolor{comment}{}}
-\DoxyCodeLine{\Hypertarget{complex__smoother_8h_source_l02118}02118 \textcolor{comment}{    /// \(\backslash\)short Helper function to calculate a complex matrix-\/vector product.}}
+\DoxyCodeLine{\Hypertarget{complex__smoother_8h_source_l02118}02118 \textcolor{comment}{    ///  Helper function to calculate a complex matrix-\/vector product.}}
 \DoxyCodeLine{\Hypertarget{complex__smoother_8h_source_l02119}02119 \textcolor{comment}{    /// Assumes the matrix has been provided as a Vector of length two; the}}
 \DoxyCodeLine{\Hypertarget{complex__smoother_8h_source_l02120}02120 \textcolor{comment}{    /// first entry containing the real part of the system matrix and the}}
 \DoxyCodeLine{\Hypertarget{complex__smoother_8h_source_l02121}02121 \textcolor{comment}{    /// second entry containing the imaginary part}}
 \DoxyCodeLine{\Hypertarget{complex__smoother_8h_source_l02122}\mbox{\hyperlink{classoomph_1_1HelmholtzGMRESMG_aa94abd65000a9fac33a29a1ae2f9ec73}{02122}} \textcolor{comment}{}    \textcolor{keywordtype}{void} \mbox{\hyperlink{classoomph_1_1HelmholtzGMRESMG_aa94abd65000a9fac33a29a1ae2f9ec73}{complex\_matrix\_multiplication}}(}
 \DoxyCodeLine{\Hypertarget{complex__smoother_8h_source_l02123}02123       \mbox{\hyperlink{classoomph_1_1Vector}{Vector<CRDoubleMatrix*>}} \textcolor{keyword}{const} matrices\_pt,}
-\DoxyCodeLine{\Hypertarget{complex__smoother_8h_source_l02124}02124       \textcolor{keyword}{const} \mbox{\hyperlink{classoomph_1_1Vector}{Vector<DoubleVector>}}\& x,}
+\DoxyCodeLine{\Hypertarget{complex__smoother_8h_source_l02124}02124       \textcolor{keyword}{const} \mbox{\hyperlink{classoomph_1_1Vector}{Vector<DoubleVector>}}\& \mbox{\hyperlink{namespaceoomph_a9d1d2da2b8bb8e73af72b5cadb8fe97c}{x}},}
 \DoxyCodeLine{\Hypertarget{complex__smoother_8h_source_l02125}02125       \mbox{\hyperlink{classoomph_1_1Vector}{Vector<DoubleVector>}}\& soln)}
 \DoxyCodeLine{\Hypertarget{complex__smoother_8h_source_l02126}02126     \{}
 \DoxyCodeLine{\Hypertarget{complex__smoother_8h_source_l02127}02127 \textcolor{preprocessor}{\#ifdef PARANOID}}
@@ -2145,14 +2145,14 @@
 \DoxyCodeLine{\Hypertarget{complex__smoother_8h_source_l02141}02141                             OOMPH\_EXCEPTION\_LOCATION);}
 \DoxyCodeLine{\Hypertarget{complex__smoother_8h_source_l02142}02142       \}}
 \DoxyCodeLine{\Hypertarget{complex__smoother_8h_source_l02143}02143       \textcolor{comment}{// PARANOID check -\/ Make sure the vector x has the right size}}
-\DoxyCodeLine{\Hypertarget{complex__smoother_8h_source_l02144}02144       \textcolor{keywordflow}{if} (x.size() != 2)}
+\DoxyCodeLine{\Hypertarget{complex__smoother_8h_source_l02144}02144       \textcolor{keywordflow}{if} (\mbox{\hyperlink{namespaceoomph_a9d1d2da2b8bb8e73af72b5cadb8fe97c}{x}}.size() != 2)}
 \DoxyCodeLine{\Hypertarget{complex__smoother_8h_source_l02145}02145       \{}
 \DoxyCodeLine{\Hypertarget{complex__smoother_8h_source_l02146}02146         \textcolor{comment}{// Create an output stream}}
 \DoxyCodeLine{\Hypertarget{complex__smoother_8h_source_l02147}02147         std::ostringstream error\_message\_stream;}
 \DoxyCodeLine{\Hypertarget{complex__smoother_8h_source_l02148}02148 }
 \DoxyCodeLine{\Hypertarget{complex__smoother_8h_source_l02149}02149         \textcolor{comment}{// Create the error message}}
 \DoxyCodeLine{\Hypertarget{complex__smoother_8h_source_l02150}02150         error\_message\_stream}
-\DoxyCodeLine{\Hypertarget{complex__smoother_8h_source_l02151}02151           << \textcolor{stringliteral}{"{}Can only deal with two input vectors. You have "{}} << x.size()}
+\DoxyCodeLine{\Hypertarget{complex__smoother_8h_source_l02151}02151           << \textcolor{stringliteral}{"{}Can only deal with two input vectors. You have "{}} << \mbox{\hyperlink{namespaceoomph_a9d1d2da2b8bb8e73af72b5cadb8fe97c}{x}}.size()}
 \DoxyCodeLine{\Hypertarget{complex__smoother_8h_source_l02152}02152           << \textcolor{stringliteral}{"{} vectors."{}} << std::endl;}
 \DoxyCodeLine{\Hypertarget{complex__smoother_8h_source_l02153}02153 }
 \DoxyCodeLine{\Hypertarget{complex__smoother_8h_source_l02154}02154         \textcolor{comment}{// Throw an error}}
@@ -2199,22 +2199,22 @@
 \DoxyCodeLine{\Hypertarget{complex__smoother_8h_source_l02195}02195       \textcolor{comment}{//-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/}}
 \DoxyCodeLine{\Hypertarget{complex__smoother_8h_source_l02196}02196 }
 \DoxyCodeLine{\Hypertarget{complex__smoother_8h_source_l02197}02197       \textcolor{comment}{// Store the value of A\_r*x\_r in the real part of soln}}
-\DoxyCodeLine{\Hypertarget{complex__smoother_8h_source_l02198}02198       matrices\_pt[0]-\/>multiply(x[0], soln[0]);}
+\DoxyCodeLine{\Hypertarget{complex__smoother_8h_source_l02198}02198       matrices\_pt[0]-\/>multiply(\mbox{\hyperlink{namespaceoomph_a9d1d2da2b8bb8e73af72b5cadb8fe97c}{x}}[0], soln[0]);}
 \DoxyCodeLine{\Hypertarget{complex__smoother_8h_source_l02199}02199 }
 \DoxyCodeLine{\Hypertarget{complex__smoother_8h_source_l02200}02200       \textcolor{comment}{// Store the value of A\_r*x\_c in the imaginary part of soln}}
-\DoxyCodeLine{\Hypertarget{complex__smoother_8h_source_l02201}02201       matrices\_pt[0]-\/>multiply(x[1], soln[1]);}
+\DoxyCodeLine{\Hypertarget{complex__smoother_8h_source_l02201}02201       matrices\_pt[0]-\/>multiply(\mbox{\hyperlink{namespaceoomph_a9d1d2da2b8bb8e73af72b5cadb8fe97c}{x}}[1], soln[1]);}
 \DoxyCodeLine{\Hypertarget{complex__smoother_8h_source_l02202}02202 }
 \DoxyCodeLine{\Hypertarget{complex__smoother_8h_source_l02203}02203       \textcolor{comment}{// Create a temporary vector}}
-\DoxyCodeLine{\Hypertarget{complex__smoother_8h_source_l02204}02204       \mbox{\hyperlink{classoomph_1_1DoubleVector}{DoubleVector}} temp(\mbox{\hyperlink{classoomph_1_1HelmholtzGMRESMG_a5d8ae2181aecf890386ae48d81f90b42}{Matrices\_storage\_pt}}[0]-\/>\mbox{\hyperlink{classoomph_1_1DistributableLinearAlgebraObject_abfa9cf25494c796d62b15bad586fab47}{distribution\_pt}}(), 0.0);}
+\DoxyCodeLine{\Hypertarget{complex__smoother_8h_source_l02204}02204       \mbox{\hyperlink{classoomph_1_1DoubleVector}{DoubleVector}} temp(\mbox{\hyperlink{classoomph_1_1HelmholtzGMRESMG_a44e50b68a7c2aab02342817c93ee6ad5}{Matrices\_storage\_pt}}[0]-\/>\mbox{\hyperlink{classoomph_1_1DistributableLinearAlgebraObject_abfa9cf25494c796d62b15bad586fab47}{distribution\_pt}}(), 0.0);}
 \DoxyCodeLine{\Hypertarget{complex__smoother_8h_source_l02205}02205 }
 \DoxyCodeLine{\Hypertarget{complex__smoother_8h_source_l02206}02206       \textcolor{comment}{// Calculate the value of A\_c*x\_c}}
-\DoxyCodeLine{\Hypertarget{complex__smoother_8h_source_l02207}02207       matrices\_pt[1]-\/>multiply(x[1], temp);}
+\DoxyCodeLine{\Hypertarget{complex__smoother_8h_source_l02207}02207       matrices\_pt[1]-\/>multiply(\mbox{\hyperlink{namespaceoomph_a9d1d2da2b8bb8e73af72b5cadb8fe97c}{x}}[1], temp);}
 \DoxyCodeLine{\Hypertarget{complex__smoother_8h_source_l02208}02208 }
 \DoxyCodeLine{\Hypertarget{complex__smoother_8h_source_l02209}02209       \textcolor{comment}{// Subtract the value of temp from soln[0] to get the real part of soln}}
 \DoxyCodeLine{\Hypertarget{complex__smoother_8h_source_l02210}02210       soln[0] -\/= temp;}
 \DoxyCodeLine{\Hypertarget{complex__smoother_8h_source_l02211}02211 }
 \DoxyCodeLine{\Hypertarget{complex__smoother_8h_source_l02212}02212       \textcolor{comment}{// Calculate the value of A\_c*x\_r}}
-\DoxyCodeLine{\Hypertarget{complex__smoother_8h_source_l02213}02213       matrices\_pt[1]-\/>multiply(x[0], temp);}
+\DoxyCodeLine{\Hypertarget{complex__smoother_8h_source_l02213}02213       matrices\_pt[1]-\/>multiply(\mbox{\hyperlink{namespaceoomph_a9d1d2da2b8bb8e73af72b5cadb8fe97c}{x}}[0], temp);}
 \DoxyCodeLine{\Hypertarget{complex__smoother_8h_source_l02214}02214 }
 \DoxyCodeLine{\Hypertarget{complex__smoother_8h_source_l02215}02215       \textcolor{comment}{// Add the value of temp to soln[1] to get the imaginary part of soln}}
 \DoxyCodeLine{\Hypertarget{complex__smoother_8h_source_l02216}02216       soln[1] += temp;}
@@ -2225,7 +2225,7 @@
 \DoxyCodeLine{\Hypertarget{complex__smoother_8h_source_l02221}02221                 \textcolor{keyword}{const} \mbox{\hyperlink{classoomph_1_1Vector}{Vector}}<\mbox{\hyperlink{classoomph_1_1Vector}{Vector}}<std::complex<double>>>\& hessenberg,}
 \DoxyCodeLine{\Hypertarget{complex__smoother_8h_source_l02222}02222                 \textcolor{keyword}{const} \mbox{\hyperlink{classoomph_1_1Vector}{Vector}}<std::complex<double>>\& \mbox{\hyperlink{cfortran_8h_ab7123126e4885ef647dd9c6e3807a21c}{s}},}
 \DoxyCodeLine{\Hypertarget{complex__smoother_8h_source_l02223}02223                 \textcolor{keyword}{const} \mbox{\hyperlink{classoomph_1_1Vector}{Vector}}<\mbox{\hyperlink{classoomph_1_1Vector}{Vector<DoubleVector>}}>\& v,}
-\DoxyCodeLine{\Hypertarget{complex__smoother_8h_source_l02224}02224                 \mbox{\hyperlink{classoomph_1_1Vector}{Vector<DoubleVector>}}\& x)}
+\DoxyCodeLine{\Hypertarget{complex__smoother_8h_source_l02224}02224                 \mbox{\hyperlink{classoomph_1_1Vector}{Vector<DoubleVector>}}\& \mbox{\hyperlink{namespaceoomph_a9d1d2da2b8bb8e73af72b5cadb8fe97c}{x}})}
 \DoxyCodeLine{\Hypertarget{complex__smoother_8h_source_l02225}02225     \{}
 \DoxyCodeLine{\Hypertarget{complex__smoother_8h_source_l02226}02226       \textcolor{comment}{// Make a local copy of s}}
 \DoxyCodeLine{\Hypertarget{complex__smoother_8h_source_l02227}02227       \mbox{\hyperlink{classoomph_1_1Vector}{Vector<std::complex<double>}}> y(\mbox{\hyperlink{cfortran_8h_ab7123126e4885ef647dd9c6e3807a21c}{s}});}
@@ -2261,7 +2261,7 @@
 \DoxyCodeLine{\Hypertarget{complex__smoother_8h_source_l02257}02257 }
 \DoxyCodeLine{\Hypertarget{complex__smoother_8h_source_l02258}02258       \textcolor{comment}{// Calculate the number of entries in x (simply use the real part as}}
 \DoxyCodeLine{\Hypertarget{complex__smoother_8h_source_l02259}02259       \textcolor{comment}{// both the real and imaginary part should have the same length)}}
-\DoxyCodeLine{\Hypertarget{complex__smoother_8h_source_l02260}02260       \textcolor{keywordtype}{unsigned} n\_row = x[0].nrow();}
+\DoxyCodeLine{\Hypertarget{complex__smoother_8h_source_l02260}02260       \textcolor{keywordtype}{unsigned} n\_row = \mbox{\hyperlink{namespaceoomph_a9d1d2da2b8bb8e73af72b5cadb8fe97c}{x}}[0].nrow();}
 \DoxyCodeLine{\Hypertarget{complex__smoother_8h_source_l02261}02261 }
 \DoxyCodeLine{\Hypertarget{complex__smoother_8h_source_l02262}02262       \textcolor{comment}{// Build a temporary vector with entries initialised to 0.0}}
 \DoxyCodeLine{\Hypertarget{complex__smoother_8h_source_l02263}02263       \mbox{\hyperlink{classoomph_1_1Vector}{Vector<DoubleVector>}} block\_z(2);}
@@ -2273,10 +2273,10 @@
 \DoxyCodeLine{\Hypertarget{complex__smoother_8h_source_l02269}02269       \textcolor{keywordflow}{for} (\textcolor{keywordtype}{unsigned} dof\_type = 0; dof\_type < 2; dof\_type++)}
 \DoxyCodeLine{\Hypertarget{complex__smoother_8h_source_l02270}02270       \{}
 \DoxyCodeLine{\Hypertarget{complex__smoother_8h_source_l02271}02271         \textcolor{comment}{// Build the (dof\_type)-\/th vector}}
-\DoxyCodeLine{\Hypertarget{complex__smoother_8h_source_l02272}02272         block\_z[dof\_type].build(x[0].\mbox{\hyperlink{classoomph_1_1DistributableLinearAlgebraObject_abfa9cf25494c796d62b15bad586fab47}{distribution\_pt}}(), 0.0);}
+\DoxyCodeLine{\Hypertarget{complex__smoother_8h_source_l02272}02272         block\_z[dof\_type].build(\mbox{\hyperlink{namespaceoomph_a9d1d2da2b8bb8e73af72b5cadb8fe97c}{x}}[0].\mbox{\hyperlink{classoomph_1_1DistributableLinearAlgebraObject_abfa9cf25494c796d62b15bad586fab47}{distribution\_pt}}(), 0.0);}
 \DoxyCodeLine{\Hypertarget{complex__smoother_8h_source_l02273}02273 }
 \DoxyCodeLine{\Hypertarget{complex__smoother_8h_source_l02274}02274         \textcolor{comment}{// Build the (dof\_type)-\/th vector}}
-\DoxyCodeLine{\Hypertarget{complex__smoother_8h_source_l02275}02275         block\_temp[dof\_type].build(x[0].\mbox{\hyperlink{classoomph_1_1DistributableLinearAlgebraObject_abfa9cf25494c796d62b15bad586fab47}{distribution\_pt}}(), 0.0);}
+\DoxyCodeLine{\Hypertarget{complex__smoother_8h_source_l02275}02275         block\_temp[dof\_type].build(\mbox{\hyperlink{namespaceoomph_a9d1d2da2b8bb8e73af72b5cadb8fe97c}{x}}[0].\mbox{\hyperlink{classoomph_1_1DistributableLinearAlgebraObject_abfa9cf25494c796d62b15bad586fab47}{distribution\_pt}}(), 0.0);}
 \DoxyCodeLine{\Hypertarget{complex__smoother_8h_source_l02276}02276       \}}
 \DoxyCodeLine{\Hypertarget{complex__smoother_8h_source_l02277}02277 }
 \DoxyCodeLine{\Hypertarget{complex__smoother_8h_source_l02278}02278       \textcolor{comment}{// Get access to the underlying values}}
@@ -2315,7 +2315,7 @@
 \DoxyCodeLine{\Hypertarget{complex__smoother_8h_source_l02311}02311         \textcolor{keywordflow}{for} (\textcolor{keywordtype}{unsigned} dof\_type = 0; dof\_type < 2; dof\_type++)}
 \DoxyCodeLine{\Hypertarget{complex__smoother_8h_source_l02312}02312         \{}
 \DoxyCodeLine{\Hypertarget{complex__smoother_8h_source_l02313}02313           \textcolor{comment}{// Update}}
-\DoxyCodeLine{\Hypertarget{complex__smoother_8h_source_l02314}02314           x[dof\_type] += block\_temp[dof\_type];}
+\DoxyCodeLine{\Hypertarget{complex__smoother_8h_source_l02314}02314           \mbox{\hyperlink{namespaceoomph_a9d1d2da2b8bb8e73af72b5cadb8fe97c}{x}}[dof\_type] += block\_temp[dof\_type];}
 \DoxyCodeLine{\Hypertarget{complex__smoother_8h_source_l02315}02315         \}}
 \DoxyCodeLine{\Hypertarget{complex__smoother_8h_source_l02316}02316       \}}
 \DoxyCodeLine{\Hypertarget{complex__smoother_8h_source_l02317}02317       \textcolor{comment}{// If we're using RHS preconditioning}}
@@ -2346,16 +2346,16 @@
 \DoxyCodeLine{\Hypertarget{complex__smoother_8h_source_l02342}02342         \textcolor{keywordflow}{for} (\textcolor{keywordtype}{unsigned} dof\_type = 0; dof\_type < 2; dof\_type++)}
 \DoxyCodeLine{\Hypertarget{complex__smoother_8h_source_l02343}02343         \{}
 \DoxyCodeLine{\Hypertarget{complex__smoother_8h_source_l02344}02344           \textcolor{comment}{// Update}}
-\DoxyCodeLine{\Hypertarget{complex__smoother_8h_source_l02345}02345           x[dof\_type] += block\_z[dof\_type];}
+\DoxyCodeLine{\Hypertarget{complex__smoother_8h_source_l02345}02345           \mbox{\hyperlink{namespaceoomph_a9d1d2da2b8bb8e73af72b5cadb8fe97c}{x}}[dof\_type] += block\_z[dof\_type];}
 \DoxyCodeLine{\Hypertarget{complex__smoother_8h_source_l02346}02346         \}}
 \DoxyCodeLine{\Hypertarget{complex__smoother_8h_source_l02347}02347       \} \textcolor{comment}{// if(Preconditioner\_LHS) else}}
 \DoxyCodeLine{\Hypertarget{complex__smoother_8h_source_l02348}02348     \} \textcolor{comment}{// End of update}}
 \DoxyCodeLine{\Hypertarget{complex__smoother_8h_source_l02349}02349 \textcolor{comment}{}}
-\DoxyCodeLine{\Hypertarget{complex__smoother_8h_source_l02350}02350 \textcolor{comment}{    /// \(\backslash\)short Helper function: Generate a plane rotation. This is done by}}
+\DoxyCodeLine{\Hypertarget{complex__smoother_8h_source_l02350}02350 \textcolor{comment}{    ///  Helper function: Generate a plane rotation. This is done by}}
 \DoxyCodeLine{\Hypertarget{complex__smoother_8h_source_l02351}02351 \textcolor{comment}{    /// finding the value of \(\backslash\)f\$ \(\backslash\)cos(\(\backslash\)theta) \(\backslash\)f\$ (i.e. cs) and the value of}}
 \DoxyCodeLine{\Hypertarget{complex__smoother_8h_source_l02352}02352 \textcolor{comment}{    /// \(\backslash\)f\$ \(\backslash\)sin(\(\backslash\)theta) \(\backslash\)f\$ (i.e. sn) such that:}}
 \DoxyCodeLine{\Hypertarget{complex__smoother_8h_source_l02353}02353 \textcolor{comment}{    /// \(\backslash\)f[}}
-\DoxyCodeLine{\Hypertarget{complex__smoother_8h_source_l02354}02354 \textcolor{comment}{    /// \(\backslash\)begin\{bmatrix\}}}
+\DoxyCodeLine{\Hypertarget{complex__smoother_8h_source_l02354}\mbox{\hyperlink{classoomph_1_1HelmholtzGMRESMG_ac7b6ce565f4882322f8f37a5dd0c46c0}{02354}} \textcolor{comment}{    /// \(\backslash\)begin\{bmatrix\}}}
 \DoxyCodeLine{\Hypertarget{complex__smoother_8h_source_l02355}02355 \textcolor{comment}{    /// \(\backslash\)overline\{\(\backslash\)cos\(\backslash\)theta\} \& \(\backslash\)overline\{\(\backslash\)sin\(\backslash\)theta\}}}
 \DoxyCodeLine{\Hypertarget{complex__smoother_8h_source_l02356}02356 \textcolor{comment}{    /// \(\backslash\)\(\backslash\) -\/\(\backslash\)sin\(\backslash\)theta \& \(\backslash\)cos\(\backslash\)theta}}
 \DoxyCodeLine{\Hypertarget{complex__smoother_8h_source_l02357}02357 \textcolor{comment}{    /// \(\backslash\)end\{bmatrix\}}}
@@ -2382,7 +2382,7 @@
 \DoxyCodeLine{\Hypertarget{complex__smoother_8h_source_l02378}02378 \textcolor{comment}{    /// Taken from: Saad Y."{}Iterative methods for sparse linear systems"{}, p.193.}}
 \DoxyCodeLine{\Hypertarget{complex__smoother_8h_source_l02379}02379 \textcolor{comment}{    /// We also check to see that sn is always a real (nonnegative) number. See}}
 \DoxyCodeLine{\Hypertarget{complex__smoother_8h_source_l02380}02380 \textcolor{comment}{    /// pp.193-\/194 for an explanation.}}
-\DoxyCodeLine{\Hypertarget{complex__smoother_8h_source_l02381}\mbox{\hyperlink{classoomph_1_1HelmholtzGMRESMG_afc666c19cb09f252e63e43c3e126fb9a}{02381}} \textcolor{comment}{}    \textcolor{keywordtype}{void} \mbox{\hyperlink{classoomph_1_1HelmholtzGMRESMG_afc666c19cb09f252e63e43c3e126fb9a}{generate\_plane\_rotation}}(std::complex<double>\& dx,}
+\DoxyCodeLine{\Hypertarget{complex__smoother_8h_source_l02381}02381 \textcolor{comment}{}    \textcolor{keywordtype}{void} generate\_plane\_rotation(std::complex<double>\& dx,}
 \DoxyCodeLine{\Hypertarget{complex__smoother_8h_source_l02382}02382                                  std::complex<double>\& dy,}
 \DoxyCodeLine{\Hypertarget{complex__smoother_8h_source_l02383}02383                                  std::complex<double>\& cs,}
 \DoxyCodeLine{\Hypertarget{complex__smoother_8h_source_l02384}02384                                  std::complex<double>\& sn)}
@@ -2457,7 +2457,7 @@
 \DoxyCodeLine{\Hypertarget{complex__smoother_8h_source_l02453}02453       \}}
 \DoxyCodeLine{\Hypertarget{complex__smoother_8h_source_l02454}02454     \} \textcolor{comment}{// End of generate\_plane\_rotation}}
 \DoxyCodeLine{\Hypertarget{complex__smoother_8h_source_l02455}02455 \textcolor{comment}{}}
-\DoxyCodeLine{\Hypertarget{complex__smoother_8h_source_l02456}02456 \textcolor{comment}{    /// \(\backslash\)short Helper function: Apply plane rotation. This is done using the}}
+\DoxyCodeLine{\Hypertarget{complex__smoother_8h_source_l02456}02456 \textcolor{comment}{    ///  Helper function: Apply plane rotation. This is done using the}}
 \DoxyCodeLine{\Hypertarget{complex__smoother_8h_source_l02457}02457 \textcolor{comment}{    /// update:}}
 \DoxyCodeLine{\Hypertarget{complex__smoother_8h_source_l02458}02458 \textcolor{comment}{    /// \(\backslash\)f[}}
 \DoxyCodeLine{\Hypertarget{complex__smoother_8h_source_l02459}02459 \textcolor{comment}{    /// \(\backslash\)begin\{bmatrix\}}}
@@ -2475,7 +2475,7 @@
 \DoxyCodeLine{\Hypertarget{complex__smoother_8h_source_l02471}02471 \textcolor{comment}{    /// \(\backslash\)end\{bmatrix\}.}}
 \DoxyCodeLine{\Hypertarget{complex__smoother_8h_source_l02472}02472 \textcolor{comment}{    /// \(\backslash\)f]}}
 \DoxyCodeLine{\Hypertarget{complex__smoother_8h_source_l02473}02473 \textcolor{comment}{    /// Taken from: Saad Y."{}Iterative methods for sparse linear systems"{}, p.193.}}
-\DoxyCodeLine{\Hypertarget{complex__smoother_8h_source_l02474}\mbox{\hyperlink{classoomph_1_1HelmholtzGMRESMG_a6b9f8cacb73c1bcad749289aac649505}{02474}} \textcolor{comment}{}    \textcolor{keywordtype}{void} \mbox{\hyperlink{classoomph_1_1HelmholtzGMRESMG_a6b9f8cacb73c1bcad749289aac649505}{apply\_plane\_rotation}}(std::complex<double>\& dx,}
+\DoxyCodeLine{\Hypertarget{complex__smoother_8h_source_l02474}02474 \textcolor{comment}{}    \textcolor{keywordtype}{void} apply\_plane\_rotation(std::complex<double>\& dx,}
 \DoxyCodeLine{\Hypertarget{complex__smoother_8h_source_l02475}02475                               std::complex<double>\& dy,}
 \DoxyCodeLine{\Hypertarget{complex__smoother_8h_source_l02476}02476                               std::complex<double>\& cs,}
 \DoxyCodeLine{\Hypertarget{complex__smoother_8h_source_l02477}02477                               std::complex<double>\& sn)}
@@ -2491,20 +2491,20 @@
 \DoxyCodeLine{\Hypertarget{complex__smoother_8h_source_l02487}02487     \} \textcolor{comment}{// End of apply\_plane\_rotation}}
 \DoxyCodeLine{\Hypertarget{complex__smoother_8h_source_l02488}02488 \textcolor{comment}{}}
 \DoxyCodeLine{\Hypertarget{complex__smoother_8h_source_l02489}02489 \textcolor{comment}{    /// Number of iterations taken}}
-\DoxyCodeLine{\Hypertarget{complex__smoother_8h_source_l02490}\mbox{\hyperlink{classoomph_1_1HelmholtzGMRESMG_ae2a4718545bd42acb57aba5baa23d52f}{02490}} \textcolor{comment}{}    \textcolor{keywordtype}{unsigned} \mbox{\hyperlink{classoomph_1_1HelmholtzGMRESMG_ae2a4718545bd42acb57aba5baa23d52f}{Iterations}};}
+\DoxyCodeLine{\Hypertarget{complex__smoother_8h_source_l02490}02490 \textcolor{comment}{}    \textcolor{keywordtype}{unsigned} Iterations;}
 \DoxyCodeLine{\Hypertarget{complex__smoother_8h_source_l02491}02491 \textcolor{comment}{}}
 \DoxyCodeLine{\Hypertarget{complex__smoother_8h_source_l02492}02492 \textcolor{comment}{    /// Vector of pointers to the real and imaginary part of the system matrix}}
-\DoxyCodeLine{\Hypertarget{complex__smoother_8h_source_l02493}\mbox{\hyperlink{classoomph_1_1HelmholtzGMRESMG_a5d8ae2181aecf890386ae48d81f90b42}{02493}} \textcolor{comment}{}    \mbox{\hyperlink{classoomph_1_1Vector}{Vector<CRDoubleMatrix*>}} \mbox{\hyperlink{classoomph_1_1HelmholtzGMRESMG_a5d8ae2181aecf890386ae48d81f90b42}{Matrices\_storage\_pt}};}
+\DoxyCodeLine{\Hypertarget{complex__smoother_8h_source_l02493}\mbox{\hyperlink{classoomph_1_1HelmholtzGMRESMG_a44e50b68a7c2aab02342817c93ee6ad5}{02493}} \textcolor{comment}{}    \mbox{\hyperlink{classoomph_1_1Vector}{Vector<CRDoubleMatrix*>}} \mbox{\hyperlink{classoomph_1_1HelmholtzGMRESMG_a44e50b68a7c2aab02342817c93ee6ad5}{Matrices\_storage\_pt}};}
 \DoxyCodeLine{\Hypertarget{complex__smoother_8h_source_l02494}02494 \textcolor{comment}{}}
-\DoxyCodeLine{\Hypertarget{complex__smoother_8h_source_l02495}02495 \textcolor{comment}{    /// \(\backslash\)short Boolean flag to indicate if the solve is done in re-\/solve mode,}}
+\DoxyCodeLine{\Hypertarget{complex__smoother_8h_source_l02495}02495 \textcolor{comment}{    ///  Boolean flag to indicate if the solve is done in re-\/solve mode,}}
 \DoxyCodeLine{\Hypertarget{complex__smoother_8h_source_l02496}02496 \textcolor{comment}{    /// bypassing setup of matrix and preconditioner}}
 \DoxyCodeLine{\Hypertarget{complex__smoother_8h_source_l02497}\mbox{\hyperlink{classoomph_1_1HelmholtzGMRESMG_acb64519b62c16bbec32d01c9969f746f}{02497}} \textcolor{comment}{}    \textcolor{keywordtype}{bool} \mbox{\hyperlink{classoomph_1_1HelmholtzGMRESMG_acb64519b62c16bbec32d01c9969f746f}{Resolving}};}
 \DoxyCodeLine{\Hypertarget{complex__smoother_8h_source_l02498}02498 \textcolor{comment}{}}
-\DoxyCodeLine{\Hypertarget{complex__smoother_8h_source_l02499}02499 \textcolor{comment}{    /// \(\backslash\)short Boolean flag to indicate if the matrix pointed to be Matrix\_pt}}
+\DoxyCodeLine{\Hypertarget{complex__smoother_8h_source_l02499}02499 \textcolor{comment}{    ///  Boolean flag to indicate if the matrix pointed to be Matrix\_pt}}
 \DoxyCodeLine{\Hypertarget{complex__smoother_8h_source_l02500}02500 \textcolor{comment}{    /// can be deleted.}}
 \DoxyCodeLine{\Hypertarget{complex__smoother_8h_source_l02501}\mbox{\hyperlink{classoomph_1_1HelmholtzGMRESMG_a1550b5147f7fa822e8cbc9de93f1c06f}{02501}} \textcolor{comment}{}    \textcolor{keywordtype}{bool} \mbox{\hyperlink{classoomph_1_1HelmholtzGMRESMG_a1550b5147f7fa822e8cbc9de93f1c06f}{Matrix\_can\_be\_deleted}};}
 \DoxyCodeLine{\Hypertarget{complex__smoother_8h_source_l02502}02502 \textcolor{comment}{}}
-\DoxyCodeLine{\Hypertarget{complex__smoother_8h_source_l02503}02503 \textcolor{comment}{    /// \(\backslash\)short boolean indicating use of left hand preconditioning (if true)}}
+\DoxyCodeLine{\Hypertarget{complex__smoother_8h_source_l02503}02503 \textcolor{comment}{    ///  boolean indicating use of left hand preconditioning (if true)}}
 \DoxyCodeLine{\Hypertarget{complex__smoother_8h_source_l02504}02504 \textcolor{comment}{    /// or right hand preconditioning (if false)}}
 \DoxyCodeLine{\Hypertarget{complex__smoother_8h_source_l02505}\mbox{\hyperlink{classoomph_1_1HelmholtzGMRESMG_a7f151e92397721fc2ae6acdd8253d685}{02505}} \textcolor{comment}{}    \textcolor{keywordtype}{bool} \mbox{\hyperlink{classoomph_1_1HelmholtzGMRESMG_a7f151e92397721fc2ae6acdd8253d685}{Preconditioner\_LHS}};}
 \DoxyCodeLine{\Hypertarget{complex__smoother_8h_source_l02506}02506   \};}
@@ -3302,7 +3302,7 @@
 \DoxyCodeLine{\Hypertarget{complex__smoother_8h_source_l03298}03298 \textcolor{comment}{}}
 \DoxyCodeLine{\Hypertarget{complex__smoother_8h_source_l03299}03299 }
 \DoxyCodeLine{\Hypertarget{complex__smoother_8h_source_l03300}03300   \textcolor{comment}{//======================================================================}\textcolor{comment}{}}
-\DoxyCodeLine{\Hypertarget{complex__smoother_8h_source_l03301}03301 \textcolor{comment}{  /// \(\backslash\)short The FGMRES method, i.e. the flexible variant of the GMRES}}
+\DoxyCodeLine{\Hypertarget{complex__smoother_8h_source_l03301}03301 \textcolor{comment}{  ///  The FGMRES method, i.e. the flexible variant of the GMRES}}
 \DoxyCodeLine{\Hypertarget{complex__smoother_8h_source_l03302}03302 \textcolor{comment}{  /// method which allows for nonconstant preconditioners [see Saad Y,}}
 \DoxyCodeLine{\Hypertarget{complex__smoother_8h_source_l03303}03303 \textcolor{comment}{  /// "{}Iterative methods for sparse linear systems"{}, p.287]. Note, FGMRES}}
 \DoxyCodeLine{\Hypertarget{complex__smoother_8h_source_l03304}03304 \textcolor{comment}{  /// can only cater to right preconditioning; if the user tries to switch}}
@@ -3332,7 +3332,7 @@
 \DoxyCodeLine{\Hypertarget{complex__smoother_8h_source_l03328}03328 \textcolor{comment}{    /// Broken assignment operator}}
 \DoxyCodeLine{\Hypertarget{complex__smoother_8h_source_l03329}\mbox{\hyperlink{classoomph_1_1HelmholtzFGMRESMG_adf252c35e340379f2dc1c93eede84d66}{03329}} \textcolor{comment}{}    \textcolor{keywordtype}{void} \mbox{\hyperlink{classoomph_1_1HelmholtzFGMRESMG_adf252c35e340379f2dc1c93eede84d66}{operator=}}(\textcolor{keyword}{const} \mbox{\hyperlink{classoomph_1_1HelmholtzFGMRESMG}{HelmholtzFGMRESMG}}\&) = \textcolor{keyword}{delete};}
 \DoxyCodeLine{\Hypertarget{complex__smoother_8h_source_l03330}03330 \textcolor{comment}{}}
-\DoxyCodeLine{\Hypertarget{complex__smoother_8h_source_l03331}03331 \textcolor{comment}{    /// \(\backslash\)short Overloaded function to let the user know that left}}
+\DoxyCodeLine{\Hypertarget{complex__smoother_8h_source_l03331}03331 \textcolor{comment}{    ///  Overloaded function to let the user know that left}}
 \DoxyCodeLine{\Hypertarget{complex__smoother_8h_source_l03332}03332 \textcolor{comment}{    /// preconditioning is not possible with FGMRES, only right preconditioning}}
 \DoxyCodeLine{\Hypertarget{complex__smoother_8h_source_l03333}\mbox{\hyperlink{classoomph_1_1HelmholtzFGMRESMG_ae3272923b5eb1bd6d7f494a8bafdf303}{03333}} \textcolor{comment}{}    \textcolor{keywordtype}{void} \mbox{\hyperlink{classoomph_1_1HelmholtzFGMRESMG_ae3272923b5eb1bd6d7f494a8bafdf303}{set\_preconditioner\_LHS}}()}
 \DoxyCodeLine{\Hypertarget{complex__smoother_8h_source_l03334}03334     \{}
@@ -3350,7 +3350,7 @@
 \DoxyCodeLine{\Hypertarget{complex__smoother_8h_source_l03346}03346                           OOMPH\_EXCEPTION\_LOCATION);}
 \DoxyCodeLine{\Hypertarget{complex__smoother_8h_source_l03347}03347     \} \textcolor{comment}{// End of set\_preconditioner\_LHS}}
 \DoxyCodeLine{\Hypertarget{complex__smoother_8h_source_l03348}03348 \textcolor{comment}{}}
-\DoxyCodeLine{\Hypertarget{complex__smoother_8h_source_l03349}03349 \textcolor{comment}{    /// \(\backslash\)short Solver: Takes pointer to problem and returns the results vector}}
+\DoxyCodeLine{\Hypertarget{complex__smoother_8h_source_l03349}03349 \textcolor{comment}{    ///  Solver: Takes pointer to problem and returns the results vector}}
 \DoxyCodeLine{\Hypertarget{complex__smoother_8h_source_l03350}03350 \textcolor{comment}{    /// which contains the solution of the linear system defined by}}
 \DoxyCodeLine{\Hypertarget{complex__smoother_8h_source_l03351}03351 \textcolor{comment}{    /// the problem's fully assembled Jacobian and residual vector.}}
 \DoxyCodeLine{\Hypertarget{complex__smoother_8h_source_l03352}\mbox{\hyperlink{classoomph_1_1HelmholtzFGMRESMG_a36a1d601676df2ebe39fcdb7a0837864}{03352}} \textcolor{comment}{}    \textcolor{keywordtype}{void} \mbox{\hyperlink{classoomph_1_1HelmholtzFGMRESMG_a36a1d601676df2ebe39fcdb7a0837864}{solve}}(\mbox{\hyperlink{classoomph_1_1Problem}{Problem}}* \textcolor{keyword}{const}\& problem\_pt, \mbox{\hyperlink{classoomph_1_1DoubleVector}{DoubleVector}}\& result)}
@@ -3394,19 +3394,19 @@
 \DoxyCodeLine{\Hypertarget{complex__smoother_8h_source_l03390}03390       \textcolor{comment}{// Get Jacobian matrix in format specified by template parameter}}
 \DoxyCodeLine{\Hypertarget{complex__smoother_8h_source_l03391}03391       \textcolor{comment}{// and nonlinear residual vector}}
 \DoxyCodeLine{\Hypertarget{complex__smoother_8h_source_l03392}03392       MATRIX* \mbox{\hyperlink{classoomph_1_1BlockPreconditioner_aec1a6eda2d78d1e3b41ced805534d72d}{matrix\_pt}} = \textcolor{keyword}{new} MATRIX;}
-\DoxyCodeLine{\Hypertarget{complex__smoother_8h_source_l03393}03393       \mbox{\hyperlink{classoomph_1_1DoubleVector}{DoubleVector}} f;}
+\DoxyCodeLine{\Hypertarget{complex__smoother_8h_source_l03393}03393       \mbox{\hyperlink{classoomph_1_1DoubleVector}{DoubleVector}} \mbox{\hyperlink{namespaceoomph_ad835af913df4cbdc5648440f91b794ab}{f}};}
 \DoxyCodeLine{\Hypertarget{complex__smoother_8h_source_l03394}03394       \textcolor{keywordflow}{if} (\textcolor{keyword}{dynamic\_cast<}\mbox{\hyperlink{classoomph_1_1DistributableLinearAlgebraObject}{DistributableLinearAlgebraObject}}*\textcolor{keyword}{>}(\mbox{\hyperlink{classoomph_1_1BlockPreconditioner_aec1a6eda2d78d1e3b41ced805534d72d}{matrix\_pt}}) != 0)}
 \DoxyCodeLine{\Hypertarget{complex__smoother_8h_source_l03395}03395       \{}
 \DoxyCodeLine{\Hypertarget{complex__smoother_8h_source_l03396}03396         \textcolor{keywordflow}{if} (\textcolor{keyword}{dynamic\_cast<}\mbox{\hyperlink{classoomph_1_1CRDoubleMatrix}{CRDoubleMatrix}}*\textcolor{keyword}{>}(\mbox{\hyperlink{classoomph_1_1BlockPreconditioner_aec1a6eda2d78d1e3b41ced805534d72d}{matrix\_pt}}) != 0)}
 \DoxyCodeLine{\Hypertarget{complex__smoother_8h_source_l03397}03397         \{}
 \DoxyCodeLine{\Hypertarget{complex__smoother_8h_source_l03398}03398           \textcolor{keyword}{dynamic\_cast<}\mbox{\hyperlink{classoomph_1_1CRDoubleMatrix}{CRDoubleMatrix}}*\textcolor{keyword}{>}(\mbox{\hyperlink{classoomph_1_1BlockPreconditioner_aec1a6eda2d78d1e3b41ced805534d72d}{matrix\_pt}})-\/>build(}
 \DoxyCodeLine{\Hypertarget{complex__smoother_8h_source_l03399}03399             \mbox{\hyperlink{classoomph_1_1DistributableLinearAlgebraObject_abfa9cf25494c796d62b15bad586fab47}{IterativeLinearSolver::distribution\_pt}}());}
-\DoxyCodeLine{\Hypertarget{complex__smoother_8h_source_l03400}03400           f.\mbox{\hyperlink{classoomph_1_1DoubleVector_a7bcc94c157d6853a0f0502e8a76ed380}{build}}(\mbox{\hyperlink{classoomph_1_1DistributableLinearAlgebraObject_abfa9cf25494c796d62b15bad586fab47}{IterativeLinearSolver::distribution\_pt}}(), 0.0);}
+\DoxyCodeLine{\Hypertarget{complex__smoother_8h_source_l03400}03400           \mbox{\hyperlink{namespaceoomph_ad835af913df4cbdc5648440f91b794ab}{f}}.build(\mbox{\hyperlink{classoomph_1_1DistributableLinearAlgebraObject_abfa9cf25494c796d62b15bad586fab47}{IterativeLinearSolver::distribution\_pt}}(), 0.0);}
 \DoxyCodeLine{\Hypertarget{complex__smoother_8h_source_l03401}03401         \}}
 \DoxyCodeLine{\Hypertarget{complex__smoother_8h_source_l03402}03402       \}}
 \DoxyCodeLine{\Hypertarget{complex__smoother_8h_source_l03403}03403 }
 \DoxyCodeLine{\Hypertarget{complex__smoother_8h_source_l03404}03404       \textcolor{comment}{// Get the Jacobian and residuals vector}}
-\DoxyCodeLine{\Hypertarget{complex__smoother_8h_source_l03405}03405       problem\_pt-\/>\mbox{\hyperlink{classoomph_1_1Problem_a4ba83bbea19db3a530539f3e9f88a7e4}{get\_jacobian}}(f, *\mbox{\hyperlink{classoomph_1_1BlockPreconditioner_aec1a6eda2d78d1e3b41ced805534d72d}{matrix\_pt}});}
+\DoxyCodeLine{\Hypertarget{complex__smoother_8h_source_l03405}03405       problem\_pt-\/>\mbox{\hyperlink{classoomph_1_1Problem_a4ba83bbea19db3a530539f3e9f88a7e4}{get\_jacobian}}(\mbox{\hyperlink{namespaceoomph_ad835af913df4cbdc5648440f91b794ab}{f}}, *\mbox{\hyperlink{classoomph_1_1BlockPreconditioner_aec1a6eda2d78d1e3b41ced805534d72d}{matrix\_pt}});}
 \DoxyCodeLine{\Hypertarget{complex__smoother_8h_source_l03406}03406 }
 \DoxyCodeLine{\Hypertarget{complex__smoother_8h_source_l03407}03407       \textcolor{comment}{// We've made the matrix, we can delete it...}}
 \DoxyCodeLine{\Hypertarget{complex__smoother_8h_source_l03408}03408       this-\/>\mbox{\hyperlink{classoomph_1_1HelmholtzGMRESMG_a1550b5147f7fa822e8cbc9de93f1c06f}{Matrix\_can\_be\_deleted}} = \textcolor{keyword}{true};}
@@ -3448,7 +3448,7 @@
 \DoxyCodeLine{\Hypertarget{complex__smoother_8h_source_l03444}03444 \textcolor{preprocessor}{\#endif}}
 \DoxyCodeLine{\Hypertarget{complex__smoother_8h_source_l03445}03445 }
 \DoxyCodeLine{\Hypertarget{complex__smoother_8h_source_l03446}03446       \textcolor{comment}{// Resize the storage for the system matrices}}
-\DoxyCodeLine{\Hypertarget{complex__smoother_8h_source_l03447}03447       this-\/>\mbox{\hyperlink{classoomph_1_1HelmholtzGMRESMG_a5d8ae2181aecf890386ae48d81f90b42}{Matrices\_storage\_pt}}.resize(2, 0);}
+\DoxyCodeLine{\Hypertarget{complex__smoother_8h_source_l03447}03447       this-\/>\mbox{\hyperlink{classoomph_1_1HelmholtzGMRESMG_a44e50b68a7c2aab02342817c93ee6ad5}{Matrices\_storage\_pt}}.resize(2, 0);}
 \DoxyCodeLine{\Hypertarget{complex__smoother_8h_source_l03448}03448 }
 \DoxyCodeLine{\Hypertarget{complex__smoother_8h_source_l03449}03449       \textcolor{comment}{// Loop over the rows of the block matrix}}
 \DoxyCodeLine{\Hypertarget{complex__smoother_8h_source_l03450}03450       \textcolor{keywordflow}{for} (\textcolor{keywordtype}{unsigned} \mbox{\hyperlink{cfortran_8h_adb50e893b86b3e55e751a42eab3cba82}{i}} = 0; \mbox{\hyperlink{cfortran_8h_adb50e893b86b3e55e751a42eab3cba82}{i}} < \mbox{\hyperlink{classoomph_1_1BlockPreconditioner_a80808d42be8db74fd58af80b019bf317}{nblock\_types}}; \mbox{\hyperlink{cfortran_8h_adb50e893b86b3e55e751a42eab3cba82}{i}}++)}
@@ -3457,10 +3457,10 @@
 \DoxyCodeLine{\Hypertarget{complex__smoother_8h_source_l03453}03453         \textcolor{keywordtype}{unsigned} j = 0;}
 \DoxyCodeLine{\Hypertarget{complex__smoother_8h_source_l03454}03454 }
 \DoxyCodeLine{\Hypertarget{complex__smoother_8h_source_l03455}03455         \textcolor{comment}{// Create new CRDoubleMatrix objects}}
-\DoxyCodeLine{\Hypertarget{complex__smoother_8h_source_l03456}03456         this-\/>\mbox{\hyperlink{classoomph_1_1HelmholtzGMRESMG_a5d8ae2181aecf890386ae48d81f90b42}{Matrices\_storage\_pt}}[\mbox{\hyperlink{cfortran_8h_adb50e893b86b3e55e751a42eab3cba82}{i}}] = \textcolor{keyword}{new} \mbox{\hyperlink{classoomph_1_1CRDoubleMatrix}{CRDoubleMatrix}};}
+\DoxyCodeLine{\Hypertarget{complex__smoother_8h_source_l03456}03456         this-\/>\mbox{\hyperlink{classoomph_1_1HelmholtzGMRESMG_a44e50b68a7c2aab02342817c93ee6ad5}{Matrices\_storage\_pt}}[\mbox{\hyperlink{cfortran_8h_adb50e893b86b3e55e751a42eab3cba82}{i}}] = \textcolor{keyword}{new} \mbox{\hyperlink{classoomph_1_1CRDoubleMatrix}{CRDoubleMatrix}};}
 \DoxyCodeLine{\Hypertarget{complex__smoother_8h_source_l03457}03457 }
 \DoxyCodeLine{\Hypertarget{complex__smoother_8h_source_l03458}03458         \textcolor{comment}{// Extract the required blocks, i.e. the first column}}
-\DoxyCodeLine{\Hypertarget{complex__smoother_8h_source_l03459}03459         this-\/>\mbox{\hyperlink{classoomph_1_1BlockPreconditioner_a72b4dbe167da59d9ba12c7eff97d77e6}{get\_block}}(\mbox{\hyperlink{cfortran_8h_adb50e893b86b3e55e751a42eab3cba82}{i}}, j, *(this-\/>\mbox{\hyperlink{classoomph_1_1HelmholtzGMRESMG_a5d8ae2181aecf890386ae48d81f90b42}{Matrices\_storage\_pt}}[\mbox{\hyperlink{cfortran_8h_adb50e893b86b3e55e751a42eab3cba82}{i}}]));}
+\DoxyCodeLine{\Hypertarget{complex__smoother_8h_source_l03459}03459         this-\/>\mbox{\hyperlink{classoomph_1_1BlockPreconditioner_a72b4dbe167da59d9ba12c7eff97d77e6}{get\_block}}(\mbox{\hyperlink{cfortran_8h_adb50e893b86b3e55e751a42eab3cba82}{i}}, j, *(this-\/>\mbox{\hyperlink{classoomph_1_1HelmholtzGMRESMG_a44e50b68a7c2aab02342817c93ee6ad5}{Matrices\_storage\_pt}}[\mbox{\hyperlink{cfortran_8h_adb50e893b86b3e55e751a42eab3cba82}{i}}]));}
 \DoxyCodeLine{\Hypertarget{complex__smoother_8h_source_l03460}03460       \}}
 \DoxyCodeLine{\Hypertarget{complex__smoother_8h_source_l03461}03461 }
 \DoxyCodeLine{\Hypertarget{complex__smoother_8h_source_l03462}03462       \textcolor{comment}{// Doc time for setup}}
@@ -3488,7 +3488,7 @@
 \DoxyCodeLine{\Hypertarget{complex__smoother_8h_source_l03484}03484         result.\mbox{\hyperlink{classoomph_1_1DoubleVector_a7bcc94c157d6853a0f0502e8a76ed380}{build}}(\mbox{\hyperlink{classoomph_1_1DistributableLinearAlgebraObject_abfa9cf25494c796d62b15bad586fab47}{IterativeLinearSolver::distribution\_pt}}(), 0.0);}
 \DoxyCodeLine{\Hypertarget{complex__smoother_8h_source_l03485}03485 }
 \DoxyCodeLine{\Hypertarget{complex__smoother_8h_source_l03486}03486         \textcolor{comment}{// Solve the problem}}
-\DoxyCodeLine{\Hypertarget{complex__smoother_8h_source_l03487}03487         \mbox{\hyperlink{classoomph_1_1HelmholtzFGMRESMG_a8bfd5045cf99bbeaf94b69ede3ccf0ad}{solve\_helper}}(\mbox{\hyperlink{classoomph_1_1BlockPreconditioner_aec1a6eda2d78d1e3b41ced805534d72d}{matrix\_pt}}, f, result);}
+\DoxyCodeLine{\Hypertarget{complex__smoother_8h_source_l03487}03487         \mbox{\hyperlink{classoomph_1_1HelmholtzFGMRESMG_a8bfd5045cf99bbeaf94b69ede3ccf0ad}{solve\_helper}}(\mbox{\hyperlink{classoomph_1_1BlockPreconditioner_aec1a6eda2d78d1e3b41ced805534d72d}{matrix\_pt}}, \mbox{\hyperlink{namespaceoomph_ad835af913df4cbdc5648440f91b794ab}{f}}, result);}
 \DoxyCodeLine{\Hypertarget{complex__smoother_8h_source_l03488}03488 }
 \DoxyCodeLine{\Hypertarget{complex__smoother_8h_source_l03489}03489         \textcolor{comment}{// Redistribute the vector}}
 \DoxyCodeLine{\Hypertarget{complex__smoother_8h_source_l03490}03490         result.\mbox{\hyperlink{classoomph_1_1DoubleVector_a9396b861977c16606d8eca39056976c8}{redistribute}}(\&temp\_global\_dist);}
@@ -3497,7 +3497,7 @@
 \DoxyCodeLine{\Hypertarget{complex__smoother_8h_source_l03493}03493       \textcolor{keywordflow}{else}}
 \DoxyCodeLine{\Hypertarget{complex__smoother_8h_source_l03494}03494       \{}
 \DoxyCodeLine{\Hypertarget{complex__smoother_8h_source_l03495}03495         \textcolor{comment}{// Solve}}
-\DoxyCodeLine{\Hypertarget{complex__smoother_8h_source_l03496}03496         \mbox{\hyperlink{classoomph_1_1HelmholtzFGMRESMG_a8bfd5045cf99bbeaf94b69ede3ccf0ad}{solve\_helper}}(\mbox{\hyperlink{classoomph_1_1BlockPreconditioner_aec1a6eda2d78d1e3b41ced805534d72d}{matrix\_pt}}, f, result);}
+\DoxyCodeLine{\Hypertarget{complex__smoother_8h_source_l03496}03496         \mbox{\hyperlink{classoomph_1_1HelmholtzFGMRESMG_a8bfd5045cf99bbeaf94b69ede3ccf0ad}{solve\_helper}}(\mbox{\hyperlink{classoomph_1_1BlockPreconditioner_aec1a6eda2d78d1e3b41ced805534d72d}{matrix\_pt}}, \mbox{\hyperlink{namespaceoomph_ad835af913df4cbdc5648440f91b794ab}{f}}, result);}
 \DoxyCodeLine{\Hypertarget{complex__smoother_8h_source_l03497}03497       \}}
 \DoxyCodeLine{\Hypertarget{complex__smoother_8h_source_l03498}03498 }
 \DoxyCodeLine{\Hypertarget{complex__smoother_8h_source_l03499}03499       \textcolor{comment}{// Kill matrix unless it's still required for resolve}}
@@ -3519,7 +3519,7 @@
 \DoxyCodeLine{\Hypertarget{complex__smoother_8h_source_l03515}03515                 \textcolor{keyword}{const} \mbox{\hyperlink{classoomph_1_1Vector}{Vector}}<\mbox{\hyperlink{classoomph_1_1Vector}{Vector}}<std::complex<double>>>\& hessenberg,}
 \DoxyCodeLine{\Hypertarget{complex__smoother_8h_source_l03516}03516                 \textcolor{keyword}{const} \mbox{\hyperlink{classoomph_1_1Vector}{Vector}}<std::complex<double>>\& \mbox{\hyperlink{cfortran_8h_ab7123126e4885ef647dd9c6e3807a21c}{s}},}
 \DoxyCodeLine{\Hypertarget{complex__smoother_8h_source_l03517}03517                 \textcolor{keyword}{const} \mbox{\hyperlink{classoomph_1_1Vector}{Vector}}<\mbox{\hyperlink{classoomph_1_1Vector}{Vector<DoubleVector>}}>\& z\_m,}
-\DoxyCodeLine{\Hypertarget{complex__smoother_8h_source_l03518}03518                 \mbox{\hyperlink{classoomph_1_1Vector}{Vector<DoubleVector>}}\& x)}
+\DoxyCodeLine{\Hypertarget{complex__smoother_8h_source_l03518}03518                 \mbox{\hyperlink{classoomph_1_1Vector}{Vector<DoubleVector>}}\& \mbox{\hyperlink{namespaceoomph_a9d1d2da2b8bb8e73af72b5cadb8fe97c}{x}})}
 \DoxyCodeLine{\Hypertarget{complex__smoother_8h_source_l03519}03519     \{}
 \DoxyCodeLine{\Hypertarget{complex__smoother_8h_source_l03520}03520       \textcolor{comment}{// Make a local copy of s}}
 \DoxyCodeLine{\Hypertarget{complex__smoother_8h_source_l03521}03521       \mbox{\hyperlink{classoomph_1_1Vector}{Vector<std::complex<double>}}> y(\mbox{\hyperlink{cfortran_8h_ab7123126e4885ef647dd9c6e3807a21c}{s}});}
@@ -3555,7 +3555,7 @@
 \DoxyCodeLine{\Hypertarget{complex__smoother_8h_source_l03551}03551 }
 \DoxyCodeLine{\Hypertarget{complex__smoother_8h_source_l03552}03552       \textcolor{comment}{// Calculate the number of entries in x (simply use the real part as}}
 \DoxyCodeLine{\Hypertarget{complex__smoother_8h_source_l03553}03553       \textcolor{comment}{// both the real and imaginary part should have the same length)}}
-\DoxyCodeLine{\Hypertarget{complex__smoother_8h_source_l03554}03554       \textcolor{keywordtype}{unsigned} n\_row = x[0].nrow();}
+\DoxyCodeLine{\Hypertarget{complex__smoother_8h_source_l03554}03554       \textcolor{keywordtype}{unsigned} n\_row = \mbox{\hyperlink{namespaceoomph_a9d1d2da2b8bb8e73af72b5cadb8fe97c}{x}}[0].nrow();}
 \DoxyCodeLine{\Hypertarget{complex__smoother_8h_source_l03555}03555 }
 \DoxyCodeLine{\Hypertarget{complex__smoother_8h_source_l03556}03556       \textcolor{comment}{// Build a temporary vector with entries initialised to 0.0}}
 \DoxyCodeLine{\Hypertarget{complex__smoother_8h_source_l03557}03557       \mbox{\hyperlink{classoomph_1_1Vector}{Vector<DoubleVector>}} block\_update(2);}
@@ -3564,7 +3564,7 @@
 \DoxyCodeLine{\Hypertarget{complex__smoother_8h_source_l03560}03560       \textcolor{keywordflow}{for} (\textcolor{keywordtype}{unsigned} dof\_type = 0; dof\_type < 2; dof\_type++)}
 \DoxyCodeLine{\Hypertarget{complex__smoother_8h_source_l03561}03561       \{}
 \DoxyCodeLine{\Hypertarget{complex__smoother_8h_source_l03562}03562         \textcolor{comment}{// Build the (dof\_type)-\/th vector of block\_update}}
-\DoxyCodeLine{\Hypertarget{complex__smoother_8h_source_l03563}03563         block\_update[dof\_type].build(x[0].\mbox{\hyperlink{classoomph_1_1DistributableLinearAlgebraObject_abfa9cf25494c796d62b15bad586fab47}{distribution\_pt}}(), 0.0);}
+\DoxyCodeLine{\Hypertarget{complex__smoother_8h_source_l03563}03563         block\_update[dof\_type].build(\mbox{\hyperlink{namespaceoomph_a9d1d2da2b8bb8e73af72b5cadb8fe97c}{x}}[0].\mbox{\hyperlink{classoomph_1_1DistributableLinearAlgebraObject_abfa9cf25494c796d62b15bad586fab47}{distribution\_pt}}(), 0.0);}
 \DoxyCodeLine{\Hypertarget{complex__smoother_8h_source_l03564}03564       \}}
 \DoxyCodeLine{\Hypertarget{complex__smoother_8h_source_l03565}03565 }
 \DoxyCodeLine{\Hypertarget{complex__smoother_8h_source_l03566}03566       \textcolor{comment}{// Get access to the underlying values}}
@@ -3600,7 +3600,7 @@
 \DoxyCodeLine{\Hypertarget{complex__smoother_8h_source_l03596}03596       \textcolor{keywordflow}{for} (\textcolor{keywordtype}{unsigned} dof\_type = 0; dof\_type < 2; dof\_type++)}
 \DoxyCodeLine{\Hypertarget{complex__smoother_8h_source_l03597}03597       \{}
 \DoxyCodeLine{\Hypertarget{complex__smoother_8h_source_l03598}03598         \textcolor{comment}{// Update the solution}}
-\DoxyCodeLine{\Hypertarget{complex__smoother_8h_source_l03599}03599         x[dof\_type] += block\_update[dof\_type];}
+\DoxyCodeLine{\Hypertarget{complex__smoother_8h_source_l03599}03599         \mbox{\hyperlink{namespaceoomph_a9d1d2da2b8bb8e73af72b5cadb8fe97c}{x}}[dof\_type] += block\_update[dof\_type];}
 \DoxyCodeLine{\Hypertarget{complex__smoother_8h_source_l03600}03600       \}}
 \DoxyCodeLine{\Hypertarget{complex__smoother_8h_source_l03601}03601     \} \textcolor{comment}{// End of update}}
 \DoxyCodeLine{\Hypertarget{complex__smoother_8h_source_l03602}03602   \};}

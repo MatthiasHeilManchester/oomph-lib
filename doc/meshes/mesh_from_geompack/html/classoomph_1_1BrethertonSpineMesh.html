@@ -123,6 +123,9 @@
 </div><!--header-->
 <div class="contents">
 
+<p>Mesh for 2D Bretherton problem &ndash; based on single layer mesh. Templated by spine-ified Navier-Stokes element type (e.g. SpineElement&lt;QCrouzeixRaviartElement&lt;2&gt; &gt; and the corresponding interface element (e.g. SpineLineFluidInterfaceElement&lt;SpineElement&lt;QCrouzeixRaviartElement&lt;2&gt; &gt; &gt;  
+ <a href="classoomph_1_1BrethertonSpineMesh.html#details">More...</a></p>
+
 <p><code>#include &lt;<a class="el" href="bretherton__spine__mesh_8template_8h_source.html">bretherton_spine_mesh.template.h</a>&gt;</code></p>
 <div class="dynheader">
 Inheritance diagram for oomph::BrethertonSpineMesh&lt; ELEMENT, INTERFACE_ELEMENT &gt;:</div>
@@ -130,8 +133,8 @@ Inheritance diagram for oomph::BrethertonSpineMesh&lt; ELEMENT, INTERFACE_ELEMEN
  <div class="center">
   <img src="classoomph_1_1BrethertonSpineMesh.png" usemap="#oomph::BrethertonSpineMesh_3C_20ELEMENT_2C_20INTERFACE_5FELEMENT_20_3E_map" alt=""/>
   <map id="oomph::BrethertonSpineMesh_3C_20ELEMENT_2C_20INTERFACE_5FELEMENT_20_3E_map" name="oomph::BrethertonSpineMesh_3C_20ELEMENT_2C_20INTERFACE_5FELEMENT_20_3E_map">
-<area href="classoomph_1_1SingleLayerSpineMesh.html" alt="oomph::SingleLayerSpineMesh&lt; ELEMENT &gt;" shape="rect" coords="206,112,608,136"/>
-<area href="classoomph_1_1RectangularQuadMesh.html" alt="oomph::RectangularQuadMesh&lt; ELEMENT &gt;" shape="rect" coords="0,56,402,80"/>
+<area href="classoomph_1_1SingleLayerSpineMesh.html" title="Single-layer spine mesh class derived from standard 2D mesh. The mesh contains a layer of spinified f..." alt="oomph::SingleLayerSpineMesh&lt; ELEMENT &gt;" shape="rect" coords="206,112,608,136"/>
+<area href="classoomph_1_1RectangularQuadMesh.html" title="RectangularQuadMesh is a two-dimensional mesh of Quad elements with Nx elements in the &quot;x&quot; (horizonal..." alt="oomph::RectangularQuadMesh&lt; ELEMENT &gt;" shape="rect" coords="0,56,402,80"/>
   </map>
 </div></div>
 <table class="memberdecls">
@@ -153,6 +156,7 @@ Public Member Functions</h2></td></tr>
 <tr class="memdesc:a47184866746a1fce6dd0ca27ab7e17ce"><td class="mdescLeft">&#160;</td><td class="mdescRight">Number of elements in bulk.  <a href="classoomph_1_1BrethertonSpineMesh.html#a47184866746a1fce6dd0ca27ab7e17ce">More...</a><br /></td></tr>
 <tr class="separator:a47184866746a1fce6dd0ca27ab7e17ce"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ade4d0f2933beddda517b949d80928a18"><td class="memItemLeft" align="right" valign="top">unsigned&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classoomph_1_1BrethertonSpineMesh.html#ade4d0f2933beddda517b949d80928a18">nfree_surface_spines</a> ()</td></tr>
+<tr class="memdesc:ade4d0f2933beddda517b949d80928a18"><td class="mdescLeft">&#160;</td><td class="mdescRight">Number of free-surface spines (i.e. excluding the dummy spines in the channel region)  <a href="classoomph_1_1BrethertonSpineMesh.html#ade4d0f2933beddda517b949d80928a18">More...</a><br /></td></tr>
 <tr class="separator:ade4d0f2933beddda517b949d80928a18"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ac80488ae4db2da00e1b38f6f07e0ff9d"><td class="memItemLeft" align="right" valign="top">double&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classoomph_1_1BrethertonSpineMesh.html#ac80488ae4db2da00e1b38f6f07e0ff9d">find_distance_to_free_surface</a> (GeomObject *const &amp;fs_geom_object_pt, Vector&lt; double &gt; &amp;initial_zeta, const Vector&lt; double &gt; &amp;spine_base, const Vector&lt; double &gt; &amp;spine_end)</td></tr>
 <tr class="memdesc:ac80488ae4db2da00e1b38f6f07e0ff9d"><td class="mdescLeft">&#160;</td><td class="mdescRight">Recalculate the spine lengths after repositioning.  <a href="classoomph_1_1BrethertonSpineMesh.html#ac80488ae4db2da00e1b38f6f07e0ff9d">More...</a><br /></td></tr>
@@ -161,6 +165,7 @@ Public Member Functions</h2></td></tr>
 <tr class="memdesc:a0dfeac5bc9a4fa4bfdcd443def30dcdb"><td class="mdescLeft">&#160;</td><td class="mdescRight">Reposition the spines in response to changes in geometry.  <a href="classoomph_1_1BrethertonSpineMesh.html#a0dfeac5bc9a4fa4bfdcd443def30dcdb">More...</a><br /></td></tr>
 <tr class="separator:a0dfeac5bc9a4fa4bfdcd443def30dcdb"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a507ea97977b837f2f0d9647407d770cd"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classoomph_1_1BrethertonSpineMesh.html#a507ea97977b837f2f0d9647407d770cd">pin_all_spines</a> ()</td></tr>
+<tr class="memdesc:a507ea97977b837f2f0d9647407d770cd"><td class="mdescLeft">&#160;</td><td class="mdescRight">Pin all spines so the mesh can be used for computation without free surfaces.  <a href="classoomph_1_1BrethertonSpineMesh.html#a507ea97977b837f2f0d9647407d770cd">More...</a><br /></td></tr>
 <tr class="separator:a507ea97977b837f2f0d9647407d770cd"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a981301706d4940cfb24d3d769a7a523b"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classoomph_1_1BrethertonSpineMesh.html#a981301706d4940cfb24d3d769a7a523b">spine_node_update</a> (SpineNode *spine_node_pt)</td></tr>
 <tr class="memdesc:a981301706d4940cfb24d3d769a7a523b"><td class="mdescLeft">&#160;</td><td class="mdescRight">General node update function implements pure virtual function defined in SpineMesh base class and performs specific update actions, depending on the node update fct id stored for each node.  <a href="classoomph_1_1BrethertonSpineMesh.html#a981301706d4940cfb24d3d769a7a523b">More...</a><br /></td></tr>
@@ -246,7 +251,7 @@ Protected Member Functions</h2></td></tr>
 <tr class="memdesc:a5a09b6d2f5e7ffd12a0ae882754ad818"><td class="mdescLeft">&#160;</td><td class="mdescRight">Update function for the nodes in the channel region ahead of the finger tip: Nodes are evenly distributed along vertical lines between the top and bottom walls.  <a href="classoomph_1_1BrethertonSpineMesh.html#a5a09b6d2f5e7ffd12a0ae882754ad818">More...</a><br /></td></tr>
 <tr class="separator:a5a09b6d2f5e7ffd12a0ae882754ad818"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a52ffe1a705cb720d09c831b9cf5397f6"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classoomph_1_1BrethertonSpineMesh.html#a52ffe1a705cb720d09c831b9cf5397f6">initial_element_reorder</a> ()</td></tr>
-<tr class="memdesc:a52ffe1a705cb720d09c831b9cf5397f6"><td class="mdescLeft">&#160;</td><td class="mdescRight">Initial reordering elements of the elements &ndash; before the channel mesh is added. Vertical stacks of elements, each topped by their interface element &ndash; this is (currently) identical to the version in the <a class="el" href="classoomph_1_1SingleLayerSpineMesh.html">SingleLayerSpineMesh</a> but it's important that the element reordering is maintained in exactly this form for the rest of the mesh generation process to work properly. Therefore we keep a copy of the function in here.  <a href="classoomph_1_1BrethertonSpineMesh.html#a52ffe1a705cb720d09c831b9cf5397f6">More...</a><br /></td></tr>
+<tr class="memdesc:a52ffe1a705cb720d09c831b9cf5397f6"><td class="mdescLeft">&#160;</td><td class="mdescRight">Initial reordering elements of the elements &ndash; before the channel mesh is added. Vertical stacks of elements, each topped by their interface element &ndash; this is (currently) identical to the version in the <a class="el" href="classoomph_1_1SingleLayerSpineMesh.html" title="Single-layer spine mesh class derived from standard 2D mesh. The mesh contains a layer of spinified f...">SingleLayerSpineMesh</a> but it's important that the element reordering is maintained in exactly this form for the rest of the mesh generation process to work properly. Therefore we keep a copy of the function in here.  <a href="classoomph_1_1BrethertonSpineMesh.html#a52ffe1a705cb720d09c831b9cf5397f6">More...</a><br /></td></tr>
 <tr class="separator:a52ffe1a705cb720d09c831b9cf5397f6"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="inherit_header pro_methods_classoomph_1_1SingleLayerSpineMesh"><td colspan="2" onclick="javascript:toggleInherit('pro_methods_classoomph_1_1SingleLayerSpineMesh')"><img src="closed.png" alt="-"/>&#160;Protected Member Functions inherited from <a class="el" href="classoomph_1_1SingleLayerSpineMesh.html">oomph::SingleLayerSpineMesh&lt; ELEMENT &gt;</a></td></tr>
 <tr class="memitem:a6829fa8216137c0e2f5eb40b389dda35 inherit pro_methods_classoomph_1_1SingleLayerSpineMesh"><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classoomph_1_1SingleLayerSpineMesh.html#a6829fa8216137c0e2f5eb40b389dda35">build_single_layer_mesh</a> (TimeStepper *time_stepper_pt)</td></tr>
@@ -453,8 +458,6 @@ template&lt;class ELEMENT , class INTERFACE_ELEMENT &gt; </div>
 <li>lower_wall_pt: Pointer to geometric object that represents the lower wall</li>
 <li>upper_wall_pt: Pointer to geometric object that represents the upper wall</li>
 <li>time_stepper_pt: Pointer to timestepper; defaults to Steady</li>
-</ul>
-<p >Constructor. Arguments:</p><ul>
 <li>nx1: Number of elements along wall in deposited film region</li>
 <li>nx2: Number of elements along wall in horizontal transition region</li>
 <li>nx3: Number of elements along wall in channel region</li>
@@ -612,8 +615,8 @@ template&lt;class ELEMENT , class INTERFACE_ELEMENT &gt; </div>
 </table>
 </div><div class="memdoc">
 
-<p>Initial reordering elements of the elements &ndash; before the channel mesh is added. Vertical stacks of elements, each topped by their interface element &ndash; this is (currently) identical to the version in the <a class="el" href="classoomph_1_1SingleLayerSpineMesh.html">SingleLayerSpineMesh</a> but it's important that the element reordering is maintained in exactly this form for the rest of the mesh generation process to work properly. Therefore we keep a copy of the function in here. </p>
-<p >Reorder elements: Vertical stacks of elements, each topped by their interface element &ndash; this is (currently) identical to the version in the <a class="el" href="classoomph_1_1SingleLayerSpineMesh.html">SingleLayerSpineMesh</a> but it's important that element reordering is maintained in exactly this form so to be on the safe side, we move the function in here. </p>
+<p>Initial reordering elements of the elements &ndash; before the channel mesh is added. Vertical stacks of elements, each topped by their interface element &ndash; this is (currently) identical to the version in the <a class="el" href="classoomph_1_1SingleLayerSpineMesh.html" title="Single-layer spine mesh class derived from standard 2D mesh. The mesh contains a layer of spinified f...">SingleLayerSpineMesh</a> but it's important that the element reordering is maintained in exactly this form for the rest of the mesh generation process to work properly. Therefore we keep a copy of the function in here. </p>
+<p >Reorder elements: Vertical stacks of elements, each topped by their interface element &ndash; this is (currently) identical to the version in the <a class="el" href="classoomph_1_1SingleLayerSpineMesh.html" title="Single-layer spine mesh class derived from standard 2D mesh. The mesh contains a layer of spinified f...">SingleLayerSpineMesh</a> but it's important that element reordering is maintained in exactly this form so to be on the safe side, we move the function in here. </p>
 
 <p class="definition">Definition at line <a class="el" href="bretherton__spine__mesh_8template_8cc_source.html#l01028">1028</a> of file <a class="el" href="bretherton__spine__mesh_8template_8cc_source.html">bretherton_spine_mesh.template.cc</a>.</p>
 
@@ -712,7 +715,8 @@ template&lt;class ELEMENT , class INTERFACE_ELEMENT &gt; </div>
   </tr>
 </table>
 </div><div class="memdoc">
-<p >Number of free-surface spines (i.e. excluding the dummy spines in the channel region) </p>
+
+<p>Number of free-surface spines (i.e. excluding the dummy spines in the channel region) </p>
 
 <p class="definition">Definition at line <a class="el" href="bretherton__spine__mesh_8template_8h_source.html#l00107">107</a> of file <a class="el" href="bretherton__spine__mesh_8template_8h_source.html">bretherton_spine_mesh.template.h</a>.</p>
 
@@ -777,7 +781,8 @@ template&lt;class ELEMENT , class INTERFACE_ELEMENT &gt; </div>
   </tr>
 </table>
 </div><div class="memdoc">
-<p >Pin all spines so the mesh can be used for computation without free surfaces </p>
+
+<p>Pin all spines so the mesh can be used for computation without free surfaces. </p>
 
 <p class="definition">Definition at line <a class="el" href="bretherton__spine__mesh_8template_8h_source.html#l00128">128</a> of file <a class="el" href="bretherton__spine__mesh_8template_8h_source.html">bretherton_spine_mesh.template.h</a>.</p>
 
@@ -1720,7 +1725,7 @@ template&lt;class ELEMENT , class INTERFACE_ELEMENT &gt; </div>
     <footer>
       <div class="container">
         <div class="text-muted" style="float:right;">Generated by <a href="http://www.doxygen.org/index.html">
-          <img style="height:18px;" class="footer-img" src="doxygen.png" alt="doxygen"></a> on Wed Oct 13 2021 08:43:27
+          <img style="height:18px;" class="footer-img" src="doxygen.png" alt="doxygen"></a> on Thu Oct 21 2021 17:30:36
         </div>
       </div>
     </footer>

@@ -45,7 +45,7 @@ void \mbox{\hyperlink{classoomph_1_1HermiteQuadMesh_a17d8992ae7fa8b46b568d156306
 virtual void \mbox{\hyperlink{classoomph_1_1HermiteQuadMesh_af72fd9b700fdee643ce6d6259c0e8e6f}{build\+\_\+mesh}} (Time\+Stepper $\ast$time\+\_\+stepper\+\_\+pt)
 \begin{DoxyCompactList}\small\item\em Generic mesh construction function to build the mesh. \end{DoxyCompactList}\item 
 virtual void \mbox{\hyperlink{classoomph_1_1HermiteQuadMesh_a6eefe872b5bf8a06174b536d9727ea44}{setup\+\_\+boundary\+\_\+element\+\_\+info}} ()
-\item 
+\begin{DoxyCompactList}\small\item\em Setup lookup schemes which establish whic elements are located next to mesh\textquotesingle{}s boundaries (wrapper to suppress doc). Specific version for \mbox{\hyperlink{classoomph_1_1HermiteQuadMesh}{Hermite\+Quad\+Mesh}} to ensure that the order of the elements in Boundary\+\_\+element\+\_\+pt matches the actual order along the boundary. This is required when hijacking the Biharmonic\+Element to apply the Biharmonic\+Fluid\+Boundary\+Element in Biharmonic\+Fluid\+Problem\+::impose\+\_\+traction\+\_\+free\+\_\+edge(...) \end{DoxyCompactList}\item 
 virtual void \mbox{\hyperlink{classoomph_1_1HermiteQuadMesh_a0e4cd3df0828e87a762c61b09121e1c0}{setup\+\_\+boundary\+\_\+element\+\_\+info}} (std\+::ostream \&outfile)
 \begin{DoxyCompactList}\small\item\em Setup lookup schemes which establish which elements are located next to which boundaries (Doc to outfile if it\textquotesingle{}s open). Specific version for \mbox{\hyperlink{classoomph_1_1HermiteQuadMesh}{Hermite\+Quad\+Mesh}} to ensure that the order of the elements in Boundary\+\_\+element\+\_\+pt matches the actual order along the boundary. This is required when hijacking the Biharmonic\+Element to apply the Biharmonic\+Fluid\+Boundary\+Element in Biharmonic\+Fluid\+Problem\+::impose\+\_\+traction\+\_\+free\+\_\+edge(...) \end{DoxyCompactList}\end{DoxyCompactItemize}
 \doxysubsection*{Private Attributes}
@@ -254,7 +254,11 @@ Definition at line \mbox{\hyperlink{hermite__element__quad__mesh_8template_8cc_s
 {\footnotesize\ttfamily template$<$class ELEMENT $>$ \\
 virtual void \mbox{\hyperlink{classoomph_1_1HermiteQuadMesh}{oomph\+::\+Hermite\+Quad\+Mesh}}$<$ ELEMENT $>$\+::setup\+\_\+boundary\+\_\+element\+\_\+info (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [private]}, {\ttfamily [virtual]}}
 
+
+
 Setup lookup schemes which establish whic elements are located next to mesh\textquotesingle{}s boundaries (wrapper to suppress doc). Specific version for \mbox{\hyperlink{classoomph_1_1HermiteQuadMesh}{Hermite\+Quad\+Mesh}} to ensure that the order of the elements in Boundary\+\_\+element\+\_\+pt matches the actual order along the boundary. This is required when hijacking the Biharmonic\+Element to apply the Biharmonic\+Fluid\+Boundary\+Element in Biharmonic\+Fluid\+Problem\+::impose\+\_\+traction\+\_\+free\+\_\+edge(...) 
+
+
 
 Definition at line \mbox{\hyperlink{hermite__element__quad__mesh_8template_8h_source_l00215}{215}} of file \mbox{\hyperlink{hermite__element__quad__mesh_8template_8h_source}{hermite\+\_\+element\+\_\+quad\+\_\+mesh.\+template.\+h}}.
 

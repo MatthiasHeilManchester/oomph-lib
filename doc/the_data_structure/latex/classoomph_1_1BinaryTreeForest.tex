@@ -2,6 +2,11 @@
 \label{classoomph_1_1BinaryTreeForest}\index{oomph::BinaryTreeForest@{oomph::BinaryTreeForest}}
 
 
+A \mbox{\hyperlink{classoomph_1_1BinaryTreeForest}{Binary\+Tree\+Forest}} consists of a collection of Binary\+Tree\+Roots. Each member tree can have neighbours to its left and right.  
+
+
+
+
 {\ttfamily \#include $<$binary\+\_\+tree.\+h$>$}
 
 Inheritance diagram for oomph\+::Binary\+Tree\+Forest\+:\begin{figure}[H]
@@ -35,7 +40,7 @@ unsigned \mbox{\hyperlink{classoomph_1_1BinaryTreeForest_a7cf3ec0bdb4c0955ca35bc
 void \mbox{\hyperlink{classoomph_1_1BinaryTreeForest_a01845fafe6ef29f11226bf11e07eec1a}{find\+\_\+neighbours}} ()
 \begin{DoxyCompactList}\small\item\em Construct the neighbour lookup scheme. \end{DoxyCompactList}\item 
 \mbox{\hyperlink{classoomph_1_1BinaryTreeRoot}{Binary\+Tree\+Root}} $\ast$ \mbox{\hyperlink{classoomph_1_1BinaryTreeForest_a08c7c91a50f0c679bc61fda3ae06cbef}{binary\+\_\+tree\+\_\+pt}} (const unsigned \&\mbox{\hyperlink{cfortran_8h_adb50e893b86b3e55e751a42eab3cba82}{i}})
-\item 
+\begin{DoxyCompactList}\small\item\em Return pointer to i-\/th root binary tree in this forest (performs a dynamic cast from the \mbox{\hyperlink{classoomph_1_1TreeRoot}{Tree\+Root}} to a \mbox{\hyperlink{classoomph_1_1BinaryTreeRoot}{Binary\+Tree\+Root}}). \end{DoxyCompactList}\item 
 \mbox{\hyperlink{classoomph_1_1BinaryTreeRoot}{Binary\+Tree\+Root}} $\ast$ \mbox{\hyperlink{classoomph_1_1BinaryTreeForest_a130188a77f8358f082e6b6fca5b72286}{binary\+\_\+neigh\+\_\+pt}} (const unsigned \&\mbox{\hyperlink{cfortran_8h_adb50e893b86b3e55e751a42eab3cba82}{i}}, const int \&direction)
 \begin{DoxyCompactList}\small\item\em Given the number i of the root binary tree in this forest, return a pointer to its neighbour in the specified direction. NULL if neighbour doesn\textquotesingle{}t exist. (This does the dynamic cast from a \mbox{\hyperlink{classoomph_1_1TreeRoot}{Tree\+Root}} to a \mbox{\hyperlink{classoomph_1_1BinaryTreeRoot}{Binary\+Tree\+Root}} internally). \end{DoxyCompactList}\end{DoxyCompactItemize}
 \doxysubsection*{Additional Inherited Members}
@@ -137,7 +142,11 @@ References \mbox{\hyperlink{cfortran_8h_source_l00603}{i}}, and \mbox{\hyperlink
 \doxysubsubsection{\texorpdfstring{binary\_tree\_pt()}{binary\_tree\_pt()}}
 {\footnotesize\ttfamily \mbox{\hyperlink{classoomph_1_1BinaryTreeRoot}{Binary\+Tree\+Root}} $\ast$ oomph\+::\+Binary\+Tree\+Forest\+::binary\+\_\+tree\+\_\+pt (\begin{DoxyParamCaption}\item[{const unsigned \&}]{i }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [private]}}
 
+
+
 Return pointer to i-\/th root binary tree in this forest (performs a dynamic cast from the \mbox{\hyperlink{classoomph_1_1TreeRoot}{Tree\+Root}} to a \mbox{\hyperlink{classoomph_1_1BinaryTreeRoot}{Binary\+Tree\+Root}}). 
+
+
 
 Definition at line \mbox{\hyperlink{binary__tree_8h_source_l00336}{336}} of file \mbox{\hyperlink{binary__tree_8h_source}{binary\+\_\+tree.\+h}}.
 

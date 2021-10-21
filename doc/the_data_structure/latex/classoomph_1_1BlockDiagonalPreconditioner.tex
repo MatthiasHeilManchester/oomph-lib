@@ -46,7 +46,7 @@ void \mbox{\hyperlink{classoomph_1_1BlockDiagonalPreconditioner_a16b97c5813edb8c
 \begin{DoxyCompactItemize}
 \item 
 virtual unsigned \mbox{\hyperlink{classoomph_1_1BlockDiagonalPreconditioner_acb723bba0b200adc25c9df9003c09205}{get\+\_\+other\+\_\+diag\+\_\+ds}} (const unsigned \&\mbox{\hyperlink{cfortran_8h_adb50e893b86b3e55e751a42eab3cba82}{i}}, const unsigned \&nblock) const
-\end{DoxyCompactItemize}
+\begin{DoxyCompactList}\small\item\em This is a helper function to allow us to implement Anti\+Diagonal preconditioner by only changing this function. Get the second index for block number i. Obviously for a diagonal preconditioner we want the blocks (i,i), (for anti diagonal we will want blocks (i, nblock -\/ i), see that class). \end{DoxyCompactList}\end{DoxyCompactItemize}
 \doxysubsection*{Private Attributes}
 \begin{DoxyCompactItemize}
 \item 
@@ -250,7 +250,11 @@ Referenced by \mbox{\hyperlink{general__purpose__block__preconditioners_8h_sourc
 {\footnotesize\ttfamily template$<$typename MATRIX $>$ \\
 virtual unsigned \mbox{\hyperlink{classoomph_1_1BlockDiagonalPreconditioner}{oomph\+::\+Block\+Diagonal\+Preconditioner}}$<$ MATRIX $>$\+::get\+\_\+other\+\_\+diag\+\_\+ds (\begin{DoxyParamCaption}\item[{const unsigned \&}]{i,  }\item[{const unsigned \&}]{nblock }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [protected]}, {\ttfamily [virtual]}}
 
+
+
 This is a helper function to allow us to implement Anti\+Diagonal preconditioner by only changing this function. Get the second index for block number i. Obviously for a diagonal preconditioner we want the blocks (i,i), (for anti diagonal we will want blocks (i, nblock -\/ i), see that class). 
+
+
 
 Reimplemented in \mbox{\hyperlink{classoomph_1_1BlockAntiDiagonalPreconditioner_a880a182c7aca041992146d559c109fdb}{oomph\+::\+Block\+Anti\+Diagonal\+Preconditioner$<$ MATRIX $>$}}.
 

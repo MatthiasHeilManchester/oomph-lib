@@ -131,7 +131,7 @@ $(function() {
 </div><!--header-->
 <div class="contents">
 
-<p>Dense LU decomposition-based solve of linear system assembled via finite differencing of the residuals <a class="el" href="classoomph_1_1Vector.html">Vector</a>. Even more inefficient than <a class="el" href="classoomph_1_1DenseLU.html" title="Dense LU decomposition-based solve of full assembled linear system. VERY inefficient but useful to il...">DenseLU</a> but excellent sanity check!  
+<p>Dense LU decomposition-based solve of linear system assembled via finite differencing of the residuals <a class="el" href="classoomph_1_1Vector.html" title="A slight extension to the standard template vector class so that we can include &quot;graceful&quot; array rang...">Vector</a>. Even more inefficient than <a class="el" href="classoomph_1_1DenseLU.html" title="Dense LU decomposition-based solve of full assembled linear system. VERY inefficient but useful to il...">DenseLU</a> but excellent sanity check!  
  <a href="classoomph_1_1FD__LU.html#details">More...</a></p>
 
 <p><code>#include &lt;<a class="el" href="linear__solver_8h_source.html">linear_solver.h</a>&gt;</code></p>
@@ -144,7 +144,7 @@ $(function() {
   <img src="classoomph_1_1FD__LU.png" usemap="#oomph::FD_5FLU_map" alt=""/>
   <map id="oomph::FD_5FLU_map" name="oomph::FD_5FLU_map">
 <area href="classoomph_1_1DenseLU.html" title="Dense LU decomposition-based solve of full assembled linear system. VERY inefficient but useful to il..." alt="oomph::DenseLU" shape="rect" coords="0,112,243,136"/>
-<area href="classoomph_1_1LinearSolver.html" alt="oomph::LinearSolver" shape="rect" coords="0,56,243,80"/>
+<area href="classoomph_1_1LinearSolver.html" title="Base class for all linear solvers. This merely defines standard interfaces for linear solvers,..." alt="oomph::LinearSolver" shape="rect" coords="0,56,243,80"/>
 <area href="classoomph_1_1DistributableLinearAlgebraObject.html" title="Base class for any linear algebra object that is distributable. Just contains storage for the LinearA..." alt="oomph::DistributableLinearAlgebraObject" shape="rect" coords="0,0,243,24"/>
   </map>
 </div></div>
@@ -161,7 +161,7 @@ Public Member Functions</h2></td></tr>
 <tr class="memdesc:aa001c06e3d40b53b59ffbce77ab95708"><td class="mdescLeft">&#160;</td><td class="mdescRight">Broken assignment operator.  <a href="classoomph_1_1FD__LU.html#aa001c06e3d40b53b59ffbce77ab95708">More...</a><br /></td></tr>
 <tr class="separator:aa001c06e3d40b53b59ffbce77ab95708"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a6fd251bef9cdb7efbed4927f005eda2f"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classoomph_1_1FD__LU.html#a6fd251bef9cdb7efbed4927f005eda2f">solve</a> (<a class="el" href="classoomph_1_1Problem.html">Problem</a> *const &amp;problem_pt, <a class="el" href="classoomph_1_1DoubleVector.html">DoubleVector</a> &amp;result)</td></tr>
-<tr class="memdesc:a6fd251bef9cdb7efbed4927f005eda2f"><td class="mdescLeft">&#160;</td><td class="mdescRight">Solver: Takes pointer to problem and returns the results <a class="el" href="classoomph_1_1Vector.html">Vector</a> which contains the solution of the linear system defined by the problem's residual <a class="el" href="classoomph_1_1Vector.html">Vector</a> (Jacobian computed by FD approx.)  <a href="classoomph_1_1FD__LU.html#a6fd251bef9cdb7efbed4927f005eda2f">More...</a><br /></td></tr>
+<tr class="memdesc:a6fd251bef9cdb7efbed4927f005eda2f"><td class="mdescLeft">&#160;</td><td class="mdescRight">Solver: Takes pointer to problem and returns the results <a class="el" href="classoomph_1_1Vector.html" title="A slight extension to the standard template vector class so that we can include &quot;graceful&quot; array rang...">Vector</a> which contains the solution of the linear system defined by the problem's residual <a class="el" href="classoomph_1_1Vector.html" title="A slight extension to the standard template vector class so that we can include &quot;graceful&quot; array rang...">Vector</a> (Jacobian computed by FD approx.)  <a href="classoomph_1_1FD__LU.html#a6fd251bef9cdb7efbed4927f005eda2f">More...</a><br /></td></tr>
 <tr class="separator:a6fd251bef9cdb7efbed4927f005eda2f"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ab8c9d6006352d0ea61a721b9c58cd523"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classoomph_1_1FD__LU.html#ab8c9d6006352d0ea61a721b9c58cd523">solve</a> (<a class="el" href="classoomph_1_1DoubleMatrixBase.html">DoubleMatrixBase</a> *const &amp;matrix_pt, const <a class="el" href="classoomph_1_1DoubleVector.html">DoubleVector</a> &amp;rhs, <a class="el" href="classoomph_1_1DoubleVector.html">DoubleVector</a> &amp;result)</td></tr>
 <tr class="memdesc:ab8c9d6006352d0ea61a721b9c58cd523"><td class="mdescLeft">&#160;</td><td class="mdescRight">Linear-algebra-type solver: Takes pointer to a matrix and rhs vector and returns the solution of the linear system.  <a href="classoomph_1_1FD__LU.html#ab8c9d6006352d0ea61a721b9c58cd523">More...</a><br /></td></tr>
@@ -281,6 +281,7 @@ Public Member Functions</h2></td></tr>
 <tr class="memdesc:a5505731e7e73d7e4251c67c7adec6bf5 inherit pub_methods_classoomph_1_1DistributableLinearAlgebraObject"><td class="mdescLeft">&#160;</td><td class="mdescRight">distribution is serial or distributed  <a href="classoomph_1_1DistributableLinearAlgebraObject.html#a5505731e7e73d7e4251c67c7adec6bf5">More...</a><br /></td></tr>
 <tr class="separator:a5505731e7e73d7e4251c67c7adec6bf5 inherit pub_methods_classoomph_1_1DistributableLinearAlgebraObject"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a8c35baa65e335043f62954c92c090a5a inherit pub_methods_classoomph_1_1DistributableLinearAlgebraObject"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classoomph_1_1DistributableLinearAlgebraObject.html#a8c35baa65e335043f62954c92c090a5a">distribution_built</a> () const</td></tr>
+<tr class="memdesc:a8c35baa65e335043f62954c92c090a5a inherit pub_methods_classoomph_1_1DistributableLinearAlgebraObject"><td class="mdescLeft">&#160;</td><td class="mdescRight">if the communicator_pt is null then the distribution is not setup then false is returned, otherwise return true  <a href="classoomph_1_1DistributableLinearAlgebraObject.html#a8c35baa65e335043f62954c92c090a5a">More...</a><br /></td></tr>
 <tr class="separator:a8c35baa65e335043f62954c92c090a5a inherit pub_methods_classoomph_1_1DistributableLinearAlgebraObject"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ac5340bac40b9559b0378037b57005203 inherit pub_methods_classoomph_1_1DistributableLinearAlgebraObject"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classoomph_1_1DistributableLinearAlgebraObject.html#ac5340bac40b9559b0378037b57005203">build_distribution</a> (const <a class="el" href="classoomph_1_1LinearAlgebraDistribution.html">LinearAlgebraDistribution</a> *const dist_pt)</td></tr>
 <tr class="memdesc:ac5340bac40b9559b0378037b57005203 inherit pub_methods_classoomph_1_1DistributableLinearAlgebraObject"><td class="mdescLeft">&#160;</td><td class="mdescRight">setup the distribution of this distributable linear algebra object  <a href="classoomph_1_1DistributableLinearAlgebraObject.html#ac5340bac40b9559b0378037b57005203">More...</a><br /></td></tr>
@@ -336,7 +337,7 @@ Additional Inherited Members</h2></td></tr>
 <tr class="separator:ad38255ae12611787a857cc5c90ffa9f8 inherit pro_attribs_classoomph_1_1LinearSolver"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
-<div class="textblock"><p >Dense LU decomposition-based solve of linear system assembled via finite differencing of the residuals <a class="el" href="classoomph_1_1Vector.html">Vector</a>. Even more inefficient than <a class="el" href="classoomph_1_1DenseLU.html" title="Dense LU decomposition-based solve of full assembled linear system. VERY inefficient but useful to il...">DenseLU</a> but excellent sanity check! </p>
+<div class="textblock"><p >Dense LU decomposition-based solve of linear system assembled via finite differencing of the residuals <a class="el" href="classoomph_1_1Vector.html" title="A slight extension to the standard template vector class so that we can include &quot;graceful&quot; array rang...">Vector</a>. Even more inefficient than <a class="el" href="classoomph_1_1DenseLU.html" title="Dense LU decomposition-based solve of full assembled linear system. VERY inefficient but useful to il...">DenseLU</a> but excellent sanity check! </p>
 
 <p class="definition">Definition at line <a class="el" href="linear__solver_8h_source.html#l00431">431</a> of file <a class="el" href="linear__solver_8h_source.html">linear_solver.h</a>.</p>
 </div><h2 class="groupheader">Constructor &amp; Destructor Documentation</h2>
@@ -560,8 +561,8 @@ Additional Inherited Members</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
-<p>Solver: Takes pointer to problem and returns the results <a class="el" href="classoomph_1_1Vector.html">Vector</a> which contains the solution of the linear system defined by the problem's residual <a class="el" href="classoomph_1_1Vector.html">Vector</a> (Jacobian computed by FD approx.) </p>
-<p >Solver: Takes pointer to problem and returns the results <a class="el" href="classoomph_1_1Vector.html">Vector</a> which contains the solution of the linear system defined by the problem's residual <a class="el" href="classoomph_1_1Vector.html">Vector</a>. (Jacobian assembled by FD). </p>
+<p>Solver: Takes pointer to problem and returns the results <a class="el" href="classoomph_1_1Vector.html" title="A slight extension to the standard template vector class so that we can include &quot;graceful&quot; array rang...">Vector</a> which contains the solution of the linear system defined by the problem's residual <a class="el" href="classoomph_1_1Vector.html" title="A slight extension to the standard template vector class so that we can include &quot;graceful&quot; array rang...">Vector</a> (Jacobian computed by FD approx.) </p>
+<p >Solver: Takes pointer to problem and returns the results <a class="el" href="classoomph_1_1Vector.html" title="A slight extension to the standard template vector class so that we can include &quot;graceful&quot; array rang...">Vector</a> which contains the solution of the linear system defined by the problem's residual <a class="el" href="classoomph_1_1Vector.html" title="A slight extension to the standard template vector class so that we can include &quot;graceful&quot; array rang...">Vector</a>. (Jacobian assembled by FD). </p>
 
 <p>Reimplemented from <a class="el" href="classoomph_1_1DenseLU.html#ac354b224819146618ce8a1396f8f980e">oomph::DenseLU</a>.</p>
 
@@ -605,7 +606,7 @@ Additional Inherited Members</h2></td></tr>
     <footer>
       <div class="container">
         <div class="text-muted" style="float:right;">Generated by <a href="http://www.doxygen.org/index.html">
-          <img style="height:18px;" class="footer-img" src="doxygen.png" alt="doxygen"></a> on Wed Oct 13 2021 08:46:17
+          <img style="height:18px;" class="footer-img" src="doxygen.png" alt="doxygen"></a> on Thu Oct 21 2021 17:34:41
         </div>
       </div>
     </footer>

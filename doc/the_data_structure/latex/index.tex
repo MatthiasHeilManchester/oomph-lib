@@ -77,12 +77,12 @@ In FE computations, most (but not all; see below) {\ttfamily Data} are associate
 
 The nodal positions are accessed by the member function 
 \begin{DoxyCode}{0}
-\DoxyCodeLine{Node::x(\mbox{\hyperlink{cfortran_8h_adb50e893b86b3e55e751a42eab3cba82}{i}}) }
+\DoxyCodeLine{\mbox{\hyperlink{namespaceoomph_a9d1d2da2b8bb8e73af72b5cadb8fe97c}{Node::x}}(\mbox{\hyperlink{cfortran_8h_adb50e893b86b3e55e751a42eab3cba82}{i}}) }
 
 \end{DoxyCode}
  which returns the current value of i-\/th nodal coordinate or 
 \begin{DoxyCode}{0}
-\DoxyCodeLine{Node::x(\mbox{\hyperlink{cfortran_8h_af6f0bd3dc13317f895c91323c25c2b8f}{t}},\mbox{\hyperlink{cfortran_8h_adb50e893b86b3e55e751a42eab3cba82}{i}}) }
+\DoxyCodeLine{\mbox{\hyperlink{namespaceoomph_a9d1d2da2b8bb8e73af72b5cadb8fe97c}{Node::x}}(\mbox{\hyperlink{cfortran_8h_af6f0bd3dc13317f895c91323c25c2b8f}{t}},\mbox{\hyperlink{cfortran_8h_adb50e893b86b3e55e751a42eab3cba82}{i}}) }
 
 \end{DoxyCode}
  which returns the value of i-\/th nodal coordinate at the present (t=0) timestep or a history value, if (t\texorpdfstring{$>$}{>}0); again, note that the history values are not necessarily positions at previous timesteps.\hypertarget{index_advanced_features_of_nodes}{}\doxysubsubsection{Advanced features\+:}\label{index_advanced_features_of_nodes}
@@ -105,7 +105,7 @@ The nodal positions are accessed by the member function
  all {\ttfamily Nodes} that could lie on boundaries must be {\ttfamily Boundary\+Nodes}; see \mbox{\hyperlink{index_meshes}{Meshes}} for further details.
 \item {\bfseries{Solid\+Nodes\+:}} Many solid mechanics problems are formulated in Lagrangian coordinates. In this case, the governing equations are discretised in a fixed Lagrangian domain; the nodal coordinates represent the {\ttfamily Nodes\textquotesingle{}} fixed positions in this domain. When the elastic body deforms, material points (and hence the {\ttfamily Nodes}) are displaced to new Eulerian positions. The {\ttfamily Solid\+Node} class is derived from {\ttfamily Node} and contains storage for the {\ttfamily Nodes\textquotesingle{}} {\bfseries{fixed}} positions (i.\+e. the Lagrangian coordinates) AND their {\bfseries{variable}} positions (i.\+e. the Eulerian coordinates), which can be unknowns in the problem. To avoid confusion between the two, the access function for the nodal position, 
 \begin{DoxyCode}{0}
-\DoxyCodeLine{Node::x(...) }
+\DoxyCodeLine{\mbox{\hyperlink{namespaceoomph_a9d1d2da2b8bb8e73af72b5cadb8fe97c}{Node::x}}(...) }
 
 \end{DoxyCode}
  {\bfseries{always}} refers to a {\ttfamily Node\textquotesingle{}s} Eulerian position/coordinate. In {\ttfamily Solid\+Nodes}, we provide a wrapper 
@@ -170,12 +170,12 @@ In multi-\/physics problems, the elemental residuals and Jacobian will be a comb
 
 A problem with this implementation arises when we consider where to initialise the residuals vector. If the second single-\/physics {\ttfamily get\+\_\+residuals(...)} function initialises the residuals vector, then the contribution of the first single-\/physics element will be negated. When writing a single-\/physics element, however, we cannot know whether it will ever be used as part of a multi-\/physics element and, if so, in which order the {\ttfamily get\+\_\+residuals(...)} functions will be called. The solution adopted in {\ttfamily oomph-\/lib} is to provide the two additional virtual functions 
 \begin{DoxyCode}{0}
-\DoxyCodeLine{\textcolor{keyword}{virtual} \textcolor{keywordtype}{void} \mbox{\hyperlink{namespaceoomph_a4221193ecad909a3bf5cfcec81202e39}{GeneralisedElement::fill\_in\_contribution\_to\_residuals}}(...)}
+\DoxyCodeLine{\textcolor{keyword}{virtual} \textcolor{keywordtype}{void} GeneralisedElement::fill\_in\_contribution\_to\_residuals(...)}
 
 \end{DoxyCode}
  
 \begin{DoxyCode}{0}
-\DoxyCodeLine{\textcolor{keyword}{virtual} \textcolor{keywordtype}{void} \mbox{\hyperlink{namespaceoomph_a96a6d71e6bedf75a2fb9051be0644f98}{GeneralisedElement::fill\_in\_contribution\_to\_jacobian}}(...)}
+\DoxyCodeLine{\textcolor{keyword}{virtual} \textcolor{keywordtype}{void} GeneralisedElement::fill\_in\_contribution\_to\_jacobian(...)}
 
 \end{DoxyCode}
  which {\bfseries{must}} {\bfseries{not}} initialise the residuals or Jacobian, but merely add the contribution of the element to the vector or matrix.
@@ -188,7 +188,7 @@ We then use the default implementation
 \DoxyCodeLine{  residuals.initialise(0.0);}
 \DoxyCodeLine{}
 \DoxyCodeLine{  \textcolor{comment}{//Add the elemental contribution to the residuals vector}}
-\DoxyCodeLine{  \mbox{\hyperlink{namespaceoomph_a4221193ecad909a3bf5cfcec81202e39}{fill\_in\_contribution\_to\_residuals}}(residuals);}
+\DoxyCodeLine{  fill\_in\_contribution\_to\_residuals(residuals);}
 \DoxyCodeLine{  \}}
 
 \end{DoxyCode}
@@ -206,10 +206,10 @@ We then use the default implementation
 \DoxyCodeLine{   residuals.initialise(0.0);}
 \DoxyCodeLine{}
 \DoxyCodeLine{   \textcolor{comment}{//Add the first elemental contribution to the residuals vector}}
-\DoxyCodeLine{   \mbox{\hyperlink{namespaceoomph_a4221193ecad909a3bf5cfcec81202e39}{SinglePhysicsOneElement::fill\_in\_contribution\_to\_residuals}}(residuals);}
+\DoxyCodeLine{   SinglePhysicsOneElement::fill\_in\_contribution\_to\_residuals(residuals);}
 \DoxyCodeLine{}
 \DoxyCodeLine{   \textcolor{comment}{//Add the second elemental contribution to the residuals vector   }}
-\DoxyCodeLine{   \mbox{\hyperlink{namespaceoomph_a4221193ecad909a3bf5cfcec81202e39}{SinglePhysicsTwoElement::fill\_in\_contribution\_to\_residuals}}(residuals); }
+\DoxyCodeLine{   SinglePhysicsTwoElement::fill\_in\_contribution\_to\_residuals(residuals); }
 \DoxyCodeLine{  \}}
 \DoxyCodeLine{}
 \DoxyCodeLine{  [...]}
@@ -359,10 +359,10 @@ At this level, we implement the equations that are represented by the specific e
 \DoxyCodeLine{Vector<double> \mbox{\hyperlink{cfortran_8h_ab7123126e4885ef647dd9c6e3807a21c}{s}}(3);}
 \DoxyCodeLine{}
 \DoxyCodeLine{\textcolor{comment}{// Vector of velocity components}}
-\DoxyCodeLine{Vector<double> u(3);}
+\DoxyCodeLine{Vector<double> \mbox{\hyperlink{namespaceoomph_ac0ed65f6db53d9ad737e1d2a69767d25}{u}}(3);}
 \DoxyCodeLine{}
 \DoxyCodeLine{\textcolor{comment}{// Compute the velocity at local coordinate s}}
-\DoxyCodeLine{fluid\_element.interpolated\_u(\mbox{\hyperlink{cfortran_8h_ab7123126e4885ef647dd9c6e3807a21c}{s}},u);}
+\DoxyCodeLine{fluid\_element.interpolated\_u(\mbox{\hyperlink{cfortran_8h_ab7123126e4885ef647dd9c6e3807a21c}{s}},\mbox{\hyperlink{namespaceoomph_ac0ed65f6db53d9ad737e1d2a69767d25}{u}});}
 
 \end{DoxyCode}
  We introduce wrapper functions to access function values, so that we can formulate \char`\"{}\+The Maths\char`\"{} in generic terms. Rather than referring to the pressure at node {\ttfamily n}, via 
@@ -545,7 +545,7 @@ The mesh generation process previously described was for meshes that contain onl
 \end{DoxyCode}
  combines the sub-\/meshes into the global {\ttfamily Mesh} and must be called once all the sub-\/meshes have been constructed and \char`\"{}added\char`\"{} to the {\ttfamily Problem}.
 
-{\bfseries{Important\+:}} Many operations (such as the shifting of history values in time-\/stepping) must be performed exactly once for each {\ttfamily Node} (or {\ttfamily Data}). Therefore, the vector of (pointers to) nodes in the global {\ttfamily Mesh} must not contain any duplicate entries. When copying (pointer to) {\ttfamily Nodes} from the submeshes into the global {\ttfamily Mesh}, the function {\ttfamily Problem\+::build\+\_\+global\+\_\+mesh()} ignores any {\ttfamily Nodes} that have already been copied from a previous submesh. \mbox{[}The {\ttfamily \mbox{\hyperlink{namespaceoomph_a6a5cfce839009bef49cce08492ec6aeb}{Mesh\+::self\+\_\+test()}}} function checks for duplicates in the {\ttfamily Mesh\+::\+Node\+\_\+pt} vector.\mbox{]}
+{\bfseries{Important\+:}} Many operations (such as the shifting of history values in time-\/stepping) must be performed exactly once for each {\ttfamily Node} (or {\ttfamily Data}). Therefore, the vector of (pointers to) nodes in the global {\ttfamily Mesh} must not contain any duplicate entries. When copying (pointer to) {\ttfamily Nodes} from the submeshes into the global {\ttfamily Mesh}, the function {\ttfamily Problem\+::build\+\_\+global\+\_\+mesh()} ignores any {\ttfamily Nodes} that have already been copied from a previous submesh. \mbox{[}The {\ttfamily Mesh\+::self\+\_\+test()} function checks for duplicates in the {\ttfamily Mesh\+::\+Node\+\_\+pt} vector.\mbox{]}
 
 {\bfseries{Convention\+:}} Recall that ({\ttfamily Boundary})Nodes are `told' about the number of the boundary they live on when the (sub-\/)meshes are constructed. In the context of multiple meshes, this raises the question if this number should continue to refer to the boundary number within the submesh or be updated to a boundary number within the global {\ttfamily Mesh}. We adopt the convention that boundary numbers remain those that were originally assigned when the submeshes were constructed.
 

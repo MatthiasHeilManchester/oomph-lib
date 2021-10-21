@@ -136,6 +136,9 @@ $(function() {
 </div><!--header-->
 <div class="contents">
 
+<p>An interface class to the suite of Hypre solvers and preconditioners to allow use of:  
+ <a href="classoomph_1_1HypreInterface.html#details">More...</a></p>
+
 <p><code>#include &lt;<a class="el" href="hypre__solver_8h_source.html">hypre_solver.h</a>&gt;</code></p>
 <div id="dynsection-0" onclick="return toggleVisibility(this)" class="dynheader closed" style="cursor:pointer;">
   <img id="dynsection-0-trigger" src="closed.png" alt="+"/> Inheritance diagram for oomph::HypreInterface:</div>
@@ -145,8 +148,8 @@ $(function() {
  <div class="center">
   <img src="classoomph_1_1HypreInterface.png" usemap="#oomph::HypreInterface_map" alt=""/>
   <map id="oomph::HypreInterface_map" name="oomph::HypreInterface_map">
-<area href="classoomph_1_1HyprePreconditioner.html" alt="oomph::HyprePreconditioner" shape="rect" coords="0,56,173,80"/>
-<area href="classoomph_1_1HypreSolver.html" alt="oomph::HypreSolver" shape="rect" coords="183,56,356,80"/>
+<area href="classoomph_1_1HyprePreconditioner.html" title="An Preconditioner class using the suite of Hypre preconditioners to allow." alt="oomph::HyprePreconditioner" shape="rect" coords="0,56,173,80"/>
+<area href="classoomph_1_1HypreSolver.html" title="An LinearSolver class using the suite of Hypre solvers to allow." alt="oomph::HypreSolver" shape="rect" coords="183,56,356,80"/>
   </map>
 </div></div>
 <table class="memberdecls">
@@ -217,7 +220,7 @@ Protected Member Functions</h2></td></tr>
 <tr class="memdesc:aebc23d169937d5e6a5b492710843ae7b"><td class="mdescLeft">&#160;</td><td class="mdescRight">Function which sets values of First_global_row, Last_global_row and other partitioning data and creates the distributed Hypre matrix (stored in Matrix_ij/Matrix_par) from the <a class="el" href="classoomph_1_1CRDoubleMatrix.html" title="A class for compressed row matrices. This is a distributable object.">CRDoubleMatrix</a>.  <a href="classoomph_1_1HypreInterface.html#aebc23d169937d5e6a5b492710843ae7b">More...</a><br /></td></tr>
 <tr class="separator:aebc23d169937d5e6a5b492710843ae7b"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:afeddc250f9c56ac94e8c013c23a69deb"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classoomph_1_1HypreInterface.html#afeddc250f9c56ac94e8c013c23a69deb">hypre_solver_setup</a> ()</td></tr>
-<tr class="memdesc:afeddc250f9c56ac94e8c013c23a69deb"><td class="mdescLeft">&#160;</td><td class="mdescRight">Sets up the data required for to use as an oomph-lib <a class="el" href="classoomph_1_1LinearSolver.html">LinearSolver</a> or <a class="el" href="classoomph_1_1Preconditioner.html" title="Preconditioner base class. Gives an interface to call all other preconditioners through and stores th...">Preconditioner</a>. This must be called after the Hypre matrix has been generated using hypre_matrix_setup(...).  <a href="classoomph_1_1HypreInterface.html#afeddc250f9c56ac94e8c013c23a69deb">More...</a><br /></td></tr>
+<tr class="memdesc:afeddc250f9c56ac94e8c013c23a69deb"><td class="mdescLeft">&#160;</td><td class="mdescRight">Sets up the data required for to use as an oomph-lib <a class="el" href="classoomph_1_1LinearSolver.html" title="Base class for all linear solvers. This merely defines standard interfaces for linear solvers,...">LinearSolver</a> or <a class="el" href="classoomph_1_1Preconditioner.html" title="Preconditioner base class. Gives an interface to call all other preconditioners through and stores th...">Preconditioner</a>. This must be called after the Hypre matrix has been generated using hypre_matrix_setup(...).  <a href="classoomph_1_1HypreInterface.html#afeddc250f9c56ac94e8c013c23a69deb">More...</a><br /></td></tr>
 <tr class="separator:afeddc250f9c56ac94e8c013c23a69deb"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a5cdd3f8621333e94d8a1004611bc6793"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classoomph_1_1HypreInterface.html#a5cdd3f8621333e94d8a1004611bc6793">hypre_solve</a> (const <a class="el" href="classoomph_1_1DoubleVector.html">DoubleVector</a> &amp;rhs, <a class="el" href="classoomph_1_1DoubleVector.html">DoubleVector</a> &amp;solution)</td></tr>
 <tr class="memdesc:a5cdd3f8621333e94d8a1004611bc6793"><td class="mdescLeft">&#160;</td><td class="mdescRight">Helper function performs a solve if any solver exists.  <a href="classoomph_1_1HypreInterface.html#a5cdd3f8621333e94d8a1004611bc6793">More...</a><br /></td></tr>
@@ -313,10 +316,10 @@ Protected Attributes</h2></td></tr>
 <tr class="memdesc:a0117cae635c9242ccfd9ad7153511c07"><td class="mdescLeft">&#160;</td><td class="mdescRight">Internal flag which is true when hypre_setup or hypre_solve can delete input matrix.  <a href="classoomph_1_1HypreInterface.html#a0117cae635c9242ccfd9ad7153511c07">More...</a><br /></td></tr>
 <tr class="separator:a0117cae635c9242ccfd9ad7153511c07"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a3e1fd87d247b737001fb366bf4a7081f"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classoomph_1_1HypreInterface.html#a3e1fd87d247b737001fb366bf4a7081f">Using_distributed_rhs</a></td></tr>
-<tr class="memdesc:a3e1fd87d247b737001fb366bf4a7081f"><td class="mdescLeft">&#160;</td><td class="mdescRight">Internal flag which tell the solver if the rhs <a class="el" href="classoomph_1_1Vector.html">Vector</a> is distributed or not.  <a href="classoomph_1_1HypreInterface.html#a3e1fd87d247b737001fb366bf4a7081f">More...</a><br /></td></tr>
+<tr class="memdesc:a3e1fd87d247b737001fb366bf4a7081f"><td class="mdescLeft">&#160;</td><td class="mdescRight">Internal flag which tell the solver if the rhs <a class="el" href="classoomph_1_1Vector.html" title="A slight extension to the standard template vector class so that we can include &quot;graceful&quot; array rang...">Vector</a> is distributed or not.  <a href="classoomph_1_1HypreInterface.html#a3e1fd87d247b737001fb366bf4a7081f">More...</a><br /></td></tr>
 <tr class="separator:a3e1fd87d247b737001fb366bf4a7081f"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a1bc7fe7e11b5c08cc768969b9e1f8641"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classoomph_1_1HypreInterface.html#a1bc7fe7e11b5c08cc768969b9e1f8641">Returning_distributed_solution</a></td></tr>
-<tr class="memdesc:a1bc7fe7e11b5c08cc768969b9e1f8641"><td class="mdescLeft">&#160;</td><td class="mdescRight">Internal flag which tell the solver if the solution <a class="el" href="classoomph_1_1Vector.html">Vector</a> to be returned is distributed or not.  <a href="classoomph_1_1HypreInterface.html#a1bc7fe7e11b5c08cc768969b9e1f8641">More...</a><br /></td></tr>
+<tr class="memdesc:a1bc7fe7e11b5c08cc768969b9e1f8641"><td class="mdescLeft">&#160;</td><td class="mdescRight">Internal flag which tell the solver if the solution <a class="el" href="classoomph_1_1Vector.html" title="A slight extension to the standard template vector class so that we can include &quot;graceful&quot; array rang...">Vector</a> to be returned is distributed or not.  <a href="classoomph_1_1HypreInterface.html#a1bc7fe7e11b5c08cc768969b9e1f8641">More...</a><br /></td></tr>
 <tr class="separator:a1bc7fe7e11b5c08cc768969b9e1f8641"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pri-attribs" name="pri-attribs"></a>
@@ -347,7 +350,7 @@ Private Attributes</h2></td></tr>
 <tr class="separator:a30dce43f55e1f40d6f5e3ec48130a127"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
-<div class="textblock"><p >An interface class to the suite of Hypre solvers and preconditioners to allow use of:</p>
+<div class="textblock"><p >An interface class to the suite of Hypre solvers and preconditioners to allow use of: </p>
 <p >BoomerAMG (AMG), <a class="el" href="classoomph_1_1CG.html" title="The conjugate gradient method.">CG</a>, <a class="el" href="classoomph_1_1GMRES.html" title="The GMRES method.">GMRES</a> or <a class="el" href="classoomph_1_1BiCGStab.html" title="The conjugate gradient method.">BiCGStab</a>, Euclid (ILU) or ParaSails (Approximate inverse)</p>
 <p >Hypre's Krylov subspace solvers (<a class="el" href="classoomph_1_1CG.html" title="The conjugate gradient method.">CG</a>, <a class="el" href="classoomph_1_1GMRES.html" title="The GMRES method.">GMRES</a> and <a class="el" href="classoomph_1_1BiCGStab.html" title="The conjugate gradient method.">BiCGStab</a>) may be preconditioned using: </p><pre class="fragment">    BoomerAMG, Euclid or ParaSails
 </pre> 
@@ -735,8 +738,8 @@ Private Attributes</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
-<p>Sets up the data required for to use as an oomph-lib <a class="el" href="classoomph_1_1LinearSolver.html">LinearSolver</a> or <a class="el" href="classoomph_1_1Preconditioner.html" title="Preconditioner base class. Gives an interface to call all other preconditioners through and stores th...">Preconditioner</a>. This must be called after the Hypre matrix has been generated using hypre_matrix_setup(...). </p>
-<p >Sets up the solver data required for use in an oomph-lib <a class="el" href="classoomph_1_1LinearSolver.html">LinearSolver</a> or <a class="el" href="classoomph_1_1Preconditioner.html" title="Preconditioner base class. Gives an interface to call all other preconditioners through and stores th...">Preconditioner</a>, once the Hypre matrix has been generated using hypre_matrix_setup(...). </p>
+<p>Sets up the data required for to use as an oomph-lib <a class="el" href="classoomph_1_1LinearSolver.html" title="Base class for all linear solvers. This merely defines standard interfaces for linear solvers,...">LinearSolver</a> or <a class="el" href="classoomph_1_1Preconditioner.html" title="Preconditioner base class. Gives an interface to call all other preconditioners through and stores th...">Preconditioner</a>. This must be called after the Hypre matrix has been generated using hypre_matrix_setup(...). </p>
+<p >Sets up the solver data required for use in an oomph-lib <a class="el" href="classoomph_1_1LinearSolver.html" title="Base class for all linear solvers. This merely defines standard interfaces for linear solvers,...">LinearSolver</a> or <a class="el" href="classoomph_1_1Preconditioner.html" title="Preconditioner base class. Gives an interface to call all other preconditioners through and stores th...">Preconditioner</a>, once the Hypre matrix has been generated using hypre_matrix_setup(...). </p>
 
 <p class="definition">Definition at line <a class="el" href="hypre__solver_8cc_source.html#l00558">558</a> of file <a class="el" href="hypre__solver_8cc_source.html">hypre_solver.cc</a>.</p>
 
@@ -1888,7 +1891,7 @@ Private Attributes</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
-<p>Internal flag which tell the solver if the solution <a class="el" href="classoomph_1_1Vector.html">Vector</a> to be returned is distributed or not. </p>
+<p>Internal flag which tell the solver if the solution <a class="el" href="classoomph_1_1Vector.html" title="A slight extension to the standard template vector class so that we can include &quot;graceful&quot; array rang...">Vector</a> to be returned is distributed or not. </p>
 
 <p class="definition">Definition at line <a class="el" href="hypre__solver_8h_source.html#l00454">454</a> of file <a class="el" href="hypre__solver_8h_source.html">hypre_solver.h</a>.</p>
 
@@ -1970,7 +1973,7 @@ Private Attributes</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
-<p>Internal flag which tell the solver if the rhs <a class="el" href="classoomph_1_1Vector.html">Vector</a> is distributed or not. </p>
+<p>Internal flag which tell the solver if the rhs <a class="el" href="classoomph_1_1Vector.html" title="A slight extension to the standard template vector class so that we can include &quot;graceful&quot; array rang...">Vector</a> is distributed or not. </p>
 
 <p class="definition">Definition at line <a class="el" href="hypre__solver_8h_source.html#l00450">450</a> of file <a class="el" href="hypre__solver_8h_source.html">hypre_solver.h</a>.</p>
 
@@ -2008,7 +2011,7 @@ Private Attributes</h2></td></tr>
     <footer>
       <div class="container">
         <div class="text-muted" style="float:right;">Generated by <a href="http://www.doxygen.org/index.html">
-          <img style="height:18px;" class="footer-img" src="doxygen.png" alt="doxygen"></a> on Wed Oct 13 2021 08:46:37
+          <img style="height:18px;" class="footer-img" src="doxygen.png" alt="doxygen"></a> on Thu Oct 21 2021 17:35:01
         </div>
       </div>
     </footer>

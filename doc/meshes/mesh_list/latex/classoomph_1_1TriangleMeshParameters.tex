@@ -13,11 +13,11 @@ Helper object for dealing with the parameters used for the \mbox{\hyperlink{clas
 \begin{DoxyCompactItemize}
 \item 
 \mbox{\hyperlink{classoomph_1_1TriangleMeshParameters_a229126475e258fe79dd85dada3553e91}{Triangle\+Mesh\+Parameters}} (Vector$<$ Triangle\+Mesh\+Closed\+Curve $\ast$ $>$ \&\mbox{\hyperlink{classoomph_1_1TriangleMeshParameters_a2182cc406dd417fd99c9cad4c3705fd9}{outer\+\_\+boundary\+\_\+pt}})
-\item 
+\begin{DoxyCompactList}\small\item\em Constructor\+: Only takes the outer boundary, all the other parameters are stated with the specific parameters. \end{DoxyCompactList}\item 
 \mbox{\hyperlink{classoomph_1_1TriangleMeshParameters_a674b9be72cdd5c72877f07b434882704}{Triangle\+Mesh\+Parameters}} (Triangle\+Mesh\+Closed\+Curve $\ast$\mbox{\hyperlink{classoomph_1_1TriangleMeshParameters_a2182cc406dd417fd99c9cad4c3705fd9}{outer\+\_\+boundary\+\_\+pt}})
-\item 
+\begin{DoxyCompactList}\small\item\em Constructor\+: Only takes the outer boundary, all the other parameters are stated with the specific parameters. \end{DoxyCompactList}\item 
 \mbox{\hyperlink{classoomph_1_1TriangleMeshParameters_a942be2020ecd26582855d1920ce23803}{Triangle\+Mesh\+Parameters}} ()
-\item 
+\begin{DoxyCompactList}\small\item\em Constructor\+: Takes nothing and initializes the other parameters to the default ones. \end{DoxyCompactList}\item 
 virtual \mbox{\hyperlink{classoomph_1_1TriangleMeshParameters_a2f475a9f1c9d9d89122cfaf706dfff90}{$\sim$\+Triangle\+Mesh\+Parameters}} ()
 \begin{DoxyCompactList}\small\item\em Empty destructor. \end{DoxyCompactList}\item 
 Vector$<$ Triangle\+Mesh\+Closed\+Curve $\ast$ $>$ \mbox{\hyperlink{classoomph_1_1TriangleMeshParameters_a2182cc406dd417fd99c9cad4c3705fd9}{outer\+\_\+boundary\+\_\+pt}} () const
@@ -77,11 +77,11 @@ void \mbox{\hyperlink{classoomph_1_1TriangleMeshParameters_a65624d572188eaf21b45
 bool \mbox{\hyperlink{classoomph_1_1TriangleMeshParameters_ae54c65b4b09b0363256373ff9a9619be}{is\+\_\+internal\+\_\+boundary\+\_\+refinement\+\_\+allowed}} () const
 \begin{DoxyCompactList}\small\item\em Helper function for getting the status of boundary refinement. \end{DoxyCompactList}\item 
 void \mbox{\hyperlink{classoomph_1_1TriangleMeshParameters_a6448159477b5b99adcb942c1cbf82a07}{enable\+\_\+automatic\+\_\+creation\+\_\+of\+\_\+vertices\+\_\+on\+\_\+boundaries}} ()
-\item 
+\begin{DoxyCompactList}\small\item\em Enables the creation of points (by Triangle) on the outer and internal boundaries. \end{DoxyCompactList}\item 
 void \mbox{\hyperlink{classoomph_1_1TriangleMeshParameters_a5b233318ec4e4635d7b74c27d0c6287c}{disable\+\_\+automatic\+\_\+creation\+\_\+of\+\_\+vertices\+\_\+on\+\_\+boundaries}} ()
-\item 
+\begin{DoxyCompactList}\small\item\em Disables the creation of points (by Triangle) on the outer and internal boundaries. \end{DoxyCompactList}\item 
 bool \mbox{\hyperlink{classoomph_1_1TriangleMeshParameters_a1c4b2e2d3d8831d46e42bd432fdcae32}{is\+\_\+automatic\+\_\+creation\+\_\+of\+\_\+vertices\+\_\+on\+\_\+boundaries\+\_\+allowed}} ()
-\end{DoxyCompactItemize}
+\begin{DoxyCompactList}\small\item\em Returns the status of the variable Allow\+\_\+automatic\+\_\+creation\+\_\+of\+\_\+vertices\+\_\+on\+\_\+boundaries. \end{DoxyCompactList}\end{DoxyCompactItemize}
 \doxysubsection*{Protected Attributes}
 \begin{DoxyCompactItemize}
 \item 
@@ -106,9 +106,9 @@ bool \mbox{\hyperlink{classoomph_1_1TriangleMeshParameters_a0a97e7b7a890c2584206
 bool \mbox{\hyperlink{classoomph_1_1TriangleMeshParameters_a5d4823276b94bc4b3d4dbbd8d351596c}{Internal\+\_\+boundary\+\_\+refinement}}
 \begin{DoxyCompactList}\small\item\em Do not allow refinement of nodes on the internal boundary. \end{DoxyCompactList}\item 
 bool \mbox{\hyperlink{classoomph_1_1TriangleMeshParameters_abe02ff536c7f79016947f28a2ffc0b59}{Allow\+\_\+automatic\+\_\+creation\+\_\+of\+\_\+vertices\+\_\+on\+\_\+boundaries}}
-\item 
+\begin{DoxyCompactList}\small\item\em Allows automatic creation of vertices along boundaries by Triangle. \end{DoxyCompactList}\item 
 Oomph\+Communicator $\ast$ \mbox{\hyperlink{classoomph_1_1TriangleMeshParameters_acf0912db2ab6a5f3f379c1839356ebd6}{Comm\+\_\+pt}}
-\end{DoxyCompactItemize}
+\begin{DoxyCompactList}\small\item\em Pointer to communicator -- set to NULL if mesh is not distributed Required to pass it to new distributed meshes created at the adaptation stage. \end{DoxyCompactList}\end{DoxyCompactItemize}
 
 
 \doxysubsection{Detailed Description}
@@ -125,7 +125,11 @@ Definition at line \mbox{\hyperlink{triangle__mesh_8template_8h_source_l00093}{9
 \doxysubsubsection{\texorpdfstring{TriangleMeshParameters()}{TriangleMeshParameters()}\hspace{0.1cm}{\footnotesize\ttfamily [1/3]}}
 {\footnotesize\ttfamily oomph\+::\+Triangle\+Mesh\+Parameters\+::\+Triangle\+Mesh\+Parameters (\begin{DoxyParamCaption}\item[{Vector$<$ Triangle\+Mesh\+Closed\+Curve $\ast$ $>$ \&}]{outer\+\_\+boundary\+\_\+pt }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
 
-Constructor\+: Only takes the outer boundary, all the other parameters are stated with the specific parameters 
+
+
+Constructor\+: Only takes the outer boundary, all the other parameters are stated with the specific parameters. 
+
+
 
 Definition at line \mbox{\hyperlink{triangle__mesh_8template_8h_source_l00098}{98}} of file \mbox{\hyperlink{triangle__mesh_8template_8h_source}{triangle\+\_\+mesh.\+template.\+h}}.
 
@@ -135,7 +139,11 @@ Definition at line \mbox{\hyperlink{triangle__mesh_8template_8h_source_l00098}{9
 \doxysubsubsection{\texorpdfstring{TriangleMeshParameters()}{TriangleMeshParameters()}\hspace{0.1cm}{\footnotesize\ttfamily [2/3]}}
 {\footnotesize\ttfamily oomph\+::\+Triangle\+Mesh\+Parameters\+::\+Triangle\+Mesh\+Parameters (\begin{DoxyParamCaption}\item[{Triangle\+Mesh\+Closed\+Curve $\ast$}]{outer\+\_\+boundary\+\_\+pt }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
 
-Constructor\+: Only takes the outer boundary, all the other parameters are stated with the specific parameters 
+
+
+Constructor\+: Only takes the outer boundary, all the other parameters are stated with the specific parameters. 
+
+
 
 Definition at line \mbox{\hyperlink{triangle__mesh_8template_8h_source_l00111}{111}} of file \mbox{\hyperlink{triangle__mesh_8template_8h_source}{triangle\+\_\+mesh.\+template.\+h}}.
 
@@ -149,7 +157,11 @@ References \mbox{\hyperlink{triangle__mesh_8template_8h_source_l00139}{outer\+\_
 \doxysubsubsection{\texorpdfstring{TriangleMeshParameters()}{TriangleMeshParameters()}\hspace{0.1cm}{\footnotesize\ttfamily [3/3]}}
 {\footnotesize\ttfamily oomph\+::\+Triangle\+Mesh\+Parameters\+::\+Triangle\+Mesh\+Parameters (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
 
-Constructor\+: Takes nothing and initializes the other parameters to the default ones 
+
+
+Constructor\+: Takes nothing and initializes the other parameters to the default ones. 
+
+
 
 Definition at line \mbox{\hyperlink{triangle__mesh_8template_8h_source_l00125}{125}} of file \mbox{\hyperlink{triangle__mesh_8template_8h_source}{triangle\+\_\+mesh.\+template.\+h}}.
 
@@ -216,7 +228,11 @@ Referenced by \mbox{\hyperlink{quad__from__triangle__mesh_8template_8h_source_l0
 \doxysubsubsection{\texorpdfstring{disable\_automatic\_creation\_of\_vertices\_on\_boundaries()}{disable\_automatic\_creation\_of\_vertices\_on\_boundaries()}}
 {\footnotesize\ttfamily void oomph\+::\+Triangle\+Mesh\+Parameters\+::disable\+\_\+automatic\+\_\+creation\+\_\+of\+\_\+vertices\+\_\+on\+\_\+boundaries (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
 
-Disables the creation of points (by Triangle) on the outer and internal boundaries 
+
+
+Disables the creation of points (by Triangle) on the outer and internal boundaries. 
+
+
 
 Definition at line \mbox{\hyperlink{triangle__mesh_8template_8h_source_l00354}{354}} of file \mbox{\hyperlink{triangle__mesh_8template_8h_source}{triangle\+\_\+mesh.\+template.\+h}}.
 
@@ -328,7 +344,11 @@ Referenced by \mbox{\hyperlink{triangle__mesh_8template_8cc_source_l29595}{oomph
 \doxysubsubsection{\texorpdfstring{enable\_automatic\_creation\_of\_vertices\_on\_boundaries()}{enable\_automatic\_creation\_of\_vertices\_on\_boundaries()}}
 {\footnotesize\ttfamily void oomph\+::\+Triangle\+Mesh\+Parameters\+::enable\+\_\+automatic\+\_\+creation\+\_\+of\+\_\+vertices\+\_\+on\+\_\+boundaries (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
 
-Enables the creation of points (by Triangle) on the outer and internal boundaries 
+
+
+Enables the creation of points (by Triangle) on the outer and internal boundaries. 
+
+
 
 Definition at line \mbox{\hyperlink{triangle__mesh_8template_8h_source_l00347}{347}} of file \mbox{\hyperlink{triangle__mesh_8template_8h_source}{triangle\+\_\+mesh.\+template.\+h}}.
 
@@ -520,7 +540,11 @@ Referenced by \mbox{\hyperlink{triangle__mesh_8template_8cc_source_l29595}{oomph
 \doxysubsubsection{\texorpdfstring{is\_automatic\_creation\_of\_vertices\_on\_boundaries\_allowed()}{is\_automatic\_creation\_of\_vertices\_on\_boundaries\_allowed()}}
 {\footnotesize\ttfamily bool oomph\+::\+Triangle\+Mesh\+Parameters\+::is\+\_\+automatic\+\_\+creation\+\_\+of\+\_\+vertices\+\_\+on\+\_\+boundaries\+\_\+allowed (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
 
-Returns the status of the variable Allow\+\_\+automatic\+\_\+creation\+\_\+of\+\_\+vertices\+\_\+on\+\_\+boundaries 
+
+
+Returns the status of the variable Allow\+\_\+automatic\+\_\+creation\+\_\+of\+\_\+vertices\+\_\+on\+\_\+boundaries. 
+
+
 
 Definition at line \mbox{\hyperlink{triangle__mesh_8template_8h_source_l00361}{361}} of file \mbox{\hyperlink{triangle__mesh_8template_8h_source}{triangle\+\_\+mesh.\+template.\+h}}.
 
@@ -789,7 +813,11 @@ Referenced by \mbox{\hyperlink{quad__from__triangle__mesh_8template_8h_source_l0
 \doxysubsubsection{\texorpdfstring{Allow\_automatic\_creation\_of\_vertices\_on\_boundaries}{Allow\_automatic\_creation\_of\_vertices\_on\_boundaries}}
 {\footnotesize\ttfamily bool oomph\+::\+Triangle\+Mesh\+Parameters\+::\+Allow\+\_\+automatic\+\_\+creation\+\_\+of\+\_\+vertices\+\_\+on\+\_\+boundaries\hspace{0.3cm}{\ttfamily [protected]}}
 
-Allows automatic creation of vertices along boundaries by Triangle 
+
+
+Allows automatic creation of vertices along boundaries by Triangle. 
+
+
 
 Definition at line \mbox{\hyperlink{triangle__mesh_8template_8h_source_l00401}{401}} of file \mbox{\hyperlink{triangle__mesh_8template_8h_source}{triangle\+\_\+mesh.\+template.\+h}}.
 
@@ -821,7 +849,11 @@ Referenced by \mbox{\hyperlink{triangle__mesh_8template_8h_source_l00316}{disabl
 \doxysubsubsection{\texorpdfstring{Comm\_pt}{Comm\_pt}}
 {\footnotesize\ttfamily Oomph\+Communicator$\ast$ oomph\+::\+Triangle\+Mesh\+Parameters\+::\+Comm\+\_\+pt\hspace{0.3cm}{\ttfamily [protected]}}
 
-Pointer to communicator -- set to NULL if mesh is not distributed Required to pass it to new distributed meshes created at the adaptation stage 
+
+
+Pointer to communicator -- set to NULL if mesh is not distributed Required to pass it to new distributed meshes created at the adaptation stage. 
+
+
 
 Definition at line \mbox{\hyperlink{triangle__mesh_8template_8h_source_l00406}{406}} of file \mbox{\hyperlink{triangle__mesh_8template_8h_source}{triangle\+\_\+mesh.\+template.\+h}}.
 

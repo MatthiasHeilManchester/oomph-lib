@@ -2,6 +2,11 @@
 \label{classoomph_1_1PseudoSolidNodeUpdateElement}\index{oomph::PseudoSolidNodeUpdateElement$<$ BASIC, SOLID $>$@{oomph::PseudoSolidNodeUpdateElement$<$ BASIC, SOLID $>$}}
 
 
+A templated class that permits combination two different element types, for the solution of problems in deforming domains. The first template paremter BASIC is the standard element and the second SOLID solves the equations that are used to control the mesh deformation.  
+
+
+
+
 {\ttfamily \#include $<$pseudosolid\+\_\+node\+\_\+update\+\_\+elements.\+h$>$}
 
 Inheritance diagram for oomph\+::Pseudo\+Solid\+Node\+Update\+Element\texorpdfstring{$<$}{<} BASIC, SOLID \texorpdfstring{$>$}{>}\+:\begin{figure}[H]
@@ -52,10 +57,10 @@ unsigned \mbox{\hyperlink{classoomph_1_1PseudoSolidNodeUpdateElement_adbda8595ca
 void \mbox{\hyperlink{classoomph_1_1PseudoSolidNodeUpdateElement_a1b1baac59b7500a04f06e9ac5bc534b0}{compute\+\_\+exact\+\_\+\+Z2\+\_\+error}} (std\+::ostream \&outfile, \mbox{\hyperlink{classoomph_1_1FiniteElement_a690fd33af26cc3e84f39bba6d5a85202}{Finite\+Element\+::\+Steady\+Exact\+Solution\+Fct\+Pt}} exact\+\_\+flux\+\_\+pt, double \&error, double \&norm)
 \begin{DoxyCompactList}\small\item\em Plot the error when compared against a given exact flux. Also calculates the norm of the error and that of the exact flux. Use version in BASIC element. \end{DoxyCompactList}\item 
 void \mbox{\hyperlink{classoomph_1_1PseudoSolidNodeUpdateElement_a6af297e5106ad545b61757ff020380ac}{get\+\_\+\+Z2\+\_\+flux}} (const \mbox{\hyperlink{classoomph_1_1Vector}{Vector}}$<$ double $>$ \&\mbox{\hyperlink{cfortran_8h_ab7123126e4885ef647dd9c6e3807a21c}{s}}, \mbox{\hyperlink{classoomph_1_1Vector}{Vector}}$<$ double $>$ \&flux)
-\item 
+\begin{DoxyCompactList}\small\item\em \textquotesingle{}Flux\textquotesingle{} vector for Z2 error estimation\+: Error estimation is based on error in BASIC element \end{DoxyCompactList}\item 
 unsigned \mbox{\hyperlink{classoomph_1_1PseudoSolidNodeUpdateElement_a8a6830facb4584f4e077169296d3d88c}{nvertex\+\_\+node}} () const
 \begin{DoxyCompactList}\small\item\em Number of vertex nodes in the element. \end{DoxyCompactList}\item 
-\mbox{\hyperlink{classoomph_1_1Node}{Node}} $\ast$ \mbox{\hyperlink{classoomph_1_1PseudoSolidNodeUpdateElement_a2facf446f0527256f8b2c4a86a5d2a7a}{vertex\+\_\+node\+\_\+pt}} (const unsigned \&j) const
+Node $\ast$ \mbox{\hyperlink{classoomph_1_1PseudoSolidNodeUpdateElement_a2facf446f0527256f8b2c4a86a5d2a7a}{vertex\+\_\+node\+\_\+pt}} (const unsigned \&j) const
 \begin{DoxyCompactList}\small\item\em Pointer to the j-\/th vertex node in the element. \end{DoxyCompactList}\item 
 unsigned \mbox{\hyperlink{classoomph_1_1PseudoSolidNodeUpdateElement_a673a5bdd155f24f333c0bb493f645202}{nrecovery\+\_\+order}} ()
 \begin{DoxyCompactList}\small\item\em Order of recovery shape functions for Z2 error estimation\+: Done for BASIC element since it determines the refinement. \end{DoxyCompactList}\item 
@@ -206,7 +211,7 @@ Definition at line \mbox{\hyperlink{pseudosolid__node__update__elements_8h_sourc
 
 
 
-References \mbox{\hyperlink{gen__axisym__advection__diffusion__elements_8h_source_l00536}{oomph\+::fill\+\_\+in\+\_\+contribution\+\_\+to\+\_\+jacobian()}}, and \mbox{\hyperlink{pseudosolid__node__update__elements_8h_source_l00175}{oomph\+::\+Pseudo\+Solid\+Node\+Update\+Element$<$ BASIC, SOLID $>$\+::fill\+\_\+in\+\_\+shape\+\_\+derivatives()}}.
+References \mbox{\hyperlink{pseudosolid__node__update__elements_8h_source_l00175}{oomph\+::\+Pseudo\+Solid\+Node\+Update\+Element$<$ BASIC, SOLID $>$\+::fill\+\_\+in\+\_\+shape\+\_\+derivatives()}}.
 
 \mbox{\Hypertarget{classoomph_1_1PseudoSolidNodeUpdateElement_aba0869b0de889df9be90647c28632f8b}\label{classoomph_1_1PseudoSolidNodeUpdateElement_aba0869b0de889df9be90647c28632f8b}} 
 \index{oomph::PseudoSolidNodeUpdateElement$<$ BASIC, SOLID $>$@{oomph::PseudoSolidNodeUpdateElement$<$ BASIC, SOLID $>$}!fill\_in\_contribution\_to\_jacobian\_and\_mass\_matrix@{fill\_in\_contribution\_to\_jacobian\_and\_mass\_matrix}}
@@ -225,7 +230,7 @@ Definition at line \mbox{\hyperlink{pseudosolid__node__update__elements_8h_sourc
 
 
 
-References \mbox{\hyperlink{gen__axisym__advection__diffusion__elements_8h_source_l00547}{oomph\+::fill\+\_\+in\+\_\+contribution\+\_\+to\+\_\+jacobian\+\_\+and\+\_\+mass\+\_\+matrix()}}, and \mbox{\hyperlink{pseudosolid__node__update__elements_8h_source_l00175}{oomph\+::\+Pseudo\+Solid\+Node\+Update\+Element$<$ BASIC, SOLID $>$\+::fill\+\_\+in\+\_\+shape\+\_\+derivatives()}}.
+References \mbox{\hyperlink{pseudosolid__node__update__elements_8h_source_l00175}{oomph\+::\+Pseudo\+Solid\+Node\+Update\+Element$<$ BASIC, SOLID $>$\+::fill\+\_\+in\+\_\+shape\+\_\+derivatives()}}.
 
 \mbox{\Hypertarget{classoomph_1_1PseudoSolidNodeUpdateElement_a12009b16c000c65ad384c74246074384}\label{classoomph_1_1PseudoSolidNodeUpdateElement_a12009b16c000c65ad384c74246074384}} 
 \index{oomph::PseudoSolidNodeUpdateElement$<$ BASIC, SOLID $>$@{oomph::PseudoSolidNodeUpdateElement$<$ BASIC, SOLID $>$}!fill\_in\_contribution\_to\_residuals@{fill\_in\_contribution\_to\_residuals}}
@@ -241,10 +246,6 @@ Final override for the residuals function. Contributions are added from both und
 
 
 Definition at line \mbox{\hyperlink{pseudosolid__node__update__elements_8h_source_l00119}{119}} of file \mbox{\hyperlink{pseudosolid__node__update__elements_8h_source}{pseudosolid\+\_\+node\+\_\+update\+\_\+elements.\+h}}.
-
-
-
-References \mbox{\hyperlink{gen__axisym__advection__diffusion__elements_8h_source_l00522}{oomph\+::fill\+\_\+in\+\_\+contribution\+\_\+to\+\_\+residuals()}}.
 
 \mbox{\Hypertarget{classoomph_1_1PseudoSolidNodeUpdateElement_a254e54579d692d4480e30dee7c6b71cc}\label{classoomph_1_1PseudoSolidNodeUpdateElement_a254e54579d692d4480e30dee7c6b71cc}} 
 \index{oomph::PseudoSolidNodeUpdateElement$<$ BASIC, SOLID $>$@{oomph::PseudoSolidNodeUpdateElement$<$ BASIC, SOLID $>$}!fill\_in\_shape\_derivatives@{fill\_in\_shape\_derivatives}}
@@ -286,7 +287,7 @@ Definition at line \mbox{\hyperlink{pseudosolid__node__update__elements_8h_sourc
 
 
 
-References \mbox{\hyperlink{gen__axisym__advection__diffusion__elements_8h_source_l00522}{oomph\+::fill\+\_\+in\+\_\+contribution\+\_\+to\+\_\+residuals()}}, and \mbox{\hyperlink{cfortran_8h_source_l00603}{i}}.
+References \mbox{\hyperlink{cfortran_8h_source_l00603}{i}}.
 
 
 
@@ -318,7 +319,11 @@ References \mbox{\hyperlink{pseudosolid__node__update__elements_8h_source_l00508
 {\footnotesize\ttfamily template$<$class BASIC , class SOLID $>$ \\
 void \mbox{\hyperlink{classoomph_1_1PseudoSolidNodeUpdateElement}{oomph\+::\+Pseudo\+Solid\+Node\+Update\+Element}}$<$ BASIC, SOLID $>$\+::get\+\_\+\+Z2\+\_\+flux (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{classoomph_1_1Vector}{Vector}}$<$ double $>$ \&}]{s,  }\item[{\mbox{\hyperlink{classoomph_1_1Vector}{Vector}}$<$ double $>$ \&}]{flux }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
 
+
+
 \textquotesingle{}Flux\textquotesingle{} vector for Z2 error estimation\+: Error estimation is based on error in BASIC element 
+
+
 
 Definition at line \mbox{\hyperlink{pseudosolid__node__update__elements_8h_source_l00474}{474}} of file \mbox{\hyperlink{pseudosolid__node__update__elements_8h_source}{pseudosolid\+\_\+node\+\_\+update\+\_\+elements.\+h}}.
 
@@ -452,7 +457,7 @@ Definition at line \mbox{\hyperlink{pseudosolid__node__update__elements_8h_sourc
 
 
 
-References \mbox{\hyperlink{gen__axisym__advection__diffusion__elements_8h_source_l00161}{oomph\+::output()}}.
+References \mbox{\hyperlink{oomph__utilities_8cc_source_l00436}{oomph\+::\+Command\+Line\+Args\+::output()}}.
 
 \mbox{\Hypertarget{classoomph_1_1PseudoSolidNodeUpdateElement_ac4e895c35d56c2137bd35ad988264bc8}\label{classoomph_1_1PseudoSolidNodeUpdateElement_ac4e895c35d56c2137bd35ad988264bc8}} 
 \index{oomph::PseudoSolidNodeUpdateElement$<$ BASIC, SOLID $>$@{oomph::PseudoSolidNodeUpdateElement$<$ BASIC, SOLID $>$}!output@{output}}
@@ -471,7 +476,7 @@ Definition at line \mbox{\hyperlink{pseudosolid__node__update__elements_8h_sourc
 
 
 
-References \mbox{\hyperlink{gen__axisym__advection__diffusion__elements_8h_source_l00161}{oomph\+::output()}}.
+References \mbox{\hyperlink{oomph__utilities_8cc_source_l00436}{oomph\+::\+Command\+Line\+Args\+::output()}}.
 
 \mbox{\Hypertarget{classoomph_1_1PseudoSolidNodeUpdateElement_a41addbcf4a1ed2711e24632c8a122dcb}\label{classoomph_1_1PseudoSolidNodeUpdateElement_a41addbcf4a1ed2711e24632c8a122dcb}} 
 \index{oomph::PseudoSolidNodeUpdateElement$<$ BASIC, SOLID $>$@{oomph::PseudoSolidNodeUpdateElement$<$ BASIC, SOLID $>$}!output@{output}}
@@ -490,7 +495,7 @@ Definition at line \mbox{\hyperlink{pseudosolid__node__update__elements_8h_sourc
 
 
 
-References \mbox{\hyperlink{gen__axisym__advection__diffusion__elements_8h_source_l00161}{oomph\+::output()}}.
+References \mbox{\hyperlink{oomph__utilities_8cc_source_l00436}{oomph\+::\+Command\+Line\+Args\+::output()}}.
 
 \mbox{\Hypertarget{classoomph_1_1PseudoSolidNodeUpdateElement_a293e9f73e7dd0429755379e17326994b}\label{classoomph_1_1PseudoSolidNodeUpdateElement_a293e9f73e7dd0429755379e17326994b}} 
 \index{oomph::PseudoSolidNodeUpdateElement$<$ BASIC, SOLID $>$@{oomph::PseudoSolidNodeUpdateElement$<$ BASIC, SOLID $>$}!output@{output}}
@@ -509,7 +514,7 @@ Definition at line \mbox{\hyperlink{pseudosolid__node__update__elements_8h_sourc
 
 
 
-References \mbox{\hyperlink{gen__axisym__advection__diffusion__elements_8h_source_l00161}{oomph\+::output()}}.
+References \mbox{\hyperlink{oomph__utilities_8cc_source_l00436}{oomph\+::\+Command\+Line\+Args\+::output()}}.
 
 \mbox{\Hypertarget{classoomph_1_1PseudoSolidNodeUpdateElement_a1d3ae58be7e3d2d9aa95086e631ce730}\label{classoomph_1_1PseudoSolidNodeUpdateElement_a1d3ae58be7e3d2d9aa95086e631ce730}} 
 \index{oomph::PseudoSolidNodeUpdateElement$<$ BASIC, SOLID $>$@{oomph::PseudoSolidNodeUpdateElement$<$ BASIC, SOLID $>$}!required\_nvalue@{required\_nvalue}}
@@ -546,7 +551,7 @@ Definition at line \mbox{\hyperlink{pseudosolid__node__update__elements_8h_sourc
 \index{vertex\_node\_pt@{vertex\_node\_pt}!oomph::PseudoSolidNodeUpdateElement$<$ BASIC, SOLID $>$@{oomph::PseudoSolidNodeUpdateElement$<$ BASIC, SOLID $>$}}
 \doxysubsubsection{\texorpdfstring{vertex\_node\_pt()}{vertex\_node\_pt()}}
 {\footnotesize\ttfamily template$<$class BASIC , class SOLID $>$ \\
-\mbox{\hyperlink{classoomph_1_1Node}{Node}} $\ast$ \mbox{\hyperlink{classoomph_1_1PseudoSolidNodeUpdateElement}{oomph\+::\+Pseudo\+Solid\+Node\+Update\+Element}}$<$ BASIC, SOLID $>$\+::vertex\+\_\+node\+\_\+pt (\begin{DoxyParamCaption}\item[{const unsigned \&}]{j }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+Node $\ast$ \mbox{\hyperlink{classoomph_1_1PseudoSolidNodeUpdateElement}{oomph\+::\+Pseudo\+Solid\+Node\+Update\+Element}}$<$ BASIC, SOLID $>$\+::vertex\+\_\+node\+\_\+pt (\begin{DoxyParamCaption}\item[{const unsigned \&}]{j }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
 
 
 

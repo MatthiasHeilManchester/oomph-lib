@@ -2,6 +2,11 @@
 \label{classoomph_1_1TwoLayerSpineMesh}\index{oomph::TwoLayerSpineMesh$<$ ELEMENT $>$@{oomph::TwoLayerSpineMesh$<$ ELEMENT $>$}}
 
 
+Two-\/layer spine mesh class derived from standard 2D mesh. The mesh contains two layers of spinified fluid elements (of type ELEMENT; e.\+g \mbox{\hyperlink{classoomph_1_1SpineElement}{Spine\+Element}}\texorpdfstring{$<$}{<}QCrouzeix\+Raviart\+Element$<$2$>$).  
+
+
+
+
 {\ttfamily \#include $<$two\+\_\+layer\+\_\+spine\+\_\+mesh.\+template.\+h$>$}
 
 Inheritance diagram for oomph\+::Two\+Layer\+Spine\+Mesh\texorpdfstring{$<$}{<} ELEMENT \texorpdfstring{$>$}{>}\+:\begin{figure}[H]
@@ -79,11 +84,11 @@ double \mbox{\hyperlink{classoomph_1_1TwoLayerSpineMesh_a0a7e5f7297ad653440d7d83
 \doxysubsection{Detailed Description}
 \subsubsection*{template$<$class ELEMENT$>$\newline
 class oomph\+::\+Two\+Layer\+Spine\+Mesh$<$ ELEMENT $>$}
-Two-\/layer spine mesh class derived from standard 2D mesh. The mesh contains two layers of spinified fluid elements (of type ELEMENT; e.\+g \mbox{\hyperlink{classoomph_1_1SpineElement}{Spine\+Element}}\texorpdfstring{$<$}{<}QCrouzeix\+Raviart\+Element$<$2$>$).
+Two-\/layer spine mesh class derived from standard 2D mesh. The mesh contains two layers of spinified fluid elements (of type ELEMENT; e.\+g \mbox{\hyperlink{classoomph_1_1SpineElement}{Spine\+Element}}\texorpdfstring{$<$}{<}QCrouzeix\+Raviart\+Element$<$2$>$). 
 
-This mesh paritions the elements into those above and below a notional interface and relabels boundaries so that the mesh is as follows \hypertarget{classoomph_1_1TwoLayerSpineMesh_autotoc_md20}{}\doxysubsubsection{3}\label{classoomph_1_1TwoLayerSpineMesh_autotoc_md20}
-$\vert$ $\vert$ 4 $\vert$ $\vert$ 2 \hypertarget{classoomph_1_1TwoLayerSpineMesh_autotoc_md21}{}\doxysubsubsection{$\vert$                 6                   $\vert$}\label{classoomph_1_1TwoLayerSpineMesh_autotoc_md21}
-$\vert$ $\vert$ 5 $\vert$ $\vert$ 1 \hypertarget{classoomph_1_1TwoLayerSpineMesh_autotoc_md22}{}\doxysubsubsection{$\vert$                                     $\vert$}\label{classoomph_1_1TwoLayerSpineMesh_autotoc_md22}
+This mesh paritions the elements into those above and below a notional interface and relabels boundaries so that the mesh is as follows \hypertarget{classoomph_1_1TwoLayerSpineMesh_autotoc_md19}{}\doxysubsubsection{3}\label{classoomph_1_1TwoLayerSpineMesh_autotoc_md19}
+$\vert$ $\vert$ 4 $\vert$ $\vert$ 2 \hypertarget{classoomph_1_1TwoLayerSpineMesh_autotoc_md20}{}\doxysubsubsection{$\vert$                 6                   $\vert$}\label{classoomph_1_1TwoLayerSpineMesh_autotoc_md20}
+$\vert$ $\vert$ 5 $\vert$ $\vert$ 1 \hypertarget{classoomph_1_1TwoLayerSpineMesh_autotoc_md21}{}\doxysubsubsection{$\vert$                                     $\vert$}\label{classoomph_1_1TwoLayerSpineMesh_autotoc_md21}
 0 Update information for the nodes in response to changes in spine length is given, but additional equations must be specified in order to completely specify the problem. 
 
 Definition at line \mbox{\hyperlink{two__layer__spine__mesh_8template_8h_source_l00059}{59}} of file \mbox{\hyperlink{two__layer__spine__mesh_8template_8h_source}{two\+\_\+layer\+\_\+spine\+\_\+mesh.\+template.\+h}}.
@@ -168,13 +173,13 @@ void \mbox{\hyperlink{classoomph_1_1TwoLayerSpineMesh}{oomph\+::\+Two\+Layer\+Sp
 
 Helper function to actually build the two-\/layer spine mesh (called from various constructors) 
 
-Helper function that actually builds the two-\/layer spine mesh based on the parameters set in the various constructors 
+Helper function that actually builds the two-\/layer spine mesh based on the parameters set in the various constructors. 
 
 Definition at line \mbox{\hyperlink{two__layer__spine__mesh_8template_8cc_source_l00267}{267}} of file \mbox{\hyperlink{two__layer__spine__mesh_8template_8cc_source}{two\+\_\+layer\+\_\+spine\+\_\+mesh.\+template.\+cc}}.
 
 
 
-References \mbox{\hyperlink{rectangular__quadmesh_8template_8cc_source_l00043}{oomph\+::\+Rectangular\+Quad\+Mesh$<$ ELEMENT $>$\+::build\+\_\+mesh()}}, \mbox{\hyperlink{cfortran_8h_source_l00571}{e}}, \mbox{\hyperlink{spines_8h_source_l00378}{oomph\+::\+Spine\+Node\+::fraction()}}, \mbox{\hyperlink{nodes_8cc_source_l02379}{oomph\+::\+Node\+::get\+\_\+coordinates\+\_\+on\+\_\+boundary()}}, \mbox{\hyperlink{cfortran_8h_source_l00603}{i}}, \mbox{\hyperlink{nodes_8cc_source_l02363}{oomph\+::\+Node\+::ncoordinates\+\_\+on\+\_\+boundary()}}, \mbox{\hyperlink{elements_8h_source_l02180}{oomph\+::\+Finite\+Element\+::node\+\_\+pt()}}, \mbox{\hyperlink{spines_8h_source_l00384}{oomph\+::\+Spine\+Node\+::node\+\_\+update\+\_\+fct\+\_\+id()}}, \mbox{\hyperlink{nodes_8cc_source_l02350}{oomph\+::\+Node\+::remove\+\_\+from\+\_\+boundary()}}, \mbox{\hyperlink{nodes_8cc_source_l02394}{oomph\+::\+Node\+::set\+\_\+coordinates\+\_\+on\+\_\+boundary()}}, \mbox{\hyperlink{spines_8h_source_l00391}{oomph\+::\+Spine\+Node\+::spine\+\_\+mesh\+\_\+pt()}}, \mbox{\hyperlink{spines_8h_source_l00372}{oomph\+::\+Spine\+Node\+::spine\+\_\+pt()}}, and \mbox{\hyperlink{nodes_8h_source_l01061}{oomph\+::\+Node\+::x()}}.
+References \mbox{\hyperlink{rectangular__quadmesh_8template_8cc_source_l00043}{oomph\+::\+Rectangular\+Quad\+Mesh$<$ ELEMENT $>$\+::build\+\_\+mesh()}}, \mbox{\hyperlink{cfortran_8h_source_l00571}{e}}, \mbox{\hyperlink{spines_8h_source_l00378}{oomph\+::\+Spine\+Node\+::fraction()}}, \mbox{\hyperlink{cfortran_8h_source_l00603}{i}}, \mbox{\hyperlink{elements_8h_source_l02180}{oomph\+::\+Finite\+Element\+::node\+\_\+pt()}}, \mbox{\hyperlink{spines_8h_source_l00384}{oomph\+::\+Spine\+Node\+::node\+\_\+update\+\_\+fct\+\_\+id()}}, \mbox{\hyperlink{spines_8h_source_l00391}{oomph\+::\+Spine\+Node\+::spine\+\_\+mesh\+\_\+pt()}}, and \mbox{\hyperlink{spines_8h_source_l00372}{oomph\+::\+Spine\+Node\+::spine\+\_\+pt()}}.
 
 
 
@@ -383,7 +388,7 @@ Definition at line \mbox{\hyperlink{two__layer__spine__mesh_8template_8h_source_
 
 
 
-References \mbox{\hyperlink{spines_8h_source_l00378}{oomph\+::\+Spine\+Node\+::fraction()}}, \mbox{\hyperlink{spines_8h_source_l00397}{oomph\+::\+Spine\+Node\+::h()}}, \mbox{\hyperlink{quadtree_8h_source_l00063}{oomph\+::\+Quad\+Tree\+Names\+::W}}, \mbox{\hyperlink{nodes_8h_source_l01061}{oomph\+::\+Node\+::x()}}, and \mbox{\hyperlink{rectangular__quadmesh_8template_8h_source_l00075}{oomph\+::\+Rectangular\+Quad\+Mesh$<$ ELEMENT $>$\+::\+Ymin}}.
+References \mbox{\hyperlink{spines_8h_source_l00378}{oomph\+::\+Spine\+Node\+::fraction()}}, \mbox{\hyperlink{spines_8h_source_l00397}{oomph\+::\+Spine\+Node\+::h()}}, \mbox{\hyperlink{constitutive__laws_8h_source_l00142}{oomph\+::W}}, and \mbox{\hyperlink{rectangular__quadmesh_8template_8h_source_l00075}{oomph\+::\+Rectangular\+Quad\+Mesh$<$ ELEMENT $>$\+::\+Ymin}}.
 
 
 
@@ -406,7 +411,7 @@ Definition at line \mbox{\hyperlink{two__layer__spine__mesh_8template_8h_source_
 
 
 
-References \mbox{\hyperlink{spines_8h_source_l00378}{oomph\+::\+Spine\+Node\+::fraction()}}, \mbox{\hyperlink{spines_8h_source_l00397}{oomph\+::\+Spine\+Node\+::h()}}, \mbox{\hyperlink{quadtree_8h_source_l00063}{oomph\+::\+Quad\+Tree\+Names\+::W}}, \mbox{\hyperlink{nodes_8h_source_l01061}{oomph\+::\+Node\+::x()}}, \mbox{\hyperlink{rectangular__quadmesh_8template_8h_source_l00077}{oomph\+::\+Rectangular\+Quad\+Mesh$<$ ELEMENT $>$\+::\+Ymax}}, and \mbox{\hyperlink{rectangular__quadmesh_8template_8h_source_l00075}{oomph\+::\+Rectangular\+Quad\+Mesh$<$ ELEMENT $>$\+::\+Ymin}}.
+References \mbox{\hyperlink{spines_8h_source_l00378}{oomph\+::\+Spine\+Node\+::fraction()}}, \mbox{\hyperlink{spines_8h_source_l00397}{oomph\+::\+Spine\+Node\+::h()}}, \mbox{\hyperlink{constitutive__laws_8h_source_l00142}{oomph\+::W}}, \mbox{\hyperlink{rectangular__quadmesh_8template_8h_source_l00077}{oomph\+::\+Rectangular\+Quad\+Mesh$<$ ELEMENT $>$\+::\+Ymax}}, and \mbox{\hyperlink{rectangular__quadmesh_8template_8h_source_l00075}{oomph\+::\+Rectangular\+Quad\+Mesh$<$ ELEMENT $>$\+::\+Ymin}}.
 
 
 

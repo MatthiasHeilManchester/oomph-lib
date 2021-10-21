@@ -2,6 +2,11 @@
 \label{classoomph_1_1ExplicitTimeSteppableObject}\index{oomph::ExplicitTimeSteppableObject@{oomph::ExplicitTimeSteppableObject}}
 
 
+Class for objects than can be advanced in time by an Explicit Timestepper. WARNING\+: For explicit time stepping to work the object\textquotesingle{}s residual function (as used by get\+\_\+inverse\+\_\+mass\+\_\+matrix\+\_\+times\+\_\+residuals(..)) MUST be in the form r = f(t, u) -\/ \mbox{[}timestepper approximation to dudt\mbox{]}! Standard implicit time stepping will work with plenty of residuals that don\textquotesingle{}t fit into this form. Some examples where implicit time stepping will work fine but explicit will fail\+: 1) The negation of the above formula, this implementation will end up using dudt = -\/ f(u,t). 2) A residual which is implicit or non-\/linear in dudt, such as r = dudt.  
+
+
+
+
 {\ttfamily \#include $<$explicit\+\_\+timesteppers.\+h$>$}
 
 Inheritance diagram for oomph\+::Explicit\+Time\+Steppable\+Object\+:\begin{figure}[H]
@@ -51,7 +56,9 @@ static double \mbox{\hyperlink{classoomph_1_1ExplicitTimeSteppableObject_ae16e2f
 
 
 \doxysubsection{Detailed Description}
-Class for objects than can be advanced in time by an Explicit Timestepper. WARNING\+: For explicit time stepping to work the object\textquotesingle{}s residual function (as used by get\+\_\+inverse\+\_\+mass\+\_\+matrix\+\_\+times\+\_\+residuals(..)) MUST be in the form r = f(t, u) -\/ \mbox{[}timestepper approximation to dudt\mbox{]}! Standard implicit time stepping will work with plenty of residuals that don\textquotesingle{}t fit into this form. Some examples where implicit time stepping will work fine but explicit will fail\+: 1) The negation of the above formula, this implementation will end up using dudt = -\/ f(u,t). 2) A residual which is implicit or non-\/linear in dudt, such as r = dudt
+Class for objects than can be advanced in time by an Explicit Timestepper. WARNING\+: For explicit time stepping to work the object\textquotesingle{}s residual function (as used by get\+\_\+inverse\+\_\+mass\+\_\+matrix\+\_\+times\+\_\+residuals(..)) MUST be in the form r = f(t, u) -\/ \mbox{[}timestepper approximation to dudt\mbox{]}! Standard implicit time stepping will work with plenty of residuals that don\textquotesingle{}t fit into this form. Some examples where implicit time stepping will work fine but explicit will fail\+: 1) The negation of the above formula, this implementation will end up using dudt = -\/ f(u,t). 2) A residual which is implicit or non-\/linear in dudt, such as r = dudt. 
+
+
 \begin{DoxyItemize}
 \item u x dudt. 
 \end{DoxyItemize}
@@ -192,7 +199,7 @@ Referenced by \mbox{\hyperlink{explicit__timesteppers_8cc_source_l00203}{oomph\+
 
 Function that adds the values to the dofs. 
 
-Function that adds the lambda multiplied by the increment\+\_\+dofs vector to the dofs in the object 
+Function that adds the lambda multiplied by the increment\+\_\+dofs vector to the dofs in the object. 
 
 Reimplemented in \mbox{\hyperlink{classoomph_1_1Problem_a352210408b3eed3e7a834b8b9a33a99a}{oomph\+::\+Problem}}.
 

@@ -259,6 +259,7 @@ Private Attributes</h2></td></tr>
 <tr class="memdesc:ab130a076d416e45522e4299acfe62afe"><td class="mdescLeft">&#160;</td><td class="mdescRight">Pointer to tree-based representation of sample points.  <a href="classCGALSamplePointContainer.html#ab130a076d416e45522e4299acfe62afe">More...</a><br /></td></tr>
 <tr class="separator:ab130a076d416e45522e4299acfe62afe"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a806c0488f0d6920ca835e4f62dadd337"><td class="memItemLeft" align="right" valign="top">Vector&lt; <a class="el" href="classSamplePoint.html">SamplePoint</a> * &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCGALSamplePointContainer.html#a806c0488f0d6920ca835e4f62dadd337">Sample_point_pt</a></td></tr>
+<tr class="memdesc:a806c0488f0d6920ca835e4f62dadd337"><td class="mdescLeft">&#160;</td><td class="mdescRight">Vector storing pointers to sample point objects (which represent sample point in terms of number of element in its mesh and number of sample point)  <a href="classCGALSamplePointContainer.html#a806c0488f0d6920ca835e4f62dadd337">More...</a><br /></td></tr>
 <tr class="separator:a806c0488f0d6920ca835e4f62dadd337"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:aa9e316fd8168bb0f84da14a7d6eba0fa"><td class="memItemLeft" align="right" valign="top">unsigned&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCGALSamplePointContainer.html#aa9e316fd8168bb0f84da14a7d6eba0fa">First_sample_point_to_actually_lookup_during_locate_zeta</a></td></tr>
 <tr class="memdesc:aa9e316fd8168bb0f84da14a7d6eba0fa"><td class="mdescLeft">&#160;</td><td class="mdescRight">When searching through sample points only actually do the locate_zeta calls when when the counter exceeds this value.  <a href="classCGALSamplePointContainer.html#aa9e316fd8168bb0f84da14a7d6eba0fa">More...</a><br /></td></tr>
@@ -277,7 +278,7 @@ Private Attributes</h2></td></tr>
 Additional Inherited Members</h2></td></tr>
 <tr class="inherit_header pub_static_attribs_classSamplePointContainer"><td colspan="2" onclick="javascript:toggleInherit('pub_static_attribs_classSamplePointContainer')"><img src="closed.png" alt="-"/>&#160;Static Public Attributes inherited from <a class="el" href="classSamplePointContainer.html">SamplePointContainer</a></td></tr>
 <tr class="memitem:ad08a1cb658b3783bcf7d8491e90965f3 inherit pub_static_attribs_classSamplePointContainer"><td class="memItemLeft" align="right" valign="top">static std::ofstream&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classSamplePointContainer.html#ad08a1cb658b3783bcf7d8491e90965f3">Visited_sample_points_file</a></td></tr>
-<tr class="memdesc:ad08a1cb658b3783bcf7d8491e90965f3 inherit pub_static_attribs_classSamplePointContainer"><td class="mdescLeft">&#160;</td><td class="mdescRight">File to record sequence of visited sample points in.  <a href="classSamplePointContainer.html#ad08a1cb658b3783bcf7d8491e90965f3">More...</a><br /></td></tr>
+<tr class="memdesc:ad08a1cb658b3783bcf7d8491e90965f3 inherit pub_static_attribs_classSamplePointContainer"><td class="mdescLeft">&#160;</td><td class="mdescRight">File to record sequence of visited sample points in. Used for debugging/ illustration of search procedures.  <a href="classSamplePointContainer.html#ad08a1cb658b3783bcf7d8491e90965f3">More...</a><br /></td></tr>
 <tr class="separator:ad08a1cb658b3783bcf7d8491e90965f3 inherit pub_static_attribs_classSamplePointContainer"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a1098cdf602fabc6ceec41bb7ea73805f inherit pub_static_attribs_classSamplePointContainer"><td class="memItemLeft" align="right" valign="top">static bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classSamplePointContainer.html#a1098cdf602fabc6ceec41bb7ea73805f">Always_fail_elemental_locate_zeta</a> = false</td></tr>
 <tr class="memdesc:a1098cdf602fabc6ceec41bb7ea73805f inherit pub_static_attribs_classSamplePointContainer"><td class="mdescLeft">&#160;</td><td class="mdescRight">Boolean flag to make to make locate zeta fail. Used for debugging/ illustration of search procedures.  <a href="classSamplePointContainer.html#a1098cdf602fabc6ceec41bb7ea73805f">More...</a><br /></td></tr>
@@ -300,6 +301,7 @@ Additional Inherited Members</h2></td></tr>
 <tr class="memdesc:a9f044cf51ea29b0a1a85e029defd81d5 inherit pro_attribs_classSamplePointContainer"><td class="mdescLeft">&#160;</td><td class="mdescRight">Pointer to mesh from whose FiniteElements sample points are created.  <a href="classSamplePointContainer.html#a9f044cf51ea29b0a1a85e029defd81d5">More...</a><br /></td></tr>
 <tr class="separator:a9f044cf51ea29b0a1a85e029defd81d5 inherit pro_attribs_classSamplePointContainer"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a1607ff8abb3f3b6364bc169a6ea4a79c inherit pro_attribs_classSamplePointContainer"><td class="memItemLeft" align="right" valign="top">Vector&lt; std::pair&lt; double, double &gt; &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classSamplePointContainer.html#a1607ff8abb3f3b6364bc169a6ea4a79c">Min_and_max_coordinates</a></td></tr>
+<tr class="memdesc:a1607ff8abb3f3b6364bc169a6ea4a79c inherit pro_attribs_classSamplePointContainer"><td class="mdescLeft">&#160;</td><td class="mdescRight">Vector of pairs of doubles for min and maximum coordinates. Call: Min_and_max_coordinates[j] gives me the pair of min (first) and max. (second) coordinates in the j-th coordinate direction.  <a href="classSamplePointContainer.html#a1607ff8abb3f3b6364bc169a6ea4a79c">More...</a><br /></td></tr>
 <tr class="separator:a1607ff8abb3f3b6364bc169a6ea4a79c inherit pro_attribs_classSamplePointContainer"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a8d7215f8363d751343efe60a1b051e6a inherit pro_attribs_classSamplePointContainer"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classSamplePointContainer.html#a8d7215f8363d751343efe60a1b051e6a">Use_eulerian_coordinates_during_setup</a></td></tr>
 <tr class="memdesc:a8d7215f8363d751343efe60a1b051e6a inherit pro_attribs_classSamplePointContainer"><td class="mdescLeft">&#160;</td><td class="mdescRight">Use Eulerian coordinates (i.e. interpolated_x) rather than zeta itself (i.e. interpolated_zeta) to identify point.  <a href="classSamplePointContainer.html#a8d7215f8363d751343efe60a1b051e6a">More...</a><br /></td></tr>
@@ -1131,7 +1133,8 @@ Additional Inherited Members</h2></td></tr>
   </tr>
 </table>
 </div><div class="memdoc">
-<p >Vector storing pointers to sample point objects (which represent sample point in terms of number of element in its mesh and number of sample point) </p>
+
+<p>Vector storing pointers to sample point objects (which represent sample point in terms of number of element in its mesh and number of sample point) </p>
 
 <p class="definition">Definition at line <a class="el" href="sample__point__container_8h_source.html#l01157">1157</a> of file <a class="el" href="sample__point__container_8h_source.html">sample_point_container.h</a>.</p>
 
@@ -1171,7 +1174,7 @@ Additional Inherited Members</h2></td></tr>
     <footer>
       <div class="container">
         <div class="text-muted" style="float:right;">Generated by <a href="http://www.doxygen.org/index.html">
-          <img style="height:18px;" class="footer-img" src="doxygen.png" alt="doxygen"></a> on Wed Oct 13 2021 08:44:41
+          <img style="height:18px;" class="footer-img" src="doxygen.png" alt="doxygen"></a> on Thu Oct 21 2021 17:33:06
         </div>
       </div>
     </footer>

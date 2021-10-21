@@ -1,5 +1,10 @@
 \hypertarget{classCapProblem}{}\doxysection{Cap\+Problem\texorpdfstring{$<$}{<} ELEMENT \texorpdfstring{$>$}{>} Class Template Reference}
 \label{classCapProblem}\index{CapProblem$<$ ELEMENT $>$@{CapProblem$<$ ELEMENT $>$}}
+
+
+A Problem class that solves the Navier--Stokes equations + free surface in a 2D geometry using a spine-\/based node update.  
+
+
 Inheritance diagram for Cap\+Problem\texorpdfstring{$<$}{<} ELEMENT \texorpdfstring{$>$}{>}\+:\begin{figure}[H]
 \begin{center}
 \leavevmode
@@ -10,11 +15,11 @@ Inheritance diagram for Cap\+Problem\texorpdfstring{$<$}{<} ELEMENT \texorpdfstr
 \begin{DoxyCompactItemize}
 \item 
 \mbox{\hyperlink{classCapProblem_ab03ed8e2c1b44911d11209e00cb28a42}{Cap\+Problem}} (const bool \&hijack\+\_\+internal)
-\item 
+\begin{DoxyCompactList}\small\item\em Constructor\+: Pass boolean flag to indicate if the volume constraint is applied by hijacking an internal pressure or the external pressure. \end{DoxyCompactList}\item 
 \mbox{\hyperlink{classCapProblem_ad2b434212ecb33467359aef1071bc964}{$\sim$\+Cap\+Problem}} ()
-\item 
+\begin{DoxyCompactList}\small\item\em Destructor. Make sure to clean up all allocated memory, so that multiple instances of the problem don\textquotesingle{}t lead to excessive memory usage. \end{DoxyCompactList}\item 
 void \mbox{\hyperlink{classCapProblem_af54251f12b42b85c6caf88e5214f45da}{parameter\+\_\+study}} (const string \&dir\+\_\+name)
-\item 
+\begin{DoxyCompactList}\small\item\em Perform a parameter study\+: Solve problem for a range of contact angles Pass name of output directory as a string. \end{DoxyCompactList}\item 
 void \mbox{\hyperlink{classCapProblem_ac852570b51489f4bf744b6063fbfa01a}{actions\+\_\+before\+\_\+newton\+\_\+convergence\+\_\+check}} ()
 \begin{DoxyCompactList}\small\item\em Update the spine mesh after every Newton step. \end{DoxyCompactList}\item 
 void \mbox{\hyperlink{classCapProblem_aa3a891fe6f5fc5fb5829e3bf636eda2c}{create\+\_\+volume\+\_\+constraint\+\_\+elements}} ()
@@ -68,7 +73,7 @@ Data $\ast$ \mbox{\hyperlink{classCapProblem_a1ad1a124cb5aa9c1724cbef89e47a35b}{
 \doxysubsection{Detailed Description}
 \subsubsection*{template$<$class ELEMENT$>$\newline
 class Cap\+Problem$<$ ELEMENT $>$}
-A Problem class that solves the Navier--Stokes equations + free surface in a 2D geometry using a spine-\/based node update 
+A Problem class that solves the Navier--Stokes equations + free surface in a 2D geometry using a spine-\/based node update. 
 
 Definition at line \mbox{\hyperlink{static__single__layer_8cc_source_l00077}{77}} of file \mbox{\hyperlink{static__single__layer_8cc_source}{static\+\_\+single\+\_\+layer.\+cc}}.
 
@@ -82,7 +87,11 @@ Definition at line \mbox{\hyperlink{static__single__layer_8cc_source_l00077}{77}
 {\footnotesize\ttfamily template$<$class ELEMENT $>$ \\
 \mbox{\hyperlink{classCapProblem}{Cap\+Problem}}$<$ ELEMENT $>$\+::\mbox{\hyperlink{classCapProblem}{Cap\+Problem}} (\begin{DoxyParamCaption}\item[{const bool \&}]{hijack\+\_\+internal }\end{DoxyParamCaption})}
 
-Constructor\+: Pass boolean flag to indicate if the volume constraint is applied by hijacking an internal pressure or the external pressure 
+
+
+Constructor\+: Pass boolean flag to indicate if the volume constraint is applied by hijacking an internal pressure or the external pressure. 
+
+
 
 Definition at line \mbox{\hyperlink{static__single__layer_8cc_source_l00147}{147}} of file \mbox{\hyperlink{static__single__layer_8cc_source}{static\+\_\+single\+\_\+layer.\+cc}}.
 
@@ -97,7 +106,11 @@ References \mbox{\hyperlink{static__single__layer_8cc_source_l00114}{Cap\+Proble
 {\footnotesize\ttfamily template$<$class ELEMENT $>$ \\
 \mbox{\hyperlink{classCapProblem}{Cap\+Problem}}$<$ ELEMENT $>$\+::$\sim$\mbox{\hyperlink{classCapProblem}{Cap\+Problem}}}
 
+
+
 Destructor. Make sure to clean up all allocated memory, so that multiple instances of the problem don\textquotesingle{}t lead to excessive memory usage. 
+
+
 
 Definition at line \mbox{\hyperlink{static__single__layer_8cc_source_l00330}{330}} of file \mbox{\hyperlink{static__single__layer_8cc_source}{static\+\_\+single\+\_\+layer.\+cc}}.
 
@@ -250,9 +263,11 @@ Definition at line \mbox{\hyperlink{static__two__layer_8cc_source_l00335}{335}} 
 {\footnotesize\ttfamily template$<$class ELEMENT $>$ \\
 void \mbox{\hyperlink{classCapProblem}{Cap\+Problem}}$<$ ELEMENT $>$\+::parameter\+\_\+study (\begin{DoxyParamCaption}\item[{const string \&}]{dir\+\_\+name }\end{DoxyParamCaption})}
 
-Perform a parameter study\+: Solve problem for a range of contact angles Pass name of output directory as a string
 
-Perform a parameter study. Pass name of output directory as a string 
+
+Perform a parameter study\+: Solve problem for a range of contact angles Pass name of output directory as a string. 
+
+Perform a parameter study. Pass name of output directory as a string. 
 
 Definition at line \mbox{\hyperlink{static__single__layer_8cc_source_l00419}{419}} of file \mbox{\hyperlink{static__single__layer_8cc_source}{static\+\_\+single\+\_\+layer.\+cc}}.
 

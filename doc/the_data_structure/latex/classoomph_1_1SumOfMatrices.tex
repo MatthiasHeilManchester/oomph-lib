@@ -2,6 +2,11 @@
 \label{classoomph_1_1SumOfMatrices}\index{oomph::SumOfMatrices@{oomph::SumOfMatrices}}
 
 
+Class for a matrix of the form M = S + G + H + ... where S is the main matrix and G,H etc. are matrices of size S or smaller. This may be useful if, for example, G,H etc. are subblocks of M that must be stored in a different format to S.  
+
+
+
+
 {\ttfamily \#include $<$sum\+\_\+of\+\_\+matrices.\+h$>$}
 
 Inheritance diagram for oomph\+::Sum\+Of\+Matrices\+:\begin{figure}[H]
@@ -22,7 +27,7 @@ Inheritance diagram for oomph\+::Sum\+Of\+Matrices\+:\begin{figure}[H]
 void \mbox{\hyperlink{classoomph_1_1SumOfMatrices_aa64f741169700b953b158fe325026377}{operator=}} (const \mbox{\hyperlink{classoomph_1_1SumOfMatrices}{Sum\+Of\+Matrices}} \&)=delete
 \begin{DoxyCompactList}\small\item\em Broken assignment operator. \end{DoxyCompactList}\item 
 \mbox{\hyperlink{classoomph_1_1SumOfMatrices_af6cc954e345acc8587bf861d92a678fc}{$\sim$\+Sum\+Of\+Matrices}} ()
-\item 
+\begin{DoxyCompactList}\small\item\em Destructor\+: delete matrices as instructed by Should\+\_\+delete\+\_\+added\+\_\+matrix vector and Should\+\_\+delete\+\_\+main\+\_\+matrix. \end{DoxyCompactList}\item 
 const \mbox{\hyperlink{classoomph_1_1DoubleMatrixBase}{Double\+Matrix\+Base}} $\ast$ \mbox{\hyperlink{classoomph_1_1SumOfMatrices_aae26075d453b7c0cdee467196c0b957e}{main\+\_\+matrix\+\_\+pt}} () const
 \begin{DoxyCompactList}\small\item\em Access to the main matrix. \end{DoxyCompactList}\item 
 \mbox{\hyperlink{classoomph_1_1DoubleMatrixBase}{Double\+Matrix\+Base}} $\ast$\& \mbox{\hyperlink{classoomph_1_1SumOfMatrices_a418847e6562fb451b1b06c16bf7fb3fc}{main\+\_\+matrix\+\_\+pt}} ()
@@ -38,7 +43,7 @@ void \mbox{\hyperlink{classoomph_1_1SumOfMatrices_abc094faeb49c465a2907830afe71a
 void \mbox{\hyperlink{classoomph_1_1SumOfMatrices_a950924dfc285c908aac317f3be4fd158}{add\+\_\+matrix}} (\mbox{\hyperlink{classoomph_1_1DoubleMatrixBase}{Double\+Matrix\+Base}} $\ast$added\+\_\+matrix\+\_\+pt\+\_\+in, const \mbox{\hyperlink{classoomph_1_1AddedMainNumberingLookup}{Added\+Main\+Numbering\+Lookup}} $\ast$main\+\_\+to\+\_\+added\+\_\+rows\+\_\+pt, const \mbox{\hyperlink{classoomph_1_1AddedMainNumberingLookup}{Added\+Main\+Numbering\+Lookup}} $\ast$main\+\_\+to\+\_\+added\+\_\+cols\+\_\+pt, bool should\+\_\+delete\+\_\+matrix=false)
 \begin{DoxyCompactList}\small\item\em Add a new matrix to the sum by giving a matrix pointer and a mapping from the main matrix numbering to the added matrix\textquotesingle{}s numbering. \end{DoxyCompactList}\item 
 \mbox{\hyperlink{classoomph_1_1DoubleMatrixBase}{Double\+Matrix\+Base}} $\ast$ \mbox{\hyperlink{classoomph_1_1SumOfMatrices_aea0062a941a940d3f7ffbfef27eb0580}{added\+\_\+matrix\+\_\+pt}} (const unsigned \&\mbox{\hyperlink{cfortran_8h_adb50e893b86b3e55e751a42eab3cba82}{i}}) const
-\item 
+\begin{DoxyCompactList}\small\item\em Access function for ith added matrix (main matrix not included in numbering). \end{DoxyCompactList}\item 
 const \mbox{\hyperlink{classoomph_1_1AddedMainNumberingLookup}{Added\+Main\+Numbering\+Lookup}} $\ast$ \mbox{\hyperlink{classoomph_1_1SumOfMatrices_a5bf6ccd4af2e08e94d48b68a555d85dc}{row\+\_\+map\+\_\+pt}} (const unsigned \&\mbox{\hyperlink{cfortran_8h_adb50e893b86b3e55e751a42eab3cba82}{i}}) const
 \begin{DoxyCompactList}\small\item\em Access to the maps. \end{DoxyCompactList}\item 
 const \mbox{\hyperlink{classoomph_1_1AddedMainNumberingLookup}{Added\+Main\+Numbering\+Lookup}} $\ast$ \mbox{\hyperlink{classoomph_1_1SumOfMatrices_a9a5636bde953bf79bd3c067ba3aa5884}{col\+\_\+map\+\_\+pt}} (const unsigned \&\mbox{\hyperlink{cfortran_8h_adb50e893b86b3e55e751a42eab3cba82}{i}}) const
@@ -49,13 +54,13 @@ unsigned long \mbox{\hyperlink{classoomph_1_1SumOfMatrices_ad18b4591850b5e89ee66
 \begin{DoxyCompactList}\small\item\em Return the number of columns of the main matrix. \end{DoxyCompactList}\item 
 unsigned \mbox{\hyperlink{classoomph_1_1SumOfMatrices_a4b75af475c7e1d9d7e5a66065895abe7}{n\+\_\+added\+\_\+matrix}} () const
 \begin{DoxyCompactList}\small\item\em Return the number of added matrices in the sum. \end{DoxyCompactList}\item 
-void \mbox{\hyperlink{classoomph_1_1SumOfMatrices_ae6c97ff92220835df3c3eeb1b0a85cc5}{multiply}} (const \mbox{\hyperlink{classoomph_1_1DoubleVector}{Double\+Vector}} \&x, \mbox{\hyperlink{classoomph_1_1DoubleVector}{Double\+Vector}} \&soln) const
+void \mbox{\hyperlink{classoomph_1_1SumOfMatrices_ae6c97ff92220835df3c3eeb1b0a85cc5}{multiply}} (const \mbox{\hyperlink{classoomph_1_1DoubleVector}{Double\+Vector}} \&\mbox{\hyperlink{namespaceoomph_a9d1d2da2b8bb8e73af72b5cadb8fe97c}{x}}, \mbox{\hyperlink{classoomph_1_1DoubleVector}{Double\+Vector}} \&soln) const
 \begin{DoxyCompactList}\small\item\em Multiply\+: just call multiply on each of the matrices and add up the results (with appropriate bookeeping of the relative positions). \end{DoxyCompactList}\item 
 double \& \mbox{\hyperlink{classoomph_1_1SumOfMatrices_ace6003b73b241e9e7eaa154e180f73a9}{entry}} (const unsigned long \&\mbox{\hyperlink{cfortran_8h_adb50e893b86b3e55e751a42eab3cba82}{i}}, const unsigned long \&j) const
 \begin{DoxyCompactList}\small\item\em Broken operator() because it does not make sense to return anything by reference. \end{DoxyCompactList}\item 
 double \mbox{\hyperlink{classoomph_1_1SumOfMatrices_a934664ec676d36115ef27a9758827f7c}{operator()}} (const unsigned long \&\mbox{\hyperlink{cfortran_8h_adb50e893b86b3e55e751a42eab3cba82}{i}}, const unsigned long \&j) const
-\item 
-virtual void \mbox{\hyperlink{classoomph_1_1SumOfMatrices_a0028fb64f602aa07ff557b0a11a1c659}{multiply\+\_\+transpose}} (const \mbox{\hyperlink{classoomph_1_1DoubleVector}{Double\+Vector}} \&x, \mbox{\hyperlink{classoomph_1_1DoubleVector}{Double\+Vector}} \&soln) const
+\begin{DoxyCompactList}\small\item\em Access function to get the total value of entries in position (i,j). Warning\+: this way of getting entries is far too slow to use inside of loops. \end{DoxyCompactList}\item 
+virtual void \mbox{\hyperlink{classoomph_1_1SumOfMatrices_a0028fb64f602aa07ff557b0a11a1c659}{multiply\+\_\+transpose}} (const \mbox{\hyperlink{classoomph_1_1DoubleVector}{Double\+Vector}} \&\mbox{\hyperlink{namespaceoomph_a9d1d2da2b8bb8e73af72b5cadb8fe97c}{x}}, \mbox{\hyperlink{classoomph_1_1DoubleVector}{Double\+Vector}} \&soln) const
 \begin{DoxyCompactList}\small\item\em Dummy overload of a pure virtual function. I\textquotesingle{}m not sure how best to implement this and I don\textquotesingle{}t think I need it. \end{DoxyCompactList}\end{DoxyCompactItemize}
 \doxysubsection*{Private Attributes}
 \begin{DoxyCompactItemize}
@@ -76,7 +81,9 @@ bool \mbox{\hyperlink{classoomph_1_1SumOfMatrices_af1a5407d43ff8bbf0715d28f6d9e1
 
 
 \doxysubsection{Detailed Description}
-Class for a matrix of the form M = S + G + H + ... where S is the main matrix and G,H etc. are matrices of size S or smaller. This may be useful if, for example, G,H etc. are subblocks of M that must be stored in a different format to S. Maps mut be provided which gives a map from the rows/cols of the main matrix to the rows/cols of each of the added matrices. 
+Class for a matrix of the form M = S + G + H + ... where S is the main matrix and G,H etc. are matrices of size S or smaller. This may be useful if, for example, G,H etc. are subblocks of M that must be stored in a different format to S. 
+
+Maps mut be provided which gives a map from the rows/cols of the main matrix to the rows/cols of each of the added matrices. 
 
 Definition at line \mbox{\hyperlink{sum__of__matrices_8h_source_l00260}{260}} of file \mbox{\hyperlink{sum__of__matrices_8h_source}{sum\+\_\+of\+\_\+matrices.\+h}}.
 
@@ -127,7 +134,11 @@ Broken copy constructor.
 \doxysubsubsection{\texorpdfstring{$\sim$SumOfMatrices()}{~SumOfMatrices()}}
 {\footnotesize\ttfamily oomph\+::\+Sum\+Of\+Matrices\+::$\sim$\+Sum\+Of\+Matrices (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
 
+
+
 Destructor\+: delete matrices as instructed by Should\+\_\+delete\+\_\+added\+\_\+matrix vector and Should\+\_\+delete\+\_\+main\+\_\+matrix. 
+
+
 
 Definition at line \mbox{\hyperlink{sum__of__matrices_8h_source_l00316}{316}} of file \mbox{\hyperlink{sum__of__matrices_8h_source}{sum\+\_\+of\+\_\+matrices.\+h}}.
 
@@ -162,7 +173,11 @@ References \mbox{\hyperlink{sum__of__matrices_8h_source_l00268}{Added\+\_\+matri
 \doxysubsubsection{\texorpdfstring{added\_matrix\_pt()}{added\_matrix\_pt()}}
 {\footnotesize\ttfamily \mbox{\hyperlink{classoomph_1_1DoubleMatrixBase}{Double\+Matrix\+Base}} $\ast$ oomph\+::\+Sum\+Of\+Matrices\+::added\+\_\+matrix\+\_\+pt (\begin{DoxyParamCaption}\item[{const unsigned \&}]{i }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
 
+
+
 Access function for ith added matrix (main matrix not included in numbering). 
+
+
 
 Definition at line \mbox{\hyperlink{sum__of__matrices_8h_source_l00485}{485}} of file \mbox{\hyperlink{sum__of__matrices_8h_source}{sum\+\_\+of\+\_\+matrices.\+h}}.
 
@@ -280,7 +295,7 @@ Definition at line \mbox{\hyperlink{sum__of__matrices_8cc_source_l00040}{40}} of
 
 
 
-References \mbox{\hyperlink{sum__of__matrices_8h_source_l00268}{Added\+\_\+matrix\+\_\+pt}}, \mbox{\hyperlink{sum__of__matrices_8h_source_l00485}{added\+\_\+matrix\+\_\+pt()}}, \mbox{\hyperlink{linear__algebra__distribution_8cc_source_l00035}{oomph\+::\+Linear\+Algebra\+Distribution\+::build()}}, \mbox{\hyperlink{sum__of__matrices_8h_source_l00276}{Col\+\_\+map\+\_\+pt}}, \mbox{\hyperlink{sum__of__matrices_8h_source_l00265}{Main\+\_\+matrix\+\_\+pt}}, \mbox{\hyperlink{classoomph_1_1DoubleMatrixBase_a78204eab557e0dc99618e41a28a5c092}{oomph\+::\+Double\+Matrix\+Base\+::multiply()}}, \mbox{\hyperlink{sum__of__matrices_8h_source_l00515}{ncol()}}, \mbox{\hyperlink{sum__of__matrices_8h_source_l00501}{nrow()}}, and \mbox{\hyperlink{sum__of__matrices_8h_source_l00272}{Row\+\_\+map\+\_\+pt}}.
+References \mbox{\hyperlink{sum__of__matrices_8h_source_l00268}{Added\+\_\+matrix\+\_\+pt}}, \mbox{\hyperlink{sum__of__matrices_8h_source_l00485}{added\+\_\+matrix\+\_\+pt()}}, \mbox{\hyperlink{linear__algebra__distribution_8cc_source_l00035}{oomph\+::\+Linear\+Algebra\+Distribution\+::build()}}, \mbox{\hyperlink{sum__of__matrices_8h_source_l00276}{Col\+\_\+map\+\_\+pt}}, \mbox{\hyperlink{sum__of__matrices_8h_source_l00265}{Main\+\_\+matrix\+\_\+pt}}, \mbox{\hyperlink{classoomph_1_1DoubleMatrixBase_a78204eab557e0dc99618e41a28a5c092}{oomph\+::\+Double\+Matrix\+Base\+::multiply()}}, \mbox{\hyperlink{sum__of__matrices_8h_source_l00515}{ncol()}}, \mbox{\hyperlink{sum__of__matrices_8h_source_l00501}{nrow()}}, \mbox{\hyperlink{sum__of__matrices_8h_source_l00272}{Row\+\_\+map\+\_\+pt}}, and \mbox{\hyperlink{pseudo__buckling__ring_8h_source_l00049}{oomph\+::x}}.
 
 \mbox{\Hypertarget{classoomph_1_1SumOfMatrices_a0028fb64f602aa07ff557b0a11a1c659}\label{classoomph_1_1SumOfMatrices_a0028fb64f602aa07ff557b0a11a1c659}} 
 \index{oomph::SumOfMatrices@{oomph::SumOfMatrices}!multiply\_transpose@{multiply\_transpose}}
@@ -380,7 +395,11 @@ Referenced by \mbox{\hyperlink{sum__of__matrices_8h_source_l00415}{add\+\_\+matr
 \doxysubsubsection{\texorpdfstring{operator()()}{operator()()}}
 {\footnotesize\ttfamily double oomph\+::\+Sum\+Of\+Matrices\+::operator() (\begin{DoxyParamCaption}\item[{const unsigned long \&}]{i,  }\item[{const unsigned long \&}]{j }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [virtual]}}
 
+
+
 Access function to get the total value of entries in position (i,j). Warning\+: this way of getting entries is far too slow to use inside of loops. 
+
+
 
 Implements \mbox{\hyperlink{classoomph_1_1DoubleMatrixBase_a20b85f0286f80464f42f0846fede2d77}{oomph\+::\+Double\+Matrix\+Base}}.
 

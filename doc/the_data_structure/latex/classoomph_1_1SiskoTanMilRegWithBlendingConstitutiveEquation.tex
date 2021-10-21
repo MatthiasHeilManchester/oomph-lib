@@ -2,6 +2,11 @@
 \label{classoomph_1_1SiskoTanMilRegWithBlendingConstitutiveEquation}\index{oomph::SiskoTanMilRegWithBlendingConstitutiveEquation$<$ DIM $>$@{oomph::SiskoTanMilRegWithBlendingConstitutiveEquation$<$ DIM $>$}}
 
 
+A \mbox{\hyperlink{classoomph_1_1GeneralisedNewtonianConstitutiveEquation}{Generalised\+Newtonian\+Constitutive\+Equation}} class defining a Sisko fluid using Tanner and Milthorpe\textquotesingle{}s (1983) regularisation with a smooth transition using a cubic (for n \texorpdfstring{$<$}{<} 1)  
+
+
+
+
 {\ttfamily \#include $<$generalised\+\_\+newtonian\+\_\+constitutive\+\_\+models.\+h$>$}
 
 Inheritance diagram for oomph\+::Sisko\+Tan\+Mil\+Reg\+With\+Blending\+Constitutive\+Equation\texorpdfstring{$<$}{<} DIM \texorpdfstring{$>$}{>}\+:\begin{figure}[H]
@@ -16,9 +21,9 @@ Inheritance diagram for oomph\+::Sisko\+Tan\+Mil\+Reg\+With\+Blending\+Constitut
 \mbox{\hyperlink{classoomph_1_1SiskoTanMilRegWithBlendingConstitutiveEquation_a284ae14a748f8650c68f6e6b6bb8b742}{Sisko\+Tan\+Mil\+Reg\+With\+Blending\+Constitutive\+Equation}} (double $\ast$alpha\+\_\+pt, double $\ast$flow\+\_\+index\+\_\+pt, double $\ast$critical\+\_\+second\+\_\+invariant\+\_\+pt)
 \begin{DoxyCompactList}\small\item\em \char`\"{}\+Cutoff regularised\char`\"{} Sisko constitutive equation \end{DoxyCompactList}\item 
 double \mbox{\hyperlink{classoomph_1_1SiskoTanMilRegWithBlendingConstitutiveEquation_afa231563fc5db2dd262f6536b461cd04}{calculate\+\_\+cutoff\+\_\+viscosity}} ()
-\item 
+\begin{DoxyCompactList}\small\item\em Function that calculates the viscosity at the cutoff invariant Note\+: this is NOT the viscosity at zero I2. \end{DoxyCompactList}\item 
 double \mbox{\hyperlink{classoomph_1_1SiskoTanMilRegWithBlendingConstitutiveEquation_a4aa9049f9acfd25208deb26d011350fc}{calculate\+\_\+viscosity\+\_\+offset\+\_\+at\+\_\+zero\+\_\+shear}} (double \&cut\+\_\+off\+\_\+viscosity)
-\item 
+\begin{DoxyCompactList}\small\item\em Offset by how much the zero shear rate viscosity lies above the viscosity at I2\+\_\+cutoff Hard-\/coded to a value that ensures a smooth transition. \end{DoxyCompactList}\item 
 double \mbox{\hyperlink{classoomph_1_1SiskoTanMilRegWithBlendingConstitutiveEquation_a4fe343a1c95f24fde634df78b7fc31cc}{calculate\+\_\+zero\+\_\+shear\+\_\+viscosity}} ()
 \begin{DoxyCompactList}\small\item\em Function that calculates the viscosity at zero I2. \end{DoxyCompactList}\item 
 void \mbox{\hyperlink{classoomph_1_1SiskoTanMilRegWithBlendingConstitutiveEquation_ab45c38b298775d7225bc8f03fa045294}{report\+\_\+cut\+\_\+off\+\_\+values}} (double \&cut\+\_\+off\+\_\+invariant, double \&cut\+\_\+off\+\_\+viscosity, double \&zero\+\_\+shear\+\_\+viscosity)
@@ -37,7 +42,7 @@ double $\ast$ \mbox{\hyperlink{classoomph_1_1SiskoTanMilRegWithBlendingConstitut
 double $\ast$ \mbox{\hyperlink{classoomph_1_1SiskoTanMilRegWithBlendingConstitutiveEquation_a14da5ea532c1e43195a1088ef82a7f22}{Flow\+\_\+index\+\_\+pt}}
 \begin{DoxyCompactList}\small\item\em power law index n \end{DoxyCompactList}\item 
 double $\ast$ \mbox{\hyperlink{classoomph_1_1SiskoTanMilRegWithBlendingConstitutiveEquation_a933d63f71e194671e7d922cb3c98d0d3}{Critical\+\_\+second\+\_\+invariant\+\_\+pt}}
-\end{DoxyCompactItemize}
+\begin{DoxyCompactList}\small\item\em value of the second invariant below which we have constant (Newtonian) viscosity -- assumed to be always positive \end{DoxyCompactList}\end{DoxyCompactItemize}
 
 
 \doxysubsection{Detailed Description}
@@ -81,7 +86,11 @@ References \mbox{\hyperlink{generalised__newtonian__constitutive__models_8h_sour
 {\footnotesize\ttfamily template$<$unsigned DIM$>$ \\
 double \mbox{\hyperlink{classoomph_1_1SiskoTanMilRegWithBlendingConstitutiveEquation}{oomph\+::\+Sisko\+Tan\+Mil\+Reg\+With\+Blending\+Constitutive\+Equation}}$<$ DIM $>$\+::calculate\+\_\+cutoff\+\_\+viscosity (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
 
-Function that calculates the viscosity at the cutoff invariant Note\+: this is NOT the viscosity at zero I2 
+
+
+Function that calculates the viscosity at the cutoff invariant Note\+: this is NOT the viscosity at zero I2. 
+
+
 
 Definition at line \mbox{\hyperlink{generalised__newtonian__constitutive__models_8h_source_l00729}{729}} of file \mbox{\hyperlink{generalised__newtonian__constitutive__models_8h_source}{generalised\+\_\+newtonian\+\_\+constitutive\+\_\+models.\+h}}.
 
@@ -119,7 +128,11 @@ Referenced by \mbox{\hyperlink{generalised__newtonian__constitutive__models_8h_s
 {\footnotesize\ttfamily template$<$unsigned DIM$>$ \\
 double \mbox{\hyperlink{classoomph_1_1SiskoTanMilRegWithBlendingConstitutiveEquation}{oomph\+::\+Sisko\+Tan\+Mil\+Reg\+With\+Blending\+Constitutive\+Equation}}$<$ DIM $>$\+::calculate\+\_\+viscosity\+\_\+offset\+\_\+at\+\_\+zero\+\_\+shear (\begin{DoxyParamCaption}\item[{double \&}]{cut\+\_\+off\+\_\+viscosity }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
 
-Offset by how much the zero shear rate viscosity lies above the viscosity at I2\+\_\+cutoff Hard-\/coded to a value that ensures a smooth transition 
+
+
+Offset by how much the zero shear rate viscosity lies above the viscosity at I2\+\_\+cutoff Hard-\/coded to a value that ensures a smooth transition. 
+
+
 
 Definition at line \mbox{\hyperlink{generalised__newtonian__constitutive__models_8h_source_l00741}{741}} of file \mbox{\hyperlink{generalised__newtonian__constitutive__models_8h_source}{generalised\+\_\+newtonian\+\_\+constitutive\+\_\+models.\+h}}.
 
@@ -244,7 +257,11 @@ Referenced by \mbox{\hyperlink{generalised__newtonian__constitutive__models_8h_s
 {\footnotesize\ttfamily template$<$unsigned DIM$>$ \\
 double$\ast$ \mbox{\hyperlink{classoomph_1_1SiskoTanMilRegWithBlendingConstitutiveEquation}{oomph\+::\+Sisko\+Tan\+Mil\+Reg\+With\+Blending\+Constitutive\+Equation}}$<$ DIM $>$\+::Critical\+\_\+second\+\_\+invariant\+\_\+pt\hspace{0.3cm}{\ttfamily [private]}}
 
+
+
 value of the second invariant below which we have constant (Newtonian) viscosity -- assumed to be always positive 
+
+
 
 Definition at line \mbox{\hyperlink{generalised__newtonian__constitutive__models_8h_source_l00695}{695}} of file \mbox{\hyperlink{generalised__newtonian__constitutive__models_8h_source}{generalised\+\_\+newtonian\+\_\+constitutive\+\_\+models.\+h}}.
 

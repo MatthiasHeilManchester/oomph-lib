@@ -2,6 +2,11 @@
 \label{classoomph_1_1SurfactantTransportInterfaceElement}\index{oomph::SurfactantTransportInterfaceElement@{oomph::SurfactantTransportInterfaceElement}}
 
 
+Generic surfactant transport equations implemented independently of the dimension and then specialised using the generic mechanisms introduce in the Fluid\+Interface\+Elements.  
+
+
+
+
 {\ttfamily \#include $<$surfactant\+\_\+transport\+\_\+elements.\+h$>$}
 
 Inheritance diagram for oomph\+::Surfactant\+Transport\+Interface\+Element\+:\begin{figure}[H]
@@ -14,7 +19,7 @@ Inheritance diagram for oomph\+::Surfactant\+Transport\+Interface\+Element\+:\be
 \begin{DoxyCompactItemize}
 \item 
 \mbox{\hyperlink{classoomph_1_1SurfactantTransportInterfaceElement_a8934ab8e723427ed39298c592b2876a5}{Surfactant\+Transport\+Interface\+Element}} ()
-\item 
+\begin{DoxyCompactList}\small\item\em Constructor that passes the bulk element and face index down to the underlying. \end{DoxyCompactList}\item 
 void \mbox{\hyperlink{classoomph_1_1SurfactantTransportInterfaceElement_aaf7988dfac3e02018c591f2f9e34f644}{set\+\_\+c\+\_\+index}} (const Vector$<$ unsigned $>$ \&c\+\_\+index)
 \item 
 double \mbox{\hyperlink{classoomph_1_1SurfactantTransportInterfaceElement_a79003d87401ad6106b8d10373ff12e73}{beta}} ()
@@ -47,18 +52,18 @@ double \mbox{\hyperlink{classoomph_1_1SurfactantTransportInterfaceElement_a9da12
 double \mbox{\hyperlink{classoomph_1_1SurfactantTransportInterfaceElement_a7b5cc851b94d836a3caa2130cbf45bec}{dcdt\+\_\+surface}} (const unsigned \&l) const
 \begin{DoxyCompactList}\small\item\em The time derivative of the surface concentration. \end{DoxyCompactList}\item 
 double \mbox{\hyperlink{classoomph_1_1SurfactantTransportInterfaceElement_a1710057c610ccccc06ef41f34f086aae}{sigma}} (const Vector$<$ double $>$ \&s)
-\item 
+\begin{DoxyCompactList}\small\item\em The surface tension function is linear in the concentration with constant of proportionality equal to the elasticity number. \end{DoxyCompactList}\item 
 virtual double \mbox{\hyperlink{classoomph_1_1SurfactantTransportInterfaceElement_a36422cf9aa94de6f0bfa668e5d4fa900}{dsigma\+\_\+dC}} (const Vector$<$ double $>$ \&s)
-\item 
+\begin{DoxyCompactList}\small\item\em Return the derivative of sigma with respect to C For use in computing the Jacobian. \end{DoxyCompactList}\item 
 void \mbox{\hyperlink{classoomph_1_1SurfactantTransportInterfaceElement_adedf33390efdf652e169f8bd38eb2350}{add\+\_\+additional\+\_\+residual\+\_\+contributions\+\_\+interface}} (Vector$<$ double $>$ \&residuals, Dense\+Matrix$<$ double $>$ \&jacobian, const unsigned \&flag, const Shape \&psif, const DShape \&dpsifds, const DShape \&dpsifdS, const DShape \&dpsifd\+S\+\_\+div, const Vector$<$ double $>$ \&s, const Vector$<$ double $>$ \&interpolated\+\_\+x, const Vector$<$ double $>$ \&interpolated\+\_\+n, const double \&W, const double \&J)
 \begin{DoxyCompactList}\small\item\em Overload the Helper function to calculate the residuals and jacobian entries. This particular function ensures that the additional entries are calculated inside the integration loop. \end{DoxyCompactList}\item 
 void \mbox{\hyperlink{classoomph_1_1SurfactantTransportInterfaceElement_a7c0f9b63cea887a4a65abbe9aeb3b3cf}{fill\+\_\+in\+\_\+contribution\+\_\+to\+\_\+jacobian\+\_\+and\+\_\+mass\+\_\+matrix}} (Vector$<$ double $>$ \&residuals, Dense\+Matrix$<$ double $>$ \&jacobian, Dense\+Matrix$<$ double $>$ \&mass\+\_\+matrix)
-\end{DoxyCompactItemize}
+\begin{DoxyCompactList}\small\item\em Add the element\textquotesingle{}s contribution to its residuals vector, jacobian matrix and mass matrix. \end{DoxyCompactList}\end{DoxyCompactItemize}
 \doxysubsection*{Protected Attributes}
 \begin{DoxyCompactItemize}
 \item 
 Vector$<$ unsigned $>$ \mbox{\hyperlink{classoomph_1_1SurfactantTransportInterfaceElement_a26727fb7b57f88d3e1bdf4f2dd9f3b02}{C\+\_\+index}}
-\end{DoxyCompactItemize}
+\begin{DoxyCompactList}\small\item\em Index at which the surfactant concentration is stored at the nodes. \end{DoxyCompactList}\end{DoxyCompactItemize}
 \doxysubsection*{Static Protected Attributes}
 \begin{DoxyCompactItemize}
 \item 
@@ -76,7 +81,7 @@ double $\ast$ \mbox{\hyperlink{classoomph_1_1SurfactantTransportInterfaceElement
 
 
 \doxysubsection{Detailed Description}
-Generic surfactant transport equations implemented independently of the dimension and then specialised using the generic mechanisms introduce in the Fluid\+Interface\+Elements 
+Generic surfactant transport equations implemented independently of the dimension and then specialised using the generic mechanisms introduce in the Fluid\+Interface\+Elements. 
 
 Definition at line \mbox{\hyperlink{surfactant__transport__elements_8h_source_l00048}{48}} of file \mbox{\hyperlink{surfactant__transport__elements_8h_source}{surfactant\+\_\+transport\+\_\+elements.\+h}}.
 
@@ -89,7 +94,11 @@ Definition at line \mbox{\hyperlink{surfactant__transport__elements_8h_source_l0
 \doxysubsubsection{\texorpdfstring{SurfactantTransportInterfaceElement()}{SurfactantTransportInterfaceElement()}}
 {\footnotesize\ttfamily oomph\+::\+Surfactant\+Transport\+Interface\+Element\+::\+Surfactant\+Transport\+Interface\+Element (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
 
-Constructor that passes the bulk element and face index down to the underlying 
+
+
+Constructor that passes the bulk element and face index down to the underlying. 
+
+
 
 Definition at line \mbox{\hyperlink{surfactant__transport__elements_8h_source_l00120}{120}} of file \mbox{\hyperlink{surfactant__transport__elements_8h_source}{surfactant\+\_\+transport\+\_\+elements.\+h}}.
 
@@ -198,7 +207,11 @@ Referenced by \mbox{\hyperlink{surfactant__transport__elements_8cc_source_l00121
 \doxysubsubsection{\texorpdfstring{dsigma\_dC()}{dsigma\_dC()}}
 {\footnotesize\ttfamily virtual double oomph\+::\+Surfactant\+Transport\+Interface\+Element\+::dsigma\+\_\+dC (\begin{DoxyParamCaption}\item[{const Vector$<$ double $>$ \&}]{s }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [protected]}, {\ttfamily [virtual]}}
 
-Return the derivative of sigma with respect to C For use in computing the Jacobian 
+
+
+Return the derivative of sigma with respect to C For use in computing the Jacobian. 
+
+
 
 Definition at line \mbox{\hyperlink{surfactant__transport__elements_8h_source_l00082}{82}} of file \mbox{\hyperlink{surfactant__transport__elements_8h_source}{surfactant\+\_\+transport\+\_\+elements.\+h}}.
 
@@ -216,7 +229,11 @@ Referenced by \mbox{\hyperlink{surfactant__transport__elements_8cc_source_l00121
 \doxysubsubsection{\texorpdfstring{fill\_in\_contribution\_to\_jacobian\_and\_mass\_matrix()}{fill\_in\_contribution\_to\_jacobian\_and\_mass\_matrix()}}
 {\footnotesize\ttfamily void oomph\+::\+Surfactant\+Transport\+Interface\+Element\+::fill\+\_\+in\+\_\+contribution\+\_\+to\+\_\+jacobian\+\_\+and\+\_\+mass\+\_\+matrix (\begin{DoxyParamCaption}\item[{Vector$<$ double $>$ \&}]{residuals,  }\item[{Dense\+Matrix$<$ double $>$ \&}]{jacobian,  }\item[{Dense\+Matrix$<$ double $>$ \&}]{mass\+\_\+matrix }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [protected]}}
 
-Add the element\textquotesingle{}s contribution to its residuals vector, jacobian matrix and mass matrix 
+
+
+Add the element\textquotesingle{}s contribution to its residuals vector, jacobian matrix and mass matrix. 
+
+
 
 Definition at line \mbox{\hyperlink{surfactant__transport__elements_8h_source_l00107}{107}} of file \mbox{\hyperlink{surfactant__transport__elements_8h_source}{surfactant\+\_\+transport\+\_\+elements.\+h}}.
 
@@ -428,7 +445,11 @@ Referenced by \mbox{\hyperlink{surfactant__transport__elements_8h_source_l00211}
 \doxysubsubsection{\texorpdfstring{sigma()}{sigma()}}
 {\footnotesize\ttfamily double oomph\+::\+Surfactant\+Transport\+Interface\+Element\+::sigma (\begin{DoxyParamCaption}\item[{const Vector$<$ double $>$ \&}]{s }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [protected]}, {\ttfamily [virtual]}}
 
+
+
 The surface tension function is linear in the concentration with constant of proportionality equal to the elasticity number. 
+
+
 
 Reimplemented from \mbox{\hyperlink{classoomph_1_1FluidInterfaceElement_a7e5c3ca1eba5d4dd44c0eab9be252c2a}{oomph\+::\+Fluid\+Interface\+Element}}.
 
@@ -471,7 +492,11 @@ Referenced by \mbox{\hyperlink{surfactant__transport__elements_8h_source_l00135}
 \doxysubsubsection{\texorpdfstring{C\_index}{C\_index}}
 {\footnotesize\ttfamily Vector$<$unsigned$>$ oomph\+::\+Surfactant\+Transport\+Interface\+Element\+::\+C\+\_\+index\hspace{0.3cm}{\ttfamily [protected]}}
 
-Index at which the surfactant concentration is stored at the nodes 
+
+
+Index at which the surfactant concentration is stored at the nodes. 
+
+
 
 Definition at line \mbox{\hyperlink{surfactant__transport__elements_8h_source_l00063}{63}} of file \mbox{\hyperlink{surfactant__transport__elements_8h_source}{surfactant\+\_\+transport\+\_\+elements.\+h}}.
 

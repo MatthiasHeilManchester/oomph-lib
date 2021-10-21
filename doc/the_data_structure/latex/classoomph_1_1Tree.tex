@@ -2,6 +2,11 @@
 \label{classoomph_1_1Tree}\index{oomph::Tree@{oomph::Tree}}
 
 
+A generalised tree base class that abstracts the common functionality between the quad-\/ and octrees used in mesh adaptation in two and three dimensions, respectively.  
+
+
+
+
 {\ttfamily \#include $<$tree.\+h$>$}
 
 Inheritance diagram for oomph\+::Tree\+:\begin{figure}[H]
@@ -16,7 +21,7 @@ Inheritance diagram for oomph\+::Tree\+:\begin{figure}[H]
 typedef void(Tree\+::$\ast$ \mbox{\hyperlink{classoomph_1_1Tree_a6b8ef236d41f52c92973682ca83679d5}{Void\+Member\+Fct\+Pt}}) ()
 \begin{DoxyCompactList}\small\item\em Function pointer to argument-\/free void \mbox{\hyperlink{classoomph_1_1Tree}{Tree}} member function. \end{DoxyCompactList}\item 
 typedef void(Tree\+::$\ast$ \mbox{\hyperlink{classoomph_1_1Tree_a498ffc10556f4335e831a06fc885a27a}{Void\+Mesh\+Pt\+Argument\+Member\+Fct\+Pt}}) (\mbox{\hyperlink{classoomph_1_1Mesh}{Mesh}} $\ast$\&mesh\+\_\+pt)
-\end{DoxyCompactItemize}
+\begin{DoxyCompactList}\small\item\em Function pointer to a void \mbox{\hyperlink{classoomph_1_1Tree}{Tree}} member function that takes a pointer to a mesh as its argument. \end{DoxyCompactList}\end{DoxyCompactItemize}
 \doxysubsection*{Public Member Functions}
 \begin{DoxyCompactItemize}
 \item 
@@ -118,7 +123,7 @@ static double \mbox{\hyperlink{classoomph_1_1Tree_aef9abebc166fa3bf81ecb59ec0d5d
 
 
 \doxysubsection{Detailed Description}
-A generalised tree base class that abstracts the common functionality between the quad-\/ and octrees used in mesh adaptation in two and three dimensions, respectively.
+A generalised tree base class that abstracts the common functionality between the quad-\/ and octrees used in mesh adaptation in two and three dimensions, respectively. 
 
 The tree can also be part of a forest. If that is the case, the root of the tree will have pointers to the roots of neighbouring trees.
 
@@ -155,7 +160,11 @@ Definition at line \mbox{\hyperlink{tree_8h_source_l00178}{178}} of file \mbox{\
 \doxysubsubsection{\texorpdfstring{VoidMeshPtArgumentMemberFctPt}{VoidMeshPtArgumentMemberFctPt}}
 {\footnotesize\ttfamily typedef void(Tree\+::$\ast$ oomph\+::\+Tree\+::\+Void\+Mesh\+Pt\+Argument\+Member\+Fct\+Pt) (\mbox{\hyperlink{classoomph_1_1Mesh}{Mesh}} $\ast$\&mesh\+\_\+pt)}
 
-Function pointer to a void \mbox{\hyperlink{classoomph_1_1Tree}{Tree}} member function that takes a pointer to a mesh as its argument 
+
+
+Function pointer to a void \mbox{\hyperlink{classoomph_1_1Tree}{Tree}} member function that takes a pointer to a mesh as its argument. 
+
+
 
 Definition at line \mbox{\hyperlink{tree_8h_source_l00182}{182}} of file \mbox{\hyperlink{tree_8h_source}{tree.\+h}}.
 
@@ -502,7 +511,7 @@ void oomph\+::\+Tree\+::p\+\_\+refine\+\_\+if\+\_\+required (\begin{DoxyParamCap
 
 If required, p-\/refine the leaf -- criterion\+: bool \mbox{\hyperlink{classoomph_1_1Tree_a7d630dad19ef861ab6a5f37ad6ea67f4}{object\+\_\+pt()}}-\/\texorpdfstring{$>$}{>} to\+\_\+be\+\_\+p\+\_\+refined() = true or bool \mbox{\hyperlink{classoomph_1_1Tree_a7d630dad19ef861ab6a5f37ad6ea67f4}{object\+\_\+pt()}}-\/\texorpdfstring{$>$}{>} to\+\_\+be\+\_\+p\+\_\+unrefined() = true. 
 
-If required, p-\/refine/unrefine the leaf element
+If required, p-\/refine/unrefine the leaf element.
 
 p-\/refinement is performed if \begin{DoxyVerb} object_pt()->to_be_p_refined()
 \end{DoxyVerb}
@@ -518,7 +527,7 @@ Definition at line \mbox{\hyperlink{tree_8template_8cc_source_l00149}{149}} of f
 
 
 
-References \mbox{\hyperlink{tree_8h_source_l00296}{Father\+\_\+pt}}, \mbox{\hyperlink{cfortran_8h_source_l00603}{i}}, \mbox{\hyperlink{nodes_8h_source_l01055}{oomph\+::\+Node\+::ndim()}}, \mbox{\hyperlink{elements_8h_source_l02215}{oomph\+::\+Finite\+Element\+::nnode()}}, \mbox{\hyperlink{elements_8h_source_l02180}{oomph\+::\+Finite\+Element\+::node\+\_\+pt()}}, \mbox{\hyperlink{tree_8h_source_l00088}{object\+\_\+pt()}}, \mbox{\hyperlink{tree_8h_source_l00308}{Object\+\_\+pt}}, \mbox{\hyperlink{classoomph_1_1PRefineableElement_a706db9352965197a215405f620b3cedc}{oomph\+::\+PRefineable\+Element\+::p\+\_\+refine()}}, \mbox{\hyperlink{tree_8h_source_l00299}{Son\+\_\+pt}}, \mbox{\hyperlink{oomph__definitions_8cc_source_l00286}{oomph\+::\+Global\+\_\+string\+\_\+for\+\_\+annotation\+::string()}}, \mbox{\hyperlink{refineable__elements_8h_source_l00749}{oomph\+::\+PRefineable\+Element\+::to\+\_\+be\+\_\+p\+\_\+refined()}}, \mbox{\hyperlink{refineable__elements_8h_source_l00755}{oomph\+::\+PRefineable\+Element\+::to\+\_\+be\+\_\+p\+\_\+unrefined()}}, and \mbox{\hyperlink{nodes_8h_source_l01061}{oomph\+::\+Node\+::x()}}.
+References \mbox{\hyperlink{tree_8h_source_l00296}{Father\+\_\+pt}}, \mbox{\hyperlink{cfortran_8h_source_l00603}{i}}, \mbox{\hyperlink{elements_8h_source_l02215}{oomph\+::\+Finite\+Element\+::nnode()}}, \mbox{\hyperlink{elements_8h_source_l02180}{oomph\+::\+Finite\+Element\+::node\+\_\+pt()}}, \mbox{\hyperlink{tree_8h_source_l00088}{object\+\_\+pt()}}, \mbox{\hyperlink{tree_8h_source_l00308}{Object\+\_\+pt}}, \mbox{\hyperlink{classoomph_1_1PRefineableElement_a706db9352965197a215405f620b3cedc}{oomph\+::\+PRefineable\+Element\+::p\+\_\+refine()}}, \mbox{\hyperlink{tree_8h_source_l00299}{Son\+\_\+pt}}, \mbox{\hyperlink{oomph__definitions_8cc_source_l00286}{oomph\+::\+Global\+\_\+string\+\_\+for\+\_\+annotation\+::string()}}, \mbox{\hyperlink{refineable__elements_8h_source_l00749}{oomph\+::\+PRefineable\+Element\+::to\+\_\+be\+\_\+p\+\_\+refined()}}, and \mbox{\hyperlink{refineable__elements_8h_source_l00755}{oomph\+::\+PRefineable\+Element\+::to\+\_\+be\+\_\+p\+\_\+unrefined()}}.
 
 \mbox{\Hypertarget{classoomph_1_1Tree_a33b9926754cddfaafd9869af3fe266e7}\label{classoomph_1_1Tree_a33b9926754cddfaafd9869af3fe266e7}} 
 \index{oomph::Tree@{oomph::Tree}!root\_pt@{root\_pt}}
@@ -659,7 +668,7 @@ void oomph\+::\+Tree\+::split\+\_\+if\+\_\+required}
 
 If required, split the leaf and create its sons -- criterion\+: bool \mbox{\hyperlink{classoomph_1_1Tree_a7d630dad19ef861ab6a5f37ad6ea67f4}{object\+\_\+pt()}}-\/\texorpdfstring{$>$}{>} to\+\_\+be\+\_\+refined() = true. 
 
-If required, split the leaf element and create its sons
+If required, split the leaf element and create its sons.
 
 Split is performed if \begin{DoxyVerb} object_pt()->to_be_refined()
 \end{DoxyVerb}
@@ -673,7 +682,7 @@ Definition at line \mbox{\hyperlink{tree_8template_8cc_source_l00061}{61}} of fi
 
 
 
-References \mbox{\hyperlink{classoomph_1_1Tree_aca2fa14194f424583fd6425a8c4bbff2}{construct\+\_\+son()}}, \mbox{\hyperlink{tree_8h_source_l00235}{father\+\_\+pt()}}, \mbox{\hyperlink{tree_8h_source_l00296}{Father\+\_\+pt}}, \mbox{\hyperlink{cfortran_8h_source_l00603}{i}}, \mbox{\hyperlink{nodes_8h_source_l01055}{oomph\+::\+Node\+::ndim()}}, \mbox{\hyperlink{elements_8h_source_l02215}{oomph\+::\+Finite\+Element\+::nnode()}}, \mbox{\hyperlink{elements_8h_source_l02180}{oomph\+::\+Finite\+Element\+::node\+\_\+pt()}}, \mbox{\hyperlink{tree_8h_source_l00088}{object\+\_\+pt()}}, \mbox{\hyperlink{tree_8h_source_l00308}{Object\+\_\+pt}}, \mbox{\hyperlink{tree_8h_source_l00299}{Son\+\_\+pt}}, \mbox{\hyperlink{refineable__elements_8h_source_l00254}{oomph\+::\+Refineable\+Element\+::split()}}, \mbox{\hyperlink{oomph__definitions_8cc_source_l00286}{oomph\+::\+Global\+\_\+string\+\_\+for\+\_\+annotation\+::string()}}, \mbox{\hyperlink{refineable__elements_8h_source_l00345}{oomph\+::\+Refineable\+Element\+::to\+\_\+be\+\_\+refined()}}, and \mbox{\hyperlink{nodes_8h_source_l01061}{oomph\+::\+Node\+::x()}}.
+References \mbox{\hyperlink{classoomph_1_1Tree_aca2fa14194f424583fd6425a8c4bbff2}{construct\+\_\+son()}}, \mbox{\hyperlink{tree_8h_source_l00235}{father\+\_\+pt()}}, \mbox{\hyperlink{tree_8h_source_l00296}{Father\+\_\+pt}}, \mbox{\hyperlink{cfortran_8h_source_l00603}{i}}, \mbox{\hyperlink{elements_8h_source_l02215}{oomph\+::\+Finite\+Element\+::nnode()}}, \mbox{\hyperlink{elements_8h_source_l02180}{oomph\+::\+Finite\+Element\+::node\+\_\+pt()}}, \mbox{\hyperlink{tree_8h_source_l00088}{object\+\_\+pt()}}, \mbox{\hyperlink{tree_8h_source_l00308}{Object\+\_\+pt}}, \mbox{\hyperlink{tree_8h_source_l00299}{Son\+\_\+pt}}, \mbox{\hyperlink{refineable__elements_8h_source_l00254}{oomph\+::\+Refineable\+Element\+::split()}}, \mbox{\hyperlink{oomph__definitions_8cc_source_l00286}{oomph\+::\+Global\+\_\+string\+\_\+for\+\_\+annotation\+::string()}}, and \mbox{\hyperlink{refineable__elements_8h_source_l00345}{oomph\+::\+Refineable\+Element\+::to\+\_\+be\+\_\+refined()}}.
 
 \mbox{\Hypertarget{classoomph_1_1Tree_a2c84b4e4700a825ef0a6ca533b9ae895}\label{classoomph_1_1Tree_a2c84b4e4700a825ef0a6ca533b9ae895}} 
 \index{oomph::Tree@{oomph::Tree}!stick\_all\_tree\_nodes\_into\_vector@{stick\_all\_tree\_nodes\_into\_vector}}
@@ -685,7 +694,7 @@ References \mbox{\hyperlink{classoomph_1_1Tree_aca2fa14194f424583fd6425a8c4bbff2
 
 Traverse and stick pointers to all \char`\"{}nodes\char`\"{} into \mbox{\hyperlink{classoomph_1_1Vector}{Vector}}. 
 
-Traverse \mbox{\hyperlink{classoomph_1_1Tree}{Tree}}\+: Preorder traverse and stick pointer to all nodes (incl. \char`\"{}grey\char`\"{}=non-\/leaf ones) into \mbox{\hyperlink{classoomph_1_1Vector}{Vector}} 
+Traverse \mbox{\hyperlink{classoomph_1_1Tree}{Tree}}\+: Preorder traverse and stick pointer to all nodes (incl. \char`\"{}grey\char`\"{}=non-\/leaf ones) into \mbox{\hyperlink{classoomph_1_1Vector}{Vector}}. 
 
 Definition at line \mbox{\hyperlink{tree_8cc_source_l00277}{277}} of file \mbox{\hyperlink{tree_8cc_source}{tree.\+cc}}.
 
@@ -707,7 +716,7 @@ Referenced by \mbox{\hyperlink{problem_8cc_source_l19830}{oomph\+::\+Problem\+::
 
 Traverse tree and stick pointers to leaf \char`\"{}nodes\char`\"{} (only) into \mbox{\hyperlink{classoomph_1_1Vector}{Vector}}. 
 
-Traverse \mbox{\hyperlink{classoomph_1_1Tree}{Tree}}\+: Preorder traverse and stick pointers to leaf nodes (only) into \mbox{\hyperlink{classoomph_1_1Vector}{Vector}} 
+Traverse \mbox{\hyperlink{classoomph_1_1Tree}{Tree}}\+: Preorder traverse and stick pointers to leaf nodes (only) into \mbox{\hyperlink{classoomph_1_1Vector}{Vector}}. 
 
 Definition at line \mbox{\hyperlink{tree_8cc_source_l00255}{255}} of file \mbox{\hyperlink{tree_8cc_source}{tree.\+cc}}.
 
@@ -729,7 +738,7 @@ Referenced by \mbox{\hyperlink{mesh_8cc_source_l04749}{oomph\+::\+Mesh\+::get\+\
 
 Traverse the tree and execute void \mbox{\hyperlink{classoomph_1_1Tree}{Tree}} member function member\+\_\+function() at all its \char`\"{}nodes\char`\"{}. 
 
-Preorder traverse the tree and execute void \mbox{\hyperlink{classoomph_1_1Tree}{Tree}} member function at all nodes 
+Preorder traverse the tree and execute void \mbox{\hyperlink{classoomph_1_1Tree}{Tree}} member function at all nodes. 
 
 Definition at line \mbox{\hyperlink{tree_8cc_source_l00145}{145}} of file \mbox{\hyperlink{tree_8cc_source}{tree.\+cc}}.
 

@@ -2,6 +2,11 @@
 \label{classoomph_1_1LinearSolver}\index{oomph::LinearSolver@{oomph::LinearSolver}}
 
 
+Base class for all linear solvers. This merely defines standard interfaces for linear solvers, so that different solvers can be used in a clean and transparent manner. Note that Linear\+Solvers are primarily used to solve the linear systems arising in oomph-\/lib\textquotesingle{}s Newton iteration. Their primary solve function therefore takes a pointer to the associated problem, construct its Jacobian matrix and residual vector, and return the solution of the linear system formed by the Jacobian and the residual vector. We also provide broken virtual interfaces to a linear-\/algebra-\/type solve function in which the matrix and the rhs can be specified, but this are not guaranteed to implemented for all linear solvers (e.\+g. for frontal solvers).  
+
+
+
+
 {\ttfamily \#include $<$linear\+\_\+solver.\+h$>$}
 
 Inheritance diagram for oomph\+::Linear\+Solver\+:\begin{figure}[H]

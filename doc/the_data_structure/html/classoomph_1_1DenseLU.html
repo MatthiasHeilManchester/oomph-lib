@@ -147,7 +147,7 @@ $(function() {
  <div class="center">
   <img src="classoomph_1_1DenseLU.png" usemap="#oomph::DenseLU_map" alt=""/>
   <map id="oomph::DenseLU_map" name="oomph::DenseLU_map">
-<area href="classoomph_1_1LinearSolver.html" alt="oomph::LinearSolver" shape="rect" coords="0,56,243,80"/>
+<area href="classoomph_1_1LinearSolver.html" title="Base class for all linear solvers. This merely defines standard interfaces for linear solvers,..." alt="oomph::LinearSolver" shape="rect" coords="0,56,243,80"/>
 <area href="classoomph_1_1DistributableLinearAlgebraObject.html" title="Base class for any linear algebra object that is distributable. Just contains storage for the LinearA..." alt="oomph::DistributableLinearAlgebraObject" shape="rect" coords="0,0,243,24"/>
 <area href="classoomph_1_1FD__LU.html" title="Dense LU decomposition-based solve of linear system assembled via finite differencing of the residual..." alt="oomph::FD_LU" shape="rect" coords="0,168,243,192"/>
   </map>
@@ -168,7 +168,7 @@ Public Member Functions</h2></td></tr>
 <tr class="memdesc:a012d934c8dec17f2ca3ad504939ab29d"><td class="mdescLeft">&#160;</td><td class="mdescRight">Destructor, clean up the stored LU factors.  <a href="classoomph_1_1DenseLU.html#a012d934c8dec17f2ca3ad504939ab29d">More...</a><br /></td></tr>
 <tr class="separator:a012d934c8dec17f2ca3ad504939ab29d"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ac354b224819146618ce8a1396f8f980e"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classoomph_1_1DenseLU.html#ac354b224819146618ce8a1396f8f980e">solve</a> (<a class="el" href="classoomph_1_1Problem.html">Problem</a> *const &amp;problem_pt, <a class="el" href="classoomph_1_1DoubleVector.html">DoubleVector</a> &amp;result)</td></tr>
-<tr class="memdesc:ac354b224819146618ce8a1396f8f980e"><td class="mdescLeft">&#160;</td><td class="mdescRight">Solver: Takes pointer to problem and returns the results <a class="el" href="classoomph_1_1Vector.html">Vector</a> which contains the solution of the linear system defined by the problem's fully assembled Jacobian and residual <a class="el" href="classoomph_1_1Vector.html">Vector</a>.  <a href="classoomph_1_1DenseLU.html#ac354b224819146618ce8a1396f8f980e">More...</a><br /></td></tr>
+<tr class="memdesc:ac354b224819146618ce8a1396f8f980e"><td class="mdescLeft">&#160;</td><td class="mdescRight">Solver: Takes pointer to problem and returns the results <a class="el" href="classoomph_1_1Vector.html" title="A slight extension to the standard template vector class so that we can include &quot;graceful&quot; array rang...">Vector</a> which contains the solution of the linear system defined by the problem's fully assembled Jacobian and residual <a class="el" href="classoomph_1_1Vector.html" title="A slight extension to the standard template vector class so that we can include &quot;graceful&quot; array rang...">Vector</a>.  <a href="classoomph_1_1DenseLU.html#ac354b224819146618ce8a1396f8f980e">More...</a><br /></td></tr>
 <tr class="separator:ac354b224819146618ce8a1396f8f980e"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ae82e044bb5a1173b8105b6fedd904801"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classoomph_1_1DenseLU.html#ae82e044bb5a1173b8105b6fedd904801">solve</a> (<a class="el" href="classoomph_1_1DoubleMatrixBase.html">DoubleMatrixBase</a> *const &amp;matrix_pt, const <a class="el" href="classoomph_1_1DoubleVector.html">DoubleVector</a> &amp;rhs, <a class="el" href="classoomph_1_1DoubleVector.html">DoubleVector</a> &amp;result)</td></tr>
 <tr class="memdesc:ae82e044bb5a1173b8105b6fedd904801"><td class="mdescLeft">&#160;</td><td class="mdescRight">Linear-algebra-type solver: Takes pointer to a matrix and rhs vector and returns the solution of the linear system.  <a href="classoomph_1_1DenseLU.html#ae82e044bb5a1173b8105b6fedd904801">More...</a><br /></td></tr>
@@ -275,6 +275,7 @@ Public Member Functions</h2></td></tr>
 <tr class="memdesc:a5505731e7e73d7e4251c67c7adec6bf5 inherit pub_methods_classoomph_1_1DistributableLinearAlgebraObject"><td class="mdescLeft">&#160;</td><td class="mdescRight">distribution is serial or distributed  <a href="classoomph_1_1DistributableLinearAlgebraObject.html#a5505731e7e73d7e4251c67c7adec6bf5">More...</a><br /></td></tr>
 <tr class="separator:a5505731e7e73d7e4251c67c7adec6bf5 inherit pub_methods_classoomph_1_1DistributableLinearAlgebraObject"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a8c35baa65e335043f62954c92c090a5a inherit pub_methods_classoomph_1_1DistributableLinearAlgebraObject"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classoomph_1_1DistributableLinearAlgebraObject.html#a8c35baa65e335043f62954c92c090a5a">distribution_built</a> () const</td></tr>
+<tr class="memdesc:a8c35baa65e335043f62954c92c090a5a inherit pub_methods_classoomph_1_1DistributableLinearAlgebraObject"><td class="mdescLeft">&#160;</td><td class="mdescRight">if the communicator_pt is null then the distribution is not setup then false is returned, otherwise return true  <a href="classoomph_1_1DistributableLinearAlgebraObject.html#a8c35baa65e335043f62954c92c090a5a">More...</a><br /></td></tr>
 <tr class="separator:a8c35baa65e335043f62954c92c090a5a inherit pub_methods_classoomph_1_1DistributableLinearAlgebraObject"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ac5340bac40b9559b0378037b57005203 inherit pub_methods_classoomph_1_1DistributableLinearAlgebraObject"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classoomph_1_1DistributableLinearAlgebraObject.html#ac5340bac40b9559b0378037b57005203">build_distribution</a> (const <a class="el" href="classoomph_1_1LinearAlgebraDistribution.html">LinearAlgebraDistribution</a> *const dist_pt)</td></tr>
 <tr class="memdesc:ac5340bac40b9559b0378037b57005203 inherit pub_methods_classoomph_1_1DistributableLinearAlgebraObject"><td class="mdescLeft">&#160;</td><td class="mdescRight">setup the distribution of this distributable linear algebra object  <a href="classoomph_1_1DistributableLinearAlgebraObject.html#ac5340bac40b9559b0378037b57005203">More...</a><br /></td></tr>
@@ -832,8 +833,7 @@ Friends</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
-<p>Solver: Takes pointer to problem and returns the results <a class="el" href="classoomph_1_1Vector.html">Vector</a> which contains the solution of the linear system defined by the problem's fully assembled Jacobian and residual <a class="el" href="classoomph_1_1Vector.html">Vector</a>. </p>
-<p >Solver: Takes pointer to problem and returns the results <a class="el" href="classoomph_1_1Vector.html">Vector</a> which contains the solution of the linear system defined by the problem's fully assembled Jacobian and residual <a class="el" href="classoomph_1_1Vector.html">Vector</a>. </p>
+<p>Solver: Takes pointer to problem and returns the results <a class="el" href="classoomph_1_1Vector.html" title="A slight extension to the standard template vector class so that we can include &quot;graceful&quot; array rang...">Vector</a> which contains the solution of the linear system defined by the problem's fully assembled Jacobian and residual <a class="el" href="classoomph_1_1Vector.html" title="A slight extension to the standard template vector class so that we can include &quot;graceful&quot; array rang...">Vector</a>. </p>
 
 <p>Implements <a class="el" href="classoomph_1_1LinearSolver.html#a15ce22542b74ed1826ea485edacbeb6e">oomph::LinearSolver</a>.</p>
 
@@ -1047,7 +1047,7 @@ Friends</h2></td></tr>
     <footer>
       <div class="container">
         <div class="text-muted" style="float:right;">Generated by <a href="http://www.doxygen.org/index.html">
-          <img style="height:18px;" class="footer-img" src="doxygen.png" alt="doxygen"></a> on Wed Oct 13 2021 08:45:06
+          <img style="height:18px;" class="footer-img" src="doxygen.png" alt="doxygen"></a> on Thu Oct 21 2021 17:33:37
         </div>
       </div>
     </footer>

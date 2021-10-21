@@ -50,7 +50,7 @@ As usual, we represent the moving wall as a {\ttfamily Geom\+Object} and define 
  
 \begin{DoxyCodeInclude}{0}
 \DoxyCodeLine{\textcolor{comment}{//============start\_of\_MyEllipse===========================================}}
-\DoxyCodeLine{\textcolor{comment}{/// \(\backslash\)short Oscillating ellipse}\textcolor{comment}{}}
+\DoxyCodeLine{\textcolor{comment}{///  Oscillating ellipse}\textcolor{comment}{}}
 \DoxyCodeLine{\textcolor{comment}{/// \(\backslash\)f[ x = (A + \(\backslash\)widehat\{A\} \(\backslash\)cos(2\(\backslash\)pi t/T)) \(\backslash\)cos(\(\backslash\)xi)  \(\backslash\)f]}}
 \DoxyCodeLine{\textcolor{comment}{/// \(\backslash\)f[ y = \(\backslash\)frac\{\(\backslash\)sin(\(\backslash\)xi)\}\{A + \(\backslash\)widehat\{A\} \(\backslash\)cos(2\(\backslash\)pi t/T)\}   \(\backslash\)f]}}
 \DoxyCodeLine{\textcolor{comment}{/// Note that cross-\/sectional area is conserved.}}
@@ -60,7 +60,7 @@ As usual, we represent the moving wall as a {\ttfamily Geom\+Object} and define 
 \DoxyCodeLine{}
 \DoxyCodeLine{\textcolor{keyword}{public}:}
 \DoxyCodeLine{\textcolor{comment}{}}
-\DoxyCodeLine{\textcolor{comment}{ /// \(\backslash\)short Constructor:  Pass initial x-\/half axis, amplitude of x-\/variation, }}
+\DoxyCodeLine{\textcolor{comment}{ ///  Constructor:  Pass initial x-\/half axis, amplitude of x-\/variation, }}
 \DoxyCodeLine{\textcolor{comment}{ /// period of oscillation and pointer to time object.}}
 \DoxyCodeLine{\textcolor{comment}{} \mbox{\hyperlink{classMyEllipse_a6d780f1f450d99e175842e88a3079069}{MyEllipse}}(\textcolor{keyword}{const} \textcolor{keywordtype}{double}\& a, \textcolor{keyword}{const} \textcolor{keywordtype}{double}\& a\_hat,}
 \DoxyCodeLine{           \textcolor{keyword}{const} \textcolor{keywordtype}{double}\& period, Time* time\_pt) : }
@@ -69,7 +69,7 @@ As usual, we represent the moving wall as a {\ttfamily Geom\+Object} and define 
 \DoxyCodeLine{\textcolor{comment}{ /// Destructor: Empty}}
 \DoxyCodeLine{\textcolor{comment}{} \textcolor{keyword}{virtual} \mbox{\hyperlink{classMyEllipse_ac2f2d3fb269c57fb26b4db6d9a0c7c05}{\string~MyEllipse}}() \{\}}
 \DoxyCodeLine{\textcolor{comment}{}}
-\DoxyCodeLine{\textcolor{comment}{ /// \(\backslash\)short Current position vector to material point at }}
+\DoxyCodeLine{\textcolor{comment}{ ///  Current position vector to material point at }}
 \DoxyCodeLine{\textcolor{comment}{ /// Lagrangian coordinate xi }}
 \DoxyCodeLine{\textcolor{comment}{} \textcolor{keywordtype}{void} \mbox{\hyperlink{classMyEllipse_a7b139a2f4564005773c83325f2414e3e}{position}}(\textcolor{keyword}{const} Vector<double>\& xi, Vector<double>\& r)\textcolor{keyword}{ const}}
 \DoxyCodeLine{\textcolor{keyword}{  }\{}
@@ -82,7 +82,7 @@ As usual, we represent the moving wall as a {\ttfamily Geom\+Object} and define 
 \DoxyCodeLine{   r[1] = (1.0/axis)*sin(xi[0]);}
 \DoxyCodeLine{  \} }
 \DoxyCodeLine{\textcolor{comment}{}}
-\DoxyCodeLine{\textcolor{comment}{ /// \(\backslash\)short Parametrised position on object: r(xi). Evaluated at}}
+\DoxyCodeLine{\textcolor{comment}{ ///  Parametrised position on object: r(xi). Evaluated at}}
 \DoxyCodeLine{\textcolor{comment}{ /// previous time level. t=0: current time; t>0: previous}}
 \DoxyCodeLine{\textcolor{comment}{ /// time level.}}
 \DoxyCodeLine{\textcolor{comment}{} \textcolor{keywordtype}{void} \mbox{\hyperlink{classMyEllipse_a7b139a2f4564005773c83325f2414e3e}{position}}(\textcolor{keyword}{const} \textcolor{keywordtype}{unsigned}\& t, \textcolor{keyword}{const} Vector<double>\& xi,}
@@ -266,7 +266,7 @@ Most of the problem class is a straightforward combination of the problem classe
 \DoxyCodeLine{\textcolor{comment}{ /// Update the problem specs after solve (empty)}}
 \DoxyCodeLine{\textcolor{comment}{} \textcolor{keywordtype}{void} \mbox{\hyperlink{classOscEllipseProblem_a268e14b24e3ac922e7362bbb37ccde1f}{actions\_after\_newton\_solve}}()\{\}}
 \DoxyCodeLine{\textcolor{comment}{}}
-\DoxyCodeLine{\textcolor{comment}{ /// \(\backslash\)short Update problem specs before solve (empty)}}
+\DoxyCodeLine{\textcolor{comment}{ ///  Update problem specs before solve (empty)}}
 \DoxyCodeLine{\textcolor{comment}{} \textcolor{keywordtype}{void} \mbox{\hyperlink{classOscEllipseProblem_a18bbd70aa8c140637637053a5f839c11}{actions\_before\_newton\_solve}}() \{\} }
 \DoxyCodeLine{ \textcolor{comment}{}}
 \DoxyCodeLine{\textcolor{comment}{ /// Actions before adapt (empty)}}
@@ -303,7 +303,7 @@ Here is the implementation of these tasks\+:
 \begin{DoxyCodeInclude}{0}
 \DoxyCodeLine{}
 \DoxyCodeLine{\textcolor{comment}{}}
-\DoxyCodeLine{\textcolor{comment}{ /// \(\backslash\)short Update the problem specs before next timestep}}
+\DoxyCodeLine{\textcolor{comment}{ ///  Update the problem specs before next timestep}}
 \DoxyCodeLine{\textcolor{comment}{} \textcolor{keywordtype}{void} actions\_before\_implicit\_timestep()}
 \DoxyCodeLine{  \{}
 \DoxyCodeLine{   \textcolor{comment}{// Update the domain shape}}
@@ -338,7 +338,7 @@ Here is the implementation of these tasks\+:
 \DoxyCodeLine{\textcolor{comment}{ /// Timestepping loop}}
 \DoxyCodeLine{\textcolor{comment}{} \textcolor{keywordtype}{void} unsteady\_run(DocInfo\& doc\_info);}
 \DoxyCodeLine{\textcolor{comment}{}}
-\DoxyCodeLine{\textcolor{comment}{ /// \(\backslash\)short Set initial condition}}
+\DoxyCodeLine{\textcolor{comment}{ ///  Set initial condition}}
 \DoxyCodeLine{\textcolor{comment}{} \textcolor{keywordtype}{void} set\_initial\_condition();}
 \DoxyCodeLine{}
 \DoxyCodeLine{\textcolor{keyword}{private}:}
@@ -521,7 +521,7 @@ This function assigns \char`\"{}history values\char`\"{} for the velocities and 
 
 \begin{DoxyCodeInclude}{0}
 \DoxyCodeLine{\textcolor{comment}{//======================start\_of\_set\_initial\_condition====================}}
-\DoxyCodeLine{\textcolor{comment}{/// \(\backslash\)short Set initial condition: Assign previous and current values}\textcolor{comment}{}}
+\DoxyCodeLine{\textcolor{comment}{///  Set initial condition: Assign previous and current values}\textcolor{comment}{}}
 \DoxyCodeLine{\textcolor{comment}{/// from exact solution.}}
 \DoxyCodeLine{\textcolor{comment}{}\textcolor{comment}{//========================================================================}}
 \DoxyCodeLine{\textcolor{keyword}{template}<\textcolor{keyword}{class} ELEMENT,\textcolor{keyword}{class} TIMESTEPPER>}

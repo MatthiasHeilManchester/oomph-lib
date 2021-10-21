@@ -89,7 +89,7 @@ static bool \mbox{\hyperlink{classNonRefineableBinArray_a00af6975c82a55816e96d63
 void \mbox{\hyperlink{classNonRefineableBinArray_a092b4de479924b7c13800cdae75ad5db}{fill\+\_\+bin\+\_\+array}} ()
 \begin{DoxyCompactList}\small\item\em Fill the bin array with sample points from Finite\+Elements stored in mesh. \end{DoxyCompactList}\item 
 void \mbox{\hyperlink{classNonRefineableBinArray_a09b3807d836620c55ad7febdfc81bd93}{create\+\_\+bins\+\_\+of\+\_\+objects}} ()
-\item 
+\begin{DoxyCompactList}\small\item\em Initialise and populate the \char`\"{}bin\char`\"{} structure for locating coordinates and increment counter for total number of bins in active use by any Mesh\+As\+Geom\+Object) \end{DoxyCompactList}\item 
 void \mbox{\hyperlink{classNonRefineableBinArray_acf0ff698280d40cf44a637d7df31cf90}{flush\+\_\+bins\+\_\+of\+\_\+objects}} ()
 \begin{DoxyCompactList}\small\item\em Flush the storage for the binning method (and decrement counter for total number of bins in active use by any Mesh\+As\+Geom\+Object) \end{DoxyCompactList}\end{DoxyCompactItemize}
 \doxysubsection*{Private Attributes}
@@ -189,7 +189,11 @@ References \mbox{\hyperlink{sample__point__container_8h_source_l01012}{Bin\+\_\+
 \doxysubsubsection{\texorpdfstring{create\_bins\_of\_objects()}{create\_bins\_of\_objects()}}
 {\footnotesize\ttfamily void Non\+Refineable\+Bin\+Array\+::create\+\_\+bins\+\_\+of\+\_\+objects (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [private]}}
 
-Initialise and populate the \char`\"{}bin\char`\"{} structure for locating coordinates and increment counter for total number of bins in active use by any Mesh\+As\+Geom\+Object) \mbox{\Hypertarget{classNonRefineableBinArray_afd56cee21035f7e696c3981dcad6a2cd}\label{classNonRefineableBinArray_afd56cee21035f7e696c3981dcad6a2cd}} 
+
+
+Initialise and populate the \char`\"{}bin\char`\"{} structure for locating coordinates and increment counter for total number of bins in active use by any Mesh\+As\+Geom\+Object) 
+
+\mbox{\Hypertarget{classNonRefineableBinArray_afd56cee21035f7e696c3981dcad6a2cd}\label{classNonRefineableBinArray_afd56cee21035f7e696c3981dcad6a2cd}} 
 \index{NonRefineableBinArray@{NonRefineableBinArray}!current\_max\_spiral\_level@{current\_max\_spiral\_level}}
 \index{current\_max\_spiral\_level@{current\_max\_spiral\_level}!NonRefineableBinArray@{NonRefineableBinArray}}
 \doxysubsubsection{\texorpdfstring{current\_max\_spiral\_level()}{current\_max\_spiral\_level()}}
@@ -265,13 +269,13 @@ Referenced by \mbox{\hyperlink{sample__point__container_8cc_source_l02169}{Non\+
 
 Fill bin by diffusion, populating each empty bin with the same content as the first non-\/empty bin found during a spiral-\/based search up to the specified \char`\"{}radius\char`\"{} (default 1) 
 
-Fill bin by diffusion, populating each empty bin with the same content as the first non-\/empty bin found during a spiral-\/based search up to the specified \char`\"{}radius\char`\"{} (default 1) 
+
 
 Definition at line \mbox{\hyperlink{sample__point__container_8cc_source_l02667}{2667}} of file \mbox{\hyperlink{sample__point__container_8cc_source}{sample\+\_\+point\+\_\+container.\+cc}}.
 
 
 
-References \mbox{\hyperlink{sample__point__container_8h_source_l01012}{Bin\+\_\+object\+\_\+coord\+\_\+pairs}}, \mbox{\hyperlink{sample__point__container_8cc_source_l01350}{Bin\+Array\+::get\+\_\+neighbouring\+\_\+bins\+\_\+helper()}}, \mbox{\hyperlink{cfortran_8h_source_l00603}{i}}, \mbox{\hyperlink{sample__point__container_8cc_source_l03057}{min\+\_\+distance()}}, \mbox{\hyperlink{sample__point__container_8h_source_l00845}{nbin()}}, and \mbox{\hyperlink{cfortran_8h_source_l00568}{s}}.
+References \mbox{\hyperlink{sample__point__container_8h_source_l01012}{Bin\+\_\+object\+\_\+coord\+\_\+pairs}}, \mbox{\hyperlink{sample__point__container_8cc_source_l01350}{Bin\+Array\+::get\+\_\+neighbouring\+\_\+bins\+\_\+helper()}}, \mbox{\hyperlink{cfortran_8h_source_l00603}{i}}, \mbox{\hyperlink{sample__point__container_8cc_source_l03057}{min\+\_\+distance()}}, \mbox{\hyperlink{sample__point__container_8h_source_l00845}{nbin()}}, \mbox{\hyperlink{cfortran_8h_source_l00568}{s}}, and \mbox{\hyperlink{pseudo__buckling__ring_8h_source_l00049}{oomph\+::x}}.
 
 
 
@@ -331,7 +335,7 @@ Referenced by \mbox{\hyperlink{triangle__mesh_8template_8cc_source_l29595}{oomph
 
 Get the number of the bin containing the specified coordinate. Bin number is negative if the coordinate is outside the bin structure. 
 
-Get the number of the bin containing the specified coordinate. Bin number is negative if the coordinate is outside the bin structure. 
+
 
 Definition at line \mbox{\hyperlink{sample__point__container_8cc_source_l02794}{2794}} of file \mbox{\hyperlink{sample__point__container_8cc_source}{sample\+\_\+point\+\_\+container.\+cc}}.
 
@@ -363,7 +367,7 @@ Get the number of the bin containing the specified coordinate; also return the c
 
 Get vector of vectors containing the coordinates of the vertices of the i\+\_\+bin-\/th bin\+: bin\+\_\+vertex\mbox{[}j\mbox{]}\mbox{[}i\mbox{]} contains the i-\/th coordinate of the j-\/th vertex. 
 
-Get vector of vectors containing the coordinates of the vertices of the i\+\_\+bin-\/th bin\+: bin\+\_\+vertex\mbox{[}j\mbox{]}\mbox{[}i\mbox{]} contains the i-\/th coordinate of the j-\/th vertex. 
+
 
 Definition at line \mbox{\hyperlink{sample__point__container_8cc_source_l02912}{2912}} of file \mbox{\hyperlink{sample__point__container_8cc_source}{sample\+\_\+point\+\_\+container.\+cc}}.
 
@@ -447,7 +451,7 @@ References \mbox{\hyperlink{sample__point__container_8h_source_l01016}{Max\+\_\+
 
 Compute the minimum distance of any vertex in the specified bin from the specified Lagrangian coordinate zeta. 
 
-Compute the minimum distance of any vertex in the specified bin from the specified Lagrangian coordinate zeta. 
+
 
 Definition at line \mbox{\hyperlink{sample__point__container_8cc_source_l03057}{3057}} of file \mbox{\hyperlink{sample__point__container_8cc_source}{sample\+\_\+point\+\_\+container.\+cc}}.
 

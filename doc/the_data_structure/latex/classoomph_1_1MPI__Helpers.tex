@@ -15,9 +15,9 @@
 static void \mbox{\hyperlink{classoomph_1_1MPI__Helpers_a663a35b00078ebefdc0ea0b7190212e4}{init}} (int argc, char $\ast$$\ast$argv, const bool \&make\+\_\+duplicate\+\_\+of\+\_\+mpi\+\_\+comm\+\_\+world=true)
 \begin{DoxyCompactList}\small\item\em initialise mpi (oomph-\/libs equivalent of MPI\+\_\+\+Init(...)) Initialises MPI and creates the global oomph-\/lib communicator. If optional boolean flag is set to false, we use MPI\+\_\+\+COMM\+\_\+\+WORLD itself as oomph-\/lib\textquotesingle{}s communicator. Defaults to true. \end{DoxyCompactList}\item 
 static void \mbox{\hyperlink{classoomph_1_1MPI__Helpers_a471bc4697fd5edeea3fb4af1bba0e541}{finalize}} ()
-\begin{DoxyCompactList}\small\item\em finalize mpi \end{DoxyCompactList}\item 
+\begin{DoxyCompactList}\small\item\em finalize mpi (oomph-\/lib equivalent of MPI\+\_\+\+Finalize()) Deletes the global oomph-\/lib communicator and finalizes MPI. \end{DoxyCompactList}\item 
 static \mbox{\hyperlink{classoomph_1_1OomphCommunicator}{Oomph\+Communicator}} $\ast$ \mbox{\hyperlink{classoomph_1_1MPI__Helpers_ac16964b22bfd4f657490802beb600ffe}{communicator\+\_\+pt}} ()
-\begin{DoxyCompactList}\small\item\em access to the global oomph-\/lib communicator \end{DoxyCompactList}\item 
+\begin{DoxyCompactList}\small\item\em access to global communicator. This is the oomph-\/lib equivalent of MPI\+\_\+\+COMM\+\_\+\+WORLD \end{DoxyCompactList}\item 
 static bool \mbox{\hyperlink{classoomph_1_1MPI__Helpers_aa376d403f6bc99e8595d227135932b0e}{mpi\+\_\+has\+\_\+been\+\_\+initialised}} ()
 \begin{DoxyCompactList}\small\item\em return true if MPI has been initialised \end{DoxyCompactList}\end{DoxyCompactItemize}
 \doxysubsection*{Private Member Functions}
@@ -75,9 +75,9 @@ private copy constructor definition (to prevent instances of the class being ins
 
 
 
-access to the global oomph-\/lib communicator 
-
 access to global communicator. This is the oomph-\/lib equivalent of MPI\+\_\+\+COMM\+\_\+\+WORLD 
+
+access to the global oomph-\/lib communicator 
 
 Definition at line \mbox{\hyperlink{oomph__utilities_8cc_source_l01046}{1046}} of file \mbox{\hyperlink{oomph__utilities_8cc_source}{oomph\+\_\+utilities.\+cc}}.
 
@@ -87,7 +87,7 @@ References \mbox{\hyperlink{oomph__utilities_8h_source_l00869}{Communicator\+\_\
 
 
 
-Referenced by \mbox{\hyperlink{error__estimator_8cc_source_l01802}{oomph\+::\+Z2\+Error\+Estimator\+::doc\+\_\+flux()}}, \mbox{\hyperlink{oomph__utilities_8cc_source_l01380}{oomph\+::\+Memory\+Usage\+::doc\+\_\+my\+\_\+memory\+\_\+usage()}}, \mbox{\hyperlink{oomph__utilities_8cc_source_l01445}{oomph\+::\+Memory\+Usage\+::doc\+\_\+total\+\_\+memory\+\_\+usage()}}, \mbox{\hyperlink{linear__solver_8cc_source_l01827}{oomph\+::\+Super\+LUSolver\+::factorise\+\_\+distributed()}}, \mbox{\hyperlink{helmholtz__geometric__multigrid_8h_source_l01103}{oomph\+::\+Helmholtz\+MGPreconditioner$<$ DIM $>$\+::full\+\_\+setup()}}, \mbox{\hyperlink{pseudo__elastic__preconditioner_8cc_source_l00041}{oomph\+::\+Pseudo\+\_\+\+Elastic\+\_\+\+Preconditioner\+\_\+\+Subsidiary\+\_\+\+Operator\+\_\+\+Helper\+::get\+\_\+elastic\+\_\+preconditioner\+\_\+hypre()}}, \mbox{\hyperlink{error__estimator_8cc_source_l00946}{oomph\+::\+Z2\+Error\+Estimator\+::get\+\_\+element\+\_\+errors()}}, \mbox{\hyperlink{nodes_8h_source_l01244}{oomph\+::\+Node\+::hanging\+\_\+pt()}}, \mbox{\hyperlink{hypre__solver_8cc_source_l01086}{oomph\+::\+Hypre\+Interface\+::hypre\+\_\+solve()}}, \mbox{\hyperlink{hypre__solver_8h_source_l00137}{oomph\+::\+Hypre\+Interface\+::\+Hypre\+Interface()}}, \mbox{\hyperlink{problem_8cc_source_l00069}{oomph\+::\+Problem\+::\+Problem()}}, \mbox{\hyperlink{oomph__utilities_8cc_source_l01539}{oomph\+::\+Memory\+Usage\+::run\+\_\+continous\+\_\+top()}}, \mbox{\hyperlink{geometric__multigrid_8h_source_l00754}{oomph\+::\+MGPreconditioner$<$ DIM $>$\+::setup()}}, \mbox{\hyperlink{complex__smoother_8h_source_l01842}{oomph\+::\+Helmholtz\+GMRESMG$<$ MATRIX $>$\+::solve()}}, \mbox{\hyperlink{complex__smoother_8h_source_l03352}{oomph\+::\+Helmholtz\+FGMRESMG$<$ MATRIX $>$\+::solve()}}, and \mbox{\hyperlink{oomph__utilities_8cc_source_l01597}{oomph\+::\+Memory\+Usage\+::stop\+\_\+continous\+\_\+top()}}.
+Referenced by \mbox{\hyperlink{oomph__utilities_8cc_source_l01380}{oomph\+::\+Memory\+Usage\+::doc\+\_\+my\+\_\+memory\+\_\+usage()}}, \mbox{\hyperlink{oomph__utilities_8cc_source_l01445}{oomph\+::\+Memory\+Usage\+::doc\+\_\+total\+\_\+memory\+\_\+usage()}}, \mbox{\hyperlink{linear__solver_8cc_source_l01827}{oomph\+::\+Super\+LUSolver\+::factorise\+\_\+distributed()}}, \mbox{\hyperlink{helmholtz__geometric__multigrid_8h_source_l01103}{oomph\+::\+Helmholtz\+MGPreconditioner$<$ DIM $>$\+::full\+\_\+setup()}}, \mbox{\hyperlink{pseudo__elastic__preconditioner_8cc_source_l00041}{oomph\+::\+Pseudo\+\_\+\+Elastic\+\_\+\+Preconditioner\+\_\+\+Subsidiary\+\_\+\+Operator\+\_\+\+Helper\+::get\+\_\+elastic\+\_\+preconditioner\+\_\+hypre()}}, \mbox{\hyperlink{hypre__solver_8cc_source_l01086}{oomph\+::\+Hypre\+Interface\+::hypre\+\_\+solve()}}, \mbox{\hyperlink{hypre__solver_8h_source_l00137}{oomph\+::\+Hypre\+Interface\+::\+Hypre\+Interface()}}, \mbox{\hyperlink{problem_8cc_source_l00069}{oomph\+::\+Problem\+::\+Problem()}}, \mbox{\hyperlink{oomph__utilities_8cc_source_l01539}{oomph\+::\+Memory\+Usage\+::run\+\_\+continous\+\_\+top()}}, \mbox{\hyperlink{geometric__multigrid_8h_source_l00754}{oomph\+::\+MGPreconditioner$<$ DIM $>$\+::setup()}}, \mbox{\hyperlink{complex__smoother_8h_source_l01842}{oomph\+::\+Helmholtz\+GMRESMG$<$ MATRIX $>$\+::solve()}}, \mbox{\hyperlink{complex__smoother_8h_source_l03352}{oomph\+::\+Helmholtz\+FGMRESMG$<$ MATRIX $>$\+::solve()}}, and \mbox{\hyperlink{oomph__utilities_8cc_source_l01597}{oomph\+::\+Memory\+Usage\+::stop\+\_\+continous\+\_\+top()}}.
 
 \mbox{\Hypertarget{classoomph_1_1MPI__Helpers_a471bc4697fd5edeea3fb4af1bba0e541}\label{classoomph_1_1MPI__Helpers_a471bc4697fd5edeea3fb4af1bba0e541}} 
 \index{oomph::MPI\_Helpers@{oomph::MPI\_Helpers}!finalize@{finalize}}
@@ -97,9 +97,9 @@ Referenced by \mbox{\hyperlink{error__estimator_8cc_source_l01802}{oomph\+::\+Z2
 
 
 
-finalize mpi 
-
 finalize mpi (oomph-\/lib equivalent of MPI\+\_\+\+Finalize()) Deletes the global oomph-\/lib communicator and finalizes MPI. 
+
+finalize mpi 
 
 Definition at line \mbox{\hyperlink{oomph__utilities_8cc_source_l01032}{1032}} of file \mbox{\hyperlink{oomph__utilities_8cc_source}{oomph\+\_\+utilities.\+cc}}.
 
@@ -149,7 +149,7 @@ References \mbox{\hyperlink{oomph__utilities_8h_source_l00866}{MPI\+\_\+has\+\_\
 
 
 
-Referenced by \mbox{\hyperlink{hypre__solver_8cc_source_l00270}{oomph\+::\+Hypre\+Helpers\+::create\+\_\+\+HYPRE\+\_\+\+Matrix()}}, \mbox{\hyperlink{oomph__utilities_8cc_source_l01380}{oomph\+::\+Memory\+Usage\+::doc\+\_\+my\+\_\+memory\+\_\+usage()}}, \mbox{\hyperlink{oomph__utilities_8cc_source_l01445}{oomph\+::\+Memory\+Usage\+::doc\+\_\+total\+\_\+memory\+\_\+usage()}}, \mbox{\hyperlink{linear__solver_8cc_source_l01782}{oomph\+::\+Super\+LUSolver\+::factorise()}}, \mbox{\hyperlink{error__estimator_8cc_source_l00946}{oomph\+::\+Z2\+Error\+Estimator\+::get\+\_\+element\+\_\+errors()}}, \mbox{\hyperlink{hypre__solver_8cc_source_l01086}{oomph\+::\+Hypre\+Interface\+::hypre\+\_\+solve()}}, \mbox{\hyperlink{hypre__solver_8h_source_l00137}{oomph\+::\+Hypre\+Interface\+::\+Hypre\+Interface()}}, \mbox{\hyperlink{problem_8cc_source_l08783}{oomph\+::\+Problem\+::newton\+\_\+solve()}}, \mbox{\hyperlink{problem_8cc_source_l00069}{oomph\+::\+Problem\+::\+Problem()}}, \mbox{\hyperlink{projection_8h_source_l00748}{oomph\+::\+Projection\+Problem$<$ PROJECTABLE\+\_\+\+ELEMENT $>$\+::project()}}, \mbox{\hyperlink{oomph__utilities_8cc_source_l01539}{oomph\+::\+Memory\+Usage\+::run\+\_\+continous\+\_\+top()}}, \mbox{\hyperlink{matrix__vector__product_8cc_source_l00041}{oomph\+::\+Matrix\+Vector\+Product\+::setup()}}, \mbox{\hyperlink{oomph__utilities_8cc_source_l01597}{oomph\+::\+Memory\+Usage\+::stop\+\_\+continous\+\_\+top()}}, and \mbox{\hyperlink{oomph__utilities_8cc_source_l01295}{oomph\+::\+Timing\+Helpers\+::timer()}}.
+Referenced by \mbox{\hyperlink{hypre__solver_8cc_source_l00270}{oomph\+::\+Hypre\+Helpers\+::create\+\_\+\+HYPRE\+\_\+\+Matrix()}}, \mbox{\hyperlink{oomph__utilities_8cc_source_l01380}{oomph\+::\+Memory\+Usage\+::doc\+\_\+my\+\_\+memory\+\_\+usage()}}, \mbox{\hyperlink{oomph__utilities_8cc_source_l01445}{oomph\+::\+Memory\+Usage\+::doc\+\_\+total\+\_\+memory\+\_\+usage()}}, \mbox{\hyperlink{linear__solver_8cc_source_l01782}{oomph\+::\+Super\+LUSolver\+::factorise()}}, \mbox{\hyperlink{hypre__solver_8cc_source_l01086}{oomph\+::\+Hypre\+Interface\+::hypre\+\_\+solve()}}, \mbox{\hyperlink{hypre__solver_8h_source_l00137}{oomph\+::\+Hypre\+Interface\+::\+Hypre\+Interface()}}, \mbox{\hyperlink{problem_8cc_source_l08783}{oomph\+::\+Problem\+::newton\+\_\+solve()}}, \mbox{\hyperlink{problem_8cc_source_l00069}{oomph\+::\+Problem\+::\+Problem()}}, \mbox{\hyperlink{projection_8h_source_l00748}{oomph\+::\+Projection\+Problem$<$ PROJECTABLE\+\_\+\+ELEMENT $>$\+::project()}}, \mbox{\hyperlink{oomph__utilities_8cc_source_l01539}{oomph\+::\+Memory\+Usage\+::run\+\_\+continous\+\_\+top()}}, \mbox{\hyperlink{matrix__vector__product_8cc_source_l00041}{oomph\+::\+Matrix\+Vector\+Product\+::setup()}}, \mbox{\hyperlink{oomph__utilities_8cc_source_l01597}{oomph\+::\+Memory\+Usage\+::stop\+\_\+continous\+\_\+top()}}, and \mbox{\hyperlink{oomph__utilities_8cc_source_l01295}{oomph\+::\+Timing\+Helpers\+::timer()}}.
 
 
 

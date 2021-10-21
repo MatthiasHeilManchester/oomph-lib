@@ -2,6 +2,11 @@
 \label{classoomph_1_1QuadTreeForest}\index{oomph::QuadTreeForest@{oomph::QuadTreeForest}}
 
 
+A \mbox{\hyperlink{classoomph_1_1QuadTreeForest}{Quad\+Tree\+Forest}} consists of a collection of Quad\+Tree\+Roots. Each member tree can have neighbours to its S/\+W/\+N/E and the orientation of their compasses can differ, allowing for complex, unstructured meshes.  
+
+
+
+
 {\ttfamily \#include $<$quadtree.\+h$>$}
 
 Inheritance diagram for oomph\+::Quad\+Tree\+Forest\+:\begin{figure}[H]
@@ -37,7 +42,7 @@ void \mbox{\hyperlink{classoomph_1_1QuadTreeForest_aa425f1cf4268764e5ab3e4144a70
 void \mbox{\hyperlink{classoomph_1_1QuadTreeForest_a835592b97a235b8dd31ea54d440b02c9}{find\+\_\+neighbours}} ()
 \begin{DoxyCompactList}\small\item\em Construct the neighbour lookup scheme. \end{DoxyCompactList}\item 
 \mbox{\hyperlink{classoomph_1_1QuadTreeRoot}{Quad\+Tree\+Root}} $\ast$ \mbox{\hyperlink{classoomph_1_1QuadTreeForest_a3cff9620847675b42b2a551ebc02ca16}{quadtree\+\_\+pt}} (const unsigned \&\mbox{\hyperlink{cfortran_8h_adb50e893b86b3e55e751a42eab3cba82}{i}})
-\item 
+\begin{DoxyCompactList}\small\item\em Return pointer to i-\/th root quadtree in this forest. (Performs a dynamic cast from the \mbox{\hyperlink{classoomph_1_1TreeRoot}{Tree\+Root}} to a \mbox{\hyperlink{classoomph_1_1QuadTreeRoot}{Quad\+Tree\+Root}}). \end{DoxyCompactList}\item 
 \mbox{\hyperlink{classoomph_1_1QuadTreeRoot}{Quad\+Tree\+Root}} $\ast$ \mbox{\hyperlink{classoomph_1_1QuadTreeForest_ace78293d302f4659a3b18fd28bb1756f}{quad\+\_\+neigh\+\_\+pt}} (const unsigned \&\mbox{\hyperlink{cfortran_8h_adb50e893b86b3e55e751a42eab3cba82}{i}}, const int \&direction)
 \begin{DoxyCompactList}\small\item\em Given the number i of the root quadtree in this forest, return pointer to its neighbour in the specified direction. NULL if neighbour doesn\textquotesingle{}t exist. (This does the dynamic cast from a \mbox{\hyperlink{classoomph_1_1TreeRoot}{Tree\+Root}} to a \mbox{\hyperlink{classoomph_1_1QuadTreeRoot}{Quad\+Tree\+Root}} internally). \end{DoxyCompactList}\end{DoxyCompactItemize}
 \doxysubsection*{Additional Inherited Members}
@@ -127,7 +132,7 @@ Definition at line \mbox{\hyperlink{quadtree_8h_source_l00433}{433}} of file \mb
 
 Document and check all the neighbours of all the nodes in the forest. \mbox{\hyperlink{classoomph_1_1DocInfo}{Doc\+Info}} object specifies the output directory and file numbers for the various files. If {\ttfamily doc\+\_\+info.\+disable\+\_\+doc()} has been called no output is created. 
 
-Document and check all the neighbours in all the nodes in the forest 
+Document and check all the neighbours in all the nodes in the forest. 
 
 Implements \mbox{\hyperlink{classoomph_1_1TreeForest_a0e6a7f821d9f14374c6d23d8766c7679}{oomph\+::\+Tree\+Forest}}.
 
@@ -155,7 +160,7 @@ Definition at line \mbox{\hyperlink{quadtree_8cc_source_l01067}{1067}} of file \
 
 
 
-References \mbox{\hyperlink{quadtree_8h_source_l00377}{oomph\+::\+Quad\+Tree\+Root\+::direction\+\_\+of\+\_\+neighbour()}}, \mbox{\hyperlink{quadtree_8h_source_l00061}{oomph\+::\+Quad\+Tree\+Names\+::E}}, \mbox{\hyperlink{cfortran_8h_source_l00603}{i}}, \mbox{\hyperlink{quadtree_8h_source_l00060}{oomph\+::\+Quad\+Tree\+Names\+::N}}, \mbox{\hyperlink{quadtree_8h_source_l00354}{oomph\+::\+Quad\+Tree\+Root\+::north\+\_\+equivalent()}}, \mbox{\hyperlink{tree_8h_source_l00460}{oomph\+::\+Tree\+Forest\+::ntree()}}, \mbox{\hyperlink{quadtree_8h_source_l00471}{quad\+\_\+neigh\+\_\+pt()}}, \mbox{\hyperlink{quadtree_8h_source_l00462}{quadtree\+\_\+pt()}}, \mbox{\hyperlink{quadtree_8h_source_l00062}{oomph\+::\+Quad\+Tree\+Names\+::S}}, and \mbox{\hyperlink{quadtree_8h_source_l00063}{oomph\+::\+Quad\+Tree\+Names\+::W}}.
+References \mbox{\hyperlink{quadtree_8h_source_l00377}{oomph\+::\+Quad\+Tree\+Root\+::direction\+\_\+of\+\_\+neighbour()}}, \mbox{\hyperlink{quadtree_8h_source_l00061}{oomph\+::\+Quad\+Tree\+Names\+::E}}, \mbox{\hyperlink{cfortran_8h_source_l00603}{i}}, \mbox{\hyperlink{quadtree_8h_source_l00060}{oomph\+::\+Quad\+Tree\+Names\+::N}}, \mbox{\hyperlink{quadtree_8h_source_l00354}{oomph\+::\+Quad\+Tree\+Root\+::north\+\_\+equivalent()}}, \mbox{\hyperlink{tree_8h_source_l00460}{oomph\+::\+Tree\+Forest\+::ntree()}}, \mbox{\hyperlink{quadtree_8h_source_l00471}{quad\+\_\+neigh\+\_\+pt()}}, \mbox{\hyperlink{quadtree_8h_source_l00462}{quadtree\+\_\+pt()}}, \mbox{\hyperlink{quadtree_8h_source_l00062}{oomph\+::\+Quad\+Tree\+Names\+::S}}, and \mbox{\hyperlink{constitutive__laws_8h_source_l00142}{oomph\+::W}}.
 
 
 
@@ -177,7 +182,7 @@ Definition at line \mbox{\hyperlink{quadtree_8cc_source_l00891}{891}} of file \m
 
 
 
-References \mbox{\hyperlink{quadtree_8h_source_l00061}{oomph\+::\+Quad\+Tree\+Names\+::E}}, \mbox{\hyperlink{cfortran_8h_source_l00603}{i}}, \mbox{\hyperlink{quadtree_8h_source_l00060}{oomph\+::\+Quad\+Tree\+Names\+::N}}, \mbox{\hyperlink{tree_8h_source_l00460}{oomph\+::\+Tree\+Forest\+::ntree()}}, \mbox{\hyperlink{quadtree_8h_source_l00062}{oomph\+::\+Quad\+Tree\+Names\+::S}}, \mbox{\hyperlink{tree_8h_source_l00480}{oomph\+::\+Tree\+Forest\+::\+Trees\+\_\+pt}}, and \mbox{\hyperlink{quadtree_8h_source_l00063}{oomph\+::\+Quad\+Tree\+Names\+::W}}.
+References \mbox{\hyperlink{quadtree_8h_source_l00061}{oomph\+::\+Quad\+Tree\+Names\+::E}}, \mbox{\hyperlink{cfortran_8h_source_l00603}{i}}, \mbox{\hyperlink{quadtree_8h_source_l00060}{oomph\+::\+Quad\+Tree\+Names\+::N}}, \mbox{\hyperlink{tree_8h_source_l00460}{oomph\+::\+Tree\+Forest\+::ntree()}}, \mbox{\hyperlink{quadtree_8h_source_l00062}{oomph\+::\+Quad\+Tree\+Names\+::S}}, \mbox{\hyperlink{tree_8h_source_l00480}{oomph\+::\+Tree\+Forest\+::\+Trees\+\_\+pt}}, and \mbox{\hyperlink{constitutive__laws_8h_source_l00142}{oomph\+::W}}.
 
 
 
@@ -193,7 +198,7 @@ Referenced by \mbox{\hyperlink{quadtree_8cc_source_l00863}{Quad\+Tree\+Forest()}
 
 Open output files that will store any hanging nodes in the forest and return a vector of the streams. 
 
-Open output files that will stored any hanging nodes that are \hypertarget{classoomph_1_1QuadTreeForest_autotoc_md8}{}\doxysubsection{created in the mesh refinement process.}\label{classoomph_1_1QuadTreeForest_autotoc_md8}
+Open output files that will stored any hanging nodes that are.\hypertarget{classoomph_1_1QuadTreeForest_autotoc_md7}{}\doxysubsection{created in the mesh refinement process.}\label{classoomph_1_1QuadTreeForest_autotoc_md7}
 
 
 Implements \mbox{\hyperlink{classoomph_1_1TreeForest_a635443274eaa2fb1afa889e4e748608f}{oomph\+::\+Tree\+Forest}}.
@@ -244,7 +249,11 @@ Referenced by \mbox{\hyperlink{quadtree_8cc_source_l01067}{construct\+\_\+north\
 \doxysubsubsection{\texorpdfstring{quadtree\_pt()}{quadtree\_pt()}}
 {\footnotesize\ttfamily \mbox{\hyperlink{classoomph_1_1QuadTreeRoot}{Quad\+Tree\+Root}} $\ast$ oomph\+::\+Quad\+Tree\+Forest\+::quadtree\+\_\+pt (\begin{DoxyParamCaption}\item[{const unsigned \&}]{i }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [private]}}
 
+
+
 Return pointer to i-\/th root quadtree in this forest. (Performs a dynamic cast from the \mbox{\hyperlink{classoomph_1_1TreeRoot}{Tree\+Root}} to a \mbox{\hyperlink{classoomph_1_1QuadTreeRoot}{Quad\+Tree\+Root}}). 
+
+
 
 Definition at line \mbox{\hyperlink{quadtree_8h_source_l00462}{462}} of file \mbox{\hyperlink{quadtree_8h_source}{quadtree.\+h}}.
 

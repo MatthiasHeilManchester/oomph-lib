@@ -74,7 +74,7 @@
 \DoxyCodeLine{\Hypertarget{elastic__poisson_8cc_source_l00070}00070 }
 \DoxyCodeLine{\Hypertarget{elastic__poisson_8cc_source_l00071}00071 }
 \DoxyCodeLine{\Hypertarget{elastic__poisson_8cc_source_l00072}00072 \textcolor{comment}{//=========================================================================}\textcolor{comment}{}}
-\DoxyCodeLine{\Hypertarget{elastic__poisson_8cc_source_l00073}00073 \textcolor{comment}{/// \(\backslash\)short Fish back as a GeneralisedElement: Circular ring whose }}
+\DoxyCodeLine{\Hypertarget{elastic__poisson_8cc_source_l00073}00073 \textcolor{comment}{///  Fish back as a GeneralisedElement: Circular ring whose }}
 \DoxyCodeLine{\Hypertarget{elastic__poisson_8cc_source_l00074}00074 \textcolor{comment}{/// position is given by}}
 \DoxyCodeLine{\Hypertarget{elastic__poisson_8cc_source_l00075}00075 \textcolor{comment}{/// \(\backslash\)f[ x = X\_c + R \(\backslash\)cos(\(\backslash\)xi)  \(\backslash\)f]}}
 \DoxyCodeLine{\Hypertarget{elastic__poisson_8cc_source_l00076}00076 \textcolor{comment}{/// \(\backslash\)f[ y = Y\_c + R \(\backslash\)sin(\(\backslash\)xi)  \(\backslash\)f]}}
@@ -88,16 +88,16 @@
 \DoxyCodeLine{\Hypertarget{elastic__poisson_8cc_source_l00084}00084 \textcolor{comment}{/// the force \(\backslash\)f\$ f\_\{load\}. \(\backslash\)f\$ The "{}load"{} is specified by the }}
 \DoxyCodeLine{\Hypertarget{elastic__poisson_8cc_source_l00085}00085 \textcolor{comment}{/// Data object \(\backslash\)c load\_pt(). }}
 \DoxyCodeLine{\Hypertarget{elastic__poisson_8cc_source_l00086}00086 \textcolor{comment}{}\textcolor{comment}{//=========================================================================}}
-\DoxyCodeLine{\Hypertarget{elastic__poisson_8cc_source_l00087}\mbox{\hyperlink{classElasticFishBackElement}{00087}} \textcolor{keyword}{class }\mbox{\hyperlink{classElasticFishBackElement}{ElasticFishBackElement}} : \textcolor{keyword}{public} GeneralisedElement, \textcolor{keyword}{public} Circle}
+\DoxyCodeLine{\Hypertarget{elastic__poisson_8cc_source_l00087}00087 \textcolor{keyword}{class }ElasticFishBackElement : \textcolor{keyword}{public} GeneralisedElement, \textcolor{keyword}{public} Circle}
 \DoxyCodeLine{\Hypertarget{elastic__poisson_8cc_source_l00088}00088 \{}
 \DoxyCodeLine{\Hypertarget{elastic__poisson_8cc_source_l00089}00089 }
 \DoxyCodeLine{\Hypertarget{elastic__poisson_8cc_source_l00090}00090 \textcolor{keyword}{public}:}
 \DoxyCodeLine{\Hypertarget{elastic__poisson_8cc_source_l00091}00091 \textcolor{comment}{}}
-\DoxyCodeLine{\Hypertarget{elastic__poisson_8cc_source_l00092}00092 \textcolor{comment}{ /// \(\backslash\)short Constructor: Build  ring from doubles that describe }}
+\DoxyCodeLine{\Hypertarget{elastic__poisson_8cc_source_l00092}00092 \textcolor{comment}{ ///  Constructor: Build  ring from doubles that describe }}
 \DoxyCodeLine{\Hypertarget{elastic__poisson_8cc_source_l00093}00093 \textcolor{comment}{ /// the geometry: x and y positions of centre and the radius.}}
 \DoxyCodeLine{\Hypertarget{elastic__poisson_8cc_source_l00094}00094 \textcolor{comment}{ /// Initialise stiffness to 1.0.}}
-\DoxyCodeLine{\Hypertarget{elastic__poisson_8cc_source_l00095}\mbox{\hyperlink{classElasticFishBackElement_a0411850f03db9f6eeb10562be778dacb}{00095}} \textcolor{comment}{} \mbox{\hyperlink{classElasticFishBackElement_a0411850f03db9f6eeb10562be778dacb}{ElasticFishBackElement}}(\textcolor{keyword}{const} \textcolor{keywordtype}{double}\& x\_c, \textcolor{keyword}{const} \textcolor{keywordtype}{double}\& y\_c, }
-\DoxyCodeLine{\Hypertarget{elastic__poisson_8cc_source_l00096}00096                         \textcolor{keyword}{const} \textcolor{keywordtype}{double}\& r) : Circle(x\_c,y\_c,r), \mbox{\hyperlink{classElasticFishBackElement_abb0ba4fd55ef0c0b48634eded475e5c7}{K\_stiff}}(1.0)}
+\DoxyCodeLine{\Hypertarget{elastic__poisson_8cc_source_l00095}00095 \textcolor{comment}{} ElasticFishBackElement(\textcolor{keyword}{const} \textcolor{keywordtype}{double}\& x\_c, \textcolor{keyword}{const} \textcolor{keywordtype}{double}\& y\_c, }
+\DoxyCodeLine{\Hypertarget{elastic__poisson_8cc_source_l00096}00096                         \textcolor{keyword}{const} \textcolor{keywordtype}{double}\& r) : Circle(x\_c,y\_c,r), K\_stiff(1.0)}
 \DoxyCodeLine{\Hypertarget{elastic__poisson_8cc_source_l00097}00097   \{}
 \DoxyCodeLine{\Hypertarget{elastic__poisson_8cc_source_l00098}00098    \textcolor{comment}{// Geometric Data for the GeomObject has been setup (and pinned) in}}
 \DoxyCodeLine{\Hypertarget{elastic__poisson_8cc_source_l00099}00099    \textcolor{comment}{// constructor for geometric object. Now free the y-\/position }}
@@ -118,7 +118,7 @@
 \DoxyCodeLine{\Hypertarget{elastic__poisson_8cc_source_l00114}00114  }
 \DoxyCodeLine{\Hypertarget{elastic__poisson_8cc_source_l00115}00115  \textcolor{comment}{}}
 \DoxyCodeLine{\Hypertarget{elastic__poisson_8cc_source_l00116}00116 \textcolor{comment}{ /// Destructor: }}
-\DoxyCodeLine{\Hypertarget{elastic__poisson_8cc_source_l00117}\mbox{\hyperlink{classElasticFishBackElement_a3889028a8375ef126ec207f73ca18adc}{00117}} \textcolor{comment}{} \textcolor{keyword}{virtual} \mbox{\hyperlink{classElasticFishBackElement_a3889028a8375ef126ec207f73ca18adc}{\string~ElasticFishBackElement}}()}
+\DoxyCodeLine{\Hypertarget{elastic__poisson_8cc_source_l00117}00117 \textcolor{comment}{} \textcolor{keyword}{virtual} \string~ElasticFishBackElement()}
 \DoxyCodeLine{\Hypertarget{elastic__poisson_8cc_source_l00118}00118   \{}
 \DoxyCodeLine{\Hypertarget{elastic__poisson_8cc_source_l00119}00119    \textcolor{comment}{// The GeomObject's GeomData is mirrored in the element's}}
 \DoxyCodeLine{\Hypertarget{elastic__poisson_8cc_source_l00120}00120    \textcolor{comment}{// Internal Data and therefore gets wiped in the}}
@@ -126,13 +126,13 @@
 \DoxyCodeLine{\Hypertarget{elastic__poisson_8cc_source_l00122}00122   \}}
 \DoxyCodeLine{\Hypertarget{elastic__poisson_8cc_source_l00123}00123  \textcolor{comment}{}}
 \DoxyCodeLine{\Hypertarget{elastic__poisson_8cc_source_l00124}00124 \textcolor{comment}{ /// "{}Stiffness"{} of the ring}}
-\DoxyCodeLine{\Hypertarget{elastic__poisson_8cc_source_l00125}\mbox{\hyperlink{classElasticFishBackElement_ad17c67eedbb356708e93fe6d70e8afd4}{00125}} \textcolor{comment}{} \textcolor{keywordtype}{double}\& \mbox{\hyperlink{classElasticFishBackElement_ad17c67eedbb356708e93fe6d70e8afd4}{k\_stiff}}() \{\textcolor{keywordflow}{return} \mbox{\hyperlink{classElasticFishBackElement_abb0ba4fd55ef0c0b48634eded475e5c7}{K\_stiff}};\}}
+\DoxyCodeLine{\Hypertarget{elastic__poisson_8cc_source_l00125}00125 \textcolor{comment}{} \textcolor{keywordtype}{double}\& k\_stiff() \{\textcolor{keywordflow}{return} K\_stiff;\}}
 \DoxyCodeLine{\Hypertarget{elastic__poisson_8cc_source_l00126}00126  \textcolor{comment}{}}
 \DoxyCodeLine{\Hypertarget{elastic__poisson_8cc_source_l00127}00127 \textcolor{comment}{ /// "{}Load"{} acting on the ring}}
-\DoxyCodeLine{\Hypertarget{elastic__poisson_8cc_source_l00128}\mbox{\hyperlink{classElasticFishBackElement_a2cfaf3e1fd80d84705adc77cdc7bb4bc}{00128}} \textcolor{comment}{} \textcolor{keywordtype}{double}\& \mbox{\hyperlink{classElasticFishBackElement_a2cfaf3e1fd80d84705adc77cdc7bb4bc}{load}}() \{\textcolor{keywordflow}{return} *(external\_data\_pt(0)-\/>value\_pt(0));\}}
+\DoxyCodeLine{\Hypertarget{elastic__poisson_8cc_source_l00128}00128 \textcolor{comment}{} \textcolor{keywordtype}{double}\& load() \{\textcolor{keywordflow}{return} *(external\_data\_pt(0)-\/>value\_pt(0));\}}
 \DoxyCodeLine{\Hypertarget{elastic__poisson_8cc_source_l00129}00129  \textcolor{comment}{}}
 \DoxyCodeLine{\Hypertarget{elastic__poisson_8cc_source_l00130}00130 \textcolor{comment}{ /// Compute element residual vector (wrapper)}}
-\DoxyCodeLine{\Hypertarget{elastic__poisson_8cc_source_l00131}\mbox{\hyperlink{classElasticFishBackElement_aed5858c2ae86823017713d0894cc4052}{00131}} \textcolor{comment}{} \textcolor{keywordtype}{void} \mbox{\hyperlink{classElasticFishBackElement_aed5858c2ae86823017713d0894cc4052}{get\_residuals}}(Vector<double> \&residuals)}
+\DoxyCodeLine{\Hypertarget{elastic__poisson_8cc_source_l00131}00131 \textcolor{comment}{} \textcolor{keywordtype}{void} get\_residuals(Vector<double> \&residuals)}
 \DoxyCodeLine{\Hypertarget{elastic__poisson_8cc_source_l00132}00132   \{}
 \DoxyCodeLine{\Hypertarget{elastic__poisson_8cc_source_l00133}00133    \textcolor{comment}{//Zero the residuals vector}}
 \DoxyCodeLine{\Hypertarget{elastic__poisson_8cc_source_l00134}00134    residuals.initialise(0.0);}
@@ -140,12 +140,12 @@
 \DoxyCodeLine{\Hypertarget{elastic__poisson_8cc_source_l00136}00136    DenseMatrix<double> dummy(1);}
 \DoxyCodeLine{\Hypertarget{elastic__poisson_8cc_source_l00137}00137    }
 \DoxyCodeLine{\Hypertarget{elastic__poisson_8cc_source_l00138}00138    \textcolor{comment}{//Call the generic residuals function with flag set to 0}}
-\DoxyCodeLine{\Hypertarget{elastic__poisson_8cc_source_l00139}00139    \mbox{\hyperlink{classElasticFishBackElement_a03865180362294a36322523ff2a880ad}{fill\_in\_generic\_residual\_contribution}}(residuals,dummy,0);}
+\DoxyCodeLine{\Hypertarget{elastic__poisson_8cc_source_l00139}00139    fill\_in\_generic\_residual\_contribution(residuals,dummy,0);}
 \DoxyCodeLine{\Hypertarget{elastic__poisson_8cc_source_l00140}00140    \}}
 \DoxyCodeLine{\Hypertarget{elastic__poisson_8cc_source_l00141}00141 }
 \DoxyCodeLine{\Hypertarget{elastic__poisson_8cc_source_l00142}00142   \textcolor{comment}{}}
 \DoxyCodeLine{\Hypertarget{elastic__poisson_8cc_source_l00143}00143 \textcolor{comment}{ /// Compute element residual Vector and element Jacobian matrix (wrapper)}}
-\DoxyCodeLine{\Hypertarget{elastic__poisson_8cc_source_l00144}\mbox{\hyperlink{classElasticFishBackElement_a48729984910b86d7210ed218bcb821bd}{00144}} \textcolor{comment}{} \textcolor{keywordtype}{void} \mbox{\hyperlink{classElasticFishBackElement_a48729984910b86d7210ed218bcb821bd}{get\_jacobian}}(Vector<double> \&residuals,}
+\DoxyCodeLine{\Hypertarget{elastic__poisson_8cc_source_l00144}00144 \textcolor{comment}{} \textcolor{keywordtype}{void} get\_jacobian(Vector<double> \&residuals,}
 \DoxyCodeLine{\Hypertarget{elastic__poisson_8cc_source_l00145}00145                            DenseMatrix<double> \&jacobian)}
 \DoxyCodeLine{\Hypertarget{elastic__poisson_8cc_source_l00146}00146   \{}
 \DoxyCodeLine{\Hypertarget{elastic__poisson_8cc_source_l00147}00147    \textcolor{comment}{//Zero the residuals vector}}
@@ -153,12 +153,12 @@
 \DoxyCodeLine{\Hypertarget{elastic__poisson_8cc_source_l00149}00149    \textcolor{comment}{//Zero the jacobian matrix}}
 \DoxyCodeLine{\Hypertarget{elastic__poisson_8cc_source_l00150}00150    jacobian.initialise(0.0);}
 \DoxyCodeLine{\Hypertarget{elastic__poisson_8cc_source_l00151}00151    \textcolor{comment}{//Call the generic routine with the flag set to 1}}
-\DoxyCodeLine{\Hypertarget{elastic__poisson_8cc_source_l00152}00152    \mbox{\hyperlink{classElasticFishBackElement_a03865180362294a36322523ff2a880ad}{fill\_in\_generic\_residual\_contribution}}(residuals,jacobian,1);}
+\DoxyCodeLine{\Hypertarget{elastic__poisson_8cc_source_l00152}00152    fill\_in\_generic\_residual\_contribution(residuals,jacobian,1);}
 \DoxyCodeLine{\Hypertarget{elastic__poisson_8cc_source_l00153}00153   \}}
 \DoxyCodeLine{\Hypertarget{elastic__poisson_8cc_source_l00154}00154 \textcolor{comment}{}}
-\DoxyCodeLine{\Hypertarget{elastic__poisson_8cc_source_l00155}00155 \textcolor{comment}{ /// \(\backslash\)short Set pointer to Data object that specifies the "{}load"{}}}
+\DoxyCodeLine{\Hypertarget{elastic__poisson_8cc_source_l00155}00155 \textcolor{comment}{ ///  Set pointer to Data object that specifies the "{}load"{}}}
 \DoxyCodeLine{\Hypertarget{elastic__poisson_8cc_source_l00156}00156 \textcolor{comment}{ /// on the fish back}}
-\DoxyCodeLine{\Hypertarget{elastic__poisson_8cc_source_l00157}\mbox{\hyperlink{classElasticFishBackElement_a14397b102dbefc87a7e8f6a6782ec730}{00157}} \textcolor{comment}{} \textcolor{keywordtype}{void} \mbox{\hyperlink{classElasticFishBackElement_a14397b102dbefc87a7e8f6a6782ec730}{set\_load\_pt}}(Data* load\_pt)}
+\DoxyCodeLine{\Hypertarget{elastic__poisson_8cc_source_l00157}00157 \textcolor{comment}{} \textcolor{keywordtype}{void} set\_load\_pt(Data* load\_pt)}
 \DoxyCodeLine{\Hypertarget{elastic__poisson_8cc_source_l00158}00158   \{}
 \DoxyCodeLine{\Hypertarget{elastic__poisson_8cc_source_l00159}00159 \textcolor{preprocessor}{\#ifdef PARANOID}}
 \DoxyCodeLine{\Hypertarget{elastic__poisson_8cc_source_l00160}00160    \textcolor{keywordflow}{if} (load\_pt-\/>nvalue()!=1)}
@@ -176,7 +176,7 @@
 \DoxyCodeLine{\Hypertarget{elastic__poisson_8cc_source_l00172}00172 \textcolor{preprocessor}{\#endif}}
 \DoxyCodeLine{\Hypertarget{elastic__poisson_8cc_source_l00173}00173    \textcolor{comment}{// Vector has been created (and its one and only entry initialised to}}
 \DoxyCodeLine{\Hypertarget{elastic__poisson_8cc_source_l00174}00174    \textcolor{comment}{// NULL) in the constructor}}
-\DoxyCodeLine{\Hypertarget{elastic__poisson_8cc_source_l00175}00175    \mbox{\hyperlink{classElasticFishBackElement_a721b1c81283045f36467355e77b90fea}{External\_load\_index}} = add\_external\_data(load\_pt);}
+\DoxyCodeLine{\Hypertarget{elastic__poisson_8cc_source_l00175}00175    External\_load\_index = add\_external\_data(load\_pt);}
 \DoxyCodeLine{\Hypertarget{elastic__poisson_8cc_source_l00176}00176   \}}
 \DoxyCodeLine{\Hypertarget{elastic__poisson_8cc_source_l00177}00177  }
 \DoxyCodeLine{\Hypertarget{elastic__poisson_8cc_source_l00178}00178 }
@@ -184,9 +184,9 @@
 \DoxyCodeLine{\Hypertarget{elastic__poisson_8cc_source_l00180}00180  \textcolor{keyword}{protected}:}
 \DoxyCodeLine{\Hypertarget{elastic__poisson_8cc_source_l00181}00181 }
 \DoxyCodeLine{\Hypertarget{elastic__poisson_8cc_source_l00182}00182 \textcolor{comment}{}}
-\DoxyCodeLine{\Hypertarget{elastic__poisson_8cc_source_l00183}00183 \textcolor{comment}{/// \(\backslash\)short Compute element residual Vector (only if flag=0) and also}}
+\DoxyCodeLine{\Hypertarget{elastic__poisson_8cc_source_l00183}00183 \textcolor{comment}{///  Compute element residual Vector (only if flag=0) and also}}
 \DoxyCodeLine{\Hypertarget{elastic__poisson_8cc_source_l00184}00184 \textcolor{comment}{/// the element Jacobian matrix (if flag=1)}}
-\DoxyCodeLine{\Hypertarget{elastic__poisson_8cc_source_l00185}\mbox{\hyperlink{classElasticFishBackElement_a03865180362294a36322523ff2a880ad}{00185}} \textcolor{comment}{} \textcolor{keywordtype}{void} \mbox{\hyperlink{classElasticFishBackElement_a03865180362294a36322523ff2a880ad}{fill\_in\_generic\_residual\_contribution}}(Vector<double> \&residuals,}
+\DoxyCodeLine{\Hypertarget{elastic__poisson_8cc_source_l00185}00185 \textcolor{comment}{} \textcolor{keywordtype}{void} fill\_in\_generic\_residual\_contribution(Vector<double> \&residuals,}
 \DoxyCodeLine{\Hypertarget{elastic__poisson_8cc_source_l00186}00186                                             DenseMatrix<double> \&jacobian,}
 \DoxyCodeLine{\Hypertarget{elastic__poisson_8cc_source_l00187}00187                                             \textcolor{keywordtype}{unsigned} flag)}
 \DoxyCodeLine{\Hypertarget{elastic__poisson_8cc_source_l00188}00188   \{}
@@ -197,14 +197,14 @@
 \DoxyCodeLine{\Hypertarget{elastic__poisson_8cc_source_l00193}00193  }
 \DoxyCodeLine{\Hypertarget{elastic__poisson_8cc_source_l00194}00194    \textcolor{comment}{// Pseudo-\/elastic force balance to determine the position of the}}
 \DoxyCodeLine{\Hypertarget{elastic__poisson_8cc_source_l00195}00195    \textcolor{comment}{// ring's centre for a given load.}}
-\DoxyCodeLine{\Hypertarget{elastic__poisson_8cc_source_l00196}00196    residuals[0]=\mbox{\hyperlink{classElasticFishBackElement_a2cfaf3e1fd80d84705adc77cdc7bb4bc}{load}}()-\/\mbox{\hyperlink{classElasticFishBackElement_abb0ba4fd55ef0c0b48634eded475e5c7}{K\_stiff}}*y\_c();}
+\DoxyCodeLine{\Hypertarget{elastic__poisson_8cc_source_l00196}00196    residuals[0]=load()-\/K\_stiff*y\_c();}
 \DoxyCodeLine{\Hypertarget{elastic__poisson_8cc_source_l00197}00197 }
 \DoxyCodeLine{\Hypertarget{elastic__poisson_8cc_source_l00198}00198    \textcolor{comment}{// Work out Jacobian: }}
 \DoxyCodeLine{\Hypertarget{elastic__poisson_8cc_source_l00199}00199    \textcolor{keywordflow}{if} (flag)}
 \DoxyCodeLine{\Hypertarget{elastic__poisson_8cc_source_l00200}00200     \{}
 \DoxyCodeLine{\Hypertarget{elastic__poisson_8cc_source_l00201}00201      \textcolor{comment}{// Derivative of residual w.r.t. the internal dof, i.e. the vertical}}
 \DoxyCodeLine{\Hypertarget{elastic__poisson_8cc_source_l00202}00202      \textcolor{comment}{// position of the ring's centre: d residual[0]/d y\_c}}
-\DoxyCodeLine{\Hypertarget{elastic__poisson_8cc_source_l00203}00203      jacobian(0,0) = -\/\mbox{\hyperlink{classElasticFishBackElement_abb0ba4fd55ef0c0b48634eded475e5c7}{K\_stiff}};}
+\DoxyCodeLine{\Hypertarget{elastic__poisson_8cc_source_l00203}00203      jacobian(0,0) = -\/K\_stiff;}
 \DoxyCodeLine{\Hypertarget{elastic__poisson_8cc_source_l00204}00204      }
 \DoxyCodeLine{\Hypertarget{elastic__poisson_8cc_source_l00205}00205      }
 \DoxyCodeLine{\Hypertarget{elastic__poisson_8cc_source_l00206}00206      \textcolor{comment}{// Derivative with respect to external dof, i.e. the applied }}
@@ -220,10 +220,10 @@
 \DoxyCodeLine{\Hypertarget{elastic__poisson_8cc_source_l00216}00216 \textcolor{keyword}{private}:}
 \DoxyCodeLine{\Hypertarget{elastic__poisson_8cc_source_l00217}00217 \textcolor{comment}{}}
 \DoxyCodeLine{\Hypertarget{elastic__poisson_8cc_source_l00218}00218 \textcolor{comment}{ /// Stiffness of the ring's "{}elastic"{} support}}
-\DoxyCodeLine{\Hypertarget{elastic__poisson_8cc_source_l00219}\mbox{\hyperlink{classElasticFishBackElement_abb0ba4fd55ef0c0b48634eded475e5c7}{00219}} \textcolor{comment}{} \textcolor{keywordtype}{double} \mbox{\hyperlink{classElasticFishBackElement_abb0ba4fd55ef0c0b48634eded475e5c7}{K\_stiff}};}
+\DoxyCodeLine{\Hypertarget{elastic__poisson_8cc_source_l00219}00219 \textcolor{comment}{} \textcolor{keywordtype}{double} K\_stiff;}
 \DoxyCodeLine{\Hypertarget{elastic__poisson_8cc_source_l00220}00220 \textcolor{comment}{}}
 \DoxyCodeLine{\Hypertarget{elastic__poisson_8cc_source_l00221}00221 \textcolor{comment}{ /// External index of the load object}}
-\DoxyCodeLine{\Hypertarget{elastic__poisson_8cc_source_l00222}\mbox{\hyperlink{classElasticFishBackElement_a721b1c81283045f36467355e77b90fea}{00222}} \textcolor{comment}{} \textcolor{keywordtype}{unsigned} \mbox{\hyperlink{classElasticFishBackElement_a721b1c81283045f36467355e77b90fea}{External\_load\_index}};}
+\DoxyCodeLine{\Hypertarget{elastic__poisson_8cc_source_l00222}00222 \textcolor{comment}{} \textcolor{keywordtype}{unsigned} External\_load\_index;}
 \DoxyCodeLine{\Hypertarget{elastic__poisson_8cc_source_l00223}00223 }
 \DoxyCodeLine{\Hypertarget{elastic__poisson_8cc_source_l00224}00224 \};}
 \DoxyCodeLine{\Hypertarget{elastic__poisson_8cc_source_l00225}00225 }
@@ -249,7 +249,7 @@
 \DoxyCodeLine{\Hypertarget{elastic__poisson_8cc_source_l00245}00245 }
 \DoxyCodeLine{\Hypertarget{elastic__poisson_8cc_source_l00246}00246 \textcolor{keyword}{public}:}
 \DoxyCodeLine{\Hypertarget{elastic__poisson_8cc_source_l00247}00247 \textcolor{comment}{}}
-\DoxyCodeLine{\Hypertarget{elastic__poisson_8cc_source_l00248}00248 \textcolor{comment}{ /// \(\backslash\)short  Constructor: Bool flag specifies if position of fish back is}}
+\DoxyCodeLine{\Hypertarget{elastic__poisson_8cc_source_l00248}00248 \textcolor{comment}{ ///   Constructor: Bool flag specifies if position of fish back is}}
 \DoxyCodeLine{\Hypertarget{elastic__poisson_8cc_source_l00249}00249 \textcolor{comment}{ /// prescribed or computed from the coupled problem. String specifies}}
 \DoxyCodeLine{\Hypertarget{elastic__poisson_8cc_source_l00250}00250 \textcolor{comment}{ /// output directory}}
 \DoxyCodeLine{\Hypertarget{elastic__poisson_8cc_source_l00251}00251 \textcolor{comment}{} \mbox{\hyperlink{classRefineableFishPoissonProblem_a39da6bc93041c731bb3dc96b1d74c857}{RefineableFishPoissonProblem}}(\textcolor{keyword}{const} \textcolor{keywordtype}{bool}\& fix\_position, \textcolor{keywordtype}{string} directory\_name);}
@@ -257,7 +257,7 @@
 \DoxyCodeLine{\Hypertarget{elastic__poisson_8cc_source_l00253}00253 \textcolor{comment}{ /// Destructor}}
 \DoxyCodeLine{\Hypertarget{elastic__poisson_8cc_source_l00254}00254 \textcolor{comment}{} \textcolor{keyword}{virtual} \mbox{\hyperlink{classRefineableFishPoissonProblem_a7039a3409520850908940927b91af9ab}{\string~RefineableFishPoissonProblem}}();}
 \DoxyCodeLine{\Hypertarget{elastic__poisson_8cc_source_l00255}00255 \textcolor{comment}{}}
-\DoxyCodeLine{\Hypertarget{elastic__poisson_8cc_source_l00256}00256 \textcolor{comment}{ /// \(\backslash\)short Update after Newton step: Update mesh in response }}
+\DoxyCodeLine{\Hypertarget{elastic__poisson_8cc_source_l00256}00256 \textcolor{comment}{ ///  Update after Newton step: Update mesh in response }}
 \DoxyCodeLine{\Hypertarget{elastic__poisson_8cc_source_l00257}00257 \textcolor{comment}{ /// to possible changes in the wall shape}}
 \DoxyCodeLine{\Hypertarget{elastic__poisson_8cc_source_l00258}\mbox{\hyperlink{classRefineableFishPoissonProblem_a8d8fb7ef1c571c57c02073edab4a7759}{00258}} \textcolor{comment}{} \textcolor{keywordtype}{void} \mbox{\hyperlink{classRefineableFishPoissonProblem_a8d8fb7ef1c571c57c02073edab4a7759}{actions\_before\_newton\_convergence\_check}}()}
 \DoxyCodeLine{\Hypertarget{elastic__poisson_8cc_source_l00259}00259   \{}
@@ -306,10 +306,10 @@
 \DoxyCodeLine{\Hypertarget{elastic__poisson_8cc_source_l00302}00302 \textcolor{comment}{ /// that represents the fish back}}
 \DoxyCodeLine{\Hypertarget{elastic__poisson_8cc_source_l00303}\mbox{\hyperlink{classRefineableFishPoissonProblem_adcb3831cd9c21ec454ca787ced5d9db6}{00303}} \textcolor{comment}{} Mesh* \mbox{\hyperlink{classRefineableFishPoissonProblem_adcb3831cd9c21ec454ca787ced5d9db6}{Fish\_back\_mesh\_pt}};}
 \DoxyCodeLine{\Hypertarget{elastic__poisson_8cc_source_l00304}00304 \textcolor{comment}{}}
-\DoxyCodeLine{\Hypertarget{elastic__poisson_8cc_source_l00305}00305 \textcolor{comment}{ /// \(\backslash\)short Pointer to data item that stores the "{}load"{} on the fish back}}
+\DoxyCodeLine{\Hypertarget{elastic__poisson_8cc_source_l00305}00305 \textcolor{comment}{ ///  Pointer to data item that stores the "{}load"{} on the fish back}}
 \DoxyCodeLine{\Hypertarget{elastic__poisson_8cc_source_l00306}\mbox{\hyperlink{classRefineableFishPoissonProblem_ae4a4e592320bbe9bfbee52be7dfecfaa}{00306}} \textcolor{comment}{} Data* \mbox{\hyperlink{classRefineableFishPoissonProblem_ae4a4e592320bbe9bfbee52be7dfecfaa}{Load\_pt}};}
 \DoxyCodeLine{\Hypertarget{elastic__poisson_8cc_source_l00307}00307 \textcolor{comment}{}}
-\DoxyCodeLine{\Hypertarget{elastic__poisson_8cc_source_l00308}00308 \textcolor{comment}{ /// \(\backslash\)short Is the position of the fish back prescribed?}}
+\DoxyCodeLine{\Hypertarget{elastic__poisson_8cc_source_l00308}00308 \textcolor{comment}{ ///  Is the position of the fish back prescribed?}}
 \DoxyCodeLine{\Hypertarget{elastic__poisson_8cc_source_l00309}\mbox{\hyperlink{classRefineableFishPoissonProblem_a51c10ea7cbf4ab61fd953f011f72a1c4}{00309}} \textcolor{comment}{} \textcolor{keywordtype}{bool} \mbox{\hyperlink{classRefineableFishPoissonProblem_a51c10ea7cbf4ab61fd953f011f72a1c4}{Fix\_position}};}
 \DoxyCodeLine{\Hypertarget{elastic__poisson_8cc_source_l00310}00310 \textcolor{comment}{}}
 \DoxyCodeLine{\Hypertarget{elastic__poisson_8cc_source_l00311}00311 \textcolor{comment}{ /// Doc info object}}
@@ -352,7 +352,7 @@
 \DoxyCodeLine{\Hypertarget{elastic__poisson_8cc_source_l00348}00348  \textcolor{keywordtype}{double} r\_back=1.0;}
 \DoxyCodeLine{\Hypertarget{elastic__poisson_8cc_source_l00349}00349 }
 \DoxyCodeLine{\Hypertarget{elastic__poisson_8cc_source_l00350}00350  \textcolor{comment}{// Build geometric element that will become the fish back}}
-\DoxyCodeLine{\Hypertarget{elastic__poisson_8cc_source_l00351}00351  GeomObject* fish\_back\_pt=\textcolor{keyword}{new} \mbox{\hyperlink{classElasticFishBackElement}{ElasticFishBackElement}}(x\_c,y\_c,r\_back);}
+\DoxyCodeLine{\Hypertarget{elastic__poisson_8cc_source_l00351}00351  GeomObject* fish\_back\_pt=\textcolor{keyword}{new} ElasticFishBackElement(x\_c,y\_c,r\_back);}
 \DoxyCodeLine{\Hypertarget{elastic__poisson_8cc_source_l00352}00352 }
 \DoxyCodeLine{\Hypertarget{elastic__poisson_8cc_source_l00353}00353  \textcolor{comment}{// Build fish mesh with geometric object that specifies the fish back }}
 \DoxyCodeLine{\Hypertarget{elastic__poisson_8cc_source_l00354}00354  \mbox{\hyperlink{classRefineableFishPoissonProblem_af915f09b6e4ae2f4ded2ad1a25ed7f01}{Fish\_mesh\_pt}}=\textcolor{keyword}{new} AlgebraicRefineableFishMesh<ELEMENT>(fish\_back\_pt);}
@@ -418,7 +418,7 @@
 \DoxyCodeLine{\Hypertarget{elastic__poisson_8cc_source_l00414}00414 }
 \DoxyCodeLine{\Hypertarget{elastic__poisson_8cc_source_l00415}00415  \textcolor{comment}{// Set the pointer to the Data object that specifies the }}
 \DoxyCodeLine{\Hypertarget{elastic__poisson_8cc_source_l00416}00416  \textcolor{comment}{// load on the fish's back}}
-\DoxyCodeLine{\Hypertarget{elastic__poisson_8cc_source_l00417}00417  \textcolor{keyword}{dynamic\_cast<}\mbox{\hyperlink{classElasticFishBackElement}{ElasticFishBackElement}}*\textcolor{keyword}{>}(\mbox{\hyperlink{classRefineableFishPoissonProblem_af915f09b6e4ae2f4ded2ad1a25ed7f01}{Fish\_mesh\_pt}}-\/>fish\_back\_pt())-\/>}
+\DoxyCodeLine{\Hypertarget{elastic__poisson_8cc_source_l00417}00417  \textcolor{keyword}{dynamic\_cast<}ElasticFishBackElement*\textcolor{keyword}{>}(\mbox{\hyperlink{classRefineableFishPoissonProblem_af915f09b6e4ae2f4ded2ad1a25ed7f01}{Fish\_mesh\_pt}}-\/>fish\_back\_pt())-\/>}
 \DoxyCodeLine{\Hypertarget{elastic__poisson_8cc_source_l00418}00418   set\_load\_pt(\mbox{\hyperlink{classRefineableFishPoissonProblem_ae4a4e592320bbe9bfbee52be7dfecfaa}{Load\_pt}});}
 \DoxyCodeLine{\Hypertarget{elastic__poisson_8cc_source_l00419}00419  }
 \DoxyCodeLine{\Hypertarget{elastic__poisson_8cc_source_l00420}00420 }
@@ -503,10 +503,10 @@
 \DoxyCodeLine{\Hypertarget{elastic__poisson_8cc_source_l00499}00499  \textcolor{comment}{// Write "{}load"{}, vertical position of the fish back, and solution at }}
 \DoxyCodeLine{\Hypertarget{elastic__poisson_8cc_source_l00500}00500  \textcolor{comment}{// control node to trace file}}
 \DoxyCodeLine{\Hypertarget{elastic__poisson_8cc_source_l00501}00501  Trace\_file }
-\DoxyCodeLine{\Hypertarget{elastic__poisson_8cc_source_l00502}00502   << \textcolor{keyword}{static\_cast<}\mbox{\hyperlink{classElasticFishBackElement}{ElasticFishBackElement}}*\textcolor{keyword}{>}(fish\_mesh\_pt()-\/>}
+\DoxyCodeLine{\Hypertarget{elastic__poisson_8cc_source_l00502}00502   << \textcolor{keyword}{static\_cast<}ElasticFishBackElement*\textcolor{keyword}{>}(fish\_mesh\_pt()-\/>}
 \DoxyCodeLine{\Hypertarget{elastic__poisson_8cc_source_l00503}00503                                           fish\_back\_pt())-\/>load()}
 \DoxyCodeLine{\Hypertarget{elastic__poisson_8cc_source_l00504}00504   << \textcolor{stringliteral}{"{} "{}}}
-\DoxyCodeLine{\Hypertarget{elastic__poisson_8cc_source_l00505}00505   << \textcolor{keyword}{static\_cast<}\mbox{\hyperlink{classElasticFishBackElement}{ElasticFishBackElement}}*\textcolor{keyword}{>}(fish\_mesh\_pt()-\/>}
+\DoxyCodeLine{\Hypertarget{elastic__poisson_8cc_source_l00505}00505   << \textcolor{keyword}{static\_cast<}ElasticFishBackElement*\textcolor{keyword}{>}(fish\_mesh\_pt()-\/>}
 \DoxyCodeLine{\Hypertarget{elastic__poisson_8cc_source_l00506}00506                                           fish\_back\_pt())-\/>y\_c()}
 \DoxyCodeLine{\Hypertarget{elastic__poisson_8cc_source_l00507}00507   << \textcolor{stringliteral}{"{} "{}} << Doc\_node\_pt-\/>value(0) << std::endl;}
 \DoxyCodeLine{\Hypertarget{elastic__poisson_8cc_source_l00508}00508 \}}

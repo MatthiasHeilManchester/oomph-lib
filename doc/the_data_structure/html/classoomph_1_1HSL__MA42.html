@@ -133,6 +133,9 @@ $(function() {
 </div><!--header-->
 <div class="contents">
 
+<p>Linear solver class that provides a wrapper to the frontal solver MA42 from the <a href="http://www.hsl.rl.ac.uk/">HSL library;</a> see <a href="http://www.hsl.rl.ac.uk/">http://www.hsl.rl.ac.uk/.</a>  
+ <a href="classoomph_1_1HSL__MA42.html#details">More...</a></p>
+
 <p><code>#include &lt;<a class="el" href="frontal__solver_8h_source.html">frontal_solver.h</a>&gt;</code></p>
 <div id="dynsection-0" onclick="return toggleVisibility(this)" class="dynheader closed" style="cursor:pointer;">
   <img id="dynsection-0-trigger" src="closed.png" alt="+"/> Inheritance diagram for oomph::HSL_MA42:</div>
@@ -142,7 +145,7 @@ $(function() {
  <div class="center">
   <img src="classoomph_1_1HSL__MA42.png" usemap="#oomph::HSL_5FMA42_map" alt=""/>
   <map id="oomph::HSL_5FMA42_map" name="oomph::HSL_5FMA42_map">
-<area href="classoomph_1_1LinearSolver.html" alt="oomph::LinearSolver" shape="rect" coords="0,56,243,80"/>
+<area href="classoomph_1_1LinearSolver.html" title="Base class for all linear solvers. This merely defines standard interfaces for linear solvers,..." alt="oomph::LinearSolver" shape="rect" coords="0,56,243,80"/>
 <area href="classoomph_1_1DistributableLinearAlgebraObject.html" title="Base class for any linear algebra object that is distributable. Just contains storage for the LinearA..." alt="oomph::DistributableLinearAlgebraObject" shape="rect" coords="0,0,243,24"/>
   </map>
 </div></div>
@@ -168,7 +171,7 @@ Public Member Functions</h2></td></tr>
 <tr class="memdesc:a8419d983544da158f96ab305549a94a9"><td class="mdescLeft">&#160;</td><td class="mdescRight">Overload disable resolve so that it cleans up memory too.  <a href="classoomph_1_1HSL__MA42.html#a8419d983544da158f96ab305549a94a9">More...</a><br /></td></tr>
 <tr class="separator:a8419d983544da158f96ab305549a94a9"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ae796a6b14c13d1cdb7bf49ca3c7c5aec"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classoomph_1_1HSL__MA42.html#ae796a6b14c13d1cdb7bf49ca3c7c5aec">solve</a> (<a class="el" href="classoomph_1_1Problem.html">Problem</a> *const &amp;problem_pt, <a class="el" href="classoomph_1_1DoubleVector.html">DoubleVector</a> &amp;result)</td></tr>
-<tr class="memdesc:ae796a6b14c13d1cdb7bf49ca3c7c5aec"><td class="mdescLeft">&#160;</td><td class="mdescRight">Solver: Takes pointer to problem and returns the results <a class="el" href="classoomph_1_1Vector.html">Vector</a> which contains the solution of the linear system defined by the problem's fully assembled Jacobian and residual <a class="el" href="classoomph_1_1Vector.html">Vector</a>.  <a href="classoomph_1_1HSL__MA42.html#ae796a6b14c13d1cdb7bf49ca3c7c5aec">More...</a><br /></td></tr>
+<tr class="memdesc:ae796a6b14c13d1cdb7bf49ca3c7c5aec"><td class="mdescLeft">&#160;</td><td class="mdescRight">Solver: Takes pointer to problem and returns the results <a class="el" href="classoomph_1_1Vector.html" title="A slight extension to the standard template vector class so that we can include &quot;graceful&quot; array rang...">Vector</a> which contains the solution of the linear system defined by the problem's fully assembled Jacobian and residual <a class="el" href="classoomph_1_1Vector.html" title="A slight extension to the standard template vector class so that we can include &quot;graceful&quot; array rang...">Vector</a>.  <a href="classoomph_1_1HSL__MA42.html#ae796a6b14c13d1cdb7bf49ca3c7c5aec">More...</a><br /></td></tr>
 <tr class="separator:ae796a6b14c13d1cdb7bf49ca3c7c5aec"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a6b070c607e2e5f6af4881428d07a6423"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classoomph_1_1HSL__MA42.html#a6b070c607e2e5f6af4881428d07a6423">solve</a> (<a class="el" href="classoomph_1_1DoubleMatrixBase.html">DoubleMatrixBase</a> *const &amp;matrix_pt, const <a class="el" href="classoomph_1_1DoubleVector.html">DoubleVector</a> &amp;rhs, <a class="el" href="classoomph_1_1DoubleVector.html">DoubleVector</a> &amp;result)</td></tr>
 <tr class="memdesc:a6b070c607e2e5f6af4881428d07a6423"><td class="mdescLeft">&#160;</td><td class="mdescRight">Linear-algebra-type solver: Takes pointer to a matrix and rhs vector and returns the solution of the linear system. Call the broken base-class version. If you want this, please implement it.  <a href="classoomph_1_1HSL__MA42.html#a6b070c607e2e5f6af4881428d07a6423">More...</a><br /></td></tr>
@@ -308,6 +311,7 @@ Public Member Functions</h2></td></tr>
 <tr class="memdesc:a5505731e7e73d7e4251c67c7adec6bf5 inherit pub_methods_classoomph_1_1DistributableLinearAlgebraObject"><td class="mdescLeft">&#160;</td><td class="mdescRight">distribution is serial or distributed  <a href="classoomph_1_1DistributableLinearAlgebraObject.html#a5505731e7e73d7e4251c67c7adec6bf5">More...</a><br /></td></tr>
 <tr class="separator:a5505731e7e73d7e4251c67c7adec6bf5 inherit pub_methods_classoomph_1_1DistributableLinearAlgebraObject"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a8c35baa65e335043f62954c92c090a5a inherit pub_methods_classoomph_1_1DistributableLinearAlgebraObject"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classoomph_1_1DistributableLinearAlgebraObject.html#a8c35baa65e335043f62954c92c090a5a">distribution_built</a> () const</td></tr>
+<tr class="memdesc:a8c35baa65e335043f62954c92c090a5a inherit pub_methods_classoomph_1_1DistributableLinearAlgebraObject"><td class="mdescLeft">&#160;</td><td class="mdescRight">if the communicator_pt is null then the distribution is not setup then false is returned, otherwise return true  <a href="classoomph_1_1DistributableLinearAlgebraObject.html#a8c35baa65e335043f62954c92c090a5a">More...</a><br /></td></tr>
 <tr class="separator:a8c35baa65e335043f62954c92c090a5a inherit pub_methods_classoomph_1_1DistributableLinearAlgebraObject"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ac5340bac40b9559b0378037b57005203 inherit pub_methods_classoomph_1_1DistributableLinearAlgebraObject"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classoomph_1_1DistributableLinearAlgebraObject.html#ac5340bac40b9559b0378037b57005203">build_distribution</a> (const <a class="el" href="classoomph_1_1LinearAlgebraDistribution.html">LinearAlgebraDistribution</a> *const dist_pt)</td></tr>
 <tr class="memdesc:ac5340bac40b9559b0378037b57005203 inherit pub_methods_classoomph_1_1DistributableLinearAlgebraObject"><td class="mdescLeft">&#160;</td><td class="mdescRight">setup the distribution of this distributable linear algebra object  <a href="classoomph_1_1DistributableLinearAlgebraObject.html#ac5340bac40b9559b0378037b57005203">More...</a><br /></td></tr>
@@ -997,7 +1001,7 @@ Additional Inherited Members</h2></td></tr>
 
 <p class="definition">Definition at line <a class="el" href="frontal__solver_8cc_source.html#l00888">888</a> of file <a class="el" href="frontal__solver_8cc_source.html">frontal_solver.cc</a>.</p>
 
-<p class="reference">References <a class="el" href="double__vector_8cc_source.html#l00035">oomph::DoubleVector::build()</a>, <a class="el" href="linear__algebra__distribution_8h_source.html#l00457">oomph::DistributableLinearAlgebraObject::distribution_pt()</a>, <a class="el" href="cfortran_8h_source.html#l00603">i</a>, <a class="el" href="frontal__solver_8h_source.html#l00093">Icntl</a>, <a class="el" href="frontal__solver_8h_source.html#l00099">Info</a>, <a class="el" href="frontal__solver_8h_source.html#l00096">Isave</a>, <a class="el" href="frontal__solver_8h_source.html#l00108">IW</a>, <a class="el" href="frontal__solver_8h_source.html#l00111">Liw</a>, <a class="el" href="frontal__solver_8h_source.html#l00105">Lw</a>, <a class="el" href="frontal__solver_8h_source.html#l00114">N_dof</a>, <a class="el" href="linear__algebra__distribution_8h_source.html#l00463">oomph::DistributableLinearAlgebraObject::nrow()</a>, and <a class="el" href="frontal__solver_8h_source.html#l00102">W</a>.</p>
+<p class="reference">References <a class="el" href="double__vector_8cc_source.html#l00035">oomph::DoubleVector::build()</a>, <a class="el" href="linear__algebra__distribution_8h_source.html#l00457">oomph::DistributableLinearAlgebraObject::distribution_pt()</a>, <a class="el" href="cfortran_8h_source.html#l00603">i</a>, <a class="el" href="frontal__solver_8h_source.html#l00093">Icntl</a>, <a class="el" href="frontal__solver_8h_source.html#l00099">Info</a>, <a class="el" href="frontal__solver_8h_source.html#l00096">Isave</a>, <a class="el" href="frontal__solver_8h_source.html#l00108">IW</a>, <a class="el" href="frontal__solver_8h_source.html#l00111">Liw</a>, <a class="el" href="frontal__solver_8h_source.html#l00105">Lw</a>, <a class="el" href="frontal__solver_8h_source.html#l00114">N_dof</a>, <a class="el" href="linear__algebra__distribution_8h_source.html#l00463">oomph::DistributableLinearAlgebraObject::nrow()</a>, <a class="el" href="frontal__solver_8h_source.html#l00102">W</a>, and <a class="el" href="pseudo__buckling__ring_8h_source.html#l00049">oomph::x</a>.</p>
 
 </div>
 </div>
@@ -1135,7 +1139,7 @@ Additional Inherited Members</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
-<p>Solver: Takes pointer to problem and returns the results <a class="el" href="classoomph_1_1Vector.html">Vector</a> which contains the solution of the linear system defined by the problem's fully assembled Jacobian and residual <a class="el" href="classoomph_1_1Vector.html">Vector</a>. </p>
+<p>Solver: Takes pointer to problem and returns the results <a class="el" href="classoomph_1_1Vector.html" title="A slight extension to the standard template vector class so that we can include &quot;graceful&quot; array rang...">Vector</a> which contains the solution of the linear system defined by the problem's fully assembled Jacobian and residual <a class="el" href="classoomph_1_1Vector.html" title="A slight extension to the standard template vector class so that we can include &quot;graceful&quot; array rang...">Vector</a>. </p>
 <p >Wrapper for HSL MA42 frontal solver. </p>
 
 <p>Implements <a class="el" href="classoomph_1_1LinearSolver.html#a15ce22542b74ed1826ea485edacbeb6e">oomph::LinearSolver</a>.</p>
@@ -1181,7 +1185,7 @@ Additional Inherited Members</h2></td></tr>
 </div><div class="memdoc">
 
 <p>Special solver for problems with 1 dof (MA42 can't handle this case so <a class="el" href="classoomph_1_1HSL__MA42.html#ae796a6b14c13d1cdb7bf49ca3c7c5aec" title="Solver: Takes pointer to problem and returns the results Vector which contains the solution of the li...">solve()</a> forwards the "solve" to this function. </p>
-<p >Special solver for problems with one DOF &ndash; <a class="el" href="classoomph_1_1HSL__MA42.html">HSL_MA42</a> can't handle that! </p>
+<p >Special solver for problems with one DOF &ndash; <a class="el" href="classoomph_1_1HSL__MA42.html" title="Linear solver class that provides a wrapper to the frontal solver MA42 from the HSL library; see http...">HSL_MA42</a> can't handle that! </p>
 
 <p class="definition">Definition at line <a class="el" href="frontal__solver_8cc_source.html#l00048">48</a> of file <a class="el" href="frontal__solver_8cc_source.html">frontal_solver.cc</a>.</p>
 
@@ -1672,7 +1676,7 @@ Additional Inherited Members</h2></td></tr>
     <footer>
       <div class="container">
         <div class="text-muted" style="float:right;">Generated by <a href="http://www.doxygen.org/index.html">
-          <img style="height:18px;" class="footer-img" src="doxygen.png" alt="doxygen"></a> on Wed Oct 13 2021 08:46:37
+          <img style="height:18px;" class="footer-img" src="doxygen.png" alt="doxygen"></a> on Thu Oct 21 2021 17:35:01
         </div>
       </div>
     </footer>

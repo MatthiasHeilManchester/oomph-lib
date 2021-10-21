@@ -158,7 +158,7 @@
 <div class="line"><a id="l00039" name="l00039"></a><span class="lineno">   39</span><span class="keyword">using namespace </span>oomph;</div>
 <div class="line"><a id="l00040" name="l00040"></a><span class="lineno">   40</span> </div>
 <div class="line"><a id="l00041" name="l00041"></a><span class="lineno">   41</span><span class="comment">//============start_of_MyEllipse===========================================</span><span class="comment"></span></div>
-<div class="line"><a id="l00042" name="l00042"></a><span class="lineno">   42</span><span class="comment">/// \short Oscillating ellipse</span></div>
+<div class="line"><a id="l00042" name="l00042"></a><span class="lineno">   42</span><span class="comment">///  Oscillating ellipse</span></div>
 <div class="line"><a id="l00043" name="l00043"></a><span class="lineno">   43</span><span class="comment">/// \f[ x = (A + \widehat{A} \cos(2\pi t/T)) \cos(\xi)  \f]</span></div>
 <div class="line"><a id="l00044" name="l00044"></a><span class="lineno">   44</span><span class="comment">/// \f[ y = \frac{\sin(\xi)}{A + \widehat{A} \cos(2\pi t/T)}   \f]</span></div>
 <div class="line"><a id="l00045" name="l00045"></a><span class="lineno">   45</span><span class="comment">/// Note that cross-sectional area is conserved.</span></div>
@@ -168,7 +168,7 @@
 <div class="line"><a id="l00049" name="l00049"></a><span class="lineno">   49</span> </div>
 <div class="line"><a id="l00050" name="l00050"></a><span class="lineno">   50</span><span class="keyword">public</span>:</div>
 <div class="line"><a id="l00051" name="l00051"></a><span class="lineno">   51</span><span class="comment"></span> </div>
-<div class="line"><a id="l00052" name="l00052"></a><span class="lineno">   52</span><span class="comment"> /// \short Constructor:  Pass initial x-half axis, amplitude of x-variation, </span></div>
+<div class="line"><a id="l00052" name="l00052"></a><span class="lineno">   52</span><span class="comment"> ///  Constructor:  Pass initial x-half axis, amplitude of x-variation, </span></div>
 <div class="line"><a id="l00053" name="l00053"></a><span class="lineno">   53</span><span class="comment"> /// period of oscillation and pointer to time object.</span></div>
 <div class="line"><a id="l00054" name="l00054"></a><span class="lineno"><a class="line" href="classMyEllipse.html#a6d780f1f450d99e175842e88a3079069">   54</a></span><span class="comment"></span> <a class="code hl_function" href="classMyEllipse.html#a6d780f1f450d99e175842e88a3079069">MyEllipse</a>(<span class="keyword">const</span> <span class="keywordtype">double</span>&amp; a, <span class="keyword">const</span> <span class="keywordtype">double</span>&amp; a_hat,</div>
 <div class="line"><a id="l00055" name="l00055"></a><span class="lineno">   55</span>           <span class="keyword">const</span> <span class="keywordtype">double</span>&amp; period, Time* time_pt) : </div>
@@ -177,7 +177,7 @@
 <div class="line"><a id="l00058" name="l00058"></a><span class="lineno">   58</span><span class="comment"> /// Destructor: Empty</span></div>
 <div class="line"><a id="l00059" name="l00059"></a><span class="lineno"><a class="line" href="classMyEllipse.html#ac2f2d3fb269c57fb26b4db6d9a0c7c05">   59</a></span><span class="comment"></span> <span class="keyword">virtual</span> <a class="code hl_function" href="classMyEllipse.html#ac2f2d3fb269c57fb26b4db6d9a0c7c05">~MyEllipse</a>() {}</div>
 <div class="line"><a id="l00060" name="l00060"></a><span class="lineno">   60</span><span class="comment"></span> </div>
-<div class="line"><a id="l00061" name="l00061"></a><span class="lineno">   61</span><span class="comment"> /// \short Current position vector to material point at </span></div>
+<div class="line"><a id="l00061" name="l00061"></a><span class="lineno">   61</span><span class="comment"> ///  Current position vector to material point at </span></div>
 <div class="line"><a id="l00062" name="l00062"></a><span class="lineno">   62</span><span class="comment"> /// Lagrangian coordinate xi </span></div>
 <div class="line"><a id="l00063" name="l00063"></a><span class="lineno"><a class="line" href="classMyEllipse.html#a7b139a2f4564005773c83325f2414e3e">   63</a></span><span class="comment"></span> <span class="keywordtype">void</span> <a class="code hl_function" href="classMyEllipse.html#a7b139a2f4564005773c83325f2414e3e">position</a>(<span class="keyword">const</span> Vector&lt;double&gt;&amp; xi, Vector&lt;double&gt;&amp; r)<span class="keyword"> const</span></div>
 <div class="line"><a id="l00064" name="l00064"></a><span class="lineno">   64</span><span class="keyword">  </span>{</div>
@@ -190,7 +190,7 @@
 <div class="line"><a id="l00071" name="l00071"></a><span class="lineno">   71</span>   r[1] = (1.0/axis)*sin(xi[0]);</div>
 <div class="line"><a id="l00072" name="l00072"></a><span class="lineno">   72</span>  } </div>
 <div class="line"><a id="l00073" name="l00073"></a><span class="lineno">   73</span><span class="comment"></span> </div>
-<div class="line"><a id="l00074" name="l00074"></a><span class="lineno">   74</span><span class="comment"> /// \short Parametrised position on object: r(xi). Evaluated at</span></div>
+<div class="line"><a id="l00074" name="l00074"></a><span class="lineno">   74</span><span class="comment"> ///  Parametrised position on object: r(xi). Evaluated at</span></div>
 <div class="line"><a id="l00075" name="l00075"></a><span class="lineno">   75</span><span class="comment"> /// previous time level. t=0: current time; t&gt;0: previous</span></div>
 <div class="line"><a id="l00076" name="l00076"></a><span class="lineno">   76</span><span class="comment"> /// time level.</span></div>
 <div class="line"><a id="l00077" name="l00077"></a><span class="lineno"><a class="line" href="classMyEllipse.html#a93f75bf33969037e35d779738a8493f5">   77</a></span><span class="comment"></span> <span class="keywordtype">void</span> <a class="code hl_function" href="classMyEllipse.html#a93f75bf33969037e35d779738a8493f5">position</a>(<span class="keyword">const</span> <span class="keywordtype">unsigned</span>&amp; t, <span class="keyword">const</span> Vector&lt;double&gt;&amp; xi,</div>
@@ -308,7 +308,7 @@
 <div class="line"><a id="l00189" name="l00189"></a><span class="lineno">  189</span><span class="comment"> /// Update the problem specs after solve (empty)</span></div>
 <div class="line"><a id="l00190" name="l00190"></a><span class="lineno"><a class="line" href="classOscEllipseProblem.html#a268e14b24e3ac922e7362bbb37ccde1f">  190</a></span><span class="comment"></span> <span class="keywordtype">void</span> <a class="code hl_function" href="classOscEllipseProblem.html#a268e14b24e3ac922e7362bbb37ccde1f">actions_after_newton_solve</a>(){}</div>
 <div class="line"><a id="l00191" name="l00191"></a><span class="lineno">  191</span><span class="comment"></span> </div>
-<div class="line"><a id="l00192" name="l00192"></a><span class="lineno">  192</span><span class="comment"> /// \short Update problem specs before solve (empty)</span></div>
+<div class="line"><a id="l00192" name="l00192"></a><span class="lineno">  192</span><span class="comment"> ///  Update problem specs before solve (empty)</span></div>
 <div class="line"><a id="l00193" name="l00193"></a><span class="lineno"><a class="line" href="classOscEllipseProblem.html#a18bbd70aa8c140637637053a5f839c11">  193</a></span><span class="comment"></span> <span class="keywordtype">void</span> <a class="code hl_function" href="classOscEllipseProblem.html#a18bbd70aa8c140637637053a5f839c11">actions_before_newton_solve</a>() {} </div>
 <div class="line"><a id="l00194" name="l00194"></a><span class="lineno">  194</span> <span class="comment"></span></div>
 <div class="line"><a id="l00195" name="l00195"></a><span class="lineno">  195</span><span class="comment"> /// Actions before adapt (empty)</span></div>
@@ -331,7 +331,7 @@
 <div class="line"><a id="l00212" name="l00212"></a><span class="lineno">  212</span>  } <span class="comment">// end of actions_after_adapt</span></div>
 <div class="line"><a id="l00213" name="l00213"></a><span class="lineno">  213</span> </div>
 <div class="line"><a id="l00214" name="l00214"></a><span class="lineno">  214</span><span class="comment"></span> </div>
-<div class="line"><a id="l00215" name="l00215"></a><span class="lineno">  215</span><span class="comment"> /// \short Update the problem specs before next timestep</span></div>
+<div class="line"><a id="l00215" name="l00215"></a><span class="lineno">  215</span><span class="comment"> ///  Update the problem specs before next timestep</span></div>
 <div class="line"><a id="l00216" name="l00216"></a><span class="lineno"><a class="line" href="classOscEllipseProblem.html#a7b12b4fdfcb46c3f00885f0a1f9965b3">  216</a></span><span class="comment"></span> <span class="keywordtype">void</span> <a class="code hl_function" href="classOscEllipseProblem.html#a7b12b4fdfcb46c3f00885f0a1f9965b3">actions_before_implicit_timestep</a>()</div>
 <div class="line"><a id="l00217" name="l00217"></a><span class="lineno">  217</span>  {</div>
 <div class="line"><a id="l00218" name="l00218"></a><span class="lineno">  218</span>   <span class="comment">// Update the domain shape</span></div>
@@ -360,7 +360,7 @@
 <div class="line"><a id="l00241" name="l00241"></a><span class="lineno">  241</span><span class="comment"> /// Timestepping loop</span></div>
 <div class="line"><a id="l00242" name="l00242"></a><span class="lineno">  242</span><span class="comment"></span> <span class="keywordtype">void</span> <a class="code hl_function" href="classOscEllipseProblem.html#ad0d879edbbd8b09b61e802ab66ef98a3">unsteady_run</a>(DocInfo&amp; doc_info);</div>
 <div class="line"><a id="l00243" name="l00243"></a><span class="lineno">  243</span><span class="comment"></span> </div>
-<div class="line"><a id="l00244" name="l00244"></a><span class="lineno">  244</span><span class="comment"> /// \short Set initial condition</span></div>
+<div class="line"><a id="l00244" name="l00244"></a><span class="lineno">  244</span><span class="comment"> ///  Set initial condition</span></div>
 <div class="line"><a id="l00245" name="l00245"></a><span class="lineno">  245</span><span class="comment"></span> <span class="keywordtype">void</span> <a class="code hl_function" href="classOscEllipseProblem.html#ae638f238a7b0e0acb5d6087b7363fe01">set_initial_condition</a>();</div>
 <div class="line"><a id="l00246" name="l00246"></a><span class="lineno">  246</span> </div>
 <div class="line"><a id="l00247" name="l00247"></a><span class="lineno">  247</span><span class="keyword">private</span>:</div>
@@ -504,7 +504,7 @@
 <div class="line"><a id="l00385" name="l00385"></a><span class="lineno">  385</span> </div>
 <div class="line"><a id="l00386" name="l00386"></a><span class="lineno">  386</span> </div>
 <div class="line"><a id="l00387" name="l00387"></a><span class="lineno">  387</span><span class="comment">//======================start_of_set_initial_condition====================</span><span class="comment"></span></div>
-<div class="line"><a id="l00388" name="l00388"></a><span class="lineno">  388</span><span class="comment">/// \short Set initial condition: Assign previous and current values</span></div>
+<div class="line"><a id="l00388" name="l00388"></a><span class="lineno">  388</span><span class="comment">///  Set initial condition: Assign previous and current values</span></div>
 <div class="line"><a id="l00389" name="l00389"></a><span class="lineno">  389</span><span class="comment">/// from exact solution.</span></div>
 <div class="line"><a id="l00390" name="l00390"></a><span class="lineno">  390</span><span class="comment"></span><span class="comment">//========================================================================</span></div>
 <div class="line"><a id="l00391" name="l00391"></a><span class="lineno">  391</span><span class="keyword">template</span>&lt;<span class="keyword">class</span> ELEMENT,<span class="keyword">class</span> TIMESTEPPER&gt;</div>
@@ -781,7 +781,7 @@
 <div class="ttc" id="aclassMyEllipse_html"><div class="ttname"><a href="classMyEllipse.html">MyEllipse</a></div><div class="ttdoc">Oscillating ellipse.</div><div class="ttdef"><b>Definition:</b> <a href="osc__quarter__ellipse_8cc_source.html#l00047">osc_quarter_ellipse.cc:48</a></div></div>
 <div class="ttc" id="aclassMyEllipse_html_a653e71cf296cdc86cc595d16f18004dd"><div class="ttname"><a href="classMyEllipse.html#a653e71cf296cdc86cc595d16f18004dd">MyEllipse::A_hat</a></div><div class="ttdeci">double A_hat</div><div class="ttdoc">Amplitude of variation in x-half axis.</div><div class="ttdef"><b>Definition:</b> <a href="osc__quarter__ellipse_8cc_source.html#l00095">osc_quarter_ellipse.cc:95</a></div></div>
 <div class="ttc" id="aclassMyEllipse_html_a6d780f1f450d99e175842e88a3079069"><div class="ttname"><a href="classMyEllipse.html#a6d780f1f450d99e175842e88a3079069">MyEllipse::MyEllipse</a></div><div class="ttdeci">MyEllipse(const double &amp;a, const double &amp;a_hat, const double &amp;period, Time *time_pt)</div><div class="ttdoc">Constructor: Pass initial x-half axis, amplitude of x-variation, period of oscillation and pointer to...</div><div class="ttdef"><b>Definition:</b> <a href="osc__quarter__ellipse_8cc_source.html#l00054">osc_quarter_ellipse.cc:54</a></div></div>
-<div class="ttc" id="aclassMyEllipse_html_a7b139a2f4564005773c83325f2414e3e"><div class="ttname"><a href="classMyEllipse.html#a7b139a2f4564005773c83325f2414e3e">MyEllipse::position</a></div><div class="ttdeci">void position(const Vector&lt; double &gt; &amp;xi, Vector&lt; double &gt; &amp;r) const</div><div class="ttdoc">Current position vector to material point at Lagrangian coordinate xi</div><div class="ttdef"><b>Definition:</b> <a href="osc__quarter__ellipse_8cc_source.html#l00063">osc_quarter_ellipse.cc:63</a></div></div>
+<div class="ttc" id="aclassMyEllipse_html_a7b139a2f4564005773c83325f2414e3e"><div class="ttname"><a href="classMyEllipse.html#a7b139a2f4564005773c83325f2414e3e">MyEllipse::position</a></div><div class="ttdeci">void position(const Vector&lt; double &gt; &amp;xi, Vector&lt; double &gt; &amp;r) const</div><div class="ttdoc">Current position vector to material point at Lagrangian coordinate xi.</div><div class="ttdef"><b>Definition:</b> <a href="osc__quarter__ellipse_8cc_source.html#l00063">osc_quarter_ellipse.cc:63</a></div></div>
 <div class="ttc" id="aclassMyEllipse_html_a93f75bf33969037e35d779738a8493f5"><div class="ttname"><a href="classMyEllipse.html#a93f75bf33969037e35d779738a8493f5">MyEllipse::position</a></div><div class="ttdeci">void position(const unsigned &amp;t, const Vector&lt; double &gt; &amp;xi, Vector&lt; double &gt; &amp;r) const</div><div class="ttdoc">Parametrised position on object: r(xi). Evaluated at previous time level. t=0: current time; t&gt;0: pre...</div><div class="ttdef"><b>Definition:</b> <a href="osc__quarter__ellipse_8cc_source.html#l00077">osc_quarter_ellipse.cc:77</a></div></div>
 <div class="ttc" id="aclassMyEllipse_html_aa2a0efd0a39f9d4fc307a6ff011682ed"><div class="ttname"><a href="classMyEllipse.html#aa2a0efd0a39f9d4fc307a6ff011682ed">MyEllipse::A</a></div><div class="ttdeci">double A</div><div class="ttdoc">x-half axis</div><div class="ttdef"><b>Definition:</b> <a href="osc__quarter__ellipse_8cc_source.html#l00092">osc_quarter_ellipse.cc:92</a></div></div>
 <div class="ttc" id="aclassMyEllipse_html_ab098069ab23bbbd8f30b0da3523dc87f"><div class="ttname"><a href="classMyEllipse.html#ab098069ab23bbbd8f30b0da3523dc87f">MyEllipse::T</a></div><div class="ttdeci">double T</div><div class="ttdoc">Period of oscillation.</div><div class="ttdef"><b>Definition:</b> <a href="osc__quarter__ellipse_8cc_source.html#l00098">osc_quarter_ellipse.cc:98</a></div></div>
@@ -808,7 +808,7 @@
 <div class="ttc" id="anamespaceGlobal__Physical__Variables_html_a4894f9a3a9cbf84f00d0719f2841e624"><div class="ttname"><a href="namespaceGlobal__Physical__Variables.html#a4894f9a3a9cbf84f00d0719f2841e624">Global_Physical_Variables::A</a></div><div class="ttdeci">double A</div><div class="ttdoc">x-Half axis length</div><div class="ttdef"><b>Definition:</b> <a href="osc__quarter__ellipse_8cc_source.html#l00126">osc_quarter_ellipse.cc:126</a></div></div>
 <div class="ttc" id="anamespaceGlobal__Physical__Variables_html_ab814e627d2eb5bc50318879d19ab16b9"><div class="ttname"><a href="namespaceGlobal__Physical__Variables.html#ab814e627d2eb5bc50318879d19ab16b9">Global_Physical_Variables::Re</a></div><div class="ttdeci">double Re</div><div class="ttdoc">Reynolds number.</div><div class="ttdef"><b>Definition:</b> <a href="osc__quarter__ellipse_8cc_source.html#l00120">osc_quarter_ellipse.cc:120</a></div></div>
 <div class="ttc" id="anamespaceGlobal__Physical__Variables_html_af29d0fbf7264555610176a1fc931591a"><div class="ttname"><a href="namespaceGlobal__Physical__Variables.html#af29d0fbf7264555610176a1fc931591a">Global_Physical_Variables::get_exact_u</a></div><div class="ttdeci">void get_exact_u(const double &amp;t, const Vector&lt; double &gt; &amp;x, Vector&lt; double &gt; &amp;u)</div><div class="ttdoc">Exact solution of the problem as a vector containing u,v,p.</div><div class="ttdef"><b>Definition:</b> <a href="osc__quarter__ellipse_8cc_source.html#l00135">osc_quarter_ellipse.cc:135</a></div></div>
-<div class="ttc" id="aosc__quarter__ellipse_8cc_html_a0ddf1224851353fc92bfbff6f499fa97"><div class="ttname"><a href="osc__quarter__ellipse_8cc.html#a0ddf1224851353fc92bfbff6f499fa97">main</a></div><div class="ttdeci">int main(int argc, char *argv[])</div><div class="ttdef"><b>Definition:</b> <a href="osc__quarter__ellipse_8cc_source.html#l00624">osc_quarter_ellipse.cc:624</a></div></div>
+<div class="ttc" id="aosc__quarter__ellipse_8cc_html_a0ddf1224851353fc92bfbff6f499fa97"><div class="ttname"><a href="osc__quarter__ellipse_8cc.html#a0ddf1224851353fc92bfbff6f499fa97">main</a></div><div class="ttdeci">int main(int argc, char *argv[])</div><div class="ttdoc">Driver code for unsteady Navier-Stokes flow, driven by oscillating ellipse. If the code is executed w...</div><div class="ttdef"><b>Definition:</b> <a href="osc__quarter__ellipse_8cc_source.html#l00624">osc_quarter_ellipse.cc:624</a></div></div>
 </div><!-- fragment --></div><!-- contents -->
 
     <!-- jQuery for Bootstrap and Doxygen -->
@@ -837,7 +837,7 @@
     <footer>
       <div class="container">
         <div class="text-muted" style="float:right;">Generated by <a href="http://www.doxygen.org/index.html">
-          <img style="height:18px;" class="footer-img" src="doxygen.png" alt="doxygen"></a> on Wed Oct 13 2021 08:54:19
+          <img style="height:18px;" class="footer-img" src="doxygen.png" alt="doxygen"></a> on Thu Oct 21 2021 17:42:13
         </div>
       </div>
     </footer>

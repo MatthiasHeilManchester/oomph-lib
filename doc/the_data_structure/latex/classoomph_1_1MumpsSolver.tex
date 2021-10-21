@@ -115,7 +115,7 @@ bool \mbox{\hyperlink{classoomph_1_1MumpsSolver_a851b95821f3adce5545e7abe238b3cc
 bool \mbox{\hyperlink{classoomph_1_1MumpsSolver_a8dc51b4b7e2b121773aea1ed7820ea16}{Doc\+\_\+stats}}
 \begin{DoxyCompactList}\small\item\em Set to true for \mbox{\hyperlink{classoomph_1_1MumpsSolver}{Mumps\+Solver}} to output statistics (false by default). \end{DoxyCompactList}\item 
 bool \mbox{\hyperlink{classoomph_1_1MumpsSolver_a4a770886867c62d2eff6afe4b091fabd}{Suppress\+\_\+warning\+\_\+about\+\_\+\+MPI\+\_\+\+COMM\+\_\+\+WORLD}}
-\item 
+\begin{DoxyCompactList}\small\item\em Boolean to suppress warning about communicator not equal to MPI\+\_\+\+COMM\+\_\+\+WORLD. \end{DoxyCompactList}\item 
 bool \mbox{\hyperlink{classoomph_1_1MumpsSolver_acfc51e1ed214d9d2dc5a83b04a08d1f7}{Suppress\+\_\+mumps\+\_\+info\+\_\+during\+\_\+solve}}
 \begin{DoxyCompactList}\small\item\em Boolean to suppress info being printed to screen during MUMPS solve. \end{DoxyCompactList}\item 
 bool \mbox{\hyperlink{classoomph_1_1MumpsSolver_a3512c04b1bfcf11064c0da453ba34806}{Mumps\+\_\+is\+\_\+initialised}}
@@ -261,7 +261,7 @@ References \mbox{\hyperlink{mumps__solver_8cc_source_l00141}{shutdown\+\_\+mumps
 
 Do the backsubstitution for mumps solver Note\+: returns the global result \mbox{\hyperlink{classoomph_1_1Vector}{Vector}}. 
 
-Do the backsubstitution for mumps solver. This does not make any assumption about the distribution of the vectors 
+Do the backsubstitution for mumps solver. This does not make any assumption about the distribution of the vectors. 
 
 Definition at line \mbox{\hyperlink{mumps__solver_8cc_source_l00519}{519}} of file \mbox{\hyperlink{mumps__solver_8cc_source}{mumps\+\_\+solver.\+cc}}.
 
@@ -725,7 +725,7 @@ References \mbox{\hyperlink{mumps__solver_8cc_source_l00519}{backsub()}}, \mbox{
 
 Solver\+: Takes pointer to problem and returns the results \mbox{\hyperlink{classoomph_1_1Vector}{Vector}} which contains the solution of the linear system defined by the problem\textquotesingle{}s fully assembled Jacobian and residual \mbox{\hyperlink{classoomph_1_1Vector}{Vector}}. 
 
-Solver\+: Takes pointer to problem and returns the results \mbox{\hyperlink{classoomph_1_1Vector}{Vector}} which contains the solution of the linear system defined by the problem\textquotesingle{}s fully assembled Jacobian and residual \mbox{\hyperlink{classoomph_1_1Vector}{Vector}}. 
+
 
 Implements \mbox{\hyperlink{classoomph_1_1LinearSolver_a15ce22542b74ed1826ea485edacbeb6e}{oomph\+::\+Linear\+Solver}}.
 
@@ -1006,7 +1006,7 @@ Referenced by \mbox{\hyperlink{mumps__solver_8h_source_l00153}{linear\+\_\+solve
 
 Static flag that determines whether the warning about incorrect distribution of RHSs will be printed or not. 
 
-Static warning to suppress warnings about incorrect distribution of RHS vector. Default is false 
+Static warning to suppress warnings about incorrect distribution of RHS vector. Default is false. 
 
 Definition at line \mbox{\hyperlink{mumps__solver_8h_source_l00066}{66}} of file \mbox{\hyperlink{mumps__solver_8h_source}{mumps\+\_\+solver.\+h}}.
 
@@ -1056,7 +1056,11 @@ Referenced by \mbox{\hyperlink{mumps__solver_8h_source_l00168}{disable\+\_\+supp
 \doxysubsubsection{\texorpdfstring{Suppress\_warning\_about\_MPI\_COMM\_WORLD}{Suppress\_warning\_about\_MPI\_COMM\_WORLD}}
 {\footnotesize\ttfamily bool oomph\+::\+Mumps\+Solver\+::\+Suppress\+\_\+warning\+\_\+about\+\_\+\+MPI\+\_\+\+COMM\+\_\+\+WORLD\hspace{0.3cm}{\ttfamily [private]}}
 
-Boolean to suppress warning about communicator not equal to MPI\+\_\+\+COMM\+\_\+\+WORLD 
+
+
+Boolean to suppress warning about communicator not equal to MPI\+\_\+\+COMM\+\_\+\+WORLD. 
+
+
 
 Definition at line \mbox{\hyperlink{mumps__solver_8h_source_l00268}{268}} of file \mbox{\hyperlink{mumps__solver_8h_source}{mumps\+\_\+solver.\+h}}.
 

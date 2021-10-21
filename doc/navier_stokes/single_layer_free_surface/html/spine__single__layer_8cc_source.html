@@ -225,15 +225,15 @@
 <div class="line"><a id="l00106" name="l00106"></a><span class="lineno">  106</span><span class="comment"> /// Do unsteady run up to maximum time t_max with given timestep dt</span></div>
 <div class="line"><a id="l00107" name="l00107"></a><span class="lineno"><a class="line" href="classInterfaceProblem.html#adf1f4e43d10939e4323e0e315b711085">  107</a></span><span class="comment"></span> <span class="keywordtype">void</span> <a class="code hl_function" href="classInterfaceProblem.html#adf1f4e43d10939e4323e0e315b711085">unsteady_run</a>(<span class="keyword">const</span> <span class="keywordtype">double</span> &amp;t_max, <span class="keyword">const</span> <span class="keywordtype">double</span> &amp;dt);</div>
 <div class="line"><a id="l00108" name="l00108"></a><span class="lineno">  108</span><span class="comment"></span> </div>
-<div class="line"><a id="l00109" name="l00109"></a><span class="lineno">  109</span><span class="comment"> /// \short The bulk fluid mesh, complete with spines and update information</span></div>
+<div class="line"><a id="l00109" name="l00109"></a><span class="lineno">  109</span><span class="comment"> ///  The bulk fluid mesh, complete with spines and update information</span></div>
 <div class="line"><a id="l00110" name="l00110"></a><span class="lineno"><a class="line" href="classInterfaceProblem.html#a3e9ad7667f6f978a1e7c4c55e8e69e6d">  110</a></span><span class="comment"></span> SingleLayerSpineMesh&lt;ELEMENT&gt; *<a class="code hl_variable" href="classInterfaceProblem.html#a3e9ad7667f6f978a1e7c4c55e8e69e6d">Bulk_mesh_pt</a>;</div>
 <div class="line"><a id="l00111" name="l00111"></a><span class="lineno">  111</span><span class="comment"></span> </div>
-<div class="line"><a id="l00112" name="l00112"></a><span class="lineno">  112</span><span class="comment"> /// \short The mesh that contains the free surface elements</span></div>
+<div class="line"><a id="l00112" name="l00112"></a><span class="lineno">  112</span><span class="comment"> ///  The mesh that contains the free surface elements</span></div>
 <div class="line"><a id="l00113" name="l00113"></a><span class="lineno">  113</span><span class="comment"></span> Mesh* <a class="code hl_variable" href="classInterfaceProblem.html#a011c7b4f2307ff909f64dc158e8fc674">Surface_mesh_pt</a>;</div>
 <div class="line"><a id="l00114" name="l00114"></a><span class="lineno">  114</span> </div>
 <div class="line"><a id="l00115" name="l00115"></a><span class="lineno">  115</span><span class="keyword">private</span>:</div>
 <div class="line"><a id="l00116" name="l00116"></a><span class="lineno">  116</span><span class="comment"></span> </div>
-<div class="line"><a id="l00117" name="l00117"></a><span class="lineno">  117</span><span class="comment"> /// \short Spine heights/lengths are unknowns in the problem so their</span></div>
+<div class="line"><a id="l00117" name="l00117"></a><span class="lineno">  117</span><span class="comment"> ///  Spine heights/lengths are unknowns in the problem so their</span></div>
 <div class="line"><a id="l00118" name="l00118"></a><span class="lineno">  118</span><span class="comment"> /// values get corrected during each Newton step. However, changing</span></div>
 <div class="line"><a id="l00119" name="l00119"></a><span class="lineno">  119</span><span class="comment"> /// their value does not automatically change the nodal positions, so</span></div>
 <div class="line"><a id="l00120" name="l00120"></a><span class="lineno">  120</span><span class="comment"> /// we need to update all of them here.</span></div>
@@ -245,7 +245,7 @@
 <div class="line"><a id="l00126" name="l00126"></a><span class="lineno">  126</span><span class="comment"> /// No actions required before solve step</span></div>
 <div class="line"><a id="l00127" name="l00127"></a><span class="lineno"><a class="line" href="classInterfaceProblem.html#ade63c8a74f666edf530460b989968b4f">  127</a></span><span class="comment"></span> <span class="keywordtype">void</span> <a class="code hl_function" href="classInterfaceProblem.html#ade63c8a74f666edf530460b989968b4f">actions_before_newton_solve</a>() {}</div>
 <div class="line"><a id="l00128" name="l00128"></a><span class="lineno">  128</span><span class="comment"></span> </div>
-<div class="line"><a id="l00129" name="l00129"></a><span class="lineno">  129</span><span class="comment"> /// \short Update after solve can remain empty, because the update </span></div>
+<div class="line"><a id="l00129" name="l00129"></a><span class="lineno">  129</span><span class="comment"> ///  Update after solve can remain empty, because the update </span></div>
 <div class="line"><a id="l00130" name="l00130"></a><span class="lineno">  130</span><span class="comment"> /// is performed automatically after every Newton step.</span></div>
 <div class="line"><a id="l00131" name="l00131"></a><span class="lineno"><a class="line" href="classInterfaceProblem.html#aedc2e58b3d2f5f8c898a21ba2d245cee">  131</a></span><span class="comment"></span> <span class="keywordtype">void</span> <a class="code hl_function" href="classInterfaceProblem.html#aedc2e58b3d2f5f8c898a21ba2d245cee">actions_after_newton_solve</a>() {}</div>
 <div class="line"><a id="l00132" name="l00132"></a><span class="lineno">  132</span><span class="comment"></span> </div>
@@ -408,7 +408,7 @@
 <div class="line"><a id="l00289" name="l00289"></a><span class="lineno">  289</span> </div>
 <div class="line"><a id="l00290" name="l00290"></a><span class="lineno">  290</span><span class="comment">//========================================================================</span></div>
 <div class="line"><a id="l00291" name="l00291"></a><span class="lineno">  291</span><span class="comment">//==start_of_set_initial_condition========================================</span><span class="comment"></span></div>
-<div class="line"><a id="l00292" name="l00292"></a><span class="lineno">  292</span><span class="comment">/// \short Set initial conditions: Set all nodal velocities to zero and</span></div>
+<div class="line"><a id="l00292" name="l00292"></a><span class="lineno">  292</span><span class="comment">///  Set initial conditions: Set all nodal velocities to zero and</span></div>
 <div class="line"><a id="l00293" name="l00293"></a><span class="lineno">  293</span><span class="comment">/// initialise the previous velocities and nodal positions to correspond</span></div>
 <div class="line"><a id="l00294" name="l00294"></a><span class="lineno">  294</span><span class="comment">/// to an impulsive start</span></div>
 <div class="line"><a id="l00295" name="l00295"></a><span class="lineno">  295</span><span class="comment"></span><span class="comment">//========================================================================</span></div>
@@ -438,7 +438,7 @@
 <div class="line"><a id="l00319" name="l00319"></a><span class="lineno">  319</span> </div>
 <div class="line"><a id="l00320" name="l00320"></a><span class="lineno">  320</span> </div>
 <div class="line"><a id="l00321" name="l00321"></a><span class="lineno">  321</span><span class="comment">//==start_of_set_boundary_conditions======================================</span><span class="comment"></span></div>
-<div class="line"><a id="l00322" name="l00322"></a><span class="lineno">  322</span><span class="comment">/// \short Set boundary conditions: Set both velocity components to zero</span></div>
+<div class="line"><a id="l00322" name="l00322"></a><span class="lineno">  322</span><span class="comment">///  Set boundary conditions: Set both velocity components to zero</span></div>
 <div class="line"><a id="l00323" name="l00323"></a><span class="lineno">  323</span><span class="comment">/// on the bottom (solid) wall and the horizontal component only to zero</span></div>
 <div class="line"><a id="l00324" name="l00324"></a><span class="lineno">  324</span><span class="comment">/// on the side (periodic) boundaries</span></div>
 <div class="line"><a id="l00325" name="l00325"></a><span class="lineno">  325</span><span class="comment"></span><span class="comment">//========================================================================</span></div>
@@ -661,14 +661,14 @@
 <div class="line"><a id="l00542" name="l00542"></a><span class="lineno">  542</span> problem.<a class="code hl_function" href="classInterfaceProblem.html#adf1f4e43d10939e4323e0e315b711085">unsteady_run</a>(t_max,dt);</div>
 <div class="line"><a id="l00543" name="l00543"></a><span class="lineno">  543</span> </div>
 <div class="line"><a id="l00544" name="l00544"></a><span class="lineno">  544</span>} <span class="comment">// End of main</span></div>
-<div class="ttc" id="aclassInterfaceProblem_html"><div class="ttname"><a href="classInterfaceProblem.html">InterfaceProblem</a></div><div class="ttdef"><b>Definition:</b> <a href="elastic__single__layer_8cc_source.html#l00092">elastic_single_layer.cc:93</a></div></div>
+<div class="ttc" id="aclassInterfaceProblem_html"><div class="ttname"><a href="classInterfaceProblem.html">InterfaceProblem</a></div><div class="ttdoc">Single fluid free surface problem in a rectangular domain which is periodic in the x direction.</div><div class="ttdef"><b>Definition:</b> <a href="elastic__single__layer_8cc_source.html#l00092">elastic_single_layer.cc:93</a></div></div>
 <div class="ttc" id="aclassInterfaceProblem_html_a011c7b4f2307ff909f64dc158e8fc674"><div class="ttname"><a href="classInterfaceProblem.html#a011c7b4f2307ff909f64dc158e8fc674">InterfaceProblem::Surface_mesh_pt</a></div><div class="ttdeci">Mesh * Surface_mesh_pt</div><div class="ttdoc">Pointer to the &quot;surface&quot; mesh.</div><div class="ttdef"><b>Definition:</b> <a href="elastic__single__layer_8cc_source.html#l00140">elastic_single_layer.cc:140</a></div></div>
 <div class="ttc" id="aclassInterfaceProblem_html_a0d3af8378c4f0a6e38636be958c300d5"><div class="ttname"><a href="classInterfaceProblem.html#a0d3af8378c4f0a6e38636be958c300d5">InterfaceProblem::set_initial_condition</a></div><div class="ttdeci">void set_initial_condition()</div><div class="ttdoc">Set initial conditions.</div></div>
 <div class="ttc" id="aclassInterfaceProblem_html_a2319232b08d9df1ab473f6cbd40939d5"><div class="ttname"><a href="classInterfaceProblem.html#a2319232b08d9df1ab473f6cbd40939d5">InterfaceProblem::deform_free_surface</a></div><div class="ttdeci">void deform_free_surface(const double &amp;epsilon, const unsigned &amp;n_periods)</div><div class="ttdoc">Deform the mesh/free surface to a prescribed function.</div></div>
 <div class="ttc" id="aclassInterfaceProblem_html_a3e9ad7667f6f978a1e7c4c55e8e69e6d"><div class="ttname"><a href="classInterfaceProblem.html#a3e9ad7667f6f978a1e7c4c55e8e69e6d">InterfaceProblem::Bulk_mesh_pt</a></div><div class="ttdeci">SingleLayerSpineMesh&lt; ELEMENT &gt; * Bulk_mesh_pt</div><div class="ttdoc">The bulk fluid mesh, complete with spines and update information.</div><div class="ttdef"><b>Definition:</b> <a href="spine__single__layer_8cc_source.html#l00110">spine_single_layer.cc:110</a></div></div>
 <div class="ttc" id="aclassInterfaceProblem_html_a45e3bf3b44bcbeefab21a3598bef6179"><div class="ttname"><a href="classInterfaceProblem.html#a45e3bf3b44bcbeefab21a3598bef6179">InterfaceProblem::Trace_file</a></div><div class="ttdeci">ofstream Trace_file</div><div class="ttdoc">Trace file.</div><div class="ttdef"><b>Definition:</b> <a href="elastic__single__layer_8cc_source.html#l00149">elastic_single_layer.cc:149</a></div></div>
 <div class="ttc" id="aclassInterfaceProblem_html_a49714e35e94f7d2af0b6ddd22b851f52"><div class="ttname"><a href="classInterfaceProblem.html#a49714e35e94f7d2af0b6ddd22b851f52">InterfaceProblem::doc_solution</a></div><div class="ttdeci">void doc_solution(DocInfo &amp;doc_info)</div><div class="ttdoc">Doc the solution.</div></div>
-<div class="ttc" id="aclassInterfaceProblem_html_a83023535d663a2a6558959f36bf6e1e7"><div class="ttname"><a href="classInterfaceProblem.html#a83023535d663a2a6558959f36bf6e1e7">InterfaceProblem::InterfaceProblem</a></div><div class="ttdeci">InterfaceProblem(const unsigned &amp;n_x, const unsigned &amp;n_y, const double &amp;l_x, const double &amp;h)</div></div>
+<div class="ttc" id="aclassInterfaceProblem_html_a83023535d663a2a6558959f36bf6e1e7"><div class="ttname"><a href="classInterfaceProblem.html#a83023535d663a2a6558959f36bf6e1e7">InterfaceProblem::InterfaceProblem</a></div><div class="ttdeci">InterfaceProblem(const unsigned &amp;n_x, const unsigned &amp;n_y, const double &amp;l_x, const double &amp;h)</div><div class="ttdoc">Constructor: Pass the number of elements and the lengths of the domain in the x and y directions (h i...</div></div>
 <div class="ttc" id="aclassInterfaceProblem_html_a844445832ad7a32aa9f5d03ffdb40ebb"><div class="ttname"><a href="classInterfaceProblem.html#a844445832ad7a32aa9f5d03ffdb40ebb">InterfaceProblem::set_boundary_conditions</a></div><div class="ttdeci">void set_boundary_conditions()</div><div class="ttdoc">Set boundary conditions.</div></div>
 <div class="ttc" id="aclassInterfaceProblem_html_a90c191f8046069099b199743e7ce7111"><div class="ttname"><a href="classInterfaceProblem.html#a90c191f8046069099b199743e7ce7111">InterfaceProblem::~InterfaceProblem</a></div><div class="ttdeci">~InterfaceProblem()</div><div class="ttdoc">Destructor (empty)</div><div class="ttdef"><b>Definition:</b> <a href="spine__single__layer_8cc_source.html#l00095">spine_single_layer.cc:95</a></div></div>
 <div class="ttc" id="aclassInterfaceProblem_html_a9b5070b479a79546b983bd7027917e93"><div class="ttname"><a href="classInterfaceProblem.html#a9b5070b479a79546b983bd7027917e93">InterfaceProblem::Lx</a></div><div class="ttdeci">double Lx</div><div class="ttdoc">Width of domain.</div><div class="ttdef"><b>Definition:</b> <a href="elastic__single__layer_8cc_source.html#l00146">elastic_single_layer.cc:146</a></div></div>
@@ -713,7 +713,7 @@
     <footer>
       <div class="container">
         <div class="text-muted" style="float:right;">Generated by <a href="http://www.doxygen.org/index.html">
-          <img style="height:18px;" class="footer-img" src="doxygen.png" alt="doxygen"></a> on Wed Oct 13 2021 08:55:06
+          <img style="height:18px;" class="footer-img" src="doxygen.png" alt="doxygen"></a> on Thu Oct 21 2021 17:42:57
         </div>
       </div>
     </footer>

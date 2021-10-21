@@ -128,6 +128,7 @@
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="nested-classes" name="nested-classes"></a>
 Classes</h2></td></tr>
 <tr class="memitem:"><td class="memItemLeft" align="right" valign="top">class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classoomph_1_1PseudoElasticBulkElement.html">oomph::PseudoElasticBulkElement&lt; ELEMENT &gt;</a></td></tr>
+<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">Pseudo-Elastic Solid element class to overload the Block Preconditioner methods <a class="el" href="classoomph_1_1PseudoElasticBulkElement.html#a18674d52b96db8800d31e89ffd465175" title="Return the number of DOF types associated with this element.">ndof_types()</a> and <a class="el" href="classoomph_1_1PseudoElasticBulkElement.html#a8f1dc2011100324953293470a18f3080" title="Create a list of pairs for all unknowns in this element, so that the first entry in each pair contain...">get_dof_numbers_for_unknowns()</a> to differentiate between DOFs subject to Lagrange multiplier and those that are not.  <a href="classoomph_1_1PseudoElasticBulkElement.html#details">More...</a><br /></td></tr>
 <tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:"><td class="memItemLeft" align="right" valign="top">class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classoomph_1_1FaceGeometry_3_01PseudoElasticBulkElement_3_01ELEMENT_01_4_01_4.html">oomph::FaceGeometry&lt; PseudoElasticBulkElement&lt; ELEMENT &gt; &gt;</a></td></tr>
 <tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">FaceGeometry of wrapped element is the same as the underlying element.  <a href="classoomph_1_1FaceGeometry_3_01PseudoElasticBulkElement_3_01ELEMENT_01_4_01_4.html#details">More...</a><br /></td></tr>
@@ -136,6 +137,7 @@ Classes</h2></td></tr>
 <tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">GeomObject: Undeformed straight, vertical leaflet.  <a href="classUndeformedLeaflet.html#details">More...</a><br /></td></tr>
 <tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:"><td class="memItemLeft" align="right" valign="top">class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classFSIChannelWithLeafletProblem.html">FSIChannelWithLeafletProblem&lt; ELEMENT &gt;</a></td></tr>
+<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">FSI leaflet in channel. Mesh update with pseudo-elasticity and solved with pseudo-elastic fsi preconditioner.  <a href="classFSIChannelWithLeafletProblem.html#details">More...</a><br /></td></tr>
 <tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="namespaces" name="namespaces"></a>
@@ -200,8 +202,7 @@ Variables</h2></td></tr>
 <tr class="memdesc:ab360628e7830e43e355ce5768f6d6a6c"><td class="mdescLeft">&#160;</td><td class="mdescRight">Non-dimensional wall thickness.  <a href="namespaceGlobal__Parameters.html#ab360628e7830e43e355ce5768f6d6a6c">More...</a><br /></td></tr>
 <tr class="separator:ab360628e7830e43e355ce5768f6d6a6c"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a7814fddf663e56168174a42d2cd6b4c1"><td class="memItemLeft" align="right" valign="top">double&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespaceGlobal__Parameters.html#a7814fddf663e56168174a42d2cd6b4c1">Global_Parameters::Q</a> =2.0e-7</td></tr>
-<tr class="memdesc:a7814fddf663e56168174a42d2cd6b4c1"><td class="mdescLeft">&#160;</td><td class="mdescRight">Fluid structure interaction parameter: Ratio of stresses used for non-dimensionalisation of fluid to solid stresses. <br  />
-  <a href="namespaceGlobal__Parameters.html#a7814fddf663e56168174a42d2cd6b4c1">More...</a><br /></td></tr>
+<tr class="memdesc:a7814fddf663e56168174a42d2cd6b4c1"><td class="mdescLeft">&#160;</td><td class="mdescRight">Fluid structure interaction parameter: Ratio of stresses used for non-dimensionalisation of fluid to solid stresses.  <a href="namespaceGlobal__Parameters.html#a7814fddf663e56168174a42d2cd6b4c1">More...</a><br /></td></tr>
 <tr class="separator:a7814fddf663e56168174a42d2cd6b4c1"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:aeb964d25d190afd43c8317d4217f31b4"><td class="memItemLeft" align="right" valign="top">double&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespaceGlobal__Parameters.html#aeb964d25d190afd43c8317d4217f31b4">Global_Parameters::T</a> =1.0</td></tr>
 <tr class="memdesc:aeb964d25d190afd43c8317d4217f31b4"><td class="mdescLeft">&#160;</td><td class="mdescRight">Period for fluctuations in flux.  <a href="namespaceGlobal__Parameters.html#aeb964d25d190afd43c8317d4217f31b4">More...</a><br /></td></tr>
@@ -288,7 +289,7 @@ Variables</h2></td></tr>
     <footer>
       <div class="container">
         <div class="text-muted" style="float:right;">Generated by <a href="http://www.doxygen.org/index.html">
-          <img style="height:18px;" class="footer-img" src="doxygen.png" alt="doxygen"></a> on Wed Oct 13 2021 09:14:59
+          <img style="height:18px;" class="footer-img" src="doxygen.png" alt="doxygen"></a> on Thu Oct 21 2021 18:01:19
         </div>
       </div>
     </footer>

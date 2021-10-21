@@ -312,7 +312,7 @@ Static Public Attributes</h2></td></tr>
 <tr class="separator:a34a623036985925b9adc0b28c89ad1c2"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="inherit_header pub_static_attribs_classSamplePointContainer"><td colspan="2" onclick="javascript:toggleInherit('pub_static_attribs_classSamplePointContainer')"><img src="closed.png" alt="-"/>&#160;Static Public Attributes inherited from <a class="el" href="classSamplePointContainer.html">SamplePointContainer</a></td></tr>
 <tr class="memitem:ad08a1cb658b3783bcf7d8491e90965f3 inherit pub_static_attribs_classSamplePointContainer"><td class="memItemLeft" align="right" valign="top">static std::ofstream&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classSamplePointContainer.html#ad08a1cb658b3783bcf7d8491e90965f3">Visited_sample_points_file</a></td></tr>
-<tr class="memdesc:ad08a1cb658b3783bcf7d8491e90965f3 inherit pub_static_attribs_classSamplePointContainer"><td class="mdescLeft">&#160;</td><td class="mdescRight">File to record sequence of visited sample points in.  <a href="classSamplePointContainer.html#ad08a1cb658b3783bcf7d8491e90965f3">More...</a><br /></td></tr>
+<tr class="memdesc:ad08a1cb658b3783bcf7d8491e90965f3 inherit pub_static_attribs_classSamplePointContainer"><td class="mdescLeft">&#160;</td><td class="mdescRight">File to record sequence of visited sample points in. Used for debugging/ illustration of search procedures.  <a href="classSamplePointContainer.html#ad08a1cb658b3783bcf7d8491e90965f3">More...</a><br /></td></tr>
 <tr class="separator:ad08a1cb658b3783bcf7d8491e90965f3 inherit pub_static_attribs_classSamplePointContainer"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a1098cdf602fabc6ceec41bb7ea73805f inherit pub_static_attribs_classSamplePointContainer"><td class="memItemLeft" align="right" valign="top">static bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classSamplePointContainer.html#a1098cdf602fabc6ceec41bb7ea73805f">Always_fail_elemental_locate_zeta</a> = false</td></tr>
 <tr class="memdesc:a1098cdf602fabc6ceec41bb7ea73805f inherit pub_static_attribs_classSamplePointContainer"><td class="mdescLeft">&#160;</td><td class="mdescRight">Boolean flag to make to make locate zeta fail. Used for debugging/ illustration of search procedures.  <a href="classSamplePointContainer.html#a1098cdf602fabc6ceec41bb7ea73805f">More...</a><br /></td></tr>
@@ -384,6 +384,7 @@ Additional Inherited Members</h2></td></tr>
 <tr class="memdesc:a9f044cf51ea29b0a1a85e029defd81d5 inherit pro_attribs_classSamplePointContainer"><td class="mdescLeft">&#160;</td><td class="mdescRight">Pointer to mesh from whose FiniteElements sample points are created.  <a href="classSamplePointContainer.html#a9f044cf51ea29b0a1a85e029defd81d5">More...</a><br /></td></tr>
 <tr class="separator:a9f044cf51ea29b0a1a85e029defd81d5 inherit pro_attribs_classSamplePointContainer"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a1607ff8abb3f3b6364bc169a6ea4a79c inherit pro_attribs_classSamplePointContainer"><td class="memItemLeft" align="right" valign="top">Vector&lt; std::pair&lt; double, double &gt; &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classSamplePointContainer.html#a1607ff8abb3f3b6364bc169a6ea4a79c">Min_and_max_coordinates</a></td></tr>
+<tr class="memdesc:a1607ff8abb3f3b6364bc169a6ea4a79c inherit pro_attribs_classSamplePointContainer"><td class="mdescLeft">&#160;</td><td class="mdescRight">Vector of pairs of doubles for min and maximum coordinates. Call: Min_and_max_coordinates[j] gives me the pair of min (first) and max. (second) coordinates in the j-th coordinate direction.  <a href="classSamplePointContainer.html#a1607ff8abb3f3b6364bc169a6ea4a79c">More...</a><br /></td></tr>
 <tr class="separator:a1607ff8abb3f3b6364bc169a6ea4a79c inherit pro_attribs_classSamplePointContainer"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a8d7215f8363d751343efe60a1b051e6a inherit pro_attribs_classSamplePointContainer"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classSamplePointContainer.html#a8d7215f8363d751343efe60a1b051e6a">Use_eulerian_coordinates_during_setup</a></td></tr>
 <tr class="memdesc:a8d7215f8363d751343efe60a1b051e6a inherit pro_attribs_classSamplePointContainer"><td class="mdescLeft">&#160;</td><td class="mdescRight">Use Eulerian coordinates (i.e. interpolated_x) rather than zeta itself (i.e. interpolated_zeta) to identify point.  <a href="classSamplePointContainer.html#a8d7215f8363d751343efe60a1b051e6a">More...</a><br /></td></tr>
@@ -423,7 +424,8 @@ Additional Inherited Members</h2></td></tr>
 </div><div class="memdoc">
 
 <p>Constructor. </p>
-<p ><a class="el" href="classRefineableBin.html">RefineableBin</a> array class </p>
+<p ><a class="el" href="classRefineableBin.html" title="RefineableBin class. Contains sample points and is embedded in a RefineableBinArray....">RefineableBin</a> array class /////////////////////////////////////////////////////////////////////////// ///////////////////////////////////////////////////////////////////////////.</p>
+<p >Constructor </p>
 
 <p class="definition">Definition at line <a class="el" href="sample__point__container_8cc_source.html#l00841">841</a> of file <a class="el" href="sample__point__container_8cc_source.html">sample_point_container.cc</a>.</p>
 
@@ -782,7 +784,7 @@ Additional Inherited Members</h2></td></tr>
           <td class="paramkey"></td>
           <td></td>
           <td class="paramtype">Vector&lt; std::pair&lt; double, double &gt; &gt; &amp;&#160;</td>
-          <td class="paramname"><em>min_and_max_coordinates_of_bin</em>&#160;</td>
+          <td class="paramname"><em>min_and_max_coordinates</em>&#160;</td>
         </tr>
         <tr>
           <td></td>
@@ -793,11 +795,10 @@ Additional Inherited Members</h2></td></tr>
 </div><div class="memdoc">
 
 <p>Boundaries of specified bin in each coordinate direction. *.first = min; *.second = max. </p>
-<p >Boundaries of specified bin in each coordinate direction. *.first = min; *.second = max. </p>
 
 <p class="definition">Definition at line <a class="el" href="sample__point__container_8cc_source.html#l00995">995</a> of file <a class="el" href="sample__point__container_8cc_source.html">sample_point_container.cc</a>.</p>
 
-<p class="reference">References <a class="el" href="sample__point__container_8h_source.html#l00486">BinArray::dimension_of_bin_array()</a>, <a class="el" href="sample__point__container_8h_source.html#l00508">BinArray::Dimensions_of_bin_array</a>, <a class="el" href="sample__point__container_8h_source.html#l00363">SamplePointContainer::Min_and_max_coordinates</a>, and <a class="el" href="sample__point__container_8h_source.html#l00480">BinArray::ndim_zeta()</a>.</p>
+<p class="reference">References <a class="el" href="sample__point__container_8h_source.html#l00486">BinArray::dimension_of_bin_array()</a>, <a class="el" href="sample__point__container_8h_source.html#l00508">BinArray::Dimensions_of_bin_array</a>, <a class="el" href="sample__point__container_8h_source.html#l00363">SamplePointContainer::Min_and_max_coordinates</a>, <a class="el" href="sample__point__container_8h_source.html#l00480">BinArray::ndim_zeta()</a>, and <a class="el" href="error__estimator_8h_source.html#l00165">oomph::u</a>.</p>
 
 <p class="reference">Referenced by <a class="el" href="sample__point__container_8cc_source.html#l01044">output_neighbouring_bins()</a>.</p>
 
@@ -910,7 +911,6 @@ Additional Inherited Members</h2></td></tr>
 </div><div class="memdoc">
 
 <p>Find sub-GeomObject (finite element) and the local coordinate s within it that contains point with global coordinate zeta. sub_geom_object_pt=0 if point can't be found. </p>
-<p >Find sub-GeomObject (finite element) and the local coordinate s within it that contains point with global coordinate zeta. sub_geom_object_pt=0 if point can't be found. </p>
 
 <p>Implements <a class="el" href="classSamplePointContainer.html#acca8dbae8346d6c8924b1f815aa5f049">SamplePointContainer</a>.</p>
 
@@ -1665,7 +1665,7 @@ Additional Inherited Members</h2></td></tr>
     <footer>
       <div class="container">
         <div class="text-muted" style="float:right;">Generated by <a href="http://www.doxygen.org/index.html">
-          <img style="height:18px;" class="footer-img" src="doxygen.png" alt="doxygen"></a> on Wed Oct 13 2021 08:44:42
+          <img style="height:18px;" class="footer-img" src="doxygen.png" alt="doxygen"></a> on Thu Oct 21 2021 17:33:14
         </div>
       </div>
     </footer>

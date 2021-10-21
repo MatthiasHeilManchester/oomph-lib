@@ -132,6 +132,9 @@ $(function() {
 </div><!--header-->
 <div class="contents">
 
+<p>A <a class="el" href="classoomph_1_1GeneralisedNewtonianConstitutiveEquation.html" title="A Base class defining the generalise Newtonian constitutive relation.">GeneralisedNewtonianConstitutiveEquation</a> class defining a fluid following a tanh-profile.  
+ <a href="classoomph_1_1TanhProfileConstitutiveEquation.html#details">More...</a></p>
+
 <p><code>#include &lt;<a class="el" href="generalised__newtonian__constitutive__models_8h_source.html">generalised_newtonian_constitutive_models.h</a>&gt;</code></p>
 <div id="dynsection-0" onclick="return toggleVisibility(this)" class="dynheader closed" style="cursor:pointer;">
   <img id="dynsection-0-trigger" src="closed.png" alt="+"/> Inheritance diagram for oomph::TanhProfileConstitutiveEquation&lt; DIM &gt;:</div>
@@ -150,8 +153,10 @@ Public Member Functions</h2></td></tr>
 <tr class="memitem:a18cb572bab5a87ab20220ad009ba82eb"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classoomph_1_1TanhProfileConstitutiveEquation.html#a18cb572bab5a87ab20220ad009ba82eb">TanhProfileConstitutiveEquation</a> (double *mu_inf_pt, double *mu_0_pt, double *alpha_pt, double *critical_second_invariant_pt)</td></tr>
 <tr class="separator:a18cb572bab5a87ab20220ad009ba82eb"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:aee5659a24ab4d18f4a90661113528ca3"><td class="memItemLeft" align="right" valign="top">double&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classoomph_1_1TanhProfileConstitutiveEquation.html#aee5659a24ab4d18f4a90661113528ca3">viscosity</a> (const double &amp;second_invariant_of_rate_of_strain_tensor)</td></tr>
+<tr class="memdesc:aee5659a24ab4d18f4a90661113528ca3"><td class="mdescLeft">&#160;</td><td class="mdescRight">Function implementing the constitutive model Input: second invariant of the rate of strain Output: the viscosity For Newtonian behaviour this returns 1.  <a href="classoomph_1_1TanhProfileConstitutiveEquation.html#aee5659a24ab4d18f4a90661113528ca3">More...</a><br /></td></tr>
 <tr class="separator:aee5659a24ab4d18f4a90661113528ca3"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a5151261b6ec1c3f29f7ee085db955c2f"><td class="memItemLeft" align="right" valign="top">double&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classoomph_1_1TanhProfileConstitutiveEquation.html#a5151261b6ec1c3f29f7ee085db955c2f">dviscosity_dinvariant</a> (const double &amp;second_invariant_of_rate_of_strain_tensor)</td></tr>
+<tr class="memdesc:a5151261b6ec1c3f29f7ee085db955c2f"><td class="mdescLeft">&#160;</td><td class="mdescRight">Function returning the derivative of the viscosity w.r.t. the second invariant of the rate of strain tensor For Newtonian behaviour this returns 0.0.  <a href="classoomph_1_1TanhProfileConstitutiveEquation.html#a5151261b6ec1c3f29f7ee085db955c2f">More...</a><br /></td></tr>
 <tr class="separator:a5151261b6ec1c3f29f7ee085db955c2f"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="inherit_header pub_methods_classoomph_1_1GeneralisedNewtonianConstitutiveEquation"><td colspan="2" onclick="javascript:toggleInherit('pub_methods_classoomph_1_1GeneralisedNewtonianConstitutiveEquation')"><img src="closed.png" alt="-"/>&#160;Public Member Functions inherited from <a class="el" href="classoomph_1_1GeneralisedNewtonianConstitutiveEquation.html">oomph::GeneralisedNewtonianConstitutiveEquation&lt; DIM &gt;</a></td></tr>
 <tr class="memitem:a4b84eb3626aaed2f77f6dc96258f7e01 inherit pub_methods_classoomph_1_1GeneralisedNewtonianConstitutiveEquation"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classoomph_1_1GeneralisedNewtonianConstitutiveEquation.html#a4b84eb3626aaed2f77f6dc96258f7e01">GeneralisedNewtonianConstitutiveEquation</a> ()</td></tr>
@@ -170,13 +175,15 @@ Private Attributes</h2></td></tr>
 <tr class="memdesc:a8b44ee78c6c9f700107300f1ac6c4652"><td class="mdescLeft">&#160;</td><td class="mdescRight">zero shear rate viscosity  <a href="classoomph_1_1TanhProfileConstitutiveEquation.html#a8b44ee78c6c9f700107300f1ac6c4652">More...</a><br /></td></tr>
 <tr class="separator:a8b44ee78c6c9f700107300f1ac6c4652"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ac131ec2b2026bc93a695d5436e735e14"><td class="memItemLeft" align="right" valign="top">double *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classoomph_1_1TanhProfileConstitutiveEquation.html#ac131ec2b2026bc93a695d5436e735e14">Alpha_pt</a></td></tr>
+<tr class="memdesc:ac131ec2b2026bc93a695d5436e735e14"><td class="mdescLeft">&#160;</td><td class="mdescRight">parameter controlling the steepness of the step nb &ndash; I used 10.0/(*Critical_second_invariant_pt)  <a href="classoomph_1_1TanhProfileConstitutiveEquation.html#ac131ec2b2026bc93a695d5436e735e14">More...</a><br /></td></tr>
 <tr class="separator:ac131ec2b2026bc93a695d5436e735e14"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:af08d9a939d835a33e0349def2db64f25"><td class="memItemLeft" align="right" valign="top">double *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classoomph_1_1TanhProfileConstitutiveEquation.html#af08d9a939d835a33e0349def2db64f25">Critical_second_invariant_pt</a></td></tr>
+<tr class="memdesc:af08d9a939d835a33e0349def2db64f25"><td class="mdescLeft">&#160;</td><td class="mdescRight">parameter that controls the location of the step &ndash; assumed to be always positive  <a href="classoomph_1_1TanhProfileConstitutiveEquation.html#af08d9a939d835a33e0349def2db64f25">More...</a><br /></td></tr>
 <tr class="separator:af08d9a939d835a33e0349def2db64f25"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock"><div class="compoundTemplParams">template&lt;unsigned DIM&gt;<br />
-class oomph::TanhProfileConstitutiveEquation&lt; DIM &gt;</div><p >A <a class="el" href="classoomph_1_1GeneralisedNewtonianConstitutiveEquation.html" title="A Base class defining the generalise Newtonian constitutive relation.">GeneralisedNewtonianConstitutiveEquation</a> class defining a fluid following a tanh-profile </p>
+class oomph::TanhProfileConstitutiveEquation&lt; DIM &gt;</div><p >A <a class="el" href="classoomph_1_1GeneralisedNewtonianConstitutiveEquation.html" title="A Base class defining the generalise Newtonian constitutive relation.">GeneralisedNewtonianConstitutiveEquation</a> class defining a fluid following a tanh-profile. </p>
 
 <p class="definition">Definition at line <a class="el" href="generalised__newtonian__constitutive__models_8h_source.html#l01145">1145</a> of file <a class="el" href="generalised__newtonian__constitutive__models_8h_source.html">generalised_newtonian_constitutive_models.h</a>.</p>
 </div><h2 class="groupheader">Constructor &amp; Destructor Documentation</h2>
@@ -258,7 +265,8 @@ template&lt;unsigned DIM&gt; </div>
   </tr>
 </table>
 </div><div class="memdoc">
-<p >Function returning the derivative of the viscosity w.r.t. the second invariant of the rate of strain tensor For Newtonian behaviour this returns 0.0 </p>
+
+<p>Function returning the derivative of the viscosity w.r.t. the second invariant of the rate of strain tensor For Newtonian behaviour this returns 0.0. </p>
 
 <p>Implements <a class="el" href="classoomph_1_1GeneralisedNewtonianConstitutiveEquation.html#ad0164e6ca57cc986048346e12c4d353a">oomph::GeneralisedNewtonianConstitutiveEquation&lt; DIM &gt;</a>.</p>
 
@@ -293,7 +301,8 @@ template&lt;unsigned DIM&gt; </div>
   </tr>
 </table>
 </div><div class="memdoc">
-<p >Function implementing the constitutive model Input: second invariant of the rate of strain Output: the viscosity For Newtonian behaviour this returns 1 </p>
+
+<p>Function implementing the constitutive model Input: second invariant of the rate of strain Output: the viscosity For Newtonian behaviour this returns 1. </p>
 
 <p>Implements <a class="el" href="classoomph_1_1GeneralisedNewtonianConstitutiveEquation.html#a3e6d811786e39ca3c3a9b1c46249442f">oomph::GeneralisedNewtonianConstitutiveEquation&lt; DIM &gt;</a>.</p>
 
@@ -325,7 +334,8 @@ template&lt;unsigned DIM&gt; </div>
   </tr>
 </table>
 </div><div class="memdoc">
-<p >parameter controlling the steepness of the step nb &ndash; I used 10.0/(*Critical_second_invariant_pt) </p>
+
+<p>parameter controlling the steepness of the step nb &ndash; I used 10.0/(*Critical_second_invariant_pt) </p>
 
 <p class="definition">Definition at line <a class="el" href="generalised__newtonian__constitutive__models_8h_source.html#l01157">1157</a> of file <a class="el" href="generalised__newtonian__constitutive__models_8h_source.html">generalised_newtonian_constitutive_models.h</a>.</p>
 
@@ -354,7 +364,8 @@ template&lt;unsigned DIM&gt; </div>
   </tr>
 </table>
 </div><div class="memdoc">
-<p >parameter that controls the location of the step &ndash; assumed to be always positive </p>
+
+<p>parameter that controls the location of the step &ndash; assumed to be always positive </p>
 
 <p class="definition">Definition at line <a class="el" href="generalised__newtonian__constitutive__models_8h_source.html#l01161">1161</a> of file <a class="el" href="generalised__newtonian__constitutive__models_8h_source.html">generalised_newtonian_constitutive_models.h</a>.</p>
 
@@ -453,7 +464,7 @@ template&lt;unsigned DIM&gt; </div>
     <footer>
       <div class="container">
         <div class="text-muted" style="float:right;">Generated by <a href="http://www.doxygen.org/index.html">
-          <img style="height:18px;" class="footer-img" src="doxygen.png" alt="doxygen"></a> on Wed Oct 13 2021 08:48:18
+          <img style="height:18px;" class="footer-img" src="doxygen.png" alt="doxygen"></a> on Thu Oct 21 2021 17:36:37
         </div>
       </div>
     </footer>

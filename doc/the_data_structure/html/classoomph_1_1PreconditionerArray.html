@@ -141,6 +141,7 @@ $(function() {
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pub-methods" name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
 <tr class="memitem:a70e99bbb30ed4056760430420bc5cf95"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classoomph_1_1PreconditionerArray.html#a70e99bbb30ed4056760430420bc5cf95">setup_preconditioners</a> (<a class="el" href="classoomph_1_1Vector.html">Vector</a>&lt; <a class="el" href="classoomph_1_1CRDoubleMatrix.html">CRDoubleMatrix</a> * &gt; matrix_pt, <a class="el" href="classoomph_1_1Vector.html">Vector</a>&lt; <a class="el" href="classoomph_1_1Preconditioner.html">Preconditioner</a> * &gt; prec_pt, const <a class="el" href="classoomph_1_1OomphCommunicator.html">OomphCommunicator</a> *comm_pt)</td></tr>
+<tr class="memdesc:a70e99bbb30ed4056760430420bc5cf95"><td class="mdescLeft">&#160;</td><td class="mdescRight">Setup the preconditioners. Sets up each preconditioner in the array for the corresponding matrix in the vector matrix_pt. The number of preconditioners in the array is taken to be the length of prec_pt.  <a href="classoomph_1_1PreconditionerArray.html#a70e99bbb30ed4056760430420bc5cf95">More...</a><br /></td></tr>
 <tr class="separator:a70e99bbb30ed4056760430420bc5cf95"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a11a8bc01a8addffd5212369a2dc72ef7"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classoomph_1_1PreconditionerArray.html#a11a8bc01a8addffd5212369a2dc72ef7">solve_preconditioners</a> (const <a class="el" href="classoomph_1_1Vector.html">Vector</a>&lt; <a class="el" href="classoomph_1_1DoubleVector.html">DoubleVector</a> &gt; &amp;r, <a class="el" href="classoomph_1_1Vector.html">Vector</a>&lt; <a class="el" href="classoomph_1_1DoubleVector.html">DoubleVector</a> &gt; &amp;z)</td></tr>
 <tr class="memdesc:a11a8bc01a8addffd5212369a2dc72ef7"><td class="mdescLeft">&#160;</td><td class="mdescRight">Applies each preconditioner to the corresponding vector in r and z.  <a href="classoomph_1_1PreconditionerArray.html#a11a8bc01a8addffd5212369a2dc72ef7">More...</a><br /></td></tr>
@@ -208,7 +209,7 @@ Private Attributes</h2></td></tr>
 <tr class="memdesc:a6d5b7cce152e193ffeb4d30c593c6ae3"><td class="mdescLeft">&#160;</td><td class="mdescRight">pointer to the global communicator for this preconditioner array  <a href="classoomph_1_1PreconditionerArray.html#a6d5b7cce152e193ffeb4d30c593c6ae3">More...</a><br /></td></tr>
 <tr class="separator:a6d5b7cce152e193ffeb4d30c593c6ae3"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a8a0fee7aa5e23878e57186dcef8c719d"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classoomph_1_1OomphCommunicator.html">OomphCommunicator</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classoomph_1_1PreconditionerArray.html#a8a0fee7aa5e23878e57186dcef8c719d">Local_communicator_pt</a></td></tr>
-<tr class="memdesc:a8a0fee7aa5e23878e57186dcef8c719d"><td class="mdescLeft">&#160;</td><td class="mdescRight"><a class="el" href="classoomph_1_1Vector.html">Vector</a> of communicators for the preconditioners.  <a href="classoomph_1_1PreconditionerArray.html#a8a0fee7aa5e23878e57186dcef8c719d">More...</a><br /></td></tr>
+<tr class="memdesc:a8a0fee7aa5e23878e57186dcef8c719d"><td class="mdescLeft">&#160;</td><td class="mdescRight"><a class="el" href="classoomph_1_1Vector.html" title="A slight extension to the standard template vector class so that we can include &quot;graceful&quot; array rang...">Vector</a> of communicators for the preconditioners.  <a href="classoomph_1_1PreconditionerArray.html#a8a0fee7aa5e23878e57186dcef8c719d">More...</a><br /></td></tr>
 <tr class="separator:a8a0fee7aa5e23878e57186dcef8c719d"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ac233896152000f13b3527d9ff087c113"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classoomph_1_1Vector.html">Vector</a>&lt; <a class="el" href="classoomph_1_1LinearAlgebraDistribution.html">LinearAlgebraDistribution</a> * &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classoomph_1_1PreconditionerArray.html#ac233896152000f13b3527d9ff087c113">Distribution_pt</a></td></tr>
 <tr class="separator:ac233896152000f13b3527d9ff087c113"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -503,7 +504,8 @@ Private Attributes</h2></td></tr>
   </tr>
 </table>
 </div><div class="memdoc">
-<p >Setup the preconditioners. Sets up each preconditioner in the array for the corresponding matrix in the vector matrix_pt. The number of preconditioners in the array is taken to be the length of prec_pt. </p>
+
+<p>Setup the preconditioners. Sets up each preconditioner in the array for the corresponding matrix in the vector matrix_pt. The number of preconditioners in the array is taken to be the length of prec_pt. </p>
 
 <p class="definition">Definition at line <a class="el" href="preconditioner__array_8h_source.html#l00052">52</a> of file <a class="el" href="preconditioner__array_8h_source.html">preconditioner_array.h</a>.</p>
 
@@ -802,7 +804,7 @@ Private Attributes</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
-<p><a class="el" href="classoomph_1_1Vector.html">Vector</a> of communicators for the preconditioners. </p>
+<p><a class="el" href="classoomph_1_1Vector.html" title="A slight extension to the standard template vector class so that we can include &quot;graceful&quot; array rang...">Vector</a> of communicators for the preconditioners. </p>
 
 <p class="definition">Definition at line <a class="el" href="preconditioner__array_8h_source.html#l00227">227</a> of file <a class="el" href="preconditioner__array_8h_source.html">preconditioner_array.h</a>.</p>
 
@@ -1014,7 +1016,7 @@ Private Attributes</h2></td></tr>
     <footer>
       <div class="container">
         <div class="text-muted" style="float:right;">Generated by <a href="http://www.doxygen.org/index.html">
-          <img style="height:18px;" class="footer-img" src="doxygen.png" alt="doxygen"></a> on Wed Oct 13 2021 08:47:07
+          <img style="height:18px;" class="footer-img" src="doxygen.png" alt="doxygen"></a> on Thu Oct 21 2021 17:35:30
         </div>
       </div>
     </footer>

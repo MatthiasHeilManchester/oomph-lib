@@ -43,14 +43,14 @@ void \mbox{\hyperlink{classoomph_1_1RefineablePseudoSolidNodeUpdateElement_aa605
 void \mbox{\hyperlink{classoomph_1_1RefineablePseudoSolidNodeUpdateElement_ac653ab28abf52506f54b1306272390ce}{rebuild\+\_\+from\+\_\+sons}} (\mbox{\hyperlink{classoomph_1_1Mesh}{Mesh}} $\ast$\&mesh\+\_\+pt)
 \begin{DoxyCompactList}\small\item\em Call \mbox{\hyperlink{classoomph_1_1RefineablePseudoSolidNodeUpdateElement_ac653ab28abf52506f54b1306272390ce}{rebuild\+\_\+from\+\_\+sons()}} for both of the underlying element types. \end{DoxyCompactList}\item 
 void \mbox{\hyperlink{classoomph_1_1RefineablePseudoSolidNodeUpdateElement_a0d92d0ec7145da660fdbf5f2a46814fd}{get\+\_\+interpolated\+\_\+values}} (const unsigned \&\mbox{\hyperlink{cfortran_8h_af6f0bd3dc13317f895c91323c25c2b8f}{t}}, const \mbox{\hyperlink{classoomph_1_1Vector}{Vector}}$<$ double $>$ \&\mbox{\hyperlink{cfortran_8h_ab7123126e4885ef647dd9c6e3807a21c}{s}}, \mbox{\hyperlink{classoomph_1_1Vector}{Vector}}$<$ double $>$ \&values)
-\item 
+\begin{DoxyCompactList}\small\item\em Call get\+\_\+interpolated\+\_\+values(...) for both of the underlying element types. \end{DoxyCompactList}\item 
 void \mbox{\hyperlink{classoomph_1_1RefineablePseudoSolidNodeUpdateElement_a031d296b43e300b84278e93757741735}{get\+\_\+interpolated\+\_\+values}} (const \mbox{\hyperlink{classoomph_1_1Vector}{Vector}}$<$ double $>$ \&\mbox{\hyperlink{cfortran_8h_ab7123126e4885ef647dd9c6e3807a21c}{s}}, \mbox{\hyperlink{classoomph_1_1Vector}{Vector}}$<$ double $>$ \&values)
-\item 
-\mbox{\hyperlink{classoomph_1_1Node}{Node}} $\ast$ \mbox{\hyperlink{classoomph_1_1RefineablePseudoSolidNodeUpdateElement_a97f84d8fab446b33853f71fc02079867}{interpolating\+\_\+node\+\_\+pt}} (const unsigned \&n, const int \&value\+\_\+id)
+\begin{DoxyCompactList}\small\item\em Call get\+\_\+interpolated\+\_\+values(...) for both of the underlying element types. \end{DoxyCompactList}\item 
+Node $\ast$ \mbox{\hyperlink{classoomph_1_1RefineablePseudoSolidNodeUpdateElement_a97f84d8fab446b33853f71fc02079867}{interpolating\+\_\+node\+\_\+pt}} (const unsigned \&n, const int \&value\+\_\+id)
 \begin{DoxyCompactList}\small\item\em We must compose the underlying interpolating nodes from the BASIC and SOLID equations, the BASIC ones are first. \end{DoxyCompactList}\item 
 double \mbox{\hyperlink{classoomph_1_1RefineablePseudoSolidNodeUpdateElement_a8e1c7e4695dec50813227ceafa340ada}{local\+\_\+one\+\_\+d\+\_\+fraction\+\_\+of\+\_\+interpolating\+\_\+node}} (const unsigned \&n1d, const unsigned \&\mbox{\hyperlink{cfortran_8h_adb50e893b86b3e55e751a42eab3cba82}{i}}, const int \&value\+\_\+id)
 \begin{DoxyCompactList}\small\item\em The pressure nodes are the corner nodes, so when value\+\_\+id==0, the fraction is the same as the 1d node number, 0 or 1. \end{DoxyCompactList}\item 
-\mbox{\hyperlink{classoomph_1_1Node}{Node}} $\ast$ \mbox{\hyperlink{classoomph_1_1RefineablePseudoSolidNodeUpdateElement_aaecb901c5704abe944f5eee55128773b}{get\+\_\+interpolating\+\_\+node\+\_\+at\+\_\+local\+\_\+coordinate}} (const \mbox{\hyperlink{classoomph_1_1Vector}{Vector}}$<$ double $>$ \&\mbox{\hyperlink{cfortran_8h_ab7123126e4885ef647dd9c6e3807a21c}{s}}, const int \&value\+\_\+id)
+Node $\ast$ \mbox{\hyperlink{classoomph_1_1RefineablePseudoSolidNodeUpdateElement_aaecb901c5704abe944f5eee55128773b}{get\+\_\+interpolating\+\_\+node\+\_\+at\+\_\+local\+\_\+coordinate}} (const \mbox{\hyperlink{classoomph_1_1Vector}{Vector}}$<$ double $>$ \&\mbox{\hyperlink{cfortran_8h_ab7123126e4885ef647dd9c6e3807a21c}{s}}, const int \&value\+\_\+id)
 \begin{DoxyCompactList}\small\item\em The velocity nodes are the same as the geometric nodes. The pressure nodes must be calculated by using the same methods as the geometric nodes, but by recalling that there are only two pressure nodes per edge. \end{DoxyCompactList}\item 
 unsigned \mbox{\hyperlink{classoomph_1_1RefineablePseudoSolidNodeUpdateElement_a65f9d660a500017d25fc2e2375049274}{ninterpolating\+\_\+node\+\_\+1d}} (const int \&value\+\_\+id)
 \begin{DoxyCompactList}\small\item\em The number of 1d pressure nodes is 2, otherwise we have the positional nodes. \end{DoxyCompactList}\item 
@@ -61,18 +61,18 @@ void \mbox{\hyperlink{classoomph_1_1RefineablePseudoSolidNodeUpdateElement_a53c2
 unsigned \mbox{\hyperlink{classoomph_1_1RefineablePseudoSolidNodeUpdateElement_a577241e74df25b8548f475bf4a9fffa7}{num\+\_\+\+Z2\+\_\+flux\+\_\+terms}} ()
 \begin{DoxyCompactList}\small\item\em Number of \textquotesingle{}flux\textquotesingle{} terms for Z2 error estimation\+: Error estimation is based on error in BASIC element. \end{DoxyCompactList}\item 
 void \mbox{\hyperlink{classoomph_1_1RefineablePseudoSolidNodeUpdateElement_acbe1e5ee654278e79ccc9bfa25ab7891}{get\+\_\+\+Z2\+\_\+flux}} (const \mbox{\hyperlink{classoomph_1_1Vector}{Vector}}$<$ double $>$ \&\mbox{\hyperlink{cfortran_8h_ab7123126e4885ef647dd9c6e3807a21c}{s}}, \mbox{\hyperlink{classoomph_1_1Vector}{Vector}}$<$ double $>$ \&flux)
-\item 
+\begin{DoxyCompactList}\small\item\em \textquotesingle{}Flux\textquotesingle{} vector for Z2 error estimation\+: Error estimation is based on error in BASIC element \end{DoxyCompactList}\item 
 void \mbox{\hyperlink{classoomph_1_1RefineablePseudoSolidNodeUpdateElement_a7f2375e2097699d5a175db3bc9f6b868}{further\+\_\+setup\+\_\+hanging\+\_\+nodes}} ()
 \begin{DoxyCompactList}\small\item\em Perform additional hanging node procedures for variables that are not interpolated by all nodes. Done for both of the underlying element types. \end{DoxyCompactList}\item 
-void \mbox{\hyperlink{classoomph_1_1RefineablePseudoSolidNodeUpdateElement_a9997600d809a1fb258ca8958d2f43f15}{build}} (\mbox{\hyperlink{classoomph_1_1Mesh}{Mesh}} $\ast$\&mesh\+\_\+pt, \mbox{\hyperlink{classoomph_1_1Vector}{Vector}}$<$ \mbox{\hyperlink{classoomph_1_1Node}{Node}} $\ast$ $>$ \&new\+\_\+node\+\_\+pt, bool \&was\+\_\+already\+\_\+built, std\+::ofstream \&new\+\_\+nodes\+\_\+file)
+void \mbox{\hyperlink{classoomph_1_1RefineablePseudoSolidNodeUpdateElement_a9997600d809a1fb258ca8958d2f43f15}{build}} (\mbox{\hyperlink{classoomph_1_1Mesh}{Mesh}} $\ast$\&mesh\+\_\+pt, \mbox{\hyperlink{classoomph_1_1Vector}{Vector}}$<$ Node $\ast$ $>$ \&new\+\_\+node\+\_\+pt, bool \&was\+\_\+already\+\_\+built, std\+::ofstream \&new\+\_\+nodes\+\_\+file)
 \begin{DoxyCompactList}\small\item\em Build function\+: Call the one for the SOLID element since it calls the one basic build function automatically. \end{DoxyCompactList}\item 
-void \mbox{\hyperlink{classoomph_1_1RefineablePseudoSolidNodeUpdateElement_a639b081f80df731cb5047401cfd41d40}{build}} (\mbox{\hyperlink{classoomph_1_1Mesh}{Mesh}} $\ast$\&mesh\+\_\+pt, \mbox{\hyperlink{classoomph_1_1Vector}{Vector}}$<$ \mbox{\hyperlink{classoomph_1_1Node}{Node}} $\ast$ $>$ \&new\+\_\+node\+\_\+pt, bool \&was\+\_\+already\+\_\+built)
+void \mbox{\hyperlink{classoomph_1_1RefineablePseudoSolidNodeUpdateElement_a639b081f80df731cb5047401cfd41d40}{build}} (\mbox{\hyperlink{classoomph_1_1Mesh}{Mesh}} $\ast$\&mesh\+\_\+pt, \mbox{\hyperlink{classoomph_1_1Vector}{Vector}}$<$ Node $\ast$ $>$ \&new\+\_\+node\+\_\+pt, bool \&was\+\_\+already\+\_\+built)
 \begin{DoxyCompactList}\small\item\em Build function\+: Call the one for the SOLID element since it calls the one basic build function automatically. \end{DoxyCompactList}\item 
 void \mbox{\hyperlink{classoomph_1_1RefineablePseudoSolidNodeUpdateElement_a19e2a578e4d8a0e08041e2a0cf33d06f}{further\+\_\+build}} ()
-\item 
+\begin{DoxyCompactList}\small\item\em Further build\+: Done for both of the underlying element types. \end{DoxyCompactList}\item 
 unsigned \mbox{\hyperlink{classoomph_1_1RefineablePseudoSolidNodeUpdateElement_a2d8820cdbca56cf4c913b8d1baab7102}{nvertex\+\_\+node}} () const
 \begin{DoxyCompactList}\small\item\em Number of vertex nodes in the element. \end{DoxyCompactList}\item 
-\mbox{\hyperlink{classoomph_1_1Node}{Node}} $\ast$ \mbox{\hyperlink{classoomph_1_1RefineablePseudoSolidNodeUpdateElement_ab81f61455f32959dd8da1993195379bd}{vertex\+\_\+node\+\_\+pt}} (const unsigned \&j) const
+Node $\ast$ \mbox{\hyperlink{classoomph_1_1RefineablePseudoSolidNodeUpdateElement_ab81f61455f32959dd8da1993195379bd}{vertex\+\_\+node\+\_\+pt}} (const unsigned \&j) const
 \begin{DoxyCompactList}\small\item\em Pointer to the j-\/th vertex node in the element. \end{DoxyCompactList}\item 
 void \mbox{\hyperlink{classoomph_1_1RefineablePseudoSolidNodeUpdateElement_a2a7fb32ce6b9b442f7b328d382ff017a}{compute\+\_\+norm}} (double \&norm)
 \begin{DoxyCompactList}\small\item\em Compute norm of solution. Use version in BASIC element. \end{DoxyCompactList}\item 
@@ -150,7 +150,7 @@ Definition at line \mbox{\hyperlink{pseudosolid__node__update__elements_8h_sourc
 \index{build@{build}!oomph::RefineablePseudoSolidNodeUpdateElement$<$ BASIC, SOLID $>$@{oomph::RefineablePseudoSolidNodeUpdateElement$<$ BASIC, SOLID $>$}}
 \doxysubsubsection{\texorpdfstring{build()}{build()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
 {\footnotesize\ttfamily template$<$class BASIC , class SOLID $>$ \\
-void \mbox{\hyperlink{classoomph_1_1RefineablePseudoSolidNodeUpdateElement}{oomph\+::\+Refineable\+Pseudo\+Solid\+Node\+Update\+Element}}$<$ BASIC, SOLID $>$\+::build (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classoomph_1_1Mesh}{Mesh}} $\ast$\&}]{mesh\+\_\+pt,  }\item[{\mbox{\hyperlink{classoomph_1_1Vector}{Vector}}$<$ \mbox{\hyperlink{classoomph_1_1Node}{Node}} $\ast$ $>$ \&}]{new\+\_\+node\+\_\+pt,  }\item[{bool \&}]{was\+\_\+already\+\_\+built }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+void \mbox{\hyperlink{classoomph_1_1RefineablePseudoSolidNodeUpdateElement}{oomph\+::\+Refineable\+Pseudo\+Solid\+Node\+Update\+Element}}$<$ BASIC, SOLID $>$\+::build (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classoomph_1_1Mesh}{Mesh}} $\ast$\&}]{mesh\+\_\+pt,  }\item[{\mbox{\hyperlink{classoomph_1_1Vector}{Vector}}$<$ Node $\ast$ $>$ \&}]{new\+\_\+node\+\_\+pt,  }\item[{bool \&}]{was\+\_\+already\+\_\+built }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
 
 
 
@@ -165,7 +165,7 @@ Definition at line \mbox{\hyperlink{pseudosolid__node__update__elements_8h_sourc
 \index{build@{build}!oomph::RefineablePseudoSolidNodeUpdateElement$<$ BASIC, SOLID $>$@{oomph::RefineablePseudoSolidNodeUpdateElement$<$ BASIC, SOLID $>$}}
 \doxysubsubsection{\texorpdfstring{build()}{build()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
 {\footnotesize\ttfamily template$<$class BASIC , class SOLID $>$ \\
-void \mbox{\hyperlink{classoomph_1_1RefineablePseudoSolidNodeUpdateElement}{oomph\+::\+Refineable\+Pseudo\+Solid\+Node\+Update\+Element}}$<$ BASIC, SOLID $>$\+::build (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classoomph_1_1Mesh}{Mesh}} $\ast$\&}]{mesh\+\_\+pt,  }\item[{\mbox{\hyperlink{classoomph_1_1Vector}{Vector}}$<$ \mbox{\hyperlink{classoomph_1_1Node}{Node}} $\ast$ $>$ \&}]{new\+\_\+node\+\_\+pt,  }\item[{bool \&}]{was\+\_\+already\+\_\+built,  }\item[{std\+::ofstream \&}]{new\+\_\+nodes\+\_\+file }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+void \mbox{\hyperlink{classoomph_1_1RefineablePseudoSolidNodeUpdateElement}{oomph\+::\+Refineable\+Pseudo\+Solid\+Node\+Update\+Element}}$<$ BASIC, SOLID $>$\+::build (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classoomph_1_1Mesh}{Mesh}} $\ast$\&}]{mesh\+\_\+pt,  }\item[{\mbox{\hyperlink{classoomph_1_1Vector}{Vector}}$<$ Node $\ast$ $>$ \&}]{new\+\_\+node\+\_\+pt,  }\item[{bool \&}]{was\+\_\+already\+\_\+built,  }\item[{std\+::ofstream \&}]{new\+\_\+nodes\+\_\+file }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
 
 
 
@@ -237,7 +237,7 @@ Definition at line \mbox{\hyperlink{pseudosolid__node__update__elements_8h_sourc
 
 
 
-References \mbox{\hyperlink{gen__axisym__advection__diffusion__elements_8h_source_l00536}{oomph\+::fill\+\_\+in\+\_\+contribution\+\_\+to\+\_\+jacobian()}}, and \mbox{\hyperlink{pseudosolid__node__update__elements_8h_source_l00691}{oomph\+::\+Refineable\+Pseudo\+Solid\+Node\+Update\+Element$<$ BASIC, SOLID $>$\+::fill\+\_\+in\+\_\+shape\+\_\+derivatives\+\_\+by\+\_\+fd()}}.
+References \mbox{\hyperlink{pseudosolid__node__update__elements_8h_source_l00691}{oomph\+::\+Refineable\+Pseudo\+Solid\+Node\+Update\+Element$<$ BASIC, SOLID $>$\+::fill\+\_\+in\+\_\+shape\+\_\+derivatives\+\_\+by\+\_\+fd()}}.
 
 \mbox{\Hypertarget{classoomph_1_1RefineablePseudoSolidNodeUpdateElement_a7ac165866aa2c717fb47df9ea1883d32}\label{classoomph_1_1RefineablePseudoSolidNodeUpdateElement_a7ac165866aa2c717fb47df9ea1883d32}} 
 \index{oomph::RefineablePseudoSolidNodeUpdateElement$<$ BASIC, SOLID $>$@{oomph::RefineablePseudoSolidNodeUpdateElement$<$ BASIC, SOLID $>$}!fill\_in\_contribution\_to\_jacobian\_and\_mass\_matrix@{fill\_in\_contribution\_to\_jacobian\_and\_mass\_matrix}}
@@ -256,7 +256,7 @@ Definition at line \mbox{\hyperlink{pseudosolid__node__update__elements_8h_sourc
 
 
 
-References \mbox{\hyperlink{gen__axisym__advection__diffusion__elements_8h_source_l00547}{oomph\+::fill\+\_\+in\+\_\+contribution\+\_\+to\+\_\+jacobian\+\_\+and\+\_\+mass\+\_\+matrix()}}, and \mbox{\hyperlink{pseudosolid__node__update__elements_8h_source_l00691}{oomph\+::\+Refineable\+Pseudo\+Solid\+Node\+Update\+Element$<$ BASIC, SOLID $>$\+::fill\+\_\+in\+\_\+shape\+\_\+derivatives\+\_\+by\+\_\+fd()}}.
+References \mbox{\hyperlink{pseudosolid__node__update__elements_8h_source_l00691}{oomph\+::\+Refineable\+Pseudo\+Solid\+Node\+Update\+Element$<$ BASIC, SOLID $>$\+::fill\+\_\+in\+\_\+shape\+\_\+derivatives\+\_\+by\+\_\+fd()}}.
 
 \mbox{\Hypertarget{classoomph_1_1RefineablePseudoSolidNodeUpdateElement_a36add3ef201fc05954ab982a67840cb3}\label{classoomph_1_1RefineablePseudoSolidNodeUpdateElement_a36add3ef201fc05954ab982a67840cb3}} 
 \index{oomph::RefineablePseudoSolidNodeUpdateElement$<$ BASIC, SOLID $>$@{oomph::RefineablePseudoSolidNodeUpdateElement$<$ BASIC, SOLID $>$}!fill\_in\_contribution\_to\_residuals@{fill\_in\_contribution\_to\_residuals}}
@@ -272,10 +272,6 @@ Final override for residuals function\+: adds contributions from both underlying
 
 
 Definition at line \mbox{\hyperlink{pseudosolid__node__update__elements_8h_source_l00646}{646}} of file \mbox{\hyperlink{pseudosolid__node__update__elements_8h_source}{pseudosolid\+\_\+node\+\_\+update\+\_\+elements.\+h}}.
-
-
-
-References \mbox{\hyperlink{gen__axisym__advection__diffusion__elements_8h_source_l00522}{oomph\+::fill\+\_\+in\+\_\+contribution\+\_\+to\+\_\+residuals()}}.
 
 \mbox{\Hypertarget{classoomph_1_1RefineablePseudoSolidNodeUpdateElement_ac7a9338e59678df2d5e9fcf838bd95d1}\label{classoomph_1_1RefineablePseudoSolidNodeUpdateElement_ac7a9338e59678df2d5e9fcf838bd95d1}} 
 \index{oomph::RefineablePseudoSolidNodeUpdateElement$<$ BASIC, SOLID $>$@{oomph::RefineablePseudoSolidNodeUpdateElement$<$ BASIC, SOLID $>$}!fill\_in\_shape\_derivatives\_by\_fd@{fill\_in\_shape\_derivatives\_by\_fd}}
@@ -294,7 +290,7 @@ Definition at line \mbox{\hyperlink{pseudosolid__node__update__elements_8h_sourc
 
 
 
-References \mbox{\hyperlink{gen__axisym__advection__diffusion__elements_8h_source_l00522}{oomph\+::fill\+\_\+in\+\_\+contribution\+\_\+to\+\_\+residuals()}}, \mbox{\hyperlink{nodes_8h_source_l01229}{oomph\+::\+Node\+::hanging\+\_\+pt()}}, \mbox{\hyperlink{cfortran_8h_source_l00603}{i}}, \mbox{\hyperlink{nodes_8h_source_l01286}{oomph\+::\+Node\+::is\+\_\+hanging()}}, \mbox{\hyperlink{nodes_8h_source_l00791}{oomph\+::\+Hang\+Info\+::master\+\_\+node\+\_\+pt()}}, \mbox{\hyperlink{nodes_8h_source_l00785}{oomph\+::\+Hang\+Info\+::nmaster()}}, \mbox{\hyperlink{nodes_8h_source_l01616}{oomph\+::\+Node\+::perform\+\_\+auxiliary\+\_\+node\+\_\+update\+\_\+fct()}}, \mbox{\hyperlink{pseudosolid__node__update__elements_8h_source_l00627}{oomph\+::\+Refineable\+Pseudo\+Solid\+Node\+Update\+Element$<$ BASIC, SOLID $>$\+::solid\+\_\+p\+\_\+nodal\+\_\+index()}}, and \mbox{\hyperlink{nodes_8h_source_l01127}{oomph\+::\+Node\+::x\+\_\+gen()}}.
+References \mbox{\hyperlink{cfortran_8h_source_l00603}{i}}, \mbox{\hyperlink{nodes_8h_source_l00791}{oomph\+::\+Hang\+Info\+::master\+\_\+node\+\_\+pt()}}, \mbox{\hyperlink{nodes_8h_source_l00785}{oomph\+::\+Hang\+Info\+::nmaster()}}, and \mbox{\hyperlink{pseudosolid__node__update__elements_8h_source_l00627}{oomph\+::\+Refineable\+Pseudo\+Solid\+Node\+Update\+Element$<$ BASIC, SOLID $>$\+::solid\+\_\+p\+\_\+nodal\+\_\+index()}}.
 
 
 
@@ -307,7 +303,11 @@ Referenced by \mbox{\hyperlink{pseudosolid__node__update__elements_8h_source_l00
 {\footnotesize\ttfamily template$<$class BASIC , class SOLID $>$ \\
 void \mbox{\hyperlink{classoomph_1_1RefineablePseudoSolidNodeUpdateElement}{oomph\+::\+Refineable\+Pseudo\+Solid\+Node\+Update\+Element}}$<$ BASIC, SOLID $>$\+::further\+\_\+build (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
 
+
+
 Further build\+: Done for both of the underlying element types. 
+
+
 
 Definition at line \mbox{\hyperlink{pseudosolid__node__update__elements_8h_source_l01332}{1332}} of file \mbox{\hyperlink{pseudosolid__node__update__elements_8h_source}{pseudosolid\+\_\+node\+\_\+update\+\_\+elements.\+h}}.
 
@@ -352,7 +352,11 @@ References \mbox{\hyperlink{pseudosolid__node__update__elements_8h_source_l01409
 {\footnotesize\ttfamily template$<$class BASIC , class SOLID $>$ \\
 void \mbox{\hyperlink{classoomph_1_1RefineablePseudoSolidNodeUpdateElement}{oomph\+::\+Refineable\+Pseudo\+Solid\+Node\+Update\+Element}}$<$ BASIC, SOLID $>$\+::get\+\_\+interpolated\+\_\+values (\begin{DoxyParamCaption}\item[{const unsigned \&}]{t,  }\item[{const \mbox{\hyperlink{classoomph_1_1Vector}{Vector}}$<$ double $>$ \&}]{s,  }\item[{\mbox{\hyperlink{classoomph_1_1Vector}{Vector}}$<$ double $>$ \&}]{values }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
 
-Call get\+\_\+interpolated\+\_\+values(...) for both of the underlying element types 
+
+
+Call get\+\_\+interpolated\+\_\+values(...) for both of the underlying element types. 
+
+
 
 Definition at line \mbox{\hyperlink{pseudosolid__node__update__elements_8h_source_l01108}{1108}} of file \mbox{\hyperlink{pseudosolid__node__update__elements_8h_source}{pseudosolid\+\_\+node\+\_\+update\+\_\+elements.\+h}}.
 
@@ -367,7 +371,11 @@ References \mbox{\hyperlink{cfortran_8h_source_l00568}{s}}, and \mbox{\hyperlink
 {\footnotesize\ttfamily template$<$class BASIC , class SOLID $>$ \\
 void \mbox{\hyperlink{classoomph_1_1RefineablePseudoSolidNodeUpdateElement}{oomph\+::\+Refineable\+Pseudo\+Solid\+Node\+Update\+Element}}$<$ BASIC, SOLID $>$\+::get\+\_\+interpolated\+\_\+values (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{classoomph_1_1Vector}{Vector}}$<$ double $>$ \&}]{s,  }\item[{\mbox{\hyperlink{classoomph_1_1Vector}{Vector}}$<$ double $>$ \&}]{values }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
 
-Call get\+\_\+interpolated\+\_\+values(...) for both of the underlying element types 
+
+
+Call get\+\_\+interpolated\+\_\+values(...) for both of the underlying element types. 
+
+
 
 Definition at line \mbox{\hyperlink{pseudosolid__node__update__elements_8h_source_l01136}{1136}} of file \mbox{\hyperlink{pseudosolid__node__update__elements_8h_source}{pseudosolid\+\_\+node\+\_\+update\+\_\+elements.\+h}}.
 
@@ -380,7 +388,7 @@ References \mbox{\hyperlink{cfortran_8h_source_l00568}{s}}.
 \index{get\_interpolating\_node\_at\_local\_coordinate@{get\_interpolating\_node\_at\_local\_coordinate}!oomph::RefineablePseudoSolidNodeUpdateElement$<$ BASIC, SOLID $>$@{oomph::RefineablePseudoSolidNodeUpdateElement$<$ BASIC, SOLID $>$}}
 \doxysubsubsection{\texorpdfstring{get\_interpolating\_node\_at\_local\_coordinate()}{get\_interpolating\_node\_at\_local\_coordinate()}}
 {\footnotesize\ttfamily template$<$class BASIC , class SOLID $>$ \\
-\mbox{\hyperlink{classoomph_1_1Node}{Node}} $\ast$ \mbox{\hyperlink{classoomph_1_1RefineablePseudoSolidNodeUpdateElement}{oomph\+::\+Refineable\+Pseudo\+Solid\+Node\+Update\+Element}}$<$ BASIC, SOLID $>$\+::get\+\_\+interpolating\+\_\+node\+\_\+at\+\_\+local\+\_\+coordinate (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{classoomph_1_1Vector}{Vector}}$<$ double $>$ \&}]{s,  }\item[{const int \&}]{value\+\_\+id }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+Node $\ast$ \mbox{\hyperlink{classoomph_1_1RefineablePseudoSolidNodeUpdateElement}{oomph\+::\+Refineable\+Pseudo\+Solid\+Node\+Update\+Element}}$<$ BASIC, SOLID $>$\+::get\+\_\+interpolating\+\_\+node\+\_\+at\+\_\+local\+\_\+coordinate (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{classoomph_1_1Vector}{Vector}}$<$ double $>$ \&}]{s,  }\item[{const int \&}]{value\+\_\+id }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
 
 
 
@@ -401,7 +409,11 @@ References \mbox{\hyperlink{cfortran_8h_source_l00568}{s}}.
 {\footnotesize\ttfamily template$<$class BASIC , class SOLID $>$ \\
 void \mbox{\hyperlink{classoomph_1_1RefineablePseudoSolidNodeUpdateElement}{oomph\+::\+Refineable\+Pseudo\+Solid\+Node\+Update\+Element}}$<$ BASIC, SOLID $>$\+::get\+\_\+\+Z2\+\_\+flux (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{classoomph_1_1Vector}{Vector}}$<$ double $>$ \&}]{s,  }\item[{\mbox{\hyperlink{classoomph_1_1Vector}{Vector}}$<$ double $>$ \&}]{flux }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
 
+
+
 \textquotesingle{}Flux\textquotesingle{} vector for Z2 error estimation\+: Error estimation is based on error in BASIC element 
+
+
 
 Definition at line \mbox{\hyperlink{pseudosolid__node__update__elements_8h_source_l01295}{1295}} of file \mbox{\hyperlink{pseudosolid__node__update__elements_8h_source}{pseudosolid\+\_\+node\+\_\+update\+\_\+elements.\+h}}.
 
@@ -452,7 +464,7 @@ References \mbox{\hyperlink{cfortran_8h_source_l00568}{s}}.
 \index{interpolating\_node\_pt@{interpolating\_node\_pt}!oomph::RefineablePseudoSolidNodeUpdateElement$<$ BASIC, SOLID $>$@{oomph::RefineablePseudoSolidNodeUpdateElement$<$ BASIC, SOLID $>$}}
 \doxysubsubsection{\texorpdfstring{interpolating\_node\_pt()}{interpolating\_node\_pt()}}
 {\footnotesize\ttfamily template$<$class BASIC , class SOLID $>$ \\
-\mbox{\hyperlink{classoomph_1_1Node}{Node}} $\ast$ \mbox{\hyperlink{classoomph_1_1RefineablePseudoSolidNodeUpdateElement}{oomph\+::\+Refineable\+Pseudo\+Solid\+Node\+Update\+Element}}$<$ BASIC, SOLID $>$\+::interpolating\+\_\+node\+\_\+pt (\begin{DoxyParamCaption}\item[{const unsigned \&}]{n,  }\item[{const int \&}]{value\+\_\+id }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+Node $\ast$ \mbox{\hyperlink{classoomph_1_1RefineablePseudoSolidNodeUpdateElement}{oomph\+::\+Refineable\+Pseudo\+Solid\+Node\+Update\+Element}}$<$ BASIC, SOLID $>$\+::interpolating\+\_\+node\+\_\+pt (\begin{DoxyParamCaption}\item[{const unsigned \&}]{n,  }\item[{const int \&}]{value\+\_\+id }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
 
 
 
@@ -637,7 +649,7 @@ Definition at line \mbox{\hyperlink{pseudosolid__node__update__elements_8h_sourc
 
 
 
-References \mbox{\hyperlink{gen__axisym__advection__diffusion__elements_8h_source_l00161}{oomph\+::output()}}.
+References \mbox{\hyperlink{oomph__utilities_8cc_source_l00436}{oomph\+::\+Command\+Line\+Args\+::output()}}.
 
 \mbox{\Hypertarget{classoomph_1_1RefineablePseudoSolidNodeUpdateElement_a9393711c3d4c4cf5a7142b9dd99d3baa}\label{classoomph_1_1RefineablePseudoSolidNodeUpdateElement_a9393711c3d4c4cf5a7142b9dd99d3baa}} 
 \index{oomph::RefineablePseudoSolidNodeUpdateElement$<$ BASIC, SOLID $>$@{oomph::RefineablePseudoSolidNodeUpdateElement$<$ BASIC, SOLID $>$}!output@{output}}
@@ -656,7 +668,7 @@ Definition at line \mbox{\hyperlink{pseudosolid__node__update__elements_8h_sourc
 
 
 
-References \mbox{\hyperlink{gen__axisym__advection__diffusion__elements_8h_source_l00161}{oomph\+::output()}}.
+References \mbox{\hyperlink{oomph__utilities_8cc_source_l00436}{oomph\+::\+Command\+Line\+Args\+::output()}}.
 
 \mbox{\Hypertarget{classoomph_1_1RefineablePseudoSolidNodeUpdateElement_a88f2bf6d044bc9b768afaba1368c0c18}\label{classoomph_1_1RefineablePseudoSolidNodeUpdateElement_a88f2bf6d044bc9b768afaba1368c0c18}} 
 \index{oomph::RefineablePseudoSolidNodeUpdateElement$<$ BASIC, SOLID $>$@{oomph::RefineablePseudoSolidNodeUpdateElement$<$ BASIC, SOLID $>$}!output@{output}}
@@ -675,7 +687,7 @@ Definition at line \mbox{\hyperlink{pseudosolid__node__update__elements_8h_sourc
 
 
 
-References \mbox{\hyperlink{gen__axisym__advection__diffusion__elements_8h_source_l00161}{oomph\+::output()}}.
+References \mbox{\hyperlink{oomph__utilities_8cc_source_l00436}{oomph\+::\+Command\+Line\+Args\+::output()}}.
 
 \mbox{\Hypertarget{classoomph_1_1RefineablePseudoSolidNodeUpdateElement_a41c401315754cb1d5f3f8b827215eaf4}\label{classoomph_1_1RefineablePseudoSolidNodeUpdateElement_a41c401315754cb1d5f3f8b827215eaf4}} 
 \index{oomph::RefineablePseudoSolidNodeUpdateElement$<$ BASIC, SOLID $>$@{oomph::RefineablePseudoSolidNodeUpdateElement$<$ BASIC, SOLID $>$}!output@{output}}
@@ -694,7 +706,7 @@ Definition at line \mbox{\hyperlink{pseudosolid__node__update__elements_8h_sourc
 
 
 
-References \mbox{\hyperlink{gen__axisym__advection__diffusion__elements_8h_source_l00161}{oomph\+::output()}}.
+References \mbox{\hyperlink{oomph__utilities_8cc_source_l00436}{oomph\+::\+Command\+Line\+Args\+::output()}}.
 
 \mbox{\Hypertarget{classoomph_1_1RefineablePseudoSolidNodeUpdateElement_ac653ab28abf52506f54b1306272390ce}\label{classoomph_1_1RefineablePseudoSolidNodeUpdateElement_ac653ab28abf52506f54b1306272390ce}} 
 \index{oomph::RefineablePseudoSolidNodeUpdateElement$<$ BASIC, SOLID $>$@{oomph::RefineablePseudoSolidNodeUpdateElement$<$ BASIC, SOLID $>$}!rebuild\_from\_sons@{rebuild\_from\_sons}}
@@ -750,7 +762,7 @@ Referenced by \mbox{\hyperlink{pseudosolid__node__update__elements_8h_source_l00
 \index{vertex\_node\_pt@{vertex\_node\_pt}!oomph::RefineablePseudoSolidNodeUpdateElement$<$ BASIC, SOLID $>$@{oomph::RefineablePseudoSolidNodeUpdateElement$<$ BASIC, SOLID $>$}}
 \doxysubsubsection{\texorpdfstring{vertex\_node\_pt()}{vertex\_node\_pt()}}
 {\footnotesize\ttfamily template$<$class BASIC , class SOLID $>$ \\
-\mbox{\hyperlink{classoomph_1_1Node}{Node}} $\ast$ \mbox{\hyperlink{classoomph_1_1RefineablePseudoSolidNodeUpdateElement}{oomph\+::\+Refineable\+Pseudo\+Solid\+Node\+Update\+Element}}$<$ BASIC, SOLID $>$\+::vertex\+\_\+node\+\_\+pt (\begin{DoxyParamCaption}\item[{const unsigned \&}]{j }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+Node $\ast$ \mbox{\hyperlink{classoomph_1_1RefineablePseudoSolidNodeUpdateElement}{oomph\+::\+Refineable\+Pseudo\+Solid\+Node\+Update\+Element}}$<$ BASIC, SOLID $>$\+::vertex\+\_\+node\+\_\+pt (\begin{DoxyParamCaption}\item[{const unsigned \&}]{j }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
 
 
 

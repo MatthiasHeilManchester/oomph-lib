@@ -223,7 +223,7 @@ Upgrading the Navier-Stokes element to an ElementWithExternalElement</h2>
 <div class="line">  {</div>
 </div><!-- fragment --><p >The constructor calls the constructors of the underlying elements, initialises the pointer to the Rayleigh number (stored as private member data in the class) and sets the number of interactions to one, indicating that the residuals of the Navier-Stokes element are only affected by a single type of "external element" &ndash; the advection-diffusion element that determines the temperature distribution.</p>
 <div class="fragment"><div class="line">  <span class="keyword">public</span>:<span class="comment"></span></div>
-<div class="line"><span class="comment">    /// \short Constructor: call the underlying constructors and</span></div>
+<div class="line"><span class="comment">    ///  Constructor: call the underlying constructors and</span></div>
 <div class="line"><span class="comment">    /// initialise the pointer to the Rayleigh number to point</span></div>
 <div class="line"><span class="comment">    /// to the default value of 0.0.</span></div>
 <div class="line"><span class="comment"></span>    RefineableNavierStokesBoussinesqElement()</div>
@@ -251,7 +251,7 @@ Upgrading the Navier-Stokes element to an ElementWithExternalElement</h2>
 <div class="line">      <span class="keywordflow">return</span> Ra_pt;</div>
 <div class="line">    }</div>
 </div><!-- fragment --><p> The most important step is to overload the function that computes the body force in the Navier-Stokes equations so that it depends on the temperature at the <code>ipt</code> -th integration point, as computed by the "external element":</p>
- <div class="fragment"><div class="line"><span class="comment">    /// \short Overload get_body_force_nst() to return the temperature-dependent</span></div>
+ <div class="fragment"><div class="line"><span class="comment">    ///  Overload get_body_force_nst() to return the temperature-dependent</span></div>
 <div class="line"><span class="comment">    /// buoyancy force, using the temperature computed by the</span><span class="comment"></span></div>
 <div class="line"><span class="comment">    /// &quot;external&quot; advection diffusion element associated with</span></div>
 <div class="line"><span class="comment">    /// integration point \c ipt.</span></div>
@@ -288,7 +288,7 @@ Upgrading the Navier-Stokes element to an ElementWithExternalElement</h2>
 </div><!-- fragment --><p> There is only one external interaction so the interaction index is set to zero and the value of the temperature at the integration point is obtained by casting the external element to an advection diffusion element and finding its interpolated field at the appropriate stored local coordinate. Once the temperature has been obtained, the code is identical to that discussed in the <a href="../../b_convection/html/index.html">tutorial for the corresponding multi-field implementation</a>; in that implementation the temperature could be found from a member function because the interaction is internal to the element.</p>
 <p >Finally, we have to compute the element's Jacobian matrix. The easiest (although potentially inefficient) way to do this is to recycle the analytical computation of the derivatives of the Navier-Stokes residuals with respect to the fluid degrees of freedom, as implemented in <br  />
  <code>NST_ELEMENT::fill_in_contribution_to_jacobian(...)</code>,</p>
- <div class="fragment"><div class="line"><span class="comment">    /// \short Compute the element&#39;s residual vector and the Jacobian matrix.</span></div>
+ <div class="fragment"><div class="line"><span class="comment">    ///  Compute the element&#39;s residual vector and the Jacobian matrix.</span></div>
 <div class="line">    <span class="keywordtype">void</span> fill_in_contribution_to_jacobian(Vector&lt;double&gt;&amp; residuals,</div>
 <div class="line">                                          DenseMatrix&lt;double&gt;&amp; jacobian)</div>
 <div class="line">    {</div>
@@ -329,7 +329,7 @@ Upgrading the advection-diffusion element to an ElementWithExternalElement</h2>
 <div class="line">      <span class="keyword">public</span> <span class="keyword">virtual</span> ElementWithExternalElement</div>
 <div class="line">  {</div>
 <div class="line">  <span class="keyword">public</span>:<span class="comment"></span></div>
-<div class="line"><span class="comment">    /// \short Constructor: call the underlying constructors</span></div>
+<div class="line"><span class="comment">    ///  Constructor: call the underlying constructors</span></div>
 <div class="line"><span class="comment"></span>    RefineableAdvectionDiffusionBoussinesqElement()</div>
 <div class="line">      : AD_ELEMENT(), ElementWithExternalElement()</div>
 <div class="line">    {</div>
@@ -337,7 +337,7 @@ Upgrading the advection-diffusion element to an ElementWithExternalElement</h2>
 <div class="line">      this-&gt;set_ninteraction(1);</div>
 <div class="line">    }</div>
 </div><!-- fragment --><p >We overload the function that computes the "wind" for the advection diffusion equations so that it is given by the fluid velocity at the <code>ipt</code> -th integration point, as computed by the "external element":</p>
- <div class="fragment"><div class="line"><span class="comment">    /// \short Overload the wind function in the advection-diffusion equations.</span></div>
+ <div class="fragment"><div class="line"><span class="comment">    ///  Overload the wind function in the advection-diffusion equations.</span></div>
 <div class="line"><span class="comment">    /// This provides the coupling from the Navier--Stokes equations to the</span><span class="comment"></span></div>
 <div class="line"><span class="comment">    /// advection-diffusion equations because the wind is the fluid velocity,</span></div>
 <div class="line"><span class="comment">    /// obtained from the &quot;external&quot; element</span></div>
@@ -360,7 +360,7 @@ Upgrading the advection-diffusion element to an ElementWithExternalElement</h2>
 <div class="line">    } <span class="comment">// end of get_wind_adv_diff</span></div>
 </div><!-- fragment --><p> Again, there is only one external interaction so the interaction index is set to zero and the external element must be cast to a Navier-Stokes element so that the interpolated velocity field can be found. The code is similar to that used in the <a href="../../b_convection/html/index.html">multi-field implementation</a>, which uses internal, rather than external, interaction.</p>
 <p >The element's Jacobian matrix can be computed by the same methods discussed for the Navier-Stokes elements:</p>
-<div class="fragment"><div class="line"><span class="comment">    ///\short Compute the element&#39;s residual vector and the Jacobian matrix.</span></div>
+<div class="fragment"><div class="line"><span class="comment">    /// Compute the element&#39;s residual vector and the Jacobian matrix.</span></div>
 <div class="line">    <span class="keywordtype">void</span> fill_in_contribution_to_jacobian(Vector&lt;double&gt;&amp; residuals,</div>
 <div class="line">                                          DenseMatrix&lt;double&gt;&amp; jacobian)</div>
 <div class="line">    {</div>
@@ -384,12 +384,12 @@ Upgrading the advection-diffusion element to an ElementWithExternalElement</h2>
  <hr  />
 <h1><a class="anchor" id="multi_domain_boussinesq"></a>
 Part III: The driver code for the multi-domain Boussinesq problem</h1>
-<p >Using the upgraded elements discussed above, <a href="../../../../demo_drivers/multi_physics/boussinesq_convection/multi_domain_ref_b_convection.cc">the driver code </a> for the multi-domain-based solution of the Boussinesq convection problem is very similar to that of the <a href="../../refine_b_convect/html/index.html">single-domain example.</a> Indeed, the <code><a class="el" href="boussinesq__convection_8cc.html#a3c04138a5bfe5d72780bb7e82a18e627" title="Driver code for 2D Boussinesq convection problem.">main()</a></code> functions are virtually identical. The only difference is that the <code><a class="el" href="classRefineableConvectionProblem.html">RefineableConvectionProblem</a></code> takes two template arguments (specifying the two different element types) instead of one (specifying the type of the single, combined element).</p>
+<p >Using the upgraded elements discussed above, <a href="../../../../demo_drivers/multi_physics/boussinesq_convection/multi_domain_ref_b_convection.cc">the driver code </a> for the multi-domain-based solution of the Boussinesq convection problem is very similar to that of the <a href="../../refine_b_convect/html/index.html">single-domain example.</a> Indeed, the <code><a class="el" href="boussinesq__convection_8cc.html#a3c04138a5bfe5d72780bb7e82a18e627" title="Driver code for 2D Boussinesq convection problem.">main()</a></code> functions are virtually identical. The only difference is that the <code><a class="el" href="classRefineableConvectionProblem.html" title="2D Convection problem on two rectangular domains, discretised with refineable Navier-Stokes and Advec...">RefineableConvectionProblem</a></code> takes two template arguments (specifying the two different element types) instead of one (specifying the type of the single, combined element).</p>
 <hr  />
 <h2><a class="anchor" id="problem_class"></a>
 The problem class</h2>
 <p >The problem class is similar to that of the <a href="../../refine_b_convect/html/index.html">single-domain example </a> and many of the functions are the same. There are now two meshes, however, one for the fluid elements and one for the advection-diffusion elements:</p>
- <div class="fragment"><div class="line"><span class="comment"> /// \short Access function to the NST mesh. </span></div>
+ <div class="fragment"><div class="line"><span class="comment"> ///  Access function to the NST mesh. </span></div>
 <div class="line"><span class="comment"> /// Casts the pointer to the base Mesh object to </span><span class="comment"></span></div>
 <div class="line"><span class="comment"> /// the actual mesh type.</span></div>
 <div class="line"><span class="comment"></span> RefineableRectangularQuadMesh&lt;NST_ELEMENT&gt;* nst_mesh_pt() </div>
@@ -397,7 +397,7 @@ The problem class</h2>
 <div class="line">   <span class="keywordflow">return</span> <span class="keyword">dynamic_cast&lt;</span>RefineableRectangularQuadMesh&lt;NST_ELEMENT&gt;*<span class="keyword">&gt;</span></div>
 <div class="line">    (Nst_mesh_pt);</div>
 <div class="line">  } <span class="comment">// end_of_nst_mesh</span></div>
-<div class="line"><span class="comment"> /// \short Access function to the AD mesh. </span></div>
+<div class="line"><span class="comment"> ///  Access function to the AD mesh. </span></div>
 <div class="line"><span class="comment"> /// Casts the pointer to the base Mesh object to </span><span class="comment"></span></div>
 <div class="line"><span class="comment"> /// the actual mesh type.</span></div>
 <div class="line"><span class="comment"></span> RefineableRectangularQuadMesh&lt;AD_ELEMENT&gt;* adv_diff_mesh_pt() </div>
@@ -406,7 +406,7 @@ The problem class</h2>
 <div class="line">    (Adv_diff_mesh_pt);</div>
 <div class="line">  } <span class="comment">// end_of_ad_mesh</span></div>
 </div><!-- fragment --><p> and after any mesh adaptation, the interaction between the two meshes must be set up again.</p>
-<div class="fragment"><div class="line"><span class="comment"> /// \short Actions after adaptation, reset all sources, then</span></div>
+<div class="fragment"><div class="line"><span class="comment"> ///  Actions after adaptation, reset all sources, then</span></div>
 <div class="line"><span class="comment"> /// re-pin a single pressure degree of freedom</span></div>
 <div class="line"> <span class="keywordtype">void</span> actions_after_adapt()</div>
 <div class="line">  {</div>
@@ -869,7 +869,7 @@ PDF file</h1>
     <footer>
       <div class="container">
         <div class="text-muted" style="float:right;">Generated by <a href="http://www.doxygen.org/index.html">
-          <img style="height:18px;" class="footer-img" src="doxygen.png" alt="doxygen"></a> on Wed Oct 13 2021 09:10:33
+          <img style="height:18px;" class="footer-img" src="doxygen.png" alt="doxygen"></a> on Thu Oct 21 2021 17:57:13
         </div>
       </div>
     </footer>

@@ -132,6 +132,9 @@ $(function() {
 </div><!--header-->
 <div class="contents">
 
+<p>Class for a matrix of the form M = S + G + H + ... where S is the main matrix and G,H etc. are matrices of size S or smaller. This may be useful if, for example, G,H etc. are subblocks of M that must be stored in a different format to S.  
+ <a href="classoomph_1_1SumOfMatrices.html#details">More...</a></p>
+
 <p><code>#include &lt;<a class="el" href="sum__of__matrices_8h_source.html">sum_of_matrices.h</a>&gt;</code></p>
 <div id="dynsection-0" onclick="return toggleVisibility(this)" class="dynheader closed" style="cursor:pointer;">
   <img id="dynsection-0-trigger" src="closed.png" alt="+"/> Inheritance diagram for oomph::SumOfMatrices:</div>
@@ -161,6 +164,7 @@ Public Member Functions</h2></td></tr>
 <tr class="memdesc:aa64f741169700b953b158fe325026377"><td class="mdescLeft">&#160;</td><td class="mdescRight">Broken assignment operator.  <a href="classoomph_1_1SumOfMatrices.html#aa64f741169700b953b158fe325026377">More...</a><br /></td></tr>
 <tr class="separator:aa64f741169700b953b158fe325026377"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:af6cc954e345acc8587bf861d92a678fc"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classoomph_1_1SumOfMatrices.html#af6cc954e345acc8587bf861d92a678fc">~SumOfMatrices</a> ()</td></tr>
+<tr class="memdesc:af6cc954e345acc8587bf861d92a678fc"><td class="mdescLeft">&#160;</td><td class="mdescRight">Destructor: delete matrices as instructed by Should_delete_added_matrix vector and Should_delete_main_matrix.  <a href="classoomph_1_1SumOfMatrices.html#af6cc954e345acc8587bf861d92a678fc">More...</a><br /></td></tr>
 <tr class="separator:af6cc954e345acc8587bf861d92a678fc"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:aae26075d453b7c0cdee467196c0b957e"><td class="memItemLeft" align="right" valign="top">const <a class="el" href="classoomph_1_1DoubleMatrixBase.html">DoubleMatrixBase</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classoomph_1_1SumOfMatrices.html#aae26075d453b7c0cdee467196c0b957e">main_matrix_pt</a> () const</td></tr>
 <tr class="memdesc:aae26075d453b7c0cdee467196c0b957e"><td class="mdescLeft">&#160;</td><td class="mdescRight">Access to the main matrix.  <a href="classoomph_1_1SumOfMatrices.html#aae26075d453b7c0cdee467196c0b957e">More...</a><br /></td></tr>
@@ -168,7 +172,7 @@ Public Member Functions</h2></td></tr>
 <tr class="memitem:a418847e6562fb451b1b06c16bf7fb3fc"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classoomph_1_1DoubleMatrixBase.html">DoubleMatrixBase</a> *&amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classoomph_1_1SumOfMatrices.html#a418847e6562fb451b1b06c16bf7fb3fc">main_matrix_pt</a> ()</td></tr>
 <tr class="separator:a418847e6562fb451b1b06c16bf7fb3fc"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a873f5f3e937c1fa203506b2ccc81bd2e"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classoomph_1_1SumOfMatrices.html#a873f5f3e937c1fa203506b2ccc81bd2e">set_delete_main_matrix</a> ()</td></tr>
-<tr class="memdesc:a873f5f3e937c1fa203506b2ccc81bd2e"><td class="mdescLeft">&#160;</td><td class="mdescRight">Set the main matrix to be deleted by the destructor of the <a class="el" href="classoomph_1_1SumOfMatrices.html">SumOfMatrices</a> (default is to not delete it).  <a href="classoomph_1_1SumOfMatrices.html#a873f5f3e937c1fa203506b2ccc81bd2e">More...</a><br /></td></tr>
+<tr class="memdesc:a873f5f3e937c1fa203506b2ccc81bd2e"><td class="mdescLeft">&#160;</td><td class="mdescRight">Set the main matrix to be deleted by the destructor of the <a class="el" href="classoomph_1_1SumOfMatrices.html" title="Class for a matrix of the form M = S + G + H + ... where S is the main matrix and G,...">SumOfMatrices</a> (default is to not delete it).  <a href="classoomph_1_1SumOfMatrices.html#a873f5f3e937c1fa203506b2ccc81bd2e">More...</a><br /></td></tr>
 <tr class="separator:a873f5f3e937c1fa203506b2ccc81bd2e"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a13408a013cf37a9455b9813b7a19fb0e"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classoomph_1_1SumOfMatrices.html#a13408a013cf37a9455b9813b7a19fb0e">output_bottom_right_zero_helper</a> (std::ostream &amp;outfile) const</td></tr>
 <tr class="memdesc:a13408a013cf37a9455b9813b7a19fb0e"><td class="mdescLeft">&#160;</td><td class="mdescRight">Output the "bottom right" entry regardless of it being zero or not (this allows automatic detection of matrix size in e.g. matlab, python).  <a href="classoomph_1_1SumOfMatrices.html#a13408a013cf37a9455b9813b7a19fb0e">More...</a><br /></td></tr>
@@ -183,6 +187,7 @@ Public Member Functions</h2></td></tr>
 <tr class="memdesc:a950924dfc285c908aac317f3be4fd158"><td class="mdescLeft">&#160;</td><td class="mdescRight">Add a new matrix to the sum by giving a matrix pointer and a mapping from the main matrix numbering to the added matrix's numbering.  <a href="classoomph_1_1SumOfMatrices.html#a950924dfc285c908aac317f3be4fd158">More...</a><br /></td></tr>
 <tr class="separator:a950924dfc285c908aac317f3be4fd158"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:aea0062a941a940d3f7ffbfef27eb0580"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classoomph_1_1DoubleMatrixBase.html">DoubleMatrixBase</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classoomph_1_1SumOfMatrices.html#aea0062a941a940d3f7ffbfef27eb0580">added_matrix_pt</a> (const unsigned &amp;<a class="el" href="cfortran_8h.html#adb50e893b86b3e55e751a42eab3cba82">i</a>) const</td></tr>
+<tr class="memdesc:aea0062a941a940d3f7ffbfef27eb0580"><td class="mdescLeft">&#160;</td><td class="mdescRight">Access function for ith added matrix (main matrix not included in numbering).  <a href="classoomph_1_1SumOfMatrices.html#aea0062a941a940d3f7ffbfef27eb0580">More...</a><br /></td></tr>
 <tr class="separator:aea0062a941a940d3f7ffbfef27eb0580"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a5bf6ccd4af2e08e94d48b68a555d85dc"><td class="memItemLeft" align="right" valign="top">const <a class="el" href="classoomph_1_1AddedMainNumberingLookup.html">AddedMainNumberingLookup</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classoomph_1_1SumOfMatrices.html#a5bf6ccd4af2e08e94d48b68a555d85dc">row_map_pt</a> (const unsigned &amp;<a class="el" href="cfortran_8h.html#adb50e893b86b3e55e751a42eab3cba82">i</a>) const</td></tr>
 <tr class="memdesc:a5bf6ccd4af2e08e94d48b68a555d85dc"><td class="mdescLeft">&#160;</td><td class="mdescRight">Access to the maps.  <a href="classoomph_1_1SumOfMatrices.html#a5bf6ccd4af2e08e94d48b68a555d85dc">More...</a><br /></td></tr>
@@ -198,15 +203,16 @@ Public Member Functions</h2></td></tr>
 <tr class="memitem:a4b75af475c7e1d9d7e5a66065895abe7"><td class="memItemLeft" align="right" valign="top">unsigned&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classoomph_1_1SumOfMatrices.html#a4b75af475c7e1d9d7e5a66065895abe7">n_added_matrix</a> () const</td></tr>
 <tr class="memdesc:a4b75af475c7e1d9d7e5a66065895abe7"><td class="mdescLeft">&#160;</td><td class="mdescRight">Return the number of added matrices in the sum.  <a href="classoomph_1_1SumOfMatrices.html#a4b75af475c7e1d9d7e5a66065895abe7">More...</a><br /></td></tr>
 <tr class="separator:a4b75af475c7e1d9d7e5a66065895abe7"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ae6c97ff92220835df3c3eeb1b0a85cc5"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classoomph_1_1SumOfMatrices.html#ae6c97ff92220835df3c3eeb1b0a85cc5">multiply</a> (const <a class="el" href="classoomph_1_1DoubleVector.html">DoubleVector</a> &amp;x, <a class="el" href="classoomph_1_1DoubleVector.html">DoubleVector</a> &amp;soln) const</td></tr>
+<tr class="memitem:ae6c97ff92220835df3c3eeb1b0a85cc5"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classoomph_1_1SumOfMatrices.html#ae6c97ff92220835df3c3eeb1b0a85cc5">multiply</a> (const <a class="el" href="classoomph_1_1DoubleVector.html">DoubleVector</a> &amp;<a class="el" href="namespaceoomph.html#a9d1d2da2b8bb8e73af72b5cadb8fe97c">x</a>, <a class="el" href="classoomph_1_1DoubleVector.html">DoubleVector</a> &amp;soln) const</td></tr>
 <tr class="memdesc:ae6c97ff92220835df3c3eeb1b0a85cc5"><td class="mdescLeft">&#160;</td><td class="mdescRight">Multiply: just call multiply on each of the matrices and add up the results (with appropriate bookeeping of the relative positions).  <a href="classoomph_1_1SumOfMatrices.html#ae6c97ff92220835df3c3eeb1b0a85cc5">More...</a><br /></td></tr>
 <tr class="separator:ae6c97ff92220835df3c3eeb1b0a85cc5"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ace6003b73b241e9e7eaa154e180f73a9"><td class="memItemLeft" align="right" valign="top">double &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classoomph_1_1SumOfMatrices.html#ace6003b73b241e9e7eaa154e180f73a9">entry</a> (const unsigned long &amp;<a class="el" href="cfortran_8h.html#adb50e893b86b3e55e751a42eab3cba82">i</a>, const unsigned long &amp;j) const</td></tr>
 <tr class="memdesc:ace6003b73b241e9e7eaa154e180f73a9"><td class="mdescLeft">&#160;</td><td class="mdescRight">Broken operator() because it does not make sense to return anything by reference.  <a href="classoomph_1_1SumOfMatrices.html#ace6003b73b241e9e7eaa154e180f73a9">More...</a><br /></td></tr>
 <tr class="separator:ace6003b73b241e9e7eaa154e180f73a9"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a934664ec676d36115ef27a9758827f7c"><td class="memItemLeft" align="right" valign="top">double&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classoomph_1_1SumOfMatrices.html#a934664ec676d36115ef27a9758827f7c">operator()</a> (const unsigned long &amp;<a class="el" href="cfortran_8h.html#adb50e893b86b3e55e751a42eab3cba82">i</a>, const unsigned long &amp;j) const</td></tr>
+<tr class="memdesc:a934664ec676d36115ef27a9758827f7c"><td class="mdescLeft">&#160;</td><td class="mdescRight">Access function to get the total value of entries in position (i,j). Warning: this way of getting entries is far too slow to use inside of loops.  <a href="classoomph_1_1SumOfMatrices.html#a934664ec676d36115ef27a9758827f7c">More...</a><br /></td></tr>
 <tr class="separator:a934664ec676d36115ef27a9758827f7c"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a0028fb64f602aa07ff557b0a11a1c659"><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classoomph_1_1SumOfMatrices.html#a0028fb64f602aa07ff557b0a11a1c659">multiply_transpose</a> (const <a class="el" href="classoomph_1_1DoubleVector.html">DoubleVector</a> &amp;x, <a class="el" href="classoomph_1_1DoubleVector.html">DoubleVector</a> &amp;soln) const</td></tr>
+<tr class="memitem:a0028fb64f602aa07ff557b0a11a1c659"><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classoomph_1_1SumOfMatrices.html#a0028fb64f602aa07ff557b0a11a1c659">multiply_transpose</a> (const <a class="el" href="classoomph_1_1DoubleVector.html">DoubleVector</a> &amp;<a class="el" href="namespaceoomph.html#a9d1d2da2b8bb8e73af72b5cadb8fe97c">x</a>, <a class="el" href="classoomph_1_1DoubleVector.html">DoubleVector</a> &amp;soln) const</td></tr>
 <tr class="memdesc:a0028fb64f602aa07ff557b0a11a1c659"><td class="mdescLeft">&#160;</td><td class="mdescRight">Dummy overload of a pure virtual function. I'm not sure how best to implement this and I don't think I need it.  <a href="classoomph_1_1SumOfMatrices.html#a0028fb64f602aa07ff557b0a11a1c659">More...</a><br /></td></tr>
 <tr class="separator:a0028fb64f602aa07ff557b0a11a1c659"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="inherit_header pub_methods_classoomph_1_1DoubleMatrixBase"><td colspan="2" onclick="javascript:toggleInherit('pub_methods_classoomph_1_1DoubleMatrixBase')"><img src="closed.png" alt="-"/>&#160;Public Member Functions inherited from <a class="el" href="classoomph_1_1DoubleMatrixBase.html">oomph::DoubleMatrixBase</a></td></tr>
@@ -240,10 +246,10 @@ Public Member Functions</h2></td></tr>
 <tr class="memitem:a8d9fb5fddec05a0b6e35cff23c79255c inherit pub_methods_classoomph_1_1DoubleMatrixBase"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classoomph_1_1DoubleMatrixBase.html#a8d9fb5fddec05a0b6e35cff23c79255c">solve</a> (const <a class="el" href="classoomph_1_1Vector.html">Vector</a>&lt; double &gt; &amp;rhs, <a class="el" href="classoomph_1_1Vector.html">Vector</a>&lt; double &gt; &amp;soln)</td></tr>
 <tr class="memdesc:a8d9fb5fddec05a0b6e35cff23c79255c inherit pub_methods_classoomph_1_1DoubleMatrixBase"><td class="mdescLeft">&#160;</td><td class="mdescRight">Complete LU solve (Nothing gets overwritten!). The default should not need to be overwritten.  <a href="classoomph_1_1DoubleMatrixBase.html#a8d9fb5fddec05a0b6e35cff23c79255c">More...</a><br /></td></tr>
 <tr class="separator:a8d9fb5fddec05a0b6e35cff23c79255c inherit pub_methods_classoomph_1_1DoubleMatrixBase"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a971bdc2d9297fc582af8467178f4e00e inherit pub_methods_classoomph_1_1DoubleMatrixBase"><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classoomph_1_1DoubleMatrixBase.html#a971bdc2d9297fc582af8467178f4e00e">residual</a> (const <a class="el" href="classoomph_1_1DoubleVector.html">DoubleVector</a> &amp;x, const <a class="el" href="classoomph_1_1DoubleVector.html">DoubleVector</a> &amp;b, <a class="el" href="classoomph_1_1DoubleVector.html">DoubleVector</a> &amp;residual_)</td></tr>
+<tr class="memitem:a971bdc2d9297fc582af8467178f4e00e inherit pub_methods_classoomph_1_1DoubleMatrixBase"><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classoomph_1_1DoubleMatrixBase.html#a971bdc2d9297fc582af8467178f4e00e">residual</a> (const <a class="el" href="classoomph_1_1DoubleVector.html">DoubleVector</a> &amp;<a class="el" href="namespaceoomph.html#a9d1d2da2b8bb8e73af72b5cadb8fe97c">x</a>, const <a class="el" href="classoomph_1_1DoubleVector.html">DoubleVector</a> &amp;b, <a class="el" href="classoomph_1_1DoubleVector.html">DoubleVector</a> &amp;residual_)</td></tr>
 <tr class="memdesc:a971bdc2d9297fc582af8467178f4e00e inherit pub_methods_classoomph_1_1DoubleMatrixBase"><td class="mdescLeft">&#160;</td><td class="mdescRight">Find the residual, i.e. r=b-Ax the residual.  <a href="classoomph_1_1DoubleMatrixBase.html#a971bdc2d9297fc582af8467178f4e00e">More...</a><br /></td></tr>
 <tr class="separator:a971bdc2d9297fc582af8467178f4e00e inherit pub_methods_classoomph_1_1DoubleMatrixBase"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a69a001b704e1d67277170ff7c0e4f6af inherit pub_methods_classoomph_1_1DoubleMatrixBase"><td class="memItemLeft" align="right" valign="top">virtual double&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classoomph_1_1DoubleMatrixBase.html#a69a001b704e1d67277170ff7c0e4f6af">max_residual</a> (const <a class="el" href="classoomph_1_1DoubleVector.html">DoubleVector</a> &amp;x, const <a class="el" href="classoomph_1_1DoubleVector.html">DoubleVector</a> &amp;rhs)</td></tr>
+<tr class="memitem:a69a001b704e1d67277170ff7c0e4f6af inherit pub_methods_classoomph_1_1DoubleMatrixBase"><td class="memItemLeft" align="right" valign="top">virtual double&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classoomph_1_1DoubleMatrixBase.html#a69a001b704e1d67277170ff7c0e4f6af">max_residual</a> (const <a class="el" href="classoomph_1_1DoubleVector.html">DoubleVector</a> &amp;<a class="el" href="namespaceoomph.html#a9d1d2da2b8bb8e73af72b5cadb8fe97c">x</a>, const <a class="el" href="classoomph_1_1DoubleVector.html">DoubleVector</a> &amp;rhs)</td></tr>
 <tr class="memdesc:a69a001b704e1d67277170ff7c0e4f6af inherit pub_methods_classoomph_1_1DoubleMatrixBase"><td class="mdescLeft">&#160;</td><td class="mdescRight">Find the maximum residual r=b-Ax &ndash; generic version, can be overloaded for specific derived classes where the max. can be determined "on the fly".  <a href="classoomph_1_1DoubleMatrixBase.html#a69a001b704e1d67277170ff7c0e4f6af">More...</a><br /></td></tr>
 <tr class="separator:a69a001b704e1d67277170ff7c0e4f6af inherit pub_methods_classoomph_1_1DoubleMatrixBase"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="inherit_header pub_methods_classoomph_1_1Matrix"><td colspan="2" onclick="javascript:toggleInherit('pub_methods_classoomph_1_1Matrix')"><img src="closed.png" alt="-"/>&#160;Public Member Functions inherited from <a class="el" href="classoomph_1_1Matrix.html">oomph::Matrix&lt; double, SumOfMatrices &gt;</a></td></tr>
@@ -309,7 +315,8 @@ Additional Inherited Members</h2></td></tr>
 <tr class="separator:a6ef2e36e4e5907af2738934f131e8dcf inherit pro_attribs_classoomph_1_1DoubleMatrixBase"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
-<div class="textblock"><p >Class for a matrix of the form M = S + G + H + ... where S is the main matrix and G,H etc. are matrices of size S or smaller. This may be useful if, for example, G,H etc. are subblocks of M that must be stored in a different format to S. Maps mut be provided which gives a map from the rows/cols of the main matrix to the rows/cols of each of the added matrices. </p>
+<div class="textblock"><p >Class for a matrix of the form M = S + G + H + ... where S is the main matrix and G,H etc. are matrices of size S or smaller. This may be useful if, for example, G,H etc. are subblocks of M that must be stored in a different format to S. </p>
+<p >Maps mut be provided which gives a map from the rows/cols of the main matrix to the rows/cols of each of the added matrices. </p>
 
 <p class="definition">Definition at line <a class="el" href="sum__of__matrices_8h_source.html#l00260">260</a> of file <a class="el" href="sum__of__matrices_8h_source.html">sum_of_matrices.h</a>.</p>
 </div><h2 class="groupheader">Constructor &amp; Destructor Documentation</h2>
@@ -422,7 +429,8 @@ Additional Inherited Members</h2></td></tr>
   </tr>
 </table>
 </div><div class="memdoc">
-<p >Destructor: delete matrices as instructed by Should_delete_added_matrix vector and Should_delete_main_matrix. </p>
+
+<p>Destructor: delete matrices as instructed by Should_delete_added_matrix vector and Should_delete_main_matrix. </p>
 
 <p class="definition">Definition at line <a class="el" href="sum__of__matrices_8h_source.html#l00316">316</a> of file <a class="el" href="sum__of__matrices_8h_source.html">sum_of_matrices.h</a>.</p>
 
@@ -508,7 +516,8 @@ Additional Inherited Members</h2></td></tr>
   </tr>
 </table>
 </div><div class="memdoc">
-<p >Access function for ith added matrix (main matrix not included in numbering). </p>
+
+<p>Access function for ith added matrix (main matrix not included in numbering). </p>
 
 <p class="definition">Definition at line <a class="el" href="sum__of__matrices_8h_source.html#l00485">485</a> of file <a class="el" href="sum__of__matrices_8h_source.html">sum_of_matrices.h</a>.</p>
 
@@ -741,7 +750,7 @@ Additional Inherited Members</h2></td></tr>
 
 <p class="definition">Definition at line <a class="el" href="sum__of__matrices_8cc_source.html#l00040">40</a> of file <a class="el" href="sum__of__matrices_8cc_source.html">sum_of_matrices.cc</a>.</p>
 
-<p class="reference">References <a class="el" href="sum__of__matrices_8h_source.html#l00268">Added_matrix_pt</a>, <a class="el" href="sum__of__matrices_8h_source.html#l00485">added_matrix_pt()</a>, <a class="el" href="linear__algebra__distribution_8cc_source.html#l00035">oomph::LinearAlgebraDistribution::build()</a>, <a class="el" href="sum__of__matrices_8h_source.html#l00276">Col_map_pt</a>, <a class="el" href="sum__of__matrices_8h_source.html#l00265">Main_matrix_pt</a>, <a class="el" href="classoomph_1_1DoubleMatrixBase.html#a78204eab557e0dc99618e41a28a5c092">oomph::DoubleMatrixBase::multiply()</a>, <a class="el" href="sum__of__matrices_8h_source.html#l00515">ncol()</a>, <a class="el" href="sum__of__matrices_8h_source.html#l00501">nrow()</a>, and <a class="el" href="sum__of__matrices_8h_source.html#l00272">Row_map_pt</a>.</p>
+<p class="reference">References <a class="el" href="sum__of__matrices_8h_source.html#l00268">Added_matrix_pt</a>, <a class="el" href="sum__of__matrices_8h_source.html#l00485">added_matrix_pt()</a>, <a class="el" href="linear__algebra__distribution_8cc_source.html#l00035">oomph::LinearAlgebraDistribution::build()</a>, <a class="el" href="sum__of__matrices_8h_source.html#l00276">Col_map_pt</a>, <a class="el" href="sum__of__matrices_8h_source.html#l00265">Main_matrix_pt</a>, <a class="el" href="classoomph_1_1DoubleMatrixBase.html#a78204eab557e0dc99618e41a28a5c092">oomph::DoubleMatrixBase::multiply()</a>, <a class="el" href="sum__of__matrices_8h_source.html#l00515">ncol()</a>, <a class="el" href="sum__of__matrices_8h_source.html#l00501">nrow()</a>, <a class="el" href="sum__of__matrices_8h_source.html#l00272">Row_map_pt</a>, and <a class="el" href="pseudo__buckling__ring_8h_source.html#l00049">oomph::x</a>.</p>
 
 </div>
 </div>
@@ -923,7 +932,8 @@ Additional Inherited Members</h2></td></tr>
   </tr>
 </table>
 </div><div class="memdoc">
-<p >Access function to get the total value of entries in position (i,j). Warning: this way of getting entries is far too slow to use inside of loops. </p>
+
+<p>Access function to get the total value of entries in position (i,j). Warning: this way of getting entries is far too slow to use inside of loops. </p>
 
 <p>Implements <a class="el" href="classoomph_1_1DoubleMatrixBase.html#a20b85f0286f80464f42f0846fede2d77">oomph::DoubleMatrixBase</a>.</p>
 
@@ -1052,7 +1062,7 @@ Additional Inherited Members</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
-<p>Set the main matrix to be deleted by the destructor of the <a class="el" href="classoomph_1_1SumOfMatrices.html">SumOfMatrices</a> (default is to not delete it). </p>
+<p>Set the main matrix to be deleted by the destructor of the <a class="el" href="classoomph_1_1SumOfMatrices.html" title="Class for a matrix of the form M = S + G + H + ... where S is the main matrix and G,...">SumOfMatrices</a> (default is to not delete it). </p>
 
 <p class="definition">Definition at line <a class="el" href="sum__of__matrices_8h_source.html#l00344">344</a> of file <a class="el" href="sum__of__matrices_8h_source.html">sum_of_matrices.h</a>.</p>
 
@@ -1295,7 +1305,7 @@ Additional Inherited Members</h2></td></tr>
     <footer>
       <div class="container">
         <div class="text-muted" style="float:right;">Generated by <a href="http://www.doxygen.org/index.html">
-          <img style="height:18px;" class="footer-img" src="doxygen.png" alt="doxygen"></a> on Wed Oct 13 2021 08:48:17
+          <img style="height:18px;" class="footer-img" src="doxygen.png" alt="doxygen"></a> on Thu Oct 21 2021 17:36:36
         </div>
       </div>
     </footer>

@@ -205,7 +205,7 @@ The global parameters</h1>
 <div class="line"><span class="comment"> /// Flag for long/short run: Default =  perform long run</span></div>
 <div class="line"><span class="comment"></span> <span class="keywordtype">unsigned</span> <a class="code hl_variable" href="namespaceGlobal__Parameters.html#a457472b8222bb6bb0d97b2aed78d1ef4">Long_run_flag</a>=1;</div>
 <div class="line"><span class="comment"></span> </div>
-<div class="line"><span class="comment"> /// \short Flag for impulsive start: Default = start from exact</span></div>
+<div class="line"><span class="comment"> ///  Flag for impulsive start: Default = start from exact</span></div>
 <div class="line"><span class="comment"> /// time-periodic solution. </span></div>
 <div class="line"><span class="comment"></span> <span class="keywordtype">unsigned</span> <a class="code hl_variable" href="namespaceGlobal__Parameters.html#aec41eb8da4929003e5d78ef4b43c0ed9">Impulsive_start_flag</a>=0;</div>
 <div class="line"> </div>
@@ -370,7 +370,7 @@ The driver code</h1>
 <div class="line"> }</div>
 <div class="line"> </div>
 <div class="line">} <span class="comment">// end of main</span></div>
-<div class="ttc" id="aclassRayleighProblem_html"><div class="ttname"><a href="classRayleighProblem.html">RayleighProblem</a></div><div class="ttdef"><b>Definition:</b> <a href="rayleigh__channel_8cc_source.html#l00120">rayleigh_channel.cc:121</a></div></div>
+<div class="ttc" id="aclassRayleighProblem_html"><div class="ttname"><a href="classRayleighProblem.html">RayleighProblem</a></div><div class="ttdoc">Rayleigh-type problem: 2D channel whose upper wall oscillates periodically.</div><div class="ttdef"><b>Definition:</b> <a href="rayleigh__channel_8cc_source.html#l00120">rayleigh_channel.cc:121</a></div></div>
 </div><!-- fragment --> <hr  />
  <hr  />
 <h1><a class="anchor" id="problem"></a>
@@ -389,13 +389,13 @@ The problem class</h1>
 <div class="line"><span class="comment"> /// lengths</span></div>
 <div class="line"><span class="comment"></span> <a class="code hl_function" href="classRayleighProblem.html#a53aeda7918553889b3fa0dd70cdb30f1">RayleighProblem</a>(<span class="keyword">const</span> <span class="keywordtype">unsigned</span> &amp;nx, <span class="keyword">const</span> <span class="keywordtype">unsigned</span> &amp;ny, </div>
 <div class="line">                 <span class="keyword">const</span> <span class="keywordtype">double</span> &amp;lx, <span class="keyword">const</span> <span class="keywordtype">double</span> &amp;ly);</div>
-<div class="ttc" id="aclassRayleighProblem_html_a53aeda7918553889b3fa0dd70cdb30f1"><div class="ttname"><a href="classRayleighProblem.html#a53aeda7918553889b3fa0dd70cdb30f1">RayleighProblem::RayleighProblem</a></div><div class="ttdeci">RayleighProblem(const unsigned &amp;nx, const unsigned &amp;ny, const double &amp;lx, const double &amp;ly)</div><div class="ttdoc">Problem constructor.</div><div class="ttdef"><b>Definition:</b> <a href="rayleigh__channel_8cc_source.html#l00187">rayleigh_channel.cc:188</a></div></div>
+<div class="ttc" id="aclassRayleighProblem_html_a53aeda7918553889b3fa0dd70cdb30f1"><div class="ttname"><a href="classRayleighProblem.html#a53aeda7918553889b3fa0dd70cdb30f1">RayleighProblem::RayleighProblem</a></div><div class="ttdeci">RayleighProblem(const unsigned &amp;nx, const unsigned &amp;ny, const double &amp;lx, const double &amp;ly)</div><div class="ttdoc">Constructor: Pass number of elements in x and y directions and lengths.</div><div class="ttdef"><b>Definition:</b> <a href="rayleigh__channel_8cc_source.html#l00187">rayleigh_channel.cc:188</a></div></div>
 </div><!-- fragment --><p> No action is needed before or after solving, but we update the time-dependent boundary conditions at the upper wall before each timestep, using <code>Problem::actions_before_implicit_timestep()</code>. The boundary values are obtained from the exact solution, defined in the namespace <code><a class="el" href="namespaceExactSoln.html" title="Namespace for exact solution.">ExactSoln</a></code>.</p>
 <div class="fragment"><div class="line"> </div>
 <div class="line"> <span class="comment">//Update before solve is empty</span></div>
 <div class="line"> <span class="keywordtype">void</span> actions_before_newton_solve() {}</div>
 <div class="line"><span class="comment"></span> </div>
-<div class="line"><span class="comment"> /// \short Update after solve is empty</span></div>
+<div class="line"><span class="comment"> ///  Update after solve is empty</span></div>
 <div class="line"><span class="comment"></span> <span class="keywordtype">void</span> actions_after_newton_solve() {}</div>
 <div class="line"> </div>
 <div class="line"> <span class="comment">//Actions before timestep: Update no slip on upper oscillating wall</span></div>
@@ -427,7 +427,7 @@ The problem class</h1>
 <div class="line"><span class="comment"> /// Doc the solution</span></div>
 <div class="line"><span class="comment"></span> <span class="keywordtype">void</span> doc_solution(DocInfo&amp; doc_info);</div>
 <div class="line"><span class="comment"></span> </div>
-<div class="line"><span class="comment"> /// \short Set initial condition (incl previous timesteps) according</span></div>
+<div class="line"><span class="comment"> ///  Set initial condition (incl previous timesteps) according</span></div>
 <div class="line"><span class="comment"> /// to specified function. </span></div>
 <div class="line"><span class="comment"></span> <span class="keywordtype">void</span> set_initial_condition();</div>
 <div class="line"> </div>
@@ -523,7 +523,7 @@ Initial conditions</h1>
 values" for multiple nodal values. For timesteppers from the BDF family, the "history values" represent the solution at previous timesteps. We check that the timestepper is of the appropriate type, <br  />
  loop over previous time levels, determine the velocity at those times and assign them to the "history values" of the velocities. No initial conditions are required for the pressure. Note that we also have to assign "history values" for the nodal positions since <code>oomph-lib's</code> Navier-Stokes elements discretise the momentum equations in their ALE form. This aspect was explained in more detail in our discussion of the solution of the <a href="../../../unsteady_heat/two_d_unsteady_heat/html/index.html#IC">unsteady heat equation</a>.</p>
 <div class="fragment"><div class="line"><span class="comment">//======================start_of_set_initial_condition====================</span></div>
-<div class="line"><span class="comment">/// \short Set initial condition: Assign previous and current values</span><span class="comment"></span></div>
+<div class="line"><span class="comment">///  Set initial condition: Assign previous and current values</span><span class="comment"></span></div>
 <div class="line"><span class="comment">/// from exact solution.</span></div>
 <div class="line"><span class="comment"></span><span class="comment">//========================================================================</span></div>
 <div class="line"><span class="keyword">template</span>&lt;<span class="keyword">class</span> ELEMENT,<span class="keyword">class</span> TIMESTEPPER&gt;</div>
@@ -862,7 +862,7 @@ PDF file</h1>
     <footer>
       <div class="container">
         <div class="text-muted" style="float:right;">Generated by <a href="http://www.doxygen.org/index.html">
-          <img style="height:18px;" class="footer-img" src="doxygen.png" alt="doxygen"></a> on Wed Oct 13 2021 08:56:20
+          <img style="height:18px;" class="footer-img" src="doxygen.png" alt="doxygen"></a> on Thu Oct 21 2021 17:44:10
         </div>
       </div>
     </footer>

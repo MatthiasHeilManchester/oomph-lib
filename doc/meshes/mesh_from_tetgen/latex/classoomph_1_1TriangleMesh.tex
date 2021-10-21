@@ -2,6 +2,11 @@
 \label{classoomph_1_1TriangleMesh}\index{oomph::TriangleMesh$<$ ELEMENT $>$@{oomph::TriangleMesh$<$ ELEMENT $>$}}
 
 
+Triangle mesh build with the help of the scaffold mesh coming from the triangle mesh generator Triangle. \href{http://www.cs.cmu.edu/~quake/triangle.html}{\texttt{ http\+://www.\+cs.\+cmu.\+edu/$\sim$quake/triangle.\+html}}.  
+
+
+
+
 {\ttfamily \#include $<$triangle\+\_\+mesh.\+template.\+h$>$}
 
 Inheritance diagram for oomph\+::Triangle\+Mesh\texorpdfstring{$<$}{<} ELEMENT \texorpdfstring{$>$}{>}\+:\begin{figure}[H]
@@ -65,7 +70,7 @@ const unsigned \mbox{\hyperlink{classoomph_1_1TriangleMesh_a64a1a162d84647e18218
 void \mbox{\hyperlink{classoomph_1_1TriangleMesh_ac023e6d962d37d1cc3089b31dc1d4a2a}{read\+\_\+distributed\+\_\+info\+\_\+for\+\_\+restart}} (std\+::istream \&restart\+\_\+file)
 \begin{DoxyCompactList}\small\item\em Used to read info. related with distributed triangle meshes. \end{DoxyCompactList}\item 
 virtual void \mbox{\hyperlink{classoomph_1_1TriangleMesh_aa4b1cfd4537c1e511fe1f2fb14b1e8a6}{reestablish\+\_\+distribution\+\_\+info\+\_\+for\+\_\+restart}} (Oomph\+Communicator $\ast$comm\+\_\+pt, std\+::istream \&restart\+\_\+file)
-\item 
+\begin{DoxyCompactList}\small\item\em Virtual function used to re-\/establish any additional info. related with the distribution after a re-\/starting for triangle meshes. \end{DoxyCompactList}\item 
 void \mbox{\hyperlink{classoomph_1_1TriangleMesh_a9bc95b0f26f8cd352997d2db32a6a292}{remesh\+\_\+from\+\_\+internal\+\_\+triangulateio}} ()
 \begin{DoxyCompactList}\small\item\em Completely regenerate the mesh from the trianglateio structure. \end{DoxyCompactList}\item 
 bool \mbox{\hyperlink{classoomph_1_1TriangleMesh_ae363c369eaae0841ec326cb8f6752550}{triangulateio\+\_\+exists}} ()
@@ -79,16 +84,16 @@ const unsigned \mbox{\hyperlink{classoomph_1_1TriangleMesh_aa0f608107023deae643f
 virtual void \mbox{\hyperlink{classoomph_1_1TriangleMesh_a712bfd68d4b55e9c475347c0146fc8ac}{load\+\_\+balance}} (const Vector$<$ unsigned $>$ \&target\+\_\+domain\+\_\+for\+\_\+local\+\_\+non\+\_\+halo\+\_\+element)
 \begin{DoxyCompactList}\small\item\em Virtual function to perform the load balance routines. \end{DoxyCompactList}\item 
 virtual void \mbox{\hyperlink{classoomph_1_1TriangleMesh_a47080ac440e82c099c390b37bf694cfe}{reset\+\_\+boundary\+\_\+element\+\_\+info}} (Vector$<$ unsigned $>$ \&ntmp\+\_\+boundary\+\_\+elements, Vector$<$ Vector$<$ unsigned $>$ $>$ \&ntmp\+\_\+boundary\+\_\+elements\+\_\+in\+\_\+region, Vector$<$ Finite\+Element $\ast$ $>$ \&deleted\+\_\+elements)
-\begin{DoxyCompactList}\small\item\em Reset the boundary elements info. after load balance have taken place. \end{DoxyCompactList}\item 
+\begin{DoxyCompactList}\small\item\em Virtual function to perform the reset boundary elements info routines. Generally used after load balance. \end{DoxyCompactList}\item 
 void \mbox{\hyperlink{classoomph_1_1TriangleMesh_ac7ea71980a3512c16a4ead623988a1e8}{output\+\_\+boundary\+\_\+coordinates}} (const unsigned \&b, std\+::ostream \&outfile)
-\end{DoxyCompactItemize}
+\begin{DoxyCompactList}\small\item\em Output the nodes on the boundary and their respective boundary coordinates(into separate tecplot zones) \end{DoxyCompactList}\end{DoxyCompactItemize}
 \doxysubsection*{Public Attributes}
 \begin{DoxyCompactItemize}
 \item 
 Time\+Stepper $\ast$ \mbox{\hyperlink{classoomph_1_1TriangleMesh_a0478e2d31a2787eb4536bb61aa4bbbfd}{Time\+\_\+stepper\+\_\+pt}}
 \begin{DoxyCompactList}\small\item\em Timestepper used to build elements. \end{DoxyCompactList}\item 
 bool \mbox{\hyperlink{classoomph_1_1TriangleMesh_a166a8057de8390280acb6365c3df87d0}{Use\+\_\+attributes}}
-\end{DoxyCompactItemize}
+\begin{DoxyCompactList}\small\item\em Boolean flag to indicate whether to use attributes or not (required for multidomain meshes) \end{DoxyCompactList}\end{DoxyCompactItemize}
 \doxysubsection*{Protected Member Functions}
 \begin{DoxyCompactItemize}
 \item 
@@ -266,7 +271,7 @@ std\+::vector$<$ \mbox{\hyperlink{structoomph_1_1TriangleMesh_1_1Point}{Point}} 
 \doxysubsection{Detailed Description}
 \subsubsection*{template$<$class ELEMENT$>$\newline
 class oomph\+::\+Triangle\+Mesh$<$ ELEMENT $>$}
-Triangle mesh build with the help of the scaffold mesh coming from the triangle mesh generator Triangle. \href{http://www.cs.cmu.edu/~quake/triangle.html}{\texttt{ http\+://www.\+cs.\+cmu.\+edu/$\sim$quake/triangle.\+html}} 
+Triangle mesh build with the help of the scaffold mesh coming from the triangle mesh generator Triangle. \href{http://www.cs.cmu.edu/~quake/triangle.html}{\texttt{ http\+://www.\+cs.\+cmu.\+edu/$\sim$quake/triangle.\+html}}. 
 
 Definition at line \mbox{\hyperlink{triangle__mesh_8template_8h_source_l00423}{423}} of file \mbox{\hyperlink{triangle__mesh_8template_8h_source}{triangle\+\_\+mesh.\+template.\+h}}.
 
@@ -1309,7 +1314,11 @@ Broken assignment operator.
 {\footnotesize\ttfamily template$<$class ELEMENT $>$ \\
 void \mbox{\hyperlink{classoomph_1_1TriangleMesh}{oomph\+::\+Triangle\+Mesh}}$<$ ELEMENT $>$\+::output\+\_\+boundary\+\_\+coordinates (\begin{DoxyParamCaption}\item[{const unsigned \&}]{b,  }\item[{std\+::ostream \&}]{outfile }\end{DoxyParamCaption})}
 
+
+
 Output the nodes on the boundary and their respective boundary coordinates(into separate tecplot zones) 
+
+
 
 Definition at line \mbox{\hyperlink{triangle__mesh_8template_8cc_source_l08014}{8014}} of file \mbox{\hyperlink{triangle__mesh_8template_8cc_source}{triangle\+\_\+mesh.\+template.\+cc}}.
 
@@ -1376,7 +1385,11 @@ Definition at line \mbox{\hyperlink{triangle__mesh_8template_8h_source_l01026}{1
 {\footnotesize\ttfamily template$<$class ELEMENT $>$ \\
 virtual void \mbox{\hyperlink{classoomph_1_1TriangleMesh}{oomph\+::\+Triangle\+Mesh}}$<$ ELEMENT $>$\+::reestablish\+\_\+distribution\+\_\+info\+\_\+for\+\_\+restart (\begin{DoxyParamCaption}\item[{Oomph\+Communicator $\ast$}]{comm\+\_\+pt,  }\item[{std\+::istream \&}]{restart\+\_\+file }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [virtual]}}
 
-Virtual function used to re-\/establish any additional info. related with the distribution after a re-\/starting for triangle meshes 
+
+
+Virtual function used to re-\/establish any additional info. related with the distribution after a re-\/starting for triangle meshes. 
+
+
 
 Reimplemented in \mbox{\hyperlink{classoomph_1_1RefineableTriangleMesh_a3ecdb3b15c3fefbc96f407c4fdf5b155}{oomph\+::\+Refineable\+Triangle\+Mesh$<$ ELEMENT $>$}}.
 
@@ -1412,9 +1425,9 @@ void \mbox{\hyperlink{classoomph_1_1TriangleMesh}{oomph\+::\+Triangle\+Mesh}}$<$
 
 
 
-Reset the boundary elements info. after load balance have taken place. 
-
 Virtual function to perform the reset boundary elements info routines. Generally used after load balance. 
+
+Reset the boundary elements info. after load balance have taken place. 
 
 Definition at line \mbox{\hyperlink{triangle__mesh_8template_8cc_source_l14860}{14860}} of file \mbox{\hyperlink{triangle__mesh_8template_8cc_source}{triangle\+\_\+mesh.\+template.\+cc}}.
 
@@ -1429,7 +1442,7 @@ void \mbox{\hyperlink{classoomph_1_1TriangleMesh}{oomph\+::\+Triangle\+Mesh}}$<$
 
 Select face element from boundary using the criteria to decide which of the two face elements should be used on internal boundaries. 
 
-===================================================================== Select face elements from a given boundary. In case the we are dealing with an internal boundary we use a set of criterias to decide which of the two face elements should be used on represent the internal boundary. We return the face elements, halo or haloed on this processor that form the boundary. The caller method should be in charge of selecting nonhalo elements and deleting the face \hypertarget{classoomph_1_1TriangleMesh_autotoc_md1}{}\doxysubsection{elements created by this method}\label{classoomph_1_1TriangleMesh_autotoc_md1}
+===================================================================== Select face elements from a given boundary. In case the we are dealing with an internal boundary we use a set of criterias to decide which of the two face elements should be used on represent the internal boundary. We return the face elements, halo or haloed on this processor that form the boundary. The caller method should be in charge of selecting nonhalo elements and deleting the face\hypertarget{classoomph_1_1TriangleMesh_autotoc_md1}{}\doxysubsection{elements created by this method}\label{classoomph_1_1TriangleMesh_autotoc_md1}
 
 
 Definition at line \mbox{\hyperlink{triangle__mesh_8template_8cc_source_l05281}{5281}} of file \mbox{\hyperlink{triangle__mesh_8template_8cc_source}{triangle\+\_\+mesh.\+template.\+cc}}.
@@ -1770,7 +1783,7 @@ void \mbox{\hyperlink{classoomph_1_1TriangleMesh}{oomph\+::\+Triangle\+Mesh}}$<$
 
 In charge of sinchronize the boundary coordinates for internal boundaries that were split as part of the distribution process. Called after setup\+\_\+boundary\+\_\+coordinates() for the original mesh only. 
 
-======================================================================== In charge of sinchronize the boundary coordinates for internal boundaries that were split as part of the distribution process. Called after setup\+\_\+boundary\+\_\+coordinates() for the \hypertarget{classoomph_1_1TriangleMesh_autotoc_md2}{}\doxysubsection{original mesh only}\label{classoomph_1_1TriangleMesh_autotoc_md2}
+======================================================================== In charge of sinchronize the boundary coordinates for internal boundaries that were split as part of the distribution process. Called after setup\+\_\+boundary\+\_\+coordinates() for the\hypertarget{classoomph_1_1TriangleMesh_autotoc_md2}{}\doxysubsection{original mesh only}\label{classoomph_1_1TriangleMesh_autotoc_md2}
 
 
 Definition at line \mbox{\hyperlink{triangle__mesh_8template_8cc_source_l05610}{5610}} of file \mbox{\hyperlink{triangle__mesh_8template_8cc_source}{triangle\+\_\+mesh.\+template.\+cc}}.
@@ -2222,7 +2235,11 @@ Referenced by \mbox{\hyperlink{triangle__mesh_8template_8h_source_l01205}{oomph\
 {\footnotesize\ttfamily template$<$class ELEMENT $>$ \\
 bool \mbox{\hyperlink{classoomph_1_1TriangleMesh}{oomph\+::\+Triangle\+Mesh}}$<$ ELEMENT $>$\+::Use\+\_\+attributes}
 
+
+
 Boolean flag to indicate whether to use attributes or not (required for multidomain meshes) 
+
+
 
 Definition at line \mbox{\hyperlink{triangle__mesh_8template_8h_source_l01183}{1183}} of file \mbox{\hyperlink{triangle__mesh_8template_8h_source}{triangle\+\_\+mesh.\+template.\+h}}.
 

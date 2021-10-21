@@ -2,6 +2,11 @@
 \label{classoomph_1_1Shape}\index{oomph::Shape@{oomph::Shape}}
 
 
+A Class for shape functions. In simple cases, the shape functions have only one index that can be thought of as corresponding to the nodal points. In general, however, when quantities and their gradients are interpolated separately, the shape function have two indices\+: one corresponding to the nodal points, and the other to the \char`\"{}type\char`\"{} of quantity being interpolated\+: function, derivative, \&c The second index can also represent the vector coordinate for vector-\/valued (Nedelec) shape functions.  
+
+
+
+
 {\ttfamily \#include $<$shape.\+h$>$}
 
 Inheritance diagram for oomph\+::Shape\+:\begin{figure}[H]
@@ -20,11 +25,11 @@ Inheritance diagram for oomph\+::Shape\+:\begin{figure}[H]
 \mbox{\hyperlink{classoomph_1_1Shape_aecba4a024c9c1595f253dd6ce48613c9}{Shape}} (const \mbox{\hyperlink{classoomph_1_1Shape}{Shape}} \&shape)=delete
 \begin{DoxyCompactList}\small\item\em Broken copy constructor. \end{DoxyCompactList}\item 
 \mbox{\hyperlink{classoomph_1_1Shape_af6d7a3572de5743ca382d275711a814e}{Shape}} ()
-\item 
+\begin{DoxyCompactList}\small\item\em Default constructor -\/ just assigns a null pointers and zero index sizes. \end{DoxyCompactList}\item 
 void \mbox{\hyperlink{classoomph_1_1Shape_aa9d3d4203abf1e39fc3db2732355c801}{operator=}} (const \mbox{\hyperlink{classoomph_1_1Shape}{Shape}} \&shape)
-\item 
+\begin{DoxyCompactList}\small\item\em The assignment operator does a shallow copy (resets the pointer to the data) \end{DoxyCompactList}\item 
 void \mbox{\hyperlink{classoomph_1_1Shape_ae56db76f6d0b46acb57869896dc9be20}{operator=}} (\mbox{\hyperlink{classoomph_1_1Shape}{Shape}} $\ast$const \&shape\+\_\+pt)
-\item 
+\begin{DoxyCompactList}\small\item\em The assignment operator does a shallow copy (resets the pointer to the data) \end{DoxyCompactList}\item 
 \mbox{\hyperlink{classoomph_1_1Shape_af6e38eb7b8c072b0acac31c61f11cc27}{$\sim$\+Shape}} ()
 \begin{DoxyCompactList}\small\item\em Destructor, clear up the memory allocated by the object. \end{DoxyCompactList}\item 
 void \mbox{\hyperlink{classoomph_1_1Shape_a701caf3197248f0e4f598ede06f0d4ec}{resize}} (const unsigned \&N, const unsigned \&M=1)
@@ -64,7 +69,7 @@ unsigned \mbox{\hyperlink{classoomph_1_1Shape_aae154e349eaa0a2f4b415c2bdaef0708}
 
 
 \doxysubsection{Detailed Description}
-A Class for shape functions. In simple cases, the shape functions have only one index that can be thought of as corresponding to the nodal points. In general, however, when quantities and their gradients are interpolated separately, the shape function have two indices\+: one corresponding to the nodal points, and the other to the \char`\"{}type\char`\"{} of quantity being interpolated\+: function, derivative, \&c The second index can also represent the vector coordinate for vector-\/valued (Nedelec) shape functions.
+A Class for shape functions. In simple cases, the shape functions have only one index that can be thought of as corresponding to the nodal points. In general, however, when quantities and their gradients are interpolated separately, the shape function have two indices\+: one corresponding to the nodal points, and the other to the \char`\"{}type\char`\"{} of quantity being interpolated\+: function, derivative, \&c The second index can also represent the vector coordinate for vector-\/valued (Nedelec) shape functions. 
 
 The implementation of \mbox{\hyperlink{classoomph_1_1Shape}{Shape}} functions is designed to permit fast copying of entire sets of values by resetting the internal pointer to the data, Psi; functionality that is required, for example, when setting the test functions in Galerkin elements and when reading pre-\/computed values of the shape functions. In general, we cannot know at construction time whether the pointer to the values will be reset or not and, therefore, whether the storage for values should be allocated by the object. We choose to allocate storage on construction and store an additional pointer Allocated\+\_\+data that {\bfseries{always}} addresses the storage allocated by the object. If the Psi pointer is reset then this storage will be \char`\"{}wasted\char`\"{}, but only for the lifetime of the object. The cost for non-\/copied \mbox{\hyperlink{classoomph_1_1Shape}{Shape}} functions is one additional pointer. 
 
@@ -125,7 +130,11 @@ Broken copy constructor.
 \doxysubsubsection{\texorpdfstring{Shape()}{Shape()}\hspace{0.1cm}{\footnotesize\ttfamily [4/4]}}
 {\footnotesize\ttfamily oomph\+::\+Shape\+::\+Shape (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
 
+
+
 Default constructor -\/ just assigns a null pointers and zero index sizes. 
+
+
 
 Definition at line \mbox{\hyperlink{shape_8h_source_l00137}{137}} of file \mbox{\hyperlink{shape_8h_source}{shape.\+h}}.
 
@@ -272,7 +281,11 @@ References \mbox{\hyperlink{cfortran_8h_source_l00603}{i}}, \mbox{\hyperlink{sha
 \doxysubsubsection{\texorpdfstring{operator=()}{operator=()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
 {\footnotesize\ttfamily void oomph\+::\+Shape\+::operator= (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{classoomph_1_1Shape}{Shape}} \&}]{shape }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
 
+
+
 The assignment operator does a shallow copy (resets the pointer to the data) 
+
+
 
 Definition at line \mbox{\hyperlink{shape_8h_source_l00141}{141}} of file \mbox{\hyperlink{shape_8h_source}{shape.\+h}}.
 
@@ -286,7 +299,11 @@ References \mbox{\hyperlink{shape_8h_source_l00089}{Index1}}, \mbox{\hyperlink{s
 \doxysubsubsection{\texorpdfstring{operator=()}{operator=()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
 {\footnotesize\ttfamily void oomph\+::\+Shape\+::operator= (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classoomph_1_1Shape}{Shape}} $\ast$const \&}]{shape\+\_\+pt }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
 
+
+
 The assignment operator does a shallow copy (resets the pointer to the data) 
+
+
 
 Definition at line \mbox{\hyperlink{shape_8h_source_l00162}{162}} of file \mbox{\hyperlink{shape_8h_source}{shape.\+h}}.
 

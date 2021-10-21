@@ -133,6 +133,9 @@ $(function() {
 </div><!--header-->
 <div class="contents">
 
+<p>A Class for the derivatives of shape functions The class design is essentially the same as <a class="el" href="classoomph_1_1Shape.html" title="A Class for shape functions. In simple cases, the shape functions have only one index that can be tho...">Shape</a>, but there is on additional index that is used to indicate the coordinate direction in which the derivative is taken.  
+ <a href="classoomph_1_1DShape.html#details">More...</a></p>
+
 <p><code>#include &lt;<a class="el" href="shape_8h_source.html">shape.h</a>&gt;</code></p>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pub-methods" name="pub-methods"></a>
@@ -144,18 +147,22 @@ Public Member Functions</h2></td></tr>
 <tr class="memdesc:a9b448ecb15766d223b7cd4b668729174"><td class="mdescLeft">&#160;</td><td class="mdescRight">Constructor with three paramters: a two-index shape function.  <a href="classoomph_1_1DShape.html#a9b448ecb15766d223b7cd4b668729174">More...</a><br /></td></tr>
 <tr class="separator:a9b448ecb15766d223b7cd4b668729174"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a7a9884025650edf558112081e53d4dbb"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classoomph_1_1DShape.html#a7a9884025650edf558112081e53d4dbb">DShape</a> ()</td></tr>
+<tr class="memdesc:a7a9884025650edf558112081e53d4dbb"><td class="mdescLeft">&#160;</td><td class="mdescRight">Default constructor - just assigns a null pointers and zero index sizes.  <a href="classoomph_1_1DShape.html#a7a9884025650edf558112081e53d4dbb">More...</a><br /></td></tr>
 <tr class="separator:a7a9884025650edf558112081e53d4dbb"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ad8cb8be9ae8a2cbc5baa041f5476619a"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classoomph_1_1DShape.html#ad8cb8be9ae8a2cbc5baa041f5476619a">DShape</a> (const <a class="el" href="classoomph_1_1DShape.html">DShape</a> &amp;dshape)=delete</td></tr>
 <tr class="memdesc:ad8cb8be9ae8a2cbc5baa041f5476619a"><td class="mdescLeft">&#160;</td><td class="mdescRight">Broken copy constructor.  <a href="classoomph_1_1DShape.html#ad8cb8be9ae8a2cbc5baa041f5476619a">More...</a><br /></td></tr>
 <tr class="separator:ad8cb8be9ae8a2cbc5baa041f5476619a"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a65273775f2720c51a7d4c2e9b5d5a8a9"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classoomph_1_1DShape.html#a65273775f2720c51a7d4c2e9b5d5a8a9">operator=</a> (const <a class="el" href="classoomph_1_1DShape.html">DShape</a> &amp;dshape)</td></tr>
+<tr class="memdesc:a65273775f2720c51a7d4c2e9b5d5a8a9"><td class="mdescLeft">&#160;</td><td class="mdescRight">The assignment operator does a shallow copy (resets the pointer to the data)  <a href="classoomph_1_1DShape.html#a65273775f2720c51a7d4c2e9b5d5a8a9">More...</a><br /></td></tr>
 <tr class="separator:a65273775f2720c51a7d4c2e9b5d5a8a9"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a50bb345fa38feb3b72244d94a0dbaf50"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classoomph_1_1DShape.html#a50bb345fa38feb3b72244d94a0dbaf50">operator=</a> (<a class="el" href="classoomph_1_1DShape.html">DShape</a> *const &amp;dshape_pt)</td></tr>
+<tr class="memdesc:a50bb345fa38feb3b72244d94a0dbaf50"><td class="mdescLeft">&#160;</td><td class="mdescRight">The assignment operator does a shallow copy (resets the pointer to the data)  <a href="classoomph_1_1DShape.html#a50bb345fa38feb3b72244d94a0dbaf50">More...</a><br /></td></tr>
 <tr class="separator:a50bb345fa38feb3b72244d94a0dbaf50"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a438b78cc767e134d1837bbf181cf4c07"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classoomph_1_1DShape.html#a438b78cc767e134d1837bbf181cf4c07">~DShape</a> ()</td></tr>
 <tr class="memdesc:a438b78cc767e134d1837bbf181cf4c07"><td class="mdescLeft">&#160;</td><td class="mdescRight">Destructor, clean up the memory allocated by this object.  <a href="classoomph_1_1DShape.html#a438b78cc767e134d1837bbf181cf4c07">More...</a><br /></td></tr>
 <tr class="separator:a438b78cc767e134d1837bbf181cf4c07"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a8332362ef8b25fbdad13fe2b81b5cca9"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classoomph_1_1DShape.html#a8332362ef8b25fbdad13fe2b81b5cca9">resize</a> (const unsigned &amp;N, const unsigned &amp;P, const unsigned &amp;M=1)</td></tr>
+<tr class="memdesc:a8332362ef8b25fbdad13fe2b81b5cca9"><td class="mdescLeft">&#160;</td><td class="mdescRight">Change the size of the storage. Note that (for some strange reason) index2 is the "optional" index, to conform with the existing constructor.  <a href="classoomph_1_1DShape.html#a8332362ef8b25fbdad13fe2b81b5cca9">More...</a><br /></td></tr>
 <tr class="separator:a8332362ef8b25fbdad13fe2b81b5cca9"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:afc1aee846033fc85d72e4e8f8fa5f9bb"><td class="memItemLeft" align="right" valign="top">double &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classoomph_1_1DShape.html#afc1aee846033fc85d72e4e8f8fa5f9bb">operator()</a> (const unsigned &amp;<a class="el" href="cfortran_8h.html#adb50e893b86b3e55e751a42eab3cba82">i</a>, const unsigned &amp;k)</td></tr>
 <tr class="memdesc:afc1aee846033fc85d72e4e8f8fa5f9bb"><td class="mdescLeft">&#160;</td><td class="mdescRight">Overload the round bracket operator for access to the data.  <a href="classoomph_1_1DShape.html#afc1aee846033fc85d72e4e8f8fa5f9bb">More...</a><br /></td></tr>
@@ -213,7 +220,7 @@ Private Attributes</h2></td></tr>
 <tr class="separator:a9745c10dc781a90f38333b0862c86f3f"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
-<div class="textblock"><p >A Class for the derivatives of shape functions The class design is essentially the same as <a class="el" href="classoomph_1_1Shape.html">Shape</a>, but there is on additional index that is used to indicate the coordinate direction in which the derivative is taken. </p>
+<div class="textblock"><p >A Class for the derivatives of shape functions The class design is essentially the same as <a class="el" href="classoomph_1_1Shape.html" title="A Class for shape functions. In simple cases, the shape functions have only one index that can be tho...">Shape</a>, but there is on additional index that is used to indicate the coordinate direction in which the derivative is taken. </p>
 
 <p class="definition">Definition at line <a class="el" href="shape_8h_source.html#l00277">277</a> of file <a class="el" href="shape_8h_source.html">shape.h</a>.</p>
 </div><h2 class="groupheader">Constructor &amp; Destructor Documentation</h2>
@@ -329,7 +336,8 @@ Private Attributes</h2></td></tr>
   </tr>
 </table>
 </div><div class="memdoc">
-<p >Default constructor - just assigns a null pointers and zero index sizes. </p>
+
+<p>Default constructor - just assigns a null pointers and zero index sizes. </p>
 
 <p class="definition">Definition at line <a class="el" href="shape_8h_source.html#l00349">349</a> of file <a class="el" href="shape_8h_source.html">shape.h</a>.</p>
 
@@ -424,8 +432,6 @@ Private Attributes</h2></td></tr>
 
 <p class="reference">References <a class="el" href="shape_8h_source.html#l00291">Index1</a>.</p>
 
-<p class="reference">Referenced by <a class="el" href="shell__elements_8h_source.html#l00694">oomph::ClampedHermiteShellBoundaryConditionElement::dshape_local()</a>, <a class="el" href="elements_8cc_source.html#l02837">oomph::FiniteElement::transform_derivatives()</a>, <a class="el" href="elements_8cc_source.html#l02881">oomph::FiniteElement::transform_derivatives_diagonal()</a>, <a class="el" href="elements_8cc_source.html#l03082">oomph::FiniteElement::transform_second_derivatives_diagonal()</a>, and <a class="el" href="elements_8cc_source.html#l02913">oomph::FiniteElement::transform_second_derivatives_template()</a>.</p>
-
 </div>
 </div>
 <a id="a1ce1aa1abc964aaea4b21d7de2aa559e" name="a1ce1aa1abc964aaea4b21d7de2aa559e"></a>
@@ -457,8 +463,6 @@ Private Attributes</h2></td></tr>
 
 <p class="reference">References <a class="el" href="shape_8h_source.html#l00294">Index2</a>.</p>
 
-<p class="reference">Referenced by <a class="el" href="shell__elements_8h_source.html#l00694">oomph::ClampedHermiteShellBoundaryConditionElement::dshape_local()</a>, <a class="el" href="elements_8cc_source.html#l02837">oomph::FiniteElement::transform_derivatives()</a>, <a class="el" href="elements_8cc_source.html#l02881">oomph::FiniteElement::transform_derivatives_diagonal()</a>, <a class="el" href="elements_8cc_source.html#l03082">oomph::FiniteElement::transform_second_derivatives_diagonal()</a>, and <a class="el" href="elements_8cc_source.html#l02913">oomph::FiniteElement::transform_second_derivatives_template()</a>.</p>
-
 </div>
 </div>
 <a id="a1a5a3dc7227cdf09f16484e7125df913" name="a1a5a3dc7227cdf09f16484e7125df913"></a>
@@ -489,8 +493,6 @@ Private Attributes</h2></td></tr>
 <p class="definition">Definition at line <a class="el" href="shape_8h_source.html#l00506">506</a> of file <a class="el" href="shape_8h_source.html">shape.h</a>.</p>
 
 <p class="reference">References <a class="el" href="shape_8h_source.html#l00297">Index3</a>.</p>
-
-<p class="reference">Referenced by <a class="el" href="shell__elements_8h_source.html#l00694">oomph::ClampedHermiteShellBoundaryConditionElement::dshape_local()</a>.</p>
 
 </div>
 </div>
@@ -741,7 +743,8 @@ Private Attributes</h2></td></tr>
   </tr>
 </table>
 </div><div class="memdoc">
-<p >The assignment operator does a shallow copy (resets the pointer to the data) </p>
+
+<p>The assignment operator does a shallow copy (resets the pointer to the data) </p>
 
 <p class="definition">Definition at line <a class="el" href="shape_8h_source.html#l00356">356</a> of file <a class="el" href="shape_8h_source.html">shape.h</a>.</p>
 
@@ -772,7 +775,8 @@ Private Attributes</h2></td></tr>
   </tr>
 </table>
 </div><div class="memdoc">
-<p >The assignment operator does a shallow copy (resets the pointer to the data) </p>
+
+<p>The assignment operator does a shallow copy (resets the pointer to the data) </p>
 
 <p class="definition">Definition at line <a class="el" href="shape_8h_source.html#l00378">378</a> of file <a class="el" href="shape_8h_source.html">shape.h</a>.</p>
 
@@ -935,7 +939,8 @@ Private Attributes</h2></td></tr>
   </tr>
 </table>
 </div><div class="memdoc">
-<p >Change the size of the storage. Note that (for some strange reason) index2 is the "optional" index, to conform with the existing constructor. </p>
+
+<p>Change the size of the storage. Note that (for some strange reason) index2 is the "optional" index, to conform with the existing constructor. </p>
 
 <p class="definition">Definition at line <a class="el" href="shape_8h_source.html#l00410">410</a> of file <a class="el" href="shape_8h_source.html">shape.h</a>.</p>
 
@@ -1115,7 +1120,7 @@ Private Attributes</h2></td></tr>
     <footer>
       <div class="container">
         <div class="text-muted" style="float:right;">Generated by <a href="http://www.doxygen.org/index.html">
-          <img style="height:18px;" class="footer-img" src="doxygen.png" alt="doxygen"></a> on Wed Oct 13 2021 08:45:11
+          <img style="height:18px;" class="footer-img" src="doxygen.png" alt="doxygen"></a> on Thu Oct 21 2021 17:33:42
         </div>
       </div>
     </footer>

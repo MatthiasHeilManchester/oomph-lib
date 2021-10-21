@@ -84,7 +84,7 @@
 \DoxyCodeLine{\Hypertarget{geom__object__element_8cc_source_l00080}00080 \textcolor{comment}{ /// Trace file}}
 \DoxyCodeLine{\Hypertarget{geom__object__element_8cc_source_l00081}\mbox{\hyperlink{classGeomObjectAsGeneralisedElementProblem_ad6261e556a52596ba8904ee902ea6d70}{00081}} \textcolor{comment}{} ofstream \mbox{\hyperlink{classGeomObjectAsGeneralisedElementProblem_ad6261e556a52596ba8904ee902ea6d70}{Trace\_file}};}
 \DoxyCodeLine{\Hypertarget{geom__object__element_8cc_source_l00082}00082 \textcolor{comment}{}}
-\DoxyCodeLine{\Hypertarget{geom__object__element_8cc_source_l00083}00083 \textcolor{comment}{ /// \(\backslash\)short Pointer to data item that stores the "{}load"{} on the ring}}
+\DoxyCodeLine{\Hypertarget{geom__object__element_8cc_source_l00083}00083 \textcolor{comment}{ ///  Pointer to data item that stores the "{}load"{} on the ring}}
 \DoxyCodeLine{\Hypertarget{geom__object__element_8cc_source_l00084}\mbox{\hyperlink{classGeomObjectAsGeneralisedElementProblem_ac04469b2dbce010fff3f5b2cf5591bcd}{00084}} \textcolor{comment}{} Data* \mbox{\hyperlink{classGeomObjectAsGeneralisedElementProblem_ac04469b2dbce010fff3f5b2cf5591bcd}{Load\_pt}};}
 \DoxyCodeLine{\Hypertarget{geom__object__element_8cc_source_l00085}00085 \textcolor{comment}{}}
 \DoxyCodeLine{\Hypertarget{geom__object__element_8cc_source_l00086}00086 \textcolor{comment}{ /// Doc info object}}
@@ -109,11 +109,11 @@
 \DoxyCodeLine{\Hypertarget{geom__object__element_8cc_source_l00105}00105 }
 \DoxyCodeLine{\Hypertarget{geom__object__element_8cc_source_l00106}00106  \textcolor{comment}{// Build GeomObject that's been upgraded to a GeneralisedElement}}
 \DoxyCodeLine{\Hypertarget{geom__object__element_8cc_source_l00107}00107  \textcolor{comment}{// GeneralisedElement* }}
-\DoxyCodeLine{\Hypertarget{geom__object__element_8cc_source_l00108}00108  \mbox{\hyperlink{classoomph_1_1ElasticallySupportedRingElement}{ElasticallySupportedRingElement}}* geom\_object\_element\_pt = }
-\DoxyCodeLine{\Hypertarget{geom__object__element_8cc_source_l00109}00109   \textcolor{keyword}{new} \mbox{\hyperlink{classoomph_1_1ElasticallySupportedRingElement}{ElasticallySupportedRingElement}}(x\_c,y\_c,R);}
+\DoxyCodeLine{\Hypertarget{geom__object__element_8cc_source_l00108}00108  ElasticallySupportedRingElement* geom\_object\_element\_pt = }
+\DoxyCodeLine{\Hypertarget{geom__object__element_8cc_source_l00109}00109   \textcolor{keyword}{new} ElasticallySupportedRingElement(x\_c,y\_c,R);}
 \DoxyCodeLine{\Hypertarget{geom__object__element_8cc_source_l00110}00110 }
 \DoxyCodeLine{\Hypertarget{geom__object__element_8cc_source_l00111}00111  \textcolor{comment}{// Set the stiffness of the elastic support}}
-\DoxyCodeLine{\Hypertarget{geom__object__element_8cc_source_l00112}00112  geom\_object\_element\_pt-\/>\mbox{\hyperlink{classoomph_1_1ElasticallySupportedRingElement_af78beb926542b46abbdd3345af8f2e9a}{k\_stiff}}()=0.3;}
+\DoxyCodeLine{\Hypertarget{geom__object__element_8cc_source_l00112}00112  geom\_object\_element\_pt-\/>k\_stiff()=0.3;}
 \DoxyCodeLine{\Hypertarget{geom__object__element_8cc_source_l00113}00113 }
 \DoxyCodeLine{\Hypertarget{geom__object__element_8cc_source_l00114}00114  \textcolor{comment}{// Build mesh}}
 \DoxyCodeLine{\Hypertarget{geom__object__element_8cc_source_l00115}00115  mesh\_pt()=\textcolor{keyword}{new} Mesh;}
@@ -130,7 +130,7 @@
 \DoxyCodeLine{\Hypertarget{geom__object__element_8cc_source_l00126}00126 }
 \DoxyCodeLine{\Hypertarget{geom__object__element_8cc_source_l00127}00127  \textcolor{comment}{// Set the pointer to the Data object that specifies the }}
 \DoxyCodeLine{\Hypertarget{geom__object__element_8cc_source_l00128}00128  \textcolor{comment}{// load on the ring}}
-\DoxyCodeLine{\Hypertarget{geom__object__element_8cc_source_l00129}00129  geom\_object\_element\_pt-\/>\mbox{\hyperlink{classoomph_1_1ElasticallySupportedRingElement_ac1c967080f2a4e6143bcffdcdbc1d735}{set\_load\_pt}}(\mbox{\hyperlink{classGeomObjectAsGeneralisedElementProblem_ac04469b2dbce010fff3f5b2cf5591bcd}{Load\_pt}});}
+\DoxyCodeLine{\Hypertarget{geom__object__element_8cc_source_l00129}00129  geom\_object\_element\_pt-\/>set\_load\_pt(\mbox{\hyperlink{classGeomObjectAsGeneralisedElementProblem_ac04469b2dbce010fff3f5b2cf5591bcd}{Load\_pt}});}
 \DoxyCodeLine{\Hypertarget{geom__object__element_8cc_source_l00130}00130  }
 \DoxyCodeLine{\Hypertarget{geom__object__element_8cc_source_l00131}00131  \textcolor{comment}{// Setup equation numbering scheme.}}
 \DoxyCodeLine{\Hypertarget{geom__object__element_8cc_source_l00132}00132  cout <<\textcolor{stringliteral}{"{}Number of equations: "{}} << assign\_eqn\_numbers() << std::endl; }
@@ -172,7 +172,7 @@
 \DoxyCodeLine{\Hypertarget{geom__object__element_8cc_source_l00168}00168  \textcolor{keywordflow}{for} (\textcolor{keywordtype}{unsigned} i=0;i<npts;i++)}
 \DoxyCodeLine{\Hypertarget{geom__object__element_8cc_source_l00169}00169   \{}
 \DoxyCodeLine{\Hypertarget{geom__object__element_8cc_source_l00170}00170    zeta[0]=2.0*MathematicalConstants::Pi*double(i)/double(npts-\/1);}
-\DoxyCodeLine{\Hypertarget{geom__object__element_8cc_source_l00171}00171    \textcolor{keyword}{static\_cast<}\mbox{\hyperlink{classoomph_1_1ElasticallySupportedRingElement}{ElasticallySupportedRingElement}}*\textcolor{keyword}{>}(mesh\_pt()-\/>element\_pt(0))-\/>}
+\DoxyCodeLine{\Hypertarget{geom__object__element_8cc_source_l00171}00171    \textcolor{keyword}{static\_cast<}ElasticallySupportedRingElement*\textcolor{keyword}{>}(mesh\_pt()-\/>element\_pt(0))-\/>}
 \DoxyCodeLine{\Hypertarget{geom__object__element_8cc_source_l00172}00172     position(zeta,r);  }
 \DoxyCodeLine{\Hypertarget{geom__object__element_8cc_source_l00173}00173    some\_file << r[0] << \textcolor{stringliteral}{"{} "{}} << r[1] << std::endl;}
 \DoxyCodeLine{\Hypertarget{geom__object__element_8cc_source_l00174}00174   \}}
@@ -181,10 +181,10 @@
 \DoxyCodeLine{\Hypertarget{geom__object__element_8cc_source_l00177}00177 }
 \DoxyCodeLine{\Hypertarget{geom__object__element_8cc_source_l00178}00178  \textcolor{comment}{// Write "{}load"{} and vertical position of the ring's centre}}
 \DoxyCodeLine{\Hypertarget{geom__object__element_8cc_source_l00179}00179  \mbox{\hyperlink{classGeomObjectAsGeneralisedElementProblem_ad6261e556a52596ba8904ee902ea6d70}{Trace\_file}} }
-\DoxyCodeLine{\Hypertarget{geom__object__element_8cc_source_l00180}00180   << \textcolor{keyword}{static\_cast<}\mbox{\hyperlink{classoomph_1_1ElasticallySupportedRingElement}{ElasticallySupportedRingElement}}*\textcolor{keyword}{>}(}
+\DoxyCodeLine{\Hypertarget{geom__object__element_8cc_source_l00180}00180   << \textcolor{keyword}{static\_cast<}ElasticallySupportedRingElement*\textcolor{keyword}{>}(}
 \DoxyCodeLine{\Hypertarget{geom__object__element_8cc_source_l00181}00181    mesh\_pt()-\/>element\_pt(0))-\/>\mbox{\hyperlink{classGeomObjectAsGeneralisedElementProblem_a47149c35c94b2ab99507a0a74fe35823}{load}}()}
 \DoxyCodeLine{\Hypertarget{geom__object__element_8cc_source_l00182}00182   << \textcolor{stringliteral}{"{} "{}}}
-\DoxyCodeLine{\Hypertarget{geom__object__element_8cc_source_l00183}00183   << \textcolor{keyword}{static\_cast<}\mbox{\hyperlink{classoomph_1_1ElasticallySupportedRingElement}{ElasticallySupportedRingElement}}*\textcolor{keyword}{>}(}
+\DoxyCodeLine{\Hypertarget{geom__object__element_8cc_source_l00183}00183   << \textcolor{keyword}{static\_cast<}ElasticallySupportedRingElement*\textcolor{keyword}{>}(}
 \DoxyCodeLine{\Hypertarget{geom__object__element_8cc_source_l00184}00184    mesh\_pt()-\/>element\_pt(0))-\/>y\_c()}
 \DoxyCodeLine{\Hypertarget{geom__object__element_8cc_source_l00185}00185   << \textcolor{stringliteral}{"{} "{}}}
 \DoxyCodeLine{\Hypertarget{geom__object__element_8cc_source_l00186}00186   << std::endl;}

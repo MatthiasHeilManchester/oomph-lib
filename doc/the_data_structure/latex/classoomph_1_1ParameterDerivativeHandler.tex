@@ -21,7 +21,7 @@ Inheritance diagram for oomph\+::Parameter\+Derivative\+Handler\+:\begin{figure}
 \mbox{\hyperlink{classoomph_1_1ParameterDerivativeHandler_af9d8c24e7fdc34662086c66b759de2a6}{Parameter\+Derivative\+Handler}} (\mbox{\hyperlink{classoomph_1_1AssemblyHandler}{Assembly\+Handler}} $\ast$const \&assembly\+\_\+handler\+\_\+pt, double $\ast$const \&parameter\+\_\+pt)
 \begin{DoxyCompactList}\small\item\em Store the original assembly handler and parameter. \end{DoxyCompactList}\item 
 unsigned \mbox{\hyperlink{classoomph_1_1ParameterDerivativeHandler_a341d4e7cfaab7e66df43913d775a6871}{ndof}} (\mbox{\hyperlink{classoomph_1_1GeneralisedElement}{Generalised\+Element}} $\ast$const \&elem\+\_\+pt)
-\item 
+\begin{DoxyCompactList}\small\item\em Return the number of degrees of freedom in the element elem\+\_\+pt Pass through to the original assembly handler. \end{DoxyCompactList}\item 
 unsigned long \mbox{\hyperlink{classoomph_1_1ParameterDerivativeHandler_a359b3b627532773b4606db1989f9c844}{eqn\+\_\+number}} (\mbox{\hyperlink{classoomph_1_1GeneralisedElement}{Generalised\+Element}} $\ast$const \&elem\+\_\+pt, const unsigned \&ieqn\+\_\+local)
 \begin{DoxyCompactList}\small\item\em Return the global equation number of the local unknown ieqn\+\_\+local in elem\+\_\+pt.\+Pass through to the original assembly handler. \end{DoxyCompactList}\item 
 void \mbox{\hyperlink{classoomph_1_1ParameterDerivativeHandler_a8ba1dbc805c00ac75e6d5d53f1b014c1}{get\+\_\+residuals}} (\mbox{\hyperlink{classoomph_1_1GeneralisedElement}{Generalised\+Element}} $\ast$const \&elem\+\_\+pt, \mbox{\hyperlink{classoomph_1_1Vector}{Vector}}$<$ double $>$ \&residuals)
@@ -134,7 +134,11 @@ References \mbox{\hyperlink{assembly__handler_8h_source_l00344}{Assembly\+\_\+ha
 \doxysubsubsection{\texorpdfstring{ndof()}{ndof()}}
 {\footnotesize\ttfamily unsigned oomph\+::\+Parameter\+Derivative\+Handler\+::ndof (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classoomph_1_1GeneralisedElement}{Generalised\+Element}} $\ast$const \&}]{elem\+\_\+pt }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [virtual]}}
 
-Return the number of degrees of freedom in the element elem\+\_\+pt Pass through to the original assembly handler 
+
+
+Return the number of degrees of freedom in the element elem\+\_\+pt Pass through to the original assembly handler. 
+
+
 
 Reimplemented from \mbox{\hyperlink{classoomph_1_1AssemblyHandler_a09213be8f4aa009e0366460a7ed78e68}{oomph\+::\+Assembly\+Handler}}.
 

@@ -134,6 +134,9 @@ $(function() {
 </div><!--header-->
 <div class="contents">
 
+<p><a class="el" href="classoomph_1_1MapMatrixMixed.html" title="MapMatrixMixed is a generalised, STL-map-based, sparse(ish) matrix class with mixed indices.">MapMatrixMixed</a> is a generalised, STL-map-based, sparse(ish) matrix class with mixed indices.  
+ <a href="classoomph_1_1MapMatrixMixed.html#details">More...</a></p>
+
 <p><code>#include &lt;<a class="el" href="map__matrix_8h_source.html">map_matrix.h</a>&gt;</code></p>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pub-types" name="pub-types"></a>
@@ -208,11 +211,12 @@ Protected Member Functions</h2></td></tr>
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pro-attribs" name="pro-attribs"></a>
 Protected Attributes</h2></td></tr>
 <tr class="memitem:ac47a4fa20db4474d62742d3f7e318b98"><td class="memItemLeft" align="right" valign="top">std::map&lt; KEY_TYPE_ROW, std::map&lt; KEY_TYPE_COL, VALUE_TYPE &gt; * &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classoomph_1_1MapMatrixMixed.html#ac47a4fa20db4474d62742d3f7e318b98">Row_pt</a></td></tr>
+<tr class="memdesc:ac47a4fa20db4474d62742d3f7e318b98"><td class="mdescLeft">&#160;</td><td class="mdescRight">Here's the generalised matrix structure: A map of pointers to the maps that hold the entries in each row.  <a href="classoomph_1_1MapMatrixMixed.html#ac47a4fa20db4474d62742d3f7e318b98">More...</a><br /></td></tr>
 <tr class="separator:ac47a4fa20db4474d62742d3f7e318b98"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock"><div class="compoundTemplParams">template&lt;class KEY_TYPE_ROW, class KEY_TYPE_COL, class VALUE_TYPE&gt;<br />
-class oomph::MapMatrixMixed&lt; KEY_TYPE_ROW, KEY_TYPE_COL, VALUE_TYPE &gt;</div><p ><a class="el" href="classoomph_1_1MapMatrixMixed.html">MapMatrixMixed</a> is a generalised, STL-map-based, sparse(ish) matrix class with mixed indices</p>
+class oomph::MapMatrixMixed&lt; KEY_TYPE_ROW, KEY_TYPE_COL, VALUE_TYPE &gt;</div><p ><a class="el" href="classoomph_1_1MapMatrixMixed.html" title="MapMatrixMixed is a generalised, STL-map-based, sparse(ish) matrix class with mixed indices.">MapMatrixMixed</a> is a generalised, STL-map-based, sparse(ish) matrix class with mixed indices. </p>
 <p >The matrix is indexed by indices of type KEY_TYPE_ROW and KEY_TYPE_COL and has entries of type VALUE_TYPE.</p>
 <p >Careful: If a zero entry is referenced then it is created in memory. Therefore this isn't really a practical sparse matrix scheme. Do not loop over &lsquo;all&rsquo; possible indices as even looking at them will inflate the matrix until it occupies as much space as a full one &ndash; use (modification of) output routine to retrieve all nonzero entries.</p>
 <p >However, this is not a serious restriction, as the main purpose of this class is to allow non-integer indices.</p>
@@ -251,7 +255,7 @@ class oomph::MapMatrixMixed&lt; KEY_TYPE_ROW, KEY_TYPE_COL, VALUE_TYPE &gt;</div
 <div class="line"> <a class="code hl_variable" href="namespaceoomph.html#aec474227917784dc0a255faf289cfc16">oomph_info</a> &lt;&lt; <span class="stringliteral">&quot;\n\n\n Here are the nonzero entries: i, j, a(i,j)\n&quot;</span>;</div>
 <div class="line">like_a_matrix.output(<a class="code hl_variable" href="namespaceoomph.html#aec474227917784dc0a255faf289cfc16">oomph_info</a>);</div>
 <div class="ttc" id="acfortran_8h_html_adb50e893b86b3e55e751a42eab3cba82"><div class="ttname"><a href="cfortran_8h.html#adb50e893b86b3e55e751a42eab3cba82">i</a></div><div class="ttdeci">cstr elem_len * i</div><div class="ttdef"><b>Definition:</b> <a href="cfortran_8h_source.html#l00603">cfortran.h:603</a></div></div>
-<div class="ttc" id="anamespaceoomph_html_aec474227917784dc0a255faf289cfc16"><div class="ttname"><a href="namespaceoomph.html#aec474227917784dc0a255faf289cfc16">oomph::oomph_info</a></div><div class="ttdeci">OomphInfo oomph_info</div><div class="ttdef"><b>Definition:</b> <a href="oomph__definitions_8cc_source.html#l00319">oomph_definitions.cc:319</a></div></div>
+<div class="ttc" id="anamespaceoomph_html_aec474227917784dc0a255faf289cfc16"><div class="ttname"><a href="namespaceoomph.html#aec474227917784dc0a255faf289cfc16">oomph::oomph_info</a></div><div class="ttdeci">OomphInfo oomph_info</div><div class="ttdoc">Single (global) instantiation of the OomphInfo object – this is used throughout the library as a &quot;rep...</div><div class="ttdef"><b>Definition:</b> <a href="oomph__definitions_8cc_source.html#l00319">oomph_definitions.cc:319</a></div></div>
 </div><!-- fragment --> 
 <p class="definition">Definition at line <a class="el" href="map__matrix_8h_source.html#l00108">108</a> of file <a class="el" href="map__matrix_8h_source.html">map_matrix.h</a>.</p>
 </div><h2 class="groupheader">Member Typedef Documentation</h2>
@@ -904,7 +908,8 @@ template&lt;class KEY_TYPE_ROW , class KEY_TYPE_COL , class VALUE_TYPE &gt; </di
   </tr>
 </table>
 </div><div class="memdoc">
-<p >Here's the generalised matrix structure: A map of pointers to the maps that hold the entries in each row. </p>
+
+<p>Here's the generalised matrix structure: A map of pointers to the maps that hold the entries in each row. </p>
 
 <p class="definition">Definition at line <a class="el" href="map__matrix_8h_source.html#l00432">432</a> of file <a class="el" href="map__matrix_8h_source.html">map_matrix.h</a>.</p>
 
@@ -943,7 +948,7 @@ template&lt;class KEY_TYPE_ROW , class KEY_TYPE_COL , class VALUE_TYPE &gt; </di
     <footer>
       <div class="container">
         <div class="text-muted" style="float:right;">Generated by <a href="http://www.doxygen.org/index.html">
-          <img style="height:18px;" class="footer-img" src="doxygen.png" alt="doxygen"></a> on Wed Oct 13 2021 08:46:48
+          <img style="height:18px;" class="footer-img" src="doxygen.png" alt="doxygen"></a> on Thu Oct 21 2021 17:35:11
         </div>
       </div>
     </footer>

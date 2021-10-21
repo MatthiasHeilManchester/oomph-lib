@@ -2,6 +2,11 @@
 \label{classoomph_1_1MPIOutputModifier}\index{oomph::MPIOutputModifier@{oomph::MPIOutputModifier}}
 
 
+MPI output modifier\+: Precedes every output by specification of the processor ID. Output can be restricted to a single processor.  
+
+
+
+
 {\ttfamily \#include $<$oomph\+\_\+utilities.\+h$>$}
 
 Inheritance diagram for oomph\+::MPIOutput\+Modifier\+:\begin{figure}[H]
@@ -20,16 +25,16 @@ Inheritance diagram for oomph\+::MPIOutput\+Modifier\+:\begin{figure}[H]
 virtual bool \mbox{\hyperlink{classoomph_1_1MPIOutputModifier_a982af85269a497f384cdff7baf9487a1}{operator()}} (std\+::ostream \&stream)
 \begin{DoxyCompactList}\small\item\em Precede the output by the processor ID but output everything. \end{DoxyCompactList}\item 
 void \mbox{\hyperlink{classoomph_1_1MPIOutputModifier_a5822d5ea7cd02753e5706ec790f2ff6e}{restrict\+\_\+output\+\_\+to\+\_\+single\+\_\+processor}} (const unsigned \&output\+\_\+rank=0)
-\item 
+\begin{DoxyCompactList}\small\item\em Switch to ensure output is only produced from a single processor (default\+: Master node, i.\+e. rank 0) \end{DoxyCompactList}\item 
 void \mbox{\hyperlink{classoomph_1_1MPIOutputModifier_af4b8be91b5f6eb8be549f2926047aa14}{allow\+\_\+output\+\_\+from\+\_\+all\+\_\+processors}} ()
-\end{DoxyCompactItemize}
+\begin{DoxyCompactList}\small\item\em Switch to ensure output is only produced from a single processor (default\+: Master node, i.\+e. rank 0) \end{DoxyCompactList}\end{DoxyCompactItemize}
 \doxysubsection*{Private Attributes}
 \begin{DoxyCompactItemize}
 \item 
 unsigned \mbox{\hyperlink{classoomph_1_1MPIOutputModifier_ad255e5084d5a8df94597711a096d3863}{Output\+\_\+rank}}
 \begin{DoxyCompactList}\small\item\em Rank of single processor that produces output (only used if Output\+\_\+from\+\_\+single\+\_\+processor=true. \end{DoxyCompactList}\item 
 bool \mbox{\hyperlink{classoomph_1_1MPIOutputModifier_a9fbc25a8b8187f1669fcbfefa47dacd0}{Output\+\_\+from\+\_\+single\+\_\+processor}}
-\item 
+\begin{DoxyCompactList}\small\item\em Boolean to control if output is performed only on a single processor (default\+: false) \end{DoxyCompactList}\item 
 \mbox{\hyperlink{classoomph_1_1OomphCommunicator}{Oomph\+Communicator}} $\ast$ \mbox{\hyperlink{classoomph_1_1MPIOutputModifier_a93306d57a0a753eb7a7735c78f7e4360}{Communicator\+\_\+pt}}
 \begin{DoxyCompactList}\small\item\em Communicator. \end{DoxyCompactList}\end{DoxyCompactItemize}
 
@@ -65,7 +70,11 @@ Definition at line \mbox{\hyperlink{oomph__utilities_8h_source_l00779}{779}} of 
 \doxysubsubsection{\texorpdfstring{allow\_output\_from\_all\_processors()}{allow\_output\_from\_all\_processors()}}
 {\footnotesize\ttfamily void oomph\+::\+MPIOutput\+Modifier\+::allow\+\_\+output\+\_\+from\+\_\+all\+\_\+processors (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
 
+
+
 Switch to ensure output is only produced from a single processor (default\+: Master node, i.\+e. rank 0) 
+
+
 
 Definition at line \mbox{\hyperlink{oomph__utilities_8h_source_l00801}{801}} of file \mbox{\hyperlink{oomph__utilities_8h_source}{oomph\+\_\+utilities.\+h}}.
 
@@ -123,7 +132,11 @@ References \mbox{\hyperlink{oomph__utilities_8h_source_l00775}{Communicator\+\_\
 \doxysubsubsection{\texorpdfstring{restrict\_output\_to\_single\_processor()}{restrict\_output\_to\_single\_processor()}}
 {\footnotesize\ttfamily void oomph\+::\+MPIOutput\+Modifier\+::restrict\+\_\+output\+\_\+to\+\_\+single\+\_\+processor (\begin{DoxyParamCaption}\item[{const unsigned \&}]{output\+\_\+rank = {\ttfamily 0} }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
 
+
+
 Switch to ensure output is only produced from a single processor (default\+: Master node, i.\+e. rank 0) 
+
+
 
 Definition at line \mbox{\hyperlink{oomph__utilities_8h_source_l00792}{792}} of file \mbox{\hyperlink{oomph__utilities_8h_source}{oomph\+\_\+utilities.\+h}}.
 
@@ -158,7 +171,11 @@ Referenced by \mbox{\hyperlink{oomph__utilities_8h_source_l00782}{communicator\+
 \doxysubsubsection{\texorpdfstring{Output\_from\_single\_processor}{Output\_from\_single\_processor}}
 {\footnotesize\ttfamily bool oomph\+::\+MPIOutput\+Modifier\+::\+Output\+\_\+from\+\_\+single\+\_\+processor\hspace{0.3cm}{\ttfamily [private]}}
 
+
+
 Boolean to control if output is performed only on a single processor (default\+: false) 
+
+
 
 Definition at line \mbox{\hyperlink{oomph__utilities_8h_source_l00772}{772}} of file \mbox{\hyperlink{oomph__utilities_8h_source}{oomph\+\_\+utilities.\+h}}.
 

@@ -58,9 +58,9 @@ double \& \mbox{\hyperlink{classoomph_1_1RefineableTriangleMesh_ac5c8a02020e0efb
 bool \mbox{\hyperlink{classoomph_1_1RefineableTriangleMesh_ae2f0885e6e3fc4c0566986d9c8d2fe65}{use\+\_\+iterative\+\_\+solver\+\_\+for\+\_\+projection}} ()
 \item 
 void \mbox{\hyperlink{classoomph_1_1RefineableTriangleMesh_aa0e6f48ae67efc2931c03ca22eaa9ca0}{enable\+\_\+iterative\+\_\+solver\+\_\+for\+\_\+projection}} ()
-\item 
+\begin{DoxyCompactList}\small\item\em Enables the use of an iterative solver for the projection problem. \end{DoxyCompactList}\item 
 void \mbox{\hyperlink{classoomph_1_1RefineableTriangleMesh_a081ddf29176d5599c6af173f73dd4a8d}{disable\+\_\+iterative\+\_\+solver\+\_\+for\+\_\+projection}} ()
-\item 
+\begin{DoxyCompactList}\small\item\em Enables the use of an iterative solver for the projection problem. \end{DoxyCompactList}\item 
 void \mbox{\hyperlink{classoomph_1_1RefineableTriangleMesh_a53f7ac7fbe9fdde0fb52b634d7370221}{enable\+\_\+print\+\_\+timings\+\_\+adaptation}} (const unsigned \&print\+\_\+level=1)
 \begin{DoxyCompactList}\small\item\em Enables printing of timings for adaptation. \end{DoxyCompactList}\item 
 void \mbox{\hyperlink{classoomph_1_1RefineableTriangleMesh_aa4c245df63f0fe2feb82bf2bf05e65ef}{disable\+\_\+print\+\_\+timings\+\_\+adaptation}} ()
@@ -100,7 +100,7 @@ void \mbox{\hyperlink{classoomph_1_1RefineableTriangleMesh_adeac705bdac96a1fb1f9
 void \mbox{\hyperlink{classoomph_1_1RefineableTriangleMesh_a85db79355838698642937d8dd875970a}{fill\+\_\+boundary\+\_\+elements\+\_\+and\+\_\+nodes\+\_\+for\+\_\+internal\+\_\+boundaries}} (std\+::ofstream \&outfile)
 \item 
 void \mbox{\hyperlink{classoomph_1_1RefineableTriangleMesh_a3ecdb3b15c3fefbc96f407c4fdf5b155}{reestablish\+\_\+distribution\+\_\+info\+\_\+for\+\_\+restart}} (Oomph\+Communicator $\ast$comm\+\_\+pt, std\+::istream \&restart\+\_\+file)
-\item 
+\begin{DoxyCompactList}\small\item\em Used to re-\/establish any additional info. related with the distribution after a re-\/starting for triangle meshes. \end{DoxyCompactList}\item 
 void \mbox{\hyperlink{classoomph_1_1RefineableTriangleMesh_a26cdfda4b77158dd24641cb5889ad2ff}{update\+\_\+polyline\+\_\+representation\+\_\+from\+\_\+restart}} ()
 \begin{DoxyCompactList}\small\item\em Method used to update the polylines representation after restart. \end{DoxyCompactList}\item 
 void \mbox{\hyperlink{classoomph_1_1RefineableTriangleMesh_aaffa40b7d036f8ed8639bf9396f1088a}{load\+\_\+balance}} (const Vector$<$ unsigned $>$ \&input\+\_\+target\+\_\+domain\+\_\+for\+\_\+local\+\_\+non\+\_\+halo\+\_\+element)
@@ -298,7 +298,7 @@ double \mbox{\hyperlink{classoomph_1_1RefineableTriangleMesh_a7b7b3acbda9a79f8a1
 bool \mbox{\hyperlink{classoomph_1_1RefineableTriangleMesh_a7825ce22a479fecd30361ae09750f15a}{Disable\+\_\+projection}}
 \begin{DoxyCompactList}\small\item\em Enable/disable solution projection during adaptation. \end{DoxyCompactList}\item 
 bool \mbox{\hyperlink{classoomph_1_1RefineableTriangleMesh_a6b38d79f86053e7acb8f92efe06d9c9a}{Use\+\_\+iterative\+\_\+solver\+\_\+for\+\_\+projection}}
-\item 
+\begin{DoxyCompactList}\small\item\em Flag to indicate whether to use or not an iterative solver (CG with diagonal preconditioned) for the projection problem. \end{DoxyCompactList}\item 
 bool \mbox{\hyperlink{classoomph_1_1RefineableTriangleMesh_acd5c63891d8a4052ce629610697561b6}{Print\+\_\+timings\+\_\+transfering\+\_\+target\+\_\+areas}}
 \begin{DoxyCompactList}\small\item\em Enable/disable printing timings for transfering target areas. \end{DoxyCompactList}\item 
 bool \mbox{\hyperlink{classoomph_1_1RefineableTriangleMesh_ac0e10dae151eb6c03f90be0bc3462f8d}{Print\+\_\+timings\+\_\+projection}}
@@ -435,7 +435,7 @@ void \mbox{\hyperlink{classoomph_1_1RefineableTriangleMesh}{oomph\+::\+Refineabl
 
 Adapt mesh, based on elemental error provided. 
 
-Adapt problem based on specified elemental error estimates This function implement serial and parallel mesh adaptation, the sections for parallel mesh adaptation are clearly identified by checking whether the mesh is distributed or not 
+Adapt problem based on specified elemental error estimates This function implement serial and parallel mesh adaptation, the sections for parallel mesh adaptation are clearly identified by checking whether the mesh is distributed or not. 
 
 Definition at line \mbox{\hyperlink{triangle__mesh_8template_8cc_source_l29595}{29595}} of file \mbox{\hyperlink{triangle__mesh_8template_8cc_source}{triangle\+\_\+mesh.\+template.\+cc}}.
 
@@ -717,7 +717,7 @@ void \mbox{\hyperlink{classoomph_1_1RefineableTriangleMesh}{oomph\+::\+Refineabl
 
 Helper function to create (halo) elements on the loop process based on the info received in send\+\_\+and\+\_\+received\+\_\+located\+\_\+info. 
 
-Creates (halo) element on the loop process based on the information received from each processor 
+Creates (halo) element on the loop process based on the information received from each processor. 
 
 Definition at line \mbox{\hyperlink{triangle__mesh_8template_8cc_source_l19111}{19111}} of file \mbox{\hyperlink{triangle__mesh_8template_8cc_source}{triangle\+\_\+mesh.\+template.\+cc}}.
 
@@ -747,7 +747,7 @@ void \mbox{\hyperlink{classoomph_1_1RefineableTriangleMesh}{oomph\+::\+Refineabl
 
 Helper function to create polylines and fill associate data. 
 
-Create the polylines and fill associate data structures, used when creating from a mesh from polyfiles 
+Create the polylines and fill associate data structures, used when creating from a mesh from polyfiles. 
 
 Definition at line \mbox{\hyperlink{triangle__mesh_8template_8cc_source_l36642}{36642}} of file \mbox{\hyperlink{triangle__mesh_8template_8cc_source}{triangle\+\_\+mesh.\+template.\+cc}}.
 
@@ -825,7 +825,11 @@ Definition at line \mbox{\hyperlink{triangle__mesh_8template_8h_source_l02884}{2
 {\footnotesize\ttfamily template$<$class ELEMENT $>$ \\
 void \mbox{\hyperlink{classoomph_1_1RefineableTriangleMesh}{oomph\+::\+Refineable\+Triangle\+Mesh}}$<$ ELEMENT $>$\+::disable\+\_\+iterative\+\_\+solver\+\_\+for\+\_\+projection (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
 
-Enables the use of an iterative solver for the projection problem 
+
+
+Enables the use of an iterative solver for the projection problem. 
+
+
 
 Definition at line \mbox{\hyperlink{triangle__mesh_8template_8h_source_l02510}{2510}} of file \mbox{\hyperlink{triangle__mesh_8template_8h_source}{triangle\+\_\+mesh.\+template.\+h}}.
 
@@ -974,7 +978,11 @@ Definition at line \mbox{\hyperlink{triangle__mesh_8template_8h_source_l02879}{2
 {\footnotesize\ttfamily template$<$class ELEMENT $>$ \\
 void \mbox{\hyperlink{classoomph_1_1RefineableTriangleMesh}{oomph\+::\+Refineable\+Triangle\+Mesh}}$<$ ELEMENT $>$\+::enable\+\_\+iterative\+\_\+solver\+\_\+for\+\_\+projection (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
 
-Enables the use of an iterative solver for the projection problem 
+
+
+Enables the use of an iterative solver for the projection problem. 
+
+
 
 Definition at line \mbox{\hyperlink{triangle__mesh_8template_8h_source_l02503}{2503}} of file \mbox{\hyperlink{triangle__mesh_8template_8h_source}{triangle\+\_\+mesh.\+template.\+h}}.
 
@@ -1172,7 +1180,7 @@ void \mbox{\hyperlink{classoomph_1_1RefineableTriangleMesh}{oomph\+::\+Refineabl
 
 Helper function to construct face mesh representation of all polylines, possibly with segments re-\/distributed between polylines to maintain an appxroximately even sub-\/division of the polygon. 
 
-Helper function to construct face mesh representation of all polylines, possibly with segments re-\/distributed between polylines to maintain an approximately even sub-\/division of the polygon 
+Helper function to construct face mesh representation of all polylines, possibly with segments re-\/distributed between polylines to maintain an approximately even sub-\/division of the polygon. 
 
 Definition at line \mbox{\hyperlink{triangle__mesh_8template_8cc_source_l35896}{35896}} of file \mbox{\hyperlink{triangle__mesh_8template_8cc_source}{triangle\+\_\+mesh.\+template.\+cc}}.
 
@@ -1217,7 +1225,7 @@ void \mbox{\hyperlink{classoomph_1_1RefineableTriangleMesh}{oomph\+::\+Refineabl
 
 Helper function to get the required nodal information from a haloed node so that a fully-\/functional halo node (and therefore element) can be created on the receiving process. 
 
-Helper function to get the required nodal information from an haloed node so that a fully-\/functional halo node (and therefore element) can be created on the receiving process 
+Helper function to get the required nodal information from an haloed node so that a fully-\/functional halo node (and therefore element) can be created on the receiving process. 
 
 Definition at line \mbox{\hyperlink{triangle__mesh_8template_8cc_source_l18330}{18330}} of file \mbox{\hyperlink{triangle__mesh_8template_8cc_source}{triangle\+\_\+mesh.\+template.\+cc}}.
 
@@ -1232,7 +1240,7 @@ void \mbox{\hyperlink{classoomph_1_1RefineableTriangleMesh}{oomph\+::\+Refineabl
 
 Helper function to get the required nodal information from an haloed node so that a fully-\/functional node (and therefore element) can be created on the receiving process (this is the specific version for the load balance strategy, the difference with the original method is that it checks if the node is on a shared boundary no associated with the current processor --my\+\_\+rank--, or in a haloed element from other processors. 
 
-Helper function to get the required nodal information from an haloed node so that a fully-\/functional halo node (and therefore element) can be created on the receiving process 
+Helper function to get the required nodal information from an haloed node so that a fully-\/functional halo node (and therefore element) can be created on the receiving process. 
 
 Definition at line \mbox{\hyperlink{triangle__mesh_8template_8cc_source_l26809}{26809}} of file \mbox{\hyperlink{triangle__mesh_8template_8cc_source}{triangle\+\_\+mesh.\+template.\+cc}}.
 
@@ -1247,7 +1255,7 @@ void \mbox{\hyperlink{classoomph_1_1RefineableTriangleMesh}{oomph\+::\+Refineabl
 
 Use the first and second group of elements to find the intersection between them to get the shared boundary elements from the first and second group. 
 
-Use the first and second group of elements to find the intersection between them to get the shared boundary elements from the first and second group 
+
 
 Definition at line \mbox{\hyperlink{triangle__mesh_8template_8cc_source_l22549}{22549}} of file \mbox{\hyperlink{triangle__mesh_8template_8cc_source}{triangle\+\_\+mesh.\+template.\+cc}}.
 
@@ -1465,7 +1473,11 @@ Definition at line \mbox{\hyperlink{triangle__mesh_8template_8h_source_l02643}{2
 {\footnotesize\ttfamily template$<$class ELEMENT $>$ \\
 void \mbox{\hyperlink{classoomph_1_1RefineableTriangleMesh}{oomph\+::\+Refineable\+Triangle\+Mesh}}$<$ ELEMENT $>$\+::reestablish\+\_\+distribution\+\_\+info\+\_\+for\+\_\+restart (\begin{DoxyParamCaption}\item[{Oomph\+Communicator $\ast$}]{comm\+\_\+pt,  }\item[{std\+::istream \&}]{restart\+\_\+file }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [virtual]}}
 
-Used to re-\/establish any additional info. related with the distribution after a re-\/starting for triangle meshes 
+
+
+Used to re-\/establish any additional info. related with the distribution after a re-\/starting for triangle meshes. 
+
+
 
 Reimplemented from \mbox{\hyperlink{classoomph_1_1TriangleMesh_aa4b1cfd4537c1e511fe1f2fb14b1e8a6}{oomph\+::\+Triangle\+Mesh$<$ ELEMENT $>$}}.
 
@@ -1649,7 +1661,7 @@ void \mbox{\hyperlink{classoomph_1_1RefineableTriangleMesh}{oomph\+::\+Refineabl
 
 Helper function to send back halo and haloed information. 
 
-Send the information of the elements that will be created on the other processor 
+Send the information of the elements that will be created on the other processor. 
 
 Definition at line \mbox{\hyperlink{triangle__mesh_8template_8cc_source_l18955}{18955}} of file \mbox{\hyperlink{triangle__mesh_8template_8cc_source}{triangle\+\_\+mesh.\+template.\+cc}}.
 
@@ -2447,7 +2459,11 @@ Definition at line \mbox{\hyperlink{triangle__mesh_8template_8h_source_l03118}{3
 {\footnotesize\ttfamily template$<$class ELEMENT $>$ \\
 bool \mbox{\hyperlink{classoomph_1_1RefineableTriangleMesh}{oomph\+::\+Refineable\+Triangle\+Mesh}}$<$ ELEMENT $>$\+::Use\+\_\+iterative\+\_\+solver\+\_\+for\+\_\+projection\hspace{0.3cm}{\ttfamily [protected]}}
 
-Flag to indicate whether to use or not an iterative solver (CG with diagonal preconditioned) for the projection problem 
+
+
+Flag to indicate whether to use or not an iterative solver (CG with diagonal preconditioned) for the projection problem. 
+
+
 
 Definition at line \mbox{\hyperlink{triangle__mesh_8template_8h_source_l03858}{3858}} of file \mbox{\hyperlink{triangle__mesh_8template_8h_source}{triangle\+\_\+mesh.\+template.\+h}}.
 

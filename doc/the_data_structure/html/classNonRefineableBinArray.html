@@ -330,7 +330,7 @@ Static Public Attributes</h2></td></tr>
 <tr class="separator:a00af6975c82a55816e96d63f73a2ae6b"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="inherit_header pub_static_attribs_classSamplePointContainer"><td colspan="2" onclick="javascript:toggleInherit('pub_static_attribs_classSamplePointContainer')"><img src="closed.png" alt="-"/>&#160;Static Public Attributes inherited from <a class="el" href="classSamplePointContainer.html">SamplePointContainer</a></td></tr>
 <tr class="memitem:ad08a1cb658b3783bcf7d8491e90965f3 inherit pub_static_attribs_classSamplePointContainer"><td class="memItemLeft" align="right" valign="top">static std::ofstream&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classSamplePointContainer.html#ad08a1cb658b3783bcf7d8491e90965f3">Visited_sample_points_file</a></td></tr>
-<tr class="memdesc:ad08a1cb658b3783bcf7d8491e90965f3 inherit pub_static_attribs_classSamplePointContainer"><td class="mdescLeft">&#160;</td><td class="mdescRight">File to record sequence of visited sample points in.  <a href="classSamplePointContainer.html#ad08a1cb658b3783bcf7d8491e90965f3">More...</a><br /></td></tr>
+<tr class="memdesc:ad08a1cb658b3783bcf7d8491e90965f3 inherit pub_static_attribs_classSamplePointContainer"><td class="mdescLeft">&#160;</td><td class="mdescRight">File to record sequence of visited sample points in. Used for debugging/ illustration of search procedures.  <a href="classSamplePointContainer.html#ad08a1cb658b3783bcf7d8491e90965f3">More...</a><br /></td></tr>
 <tr class="separator:ad08a1cb658b3783bcf7d8491e90965f3 inherit pub_static_attribs_classSamplePointContainer"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a1098cdf602fabc6ceec41bb7ea73805f inherit pub_static_attribs_classSamplePointContainer"><td class="memItemLeft" align="right" valign="top">static bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classSamplePointContainer.html#a1098cdf602fabc6ceec41bb7ea73805f">Always_fail_elemental_locate_zeta</a> = false</td></tr>
 <tr class="memdesc:a1098cdf602fabc6ceec41bb7ea73805f inherit pub_static_attribs_classSamplePointContainer"><td class="mdescLeft">&#160;</td><td class="mdescRight">Boolean flag to make to make locate zeta fail. Used for debugging/ illustration of search procedures.  <a href="classSamplePointContainer.html#a1098cdf602fabc6ceec41bb7ea73805f">More...</a><br /></td></tr>
@@ -351,6 +351,7 @@ Private Member Functions</h2></td></tr>
 <tr class="memdesc:a092b4de479924b7c13800cdae75ad5db"><td class="mdescLeft">&#160;</td><td class="mdescRight">Fill the bin array with sample points from FiniteElements stored in mesh.  <a href="classNonRefineableBinArray.html#a092b4de479924b7c13800cdae75ad5db">More...</a><br /></td></tr>
 <tr class="separator:a092b4de479924b7c13800cdae75ad5db"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a09b3807d836620c55ad7febdfc81bd93"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classNonRefineableBinArray.html#a09b3807d836620c55ad7febdfc81bd93">create_bins_of_objects</a> ()</td></tr>
+<tr class="memdesc:a09b3807d836620c55ad7febdfc81bd93"><td class="mdescLeft">&#160;</td><td class="mdescRight">Initialise and populate the "bin" structure for locating coordinates and increment counter for total number of bins in active use by any MeshAsGeomObject)  <a href="classNonRefineableBinArray.html#a09b3807d836620c55ad7febdfc81bd93">More...</a><br /></td></tr>
 <tr class="separator:a09b3807d836620c55ad7febdfc81bd93"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:acf0ff698280d40cf44a637d7df31cf90"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classNonRefineableBinArray.html#acf0ff698280d40cf44a637d7df31cf90">flush_bins_of_objects</a> ()</td></tr>
 <tr class="memdesc:acf0ff698280d40cf44a637d7df31cf90"><td class="mdescLeft">&#160;</td><td class="mdescRight">Flush the storage for the binning method (and decrement counter for total number of bins in active use by any MeshAsGeomObject)  <a href="classNonRefineableBinArray.html#acf0ff698280d40cf44a637d7df31cf90">More...</a><br /></td></tr>
@@ -389,6 +390,7 @@ Additional Inherited Members</h2></td></tr>
 <tr class="memdesc:a9f044cf51ea29b0a1a85e029defd81d5 inherit pro_attribs_classSamplePointContainer"><td class="mdescLeft">&#160;</td><td class="mdescRight">Pointer to mesh from whose FiniteElements sample points are created.  <a href="classSamplePointContainer.html#a9f044cf51ea29b0a1a85e029defd81d5">More...</a><br /></td></tr>
 <tr class="separator:a9f044cf51ea29b0a1a85e029defd81d5 inherit pro_attribs_classSamplePointContainer"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a1607ff8abb3f3b6364bc169a6ea4a79c inherit pro_attribs_classSamplePointContainer"><td class="memItemLeft" align="right" valign="top">Vector&lt; std::pair&lt; double, double &gt; &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classSamplePointContainer.html#a1607ff8abb3f3b6364bc169a6ea4a79c">Min_and_max_coordinates</a></td></tr>
+<tr class="memdesc:a1607ff8abb3f3b6364bc169a6ea4a79c inherit pro_attribs_classSamplePointContainer"><td class="mdescLeft">&#160;</td><td class="mdescRight">Vector of pairs of doubles for min and maximum coordinates. Call: Min_and_max_coordinates[j] gives me the pair of min (first) and max. (second) coordinates in the j-th coordinate direction.  <a href="classSamplePointContainer.html#a1607ff8abb3f3b6364bc169a6ea4a79c">More...</a><br /></td></tr>
 <tr class="separator:a1607ff8abb3f3b6364bc169a6ea4a79c inherit pro_attribs_classSamplePointContainer"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a8d7215f8363d751343efe60a1b051e6a inherit pro_attribs_classSamplePointContainer"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classSamplePointContainer.html#a8d7215f8363d751343efe60a1b051e6a">Use_eulerian_coordinates_during_setup</a></td></tr>
 <tr class="memdesc:a8d7215f8363d751343efe60a1b051e6a inherit pro_attribs_classSamplePointContainer"><td class="mdescLeft">&#160;</td><td class="mdescRight">Use Eulerian coordinates (i.e. interpolated_x) rather than zeta itself (i.e. interpolated_zeta) to identify point.  <a href="classSamplePointContainer.html#a8d7215f8363d751343efe60a1b051e6a">More...</a><br /></td></tr>
@@ -548,7 +550,8 @@ Additional Inherited Members</h2></td></tr>
   </tr>
 </table>
 </div><div class="memdoc">
-<p >Initialise and populate the "bin" structure for locating coordinates and increment counter for total number of bins in active use by any MeshAsGeomObject) </p>
+
+<p>Initialise and populate the "bin" structure for locating coordinates and increment counter for total number of bins in active use by any MeshAsGeomObject) </p>
 
 </div>
 </div>
@@ -669,11 +672,10 @@ Additional Inherited Members</h2></td></tr>
 </div><div class="memdoc">
 
 <p>Fill bin by diffusion, populating each empty bin with the same content as the first non-empty bin found during a spiral-based search up to the specified "radius" (default 1) </p>
-<p >Fill bin by diffusion, populating each empty bin with the same content as the first non-empty bin found during a spiral-based search up to the specified "radius" (default 1) </p>
 
 <p class="definition">Definition at line <a class="el" href="sample__point__container_8cc_source.html#l02667">2667</a> of file <a class="el" href="sample__point__container_8cc_source.html">sample_point_container.cc</a>.</p>
 
-<p class="reference">References <a class="el" href="sample__point__container_8h_source.html#l01012">Bin_object_coord_pairs</a>, <a class="el" href="sample__point__container_8cc_source.html#l01350">BinArray::get_neighbouring_bins_helper()</a>, <a class="el" href="cfortran_8h_source.html#l00603">i</a>, <a class="el" href="sample__point__container_8cc_source.html#l03057">min_distance()</a>, <a class="el" href="sample__point__container_8h_source.html#l00845">nbin()</a>, and <a class="el" href="cfortran_8h_source.html#l00568">s</a>.</p>
+<p class="reference">References <a class="el" href="sample__point__container_8h_source.html#l01012">Bin_object_coord_pairs</a>, <a class="el" href="sample__point__container_8cc_source.html#l01350">BinArray::get_neighbouring_bins_helper()</a>, <a class="el" href="cfortran_8h_source.html#l00603">i</a>, <a class="el" href="sample__point__container_8cc_source.html#l03057">min_distance()</a>, <a class="el" href="sample__point__container_8h_source.html#l00845">nbin()</a>, <a class="el" href="cfortran_8h_source.html#l00568">s</a>, and <a class="el" href="pseudo__buckling__ring_8h_source.html#l00049">oomph::x</a>.</p>
 
 <p class="reference">Referenced by <a class="el" href="triangle__mesh_8template_8cc_source.html#l29595">oomph::RefineableTriangleMesh&lt; ELEMENT &gt;::adapt()</a>.</p>
 
@@ -772,7 +774,6 @@ Additional Inherited Members</h2></td></tr>
 </div><div class="memdoc">
 
 <p>Get the number of the bin containing the specified coordinate. Bin number is negative if the coordinate is outside the bin structure. </p>
-<p >Get the number of the bin containing the specified coordinate. Bin number is negative if the coordinate is outside the bin structure. </p>
 
 <p class="definition">Definition at line <a class="el" href="sample__point__container_8cc_source.html#l02794">2794</a> of file <a class="el" href="sample__point__container_8cc_source.html">sample_point_container.cc</a>.</p>
 
@@ -845,7 +846,6 @@ Additional Inherited Members</h2></td></tr>
 </div><div class="memdoc">
 
 <p>Get vector of vectors containing the coordinates of the vertices of the i_bin-th bin: bin_vertex[j][i] contains the i-th coordinate of the j-th vertex. </p>
-<p >Get vector of vectors containing the coordinates of the vertices of the i_bin-th bin: bin_vertex[j][i] contains the i-th coordinate of the j-th vertex. </p>
 
 <p class="definition">Definition at line <a class="el" href="sample__point__container_8cc_source.html#l02912">2912</a> of file <a class="el" href="sample__point__container_8cc_source.html">sample_point_container.cc</a>.</p>
 
@@ -1018,7 +1018,6 @@ Additional Inherited Members</h2></td></tr>
 </div><div class="memdoc">
 
 <p>Compute the minimum distance of any vertex in the specified bin from the specified Lagrangian coordinate zeta. </p>
-<p >Compute the minimum distance of any vertex in the specified bin from the specified Lagrangian coordinate zeta. </p>
 
 <p class="definition">Definition at line <a class="el" href="sample__point__container_8cc_source.html#l03057">3057</a> of file <a class="el" href="sample__point__container_8cc_source.html">sample_point_container.cc</a>.</p>
 
@@ -1700,7 +1699,7 @@ Additional Inherited Members</h2></td></tr>
     <footer>
       <div class="container">
         <div class="text-muted" style="float:right;">Generated by <a href="http://www.doxygen.org/index.html">
-          <img style="height:18px;" class="footer-img" src="doxygen.png" alt="doxygen"></a> on Wed Oct 13 2021 08:44:42
+          <img style="height:18px;" class="footer-img" src="doxygen.png" alt="doxygen"></a> on Thu Oct 21 2021 17:33:12
         </div>
       </div>
     </footer>

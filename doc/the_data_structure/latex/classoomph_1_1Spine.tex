@@ -2,6 +2,11 @@
 \label{classoomph_1_1Spine}\index{oomph::Spine@{oomph::Spine}}
 
 
+Spines are used for algebraic node update operations in free-\/surface fluid problems\+: They form the back-\/bones along which nodes in a a free-\/surface mesh are located. Typically, the free surface is located at the \char`\"{}end\char`\"{} of the spine; the nodes in the interior of the mesh are located at fixed fractions along the spine. The key \mbox{\hyperlink{classoomph_1_1Data}{Data}} member of the \mbox{\hyperlink{classoomph_1_1Spine}{Spine}} object is its \char`\"{}height\char`\"{} -- usually an unknown in the problem -- which is used by the \mbox{\hyperlink{classoomph_1_1SpineNode}{Spine\+Node}}\textquotesingle{}s node update function to update the \mbox{\hyperlink{classoomph_1_1SpineNode}{Spine\+Node}}\textquotesingle{}s position.  
+
+
+
+
 {\ttfamily \#include $<$spines.\+h$>$}
 
 \doxysubsection*{Public Member Functions}
@@ -69,7 +74,7 @@ const double \& \mbox{\hyperlink{classoomph_1_1Spine_a19f58f927cb0239afd73642655
 
 
 \doxysubsection{Detailed Description}
-Spines are used for algebraic node update operations in free-\/surface fluid problems\+: They form the back-\/bones along which nodes in a a free-\/surface mesh are located. Typically, the free surface is located at the \char`\"{}end\char`\"{} of the spine; the nodes in the interior of the mesh are located at fixed fractions along the spine. The key \mbox{\hyperlink{classoomph_1_1Data}{Data}} member of the \mbox{\hyperlink{classoomph_1_1Spine}{Spine}} object is its \char`\"{}height\char`\"{} -- usually an unknown in the problem -- which is used by the \mbox{\hyperlink{classoomph_1_1SpineNode}{Spine\+Node}}\textquotesingle{}s node update function to update the \mbox{\hyperlink{classoomph_1_1SpineNode}{Spine\+Node}}\textquotesingle{}s position.
+Spines are used for algebraic node update operations in free-\/surface fluid problems\+: They form the back-\/bones along which nodes in a a free-\/surface mesh are located. Typically, the free surface is located at the \char`\"{}end\char`\"{} of the spine; the nodes in the interior of the mesh are located at fixed fractions along the spine. The key \mbox{\hyperlink{classoomph_1_1Data}{Data}} member of the \mbox{\hyperlink{classoomph_1_1Spine}{Spine}} object is its \char`\"{}height\char`\"{} -- usually an unknown in the problem -- which is used by the \mbox{\hyperlink{classoomph_1_1SpineNode}{Spine\+Node}}\textquotesingle{}s node update function to update the \mbox{\hyperlink{classoomph_1_1SpineNode}{Spine\+Node}}\textquotesingle{}s position. 
 
 In more complex problems (such as the case where a fluid layer is deposited on an elastic body), the node update function can depend on additional information, such as the \mbox{\hyperlink{classoomph_1_1GeomObject}{Geom\+Object}} representation of the elastic body, and additional \mbox{\hyperlink{classoomph_1_1Data}{Data}} objects wich specify the position on the \mbox{\hyperlink{classoomph_1_1GeomObject}{Geom\+Object}} from which the \mbox{\hyperlink{classoomph_1_1Spine}{Spine}} emanates. The \mbox{\hyperlink{classoomph_1_1Spine}{Spine}} class therefore provides storage for pointers to Geom\+Objects and storage for any additional geometric \mbox{\hyperlink{classoomph_1_1Data}{Data}} that may be required during node update operations. 
 

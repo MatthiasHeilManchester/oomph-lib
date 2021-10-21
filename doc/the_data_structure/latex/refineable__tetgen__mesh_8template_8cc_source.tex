@@ -45,7 +45,7 @@
 \DoxyCodeLine{\Hypertarget{refineable__tetgen__mesh_8template_8cc_source_l00041}00041 }
 \DoxyCodeLine{\Hypertarget{refineable__tetgen__mesh_8template_8cc_source_l00042}00042 \textcolor{keyword}{namespace }\mbox{\hyperlink{namespaceoomph}{oomph}}}
 \DoxyCodeLine{\Hypertarget{refineable__tetgen__mesh_8template_8cc_source_l00043}00043 \{\textcolor{comment}{}}
-\DoxyCodeLine{\Hypertarget{refineable__tetgen__mesh_8template_8cc_source_l00044}00044 \textcolor{comment}{  /// \(\backslash\)short Helper function that updates the input faceted surface}}
+\DoxyCodeLine{\Hypertarget{refineable__tetgen__mesh_8template_8cc_source_l00044}00044 \textcolor{comment}{  ///  Helper function that updates the input faceted surface}}
 \DoxyCodeLine{\Hypertarget{refineable__tetgen__mesh_8template_8cc_source_l00045}00045 \textcolor{comment}{  /// by using the flattened elements from FaceMesh(es) that are}}
 \DoxyCodeLine{\Hypertarget{refineable__tetgen__mesh_8template_8cc_source_l00046}00046 \textcolor{comment}{  /// constructed for the boundaries associated with the segments of the}}
 \DoxyCodeLine{\Hypertarget{refineable__tetgen__mesh_8template_8cc_source_l00047}00047 \textcolor{comment}{  /// polygon.}}
@@ -64,12 +64,12 @@
 \DoxyCodeLine{\Hypertarget{refineable__tetgen__mesh_8template_8cc_source_l00060}00060 }
 \DoxyCodeLine{\Hypertarget{refineable__tetgen__mesh_8template_8cc_source_l00061}00061     \textcolor{comment}{// Loop over the number of old facets}}
 \DoxyCodeLine{\Hypertarget{refineable__tetgen__mesh_8template_8cc_source_l00062}00062     \textcolor{keywordtype}{unsigned} n\_old\_facet = faceted\_surface\_pt-\/>\mbox{\hyperlink{classoomph_1_1TetMeshFacetedSurface_a6036f2a5e11bea9d72f9bba9a89faec7}{nfacet}}();}
-\DoxyCodeLine{\Hypertarget{refineable__tetgen__mesh_8template_8cc_source_l00063}00063     \textcolor{keywordflow}{for} (\textcolor{keywordtype}{unsigned} f = 0; f < n\_old\_facet; f++)}
+\DoxyCodeLine{\Hypertarget{refineable__tetgen__mesh_8template_8cc_source_l00063}00063     \textcolor{keywordflow}{for} (\textcolor{keywordtype}{unsigned} \mbox{\hyperlink{namespaceoomph_ad835af913df4cbdc5648440f91b794ab}{f}} = 0; \mbox{\hyperlink{namespaceoomph_ad835af913df4cbdc5648440f91b794ab}{f}} < n\_old\_facet; \mbox{\hyperlink{namespaceoomph_ad835af913df4cbdc5648440f91b794ab}{f}}++)}
 \DoxyCodeLine{\Hypertarget{refineable__tetgen__mesh_8template_8cc_source_l00064}00064     \{}
 \DoxyCodeLine{\Hypertarget{refineable__tetgen__mesh_8template_8cc_source_l00065}00065       \textcolor{comment}{// Get the boundary id of the facet. Need to subtract one,}}
 \DoxyCodeLine{\Hypertarget{refineable__tetgen__mesh_8template_8cc_source_l00066}00066       \textcolor{comment}{// which is confusing now I think about it.}}
 \DoxyCodeLine{\Hypertarget{refineable__tetgen__mesh_8template_8cc_source_l00067}00067       \textcolor{comment}{// ALH: Should fix this.}}
-\DoxyCodeLine{\Hypertarget{refineable__tetgen__mesh_8template_8cc_source_l00068}00068       \textcolor{keywordtype}{unsigned} bound = faceted\_surface\_pt-\/>\mbox{\hyperlink{classoomph_1_1TetMeshFacetedSurface_a86b099447be23301fdfd4abdeee75560}{one\_based\_facet\_boundary\_id}}(f) -\/ 1;}
+\DoxyCodeLine{\Hypertarget{refineable__tetgen__mesh_8template_8cc_source_l00068}00068       \textcolor{keywordtype}{unsigned} bound = faceted\_surface\_pt-\/>\mbox{\hyperlink{classoomph_1_1TetMeshFacetedSurface_a86b099447be23301fdfd4abdeee75560}{one\_based\_facet\_boundary\_id}}(\mbox{\hyperlink{namespaceoomph_ad835af913df4cbdc5648440f91b794ab}{f}}) -\/ 1;}
 \DoxyCodeLine{\Hypertarget{refineable__tetgen__mesh_8template_8cc_source_l00069}00069 }
 \DoxyCodeLine{\Hypertarget{refineable__tetgen__mesh_8template_8cc_source_l00070}00070       \textcolor{comment}{// Create a face mesh adjacent to the fluid mesh's bound-\/th boundary.}}
 \DoxyCodeLine{\Hypertarget{refineable__tetgen__mesh_8template_8cc_source_l00071}00071       \textcolor{comment}{// The face mesh consists of FaceElements that may also be}}
@@ -112,7 +112,7 @@
 \DoxyCodeLine{\Hypertarget{refineable__tetgen__mesh_8template_8cc_source_l00108}00108         \textcolor{keywordflow}{for} (\textcolor{keywordtype}{unsigned} n = 0; n < n\_vertex\_node; n++)}
 \DoxyCodeLine{\Hypertarget{refineable__tetgen__mesh_8template_8cc_source_l00109}00109         \{}
 \DoxyCodeLine{\Hypertarget{refineable__tetgen__mesh_8template_8cc_source_l00110}00110           \textcolor{comment}{// Cache the pointer to the node}}
-\DoxyCodeLine{\Hypertarget{refineable__tetgen__mesh_8template_8cc_source_l00111}00111           \mbox{\hyperlink{classoomph_1_1Node}{Node}}* \textcolor{keyword}{const} nod\_pt = elem\_pt-\/>\mbox{\hyperlink{classoomph_1_1FiniteElement_a9addfe893ab8205619963aa96204cdc4}{node\_pt}}(n);}
+\DoxyCodeLine{\Hypertarget{refineable__tetgen__mesh_8template_8cc_source_l00111}00111           Node* \textcolor{keyword}{const} nod\_pt = elem\_pt-\/>\mbox{\hyperlink{classoomph_1_1FiniteElement_a9addfe893ab8205619963aa96204cdc4}{node\_pt}}(n);}
 \DoxyCodeLine{\Hypertarget{refineable__tetgen__mesh_8template_8cc_source_l00112}00112           \textcolor{comment}{// If the vertex node is in the list return the number}}
 \DoxyCodeLine{\Hypertarget{refineable__tetgen__mesh_8template_8cc_source_l00113}00113           \textcolor{keywordtype}{unsigned} counter = 0;}
 \DoxyCodeLine{\Hypertarget{refineable__tetgen__mesh_8template_8cc_source_l00114}00114           \textcolor{keywordtype}{bool} found\_it = \textcolor{keyword}{false};}
@@ -186,14 +186,14 @@
 \DoxyCodeLine{\Hypertarget{refineable__tetgen__mesh_8template_8cc_source_l00182}00182       ++count;}
 \DoxyCodeLine{\Hypertarget{refineable__tetgen__mesh_8template_8cc_source_l00183}00183     \}}
 \DoxyCodeLine{\Hypertarget{refineable__tetgen__mesh_8template_8cc_source_l00184}00184 }
-\DoxyCodeLine{\Hypertarget{refineable__tetgen__mesh_8template_8cc_source_l00185}00185     \textcolor{keywordflow}{for} (\textcolor{keywordtype}{unsigned} f = 0; f < n\_facet; f++)}
+\DoxyCodeLine{\Hypertarget{refineable__tetgen__mesh_8template_8cc_source_l00185}00185     \textcolor{keywordflow}{for} (\textcolor{keywordtype}{unsigned} \mbox{\hyperlink{namespaceoomph_ad835af913df4cbdc5648440f91b794ab}{f}} = 0; \mbox{\hyperlink{namespaceoomph_ad835af913df4cbdc5648440f91b794ab}{f}} < n\_facet; \mbox{\hyperlink{namespaceoomph_ad835af913df4cbdc5648440f91b794ab}{f}}++)}
 \DoxyCodeLine{\Hypertarget{refineable__tetgen__mesh_8template_8cc_source_l00186}00186     \{}
 \DoxyCodeLine{\Hypertarget{refineable__tetgen__mesh_8template_8cc_source_l00187}00187       \textcolor{keywordflow}{for} (\textcolor{keywordtype}{unsigned} \mbox{\hyperlink{cfortran_8h_adb50e893b86b3e55e751a42eab3cba82}{i}} = 0; \mbox{\hyperlink{cfortran_8h_adb50e893b86b3e55e751a42eab3cba82}{i}} < 3; \mbox{\hyperlink{cfortran_8h_adb50e893b86b3e55e751a42eab3cba82}{i}}++)}
 \DoxyCodeLine{\Hypertarget{refineable__tetgen__mesh_8template_8cc_source_l00188}00188       \{}
-\DoxyCodeLine{\Hypertarget{refineable__tetgen__mesh_8template_8cc_source_l00189}00189         \mbox{\hyperlink{namespaceoomph_aec474227917784dc0a255faf289cfc16}{oomph\_info}} << new\_facet[f][\mbox{\hyperlink{cfortran_8h_adb50e893b86b3e55e751a42eab3cba82}{i}}] << \textcolor{stringliteral}{"{} "{}};}
+\DoxyCodeLine{\Hypertarget{refineable__tetgen__mesh_8template_8cc_source_l00189}00189         \mbox{\hyperlink{namespaceoomph_aec474227917784dc0a255faf289cfc16}{oomph\_info}} << new\_facet[\mbox{\hyperlink{namespaceoomph_ad835af913df4cbdc5648440f91b794ab}{f}}][\mbox{\hyperlink{cfortran_8h_adb50e893b86b3e55e751a42eab3cba82}{i}}] << \textcolor{stringliteral}{"{} "{}};}
 \DoxyCodeLine{\Hypertarget{refineable__tetgen__mesh_8template_8cc_source_l00190}00190       \}}
 \DoxyCodeLine{\Hypertarget{refineable__tetgen__mesh_8template_8cc_source_l00191}00191       \mbox{\hyperlink{namespaceoomph_aec474227917784dc0a255faf289cfc16}{oomph\_info}} << \textcolor{stringliteral}{"{} : "{}};}
-\DoxyCodeLine{\Hypertarget{refineable__tetgen__mesh_8template_8cc_source_l00192}00192       \mbox{\hyperlink{namespaceoomph_aec474227917784dc0a255faf289cfc16}{oomph\_info}} << new\_facet\_boundary\_id[f] << \textcolor{stringliteral}{"{}\(\backslash\)n"{}};}
+\DoxyCodeLine{\Hypertarget{refineable__tetgen__mesh_8template_8cc_source_l00192}00192       \mbox{\hyperlink{namespaceoomph_aec474227917784dc0a255faf289cfc16}{oomph\_info}} << new\_facet\_boundary\_id[\mbox{\hyperlink{namespaceoomph_ad835af913df4cbdc5648440f91b794ab}{f}}] << \textcolor{stringliteral}{"{}\(\backslash\)n"{}};}
 \DoxyCodeLine{\Hypertarget{refineable__tetgen__mesh_8template_8cc_source_l00193}00193     \}}
 \DoxyCodeLine{\Hypertarget{refineable__tetgen__mesh_8template_8cc_source_l00194}00194 }
 \DoxyCodeLine{\Hypertarget{refineable__tetgen__mesh_8template_8cc_source_l00195}00195     \textcolor{comment}{// Now just create the new boundary}}
@@ -225,7 +225,7 @@
 \DoxyCodeLine{\Hypertarget{refineable__tetgen__mesh_8template_8cc_source_l00221}00221   \}}
 \DoxyCodeLine{\Hypertarget{refineable__tetgen__mesh_8template_8cc_source_l00222}00222 }
 \DoxyCodeLine{\Hypertarget{refineable__tetgen__mesh_8template_8cc_source_l00223}00223 \textcolor{comment}{}}
-\DoxyCodeLine{\Hypertarget{refineable__tetgen__mesh_8template_8cc_source_l00224}00224 \textcolor{comment}{  /// \(\backslash\)short Generate a new faceted representation of the inner hole}}
+\DoxyCodeLine{\Hypertarget{refineable__tetgen__mesh_8template_8cc_source_l00224}00224 \textcolor{comment}{  ///  Generate a new faceted representation of the inner hole}}
 \DoxyCodeLine{\Hypertarget{refineable__tetgen__mesh_8template_8cc_source_l00225}00225 \textcolor{comment}{  /// boundaries}}
 \DoxyCodeLine{\Hypertarget{refineable__tetgen__mesh_8template_8cc_source_l00226}00226 \textcolor{comment}{}  \textcolor{keyword}{template}<\textcolor{keyword}{class} ELEMENT>}
 \DoxyCodeLine{\Hypertarget{refineable__tetgen__mesh_8template_8cc_source_l00227}\mbox{\hyperlink{classoomph_1_1RefineableTetgenMesh_a001c3ff513cabdfbd67c65bd97ebb768}{00227}}   \textcolor{keywordtype}{void} \mbox{\hyperlink{classoomph_1_1RefineableTetgenMesh_a001c3ff513cabdfbd67c65bd97ebb768}{RefineableTetgenMesh<ELEMENT>::surface\_remesh\_for\_inner\_hole\_boundaries}}()}
@@ -245,7 +245,7 @@
 \DoxyCodeLine{\Hypertarget{refineable__tetgen__mesh_8template_8cc_source_l00241}00241     \}}
 \DoxyCodeLine{\Hypertarget{refineable__tetgen__mesh_8template_8cc_source_l00242}00242   \}}
 \DoxyCodeLine{\Hypertarget{refineable__tetgen__mesh_8template_8cc_source_l00243}00243 \textcolor{comment}{}}
-\DoxyCodeLine{\Hypertarget{refineable__tetgen__mesh_8template_8cc_source_l00244}00244 \textcolor{comment}{  /// \(\backslash\)short Snap the boundary nodes onto any curvilinear boundaries}}
+\DoxyCodeLine{\Hypertarget{refineable__tetgen__mesh_8template_8cc_source_l00244}00244 \textcolor{comment}{  ///  Snap the boundary nodes onto any curvilinear boundaries}}
 \DoxyCodeLine{\Hypertarget{refineable__tetgen__mesh_8template_8cc_source_l00245}00245 \textcolor{comment}{}  \textcolor{keyword}{template}<\textcolor{keyword}{class} ELEMENT>}
 \DoxyCodeLine{\Hypertarget{refineable__tetgen__mesh_8template_8cc_source_l00246}\mbox{\hyperlink{classoomph_1_1RefineableTetgenMesh_acf9eea5998765dc36b96a2050db3e1e3}{00246}}   \textcolor{keywordtype}{void} \mbox{\hyperlink{classoomph_1_1RefineableTetgenMesh_acf9eea5998765dc36b96a2050db3e1e3}{RefineableTetgenMesh<ELEMENT>::snap\_nodes\_onto\_boundary}}(}
 \DoxyCodeLine{\Hypertarget{refineable__tetgen__mesh_8template_8cc_source_l00247}00247     \mbox{\hyperlink{classoomph_1_1RefineableTetgenMesh}{RefineableTetgenMesh<ELEMENT>}}*\& new\_mesh\_pt, \textcolor{keyword}{const} \textcolor{keywordtype}{unsigned}\& b)}
@@ -310,9 +310,9 @@
 \DoxyCodeLine{\Hypertarget{refineable__tetgen__mesh_8template_8cc_source_l00306}00306       \textcolor{keywordtype}{unsigned} n\_tmp\_node = this-\/>nboundary\_node(b);}
 \DoxyCodeLine{\Hypertarget{refineable__tetgen__mesh_8template_8cc_source_l00307}00307       \textcolor{keywordflow}{for} (\textcolor{keywordtype}{unsigned} n = 0; n < n\_tmp\_node; ++n)}
 \DoxyCodeLine{\Hypertarget{refineable__tetgen__mesh_8template_8cc_source_l00308}00308       \{}
-\DoxyCodeLine{\Hypertarget{refineable__tetgen__mesh_8template_8cc_source_l00309}00309         \mbox{\hyperlink{classoomph_1_1Node}{Node}}* \textcolor{keyword}{const} nod\_pt = this-\/>boundary\_node\_pt(b, n);}
-\DoxyCodeLine{\Hypertarget{refineable__tetgen__mesh_8template_8cc_source_l00310}00310         nod\_pt-\/>\mbox{\hyperlink{classoomph_1_1Node_abc8b7dc78cc1d0aab34eeaf856e21ea8}{get\_coordinates\_on\_boundary}}(b, b\_coo);}
-\DoxyCodeLine{\Hypertarget{refineable__tetgen__mesh_8template_8cc_source_l00311}00311         std::cout << nod\_pt-\/>\mbox{\hyperlink{classoomph_1_1Node_ab76b4773a65b349f143539e07b6e15e2}{x}}(0) << \textcolor{stringliteral}{"{} "{}} << nod\_pt-\/>\mbox{\hyperlink{classoomph_1_1Node_ab76b4773a65b349f143539e07b6e15e2}{x}}(1) << \textcolor{stringliteral}{"{} "{}} << nod\_pt-\/>\mbox{\hyperlink{classoomph_1_1Node_ab76b4773a65b349f143539e07b6e15e2}{x}}(2)}
+\DoxyCodeLine{\Hypertarget{refineable__tetgen__mesh_8template_8cc_source_l00309}00309         Node* \textcolor{keyword}{const} nod\_pt = this-\/>boundary\_node\_pt(b, n);}
+\DoxyCodeLine{\Hypertarget{refineable__tetgen__mesh_8template_8cc_source_l00310}00310         nod\_pt-\/>get\_coordinates\_on\_boundary(b, b\_coo);}
+\DoxyCodeLine{\Hypertarget{refineable__tetgen__mesh_8template_8cc_source_l00311}00311         std::cout << nod\_pt-\/>x(0) << \textcolor{stringliteral}{"{} "{}} << nod\_pt-\/>x(1) << \textcolor{stringliteral}{"{} "{}} << nod\_pt-\/>x(2)}
 \DoxyCodeLine{\Hypertarget{refineable__tetgen__mesh_8template_8cc_source_l00312}00312                   << \textcolor{stringliteral}{"{} "{}} << b\_coo[0] << \textcolor{stringliteral}{"{} "{}} << b\_coo[1] << \textcolor{stringliteral}{"{}\(\backslash\)n"{}};}
 \DoxyCodeLine{\Hypertarget{refineable__tetgen__mesh_8template_8cc_source_l00313}00313       \}}
 \DoxyCodeLine{\Hypertarget{refineable__tetgen__mesh_8template_8cc_source_l00314}00314 }
@@ -321,9 +321,9 @@
 \DoxyCodeLine{\Hypertarget{refineable__tetgen__mesh_8template_8cc_source_l00317}00317       n\_tmp\_node = new\_mesh\_pt-\/>\mbox{\hyperlink{classoomph_1_1Mesh_a034677ceb48c67769acb83f304c84f7d}{nboundary\_node}}(b);}
 \DoxyCodeLine{\Hypertarget{refineable__tetgen__mesh_8template_8cc_source_l00318}00318       \textcolor{keywordflow}{for} (\textcolor{keywordtype}{unsigned} n = 0; n < n\_tmp\_node; ++n)}
 \DoxyCodeLine{\Hypertarget{refineable__tetgen__mesh_8template_8cc_source_l00319}00319       \{}
-\DoxyCodeLine{\Hypertarget{refineable__tetgen__mesh_8template_8cc_source_l00320}00320         \mbox{\hyperlink{classoomph_1_1Node}{Node}}* \textcolor{keyword}{const} nod\_pt = new\_mesh\_pt-\/>\mbox{\hyperlink{classoomph_1_1Mesh_afc4d1204afc31b9ec88fe82d8fc01625}{boundary\_node\_pt}}(b, n);}
-\DoxyCodeLine{\Hypertarget{refineable__tetgen__mesh_8template_8cc_source_l00321}00321         nod\_pt-\/>\mbox{\hyperlink{classoomph_1_1Node_abc8b7dc78cc1d0aab34eeaf856e21ea8}{get\_coordinates\_on\_boundary}}(b, b\_coo);}
-\DoxyCodeLine{\Hypertarget{refineable__tetgen__mesh_8template_8cc_source_l00322}00322         std::cout << nod\_pt-\/>\mbox{\hyperlink{classoomph_1_1Node_ab76b4773a65b349f143539e07b6e15e2}{x}}(0) << \textcolor{stringliteral}{"{} "{}} << nod\_pt-\/>\mbox{\hyperlink{classoomph_1_1Node_ab76b4773a65b349f143539e07b6e15e2}{x}}(1) << \textcolor{stringliteral}{"{} "{}} << nod\_pt-\/>\mbox{\hyperlink{classoomph_1_1Node_ab76b4773a65b349f143539e07b6e15e2}{x}}(2)}
+\DoxyCodeLine{\Hypertarget{refineable__tetgen__mesh_8template_8cc_source_l00320}00320         Node* \textcolor{keyword}{const} nod\_pt = new\_mesh\_pt-\/>\mbox{\hyperlink{classoomph_1_1Mesh_afc4d1204afc31b9ec88fe82d8fc01625}{boundary\_node\_pt}}(b, n);}
+\DoxyCodeLine{\Hypertarget{refineable__tetgen__mesh_8template_8cc_source_l00321}00321         nod\_pt-\/>get\_coordinates\_on\_boundary(b, b\_coo);}
+\DoxyCodeLine{\Hypertarget{refineable__tetgen__mesh_8template_8cc_source_l00322}00322         std::cout << nod\_pt-\/>x(0) << \textcolor{stringliteral}{"{} "{}} << nod\_pt-\/>x(1) << \textcolor{stringliteral}{"{} "{}} << nod\_pt-\/>x(2)}
 \DoxyCodeLine{\Hypertarget{refineable__tetgen__mesh_8template_8cc_source_l00323}00323                   << \textcolor{stringliteral}{"{} "{}} << b\_coo[0] << \textcolor{stringliteral}{"{} "{}} << b\_coo[1] << \textcolor{stringliteral}{"{}\(\backslash\)n"{}};}
 \DoxyCodeLine{\Hypertarget{refineable__tetgen__mesh_8template_8cc_source_l00324}00324       \}}
 \DoxyCodeLine{\Hypertarget{refineable__tetgen__mesh_8template_8cc_source_l00325}00325     \}}
@@ -340,14 +340,14 @@
 \DoxyCodeLine{\Hypertarget{refineable__tetgen__mesh_8template_8cc_source_l00336}00336     \textcolor{keywordflow}{for} (\textcolor{keywordtype}{unsigned} n = 0; n < n\_new\_boundary\_node; n++)}
 \DoxyCodeLine{\Hypertarget{refineable__tetgen__mesh_8template_8cc_source_l00337}00337     \{}
 \DoxyCodeLine{\Hypertarget{refineable__tetgen__mesh_8template_8cc_source_l00338}00338       \textcolor{comment}{// Get the boundary coordinate of all new nodes}}
-\DoxyCodeLine{\Hypertarget{refineable__tetgen__mesh_8template_8cc_source_l00339}00339       \mbox{\hyperlink{classoomph_1_1Node}{Node}}* \textcolor{keyword}{const} nod\_pt = new\_mesh\_pt-\/>\mbox{\hyperlink{classoomph_1_1Mesh_afc4d1204afc31b9ec88fe82d8fc01625}{boundary\_node\_pt}}(b, n);}
-\DoxyCodeLine{\Hypertarget{refineable__tetgen__mesh_8template_8cc_source_l00340}00340       nod\_pt-\/>\mbox{\hyperlink{classoomph_1_1Node_abc8b7dc78cc1d0aab34eeaf856e21ea8}{get\_coordinates\_on\_boundary}}(b, b\_coord);}
+\DoxyCodeLine{\Hypertarget{refineable__tetgen__mesh_8template_8cc_source_l00339}00339       Node* \textcolor{keyword}{const} nod\_pt = new\_mesh\_pt-\/>\mbox{\hyperlink{classoomph_1_1Mesh_afc4d1204afc31b9ec88fe82d8fc01625}{boundary\_node\_pt}}(b, n);}
+\DoxyCodeLine{\Hypertarget{refineable__tetgen__mesh_8template_8cc_source_l00340}00340       nod\_pt-\/>get\_coordinates\_on\_boundary(b, b\_coord);}
 \DoxyCodeLine{\Hypertarget{refineable__tetgen__mesh_8template_8cc_source_l00341}00341       \textcolor{comment}{// Let's find boundary coordinates of the new node}}
 \DoxyCodeLine{\Hypertarget{refineable__tetgen__mesh_8template_8cc_source_l00342}00342       mesh\_geom\_obj\_pt-\/>\mbox{\hyperlink{classoomph_1_1MeshAsGeomObject_ad071793f5cee36eef0e56dbeeebf4c24}{position}}(b\_coord, new\_x);}
 \DoxyCodeLine{\Hypertarget{refineable__tetgen__mesh_8template_8cc_source_l00343}00343       \textcolor{comment}{// Now snap to the boundary}}
 \DoxyCodeLine{\Hypertarget{refineable__tetgen__mesh_8template_8cc_source_l00344}00344       \textcolor{keywordflow}{for} (\textcolor{keywordtype}{unsigned} \mbox{\hyperlink{cfortran_8h_adb50e893b86b3e55e751a42eab3cba82}{i}} = 0; \mbox{\hyperlink{cfortran_8h_adb50e893b86b3e55e751a42eab3cba82}{i}} < 3; \mbox{\hyperlink{cfortran_8h_adb50e893b86b3e55e751a42eab3cba82}{i}}++)}
 \DoxyCodeLine{\Hypertarget{refineable__tetgen__mesh_8template_8cc_source_l00345}00345       \{}
-\DoxyCodeLine{\Hypertarget{refineable__tetgen__mesh_8template_8cc_source_l00346}00346         nod\_pt-\/>\mbox{\hyperlink{classoomph_1_1Node_ab76b4773a65b349f143539e07b6e15e2}{x}}(\mbox{\hyperlink{cfortran_8h_adb50e893b86b3e55e751a42eab3cba82}{i}}) = new\_x[\mbox{\hyperlink{cfortran_8h_adb50e893b86b3e55e751a42eab3cba82}{i}}];}
+\DoxyCodeLine{\Hypertarget{refineable__tetgen__mesh_8template_8cc_source_l00346}00346         nod\_pt-\/>x(\mbox{\hyperlink{cfortran_8h_adb50e893b86b3e55e751a42eab3cba82}{i}}) = new\_x[\mbox{\hyperlink{cfortran_8h_adb50e893b86b3e55e751a42eab3cba82}{i}}];}
 \DoxyCodeLine{\Hypertarget{refineable__tetgen__mesh_8template_8cc_source_l00347}00347       \}}
 \DoxyCodeLine{\Hypertarget{refineable__tetgen__mesh_8template_8cc_source_l00348}00348     \}}
 \DoxyCodeLine{\Hypertarget{refineable__tetgen__mesh_8template_8cc_source_l00349}00349 }
@@ -677,8 +677,8 @@
 \DoxyCodeLine{\Hypertarget{refineable__tetgen__mesh_8template_8cc_source_l00673}00673               \mbox{\hyperlink{cfortran_8h_ab7123126e4885ef647dd9c6e3807a21c}{s}}[\mbox{\hyperlink{cfortran_8h_adb50e893b86b3e55e751a42eab3cba82}{i}}] = el\_pt-\/>integral\_pt()-\/>knot(ipt, \mbox{\hyperlink{cfortran_8h_adb50e893b86b3e55e751a42eab3cba82}{i}});}
 \DoxyCodeLine{\Hypertarget{refineable__tetgen__mesh_8template_8cc_source_l00674}00674             \}}
 \DoxyCodeLine{\Hypertarget{refineable__tetgen__mesh_8template_8cc_source_l00675}00675 }
-\DoxyCodeLine{\Hypertarget{refineable__tetgen__mesh_8template_8cc_source_l00676}00676             \mbox{\hyperlink{classoomph_1_1Vector}{Vector<double>}} x(3);}
-\DoxyCodeLine{\Hypertarget{refineable__tetgen__mesh_8template_8cc_source_l00677}00677             el\_pt-\/>interpolated\_x(\mbox{\hyperlink{cfortran_8h_ab7123126e4885ef647dd9c6e3807a21c}{s}}, x);}
+\DoxyCodeLine{\Hypertarget{refineable__tetgen__mesh_8template_8cc_source_l00676}00676             \mbox{\hyperlink{classoomph_1_1Vector}{Vector<double>}} \mbox{\hyperlink{namespaceoomph_a9d1d2da2b8bb8e73af72b5cadb8fe97c}{x}}(3);}
+\DoxyCodeLine{\Hypertarget{refineable__tetgen__mesh_8template_8cc_source_l00677}00677             el\_pt-\/>interpolated\_x(\mbox{\hyperlink{cfortran_8h_ab7123126e4885ef647dd9c6e3807a21c}{s}}, \mbox{\hyperlink{namespaceoomph_a9d1d2da2b8bb8e73af72b5cadb8fe97c}{x}});}
 \DoxyCodeLine{\Hypertarget{refineable__tetgen__mesh_8template_8cc_source_l00678}00678 }
 \DoxyCodeLine{\Hypertarget{refineable__tetgen__mesh_8template_8cc_source_l00679}00679 \textcolor{preprocessor}{\#if OOMPH\_HAS\_CGAL}}
 \DoxyCodeLine{\Hypertarget{refineable__tetgen__mesh_8template_8cc_source_l00680}00680 }
@@ -688,13 +688,13 @@
 \DoxyCodeLine{\Hypertarget{refineable__tetgen__mesh_8template_8cc_source_l00684}00684             \textcolor{keywordtype}{unsigned} max\_sample\_points = 5;}
 \DoxyCodeLine{\Hypertarget{refineable__tetgen__mesh_8template_8cc_source_l00685}00685             \textcolor{keyword}{dynamic\_cast<}\mbox{\hyperlink{classCGALSamplePointContainer}{CGALSamplePointContainer}}*\textcolor{keyword}{>}(}
 \DoxyCodeLine{\Hypertarget{refineable__tetgen__mesh_8template_8cc_source_l00686}00686               mesh\_geom\_obj\_pt-\/>\mbox{\hyperlink{classoomph_1_1MeshAsGeomObject_a383d5ffb3cdde540a9db380d683f0673}{sample\_point\_container\_pt}}())}
-\DoxyCodeLine{\Hypertarget{refineable__tetgen__mesh_8template_8cc_source_l00687}00687               -\/>limited\_locate\_zeta(x, max\_sample\_points, geom\_obj\_pt, \mbox{\hyperlink{cfortran_8h_ab7123126e4885ef647dd9c6e3807a21c}{s}});}
+\DoxyCodeLine{\Hypertarget{refineable__tetgen__mesh_8template_8cc_source_l00687}00687               -\/>limited\_locate\_zeta(\mbox{\hyperlink{namespaceoomph_a9d1d2da2b8bb8e73af72b5cadb8fe97c}{x}}, max\_sample\_points, geom\_obj\_pt, \mbox{\hyperlink{cfortran_8h_ab7123126e4885ef647dd9c6e3807a21c}{s}});}
 \DoxyCodeLine{\Hypertarget{refineable__tetgen__mesh_8template_8cc_source_l00688}00688 \textcolor{preprocessor}{\#ifdef PARANOID}}
 \DoxyCodeLine{\Hypertarget{refineable__tetgen__mesh_8template_8cc_source_l00689}00689             \textcolor{keywordflow}{if} (geom\_obj\_pt == 0)}
 \DoxyCodeLine{\Hypertarget{refineable__tetgen__mesh_8template_8cc_source_l00690}00690             \{}
 \DoxyCodeLine{\Hypertarget{refineable__tetgen__mesh_8template_8cc_source_l00691}00691               std::stringstream error\_message;}
 \DoxyCodeLine{\Hypertarget{refineable__tetgen__mesh_8template_8cc_source_l00692}00692               error\_message << \textcolor{stringliteral}{"{}Limited locate zeta failed for zeta = [ "{}}}
-\DoxyCodeLine{\Hypertarget{refineable__tetgen__mesh_8template_8cc_source_l00693}00693                             << x[0] << \textcolor{stringliteral}{"{} "{}} << x[1] << \textcolor{stringliteral}{"{} "{}} << x[2]}
+\DoxyCodeLine{\Hypertarget{refineable__tetgen__mesh_8template_8cc_source_l00693}00693                             << \mbox{\hyperlink{namespaceoomph_a9d1d2da2b8bb8e73af72b5cadb8fe97c}{x}}[0] << \textcolor{stringliteral}{"{} "{}} << \mbox{\hyperlink{namespaceoomph_a9d1d2da2b8bb8e73af72b5cadb8fe97c}{x}}[1] << \textcolor{stringliteral}{"{} "{}} << \mbox{\hyperlink{namespaceoomph_a9d1d2da2b8bb8e73af72b5cadb8fe97c}{x}}[2]}
 \DoxyCodeLine{\Hypertarget{refineable__tetgen__mesh_8template_8cc_source_l00694}00694                             << \textcolor{stringliteral}{"{} ]. Makes no sense!\(\backslash\)n"{}};}
 \DoxyCodeLine{\Hypertarget{refineable__tetgen__mesh_8template_8cc_source_l00695}00695               \textcolor{keywordflow}{throw} \mbox{\hyperlink{classoomph_1_1OomphLibError}{OomphLibError}}(error\_message.str(),}
 \DoxyCodeLine{\Hypertarget{refineable__tetgen__mesh_8template_8cc_source_l00696}00696                                   OOMPH\_CURRENT\_FUNCTION,}
@@ -710,7 +710,7 @@
 \DoxyCodeLine{\Hypertarget{refineable__tetgen__mesh_8template_8cc_source_l00706}00706                 std::stringstream error\_message;}
 \DoxyCodeLine{\Hypertarget{refineable__tetgen__mesh_8template_8cc_source_l00707}00707                 error\_message << \textcolor{stringliteral}{"{}Cast to FE for GeomObject returned by "{}}}
 \DoxyCodeLine{\Hypertarget{refineable__tetgen__mesh_8template_8cc_source_l00708}00708                                  \textcolor{stringliteral}{"{}limited locate zeta failed for zeta = [ "{}}}
-\DoxyCodeLine{\Hypertarget{refineable__tetgen__mesh_8template_8cc_source_l00709}00709                               << x[0] << \textcolor{stringliteral}{"{} "{}} << x[1] << \textcolor{stringliteral}{"{} "{}} << x[2]}
+\DoxyCodeLine{\Hypertarget{refineable__tetgen__mesh_8template_8cc_source_l00709}00709                               << \mbox{\hyperlink{namespaceoomph_a9d1d2da2b8bb8e73af72b5cadb8fe97c}{x}}[0] << \textcolor{stringliteral}{"{} "{}} << \mbox{\hyperlink{namespaceoomph_a9d1d2da2b8bb8e73af72b5cadb8fe97c}{x}}[1] << \textcolor{stringliteral}{"{} "{}} << \mbox{\hyperlink{namespaceoomph_a9d1d2da2b8bb8e73af72b5cadb8fe97c}{x}}[2]}
 \DoxyCodeLine{\Hypertarget{refineable__tetgen__mesh_8template_8cc_source_l00710}00710                               << \textcolor{stringliteral}{"{} ]. Makes no sense!\(\backslash\)n"{}};}
 \DoxyCodeLine{\Hypertarget{refineable__tetgen__mesh_8template_8cc_source_l00711}00711                 \textcolor{keywordflow}{throw} \mbox{\hyperlink{classoomph_1_1OomphLibError}{OomphLibError}}(error\_message.str(),}
 \DoxyCodeLine{\Hypertarget{refineable__tetgen__mesh_8template_8cc_source_l00712}00712                                     OOMPH\_CURRENT\_FUNCTION,}
@@ -803,10 +803,10 @@
 \DoxyCodeLine{\Hypertarget{refineable__tetgen__mesh_8template_8cc_source_l00799}00799         \textcolor{keywordflow}{if} (output\_target\_sizes)}
 \DoxyCodeLine{\Hypertarget{refineable__tetgen__mesh_8template_8cc_source_l00800}00800         \{}
 \DoxyCodeLine{\Hypertarget{refineable__tetgen__mesh_8template_8cc_source_l00801}00801           \textcolor{keywordtype}{unsigned} length = new\_transferred\_target\_size.size();}
-\DoxyCodeLine{\Hypertarget{refineable__tetgen__mesh_8template_8cc_source_l00802}00802           \textcolor{keywordflow}{for} (\textcolor{keywordtype}{unsigned} u = 0; u < length; u++)}
+\DoxyCodeLine{\Hypertarget{refineable__tetgen__mesh_8template_8cc_source_l00802}00802           \textcolor{keywordflow}{for} (\textcolor{keywordtype}{unsigned} \mbox{\hyperlink{namespaceoomph_ac0ed65f6db53d9ad737e1d2a69767d25}{u}} = 0; \mbox{\hyperlink{namespaceoomph_ac0ed65f6db53d9ad737e1d2a69767d25}{u}} < length; \mbox{\hyperlink{namespaceoomph_ac0ed65f6db53d9ad737e1d2a69767d25}{u}}++)}
 \DoxyCodeLine{\Hypertarget{refineable__tetgen__mesh_8template_8cc_source_l00803}00803           \{}
-\DoxyCodeLine{\Hypertarget{refineable__tetgen__mesh_8template_8cc_source_l00804}00804             \mbox{\hyperlink{namespaceoomph_aec474227917784dc0a255faf289cfc16}{oomph\_info}} << \textcolor{stringliteral}{"{}Element"{}} << u}
-\DoxyCodeLine{\Hypertarget{refineable__tetgen__mesh_8template_8cc_source_l00805}00805                        << \textcolor{stringliteral}{"{},target size: "{}} << new\_transferred\_target\_size[u]}
+\DoxyCodeLine{\Hypertarget{refineable__tetgen__mesh_8template_8cc_source_l00804}00804             \mbox{\hyperlink{namespaceoomph_aec474227917784dc0a255faf289cfc16}{oomph\_info}} << \textcolor{stringliteral}{"{}Element"{}} << \mbox{\hyperlink{namespaceoomph_ac0ed65f6db53d9ad737e1d2a69767d25}{u}}}
+\DoxyCodeLine{\Hypertarget{refineable__tetgen__mesh_8template_8cc_source_l00805}00805                        << \textcolor{stringliteral}{"{},target size: "{}} << new\_transferred\_target\_size[\mbox{\hyperlink{namespaceoomph_ac0ed65f6db53d9ad737e1d2a69767d25}{u}}]}
 \DoxyCodeLine{\Hypertarget{refineable__tetgen__mesh_8template_8cc_source_l00806}00806                        << std::endl;}
 \DoxyCodeLine{\Hypertarget{refineable__tetgen__mesh_8template_8cc_source_l00807}00807           \}}
 \DoxyCodeLine{\Hypertarget{refineable__tetgen__mesh_8template_8cc_source_l00808}00808         \}}
@@ -846,16 +846,16 @@
 \DoxyCodeLine{\Hypertarget{refineable__tetgen__mesh_8template_8cc_source_l00842}00842             std::ostringstream error\_stream;}
 \DoxyCodeLine{\Hypertarget{refineable__tetgen__mesh_8template_8cc_source_l00843}00843             error\_stream}
 \DoxyCodeLine{\Hypertarget{refineable__tetgen__mesh_8template_8cc_source_l00844}00844               << \textcolor{stringliteral}{"{}This shouldn't happen! Element whose centroid is at "{}}}
-\DoxyCodeLine{\Hypertarget{refineable__tetgen__mesh_8template_8cc_source_l00845}00845               << (f\_ele\_pt-\/>\mbox{\hyperlink{classoomph_1_1FiniteElement_a9addfe893ab8205619963aa96204cdc4}{node\_pt}}(0)-\/>\mbox{\hyperlink{classoomph_1_1Node_ab76b4773a65b349f143539e07b6e15e2}{x}}(0) + f\_ele\_pt-\/>\mbox{\hyperlink{classoomph_1_1FiniteElement_a9addfe893ab8205619963aa96204cdc4}{node\_pt}}(1)-\/>\mbox{\hyperlink{classoomph_1_1Node_ab76b4773a65b349f143539e07b6e15e2}{x}}(0) +}
-\DoxyCodeLine{\Hypertarget{refineable__tetgen__mesh_8template_8cc_source_l00846}00846                   f\_ele\_pt-\/>\mbox{\hyperlink{classoomph_1_1FiniteElement_a9addfe893ab8205619963aa96204cdc4}{node\_pt}}(2)-\/>\mbox{\hyperlink{classoomph_1_1Node_ab76b4773a65b349f143539e07b6e15e2}{x}}(0) + f\_ele\_pt-\/>\mbox{\hyperlink{classoomph_1_1FiniteElement_a9addfe893ab8205619963aa96204cdc4}{node\_pt}}(3)-\/>\mbox{\hyperlink{classoomph_1_1Node_ab76b4773a65b349f143539e07b6e15e2}{x}}(0)) /}
+\DoxyCodeLine{\Hypertarget{refineable__tetgen__mesh_8template_8cc_source_l00845}00845               << (f\_ele\_pt-\/>\mbox{\hyperlink{classoomph_1_1FiniteElement_a9addfe893ab8205619963aa96204cdc4}{node\_pt}}(0)-\/>x(0) + f\_ele\_pt-\/>\mbox{\hyperlink{classoomph_1_1FiniteElement_a9addfe893ab8205619963aa96204cdc4}{node\_pt}}(1)-\/>x(0) +}
+\DoxyCodeLine{\Hypertarget{refineable__tetgen__mesh_8template_8cc_source_l00846}00846                   f\_ele\_pt-\/>\mbox{\hyperlink{classoomph_1_1FiniteElement_a9addfe893ab8205619963aa96204cdc4}{node\_pt}}(2)-\/>x(0) + f\_ele\_pt-\/>\mbox{\hyperlink{classoomph_1_1FiniteElement_a9addfe893ab8205619963aa96204cdc4}{node\_pt}}(3)-\/>x(0)) /}
 \DoxyCodeLine{\Hypertarget{refineable__tetgen__mesh_8template_8cc_source_l00847}00847                    4.0}
 \DoxyCodeLine{\Hypertarget{refineable__tetgen__mesh_8template_8cc_source_l00848}00848               << \textcolor{stringliteral}{"{} "{}}}
-\DoxyCodeLine{\Hypertarget{refineable__tetgen__mesh_8template_8cc_source_l00849}00849               << (f\_ele\_pt-\/>\mbox{\hyperlink{classoomph_1_1FiniteElement_a9addfe893ab8205619963aa96204cdc4}{node\_pt}}(0)-\/>\mbox{\hyperlink{classoomph_1_1Node_ab76b4773a65b349f143539e07b6e15e2}{x}}(1) + f\_ele\_pt-\/>\mbox{\hyperlink{classoomph_1_1FiniteElement_a9addfe893ab8205619963aa96204cdc4}{node\_pt}}(1)-\/>\mbox{\hyperlink{classoomph_1_1Node_ab76b4773a65b349f143539e07b6e15e2}{x}}(1) +}
-\DoxyCodeLine{\Hypertarget{refineable__tetgen__mesh_8template_8cc_source_l00850}00850                   f\_ele\_pt-\/>\mbox{\hyperlink{classoomph_1_1FiniteElement_a9addfe893ab8205619963aa96204cdc4}{node\_pt}}(2)-\/>\mbox{\hyperlink{classoomph_1_1Node_ab76b4773a65b349f143539e07b6e15e2}{x}}(1) + f\_ele\_pt-\/>\mbox{\hyperlink{classoomph_1_1FiniteElement_a9addfe893ab8205619963aa96204cdc4}{node\_pt}}(3)-\/>\mbox{\hyperlink{classoomph_1_1Node_ab76b4773a65b349f143539e07b6e15e2}{x}}(1)) /}
+\DoxyCodeLine{\Hypertarget{refineable__tetgen__mesh_8template_8cc_source_l00849}00849               << (f\_ele\_pt-\/>\mbox{\hyperlink{classoomph_1_1FiniteElement_a9addfe893ab8205619963aa96204cdc4}{node\_pt}}(0)-\/>x(1) + f\_ele\_pt-\/>\mbox{\hyperlink{classoomph_1_1FiniteElement_a9addfe893ab8205619963aa96204cdc4}{node\_pt}}(1)-\/>x(1) +}
+\DoxyCodeLine{\Hypertarget{refineable__tetgen__mesh_8template_8cc_source_l00850}00850                   f\_ele\_pt-\/>\mbox{\hyperlink{classoomph_1_1FiniteElement_a9addfe893ab8205619963aa96204cdc4}{node\_pt}}(2)-\/>x(1) + f\_ele\_pt-\/>\mbox{\hyperlink{classoomph_1_1FiniteElement_a9addfe893ab8205619963aa96204cdc4}{node\_pt}}(3)-\/>x(1)) /}
 \DoxyCodeLine{\Hypertarget{refineable__tetgen__mesh_8template_8cc_source_l00851}00851                    4.0}
 \DoxyCodeLine{\Hypertarget{refineable__tetgen__mesh_8template_8cc_source_l00852}00852               << \textcolor{stringliteral}{"{} "{}}}
-\DoxyCodeLine{\Hypertarget{refineable__tetgen__mesh_8template_8cc_source_l00853}00853               << (f\_ele\_pt-\/>\mbox{\hyperlink{classoomph_1_1FiniteElement_a9addfe893ab8205619963aa96204cdc4}{node\_pt}}(0)-\/>\mbox{\hyperlink{classoomph_1_1Node_ab76b4773a65b349f143539e07b6e15e2}{x}}(2) + f\_ele\_pt-\/>\mbox{\hyperlink{classoomph_1_1FiniteElement_a9addfe893ab8205619963aa96204cdc4}{node\_pt}}(1)-\/>\mbox{\hyperlink{classoomph_1_1Node_ab76b4773a65b349f143539e07b6e15e2}{x}}(2) +}
-\DoxyCodeLine{\Hypertarget{refineable__tetgen__mesh_8template_8cc_source_l00854}00854                   f\_ele\_pt-\/>\mbox{\hyperlink{classoomph_1_1FiniteElement_a9addfe893ab8205619963aa96204cdc4}{node\_pt}}(2)-\/>\mbox{\hyperlink{classoomph_1_1Node_ab76b4773a65b349f143539e07b6e15e2}{x}}(2) + f\_ele\_pt-\/>\mbox{\hyperlink{classoomph_1_1FiniteElement_a9addfe893ab8205619963aa96204cdc4}{node\_pt}}(3)-\/>\mbox{\hyperlink{classoomph_1_1Node_ab76b4773a65b349f143539e07b6e15e2}{x}}(2)) /}
+\DoxyCodeLine{\Hypertarget{refineable__tetgen__mesh_8template_8cc_source_l00853}00853               << (f\_ele\_pt-\/>\mbox{\hyperlink{classoomph_1_1FiniteElement_a9addfe893ab8205619963aa96204cdc4}{node\_pt}}(0)-\/>x(2) + f\_ele\_pt-\/>\mbox{\hyperlink{classoomph_1_1FiniteElement_a9addfe893ab8205619963aa96204cdc4}{node\_pt}}(1)-\/>x(2) +}
+\DoxyCodeLine{\Hypertarget{refineable__tetgen__mesh_8template_8cc_source_l00854}00854                   f\_ele\_pt-\/>\mbox{\hyperlink{classoomph_1_1FiniteElement_a9addfe893ab8205619963aa96204cdc4}{node\_pt}}(2)-\/>x(2) + f\_ele\_pt-\/>\mbox{\hyperlink{classoomph_1_1FiniteElement_a9addfe893ab8205619963aa96204cdc4}{node\_pt}}(3)-\/>x(2)) /}
 \DoxyCodeLine{\Hypertarget{refineable__tetgen__mesh_8template_8cc_source_l00855}00855                    4.0}
 \DoxyCodeLine{\Hypertarget{refineable__tetgen__mesh_8template_8cc_source_l00856}00856               << \textcolor{stringliteral}{"{} "{}}}
 \DoxyCodeLine{\Hypertarget{refineable__tetgen__mesh_8template_8cc_source_l00857}00857               << \textcolor{stringliteral}{"{} has no target size assigned\(\backslash\)n"{}};}
@@ -888,9 +888,9 @@
 \DoxyCodeLine{\Hypertarget{refineable__tetgen__mesh_8template_8cc_source_l00884}00884               target\_sizes\_file << \textcolor{stringliteral}{"{}ZONE N=4, E=1, F=FEPOINT, ET=TETRAHEDRON\(\backslash\)n"{}};}
 \DoxyCodeLine{\Hypertarget{refineable__tetgen__mesh_8template_8cc_source_l00885}00885               \textcolor{keywordflow}{for} (\textcolor{keywordtype}{unsigned} j = 0; j < 4; j++)}
 \DoxyCodeLine{\Hypertarget{refineable__tetgen__mesh_8template_8cc_source_l00886}00886               \{}
-\DoxyCodeLine{\Hypertarget{refineable__tetgen__mesh_8template_8cc_source_l00887}00887                 target\_sizes\_file << f\_ele\_pt-\/>\mbox{\hyperlink{classoomph_1_1FiniteElement_a9addfe893ab8205619963aa96204cdc4}{node\_pt}}(j)-\/>\mbox{\hyperlink{classoomph_1_1Node_ab76b4773a65b349f143539e07b6e15e2}{x}}(0) << \textcolor{stringliteral}{"{} "{}}}
-\DoxyCodeLine{\Hypertarget{refineable__tetgen__mesh_8template_8cc_source_l00888}00888                                   << f\_ele\_pt-\/>\mbox{\hyperlink{classoomph_1_1FiniteElement_a9addfe893ab8205619963aa96204cdc4}{node\_pt}}(j)-\/>\mbox{\hyperlink{classoomph_1_1Node_ab76b4773a65b349f143539e07b6e15e2}{x}}(1) << \textcolor{stringliteral}{"{} "{}}}
-\DoxyCodeLine{\Hypertarget{refineable__tetgen__mesh_8template_8cc_source_l00889}00889                                   << f\_ele\_pt-\/>\mbox{\hyperlink{classoomph_1_1FiniteElement_a9addfe893ab8205619963aa96204cdc4}{node\_pt}}(j)-\/>\mbox{\hyperlink{classoomph_1_1Node_ab76b4773a65b349f143539e07b6e15e2}{x}}(2) << \textcolor{stringliteral}{"{} "{}}}
+\DoxyCodeLine{\Hypertarget{refineable__tetgen__mesh_8template_8cc_source_l00887}00887                 target\_sizes\_file << f\_ele\_pt-\/>\mbox{\hyperlink{classoomph_1_1FiniteElement_a9addfe893ab8205619963aa96204cdc4}{node\_pt}}(j)-\/>x(0) << \textcolor{stringliteral}{"{} "{}}}
+\DoxyCodeLine{\Hypertarget{refineable__tetgen__mesh_8template_8cc_source_l00888}00888                                   << f\_ele\_pt-\/>\mbox{\hyperlink{classoomph_1_1FiniteElement_a9addfe893ab8205619963aa96204cdc4}{node\_pt}}(j)-\/>x(1) << \textcolor{stringliteral}{"{} "{}}}
+\DoxyCodeLine{\Hypertarget{refineable__tetgen__mesh_8template_8cc_source_l00889}00889                                   << f\_ele\_pt-\/>\mbox{\hyperlink{classoomph_1_1FiniteElement_a9addfe893ab8205619963aa96204cdc4}{node\_pt}}(j)-\/>x(2) << \textcolor{stringliteral}{"{} "{}}}
 \DoxyCodeLine{\Hypertarget{refineable__tetgen__mesh_8template_8cc_source_l00890}00890                                   << new\_size << \textcolor{stringliteral}{"{} "{}} << new\_target\_size[\mbox{\hyperlink{cfortran_8h_a37cd013acc76697829c324bdd8562d82}{e}}]}
 \DoxyCodeLine{\Hypertarget{refineable__tetgen__mesh_8template_8cc_source_l00891}00891                                   << std::endl;}
 \DoxyCodeLine{\Hypertarget{refineable__tetgen__mesh_8template_8cc_source_l00892}00892               \}}
@@ -1024,8 +1024,8 @@
 \DoxyCodeLine{\Hypertarget{refineable__tetgen__mesh_8template_8cc_source_l01020}01020                 \textcolor{keywordtype}{bool} coords\_identical = \textcolor{keyword}{true};}
 \DoxyCodeLine{\Hypertarget{refineable__tetgen__mesh_8template_8cc_source_l01021}01021                 \textcolor{keywordflow}{for} (\textcolor{keywordtype}{unsigned} \mbox{\hyperlink{cfortran_8h_adb50e893b86b3e55e751a42eab3cba82}{i}} = 0; \mbox{\hyperlink{cfortran_8h_adb50e893b86b3e55e751a42eab3cba82}{i}} < 3; \mbox{\hyperlink{cfortran_8h_adb50e893b86b3e55e751a42eab3cba82}{i}}++)}
 \DoxyCodeLine{\Hypertarget{refineable__tetgen__mesh_8template_8cc_source_l01022}01022                 \{}
-\DoxyCodeLine{\Hypertarget{refineable__tetgen__mesh_8template_8cc_source_l01023}01023                   \textcolor{keywordflow}{if} (new\_mesh\_pt-\/>\mbox{\hyperlink{classoomph_1_1Mesh_a69d22c2070f1649c4cb2607f26070d7c}{node\_pt}}(j)-\/>\mbox{\hyperlink{classoomph_1_1Node_ab76b4773a65b349f143539e07b6e15e2}{x}}(\mbox{\hyperlink{cfortran_8h_adb50e893b86b3e55e751a42eab3cba82}{i}}) !=}
-\DoxyCodeLine{\Hypertarget{refineable__tetgen__mesh_8template_8cc_source_l01024}01024                       tmp\_new\_mesh\_pt-\/>\mbox{\hyperlink{classoomph_1_1Mesh_a69d22c2070f1649c4cb2607f26070d7c}{node\_pt}}(j)-\/>\mbox{\hyperlink{classoomph_1_1Node_ab76b4773a65b349f143539e07b6e15e2}{x}}(\mbox{\hyperlink{cfortran_8h_adb50e893b86b3e55e751a42eab3cba82}{i}}))}
+\DoxyCodeLine{\Hypertarget{refineable__tetgen__mesh_8template_8cc_source_l01023}01023                   \textcolor{keywordflow}{if} (new\_mesh\_pt-\/>\mbox{\hyperlink{classoomph_1_1Mesh_a69d22c2070f1649c4cb2607f26070d7c}{node\_pt}}(j)-\/>x(\mbox{\hyperlink{cfortran_8h_adb50e893b86b3e55e751a42eab3cba82}{i}}) !=}
+\DoxyCodeLine{\Hypertarget{refineable__tetgen__mesh_8template_8cc_source_l01024}01024                       tmp\_new\_mesh\_pt-\/>\mbox{\hyperlink{classoomph_1_1Mesh_a69d22c2070f1649c4cb2607f26070d7c}{node\_pt}}(j)-\/>x(\mbox{\hyperlink{cfortran_8h_adb50e893b86b3e55e751a42eab3cba82}{i}}))}
 \DoxyCodeLine{\Hypertarget{refineable__tetgen__mesh_8template_8cc_source_l01025}01025                   \{}
 \DoxyCodeLine{\Hypertarget{refineable__tetgen__mesh_8template_8cc_source_l01026}01026                     coords\_identical = \textcolor{keyword}{false};}
 \DoxyCodeLine{\Hypertarget{refineable__tetgen__mesh_8template_8cc_source_l01027}01027                   \}}

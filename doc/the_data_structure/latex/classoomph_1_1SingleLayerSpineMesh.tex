@@ -2,6 +2,11 @@
 \label{classoomph_1_1SingleLayerSpineMesh}\index{oomph::SingleLayerSpineMesh$<$ ELEMENT $>$@{oomph::SingleLayerSpineMesh$<$ ELEMENT $>$}}
 
 
+Single-\/layer spine mesh class derived from standard 2D mesh. The mesh contains a layer of spinified fluid elements (of type ELEMENT; e.\+g \mbox{\hyperlink{classoomph_1_1SpineElement}{Spine\+Element}}\texorpdfstring{$<$}{<}QCrouzeix\+Raviart\+Element$<$2$>$). It constructs the spines and contains the information on how to update the nodal positions within the mesh as a function of the spine lengths. Equations that determine the spine heights (even if they are pinned) must be specified externally or else there will be problems.  
+
+
+
+
 {\ttfamily \#include $<$single\+\_\+layer\+\_\+spine\+\_\+mesh.\+template.\+h$>$}
 
 Inheritance diagram for oomph\+::Single\+Layer\+Spine\+Mesh\texorpdfstring{$<$}{<} ELEMENT \texorpdfstring{$>$}{>}\+:\begin{figure}[H]
@@ -93,7 +98,7 @@ void \mbox{\hyperlink{classoomph_1_1SingleLayerSpineMesh}{oomph\+::\+Single\+Lay
 
 Helper function to actually build the single-\/layer spine mesh (called from various constructors) 
 
-Helper function that actually builds the single-\/layer spine mesh based on the parameters set in the various constructors 
+Helper function that actually builds the single-\/layer spine mesh based on the parameters set in the various constructors. 
 
 Definition at line \mbox{\hyperlink{single__layer__spine__mesh_8template_8cc_source_l00114}{114}} of file \mbox{\hyperlink{single__layer__spine__mesh_8template_8cc_source}{single\+\_\+layer\+\_\+spine\+\_\+mesh.\+template.\+cc}}.
 
@@ -130,7 +135,7 @@ Definition at line \mbox{\hyperlink{single__layer__spine__mesh_8template_8h_sour
 
 
 
-References \mbox{\hyperlink{spines_8h_source_l00378}{oomph\+::\+Spine\+Node\+::fraction()}}, \mbox{\hyperlink{spines_8h_source_l00397}{oomph\+::\+Spine\+Node\+::h()}}, \mbox{\hyperlink{quadtree_8h_source_l00063}{oomph\+::\+Quad\+Tree\+Names\+::W}}, \mbox{\hyperlink{nodes_8h_source_l01061}{oomph\+::\+Node\+::x()}}, and \mbox{\hyperlink{rectangular__quadmesh_8template_8h_source_l00075}{oomph\+::\+Rectangular\+Quad\+Mesh$<$ ELEMENT $>$\+::\+Ymin}}.
+References \mbox{\hyperlink{spines_8h_source_l00378}{oomph\+::\+Spine\+Node\+::fraction()}}, \mbox{\hyperlink{spines_8h_source_l00397}{oomph\+::\+Spine\+Node\+::h()}}, \mbox{\hyperlink{constitutive__laws_8h_source_l00142}{oomph\+::W}}, and \mbox{\hyperlink{rectangular__quadmesh_8template_8h_source_l00075}{oomph\+::\+Rectangular\+Quad\+Mesh$<$ ELEMENT $>$\+::\+Ymin}}.
 
 
 

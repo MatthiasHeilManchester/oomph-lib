@@ -133,12 +133,15 @@ $(function() {
 </div><!--header-->
 <div class="contents">
 
+<p>A class that stores the halo/haloed entries required when using a <a class="el" href="classoomph_1_1DoubleVectorWithHaloEntries.html" title="===================================================================== An extension of DoubleVector th...">DoubleVectorWithHaloEntries</a>. This is a separate class so thay many different Vectors can share the same object. The constructor requires the distribution of the <a class="el" href="classoomph_1_1DoubleVector.html" title="A vector in the mathematical sense, initially developed for linear algebra type applications....">DoubleVector</a> (if you pass in a different distribution things will go badly wrong) and a vector that specifies which GLOBAL eqn numbers are required on each processor.  
+ <a href="classoomph_1_1DoubleVectorHaloScheme.html#details">More...</a></p>
+
 <p><code>#include &lt;<a class="el" href="double__vector__with__halo_8h_source.html">double_vector_with_halo.h</a>&gt;</code></p>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pub-methods" name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
 <tr class="memitem:ac3809f5cac00b082a66bbf706087627e"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classoomph_1_1DoubleVectorHaloScheme.html#ac3809f5cac00b082a66bbf706087627e">DoubleVectorHaloScheme</a> (<a class="el" href="classoomph_1_1LinearAlgebraDistribution.html">LinearAlgebraDistribution</a> *const &amp;dist_pt, const <a class="el" href="classoomph_1_1Vector.html">Vector</a>&lt; unsigned &gt; &amp;required_global_eqn)</td></tr>
-<tr class="memdesc:ac3809f5cac00b082a66bbf706087627e"><td class="mdescLeft">&#160;</td><td class="mdescRight">Constructor that sets up the required information communicating between all processors. Requires two "all to all" communications. Arguments are the distribution of the <a class="el" href="classoomph_1_1DoubleVector.html" title="A vector in the mathematical sense, initially developed for linear algebra type applications....">DoubleVector</a> and a <a class="el" href="classoomph_1_1Vector.html">Vector</a> of global unknowns required on this processor.  <a href="classoomph_1_1DoubleVectorHaloScheme.html#ac3809f5cac00b082a66bbf706087627e">More...</a><br /></td></tr>
+<tr class="memdesc:ac3809f5cac00b082a66bbf706087627e"><td class="mdescLeft">&#160;</td><td class="mdescRight">Constructor that sets up the required information communicating between all processors. Requires two "all to all" communications. Arguments are the distribution of the <a class="el" href="classoomph_1_1DoubleVector.html" title="A vector in the mathematical sense, initially developed for linear algebra type applications....">DoubleVector</a> and a <a class="el" href="classoomph_1_1Vector.html" title="A slight extension to the standard template vector class so that we can include &quot;graceful&quot; array rang...">Vector</a> of global unknowns required on this processor.  <a href="classoomph_1_1DoubleVectorHaloScheme.html#ac3809f5cac00b082a66bbf706087627e">More...</a><br /></td></tr>
 <tr class="separator:ac3809f5cac00b082a66bbf706087627e"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a490138b2ae077bc6630d13057217105b"><td class="memItemLeft" align="right" valign="top">unsigned&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classoomph_1_1DoubleVectorHaloScheme.html#a490138b2ae077bc6630d13057217105b">n_halo_values</a> () const</td></tr>
 <tr class="memdesc:a490138b2ae077bc6630d13057217105b"><td class="mdescLeft">&#160;</td><td class="mdescRight">Return the number of halo values.  <a href="classoomph_1_1DoubleVectorHaloScheme.html#a490138b2ae077bc6630d13057217105b">More...</a><br /></td></tr>
@@ -183,11 +186,11 @@ Private Attributes</h2></td></tr>
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="friends" name="friends"></a>
 Friends</h2></td></tr>
 <tr class="memitem:acae5914031232d05e22888b081f2598f"><td class="memItemLeft" align="right" valign="top">class&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classoomph_1_1DoubleVectorHaloScheme.html#acae5914031232d05e22888b081f2598f">DoubleVectorWithHaloEntries</a></td></tr>
-<tr class="memdesc:acae5914031232d05e22888b081f2598f"><td class="mdescLeft">&#160;</td><td class="mdescRight">The <a class="el" href="classoomph_1_1DoubleVectorWithHaloEntries.html">DoubleVectorWithHaloEntries</a> should be able to access the private data.  <a href="classoomph_1_1DoubleVectorHaloScheme.html#acae5914031232d05e22888b081f2598f">More...</a><br /></td></tr>
+<tr class="memdesc:acae5914031232d05e22888b081f2598f"><td class="mdescLeft">&#160;</td><td class="mdescRight">The <a class="el" href="classoomph_1_1DoubleVectorWithHaloEntries.html" title="===================================================================== An extension of DoubleVector th...">DoubleVectorWithHaloEntries</a> should be able to access the private data.  <a href="classoomph_1_1DoubleVectorHaloScheme.html#acae5914031232d05e22888b081f2598f">More...</a><br /></td></tr>
 <tr class="separator:acae5914031232d05e22888b081f2598f"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
-<div class="textblock"><p >A class that stores the halo/haloed entries required when using a <a class="el" href="classoomph_1_1DoubleVectorWithHaloEntries.html">DoubleVectorWithHaloEntries</a>. This is a separate class so thay many different Vectors can share the same object. The constructor requires the distribution of the <a class="el" href="classoomph_1_1DoubleVector.html" title="A vector in the mathematical sense, initially developed for linear algebra type applications....">DoubleVector</a> (if you pass in a different distribution things will go badly wrong) and a vector that specifies which GLOBAL eqn numbers are required on each processor. </p>
+<div class="textblock"><p >A class that stores the halo/haloed entries required when using a <a class="el" href="classoomph_1_1DoubleVectorWithHaloEntries.html" title="===================================================================== An extension of DoubleVector th...">DoubleVectorWithHaloEntries</a>. This is a separate class so thay many different Vectors can share the same object. The constructor requires the distribution of the <a class="el" href="classoomph_1_1DoubleVector.html" title="A vector in the mathematical sense, initially developed for linear algebra type applications....">DoubleVector</a> (if you pass in a different distribution things will go badly wrong) and a vector that specifies which GLOBAL eqn numbers are required on each processor. </p>
 
 <p class="definition">Definition at line <a class="el" href="double__vector__with__halo_8h_source.html#l00051">51</a> of file <a class="el" href="double__vector__with__halo_8h_source.html">double_vector_with_halo.h</a>.</p>
 </div><h2 class="groupheader">Constructor &amp; Destructor Documentation</h2>
@@ -217,7 +220,7 @@ Friends</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p>Constructor that sets up the required information communicating between all processors. Requires two "all to all" communications. Arguments are the distribution of the <a class="el" href="classoomph_1_1DoubleVector.html" title="A vector in the mathematical sense, initially developed for linear algebra type applications....">DoubleVector</a> and a <a class="el" href="classoomph_1_1Vector.html">Vector</a> of global unknowns required on this processor. </p>
+<p>Constructor that sets up the required information communicating between all processors. Requires two "all to all" communications. Arguments are the distribution of the <a class="el" href="classoomph_1_1DoubleVector.html" title="A vector in the mathematical sense, initially developed for linear algebra type applications....">DoubleVector</a> and a <a class="el" href="classoomph_1_1Vector.html" title="A slight extension to the standard template vector class so that we can include &quot;graceful&quot; array rang...">Vector</a> of global unknowns required on this processor. </p>
 
 <p class="definition">Definition at line <a class="el" href="double__vector__with__halo_8cc_source.html#l00036">36</a> of file <a class="el" href="double__vector__with__halo_8cc_source.html">double_vector_with_halo.cc</a>.</p>
 
@@ -382,7 +385,7 @@ Friends</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
-<p>The <a class="el" href="classoomph_1_1DoubleVectorWithHaloEntries.html">DoubleVectorWithHaloEntries</a> should be able to access the private data. </p>
+<p>The <a class="el" href="classoomph_1_1DoubleVectorWithHaloEntries.html" title="===================================================================== An extension of DoubleVector th...">DoubleVectorWithHaloEntries</a> should be able to access the private data. </p>
 
 <p class="definition">Definition at line <a class="el" href="double__vector__with__halo_8h_source.html#l00055">55</a> of file <a class="el" href="double__vector__with__halo_8h_source.html">double_vector_with_halo.h</a>.</p>
 
@@ -645,7 +648,7 @@ Friends</h2></td></tr>
     <footer>
       <div class="container">
         <div class="text-muted" style="float:right;">Generated by <a href="http://www.doxygen.org/index.html">
-          <img style="height:18px;" class="footer-img" src="doxygen.png" alt="doxygen"></a> on Wed Oct 13 2021 08:45:11
+          <img style="height:18px;" class="footer-img" src="doxygen.png" alt="doxygen"></a> on Thu Oct 21 2021 17:33:42
         </div>
       </div>
     </footer>

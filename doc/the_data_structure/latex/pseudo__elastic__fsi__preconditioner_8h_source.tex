@@ -43,7 +43,7 @@
 \DoxyCodeLine{\Hypertarget{pseudo__elastic__fsi__preconditioner_8h_source_l00039}00039 \textcolor{keyword}{namespace }\mbox{\hyperlink{namespaceoomph}{oomph}}}
 \DoxyCodeLine{\Hypertarget{pseudo__elastic__fsi__preconditioner_8h_source_l00040}00040 \{}
 \DoxyCodeLine{\Hypertarget{pseudo__elastic__fsi__preconditioner_8h_source_l00041}00041   \textcolor{comment}{//============================================================================}\textcolor{comment}{}}
-\DoxyCodeLine{\Hypertarget{pseudo__elastic__fsi__preconditioner_8h_source_l00042}00042 \textcolor{comment}{  /// \(\backslash\)short Preconditioner for FSI problems with pseudo-\/elastic fluid node}}
+\DoxyCodeLine{\Hypertarget{pseudo__elastic__fsi__preconditioner_8h_source_l00042}00042 \textcolor{comment}{  ///  Preconditioner for FSI problems with pseudo-\/elastic fluid node}}
 \DoxyCodeLine{\Hypertarget{pseudo__elastic__fsi__preconditioner_8h_source_l00043}00043 \textcolor{comment}{  /// updates.}}
 \DoxyCodeLine{\Hypertarget{pseudo__elastic__fsi__preconditioner_8h_source_l00044}00044 \textcolor{comment}{  /// Note:}}
 \DoxyCodeLine{\Hypertarget{pseudo__elastic__fsi__preconditioner_8h_source_l00045}00045 \textcolor{comment}{  /// NavierStokesSchurComplementPreconditioner is applied to the Navier Stokes}}
@@ -65,7 +65,7 @@
 \DoxyCodeLine{\Hypertarget{pseudo__elastic__fsi__preconditioner_8h_source_l00061}00061     : \textcolor{keyword}{public} \mbox{\hyperlink{classoomph_1_1BlockPreconditioner}{BlockPreconditioner}}<CRDoubleMatrix>}
 \DoxyCodeLine{\Hypertarget{pseudo__elastic__fsi__preconditioner_8h_source_l00062}00062   \{}
 \DoxyCodeLine{\Hypertarget{pseudo__elastic__fsi__preconditioner_8h_source_l00063}00063   \textcolor{keyword}{public}:\textcolor{comment}{}}
-\DoxyCodeLine{\Hypertarget{pseudo__elastic__fsi__preconditioner_8h_source_l00064}00064 \textcolor{comment}{    /// \(\backslash\)short constructor -\/ just set defaults. Specify the spatial}}
+\DoxyCodeLine{\Hypertarget{pseudo__elastic__fsi__preconditioner_8h_source_l00064}00064 \textcolor{comment}{    ///  constructor -\/ just set defaults. Specify the spatial}}
 \DoxyCodeLine{\Hypertarget{pseudo__elastic__fsi__preconditioner_8h_source_l00065}00065 \textcolor{comment}{    /// dimension of the fluid and a (non-\/const) problem pointer needed for}}
 \DoxyCodeLine{\Hypertarget{pseudo__elastic__fsi__preconditioner_8h_source_l00066}00066 \textcolor{comment}{    /// the underlying NavierStokesSchurComplementPreconditioner.}}
 \DoxyCodeLine{\Hypertarget{pseudo__elastic__fsi__preconditioner_8h_source_l00067}\mbox{\hyperlink{classoomph_1_1PseudoElasticFSIPreconditioner_aa3132ef3e4ecd57adf64da72e84b5d9d}{00067}} \textcolor{comment}{}    \mbox{\hyperlink{classoomph_1_1PseudoElasticFSIPreconditioner_aa3132ef3e4ecd57adf64da72e84b5d9d}{PseudoElasticFSIPreconditioner}}(\textcolor{keyword}{const} \textcolor{keywordtype}{unsigned}\& dim, \mbox{\hyperlink{classoomph_1_1Problem}{Problem}}* problem\_pt)}
@@ -87,7 +87,7 @@
 \DoxyCodeLine{\Hypertarget{pseudo__elastic__fsi__preconditioner_8h_source_l00083}00083       \textcolor{comment}{// using Schur complement preconditioner for NS}}
 \DoxyCodeLine{\Hypertarget{pseudo__elastic__fsi__preconditioner_8h_source_l00084}00084       \mbox{\hyperlink{classoomph_1_1PseudoElasticFSIPreconditioner_a5314b4734298c3de8f394a45792ba1c9}{Navier\_stokes\_preconditioner\_pt}} = \textcolor{keyword}{new} \mbox{\hyperlink{classoomph_1_1SuperLUPreconditioner}{SuperLUPreconditioner}};}
 \DoxyCodeLine{\Hypertarget{pseudo__elastic__fsi__preconditioner_8h_source_l00085}00085       \mbox{\hyperlink{classoomph_1_1PseudoElasticFSIPreconditioner_a438b2a5932c1fde633a73107043f0b09}{Navier\_stokes\_schur\_complement\_preconditioner\_pt}} =}
-\DoxyCodeLine{\Hypertarget{pseudo__elastic__fsi__preconditioner_8h_source_l00086}00086         \textcolor{keyword}{new} \mbox{\hyperlink{classoomph_1_1NavierStokesSchurComplementPreconditioner}{NavierStokesSchurComplementPreconditioner}}(problem\_pt);}
+\DoxyCodeLine{\Hypertarget{pseudo__elastic__fsi__preconditioner_8h_source_l00086}00086         \textcolor{keyword}{new} NavierStokesSchurComplementPreconditioner(problem\_pt);}
 \DoxyCodeLine{\Hypertarget{pseudo__elastic__fsi__preconditioner_8h_source_l00087}00087 }
 \DoxyCodeLine{\Hypertarget{pseudo__elastic__fsi__preconditioner_8h_source_l00088}00088       \textcolor{comment}{// set defaults}}
 \DoxyCodeLine{\Hypertarget{pseudo__elastic__fsi__preconditioner_8h_source_l00089}00089       \mbox{\hyperlink{classoomph_1_1PseudoElasticFSIPreconditioner_aab116f252418ca092f7e6f0f75de6778}{Using\_default\_solid\_preconditioner}} = \textcolor{keyword}{true};}
@@ -144,10 +144,10 @@
 \DoxyCodeLine{\Hypertarget{pseudo__elastic__fsi__preconditioner_8h_source_l00140}00140 \textcolor{comment}{    /// clean up memory method}}
 \DoxyCodeLine{\Hypertarget{pseudo__elastic__fsi__preconditioner_8h_source_l00141}00141 \textcolor{comment}{}    \textcolor{keywordtype}{void} \mbox{\hyperlink{classoomph_1_1PseudoElasticFSIPreconditioner_a15859381010faa40a47fdca28b281475}{clean\_up\_memory}}();}
 \DoxyCodeLine{\Hypertarget{pseudo__elastic__fsi__preconditioner_8h_source_l00142}00142 \textcolor{comment}{}}
-\DoxyCodeLine{\Hypertarget{pseudo__elastic__fsi__preconditioner_8h_source_l00143}00143 \textcolor{comment}{    /// \(\backslash\)short Setup the precoonditioner.}}
+\DoxyCodeLine{\Hypertarget{pseudo__elastic__fsi__preconditioner_8h_source_l00143}00143 \textcolor{comment}{    ///  Setup the precoonditioner.}}
 \DoxyCodeLine{\Hypertarget{pseudo__elastic__fsi__preconditioner_8h_source_l00144}00144 \textcolor{comment}{}    \textcolor{keywordtype}{void} \mbox{\hyperlink{classoomph_1_1PseudoElasticFSIPreconditioner_a460ad5eea59f4c07dfde8b11696fabb1}{setup}}();}
 \DoxyCodeLine{\Hypertarget{pseudo__elastic__fsi__preconditioner_8h_source_l00145}00145 \textcolor{comment}{}}
-\DoxyCodeLine{\Hypertarget{pseudo__elastic__fsi__preconditioner_8h_source_l00146}00146 \textcolor{comment}{    ///  \(\backslash\)short Apply the preconditioner}}
+\DoxyCodeLine{\Hypertarget{pseudo__elastic__fsi__preconditioner_8h_source_l00146}00146 \textcolor{comment}{    ///   Apply the preconditioner}}
 \DoxyCodeLine{\Hypertarget{pseudo__elastic__fsi__preconditioner_8h_source_l00147}00147 \textcolor{comment}{}    \textcolor{keywordtype}{void} \mbox{\hyperlink{classoomph_1_1PseudoElasticFSIPreconditioner_ad29c2852949caec2d20cbe7cf99f1b38}{preconditioner\_solve}}(\textcolor{keyword}{const} \mbox{\hyperlink{classoomph_1_1DoubleVector}{DoubleVector}}\& r, \mbox{\hyperlink{classoomph_1_1DoubleVector}{DoubleVector}}\& z);}
 \DoxyCodeLine{\Hypertarget{pseudo__elastic__fsi__preconditioner_8h_source_l00148}00148 \textcolor{comment}{}}
 \DoxyCodeLine{\Hypertarget{pseudo__elastic__fsi__preconditioner_8h_source_l00149}00149 \textcolor{comment}{    /// specify the mesh containing the combined fluid/pseudo solid elements}}
@@ -168,7 +168,7 @@
 \DoxyCodeLine{\Hypertarget{pseudo__elastic__fsi__preconditioner_8h_source_l00164}00164       \mbox{\hyperlink{classoomph_1_1PseudoElasticFSIPreconditioner_a0a75413264015a10ce59e7a31c7fe7c4}{Lagrange\_multiplier\_mesh\_pt}} = \mbox{\hyperlink{classoomph_1_1BlockPreconditioner_a295ad63173fcd9cfff7cbbdc6c518e9a}{mesh\_pt}};}
 \DoxyCodeLine{\Hypertarget{pseudo__elastic__fsi__preconditioner_8h_source_l00165}00165     \}}
 \DoxyCodeLine{\Hypertarget{pseudo__elastic__fsi__preconditioner_8h_source_l00166}00166 \textcolor{comment}{}}
-\DoxyCodeLine{\Hypertarget{pseudo__elastic__fsi__preconditioner_8h_source_l00167}00167 \textcolor{comment}{    /// \(\backslash\)short speicify a non default solid preconditioner. This preconditioner}}
+\DoxyCodeLine{\Hypertarget{pseudo__elastic__fsi__preconditioner_8h_source_l00167}00167 \textcolor{comment}{    ///  speicify a non default solid preconditioner. This preconditioner}}
 \DoxyCodeLine{\Hypertarget{pseudo__elastic__fsi__preconditioner_8h_source_l00168}00168 \textcolor{comment}{    /// will not delete it}}
 \DoxyCodeLine{\Hypertarget{pseudo__elastic__fsi__preconditioner_8h_source_l00169}\mbox{\hyperlink{classoomph_1_1PseudoElasticFSIPreconditioner_a92e59f83606d77e7407a4ace534546f2}{00169}} \textcolor{comment}{}    \textcolor{keywordtype}{void} \mbox{\hyperlink{classoomph_1_1PseudoElasticFSIPreconditioner_a92e59f83606d77e7407a4ace534546f2}{set\_solid\_preconditioner}}(\mbox{\hyperlink{classoomph_1_1Preconditioner}{Preconditioner}}* prec\_pt)}
 \DoxyCodeLine{\Hypertarget{pseudo__elastic__fsi__preconditioner_8h_source_l00170}00170     \{}
@@ -187,19 +187,19 @@
 \DoxyCodeLine{\Hypertarget{pseudo__elastic__fsi__preconditioner_8h_source_l00183}00183     \}}
 \DoxyCodeLine{\Hypertarget{pseudo__elastic__fsi__preconditioner_8h_source_l00184}00184 \textcolor{comment}{}}
 \DoxyCodeLine{\Hypertarget{pseudo__elastic__fsi__preconditioner_8h_source_l00185}00185 \textcolor{comment}{    /// Access function to the Navier Stokes Schur complement preconditioner.}}
-\DoxyCodeLine{\Hypertarget{pseudo__elastic__fsi__preconditioner_8h_source_l00186}\mbox{\hyperlink{classoomph_1_1PseudoElasticFSIPreconditioner_acd22aa65e802700c40a68c77c832f2a3}{00186}} \textcolor{comment}{}    \mbox{\hyperlink{classoomph_1_1NavierStokesSchurComplementPreconditioner}{NavierStokesSchurComplementPreconditioner}}* \textcolor{keyword}{const} \mbox{\hyperlink{classoomph_1_1PseudoElasticFSIPreconditioner_acd22aa65e802700c40a68c77c832f2a3}{navier\_stokes\_schur\_complement\_preconditioner\_pt}}()}
+\DoxyCodeLine{\Hypertarget{pseudo__elastic__fsi__preconditioner_8h_source_l00186}\mbox{\hyperlink{classoomph_1_1PseudoElasticFSIPreconditioner_acd22aa65e802700c40a68c77c832f2a3}{00186}} \textcolor{comment}{}    NavierStokesSchurComplementPreconditioner* \textcolor{keyword}{const} \mbox{\hyperlink{classoomph_1_1PseudoElasticFSIPreconditioner_acd22aa65e802700c40a68c77c832f2a3}{navier\_stokes\_schur\_complement\_preconditioner\_pt}}()}
 \DoxyCodeLine{\Hypertarget{pseudo__elastic__fsi__preconditioner_8h_source_l00187}00187     \{}
 \DoxyCodeLine{\Hypertarget{pseudo__elastic__fsi__preconditioner_8h_source_l00188}00188       \textcolor{keywordflow}{return} \mbox{\hyperlink{classoomph_1_1PseudoElasticFSIPreconditioner_a438b2a5932c1fde633a73107043f0b09}{Navier\_stokes\_schur\_complement\_preconditioner\_pt}};}
 \DoxyCodeLine{\Hypertarget{pseudo__elastic__fsi__preconditioner_8h_source_l00189}00189     \}}
 \DoxyCodeLine{\Hypertarget{pseudo__elastic__fsi__preconditioner_8h_source_l00190}00190 \textcolor{comment}{}}
-\DoxyCodeLine{\Hypertarget{pseudo__elastic__fsi__preconditioner_8h_source_l00191}00191 \textcolor{comment}{    /// \(\backslash\)short Call to use the Navier Stokes Schur complement}}
+\DoxyCodeLine{\Hypertarget{pseudo__elastic__fsi__preconditioner_8h_source_l00191}00191 \textcolor{comment}{    ///  Call to use the Navier Stokes Schur complement}}
 \DoxyCodeLine{\Hypertarget{pseudo__elastic__fsi__preconditioner_8h_source_l00192}00192 \textcolor{comment}{    /// preconditioner.}}
 \DoxyCodeLine{\Hypertarget{pseudo__elastic__fsi__preconditioner_8h_source_l00193}\mbox{\hyperlink{classoomph_1_1PseudoElasticFSIPreconditioner_a136fa015ebb39a20e82682bacd65c65b}{00193}} \textcolor{comment}{}    \textcolor{keywordtype}{void} \mbox{\hyperlink{classoomph_1_1PseudoElasticFSIPreconditioner_a136fa015ebb39a20e82682bacd65c65b}{enable\_navier\_stokes\_schur\_complement\_preconditioner}}()}
 \DoxyCodeLine{\Hypertarget{pseudo__elastic__fsi__preconditioner_8h_source_l00194}00194     \{}
 \DoxyCodeLine{\Hypertarget{pseudo__elastic__fsi__preconditioner_8h_source_l00195}00195       \mbox{\hyperlink{classoomph_1_1PseudoElasticFSIPreconditioner_aa9eab77e9d4dfbdecfac9cccceb68c7b}{Use\_navier\_stokes\_schur\_complement\_preconditioner}} = \textcolor{keyword}{true};}
 \DoxyCodeLine{\Hypertarget{pseudo__elastic__fsi__preconditioner_8h_source_l00196}00196     \}}
 \DoxyCodeLine{\Hypertarget{pseudo__elastic__fsi__preconditioner_8h_source_l00197}00197 \textcolor{comment}{}}
-\DoxyCodeLine{\Hypertarget{pseudo__elastic__fsi__preconditioner_8h_source_l00198}00198 \textcolor{comment}{    /// \(\backslash\)short Call to use the SuperLUPreconditioner is used for the}}
+\DoxyCodeLine{\Hypertarget{pseudo__elastic__fsi__preconditioner_8h_source_l00198}00198 \textcolor{comment}{    ///  Call to use the SuperLUPreconditioner is used for the}}
 \DoxyCodeLine{\Hypertarget{pseudo__elastic__fsi__preconditioner_8h_source_l00199}00199 \textcolor{comment}{    /// Navier Stokes subsidiary system.}}
 \DoxyCodeLine{\Hypertarget{pseudo__elastic__fsi__preconditioner_8h_source_l00200}\mbox{\hyperlink{classoomph_1_1PseudoElasticFSIPreconditioner_af2adaec06d407d4b89bca034984c66ba}{00200}} \textcolor{comment}{}    \textcolor{keywordtype}{void} \mbox{\hyperlink{classoomph_1_1PseudoElasticFSIPreconditioner_af2adaec06d407d4b89bca034984c66ba}{disable\_navier\_stokes\_schur\_complement\_preconditioner}}()}
 \DoxyCodeLine{\Hypertarget{pseudo__elastic__fsi__preconditioner_8h_source_l00201}00201     \{}
@@ -207,24 +207,24 @@
 \DoxyCodeLine{\Hypertarget{pseudo__elastic__fsi__preconditioner_8h_source_l00203}00203     \}}
 \DoxyCodeLine{\Hypertarget{pseudo__elastic__fsi__preconditioner_8h_source_l00204}00204 }
 \DoxyCodeLine{\Hypertarget{pseudo__elastic__fsi__preconditioner_8h_source_l00205}00205   \textcolor{keyword}{private}:\textcolor{comment}{}}
-\DoxyCodeLine{\Hypertarget{pseudo__elastic__fsi__preconditioner_8h_source_l00206}00206 \textcolor{comment}{    /// \(\backslash\)short pointer to the pseudo solid preconditioner}}
+\DoxyCodeLine{\Hypertarget{pseudo__elastic__fsi__preconditioner_8h_source_l00206}00206 \textcolor{comment}{    ///  pointer to the pseudo solid preconditioner}}
 \DoxyCodeLine{\Hypertarget{pseudo__elastic__fsi__preconditioner_8h_source_l00207}\mbox{\hyperlink{classoomph_1_1PseudoElasticFSIPreconditioner_afad4b204e6b7b2a63e4c4e0fe2f9f2c0}{00207}} \textcolor{comment}{}    \mbox{\hyperlink{classoomph_1_1PseudoElasticPreconditioner}{PseudoElasticPreconditioner}}* \mbox{\hyperlink{classoomph_1_1PseudoElasticFSIPreconditioner_afad4b204e6b7b2a63e4c4e0fe2f9f2c0}{Pseudo\_elastic\_preconditioner\_pt}};}
 \DoxyCodeLine{\Hypertarget{pseudo__elastic__fsi__preconditioner_8h_source_l00208}00208 \textcolor{comment}{}}
-\DoxyCodeLine{\Hypertarget{pseudo__elastic__fsi__preconditioner_8h_source_l00209}00209 \textcolor{comment}{    /// \(\backslash\)short pointer to the navier stokes precondtioner}}
+\DoxyCodeLine{\Hypertarget{pseudo__elastic__fsi__preconditioner_8h_source_l00209}00209 \textcolor{comment}{    ///  pointer to the navier stokes precondtioner}}
 \DoxyCodeLine{\Hypertarget{pseudo__elastic__fsi__preconditioner_8h_source_l00210}\mbox{\hyperlink{classoomph_1_1PseudoElasticFSIPreconditioner_a5314b4734298c3de8f394a45792ba1c9}{00210}} \textcolor{comment}{}    \mbox{\hyperlink{classoomph_1_1Preconditioner}{Preconditioner}}* \mbox{\hyperlink{classoomph_1_1PseudoElasticFSIPreconditioner_a5314b4734298c3de8f394a45792ba1c9}{Navier\_stokes\_preconditioner\_pt}};}
 \DoxyCodeLine{\Hypertarget{pseudo__elastic__fsi__preconditioner_8h_source_l00211}00211 \textcolor{comment}{}}
-\DoxyCodeLine{\Hypertarget{pseudo__elastic__fsi__preconditioner_8h_source_l00212}00212 \textcolor{comment}{    /// \(\backslash\)short Navier Stokes Schur complement preconditioner.}}
-\DoxyCodeLine{\Hypertarget{pseudo__elastic__fsi__preconditioner_8h_source_l00213}00213 \textcolor{comment}{}    \mbox{\hyperlink{classoomph_1_1NavierStokesSchurComplementPreconditioner}{NavierStokesSchurComplementPreconditioner}}*}
+\DoxyCodeLine{\Hypertarget{pseudo__elastic__fsi__preconditioner_8h_source_l00212}00212 \textcolor{comment}{    ///  Navier Stokes Schur complement preconditioner.}}
+\DoxyCodeLine{\Hypertarget{pseudo__elastic__fsi__preconditioner_8h_source_l00213}00213 \textcolor{comment}{}    NavierStokesSchurComplementPreconditioner*}
 \DoxyCodeLine{\Hypertarget{pseudo__elastic__fsi__preconditioner_8h_source_l00214}\mbox{\hyperlink{classoomph_1_1PseudoElasticFSIPreconditioner_a438b2a5932c1fde633a73107043f0b09}{00214}}       \mbox{\hyperlink{classoomph_1_1PseudoElasticFSIPreconditioner_a438b2a5932c1fde633a73107043f0b09}{Navier\_stokes\_schur\_complement\_preconditioner\_pt}};}
 \DoxyCodeLine{\Hypertarget{pseudo__elastic__fsi__preconditioner_8h_source_l00215}00215 \textcolor{comment}{}}
-\DoxyCodeLine{\Hypertarget{pseudo__elastic__fsi__preconditioner_8h_source_l00216}00216 \textcolor{comment}{    /// \(\backslash\)short pointer to the solid preconditioner}}
+\DoxyCodeLine{\Hypertarget{pseudo__elastic__fsi__preconditioner_8h_source_l00216}00216 \textcolor{comment}{    ///  pointer to the solid preconditioner}}
 \DoxyCodeLine{\Hypertarget{pseudo__elastic__fsi__preconditioner_8h_source_l00217}\mbox{\hyperlink{classoomph_1_1PseudoElasticFSIPreconditioner_a2d96e724939038637ff4911372ee69b4}{00217}} \textcolor{comment}{}    \mbox{\hyperlink{classoomph_1_1Preconditioner}{Preconditioner}}* \mbox{\hyperlink{classoomph_1_1PseudoElasticFSIPreconditioner_a2d96e724939038637ff4911372ee69b4}{Solid\_preconditioner\_pt}};}
 \DoxyCodeLine{\Hypertarget{pseudo__elastic__fsi__preconditioner_8h_source_l00218}00218 \textcolor{comment}{}}
-\DoxyCodeLine{\Hypertarget{pseudo__elastic__fsi__preconditioner_8h_source_l00219}00219 \textcolor{comment}{    /// \(\backslash\)short boolean flag to indicate whether default Solid preconditioner}}
+\DoxyCodeLine{\Hypertarget{pseudo__elastic__fsi__preconditioner_8h_source_l00219}00219 \textcolor{comment}{    ///  boolean flag to indicate whether default Solid preconditioner}}
 \DoxyCodeLine{\Hypertarget{pseudo__elastic__fsi__preconditioner_8h_source_l00220}00220 \textcolor{comment}{    /// is used}}
 \DoxyCodeLine{\Hypertarget{pseudo__elastic__fsi__preconditioner_8h_source_l00221}\mbox{\hyperlink{classoomph_1_1PseudoElasticFSIPreconditioner_aab116f252418ca092f7e6f0f75de6778}{00221}} \textcolor{comment}{}    \textcolor{keywordtype}{bool} \mbox{\hyperlink{classoomph_1_1PseudoElasticFSIPreconditioner_aab116f252418ca092f7e6f0f75de6778}{Using\_default\_solid\_preconditioner}};}
 \DoxyCodeLine{\Hypertarget{pseudo__elastic__fsi__preconditioner_8h_source_l00222}00222 \textcolor{comment}{}}
-\DoxyCodeLine{\Hypertarget{pseudo__elastic__fsi__preconditioner_8h_source_l00223}00223 \textcolor{comment}{    /// \(\backslash\)short boolean flag to indicate whether the Solid preconditioner is a}}
+\DoxyCodeLine{\Hypertarget{pseudo__elastic__fsi__preconditioner_8h_source_l00223}00223 \textcolor{comment}{    ///  boolean flag to indicate whether the Solid preconditioner is a}}
 \DoxyCodeLine{\Hypertarget{pseudo__elastic__fsi__preconditioner_8h_source_l00224}00224 \textcolor{comment}{    /// block preconditioner}}
 \DoxyCodeLine{\Hypertarget{pseudo__elastic__fsi__preconditioner_8h_source_l00225}\mbox{\hyperlink{classoomph_1_1PseudoElasticFSIPreconditioner_aa58001a8248ecac64087de254c0ae763}{00225}} \textcolor{comment}{}    \textcolor{keywordtype}{bool} \mbox{\hyperlink{classoomph_1_1PseudoElasticFSIPreconditioner_aa58001a8248ecac64087de254c0ae763}{Solid\_preconditioner\_is\_block\_preconditioner}};}
 \DoxyCodeLine{\Hypertarget{pseudo__elastic__fsi__preconditioner_8h_source_l00226}00226 \textcolor{comment}{}}
@@ -240,19 +240,19 @@
 \DoxyCodeLine{\Hypertarget{pseudo__elastic__fsi__preconditioner_8h_source_l00236}00236     \textcolor{comment}{// lagrange onto solid matric vector product}}
 \DoxyCodeLine{\Hypertarget{pseudo__elastic__fsi__preconditioner_8h_source_l00237}\mbox{\hyperlink{classoomph_1_1PseudoElasticFSIPreconditioner_a1129dcb6e7e335aca44acdb4231adc38}{00237}}     \mbox{\hyperlink{classoomph_1_1MatrixVectorProduct}{MatrixVectorProduct}}* \mbox{\hyperlink{classoomph_1_1PseudoElasticFSIPreconditioner_a1129dcb6e7e335aca44acdb4231adc38}{Lagrange\_solid\_matvec\_pt}};}
 \DoxyCodeLine{\Hypertarget{pseudo__elastic__fsi__preconditioner_8h_source_l00238}00238 \textcolor{comment}{}}
-\DoxyCodeLine{\Hypertarget{pseudo__elastic__fsi__preconditioner_8h_source_l00239}00239 \textcolor{comment}{    /// \(\backslash\)short Mesh containing the combined fluid and pseudo solid element}}
+\DoxyCodeLine{\Hypertarget{pseudo__elastic__fsi__preconditioner_8h_source_l00239}00239 \textcolor{comment}{    ///  Mesh containing the combined fluid and pseudo solid element}}
 \DoxyCodeLine{\Hypertarget{pseudo__elastic__fsi__preconditioner_8h_source_l00240}\mbox{\hyperlink{classoomph_1_1PseudoElasticFSIPreconditioner_a9d8025b022a2ca180210da2f7979dfe2}{00240}} \textcolor{comment}{}    \mbox{\hyperlink{classoomph_1_1Mesh}{Mesh}}* \mbox{\hyperlink{classoomph_1_1PseudoElasticFSIPreconditioner_a9d8025b022a2ca180210da2f7979dfe2}{Fluid\_and\_pseudo\_elastic\_mesh\_pt}};}
 \DoxyCodeLine{\Hypertarget{pseudo__elastic__fsi__preconditioner_8h_source_l00241}00241 \textcolor{comment}{}}
-\DoxyCodeLine{\Hypertarget{pseudo__elastic__fsi__preconditioner_8h_source_l00242}00242 \textcolor{comment}{    /// \(\backslash\)short Mesh containing the solid elements}}
+\DoxyCodeLine{\Hypertarget{pseudo__elastic__fsi__preconditioner_8h_source_l00242}00242 \textcolor{comment}{    ///  Mesh containing the solid elements}}
 \DoxyCodeLine{\Hypertarget{pseudo__elastic__fsi__preconditioner_8h_source_l00243}\mbox{\hyperlink{classoomph_1_1PseudoElasticFSIPreconditioner_afd02372d56906a9f86c5b00bf50297aa}{00243}} \textcolor{comment}{}    \mbox{\hyperlink{classoomph_1_1Mesh}{Mesh}}* \mbox{\hyperlink{classoomph_1_1PseudoElasticFSIPreconditioner_afd02372d56906a9f86c5b00bf50297aa}{Solid\_mesh\_pt}};}
 \DoxyCodeLine{\Hypertarget{pseudo__elastic__fsi__preconditioner_8h_source_l00244}00244 \textcolor{comment}{}}
-\DoxyCodeLine{\Hypertarget{pseudo__elastic__fsi__preconditioner_8h_source_l00245}00245 \textcolor{comment}{    /// \(\backslash\)short Mesh containing the lagrange multiplier elements}}
+\DoxyCodeLine{\Hypertarget{pseudo__elastic__fsi__preconditioner_8h_source_l00245}00245 \textcolor{comment}{    ///  Mesh containing the lagrange multiplier elements}}
 \DoxyCodeLine{\Hypertarget{pseudo__elastic__fsi__preconditioner_8h_source_l00246}\mbox{\hyperlink{classoomph_1_1PseudoElasticFSIPreconditioner_a0a75413264015a10ce59e7a31c7fe7c4}{00246}} \textcolor{comment}{}    \mbox{\hyperlink{classoomph_1_1Mesh}{Mesh}}* \mbox{\hyperlink{classoomph_1_1PseudoElasticFSIPreconditioner_a0a75413264015a10ce59e7a31c7fe7c4}{Lagrange\_multiplier\_mesh\_pt}};}
 \DoxyCodeLine{\Hypertarget{pseudo__elastic__fsi__preconditioner_8h_source_l00247}00247 \textcolor{comment}{}}
-\DoxyCodeLine{\Hypertarget{pseudo__elastic__fsi__preconditioner_8h_source_l00248}00248 \textcolor{comment}{    /// \(\backslash\)short the dimension of the fluid}}
+\DoxyCodeLine{\Hypertarget{pseudo__elastic__fsi__preconditioner_8h_source_l00248}00248 \textcolor{comment}{    ///  the dimension of the fluid}}
 \DoxyCodeLine{\Hypertarget{pseudo__elastic__fsi__preconditioner_8h_source_l00249}\mbox{\hyperlink{classoomph_1_1PseudoElasticFSIPreconditioner_aec1e28a3a746a76ed6a283115e8d3146}{00249}} \textcolor{comment}{}    \textcolor{keywordtype}{unsigned} \mbox{\hyperlink{classoomph_1_1PseudoElasticFSIPreconditioner_aec1e28a3a746a76ed6a283115e8d3146}{Dim}};}
 \DoxyCodeLine{\Hypertarget{pseudo__elastic__fsi__preconditioner_8h_source_l00250}00250 \textcolor{comment}{}}
-\DoxyCodeLine{\Hypertarget{pseudo__elastic__fsi__preconditioner_8h_source_l00251}00251 \textcolor{comment}{    /// \(\backslash\)short If true the Navier Stokes Schur complement preconditioner}}
+\DoxyCodeLine{\Hypertarget{pseudo__elastic__fsi__preconditioner_8h_source_l00251}00251 \textcolor{comment}{    ///  If true the Navier Stokes Schur complement preconditioner}}
 \DoxyCodeLine{\Hypertarget{pseudo__elastic__fsi__preconditioner_8h_source_l00252}00252 \textcolor{comment}{    /// is used. Otherwise SuperLUPreconditioner is used for the}}
 \DoxyCodeLine{\Hypertarget{pseudo__elastic__fsi__preconditioner_8h_source_l00253}00253 \textcolor{comment}{    /// Navier Stokes subsidiary system.}}
 \DoxyCodeLine{\Hypertarget{pseudo__elastic__fsi__preconditioner_8h_source_l00254}\mbox{\hyperlink{classoomph_1_1PseudoElasticFSIPreconditioner_aa9eab77e9d4dfbdecfac9cccceb68c7b}{00254}} \textcolor{comment}{}    \textcolor{keywordtype}{bool} \mbox{\hyperlink{classoomph_1_1PseudoElasticFSIPreconditioner_aa9eab77e9d4dfbdecfac9cccceb68c7b}{Use\_navier\_stokes\_schur\_complement\_preconditioner}};}

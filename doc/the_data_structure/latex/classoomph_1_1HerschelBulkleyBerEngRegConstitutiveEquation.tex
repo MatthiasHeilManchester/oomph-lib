@@ -2,6 +2,11 @@
 \label{classoomph_1_1HerschelBulkleyBerEngRegConstitutiveEquation}\index{oomph::HerschelBulkleyBerEngRegConstitutiveEquation$<$ DIM $>$@{oomph::HerschelBulkleyBerEngRegConstitutiveEquation$<$ DIM $>$}}
 
 
+A \mbox{\hyperlink{classoomph_1_1GeneralisedNewtonianConstitutiveEquation}{Generalised\+Newtonian\+Constitutive\+Equation}} class defining a Herschel-\/\+Bulkley fluid using Bercovier and Engelman\textquotesingle{}s (1980) regularisation.  
+
+
+
+
 {\ttfamily \#include $<$generalised\+\_\+newtonian\+\_\+constitutive\+\_\+models.\+h$>$}
 
 Inheritance diagram for oomph\+::Herschel\+Bulkley\+Ber\+Eng\+Reg\+Constitutive\+Equation\texorpdfstring{$<$}{<} DIM \texorpdfstring{$>$}{>}\+:\begin{figure}[H]
@@ -16,9 +21,9 @@ Inheritance diagram for oomph\+::Herschel\+Bulkley\+Ber\+Eng\+Reg\+Constitutive\
 \mbox{\hyperlink{classoomph_1_1HerschelBulkleyBerEngRegConstitutiveEquation_a35b80c3dca1702270e8346a63689adf5}{Herschel\+Bulkley\+Ber\+Eng\+Reg\+Constitutive\+Equation}} (double $\ast$yield\+\_\+stress\+\_\+pt, double $\ast$flow\+\_\+index\+\_\+pt, double $\ast$regularisation\+\_\+parameter\+\_\+pt)
 \item 
 double \mbox{\hyperlink{classoomph_1_1HerschelBulkleyBerEngRegConstitutiveEquation_aa56ae7a2ef80789048d81925d9c9e9db}{viscosity}} (const double \&second\+\_\+invariant\+\_\+of\+\_\+rate\+\_\+of\+\_\+strain\+\_\+tensor)
-\item 
+\begin{DoxyCompactList}\small\item\em Function implementing the constitutive model Input\+: second invariant of the rate of strain Output\+: the viscosity For Newtonian behaviour this returns 1. \end{DoxyCompactList}\item 
 double \mbox{\hyperlink{classoomph_1_1HerschelBulkleyBerEngRegConstitutiveEquation_ac02f227a7ca7fcd65fe0f9c0baff417d}{dviscosity\+\_\+dinvariant}} (const double \&second\+\_\+invariant\+\_\+of\+\_\+rate\+\_\+of\+\_\+strain\+\_\+tensor)
-\end{DoxyCompactItemize}
+\begin{DoxyCompactList}\small\item\em Function returning the derivative of the viscosity w.\+r.\+t. the second invariant of the rate of strain tensor For Newtonian behaviour this returns 0.\+0. \end{DoxyCompactList}\end{DoxyCompactItemize}
 \doxysubsection*{Private Attributes}
 \begin{DoxyCompactItemize}
 \item 
@@ -33,7 +38,7 @@ double $\ast$ \mbox{\hyperlink{classoomph_1_1HerschelBulkleyBerEngRegConstitutiv
 \doxysubsection{Detailed Description}
 \subsubsection*{template$<$unsigned DIM$>$\newline
 class oomph\+::\+Herschel\+Bulkley\+Ber\+Eng\+Reg\+Constitutive\+Equation$<$ DIM $>$}
-A \mbox{\hyperlink{classoomph_1_1GeneralisedNewtonianConstitutiveEquation}{Generalised\+Newtonian\+Constitutive\+Equation}} class defining a Herschel-\/\+Bulkley fluid using Bercovier and Engelman\textquotesingle{}s (1980) regularisation 
+A \mbox{\hyperlink{classoomph_1_1GeneralisedNewtonianConstitutiveEquation}{Generalised\+Newtonian\+Constitutive\+Equation}} class defining a Herschel-\/\+Bulkley fluid using Bercovier and Engelman\textquotesingle{}s (1980) regularisation. 
 
 Definition at line \mbox{\hyperlink{generalised__newtonian__constitutive__models_8h_source_l00151}{151}} of file \mbox{\hyperlink{generalised__newtonian__constitutive__models_8h_source}{generalised\+\_\+newtonian\+\_\+constitutive\+\_\+models.\+h}}.
 
@@ -61,7 +66,11 @@ Definition at line \mbox{\hyperlink{generalised__newtonian__constitutive__models
 {\footnotesize\ttfamily template$<$unsigned DIM$>$ \\
 double \mbox{\hyperlink{classoomph_1_1HerschelBulkleyBerEngRegConstitutiveEquation}{oomph\+::\+Herschel\+Bulkley\+Ber\+Eng\+Reg\+Constitutive\+Equation}}$<$ DIM $>$\+::dviscosity\+\_\+dinvariant (\begin{DoxyParamCaption}\item[{const double \&}]{second\+\_\+invariant\+\_\+of\+\_\+rate\+\_\+of\+\_\+strain\+\_\+tensor }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [virtual]}}
 
-Function returning the derivative of the viscosity w.\+r.\+t. the second invariant of the rate of strain tensor For Newtonian behaviour this returns 0.\+0 
+
+
+Function returning the derivative of the viscosity w.\+r.\+t. the second invariant of the rate of strain tensor For Newtonian behaviour this returns 0.\+0. 
+
+
 
 Implements \mbox{\hyperlink{classoomph_1_1GeneralisedNewtonianConstitutiveEquation_ad0164e6ca57cc986048346e12c4d353a}{oomph\+::\+Generalised\+Newtonian\+Constitutive\+Equation$<$ DIM $>$}}.
 
@@ -80,7 +89,11 @@ References \mbox{\hyperlink{generalised__newtonian__constitutive__models_8h_sour
 {\footnotesize\ttfamily template$<$unsigned DIM$>$ \\
 double \mbox{\hyperlink{classoomph_1_1HerschelBulkleyBerEngRegConstitutiveEquation}{oomph\+::\+Herschel\+Bulkley\+Ber\+Eng\+Reg\+Constitutive\+Equation}}$<$ DIM $>$\+::viscosity (\begin{DoxyParamCaption}\item[{const double \&}]{second\+\_\+invariant\+\_\+of\+\_\+rate\+\_\+of\+\_\+strain\+\_\+tensor }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [virtual]}}
 
-Function implementing the constitutive model Input\+: second invariant of the rate of strain Output\+: the viscosity For Newtonian behaviour this returns 1 
+
+
+Function implementing the constitutive model Input\+: second invariant of the rate of strain Output\+: the viscosity For Newtonian behaviour this returns 1. 
+
+
 
 Implements \mbox{\hyperlink{classoomph_1_1GeneralisedNewtonianConstitutiveEquation_a3e6d811786e39ca3c3a9b1c46249442f}{oomph\+::\+Generalised\+Newtonian\+Constitutive\+Equation$<$ DIM $>$}}.
 

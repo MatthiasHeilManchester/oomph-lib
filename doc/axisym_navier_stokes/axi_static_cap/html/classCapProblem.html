@@ -117,6 +117,9 @@
   <div class="headertitle"><div class="title">CapProblem&lt; ELEMENT &gt; Class Template Reference</div></div>
 </div><!--header-->
 <div class="contents">
+
+<p>A Problem class that solves the Navier&ndash;Stokes equations + free surface in an axisymmetric geometry using a spine-based node update.  
+ <a href="classCapProblem.html#details">More...</a></p>
 <div class="dynheader">
 Inheritance diagram for CapProblem&lt; ELEMENT &gt;:</div>
 <div class="dyncontent">
@@ -127,10 +130,13 @@ Inheritance diagram for CapProblem&lt; ELEMENT &gt;:</div>
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pub-methods" name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
 <tr class="memitem:ab03ed8e2c1b44911d11209e00cb28a42"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCapProblem.html#ab03ed8e2c1b44911d11209e00cb28a42">CapProblem</a> (const bool &amp;hijack_internal)</td></tr>
+<tr class="memdesc:ab03ed8e2c1b44911d11209e00cb28a42"><td class="mdescLeft">&#160;</td><td class="mdescRight">Constructor: Pass boolean flag to indicate if the volume constraint is applied by hijacking an internal pressure or the external pressure.  <a href="classCapProblem.html#ab03ed8e2c1b44911d11209e00cb28a42">More...</a><br /></td></tr>
 <tr class="separator:ab03ed8e2c1b44911d11209e00cb28a42"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ad2b434212ecb33467359aef1071bc964"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCapProblem.html#ad2b434212ecb33467359aef1071bc964">~CapProblem</a> ()</td></tr>
+<tr class="memdesc:ad2b434212ecb33467359aef1071bc964"><td class="mdescLeft">&#160;</td><td class="mdescRight">Destructor. Make sure to clean up all allocated memory, so that multiple instances of the problem don't lead to excessive memory usage.  <a href="classCapProblem.html#ad2b434212ecb33467359aef1071bc964">More...</a><br /></td></tr>
 <tr class="separator:ad2b434212ecb33467359aef1071bc964"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:af54251f12b42b85c6caf88e5214f45da"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCapProblem.html#af54251f12b42b85c6caf88e5214f45da">parameter_study</a> (const string &amp;dir_name)</td></tr>
+<tr class="memdesc:af54251f12b42b85c6caf88e5214f45da"><td class="mdescLeft">&#160;</td><td class="mdescRight">Perform a parameter study: Solve problem for a range of contact angles Pass name of output directory as a string.  <a href="classCapProblem.html#af54251f12b42b85c6caf88e5214f45da">More...</a><br /></td></tr>
 <tr class="separator:af54251f12b42b85c6caf88e5214f45da"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ac852570b51489f4bf744b6063fbfa01a"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCapProblem.html#ac852570b51489f4bf744b6063fbfa01a">actions_before_newton_convergence_check</a> ()</td></tr>
 <tr class="memdesc:ac852570b51489f4bf744b6063fbfa01a"><td class="mdescLeft">&#160;</td><td class="mdescRight">Update the spine mesh after every Newton step.  <a href="classCapProblem.html#ac852570b51489f4bf744b6063fbfa01a">More...</a><br /></td></tr>
@@ -180,7 +186,7 @@ Private Attributes</h2></td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock"><div class="compoundTemplParams">template&lt;class ELEMENT&gt;<br />
-class CapProblem&lt; ELEMENT &gt;</div><p >A Problem class that solves the Navier&ndash;Stokes equations + free surface in an axisymmetric geometry using a spine-based node update </p>
+class CapProblem&lt; ELEMENT &gt;</div><p >A Problem class that solves the Navier&ndash;Stokes equations + free surface in an axisymmetric geometry using a spine-based node update. </p>
 
 <p class="definition">Definition at line <a class="el" href="axi__static__cap_8cc_source.html#l00077">77</a> of file <a class="el" href="axi__static__cap_8cc_source.html">axi_static_cap.cc</a>.</p>
 </div><h2 class="groupheader">Constructor &amp; Destructor Documentation</h2>
@@ -201,7 +207,8 @@ template&lt;class ELEMENT &gt; </div>
         </tr>
       </table>
 </div><div class="memdoc">
-<p >Constructor: Pass boolean flag to indicate if the volume constraint is applied by hijacking an internal pressure or the external pressure </p>
+
+<p>Constructor: Pass boolean flag to indicate if the volume constraint is applied by hijacking an internal pressure or the external pressure. </p>
 
 <p class="definition">Definition at line <a class="el" href="axi__static__cap_8cc_source.html#l00147">147</a> of file <a class="el" href="axi__static__cap_8cc_source.html">axi_static_cap.cc</a>.</p>
 
@@ -222,7 +229,8 @@ template&lt;class ELEMENT &gt; </div>
         </tr>
       </table>
 </div><div class="memdoc">
-<p >Destructor. Make sure to clean up all allocated memory, so that multiple instances of the problem don't lead to excessive memory usage. </p>
+
+<p>Destructor. Make sure to clean up all allocated memory, so that multiple instances of the problem don't lead to excessive memory usage. </p>
 
 <p class="definition">Definition at line <a class="el" href="axi__static__cap_8cc_source.html#l00332">332</a> of file <a class="el" href="axi__static__cap_8cc_source.html">axi_static_cap.cc</a>.</p>
 
@@ -325,8 +333,9 @@ template&lt;class ELEMENT &gt; </div>
         </tr>
       </table>
 </div><div class="memdoc">
-<p >Perform a parameter study: Solve problem for a range of contact angles Pass name of output directory as a string</p>
-<p >Perform a parameter study. Pass name of output directory as a string </p>
+
+<p>Perform a parameter study: Solve problem for a range of contact angles Pass name of output directory as a string. </p>
+<p >Perform a parameter study. Pass name of output directory as a string. </p>
 
 <p class="definition">Definition at line <a class="el" href="axi__static__cap_8cc_source.html#l00421">421</a> of file <a class="el" href="axi__static__cap_8cc_source.html">axi_static_cap.cc</a>.</p>
 
@@ -692,7 +701,7 @@ template&lt;class ELEMENT &gt; </div>
     <footer>
       <div class="container">
         <div class="text-muted" style="float:right;">Generated by <a href="http://www.doxygen.org/index.html">
-          <img style="height:18px;" class="footer-img" src="doxygen.png" alt="doxygen"></a> on Wed Oct 13 2021 09:00:11
+          <img style="height:18px;" class="footer-img" src="doxygen.png" alt="doxygen"></a> on Thu Oct 21 2021 17:47:47
         </div>
       </div>
     </footer>

@@ -132,6 +132,9 @@ $(function() {
 </div><!--header-->
 <div class="contents">
 
+<p>A custom linear solver class that is used to solve a block-factorised version of the PitchFork bifurcation detection problem.  
+ <a href="classoomph_1_1BlockPitchForkLinearSolver.html#details">More...</a></p>
+
 <p><code>#include &lt;<a class="el" href="assembly__handler_8h_source.html">assembly_handler.h</a>&gt;</code></p>
 <div id="dynsection-0" onclick="return toggleVisibility(this)" class="dynheader closed" style="cursor:pointer;">
   <img id="dynsection-0-trigger" src="closed.png" alt="+"/> Inheritance diagram for oomph::BlockPitchForkLinearSolver:</div>
@@ -141,7 +144,7 @@ $(function() {
  <div class="center">
   <img src="classoomph_1_1BlockPitchForkLinearSolver.png" usemap="#oomph::BlockPitchForkLinearSolver_map" alt=""/>
   <map id="oomph::BlockPitchForkLinearSolver_map" name="oomph::BlockPitchForkLinearSolver_map">
-<area href="classoomph_1_1LinearSolver.html" alt="oomph::LinearSolver" shape="rect" coords="0,56,243,80"/>
+<area href="classoomph_1_1LinearSolver.html" title="Base class for all linear solvers. This merely defines standard interfaces for linear solvers,..." alt="oomph::LinearSolver" shape="rect" coords="0,56,243,80"/>
 <area href="classoomph_1_1DistributableLinearAlgebraObject.html" title="Base class for any linear algebra object that is distributable. Just contains storage for the LinearA..." alt="oomph::DistributableLinearAlgebraObject" shape="rect" coords="0,0,243,24"/>
   </map>
 </div></div>
@@ -268,6 +271,7 @@ Public Member Functions</h2></td></tr>
 <tr class="memdesc:a5505731e7e73d7e4251c67c7adec6bf5 inherit pub_methods_classoomph_1_1DistributableLinearAlgebraObject"><td class="mdescLeft">&#160;</td><td class="mdescRight">distribution is serial or distributed  <a href="classoomph_1_1DistributableLinearAlgebraObject.html#a5505731e7e73d7e4251c67c7adec6bf5">More...</a><br /></td></tr>
 <tr class="separator:a5505731e7e73d7e4251c67c7adec6bf5 inherit pub_methods_classoomph_1_1DistributableLinearAlgebraObject"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a8c35baa65e335043f62954c92c090a5a inherit pub_methods_classoomph_1_1DistributableLinearAlgebraObject"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classoomph_1_1DistributableLinearAlgebraObject.html#a8c35baa65e335043f62954c92c090a5a">distribution_built</a> () const</td></tr>
+<tr class="memdesc:a8c35baa65e335043f62954c92c090a5a inherit pub_methods_classoomph_1_1DistributableLinearAlgebraObject"><td class="mdescLeft">&#160;</td><td class="mdescRight">if the communicator_pt is null then the distribution is not setup then false is returned, otherwise return true  <a href="classoomph_1_1DistributableLinearAlgebraObject.html#a8c35baa65e335043f62954c92c090a5a">More...</a><br /></td></tr>
 <tr class="separator:a8c35baa65e335043f62954c92c090a5a inherit pub_methods_classoomph_1_1DistributableLinearAlgebraObject"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ac5340bac40b9559b0378037b57005203 inherit pub_methods_classoomph_1_1DistributableLinearAlgebraObject"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classoomph_1_1DistributableLinearAlgebraObject.html#ac5340bac40b9559b0378037b57005203">build_distribution</a> (const <a class="el" href="classoomph_1_1LinearAlgebraDistribution.html">LinearAlgebraDistribution</a> *const dist_pt)</td></tr>
 <tr class="memdesc:ac5340bac40b9559b0378037b57005203 inherit pub_methods_classoomph_1_1DistributableLinearAlgebraObject"><td class="mdescLeft">&#160;</td><td class="mdescRight">setup the distribution of this distributable linear algebra object  <a href="classoomph_1_1DistributableLinearAlgebraObject.html#ac5340bac40b9559b0378037b57005203">More...</a><br /></td></tr>
@@ -294,6 +298,7 @@ Private Attributes</h2></td></tr>
 <tr class="memdesc:a3178ff5ce055b76423b30357022f9e58"><td class="mdescLeft">&#160;</td><td class="mdescRight">Pointer to the storage for the vector d.  <a href="classoomph_1_1BlockPitchForkLinearSolver.html#a3178ff5ce055b76423b30357022f9e58">More...</a><br /></td></tr>
 <tr class="separator:a3178ff5ce055b76423b30357022f9e58"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a3ceff96adc374fb588f106cc3cc9b435"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classoomph_1_1DoubleVector.html">DoubleVector</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classoomph_1_1BlockPitchForkLinearSolver.html#a3ceff96adc374fb588f106cc3cc9b435">dJy_dparam_pt</a></td></tr>
+<tr class="memdesc:a3ceff96adc374fb588f106cc3cc9b435"><td class="mdescLeft">&#160;</td><td class="mdescRight">Pointer to the storage for the vector of derivatives with respect to the bifurcation parameter.  <a href="classoomph_1_1BlockPitchForkLinearSolver.html#a3ceff96adc374fb588f106cc3cc9b435">More...</a><br /></td></tr>
 <tr class="separator:a3ceff96adc374fb588f106cc3cc9b435"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="inherited" name="inherited"></a>
@@ -701,7 +706,8 @@ Additional Inherited Members</h2></td></tr>
   </tr>
 </table>
 </div><div class="memdoc">
-<p >Pointer to the storage for the vector of derivatives with respect to the bifurcation parameter </p>
+
+<p>Pointer to the storage for the vector of derivatives with respect to the bifurcation parameter. </p>
 
 <p class="definition">Definition at line <a class="el" href="assembly__handler_8h_source.html#l00627">627</a> of file <a class="el" href="assembly__handler_8h_source.html">assembly_handler.h</a>.</p>
 
@@ -797,7 +803,7 @@ Additional Inherited Members</h2></td></tr>
     <footer>
       <div class="container">
         <div class="text-muted" style="float:right;">Generated by <a href="http://www.doxygen.org/index.html">
-          <img style="height:18px;" class="footer-img" src="doxygen.png" alt="doxygen"></a> on Wed Oct 13 2021 08:44:55
+          <img style="height:18px;" class="footer-img" src="doxygen.png" alt="doxygen"></a> on Thu Oct 21 2021 17:33:27
         </div>
       </div>
     </footer>

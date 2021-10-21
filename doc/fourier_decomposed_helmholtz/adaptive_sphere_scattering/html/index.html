@@ -323,7 +323,7 @@ Code listing</h1>
 <div class="line"><span class="comment"></span><span class="comment">//=====================================================================</span></div>
 <div class="line"><span class="keyword">namespace </span><a class="code hl_namespace" href="namespaceProblemParameters.html">ProblemParameters</a></div>
 <div class="line">{<span class="comment"></span></div>
-<div class="line"><span class="comment"> /// \short Square of the wavenumber</span></div>
+<div class="line"><span class="comment"> ///  Square of the wavenumber</span></div>
 <div class="line"><span class="comment"></span> <span class="keywordtype">double</span> <a class="code hl_variable" href="namespaceProblemParameters.html#aa5362de1af9e257fde4317c367158a93">K_squared</a>=10.0;</div>
 <div class="line"> <span class="comment"></span></div>
 <div class="line"><span class="comment"> /// Fourier wave number</span></div>
@@ -399,7 +399,7 @@ Code listing</h1>
 <div class="line"> }<span class="comment">//end of get_exact_u</span></div>
 <div class="line"> </div>
 <div class="line"> <span class="comment"></span></div>
-<div class="line"><span class="comment"> /// \short Get -du/dr (spherical r) for exact solution. Equal to prescribed</span></div>
+<div class="line"><span class="comment"> ///  Get -du/dr (spherical r) for exact solution. Equal to prescribed</span></div>
 <div class="line"><span class="comment"> /// flux on inner boundary.</span></div>
 <div class="line"><span class="comment"></span> <span class="keywordtype">void</span> <a class="code hl_function" href="namespaceProblemParameters.html#aa544d1f3e384d3283f7113512931ea8f">exact_minus_dudr</a>(<span class="keyword">const</span> Vector&lt;double&gt;&amp; x, std::complex&lt;double&gt;&amp; flux)</div>
 <div class="line"> {</div>
@@ -492,7 +492,7 @@ Code listing</h1>
 <div class="line"><span class="comment"> /// Update the problem after solve (empty)</span></div>
 <div class="line"><span class="comment"></span> <span class="keywordtype">void</span> <a class="code hl_function" href="classFourierDecomposedHelmholtzProblem.html#a5a37ba3fcf8563764f80108c9a657929">actions_after_newton_solve</a>(){}</div>
 <div class="line"> <span class="comment"></span></div>
-<div class="line"><span class="comment"> /// \short Doc the solution. DocInfo object stores flags/labels for where the</span></div>
+<div class="line"><span class="comment"> ///  Doc the solution. DocInfo object stores flags/labels for where the</span></div>
 <div class="line"><span class="comment"> /// output gets written to</span></div>
 <div class="line"><span class="comment"></span> <span class="keywordtype">void</span> <a class="code hl_function" href="classFourierDecomposedHelmholtzProblem.html#a893efb01f8f1d254315201121766d882">doc_solution</a>(DocInfo&amp; doc_info);</div>
 <div class="line">  <span class="comment"></span></div>
@@ -516,14 +516,14 @@ Code listing</h1>
 <div class="line">  </div>
 <div class="line"><span class="keyword">private</span>:</div>
 <div class="line"> <span class="comment"></span></div>
-<div class="line"><span class="comment"> /// \short Create BC elements on outer boundary</span></div>
+<div class="line"><span class="comment"> ///  Create BC elements on outer boundary</span></div>
 <div class="line"><span class="comment"></span> <span class="keywordtype">void</span> <a class="code hl_function" href="classFourierDecomposedHelmholtzProblem.html#a359d402bb4aed7d83973248d82085efb">create_outer_bc_elements</a>();</div>
 <div class="line"> <span class="comment"></span></div>
 <div class="line"><span class="comment"> /// Create flux elements on inner boundary</span></div>
 <div class="line"><span class="comment"></span> <span class="keywordtype">void</span> <a class="code hl_function" href="classFourierDecomposedHelmholtzProblem.html#a81d64611f2de2492cec6b0621d8124b0">create_flux_elements_on_inner_boundary</a>();</div>
 <div class="line"> </div>
 <div class="line"> <span class="comment"></span></div>
-<div class="line"><span class="comment"> /// \short Delete boundary face elements and wipe the surface mesh</span></div>
+<div class="line"><span class="comment"> ///  Delete boundary face elements and wipe the surface mesh</span></div>
 <div class="line"><span class="comment"></span> <span class="keywordtype">void</span> <a class="code hl_function" href="classFourierDecomposedHelmholtzProblem.html#aa2c19a495d042fbeca1e226e2ff73080">delete_face_elements</a>( Mesh* <span class="keyword">const</span> &amp; boundary_mesh_pt)</div>
 <div class="line">  {</div>
 <div class="line">   <span class="comment">// Loop over the surface elements</span></div>
@@ -551,7 +551,7 @@ Code listing</h1>
 <div class="line"> </div>
 <div class="line"><span class="preprocessor">#endif</span></div>
 <div class="line">  <span class="comment"></span></div>
-<div class="line"><span class="comment"> /// \short Pointer to mesh containing the DtN boundary</span></div>
+<div class="line"><span class="comment"> ///  Pointer to mesh containing the DtN boundary</span></div>
 <div class="line"><span class="comment"> /// condition elements</span></div>
 <div class="line"><span class="comment"></span> FourierDecomposedHelmholtzDtNMesh&lt;ELEMENT&gt;* <a class="code hl_variable" href="classFourierDecomposedHelmholtzProblem.html#ab7aafa9c0ab982d9e1fdc31d802d309b">Helmholtz_outer_boundary_mesh_pt</a>;</div>
 <div class="line"><span class="comment"></span> </div>
@@ -1230,7 +1230,7 @@ Code listing</h1>
 <div class="ttc" id="aclassFourierDecomposedHelmholtzProblem_html_acbc6f3c692463e5a098ccec7fe9029c1"><div class="ttname"><a href="classFourierDecomposedHelmholtzProblem.html#acbc6f3c692463e5a098ccec7fe9029c1">FourierDecomposedHelmholtzProblem::actions_before_adapt</a></div><div class="ttdeci">void actions_before_adapt()</div><div class="ttdoc">Actions before adapt: Wipe the mesh of prescribed flux elements.</div><div class="ttdef"><b>Definition:</b> <a href="unstructured__sphere__scattering_8cc_source.html#l00418">unstructured_sphere_scattering.cc:418</a></div></div>
 <div class="ttc" id="aclassFourierDecomposedHelmholtzProblem_html_ad5927e4a2156e96c55ebce044c6f9653"><div class="ttname"><a href="classFourierDecomposedHelmholtzProblem.html#ad5927e4a2156e96c55ebce044c6f9653">FourierDecomposedHelmholtzProblem::Bulk_mesh_pt</a></div><div class="ttdeci">AnnularQuadMesh&lt; ELEMENT &gt; * Bulk_mesh_pt</div><div class="ttdoc">Pointer to bulk mesh.</div><div class="ttdef"><b>Definition:</b> <a href="sphere__scattering_8cc_source.html#l00418">sphere_scattering.cc:418</a></div></div>
 <div class="ttc" id="aclassFourierDecomposedHelmholtzProblem_html_ae80673ef299e4935ddcac177ed919da3"><div class="ttname"><a href="classFourierDecomposedHelmholtzProblem.html#ae80673ef299e4935ddcac177ed919da3">FourierDecomposedHelmholtzProblem::actions_before_newton_convergence_check</a></div><div class="ttdeci">void actions_before_newton_convergence_check()</div><div class="ttdoc">Recompute gamma integral before checking Newton residuals.</div><div class="ttdef"><b>Definition:</b> <a href="sphere__scattering_8cc_source.html#l00401">sphere_scattering.cc:401</a></div></div>
-<div class="ttc" id="anamespacePlanarWave_html"><div class="ttname"><a href="namespacePlanarWave.html">PlanarWave</a></div><div class="ttdef"><b>Definition:</b> <a href="sphere__scattering_8cc_source.html#l00108">sphere_scattering.cc:109</a></div></div>
+<div class="ttc" id="anamespacePlanarWave_html"><div class="ttname"><a href="namespacePlanarWave.html">PlanarWave</a></div><div class="ttdoc">Namespace to test representation of planar wave in spherical polars.</div><div class="ttdef"><b>Definition:</b> <a href="sphere__scattering_8cc_source.html#l00108">sphere_scattering.cc:109</a></div></div>
 <div class="ttc" id="anamespacePlanarWave_html_a00f252bcf0181187c656a58ce36b07b5"><div class="ttname"><a href="namespacePlanarWave.html#a00f252bcf0181187c656a58ce36b07b5">PlanarWave::get_exact_u</a></div><div class="ttdeci">void get_exact_u(const Vector&lt; double &gt; &amp;x, Vector&lt; double &gt; &amp;u)</div><div class="ttdoc">Exact solution as a Vector of size 2, containing real and imag parts.</div><div class="ttdef"><b>Definition:</b> <a href="sphere__scattering_8cc_source.html#l00121">sphere_scattering.cc:121</a></div></div>
 <div class="ttc" id="anamespacePlanarWave_html_a1d51c00058fbc80aa9d255fffd92abac"><div class="ttname"><a href="namespacePlanarWave.html#a1d51c00058fbc80aa9d255fffd92abac">PlanarWave::K</a></div><div class="ttdeci">double K</div><div class="ttdoc">Wave number.</div><div class="ttdef"><b>Definition:</b> <a href="sphere__scattering_8cc_source.html#l00115">sphere_scattering.cc:115</a></div></div>
 <div class="ttc" id="anamespacePlanarWave_html_a541691caf71477c8c389062797c0fdab"><div class="ttname"><a href="namespacePlanarWave.html#a541691caf71477c8c389062797c0fdab">PlanarWave::I</a></div><div class="ttdeci">std::complex&lt; double &gt; I(0.0, 1.0)</div><div class="ttdoc">Imaginary unit.</div></div>
@@ -1293,7 +1293,7 @@ PDF file</h1>
     <footer>
       <div class="container">
         <div class="text-muted" style="float:right;">Generated by <a href="http://www.doxygen.org/index.html">
-          <img style="height:18px;" class="footer-img" src="doxygen.png" alt="doxygen"></a> on Wed Oct 13 2021 09:18:48
+          <img style="height:18px;" class="footer-img" src="doxygen.png" alt="doxygen"></a> on Thu Oct 21 2021 18:04:51
         </div>
       </div>
     </footer>

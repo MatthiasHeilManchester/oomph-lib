@@ -2,6 +2,11 @@
 \label{classoomph_1_1VectorMatrix}\index{oomph::VectorMatrix$<$ VALUE\_TYPE $>$@{oomph::VectorMatrix$<$ VALUE\_TYPE $>$}}
 
 
+\mbox{\hyperlink{classoomph_1_1VectorMatrix}{Vector\+Matrix}} is a generalised, STL-\/map-\/based, matrix based on a \mbox{\hyperlink{classoomph_1_1Vector}{Vector}} of Vectors.  
+
+
+
+
 {\ttfamily \#include $<$vector\+\_\+matrix.\+h$>$}
 
 \doxysubsection*{Public Member Functions}
@@ -40,36 +45,33 @@ void \mbox{\hyperlink{classoomph_1_1VectorMatrix_a23f3efbe283e626a815be17878dc80
 \begin{DoxyCompactItemize}
 \item 
 \mbox{\hyperlink{classoomph_1_1Vector}{Vector}}$<$ \mbox{\hyperlink{classoomph_1_1Vector}{Vector}}$<$ VALUE\+\_\+\+TYPE $>$ $>$ \mbox{\hyperlink{classoomph_1_1VectorMatrix_a3c91bd42a753ee7e82b9ba72f3288226}{Vector\+\_\+matrix}}
-\end{DoxyCompactItemize}
+\begin{DoxyCompactList}\small\item\em Here\textquotesingle{}s the generalised matrix structure\+: A \mbox{\hyperlink{classoomph_1_1Vector}{Vector}} of \mbox{\hyperlink{classoomph_1_1Vector}{Vector}} to templated by VALUE\+\_\+\+TYPE. \end{DoxyCompactList}\end{DoxyCompactItemize}
 
 
 \doxysubsection{Detailed Description}
 \subsubsection*{template$<$class VALUE\+\_\+\+TYPE$>$\newline
 class oomph\+::\+Vector\+Matrix$<$ VALUE\+\_\+\+TYPE $>$}
-\mbox{\hyperlink{classoomph_1_1VectorMatrix}{Vector\+Matrix}} is a generalised, STL-\/map-\/based, matrix based on a \mbox{\hyperlink{classoomph_1_1Vector}{Vector}} of Vectors.
+\mbox{\hyperlink{classoomph_1_1VectorMatrix}{Vector\+Matrix}} is a generalised, STL-\/map-\/based, matrix based on a \mbox{\hyperlink{classoomph_1_1Vector}{Vector}} of Vectors. 
 
 Example of usage\+: 
 \begin{DoxyCode}{0}
-\DoxyCodeLine{     \textcolor{comment}{// Assume we have a Vector of pointers to objects:}}
-\DoxyCodeLine{     VectorMatrix<int> vector\_matrix(4,5,-\/1);}
-\DoxyCodeLine{   }
-\DoxyCodeLine{     \textcolor{comment}{// This is a 4 by 5 matrix with all entries set to -\/1.}}
-\DoxyCodeLine{   }
-\DoxyCodeLine{     std::cout << vector\_matrix[3][3] << \textcolor{stringliteral}{"{} "{}}}
-\DoxyCodeLine{\textcolor{comment}{//             << vector\_matrix.nrow() << "{} "{}}}
-\DoxyCodeLine{\textcolor{comment}{//             << vector\_matrix.col() << std::endl;}}
-\DoxyCodeLine{   }
-\DoxyCodeLine{     \textcolor{comment}{// Output:}}
-\DoxyCodeLine{     \textcolor{comment}{// -\/1 4 5}}
-\DoxyCodeLine{   }
-\DoxyCodeLine{     vector\_matrix[3][3] = 42;}
-\DoxyCodeLine{   }
-\DoxyCodeLine{     std::cout << vector\_matrix[3][3] << \textcolor{stringliteral}{"{} "{}}}
-\DoxyCodeLine{               << vector\_matrix.nrow() << \textcolor{stringliteral}{"{} "{}}}
-\DoxyCodeLine{               << vector\_matrix.col() << std::endl;}
-\DoxyCodeLine{   }
-\DoxyCodeLine{     \textcolor{comment}{// Output:}}
-\DoxyCodeLine{     \textcolor{comment}{// 42 4 5}}
+\DoxyCodeLine{\textcolor{comment}{// Assume we have a Vector of pointers to objects:}}
+\DoxyCodeLine{VectorMatrix<int> vector\_matrix(4,5,-\/1);}
+\DoxyCodeLine{}
+\DoxyCodeLine{\textcolor{comment}{// This is a 4 by 5 matrix with all entries set to -\/1.}}
+\DoxyCodeLine{}
+\DoxyCodeLine{std::cout << vector\_matrix[3][3] << \textcolor{stringliteral}{"{} "{}}}
+\DoxyCodeLine{\textcolor{comment}{// Output:}}
+\DoxyCodeLine{\textcolor{comment}{// -\/1 4 5}}
+\DoxyCodeLine{}
+\DoxyCodeLine{vector\_matrix[3][3] = 42;}
+\DoxyCodeLine{}
+\DoxyCodeLine{std::cout << vector\_matrix[3][3] << \textcolor{stringliteral}{"{} "{}}}
+\DoxyCodeLine{          << vector\_matrix.nrow() << \textcolor{stringliteral}{"{} "{}}}
+\DoxyCodeLine{          << vector\_matrix.col() << std::endl;}
+\DoxyCodeLine{}
+\DoxyCodeLine{\textcolor{comment}{// Output:}}
+\DoxyCodeLine{\textcolor{comment}{// 42 4 5}}
 
 \end{DoxyCode}
  
@@ -359,7 +361,11 @@ References \mbox{\hyperlink{cfortran_8h_source_l00603}{i}}, and \mbox{\hyperlink
 {\footnotesize\ttfamily template$<$class VALUE\+\_\+\+TYPE $>$ \\
 \mbox{\hyperlink{classoomph_1_1Vector}{Vector}}$<$\mbox{\hyperlink{classoomph_1_1Vector}{Vector}}$<$VALUE\+\_\+\+TYPE$>$ $>$ \mbox{\hyperlink{classoomph_1_1VectorMatrix}{oomph\+::\+Vector\+Matrix}}$<$ VALUE\+\_\+\+TYPE $>$\+::Vector\+\_\+matrix\hspace{0.3cm}{\ttfamily [protected]}}
 
+
+
 Here\textquotesingle{}s the generalised matrix structure\+: A \mbox{\hyperlink{classoomph_1_1Vector}{Vector}} of \mbox{\hyperlink{classoomph_1_1Vector}{Vector}} to templated by VALUE\+\_\+\+TYPE. 
+
+
 
 Definition at line \mbox{\hyperlink{vector__matrix_8h_source_l00249}{249}} of file \mbox{\hyperlink{vector__matrix_8h_source}{vector\+\_\+matrix.\+h}}.
 

@@ -137,6 +137,7 @@ $(function() {
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="nested-classes" name="nested-classes"></a>
 Classes</h2></td></tr>
 <tr class="memitem:"><td class="memItemLeft" align="right" valign="top">class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classoomph_1_1GeneralPurposeBlockPreconditioner.html">oomph::GeneralPurposeBlockPreconditioner&lt; MATRIX &gt;</a></td></tr>
+<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">Base class for general purpose block preconditioners. Deals with setting subsidiary preconditioners and dof to block maps. Subsidiary preconditioners can be set in two ways: 1) A pointer to a subsidiary preconditioner for block i can be passed to set_subsidiary_preconditioner_pt(prec, i). 2) A default subsidiary preconditioner can be set up by providing a function pointer to a function which creates a preconditioner. During <a class="el" href="classoomph_1_1Preconditioner.html#af4886f4efe510e5c9b0eb19422943588" title="Setup the preconditioner. Pure virtual generic interface function.">setup()</a> all unset subsidiary preconditioner pointers will be filled in using this function. By default this uses SuperLU.  <a href="classoomph_1_1GeneralPurposeBlockPreconditioner.html#details">More...</a><br /></td></tr>
 <tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:"><td class="memItemLeft" align="right" valign="top">class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classoomph_1_1BlockDiagonalPreconditioner.html">oomph::BlockDiagonalPreconditioner&lt; MATRIX &gt;</a></td></tr>
 <tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">Block diagonal preconditioner. By default SuperLU is used to solve the subsidiary systems, but other preconditioners can be used by setting them using passing a pointer to a function of type SubsidiaryPreconditionerFctPt to the method subsidiary_preconditioner_function_pt().  <a href="classoomph_1_1BlockDiagonalPreconditioner.html#details">More...</a><br /></td></tr>
@@ -145,11 +146,13 @@ Classes</h2></td></tr>
 <tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">General purpose block triangular preconditioner By default this is Upper triangular. By default <a class="el" href="classoomph_1_1SuperLUPreconditioner.html" title="An interface to allow SuperLU to be used as an (exact) Preconditioner.">SuperLUPreconditioner</a> (or SuperLUDistPreconditioner) is used to solve the subsidiary systems, but other preconditioners can be used by setting them using passing a pointer to a function of type SubsidiaryPreconditionerFctPt to the method subsidiary_preconditioner_function_pt().  <a href="classoomph_1_1BlockTriangularPreconditioner.html#details">More...</a><br /></td></tr>
 <tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:"><td class="memItemLeft" align="right" valign="top">class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classoomph_1_1ExactBlockPreconditioner.html">oomph::ExactBlockPreconditioner&lt; MATRIX &gt;</a></td></tr>
+<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">Exact block preconditioner - block preconditioner assembled from all blocks associated with the preconditioner and solved by SuperLU.  <a href="classoomph_1_1ExactBlockPreconditioner.html#details">More...</a><br /></td></tr>
 <tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:"><td class="memItemLeft" align="right" valign="top">class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classoomph_1_1BlockAntiDiagonalPreconditioner.html">oomph::BlockAntiDiagonalPreconditioner&lt; MATRIX &gt;</a></td></tr>
 <tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">Block "anti-diagonal" preconditioner, i.e. same as block diagonal but along the other diagonal of the matrix (top-right to bottom-left).  <a href="classoomph_1_1BlockAntiDiagonalPreconditioner.html#details">More...</a><br /></td></tr>
 <tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:"><td class="memItemLeft" align="right" valign="top">class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classoomph_1_1DummyBlockPreconditioner.html">oomph::DummyBlockPreconditioner&lt; MATRIX &gt;</a></td></tr>
+<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight"><a class="el" href="classoomph_1_1Preconditioner.html" title="Preconditioner base class. Gives an interface to call all other preconditioners through and stores th...">Preconditioner</a> that doesn't actually do any preconditioning, it just allows access to the Jacobian blocks. This is pretty hacky but oh well..  <a href="classoomph_1_1DummyBlockPreconditioner.html#details">More...</a><br /></td></tr>
 <tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="namespaces" name="namespaces"></a>
@@ -194,7 +197,7 @@ Functions</h2></td></tr>
     <footer>
       <div class="container">
         <div class="text-muted" style="float:right;">Generated by <a href="http://www.doxygen.org/index.html">
-          <img style="height:18px;" class="footer-img" src="doxygen.png" alt="doxygen"></a> on Wed Oct 13 2021 08:44:40
+          <img style="height:18px;" class="footer-img" src="doxygen.png" alt="doxygen"></a> on Thu Oct 21 2021 17:33:05
         </div>
       </div>
     </footer>

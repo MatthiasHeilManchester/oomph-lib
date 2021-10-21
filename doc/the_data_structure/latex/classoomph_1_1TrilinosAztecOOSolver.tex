@@ -22,7 +22,7 @@ enum \mbox{\hyperlink{classoomph_1_1TrilinosAztecOOSolver_a8a9d76e6cfa1594b150de
 , \mbox{\hyperlink{classoomph_1_1TrilinosAztecOOSolver_a8a9d76e6cfa1594b150de04413c0f958a1729a0500bca95c117f5795d06b83bb4}{GMRES}}
 , \mbox{\hyperlink{classoomph_1_1TrilinosAztecOOSolver_a8a9d76e6cfa1594b150de04413c0f958ac6422728788cf5c341d1e3e988b4fc7d}{Bi\+CGStab}}
  \}
-\begin{DoxyCompactList}\small\item\em Enumerated list to define which Aztec\+OO solver is used. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\begin{DoxyCompactList}\small\item\em if this solver is using an oomph-\/lib preconditioner then the vectors passed to preconditioner\+\_\+solve(...) should be using the values in the epetra vector as external data. If the vectors are using external data then rebuild(...) methods cannot be used be used in the preconditioner. \end{DoxyCompactList}\end{DoxyCompactItemize}
 \doxysubsection*{Public Member Functions}
 \begin{DoxyCompactItemize}
 \item 
@@ -41,7 +41,7 @@ void \mbox{\hyperlink{classoomph_1_1TrilinosAztecOOSolver_a25ba106bb6f1cd4b99dd1
 bool \mbox{\hyperlink{classoomph_1_1TrilinosAztecOOSolver_ac17e7d21595ce4b9b854f0207f3b04be}{is\+\_\+aztecoo\+\_\+workaround\+\_\+for\+\_\+epetra\+\_\+matrix\+\_\+setup\+\_\+enabled}} ()
 \begin{DoxyCompactList}\small\item\em Is workaround for creating of epetra matrix that respects aztecoo\textquotesingle{}s ordering requirements enabled? \end{DoxyCompactList}\item 
 void \mbox{\hyperlink{classoomph_1_1TrilinosAztecOOSolver_a365a39ae1dec32eb78aa160b70426f59}{clean\+\_\+up\+\_\+memory}} ()
-\item 
+\begin{DoxyCompactList}\small\item\em Clean up method -\/ deletes the solver, the matrices and the preconditioner. \end{DoxyCompactList}\item 
 void \mbox{\hyperlink{classoomph_1_1TrilinosAztecOOSolver_a7dc1ae7f05e8a50416b8df700f832eb9}{solve}} (\mbox{\hyperlink{classoomph_1_1Problem}{Problem}} $\ast$const \&problem\+\_\+pt, \mbox{\hyperlink{classoomph_1_1DoubleVector}{Double\+Vector}} \&solution)
 \begin{DoxyCompactList}\small\item\em Function which uses problem\+\_\+pt\textquotesingle{}s get\+\_\+jacobian(...) function to generate a linear system which is then solved. This function deletes any existing internal data and then generates a new Aztec\+OO solver. \end{DoxyCompactList}\item 
 void \mbox{\hyperlink{classoomph_1_1TrilinosAztecOOSolver_a7d2853c49429224fc2deb3260340b190}{solve}} (\mbox{\hyperlink{classoomph_1_1DoubleMatrixBase}{Double\+Matrix\+Base}} $\ast$const \&matrix\+\_\+pt, const \mbox{\hyperlink{classoomph_1_1DoubleVector}{Double\+Vector}} \&rhs, \mbox{\hyperlink{classoomph_1_1DoubleVector}{Double\+Vector}} \&solution)
@@ -107,7 +107,7 @@ Epetra\+\_\+\+Operator $\ast$ \mbox{\hyperlink{classoomph_1_1TrilinosAztecOOSolv
 \mbox{\hyperlink{classoomph_1_1Problem}{Problem}} $\ast$ \mbox{\hyperlink{classoomph_1_1TrilinosAztecOOSolver_abc6a63eb67694f7ac5dfc8505a8b9a5f}{Problem\+\_\+pt}}
 \begin{DoxyCompactList}\small\item\em A pointer to the underlying problem (NULL if MATRIX based solve) The problem\+\_\+pt is stored here in a problem based solve for the preconditioner. \end{DoxyCompactList}\item 
 bool \mbox{\hyperlink{classoomph_1_1TrilinosAztecOOSolver_a028992b1b3fe1a501590aa71d4a879e8}{If\+\_\+oomphlib\+\_\+preconditioner\+\_\+use\+\_\+epetra\+\_\+values}}
-\end{DoxyCompactItemize}
+\begin{DoxyCompactList}\small\item\em if this solver is using an oomph-\/lib preconditioner then the vectors passed to preconditioner\+\_\+solve(...) should be using the values in the epetra vector as external data. If the vectors are using external data then rebuild(...) methods cannot be used. \end{DoxyCompactList}\end{DoxyCompactItemize}
 \doxysubsection*{Additional Inherited Members}
 
 
@@ -127,9 +127,9 @@ Definition at line \mbox{\hyperlink{trilinos__solver_8h_source_l00266}{266}} of 
 
 
 
-Enumerated list to define which Aztec\+OO solver is used. 
+if this solver is using an oomph-\/lib preconditioner then the vectors passed to preconditioner\+\_\+solve(...) should be using the values in the epetra vector as external data. If the vectors are using external data then rebuild(...) methods cannot be used be used in the preconditioner. 
 
-if this solver is using an oomph-\/lib preconditioner then the vectors passed to preconditioner\+\_\+solve(...) should be using the values in the epetra vector as external data. If the vectors are using external data then rebuild(...) methods cannot be used be used in the preconditioner. \begin{DoxyEnumFields}{Enumerator}
+Enumerated list to define which Aztec\+OO solver is used \begin{DoxyEnumFields}{Enumerator}
 \raisebox{\heightof{T}}[0pt][0pt]{\index{CG@{CG}!oomph::TrilinosAztecOOSolver@{oomph::TrilinosAztecOOSolver}}\index{oomph::TrilinosAztecOOSolver@{oomph::TrilinosAztecOOSolver}!CG@{CG}}}\mbox{\Hypertarget{classoomph_1_1TrilinosAztecOOSolver_a8a9d76e6cfa1594b150de04413c0f958a444cf8d677f36a05433c69812a4d1e20}\label{classoomph_1_1TrilinosAztecOOSolver_a8a9d76e6cfa1594b150de04413c0f958a444cf8d677f36a05433c69812a4d1e20}} 
 CG&\\
 \hline
@@ -205,7 +205,11 @@ Broken copy constructor.
 \doxysubsubsection{\texorpdfstring{clean\_up\_memory()}{clean\_up\_memory()}}
 {\footnotesize\ttfamily void oomph\+::\+Trilinos\+Aztec\+OOSolver\+::clean\+\_\+up\+\_\+memory (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [virtual]}}
 
-Clean up method -\/ deletes the solver, the matrices and the preconditioner 
+
+
+Clean up method -\/ deletes the solver, the matrices and the preconditioner. 
+
+
 
 Reimplemented from \mbox{\hyperlink{classoomph_1_1LinearSolver_a9d66f3262e80ca06a365f98216afd85f}{oomph\+::\+Linear\+Solver}}.
 
@@ -481,13 +485,13 @@ References \mbox{\hyperlink{double__vector_8cc_source_l00035}{oomph\+::\+Double\
 \index{oomph::TrilinosAztecOOSolver@{oomph::TrilinosAztecOOSolver}!solve@{solve}}
 \index{solve@{solve}!oomph::TrilinosAztecOOSolver@{oomph::TrilinosAztecOOSolver}}
 \doxysubsubsection{\texorpdfstring{solve()}{solve()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
-{\footnotesize\ttfamily void oomph\+::\+Trilinos\+Aztec\+OOSolver\+::solve (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classoomph_1_1DoubleMatrixBase}{Double\+Matrix\+Base}} $\ast$const \&}]{matrix\+\_\+pt,  }\item[{const \mbox{\hyperlink{classoomph_1_1DoubleVector}{Double\+Vector}} \&}]{rhs,  }\item[{\mbox{\hyperlink{classoomph_1_1DoubleVector}{Double\+Vector}} \&}]{result }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [virtual]}}
+{\footnotesize\ttfamily void oomph\+::\+Trilinos\+Aztec\+OOSolver\+::solve (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classoomph_1_1DoubleMatrixBase}{Double\+Matrix\+Base}} $\ast$const \&}]{matrix\+\_\+pt,  }\item[{const \mbox{\hyperlink{classoomph_1_1DoubleVector}{Double\+Vector}} \&}]{rhs,  }\item[{\mbox{\hyperlink{classoomph_1_1DoubleVector}{Double\+Vector}} \&}]{solution }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [virtual]}}
 
 
 
 Function to solve the linear system defined by matrix\+\_\+pt and rhs. {\bfseries{NOTE}} 1. The matrix has to be of type \mbox{\hyperlink{classoomph_1_1CRDoubleMatrix}{CRDouble\+Matrix}} or Distributed\+CRDouble\+Matrix. {\bfseries{NOTE}} 2. This function will delete any existing internal data and generate a new Aztec\+OO solver. 
 
-Function to solve the linear system defined by matrix\+\_\+pt and rhs. {\bfseries{NOTE}} 1. The matrix has to be of type \mbox{\hyperlink{classoomph_1_1CRDoubleMatrix}{CRDouble\+Matrix}} or Distributed\+CRDouble\+Matrix. {\bfseries{NOTE}} 2. This function will delete any existing internal data and generate a new Aztec\+OO solver. 
+
 
 Reimplemented from \mbox{\hyperlink{classoomph_1_1LinearSolver_a546c09822d18191df14caed864c04c09}{oomph\+::\+Linear\+Solver}}.
 
@@ -509,7 +513,7 @@ References \mbox{\hyperlink{double__vector_8cc_source_l00035}{oomph\+::\+Double\
 
 Function which uses problem\+\_\+pt\textquotesingle{}s get\+\_\+jacobian(...) function to generate a linear system which is then solved. This function deletes any existing internal data and then generates a new Aztec\+OO solver. 
 
-Function which uses problem\+\_\+pt\textquotesingle{}s get\+\_\+jacobian(...) function to generate a linear system which is then solved. This function deletes any existing internal data and then generates a new Aztec\+OO solver. 
+
 
 Implements \mbox{\hyperlink{classoomph_1_1LinearSolver_a15ce22542b74ed1826ea485edacbeb6e}{oomph\+::\+Linear\+Solver}}.
 
@@ -557,7 +561,7 @@ Referenced by \mbox{\hyperlink{trilinos__solver_8cc_source_l00489}{resolve()}}, 
 
 Helper function for setting up the solver. Converts the oomph-\/lib matrices to Epetra matrices, sets up the preconditioner, creates the Trilinos Aztec00 solver and passes in the matrix, preconditioner and parameters. 
 
-Helper function for setting up the solver. Converts the oomph-\/lib matrices to Epetra matrices, sets up the preconditioner, creates the Trilinos Aztec00 solver and passes in the matrix, preconditioner and parameters. 
+
 
 Definition at line \mbox{\hyperlink{trilinos__solver_8cc_source_l00283}{283}} of file \mbox{\hyperlink{trilinos__solver_8cc_source}{trilinos\+\_\+solver.\+cc}}.
 
@@ -704,7 +708,11 @@ Referenced by \mbox{\hyperlink{trilinos__solver_8h_source_l00347}{clean\+\_\+up\
 \doxysubsubsection{\texorpdfstring{If\_oomphlib\_preconditioner\_use\_epetra\_values}{If\_oomphlib\_preconditioner\_use\_epetra\_values}}
 {\footnotesize\ttfamily bool oomph\+::\+Trilinos\+Aztec\+OOSolver\+::\+If\+\_\+oomphlib\+\_\+preconditioner\+\_\+use\+\_\+epetra\+\_\+values\hspace{0.3cm}{\ttfamily [protected]}}
 
+
+
 if this solver is using an oomph-\/lib preconditioner then the vectors passed to preconditioner\+\_\+solve(...) should be using the values in the epetra vector as external data. If the vectors are using external data then rebuild(...) methods cannot be used. 
+
+
 
 Definition at line \mbox{\hyperlink{trilinos__solver_8h_source_l00556}{556}} of file \mbox{\hyperlink{trilinos__solver_8h_source}{trilinos\+\_\+solver.\+h}}.
 

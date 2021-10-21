@@ -153,7 +153,7 @@
 <div class="line"><a id="l00034" name="l00034"></a><span class="lineno">   34</span>{</div>
 <div class="line"><a id="l00035" name="l00035"></a><span class="lineno">   35</span> </div>
 <div class="line"><a id="l00036" name="l00036"></a><span class="lineno">   36</span><span class="comment">//=====start_of_circle=====================================================</span><span class="comment"></span></div>
-<div class="line"><a id="l00037" name="l00037"></a><span class="lineno">   37</span><span class="comment">/// \short Simple circle in 2D space.</span></div>
+<div class="line"><a id="l00037" name="l00037"></a><span class="lineno">   37</span><span class="comment">///  Simple circle in 2D space.</span></div>
 <div class="line"><a id="l00038" name="l00038"></a><span class="lineno">   38</span><span class="comment">/// \f[ x = X_c + R \cos(\zeta)  \f]</span></div>
 <div class="line"><a id="l00039" name="l00039"></a><span class="lineno">   39</span><span class="comment">/// \f[ y = Y_c + R \sin(\zeta)  \f]</span></div>
 <div class="line"><a id="l00040" name="l00040"></a><span class="lineno">   40</span><span class="comment"></span><span class="comment">//=========================================================================</span></div>
@@ -167,7 +167,7 @@
 <div class="line"><a id="l00048" name="l00048"></a><span class="lineno">   48</span>               <span class="keyword">const</span> <span class="keywordtype">double</span>&amp; r) : GeomObject(1,2), <a class="code hl_variable" href="classoomph_1_1SimpleCircle.html#abd34367dbf586e6aa73314b350a370d1">X_c</a>(x_c), <a class="code hl_variable" href="classoomph_1_1SimpleCircle.html#a3f72f452d54ff683b72a15178dd5daae">Y_c</a>(y_c), <a class="code hl_variable" href="classoomph_1_1SimpleCircle.html#afd2a653946537f867c0aaa12768f9514">R</a>(r)</div>
 <div class="line"><a id="l00049" name="l00049"></a><span class="lineno">   49</span>  {}</div>
 <div class="line"><a id="l00050" name="l00050"></a><span class="lineno">   50</span><span class="comment"></span> </div>
-<div class="line"><a id="l00051" name="l00051"></a><span class="lineno">   51</span><span class="comment"> /// \short Position Vector at Lagrangian coordinate zeta </span></div>
+<div class="line"><a id="l00051" name="l00051"></a><span class="lineno">   51</span><span class="comment"> ///  Position Vector at Lagrangian coordinate zeta </span></div>
 <div class="line"><a id="l00052" name="l00052"></a><span class="lineno"><a class="line" href="classoomph_1_1SimpleCircle.html#a9b4e845b6e2318779a08c383d094dea5">   52</a></span><span class="comment"></span> <span class="keywordtype">void</span> <a class="code hl_function" href="classoomph_1_1SimpleCircle.html#a9b4e845b6e2318779a08c383d094dea5">position</a>(<span class="keyword">const</span> Vector&lt;double&gt;&amp; zeta, Vector&lt;double&gt;&amp; r)<span class="keyword"> const</span></div>
 <div class="line"><a id="l00053" name="l00053"></a><span class="lineno">   53</span><span class="keyword">  </span>{</div>
 <div class="line"><a id="l00054" name="l00054"></a><span class="lineno">   54</span>   <span class="comment">// Position vector</span></div>
@@ -175,7 +175,7 @@
 <div class="line"><a id="l00056" name="l00056"></a><span class="lineno">   56</span>   r[1] = <a class="code hl_variable" href="classoomph_1_1SimpleCircle.html#a3f72f452d54ff683b72a15178dd5daae">Y_c</a>+<a class="code hl_variable" href="classoomph_1_1SimpleCircle.html#afd2a653946537f867c0aaa12768f9514">R</a>*sin(zeta[0]);</div>
 <div class="line"><a id="l00057" name="l00057"></a><span class="lineno">   57</span>  }</div>
 <div class="line"><a id="l00058" name="l00058"></a><span class="lineno">   58</span><span class="comment"></span> </div>
-<div class="line"><a id="l00059" name="l00059"></a><span class="lineno">   59</span><span class="comment"> /// \short Position Vector at Lagrangian coordinate zeta  at time level t</span></div>
+<div class="line"><a id="l00059" name="l00059"></a><span class="lineno">   59</span><span class="comment"> ///  Position Vector at Lagrangian coordinate zeta  at time level t</span></div>
 <div class="line"><a id="l00060" name="l00060"></a><span class="lineno">   60</span><span class="comment"> /// (t=0: present; t&gt;0: previous level). Steady object, so we </span></div>
 <div class="line"><a id="l00061" name="l00061"></a><span class="lineno">   61</span><span class="comment"> /// simply forward the call to the steady version.</span></div>
 <div class="line"><a id="l00062" name="l00062"></a><span class="lineno"><a class="line" href="classoomph_1_1SimpleCircle.html#a3718ee52794c766c9126323e62634db3">   62</a></span><span class="comment"></span> <span class="keywordtype">void</span> <a class="code hl_function" href="classoomph_1_1SimpleCircle.html#a3718ee52794c766c9126323e62634db3">position</a>(<span class="keyword">const</span> <span class="keywordtype">unsigned</span>&amp; t, <span class="keyword">const</span> Vector&lt;double&gt;&amp; zeta,</div>
@@ -205,7 +205,7 @@
 <div class="line"><a id="l00086" name="l00086"></a><span class="lineno">   86</span> </div>
 <div class="line"><a id="l00087" name="l00087"></a><span class="lineno">   87</span> </div>
 <div class="line"><a id="l00088" name="l00088"></a><span class="lineno">   88</span><span class="comment">//=========================================================================</span><span class="comment"></span></div>
-<div class="line"><a id="l00089" name="l00089"></a><span class="lineno">   89</span><span class="comment">/// \short GeneralCircle in 2D space.</span></div>
+<div class="line"><a id="l00089" name="l00089"></a><span class="lineno">   89</span><span class="comment">///  GeneralCircle in 2D space.</span></div>
 <div class="line"><a id="l00090" name="l00090"></a><span class="lineno">   90</span><span class="comment">/// \f[ x = X_c + R \cos(\zeta)  \f]</span></div>
 <div class="line"><a id="l00091" name="l00091"></a><span class="lineno">   91</span><span class="comment">/// \f[ y = Y_c + R \sin(\zeta)  \f]</span></div>
 <div class="line"><a id="l00092" name="l00092"></a><span class="lineno">   92</span><span class="comment">/// The three parameters \f$ X_c, Y_c \f$ and \f$ R \f$ are represented</span></div>
@@ -252,7 +252,7 @@
 <div class="line"><a id="l00133" name="l00133"></a><span class="lineno">  133</span>   <a class="code hl_variable" href="classoomph_1_1GeneralCircle.html#a6772cb425079b3afd2479663ddb0cb81">Must_clean_up</a>=<span class="keyword">true</span>; </div>
 <div class="line"><a id="l00134" name="l00134"></a><span class="lineno">  134</span>  }</div>
 <div class="line"><a id="l00135" name="l00135"></a><span class="lineno">  135</span><span class="comment"></span> </div>
-<div class="line"><a id="l00136" name="l00136"></a><span class="lineno">  136</span><span class="comment"> /// \short Alternative constructor:  Pass x and y-coords of centre and radius</span></div>
+<div class="line"><a id="l00136" name="l00136"></a><span class="lineno">  136</span><span class="comment"> ///  Alternative constructor:  Pass x and y-coords of centre and radius</span></div>
 <div class="line"><a id="l00137" name="l00137"></a><span class="lineno">  137</span><span class="comment"> /// (all as part of Data)</span></div>
 <div class="line"><a id="l00138" name="l00138"></a><span class="lineno">  138</span><span class="comment"> /// \code </span></div>
 <div class="line"><a id="l00139" name="l00139"></a><span class="lineno">  139</span><span class="comment"> /// Geom_data_pt[0]-&gt;value(0) = X_c;</span></div>
@@ -298,7 +298,7 @@
 <div class="line"><a id="l00179" name="l00179"></a><span class="lineno">  179</span>  } <span class="comment">// end of destructor</span></div>
 <div class="line"><a id="l00180" name="l00180"></a><span class="lineno">  180</span> </div>
 <div class="line"><a id="l00181" name="l00181"></a><span class="lineno">  181</span><span class="comment"></span> </div>
-<div class="line"><a id="l00182" name="l00182"></a><span class="lineno">  182</span><span class="comment"> /// \short Position Vector at Lagrangian coordinate zeta </span></div>
+<div class="line"><a id="l00182" name="l00182"></a><span class="lineno">  182</span><span class="comment"> ///  Position Vector at Lagrangian coordinate zeta </span></div>
 <div class="line"><a id="l00183" name="l00183"></a><span class="lineno"><a class="line" href="classoomph_1_1GeneralCircle.html#acc120835b4f0c69e7dce7e839db63d1d">  183</a></span><span class="comment"></span> <span class="keywordtype">void</span> <a class="code hl_function" href="classoomph_1_1GeneralCircle.html#acc120835b4f0c69e7dce7e839db63d1d">position</a>(<span class="keyword">const</span> Vector&lt;double&gt;&amp; zeta, Vector&lt;double&gt;&amp; r)<span class="keyword"> const</span></div>
 <div class="line"><a id="l00184" name="l00184"></a><span class="lineno">  184</span><span class="keyword">  </span>{</div>
 <div class="line"><a id="l00185" name="l00185"></a><span class="lineno">  185</span>   <span class="comment">// Extract data</span></div>
@@ -313,7 +313,7 @@
 <div class="line"><a id="l00194" name="l00194"></a><span class="lineno">  194</span>  } <span class="comment">// end of position(...)</span></div>
 <div class="line"><a id="l00195" name="l00195"></a><span class="lineno">  195</span> </div>
 <div class="line"><a id="l00196" name="l00196"></a><span class="lineno">  196</span><span class="comment"></span> </div>
-<div class="line"><a id="l00197" name="l00197"></a><span class="lineno">  197</span><span class="comment"> /// \short Position Vector at Lagrangian coordinate zeta  at time level t</span></div>
+<div class="line"><a id="l00197" name="l00197"></a><span class="lineno">  197</span><span class="comment"> ///  Position Vector at Lagrangian coordinate zeta  at time level t</span></div>
 <div class="line"><a id="l00198" name="l00198"></a><span class="lineno">  198</span><span class="comment"> /// (t=0: present; t&gt;0: previous level). Steady object, so we </span></div>
 <div class="line"><a id="l00199" name="l00199"></a><span class="lineno">  199</span><span class="comment"> /// simply forward the call to the steady version.</span></div>
 <div class="line"><a id="l00200" name="l00200"></a><span class="lineno"><a class="line" href="classoomph_1_1GeneralCircle.html#a94f7f58a7131f80a245007ff0da73f74">  200</a></span><span class="comment"></span> <span class="keywordtype">void</span> <a class="code hl_function" href="classoomph_1_1GeneralCircle.html#a94f7f58a7131f80a245007ff0da73f74">position</a>(<span class="keyword">const</span> <span class="keywordtype">unsigned</span>&amp; t, <span class="keyword">const</span> Vector&lt;double&gt;&amp; zeta,</div>
@@ -332,14 +332,14 @@
 <div class="line"><a id="l00213" name="l00213"></a><span class="lineno">  213</span><span class="comment"> /// How many items of Data does the shape of the object depend on?</span></div>
 <div class="line"><a id="l00214" name="l00214"></a><span class="lineno"><a class="line" href="classoomph_1_1GeneralCircle.html#a7cd69f069bb8042ba972b89940ec1808">  214</a></span><span class="comment"></span> <span class="keywordtype">unsigned</span> <a class="code hl_function" href="classoomph_1_1GeneralCircle.html#a7cd69f069bb8042ba972b89940ec1808">ngeom_data</a>()<span class="keyword"> const </span>{<span class="keywordflow">return</span> <a class="code hl_variable" href="classoomph_1_1GeneralCircle.html#a4a707f37b32d447dbe965177e442aa76">Geom_data_pt</a>.size();}</div>
 <div class="line"><a id="l00215" name="l00215"></a><span class="lineno">  215</span> <span class="comment"></span></div>
-<div class="line"><a id="l00216" name="l00216"></a><span class="lineno">  216</span><span class="comment"> /// \short Return pointer to the j-th Data item that the object&#39;s </span></div>
+<div class="line"><a id="l00216" name="l00216"></a><span class="lineno">  216</span><span class="comment"> ///  Return pointer to the j-th Data item that the object&#39;s </span></div>
 <div class="line"><a id="l00217" name="l00217"></a><span class="lineno">  217</span><span class="comment"> /// shape depends on </span></div>
 <div class="line"><a id="l00218" name="l00218"></a><span class="lineno"><a class="line" href="classoomph_1_1GeneralCircle.html#adf90890d68bd66550926e2611f634470">  218</a></span><span class="comment"></span> Data* <a class="code hl_function" href="classoomph_1_1GeneralCircle.html#adf90890d68bd66550926e2611f634470">geom_data_pt</a>(<span class="keyword">const</span> <span class="keywordtype">unsigned</span>&amp; j) {<span class="keywordflow">return</span> <a class="code hl_variable" href="classoomph_1_1GeneralCircle.html#a4a707f37b32d447dbe965177e442aa76">Geom_data_pt</a>[j];}</div>
 <div class="line"><a id="l00219" name="l00219"></a><span class="lineno">  219</span> </div>
 <div class="line"><a id="l00220" name="l00220"></a><span class="lineno">  220</span> </div>
 <div class="line"><a id="l00221" name="l00221"></a><span class="lineno">  221</span><span class="keyword">protected</span>:</div>
 <div class="line"><a id="l00222" name="l00222"></a><span class="lineno">  222</span><span class="comment"></span> </div>
-<div class="line"><a id="l00223" name="l00223"></a><span class="lineno">  223</span><span class="comment"> /// \short Vector of pointers to Data items that affects the object&#39;s shape</span></div>
+<div class="line"><a id="l00223" name="l00223"></a><span class="lineno">  223</span><span class="comment"> ///  Vector of pointers to Data items that affects the object&#39;s shape</span></div>
 <div class="line"><a id="l00224" name="l00224"></a><span class="lineno"><a class="line" href="classoomph_1_1GeneralCircle.html#a4a707f37b32d447dbe965177e442aa76">  224</a></span><span class="comment"></span> Vector&lt;Data*&gt; <a class="code hl_variable" href="classoomph_1_1GeneralCircle.html#a4a707f37b32d447dbe965177e442aa76">Geom_data_pt</a>;</div>
 <div class="line"><a id="l00225" name="l00225"></a><span class="lineno">  225</span><span class="comment"></span> </div>
 <div class="line"><a id="l00226" name="l00226"></a><span class="lineno">  226</span><span class="comment"> /// Do I need to clean up?</span></div>
@@ -360,7 +360,7 @@
 <div class="ttc" id="aclassoomph_1_1GeneralCircle_html_a94f7f58a7131f80a245007ff0da73f74"><div class="ttname"><a href="classoomph_1_1GeneralCircle.html#a94f7f58a7131f80a245007ff0da73f74">oomph::GeneralCircle::position</a></div><div class="ttdeci">void position(const unsigned &amp;t, const Vector&lt; double &gt; &amp;zeta, Vector&lt; double &gt; &amp;r) const</div><div class="ttdoc">Position Vector at Lagrangian coordinate zeta at time level t (t=0: present; t&gt;0: previous level)....</div><div class="ttdef"><b>Definition:</b> <a href="circle_8h_source.html#l00200">circle.h:200</a></div></div>
 <div class="ttc" id="aclassoomph_1_1GeneralCircle_html_aa4847492eeebdc2033c82734d7bcf2f2"><div class="ttname"><a href="classoomph_1_1GeneralCircle.html#aa4847492eeebdc2033c82734d7bcf2f2">oomph::GeneralCircle::GeneralCircle</a></div><div class="ttdeci">GeneralCircle(const double &amp;x_c, const double &amp;y_c, const double &amp;r)</div><div class="ttdoc">Constructor: Pass x and y-coords of centre and radius (all pinned)</div><div class="ttdef"><b>Definition:</b> <a href="circle_8h_source.html#l00101">circle.h:101</a></div></div>
 <div class="ttc" id="aclassoomph_1_1GeneralCircle_html_acc120835b4f0c69e7dce7e839db63d1d"><div class="ttname"><a href="classoomph_1_1GeneralCircle.html#acc120835b4f0c69e7dce7e839db63d1d">oomph::GeneralCircle::position</a></div><div class="ttdeci">void position(const Vector&lt; double &gt; &amp;zeta, Vector&lt; double &gt; &amp;r) const</div><div class="ttdoc">Position Vector at Lagrangian coordinate zeta.</div><div class="ttdef"><b>Definition:</b> <a href="circle_8h_source.html#l00183">circle.h:183</a></div></div>
-<div class="ttc" id="aclassoomph_1_1GeneralCircle_html_adf90890d68bd66550926e2611f634470"><div class="ttname"><a href="classoomph_1_1GeneralCircle.html#adf90890d68bd66550926e2611f634470">oomph::GeneralCircle::geom_data_pt</a></div><div class="ttdeci">Data * geom_data_pt(const unsigned &amp;j)</div><div class="ttdoc">Return pointer to the j-th Data item that the object's shape depends on</div><div class="ttdef"><b>Definition:</b> <a href="circle_8h_source.html#l00218">circle.h:218</a></div></div>
+<div class="ttc" id="aclassoomph_1_1GeneralCircle_html_adf90890d68bd66550926e2611f634470"><div class="ttname"><a href="classoomph_1_1GeneralCircle.html#adf90890d68bd66550926e2611f634470">oomph::GeneralCircle::geom_data_pt</a></div><div class="ttdeci">Data * geom_data_pt(const unsigned &amp;j)</div><div class="ttdoc">Return pointer to the j-th Data item that the object's shape depends on.</div><div class="ttdef"><b>Definition:</b> <a href="circle_8h_source.html#l00218">circle.h:218</a></div></div>
 <div class="ttc" id="aclassoomph_1_1GeneralCircle_html_ae7a8968f7a75a9c9f01df387382db953"><div class="ttname"><a href="classoomph_1_1GeneralCircle.html#ae7a8968f7a75a9c9f01df387382db953">oomph::GeneralCircle::y_c</a></div><div class="ttdeci">double &amp; y_c()</div><div class="ttdoc">Access function to y-coordinate of centre of circle.</div><div class="ttdef"><b>Definition:</b> <a href="circle_8h_source.html#l00208">circle.h:208</a></div></div>
 <div class="ttc" id="aclassoomph_1_1GeneralCircle_html_afdcca2cddb52a51abc693c7d7ba6b173"><div class="ttname"><a href="classoomph_1_1GeneralCircle.html#afdcca2cddb52a51abc693c7d7ba6b173">oomph::GeneralCircle::GeneralCircle</a></div><div class="ttdeci">GeneralCircle(Data *geom_data_pt)</div><div class="ttdoc">Alternative constructor: Pass x and y-coords of centre and radius (all as part of Data)</div><div class="ttdef"><b>Definition:</b> <a href="circle_8h_source.html#l00143">circle.h:143</a></div></div>
 <div class="ttc" id="aclassoomph_1_1SimpleCircle_html"><div class="ttname"><a href="classoomph_1_1SimpleCircle.html">oomph::SimpleCircle</a></div><div class="ttdoc">Simple circle in 2D space.</div><div class="ttdef"><b>Definition:</b> <a href="circle_8h_source.html#l00041">circle.h:42</a></div></div>
@@ -399,7 +399,7 @@
     <footer>
       <div class="container">
         <div class="text-muted" style="float:right;">Generated by <a href="http://www.doxygen.org/index.html">
-          <img style="height:18px;" class="footer-img" src="doxygen.png" alt="doxygen"></a> on Wed Oct 13 2021 09:05:45
+          <img style="height:18px;" class="footer-img" src="doxygen.png" alt="doxygen"></a> on Thu Oct 21 2021 17:52:50
         </div>
       </div>
     </footer>

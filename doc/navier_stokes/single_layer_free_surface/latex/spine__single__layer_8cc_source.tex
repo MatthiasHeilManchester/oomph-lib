@@ -110,15 +110,15 @@
 \DoxyCodeLine{\Hypertarget{spine__single__layer_8cc_source_l00106}00106 \textcolor{comment}{ /// Do unsteady run up to maximum time t\_max with given timestep dt}}
 \DoxyCodeLine{\Hypertarget{spine__single__layer_8cc_source_l00107}\mbox{\hyperlink{classInterfaceProblem_adf1f4e43d10939e4323e0e315b711085}{00107}} \textcolor{comment}{} \textcolor{keywordtype}{void} \mbox{\hyperlink{classInterfaceProblem_adf1f4e43d10939e4323e0e315b711085}{unsteady\_run}}(\textcolor{keyword}{const} \textcolor{keywordtype}{double} \&t\_max, \textcolor{keyword}{const} \textcolor{keywordtype}{double} \&dt);}
 \DoxyCodeLine{\Hypertarget{spine__single__layer_8cc_source_l00108}00108 \textcolor{comment}{}}
-\DoxyCodeLine{\Hypertarget{spine__single__layer_8cc_source_l00109}00109 \textcolor{comment}{ /// \(\backslash\)short The bulk fluid mesh, complete with spines and update information}}
+\DoxyCodeLine{\Hypertarget{spine__single__layer_8cc_source_l00109}00109 \textcolor{comment}{ ///  The bulk fluid mesh, complete with spines and update information}}
 \DoxyCodeLine{\Hypertarget{spine__single__layer_8cc_source_l00110}\mbox{\hyperlink{classInterfaceProblem_a3e9ad7667f6f978a1e7c4c55e8e69e6d}{00110}} \textcolor{comment}{} SingleLayerSpineMesh<ELEMENT> *\mbox{\hyperlink{classInterfaceProblem_a3e9ad7667f6f978a1e7c4c55e8e69e6d}{Bulk\_mesh\_pt}};}
 \DoxyCodeLine{\Hypertarget{spine__single__layer_8cc_source_l00111}00111 \textcolor{comment}{}}
-\DoxyCodeLine{\Hypertarget{spine__single__layer_8cc_source_l00112}00112 \textcolor{comment}{ /// \(\backslash\)short The mesh that contains the free surface elements}}
+\DoxyCodeLine{\Hypertarget{spine__single__layer_8cc_source_l00112}00112 \textcolor{comment}{ ///  The mesh that contains the free surface elements}}
 \DoxyCodeLine{\Hypertarget{spine__single__layer_8cc_source_l00113}00113 \textcolor{comment}{} Mesh* \mbox{\hyperlink{classInterfaceProblem_a011c7b4f2307ff909f64dc158e8fc674}{Surface\_mesh\_pt}};}
 \DoxyCodeLine{\Hypertarget{spine__single__layer_8cc_source_l00114}00114 }
 \DoxyCodeLine{\Hypertarget{spine__single__layer_8cc_source_l00115}00115 \textcolor{keyword}{private}:}
 \DoxyCodeLine{\Hypertarget{spine__single__layer_8cc_source_l00116}00116 \textcolor{comment}{}}
-\DoxyCodeLine{\Hypertarget{spine__single__layer_8cc_source_l00117}00117 \textcolor{comment}{ /// \(\backslash\)short Spine heights/lengths are unknowns in the problem so their}}
+\DoxyCodeLine{\Hypertarget{spine__single__layer_8cc_source_l00117}00117 \textcolor{comment}{ ///  Spine heights/lengths are unknowns in the problem so their}}
 \DoxyCodeLine{\Hypertarget{spine__single__layer_8cc_source_l00118}00118 \textcolor{comment}{ /// values get corrected during each Newton step. However, changing}}
 \DoxyCodeLine{\Hypertarget{spine__single__layer_8cc_source_l00119}00119 \textcolor{comment}{ /// their value does not automatically change the nodal positions, so}}
 \DoxyCodeLine{\Hypertarget{spine__single__layer_8cc_source_l00120}00120 \textcolor{comment}{ /// we need to update all of them here.}}
@@ -130,7 +130,7 @@
 \DoxyCodeLine{\Hypertarget{spine__single__layer_8cc_source_l00126}00126 \textcolor{comment}{ /// No actions required before solve step}}
 \DoxyCodeLine{\Hypertarget{spine__single__layer_8cc_source_l00127}\mbox{\hyperlink{classInterfaceProblem_ade63c8a74f666edf530460b989968b4f}{00127}} \textcolor{comment}{} \textcolor{keywordtype}{void} \mbox{\hyperlink{classInterfaceProblem_ade63c8a74f666edf530460b989968b4f}{actions\_before\_newton\_solve}}() \{\}}
 \DoxyCodeLine{\Hypertarget{spine__single__layer_8cc_source_l00128}00128 \textcolor{comment}{}}
-\DoxyCodeLine{\Hypertarget{spine__single__layer_8cc_source_l00129}00129 \textcolor{comment}{ /// \(\backslash\)short Update after solve can remain empty, because the update }}
+\DoxyCodeLine{\Hypertarget{spine__single__layer_8cc_source_l00129}00129 \textcolor{comment}{ ///  Update after solve can remain empty, because the update }}
 \DoxyCodeLine{\Hypertarget{spine__single__layer_8cc_source_l00130}00130 \textcolor{comment}{ /// is performed automatically after every Newton step.}}
 \DoxyCodeLine{\Hypertarget{spine__single__layer_8cc_source_l00131}\mbox{\hyperlink{classInterfaceProblem_aedc2e58b3d2f5f8c898a21ba2d245cee}{00131}} \textcolor{comment}{} \textcolor{keywordtype}{void} \mbox{\hyperlink{classInterfaceProblem_aedc2e58b3d2f5f8c898a21ba2d245cee}{actions\_after\_newton\_solve}}() \{\}}
 \DoxyCodeLine{\Hypertarget{spine__single__layer_8cc_source_l00132}00132 \textcolor{comment}{}}
@@ -293,7 +293,7 @@
 \DoxyCodeLine{\Hypertarget{spine__single__layer_8cc_source_l00289}00289 }
 \DoxyCodeLine{\Hypertarget{spine__single__layer_8cc_source_l00290}00290 \textcolor{comment}{//========================================================================}}
 \DoxyCodeLine{\Hypertarget{spine__single__layer_8cc_source_l00291}00291 \textcolor{comment}{//==start\_of\_set\_initial\_condition========================================}\textcolor{comment}{}}
-\DoxyCodeLine{\Hypertarget{spine__single__layer_8cc_source_l00292}00292 \textcolor{comment}{/// \(\backslash\)short Set initial conditions: Set all nodal velocities to zero and}}
+\DoxyCodeLine{\Hypertarget{spine__single__layer_8cc_source_l00292}00292 \textcolor{comment}{///  Set initial conditions: Set all nodal velocities to zero and}}
 \DoxyCodeLine{\Hypertarget{spine__single__layer_8cc_source_l00293}00293 \textcolor{comment}{/// initialise the previous velocities and nodal positions to correspond}}
 \DoxyCodeLine{\Hypertarget{spine__single__layer_8cc_source_l00294}00294 \textcolor{comment}{/// to an impulsive start}}
 \DoxyCodeLine{\Hypertarget{spine__single__layer_8cc_source_l00295}00295 \textcolor{comment}{}\textcolor{comment}{//========================================================================}}
@@ -323,7 +323,7 @@
 \DoxyCodeLine{\Hypertarget{spine__single__layer_8cc_source_l00319}00319 }
 \DoxyCodeLine{\Hypertarget{spine__single__layer_8cc_source_l00320}00320 }
 \DoxyCodeLine{\Hypertarget{spine__single__layer_8cc_source_l00321}00321 \textcolor{comment}{//==start\_of\_set\_boundary\_conditions======================================}\textcolor{comment}{}}
-\DoxyCodeLine{\Hypertarget{spine__single__layer_8cc_source_l00322}00322 \textcolor{comment}{/// \(\backslash\)short Set boundary conditions: Set both velocity components to zero}}
+\DoxyCodeLine{\Hypertarget{spine__single__layer_8cc_source_l00322}00322 \textcolor{comment}{///  Set boundary conditions: Set both velocity components to zero}}
 \DoxyCodeLine{\Hypertarget{spine__single__layer_8cc_source_l00323}00323 \textcolor{comment}{/// on the bottom (solid) wall and the horizontal component only to zero}}
 \DoxyCodeLine{\Hypertarget{spine__single__layer_8cc_source_l00324}00324 \textcolor{comment}{/// on the side (periodic) boundaries}}
 \DoxyCodeLine{\Hypertarget{spine__single__layer_8cc_source_l00325}00325 \textcolor{comment}{}\textcolor{comment}{//========================================================================}}

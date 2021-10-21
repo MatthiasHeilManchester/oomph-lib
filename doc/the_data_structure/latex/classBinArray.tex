@@ -41,7 +41,7 @@ virtual void \mbox{\hyperlink{classBinArray_a66fe7e379a53e3fee81ead7ef4045b40}{o
 virtual void \mbox{\hyperlink{classBinArray_afc595a05f2ab19e1bb973c5a076b1432}{output\+\_\+bin\+\_\+vertices}} (std\+::ofstream \&outfile)=0
 \begin{DoxyCompactList}\small\item\em Output bin vertices (allowing display of bin boundaries as zones). \end{DoxyCompactList}\item 
 virtual unsigned \mbox{\hyperlink{classBinArray_aad085bf99d78162120c419f7504d256b}{nbin}} () const =0
-\item 
+\begin{DoxyCompactList}\small\item\em Number of bins (not taking recursion into account for refineable versions) \end{DoxyCompactList}\item 
 unsigned \mbox{\hyperlink{classBinArray_a1bd867e26195feb7ae95a8e77acadca8}{max\+\_\+bin\+\_\+dimension}} () const
 \begin{DoxyCompactList}\small\item\em Max. bin dimension (number of bins in coordinate directions) \end{DoxyCompactList}\item 
 unsigned \mbox{\hyperlink{classBinArray_a8e0c4a67385d7dcc714de95ce9965f34}{ndim\+\_\+zeta}} () const
@@ -133,13 +133,13 @@ Definition at line \mbox{\hyperlink{sample__point__container_8h_source_l00440}{4
 
 Get (linearly enumerated) bin index of bin that contains specified zeta. 
 
-Get (linearly enumerated) bin index of bin that contains specified zeta Update the coef and the bin index
+Update the coef and the bin index
 
 Definition at line \mbox{\hyperlink{sample__point__container_8cc_source_l01840}{1840}} of file \mbox{\hyperlink{sample__point__container_8cc_source}{sample\+\_\+point\+\_\+container.\+cc}}.
 
 
 
-References \mbox{\hyperlink{sample__point__container_8h_source_l00494}{dimensions\+\_\+of\+\_\+bin\+\_\+array()}}, \mbox{\hyperlink{sample__point__container_8h_source_l00363}{Sample\+Point\+Container\+::\+Min\+\_\+and\+\_\+max\+\_\+coordinates}}, and \mbox{\hyperlink{sample__point__container_8h_source_l00480}{ndim\+\_\+zeta()}}.
+References \mbox{\hyperlink{sample__point__container_8h_source_l00494}{dimensions\+\_\+of\+\_\+bin\+\_\+array()}}, \mbox{\hyperlink{sample__point__container_8h_source_l00363}{Sample\+Point\+Container\+::\+Min\+\_\+and\+\_\+max\+\_\+coordinates}}, \mbox{\hyperlink{sample__point__container_8h_source_l00480}{ndim\+\_\+zeta()}}, and \mbox{\hyperlink{error__estimator_8h_source_l00165}{oomph\+::u}}.
 
 
 
@@ -161,7 +161,7 @@ Definition at line \mbox{\hyperlink{sample__point__container_8cc_source_l01969}{
 
 
 
-References \mbox{\hyperlink{sample__point__container_8h_source_l00494}{dimensions\+\_\+of\+\_\+bin\+\_\+array()}}, \mbox{\hyperlink{sample__point__container_8h_source_l00363}{Sample\+Point\+Container\+::\+Min\+\_\+and\+\_\+max\+\_\+coordinates}}, and \mbox{\hyperlink{sample__point__container_8h_source_l00480}{ndim\+\_\+zeta()}}.
+References \mbox{\hyperlink{sample__point__container_8h_source_l00494}{dimensions\+\_\+of\+\_\+bin\+\_\+array()}}, \mbox{\hyperlink{sample__point__container_8h_source_l00363}{Sample\+Point\+Container\+::\+Min\+\_\+and\+\_\+max\+\_\+coordinates}}, \mbox{\hyperlink{sample__point__container_8h_source_l00480}{ndim\+\_\+zeta()}}, and \mbox{\hyperlink{error__estimator_8h_source_l00165}{oomph\+::u}}.
 
 
 
@@ -239,13 +239,13 @@ References \mbox{\hyperlink{sample__point__container_8h_source_l00508}{Dimension
 
 Helper function for computing the bin indices of neighbouring bins at a given \char`\"{}radius\char`\"{} of the specified bin. Final, optional boolean (default\+: true) chooses to use the old version which appears to be faster than Louis\textquotesingle{} new one after all (in the few cases where this functionality is still used -- not all if we have cgal!) 
 
-Helper function for computing the bin indices of neighbouring bins at a given \char`\"{}radius\char`\"{} of the specified bin 
+Helper function for computing the bin indices of neighbouring bins at a given \char`\"{}radius\char`\"{} of the specified bin. 
 
 Definition at line \mbox{\hyperlink{sample__point__container_8cc_source_l01350}{1350}} of file \mbox{\hyperlink{sample__point__container_8cc_source}{sample\+\_\+point\+\_\+container.\+cc}}.
 
 
 
-References \mbox{\hyperlink{sample__point__container_8h_source_l00508}{Dimensions\+\_\+of\+\_\+bin\+\_\+array}}, \mbox{\hyperlink{cfortran_8h_source_l00603}{i}}, and \mbox{\hyperlink{sample__point__container_8h_source_l00480}{ndim\+\_\+zeta()}}.
+References \mbox{\hyperlink{sample__point__container_8h_source_l00508}{Dimensions\+\_\+of\+\_\+bin\+\_\+array}}, \mbox{\hyperlink{cfortran_8h_source_l00603}{i}}, \mbox{\hyperlink{sample__point__container_8h_source_l00480}{ndim\+\_\+zeta()}}, and \mbox{\hyperlink{error__estimator_8h_source_l00165}{oomph\+::u}}.
 
 
 
@@ -275,7 +275,11 @@ Referenced by \mbox{\hyperlink{multi__domain_8template_8cc_source_l00524}{oomph\
 \doxysubsubsection{\texorpdfstring{nbin()}{nbin()}}
 {\footnotesize\ttfamily virtual unsigned Bin\+Array\+::nbin (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [pure virtual]}}
 
+
+
 Number of bins (not taking recursion into account for refineable versions) 
+
+
 
 Implemented in \mbox{\hyperlink{classRefineableBinArray_a5975657726af982a4d67ff6470abb9d1}{Refineable\+Bin\+Array}}, and \mbox{\hyperlink{classNonRefineableBinArray_af591a06dbe5bbf379c5a52d7a2f1d611}{Non\+Refineable\+Bin\+Array}}.
 
@@ -357,7 +361,7 @@ Referenced by \mbox{\hyperlink{multi__domain_8template_8cc_source_l00524}{oomph\
 
 Profiling function to compare performance of two different versions of the get\+\_\+neighbouring\+\_\+bins\+\_\+helper(...) function. 
 
-Profiling function to compare performance of two different versions of the get\+\_\+neighbouring\+\_\+bins\+\_\+helper(...) function 
+
 
 Definition at line \mbox{\hyperlink{sample__point__container_8cc_source_l01227}{1227}} of file \mbox{\hyperlink{sample__point__container_8cc_source}{sample\+\_\+point\+\_\+container.\+cc}}.
 

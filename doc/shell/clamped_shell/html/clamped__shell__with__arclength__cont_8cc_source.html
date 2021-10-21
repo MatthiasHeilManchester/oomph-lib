@@ -172,11 +172,11 @@
 <div class="line"><a id="l00053" name="l00053"></a><span class="lineno">   53</span><span class="comment"> /// Prescribed position of control point</span></div>
 <div class="line"><a id="l00054" name="l00054"></a><span class="lineno">   54</span><span class="comment"></span> <span class="keywordtype">double</span> <a class="code hl_variable" href="namespaceGlobal__Physical__Variables.html#aa2f7ea98cb8462b3920a026bed5f6099">Prescribed_y</a> = 1.0;</div>
 <div class="line"><a id="l00055" name="l00055"></a><span class="lineno">   55</span><span class="comment"></span> </div>
-<div class="line"><a id="l00056" name="l00056"></a><span class="lineno">   56</span><span class="comment"> /// \short Pointer to pressure load (stored in Data so it can </span></div>
+<div class="line"><a id="l00056" name="l00056"></a><span class="lineno">   56</span><span class="comment"> ///  Pointer to pressure load (stored in Data so it can </span></div>
 <div class="line"><a id="l00057" name="l00057"></a><span class="lineno">   57</span><span class="comment"> /// become an unknown in the problem when displacement control is used</span></div>
 <div class="line"><a id="l00058" name="l00058"></a><span class="lineno">   58</span><span class="comment"></span> Data* <a class="code hl_variable" href="namespaceGlobal__Physical__Variables.html#ae5107b48f68b31302f3d37b038739904">Pext_data_pt</a>;</div>
 <div class="line"><a id="l00059" name="l00059"></a><span class="lineno">   59</span><span class="comment"></span> </div>
-<div class="line"><a id="l00060" name="l00060"></a><span class="lineno">   60</span><span class="comment"> /// \short Return a reference to the external pressure </span></div>
+<div class="line"><a id="l00060" name="l00060"></a><span class="lineno">   60</span><span class="comment"> ///  Return a reference to the external pressure </span></div>
 <div class="line"><a id="l00061" name="l00061"></a><span class="lineno">   61</span><span class="comment"> /// load on the elastic tube.</span></div>
 <div class="line"><a id="l00062" name="l00062"></a><span class="lineno">   62</span><span class="comment"></span> <span class="keywordtype">double</span> <a class="code hl_function" href="namespaceGlobal__Physical__Variables.html#a80149b39ce76ea0a779f7493905eb1b8">external_pressure</a>() </div>
 <div class="line"><a id="l00063" name="l00063"></a><span class="lineno">   63</span>  {<span class="keywordflow">return</span> (*<a class="code hl_variable" href="namespaceGlobal__Physical__Variables.html#ae5107b48f68b31302f3d37b038739904">Pext_data_pt</a>-&gt;value_pt(0))*pow(0.05,3)/12.0;}</div>
@@ -212,7 +212,7 @@
 <div class="line"><a id="l00093" name="l00093"></a><span class="lineno"><a class="line" href="classShellMesh.html#a6ce8404f69fa3f4c10dac5c18cff0699">   93</a></span><span class="comment"></span> <a class="code hl_function" href="classShellMesh.html#a6ce8404f69fa3f4c10dac5c18cff0699">ShellMesh</a>(<span class="keyword">const</span> <span class="keywordtype">unsigned</span> &amp;nx, <span class="keyword">const</span> <span class="keywordtype">unsigned</span> &amp;ny, </div>
 <div class="line"><a id="l00094" name="l00094"></a><span class="lineno">   94</span>           <span class="keyword">const</span> <span class="keywordtype">double</span> &amp;lx, <span class="keyword">const</span> <span class="keywordtype">double</span> &amp;ly);</div>
 <div class="line"><a id="l00095" name="l00095"></a><span class="lineno">   95</span> <span class="comment"></span></div>
-<div class="line"><a id="l00096" name="l00096"></a><span class="lineno">   96</span><span class="comment"> /// \short In all elastic problems, the nodes must be assigned an undeformed,</span></div>
+<div class="line"><a id="l00096" name="l00096"></a><span class="lineno">   96</span><span class="comment"> ///  In all elastic problems, the nodes must be assigned an undeformed,</span></div>
 <div class="line"><a id="l00097" name="l00097"></a><span class="lineno">   97</span><span class="comment"> /// or reference, position, corresponding to the stress-free state</span></div>
 <div class="line"><a id="l00098" name="l00098"></a><span class="lineno">   98</span><span class="comment"> /// of the elastic body. This function assigns the undeformed position </span></div>
 <div class="line"><a id="l00099" name="l00099"></a><span class="lineno">   99</span><span class="comment"> /// for the nodes on the elastic tube</span></div>
@@ -815,7 +815,7 @@
 <div class="line"><a id="l00696" name="l00696"></a><span class="lineno">  696</span> </div>
 <div class="line"><a id="l00697" name="l00697"></a><span class="lineno">  697</span> </div>
 <div class="ttc" id="aclamped__shell__with__arclength__cont_8cc_html_ae66f6b31b5ad750f1fe042a706a4e3d4"><div class="ttname"><a href="clamped__shell__with__arclength__cont_8cc.html#ae66f6b31b5ad750f1fe042a706a4e3d4">main</a></div><div class="ttdeci">int main()</div><div class="ttdoc">Driver.</div><div class="ttdef"><b>Definition:</b> <a href="clamped__shell__with__arclength__cont_8cc_source.html#l00678">clamped_shell_with_arclength_cont.cc:678</a></div></div>
-<div class="ttc" id="aclassShellMesh_html"><div class="ttname"><a href="classShellMesh.html">ShellMesh</a></div><div class="ttdef"><b>Definition:</b> <a href="clamped__shell_8cc_source.html#l00094">clamped_shell.cc:96</a></div></div>
+<div class="ttc" id="aclassShellMesh_html"><div class="ttname"><a href="classShellMesh.html">ShellMesh</a></div><div class="ttdoc">A 2D Mesh class. The tube wall is represented by two Lagrangian coordinates that correspond to z and ...</div><div class="ttdef"><b>Definition:</b> <a href="clamped__shell_8cc_source.html#l00094">clamped_shell.cc:96</a></div></div>
 <div class="ttc" id="aclassShellMesh_html_a3576870121fad30d0f99588ea8082ca1"><div class="ttname"><a href="classShellMesh.html#a3576870121fad30d0f99588ea8082ca1">ShellMesh::assign_undeformed_positions</a></div><div class="ttdeci">void assign_undeformed_positions(GeomObject *const &amp;undeformed_midplane_pt)</div><div class="ttdoc">In all elastic problems, the nodes must be assigned an undeformed, or reference, position,...</div></div>
 <div class="ttc" id="aclassShellMesh_html_a6ce8404f69fa3f4c10dac5c18cff0699"><div class="ttname"><a href="classShellMesh.html#a6ce8404f69fa3f4c10dac5c18cff0699">ShellMesh::ShellMesh</a></div><div class="ttdeci">ShellMesh(const unsigned &amp;nx, const unsigned &amp;ny, const double &amp;lx, const double &amp;ly)</div><div class="ttdoc">Constructor for the mesh.</div></div>
 <div class="ttc" id="aclassShellProblem_html"><div class="ttname"><a href="classShellProblem.html">ShellProblem</a></div><div class="ttdef"><b>Definition:</b> <a href="clamped__shell_8cc_source.html#l00214">clamped_shell.cc:215</a></div></div>
@@ -861,7 +861,7 @@
     <footer>
       <div class="container">
         <div class="text-muted" style="float:right;">Generated by <a href="http://www.doxygen.org/index.html">
-          <img style="height:18px;" class="footer-img" src="doxygen.png" alt="doxygen"></a> on Wed Oct 13 2021 09:02:24
+          <img style="height:18px;" class="footer-img" src="doxygen.png" alt="doxygen"></a> on Thu Oct 21 2021 17:49:48
         </div>
       </div>
     </footer>

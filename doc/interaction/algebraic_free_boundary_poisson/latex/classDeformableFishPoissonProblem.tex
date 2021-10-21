@@ -1,5 +1,10 @@
 \hypertarget{classDeformableFishPoissonProblem}{}\doxysection{Deformable\+Fish\+Poisson\+Problem\texorpdfstring{$<$}{<} ELEMENT \texorpdfstring{$>$}{>} Class Template Reference}
 \label{classDeformableFishPoissonProblem}\index{DeformableFishPoissonProblem$<$ ELEMENT $>$@{DeformableFishPoissonProblem$<$ ELEMENT $>$}}
+
+
+Solve Poisson equation on deforming fish-\/shaped domain. Mesh update via pseudo-\/elasticity.  
+
+
 Inheritance diagram for Deformable\+Fish\+Poisson\+Problem\texorpdfstring{$<$}{<} ELEMENT \texorpdfstring{$>$}{>}\+:\begin{figure}[H]
 \begin{center}
 \leavevmode
@@ -20,8 +25,7 @@ void \mbox{\hyperlink{classDeformableFishPoissonProblem_aee9b59f35d1ae98cda29fba
 void \mbox{\hyperlink{classDeformableFishPoissonProblem_a18fdfaadd9ae10257088b9533f139182}{actions\+\_\+after\+\_\+newton\+\_\+solve}} ()
 \begin{DoxyCompactList}\small\item\em Update function (empty) \end{DoxyCompactList}\item 
 void \mbox{\hyperlink{classDeformableFishPoissonProblem_ad9d03c8349a059430f7329354033b450}{actions\+\_\+before\+\_\+newton\+\_\+solve}} ()
-\begin{DoxyCompactList}\small\item\em Update before solve\+: We\textquotesingle{}re dealing with a static problem so the nodal positions before the next solve merely serve as initial conditions. For meshes that are very strongly refined near the boundary, the update of the displacement boundary conditions (which only moves the Solid\+Nodes {\itshape on} the boundary), can lead to strongly distorted meshes. This can cause the Newton method to fail -\/-\/\texorpdfstring{$>$}{>} the overall method is actually more robust if we use the nodal positions as determined by the Domain/\+Macro\+Element-\/ based mesh update as initial guesses. ~\newline
- \end{DoxyCompactList}\item 
+\begin{DoxyCompactList}\small\item\em Update before solve\+: We\textquotesingle{}re dealing with a static problem so the nodal positions before the next solve merely serve as initial conditions. For meshes that are very strongly refined near the boundary, the update of the displacement boundary conditions (which only moves the Solid\+Nodes {\itshape on} the boundary), can lead to strongly distorted meshes. This can cause the Newton method to fail -\/-\/\texorpdfstring{$>$}{>} the overall method is actually more robust if we use the nodal positions as determined by the Domain/\+Macro\+Element-\/ based mesh update as initial guesses. \end{DoxyCompactList}\item 
 void \mbox{\hyperlink{classDeformableFishPoissonProblem_ada340a31a3b019116ecb7c0bb1d4c779}{actions\+\_\+after\+\_\+adapt}} ()
 \begin{DoxyCompactList}\small\item\em Update after adapt\+: Pin all redundant solid pressure nodes (if required) \end{DoxyCompactList}\item 
 \mbox{\hyperlink{classDeformableFishPoissonProblem_a383952a668f3cec16b85c6b35f437ddd}{Deformable\+Fish\+Poisson\+Problem}} ()
@@ -35,8 +39,7 @@ void \mbox{\hyperlink{classDeformableFishPoissonProblem_aee9b59f35d1ae98cda29fba
 void \mbox{\hyperlink{classDeformableFishPoissonProblem_a18fdfaadd9ae10257088b9533f139182}{actions\+\_\+after\+\_\+newton\+\_\+solve}} ()
 \begin{DoxyCompactList}\small\item\em Update function (empty) \end{DoxyCompactList}\item 
 void \mbox{\hyperlink{classDeformableFishPoissonProblem_ad9d03c8349a059430f7329354033b450}{actions\+\_\+before\+\_\+newton\+\_\+solve}} ()
-\begin{DoxyCompactList}\small\item\em Update before solve\+: We\textquotesingle{}re dealing with a static problem so the nodal positions before the next solve merely serve as initial conditions. For meshes that are very strongly refined near the boundary, the update of the displacement boundary conditions (which only moves the Solid\+Nodes {\itshape on} the boundary), can lead to strongly distorted meshes. This can cause the Newton method to fail -\/-\/\texorpdfstring{$>$}{>} the overall method is actually more robust if we use the nodal positions as determined by the Domain/\+Macro\+Element-\/ based mesh update as initial guesses. ~\newline
- \end{DoxyCompactList}\item 
+\begin{DoxyCompactList}\small\item\em Update before solve\+: We\textquotesingle{}re dealing with a static problem so the nodal positions before the next solve merely serve as initial conditions. For meshes that are very strongly refined near the boundary, the update of the displacement boundary conditions (which only moves the Solid\+Nodes {\itshape on} the boundary), can lead to strongly distorted meshes. This can cause the Newton method to fail -\/-\/\texorpdfstring{$>$}{>} the overall method is actually more robust if we use the nodal positions as determined by the Domain/\+Macro\+Element-\/ based mesh update as initial guesses. \end{DoxyCompactList}\item 
 void \mbox{\hyperlink{classDeformableFishPoissonProblem_ada340a31a3b019116ecb7c0bb1d4c779}{actions\+\_\+after\+\_\+adapt}} ()
 \begin{DoxyCompactList}\small\item\em Update after adapt\+: Pin all redundant solid pressure nodes (if required) \end{DoxyCompactList}\end{DoxyCompactItemize}
 \doxysubsection*{Private Attributes}
@@ -48,7 +51,7 @@ ofstream \mbox{\hyperlink{classDeformableFishPoissonProblem_a9fc310452a96891d566
 \begin{DoxyCompactList}\small\item\em Trace file. \end{DoxyCompactList}\item 
 Circle $\ast$ \mbox{\hyperlink{classDeformableFishPoissonProblem_a88745d43dc7a9377c13190ce1bed79e7}{Fish\+\_\+back\+\_\+pt}}
 \item 
-\mbox{\hyperlink{classoomph_1_1ElasticallySupportedRingElement}{Elastically\+Supported\+Ring\+Element}} $\ast$ \mbox{\hyperlink{classDeformableFishPoissonProblem_aaf5e3c5b0fc0e299b56f3d10d6dcbe20}{Fish\+\_\+back\+\_\+pt}}
+Elastically\+Supported\+Ring\+Element $\ast$ \mbox{\hyperlink{classDeformableFishPoissonProblem_aaf5e3c5b0fc0e299b56f3d10d6dcbe20}{Fish\+\_\+back\+\_\+pt}}
 \end{DoxyCompactItemize}
 
 
@@ -172,8 +175,7 @@ void \mbox{\hyperlink{classDeformableFishPoissonProblem}{Deformable\+Fish\+Poiss
 
 
 
-Update before solve\+: We\textquotesingle{}re dealing with a static problem so the nodal positions before the next solve merely serve as initial conditions. For meshes that are very strongly refined near the boundary, the update of the displacement boundary conditions (which only moves the Solid\+Nodes {\itshape on} the boundary), can lead to strongly distorted meshes. This can cause the Newton method to fail -\/-\/\texorpdfstring{$>$}{>} the overall method is actually more robust if we use the nodal positions as determined by the Domain/\+Macro\+Element-\/ based mesh update as initial guesses. ~\newline
- 
+Update before solve\+: We\textquotesingle{}re dealing with a static problem so the nodal positions before the next solve merely serve as initial conditions. For meshes that are very strongly refined near the boundary, the update of the displacement boundary conditions (which only moves the Solid\+Nodes {\itshape on} the boundary), can lead to strongly distorted meshes. This can cause the Newton method to fail -\/-\/\texorpdfstring{$>$}{>} the overall method is actually more robust if we use the nodal positions as determined by the Domain/\+Macro\+Element-\/ based mesh update as initial guesses. 
 
 
 
@@ -192,8 +194,7 @@ void \mbox{\hyperlink{classDeformableFishPoissonProblem}{Deformable\+Fish\+Poiss
 
 
 
-Update before solve\+: We\textquotesingle{}re dealing with a static problem so the nodal positions before the next solve merely serve as initial conditions. For meshes that are very strongly refined near the boundary, the update of the displacement boundary conditions (which only moves the Solid\+Nodes {\itshape on} the boundary), can lead to strongly distorted meshes. This can cause the Newton method to fail -\/-\/\texorpdfstring{$>$}{>} the overall method is actually more robust if we use the nodal positions as determined by the Domain/\+Macro\+Element-\/ based mesh update as initial guesses. ~\newline
- 
+Update before solve\+: We\textquotesingle{}re dealing with a static problem so the nodal positions before the next solve merely serve as initial conditions. For meshes that are very strongly refined near the boundary, the update of the displacement boundary conditions (which only moves the Solid\+Nodes {\itshape on} the boundary), can lead to strongly distorted meshes. This can cause the Newton method to fail -\/-\/\texorpdfstring{$>$}{>} the overall method is actually more robust if we use the nodal positions as determined by the Domain/\+Macro\+Element-\/ based mesh update as initial guesses. 
 
 
 
@@ -327,7 +328,7 @@ Definition at line \mbox{\hyperlink{elastic__mesh__update_8cc_source_l00235}{235
 \index{Fish\_back\_pt@{Fish\_back\_pt}!DeformableFishPoissonProblem$<$ ELEMENT $>$@{DeformableFishPoissonProblem$<$ ELEMENT $>$}}
 \doxysubsubsection{\texorpdfstring{Fish\_back\_pt}{Fish\_back\_pt}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
 {\footnotesize\ttfamily template$<$class ELEMENT $>$ \\
-\mbox{\hyperlink{classoomph_1_1ElasticallySupportedRingElement}{Elastically\+Supported\+Ring\+Element}}$\ast$ \mbox{\hyperlink{classDeformableFishPoissonProblem}{Deformable\+Fish\+Poisson\+Problem}}$<$ ELEMENT $>$\+::Fish\+\_\+back\+\_\+pt\hspace{0.3cm}{\ttfamily [private]}}
+Elastically\+Supported\+Ring\+Element$\ast$ \mbox{\hyperlink{classDeformableFishPoissonProblem}{Deformable\+Fish\+Poisson\+Problem}}$<$ ELEMENT $>$\+::Fish\+\_\+back\+\_\+pt\hspace{0.3cm}{\ttfamily [private]}}
 
 
 

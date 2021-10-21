@@ -116,6 +116,9 @@
   <div class="headertitle"><div class="title">SegregatedFSICollapsibleChannelProblem&lt; ELEMENT &gt; Class Template Reference</div></div>
 </div><!--header-->
 <div class="contents">
+
+<p>Problem class &ndash; add segregated solver capability to an existing problem.  
+ <a href="classSegregatedFSICollapsibleChannelProblem.html#details">More...</a></p>
 <div class="dynheader">
 Inheritance diagram for SegregatedFSICollapsibleChannelProblem&lt; ELEMENT &gt;:</div>
 <div class="dyncontent">
@@ -141,6 +144,7 @@ Public Member Functions</h2></td></tr>
 <tr class="memdesc:a2613090b2abf3809de381da12f1cd0d2"><td class="mdescLeft">&#160;</td><td class="mdescRight">Update nodal positions in the fluid mesh in response to changes in the wall displacement field after every Newton step in a monolithic or segregated solid solve. Note the use of the (protected) flag Solve_type, which can take the values Full_solve, Fluid_solve or Solid_solve. This flag is used to allow specification of different actions depending on the precise solve taking place.  <a href="classSegregatedFSICollapsibleChannelProblem.html#a2613090b2abf3809de381da12f1cd0d2">More...</a><br /></td></tr>
 <tr class="separator:a2613090b2abf3809de381da12f1cd0d2"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a8ee14a1d4ab159c9b28dfcb177dc7c57"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classSegregatedFSICollapsibleChannelProblem.html#a8ee14a1d4ab159c9b28dfcb177dc7c57">actions_before_segregated_convergence_check</a> ()</td></tr>
+<tr class="memdesc:a8ee14a1d4ab159c9b28dfcb177dc7c57"><td class="mdescLeft">&#160;</td><td class="mdescRight">Update nodal positions in the fluid mesh in response to any changes in the wall displacement field after every segregated solve. This is not strictly necessary because we do the solid solve last, which performs its own node update before the convergence check of the sub problem. It remains here because if we were solving in a completely segregated fashion a node update would be required for the fluid mesh in the final converged solution to be consistent with the solid positions.  <a href="classSegregatedFSICollapsibleChannelProblem.html#a8ee14a1d4ab159c9b28dfcb177dc7c57">More...</a><br /></td></tr>
 <tr class="separator:a8ee14a1d4ab159c9b28dfcb177dc7c57"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a0f7364ea880f2e740e1960830246e028"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classSegregatedFSICollapsibleChannelProblem.html#a0f7364ea880f2e740e1960830246e028">doc_solution</a> (DocInfo &amp;doc_info)</td></tr>
 <tr class="memdesc:a0f7364ea880f2e740e1960830246e028"><td class="mdescLeft">&#160;</td><td class="mdescRight">Document the solution.  <a href="classSegregatedFSICollapsibleChannelProblem.html#a0f7364ea880f2e740e1960830246e028">More...</a><br /></td></tr>
@@ -242,6 +246,7 @@ Additional Inherited Members</h2></td></tr>
 <tr class="memdesc:a7f21548c86e387a26a55062ef50ea416 inherit pro_attribs_classFSICollapsibleChannelProblem"><td class="mdescLeft">&#160;</td><td class="mdescRight">Flag for steady run.  <a href="classFSICollapsibleChannelProblem.html#a7f21548c86e387a26a55062ef50ea416">More...</a><br /></td></tr>
 <tr class="separator:a7f21548c86e387a26a55062ef50ea416 inherit pro_attribs_classFSICollapsibleChannelProblem"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a0af9dba0fa399669d099b67b8c6906fa inherit pro_attribs_classFSICollapsibleChannelProblem"><td class="memItemLeft" align="right" valign="top">GeomObject *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classFSICollapsibleChannelProblem.html#a0af9dba0fa399669d099b67b8c6906fa">Ctrl_geom_obj_pt</a></td></tr>
+<tr class="memdesc:a0af9dba0fa399669d099b67b8c6906fa inherit pro_attribs_classFSICollapsibleChannelProblem"><td class="mdescLeft">&#160;</td><td class="mdescRight">Pointer to GeomObject at which displacement control is applied (or at which wall displacement is monitored in unsteady runs)  <a href="classFSICollapsibleChannelProblem.html#a0af9dba0fa399669d099b67b8c6906fa">More...</a><br /></td></tr>
 <tr class="separator:a0af9dba0fa399669d099b67b8c6906fa inherit pro_attribs_classFSICollapsibleChannelProblem"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a203ee0ecb406f97e62b6e7facb8119b5 inherit pro_attribs_classFSICollapsibleChannelProblem"><td class="memItemLeft" align="right" valign="top">Vector&lt; double &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classFSICollapsibleChannelProblem.html#a203ee0ecb406f97e62b6e7facb8119b5">S_displ_ctrl</a></td></tr>
 <tr class="memdesc:a203ee0ecb406f97e62b6e7facb8119b5 inherit pro_attribs_classFSICollapsibleChannelProblem"><td class="mdescLeft">&#160;</td><td class="mdescRight">Vector of local coordinates of displacement control point in Ctrl_geom_obj_pt.  <a href="classFSICollapsibleChannelProblem.html#a203ee0ecb406f97e62b6e7facb8119b5">More...</a><br /></td></tr>
@@ -436,7 +441,8 @@ template&lt;class ELEMENT &gt; </div>
   </tr>
 </table>
 </div><div class="memdoc">
-<p >Update nodal positions in the fluid mesh in response to any changes in the wall displacement field after every segregated solve. This is not strictly necessary because we do the solid solve last, which performs its own node update before the convergence check of the sub problem. It remains here because if we were solving in a completely segregated fashion a node update would be required for the fluid mesh in the final converged solution to be consistent with the solid positions. </p>
+
+<p>Update nodal positions in the fluid mesh in response to any changes in the wall displacement field after every segregated solve. This is not strictly necessary because we do the solid solve last, which performs its own node update before the convergence check of the sub problem. It remains here because if we were solving in a completely segregated fashion a node update would be required for the fluid mesh in the final converged solution to be consistent with the solid positions. </p>
 
 <p class="definition">Definition at line <a class="el" href="simple__segregated__driver_8cc_source.html#l00147">147</a> of file <a class="el" href="simple__segregated__driver_8cc_source.html">simple_segregated_driver.cc</a>.</p>
 
@@ -581,7 +587,7 @@ template&lt;class ELEMENT &gt; </div>
     <footer>
       <div class="container">
         <div class="text-muted" style="float:right;">Generated by <a href="http://www.doxygen.org/index.html">
-          <img style="height:18px;" class="footer-img" src="doxygen.png" alt="doxygen"></a> on Wed Oct 13 2021 09:07:41
+          <img style="height:18px;" class="footer-img" src="doxygen.png" alt="doxygen"></a> on Thu Oct 21 2021 17:54:37
         </div>
       </div>
     </footer>

@@ -2,6 +2,11 @@
 \label{classoomph_1_1FourierDecomposedHelmholtzDtNMesh}\index{oomph::FourierDecomposedHelmholtzDtNMesh$<$ ELEMENT $>$@{oomph::FourierDecomposedHelmholtzDtNMesh$<$ ELEMENT $>$}}
 
 
+================================================================= \mbox{\hyperlink{classoomph_1_1Mesh}{Mesh}} for DtN boundary condition elements -- provides functionality to apply Sommerfeld radiation condtion  
+
+
+
+
 {\ttfamily \#include $<$fourier\+\_\+decomposed\+\_\+helmholtz\+\_\+bc\+\_\+elements.\+h$>$}
 
 Inheritance diagram for oomph\+::Fourier\+Decomposed\+Helmholtz\+Dt\+NMesh\texorpdfstring{$<$}{<} ELEMENT \texorpdfstring{$>$}{>}\+:\begin{figure}[H]
@@ -14,7 +19,7 @@ Inheritance diagram for oomph\+::Fourier\+Decomposed\+Helmholtz\+Dt\+NMesh\texor
 \begin{DoxyCompactItemize}
 \item 
 \mbox{\hyperlink{classoomph_1_1FourierDecomposedHelmholtzDtNMesh_a572d987fdb38434f87aac2e049e905bb}{Fourier\+Decomposed\+Helmholtz\+Dt\+NMesh}} (const double \&\mbox{\hyperlink{classoomph_1_1FourierDecomposedHelmholtzDtNMesh_a6e34fcbdcf2bdd6c9b04ab4cf040853d}{outer\+\_\+radius}}, const unsigned \&\mbox{\hyperlink{classoomph_1_1FourierDecomposedHelmholtzDtNMesh_a3a6c35333f559ec2133fd687eb0ec464}{n\+\_\+terms}})
-\item 
+\begin{DoxyCompactList}\small\item\em Constructor\+: Specify radius of outer boundary and number of terms used in the computation of the gamma integral. \end{DoxyCompactList}\item 
 void \mbox{\hyperlink{classoomph_1_1FourierDecomposedHelmholtzDtNMesh_a6edd6895062bd0d756f7c4dfc585b284}{setup\+\_\+gamma}} ()
 \begin{DoxyCompactList}\small\item\em Compute and store the gamma integral at all integration points of the constituent elements. \end{DoxyCompactList}\item 
 \mbox{\hyperlink{classoomph_1_1Vector}{Vector}}$<$ std\+::complex$<$ double $>$ $>$ \& \mbox{\hyperlink{classoomph_1_1FourierDecomposedHelmholtzDtNMesh_a639d57517f772a5bb74cbc663f81e446}{gamma\+\_\+at\+\_\+gauss\+\_\+point}} (\mbox{\hyperlink{classoomph_1_1FiniteElement}{Finite\+Element}} $\ast$el\+\_\+pt)
@@ -42,7 +47,9 @@ std\+::map$<$ \mbox{\hyperlink{classoomph_1_1FiniteElement}{Finite\+Element}} $\
 \doxysubsection{Detailed Description}
 \subsubsection*{template$<$class ELEMENT$>$\newline
 class oomph\+::\+Fourier\+Decomposed\+Helmholtz\+Dt\+NMesh$<$ ELEMENT $>$}
-================================================================= \mbox{\hyperlink{classoomph_1_1Mesh}{Mesh}} for DtN boundary condition elements -- provides functionality to apply Sommerfeld radiation condtion \hypertarget{classoomph_1_1FourierDecomposedHelmholtzDtNMesh_autotoc_md2}{}\doxysubsection{via Dt\+N BC.}\label{classoomph_1_1FourierDecomposedHelmholtzDtNMesh_autotoc_md2}
+================================================================= \mbox{\hyperlink{classoomph_1_1Mesh}{Mesh}} for DtN boundary condition elements -- provides functionality to apply Sommerfeld radiation condtion 
+
+\hypertarget{classoomph_1_1FourierDecomposedHelmholtzDtNMesh_autotoc_md1}{}\doxysubsection{via Dt\+N BC.}\label{classoomph_1_1FourierDecomposedHelmholtzDtNMesh_autotoc_md1}
 
 
 Definition at line \mbox{\hyperlink{fourier__decomposed__helmholtz__bc__elements_8h_source_l00350}{350}} of file \mbox{\hyperlink{fourier__decomposed__helmholtz__bc__elements_8h_source}{fourier\+\_\+decomposed\+\_\+helmholtz\+\_\+bc\+\_\+elements.\+h}}.
@@ -57,7 +64,11 @@ Definition at line \mbox{\hyperlink{fourier__decomposed__helmholtz__bc__elements
 {\footnotesize\ttfamily template$<$class ELEMENT $>$ \\
 \mbox{\hyperlink{classoomph_1_1FourierDecomposedHelmholtzDtNMesh}{oomph\+::\+Fourier\+Decomposed\+Helmholtz\+Dt\+NMesh}}$<$ ELEMENT $>$\+::\mbox{\hyperlink{classoomph_1_1FourierDecomposedHelmholtzDtNMesh}{Fourier\+Decomposed\+Helmholtz\+Dt\+NMesh}} (\begin{DoxyParamCaption}\item[{const double \&}]{outer\+\_\+radius,  }\item[{const unsigned \&}]{n\+\_\+terms }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
 
-Constructor\+: Specify radius of outer boundary and number of terms used in the computation of the gamma integral 
+
+
+Constructor\+: Specify radius of outer boundary and number of terms used in the computation of the gamma integral. 
+
+
 
 Definition at line \mbox{\hyperlink{fourier__decomposed__helmholtz__bc__elements_8h_source_l00355}{355}} of file \mbox{\hyperlink{fourier__decomposed__helmholtz__bc__elements_8h_source}{fourier\+\_\+decomposed\+\_\+helmholtz\+\_\+bc\+\_\+elements.\+h}}.
 
@@ -151,15 +162,15 @@ void \mbox{\hyperlink{classoomph_1_1FourierDecomposedHelmholtzDtNMesh}{oomph\+::
 
 Compute and store the gamma integral at all integration points of the constituent elements. 
 
-of the mesh\textquotesingle{}s constituent elements
+================================================================ Compute and store the gamma integral and derivates
 
-================================================================ Compute and store the gamma integral and derivates Imaginary unit
+of the mesh\textquotesingle{}s constituent elements Imaginary unit
 
 Definition at line \mbox{\hyperlink{fourier__decomposed__helmholtz__bc__elements_8h_source_l00936}{936}} of file \mbox{\hyperlink{fourier__decomposed__helmholtz__bc__elements_8h_source}{fourier\+\_\+decomposed\+\_\+helmholtz\+\_\+bc\+\_\+elements.\+h}}.
 
 
 
-References \mbox{\hyperlink{elements_8h_source_l04763}{oomph\+::\+Face\+Element\+::bulk\+\_\+element\+\_\+pt()}}, \mbox{\hyperlink{fourier__decomposed__helmholtz__bc__elements_8h_source_l00772}{oomph\+::\+Fourier\+Decomposed\+Helmholtz\+Dt\+NBoundary\+Element$<$ ELEMENT $>$\+::compute\+\_\+gamma\+\_\+contribution()}}, \mbox{\hyperlink{elements_8h_source_l02616}{oomph\+::\+Finite\+Element\+::dim()}}, \mbox{\hyperlink{cfortran_8h_source_l00571}{e}}, \mbox{\hyperlink{elements_8h_source_l00704}{oomph\+::\+Generalised\+Element\+::eqn\+\_\+number()}}, \mbox{\hyperlink{fourier__decomposed__helmholtz__elements_8cc_source_l00040}{oomph\+::\+Legendre\+\_\+functions\+\_\+helper\+::factorial()}}, \mbox{\hyperlink{cfortran_8h_source_l00603}{i}}, \mbox{\hyperlink{namespaceoomph_1_1MathematicalConstants_a609ab3b897b174e49ddf7a19fd95f2ef}{oomph\+::\+Mathematical\+Constants\+::\+I()}}, \mbox{\hyperlink{elements_8h_source_l01968}{oomph\+::\+Finite\+Element\+::integral\+\_\+pt()}}, \mbox{\hyperlink{elements_8h_source_l04556}{oomph\+::\+Face\+Element\+::interpolated\+\_\+x()}}, \mbox{\hyperlink{classoomph_1_1Integral_a1a2122f99a87c18649bafdd9ed739758}{oomph\+::\+Integral\+::knot()}}, \mbox{\hyperlink{elements_8h_source_l02215}{oomph\+::\+Finite\+Element\+::nnode()}}, \mbox{\hyperlink{elements_8h_source_l01432}{oomph\+::\+Finite\+Element\+::nodal\+\_\+local\+\_\+eqn()}}, \mbox{\hyperlink{elements_8h_source_l02180}{oomph\+::\+Finite\+Element\+::node\+\_\+pt()}}, \mbox{\hyperlink{classoomph_1_1Integral_a1a270de9d99a1fcf1d25a6c1017f65fa}{oomph\+::\+Integral\+::nweight()}}, \mbox{\hyperlink{oomph__utilities_8h_source_l00157}{oomph\+::\+Mathematical\+Constants\+::\+Pi}}, \mbox{\hyperlink{cfortran_8h_source_l00568}{s}}, \mbox{\hyperlink{fourier__decomposed__helmholtz__bc__elements_8h_source_l00921}{oomph\+::\+Tolerance\+For\+Fourier\+Decomposed\+Helmholtz\+Outer\+Boundary\+::\+Tol}}, \mbox{\hyperlink{fourier__decomposed__helmholtz__bc__elements_8h_source_l00135}{oomph\+::\+Fourier\+Decomposed\+Helmholtz\+BCElement\+Base$<$ ELEMENT $>$\+::u\+\_\+index\+\_\+fourier\+\_\+decomposed\+\_\+helmholtz()}}, and \mbox{\hyperlink{nodes_8h_source_l01061}{oomph\+::\+Node\+::x()}}.
+References \mbox{\hyperlink{elements_8h_source_l04763}{oomph\+::\+Face\+Element\+::bulk\+\_\+element\+\_\+pt()}}, \mbox{\hyperlink{fourier__decomposed__helmholtz__bc__elements_8h_source_l00772}{oomph\+::\+Fourier\+Decomposed\+Helmholtz\+Dt\+NBoundary\+Element$<$ ELEMENT $>$\+::compute\+\_\+gamma\+\_\+contribution()}}, \mbox{\hyperlink{elements_8h_source_l02616}{oomph\+::\+Finite\+Element\+::dim()}}, \mbox{\hyperlink{cfortran_8h_source_l00571}{e}}, \mbox{\hyperlink{elements_8h_source_l00704}{oomph\+::\+Generalised\+Element\+::eqn\+\_\+number()}}, \mbox{\hyperlink{fourier__decomposed__helmholtz__elements_8cc_source_l00040}{oomph\+::\+Legendre\+\_\+functions\+\_\+helper\+::factorial()}}, \mbox{\hyperlink{cfortran_8h_source_l00603}{i}}, \mbox{\hyperlink{namespaceoomph_1_1MathematicalConstants_a609ab3b897b174e49ddf7a19fd95f2ef}{oomph\+::\+Mathematical\+Constants\+::\+I()}}, \mbox{\hyperlink{elements_8h_source_l01968}{oomph\+::\+Finite\+Element\+::integral\+\_\+pt()}}, \mbox{\hyperlink{elements_8h_source_l04556}{oomph\+::\+Face\+Element\+::interpolated\+\_\+x()}}, \mbox{\hyperlink{elements_8h_source_l02215}{oomph\+::\+Finite\+Element\+::nnode()}}, \mbox{\hyperlink{elements_8h_source_l01432}{oomph\+::\+Finite\+Element\+::nodal\+\_\+local\+\_\+eqn()}}, \mbox{\hyperlink{elements_8h_source_l02180}{oomph\+::\+Finite\+Element\+::node\+\_\+pt()}}, \mbox{\hyperlink{oomph__utilities_8h_source_l00157}{oomph\+::\+Mathematical\+Constants\+::\+Pi}}, \mbox{\hyperlink{cfortran_8h_source_l00568}{s}}, \mbox{\hyperlink{fourier__decomposed__helmholtz__bc__elements_8h_source_l00921}{oomph\+::\+Tolerance\+For\+Fourier\+Decomposed\+Helmholtz\+Outer\+Boundary\+::\+Tol}}, \mbox{\hyperlink{fourier__decomposed__helmholtz__bc__elements_8h_source_l00135}{oomph\+::\+Fourier\+Decomposed\+Helmholtz\+BCElement\+Base$<$ ELEMENT $>$\+::u\+\_\+index\+\_\+fourier\+\_\+decomposed\+\_\+helmholtz()}}, and \mbox{\hyperlink{pseudo__buckling__ring_8h_source_l00049}{oomph\+::x}}.
 
 
 

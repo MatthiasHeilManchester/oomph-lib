@@ -2,6 +2,11 @@
 \label{classoomph_1_1ProjectionProblem}\index{oomph::ProjectionProblem$<$ PROJECTABLE\_ELEMENT $>$@{oomph::ProjectionProblem$<$ PROJECTABLE\_ELEMENT $>$}}
 
 
+Projection problem. This is created during the adaptation of unstructured meshes and it is assumed that no boundary conditions have been set. If they have, they will be unset during the projection and must be reset afterwards.  
+
+
+
+
 {\ttfamily \#include $<$projection.\+h$>$}
 
 Inheritance diagram for oomph\+::Projection\+Problem\texorpdfstring{$<$}{<} PROJECTABLE\+\_\+\+ELEMENT \texorpdfstring{$>$}{>}\+:\begin{figure}[H]
@@ -18,7 +23,7 @@ void \mbox{\hyperlink{classoomph_1_1ProjectionProblem_a3706c034e47193038de20f3d4
 void \mbox{\hyperlink{classoomph_1_1ProjectionProblem_ab9bb57b5e9241388b4f90b37e338c454}{disable\+\_\+suppress\+\_\+output\+\_\+during\+\_\+projection}} ()
 \begin{DoxyCompactList}\small\item\em Undo suppression of all output during projection phases. \end{DoxyCompactList}\item 
 bool \mbox{\hyperlink{classoomph_1_1ProjectionProblem_a5652035eda34f398652ede076dc085ae}{use\+\_\+iterative\+\_\+solver\+\_\+for\+\_\+projection}} ()
-\item 
+\begin{DoxyCompactList}\small\item\em Return the value of the flag about using an iterative solver for projection. \end{DoxyCompactList}\item 
 void \mbox{\hyperlink{classoomph_1_1ProjectionProblem_aefda55d76d58a951ef6714cbb998e358}{enable\+\_\+use\+\_\+iterative\+\_\+solver\+\_\+for\+\_\+projection}} ()
 \begin{DoxyCompactList}\small\item\em Enables the use of an iterative solver for projection. \end{DoxyCompactList}\item 
 void \mbox{\hyperlink{classoomph_1_1ProjectionProblem_aaf4b8fcb1f5f15cd95075a7da3e76cc5}{disable\+\_\+use\+\_\+iterative\+\_\+solver\+\_\+for\+\_\+projection}} ()
@@ -29,7 +34,7 @@ void \mbox{\hyperlink{classoomph_1_1ProjectionProblem_ad972f78212e515a03d1018996
 \begin{DoxyCompactItemize}
 \item 
 \mbox{\hyperlink{classoomph_1_1ProjectionProblem_a4091e944bf95ae7b3cc86ac427d93257}{Projection\+Problem}} ()
-\item 
+\begin{DoxyCompactList}\small\item\em Default constructor (made this private so only the friend class can call the constructor) \end{DoxyCompactList}\item 
 \mbox{\hyperlink{classoomph_1_1ProjectionProblem_a2b18253c5a5f783a329307315e9ef69c}{$\sim$\+Projection\+Problem}} ()
 \item 
 void \mbox{\hyperlink{classoomph_1_1ProjectionProblem_a5518d9926a396536ea3d24a13e0a6a71}{store\+\_\+positions}} ()
@@ -99,7 +104,11 @@ Definition at line \mbox{\hyperlink{projection_8h_source_l00694}{694}} of file \
 {\footnotesize\ttfamily template$<$class PROJECTABLE\+\_\+\+ELEMENT $>$ \\
 \mbox{\hyperlink{classoomph_1_1ProjectionProblem}{oomph\+::\+Projection\+Problem}}$<$ PROJECTABLE\+\_\+\+ELEMENT $>$\+::\mbox{\hyperlink{classoomph_1_1ProjectionProblem}{Projection\+Problem}} (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [private]}}
 
+
+
 Default constructor (made this private so only the friend class can call the constructor) 
+
+
 
 Definition at line \mbox{\hyperlink{projection_8h_source_l01387}{1387}} of file \mbox{\hyperlink{projection_8h_source}{projection.\+h}}.
 
@@ -459,7 +468,11 @@ Referenced by \mbox{\hyperlink{projection_8h_source_l00748}{oomph\+::\+Projectio
 {\footnotesize\ttfamily template$<$class PROJECTABLE\+\_\+\+ELEMENT $>$ \\
 bool \mbox{\hyperlink{classoomph_1_1ProjectionProblem}{oomph\+::\+Projection\+Problem}}$<$ PROJECTABLE\+\_\+\+ELEMENT $>$\+::use\+\_\+iterative\+\_\+solver\+\_\+for\+\_\+projection (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
 
-Return the value of the flag about using an iterative solver for projection 
+
+
+Return the value of the flag about using an iterative solver for projection. 
+
+
 
 Definition at line \mbox{\hyperlink{projection_8h_source_l00730}{730}} of file \mbox{\hyperlink{projection_8h_source}{projection.\+h}}.
 

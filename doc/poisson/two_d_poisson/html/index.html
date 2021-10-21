@@ -181,7 +181,7 @@ Global parameters and functions</h1>
  <hr  />
 <h1><a class="anchor" id="main"></a>
 The driver code</h1>
-<p >In order to solve the 2D Poisson problem using <code>oomph-lib</code>, we represent the mathematical problem defined by equations (1) and (2) in a specific <code>Problem</code> object, <code><a class="el" href="classPoissonProblem.html">PoissonProblem</a></code>. <code>oomph-lib</code> provides a variety of 2D Poisson elements (e.g. 2D quadrilateral elements with bi-linear, bi-quadratic and bi-cubic representations for the unknown function) and we pass the specific element type as a template parameter to the <code>Problem</code>. In the driver code, listed below, we use the <code>QPoissonElement&lt;2,3&gt;</code>, a nine-node (bi-quadratic) 2D Poisson element.</p>
+<p >In order to solve the 2D Poisson problem using <code>oomph-lib</code>, we represent the mathematical problem defined by equations (1) and (2) in a specific <code>Problem</code> object, <code><a class="el" href="classPoissonProblem.html" title="2D Poisson problem on rectangular domain, discretised with 2D QPoisson elements. The specific type of...">PoissonProblem</a></code>. <code>oomph-lib</code> provides a variety of 2D Poisson elements (e.g. 2D quadrilateral elements with bi-linear, bi-quadratic and bi-cubic representations for the unknown function) and we pass the specific element type as a template parameter to the <code>Problem</code>. In the driver code, listed below, we use the <code>QPoissonElement&lt;2,3&gt;</code>, a nine-node (bi-quadratic) 2D Poisson element.</p>
 <p >The next few lines of the <code><a class="el" href="two__d__poisson_8cc.html#ae66f6b31b5ad750f1fe042a706a4e3d4" title="Driver code for 2D Poisson problem.">main()</a></code> function create a <code>DocInfo</code> object &ndash; an <code>oomph-lib</code> object that collates various items of data that can be used to label output files: Here we specify that the output files are to be written to the directory "RESLT", and that the first batch of output files should be labelled with the identifier "0". See the discussion of the postprocessing routine <code>doc_solution(...)</code> for details. [<b>Note:</b> While the ability to specify an output directory from the driver code is useful, it does rely on the "user" having created the directory before the code is executed. We could use the C++ <code>system(...)</code> function to issue a system command which creates the directory if it does not exist. Since this would make the code non-portable, we only issue a warning suggesting the likely cause of the problem if the output file cannot be opened. If you want to make absolutely sure that the output directory does exist and can be written to, you can change this forgiving behaviour with the function <code>DocInfo::directory_must_exist()</code>. This function provides access to a boolean flag which is set to <code>false</code> by default. If set to <code>true</code>, the code execution terminates with <code>assert(false)</code> if the directory specified with <code>DocInfo::set_directory(...)</code> cannot be written to.]</p>
 <p >Next we execute the <code>Problem::self_test()</code> function to check whether the <code>Problem</code> has been correctly initialised. If this test is passed, we proceed to the solution. We choose the angle of the "step" as 45 degrees (corresponding to <img class="formulaInl" alt="$ \tan \Phi = 1 $" src="form_12.png" width="53" height="10"/>) and then solve the problem for a number of values of the steepness parameter <img class="formulaInl" alt="$ \alpha. $" src="form_13.png" width="10" height="6"/> We document each solution with the post-processing routine <code>doc_solution(...)</code> which accesses the step number and the output directory via the <code>DocInfo</code> object.</p>
  <div class="fragment"><div class="line"><span class="comment">//===== start_of_main=====================================================</span></div>
@@ -255,13 +255,13 @@ The driver code</h1>
 <div class="line"> </div>
 <div class="line"> </div>
 <div class="line">} <span class="comment">//end of main</span></div>
-<div class="ttc" id="aclassPoissonProblem_html"><div class="ttname"><a href="classPoissonProblem.html">PoissonProblem</a></div><div class="ttdef"><b>Definition:</b> <a href="two__d__poisson_8cc_source.html#l00084">two_d_poisson.cc:85</a></div></div>
+<div class="ttc" id="aclassPoissonProblem_html"><div class="ttname"><a href="classPoissonProblem.html">PoissonProblem</a></div><div class="ttdoc">2D Poisson problem on rectangular domain, discretised with 2D QPoisson elements. The specific type of...</div><div class="ttdef"><b>Definition:</b> <a href="two__d__poisson_8cc_source.html#l00084">two_d_poisson.cc:85</a></div></div>
 <div class="ttc" id="atwo__d__poisson_8cc_html_ae66f6b31b5ad750f1fe042a706a4e3d4"><div class="ttname"><a href="two__d__poisson_8cc.html#ae66f6b31b5ad750f1fe042a706a4e3d4">main</a></div><div class="ttdeci">int main()</div><div class="ttdoc">Driver code for 2D Poisson problem.</div><div class="ttdef"><b>Definition:</b> <a href="two__d__poisson_8cc_source.html#l00271">two_d_poisson.cc:271</a></div></div>
 </div><!-- fragment --><hr  />
  <hr  />
 <h1><a class="anchor" id="problem"></a>
 The problem class</h1>
-<p >The <code><a class="el" href="classPoissonProblem.html">PoissonProblem</a></code> is derived from <code>oomph-lib's</code> generic <code>Problem</code> class and the specific element type is specified as a template parameter to make it easy for the "user" to change the element type from the driver code.</p>
+<p >The <code><a class="el" href="classPoissonProblem.html" title="2D Poisson problem on rectangular domain, discretised with 2D QPoisson elements. The specific type of...">PoissonProblem</a></code> is derived from <code>oomph-lib's</code> generic <code>Problem</code> class and the specific element type is specified as a template parameter to make it easy for the "user" to change the element type from the driver code.</p>
  <div class="fragment"><div class="line"><span class="comment">//====== start_of_problem_class=======================================</span></div>
 <div class="line"><span class="comment">/// 2D Poisson problem on rectangular domain, discretised with</span><span class="comment"></span></div>
 <div class="line"><span class="comment">/// 2D QPoisson elements. The specific type of element is</span></div>
@@ -270,7 +270,7 @@ The problem class</h1>
 <div class="line"><span class="keyword">template</span>&lt;<span class="keyword">class</span> ELEMENT&gt; </div>
 <div class="line"><span class="keyword">class </span><a class="code hl_class" href="classPoissonProblem.html">PoissonProblem</a> : <span class="keyword">public</span> Problem</div>
 </div><!-- fragment --><p> The problem class has five member functions, only three of which are non-trivial:</p><ul>
-<li>the constructor <code><a class="el" href="classPoissonProblem.html">PoissonProblem(...)</a></code> </li>
+<li>the constructor <code><a class="el" href="classPoissonProblem.html" title="2D Poisson problem on rectangular domain, discretised with 2D QPoisson elements. The specific type of...">PoissonProblem(...)</a></code> </li>
 <li>the function <code>actions_before_newton_solve()</code> </li>
 <li>the function <code>doc_solution(...)</code> </li>
 </ul>
@@ -283,14 +283,14 @@ The problem class</h1>
 <div class="line"><span class="comment"> /// Destructor (empty)</span></div>
 <div class="line"><span class="comment"></span> <a class="code hl_function" href="classPoissonProblem.html#ac247e42d2d292200617f4b9db7ed1ab8">~PoissonProblem</a>(){}</div>
 <div class="line"><span class="comment"></span> </div>
-<div class="line"><span class="comment"> /// \short Update the problem specs before solve: Reset boundary conditions</span></div>
+<div class="line"><span class="comment"> ///  Update the problem specs before solve: Reset boundary conditions</span></div>
 <div class="line"><span class="comment"> /// to the values from the exact solution.</span></div>
 <div class="line"><span class="comment"></span> <span class="keywordtype">void</span> <a class="code hl_function" href="classPoissonProblem.html#a398608a5ff73b74c5a387b3f794c58df">actions_before_newton_solve</a>();</div>
 <div class="line"><span class="comment"></span> </div>
 <div class="line"><span class="comment"> /// Update the problem after solve (empty)</span></div>
 <div class="line"><span class="comment"></span> <span class="keywordtype">void</span> <a class="code hl_function" href="classPoissonProblem.html#a7a9478d8e1e5c7d3a886b00ab7d50bbd">actions_after_newton_solve</a>(){}</div>
 <div class="line"><span class="comment"></span> </div>
-<div class="line"><span class="comment"> /// \short Doc the solution. DocInfo object stores flags/labels for where the</span></div>
+<div class="line"><span class="comment"> ///  Doc the solution. DocInfo object stores flags/labels for where the</span></div>
 <div class="line"><span class="comment"> /// output gets written to</span></div>
 <div class="line"><span class="comment"></span> <span class="keywordtype">void</span> <a class="code hl_function" href="classPoissonProblem.html#aab6f503fa242f687bb8452527bb7688f">doc_solution</a>(DocInfo&amp; doc_info);</div>
 <div class="line"> </div>
@@ -615,7 +615,7 @@ PDF file</h1>
     <footer>
       <div class="container">
         <div class="text-muted" style="float:right;">Generated by <a href="http://www.doxygen.org/index.html">
-          <img style="height:18px;" class="footer-img" src="doxygen.png" alt="doxygen"></a> on Wed Oct 13 2021 08:49:17
+          <img style="height:18px;" class="footer-img" src="doxygen.png" alt="doxygen"></a> on Thu Oct 21 2021 17:37:35
         </div>
       </div>
     </footer>

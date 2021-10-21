@@ -23,7 +23,7 @@ Inheritance diagram for FSICollapsible\+Channel\+Problem\texorpdfstring{$<$}{<} 
 \mbox{\hyperlink{classFSICollapsibleChannelProblem_abe33aaaae15ea3eb10885527a1d1ad9a}{$\sim$\+FSICollapsible\+Channel\+Problem}} ()
 \begin{DoxyCompactList}\small\item\em Destructor. \end{DoxyCompactList}\item 
 virtual void \mbox{\hyperlink{classFSICollapsibleChannelProblem_a299ba7d5819e7871eae7e331d1abab8b}{steady\+\_\+run}} ()
-\begin{DoxyCompactList}\small\item\em Steady run. \end{DoxyCompactList}\item 
+\begin{DoxyCompactList}\small\item\em Steady run; virtual so it can be overloaded in derived problem classes. \end{DoxyCompactList}\item 
 virtual void \mbox{\hyperlink{classFSICollapsibleChannelProblem_ae4f2b3abaf5e2dfc35489548d5a72edc}{unsteady\+\_\+run}} (const double \&dt=0.\+1)
 \begin{DoxyCompactList}\small\item\em Unsteady run; virtual so it can be overloaded in derived problem classes. Specify timestep or use default of 0.\+1. \end{DoxyCompactList}\item 
 Algebraic\+Collapsible\+Channel\+Mesh$<$ ELEMENT $>$ $\ast$ \mbox{\hyperlink{classFSICollapsibleChannelProblem_ae9ad9667460168fa74f8ec8e3ab9e988}{bulk\+\_\+mesh\+\_\+pt}} ()
@@ -85,7 +85,7 @@ Node $\ast$ \mbox{\hyperlink{classFSICollapsibleChannelProblem_a377285ce93d55b9c
 bool \mbox{\hyperlink{classFSICollapsibleChannelProblem_a7f21548c86e387a26a55062ef50ea416}{Steady\+\_\+flag}}
 \begin{DoxyCompactList}\small\item\em Flag for steady run. \end{DoxyCompactList}\item 
 Geom\+Object $\ast$ \mbox{\hyperlink{classFSICollapsibleChannelProblem_a0af9dba0fa399669d099b67b8c6906fa}{Ctrl\+\_\+geom\+\_\+obj\+\_\+pt}}
-\item 
+\begin{DoxyCompactList}\small\item\em Pointer to Geom\+Object at which displacement control is applied (or at which wall displacement is monitored in unsteady runs) \end{DoxyCompactList}\item 
 Vector$<$ double $>$ \mbox{\hyperlink{classFSICollapsibleChannelProblem_a203ee0ecb406f97e62b6e7facb8119b5}{S\+\_\+displ\+\_\+ctrl}}
 \begin{DoxyCompactList}\small\item\em Vector of local coordinates of displacement control point in Ctrl\+\_\+geom\+\_\+obj\+\_\+pt. \end{DoxyCompactList}\item 
 Mesh\+As\+Geom\+Object $\ast$ \mbox{\hyperlink{classFSICollapsibleChannelProblem_a1fc8d15ea0d359e0df8a677415b77dc3}{Wall\+\_\+geom\+\_\+object\+\_\+pt}}
@@ -315,9 +315,9 @@ void \mbox{\hyperlink{classFSICollapsibleChannelProblem}{FSICollapsible\+Channel
 
 
 
-Steady run. 
+Steady run; virtual so it can be overloaded in derived problem classes. 
 
-Steady run; virtual so it can be overloaded in derived problem classes 
+Steady run. 
 
 Reimplemented in \mbox{\hyperlink{classSegregatedFSICollapsibleChannelProblem_a9a6b0dfeda9eb0d4c50e195768c93e37}{Segregated\+FSICollapsible\+Channel\+Problem$<$ ELEMENT $>$}}.
 
@@ -396,7 +396,11 @@ Referenced by \mbox{\hyperlink{fsi__chan__problem_8h_source_l00377}{FSICollapsib
 {\footnotesize\ttfamily template$<$class ELEMENT $>$ \\
 Geom\+Object$\ast$ \mbox{\hyperlink{classFSICollapsibleChannelProblem}{FSICollapsible\+Channel\+Problem}}$<$ ELEMENT $>$\+::Ctrl\+\_\+geom\+\_\+obj\+\_\+pt\hspace{0.3cm}{\ttfamily [protected]}}
 
+
+
 Pointer to Geom\+Object at which displacement control is applied (or at which wall displacement is monitored in unsteady runs) 
+
+
 
 Definition at line \mbox{\hyperlink{fsi__chan__problem_8h_source_l00458}{458}} of file \mbox{\hyperlink{fsi__chan__problem_8h_source}{fsi\+\_\+chan\+\_\+problem.\+h}}.
 

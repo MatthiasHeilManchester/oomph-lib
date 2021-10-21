@@ -2,6 +2,11 @@
 \label{classoomph_1_1TriangleMeshCurviLine}\index{oomph::TriangleMeshCurviLine@{oomph::TriangleMeshCurviLine}}
 
 
+Class definining a curvilinear triangle mesh boundary in terms of a \mbox{\hyperlink{classoomph_1_1GeomObject}{Geom\+Object}}. Curvlinear equivalent of Poly\+Line.  
+
+
+
+
 {\ttfamily \#include $<$unstructured\+\_\+two\+\_\+d\+\_\+mesh\+\_\+geometry\+\_\+base.\+h$>$}
 
 Inheritance diagram for oomph\+::Triangle\+Mesh\+Curvi\+Line\+:\begin{figure}[H]
@@ -30,7 +35,7 @@ unsigned \& \mbox{\hyperlink{classoomph_1_1TriangleMeshCurviLine_a850883c364eec2
 unsigned \mbox{\hyperlink{classoomph_1_1TriangleMeshCurviLine_acb7ae5fdae67480a0e797da29d518aee}{boundary\+\_\+id}} () const
 \begin{DoxyCompactList}\small\item\em Boundary ID. \end{DoxyCompactList}\item 
 unsigned \mbox{\hyperlink{classoomph_1_1TriangleMeshCurviLine_a42b8ef1fb0ad0078413d0fedc87af679}{boundary\+\_\+chunk}} () const
-\item 
+\begin{DoxyCompactList}\small\item\em Boundary chunk (Used when a boundary is represented by more than one polyline. \end{DoxyCompactList}\item 
 void \mbox{\hyperlink{classoomph_1_1TriangleMeshCurviLine_a4432e3848032cc78bc3282149c4d6cff}{output}} (std\+::ostream \&outfile, const unsigned \&n\+\_\+sample=50)
 \begin{DoxyCompactList}\small\item\em Output curvilinear boundary at n\+\_\+sample (default\+: 50) points. \end{DoxyCompactList}\item 
 bool \mbox{\hyperlink{classoomph_1_1TriangleMeshCurviLine_aeebdc2c7b0bfe0e577ba1b6c93b38895}{space\+\_\+vertices\+\_\+evenly\+\_\+in\+\_\+arclength}} () const
@@ -46,7 +51,7 @@ bool \mbox{\hyperlink{classoomph_1_1TriangleMeshCurviLine_a040f5978d5efa810b0b96
 \mbox{\hyperlink{classoomph_1_1Vector}{Vector}}$<$ double $>$ $\ast$ \mbox{\hyperlink{classoomph_1_1TriangleMeshCurviLine_aa6821f8bd2c7baae76ff1bd794d2a94f}{connection\+\_\+points\+\_\+pt}} ()
 \begin{DoxyCompactList}\small\item\em Returns the connection points vector. \end{DoxyCompactList}\item 
 void \mbox{\hyperlink{classoomph_1_1TriangleMeshCurviLine_a3605aa21fbdec5f73b1baf842fdb4611}{add\+\_\+connection\+\_\+point}} (const double \&z\+\_\+value, const double \&tol=1.\+0e-\/12)
-\end{DoxyCompactItemize}
+\begin{DoxyCompactList}\small\item\em Add the connection point (z\+\_\+value) to the connection points that receive the curviline. \end{DoxyCompactList}\end{DoxyCompactItemize}
 \doxysubsection*{Private Attributes}
 \begin{DoxyCompactItemize}
 \item 
@@ -57,13 +62,13 @@ double \mbox{\hyperlink{classoomph_1_1TriangleMeshCurviLine_aa89105fb5ab773ff8ee
 double \mbox{\hyperlink{classoomph_1_1TriangleMeshCurviLine_a4e0eb74c99bee668bb97ac2e896b3ee0}{Zeta\+\_\+end}}
 \begin{DoxyCompactList}\small\item\em End coordinate in terms of the \mbox{\hyperlink{classoomph_1_1GeomObject}{Geom\+Object}}\textquotesingle{}s intrinsic coordinate. \end{DoxyCompactList}\item 
 unsigned \mbox{\hyperlink{classoomph_1_1TriangleMeshCurviLine_ad623f3774469ffacddb79862263ad70d}{Nsegment}}
-\item 
+\begin{DoxyCompactList}\small\item\em Number of (initially straight-\/line) segments that this part of the boundary is to be represented by. \end{DoxyCompactList}\item 
 unsigned \mbox{\hyperlink{classoomph_1_1TriangleMeshCurviLine_a142f76f360a6f18067e089f860bfb422}{Boundary\+\_\+id}}
 \begin{DoxyCompactList}\small\item\em Boundary ID. \end{DoxyCompactList}\item 
 bool \mbox{\hyperlink{classoomph_1_1TriangleMeshCurviLine_a36ad5bcb2bc7abac6f91084c1f715118}{Space\+\_\+vertices\+\_\+evenly\+\_\+in\+\_\+arclength}}
 \begin{DoxyCompactList}\small\item\em Boolean to indicate if vertices in polygonal representation of the Curviline are spaced (approximately) evenly in arclength along the \mbox{\hyperlink{classoomph_1_1GeomObject}{Geom\+Object}} \mbox{[}true\mbox{]} or in equal increments in zeta \mbox{[}false\mbox{]}. \end{DoxyCompactList}\item 
 unsigned \mbox{\hyperlink{classoomph_1_1TriangleMeshCurviLine_aa526197f2a3eb9d7cb024eeaf7262051}{Boundary\+\_\+chunk}}
-\item 
+\begin{DoxyCompactList}\small\item\em Boundary chunk (Used when a boundary is represented by more than one polyline. \end{DoxyCompactList}\item 
 \mbox{\hyperlink{classoomph_1_1Vector}{Vector}}$<$ double $>$ \mbox{\hyperlink{classoomph_1_1TriangleMeshCurviLine_a33be954c8f4d0a0cd0243deac7ae10da}{Connection\+\_\+points\+\_\+pt}}
 \begin{DoxyCompactList}\small\item\em Stores the information for connections received on the curviline. Used when converting to polyline. \end{DoxyCompactList}\end{DoxyCompactItemize}
 \doxysubsection*{Additional Inherited Members}
@@ -114,7 +119,11 @@ Definition at line \mbox{\hyperlink{unstructured__two__d__mesh__geometry__base_8
 \doxysubsubsection{\texorpdfstring{add\_connection\_point()}{add\_connection\_point()}}
 {\footnotesize\ttfamily void oomph\+::\+Triangle\+Mesh\+Curvi\+Line\+::add\+\_\+connection\+\_\+point (\begin{DoxyParamCaption}\item[{const double \&}]{z\+\_\+value,  }\item[{const double \&}]{tol = {\ttfamily 1.0e-\/12} }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
 
-Add the connection point (z\+\_\+value) to the connection points that receive the curviline 
+
+
+Add the connection point (z\+\_\+value) to the connection points that receive the curviline. 
+
+
 
 Definition at line \mbox{\hyperlink{unstructured__two__d__mesh__geometry__base_8h_source_l00800}{800}} of file \mbox{\hyperlink{unstructured__two__d__mesh__geometry__base_8h_source}{unstructured\+\_\+two\+\_\+d\+\_\+mesh\+\_\+geometry\+\_\+base.\+h}}.
 
@@ -154,7 +163,11 @@ Referenced by \mbox{\hyperlink{unstructured__two__d__mesh__geometry__base_8h_sou
 \doxysubsubsection{\texorpdfstring{boundary\_chunk()}{boundary\_chunk()}}
 {\footnotesize\ttfamily unsigned oomph\+::\+Triangle\+Mesh\+Curvi\+Line\+::boundary\+\_\+chunk (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [virtual]}}
 
-Boundary chunk (Used when a boundary is represented by more than one polyline 
+
+
+Boundary chunk (Used when a boundary is represented by more than one polyline. 
+
+
 
 Implements \mbox{\hyperlink{classoomph_1_1TriangleMeshCurveSection_a106d1f0e203e8e17c8296419be284c16}{oomph\+::\+Triangle\+Mesh\+Curve\+Section}}.
 
@@ -443,7 +456,11 @@ Referenced by \mbox{\hyperlink{unstructured__two__d__mesh__geometry__base_8cc_so
 \doxysubsubsection{\texorpdfstring{Boundary\_chunk}{Boundary\_chunk}}
 {\footnotesize\ttfamily unsigned oomph\+::\+Triangle\+Mesh\+Curvi\+Line\+::\+Boundary\+\_\+chunk\hspace{0.3cm}{\ttfamily [private]}}
 
-Boundary chunk (Used when a boundary is represented by more than one polyline 
+
+
+Boundary chunk (Used when a boundary is represented by more than one polyline. 
+
+
 
 Definition at line \mbox{\hyperlink{unstructured__two__d__mesh__geometry__base_8h_source_l00856}{856}} of file \mbox{\hyperlink{unstructured__two__d__mesh__geometry__base_8h_source}{unstructured\+\_\+two\+\_\+d\+\_\+mesh\+\_\+geometry\+\_\+base.\+h}}.
 
@@ -511,7 +528,11 @@ Referenced by \mbox{\hyperlink{unstructured__two__d__mesh__geometry__base_8h_sou
 \doxysubsubsection{\texorpdfstring{Nsegment}{Nsegment}}
 {\footnotesize\ttfamily unsigned oomph\+::\+Triangle\+Mesh\+Curvi\+Line\+::\+Nsegment\hspace{0.3cm}{\ttfamily [private]}}
 
-Number of (initially straight-\/line) segments that this part of the boundary is to be represented by 
+
+
+Number of (initially straight-\/line) segments that this part of the boundary is to be represented by. 
+
+
 
 Definition at line \mbox{\hyperlink{unstructured__two__d__mesh__geometry__base_8h_source_l00844}{844}} of file \mbox{\hyperlink{unstructured__two__d__mesh__geometry__base_8h_source}{unstructured\+\_\+two\+\_\+d\+\_\+mesh\+\_\+geometry\+\_\+base.\+h}}.
 

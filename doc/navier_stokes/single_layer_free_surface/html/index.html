@@ -358,7 +358,7 @@ The driver code</h1>
 <div class="line"> problem.unsteady_run(t_max,dt);</div>
 <div class="line"> </div>
 <div class="line">} <span class="comment">// End of main</span></div>
-<div class="ttc" id="aclassInterfaceProblem_html"><div class="ttname"><a href="classInterfaceProblem.html">InterfaceProblem</a></div><div class="ttdef"><b>Definition:</b> <a href="elastic__single__layer_8cc_source.html#l00092">elastic_single_layer.cc:93</a></div></div>
+<div class="ttc" id="aclassInterfaceProblem_html"><div class="ttname"><a href="classInterfaceProblem.html">InterfaceProblem</a></div><div class="ttdoc">Single fluid free surface problem in a rectangular domain which is periodic in the x direction.</div><div class="ttdef"><b>Definition:</b> <a href="elastic__single__layer_8cc_source.html#l00092">elastic_single_layer.cc:93</a></div></div>
 </div><!-- fragment --> <hr  />
  <hr  />
 <h1><a class="anchor" id="problem_class"></a>
@@ -396,7 +396,7 @@ The problem class</h1>
 <div class="line"><span class="comment"></span> <span class="keywordtype">void</span> <a class="code hl_function" href="classInterfaceProblem.html#adf1f4e43d10939e4323e0e315b711085">unsteady_run</a>(<span class="keyword">const</span> <span class="keywordtype">double</span> &amp;t_max, <span class="keyword">const</span> <span class="keywordtype">double</span> &amp;dt); </div>
 <div class="ttc" id="aclassInterfaceProblem_html_a0d3af8378c4f0a6e38636be958c300d5"><div class="ttname"><a href="classInterfaceProblem.html#a0d3af8378c4f0a6e38636be958c300d5">InterfaceProblem::set_initial_condition</a></div><div class="ttdeci">void set_initial_condition()</div><div class="ttdoc">Set initial conditions.</div><div class="ttdef"><b>Definition:</b> <a href="elastic__single__layer_8cc_source.html#l00336">elastic_single_layer.cc:336</a></div></div>
 <div class="ttc" id="aclassInterfaceProblem_html_a49714e35e94f7d2af0b6ddd22b851f52"><div class="ttname"><a href="classInterfaceProblem.html#a49714e35e94f7d2af0b6ddd22b851f52">InterfaceProblem::doc_solution</a></div><div class="ttdeci">void doc_solution(DocInfo &amp;doc_info)</div><div class="ttdoc">Document the solution.</div><div class="ttdef"><b>Definition:</b> <a href="elastic__single__layer_8cc_source.html#l00432">elastic_single_layer.cc:432</a></div></div>
-<div class="ttc" id="aclassInterfaceProblem_html_a83023535d663a2a6558959f36bf6e1e7"><div class="ttname"><a href="classInterfaceProblem.html#a83023535d663a2a6558959f36bf6e1e7">InterfaceProblem::InterfaceProblem</a></div><div class="ttdeci">InterfaceProblem(const unsigned &amp;n_x, const unsigned &amp;n_y, const double &amp;l_x, const double &amp;h)</div><div class="ttdoc">Constructor for single fluid free surface problem.</div><div class="ttdef"><b>Definition:</b> <a href="elastic__single__layer_8cc_source.html#l00159">elastic_single_layer.cc:160</a></div></div>
+<div class="ttc" id="aclassInterfaceProblem_html_a83023535d663a2a6558959f36bf6e1e7"><div class="ttname"><a href="classInterfaceProblem.html#a83023535d663a2a6558959f36bf6e1e7">InterfaceProblem::InterfaceProblem</a></div><div class="ttdeci">InterfaceProblem(const unsigned &amp;n_x, const unsigned &amp;n_y, const double &amp;l_x, const double &amp;h)</div><div class="ttdoc">Constructor: Pass the number of elements and the lengths of the domain in the x and y directions (h i...</div><div class="ttdef"><b>Definition:</b> <a href="elastic__single__layer_8cc_source.html#l00159">elastic_single_layer.cc:160</a></div></div>
 <div class="ttc" id="aclassInterfaceProblem_html_a844445832ad7a32aa9f5d03ffdb40ebb"><div class="ttname"><a href="classInterfaceProblem.html#a844445832ad7a32aa9f5d03ffdb40ebb">InterfaceProblem::set_boundary_conditions</a></div><div class="ttdeci">void set_boundary_conditions()</div><div class="ttdoc">Set boundary conditions.</div><div class="ttdef"><b>Definition:</b> <a href="elastic__single__layer_8cc_source.html#l00366">elastic_single_layer.cc:366</a></div></div>
 <div class="ttc" id="aclassInterfaceProblem_html_a90c191f8046069099b199743e7ce7111"><div class="ttname"><a href="classInterfaceProblem.html#a90c191f8046069099b199743e7ce7111">InterfaceProblem::~InterfaceProblem</a></div><div class="ttdeci">~InterfaceProblem()</div><div class="ttdoc">Destructor (empty)</div><div class="ttdef"><b>Definition:</b> <a href="elastic__single__layer_8cc_source.html#l00104">elastic_single_layer.cc:104</a></div></div>
 <div class="ttc" id="aclassInterfaceProblem_html_adf1f4e43d10939e4323e0e315b711085"><div class="ttname"><a href="classInterfaceProblem.html#adf1f4e43d10939e4323e0e315b711085">InterfaceProblem::unsteady_run</a></div><div class="ttdeci">void unsteady_run(const double &amp;t_max, const double &amp;dt)</div><div class="ttdoc">Do unsteady run up to maximum time t_max with given timestep dt.</div><div class="ttdef"><b>Definition:</b> <a href="elastic__single__layer_8cc_source.html#l00484">elastic_single_layer.cc:485</a></div></div>
@@ -409,7 +409,7 @@ The problem class</h1>
 <div class="line"><span class="comment"> /// No actions required after solve step</span></div>
 <div class="line"><span class="comment"></span> <span class="keywordtype">void</span> actions_after_newton_solve() {}</div>
 <div class="line"><span class="comment"></span> </div>
-<div class="line"><span class="comment"> /// \short Actions before the timestep: For maximum stability, reset</span></div>
+<div class="line"><span class="comment"> ///  Actions before the timestep: For maximum stability, reset</span></div>
 <div class="line"><span class="comment"> /// the current nodal positions to be the &quot;stress-free&quot; ones.</span></div>
 <div class="line"><span class="comment"></span> <span class="keywordtype">void</span> actions_before_implicit_timestep()</div>
 <div class="line">  {</div>
@@ -615,7 +615,7 @@ The problem constructor</h1>
 Initial conditions</h1>
 <p >This function sets the initial conditions for the problem. We loop over all nodes in the mesh and set both velocity components to zero. No initial conditions are required for the pressure. We then call the function <code>Problem::assign_initial_values_impulsive()</code> which copies the current values at each of the nodes, as well as the current nodal positions, into the required number of history values for the timestepper in question. This corresponds to an impulsive start, as for all time <img class="formulaInl" alt="$ t \leq 0 $" src="form_51.png" width="29" height="11"/> none of the fluid is moving and the shape of the interface is constant.</p>
 <div class="fragment"><div class="line"><span class="comment">//==start_of_set_initial_condition========================================</span></div>
-<div class="line"><span class="comment">/// \short Set initial conditions: Set all nodal velocities to zero and</span><span class="comment"></span></div>
+<div class="line"><span class="comment">///  Set initial conditions: Set all nodal velocities to zero and</span><span class="comment"></span></div>
 <div class="line"><span class="comment">/// initialise the previous velocities and nodal positions to correspond</span></div>
 <div class="line"><span class="comment">/// to an impulsive start</span></div>
 <div class="line"><span class="comment"></span><span class="comment">//========================================================================</span></div>
@@ -647,7 +647,7 @@ Initial conditions</h1>
 Boundary conditions</h1>
 <p >This function sets the boundary conditions for the problem. Since the Dirichlet conditions are homogeneous this function is not strictly necessary as all values are initialised to zero by default.</p>
 <div class="fragment"><div class="line"><span class="comment">//==start_of_set_boundary_conditions======================================</span></div>
-<div class="line"><span class="comment">/// \short Set boundary conditions: Set both velocity components to zero</span><span class="comment"></span></div>
+<div class="line"><span class="comment">///  Set boundary conditions: Set both velocity components to zero</span><span class="comment"></span></div>
 <div class="line"><span class="comment">/// on the bottom (solid) wall and the horizontal component only to zero</span></div>
 <div class="line"><span class="comment">/// on the side (periodic) boundaries</span></div>
 <div class="line"><span class="comment"></span><span class="comment">//========================================================================</span></div>
@@ -903,7 +903,7 @@ PDF file</h1>
     <footer>
       <div class="container">
         <div class="text-muted" style="float:right;">Generated by <a href="http://www.doxygen.org/index.html">
-          <img style="height:18px;" class="footer-img" src="doxygen.png" alt="doxygen"></a> on Wed Oct 13 2021 08:55:10
+          <img style="height:18px;" class="footer-img" src="doxygen.png" alt="doxygen"></a> on Thu Oct 21 2021 17:43:01
         </div>
       </div>
     </footer>

@@ -125,6 +125,9 @@
 </div><!--header-->
 <div class="contents">
 
+<p>Generic surfactant transport equations implemented independently of the dimension and then specialised using the generic mechanisms introduce in the FluidInterfaceElements.  
+ <a href="classoomph_1_1SurfactantTransportInterfaceElement.html#details">More...</a></p>
+
 <p><code>#include &lt;<a class="el" href="surfactant__transport__elements_8h_source.html">surfactant_transport_elements.h</a>&gt;</code></p>
 <div class="dynheader">
 Inheritance diagram for oomph::SurfactantTransportInterfaceElement:</div>
@@ -132,7 +135,7 @@ Inheritance diagram for oomph::SurfactantTransportInterfaceElement:</div>
  <div class="center">
   <img src="classoomph_1_1SurfactantTransportInterfaceElement.png" usemap="#oomph::SurfactantTransportInterfaceElement_map" alt=""/>
   <map id="oomph::SurfactantTransportInterfaceElement_map" name="oomph::SurfactantTransportInterfaceElement_map">
-<area href="classoomph_1_1FluidInterfaceElement.html" alt="oomph::FluidInterfaceElement" shape="rect" coords="1060,56,1757,80"/>
+<area href="classoomph_1_1FluidInterfaceElement.html" title="Base class establishing common interfaces and functions for all Navier-Stokes-like fluid interface el..." alt="oomph::FluidInterfaceElement" shape="rect" coords="1060,56,1757,80"/>
 <area href="classoomph_1_1ElasticUpdateFluidInterfaceElement.html" alt="oomph::ElasticUpdateFluidInterfaceElement&lt; SurfactantTransportInterfaceElement, AxisymmetricDerivatives, ELEMENT &gt;" shape="rect" coords="0,168,697,192"/>
 <area href="classoomph_1_1SpineUpdateFluidInterfaceElement.html" alt="oomph::SpineUpdateFluidInterfaceElement&lt; SurfactantTransportInterfaceElement, AxisymmetricDerivatives, ELEMENT &gt;" shape="rect" coords="707,168,1404,192"/>
 <area href="classoomph_1_1SpineUpdateFluidInterfaceElement.html" alt="oomph::SpineUpdateFluidInterfaceElement&lt; SurfactantTransportInterfaceElement, LineDerivatives, ELEMENT &gt;" shape="rect" coords="1414,168,2111,192"/>
@@ -141,13 +144,14 @@ Inheritance diagram for oomph::SurfactantTransportInterfaceElement:</div>
 <area href="classoomph_1_1SpineAxisymmetricSurfactantTransportInterfaceElement.html" title="Specialise to the Axisymmetric geometry." alt="oomph::SpineAxisymmetricSurfactantTransportInterfaceElement&lt; ELEMENT &gt;" shape="rect" coords="707,224,1404,248"/>
 <area href="classoomph_1_1SpineLineSurfactantTransportInterfaceElement.html" title="Specialise to the Line geometry." alt="oomph::SpineLineSurfactantTransportInterfaceElement&lt; ELEMENT &gt;" shape="rect" coords="1414,224,2111,248"/>
 <area href="classoomph_1_1SpineSurfaceSurfactantTransportInterfaceElement.html" title="Specialise to surface geometry." alt="oomph::SpineSurfaceSurfactantTransportInterfaceElement&lt; ELEMENT &gt;" shape="rect" coords="2121,224,2818,248"/>
-<area href="classElasticAxisymmetricSolubleSurfactantTransportInterfaceElement.html" alt="ElasticAxisymmetricSolubleSurfactantTransportInterfaceElement&lt; ELEMENT &gt;" shape="rect" coords="0,280,697,304"/>
+<area href="classElasticAxisymmetricSolubleSurfactantTransportInterfaceElement.html" title="Interface class to handle the mass transport between bulk and surface as well as the surfactant trans..." alt="ElasticAxisymmetricSolubleSurfactantTransportInterfaceElement&lt; ELEMENT &gt;" shape="rect" coords="0,280,697,304"/>
   </map>
 </div></div>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pub-methods" name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
 <tr class="memitem:a8934ab8e723427ed39298c592b2876a5"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classoomph_1_1SurfactantTransportInterfaceElement.html#a8934ab8e723427ed39298c592b2876a5">SurfactantTransportInterfaceElement</a> ()</td></tr>
+<tr class="memdesc:a8934ab8e723427ed39298c592b2876a5"><td class="mdescLeft">&#160;</td><td class="mdescRight">Constructor that passes the bulk element and face index down to the underlying.  <a href="classoomph_1_1SurfactantTransportInterfaceElement.html#a8934ab8e723427ed39298c592b2876a5">More...</a><br /></td></tr>
 <tr class="separator:a8934ab8e723427ed39298c592b2876a5"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:aaf7988dfac3e02018c591f2f9e34f644"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classoomph_1_1SurfactantTransportInterfaceElement.html#aaf7988dfac3e02018c591f2f9e34f644">set_c_index</a> (const Vector&lt; unsigned &gt; &amp;c_index)</td></tr>
 <tr class="separator:aaf7988dfac3e02018c591f2f9e34f644"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -246,13 +250,16 @@ Protected Member Functions</h2></td></tr>
 <tr class="memdesc:a7b5cc851b94d836a3caa2130cbf45bec"><td class="mdescLeft">&#160;</td><td class="mdescRight">The time derivative of the surface concentration.  <a href="classoomph_1_1SurfactantTransportInterfaceElement.html#a7b5cc851b94d836a3caa2130cbf45bec">More...</a><br /></td></tr>
 <tr class="separator:a7b5cc851b94d836a3caa2130cbf45bec"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a1710057c610ccccc06ef41f34f086aae"><td class="memItemLeft" align="right" valign="top">double&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classoomph_1_1SurfactantTransportInterfaceElement.html#a1710057c610ccccc06ef41f34f086aae">sigma</a> (const Vector&lt; double &gt; &amp;s)</td></tr>
+<tr class="memdesc:a1710057c610ccccc06ef41f34f086aae"><td class="mdescLeft">&#160;</td><td class="mdescRight">The surface tension function is linear in the concentration with constant of proportionality equal to the elasticity number.  <a href="classoomph_1_1SurfactantTransportInterfaceElement.html#a1710057c610ccccc06ef41f34f086aae">More...</a><br /></td></tr>
 <tr class="separator:a1710057c610ccccc06ef41f34f086aae"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a36422cf9aa94de6f0bfa668e5d4fa900"><td class="memItemLeft" align="right" valign="top">virtual double&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classoomph_1_1SurfactantTransportInterfaceElement.html#a36422cf9aa94de6f0bfa668e5d4fa900">dsigma_dC</a> (const Vector&lt; double &gt; &amp;s)</td></tr>
+<tr class="memdesc:a36422cf9aa94de6f0bfa668e5d4fa900"><td class="mdescLeft">&#160;</td><td class="mdescRight">Return the derivative of sigma with respect to C For use in computing the Jacobian.  <a href="classoomph_1_1SurfactantTransportInterfaceElement.html#a36422cf9aa94de6f0bfa668e5d4fa900">More...</a><br /></td></tr>
 <tr class="separator:a36422cf9aa94de6f0bfa668e5d4fa900"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:adedf33390efdf652e169f8bd38eb2350"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classoomph_1_1SurfactantTransportInterfaceElement.html#adedf33390efdf652e169f8bd38eb2350">add_additional_residual_contributions_interface</a> (Vector&lt; double &gt; &amp;residuals, DenseMatrix&lt; double &gt; &amp;jacobian, const unsigned &amp;flag, const Shape &amp;psif, const DShape &amp;dpsifds, const DShape &amp;dpsifdS, const DShape &amp;dpsifdS_div, const Vector&lt; double &gt; &amp;s, const Vector&lt; double &gt; &amp;interpolated_x, const Vector&lt; double &gt; &amp;interpolated_n, const double &amp;W, const double &amp;J)</td></tr>
 <tr class="memdesc:adedf33390efdf652e169f8bd38eb2350"><td class="mdescLeft">&#160;</td><td class="mdescRight">Overload the Helper function to calculate the residuals and jacobian entries. This particular function ensures that the additional entries are calculated inside the integration loop.  <a href="classoomph_1_1SurfactantTransportInterfaceElement.html#adedf33390efdf652e169f8bd38eb2350">More...</a><br /></td></tr>
 <tr class="separator:adedf33390efdf652e169f8bd38eb2350"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a7c0f9b63cea887a4a65abbe9aeb3b3cf"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classoomph_1_1SurfactantTransportInterfaceElement.html#a7c0f9b63cea887a4a65abbe9aeb3b3cf">fill_in_contribution_to_jacobian_and_mass_matrix</a> (Vector&lt; double &gt; &amp;residuals, DenseMatrix&lt; double &gt; &amp;jacobian, DenseMatrix&lt; double &gt; &amp;mass_matrix)</td></tr>
+<tr class="memdesc:a7c0f9b63cea887a4a65abbe9aeb3b3cf"><td class="mdescLeft">&#160;</td><td class="mdescRight">Add the element's contribution to its residuals vector, jacobian matrix and mass matrix.  <a href="classoomph_1_1SurfactantTransportInterfaceElement.html#a7c0f9b63cea887a4a65abbe9aeb3b3cf">More...</a><br /></td></tr>
 <tr class="separator:a7c0f9b63cea887a4a65abbe9aeb3b3cf"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="inherit_header pro_methods_classoomph_1_1FluidInterfaceElement"><td colspan="2" onclick="javascript:toggleInherit('pro_methods_classoomph_1_1FluidInterfaceElement')"><img src="closed.png" alt="-"/>&#160;Protected Member Functions inherited from <a class="el" href="classoomph_1_1FluidInterfaceElement.html">oomph::FluidInterfaceElement</a></td></tr>
 <tr class="memitem:a58a82e2fd839d4381e43d46a22bf1f25 inherit pro_methods_classoomph_1_1FluidInterfaceElement"><td class="memItemLeft" align="right" valign="top">virtual int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classoomph_1_1FluidInterfaceElement.html#a58a82e2fd839d4381e43d46a22bf1f25">kinematic_local_eqn</a> (const unsigned &amp;n)=0</td></tr>
@@ -271,6 +278,7 @@ Protected Member Functions</h2></td></tr>
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pro-attribs" name="pro-attribs"></a>
 Protected Attributes</h2></td></tr>
 <tr class="memitem:a26727fb7b57f88d3e1bdf4f2dd9f3b02"><td class="memItemLeft" align="right" valign="top">Vector&lt; unsigned &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classoomph_1_1SurfactantTransportInterfaceElement.html#a26727fb7b57f88d3e1bdf4f2dd9f3b02">C_index</a></td></tr>
+<tr class="memdesc:a26727fb7b57f88d3e1bdf4f2dd9f3b02"><td class="mdescLeft">&#160;</td><td class="mdescRight">Index at which the surfactant concentration is stored at the nodes.  <a href="classoomph_1_1SurfactantTransportInterfaceElement.html#a26727fb7b57f88d3e1bdf4f2dd9f3b02">More...</a><br /></td></tr>
 <tr class="separator:a26727fb7b57f88d3e1bdf4f2dd9f3b02"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="inherit_header pro_attribs_classoomph_1_1FluidInterfaceElement"><td colspan="2" onclick="javascript:toggleInherit('pro_attribs_classoomph_1_1FluidInterfaceElement')"><img src="closed.png" alt="-"/>&#160;Protected Attributes inherited from <a class="el" href="classoomph_1_1FluidInterfaceElement.html">oomph::FluidInterfaceElement</a></td></tr>
 <tr class="memitem:a6a818d9999c68641223edcad217a8c3f inherit pro_attribs_classoomph_1_1FluidInterfaceElement"><td class="memItemLeft" align="right" valign="top">Vector&lt; unsigned &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classoomph_1_1FluidInterfaceElement.html#a6a818d9999c68641223edcad217a8c3f">U_index_interface</a></td></tr>
@@ -305,7 +313,7 @@ Private Attributes</h2></td></tr>
 <tr class="separator:a3c4a6abcb3795ee53baff49864cd0020"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
-<div class="textblock"><p >Generic surfactant transport equations implemented independently of the dimension and then specialised using the generic mechanisms introduce in the FluidInterfaceElements </p>
+<div class="textblock"><p >Generic surfactant transport equations implemented independently of the dimension and then specialised using the generic mechanisms introduce in the FluidInterfaceElements. </p>
 
 <p class="definition">Definition at line <a class="el" href="surfactant__transport__elements_8h_source.html#l00048">48</a> of file <a class="el" href="surfactant__transport__elements_8h_source.html">surfactant_transport_elements.h</a>.</p>
 </div><h2 class="groupheader">Constructor &amp; Destructor Documentation</h2>
@@ -331,7 +339,8 @@ Private Attributes</h2></td></tr>
   </tr>
 </table>
 </div><div class="memdoc">
-<p >Constructor that passes the bulk element and face index down to the underlying </p>
+
+<p>Constructor that passes the bulk element and face index down to the underlying. </p>
 
 <p class="definition">Definition at line <a class="el" href="surfactant__transport__elements_8h_source.html#l00120">120</a> of file <a class="el" href="surfactant__transport__elements_8h_source.html">surfactant_transport_elements.h</a>.</p>
 
@@ -569,7 +578,8 @@ Private Attributes</h2></td></tr>
   </tr>
 </table>
 </div><div class="memdoc">
-<p >Return the derivative of sigma with respect to C For use in computing the Jacobian </p>
+
+<p>Return the derivative of sigma with respect to C For use in computing the Jacobian. </p>
 
 <p class="definition">Definition at line <a class="el" href="surfactant__transport__elements_8h_source.html#l00082">82</a> of file <a class="el" href="surfactant__transport__elements_8h_source.html">surfactant_transport_elements.h</a>.</p>
 
@@ -618,7 +628,8 @@ Private Attributes</h2></td></tr>
   </tr>
 </table>
 </div><div class="memdoc">
-<p >Add the element's contribution to its residuals vector, jacobian matrix and mass matrix </p>
+
+<p>Add the element's contribution to its residuals vector, jacobian matrix and mass matrix. </p>
 
 <p class="definition">Definition at line <a class="el" href="surfactant__transport__elements_8h_source.html#l00107">107</a> of file <a class="el" href="surfactant__transport__elements_8h_source.html">surfactant_transport_elements.h</a>.</p>
 
@@ -1000,7 +1011,8 @@ Private Attributes</h2></td></tr>
   </tr>
 </table>
 </div><div class="memdoc">
-<p >The surface tension function is linear in the concentration with constant of proportionality equal to the elasticity number. </p>
+
+<p>The surface tension function is linear in the concentration with constant of proportionality equal to the elasticity number. </p>
 
 <p>Reimplemented from <a class="el" href="classoomph_1_1FluidInterfaceElement.html#a7e5c3ca1eba5d4dd44c0eab9be252c2a">oomph::FluidInterfaceElement</a>.</p>
 
@@ -1060,7 +1072,8 @@ Private Attributes</h2></td></tr>
   </tr>
 </table>
 </div><div class="memdoc">
-<p >Index at which the surfactant concentration is stored at the nodes </p>
+
+<p>Index at which the surfactant concentration is stored at the nodes. </p>
 
 <p class="definition">Definition at line <a class="el" href="surfactant__transport__elements_8h_source.html#l00063">63</a> of file <a class="el" href="surfactant__transport__elements_8h_source.html">surfactant_transport_elements.h</a>.</p>
 
@@ -1186,7 +1199,7 @@ Private Attributes</h2></td></tr>
     <footer>
       <div class="container">
         <div class="text-muted" style="float:right;">Generated by <a href="http://www.doxygen.org/index.html">
-          <img style="height:18px;" class="footer-img" src="doxygen.png" alt="doxygen"></a> on Wed Oct 13 2021 09:11:00
+          <img style="height:18px;" class="footer-img" src="doxygen.png" alt="doxygen"></a> on Thu Oct 21 2021 17:57:40
         </div>
       </div>
     </footer>

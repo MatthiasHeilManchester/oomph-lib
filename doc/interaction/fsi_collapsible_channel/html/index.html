@@ -343,7 +343,7 @@ Namespace for the global physical variables</h1>
 <div class="line"><span class="comment"> /// External pressure</span></div>
 <div class="line"><span class="comment"></span> <span class="keywordtype">double</span> <a class="code hl_variable" href="namespaceGlobal__Physical__Variables.html#a0406c0cbd463d1df2458fe5de98a00eb">P_ext</a>=0.0;</div>
 <div class="line"><span class="comment"></span> </div>
-<div class="line"><span class="comment"> /// \short Load function: Apply a constant external pressure to the wall.</span></div>
+<div class="line"><span class="comment"> ///  Load function: Apply a constant external pressure to the wall.</span></div>
 <div class="line"><span class="comment"> /// Note:  This is the load without the fluid contribution!</span></div>
 <div class="line"><span class="comment"> /// Fluid load gets added on by FSIWallElement.</span></div>
 <div class="line"><span class="comment"></span> <span class="keywordtype">void</span> <a class="code hl_function" href="namespaceGlobal__Physical__Variables.html#a321267e1efb30b5d586302509354fb07">load</a>(<span class="keyword">const</span> Vector&lt;double&gt;&amp; xi, <span class="keyword">const</span> Vector&lt;double&gt;&amp; x,</div>
@@ -361,7 +361,7 @@ Namespace for the global physical variables</h1>
 </div><!-- fragment --><p> Finally, we define the interaction parameter <img class="formulaInl" alt="$ Q $" src="form_42.png" width="10" height="13"/> and give it a default value.</p>
 <div class="fragment"><div class="line"> </div>
 <div class="line"><span class="comment"></span> </div>
-<div class="line"><span class="comment"> /// \short Fluid structure interaction parameter: Ratio of stresses used for</span></div>
+<div class="line"><span class="comment"> ///  Fluid structure interaction parameter: Ratio of stresses used for</span></div>
 <div class="line"><span class="comment"> /// non-dimensionalisation of fluid to solid stresses. </span></div>
 <div class="line"><span class="comment"></span> <span class="keywordtype">double</span> <a class="code hl_variable" href="namespaceGlobal__Physical__Variables.html#a66cb7ecda9ba0cd72367dd697f154545">Q</a>=1.0e-5;</div>
 <div class="line"> </div>
@@ -383,21 +383,21 @@ The undeformed wall</h1>
 <div class="line"> </div>
 <div class="line"><span class="keyword">public</span>:</div>
 <div class="line"><span class="comment"></span> </div>
-<div class="line"><span class="comment"> /// \short Constructor: arguments are the starting point and the height</span></div>
+<div class="line"><span class="comment"> ///  Constructor: arguments are the starting point and the height</span></div>
 <div class="line"><span class="comment"> /// above y=0.</span></div>
 <div class="line"><span class="comment"></span> <a class="code hl_function" href="classUndeformedWall.html#ad09cfdcd234be0ab47eb97a8a470602a">UndeformedWall</a>(<span class="keyword">const</span> <span class="keywordtype">double</span>&amp; x0, <span class="keyword">const</span> <span class="keywordtype">double</span>&amp; h): GeomObject(1,2)</div>
 <div class="line">  {</div>
 <div class="line">   <a class="code hl_variable" href="classUndeformedWall.html#a7ab875c46fef905df33eb47e0336581b">X0</a>=x0;</div>
 <div class="line">   <a class="code hl_variable" href="classUndeformedWall.html#a4525dbe0b5d2108ee51f16bee9af88ef">H</a>=h;</div>
 <div class="line">  }</div>
-<div class="ttc" id="aclassUndeformedWall_html"><div class="ttname"><a href="classUndeformedWall.html">UndeformedWall</a></div><div class="ttdef"><b>Definition:</b> <a href="fsi__collapsible__channel_8cc_source.html#l00096">fsi_collapsible_channel.cc:97</a></div></div>
+<div class="ttc" id="aclassUndeformedWall_html"><div class="ttname"><a href="classUndeformedWall.html">UndeformedWall</a></div><div class="ttdoc">Undeformed wall is a steady, straight 1D line in 2D space.</div><div class="ttdef"><b>Definition:</b> <a href="fsi__collapsible__channel_8cc_source.html#l00096">fsi_collapsible_channel.cc:97</a></div></div>
 <div class="ttc" id="aclassUndeformedWall_html_a4525dbe0b5d2108ee51f16bee9af88ef"><div class="ttname"><a href="classUndeformedWall.html#a4525dbe0b5d2108ee51f16bee9af88ef">UndeformedWall::H</a></div><div class="ttdeci">double H</div><div class="ttdoc">Height of the undeformed wall above y=0.</div><div class="ttdef"><b>Definition:</b> <a href="fsi__collapsible__channel_8cc_source.html#l00161">fsi_collapsible_channel.cc:161</a></div></div>
 <div class="ttc" id="aclassUndeformedWall_html_a7ab875c46fef905df33eb47e0336581b"><div class="ttname"><a href="classUndeformedWall.html#a7ab875c46fef905df33eb47e0336581b">UndeformedWall::X0</a></div><div class="ttdeci">double X0</div><div class="ttdoc">x position of the undeformed beam's left end.</div><div class="ttdef"><b>Definition:</b> <a href="fsi__collapsible__channel_8cc_source.html#l00158">fsi_collapsible_channel.cc:158</a></div></div>
 <div class="ttc" id="aclassUndeformedWall_html_ad09cfdcd234be0ab47eb97a8a470602a"><div class="ttname"><a href="classUndeformedWall.html#ad09cfdcd234be0ab47eb97a8a470602a">UndeformedWall::UndeformedWall</a></div><div class="ttdeci">UndeformedWall(const double &amp;x0, const double &amp;h)</div><div class="ttdoc">Constructor: arguments are the starting point and the height above y=0.</div><div class="ttdef"><b>Definition:</b> <a href="fsi__collapsible__channel_8cc_source.html#l00103">fsi_collapsible_channel.cc:103</a></div></div>
 </div><!-- fragment --><p> The two versions of the <code>position(...)</code> function are straightforward:</p>
 <div class="fragment"><div class="line"> </div>
 <div class="line"><span class="comment"></span> </div>
-<div class="line"><span class="comment"> /// \short Position vector at Lagrangian coordinate zeta </span></div>
+<div class="line"><span class="comment"> ///  Position vector at Lagrangian coordinate zeta </span></div>
 <div class="line"><span class="comment"></span> <span class="keywordtype">void</span> position(<span class="keyword">const</span> Vector&lt;double&gt;&amp; zeta, Vector&lt;double&gt;&amp; r)<span class="keyword"> const</span></div>
 <div class="line"><span class="keyword">  </span>{</div>
 <div class="line">   <span class="comment">// Position Vector</span></div>
@@ -406,7 +406,7 @@ The undeformed wall</h1>
 <div class="line">  }</div>
 <div class="line"> </div>
 <div class="line"><span class="comment"></span> </div>
-<div class="line"><span class="comment"> /// \short Parametrised position on object: r(zeta). Evaluated at</span></div>
+<div class="line"><span class="comment"> ///  Parametrised position on object: r(zeta). Evaluated at</span></div>
 <div class="line"><span class="comment"> /// previous timestep. t=0: current time; t&gt;0: previous</span></div>
 <div class="line"><span class="comment"> /// timestep. Calls steady version.</span></div>
 <div class="line"><span class="comment"></span> <span class="keywordtype">void</span> position(<span class="keyword">const</span> <span class="keywordtype">unsigned</span>&amp; t, <span class="keyword">const</span> Vector&lt;double&gt;&amp; zeta,</div>
@@ -419,7 +419,7 @@ The undeformed wall</h1>
 </div><!-- fragment --><p> Since the <code>GeomObject</code> is used to specify the undeformed shape of a <code>HermiteBeamElement</code>, the function <code>GeomObject::d2position(...)</code> must be implemented to define the beam's curvature in the undeformed configuration.</p>
 <div class="fragment"><div class="line"> </div>
 <div class="line"><span class="comment"></span> </div>
-<div class="line"><span class="comment"> /// \short Posn vector and its  1st &amp; 2nd derivatives</span></div>
+<div class="line"><span class="comment"> ///  Posn vector and its  1st &amp; 2nd derivatives</span></div>
 <div class="line"><span class="comment"> /// w.r.t. to coordinates:</span></div>
 <div class="line"><span class="comment"> /// \f$ \frac{dR_i}{d \zeta_\alpha}\f$ = drdzeta(alpha,i). </span></div>
 <div class="line"><span class="comment"> /// \f$ \frac{d^2R_i}{d \zeta_\alpha d \zeta_\beta}\f$ = </span></div>
@@ -487,7 +487,7 @@ The driver code</h1>
 <div class="line"> <span class="keywordtype">double</span> lcollapsible=10.0;</div>
 <div class="line"> <span class="keywordtype">double</span> ldown=10.0;</div>
 <div class="line"> <span class="keywordtype">double</span> ly=1.0;</div>
-<div class="ttc" id="afsi__collapsible__channel_8cc_html_a0ddf1224851353fc92bfbff6f499fa97"><div class="ttname"><a href="fsi__collapsible__channel_8cc.html#a0ddf1224851353fc92bfbff6f499fa97">main</a></div><div class="ttdeci">int main(int argc, char *argv[])</div><div class="ttdef"><b>Definition:</b> <a href="fsi__collapsible__channel_8cc_source.html#l00811">fsi_collapsible_channel.cc:811</a></div></div>
+<div class="ttc" id="afsi__collapsible__channel_8cc_html_a0ddf1224851353fc92bfbff6f499fa97"><div class="ttname"><a href="fsi__collapsible__channel_8cc.html#a0ddf1224851353fc92bfbff6f499fa97">main</a></div><div class="ttdeci">int main(int argc, char *argv[])</div><div class="ttdoc">Driver code for a collapsible channel problem with FSI. Presence of command line arguments indicates ...</div><div class="ttdef"><b>Definition:</b> <a href="fsi__collapsible__channel_8cc_source.html#l00811">fsi_collapsible_channel.cc:811</a></div></div>
 </div><!-- fragment --><p> We assign values for the external pressure (on the wall stiffness scale) and for the upstream fluid pressure (on the fluid pressure scale). The latter is again chosen so that in the absence of any wall deformation, the applied pressure difference would drive steady Poiseuille flow through the channel.</p>
 <div class="fragment"><div class="line"> </div>
 <div class="line"> <span class="comment">// Set external pressure (on the wall stiffness scale). </span></div>
@@ -580,7 +580,7 @@ The problem class</h1>
 <div class="line"> </div>
 <div class="line"> public :</div>
 <div class="line"><span class="comment"></span> </div>
-<div class="line"><span class="comment">/// \short Constructor: The arguments are the number of elements and</span></div>
+<div class="line"><span class="comment">///  Constructor: The arguments are the number of elements and</span></div>
 <div class="line"><span class="comment">/// the lengths of the domain.</span></div>
 <div class="line"><span class="comment"></span> <a class="code hl_function" href="classFSICollapsibleChannelProblem.html#afe14ae0d2bdfc9a15969c9bdcd6e2512">FSICollapsibleChannelProblem</a>(<span class="keyword">const</span> <span class="keywordtype">unsigned</span>&amp; nup, </div>
 <div class="line">                       <span class="keyword">const</span> <span class="keywordtype">unsigned</span>&amp; ncollapsible,</div>
@@ -614,14 +614,14 @@ The problem class</h1>
 </div><!-- fragment --><p >Unlike the <a href="../../../navier_stokes/collapsible_channel/html/index.html">problem with prescribed wall motion,</a> the FSI problem does not have any time-dependent boundary conditions, therefore the pure virtual functions <code>Problem::action_before_solve()</code> and <code>Problem::action_after_solve()</code> can remain empty, and the function <code>Problem::actions_before_implicit_timestep()</code> is not needed.</p>
 <div class="fragment"><div class="line"> </div>
 <div class="line"><span class="comment"></span> </div>
-<div class="line"><span class="comment"> /// \short Update the problem specs before solve (empty) </span></div>
+<div class="line"><span class="comment"> ///  Update the problem specs before solve (empty) </span></div>
 <div class="line"><span class="comment"></span> <span class="keywordtype">void</span> actions_before_newton_solve(){}</div>
 <div class="line"><span class="comment"></span> </div>
 <div class="line"><span class="comment"> /// Update the problem after solve (empty)</span></div>
 <div class="line"><span class="comment"></span> <span class="keywordtype">void</span> actions_after_newton_solve(){}</div>
 </div><!-- fragment --><p> However, since the wall displacement (which is determined as part of the solution!) affects the nodal positions in the fluid mesh via the <code>MacroElement/<code>Domain</code> -</code> based node-update, the position of the fluid nodes must be updated whenever the Newton solver updates the unknowns. This is precisely what the function <code>Problem::actions_before_newton_convergence_check()</code> is for; see <a href="../../../order_of_action_functions/html/index.html">the discussion of <code>oomph-lib's</code> various "action" functions</a> for more details.</p>
 <div class="fragment"><div class="line">  <span class="comment"></span></div>
-<div class="line"><span class="comment"> /// \short Update before checking Newton convergence: Update the</span></div>
+<div class="line"><span class="comment"> ///  Update before checking Newton convergence: Update the</span></div>
 <div class="line"><span class="comment"> /// nodal positions in the fluid mesh in response to possible </span></div>
 <div class="line"><span class="comment"> /// changes in the wall shape</span></div>
 <div class="line"><span class="comment"></span> <span class="keywordtype">void</span> actions_before_newton_convergence_check()</div>
@@ -648,7 +648,7 @@ The problem class</h1>
 <div class="line"><span class="comment"> ///Number of elements in the x direction in the upstream part of the channel</span></div>
 <div class="line"><span class="comment"></span> <span class="keywordtype">unsigned</span> Nup;</div>
 <div class="line"><span class="comment"></span> </div>
-<div class="line"><span class="comment"> /// \short Number of elements in the x direction in the collapsible part of </span></div>
+<div class="line"><span class="comment"> ///  Number of elements in the x direction in the collapsible part of </span></div>
 <div class="line"><span class="comment"> /// the channel</span></div>
 <div class="line"><span class="comment"></span> <span class="keywordtype">unsigned</span> Ncollapsible;</div>
 <div class="line"><span class="comment"></span> </div>
@@ -673,7 +673,7 @@ The problem class</h1>
 <div class="fragment"><div class="line"><span class="comment"> /// Pointer to the &quot;bulk&quot; mesh</span></div>
 <div class="line"> MacroElementNodeUpdateCollapsibleChannelMesh&lt;ELEMENT&gt;* Bulk_mesh_pt;</div>
 </div><!-- fragment --><p> the surface mesh that contains the applied-traction elements,</p>
-<div class="fragment"><div class="line"><span class="comment"> /// \short Pointer to the &quot;surface&quot; mesh that applies the traction at the</span></div>
+<div class="fragment"><div class="line"><span class="comment"> ///  Pointer to the &quot;surface&quot; mesh that applies the traction at the</span></div>
 <div class="line"><span class="comment"> /// inflow</span></div>
 <div class="line"> Mesh* Applied_fluid_traction_mesh_pt; </div>
 </div><!-- fragment --><p> and the wall mesh,</p>
@@ -1103,7 +1103,7 @@ Exercises</h2>
 <li>Use the function <code>FSIHermiteBeamElement::get_normal(...)</code> to plot the unit normal vector to the wall and thus confirm that the value for <code>FSIHermiteBeamElement::normal_points_into_fluid()</code> is correct. [<b>Hint:</b> Another way to sanity-check that the correct value for this flag has been set is to change the velocity boundary conditions at the upstream end to a pure Dirichlet condition by prescribing the axial velocity profile. With Dirichlet conditions everywhere, one fluid pressure degree of freedom, <img class="formulaInl" alt="$ p_{fix} $" src="form_56.png" width="23" height="10"/> , say, can (indeed must!) then be assigned arbitrarily. Now set the inflow velocity to zero and increase the value of <img class="formulaInl" alt="$ p_{fix} $" src="form_56.png" width="23" height="10"/> from zero, say. If the wall collapses inwards as <img class="formulaInl" alt="$ p_{fix} $" src="form_56.png" width="23" height="10"/> is increased the direction of normal was chosen wrongly!]</li>
 <li>In section <a class="el" href="index.html#fsi_wall_elements">Applying the fluid-traction to the wall elements: FSIWallElements</a> we mentioned that the function <code>FSI_functions::setup_fluid_load_info_for_solid_elements(...)</code> assumes that the fluid nodes on the FSI boundary store the boundary coordinate. Investigate what happens if this step is omitted, e.g. by commenting out the assignment of boundary coordinates with <code>Node::set_coordinates_on_boundary(...)</code> in <a href="../../../../src/meshes/collapsible_channel_mesh.template.cc">collapsible_channel_mesh.template.cc</a>.</li>
 <li>In section <a class="el" href="index.html#undeformed">The undeformed wall</a> we mentioned that the function <code>GeomObject::d2position(...)</code> must be implemented for all <code>GeomObjects</code> that specify the undeformed shape of a beam element. Check what happens if this function is not implemented, e.g. by <br  />
- commenting out its definition in the <code><a class="el" href="classUndeformedWall.html">UndeformedWall</a></code> class.</li>
+ commenting out its definition in the <code><a class="el" href="classUndeformedWall.html" title="Undeformed wall is a steady, straight 1D line in 2D space.">UndeformedWall</a></code> class.</li>
 <li>In section <a class="el" href="index.html#problemcontr">The problem constructor</a> we commented that <code>oomph-lib</code> does not require the discretisations of the fluid and solid meshes to match along the common boundary. Confirm this, e.g., by increasing the number of elements in the wall mesh. . <br  />
 </li>
 </ol>
@@ -1149,7 +1149,7 @@ PDF file</h1>
     <footer>
       <div class="container">
         <div class="text-muted" style="float:right;">Generated by <a href="http://www.doxygen.org/index.html">
-          <img style="height:18px;" class="footer-img" src="doxygen.png" alt="doxygen"></a> on Wed Oct 13 2021 09:06:15
+          <img style="height:18px;" class="footer-img" src="doxygen.png" alt="doxygen"></a> on Thu Oct 21 2021 17:53:17
         </div>
       </div>
     </footer>

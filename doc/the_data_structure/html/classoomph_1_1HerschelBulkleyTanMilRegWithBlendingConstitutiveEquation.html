@@ -132,6 +132,9 @@ $(function() {
 </div><!--header-->
 <div class="contents">
 
+<p>A <a class="el" href="classoomph_1_1GeneralisedNewtonianConstitutiveEquation.html" title="A Base class defining the generalise Newtonian constitutive relation.">GeneralisedNewtonianConstitutiveEquation</a> class defining a Herschel-Bulkley fluid using Tanner and Milthorpe's (1983) regularisation with a smooth transition using a quadratic.  
+ <a href="classoomph_1_1HerschelBulkleyTanMilRegWithBlendingConstitutiveEquation.html#details">More...</a></p>
+
 <p><code>#include &lt;<a class="el" href="generalised__newtonian__constitutive__models_8h_source.html">generalised_newtonian_constitutive_models.h</a>&gt;</code></p>
 <div id="dynsection-0" onclick="return toggleVisibility(this)" class="dynheader closed" style="cursor:pointer;">
   <img id="dynsection-0-trigger" src="closed.png" alt="+"/> Inheritance diagram for oomph::HerschelBulkleyTanMilRegWithBlendingConstitutiveEquation&lt; DIM &gt;:</div>
@@ -151,6 +154,7 @@ Public Member Functions</h2></td></tr>
 <tr class="memdesc:a2d0011d44b05f948caa84c2ad0e8e907"><td class="mdescLeft">&#160;</td><td class="mdescRight">"Cutoff regularised" Herschel Bulkley constitutive equation  <a href="classoomph_1_1HerschelBulkleyTanMilRegWithBlendingConstitutiveEquation.html#a2d0011d44b05f948caa84c2ad0e8e907">More...</a><br /></td></tr>
 <tr class="separator:a2d0011d44b05f948caa84c2ad0e8e907"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a505f8b8eba6c70c101087c8809953e51"><td class="memItemLeft" align="right" valign="top">double&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classoomph_1_1HerschelBulkleyTanMilRegWithBlendingConstitutiveEquation.html#a505f8b8eba6c70c101087c8809953e51">calculate_cutoff_viscosity</a> ()</td></tr>
+<tr class="memdesc:a505f8b8eba6c70c101087c8809953e51"><td class="mdescLeft">&#160;</td><td class="mdescRight">Function that calculates the viscosity at the cutoff invariant Note: this is NOT the viscosity at zero I2.  <a href="classoomph_1_1HerschelBulkleyTanMilRegWithBlendingConstitutiveEquation.html#a505f8b8eba6c70c101087c8809953e51">More...</a><br /></td></tr>
 <tr class="separator:a505f8b8eba6c70c101087c8809953e51"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:abdb90aeb25f63f03cef5e0a070da0cd5"><td class="memItemLeft" align="right" valign="top">double&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classoomph_1_1HerschelBulkleyTanMilRegWithBlendingConstitutiveEquation.html#abdb90aeb25f63f03cef5e0a070da0cd5">calculate_zero_shear_viscosity</a> ()</td></tr>
 <tr class="memdesc:abdb90aeb25f63f03cef5e0a070da0cd5"><td class="mdescLeft">&#160;</td><td class="mdescRight">Function that calculates the viscosity at zero I2.  <a href="classoomph_1_1HerschelBulkleyTanMilRegWithBlendingConstitutiveEquation.html#abdb90aeb25f63f03cef5e0a070da0cd5">More...</a><br /></td></tr>
@@ -181,19 +185,22 @@ Private Attributes</h2></td></tr>
 <tr class="memdesc:a2e1af77859cb590e608fd0d47d5ce366"><td class="mdescLeft">&#160;</td><td class="mdescRight">power law index n  <a href="classoomph_1_1HerschelBulkleyTanMilRegWithBlendingConstitutiveEquation.html#a2e1af77859cb590e608fd0d47d5ce366">More...</a><br /></td></tr>
 <tr class="separator:a2e1af77859cb590e608fd0d47d5ce366"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a2fcbea7454274274c607039540a3da49"><td class="memItemLeft" align="right" valign="top">double *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classoomph_1_1HerschelBulkleyTanMilRegWithBlendingConstitutiveEquation.html#a2fcbea7454274274c607039540a3da49">Critical_second_invariant_pt</a></td></tr>
+<tr class="memdesc:a2fcbea7454274274c607039540a3da49"><td class="mdescLeft">&#160;</td><td class="mdescRight">value of the second invariant below which we have constant (Newtonian) viscosity &ndash; assumed to be always positive  <a href="classoomph_1_1HerschelBulkleyTanMilRegWithBlendingConstitutiveEquation.html#a2fcbea7454274274c607039540a3da49">More...</a><br /></td></tr>
 <tr class="separator:a2fcbea7454274274c607039540a3da49"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a9a5f7c5ceb537eb307ef35c1a46e23f5"><td class="memItemLeft" align="right" valign="top">double&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classoomph_1_1HerschelBulkleyTanMilRegWithBlendingConstitutiveEquation.html#a9a5f7c5ceb537eb307ef35c1a46e23f5">a</a></td></tr>
+<tr class="memdesc:a9a5f7c5ceb537eb307ef35c1a46e23f5"><td class="mdescLeft">&#160;</td><td class="mdescRight">We use a quadratic function to smoothly blend from the Herschel Bulkley model at the cut-off to a constant viscosity as the strain rate /approaches zero; this way we avoid the discontinuity of the gradient at the cut-off, which is present in the classic Tanner Milthorpe regularisation.  <a href="classoomph_1_1HerschelBulkleyTanMilRegWithBlendingConstitutiveEquation.html#a9a5f7c5ceb537eb307ef35c1a46e23f5">More...</a><br /></td></tr>
 <tr class="separator:a9a5f7c5ceb537eb307ef35c1a46e23f5"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ad4d1279adf2dd40a3b7ec23dc091a40a"><td class="memItemLeft" align="right" valign="top">double&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classoomph_1_1HerschelBulkleyTanMilRegWithBlendingConstitutiveEquation.html#ad4d1279adf2dd40a3b7ec23dc091a40a">b</a></td></tr>
 <tr class="separator:ad4d1279adf2dd40a3b7ec23dc091a40a"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ad4f68871469f8e9b63dea77341cbcf68"><td class="memItemLeft" align="right" valign="top">double&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classoomph_1_1HerschelBulkleyTanMilRegWithBlendingConstitutiveEquation.html#ad4f68871469f8e9b63dea77341cbcf68">c</a></td></tr>
 <tr class="separator:ad4f68871469f8e9b63dea77341cbcf68"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a9e24b69a4f0da4b8d6a5b874c47fde39"><td class="memItemLeft" align="right" valign="top">double&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classoomph_1_1HerschelBulkleyTanMilRegWithBlendingConstitutiveEquation.html#a9e24b69a4f0da4b8d6a5b874c47fde39">alpha</a></td></tr>
+<tr class="memdesc:a9e24b69a4f0da4b8d6a5b874c47fde39"><td class="mdescLeft">&#160;</td><td class="mdescRight">Fraction of the cut-off strain rate below which the viscosity is constant 0 &lt;= \alpha &lt; 1.  <a href="classoomph_1_1HerschelBulkleyTanMilRegWithBlendingConstitutiveEquation.html#a9e24b69a4f0da4b8d6a5b874c47fde39">More...</a><br /></td></tr>
 <tr class="separator:a9e24b69a4f0da4b8d6a5b874c47fde39"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock"><div class="compoundTemplParams">template&lt;unsigned DIM&gt;<br />
-class oomph::HerschelBulkleyTanMilRegWithBlendingConstitutiveEquation&lt; DIM &gt;</div><p >A <a class="el" href="classoomph_1_1GeneralisedNewtonianConstitutiveEquation.html" title="A Base class defining the generalise Newtonian constitutive relation.">GeneralisedNewtonianConstitutiveEquation</a> class defining a Herschel-Bulkley fluid using Tanner and Milthorpe's (1983) regularisation with a smooth transition using a quadratic </p>
+class oomph::HerschelBulkleyTanMilRegWithBlendingConstitutiveEquation&lt; DIM &gt;</div><p >A <a class="el" href="classoomph_1_1GeneralisedNewtonianConstitutiveEquation.html" title="A Base class defining the generalise Newtonian constitutive relation.">GeneralisedNewtonianConstitutiveEquation</a> class defining a Herschel-Bulkley fluid using Tanner and Milthorpe's (1983) regularisation with a smooth transition using a quadratic. </p>
 
 <p class="definition">Definition at line <a class="el" href="generalised__newtonian__constitutive__models_8h_source.html#l00358">358</a> of file <a class="el" href="generalised__newtonian__constitutive__models_8h_source.html">generalised_newtonian_constitutive_models.h</a>.</p>
 </div><h2 class="groupheader">Constructor &amp; Destructor Documentation</h2>
@@ -276,7 +283,8 @@ template&lt;unsigned DIM&gt; </div>
   </tr>
 </table>
 </div><div class="memdoc">
-<p >Function that calculates the viscosity at the cutoff invariant Note: this is NOT the viscosity at zero I2 </p>
+
+<p>Function that calculates the viscosity at the cutoff invariant Note: this is NOT the viscosity at zero I2. </p>
 
 <p class="definition">Definition at line <a class="el" href="generalised__newtonian__constitutive__models_8h_source.html#l00441">441</a> of file <a class="el" href="generalised__newtonian__constitutive__models_8h_source.html">generalised_newtonian_constitutive_models.h</a>.</p>
 
@@ -465,7 +473,8 @@ template&lt;unsigned DIM&gt; </div>
   </tr>
 </table>
 </div><div class="memdoc">
-<p >We use a quadratic function to smoothly blend from the Herschel Bulkley model at the cut-off to a constant viscosity as the strain rate approaches zero; this way we avoid the discontinuity of the gradient at the cut-off, which is present in the classic Tanner Milthorpe regularisation </p>
+
+<p>We use a quadratic function to smoothly blend from the Herschel Bulkley model at the cut-off to a constant viscosity as the strain rate /approaches zero; this way we avoid the discontinuity of the gradient at the cut-off, which is present in the classic Tanner Milthorpe regularisation. </p>
 
 <p class="definition">Definition at line <a class="el" href="generalised__newtonian__constitutive__models_8h_source.html#l00377">377</a> of file <a class="el" href="generalised__newtonian__constitutive__models_8h_source.html">generalised_newtonian_constitutive_models.h</a>.</p>
 
@@ -494,7 +503,8 @@ template&lt;unsigned DIM&gt; </div>
   </tr>
 </table>
 </div><div class="memdoc">
-<p >Fraction of the cut-off strain rate below which the viscosity is constant 0 &lt;= \alpha &lt; 1 </p>
+
+<p>Fraction of the cut-off strain rate below which the viscosity is constant 0 &lt;= \alpha &lt; 1. </p>
 
 <p class="definition">Definition at line <a class="el" href="generalised__newtonian__constitutive__models_8h_source.html#l00383">383</a> of file <a class="el" href="generalised__newtonian__constitutive__models_8h_source.html">generalised_newtonian_constitutive_models.h</a>.</p>
 
@@ -579,7 +589,8 @@ template&lt;unsigned DIM&gt; </div>
   </tr>
 </table>
 </div><div class="memdoc">
-<p >value of the second invariant below which we have constant (Newtonian) viscosity &ndash; assumed to be always positive </p>
+
+<p>value of the second invariant below which we have constant (Newtonian) viscosity &ndash; assumed to be always positive </p>
 
 <p class="definition">Definition at line <a class="el" href="generalised__newtonian__constitutive__models_8h_source.html#l00370">370</a> of file <a class="el" href="generalised__newtonian__constitutive__models_8h_source.html">generalised_newtonian_constitutive_models.h</a>.</p>
 
@@ -678,7 +689,7 @@ template&lt;unsigned DIM&gt; </div>
     <footer>
       <div class="container">
         <div class="text-muted" style="float:right;">Generated by <a href="http://www.doxygen.org/index.html">
-          <img style="height:18px;" class="footer-img" src="doxygen.png" alt="doxygen"></a> on Wed Oct 13 2021 08:46:36
+          <img style="height:18px;" class="footer-img" src="doxygen.png" alt="doxygen"></a> on Thu Oct 21 2021 17:35:00
         </div>
       </div>
     </footer>

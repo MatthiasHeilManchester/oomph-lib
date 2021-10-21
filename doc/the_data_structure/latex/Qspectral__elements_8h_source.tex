@@ -181,14 +181,14 @@
 \DoxyCodeLine{\Hypertarget{Qspectral__elements_8h_source_l00177}00177     \}}
 \DoxyCodeLine{\Hypertarget{Qspectral__elements_8h_source_l00178}00178 }
 \DoxyCodeLine{\Hypertarget{Qspectral__elements_8h_source_l00179}00179 \textcolor{comment}{}}
-\DoxyCodeLine{\Hypertarget{Qspectral__elements_8h_source_l00180}00180 \textcolor{comment}{    ///\(\backslash\)short Return the i-\/th data object associated with the polynomials}}
+\DoxyCodeLine{\Hypertarget{Qspectral__elements_8h_source_l00180}00180 \textcolor{comment}{    /// Return the i-\/th data object associated with the polynomials}}
 \DoxyCodeLine{\Hypertarget{Qspectral__elements_8h_source_l00181}00181 \textcolor{comment}{    /// of order p. Note that i <= p.}}
 \DoxyCodeLine{\Hypertarget{Qspectral__elements_8h_source_l00182}\mbox{\hyperlink{classoomph_1_1SpectralElement_ae5fbda0333b3720e8dc64a6669118d41}{00182}} \textcolor{comment}{}    \mbox{\hyperlink{classoomph_1_1Data}{Data}}* \mbox{\hyperlink{classoomph_1_1SpectralElement_ae5fbda0333b3720e8dc64a6669118d41}{spectral\_data\_pt}}(\textcolor{keyword}{const} \textcolor{keywordtype}{unsigned}\& \mbox{\hyperlink{cfortran_8h_adb50e893b86b3e55e751a42eab3cba82}{i}})\textcolor{keyword}{ const}}
 \DoxyCodeLine{\Hypertarget{Qspectral__elements_8h_source_l00183}00183 \textcolor{keyword}{    }\{}
 \DoxyCodeLine{\Hypertarget{Qspectral__elements_8h_source_l00184}00184       \textcolor{keywordflow}{return} (*\mbox{\hyperlink{classoomph_1_1SpectralElement_a14f6bf98b6c49bd939d3ca9d25373b9c}{Spectral\_data\_pt}})[\mbox{\hyperlink{cfortran_8h_adb50e893b86b3e55e751a42eab3cba82}{i}}];}
 \DoxyCodeLine{\Hypertarget{Qspectral__elements_8h_source_l00185}00185     \}}
 \DoxyCodeLine{\Hypertarget{Qspectral__elements_8h_source_l00186}00186 \textcolor{comment}{}}
-\DoxyCodeLine{\Hypertarget{Qspectral__elements_8h_source_l00187}00187 \textcolor{comment}{    /// \(\backslash\)short Function to describe the local dofs of the element. The ostream}}
+\DoxyCodeLine{\Hypertarget{Qspectral__elements_8h_source_l00187}00187 \textcolor{comment}{    ///  Function to describe the local dofs of the element. The ostream}}
 \DoxyCodeLine{\Hypertarget{Qspectral__elements_8h_source_l00188}00188 \textcolor{comment}{    /// specifies the output stream to which the description}}
 \DoxyCodeLine{\Hypertarget{Qspectral__elements_8h_source_l00189}00189 \textcolor{comment}{    /// is written; the string stores the currently}}
 \DoxyCodeLine{\Hypertarget{Qspectral__elements_8h_source_l00190}00190 \textcolor{comment}{    /// assembled output that is ultimately written to the}}
@@ -208,13 +208,13 @@
 \DoxyCodeLine{\Hypertarget{Qspectral__elements_8h_source_l00204}00204       \textcolor{keywordflow}{for} (\textcolor{keywordtype}{unsigned} n = 0; n < n\_spectral; n++)}
 \DoxyCodeLine{\Hypertarget{Qspectral__elements_8h_source_l00205}00205       \{}
 \DoxyCodeLine{\Hypertarget{Qspectral__elements_8h_source_l00206}00206         \textcolor{comment}{// Can we upcast to a node}}
-\DoxyCodeLine{\Hypertarget{Qspectral__elements_8h_source_l00207}00207         \mbox{\hyperlink{classoomph_1_1Node}{Node}}* cast\_node\_pt = \textcolor{keyword}{dynamic\_cast<}\mbox{\hyperlink{classoomph_1_1Node}{Node}}*\textcolor{keyword}{>}(\mbox{\hyperlink{classoomph_1_1SpectralElement_ae5fbda0333b3720e8dc64a6669118d41}{spectral\_data\_pt}}(n));}
+\DoxyCodeLine{\Hypertarget{Qspectral__elements_8h_source_l00207}00207         Node* cast\_node\_pt = \textcolor{keyword}{dynamic\_cast<}Node*\textcolor{keyword}{>}(\mbox{\hyperlink{classoomph_1_1SpectralElement_ae5fbda0333b3720e8dc64a6669118d41}{spectral\_data\_pt}}(n));}
 \DoxyCodeLine{\Hypertarget{Qspectral__elements_8h_source_l00208}00208         \textcolor{keywordflow}{if} (cast\_node\_pt)}
 \DoxyCodeLine{\Hypertarget{Qspectral__elements_8h_source_l00209}00209         \{}
 \DoxyCodeLine{\Hypertarget{Qspectral__elements_8h_source_l00210}00210           std::stringstream conversion;}
 \DoxyCodeLine{\Hypertarget{Qspectral__elements_8h_source_l00211}00211           conversion << \textcolor{stringliteral}{"{} of Node "{}} << n << current\_string;}
 \DoxyCodeLine{\Hypertarget{Qspectral__elements_8h_source_l00212}00212           \mbox{\hyperlink{namespaceoomph_1_1Global__string__for__annotation_ac5379de2fa7fe44f2cb31785fc208135}{std::string}} in(conversion.str());}
-\DoxyCodeLine{\Hypertarget{Qspectral__elements_8h_source_l00213}00213           cast\_node\_pt-\/>\mbox{\hyperlink{classoomph_1_1Data_a2dae16e2dcff9a40029f834c83364df5}{describe\_dofs}}(out, in);}
+\DoxyCodeLine{\Hypertarget{Qspectral__elements_8h_source_l00213}00213           cast\_node\_pt-\/>describe\_dofs(out, in);}
 \DoxyCodeLine{\Hypertarget{Qspectral__elements_8h_source_l00214}00214         \}}
 \DoxyCodeLine{\Hypertarget{Qspectral__elements_8h_source_l00215}00215         \textcolor{comment}{// Otherwise it is data.}}
 \DoxyCodeLine{\Hypertarget{Qspectral__elements_8h_source_l00216}00216         \textcolor{keywordflow}{else}}
@@ -228,7 +228,7 @@
 \DoxyCodeLine{\Hypertarget{Qspectral__elements_8h_source_l00224}00224       \}}
 \DoxyCodeLine{\Hypertarget{Qspectral__elements_8h_source_l00225}00225     \}}
 \DoxyCodeLine{\Hypertarget{Qspectral__elements_8h_source_l00226}00226 \textcolor{comment}{}}
-\DoxyCodeLine{\Hypertarget{Qspectral__elements_8h_source_l00227}00227 \textcolor{comment}{    /// \(\backslash\)short Assign the local equation numbers. If the boolean argument is}}
+\DoxyCodeLine{\Hypertarget{Qspectral__elements_8h_source_l00227}00227 \textcolor{comment}{    ///  Assign the local equation numbers. If the boolean argument is}}
 \DoxyCodeLine{\Hypertarget{Qspectral__elements_8h_source_l00228}00228 \textcolor{comment}{    /// true then store degrees of freedom at Dof\_pt}}
 \DoxyCodeLine{\Hypertarget{Qspectral__elements_8h_source_l00229}\mbox{\hyperlink{classoomph_1_1SpectralElement_a36eeaa010b3a66ac9ee1556ee7dcc23d}{00229}} \textcolor{comment}{}    \textcolor{keyword}{virtual} \textcolor{keywordtype}{void} \mbox{\hyperlink{classoomph_1_1SpectralElement_a36eeaa010b3a66ac9ee1556ee7dcc23d}{assign\_all\_generic\_local\_eqn\_numbers}}(}
 \DoxyCodeLine{\Hypertarget{Qspectral__elements_8h_source_l00230}00230       \textcolor{keyword}{const} \textcolor{keywordtype}{bool}\& store\_local\_dof\_pt)}
@@ -279,12 +279,12 @@
 \DoxyCodeLine{\Hypertarget{Qspectral__elements_8h_source_l00275}00275           \textcolor{comment}{//(and hence already assigned)}}
 \DoxyCodeLine{\Hypertarget{Qspectral__elements_8h_source_l00276}00276 }
 \DoxyCodeLine{\Hypertarget{Qspectral__elements_8h_source_l00277}00277           \textcolor{comment}{// Can we upcast to a node}}
-\DoxyCodeLine{\Hypertarget{Qspectral__elements_8h_source_l00278}00278           \mbox{\hyperlink{classoomph_1_1Node}{Node}}* cast\_node\_pt = \textcolor{keyword}{dynamic\_cast<}\mbox{\hyperlink{classoomph_1_1Node}{Node}}*\textcolor{keyword}{>}(\mbox{\hyperlink{classoomph_1_1SpectralElement_ae5fbda0333b3720e8dc64a6669118d41}{spectral\_data\_pt}}(n));}
+\DoxyCodeLine{\Hypertarget{Qspectral__elements_8h_source_l00278}00278           Node* cast\_node\_pt = \textcolor{keyword}{dynamic\_cast<}Node*\textcolor{keyword}{>}(\mbox{\hyperlink{classoomph_1_1SpectralElement_ae5fbda0333b3720e8dc64a6669118d41}{spectral\_data\_pt}}(n));}
 \DoxyCodeLine{\Hypertarget{Qspectral__elements_8h_source_l00279}00279           \textcolor{keywordflow}{if} ((cast\_node\_pt) \&\&}
 \DoxyCodeLine{\Hypertarget{Qspectral__elements_8h_source_l00280}00280               (set\_of\_node\_pt.find(cast\_node\_pt) != set\_of\_node\_pt.end()))}
 \DoxyCodeLine{\Hypertarget{Qspectral__elements_8h_source_l00281}00281           \{}
 \DoxyCodeLine{\Hypertarget{Qspectral__elements_8h_source_l00282}00282             \textcolor{comment}{// Find the number of values}}
-\DoxyCodeLine{\Hypertarget{Qspectral__elements_8h_source_l00283}00283             \textcolor{keywordtype}{unsigned} n\_value = cast\_node\_pt-\/>\mbox{\hyperlink{classoomph_1_1Data_a7e67fc78a2e8a2fd6eb75bd292d42ff8}{nvalue}}();}
+\DoxyCodeLine{\Hypertarget{Qspectral__elements_8h_source_l00283}00283             \textcolor{keywordtype}{unsigned} n\_value = cast\_node\_pt-\/>nvalue();}
 \DoxyCodeLine{\Hypertarget{Qspectral__elements_8h_source_l00284}00284             \textcolor{comment}{// Copy them across}}
 \DoxyCodeLine{\Hypertarget{Qspectral__elements_8h_source_l00285}00285             \textcolor{keywordflow}{for} (\textcolor{keywordtype}{unsigned} j = 0; j < n\_value; j++)}
 \DoxyCodeLine{\Hypertarget{Qspectral__elements_8h_source_l00286}00286             \{}
@@ -376,7 +376,7 @@
 \DoxyCodeLine{\Hypertarget{Qspectral__elements_8h_source_l00372}00372                                         \textcolor{keyword}{public} \textcolor{keyword}{virtual} \mbox{\hyperlink{classoomph_1_1LineElementBase}{LineElementBase}}}
 \DoxyCodeLine{\Hypertarget{Qspectral__elements_8h_source_l00373}00373   \{}
 \DoxyCodeLine{\Hypertarget{Qspectral__elements_8h_source_l00374}00374   \textcolor{keyword}{private}:\textcolor{comment}{}}
-\DoxyCodeLine{\Hypertarget{Qspectral__elements_8h_source_l00375}00375 \textcolor{comment}{    /// \(\backslash\)short Default integration rule: Gaussian integration of same 'order'}}
+\DoxyCodeLine{\Hypertarget{Qspectral__elements_8h_source_l00375}00375 \textcolor{comment}{    ///  Default integration rule: Gaussian integration of same 'order'}}
 \DoxyCodeLine{\Hypertarget{Qspectral__elements_8h_source_l00376}00376 \textcolor{comment}{    /// as the element}}
 \DoxyCodeLine{\Hypertarget{Qspectral__elements_8h_source_l00377}00377 \textcolor{comment}{}    \textcolor{comment}{// This is sort of optimal, because it means that the integration is exact}}
 \DoxyCodeLine{\Hypertarget{Qspectral__elements_8h_source_l00378}00378     \textcolor{comment}{// for the shape functions. Can overwrite this in specific element}}
@@ -419,10 +419,10 @@
 \DoxyCodeLine{\Hypertarget{Qspectral__elements_8h_source_l00415}00415     \}}
 \DoxyCodeLine{\Hypertarget{Qspectral__elements_8h_source_l00416}00416 \textcolor{comment}{}}
 \DoxyCodeLine{\Hypertarget{Qspectral__elements_8h_source_l00417}00417 \textcolor{comment}{    /// Pointer to the j-\/th vertex node in the element}}
-\DoxyCodeLine{\Hypertarget{Qspectral__elements_8h_source_l00418}\mbox{\hyperlink{classoomph_1_1QSpectralElement_3_011_00_01NNODE__1D_01_4_a300ae44431cce9b74fde6ccd7b4a57fc}{00418}} \textcolor{comment}{}    \mbox{\hyperlink{classoomph_1_1Node}{Node}}* \mbox{\hyperlink{classoomph_1_1QSpectralElement_3_011_00_01NNODE__1D_01_4_a300ae44431cce9b74fde6ccd7b4a57fc}{vertex\_node\_pt}}(\textcolor{keyword}{const} \textcolor{keywordtype}{unsigned}\& j)\textcolor{keyword}{ const}}
+\DoxyCodeLine{\Hypertarget{Qspectral__elements_8h_source_l00418}\mbox{\hyperlink{classoomph_1_1QSpectralElement_3_011_00_01NNODE__1D_01_4_a300ae44431cce9b74fde6ccd7b4a57fc}{00418}} \textcolor{comment}{}    Node* \mbox{\hyperlink{classoomph_1_1QSpectralElement_3_011_00_01NNODE__1D_01_4_a300ae44431cce9b74fde6ccd7b4a57fc}{vertex\_node\_pt}}(\textcolor{keyword}{const} \textcolor{keywordtype}{unsigned}\& j)\textcolor{keyword}{ const}}
 \DoxyCodeLine{\Hypertarget{Qspectral__elements_8h_source_l00419}00419 \textcolor{keyword}{    }\{}
 \DoxyCodeLine{\Hypertarget{Qspectral__elements_8h_source_l00420}00420       \textcolor{keywordtype}{unsigned} n\_node\_1d = nnode\_1d();}
-\DoxyCodeLine{\Hypertarget{Qspectral__elements_8h_source_l00421}00421       \mbox{\hyperlink{classoomph_1_1Node}{Node}}* nod\_pt;}
+\DoxyCodeLine{\Hypertarget{Qspectral__elements_8h_source_l00421}00421       Node* nod\_pt;}
 \DoxyCodeLine{\Hypertarget{Qspectral__elements_8h_source_l00422}00422       \textcolor{keywordflow}{switch} (j)}
 \DoxyCodeLine{\Hypertarget{Qspectral__elements_8h_source_l00423}00423       \{}
 \DoxyCodeLine{\Hypertarget{Qspectral__elements_8h_source_l00424}00424         \textcolor{keywordflow}{case} 0:}
@@ -468,13 +468,13 @@
 \DoxyCodeLine{\Hypertarget{Qspectral__elements_8h_source_l00464}00464 \textcolor{comment}{    /// Calculate the geometric shape functions at local coordinate s}}
 \DoxyCodeLine{\Hypertarget{Qspectral__elements_8h_source_l00465}00465 \textcolor{comment}{}    \textcolor{keyword}{inline} \textcolor{keywordtype}{void} \mbox{\hyperlink{namespaceoomph_1_1OneDimLagrange_a117f8b892dc89989ecdad99ff261e120}{shape}}(\textcolor{keyword}{const} \mbox{\hyperlink{classoomph_1_1Vector}{Vector<double>}}\& \mbox{\hyperlink{cfortran_8h_ab7123126e4885ef647dd9c6e3807a21c}{s}}, \mbox{\hyperlink{classoomph_1_1Shape}{Shape}}\& psi) \textcolor{keyword}{const};}
 \DoxyCodeLine{\Hypertarget{Qspectral__elements_8h_source_l00466}00466 \textcolor{comment}{}}
-\DoxyCodeLine{\Hypertarget{Qspectral__elements_8h_source_l00467}00467 \textcolor{comment}{    /// \(\backslash\)short Compute the  geometric shape functions and}}
+\DoxyCodeLine{\Hypertarget{Qspectral__elements_8h_source_l00467}00467 \textcolor{comment}{    ///  Compute the  geometric shape functions and}}
 \DoxyCodeLine{\Hypertarget{Qspectral__elements_8h_source_l00468}00468 \textcolor{comment}{    /// derivatives w.r.t. local coordinates at local coordinate s}}
 \DoxyCodeLine{\Hypertarget{Qspectral__elements_8h_source_l00469}00469 \textcolor{comment}{}    \textcolor{keyword}{inline} \textcolor{keywordtype}{void} dshape\_local(\textcolor{keyword}{const} \mbox{\hyperlink{classoomph_1_1Vector}{Vector<double>}}\& \mbox{\hyperlink{cfortran_8h_ab7123126e4885ef647dd9c6e3807a21c}{s}},}
 \DoxyCodeLine{\Hypertarget{Qspectral__elements_8h_source_l00470}00470                              \mbox{\hyperlink{classoomph_1_1Shape}{Shape}}\& psi,}
 \DoxyCodeLine{\Hypertarget{Qspectral__elements_8h_source_l00471}00471                              \mbox{\hyperlink{classoomph_1_1DShape}{DShape}}\& dpsids) \textcolor{keyword}{const};}
 \DoxyCodeLine{\Hypertarget{Qspectral__elements_8h_source_l00472}00472 \textcolor{comment}{}}
-\DoxyCodeLine{\Hypertarget{Qspectral__elements_8h_source_l00473}00473 \textcolor{comment}{    /// \(\backslash\)short Compute the geometric shape functions, derivatives and}}
+\DoxyCodeLine{\Hypertarget{Qspectral__elements_8h_source_l00473}00473 \textcolor{comment}{    ///  Compute the geometric shape functions, derivatives and}}
 \DoxyCodeLine{\Hypertarget{Qspectral__elements_8h_source_l00474}00474 \textcolor{comment}{    /// second derivatives w.r.t. local coordinates at local coordinate s}}
 \DoxyCodeLine{\Hypertarget{Qspectral__elements_8h_source_l00475}00475 \textcolor{comment}{    /// d2psids(i,0) = \(\backslash\)f\$ d\string^2 \(\backslash\)psi\_j / d s\string^2 \(\backslash\)f\$}}
 \DoxyCodeLine{\Hypertarget{Qspectral__elements_8h_source_l00476}00476 \textcolor{comment}{}    \textcolor{keyword}{inline} \textcolor{keywordtype}{void} d2shape\_local(\textcolor{keyword}{const} \mbox{\hyperlink{classoomph_1_1Vector}{Vector<double>}}\& \mbox{\hyperlink{cfortran_8h_ab7123126e4885ef647dd9c6e3807a21c}{s}},}
@@ -482,7 +482,7 @@
 \DoxyCodeLine{\Hypertarget{Qspectral__elements_8h_source_l00478}00478                               \mbox{\hyperlink{classoomph_1_1DShape}{DShape}}\& dpsids,}
 \DoxyCodeLine{\Hypertarget{Qspectral__elements_8h_source_l00479}00479                               \mbox{\hyperlink{classoomph_1_1DShape}{DShape}}\& d2psids) \textcolor{keyword}{const};}
 \DoxyCodeLine{\Hypertarget{Qspectral__elements_8h_source_l00480}00480 \textcolor{comment}{}}
-\DoxyCodeLine{\Hypertarget{Qspectral__elements_8h_source_l00481}00481 \textcolor{comment}{    /// \(\backslash\)short Overload the template-\/free interface for the calculation of}}
+\DoxyCodeLine{\Hypertarget{Qspectral__elements_8h_source_l00481}00481 \textcolor{comment}{    ///  Overload the template-\/free interface for the calculation of}}
 \DoxyCodeLine{\Hypertarget{Qspectral__elements_8h_source_l00482}00482 \textcolor{comment}{    /// inverse jacobian matrix. This is a one-\/dimensional element, so}}
 \DoxyCodeLine{\Hypertarget{Qspectral__elements_8h_source_l00483}00483 \textcolor{comment}{    /// use the 1D version.}}
 \DoxyCodeLine{\Hypertarget{Qspectral__elements_8h_source_l00484}\mbox{\hyperlink{classoomph_1_1QSpectralElement_3_011_00_01NNODE__1D_01_4_a0b5a8d5092c514611704fd4aa259fbfc}{00484}} \textcolor{comment}{}    \textcolor{keywordtype}{double} \mbox{\hyperlink{classoomph_1_1QSpectralElement_3_011_00_01NNODE__1D_01_4_a0b5a8d5092c514611704fd4aa259fbfc}{invert\_jacobian\_mapping}}(\textcolor{keyword}{const} \mbox{\hyperlink{classoomph_1_1DenseMatrix}{DenseMatrix<double>}}\& jacobian,}
@@ -511,12 +511,12 @@
 \DoxyCodeLine{\Hypertarget{Qspectral__elements_8h_source_l00507}00507     \}}
 \DoxyCodeLine{\Hypertarget{Qspectral__elements_8h_source_l00508}00508 \textcolor{comment}{}}
 \DoxyCodeLine{\Hypertarget{Qspectral__elements_8h_source_l00509}00509 \textcolor{comment}{    /// Output}}
-\DoxyCodeLine{\Hypertarget{Qspectral__elements_8h_source_l00510}00510 \textcolor{comment}{}    \textcolor{keywordtype}{void} \mbox{\hyperlink{namespaceoomph_a2473930e2634d673e2a3bed63b6851f0}{output}}(std::ostream\& outfile);}
+\DoxyCodeLine{\Hypertarget{Qspectral__elements_8h_source_l00510}00510 \textcolor{comment}{}    \textcolor{keywordtype}{void} \mbox{\hyperlink{namespaceoomph_1_1CommandLineArgs_aca07d359a96b9c7b566142112604ea87}{output}}(std::ostream\& outfile);}
 \DoxyCodeLine{\Hypertarget{Qspectral__elements_8h_source_l00511}00511 \textcolor{comment}{}}
 \DoxyCodeLine{\Hypertarget{Qspectral__elements_8h_source_l00512}00512 \textcolor{comment}{    /// Output at n\_plot points}}
-\DoxyCodeLine{\Hypertarget{Qspectral__elements_8h_source_l00513}00513 \textcolor{comment}{}    \textcolor{keywordtype}{void} \mbox{\hyperlink{namespaceoomph_a2473930e2634d673e2a3bed63b6851f0}{output}}(std::ostream\& outfile, \textcolor{keyword}{const} \textcolor{keywordtype}{unsigned}\& n\_plot);}
+\DoxyCodeLine{\Hypertarget{Qspectral__elements_8h_source_l00513}00513 \textcolor{comment}{}    \textcolor{keywordtype}{void} \mbox{\hyperlink{namespaceoomph_1_1CommandLineArgs_aca07d359a96b9c7b566142112604ea87}{output}}(std::ostream\& outfile, \textcolor{keyword}{const} \textcolor{keywordtype}{unsigned}\& n\_plot);}
 \DoxyCodeLine{\Hypertarget{Qspectral__elements_8h_source_l00514}00514 \textcolor{comment}{}}
-\DoxyCodeLine{\Hypertarget{Qspectral__elements_8h_source_l00515}00515 \textcolor{comment}{    /// \(\backslash\)short  Get cector of local coordinates of plot point i (when plotting}}
+\DoxyCodeLine{\Hypertarget{Qspectral__elements_8h_source_l00515}00515 \textcolor{comment}{    ///   Get cector of local coordinates of plot point i (when plotting}}
 \DoxyCodeLine{\Hypertarget{Qspectral__elements_8h_source_l00516}00516 \textcolor{comment}{    /// nplot points in each "{}coordinate direction).}}
 \DoxyCodeLine{\Hypertarget{Qspectral__elements_8h_source_l00517}\mbox{\hyperlink{classoomph_1_1QSpectralElement_3_011_00_01NNODE__1D_01_4_aea5a330832dea0920a948660745e6f01}{00517}} \textcolor{comment}{}    \textcolor{keywordtype}{void} \mbox{\hyperlink{classoomph_1_1QSpectralElement_3_011_00_01NNODE__1D_01_4_aea5a330832dea0920a948660745e6f01}{get\_s\_plot}}(}
 \DoxyCodeLine{\Hypertarget{Qspectral__elements_8h_source_l00518}00518       \textcolor{keyword}{const} \textcolor{keywordtype}{unsigned}\& \mbox{\hyperlink{cfortran_8h_adb50e893b86b3e55e751a42eab3cba82}{i}},}
@@ -541,7 +541,7 @@
 \DoxyCodeLine{\Hypertarget{Qspectral__elements_8h_source_l00537}00537       \}}
 \DoxyCodeLine{\Hypertarget{Qspectral__elements_8h_source_l00538}00538     \}}
 \DoxyCodeLine{\Hypertarget{Qspectral__elements_8h_source_l00539}00539 \textcolor{comment}{}}
-\DoxyCodeLine{\Hypertarget{Qspectral__elements_8h_source_l00540}00540 \textcolor{comment}{    /// \(\backslash\)short Return string for tecplot zone header (when plotting}}
+\DoxyCodeLine{\Hypertarget{Qspectral__elements_8h_source_l00540}00540 \textcolor{comment}{    ///  Return string for tecplot zone header (when plotting}}
 \DoxyCodeLine{\Hypertarget{Qspectral__elements_8h_source_l00541}00541 \textcolor{comment}{    /// nplot points in each "{}coordinate direction)}}
 \DoxyCodeLine{\Hypertarget{Qspectral__elements_8h_source_l00542}\mbox{\hyperlink{classoomph_1_1QSpectralElement_3_011_00_01NNODE__1D_01_4_a250b5613ab76f43d9cd67dc01b8eb8fe}{00542}} \textcolor{comment}{}    \mbox{\hyperlink{namespaceoomph_1_1Global__string__for__annotation_ac5379de2fa7fe44f2cb31785fc208135}{std::string}} \mbox{\hyperlink{classoomph_1_1QSpectralElement_3_011_00_01NNODE__1D_01_4_a250b5613ab76f43d9cd67dc01b8eb8fe}{tecplot\_zone\_string}}(\textcolor{keyword}{const} \textcolor{keywordtype}{unsigned}\& nplot)\textcolor{keyword}{ const}}
 \DoxyCodeLine{\Hypertarget{Qspectral__elements_8h_source_l00543}00543 \textcolor{keyword}{    }\{}
@@ -550,7 +550,7 @@
 \DoxyCodeLine{\Hypertarget{Qspectral__elements_8h_source_l00546}00546       \textcolor{keywordflow}{return} header.str();}
 \DoxyCodeLine{\Hypertarget{Qspectral__elements_8h_source_l00547}00547     \}}
 \DoxyCodeLine{\Hypertarget{Qspectral__elements_8h_source_l00548}00548 \textcolor{comment}{}}
-\DoxyCodeLine{\Hypertarget{Qspectral__elements_8h_source_l00549}00549 \textcolor{comment}{    /// \(\backslash\)short Return total number of plot points (when plotting}}
+\DoxyCodeLine{\Hypertarget{Qspectral__elements_8h_source_l00549}00549 \textcolor{comment}{    ///  Return total number of plot points (when plotting}}
 \DoxyCodeLine{\Hypertarget{Qspectral__elements_8h_source_l00550}00550 \textcolor{comment}{    /// nplot points in each "{}coordinate direction)}}
 \DoxyCodeLine{\Hypertarget{Qspectral__elements_8h_source_l00551}\mbox{\hyperlink{classoomph_1_1QSpectralElement_3_011_00_01NNODE__1D_01_4_a5f590bfd5cc59a282f970a8853ad0008}{00551}} \textcolor{comment}{}    \textcolor{keywordtype}{unsigned} \mbox{\hyperlink{classoomph_1_1QSpectralElement_3_011_00_01NNODE__1D_01_4_a5f590bfd5cc59a282f970a8853ad0008}{nplot\_points}}(\textcolor{keyword}{const} \textcolor{keywordtype}{unsigned}\& nplot)\textcolor{keyword}{ const}}
 \DoxyCodeLine{\Hypertarget{Qspectral__elements_8h_source_l00552}00552 \textcolor{keyword}{    }\{}
@@ -563,7 +563,7 @@
 \DoxyCodeLine{\Hypertarget{Qspectral__elements_8h_source_l00559}00559       \textcolor{keywordflow}{return} np;}
 \DoxyCodeLine{\Hypertarget{Qspectral__elements_8h_source_l00560}00560     \}}
 \DoxyCodeLine{\Hypertarget{Qspectral__elements_8h_source_l00561}00561 \textcolor{comment}{}}
-\DoxyCodeLine{\Hypertarget{Qspectral__elements_8h_source_l00562}00562 \textcolor{comment}{    /// \(\backslash\)short Build the lower-\/dimensional FaceElement (an element of type}}
+\DoxyCodeLine{\Hypertarget{Qspectral__elements_8h_source_l00562}00562 \textcolor{comment}{    ///  Build the lower-\/dimensional FaceElement (an element of type}}
 \DoxyCodeLine{\Hypertarget{Qspectral__elements_8h_source_l00563}00563 \textcolor{comment}{    /// QSpectralElement<0,NNODE\_1D>). The face index takes two values}}
 \DoxyCodeLine{\Hypertarget{Qspectral__elements_8h_source_l00564}00564 \textcolor{comment}{    /// corresponding to the two possible faces:}}
 \DoxyCodeLine{\Hypertarget{Qspectral__elements_8h_source_l00565}00565 \textcolor{comment}{    /// -\/1 (Left)  s[0] = -\/1.0}}
@@ -654,7 +654,7 @@
 \DoxyCodeLine{\Hypertarget{Qspectral__elements_8h_source_l00650}00650                                         \textcolor{keyword}{public} \textcolor{keyword}{virtual} \mbox{\hyperlink{classoomph_1_1QuadElementBase}{QuadElementBase}}}
 \DoxyCodeLine{\Hypertarget{Qspectral__elements_8h_source_l00651}00651   \{}
 \DoxyCodeLine{\Hypertarget{Qspectral__elements_8h_source_l00652}00652   \textcolor{keyword}{private}:\textcolor{comment}{}}
-\DoxyCodeLine{\Hypertarget{Qspectral__elements_8h_source_l00653}00653 \textcolor{comment}{    /// \(\backslash\)short Default integration rule: Gaussian integration of same 'order'}}
+\DoxyCodeLine{\Hypertarget{Qspectral__elements_8h_source_l00653}00653 \textcolor{comment}{    ///  Default integration rule: Gaussian integration of same 'order'}}
 \DoxyCodeLine{\Hypertarget{Qspectral__elements_8h_source_l00654}00654 \textcolor{comment}{    /// as the element}}
 \DoxyCodeLine{\Hypertarget{Qspectral__elements_8h_source_l00655}00655 \textcolor{comment}{}    \textcolor{comment}{// This is sort of optimal, because it means that the integration is exact}}
 \DoxyCodeLine{\Hypertarget{Qspectral__elements_8h_source_l00656}00656     \textcolor{comment}{// for the shape functions. Can overwrite this in specific element}}
@@ -697,10 +697,10 @@
 \DoxyCodeLine{\Hypertarget{Qspectral__elements_8h_source_l00693}00693     \}}
 \DoxyCodeLine{\Hypertarget{Qspectral__elements_8h_source_l00694}00694 \textcolor{comment}{}}
 \DoxyCodeLine{\Hypertarget{Qspectral__elements_8h_source_l00695}00695 \textcolor{comment}{    /// Pointer to the j-\/th vertex node in the element}}
-\DoxyCodeLine{\Hypertarget{Qspectral__elements_8h_source_l00696}\mbox{\hyperlink{classoomph_1_1QSpectralElement_3_012_00_01NNODE__1D_01_4_a3d87628dd490dd33bb954146e280f9da}{00696}} \textcolor{comment}{}    \mbox{\hyperlink{classoomph_1_1Node}{Node}}* \mbox{\hyperlink{classoomph_1_1QSpectralElement_3_012_00_01NNODE__1D_01_4_a3d87628dd490dd33bb954146e280f9da}{vertex\_node\_pt}}(\textcolor{keyword}{const} \textcolor{keywordtype}{unsigned}\& j)\textcolor{keyword}{ const}}
+\DoxyCodeLine{\Hypertarget{Qspectral__elements_8h_source_l00696}\mbox{\hyperlink{classoomph_1_1QSpectralElement_3_012_00_01NNODE__1D_01_4_a3d87628dd490dd33bb954146e280f9da}{00696}} \textcolor{comment}{}    Node* \mbox{\hyperlink{classoomph_1_1QSpectralElement_3_012_00_01NNODE__1D_01_4_a3d87628dd490dd33bb954146e280f9da}{vertex\_node\_pt}}(\textcolor{keyword}{const} \textcolor{keywordtype}{unsigned}\& j)\textcolor{keyword}{ const}}
 \DoxyCodeLine{\Hypertarget{Qspectral__elements_8h_source_l00697}00697 \textcolor{keyword}{    }\{}
 \DoxyCodeLine{\Hypertarget{Qspectral__elements_8h_source_l00698}00698       \textcolor{keywordtype}{unsigned} n\_node\_1d = nnode\_1d();}
-\DoxyCodeLine{\Hypertarget{Qspectral__elements_8h_source_l00699}00699       \mbox{\hyperlink{classoomph_1_1Node}{Node}}* nod\_pt;}
+\DoxyCodeLine{\Hypertarget{Qspectral__elements_8h_source_l00699}00699       Node* nod\_pt;}
 \DoxyCodeLine{\Hypertarget{Qspectral__elements_8h_source_l00700}00700       \textcolor{keywordflow}{switch} (j)}
 \DoxyCodeLine{\Hypertarget{Qspectral__elements_8h_source_l00701}00701       \{}
 \DoxyCodeLine{\Hypertarget{Qspectral__elements_8h_source_l00702}00702         \textcolor{keywordflow}{case} 0:}
@@ -757,13 +757,13 @@
 \DoxyCodeLine{\Hypertarget{Qspectral__elements_8h_source_l00753}00753 \textcolor{comment}{    /// Calculate the geometric shape functions at local coordinate s}}
 \DoxyCodeLine{\Hypertarget{Qspectral__elements_8h_source_l00754}00754 \textcolor{comment}{}    \textcolor{keyword}{inline} \textcolor{keywordtype}{void} \mbox{\hyperlink{namespaceoomph_1_1OneDimLagrange_a117f8b892dc89989ecdad99ff261e120}{shape}}(\textcolor{keyword}{const} \mbox{\hyperlink{classoomph_1_1Vector}{Vector<double>}}\& \mbox{\hyperlink{cfortran_8h_ab7123126e4885ef647dd9c6e3807a21c}{s}}, \mbox{\hyperlink{classoomph_1_1Shape}{Shape}}\& psi) \textcolor{keyword}{const};}
 \DoxyCodeLine{\Hypertarget{Qspectral__elements_8h_source_l00755}00755 \textcolor{comment}{}}
-\DoxyCodeLine{\Hypertarget{Qspectral__elements_8h_source_l00756}00756 \textcolor{comment}{    /// \(\backslash\)short Compute the  geometric shape functions and}}
+\DoxyCodeLine{\Hypertarget{Qspectral__elements_8h_source_l00756}00756 \textcolor{comment}{    ///  Compute the  geometric shape functions and}}
 \DoxyCodeLine{\Hypertarget{Qspectral__elements_8h_source_l00757}00757 \textcolor{comment}{    /// derivatives w.r.t. local coordinates at local coordinate s}}
 \DoxyCodeLine{\Hypertarget{Qspectral__elements_8h_source_l00758}00758 \textcolor{comment}{}    \textcolor{keyword}{inline} \textcolor{keywordtype}{void} dshape\_local(\textcolor{keyword}{const} \mbox{\hyperlink{classoomph_1_1Vector}{Vector<double>}}\& \mbox{\hyperlink{cfortran_8h_ab7123126e4885ef647dd9c6e3807a21c}{s}},}
 \DoxyCodeLine{\Hypertarget{Qspectral__elements_8h_source_l00759}00759                              \mbox{\hyperlink{classoomph_1_1Shape}{Shape}}\& psi,}
 \DoxyCodeLine{\Hypertarget{Qspectral__elements_8h_source_l00760}00760                              \mbox{\hyperlink{classoomph_1_1DShape}{DShape}}\& dpsids) \textcolor{keyword}{const};}
 \DoxyCodeLine{\Hypertarget{Qspectral__elements_8h_source_l00761}00761 \textcolor{comment}{}}
-\DoxyCodeLine{\Hypertarget{Qspectral__elements_8h_source_l00762}00762 \textcolor{comment}{    /// \(\backslash\)short Compute the geometric shape functions, derivatives and}}
+\DoxyCodeLine{\Hypertarget{Qspectral__elements_8h_source_l00762}00762 \textcolor{comment}{    ///  Compute the geometric shape functions, derivatives and}}
 \DoxyCodeLine{\Hypertarget{Qspectral__elements_8h_source_l00763}00763 \textcolor{comment}{    /// second derivatives w.r.t. local coordinates at local coordinate s}}
 \DoxyCodeLine{\Hypertarget{Qspectral__elements_8h_source_l00764}00764 \textcolor{comment}{    /// d2psids(i,0) = \(\backslash\)f\$ \(\backslash\)partial \string^2 \(\backslash\)psi\_j / \(\backslash\)partial s\_0\string^2 \(\backslash\)f\$}}
 \DoxyCodeLine{\Hypertarget{Qspectral__elements_8h_source_l00765}00765 \textcolor{comment}{    /// d2psids(i,1) = \(\backslash\)f\$ \(\backslash\)partial \string^2 \(\backslash\)psi\_j / \(\backslash\)partial s\_1\string^2 \(\backslash\)f\$}}
@@ -773,7 +773,7 @@
 \DoxyCodeLine{\Hypertarget{Qspectral__elements_8h_source_l00769}00769                               \mbox{\hyperlink{classoomph_1_1DShape}{DShape}}\& dpsids,}
 \DoxyCodeLine{\Hypertarget{Qspectral__elements_8h_source_l00770}00770                               \mbox{\hyperlink{classoomph_1_1DShape}{DShape}}\& d2psids) \textcolor{keyword}{const};}
 \DoxyCodeLine{\Hypertarget{Qspectral__elements_8h_source_l00771}00771 \textcolor{comment}{}}
-\DoxyCodeLine{\Hypertarget{Qspectral__elements_8h_source_l00772}00772 \textcolor{comment}{    /// \(\backslash\)short Overload the template-\/free interface for the calculation of}}
+\DoxyCodeLine{\Hypertarget{Qspectral__elements_8h_source_l00772}00772 \textcolor{comment}{    ///  Overload the template-\/free interface for the calculation of}}
 \DoxyCodeLine{\Hypertarget{Qspectral__elements_8h_source_l00773}00773 \textcolor{comment}{    /// inverse jacobian matrix. This is a one-\/dimensional element, so}}
 \DoxyCodeLine{\Hypertarget{Qspectral__elements_8h_source_l00774}00774 \textcolor{comment}{    /// use the 1D version.}}
 \DoxyCodeLine{\Hypertarget{Qspectral__elements_8h_source_l00775}\mbox{\hyperlink{classoomph_1_1QSpectralElement_3_012_00_01NNODE__1D_01_4_a43e9825330e5e7c107a78a14fcace34d}{00775}} \textcolor{comment}{}    \textcolor{keywordtype}{double} \mbox{\hyperlink{classoomph_1_1QSpectralElement_3_012_00_01NNODE__1D_01_4_a43e9825330e5e7c107a78a14fcace34d}{invert\_jacobian\_mapping}}(\textcolor{keyword}{const} \mbox{\hyperlink{classoomph_1_1DenseMatrix}{DenseMatrix<double>}}\& jacobian,}
@@ -802,12 +802,12 @@
 \DoxyCodeLine{\Hypertarget{Qspectral__elements_8h_source_l00798}00798     \}}
 \DoxyCodeLine{\Hypertarget{Qspectral__elements_8h_source_l00799}00799 \textcolor{comment}{}}
 \DoxyCodeLine{\Hypertarget{Qspectral__elements_8h_source_l00800}00800 \textcolor{comment}{    /// Output}}
-\DoxyCodeLine{\Hypertarget{Qspectral__elements_8h_source_l00801}00801 \textcolor{comment}{}    \textcolor{keywordtype}{void} \mbox{\hyperlink{namespaceoomph_a2473930e2634d673e2a3bed63b6851f0}{output}}(std::ostream\& outfile);}
+\DoxyCodeLine{\Hypertarget{Qspectral__elements_8h_source_l00801}00801 \textcolor{comment}{}    \textcolor{keywordtype}{void} \mbox{\hyperlink{namespaceoomph_1_1CommandLineArgs_aca07d359a96b9c7b566142112604ea87}{output}}(std::ostream\& outfile);}
 \DoxyCodeLine{\Hypertarget{Qspectral__elements_8h_source_l00802}00802 \textcolor{comment}{}}
 \DoxyCodeLine{\Hypertarget{Qspectral__elements_8h_source_l00803}00803 \textcolor{comment}{    /// Output at n\_plot points}}
-\DoxyCodeLine{\Hypertarget{Qspectral__elements_8h_source_l00804}00804 \textcolor{comment}{}    \textcolor{keywordtype}{void} \mbox{\hyperlink{namespaceoomph_a2473930e2634d673e2a3bed63b6851f0}{output}}(std::ostream\& outfile, \textcolor{keyword}{const} \textcolor{keywordtype}{unsigned}\& n\_plot);}
+\DoxyCodeLine{\Hypertarget{Qspectral__elements_8h_source_l00804}00804 \textcolor{comment}{}    \textcolor{keywordtype}{void} \mbox{\hyperlink{namespaceoomph_1_1CommandLineArgs_aca07d359a96b9c7b566142112604ea87}{output}}(std::ostream\& outfile, \textcolor{keyword}{const} \textcolor{keywordtype}{unsigned}\& n\_plot);}
 \DoxyCodeLine{\Hypertarget{Qspectral__elements_8h_source_l00805}00805 \textcolor{comment}{}}
-\DoxyCodeLine{\Hypertarget{Qspectral__elements_8h_source_l00806}00806 \textcolor{comment}{    /// \(\backslash\)short  Get cector of local coordinates of plot point i (when plotting}}
+\DoxyCodeLine{\Hypertarget{Qspectral__elements_8h_source_l00806}00806 \textcolor{comment}{    ///   Get cector of local coordinates of plot point i (when plotting}}
 \DoxyCodeLine{\Hypertarget{Qspectral__elements_8h_source_l00807}00807 \textcolor{comment}{    /// nplot points in each "{}coordinate direction).}}
 \DoxyCodeLine{\Hypertarget{Qspectral__elements_8h_source_l00808}\mbox{\hyperlink{classoomph_1_1QSpectralElement_3_012_00_01NNODE__1D_01_4_a9495694ed222c8e9e41eee93734581d7}{00808}} \textcolor{comment}{}    \textcolor{keywordtype}{void} \mbox{\hyperlink{classoomph_1_1QSpectralElement_3_012_00_01NNODE__1D_01_4_a9495694ed222c8e9e41eee93734581d7}{get\_s\_plot}}(}
 \DoxyCodeLine{\Hypertarget{Qspectral__elements_8h_source_l00809}00809       \textcolor{keyword}{const} \textcolor{keywordtype}{unsigned}\& \mbox{\hyperlink{cfortran_8h_adb50e893b86b3e55e751a42eab3cba82}{i}},}
@@ -839,7 +839,7 @@
 \DoxyCodeLine{\Hypertarget{Qspectral__elements_8h_source_l00835}00835     \}}
 \DoxyCodeLine{\Hypertarget{Qspectral__elements_8h_source_l00836}00836 }
 \DoxyCodeLine{\Hypertarget{Qspectral__elements_8h_source_l00837}00837 \textcolor{comment}{}}
-\DoxyCodeLine{\Hypertarget{Qspectral__elements_8h_source_l00838}00838 \textcolor{comment}{    /// \(\backslash\)short Return string for tecplot zone header (when plotting}}
+\DoxyCodeLine{\Hypertarget{Qspectral__elements_8h_source_l00838}00838 \textcolor{comment}{    ///  Return string for tecplot zone header (when plotting}}
 \DoxyCodeLine{\Hypertarget{Qspectral__elements_8h_source_l00839}00839 \textcolor{comment}{    /// nplot points in each "{}coordinate direction)}}
 \DoxyCodeLine{\Hypertarget{Qspectral__elements_8h_source_l00840}\mbox{\hyperlink{classoomph_1_1QSpectralElement_3_012_00_01NNODE__1D_01_4_a3abd839fcc323136429275aedd414765}{00840}} \textcolor{comment}{}    \mbox{\hyperlink{namespaceoomph_1_1Global__string__for__annotation_ac5379de2fa7fe44f2cb31785fc208135}{std::string}} \mbox{\hyperlink{classoomph_1_1QSpectralElement_3_012_00_01NNODE__1D_01_4_a3abd839fcc323136429275aedd414765}{tecplot\_zone\_string}}(\textcolor{keyword}{const} \textcolor{keywordtype}{unsigned}\& nplot)\textcolor{keyword}{ const}}
 \DoxyCodeLine{\Hypertarget{Qspectral__elements_8h_source_l00841}00841 \textcolor{keyword}{    }\{}
@@ -848,7 +848,7 @@
 \DoxyCodeLine{\Hypertarget{Qspectral__elements_8h_source_l00844}00844       \textcolor{keywordflow}{return} header.str();}
 \DoxyCodeLine{\Hypertarget{Qspectral__elements_8h_source_l00845}00845     \}}
 \DoxyCodeLine{\Hypertarget{Qspectral__elements_8h_source_l00846}00846 \textcolor{comment}{}}
-\DoxyCodeLine{\Hypertarget{Qspectral__elements_8h_source_l00847}00847 \textcolor{comment}{    /// \(\backslash\)short Return total number of plot points (when plotting}}
+\DoxyCodeLine{\Hypertarget{Qspectral__elements_8h_source_l00847}00847 \textcolor{comment}{    ///  Return total number of plot points (when plotting}}
 \DoxyCodeLine{\Hypertarget{Qspectral__elements_8h_source_l00848}00848 \textcolor{comment}{    /// nplot points in each "{}coordinate direction)}}
 \DoxyCodeLine{\Hypertarget{Qspectral__elements_8h_source_l00849}\mbox{\hyperlink{classoomph_1_1QSpectralElement_3_012_00_01NNODE__1D_01_4_ab722b0fd6c021708567af9c1d3de34be}{00849}} \textcolor{comment}{}    \textcolor{keywordtype}{unsigned} \mbox{\hyperlink{classoomph_1_1QSpectralElement_3_012_00_01NNODE__1D_01_4_ab722b0fd6c021708567af9c1d3de34be}{nplot\_points}}(\textcolor{keyword}{const} \textcolor{keywordtype}{unsigned}\& nplot)\textcolor{keyword}{ const}}
 \DoxyCodeLine{\Hypertarget{Qspectral__elements_8h_source_l00850}00850 \textcolor{keyword}{    }\{}
@@ -861,7 +861,7 @@
 \DoxyCodeLine{\Hypertarget{Qspectral__elements_8h_source_l00857}00857       \textcolor{keywordflow}{return} np;}
 \DoxyCodeLine{\Hypertarget{Qspectral__elements_8h_source_l00858}00858     \}}
 \DoxyCodeLine{\Hypertarget{Qspectral__elements_8h_source_l00859}00859 \textcolor{comment}{}}
-\DoxyCodeLine{\Hypertarget{Qspectral__elements_8h_source_l00860}00860 \textcolor{comment}{    /// \(\backslash\)short Build the lower-\/dimensional FaceElement (an element of type}}
+\DoxyCodeLine{\Hypertarget{Qspectral__elements_8h_source_l00860}00860 \textcolor{comment}{    ///  Build the lower-\/dimensional FaceElement (an element of type}}
 \DoxyCodeLine{\Hypertarget{Qspectral__elements_8h_source_l00861}00861 \textcolor{comment}{    /// QSpectralElement<1,NNODE\_1D>). The face index takes four values}}
 \DoxyCodeLine{\Hypertarget{Qspectral__elements_8h_source_l00862}00862 \textcolor{comment}{    /// corresponding to the four possible faces:}}
 \DoxyCodeLine{\Hypertarget{Qspectral__elements_8h_source_l00863}00863 \textcolor{comment}{    /// -\/1 (West)  s[0] = -\/1.0}}
@@ -969,7 +969,7 @@
 \DoxyCodeLine{\Hypertarget{Qspectral__elements_8h_source_l00965}00965                                         \textcolor{keyword}{public} \textcolor{keyword}{virtual} \mbox{\hyperlink{classoomph_1_1BrickElementBase}{BrickElementBase}}}
 \DoxyCodeLine{\Hypertarget{Qspectral__elements_8h_source_l00966}00966   \{}
 \DoxyCodeLine{\Hypertarget{Qspectral__elements_8h_source_l00967}00967   \textcolor{keyword}{private}:\textcolor{comment}{}}
-\DoxyCodeLine{\Hypertarget{Qspectral__elements_8h_source_l00968}00968 \textcolor{comment}{    /// \(\backslash\)short Default integration rule: Gaussian integration of same 'order'}}
+\DoxyCodeLine{\Hypertarget{Qspectral__elements_8h_source_l00968}00968 \textcolor{comment}{    ///  Default integration rule: Gaussian integration of same 'order'}}
 \DoxyCodeLine{\Hypertarget{Qspectral__elements_8h_source_l00969}00969 \textcolor{comment}{    /// as the element}}
 \DoxyCodeLine{\Hypertarget{Qspectral__elements_8h_source_l00970}00970 \textcolor{comment}{}    \textcolor{comment}{// This is sort of optimal, because it means that the integration is exact}}
 \DoxyCodeLine{\Hypertarget{Qspectral__elements_8h_source_l00971}00971     \textcolor{comment}{// for the shape functions. Can overwrite this in specific element}}
@@ -1012,10 +1012,10 @@
 \DoxyCodeLine{\Hypertarget{Qspectral__elements_8h_source_l01008}01008     \}}
 \DoxyCodeLine{\Hypertarget{Qspectral__elements_8h_source_l01009}01009 \textcolor{comment}{}}
 \DoxyCodeLine{\Hypertarget{Qspectral__elements_8h_source_l01010}01010 \textcolor{comment}{    /// Pointer to the j-\/th vertex node in the element}}
-\DoxyCodeLine{\Hypertarget{Qspectral__elements_8h_source_l01011}\mbox{\hyperlink{classoomph_1_1QSpectralElement_3_013_00_01NNODE__1D_01_4_ad9b1675c148058568ba6ae301c1118b7}{01011}} \textcolor{comment}{}    \mbox{\hyperlink{classoomph_1_1Node}{Node}}* \mbox{\hyperlink{classoomph_1_1QSpectralElement_3_013_00_01NNODE__1D_01_4_ad9b1675c148058568ba6ae301c1118b7}{vertex\_node\_pt}}(\textcolor{keyword}{const} \textcolor{keywordtype}{unsigned}\& j)\textcolor{keyword}{ const}}
+\DoxyCodeLine{\Hypertarget{Qspectral__elements_8h_source_l01011}\mbox{\hyperlink{classoomph_1_1QSpectralElement_3_013_00_01NNODE__1D_01_4_ad9b1675c148058568ba6ae301c1118b7}{01011}} \textcolor{comment}{}    Node* \mbox{\hyperlink{classoomph_1_1QSpectralElement_3_013_00_01NNODE__1D_01_4_ad9b1675c148058568ba6ae301c1118b7}{vertex\_node\_pt}}(\textcolor{keyword}{const} \textcolor{keywordtype}{unsigned}\& j)\textcolor{keyword}{ const}}
 \DoxyCodeLine{\Hypertarget{Qspectral__elements_8h_source_l01012}01012 \textcolor{keyword}{    }\{}
 \DoxyCodeLine{\Hypertarget{Qspectral__elements_8h_source_l01013}01013       \textcolor{keywordtype}{unsigned} n\_node\_1d = nnode\_1d();}
-\DoxyCodeLine{\Hypertarget{Qspectral__elements_8h_source_l01014}01014       \mbox{\hyperlink{classoomph_1_1Node}{Node}}* nod\_pt;}
+\DoxyCodeLine{\Hypertarget{Qspectral__elements_8h_source_l01014}01014       Node* nod\_pt;}
 \DoxyCodeLine{\Hypertarget{Qspectral__elements_8h_source_l01015}01015       \textcolor{keywordflow}{switch} (j)}
 \DoxyCodeLine{\Hypertarget{Qspectral__elements_8h_source_l01016}01016       \{}
 \DoxyCodeLine{\Hypertarget{Qspectral__elements_8h_source_l01017}01017         \textcolor{keywordflow}{case} 0:}
@@ -1088,13 +1088,13 @@
 \DoxyCodeLine{\Hypertarget{Qspectral__elements_8h_source_l01084}01084 \textcolor{comment}{    /// Calculate the geometric shape functions at local coordinate s}}
 \DoxyCodeLine{\Hypertarget{Qspectral__elements_8h_source_l01085}01085 \textcolor{comment}{}    \textcolor{keyword}{inline} \textcolor{keywordtype}{void} \mbox{\hyperlink{namespaceoomph_1_1OneDimLagrange_a117f8b892dc89989ecdad99ff261e120}{shape}}(\textcolor{keyword}{const} \mbox{\hyperlink{classoomph_1_1Vector}{Vector<double>}}\& \mbox{\hyperlink{cfortran_8h_ab7123126e4885ef647dd9c6e3807a21c}{s}}, \mbox{\hyperlink{classoomph_1_1Shape}{Shape}}\& psi) \textcolor{keyword}{const};}
 \DoxyCodeLine{\Hypertarget{Qspectral__elements_8h_source_l01086}01086 \textcolor{comment}{}}
-\DoxyCodeLine{\Hypertarget{Qspectral__elements_8h_source_l01087}01087 \textcolor{comment}{    /// \(\backslash\)short Compute the  geometric shape functions and}}
+\DoxyCodeLine{\Hypertarget{Qspectral__elements_8h_source_l01087}01087 \textcolor{comment}{    ///  Compute the  geometric shape functions and}}
 \DoxyCodeLine{\Hypertarget{Qspectral__elements_8h_source_l01088}01088 \textcolor{comment}{    /// derivatives w.r.t. local coordinates at local coordinate s}}
 \DoxyCodeLine{\Hypertarget{Qspectral__elements_8h_source_l01089}01089 \textcolor{comment}{}    \textcolor{keyword}{inline} \textcolor{keywordtype}{void} dshape\_local(\textcolor{keyword}{const} \mbox{\hyperlink{classoomph_1_1Vector}{Vector<double>}}\& \mbox{\hyperlink{cfortran_8h_ab7123126e4885ef647dd9c6e3807a21c}{s}},}
 \DoxyCodeLine{\Hypertarget{Qspectral__elements_8h_source_l01090}01090                              \mbox{\hyperlink{classoomph_1_1Shape}{Shape}}\& psi,}
 \DoxyCodeLine{\Hypertarget{Qspectral__elements_8h_source_l01091}01091                              \mbox{\hyperlink{classoomph_1_1DShape}{DShape}}\& dpsids) \textcolor{keyword}{const};}
 \DoxyCodeLine{\Hypertarget{Qspectral__elements_8h_source_l01092}01092 \textcolor{comment}{}}
-\DoxyCodeLine{\Hypertarget{Qspectral__elements_8h_source_l01093}01093 \textcolor{comment}{    /// \(\backslash\)short Compute the geometric shape functions, derivatives and}}
+\DoxyCodeLine{\Hypertarget{Qspectral__elements_8h_source_l01093}01093 \textcolor{comment}{    ///  Compute the geometric shape functions, derivatives and}}
 \DoxyCodeLine{\Hypertarget{Qspectral__elements_8h_source_l01094}01094 \textcolor{comment}{    /// second derivatives w.r.t. local coordinates at local coordinate s}}
 \DoxyCodeLine{\Hypertarget{Qspectral__elements_8h_source_l01095}01095 \textcolor{comment}{    /// d2psids(i,0) = \(\backslash\)f\$ \(\backslash\)partial \string^2 \(\backslash\)psi\_j / \(\backslash\)partial s\_0\string^2 \(\backslash\)f\$}}
 \DoxyCodeLine{\Hypertarget{Qspectral__elements_8h_source_l01096}01096 \textcolor{comment}{    /// d2psids(i,1) = \(\backslash\)f\$ \(\backslash\)partial \string^2 \(\backslash\)psi\_j / \(\backslash\)partial s\_1\string^2 \(\backslash\)f\$}}
@@ -1108,7 +1108,7 @@
 \DoxyCodeLine{\Hypertarget{Qspectral__elements_8h_source_l01104}01104                               \mbox{\hyperlink{classoomph_1_1DShape}{DShape}}\& d2psids) \textcolor{keyword}{const};}
 \DoxyCodeLine{\Hypertarget{Qspectral__elements_8h_source_l01105}01105 }
 \DoxyCodeLine{\Hypertarget{Qspectral__elements_8h_source_l01106}01106 \textcolor{comment}{}}
-\DoxyCodeLine{\Hypertarget{Qspectral__elements_8h_source_l01107}01107 \textcolor{comment}{    /// \(\backslash\)short Overload the template-\/free interface for the calculation of}}
+\DoxyCodeLine{\Hypertarget{Qspectral__elements_8h_source_l01107}01107 \textcolor{comment}{    ///  Overload the template-\/free interface for the calculation of}}
 \DoxyCodeLine{\Hypertarget{Qspectral__elements_8h_source_l01108}01108 \textcolor{comment}{    /// inverse jacobian matrix. This is a one-\/dimensional element, so}}
 \DoxyCodeLine{\Hypertarget{Qspectral__elements_8h_source_l01109}01109 \textcolor{comment}{    /// use the 3D version.}}
 \DoxyCodeLine{\Hypertarget{Qspectral__elements_8h_source_l01110}\mbox{\hyperlink{classoomph_1_1QSpectralElement_3_013_00_01NNODE__1D_01_4_acd46ab878ddbff7735a36325388626fb}{01110}} \textcolor{comment}{}    \textcolor{keywordtype}{double} \mbox{\hyperlink{classoomph_1_1QSpectralElement_3_013_00_01NNODE__1D_01_4_acd46ab878ddbff7735a36325388626fb}{invert\_jacobian\_mapping}}(\textcolor{keyword}{const} \mbox{\hyperlink{classoomph_1_1DenseMatrix}{DenseMatrix<double>}}\& jacobian,}
@@ -1136,12 +1136,12 @@
 \DoxyCodeLine{\Hypertarget{Qspectral__elements_8h_source_l01132}01132     \}}
 \DoxyCodeLine{\Hypertarget{Qspectral__elements_8h_source_l01133}01133 \textcolor{comment}{}}
 \DoxyCodeLine{\Hypertarget{Qspectral__elements_8h_source_l01134}01134 \textcolor{comment}{    /// Output}}
-\DoxyCodeLine{\Hypertarget{Qspectral__elements_8h_source_l01135}01135 \textcolor{comment}{}    \textcolor{keywordtype}{void} \mbox{\hyperlink{namespaceoomph_a2473930e2634d673e2a3bed63b6851f0}{output}}(std::ostream\& outfile);}
+\DoxyCodeLine{\Hypertarget{Qspectral__elements_8h_source_l01135}01135 \textcolor{comment}{}    \textcolor{keywordtype}{void} \mbox{\hyperlink{namespaceoomph_1_1CommandLineArgs_aca07d359a96b9c7b566142112604ea87}{output}}(std::ostream\& outfile);}
 \DoxyCodeLine{\Hypertarget{Qspectral__elements_8h_source_l01136}01136 \textcolor{comment}{}}
 \DoxyCodeLine{\Hypertarget{Qspectral__elements_8h_source_l01137}01137 \textcolor{comment}{    /// Output at nplot points}}
-\DoxyCodeLine{\Hypertarget{Qspectral__elements_8h_source_l01138}01138 \textcolor{comment}{}    \textcolor{keywordtype}{void} \mbox{\hyperlink{namespaceoomph_a2473930e2634d673e2a3bed63b6851f0}{output}}(std::ostream\& outfile, \textcolor{keyword}{const} \textcolor{keywordtype}{unsigned}\& nplot);}
+\DoxyCodeLine{\Hypertarget{Qspectral__elements_8h_source_l01138}01138 \textcolor{comment}{}    \textcolor{keywordtype}{void} \mbox{\hyperlink{namespaceoomph_1_1CommandLineArgs_aca07d359a96b9c7b566142112604ea87}{output}}(std::ostream\& outfile, \textcolor{keyword}{const} \textcolor{keywordtype}{unsigned}\& nplot);}
 \DoxyCodeLine{\Hypertarget{Qspectral__elements_8h_source_l01139}01139 \textcolor{comment}{}}
-\DoxyCodeLine{\Hypertarget{Qspectral__elements_8h_source_l01140}01140 \textcolor{comment}{    /// \(\backslash\)short  Get cector of local coordinates of plot point i (when plotting}}
+\DoxyCodeLine{\Hypertarget{Qspectral__elements_8h_source_l01140}01140 \textcolor{comment}{    ///   Get cector of local coordinates of plot point i (when plotting}}
 \DoxyCodeLine{\Hypertarget{Qspectral__elements_8h_source_l01141}01141 \textcolor{comment}{    /// nplot points in each "{}coordinate direction).}}
 \DoxyCodeLine{\Hypertarget{Qspectral__elements_8h_source_l01142}\mbox{\hyperlink{classoomph_1_1QSpectralElement_3_013_00_01NNODE__1D_01_4_a87b3cae6dcb237585734eab89f13bb84}{01142}} \textcolor{comment}{}    \textcolor{keywordtype}{void} \mbox{\hyperlink{classoomph_1_1QSpectralElement_3_013_00_01NNODE__1D_01_4_a87b3cae6dcb237585734eab89f13bb84}{get\_s\_plot}}(}
 \DoxyCodeLine{\Hypertarget{Qspectral__elements_8h_source_l01143}01143       \textcolor{keyword}{const} \textcolor{keywordtype}{unsigned}\& \mbox{\hyperlink{cfortran_8h_adb50e893b86b3e55e751a42eab3cba82}{i}},}
@@ -1178,7 +1178,7 @@
 \DoxyCodeLine{\Hypertarget{Qspectral__elements_8h_source_l01174}01174     \}}
 \DoxyCodeLine{\Hypertarget{Qspectral__elements_8h_source_l01175}01175 }
 \DoxyCodeLine{\Hypertarget{Qspectral__elements_8h_source_l01176}01176 \textcolor{comment}{}}
-\DoxyCodeLine{\Hypertarget{Qspectral__elements_8h_source_l01177}01177 \textcolor{comment}{    /// \(\backslash\)short Return string for tecplot zone header (when plotting}}
+\DoxyCodeLine{\Hypertarget{Qspectral__elements_8h_source_l01177}01177 \textcolor{comment}{    ///  Return string for tecplot zone header (when plotting}}
 \DoxyCodeLine{\Hypertarget{Qspectral__elements_8h_source_l01178}01178 \textcolor{comment}{    /// nplot points in each "{}coordinate direction)}}
 \DoxyCodeLine{\Hypertarget{Qspectral__elements_8h_source_l01179}\mbox{\hyperlink{classoomph_1_1QSpectralElement_3_013_00_01NNODE__1D_01_4_afa93f49624aaeee4160ea0f4bb2cf92f}{01179}} \textcolor{comment}{}    \mbox{\hyperlink{namespaceoomph_1_1Global__string__for__annotation_ac5379de2fa7fe44f2cb31785fc208135}{std::string}} \mbox{\hyperlink{classoomph_1_1QSpectralElement_3_013_00_01NNODE__1D_01_4_afa93f49624aaeee4160ea0f4bb2cf92f}{tecplot\_zone\_string}}(\textcolor{keyword}{const} \textcolor{keywordtype}{unsigned}\& nplot)\textcolor{keyword}{ const}}
 \DoxyCodeLine{\Hypertarget{Qspectral__elements_8h_source_l01180}01180 \textcolor{keyword}{    }\{}
@@ -1188,7 +1188,7 @@
 \DoxyCodeLine{\Hypertarget{Qspectral__elements_8h_source_l01184}01184       \textcolor{keywordflow}{return} header.str();}
 \DoxyCodeLine{\Hypertarget{Qspectral__elements_8h_source_l01185}01185     \}}
 \DoxyCodeLine{\Hypertarget{Qspectral__elements_8h_source_l01186}01186 \textcolor{comment}{}}
-\DoxyCodeLine{\Hypertarget{Qspectral__elements_8h_source_l01187}01187 \textcolor{comment}{    /// \(\backslash\)short Return total number of plot points (when plotting}}
+\DoxyCodeLine{\Hypertarget{Qspectral__elements_8h_source_l01187}01187 \textcolor{comment}{    ///  Return total number of plot points (when plotting}}
 \DoxyCodeLine{\Hypertarget{Qspectral__elements_8h_source_l01188}01188 \textcolor{comment}{    /// nplot points in each "{}coordinate direction)}}
 \DoxyCodeLine{\Hypertarget{Qspectral__elements_8h_source_l01189}\mbox{\hyperlink{classoomph_1_1QSpectralElement_3_013_00_01NNODE__1D_01_4_afc859729c1090d442025b866c0fcb781}{01189}} \textcolor{comment}{}    \textcolor{keywordtype}{unsigned} \mbox{\hyperlink{classoomph_1_1QSpectralElement_3_013_00_01NNODE__1D_01_4_afc859729c1090d442025b866c0fcb781}{nplot\_points}}(\textcolor{keyword}{const} \textcolor{keywordtype}{unsigned}\& nplot)\textcolor{keyword}{ const}}
 \DoxyCodeLine{\Hypertarget{Qspectral__elements_8h_source_l01190}01190 \textcolor{keyword}{    }\{}
@@ -1201,7 +1201,7 @@
 \DoxyCodeLine{\Hypertarget{Qspectral__elements_8h_source_l01197}01197       \textcolor{keywordflow}{return} np;}
 \DoxyCodeLine{\Hypertarget{Qspectral__elements_8h_source_l01198}01198     \}}
 \DoxyCodeLine{\Hypertarget{Qspectral__elements_8h_source_l01199}01199 \textcolor{comment}{}}
-\DoxyCodeLine{\Hypertarget{Qspectral__elements_8h_source_l01200}01200 \textcolor{comment}{    /// \(\backslash\)short Build the lower-\/dimensional FaceElement (an element of type}}
+\DoxyCodeLine{\Hypertarget{Qspectral__elements_8h_source_l01200}01200 \textcolor{comment}{    ///  Build the lower-\/dimensional FaceElement (an element of type}}
 \DoxyCodeLine{\Hypertarget{Qspectral__elements_8h_source_l01201}01201 \textcolor{comment}{    /// QSpectralElement<2,NNODE\_1D>). The face index takes six values}}
 \DoxyCodeLine{\Hypertarget{Qspectral__elements_8h_source_l01202}01202 \textcolor{comment}{    /// corresponding to the six possible faces:}}
 \DoxyCodeLine{\Hypertarget{Qspectral__elements_8h_source_l01203}01203 \textcolor{comment}{    /// -\/1 (Left)   s[0] = -\/1.0}}

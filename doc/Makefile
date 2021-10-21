@@ -425,6 +425,10 @@ search_results
 #To create the documentation, we need to create the html directory with its
 # index file
 noinst_SCRIPTS = html/index.html
+
+#clean-local:
+#        # Get rid of index.html files in demo_drivers
+#	cd ../demo_drivers; find . -name 'index.html' -exec rm {} \;
 EXTRA_DIST = Doxyfile $(docfile).txt figures \
 	oomph-lib_header.html.template oomph-lib_footer.html.template \
 	css js extra_latex_style_files navbar_toggle.js raw_doxygen
@@ -774,13 +778,17 @@ oomph-lib_header.html:
 clean-local:
 	rm -rf latex html $(docfile).txt_doxygenified.h $(docfile).pdf *~ .tmp
 	rm -f oomph-lib_header.html
-	rm -f oomph-lib_footer.html
+	rm -f oomph-lib_footer.html; my_dir=`pwd`; echo "my_dir: "$$my_dir; cd $(top_builddir)/doc; doc_dir=`pwd`; echo "doc_dir: "$$doc_dir; cd $$my_dir; if [ "$$my_dir" == "$$doc_dir" ]; then find ../demo_drivers -name 'index.html' -exec rm -f {} \; ; fi
 	if [ -L extra_latex_style_files ]; then rm -f extra_latex_style_files; fi
 
 all:
         # Create index.html in demo_drivers directory (needed for github
         # github-hosted webpages
 	../bin/make_index_html_in_demo_driver_dirs.bash
+
+junk:
+	my_dir=`pwd`; echo "my_dir: "$$my_dir; cd $(top_builddir)/doc; doc_dir=`pwd`; echo "doc_dir: "$$doc_dir; cd $$my_dir; if [ "$$my_dir" == "$$doc_dir" ]; then echo "blabla"; fi
+#if [ "`pwd`" == "$(top_builddir)/doc" ] ; then echo "in doc"; fi
 
 # Tell versions [3.59,3.63) of GNU make to not export all variables.
 # Otherwise a system limit (for SysV at least) may be exceeded.

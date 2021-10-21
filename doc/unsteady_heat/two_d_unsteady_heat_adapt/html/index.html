@@ -199,7 +199,7 @@ Overview of the driver code</h1>
  <hr  />
 <h1><a class="anchor" id="namespace"></a>
 Global parameters and functions</h1>
-<p >As usual, we store the problem parameters in a namespace, <code><a class="el" href="namespaceTanhSolnForUnsteadyHeat.html">TanhSolnForUnsteadyHeat</a></code>, in which we also specify the source function, the prescribed flux along the Neumann boundary and the exact solution.</p>
+<p >As usual, we store the problem parameters in a namespace, <code><a class="el" href="namespaceTanhSolnForUnsteadyHeat.html" title="Namespace for exact solution of unsteady heat equation with sharp step.">TanhSolnForUnsteadyHeat</a></code>, in which we also specify the source function, the prescribed flux along the Neumann boundary and the exact solution.</p>
 <hr  />
  <hr  />
 <h1><a class="anchor" id="ellipse"></a>
@@ -210,7 +210,7 @@ Representing the curvilinear domain boundary by a  GeomObject</h1>
 </ul>
 <p>In the current problem, the domain boundary is stationary, therefore the steady and unsteady versions of the function are identical. Here is the complete source code for the <code><a class="el" href="classMyUnitCircle.html" title="Unit circle as GeomObject.">MyUnitCircle</a></code> object which we will use to represent the curvilinear domain boundary:</p>
  <div class="fragment"><div class="line"><span class="comment">//============start_of_MyUnitCircle====================================</span></div>
-<div class="line"><span class="comment">/// \short Unit circle as GeomObject</span><span class="comment"></span></div>
+<div class="line"><span class="comment">///  Unit circle as GeomObject</span><span class="comment"></span></div>
 <div class="line"><span class="comment">/// \f[ x = \cos(\xi)  \f]</span></div>
 <div class="line"><span class="comment">/// \f[ y = \sin(\xi)  \f]</span></div>
 <div class="line"><span class="comment"></span><span class="comment">//=====================================================================</span></div>
@@ -219,7 +219,7 @@ Representing the curvilinear domain boundary by a  GeomObject</h1>
 <div class="line"> </div>
 <div class="line"><span class="keyword">public</span>:</div>
 <div class="line"><span class="comment"></span> </div>
-<div class="line"><span class="comment"> /// \short Constructor: The circle is a 1D object</span></div>
+<div class="line"><span class="comment"> ///  Constructor: The circle is a 1D object</span></div>
 <div class="line"><span class="comment"> /// (i.e. it&#39;s parametrised by one intrinsic coordinate) in 2D space.</span></div>
 <div class="line"><span class="comment"> /// Pass these arguments to the constructor of the GeomObject base class.</span></div>
 <div class="line"><span class="comment"></span> <a class="code hl_function" href="classMyUnitCircle.html#a056add64776e52a8ea2ba2e9d6d0e32d">MyUnitCircle</a>() : GeomObject(1,2) {}</div>
@@ -227,7 +227,7 @@ Representing the curvilinear domain boundary by a  GeomObject</h1>
 <div class="line"><span class="comment"> /// Destructor: Empty</span></div>
 <div class="line"><span class="comment"></span> <span class="keyword">virtual</span> <a class="code hl_function" href="classMyUnitCircle.html#ae6b321a25ef6f6b12d7c9a225f91140d">~MyUnitCircle</a>() {}</div>
 <div class="line"><span class="comment"></span> </div>
-<div class="line"><span class="comment"> /// \short Current position vector to material point at </span></div>
+<div class="line"><span class="comment"> ///  Current position vector to material point at </span></div>
 <div class="line"><span class="comment"> /// Lagrangian coordinate xi </span></div>
 <div class="line"><span class="comment"></span> <span class="keywordtype">void</span> <a class="code hl_function" href="classMyUnitCircle.html#ab60b73d1c28b013c40dd2aaa98072261">position</a>(<span class="keyword">const</span> Vector&lt;double&gt;&amp; xi, Vector&lt;double&gt;&amp; r)<span class="keyword"> const</span></div>
 <div class="line"><span class="keyword">  </span>{</div>
@@ -237,7 +237,7 @@ Representing the curvilinear domain boundary by a  GeomObject</h1>
 <div class="line">  } <span class="comment">// end of position(...)</span></div>
 <div class="line"> </div>
 <div class="line"><span class="comment"></span> </div>
-<div class="line"><span class="comment"> /// \short Parametrised position on object: r(xi). Evaluated at</span></div>
+<div class="line"><span class="comment"> ///  Parametrised position on object: r(xi). Evaluated at</span></div>
 <div class="line"><span class="comment"> /// previous time level. t=0: current time; t&gt;0: previous</span></div>
 <div class="line"><span class="comment"> /// time level. Circle is fixed -- simply call the steady version.</span></div>
 <div class="line"><span class="comment"></span> <span class="keywordtype">void</span> <a class="code hl_function" href="classMyUnitCircle.html#ab60b73d1c28b013c40dd2aaa98072261">position</a>(<span class="keyword">const</span> <span class="keywordtype">unsigned</span>&amp; t, <span class="keyword">const</span> Vector&lt;double&gt;&amp; xi,</div>
@@ -251,7 +251,7 @@ Representing the curvilinear domain boundary by a  GeomObject</h1>
 <div class="line">}; <span class="comment">// end of MyUnitCircle</span></div>
 <div class="ttc" id="aclassMyUnitCircle_html"><div class="ttname"><a href="classMyUnitCircle.html">MyUnitCircle</a></div><div class="ttdoc">Unit circle as GeomObject.</div><div class="ttdef"><b>Definition:</b> <a href="two__d__unsteady__heat__adapt_8cc_source.html#l00053">two_d_unsteady_heat_adapt.cc:54</a></div></div>
 <div class="ttc" id="aclassMyUnitCircle_html_a056add64776e52a8ea2ba2e9d6d0e32d"><div class="ttname"><a href="classMyUnitCircle.html#a056add64776e52a8ea2ba2e9d6d0e32d">MyUnitCircle::MyUnitCircle</a></div><div class="ttdeci">MyUnitCircle()</div><div class="ttdoc">Constructor: The circle is a 1D object (i.e. it's parametrised by one intrinsic coordinate) in 2D spa...</div><div class="ttdef"><b>Definition:</b> <a href="two__d__unsteady__heat__adapt_8cc_source.html#l00061">two_d_unsteady_heat_adapt.cc:61</a></div></div>
-<div class="ttc" id="aclassMyUnitCircle_html_ab60b73d1c28b013c40dd2aaa98072261"><div class="ttname"><a href="classMyUnitCircle.html#ab60b73d1c28b013c40dd2aaa98072261">MyUnitCircle::position</a></div><div class="ttdeci">void position(const Vector&lt; double &gt; &amp;xi, Vector&lt; double &gt; &amp;r) const</div><div class="ttdoc">Current position vector to material point at Lagrangian coordinate xi</div><div class="ttdef"><b>Definition:</b> <a href="two__d__unsteady__heat__adapt_8cc_source.html#l00068">two_d_unsteady_heat_adapt.cc:68</a></div></div>
+<div class="ttc" id="aclassMyUnitCircle_html_ab60b73d1c28b013c40dd2aaa98072261"><div class="ttname"><a href="classMyUnitCircle.html#ab60b73d1c28b013c40dd2aaa98072261">MyUnitCircle::position</a></div><div class="ttdeci">void position(const Vector&lt; double &gt; &amp;xi, Vector&lt; double &gt; &amp;r) const</div><div class="ttdoc">Current position vector to material point at Lagrangian coordinate xi.</div><div class="ttdef"><b>Definition:</b> <a href="two__d__unsteady__heat__adapt_8cc_source.html#l00068">two_d_unsteady_heat_adapt.cc:68</a></div></div>
 <div class="ttc" id="aclassMyUnitCircle_html_ae6b321a25ef6f6b12d7c9a225f91140d"><div class="ttname"><a href="classMyUnitCircle.html#ae6b321a25ef6f6b12d7c9a225f91140d">MyUnitCircle::~MyUnitCircle</a></div><div class="ttdeci">virtual ~MyUnitCircle()</div><div class="ttdoc">Destructor: Empty.</div><div class="ttdef"><b>Definition:</b> <a href="two__d__unsteady__heat__adapt_8cc_source.html#l00064">two_d_unsteady_heat_adapt.cc:64</a></div></div>
 </div><!-- fragment --><hr  />
  <hr  />
@@ -281,7 +281,7 @@ The main function</h1>
 <div class="line"> problem.bulk_mesh_pt()-&gt;min_permitted_error()=0.0001;</div>
 <div class="ttc" id="aclassRefineableUnsteadyHeatProblem_html"><div class="ttname"><a href="classRefineableUnsteadyHeatProblem.html">RefineableUnsteadyHeatProblem</a></div><div class="ttdoc">Unsteady heat problem in quarter circle domain.</div><div class="ttdef"><b>Definition:</b> <a href="two__d__unsteady__heat__adapt_8cc_source.html#l00187">two_d_unsteady_heat_adapt.cc:188</a></div></div>
 <div class="ttc" id="anamespaceTanhSolnForUnsteadyHeat_html_aea922a29dfeeb80ef4768def0d6fbde4"><div class="ttname"><a href="namespaceTanhSolnForUnsteadyHeat.html#aea922a29dfeeb80ef4768def0d6fbde4">TanhSolnForUnsteadyHeat::get_source</a></div><div class="ttdeci">void get_source(const double &amp;time, const Vector&lt; double &gt; &amp;x, double &amp;source)</div><div class="ttdoc">Source function to make it an exact solution.</div><div class="ttdef"><b>Definition:</b> <a href="two__d__unsteady__heat__adapt_8cc_source.html#l00140">two_d_unsteady_heat_adapt.cc:140</a></div></div>
-<div class="ttc" id="atwo__d__unsteady__heat__adapt_8cc_html_a0ddf1224851353fc92bfbff6f499fa97"><div class="ttname"><a href="two__d__unsteady__heat__adapt_8cc.html#a0ddf1224851353fc92bfbff6f499fa97">main</a></div><div class="ttdeci">int main(int argc, char *argv[])</div><div class="ttdef"><b>Definition:</b> <a href="two__d__unsteady__heat__adapt_8cc_source.html#l00884">two_d_unsteady_heat_adapt.cc:884</a></div></div>
+<div class="ttc" id="atwo__d__unsteady__heat__adapt_8cc_html_a0ddf1224851353fc92bfbff6f499fa97"><div class="ttname"><a href="two__d__unsteady__heat__adapt_8cc.html#a0ddf1224851353fc92bfbff6f499fa97">main</a></div><div class="ttdeci">int main(int argc, char *argv[])</div><div class="ttdoc">Demonstrate how to solve an unsteady heat problem with mesh adaptation. Command line arguments specif...</div><div class="ttdef"><b>Definition:</b> <a href="two__d__unsteady__heat__adapt_8cc_source.html#l00884">two_d_unsteady_heat_adapt.cc:884</a></div></div>
 </div><!-- fragment --><p> We create and initialise the boolean flag that indicates if the first timestep is computed, and choose a large initial value for the number of permitted mesh adaptations. We then assign the initial conditions on the coarse initial mesh and retrieve the timestep (chosen when the initial conditions are assigned in <code>set_initial_condition()</code> ) from the problem's <code>Time</code> object.</p>
 <div class="fragment"><div class="line"> <span class="comment">// Set IC</span></div>
 <div class="line"> problem.set_initial_condition();</div>
@@ -362,13 +362,13 @@ The problem class</h1>
 <div class="line"><span class="comment"> /// Update the problem specs after solve (empty)</span></div>
 <div class="line"><span class="comment"></span> <span class="keywordtype">void</span> <a class="code hl_function" href="classRefineableUnsteadyHeatProblem.html#ada522772b79e92a75edf3724d0a273da">actions_after_newton_solve</a>(){}</div>
 <div class="line"><span class="comment"></span> </div>
-<div class="line"><span class="comment"> /// \short Update the problem specs before solve (empty)</span></div>
+<div class="line"><span class="comment"> ///  Update the problem specs before solve (empty)</span></div>
 <div class="line"><span class="comment"></span> <span class="keywordtype">void</span> <a class="code hl_function" href="classRefineableUnsteadyHeatProblem.html#aac1935e15c67b196e6db97dd058511b5">actions_before_newton_solve</a>(){}</div>
 <div class="line"><span class="comment"></span> </div>
 <div class="line"><span class="comment"> /// Update the problem specs after timestep (empty)</span></div>
 <div class="line"><span class="comment"></span> <span class="keywordtype">void</span> <a class="code hl_function" href="classRefineableUnsteadyHeatProblem.html#aa740f2eb1b3909100a04709b401c0b41">actions_after_implicit_timestep</a>(){}</div>
 <div class="line"><span class="comment"></span> </div>
-<div class="line"><span class="comment"> /// \short Update the problem specs before next timestep: </span></div>
+<div class="line"><span class="comment"> ///  Update the problem specs before next timestep: </span></div>
 <div class="line"><span class="comment"> /// Set Dirchlet boundary conditions from exact solution.</span></div>
 <div class="line"><span class="comment"></span> <span class="keywordtype">void</span> <a class="code hl_function" href="classRefineableUnsteadyHeatProblem.html#ac754f1313cd6d684c149443beb5bcf9e">actions_before_implicit_timestep</a>();</div>
 <div class="line"> <span class="comment"></span></div>
@@ -378,29 +378,29 @@ The problem class</h1>
 <div class="line"><span class="comment"> /// Actions after adapt: Rebuild the mesh of prescribed flux elements</span></div>
 <div class="line"><span class="comment"></span> <span class="keywordtype">void</span> <a class="code hl_function" href="classRefineableUnsteadyHeatProblem.html#a1f8a9e91269440c799a2075f989d62b1">actions_after_adapt</a>();</div>
 <div class="line"><span class="comment"></span> </div>
-<div class="line"><span class="comment"> /// \short Set initial condition (incl previous timesteps) according</span></div>
+<div class="line"><span class="comment"> ///  Set initial condition (incl previous timesteps) according</span></div>
 <div class="line"><span class="comment"> /// to specified function. Note that his overloads the virtual</span></div>
 <div class="line"><span class="comment"> /// function in the Problem base class and is therefore executed </span></div>
 <div class="line"><span class="comment"> /// automatically to re-assign the initial conditions during the </span></div>
 <div class="line"><span class="comment"> /// spatially adaptive solution at the first timestep.</span></div>
 <div class="line"><span class="comment"></span> <span class="keywordtype">void</span> <a class="code hl_function" href="classRefineableUnsteadyHeatProblem.html#a30e2e1d62b059982f7014b74f4fe2be9">set_initial_condition</a>();</div>
 <div class="line"><span class="comment"></span> </div>
-<div class="line"><span class="comment"> /// \short Create UnsteadyHeat flux elements on boundary b of the Mesh pointed</span></div>
+<div class="line"><span class="comment"> ///  Create UnsteadyHeat flux elements on boundary b of the Mesh pointed</span></div>
 <div class="line"><span class="comment"> /// to by bulk_mesh_pt and add them to the Mesh object pointed to by </span></div>
 <div class="line"><span class="comment"> /// surface_mesh_pt</span></div>
 <div class="line"><span class="comment"></span> <span class="keywordtype">void</span> <a class="code hl_function" href="classRefineableUnsteadyHeatProblem.html#a65601ec64c73ac578b43f4af04c46569">create_flux_elements</a>(<span class="keyword">const</span> <span class="keywordtype">unsigned</span> &amp;b, Mesh* <span class="keyword">const</span> &amp;<a class="code hl_function" href="classRefineableUnsteadyHeatProblem.html#a49ee185e10fdab1851a67150cbb0710a">bulk_mesh_pt</a>,</div>
 <div class="line">                           Mesh* <span class="keyword">const</span> &amp;surface_mesh_pt);</div>
 <div class="line"><span class="comment"></span> </div>
-<div class="line"><span class="comment"> /// \short Delete UnsteadyHeat flux elements and wipe the surface mesh</span></div>
+<div class="line"><span class="comment"> ///  Delete UnsteadyHeat flux elements and wipe the surface mesh</span></div>
 <div class="line"><span class="comment"></span> <span class="keywordtype">void</span> <a class="code hl_function" href="classRefineableUnsteadyHeatProblem.html#ad2e53af5c385e44e33e400b430b610e8">delete_flux_elements</a>(Mesh* <span class="keyword">const</span> &amp;surface_mesh_pt);</div>
 <div class="line"><span class="comment"></span> </div>
 <div class="line"><span class="comment"> /// Doc the solution</span></div>
 <div class="line"><span class="comment"></span> <span class="keywordtype">void</span> <a class="code hl_function" href="classRefineableUnsteadyHeatProblem.html#a77d590171785b6b5f4070af9401c0e37">doc_solution</a>();</div>
 <div class="line"><span class="comment"></span> </div>
-<div class="line"><span class="comment"> /// \short Dump problem data to allow for later restart</span></div>
+<div class="line"><span class="comment"> ///  Dump problem data to allow for later restart</span></div>
 <div class="line"><span class="comment"></span> <span class="keywordtype">void</span> <a class="code hl_function" href="classRefineableUnsteadyHeatProblem.html#a1fb939c3f9c258fd49328bb1516ced98">dump_it</a>(ofstream&amp; dump_file);</div>
 <div class="line"><span class="comment"></span> </div>
-<div class="line"><span class="comment"> /// \short Read problem data for restart</span></div>
+<div class="line"><span class="comment"> ///  Read problem data for restart</span></div>
 <div class="line"><span class="comment"></span> <span class="keywordtype">void</span> <a class="code hl_function" href="classRefineableUnsteadyHeatProblem.html#af36fa71e72852367411e21b50b179625">restart</a>(ifstream&amp; restart_file);</div>
 <div class="line"><span class="comment"></span> </div>
 <div class="line"><span class="comment"> /// Pointer to bulk mesh</span></div>
@@ -740,7 +740,7 @@ PDF file</h1>
     <footer>
       <div class="container">
         <div class="text-muted" style="float:right;">Generated by <a href="http://www.doxygen.org/index.html">
-          <img style="height:18px;" class="footer-img" src="doxygen.png" alt="doxygen"></a> on Wed Oct 13 2021 08:51:14
+          <img style="height:18px;" class="footer-img" src="doxygen.png" alt="doxygen"></a> on Thu Oct 21 2021 17:39:23
         </div>
       </div>
     </footer>

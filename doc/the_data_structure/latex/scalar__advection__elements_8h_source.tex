@@ -50,30 +50,30 @@
 \DoxyCodeLine{\Hypertarget{scalar__advection__elements_8h_source_l00046}00046   \textcolor{keyword}{template}<\textcolor{keywordtype}{unsigned} DIM>}
 \DoxyCodeLine{\Hypertarget{scalar__advection__elements_8h_source_l00047}\mbox{\hyperlink{classoomph_1_1ScalarAdvectionEquations}{00047}}   \textcolor{keyword}{class }\mbox{\hyperlink{classoomph_1_1ScalarAdvectionEquations}{ScalarAdvectionEquations}} : \textcolor{keyword}{public} \mbox{\hyperlink{classoomph_1_1FluxTransportEquations}{FluxTransportEquations}}<DIM>}
 \DoxyCodeLine{\Hypertarget{scalar__advection__elements_8h_source_l00048}00048   \{\textcolor{comment}{}}
-\DoxyCodeLine{\Hypertarget{scalar__advection__elements_8h_source_l00049}00049 \textcolor{comment}{    /// \(\backslash\)short Typedef for a wind function as a possible function of position}}
-\DoxyCodeLine{\Hypertarget{scalar__advection__elements_8h_source_l00050}\mbox{\hyperlink{classoomph_1_1ScalarAdvectionEquations_af80d315e76fe7392744d5442f1d2386d}{00050}} \textcolor{comment}{}    \textcolor{keyword}{typedef} void (*\mbox{\hyperlink{classoomph_1_1ScalarAdvectionEquations_af80d315e76fe7392744d5442f1d2386d}{ScalarAdvectionWindFctPt}})(\textcolor{keyword}{const} \mbox{\hyperlink{classoomph_1_1Vector}{Vector<double>}}\& x,}
+\DoxyCodeLine{\Hypertarget{scalar__advection__elements_8h_source_l00049}00049 \textcolor{comment}{    ///  Typedef for a wind function as a possible function of position}}
+\DoxyCodeLine{\Hypertarget{scalar__advection__elements_8h_source_l00050}\mbox{\hyperlink{classoomph_1_1ScalarAdvectionEquations_af80d315e76fe7392744d5442f1d2386d}{00050}} \textcolor{comment}{}    \textcolor{keyword}{typedef} void (*\mbox{\hyperlink{classoomph_1_1ScalarAdvectionEquations_af80d315e76fe7392744d5442f1d2386d}{ScalarAdvectionWindFctPt}})(\textcolor{keyword}{const} \mbox{\hyperlink{classoomph_1_1Vector}{Vector<double>}}\& \mbox{\hyperlink{namespaceoomph_a9d1d2da2b8bb8e73af72b5cadb8fe97c}{x}},}
 \DoxyCodeLine{\Hypertarget{scalar__advection__elements_8h_source_l00051}00051                                              \mbox{\hyperlink{classoomph_1_1Vector}{Vector<double>}}\& wind);}
 \DoxyCodeLine{\Hypertarget{scalar__advection__elements_8h_source_l00052}00052 \textcolor{comment}{}}
-\DoxyCodeLine{\Hypertarget{scalar__advection__elements_8h_source_l00053}00053 \textcolor{comment}{    /// \(\backslash\)short Function pointer to the wind function}}
+\DoxyCodeLine{\Hypertarget{scalar__advection__elements_8h_source_l00053}00053 \textcolor{comment}{    ///  Function pointer to the wind function}}
 \DoxyCodeLine{\Hypertarget{scalar__advection__elements_8h_source_l00054}\mbox{\hyperlink{classoomph_1_1ScalarAdvectionEquations_a6c98466fe7083d8d7542c35d23c918c1}{00054}} \textcolor{comment}{}    \mbox{\hyperlink{classoomph_1_1ScalarAdvectionEquations_af80d315e76fe7392744d5442f1d2386d}{ScalarAdvectionWindFctPt}} \mbox{\hyperlink{classoomph_1_1ScalarAdvectionEquations_a6c98466fe7083d8d7542c35d23c918c1}{Wind\_fct\_pt}};}
 \DoxyCodeLine{\Hypertarget{scalar__advection__elements_8h_source_l00055}00055 }
 \DoxyCodeLine{\Hypertarget{scalar__advection__elements_8h_source_l00056}00056   \textcolor{keyword}{protected}:\textcolor{comment}{}}
-\DoxyCodeLine{\Hypertarget{scalar__advection__elements_8h_source_l00057}00057 \textcolor{comment}{    /// \(\backslash\)short A single flux is interpolated}}
+\DoxyCodeLine{\Hypertarget{scalar__advection__elements_8h_source_l00057}00057 \textcolor{comment}{    ///  A single flux is interpolated}}
 \DoxyCodeLine{\Hypertarget{scalar__advection__elements_8h_source_l00058}\mbox{\hyperlink{classoomph_1_1ScalarAdvectionEquations_adb45110daf7b47f7a2091448765b6f06}{00058}} \textcolor{comment}{}    \textcolor{keyword}{inline} \textcolor{keywordtype}{unsigned} \mbox{\hyperlink{classoomph_1_1ScalarAdvectionEquations_adb45110daf7b47f7a2091448765b6f06}{nflux}}()\textcolor{keyword}{ const}}
 \DoxyCodeLine{\Hypertarget{scalar__advection__elements_8h_source_l00059}00059 \textcolor{keyword}{    }\{}
 \DoxyCodeLine{\Hypertarget{scalar__advection__elements_8h_source_l00060}00060       \textcolor{keywordflow}{return} 1;}
 \DoxyCodeLine{\Hypertarget{scalar__advection__elements_8h_source_l00061}00061     \}}
 \DoxyCodeLine{\Hypertarget{scalar__advection__elements_8h_source_l00062}00062 \textcolor{comment}{}}
-\DoxyCodeLine{\Hypertarget{scalar__advection__elements_8h_source_l00063}00063 \textcolor{comment}{    /// \(\backslash\)short Return the flux as a function of the unknown}}
-\DoxyCodeLine{\Hypertarget{scalar__advection__elements_8h_source_l00064}00064 \textcolor{comment}{}    \textcolor{keywordtype}{void} \mbox{\hyperlink{classoomph_1_1ScalarAdvectionEquations_af5a06cfaa7bff5d831b739545a57580f}{flux}}(\textcolor{keyword}{const} \mbox{\hyperlink{classoomph_1_1Vector}{Vector<double>}}\& u, \mbox{\hyperlink{classoomph_1_1DenseMatrix}{DenseMatrix<double>}}\& f);}
+\DoxyCodeLine{\Hypertarget{scalar__advection__elements_8h_source_l00063}00063 \textcolor{comment}{    ///  Return the flux as a function of the unknown}}
+\DoxyCodeLine{\Hypertarget{scalar__advection__elements_8h_source_l00064}00064 \textcolor{comment}{}    \textcolor{keywordtype}{void} \mbox{\hyperlink{classoomph_1_1ScalarAdvectionEquations_af5a06cfaa7bff5d831b739545a57580f}{flux}}(\textcolor{keyword}{const} \mbox{\hyperlink{classoomph_1_1Vector}{Vector<double>}}\& \mbox{\hyperlink{namespaceoomph_ac0ed65f6db53d9ad737e1d2a69767d25}{u}}, \mbox{\hyperlink{classoomph_1_1DenseMatrix}{DenseMatrix<double>}}\& \mbox{\hyperlink{namespaceoomph_ad835af913df4cbdc5648440f91b794ab}{f}});}
 \DoxyCodeLine{\Hypertarget{scalar__advection__elements_8h_source_l00065}00065 \textcolor{comment}{}}
-\DoxyCodeLine{\Hypertarget{scalar__advection__elements_8h_source_l00066}00066 \textcolor{comment}{    /// \(\backslash\)short Return the flux derivatives as a function of the unknowns}}
-\DoxyCodeLine{\Hypertarget{scalar__advection__elements_8h_source_l00067}00067 \textcolor{comment}{}    \textcolor{keywordtype}{void} \mbox{\hyperlink{classoomph_1_1ScalarAdvectionEquations_af0073678c951417d6497ea0c772b30dc}{dflux\_du}}(\textcolor{keyword}{const} \mbox{\hyperlink{classoomph_1_1Vector}{Vector<double>}}\& u, \mbox{\hyperlink{classoomph_1_1RankThreeTensor}{RankThreeTensor<double>}}\& df\_du);}
+\DoxyCodeLine{\Hypertarget{scalar__advection__elements_8h_source_l00066}00066 \textcolor{comment}{    ///  Return the flux derivatives as a function of the unknowns}}
+\DoxyCodeLine{\Hypertarget{scalar__advection__elements_8h_source_l00067}00067 \textcolor{comment}{}    \textcolor{keywordtype}{void} \mbox{\hyperlink{classoomph_1_1ScalarAdvectionEquations_af0073678c951417d6497ea0c772b30dc}{dflux\_du}}(\textcolor{keyword}{const} \mbox{\hyperlink{classoomph_1_1Vector}{Vector<double>}}\& \mbox{\hyperlink{namespaceoomph_ac0ed65f6db53d9ad737e1d2a69767d25}{u}}, \mbox{\hyperlink{classoomph_1_1RankThreeTensor}{RankThreeTensor<double>}}\& df\_du);}
 \DoxyCodeLine{\Hypertarget{scalar__advection__elements_8h_source_l00068}00068 \textcolor{comment}{}}
-\DoxyCodeLine{\Hypertarget{scalar__advection__elements_8h_source_l00069}00069 \textcolor{comment}{    ///\(\backslash\)short Return the wind at a given position}}
+\DoxyCodeLine{\Hypertarget{scalar__advection__elements_8h_source_l00069}00069 \textcolor{comment}{    /// Return the wind at a given position}}
 \DoxyCodeLine{\Hypertarget{scalar__advection__elements_8h_source_l00070}\mbox{\hyperlink{classoomph_1_1ScalarAdvectionEquations_ae3a022b75a6f2c343c18a938ee3fb457}{00070}} \textcolor{comment}{}    \textcolor{keyword}{inline} \textcolor{keyword}{virtual} \textcolor{keywordtype}{void} \mbox{\hyperlink{classoomph_1_1ScalarAdvectionEquations_ae3a022b75a6f2c343c18a938ee3fb457}{get\_wind\_scalar\_adv}}(\textcolor{keyword}{const} \textcolor{keywordtype}{unsigned}\& ipt,}
 \DoxyCodeLine{\Hypertarget{scalar__advection__elements_8h_source_l00071}00071                                             \textcolor{keyword}{const} \mbox{\hyperlink{classoomph_1_1Vector}{Vector<double>}}\& \mbox{\hyperlink{cfortran_8h_ab7123126e4885ef647dd9c6e3807a21c}{s}},}
-\DoxyCodeLine{\Hypertarget{scalar__advection__elements_8h_source_l00072}00072                                             \textcolor{keyword}{const} \mbox{\hyperlink{classoomph_1_1Vector}{Vector<double>}}\& x,}
+\DoxyCodeLine{\Hypertarget{scalar__advection__elements_8h_source_l00072}00072                                             \textcolor{keyword}{const} \mbox{\hyperlink{classoomph_1_1Vector}{Vector<double>}}\& \mbox{\hyperlink{namespaceoomph_a9d1d2da2b8bb8e73af72b5cadb8fe97c}{x}},}
 \DoxyCodeLine{\Hypertarget{scalar__advection__elements_8h_source_l00073}00073                                             \mbox{\hyperlink{classoomph_1_1Vector}{Vector<double>}}\& wind)\textcolor{keyword}{ const}}
 \DoxyCodeLine{\Hypertarget{scalar__advection__elements_8h_source_l00074}00074 \textcolor{keyword}{    }\{}
 \DoxyCodeLine{\Hypertarget{scalar__advection__elements_8h_source_l00075}00075       \textcolor{comment}{// If no wind function has been set, return zero}}
@@ -87,7 +87,7 @@
 \DoxyCodeLine{\Hypertarget{scalar__advection__elements_8h_source_l00083}00083       \textcolor{keywordflow}{else}}
 \DoxyCodeLine{\Hypertarget{scalar__advection__elements_8h_source_l00084}00084       \{}
 \DoxyCodeLine{\Hypertarget{scalar__advection__elements_8h_source_l00085}00085         \textcolor{comment}{// Get wind}}
-\DoxyCodeLine{\Hypertarget{scalar__advection__elements_8h_source_l00086}00086         (*Wind\_fct\_pt)(x, wind);}
+\DoxyCodeLine{\Hypertarget{scalar__advection__elements_8h_source_l00086}00086         (*Wind\_fct\_pt)(\mbox{\hyperlink{namespaceoomph_a9d1d2da2b8bb8e73af72b5cadb8fe97c}{x}}, wind);}
 \DoxyCodeLine{\Hypertarget{scalar__advection__elements_8h_source_l00087}00087       \}}
 \DoxyCodeLine{\Hypertarget{scalar__advection__elements_8h_source_l00088}00088     \}}
 \DoxyCodeLine{\Hypertarget{scalar__advection__elements_8h_source_l00089}00089 }
@@ -109,7 +109,7 @@
 \DoxyCodeLine{\Hypertarget{scalar__advection__elements_8h_source_l00105}00105       \textcolor{keywordflow}{return} \mbox{\hyperlink{classoomph_1_1ScalarAdvectionEquations_a6c98466fe7083d8d7542c35d23c918c1}{Wind\_fct\_pt}};}
 \DoxyCodeLine{\Hypertarget{scalar__advection__elements_8h_source_l00106}00106     \}}
 \DoxyCodeLine{\Hypertarget{scalar__advection__elements_8h_source_l00107}00107 \textcolor{comment}{}}
-\DoxyCodeLine{\Hypertarget{scalar__advection__elements_8h_source_l00108}00108 \textcolor{comment}{    ///\(\backslash\)short The number of unknowns at each node is the number of values}}
+\DoxyCodeLine{\Hypertarget{scalar__advection__elements_8h_source_l00108}00108 \textcolor{comment}{    /// The number of unknowns at each node is the number of values}}
 \DoxyCodeLine{\Hypertarget{scalar__advection__elements_8h_source_l00109}\mbox{\hyperlink{classoomph_1_1ScalarAdvectionEquations_a71a3c28feb1156376cbf55e7043e27e8}{00109}} \textcolor{comment}{}    \textcolor{keywordtype}{unsigned} \mbox{\hyperlink{classoomph_1_1ScalarAdvectionEquations_a71a3c28feb1156376cbf55e7043e27e8}{required\_nvalue}}(\textcolor{keyword}{const} \textcolor{keywordtype}{unsigned}\& n)\textcolor{keyword}{ const}}
 \DoxyCodeLine{\Hypertarget{scalar__advection__elements_8h_source_l00110}00110 \textcolor{keyword}{    }\{}
 \DoxyCodeLine{\Hypertarget{scalar__advection__elements_8h_source_l00111}00111       \textcolor{keywordflow}{return} 1;}
@@ -133,7 +133,7 @@
 \DoxyCodeLine{\Hypertarget{scalar__advection__elements_8h_source_l00129}00129       \mbox{\hyperlink{classoomph_1_1DShape}{DShape}} dpsidx(n\_node, DIM);}
 \DoxyCodeLine{\Hypertarget{scalar__advection__elements_8h_source_l00130}00130 }
 \DoxyCodeLine{\Hypertarget{scalar__advection__elements_8h_source_l00131}00131       \textcolor{comment}{// Find the number of integration points}}
-\DoxyCodeLine{\Hypertarget{scalar__advection__elements_8h_source_l00132}00132       \textcolor{keywordtype}{unsigned} n\_intpt = this-\/>\mbox{\hyperlink{classoomph_1_1FiniteElement_a1a4723c4ee3fe4c6404203bb987f804e}{integral\_pt}}()-\/>\mbox{\hyperlink{classoomph_1_1Integral_a1a270de9d99a1fcf1d25a6c1017f65fa}{nweight}}();}
+\DoxyCodeLine{\Hypertarget{scalar__advection__elements_8h_source_l00132}00132       \textcolor{keywordtype}{unsigned} n\_intpt = this-\/>\mbox{\hyperlink{classoomph_1_1FiniteElement_a1a4723c4ee3fe4c6404203bb987f804e}{integral\_pt}}()-\/>nweight();}
 \DoxyCodeLine{\Hypertarget{scalar__advection__elements_8h_source_l00133}00133 }
 \DoxyCodeLine{\Hypertarget{scalar__advection__elements_8h_source_l00134}00134       error.resize(n\_flux);}
 \DoxyCodeLine{\Hypertarget{scalar__advection__elements_8h_source_l00135}00135       norm.resize(n\_flux);}
@@ -149,51 +149,51 @@
 \DoxyCodeLine{\Hypertarget{scalar__advection__elements_8h_source_l00145}00145       \textcolor{keywordflow}{for} (\textcolor{keywordtype}{unsigned} ipt = 0; ipt < n\_intpt; ipt++)}
 \DoxyCodeLine{\Hypertarget{scalar__advection__elements_8h_source_l00146}00146       \{}
 \DoxyCodeLine{\Hypertarget{scalar__advection__elements_8h_source_l00147}00147         \textcolor{comment}{// Get the shape functions at the knot}}
-\DoxyCodeLine{\Hypertarget{scalar__advection__elements_8h_source_l00148}00148         \textcolor{keywordtype}{double} J = this-\/>\mbox{\hyperlink{classoomph_1_1FiniteElement_a368c44e295e35dd0b697be3222ce7b2f}{dshape\_eulerian\_at\_knot}}(ipt, psi, dpsidx);}
+\DoxyCodeLine{\Hypertarget{scalar__advection__elements_8h_source_l00148}00148         \textcolor{keywordtype}{double} J = this-\/>\mbox{\hyperlink{classoomph_1_1FiniteElement_a837c4849f68842295ab5e77c8ecb8b93}{dshape\_eulerian\_at\_knot}}(ipt, psi, dpsidx);}
 \DoxyCodeLine{\Hypertarget{scalar__advection__elements_8h_source_l00149}00149 }
 \DoxyCodeLine{\Hypertarget{scalar__advection__elements_8h_source_l00150}00150         \textcolor{comment}{// Get the integral weight}}
-\DoxyCodeLine{\Hypertarget{scalar__advection__elements_8h_source_l00151}00151         \textcolor{keywordtype}{double} \mbox{\hyperlink{namespaceoomph_1_1QuadTreeNames_a8954a5947b19986b8c4b755bc7639f7daabab2a070c062503375f8264f1b6d7d6}{W}} = this-\/>\mbox{\hyperlink{classoomph_1_1FiniteElement_a1a4723c4ee3fe4c6404203bb987f804e}{integral\_pt}}()-\/>\mbox{\hyperlink{classoomph_1_1Integral_ac65335e2aab120b285b3d6c294507b06}{weight}}(ipt) * J;}
+\DoxyCodeLine{\Hypertarget{scalar__advection__elements_8h_source_l00151}00151         \textcolor{keywordtype}{double} \mbox{\hyperlink{namespaceoomph_ab40f6d5233caa62dd428818b4cba72d5}{W}} = this-\/>\mbox{\hyperlink{classoomph_1_1FiniteElement_a1a4723c4ee3fe4c6404203bb987f804e}{integral\_pt}}()-\/>weight(ipt) * J;}
 \DoxyCodeLine{\Hypertarget{scalar__advection__elements_8h_source_l00152}00152 }
 \DoxyCodeLine{\Hypertarget{scalar__advection__elements_8h_source_l00153}00153         \textcolor{comment}{// Storage for the local functions}}
-\DoxyCodeLine{\Hypertarget{scalar__advection__elements_8h_source_l00154}00154         \mbox{\hyperlink{classoomph_1_1Vector}{Vector<double>}} \mbox{\hyperlink{classoomph_1_1FiniteElement_a5a9c1ead9819cd17603096e63087020f}{interpolated\_x}}(DIM, 0.0);}
+\DoxyCodeLine{\Hypertarget{scalar__advection__elements_8h_source_l00154}00154         \mbox{\hyperlink{classoomph_1_1Vector}{Vector<double>}} \mbox{\hyperlink{classoomph_1_1FiniteElement_a40b7ab54112a2c6100da99ac801f7a06}{interpolated\_x}}(DIM, 0.0);}
 \DoxyCodeLine{\Hypertarget{scalar__advection__elements_8h_source_l00155}00155         \mbox{\hyperlink{classoomph_1_1Vector}{Vector<double>}} interpolated\_u(n\_flux, 0.0);}
 \DoxyCodeLine{\Hypertarget{scalar__advection__elements_8h_source_l00156}00156 }
 \DoxyCodeLine{\Hypertarget{scalar__advection__elements_8h_source_l00157}00157         \textcolor{comment}{// Loop over the shape functions}}
 \DoxyCodeLine{\Hypertarget{scalar__advection__elements_8h_source_l00158}00158         \textcolor{keywordflow}{for} (\textcolor{keywordtype}{unsigned} l = 0; l < n\_node; l++)}
 \DoxyCodeLine{\Hypertarget{scalar__advection__elements_8h_source_l00159}00159         \{}
 \DoxyCodeLine{\Hypertarget{scalar__advection__elements_8h_source_l00160}00160           \textcolor{comment}{// Locally cache the shape function}}
-\DoxyCodeLine{\Hypertarget{scalar__advection__elements_8h_source_l00161}00161           \textcolor{keyword}{const} \textcolor{keywordtype}{double} psi\_ = psi(l);}
+\DoxyCodeLine{\Hypertarget{scalar__advection__elements_8h_source_l00161}00161           \textcolor{keyword}{const} \textcolor{keywordtype}{double} \mbox{\hyperlink{namespaceoomph_aff0c55ce31f12df52b2fe5ae647ffebe}{psi\_}} = psi(l);}
 \DoxyCodeLine{\Hypertarget{scalar__advection__elements_8h_source_l00162}00162           \textcolor{keywordflow}{for} (\textcolor{keywordtype}{unsigned} \mbox{\hyperlink{cfortran_8h_adb50e893b86b3e55e751a42eab3cba82}{i}} = 0; \mbox{\hyperlink{cfortran_8h_adb50e893b86b3e55e751a42eab3cba82}{i}} < DIM; \mbox{\hyperlink{cfortran_8h_adb50e893b86b3e55e751a42eab3cba82}{i}}++)}
 \DoxyCodeLine{\Hypertarget{scalar__advection__elements_8h_source_l00163}00163           \{}
-\DoxyCodeLine{\Hypertarget{scalar__advection__elements_8h_source_l00164}00164             \mbox{\hyperlink{classoomph_1_1FiniteElement_a5a9c1ead9819cd17603096e63087020f}{interpolated\_x}}[\mbox{\hyperlink{cfortran_8h_adb50e893b86b3e55e751a42eab3cba82}{i}}] += this-\/>\mbox{\hyperlink{classoomph_1_1FiniteElement_a9152c16ae9899168bcdaac7c2f977444}{nodal\_position}}(l, \mbox{\hyperlink{cfortran_8h_adb50e893b86b3e55e751a42eab3cba82}{i}}) * psi\_;}
+\DoxyCodeLine{\Hypertarget{scalar__advection__elements_8h_source_l00164}00164             \mbox{\hyperlink{classoomph_1_1FiniteElement_a40b7ab54112a2c6100da99ac801f7a06}{interpolated\_x}}[\mbox{\hyperlink{cfortran_8h_adb50e893b86b3e55e751a42eab3cba82}{i}}] += this-\/>\mbox{\hyperlink{classoomph_1_1FiniteElement_a9152c16ae9899168bcdaac7c2f977444}{nodal\_position}}(l, \mbox{\hyperlink{cfortran_8h_adb50e893b86b3e55e751a42eab3cba82}{i}}) * \mbox{\hyperlink{namespaceoomph_aff0c55ce31f12df52b2fe5ae647ffebe}{psi\_}};}
 \DoxyCodeLine{\Hypertarget{scalar__advection__elements_8h_source_l00165}00165           \}}
 \DoxyCodeLine{\Hypertarget{scalar__advection__elements_8h_source_l00166}00166 }
 \DoxyCodeLine{\Hypertarget{scalar__advection__elements_8h_source_l00167}00167           \textcolor{keywordflow}{for} (\textcolor{keywordtype}{unsigned} \mbox{\hyperlink{cfortran_8h_adb50e893b86b3e55e751a42eab3cba82}{i}} = 0; \mbox{\hyperlink{cfortran_8h_adb50e893b86b3e55e751a42eab3cba82}{i}} < n\_flux; \mbox{\hyperlink{cfortran_8h_adb50e893b86b3e55e751a42eab3cba82}{i}}++)}
 \DoxyCodeLine{\Hypertarget{scalar__advection__elements_8h_source_l00168}00168           \{}
 \DoxyCodeLine{\Hypertarget{scalar__advection__elements_8h_source_l00169}00169             \textcolor{comment}{// Calculate the velocity and tangent vector}}
-\DoxyCodeLine{\Hypertarget{scalar__advection__elements_8h_source_l00170}00170             interpolated\_u[\mbox{\hyperlink{cfortran_8h_adb50e893b86b3e55e751a42eab3cba82}{i}}] += this-\/>\mbox{\hyperlink{classoomph_1_1FiniteElement_a28fd5c2d4aeba5ef65bee0e0d72569f5}{nodal\_value}}(l, \mbox{\hyperlink{cfortran_8h_adb50e893b86b3e55e751a42eab3cba82}{i}}) * psi\_;}
+\DoxyCodeLine{\Hypertarget{scalar__advection__elements_8h_source_l00170}00170             interpolated\_u[\mbox{\hyperlink{cfortran_8h_adb50e893b86b3e55e751a42eab3cba82}{i}}] += this-\/>\mbox{\hyperlink{classoomph_1_1FiniteElement_a28fd5c2d4aeba5ef65bee0e0d72569f5}{nodal\_value}}(l, \mbox{\hyperlink{cfortran_8h_adb50e893b86b3e55e751a42eab3cba82}{i}}) * \mbox{\hyperlink{namespaceoomph_aff0c55ce31f12df52b2fe5ae647ffebe}{psi\_}};}
 \DoxyCodeLine{\Hypertarget{scalar__advection__elements_8h_source_l00171}00171           \}}
 \DoxyCodeLine{\Hypertarget{scalar__advection__elements_8h_source_l00172}00172         \}}
 \DoxyCodeLine{\Hypertarget{scalar__advection__elements_8h_source_l00173}00173 }
 \DoxyCodeLine{\Hypertarget{scalar__advection__elements_8h_source_l00174}00174         \textcolor{comment}{// Get the global wind}}
 \DoxyCodeLine{\Hypertarget{scalar__advection__elements_8h_source_l00175}00175         \mbox{\hyperlink{classoomph_1_1Vector}{Vector<double>}} wind(DIM);}
-\DoxyCodeLine{\Hypertarget{scalar__advection__elements_8h_source_l00176}00176         this-\/>\mbox{\hyperlink{classoomph_1_1ScalarAdvectionEquations_ae3a022b75a6f2c343c18a938ee3fb457}{get\_wind\_scalar\_adv}}(ipt, \mbox{\hyperlink{cfortran_8h_ab7123126e4885ef647dd9c6e3807a21c}{s}}, \mbox{\hyperlink{classoomph_1_1FiniteElement_a5a9c1ead9819cd17603096e63087020f}{interpolated\_x}}, wind);}
+\DoxyCodeLine{\Hypertarget{scalar__advection__elements_8h_source_l00176}00176         this-\/>\mbox{\hyperlink{classoomph_1_1ScalarAdvectionEquations_ae3a022b75a6f2c343c18a938ee3fb457}{get\_wind\_scalar\_adv}}(ipt, \mbox{\hyperlink{cfortran_8h_ab7123126e4885ef647dd9c6e3807a21c}{s}}, \mbox{\hyperlink{classoomph_1_1FiniteElement_a40b7ab54112a2c6100da99ac801f7a06}{interpolated\_x}}, wind);}
 \DoxyCodeLine{\Hypertarget{scalar__advection__elements_8h_source_l00177}00177 }
 \DoxyCodeLine{\Hypertarget{scalar__advection__elements_8h_source_l00178}00178         \textcolor{comment}{// Rescale the position}}
 \DoxyCodeLine{\Hypertarget{scalar__advection__elements_8h_source_l00179}00179         \textcolor{keywordflow}{for} (\textcolor{keywordtype}{unsigned} \mbox{\hyperlink{cfortran_8h_adb50e893b86b3e55e751a42eab3cba82}{i}} = 0; \mbox{\hyperlink{cfortran_8h_adb50e893b86b3e55e751a42eab3cba82}{i}} < DIM; \mbox{\hyperlink{cfortran_8h_adb50e893b86b3e55e751a42eab3cba82}{i}}++)}
 \DoxyCodeLine{\Hypertarget{scalar__advection__elements_8h_source_l00180}00180         \{}
-\DoxyCodeLine{\Hypertarget{scalar__advection__elements_8h_source_l00181}00181           \mbox{\hyperlink{classoomph_1_1FiniteElement_a5a9c1ead9819cd17603096e63087020f}{interpolated\_x}}[\mbox{\hyperlink{cfortran_8h_adb50e893b86b3e55e751a42eab3cba82}{i}}] -\/= wind[\mbox{\hyperlink{cfortran_8h_adb50e893b86b3e55e751a42eab3cba82}{i}}] * \mbox{\hyperlink{cfortran_8h_af6f0bd3dc13317f895c91323c25c2b8f}{t}};}
+\DoxyCodeLine{\Hypertarget{scalar__advection__elements_8h_source_l00181}00181           \mbox{\hyperlink{classoomph_1_1FiniteElement_a40b7ab54112a2c6100da99ac801f7a06}{interpolated\_x}}[\mbox{\hyperlink{cfortran_8h_adb50e893b86b3e55e751a42eab3cba82}{i}}] -\/= wind[\mbox{\hyperlink{cfortran_8h_adb50e893b86b3e55e751a42eab3cba82}{i}}] * \mbox{\hyperlink{cfortran_8h_af6f0bd3dc13317f895c91323c25c2b8f}{t}};}
 \DoxyCodeLine{\Hypertarget{scalar__advection__elements_8h_source_l00182}00182         \}}
 \DoxyCodeLine{\Hypertarget{scalar__advection__elements_8h_source_l00183}00183 }
 \DoxyCodeLine{\Hypertarget{scalar__advection__elements_8h_source_l00184}00184         \textcolor{comment}{// Now get the initial condition at this value of x}}
 \DoxyCodeLine{\Hypertarget{scalar__advection__elements_8h_source_l00185}00185         \mbox{\hyperlink{classoomph_1_1Vector}{Vector<double>}} exact\_u(n\_flux, 0.0);}
-\DoxyCodeLine{\Hypertarget{scalar__advection__elements_8h_source_l00186}00186         (*initial\_condition\_pt)(0.0, \mbox{\hyperlink{classoomph_1_1FiniteElement_a5a9c1ead9819cd17603096e63087020f}{interpolated\_x}}, exact\_u);}
+\DoxyCodeLine{\Hypertarget{scalar__advection__elements_8h_source_l00186}00186         (*initial\_condition\_pt)(0.0, \mbox{\hyperlink{classoomph_1_1FiniteElement_a40b7ab54112a2c6100da99ac801f7a06}{interpolated\_x}}, exact\_u);}
 \DoxyCodeLine{\Hypertarget{scalar__advection__elements_8h_source_l00187}00187 }
 \DoxyCodeLine{\Hypertarget{scalar__advection__elements_8h_source_l00188}00188         \textcolor{comment}{// Loop over the unknowns}}
 \DoxyCodeLine{\Hypertarget{scalar__advection__elements_8h_source_l00189}00189         \textcolor{keywordflow}{for} (\textcolor{keywordtype}{unsigned} \mbox{\hyperlink{cfortran_8h_adb50e893b86b3e55e751a42eab3cba82}{i}} = 0; \mbox{\hyperlink{cfortran_8h_adb50e893b86b3e55e751a42eab3cba82}{i}} < n\_flux; \mbox{\hyperlink{cfortran_8h_adb50e893b86b3e55e751a42eab3cba82}{i}}++)}
 \DoxyCodeLine{\Hypertarget{scalar__advection__elements_8h_source_l00190}00190         \{}
-\DoxyCodeLine{\Hypertarget{scalar__advection__elements_8h_source_l00191}00191           error[\mbox{\hyperlink{cfortran_8h_adb50e893b86b3e55e751a42eab3cba82}{i}}] += pow((interpolated\_u[\mbox{\hyperlink{cfortran_8h_adb50e893b86b3e55e751a42eab3cba82}{i}}] -\/ exact\_u[\mbox{\hyperlink{cfortran_8h_adb50e893b86b3e55e751a42eab3cba82}{i}}]), 2.0) * \mbox{\hyperlink{namespaceoomph_1_1QuadTreeNames_a8954a5947b19986b8c4b755bc7639f7daabab2a070c062503375f8264f1b6d7d6}{W}};}
-\DoxyCodeLine{\Hypertarget{scalar__advection__elements_8h_source_l00192}00192           norm[\mbox{\hyperlink{cfortran_8h_adb50e893b86b3e55e751a42eab3cba82}{i}}] += interpolated\_u[\mbox{\hyperlink{cfortran_8h_adb50e893b86b3e55e751a42eab3cba82}{i}}] * interpolated\_u[\mbox{\hyperlink{cfortran_8h_adb50e893b86b3e55e751a42eab3cba82}{i}}] * \mbox{\hyperlink{namespaceoomph_1_1QuadTreeNames_a8954a5947b19986b8c4b755bc7639f7daabab2a070c062503375f8264f1b6d7d6}{W}};}
+\DoxyCodeLine{\Hypertarget{scalar__advection__elements_8h_source_l00191}00191           error[\mbox{\hyperlink{cfortran_8h_adb50e893b86b3e55e751a42eab3cba82}{i}}] += pow((interpolated\_u[\mbox{\hyperlink{cfortran_8h_adb50e893b86b3e55e751a42eab3cba82}{i}}] -\/ exact\_u[\mbox{\hyperlink{cfortran_8h_adb50e893b86b3e55e751a42eab3cba82}{i}}]), 2.0) * \mbox{\hyperlink{namespaceoomph_ab40f6d5233caa62dd428818b4cba72d5}{W}};}
+\DoxyCodeLine{\Hypertarget{scalar__advection__elements_8h_source_l00192}00192           norm[\mbox{\hyperlink{cfortran_8h_adb50e893b86b3e55e751a42eab3cba82}{i}}] += interpolated\_u[\mbox{\hyperlink{cfortran_8h_adb50e893b86b3e55e751a42eab3cba82}{i}}] * interpolated\_u[\mbox{\hyperlink{cfortran_8h_adb50e893b86b3e55e751a42eab3cba82}{i}}] * \mbox{\hyperlink{namespaceoomph_ab40f6d5233caa62dd428818b4cba72d5}{W}};}
 \DoxyCodeLine{\Hypertarget{scalar__advection__elements_8h_source_l00193}00193         \}}
 \DoxyCodeLine{\Hypertarget{scalar__advection__elements_8h_source_l00194}00194       \}}
 \DoxyCodeLine{\Hypertarget{scalar__advection__elements_8h_source_l00195}00195     \}}
@@ -206,7 +206,7 @@
 \DoxyCodeLine{\Hypertarget{scalar__advection__elements_8h_source_l00202}00202       \textcolor{keyword}{public} \textcolor{keyword}{virtual} \mbox{\hyperlink{classoomph_1_1ScalarAdvectionEquations}{ScalarAdvectionEquations}}<DIM>}
 \DoxyCodeLine{\Hypertarget{scalar__advection__elements_8h_source_l00203}00203   \{}
 \DoxyCodeLine{\Hypertarget{scalar__advection__elements_8h_source_l00204}00204   \textcolor{keyword}{public}:\textcolor{comment}{}}
-\DoxyCodeLine{\Hypertarget{scalar__advection__elements_8h_source_l00205}00205 \textcolor{comment}{    ///\(\backslash\)short  Constructor: Call constructors for QElement and}}
+\DoxyCodeLine{\Hypertarget{scalar__advection__elements_8h_source_l00205}00205 \textcolor{comment}{    ///  Constructor: Call constructors for QElement and}}
 \DoxyCodeLine{\Hypertarget{scalar__advection__elements_8h_source_l00206}00206 \textcolor{comment}{    /// Advection Diffusion equations}}
 \DoxyCodeLine{\Hypertarget{scalar__advection__elements_8h_source_l00207}\mbox{\hyperlink{classoomph_1_1QSpectralScalarAdvectionElement_a63905ff4a980686e18711cc04498df94}{00207}} \textcolor{comment}{}    \mbox{\hyperlink{classoomph_1_1QSpectralScalarAdvectionElement_a63905ff4a980686e18711cc04498df94}{QSpectralScalarAdvectionElement}}()}
 \DoxyCodeLine{\Hypertarget{scalar__advection__elements_8h_source_l00208}00208       : \mbox{\hyperlink{classoomph_1_1QSpectralElement}{QSpectralElement}}<DIM, NNODE\_1D>(), \mbox{\hyperlink{classoomph_1_1ScalarAdvectionEquations}{ScalarAdvectionEquations}}<DIM>()}
@@ -226,21 +226,21 @@
 \DoxyCodeLine{\Hypertarget{scalar__advection__elements_8h_source_l00222}00222     \textcolor{comment}{/*void operator=(}}
 \DoxyCodeLine{\Hypertarget{scalar__advection__elements_8h_source_l00223}00223 \textcolor{comment}{     const QSpectralScalarAdvectionElement<DIM,NNODE\_1D>\&) = delete;*/}}
 \DoxyCodeLine{\Hypertarget{scalar__advection__elements_8h_source_l00224}00224 \textcolor{comment}{}}
-\DoxyCodeLine{\Hypertarget{scalar__advection__elements_8h_source_l00225}00225 \textcolor{comment}{    /// \(\backslash\)short  Required  \# of `values' (pinned or dofs)}}
+\DoxyCodeLine{\Hypertarget{scalar__advection__elements_8h_source_l00225}00225 \textcolor{comment}{    ///   Required  \# of `values' (pinned or dofs)}}
 \DoxyCodeLine{\Hypertarget{scalar__advection__elements_8h_source_l00226}00226 \textcolor{comment}{    /// at node n}}
 \DoxyCodeLine{\Hypertarget{scalar__advection__elements_8h_source_l00227}\mbox{\hyperlink{classoomph_1_1QSpectralScalarAdvectionElement_a7467b1b382307bb0d40901519465b4b1}{00227}} \textcolor{comment}{}    \textcolor{keyword}{inline} \textcolor{keywordtype}{unsigned} \mbox{\hyperlink{classoomph_1_1QSpectralScalarAdvectionElement_a7467b1b382307bb0d40901519465b4b1}{required\_nvalue}}(\textcolor{keyword}{const} \textcolor{keywordtype}{unsigned}\& n)\textcolor{keyword}{ const}}
 \DoxyCodeLine{\Hypertarget{scalar__advection__elements_8h_source_l00228}00228 \textcolor{keyword}{    }\{}
 \DoxyCodeLine{\Hypertarget{scalar__advection__elements_8h_source_l00229}00229       \textcolor{keywordflow}{return} 1;}
 \DoxyCodeLine{\Hypertarget{scalar__advection__elements_8h_source_l00230}00230     \}}
 \DoxyCodeLine{\Hypertarget{scalar__advection__elements_8h_source_l00231}00231 \textcolor{comment}{}}
-\DoxyCodeLine{\Hypertarget{scalar__advection__elements_8h_source_l00232}00232 \textcolor{comment}{    /// \(\backslash\)short Output function:}}
+\DoxyCodeLine{\Hypertarget{scalar__advection__elements_8h_source_l00232}00232 \textcolor{comment}{    ///  Output function:}}
 \DoxyCodeLine{\Hypertarget{scalar__advection__elements_8h_source_l00233}00233 \textcolor{comment}{    ///  x,y,u   or    x,y,z,u}}
 \DoxyCodeLine{\Hypertarget{scalar__advection__elements_8h_source_l00234}\mbox{\hyperlink{classoomph_1_1QSpectralScalarAdvectionElement_ad594e0a382ee5e10e50cedf75215f40e}{00234}} \textcolor{comment}{}    \textcolor{keywordtype}{void} \mbox{\hyperlink{classoomph_1_1QSpectralScalarAdvectionElement_ad594e0a382ee5e10e50cedf75215f40e}{output}}(std::ostream\& outfile)}
 \DoxyCodeLine{\Hypertarget{scalar__advection__elements_8h_source_l00235}00235     \{}
 \DoxyCodeLine{\Hypertarget{scalar__advection__elements_8h_source_l00236}00236       \mbox{\hyperlink{classoomph_1_1FluxTransportEquations_afd690f82a24bc20b686fc7d25a59f775}{ScalarAdvectionEquations<DIM>::output}}(outfile);}
 \DoxyCodeLine{\Hypertarget{scalar__advection__elements_8h_source_l00237}00237     \}}
 \DoxyCodeLine{\Hypertarget{scalar__advection__elements_8h_source_l00238}00238 \textcolor{comment}{}}
-\DoxyCodeLine{\Hypertarget{scalar__advection__elements_8h_source_l00239}00239 \textcolor{comment}{    /// \(\backslash\)short Output function:}}
+\DoxyCodeLine{\Hypertarget{scalar__advection__elements_8h_source_l00239}00239 \textcolor{comment}{    ///  Output function:}}
 \DoxyCodeLine{\Hypertarget{scalar__advection__elements_8h_source_l00240}00240 \textcolor{comment}{    ///  x,y,u   or    x,y,z,u at n\_plot\string^DIM plot points}}
 \DoxyCodeLine{\Hypertarget{scalar__advection__elements_8h_source_l00241}\mbox{\hyperlink{classoomph_1_1QSpectralScalarAdvectionElement_a5d4b75608288e93077aa3132e56a113b}{00241}} \textcolor{comment}{}    \textcolor{keywordtype}{void} \mbox{\hyperlink{classoomph_1_1QSpectralScalarAdvectionElement_a5d4b75608288e93077aa3132e56a113b}{output}}(std::ostream\& outfile, \textcolor{keyword}{const} \textcolor{keywordtype}{unsigned}\& n\_plot)}
 \DoxyCodeLine{\Hypertarget{scalar__advection__elements_8h_source_l00242}00242     \{}
@@ -248,21 +248,21 @@
 \DoxyCodeLine{\Hypertarget{scalar__advection__elements_8h_source_l00244}00244     \}}
 \DoxyCodeLine{\Hypertarget{scalar__advection__elements_8h_source_l00245}00245 }
 \DoxyCodeLine{\Hypertarget{scalar__advection__elements_8h_source_l00246}00246 }
-\DoxyCodeLine{\Hypertarget{scalar__advection__elements_8h_source_l00247}00247     \textcolor{comment}{/*/// \(\backslash\)short C-\/style output function:}\textcolor{comment}{}}
+\DoxyCodeLine{\Hypertarget{scalar__advection__elements_8h_source_l00247}00247     \textcolor{comment}{/*///  C-\/style output function:}\textcolor{comment}{}}
 \DoxyCodeLine{\Hypertarget{scalar__advection__elements_8h_source_l00248}00248 \textcolor{comment}{   ///  x,y,u   or    x,y,z,u}}
 \DoxyCodeLine{\Hypertarget{scalar__advection__elements_8h_source_l00249}00249 \textcolor{comment}{}   void output(FILE* file\_pt)}
 \DoxyCodeLine{\Hypertarget{scalar__advection__elements_8h_source_l00250}00250     \{}
 \DoxyCodeLine{\Hypertarget{scalar__advection__elements_8h_source_l00251}00251      ScalarAdvectionEquations<NFLUX,DIM>::output(file\_pt);}
 \DoxyCodeLine{\Hypertarget{scalar__advection__elements_8h_source_l00252}00252     \}}
 \DoxyCodeLine{\Hypertarget{scalar__advection__elements_8h_source_l00253}00253 \textcolor{comment}{}}
-\DoxyCodeLine{\Hypertarget{scalar__advection__elements_8h_source_l00254}00254 \textcolor{comment}{   ///  \(\backslash\)short C-\/style output function:}}
+\DoxyCodeLine{\Hypertarget{scalar__advection__elements_8h_source_l00254}00254 \textcolor{comment}{   ///   C-\/style output function:}}
 \DoxyCodeLine{\Hypertarget{scalar__advection__elements_8h_source_l00255}00255 \textcolor{comment}{   ///   x,y,u   or    x,y,z,u at n\_plot\string^DIM plot points}}
 \DoxyCodeLine{\Hypertarget{scalar__advection__elements_8h_source_l00256}00256 \textcolor{comment}{}   void output(FILE* file\_pt, const unsigned \&n\_plot)}
 \DoxyCodeLine{\Hypertarget{scalar__advection__elements_8h_source_l00257}00257     \{}
 \DoxyCodeLine{\Hypertarget{scalar__advection__elements_8h_source_l00258}00258      ScalarAdvectionEquations<NFLUX,DIM>::output(file\_pt,n\_plot);}
 \DoxyCodeLine{\Hypertarget{scalar__advection__elements_8h_source_l00259}00259     \}}
 \DoxyCodeLine{\Hypertarget{scalar__advection__elements_8h_source_l00260}00260 \textcolor{comment}{}}
-\DoxyCodeLine{\Hypertarget{scalar__advection__elements_8h_source_l00261}00261 \textcolor{comment}{   /// \(\backslash\)short Output function for an exact solution:}}
+\DoxyCodeLine{\Hypertarget{scalar__advection__elements_8h_source_l00261}00261 \textcolor{comment}{   ///  Output function for an exact solution:}}
 \DoxyCodeLine{\Hypertarget{scalar__advection__elements_8h_source_l00262}00262 \textcolor{comment}{   ///  x,y,u\_exact   or    x,y,z,u\_exact at n\_plot\string^DIM plot points}}
 \DoxyCodeLine{\Hypertarget{scalar__advection__elements_8h_source_l00263}00263 \textcolor{comment}{}   void output\_fct(std::ostream \&outfile, const unsigned \&n\_plot,}
 \DoxyCodeLine{\Hypertarget{scalar__advection__elements_8h_source_l00264}00264                    FiniteElement::SteadyExactSolutionFctPt}
@@ -272,7 +272,7 @@
 \DoxyCodeLine{\Hypertarget{scalar__advection__elements_8h_source_l00268}00268       output\_fct(outfile,n\_plot,exact\_soln\_pt);\}}
 \DoxyCodeLine{\Hypertarget{scalar__advection__elements_8h_source_l00269}00269 }
 \DoxyCodeLine{\Hypertarget{scalar__advection__elements_8h_source_l00270}00270 \textcolor{comment}{}}
-\DoxyCodeLine{\Hypertarget{scalar__advection__elements_8h_source_l00271}00271 \textcolor{comment}{   /// \(\backslash\)short Output function for a time-\/dependent exact solution.}}
+\DoxyCodeLine{\Hypertarget{scalar__advection__elements_8h_source_l00271}00271 \textcolor{comment}{   ///  Output function for a time-\/dependent exact solution.}}
 \DoxyCodeLine{\Hypertarget{scalar__advection__elements_8h_source_l00272}00272 \textcolor{comment}{   ///  x,y,u\_exact   or    x,y,z,u\_exact at n\_plot\string^DIM plot points}}
 \DoxyCodeLine{\Hypertarget{scalar__advection__elements_8h_source_l00273}00273 \textcolor{comment}{   /// (Calls the steady version)}}
 \DoxyCodeLine{\Hypertarget{scalar__advection__elements_8h_source_l00274}00274 \textcolor{comment}{}   void output\_fct(std::ostream \&outfile, const unsigned \&n\_plot,}
@@ -295,7 +295,7 @@
 \DoxyCodeLine{\Hypertarget{scalar__advection__elements_8h_source_l00291}00291       \mbox{\hyperlink{classoomph_1_1Shape}{Shape}}\& test,}
 \DoxyCodeLine{\Hypertarget{scalar__advection__elements_8h_source_l00292}00292       \mbox{\hyperlink{classoomph_1_1DShape}{DShape}}\& dtestdx) \textcolor{keyword}{const};}
 \DoxyCodeLine{\Hypertarget{scalar__advection__elements_8h_source_l00293}00293 \textcolor{comment}{}}
-\DoxyCodeLine{\Hypertarget{scalar__advection__elements_8h_source_l00294}00294 \textcolor{comment}{    /// \(\backslash\)short Shape, test functions \& derivs. w.r.t. to global coords. at}}
+\DoxyCodeLine{\Hypertarget{scalar__advection__elements_8h_source_l00294}00294 \textcolor{comment}{    ///  Shape, test functions \& derivs. w.r.t. to global coords. at}}
 \DoxyCodeLine{\Hypertarget{scalar__advection__elements_8h_source_l00295}00295 \textcolor{comment}{    /// integration point ipt. Return Jacobian.}}
 \DoxyCodeLine{\Hypertarget{scalar__advection__elements_8h_source_l00296}\mbox{\hyperlink{classoomph_1_1QSpectralScalarAdvectionElement_ad6e292ae057d0ed3f3e9990fa35f9bcc}{00296}} \textcolor{comment}{}    \textcolor{keyword}{inline} \textcolor{keywordtype}{double} \mbox{\hyperlink{classoomph_1_1QSpectralScalarAdvectionElement_ad6e292ae057d0ed3f3e9990fa35f9bcc}{dshape\_and\_dtest\_eulerian\_at\_knot\_flux\_transport}}(}
 \DoxyCodeLine{\Hypertarget{scalar__advection__elements_8h_source_l00297}00297       \textcolor{keyword}{const} \textcolor{keywordtype}{unsigned}\& ipt,}
@@ -309,7 +309,7 @@
 \DoxyCodeLine{\Hypertarget{scalar__advection__elements_8h_source_l00305}00305 }
 \DoxyCodeLine{\Hypertarget{scalar__advection__elements_8h_source_l00306}00306 }
 \DoxyCodeLine{\Hypertarget{scalar__advection__elements_8h_source_l00307}00307   \textcolor{comment}{//======================================================================}\textcolor{comment}{}}
-\DoxyCodeLine{\Hypertarget{scalar__advection__elements_8h_source_l00308}00308 \textcolor{comment}{  /// \(\backslash\)short Define the shape functions and test functions and derivatives}}
+\DoxyCodeLine{\Hypertarget{scalar__advection__elements_8h_source_l00308}00308 \textcolor{comment}{  ///  Define the shape functions and test functions and derivatives}}
 \DoxyCodeLine{\Hypertarget{scalar__advection__elements_8h_source_l00309}00309 \textcolor{comment}{  /// w.r.t. global coordinates and return Jacobian of mapping.}}
 \DoxyCodeLine{\Hypertarget{scalar__advection__elements_8h_source_l00310}00310 \textcolor{comment}{  ///}}
 \DoxyCodeLine{\Hypertarget{scalar__advection__elements_8h_source_l00311}00311 \textcolor{comment}{  /// Galerkin: Test functions = shape functions}}
@@ -373,7 +373,7 @@
 \DoxyCodeLine{\Hypertarget{scalar__advection__elements_8h_source_l00369}00369 \textcolor{comment}{}}
 \DoxyCodeLine{\Hypertarget{scalar__advection__elements_8h_source_l00370}00370 }
 \DoxyCodeLine{\Hypertarget{scalar__advection__elements_8h_source_l00371}00371   \textcolor{comment}{//=======================================================================}\textcolor{comment}{}}
-\DoxyCodeLine{\Hypertarget{scalar__advection__elements_8h_source_l00372}00372 \textcolor{comment}{  /// \(\backslash\)short Face geometry for the QScalarAdvectionElement elements:}}
+\DoxyCodeLine{\Hypertarget{scalar__advection__elements_8h_source_l00372}00372 \textcolor{comment}{  ///  Face geometry for the QScalarAdvectionElement elements:}}
 \DoxyCodeLine{\Hypertarget{scalar__advection__elements_8h_source_l00373}00373 \textcolor{comment}{  /// The spatial dimension of the face elements is one lower than that}}
 \DoxyCodeLine{\Hypertarget{scalar__advection__elements_8h_source_l00374}00374 \textcolor{comment}{  /// of the bulk element but they have the same number of points along}}
 \DoxyCodeLine{\Hypertarget{scalar__advection__elements_8h_source_l00375}00375 \textcolor{comment}{  /// their 1D edges.}}
@@ -383,7 +383,7 @@
 \DoxyCodeLine{\Hypertarget{scalar__advection__elements_8h_source_l00379}00379     : \textcolor{keyword}{public} \textcolor{keyword}{virtual} \mbox{\hyperlink{classoomph_1_1QSpectralElement}{QSpectralElement}}<DIM -\/ 1, NNODE\_1D>}
 \DoxyCodeLine{\Hypertarget{scalar__advection__elements_8h_source_l00380}00380   \{}
 \DoxyCodeLine{\Hypertarget{scalar__advection__elements_8h_source_l00381}00381   \textcolor{keyword}{public}:\textcolor{comment}{}}
-\DoxyCodeLine{\Hypertarget{scalar__advection__elements_8h_source_l00382}00382 \textcolor{comment}{    /// \(\backslash\)short Constructor: Call the constructor for the}}
+\DoxyCodeLine{\Hypertarget{scalar__advection__elements_8h_source_l00382}00382 \textcolor{comment}{    ///  Constructor: Call the constructor for the}}
 \DoxyCodeLine{\Hypertarget{scalar__advection__elements_8h_source_l00383}00383 \textcolor{comment}{    /// appropriate lower-\/dimensional QElement}}
 \DoxyCodeLine{\Hypertarget{scalar__advection__elements_8h_source_l00384}\mbox{\hyperlink{classoomph_1_1FaceGeometry_3_01QSpectralScalarAdvectionElement_3_01DIM_00_01NNODE__1D_01_4_01_4_a2a40a86785381e67e1e5af8e1bbdc194}{00384}} \textcolor{comment}{}    \mbox{\hyperlink{classoomph_1_1FaceGeometry_3_01QSpectralScalarAdvectionElement_3_01DIM_00_01NNODE__1D_01_4_01_4_a2a40a86785381e67e1e5af8e1bbdc194}{FaceGeometry}}() : \mbox{\hyperlink{classoomph_1_1QSpectralElement}{QSpectralElement}}<DIM -\/ 1, NNODE\_1D>() \{\}}
 \DoxyCodeLine{\Hypertarget{scalar__advection__elements_8h_source_l00385}00385   \};}
@@ -405,7 +405,7 @@
 \DoxyCodeLine{\Hypertarget{scalar__advection__elements_8h_source_l00401}00401       \textcolor{comment}{// Attach geometric information to the element}}
 \DoxyCodeLine{\Hypertarget{scalar__advection__elements_8h_source_l00402}00402       \textcolor{comment}{// N.B. This function also assigns nbulk\_value from required\_nvalue}}
 \DoxyCodeLine{\Hypertarget{scalar__advection__elements_8h_source_l00403}00403       \textcolor{comment}{// of the bulk element.}}
-\DoxyCodeLine{\Hypertarget{scalar__advection__elements_8h_source_l00404}00404       element\_pt-\/>\mbox{\hyperlink{classoomph_1_1FiniteElement_aaf7bead5b462cfd5401d97b3dbdc7af7}{build\_face\_element}}(\mbox{\hyperlink{classoomph_1_1FaceElement_a14990bd081523c47cfe57e5ecf54dfe1}{face\_index}}, \textcolor{keyword}{this});}
+\DoxyCodeLine{\Hypertarget{scalar__advection__elements_8h_source_l00404}00404       element\_pt-\/>\mbox{\hyperlink{classoomph_1_1FiniteElement_a025ab56ef9c6eea66fb34416fdf19152}{build\_face\_element}}(\mbox{\hyperlink{classoomph_1_1FaceElement_a14990bd081523c47cfe57e5ecf54dfe1}{face\_index}}, \textcolor{keyword}{this});}
 \DoxyCodeLine{\Hypertarget{scalar__advection__elements_8h_source_l00405}00405     \}}
 \DoxyCodeLine{\Hypertarget{scalar__advection__elements_8h_source_l00406}00406 }
 \DoxyCodeLine{\Hypertarget{scalar__advection__elements_8h_source_l00407}00407 }
@@ -424,11 +424,11 @@
 \DoxyCodeLine{\Hypertarget{scalar__advection__elements_8h_source_l00420}00420     \{}
 \DoxyCodeLine{\Hypertarget{scalar__advection__elements_8h_source_l00421}00421       \textcolor{keyword}{const} \textcolor{keywordtype}{unsigned} \mbox{\hyperlink{classoomph_1_1FiniteElement_a5f8fe59f06da1da9f6b7bbcbdb90ef93}{dim}} = this-\/>\mbox{\hyperlink{classoomph_1_1FiniteElement_ab6602b43c3a2f1a5e48729b0b23c0d91}{nodal\_dimension}}();}
 \DoxyCodeLine{\Hypertarget{scalar__advection__elements_8h_source_l00422}00422       \mbox{\hyperlink{classoomph_1_1Vector}{Vector<double>}} Wind(\mbox{\hyperlink{classoomph_1_1FiniteElement_a5f8fe59f06da1da9f6b7bbcbdb90ef93}{dim}});}
-\DoxyCodeLine{\Hypertarget{scalar__advection__elements_8h_source_l00423}00423       \mbox{\hyperlink{classoomph_1_1Vector}{Vector<double>}} \mbox{\hyperlink{cfortran_8h_ab7123126e4885ef647dd9c6e3807a21c}{s}}, x;}
+\DoxyCodeLine{\Hypertarget{scalar__advection__elements_8h_source_l00423}00423       \mbox{\hyperlink{classoomph_1_1Vector}{Vector<double>}} \mbox{\hyperlink{cfortran_8h_ab7123126e4885ef647dd9c6e3807a21c}{s}}, \mbox{\hyperlink{namespaceoomph_a9d1d2da2b8bb8e73af72b5cadb8fe97c}{x}};}
 \DoxyCodeLine{\Hypertarget{scalar__advection__elements_8h_source_l00424}00424       \textcolor{comment}{// Dummy integration point}}
 \DoxyCodeLine{\Hypertarget{scalar__advection__elements_8h_source_l00425}00425       \textcolor{keywordtype}{unsigned} ipt = 0;}
 \DoxyCodeLine{\Hypertarget{scalar__advection__elements_8h_source_l00426}00426       \textcolor{keyword}{dynamic\_cast<}ELEMENT*\textcolor{keyword}{>}(this-\/>\mbox{\hyperlink{classoomph_1_1FaceElement_a89e9f7ebc8019c47d54dded72f05479e}{bulk\_element\_pt}}())}
-\DoxyCodeLine{\Hypertarget{scalar__advection__elements_8h_source_l00427}00427         -\/>get\_wind\_scalar\_adv(ipt, \mbox{\hyperlink{cfortran_8h_ab7123126e4885ef647dd9c6e3807a21c}{s}}, x, Wind);}
+\DoxyCodeLine{\Hypertarget{scalar__advection__elements_8h_source_l00427}00427         -\/>get\_wind\_scalar\_adv(ipt, \mbox{\hyperlink{cfortran_8h_ab7123126e4885ef647dd9c6e3807a21c}{s}}, \mbox{\hyperlink{namespaceoomph_a9d1d2da2b8bb8e73af72b5cadb8fe97c}{x}}, Wind);}
 \DoxyCodeLine{\Hypertarget{scalar__advection__elements_8h_source_l00428}00428 }
 \DoxyCodeLine{\Hypertarget{scalar__advection__elements_8h_source_l00429}00429       \textcolor{comment}{// Now we can work this out for standard upwind advection}}
 \DoxyCodeLine{\Hypertarget{scalar__advection__elements_8h_source_l00430}00430       \textcolor{keywordtype}{double} \mbox{\hyperlink{namespaceoomph_1_1VectorHelpers_a3df72a05fe435265c5b42dc232ff351c}{dot}} = 0.0;}
@@ -512,7 +512,7 @@
 \DoxyCodeLine{\Hypertarget{scalar__advection__elements_8h_source_l00508}00508     \}}
 \DoxyCodeLine{\Hypertarget{scalar__advection__elements_8h_source_l00509}00509 }
 \DoxyCodeLine{\Hypertarget{scalar__advection__elements_8h_source_l00510}00510 \textcolor{comment}{}}
-\DoxyCodeLine{\Hypertarget{scalar__advection__elements_8h_source_l00511}00511 \textcolor{comment}{    ///\(\backslash\)short Compute the residuals for the Navier-\/-\/Stokes equations;}}
+\DoxyCodeLine{\Hypertarget{scalar__advection__elements_8h_source_l00511}00511 \textcolor{comment}{    /// Compute the residuals for the Navier-\/-\/Stokes equations;}}
 \DoxyCodeLine{\Hypertarget{scalar__advection__elements_8h_source_l00512}00512 \textcolor{comment}{    /// flag=1(or 0): do (or don't) compute the Jacobian as well.}}
 \DoxyCodeLine{\Hypertarget{scalar__advection__elements_8h_source_l00513}\mbox{\hyperlink{classoomph_1_1DGSpectralScalarAdvectionElement_3_011_00_01NNODE__1D_01_4_ac24a1132d34b1062498ebf6010379017}{00513}} \textcolor{comment}{}    \textcolor{keywordtype}{void} \mbox{\hyperlink{classoomph_1_1DGSpectralScalarAdvectionElement_3_011_00_01NNODE__1D_01_4_ac24a1132d34b1062498ebf6010379017}{fill\_in\_generic\_residual\_contribution\_flux\_transport}}(}
 \DoxyCodeLine{\Hypertarget{scalar__advection__elements_8h_source_l00514}00514       \mbox{\hyperlink{classoomph_1_1Vector}{Vector<double>}}\& residuals,}
@@ -564,7 +564,7 @@
 \DoxyCodeLine{\Hypertarget{scalar__advection__elements_8h_source_l00560}00560       \textcolor{keywordflow}{if} (Mass\_matrix\_reuse\_is\_enabled \&\& Mass\_matrix\_has\_been\_computed)}
 \DoxyCodeLine{\Hypertarget{scalar__advection__elements_8h_source_l00561}00561       \{}
 \DoxyCodeLine{\Hypertarget{scalar__advection__elements_8h_source_l00562}00562         \textcolor{comment}{// Get the residuals}}
-\DoxyCodeLine{\Hypertarget{scalar__advection__elements_8h_source_l00563}00563         this-\/>\mbox{\hyperlink{namespaceoomph_a4221193ecad909a3bf5cfcec81202e39}{fill\_in\_contribution\_to\_residuals}}(minv\_res);}
+\DoxyCodeLine{\Hypertarget{scalar__advection__elements_8h_source_l00563}00563         this-\/>fill\_in\_contribution\_to\_residuals(minv\_res);}
 \DoxyCodeLine{\Hypertarget{scalar__advection__elements_8h_source_l00564}00564       \}}
 \DoxyCodeLine{\Hypertarget{scalar__advection__elements_8h_source_l00565}00565       \textcolor{comment}{// Otherwise}}
 \DoxyCodeLine{\Hypertarget{scalar__advection__elements_8h_source_l00566}00566       \textcolor{keywordflow}{else}}
@@ -651,7 +651,7 @@
 \DoxyCodeLine{\Hypertarget{scalar__advection__elements_8h_source_l00647}00647     \}}
 \DoxyCodeLine{\Hypertarget{scalar__advection__elements_8h_source_l00648}00648 }
 \DoxyCodeLine{\Hypertarget{scalar__advection__elements_8h_source_l00649}00649 \textcolor{comment}{}}
-\DoxyCodeLine{\Hypertarget{scalar__advection__elements_8h_source_l00650}00650 \textcolor{comment}{    ///\(\backslash\)short Compute the residuals for the Navier-\/-\/Stokes equations;}}
+\DoxyCodeLine{\Hypertarget{scalar__advection__elements_8h_source_l00650}00650 \textcolor{comment}{    /// Compute the residuals for the Navier-\/-\/Stokes equations;}}
 \DoxyCodeLine{\Hypertarget{scalar__advection__elements_8h_source_l00651}00651 \textcolor{comment}{    /// flag=1(or 0): do (or don't) compute the Jacobian as well.}}
 \DoxyCodeLine{\Hypertarget{scalar__advection__elements_8h_source_l00652}\mbox{\hyperlink{classoomph_1_1DGSpectralScalarAdvectionElement_3_012_00_01NNODE__1D_01_4_a9eff513d77d731a1d2492289fd640cb0}{00652}} \textcolor{comment}{}    \textcolor{keywordtype}{void} \mbox{\hyperlink{classoomph_1_1DGSpectralScalarAdvectionElement_3_012_00_01NNODE__1D_01_4_a9eff513d77d731a1d2492289fd640cb0}{fill\_in\_generic\_residual\_contribution\_flux\_transport}}(}
 \DoxyCodeLine{\Hypertarget{scalar__advection__elements_8h_source_l00653}00653       \mbox{\hyperlink{classoomph_1_1Vector}{Vector<double>}}\& residuals,}
@@ -688,7 +688,7 @@
 \DoxyCodeLine{\Hypertarget{scalar__advection__elements_8h_source_l00684}00684                                   \textcolor{keyword}{public} \textcolor{keyword}{virtual} \mbox{\hyperlink{classoomph_1_1ScalarAdvectionEquations}{ScalarAdvectionEquations}}<DIM>}
 \DoxyCodeLine{\Hypertarget{scalar__advection__elements_8h_source_l00685}00685   \{}
 \DoxyCodeLine{\Hypertarget{scalar__advection__elements_8h_source_l00686}00686   \textcolor{keyword}{public}:\textcolor{comment}{}}
-\DoxyCodeLine{\Hypertarget{scalar__advection__elements_8h_source_l00687}00687 \textcolor{comment}{    ///\(\backslash\)short  Constructor: Call constructors for QElement and}}
+\DoxyCodeLine{\Hypertarget{scalar__advection__elements_8h_source_l00687}00687 \textcolor{comment}{    ///  Constructor: Call constructors for QElement and}}
 \DoxyCodeLine{\Hypertarget{scalar__advection__elements_8h_source_l00688}00688 \textcolor{comment}{    /// Advection Diffusion equations}}
 \DoxyCodeLine{\Hypertarget{scalar__advection__elements_8h_source_l00689}\mbox{\hyperlink{classoomph_1_1QScalarAdvectionElement_ad460805f1986b3984355da7e0d4fd2fc}{00689}} \textcolor{comment}{}    \mbox{\hyperlink{classoomph_1_1QScalarAdvectionElement_ad460805f1986b3984355da7e0d4fd2fc}{QScalarAdvectionElement}}()}
 \DoxyCodeLine{\Hypertarget{scalar__advection__elements_8h_source_l00690}00690       : \mbox{\hyperlink{classoomph_1_1QElement}{QElement}}<DIM, NNODE\_1D>(), \mbox{\hyperlink{classoomph_1_1ScalarAdvectionEquations}{ScalarAdvectionEquations}}<DIM>()}
@@ -703,21 +703,21 @@
 \DoxyCodeLine{\Hypertarget{scalar__advection__elements_8h_source_l00699}00699 \textcolor{comment}{}    \textcolor{comment}{/*void operator=(}}
 \DoxyCodeLine{\Hypertarget{scalar__advection__elements_8h_source_l00700}00700 \textcolor{comment}{     const QScalarAdvectionElement<DIM,NNODE\_1D>\&) = delete;*/}}
 \DoxyCodeLine{\Hypertarget{scalar__advection__elements_8h_source_l00701}00701 \textcolor{comment}{}}
-\DoxyCodeLine{\Hypertarget{scalar__advection__elements_8h_source_l00702}00702 \textcolor{comment}{    /// \(\backslash\)short  Required  \# of `values' (pinned or dofs)}}
+\DoxyCodeLine{\Hypertarget{scalar__advection__elements_8h_source_l00702}00702 \textcolor{comment}{    ///   Required  \# of `values' (pinned or dofs)}}
 \DoxyCodeLine{\Hypertarget{scalar__advection__elements_8h_source_l00703}00703 \textcolor{comment}{    /// at node n}}
 \DoxyCodeLine{\Hypertarget{scalar__advection__elements_8h_source_l00704}\mbox{\hyperlink{classoomph_1_1QScalarAdvectionElement_a967897f5171c0b1e03a1f85d40025959}{00704}} \textcolor{comment}{}    \textcolor{keyword}{inline} \textcolor{keywordtype}{unsigned} \mbox{\hyperlink{classoomph_1_1QScalarAdvectionElement_a967897f5171c0b1e03a1f85d40025959}{required\_nvalue}}(\textcolor{keyword}{const} \textcolor{keywordtype}{unsigned}\& n)\textcolor{keyword}{ const}}
 \DoxyCodeLine{\Hypertarget{scalar__advection__elements_8h_source_l00705}00705 \textcolor{keyword}{    }\{}
 \DoxyCodeLine{\Hypertarget{scalar__advection__elements_8h_source_l00706}00706       \textcolor{keywordflow}{return} 1;}
 \DoxyCodeLine{\Hypertarget{scalar__advection__elements_8h_source_l00707}00707     \}}
 \DoxyCodeLine{\Hypertarget{scalar__advection__elements_8h_source_l00708}00708 \textcolor{comment}{}}
-\DoxyCodeLine{\Hypertarget{scalar__advection__elements_8h_source_l00709}00709 \textcolor{comment}{    /// \(\backslash\)short Output function:}}
+\DoxyCodeLine{\Hypertarget{scalar__advection__elements_8h_source_l00709}00709 \textcolor{comment}{    ///  Output function:}}
 \DoxyCodeLine{\Hypertarget{scalar__advection__elements_8h_source_l00710}00710 \textcolor{comment}{    ///  x,y,u   or    x,y,z,u}}
 \DoxyCodeLine{\Hypertarget{scalar__advection__elements_8h_source_l00711}\mbox{\hyperlink{classoomph_1_1QScalarAdvectionElement_aeb9bb432fb1662b65e05ffd5a2ac8693}{00711}} \textcolor{comment}{}    \textcolor{keywordtype}{void} \mbox{\hyperlink{classoomph_1_1QScalarAdvectionElement_aeb9bb432fb1662b65e05ffd5a2ac8693}{output}}(std::ostream\& outfile)}
 \DoxyCodeLine{\Hypertarget{scalar__advection__elements_8h_source_l00712}00712     \{}
 \DoxyCodeLine{\Hypertarget{scalar__advection__elements_8h_source_l00713}00713       \mbox{\hyperlink{classoomph_1_1FluxTransportEquations_afd690f82a24bc20b686fc7d25a59f775}{ScalarAdvectionEquations<DIM>::output}}(outfile);}
 \DoxyCodeLine{\Hypertarget{scalar__advection__elements_8h_source_l00714}00714     \}}
 \DoxyCodeLine{\Hypertarget{scalar__advection__elements_8h_source_l00715}00715 \textcolor{comment}{}}
-\DoxyCodeLine{\Hypertarget{scalar__advection__elements_8h_source_l00716}00716 \textcolor{comment}{    /// \(\backslash\)short Output function:}}
+\DoxyCodeLine{\Hypertarget{scalar__advection__elements_8h_source_l00716}00716 \textcolor{comment}{    ///  Output function:}}
 \DoxyCodeLine{\Hypertarget{scalar__advection__elements_8h_source_l00717}00717 \textcolor{comment}{    ///  x,y,u   or    x,y,z,u at n\_plot\string^DIM plot points}}
 \DoxyCodeLine{\Hypertarget{scalar__advection__elements_8h_source_l00718}\mbox{\hyperlink{classoomph_1_1QScalarAdvectionElement_a1e964b1183bd25bcd9a55c7e6997a4c1}{00718}} \textcolor{comment}{}    \textcolor{keywordtype}{void} \mbox{\hyperlink{classoomph_1_1QScalarAdvectionElement_a1e964b1183bd25bcd9a55c7e6997a4c1}{output}}(std::ostream\& outfile, \textcolor{keyword}{const} \textcolor{keywordtype}{unsigned}\& n\_plot)}
 \DoxyCodeLine{\Hypertarget{scalar__advection__elements_8h_source_l00719}00719     \{}
@@ -725,21 +725,21 @@
 \DoxyCodeLine{\Hypertarget{scalar__advection__elements_8h_source_l00721}00721     \}}
 \DoxyCodeLine{\Hypertarget{scalar__advection__elements_8h_source_l00722}00722 }
 \DoxyCodeLine{\Hypertarget{scalar__advection__elements_8h_source_l00723}00723 }
-\DoxyCodeLine{\Hypertarget{scalar__advection__elements_8h_source_l00724}00724     \textcolor{comment}{/*/// \(\backslash\)short C-\/style output function:}\textcolor{comment}{}}
+\DoxyCodeLine{\Hypertarget{scalar__advection__elements_8h_source_l00724}00724     \textcolor{comment}{/*///  C-\/style output function:}\textcolor{comment}{}}
 \DoxyCodeLine{\Hypertarget{scalar__advection__elements_8h_source_l00725}00725 \textcolor{comment}{   ///  x,y,u   or    x,y,z,u}}
 \DoxyCodeLine{\Hypertarget{scalar__advection__elements_8h_source_l00726}00726 \textcolor{comment}{}   void output(FILE* file\_pt)}
 \DoxyCodeLine{\Hypertarget{scalar__advection__elements_8h_source_l00727}00727     \{}
 \DoxyCodeLine{\Hypertarget{scalar__advection__elements_8h_source_l00728}00728      ScalarAdvectionEquations<NFLUX,DIM>::output(file\_pt);}
 \DoxyCodeLine{\Hypertarget{scalar__advection__elements_8h_source_l00729}00729     \}}
 \DoxyCodeLine{\Hypertarget{scalar__advection__elements_8h_source_l00730}00730 \textcolor{comment}{}}
-\DoxyCodeLine{\Hypertarget{scalar__advection__elements_8h_source_l00731}00731 \textcolor{comment}{   ///  \(\backslash\)short C-\/style output function:}}
+\DoxyCodeLine{\Hypertarget{scalar__advection__elements_8h_source_l00731}00731 \textcolor{comment}{   ///   C-\/style output function:}}
 \DoxyCodeLine{\Hypertarget{scalar__advection__elements_8h_source_l00732}00732 \textcolor{comment}{   ///   x,y,u   or    x,y,z,u at n\_plot\string^DIM plot points}}
 \DoxyCodeLine{\Hypertarget{scalar__advection__elements_8h_source_l00733}00733 \textcolor{comment}{}   void output(FILE* file\_pt, const unsigned \&n\_plot)}
 \DoxyCodeLine{\Hypertarget{scalar__advection__elements_8h_source_l00734}00734     \{}
 \DoxyCodeLine{\Hypertarget{scalar__advection__elements_8h_source_l00735}00735      ScalarAdvectionEquations<NFLUX,DIM>::output(file\_pt,n\_plot);}
 \DoxyCodeLine{\Hypertarget{scalar__advection__elements_8h_source_l00736}00736     \}}
 \DoxyCodeLine{\Hypertarget{scalar__advection__elements_8h_source_l00737}00737 \textcolor{comment}{}}
-\DoxyCodeLine{\Hypertarget{scalar__advection__elements_8h_source_l00738}00738 \textcolor{comment}{   /// \(\backslash\)short Output function for an exact solution:}}
+\DoxyCodeLine{\Hypertarget{scalar__advection__elements_8h_source_l00738}00738 \textcolor{comment}{   ///  Output function for an exact solution:}}
 \DoxyCodeLine{\Hypertarget{scalar__advection__elements_8h_source_l00739}00739 \textcolor{comment}{   ///  x,y,u\_exact   or    x,y,z,u\_exact at n\_plot\string^DIM plot points}}
 \DoxyCodeLine{\Hypertarget{scalar__advection__elements_8h_source_l00740}00740 \textcolor{comment}{}   void output\_fct(std::ostream \&outfile, const unsigned \&n\_plot,}
 \DoxyCodeLine{\Hypertarget{scalar__advection__elements_8h_source_l00741}00741                    FiniteElement::SteadyExactSolutionFctPt}
@@ -749,7 +749,7 @@
 \DoxyCodeLine{\Hypertarget{scalar__advection__elements_8h_source_l00745}00745       output\_fct(outfile,n\_plot,exact\_soln\_pt);\}}
 \DoxyCodeLine{\Hypertarget{scalar__advection__elements_8h_source_l00746}00746 }
 \DoxyCodeLine{\Hypertarget{scalar__advection__elements_8h_source_l00747}00747 \textcolor{comment}{}}
-\DoxyCodeLine{\Hypertarget{scalar__advection__elements_8h_source_l00748}00748 \textcolor{comment}{   /// \(\backslash\)short Output function for a time-\/dependent exact solution.}}
+\DoxyCodeLine{\Hypertarget{scalar__advection__elements_8h_source_l00748}00748 \textcolor{comment}{   ///  Output function for a time-\/dependent exact solution.}}
 \DoxyCodeLine{\Hypertarget{scalar__advection__elements_8h_source_l00749}00749 \textcolor{comment}{   ///  x,y,u\_exact   or    x,y,z,u\_exact at n\_plot\string^DIM plot points}}
 \DoxyCodeLine{\Hypertarget{scalar__advection__elements_8h_source_l00750}00750 \textcolor{comment}{   /// (Calls the steady version)}}
 \DoxyCodeLine{\Hypertarget{scalar__advection__elements_8h_source_l00751}00751 \textcolor{comment}{}   void output\_fct(std::ostream \&outfile, const unsigned \&n\_plot,}
@@ -772,7 +772,7 @@
 \DoxyCodeLine{\Hypertarget{scalar__advection__elements_8h_source_l00768}00768       \mbox{\hyperlink{classoomph_1_1Shape}{Shape}}\& test,}
 \DoxyCodeLine{\Hypertarget{scalar__advection__elements_8h_source_l00769}00769       \mbox{\hyperlink{classoomph_1_1DShape}{DShape}}\& dtestdx) \textcolor{keyword}{const};}
 \DoxyCodeLine{\Hypertarget{scalar__advection__elements_8h_source_l00770}00770 \textcolor{comment}{}}
-\DoxyCodeLine{\Hypertarget{scalar__advection__elements_8h_source_l00771}00771 \textcolor{comment}{    /// \(\backslash\)short Shape, test functions \& derivs. w.r.t. to global coords. at}}
+\DoxyCodeLine{\Hypertarget{scalar__advection__elements_8h_source_l00771}00771 \textcolor{comment}{    ///  Shape, test functions \& derivs. w.r.t. to global coords. at}}
 \DoxyCodeLine{\Hypertarget{scalar__advection__elements_8h_source_l00772}00772 \textcolor{comment}{    /// integration point ipt. Return Jacobian.}}
 \DoxyCodeLine{\Hypertarget{scalar__advection__elements_8h_source_l00773}\mbox{\hyperlink{classoomph_1_1QScalarAdvectionElement_aa7d957edda208be9ab56322dc735fda7}{00773}} \textcolor{comment}{}    \textcolor{keyword}{inline} \textcolor{keywordtype}{double} \mbox{\hyperlink{classoomph_1_1QScalarAdvectionElement_aa7d957edda208be9ab56322dc735fda7}{dshape\_and\_dtest\_eulerian\_at\_knot\_flux\_transport}}(}
 \DoxyCodeLine{\Hypertarget{scalar__advection__elements_8h_source_l00774}00774       \textcolor{keyword}{const} \textcolor{keywordtype}{unsigned}\& ipt,}
@@ -786,7 +786,7 @@
 \DoxyCodeLine{\Hypertarget{scalar__advection__elements_8h_source_l00782}00782 }
 \DoxyCodeLine{\Hypertarget{scalar__advection__elements_8h_source_l00783}00783 }
 \DoxyCodeLine{\Hypertarget{scalar__advection__elements_8h_source_l00784}00784   \textcolor{comment}{//======================================================================}\textcolor{comment}{}}
-\DoxyCodeLine{\Hypertarget{scalar__advection__elements_8h_source_l00785}00785 \textcolor{comment}{  /// \(\backslash\)short Define the shape functions and test functions and derivatives}}
+\DoxyCodeLine{\Hypertarget{scalar__advection__elements_8h_source_l00785}00785 \textcolor{comment}{  ///  Define the shape functions and test functions and derivatives}}
 \DoxyCodeLine{\Hypertarget{scalar__advection__elements_8h_source_l00786}00786 \textcolor{comment}{  /// w.r.t. global coordinates and return Jacobian of mapping.}}
 \DoxyCodeLine{\Hypertarget{scalar__advection__elements_8h_source_l00787}00787 \textcolor{comment}{  ///}}
 \DoxyCodeLine{\Hypertarget{scalar__advection__elements_8h_source_l00788}00788 \textcolor{comment}{  /// Galerkin: Test functions = shape functions}}
@@ -850,7 +850,7 @@
 \DoxyCodeLine{\Hypertarget{scalar__advection__elements_8h_source_l00846}00846 \textcolor{comment}{}}
 \DoxyCodeLine{\Hypertarget{scalar__advection__elements_8h_source_l00847}00847 }
 \DoxyCodeLine{\Hypertarget{scalar__advection__elements_8h_source_l00848}00848   \textcolor{comment}{//=======================================================================}\textcolor{comment}{}}
-\DoxyCodeLine{\Hypertarget{scalar__advection__elements_8h_source_l00849}00849 \textcolor{comment}{  /// \(\backslash\)short Face geometry for the QScalarAdvectionElement elements:}}
+\DoxyCodeLine{\Hypertarget{scalar__advection__elements_8h_source_l00849}00849 \textcolor{comment}{  ///  Face geometry for the QScalarAdvectionElement elements:}}
 \DoxyCodeLine{\Hypertarget{scalar__advection__elements_8h_source_l00850}00850 \textcolor{comment}{  /// The spatial dimension of the face elements is one lower than that}}
 \DoxyCodeLine{\Hypertarget{scalar__advection__elements_8h_source_l00851}00851 \textcolor{comment}{  /// of the bulk element but they have the same number of points along}}
 \DoxyCodeLine{\Hypertarget{scalar__advection__elements_8h_source_l00852}00852 \textcolor{comment}{  /// their 1D edges.}}
@@ -860,7 +860,7 @@
 \DoxyCodeLine{\Hypertarget{scalar__advection__elements_8h_source_l00856}00856     : \textcolor{keyword}{public} \textcolor{keyword}{virtual} \mbox{\hyperlink{classoomph_1_1QElement}{QElement}}<DIM -\/ 1, NNODE\_1D>}
 \DoxyCodeLine{\Hypertarget{scalar__advection__elements_8h_source_l00857}00857   \{}
 \DoxyCodeLine{\Hypertarget{scalar__advection__elements_8h_source_l00858}00858   \textcolor{keyword}{public}:\textcolor{comment}{}}
-\DoxyCodeLine{\Hypertarget{scalar__advection__elements_8h_source_l00859}00859 \textcolor{comment}{    /// \(\backslash\)short Constructor: Call the constructor for the}}
+\DoxyCodeLine{\Hypertarget{scalar__advection__elements_8h_source_l00859}00859 \textcolor{comment}{    ///  Constructor: Call the constructor for the}}
 \DoxyCodeLine{\Hypertarget{scalar__advection__elements_8h_source_l00860}00860 \textcolor{comment}{    /// appropriate lower-\/dimensional QElement}}
 \DoxyCodeLine{\Hypertarget{scalar__advection__elements_8h_source_l00861}\mbox{\hyperlink{classoomph_1_1DGScalarAdvectionElement_3_011_00_01NNODE__1D_01_4_ab7071d90b186653adba9bda99f444804}{00861}} \textcolor{comment}{}    \mbox{\hyperlink{classoomph_1_1FaceGeometry}{FaceGeometry}}() : \mbox{\hyperlink{classoomph_1_1QElement}{QElement}}<DIM -\/ 1, NNODE\_1D>() \{\}}
 \DoxyCodeLine{\Hypertarget{scalar__advection__elements_8h_source_l00862}00862   \};}
@@ -921,7 +921,7 @@
 \DoxyCodeLine{\Hypertarget{scalar__advection__elements_8h_source_l00917}00917     \}}
 \DoxyCodeLine{\Hypertarget{scalar__advection__elements_8h_source_l00918}00918 }
 \DoxyCodeLine{\Hypertarget{scalar__advection__elements_8h_source_l00919}00919 \textcolor{comment}{}}
-\DoxyCodeLine{\Hypertarget{scalar__advection__elements_8h_source_l00920}00920 \textcolor{comment}{    ///\(\backslash\)short Compute the residuals for the Navier-\/-\/Stokes equations;}}
+\DoxyCodeLine{\Hypertarget{scalar__advection__elements_8h_source_l00920}00920 \textcolor{comment}{    /// Compute the residuals for the Navier-\/-\/Stokes equations;}}
 \DoxyCodeLine{\Hypertarget{scalar__advection__elements_8h_source_l00921}00921 \textcolor{comment}{    /// flag=1(or 0): do (or don't) compute the Jacobian as well.}}
 \DoxyCodeLine{\Hypertarget{scalar__advection__elements_8h_source_l00922}\mbox{\hyperlink{classoomph_1_1DGScalarAdvectionElement_3_011_00_01NNODE__1D_01_4_af3ef17f8ddb6034430fb873ea8dd4ba3}{00922}} \textcolor{comment}{}    \textcolor{keywordtype}{void} \mbox{\hyperlink{classoomph_1_1DGScalarAdvectionElement_3_011_00_01NNODE__1D_01_4_af3ef17f8ddb6034430fb873ea8dd4ba3}{fill\_in\_generic\_residual\_contribution\_flux\_transport}}(}
 \DoxyCodeLine{\Hypertarget{scalar__advection__elements_8h_source_l00923}00923       \mbox{\hyperlink{classoomph_1_1Vector}{Vector<double>}}\& residuals,}
@@ -999,7 +999,7 @@
 \DoxyCodeLine{\Hypertarget{scalar__advection__elements_8h_source_l00995}00995     \}}
 \DoxyCodeLine{\Hypertarget{scalar__advection__elements_8h_source_l00996}00996 }
 \DoxyCodeLine{\Hypertarget{scalar__advection__elements_8h_source_l00997}00997 \textcolor{comment}{}}
-\DoxyCodeLine{\Hypertarget{scalar__advection__elements_8h_source_l00998}00998 \textcolor{comment}{    ///\(\backslash\)short Compute the residuals for the Navier-\/-\/Stokes equations;}}
+\DoxyCodeLine{\Hypertarget{scalar__advection__elements_8h_source_l00998}00998 \textcolor{comment}{    /// Compute the residuals for the Navier-\/-\/Stokes equations;}}
 \DoxyCodeLine{\Hypertarget{scalar__advection__elements_8h_source_l00999}00999 \textcolor{comment}{    /// flag=1(or 0): do (or don't) compute the Jacobian as well.}}
 \DoxyCodeLine{\Hypertarget{scalar__advection__elements_8h_source_l01000}\mbox{\hyperlink{classoomph_1_1DGScalarAdvectionElement_3_012_00_01NNODE__1D_01_4_a2c33e2b2f4e41b504d77bd86881f0869}{01000}} \textcolor{comment}{}    \textcolor{keywordtype}{void} \mbox{\hyperlink{classoomph_1_1DGScalarAdvectionElement_3_012_00_01NNODE__1D_01_4_a2c33e2b2f4e41b504d77bd86881f0869}{fill\_in\_generic\_residual\_contribution\_flux\_transport}}(}
 \DoxyCodeLine{\Hypertarget{scalar__advection__elements_8h_source_l01001}01001       \mbox{\hyperlink{classoomph_1_1Vector}{Vector<double>}}\& residuals,}

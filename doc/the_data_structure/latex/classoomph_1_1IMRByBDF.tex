@@ -2,6 +2,11 @@
 \label{classoomph_1_1IMRByBDF}\index{oomph::IMRByBDF@{oomph::IMRByBDF}}
 
 
+Implementation of implicit midpoint rule by taking half a step of bdf1 then applying an update to all dofs. This implementation {\itshape should} work with any existing problem for which the \mbox{\hyperlink{classoomph_1_1BDF}{BDF}} methods work.  
+
+
+
+
 {\ttfamily \#include $<$implicit\+\_\+midpoint\+\_\+rule.\+h$>$}
 
 Inheritance diagram for oomph\+::IMRBy\+BDF\+:\begin{figure}[H]
@@ -24,7 +29,7 @@ unsigned \mbox{\hyperlink{classoomph_1_1IMRByBDF_a4fb7f902b1a266b19cfdfe640d4c78
 void \mbox{\hyperlink{classoomph_1_1IMRByBDF_abc155a68889d297f732a083d911b4627}{actions\+\_\+before\+\_\+timestep}} (\mbox{\hyperlink{classoomph_1_1Problem}{Problem}} $\ast$problem\+\_\+pt)
 \begin{DoxyCompactList}\small\item\em Half the timestep before starting solve. \end{DoxyCompactList}\item 
 void \mbox{\hyperlink{classoomph_1_1IMRByBDF_a1eb1b47643bf37e27c478c6987c7716d}{actions\+\_\+after\+\_\+timestep}} (\mbox{\hyperlink{classoomph_1_1Problem}{Problem}} $\ast$problem\+\_\+pt)
-\end{DoxyCompactItemize}
+\begin{DoxyCompactList}\small\item\em Take problem from t=\{n+1/2\} to t=n+1 by algebraic update and restore time step. \end{DoxyCompactList}\end{DoxyCompactItemize}
 \doxysubsection*{Public Attributes}
 \begin{DoxyCompactItemize}
 \item 
@@ -41,7 +46,7 @@ void \mbox{\hyperlink{classoomph_1_1IMRByBDF_a0a1aec8458acb8cd8285f7b6d69fca4a}{
 
 
 \doxysubsection{Detailed Description}
-Implementation of implicit midpoint rule by taking half a step of bdf1 then applying an update to all dofs. This implementation {\itshape should} work with any existing problem for which the \mbox{\hyperlink{classoomph_1_1BDF}{BDF}} methods work.
+Implementation of implicit midpoint rule by taking half a step of bdf1 then applying an update to all dofs. This implementation {\itshape should} work with any existing problem for which the \mbox{\hyperlink{classoomph_1_1BDF}{BDF}} methods work. 
 
 The exception is when multiple different time steppers are being used simultaneously for different parts of the problem. In this case the \mbox{\hyperlink{classoomph_1_1IMR}{IMR}} class should be used. 
 
@@ -105,7 +110,11 @@ Definition at line \mbox{\hyperlink{implicit__midpoint__rule_8h_source_l00260}{2
 \doxysubsubsection{\texorpdfstring{actions\_after\_timestep()}{actions\_after\_timestep()}}
 {\footnotesize\ttfamily void oomph\+::\+IMRBy\+BDF\+::actions\+\_\+after\+\_\+timestep (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classoomph_1_1Problem}{Problem}} $\ast$}]{problem\+\_\+pt }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [virtual]}}
 
+
+
 Take problem from t=\{n+1/2\} to t=n+1 by algebraic update and restore time step. 
+
+
 
 Reimplemented from \mbox{\hyperlink{classoomph_1_1TimeStepper_a3a0fabf83f9bdc89800cd3501df2c586}{oomph\+::\+Time\+Stepper}}.
 

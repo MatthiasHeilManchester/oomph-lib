@@ -2,6 +2,11 @@
 \label{classoomph_1_1HypreSolver}\index{oomph::HypreSolver@{oomph::HypreSolver}}
 
 
+An \mbox{\hyperlink{classoomph_1_1LinearSolver}{Linear\+Solver}} class using the suite of Hypre solvers to allow.  
+
+
+
+
 {\ttfamily \#include $<$hypre\+\_\+solver.\+h$>$}
 
 Inheritance diagram for oomph\+::Hypre\+Solver\+:\begin{figure}[H]
@@ -66,7 +71,7 @@ double \& \mbox{\hyperlink{classoomph_1_1HypreSolver_ab9eceb2de9362ac263d0866c32
 double \& \mbox{\hyperlink{classoomph_1_1HypreSolver_a5758bdf69145fe9223793901e9f0baff}{euclid\+\_\+droptol}} ()
 \begin{DoxyCompactList}\small\item\em Access function to Euclid drop tolerance parameter. \end{DoxyCompactList}\item 
 int \& \mbox{\hyperlink{classoomph_1_1HypreSolver_a5068024b601ce0585c94c3a2a08ac69c}{euclid\+\_\+level}} ()
-\item 
+\begin{DoxyCompactList}\small\item\em Access function to Euclid level parameter for ILU(k) factorization. \end{DoxyCompactList}\item 
 void \mbox{\hyperlink{classoomph_1_1HypreSolver_a8a96671322af214937d924546633648f}{enable\+\_\+euclid\+\_\+row\+Scale}} ()
 \begin{DoxyCompactList}\small\item\em Enable euclid row\+Scaling. \end{DoxyCompactList}\item 
 void \mbox{\hyperlink{classoomph_1_1HypreSolver_a0cedd83299949fcc877c060e6dd7639f}{disable\+\_\+euclid\+\_\+row\+Scale}} ()
@@ -104,7 +109,7 @@ bool \mbox{\hyperlink{classoomph_1_1HypreSolver_a79047c84718f95a88ba3c41e1d3963e
 
 
 \doxysubsection{Detailed Description}
-An \mbox{\hyperlink{classoomph_1_1LinearSolver}{Linear\+Solver}} class using the suite of Hypre solvers to allow
+An \mbox{\hyperlink{classoomph_1_1LinearSolver}{Linear\+Solver}} class using the suite of Hypre solvers to allow. 
 
 Boomer\+AMG (AMG), \mbox{\hyperlink{classoomph_1_1CG}{CG}}, \mbox{\hyperlink{classoomph_1_1GMRES}{GMRES}} or \mbox{\hyperlink{classoomph_1_1BiCGStab}{Bi\+CGStab}}
 
@@ -560,7 +565,11 @@ References \mbox{\hyperlink{hypre__solver_8h_source_l00406}{oomph\+::\+Hypre\+In
 \doxysubsubsection{\texorpdfstring{euclid\_level()}{euclid\_level()}}
 {\footnotesize\ttfamily int \& oomph\+::\+Hypre\+Solver\+::euclid\+\_\+level (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
 
-Access function to Euclid level parameter for ILU(k) factorization 
+
+
+Access function to Euclid level parameter for ILU(k) factorization. 
+
+
 
 Definition at line \mbox{\hyperlink{hypre__solver_8h_source_l00681}{681}} of file \mbox{\hyperlink{hypre__solver_8h_source}{hypre\+\_\+solver.\+h}}.
 
@@ -808,7 +817,7 @@ References \mbox{\hyperlink{double__vector_8h_source_l00154}{oomph\+::\+Double\+
 
 Function to solve the linear system defined by matrix\+\_\+pt and rhs. This function will delete any existing internal data and generate a new Hypre solver. {\bfseries{Note\+:}} The matrix has to be of type \mbox{\hyperlink{classoomph_1_1CRDoubleMatrix}{CRDouble\+Matrix}} or Distributed \mbox{\hyperlink{classoomph_1_1CRDoubleMatrix}{CRDouble\+Matrix}}. {\bfseries{Note\+:}} Hypre copies matrix data from oomph-\/lib\textquotesingle{}s \mbox{\hyperlink{classoomph_1_1CRDoubleMatrix}{CRDouble\+Matrix}} or Distributed\+CRDouble\+Matrix into its own data structures, doubling the memory requirements for the matrix. As far as the Hypre solvers are concerned, the oomph-\/lib matrix is no longer required and could be deleted to save memory. However, this will not be the expected behaviour and therefore needs to be requested explicitly by the user by calling the \mbox{\hyperlink{classoomph_1_1HypreSolver_ae917113f255b23448210530b00f55338}{enable\+\_\+delete\+\_\+matrix()}} function. 
 
-Uses Hypre\+Interface\+::hypre\+\_\+solve(...) to solve the linear system for a \mbox{\hyperlink{classoomph_1_1CRDoubleMatrix}{CRDouble\+Matrix}} or a Distributed\+CRDouble\+Matrix. In the latter case, the rhs needs to be distributed too, i.\+e. the length of the rhs vector must be equal to the number of rows stored locally. Note\+: the returned solution vector is never distributed, i.\+e. all processors hold all values 
+Uses Hypre\+Interface\+::hypre\+\_\+solve(...) to solve the linear system for a \mbox{\hyperlink{classoomph_1_1CRDoubleMatrix}{CRDouble\+Matrix}} or a Distributed\+CRDouble\+Matrix. In the latter case, the rhs needs to be distributed too, i.\+e. the length of the rhs vector must be equal to the number of rows stored locally. Note\+: the returned solution vector is never distributed, i.\+e. all processors hold all values. 
 
 Reimplemented from \mbox{\hyperlink{classoomph_1_1LinearSolver_a546c09822d18191df14caed864c04c09}{oomph\+::\+Linear\+Solver}}.
 

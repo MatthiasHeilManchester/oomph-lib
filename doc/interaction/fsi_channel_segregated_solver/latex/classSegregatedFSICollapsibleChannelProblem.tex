@@ -1,5 +1,10 @@
 \hypertarget{classSegregatedFSICollapsibleChannelProblem}{}\doxysection{Segregated\+FSICollapsible\+Channel\+Problem\texorpdfstring{$<$}{<} ELEMENT \texorpdfstring{$>$}{>} Class Template Reference}
 \label{classSegregatedFSICollapsibleChannelProblem}\index{SegregatedFSICollapsibleChannelProblem$<$ ELEMENT $>$@{SegregatedFSICollapsibleChannelProblem$<$ ELEMENT $>$}}
+
+
+Problem class -- add segregated solver capability to an existing problem.  
+
+
 Inheritance diagram for Segregated\+FSICollapsible\+Channel\+Problem\texorpdfstring{$<$}{<} ELEMENT \texorpdfstring{$>$}{>}\+:\begin{figure}[H]
 \begin{center}
 \leavevmode
@@ -18,7 +23,7 @@ void \mbox{\hyperlink{classSegregatedFSICollapsibleChannelProblem_a7b277b9583bb1
 void \mbox{\hyperlink{classSegregatedFSICollapsibleChannelProblem_a2613090b2abf3809de381da12f1cd0d2}{actions\+\_\+before\+\_\+newton\+\_\+convergence\+\_\+check}} ()
 \begin{DoxyCompactList}\small\item\em Update nodal positions in the fluid mesh in response to changes in the wall displacement field after every Newton step in a monolithic or segregated solid solve. Note the use of the (protected) flag Solve\+\_\+type, which can take the values Full\+\_\+solve, Fluid\+\_\+solve or Solid\+\_\+solve. This flag is used to allow specification of different actions depending on the precise solve taking place. \end{DoxyCompactList}\item 
 void \mbox{\hyperlink{classSegregatedFSICollapsibleChannelProblem_a8ee14a1d4ab159c9b28dfcb177dc7c57}{actions\+\_\+before\+\_\+segregated\+\_\+convergence\+\_\+check}} ()
-\item 
+\begin{DoxyCompactList}\small\item\em Update nodal positions in the fluid mesh in response to any changes in the wall displacement field after every segregated solve. This is not strictly necessary because we do the solid solve last, which performs its own node update before the convergence check of the sub problem. It remains here because if we were solving in a completely segregated fashion a node update would be required for the fluid mesh in the final converged solution to be consistent with the solid positions. \end{DoxyCompactList}\item 
 void \mbox{\hyperlink{classSegregatedFSICollapsibleChannelProblem_a0f7364ea880f2e740e1960830246e028}{doc\+\_\+solution}} (Doc\+Info \&doc\+\_\+info)
 \begin{DoxyCompactList}\small\item\em Document the solution. \end{DoxyCompactList}\item 
 void \mbox{\hyperlink{classSegregatedFSICollapsibleChannelProblem_a9a6b0dfeda9eb0d4c50e195768c93e37}{steady\+\_\+run}} ()
@@ -99,7 +104,11 @@ References \mbox{\hyperlink{fsi__chan__problem_8h_source_l00433}{FSICollapsible\
 {\footnotesize\ttfamily template$<$class ELEMENT $>$ \\
 void \mbox{\hyperlink{classSegregatedFSICollapsibleChannelProblem}{Segregated\+FSICollapsible\+Channel\+Problem}}$<$ ELEMENT $>$\+::actions\+\_\+before\+\_\+segregated\+\_\+convergence\+\_\+check (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
 
+
+
 Update nodal positions in the fluid mesh in response to any changes in the wall displacement field after every segregated solve. This is not strictly necessary because we do the solid solve last, which performs its own node update before the convergence check of the sub problem. It remains here because if we were solving in a completely segregated fashion a node update would be required for the fluid mesh in the final converged solution to be consistent with the solid positions. 
+
+
 
 Definition at line \mbox{\hyperlink{simple__segregated__driver_8cc_source_l00147}{147}} of file \mbox{\hyperlink{simple__segregated__driver_8cc_source}{simple\+\_\+segregated\+\_\+driver.\+cc}}.
 

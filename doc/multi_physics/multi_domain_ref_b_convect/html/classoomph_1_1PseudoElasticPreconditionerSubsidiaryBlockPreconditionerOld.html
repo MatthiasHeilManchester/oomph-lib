@@ -123,6 +123,9 @@
 </div><!--header-->
 <div class="contents">
 
+<p>Subsidiary helper preconditioner for the <a class="el" href="classoomph_1_1PseudoElasticPreconditioner.html" title="A subsidiary preconditioner for the pseudo-elastic FSI preconditioner. Also a stand-alone preconditio...">PseudoElasticPreconditioner</a>. Required for block preconditioner of the augmented elastic subsidiary problem. NOTE:  
+ <a href="classoomph_1_1PseudoElasticPreconditionerSubsidiaryBlockPreconditionerOld.html#details">More...</a></p>
+
 <p><code>#include &lt;<a class="el" href="pseudo__elastic__preconditioner_8h_source.html">pseudo_elastic_preconditioner.h</a>&gt;</code></p>
 <div class="dynheader">
 Inheritance diagram for oomph::PseudoElasticPreconditionerSubsidiaryBlockPreconditionerOld:</div>
@@ -182,6 +185,7 @@ Private Attributes</h2></td></tr>
 <tr class="memdesc:ac736d6b0390de55bb96cc9475a4cabac"><td class="mdescLeft">&#160;</td><td class="mdescRight">Matrix of matrix vector product operators for the off diagonals.  <a href="classoomph_1_1PseudoElasticPreconditionerSubsidiaryBlockPreconditionerOld.html#ac736d6b0390de55bb96cc9475a4cabac">More...</a><br /></td></tr>
 <tr class="separator:ac736d6b0390de55bb96cc9475a4cabac"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a6b45cbf207717b9ffe326041f78ea85b"><td class="memItemLeft" align="right" valign="top">unsigned&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classoomph_1_1PseudoElasticPreconditionerSubsidiaryBlockPreconditionerOld.html#a6b45cbf207717b9ffe326041f78ea85b">Method</a></td></tr>
+<tr class="memdesc:a6b45cbf207717b9ffe326041f78ea85b"><td class="mdescLeft">&#160;</td><td class="mdescRight">the preconditioning method. 0 - block diagonal 1 - upper triangular 2 - lower triangular  <a href="classoomph_1_1PseudoElasticPreconditionerSubsidiaryBlockPreconditionerOld.html#a6b45cbf207717b9ffe326041f78ea85b">More...</a><br /></td></tr>
 <tr class="separator:a6b45cbf207717b9ffe326041f78ea85b"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a376d5fd2ddf9f367854b41478a269ae2"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classoomph_1_1PseudoElasticPreconditionerSubsidiaryBlockPreconditionerOld.html#ac76bcd0129f40fa71607fa5dbc1b4e66">SubsidiaryPreconditionerFctPt</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classoomph_1_1PseudoElasticPreconditionerSubsidiaryBlockPreconditionerOld.html#a376d5fd2ddf9f367854b41478a269ae2">Subsidiary_preconditioner_function_pt</a></td></tr>
 <tr class="memdesc:a376d5fd2ddf9f367854b41478a269ae2"><td class="mdescLeft">&#160;</td><td class="mdescRight">The SubisidaryPreconditionerFctPt.  <a href="classoomph_1_1PseudoElasticPreconditionerSubsidiaryBlockPreconditionerOld.html#a376d5fd2ddf9f367854b41478a269ae2">More...</a><br /></td></tr>
@@ -191,7 +195,8 @@ Private Attributes</h2></td></tr>
 <tr class="separator:a588f4623c606d01c3e3feb3c09023f03"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
-<div class="textblock"><p >Subsidiary helper preconditioner for the <a class="el" href="classoomph_1_1PseudoElasticPreconditioner.html" title="A subsidiary preconditioner for the pseudo-elastic FSI preconditioner. Also a stand-alone preconditio...">PseudoElasticPreconditioner</a>. Required for block preconditioner of the augmented elastic subsidiary problem. NOTE:</p><ol type="1">
+<div class="textblock"><p >Subsidiary helper preconditioner for the <a class="el" href="classoomph_1_1PseudoElasticPreconditioner.html" title="A subsidiary preconditioner for the pseudo-elastic FSI preconditioner. Also a stand-alone preconditio...">PseudoElasticPreconditioner</a>. Required for block preconditioner of the augmented elastic subsidiary problem. NOTE: </p>
+<ol type="1">
 <li>This is only intended to be used as a subsidiary preconditioner within the <a class="el" href="classoomph_1_1PseudoElasticPreconditioner.html" title="A subsidiary preconditioner for the pseudo-elastic FSI preconditioner. Also a stand-alone preconditio...">PseudoElasticPreconditioner</a>.</li>
 <li>If this preconditioner has N DOF types then the first N/2 are assumed to be ordinary solid DOF types, and the second N/2 are the solid DOF types with lagrange multiplier tractions applied.</li>
 <li>By default this preconditioner uses a superlu preconditioner. </li>
@@ -606,7 +611,8 @@ Private Attributes</h2></td></tr>
   </tr>
 </table>
 </div><div class="memdoc">
-<p >the preconditioning method. 0 - block diagonal 1 - upper triangular 2 - lower triangular </p>
+
+<p>the preconditioning method. 0 - block diagonal 1 - upper triangular 2 - lower triangular </p>
 
 <p class="definition">Definition at line <a class="el" href="pseudo__elastic__preconditioner_8h_source.html#l00679">679</a> of file <a class="el" href="pseudo__elastic__preconditioner_8h_source.html">pseudo_elastic_preconditioner.h</a>.</p>
 
@@ -730,7 +736,7 @@ Private Attributes</h2></td></tr>
     <footer>
       <div class="container">
         <div class="text-muted" style="float:right;">Generated by <a href="http://www.doxygen.org/index.html">
-          <img style="height:18px;" class="footer-img" src="doxygen.png" alt="doxygen"></a> on Wed Oct 13 2021 09:10:31
+          <img style="height:18px;" class="footer-img" src="doxygen.png" alt="doxygen"></a> on Thu Oct 21 2021 17:57:11
         </div>
       </div>
     </footer>

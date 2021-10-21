@@ -535,7 +535,7 @@ oomph-lib_header.html:
 clean-local:
 	rm -rf latex html $(docfile).txt_doxygenified.h $(docfile).pdf *~ .tmp
 	rm -f oomph-lib_header.html
-	rm -f oomph-lib_footer.html
+	rm -f oomph-lib_footer.html; my_dir=`pwd`; echo "my_dir: "$$my_dir; cd $(top_builddir)/doc; doc_dir=`pwd`; echo "doc_dir: "$$doc_dir; cd $$my_dir; if [ "$$my_dir" == "$$doc_dir" ]; then find ../demo_drivers -name 'index.html' -exec rm -f {} \; ; fi
 	if [ -L extra_latex_style_files ]; then rm -f extra_latex_style_files; fi
 
 # Tell versions [3.59,3.63) of GNU make to not export all variables.

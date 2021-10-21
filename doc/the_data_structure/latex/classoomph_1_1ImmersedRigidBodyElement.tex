@@ -2,6 +2,11 @@
 \label{classoomph_1_1ImmersedRigidBodyElement}\index{oomph::ImmersedRigidBodyElement@{oomph::ImmersedRigidBodyElement}}
 
 
+where $\mbox{\boldmath$F$} = \mbox{\boldmath$F$}^{*}/\mu U$ is the external force per unit length; $\mbox{\boldmath$t$}$ is the net force per unit length applied on the rigid body by the surrounding fluid; $\mbox{\boldmath$T$} = \mbox{\boldmath$T$}^{*}/(\mu UL)$ is the external torque per unit length; and $\mbox{\boldmath$q$}$ is the net torque per unit length applied on the body by the fluid. $M$ is a scaled mass the density ratio multiplied by a shape parameter and $I$ is a scaled moment of inertia. Finally, $Re$ and $St$ are the Reynolds and Strouhal numbers of the surrounding fluid. Note that these equations may be used without the external fluid, in which case the non-\/dimensionalisation doesn\textquotesingle{}t make a lot of sense, but may be re-\/interpreted accordingly.  
+
+
+
+
 {\ttfamily \#include $<$immersed\+\_\+rigid\+\_\+body\+\_\+elements.\+h$>$}
 
 Inheritance diagram for oomph\+::Immersed\+Rigid\+Body\+Element\+:\begin{figure}[H]
@@ -41,7 +46,7 @@ void \mbox{\hyperlink{classoomph_1_1ImmersedRigidBodyElement_a3b25cfe303aa51f26b
 \mbox{\hyperlink{classoomph_1_1ImmersedRigidBodyElement_a60dd9497b3e0713719dfb4b08989eb4c}{$\sim$\+Immersed\+Rigid\+Body\+Element}} ()
 \begin{DoxyCompactList}\small\item\em Destuctor\+: Cleanup if required. \end{DoxyCompactList}\item 
 double \& \mbox{\hyperlink{classoomph_1_1ImmersedRigidBodyElement_a5a18c79fbeae3dc091c10f55add50c5e}{mass\+\_\+shape}} ()
-\item 
+\begin{DoxyCompactList}\small\item\em Access to dimensionless \char`\"{}mass\char`\"{} shape parameter that must be set by hand for non polygonal shapes. \end{DoxyCompactList}\item 
 double \& \mbox{\hyperlink{classoomph_1_1ImmersedRigidBodyElement_a31c670c086ce25b8d92fb5dc2a49e0f7}{moment\+\_\+of\+\_\+inertia\+\_\+shape}} ()
 \begin{DoxyCompactList}\small\item\em Access to dimensionless polar \char`\"{}moment of inertia\char`\"{} shape parameter. \end{DoxyCompactList}\item 
 \mbox{\hyperlink{classoomph_1_1Data}{Data}} $\ast$\& \mbox{\hyperlink{classoomph_1_1ImmersedRigidBodyElement_a9f9537354eb0e1c9f653e8cd4e8216b1}{centre\+\_\+displacement\+\_\+data\+\_\+pt}} ()
@@ -153,7 +158,7 @@ void \mbox{\hyperlink{classoomph_1_1ImmersedRigidBodyElement_a5d9b6718a4d1b92c88
 \begin{DoxyCompactItemize}
 \item 
 std\+::list$<$ unsigned $>$ \mbox{\hyperlink{classoomph_1_1ImmersedRigidBodyElement_afb7caf6fb7b409f32b948de6ef6fc8c4}{List\+\_\+of\+\_\+external\+\_\+hijacked\+\_\+data}}
-\item 
+\begin{DoxyCompactList}\small\item\em Storage for the external data that is formed from hijacked data that must be deleted by this element. \end{DoxyCompactList}\item 
 \mbox{\hyperlink{classoomph_1_1GeomObject}{Geom\+Object}} $\ast$ \mbox{\hyperlink{classoomph_1_1ImmersedRigidBodyElement_aa522d91f432b5da330042ee34735fab2}{Geom\+\_\+object\+\_\+pt}}
 \begin{DoxyCompactList}\small\item\em Underlying geometric object. \end{DoxyCompactList}\item 
 \mbox{\hyperlink{classoomph_1_1ImmersedRigidBodyElement_a7a43bfd54213becfb135b594720b0539}{External\+Force\+Fct\+Pt}} \mbox{\hyperlink{classoomph_1_1ImmersedRigidBodyElement_aac35cbe02cabee08a706aadd03af801a}{External\+\_\+force\+\_\+fct\+\_\+pt}}
@@ -177,7 +182,7 @@ unsigned \mbox{\hyperlink{classoomph_1_1ImmersedRigidBodyElement_a8fddc20d162038
 bool \mbox{\hyperlink{classoomph_1_1ImmersedRigidBodyElement_a6e68c8b6d7e33f0abbf93633f7e2ef69}{Displacement\+\_\+data\+\_\+is\+\_\+internal}}
 \begin{DoxyCompactList}\small\item\em Boolean flag to indicate whether data is internal. \end{DoxyCompactList}\item 
 bool \mbox{\hyperlink{classoomph_1_1ImmersedRigidBodyElement_a10ec0a0cfd976dac012d6cf0d73a1063}{Include\+\_\+geometric\+\_\+rotation}}
-\end{DoxyCompactItemize}
+\begin{DoxyCompactList}\small\item\em Boolean to indicate that the rotation variable does not affect the boundary shape. \end{DoxyCompactList}\end{DoxyCompactItemize}
 \doxysubsection*{Static Private Attributes}
 \begin{DoxyCompactItemize}
 \item 
@@ -191,9 +196,7 @@ static \mbox{\hyperlink{classoomph_1_1Vector}{Vector}}$<$ double $>$ \mbox{\hype
 
 
 \doxysubsection{Detailed Description}
-Class that solves the equations of motion for a general two-\/dimensional rigid body subject to a particular imposed force and torque distribution and immersed within an external fluid. The body\textquotesingle{}s position is entirely specified by the location of its centre of mass, $\mbox{\boldmath$X$}$, and a single angle, $\phi$, that represents a possible rotation. The equations of motion are then simply Newton\textquotesingle{}s second law for the conservation of linear momentum in two directions and angular momentum about the single possible axis of rotation.
-
-The non-\/dimensionalisation is based on the viscous scales of the surrounding fluid, in which case, the governing equations are \[ Re St^{2} M \frac{\mbox{d}^{2} \mbox{\boldmath$X$}}{\mbox{d} t^{2}} = \mbox{\boldmath$F$} + \oint \mbox{\boldmath$t$} \mbox{d} s \quad\mbox{and}\quad Re St^{2} I \frac{\mbox{d}^{2}\Phi}{\mbox{d} t^{2}} = \mbox{\boldmath$T$} + \oint \mbox{\boldmath$q$} \mbox{d} s, \] where $\mbox{\boldmath$F$} = \mbox{\boldmath$F$}^{*}/\mu U$ is the external force per unit length; $\mbox{\boldmath$t$}$ is the net force per unit length applied on the rigid body by the surrounding fluid; $\mbox{\boldmath$T$} = \mbox{\boldmath$T$}^{*}/(\mu UL)$ is the external torque per unit length; and $\mbox{\boldmath$q$}$ is the net torque per unit length applied on the body by the fluid. $M$ is a scaled mass the density ratio multiplied by a shape parameter and $I$ is a scaled moment of inertia. Finally, $Re$ and $St$ are the Reynolds and Strouhal numbers of the surrounding fluid. Note that these equations may be used without the external fluid, in which case the non-\/dimensionalisation doesn\textquotesingle{}t make a lot of sense, but may be re-\/interpreted accordingly.
+where $\mbox{\boldmath$F$} = \mbox{\boldmath$F$}^{*}/\mu U$ is the external force per unit length; $\mbox{\boldmath$t$}$ is the net force per unit length applied on the rigid body by the surrounding fluid; $\mbox{\boldmath$T$} = \mbox{\boldmath$T$}^{*}/(\mu UL)$ is the external torque per unit length; and $\mbox{\boldmath$q$}$ is the net torque per unit length applied on the body by the fluid. $M$ is a scaled mass the density ratio multiplied by a shape parameter and $I$ is a scaled moment of inertia. Finally, $Re$ and $St$ are the Reynolds and Strouhal numbers of the surrounding fluid. Note that these equations may be used without the external fluid, in which case the non-\/dimensionalisation doesn\textquotesingle{}t make a lot of sense, but may be re-\/interpreted accordingly. 
 
 A \mbox{\hyperlink{classoomph_1_1Data}{Data}} object whose three values represent the x and y displacements of the body\textquotesingle{}s centre of mass and its rotation about the centre of mass may be passed in as external data or, if not, it will be constructed internally.
 
@@ -500,7 +503,7 @@ References \mbox{\hyperlink{immersed__rigid__body__elements_8h_source_l00628}{De
 
 Work out the position derivative, including rigid body motion. 
 
-Work out the position derivative taking into account the movement relative to the original centre of mass 
+Work out the position derivative taking into account the movement relative to the original centre of mass. 
 
 Reimplemented from \mbox{\hyperlink{classoomph_1_1GeomObject_aa46469e491d25eda8dbe213f07152974}{oomph\+::\+Geom\+Object}}.
 
@@ -704,7 +707,7 @@ References \mbox{\hyperlink{immersed__rigid__body__elements_8h_source_l00597}{Ce
 
 Get force and torque from specified fct pointers and drag mesh. 
 
-Obtain the external force and torque on the body from specified function pointers and also from a drag mesh, if there is one 
+Obtain the external force and torque on the body from specified function pointers and also from a drag mesh, if there is one. 
 
 Definition at line \mbox{\hyperlink{immersed__rigid__body__elements_8cc_source_l00153}{153}} of file \mbox{\hyperlink{immersed__rigid__body__elements_8cc_source}{immersed\+\_\+rigid\+\_\+body\+\_\+elements.\+cc}}.
 
@@ -820,7 +823,11 @@ Referenced by \mbox{\hyperlink{immersed__rigid__body__elements_8h_source_l00115}
 \doxysubsubsection{\texorpdfstring{mass\_shape()}{mass\_shape()}}
 {\footnotesize\ttfamily double \& oomph\+::\+Immersed\+Rigid\+Body\+Element\+::mass\+\_\+shape (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
 
-Access to dimensionless \char`\"{}mass\char`\"{} shape parameter that must be set by hand for non polygonal shapes 
+
+
+Access to dimensionless \char`\"{}mass\char`\"{} shape parameter that must be set by hand for non polygonal shapes. 
+
+
 
 Definition at line \mbox{\hyperlink{immersed__rigid__body__elements_8h_source_l00227}{227}} of file \mbox{\hyperlink{immersed__rigid__body__elements_8h_source}{immersed\+\_\+rigid\+\_\+body\+\_\+elements.\+h}}.
 
@@ -880,7 +887,7 @@ Definition at line \mbox{\hyperlink{immersed__rigid__body__elements_8h_source_l0
 
 
 
-References \mbox{\hyperlink{immersed__rigid__body__elements_8h_source_l00613}{Drag\+\_\+mesh\+\_\+pt}}, \mbox{\hyperlink{cfortran_8h_source_l00571}{e}}, \mbox{\hyperlink{mesh_8h_source_l00448}{oomph\+::\+Mesh\+::element\+\_\+pt()}}, \mbox{\hyperlink{mesh_8h_source_l00590}{oomph\+::\+Mesh\+::nelement()}}, and \mbox{\hyperlink{elements_8cc_source_l05076}{oomph\+::\+Finite\+Element\+::node\+\_\+update()}}.
+References \mbox{\hyperlink{immersed__rigid__body__elements_8h_source_l00613}{Drag\+\_\+mesh\+\_\+pt}}, \mbox{\hyperlink{cfortran_8h_source_l00571}{e}}, \mbox{\hyperlink{mesh_8h_source_l00448}{oomph\+::\+Mesh\+::element\+\_\+pt()}}, \mbox{\hyperlink{mesh_8h_source_l00590}{oomph\+::\+Mesh\+::nelement()}}, and \mbox{\hyperlink{classoomph_1_1FiniteElement_a7ae3f437c142fbdef17db914698ffb10}{oomph\+::\+Finite\+Element\+::node\+\_\+update()}}.
 
 
 
@@ -896,7 +903,7 @@ Referenced by \mbox{\hyperlink{immersed__rigid__body__elements_8h_source_l00362}
 
 Output position velocity and acceleration of centre of gravity. 
 
-Output the position of the centre of gravity including velocities and accelerations 
+Output the position of the centre of gravity including velocities and accelerations. 
 
 Definition at line \mbox{\hyperlink{immersed__rigid__body__elements_8cc_source_l00121}{121}} of file \mbox{\hyperlink{immersed__rigid__body__elements_8cc_source}{immersed\+\_\+rigid\+\_\+body\+\_\+elements.\+cc}}.
 
@@ -1525,7 +1532,11 @@ Referenced by \mbox{\hyperlink{immersed__rigid__body__elements_8cc_source_l00045
 \doxysubsubsection{\texorpdfstring{Include\_geometric\_rotation}{Include\_geometric\_rotation}}
 {\footnotesize\ttfamily bool oomph\+::\+Immersed\+Rigid\+Body\+Element\+::\+Include\+\_\+geometric\+\_\+rotation\hspace{0.3cm}{\ttfamily [private]}}
 
-Boolean to indicate that the rotation variable does not affect the boundary shape 
+
+
+Boolean to indicate that the rotation variable does not affect the boundary shape. 
+
+
 
 Definition at line \mbox{\hyperlink{immersed__rigid__body__elements_8h_source_l00648}{648}} of file \mbox{\hyperlink{immersed__rigid__body__elements_8h_source}{immersed\+\_\+rigid\+\_\+body\+\_\+elements.\+h}}.
 
@@ -1593,7 +1604,11 @@ Referenced by \mbox{\hyperlink{immersed__rigid__body__elements_8cc_source_l00387
 \doxysubsubsection{\texorpdfstring{List\_of\_external\_hijacked\_data}{List\_of\_external\_hijacked\_data}}
 {\footnotesize\ttfamily std\+::list$<$unsigned$>$ oomph\+::\+Immersed\+Rigid\+Body\+Element\+::\+List\+\_\+of\+\_\+external\+\_\+hijacked\+\_\+data\hspace{0.3cm}{\ttfamily [private]}}
 
-Storage for the external data that is formed from hijacked data that must be deleted by this element 
+
+
+Storage for the external data that is formed from hijacked data that must be deleted by this element. 
+
+
 
 Definition at line \mbox{\hyperlink{immersed__rigid__body__elements_8h_source_l00564}{564}} of file \mbox{\hyperlink{immersed__rigid__body__elements_8h_source}{immersed\+\_\+rigid\+\_\+body\+\_\+elements.\+h}}.
 

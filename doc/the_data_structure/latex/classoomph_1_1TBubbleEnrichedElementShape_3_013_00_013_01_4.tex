@@ -2,7 +2,7 @@
 \label{classoomph_1_1TBubbleEnrichedElementShape_3_013_00_013_01_4}\index{oomph::TBubbleEnrichedElementShape$<$ 3, 3 $>$@{oomph::TBubbleEnrichedElementShape$<$ 3, 3 $>$}}
 
 
-Return local coordinates of node j.  
+Standard quadratic shape functions enriched by the addition of three cubic \char`\"{}face\char`\"{} bubbles and quartic \char`\"{}volume\char`\"{} bubble, which consists of adding a node at the centroid of each face and a single node at the centroid of the tetrahedron.  
 
 
 
@@ -21,13 +21,13 @@ void \mbox{\hyperlink{classoomph_1_1TBubbleEnrichedElementShape_3_013_00_013_01_
 void \mbox{\hyperlink{classoomph_1_1TBubbleEnrichedElementShape_3_013_00_013_01_4_aac68cab20840e2bfee3af7a23d59dcb0}{dshape\+\_\+local}} (const \mbox{\hyperlink{classoomph_1_1Vector}{Vector}}$<$ double $>$ \&\mbox{\hyperlink{cfortran_8h_ab7123126e4885ef647dd9c6e3807a21c}{s}}, \mbox{\hyperlink{classoomph_1_1Shape}{Shape}} \&psi, \mbox{\hyperlink{classoomph_1_1DShape}{DShape}} \&dpsids) const
 \begin{DoxyCompactList}\small\item\em Derivatives of shape functions for specific TElement$<$3,3$>$ \end{DoxyCompactList}\item 
 void \mbox{\hyperlink{classoomph_1_1TBubbleEnrichedElementShape_3_013_00_013_01_4_a6e43bca8652e876e0f0642934264f119}{d2shape\+\_\+local}} (const \mbox{\hyperlink{classoomph_1_1Vector}{Vector}}$<$ double $>$ \&\mbox{\hyperlink{cfortran_8h_ab7123126e4885ef647dd9c6e3807a21c}{s}}, \mbox{\hyperlink{classoomph_1_1Shape}{Shape}} \&psi, \mbox{\hyperlink{classoomph_1_1DShape}{DShape}} \&dpsids, \mbox{\hyperlink{classoomph_1_1DShape}{DShape}} \&d2psids) const
-\end{DoxyCompactItemize}
+\begin{DoxyCompactList}\small\item\em Second derivatives of shape functions for specific TElement$<$3,3$>$\+: d2psids(i,0) = $ \partial^2 \psi_j / \partial s_0^2 $ d2psids(i,1) = $ \partial^2 \psi_j / \partial s_1^2 $ d2psids(i,2) = $ \partial^2 \psi_j / \partial s_2^2 $ d2psids(i,3) = $ \partial^2 \psi_j / \partial s_0 \partial s_1 $ d2psids(i,4) = $ \partial^2 \psi_j / \partial s_0 \partial s_2 $ d2psids(i,5) = $ \partial^2 \psi_j / \partial s_1 \partial s_2 $. \end{DoxyCompactList}\end{DoxyCompactItemize}
 
 
 \doxysubsection{Detailed Description}
-Return local coordinates of node j. 
+Standard quadratic shape functions enriched by the addition of three cubic \char`\"{}face\char`\"{} bubbles and quartic \char`\"{}volume\char`\"{} bubble, which consists of adding a node at the centroid of each face and a single node at the centroid of the tetrahedron. 
 
-Standard quadratic shape functions enriched by the addition of three cubic \char`\"{}face\char`\"{} bubbles and quartic \char`\"{}volume\char`\"{} bubble, which consists of adding a node at the centroid of each face and a single node at the centroid of the tetrahedron 
+Return local coordinates of node j 
 
 Definition at line \mbox{\hyperlink{Telements_8h_source_l02312}{2312}} of file \mbox{\hyperlink{Telements_8h_source}{Telements.\+h}}.
 
@@ -40,7 +40,11 @@ Definition at line \mbox{\hyperlink{Telements_8h_source_l02312}{2312}} of file \
 \doxysubsubsection{\texorpdfstring{d2shape\_local()}{d2shape\_local()}}
 {\footnotesize\ttfamily void \mbox{\hyperlink{classoomph_1_1TBubbleEnrichedElementShape}{oomph\+::\+TBubble\+Enriched\+Element\+Shape}}$<$ 3, 3 $>$\+::d2shape\+\_\+local (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{classoomph_1_1Vector}{Vector}}$<$ double $>$ \&}]{s,  }\item[{\mbox{\hyperlink{classoomph_1_1Shape}{Shape}} \&}]{psi,  }\item[{\mbox{\hyperlink{classoomph_1_1DShape}{DShape}} \&}]{dpsids,  }\item[{\mbox{\hyperlink{classoomph_1_1DShape}{DShape}} \&}]{d2psids }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
 
-Second derivatives of shape functions for specific TElement$<$3,3$>$\+: d2psids(i,0) = $ \partial^2 \psi_j / \partial s_0^2 $ d2psids(i,1) = $ \partial^2 \psi_j / \partial s_1^2 $ d2psids(i,2) = $ \partial^2 \psi_j / \partial s_2^2 $ d2psids(i,3) = $ \partial^2 \psi_j / \partial s_0 \partial s_1 $ d2psids(i,4) = $ \partial^2 \psi_j / \partial s_0 \partial s_2 $ d2psids(i,5) = $ \partial^2 \psi_j / \partial s_1 \partial s_2 $ 
+
+
+Second derivatives of shape functions for specific TElement$<$3,3$>$\+: d2psids(i,0) = $ \partial^2 \psi_j / \partial s_0^2 $ d2psids(i,1) = $ \partial^2 \psi_j / \partial s_1^2 $ d2psids(i,2) = $ \partial^2 \psi_j / \partial s_2^2 $ d2psids(i,3) = $ \partial^2 \psi_j / \partial s_0 \partial s_1 $ d2psids(i,4) = $ \partial^2 \psi_j / \partial s_0 \partial s_2 $ d2psids(i,5) = $ \partial^2 \psi_j / \partial s_1 \partial s_2 $. 
+
+
 
 Definition at line \mbox{\hyperlink{Telements_8h_source_l02689}{2689}} of file \mbox{\hyperlink{Telements_8h_source}{Telements.\+h}}.
 

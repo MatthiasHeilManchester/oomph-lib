@@ -1,5 +1,10 @@
 \hypertarget{classElasticTwoLayerMesh}{}\doxysection{Elastic\+Two\+Layer\+Mesh\texorpdfstring{$<$}{<} ELEMENT \texorpdfstring{$>$}{>} Class Template Reference}
 \label{classElasticTwoLayerMesh}\index{ElasticTwoLayerMesh$<$ ELEMENT $>$@{ElasticTwoLayerMesh$<$ ELEMENT $>$}}
+
+
+Two layer mesh which employs a pseudo-\/solid node-\/update strategy. This class is essentially a wrapper to an Elastic\+Rectangular\+Quad\+Mesh, with an additional boundary to represent the interface between the two fluid layers. In addition, the mesh paritions the elements into those above and below the interface and relabels boundaries so that we can impose a volume constraint on the lower or upper fluid.  
+
+
 Inheritance diagram for Elastic\+Two\+Layer\+Mesh\texorpdfstring{$<$}{<} ELEMENT \texorpdfstring{$>$}{>}\+:\begin{figure}[H]
 \begin{center}
 \leavevmode
@@ -47,7 +52,9 @@ Vector$<$ Finite\+Element $\ast$ $>$ \mbox{\hyperlink{classElasticTwoLayerMesh_a
 \doxysubsection{Detailed Description}
 \subsubsection*{template$<$class ELEMENT$>$\newline
 class Elastic\+Two\+Layer\+Mesh$<$ ELEMENT $>$}
-Two layer mesh which employs a pseudo-\/solid node-\/update strategy. This class is essentially a wrapper to an Elastic\+Rectangular\+Quad\+Mesh, with an additional boundary to represent the interface between the two fluid layers. In addition, the mesh paritions the elements into those above and below the interface and relabels boundaries so that we can impose a volume constraint on the lower or upper fluid. \begin{DoxyVerb}                            3
+Two layer mesh which employs a pseudo-\/solid node-\/update strategy. This class is essentially a wrapper to an Elastic\+Rectangular\+Quad\+Mesh, with an additional boundary to represent the interface between the two fluid layers. In addition, the mesh paritions the elements into those above and below the interface and relabels boundaries so that we can impose a volume constraint on the lower or upper fluid. 
+
+\begin{DoxyVerb}                            3
           ---------------------------------------
           |                                     |
         4 |                                     | 2
@@ -57,7 +64,7 @@ Two layer mesh which employs a pseudo-\/solid node-\/update strategy. This class
         5 |                                     | 1
           |                                     |
           ---------------------------------------
-                            0 
+                            0
 \end{DoxyVerb}
  
 

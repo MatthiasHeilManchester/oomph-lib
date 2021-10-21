@@ -132,6 +132,9 @@ $(function() {
 </div><!--header-->
 <div class="contents">
 
+<p>A <a class="el" href="classoomph_1_1GeneralisedNewtonianConstitutiveEquation.html" title="A Base class defining the generalise Newtonian constitutive relation.">GeneralisedNewtonianConstitutiveEquation</a> class defining a Casson model fluid using Tanner and Milthorpe's (1983) regularisation with a smooth transition using a cubic.  
+ <a href="classoomph_1_1CassonTanMilRegWithBlendingConstitutiveEquation.html#details">More...</a></p>
+
 <p><code>#include &lt;<a class="el" href="generalised__newtonian__constitutive__models_8h_source.html">generalised_newtonian_constitutive_models.h</a>&gt;</code></p>
 <div id="dynsection-0" onclick="return toggleVisibility(this)" class="dynheader closed" style="cursor:pointer;">
   <img id="dynsection-0-trigger" src="closed.png" alt="+"/> Inheritance diagram for oomph::CassonTanMilRegWithBlendingConstitutiveEquation&lt; DIM &gt;:</div>
@@ -151,8 +154,10 @@ Public Member Functions</h2></td></tr>
 <tr class="memdesc:a69a6c3d00d715d3793d30d588fa64227"><td class="mdescLeft">&#160;</td><td class="mdescRight">"Cutoff regularised" Casson constitutive equation  <a href="classoomph_1_1CassonTanMilRegWithBlendingConstitutiveEquation.html#a69a6c3d00d715d3793d30d588fa64227">More...</a><br /></td></tr>
 <tr class="separator:a69a6c3d00d715d3793d30d588fa64227"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a5fcaff96bfabae7666c4f7a91699df5b"><td class="memItemLeft" align="right" valign="top">double&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classoomph_1_1CassonTanMilRegWithBlendingConstitutiveEquation.html#a5fcaff96bfabae7666c4f7a91699df5b">calculate_cutoff_viscosity</a> ()</td></tr>
+<tr class="memdesc:a5fcaff96bfabae7666c4f7a91699df5b"><td class="mdescLeft">&#160;</td><td class="mdescRight">Function that calculates the viscosity at the cutoff invariant Note: this is NOT the viscosity at zero I2.  <a href="classoomph_1_1CassonTanMilRegWithBlendingConstitutiveEquation.html#a5fcaff96bfabae7666c4f7a91699df5b">More...</a><br /></td></tr>
 <tr class="separator:a5fcaff96bfabae7666c4f7a91699df5b"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:af844c87f95a40d6c503bbaee6292482b"><td class="memItemLeft" align="right" valign="top">double&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classoomph_1_1CassonTanMilRegWithBlendingConstitutiveEquation.html#af844c87f95a40d6c503bbaee6292482b">calculate_viscosity_offset_at_zero_shear</a> (double &amp;cut_off_viscosity)</td></tr>
+<tr class="memdesc:af844c87f95a40d6c503bbaee6292482b"><td class="mdescLeft">&#160;</td><td class="mdescRight">Offset by how much the zero shear rate viscosity lies above the viscosity at I2_cutoff Hard-coded to a value that ensures a smooth transition.  <a href="classoomph_1_1CassonTanMilRegWithBlendingConstitutiveEquation.html#af844c87f95a40d6c503bbaee6292482b">More...</a><br /></td></tr>
 <tr class="separator:af844c87f95a40d6c503bbaee6292482b"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:acbab1c4047d193a4d6136856dbd599d0"><td class="memItemLeft" align="right" valign="top">double&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classoomph_1_1CassonTanMilRegWithBlendingConstitutiveEquation.html#acbab1c4047d193a4d6136856dbd599d0">calculate_zero_shear_viscosity</a> ()</td></tr>
 <tr class="memdesc:acbab1c4047d193a4d6136856dbd599d0"><td class="mdescLeft">&#160;</td><td class="mdescRight">Function that calculates the viscosity at zero I2.  <a href="classoomph_1_1CassonTanMilRegWithBlendingConstitutiveEquation.html#acbab1c4047d193a4d6136856dbd599d0">More...</a><br /></td></tr>
@@ -182,11 +187,12 @@ Private Attributes</h2></td></tr>
 <tr class="memdesc:a17aa5fc2eaaacf3eb7176c6f5a5a165b"><td class="mdescLeft">&#160;</td><td class="mdescRight">Yield stress.  <a href="classoomph_1_1CassonTanMilRegWithBlendingConstitutiveEquation.html#a17aa5fc2eaaacf3eb7176c6f5a5a165b">More...</a><br /></td></tr>
 <tr class="separator:a17aa5fc2eaaacf3eb7176c6f5a5a165b"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ac003ae43c6171c85d3e75d0825f20cc9"><td class="memItemLeft" align="right" valign="top">double *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classoomph_1_1CassonTanMilRegWithBlendingConstitutiveEquation.html#ac003ae43c6171c85d3e75d0825f20cc9">Critical_second_invariant_pt</a></td></tr>
+<tr class="memdesc:ac003ae43c6171c85d3e75d0825f20cc9"><td class="mdescLeft">&#160;</td><td class="mdescRight">value of the second invariant below which we have constant (Newtonian) viscosity &ndash; assumed to be always positive  <a href="classoomph_1_1CassonTanMilRegWithBlendingConstitutiveEquation.html#ac003ae43c6171c85d3e75d0825f20cc9">More...</a><br /></td></tr>
 <tr class="separator:ac003ae43c6171c85d3e75d0825f20cc9"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock"><div class="compoundTemplParams">template&lt;unsigned DIM&gt;<br />
-class oomph::CassonTanMilRegWithBlendingConstitutiveEquation&lt; DIM &gt;</div><p >A <a class="el" href="classoomph_1_1GeneralisedNewtonianConstitutiveEquation.html" title="A Base class defining the generalise Newtonian constitutive relation.">GeneralisedNewtonianConstitutiveEquation</a> class defining a Casson model fluid using Tanner and Milthorpe's (1983) regularisation with a smooth transition using a cubic </p>
+class oomph::CassonTanMilRegWithBlendingConstitutiveEquation&lt; DIM &gt;</div><p >A <a class="el" href="classoomph_1_1GeneralisedNewtonianConstitutiveEquation.html" title="A Base class defining the generalise Newtonian constitutive relation.">GeneralisedNewtonianConstitutiveEquation</a> class defining a Casson model fluid using Tanner and Milthorpe's (1983) regularisation with a smooth transition using a cubic. </p>
 
 <p class="definition">Definition at line <a class="el" href="generalised__newtonian__constitutive__models_8h_source.html#l00889">889</a> of file <a class="el" href="generalised__newtonian__constitutive__models_8h_source.html">generalised_newtonian_constitutive_models.h</a>.</p>
 </div><h2 class="groupheader">Constructor &amp; Destructor Documentation</h2>
@@ -261,7 +267,8 @@ template&lt;unsigned DIM&gt; </div>
   </tr>
 </table>
 </div><div class="memdoc">
-<p >Function that calculates the viscosity at the cutoff invariant Note: this is NOT the viscosity at zero I2 </p>
+
+<p>Function that calculates the viscosity at the cutoff invariant Note: this is NOT the viscosity at zero I2. </p>
 
 <p class="definition">Definition at line <a class="el" href="generalised__newtonian__constitutive__models_8h_source.html#l00929">929</a> of file <a class="el" href="generalised__newtonian__constitutive__models_8h_source.html">generalised_newtonian_constitutive_models.h</a>.</p>
 
@@ -340,7 +347,8 @@ template&lt;unsigned DIM&gt; </div>
   </tr>
 </table>
 </div><div class="memdoc">
-<p >Offset by how much the zero shear rate viscosity lies above the viscosity at I2_cutoff Hard-coded to a value that ensures a smooth transition </p>
+
+<p>Offset by how much the zero shear rate viscosity lies above the viscosity at I2_cutoff Hard-coded to a value that ensures a smooth transition. </p>
 
 <p class="definition">Definition at line <a class="el" href="generalised__newtonian__constitutive__models_8h_source.html#l00942">942</a> of file <a class="el" href="generalised__newtonian__constitutive__models_8h_source.html">generalised_newtonian_constitutive_models.h</a>.</p>
 
@@ -528,7 +536,8 @@ template&lt;unsigned DIM&gt; </div>
   </tr>
 </table>
 </div><div class="memdoc">
-<p >value of the second invariant below which we have constant (Newtonian) viscosity &ndash; assumed to be always positive </p>
+
+<p>value of the second invariant below which we have constant (Newtonian) viscosity &ndash; assumed to be always positive </p>
 
 <p class="definition">Definition at line <a class="el" href="generalised__newtonian__constitutive__models_8h_source.html#l00898">898</a> of file <a class="el" href="generalised__newtonian__constitutive__models_8h_source.html">generalised_newtonian_constitutive_models.h</a>.</p>
 
@@ -597,7 +606,7 @@ template&lt;unsigned DIM&gt; </div>
     <footer>
       <div class="container">
         <div class="text-muted" style="float:right;">Generated by <a href="http://www.doxygen.org/index.html">
-          <img style="height:18px;" class="footer-img" src="doxygen.png" alt="doxygen"></a> on Wed Oct 13 2021 08:45:01
+          <img style="height:18px;" class="footer-img" src="doxygen.png" alt="doxygen"></a> on Thu Oct 21 2021 17:33:32
         </div>
       </div>
     </footer>

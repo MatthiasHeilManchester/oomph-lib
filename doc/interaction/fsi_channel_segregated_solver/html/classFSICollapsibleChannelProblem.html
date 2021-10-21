@@ -129,7 +129,7 @@ Inheritance diagram for FSICollapsibleChannelProblem&lt; ELEMENT &gt;:</div>
  <div class="center">
   <img src="classFSICollapsibleChannelProblem.png" usemap="#FSICollapsibleChannelProblem_3C_20ELEMENT_20_3E_map" alt=""/>
   <map id="FSICollapsibleChannelProblem_3C_20ELEMENT_20_3E_map" name="FSICollapsibleChannelProblem_3C_20ELEMENT_20_3E_map">
-<area href="classSegregatedFSICollapsibleChannelProblem.html" alt="SegregatedFSICollapsibleChannelProblem&lt; ELEMENT &gt;" shape="rect" coords="0,112,333,136"/>
+<area href="classSegregatedFSICollapsibleChannelProblem.html" title="Problem class – add segregated solver capability to an existing problem." alt="SegregatedFSICollapsibleChannelProblem&lt; ELEMENT &gt;" shape="rect" coords="0,112,333,136"/>
   </map>
 </div></div>
 <table class="memberdecls">
@@ -142,7 +142,7 @@ Public Member Functions</h2></td></tr>
 <tr class="memdesc:abe33aaaae15ea3eb10885527a1d1ad9a"><td class="mdescLeft">&#160;</td><td class="mdescRight">Destructor.  <a href="classFSICollapsibleChannelProblem.html#abe33aaaae15ea3eb10885527a1d1ad9a">More...</a><br /></td></tr>
 <tr class="separator:abe33aaaae15ea3eb10885527a1d1ad9a"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a299ba7d5819e7871eae7e331d1abab8b"><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classFSICollapsibleChannelProblem.html#a299ba7d5819e7871eae7e331d1abab8b">steady_run</a> ()</td></tr>
-<tr class="memdesc:a299ba7d5819e7871eae7e331d1abab8b"><td class="mdescLeft">&#160;</td><td class="mdescRight">Steady run.  <a href="classFSICollapsibleChannelProblem.html#a299ba7d5819e7871eae7e331d1abab8b">More...</a><br /></td></tr>
+<tr class="memdesc:a299ba7d5819e7871eae7e331d1abab8b"><td class="mdescLeft">&#160;</td><td class="mdescRight">Steady run; virtual so it can be overloaded in derived problem classes.  <a href="classFSICollapsibleChannelProblem.html#a299ba7d5819e7871eae7e331d1abab8b">More...</a><br /></td></tr>
 <tr class="separator:a299ba7d5819e7871eae7e331d1abab8b"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ae4f2b3abaf5e2dfc35489548d5a72edc"><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classFSICollapsibleChannelProblem.html#ae4f2b3abaf5e2dfc35489548d5a72edc">unsteady_run</a> (const double &amp;dt=0.1)</td></tr>
 <tr class="memdesc:ae4f2b3abaf5e2dfc35489548d5a72edc"><td class="mdescLeft">&#160;</td><td class="mdescRight">Unsteady run; virtual so it can be overloaded in derived problem classes. Specify timestep or use default of 0.1.  <a href="classFSICollapsibleChannelProblem.html#ae4f2b3abaf5e2dfc35489548d5a72edc">More...</a><br /></td></tr>
@@ -232,6 +232,7 @@ Protected Attributes</h2></td></tr>
 <tr class="memdesc:a7f21548c86e387a26a55062ef50ea416"><td class="mdescLeft">&#160;</td><td class="mdescRight">Flag for steady run.  <a href="classFSICollapsibleChannelProblem.html#a7f21548c86e387a26a55062ef50ea416">More...</a><br /></td></tr>
 <tr class="separator:a7f21548c86e387a26a55062ef50ea416"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a0af9dba0fa399669d099b67b8c6906fa"><td class="memItemLeft" align="right" valign="top">GeomObject *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classFSICollapsibleChannelProblem.html#a0af9dba0fa399669d099b67b8c6906fa">Ctrl_geom_obj_pt</a></td></tr>
+<tr class="memdesc:a0af9dba0fa399669d099b67b8c6906fa"><td class="mdescLeft">&#160;</td><td class="mdescRight">Pointer to GeomObject at which displacement control is applied (or at which wall displacement is monitored in unsteady runs)  <a href="classFSICollapsibleChannelProblem.html#a0af9dba0fa399669d099b67b8c6906fa">More...</a><br /></td></tr>
 <tr class="separator:a0af9dba0fa399669d099b67b8c6906fa"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a203ee0ecb406f97e62b6e7facb8119b5"><td class="memItemLeft" align="right" valign="top">Vector&lt; double &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classFSICollapsibleChannelProblem.html#a203ee0ecb406f97e62b6e7facb8119b5">S_displ_ctrl</a></td></tr>
 <tr class="memdesc:a203ee0ecb406f97e62b6e7facb8119b5"><td class="mdescLeft">&#160;</td><td class="mdescRight">Vector of local coordinates of displacement control point in Ctrl_geom_obj_pt.  <a href="classFSICollapsibleChannelProblem.html#a203ee0ecb406f97e62b6e7facb8119b5">More...</a><br /></td></tr>
@@ -725,8 +726,8 @@ template&lt;class ELEMENT &gt; </div>
 </table>
 </div><div class="memdoc">
 
-<p>Steady run. </p>
-<p >Steady run; virtual so it can be overloaded in derived problem classes </p>
+<p>Steady run; virtual so it can be overloaded in derived problem classes. </p>
+<p >Steady run. </p>
 
 <p>Reimplemented in <a class="el" href="classSegregatedFSICollapsibleChannelProblem.html#a9a6b0dfeda9eb0d4c50e195768c93e37">SegregatedFSICollapsibleChannelProblem&lt; ELEMENT &gt;</a>.</p>
 
@@ -856,7 +857,8 @@ template&lt;class ELEMENT &gt; </div>
   </tr>
 </table>
 </div><div class="memdoc">
-<p >Pointer to GeomObject at which displacement control is applied (or at which wall displacement is monitored in unsteady runs) </p>
+
+<p>Pointer to GeomObject at which displacement control is applied (or at which wall displacement is monitored in unsteady runs) </p>
 
 <p class="definition">Definition at line <a class="el" href="fsi__chan__problem_8h_source.html#l00458">458</a> of file <a class="el" href="fsi__chan__problem_8h_source.html">fsi_chan_problem.h</a>.</p>
 
@@ -1429,7 +1431,7 @@ template&lt;class ELEMENT &gt; </div>
     <footer>
       <div class="container">
         <div class="text-muted" style="float:right;">Generated by <a href="http://www.doxygen.org/index.html">
-          <img style="height:18px;" class="footer-img" src="doxygen.png" alt="doxygen"></a> on Wed Oct 13 2021 09:07:41
+          <img style="height:18px;" class="footer-img" src="doxygen.png" alt="doxygen"></a> on Thu Oct 21 2021 17:54:37
         </div>
       </div>
     </footer>

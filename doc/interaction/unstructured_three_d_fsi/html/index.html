@@ -322,7 +322,7 @@ The fluid mesh</h2>
 <div class="line"> </div>
 <div class="line"><span class="keyword">public</span>:</div>
 <div class="line"> <span class="comment"></span></div>
-<div class="line"><span class="comment"> /// \short Constructor: </span></div>
+<div class="line"><span class="comment"> ///  Constructor: </span></div>
 <div class="line"><span class="comment"></span> <a class="code hl_function" href="classFluidTetMesh.html#a5f8ea145d68623198abc97209a0491a6">FluidTetMesh</a>(<span class="keyword">const</span> std::string&amp; node_file_name,</div>
 <div class="line">              <span class="keyword">const</span> std::string&amp; element_file_name,</div>
 <div class="line">              <span class="keyword">const</span> std::string&amp; face_file_name,</div>
@@ -453,7 +453,7 @@ The Problem class</h1>
 <div class="line"><span class="comment"> /// Create FSI traction elements</span></div>
 <div class="line"><span class="comment"></span> <span class="keywordtype">void</span> create_fsi_traction_elements();</div>
 <div class="line"><span class="comment"></span> </div>
-<div class="line"><span class="comment"> /// \short Create elements that enforce prescribed boundary motion</span></div>
+<div class="line"><span class="comment"> ///  Create elements that enforce prescribed boundary motion</span></div>
 <div class="line"><span class="comment"> /// for the pseudo-solid fluid mesh by Lagrange multipliers</span></div>
 <div class="line"><span class="comment"></span> <span class="keywordtype">void</span> create_lagrange_multiplier_elements();</div>
 </div><!-- fragment --><p >We also provide a helper function that documents the boundary coordinates on the solid mesh. <br  />
@@ -466,32 +466,32 @@ The Problem class</h1>
 <div class="line"><span class="comment"></span> <span class="keywordtype">void</span> doc_solid_boundary_coordinates(<span class="keyword">const</span> <span class="keywordtype">unsigned</span>&amp; i);</div>
 </div><!-- fragment --><p> Finally we provide a large number of additional helper functions that specify the various mesh boundaries (as defined in the tetgen <code>*.poly</code> file) that make up the physical boundaries of interest: the in- and outflow boundaries in the fluid domain; the FSI boundaries of the fluid and solid domains and the boundaries along which the tube wall is held in a fixed position.</p>
 <div class="fragment"><div class="line"> <span class="comment"></span></div>
-<div class="line"><span class="comment"> /// \short Return total number of mesh boundaries that make up the inflow </span></div>
+<div class="line"><span class="comment"> ///  Return total number of mesh boundaries that make up the inflow </span></div>
 <div class="line"><span class="comment"> /// boundary</span></div>
 <div class="line"><span class="comment"></span> <span class="keywordtype">unsigned</span> nfluid_inflow_traction_boundary()</div>
 <div class="line">  {<span class="keywordflow">return</span> Inflow_boundary_id.size();}</div>
 <div class="line"><span class="comment"></span> </div>
-<div class="line"><span class="comment"> ///  \short Return total number of mesh boundaries that make up the outflow </span></div>
+<div class="line"><span class="comment"> ///   Return total number of mesh boundaries that make up the outflow </span></div>
 <div class="line"><span class="comment"> /// boundary</span></div>
 <div class="line"><span class="comment"></span> <span class="keywordtype">unsigned</span> nfluid_outflow_traction_boundary()</div>
 <div class="line">  {<span class="keywordflow">return</span> Outflow_boundary_id.size();}</div>
 <div class="line"><span class="comment"></span> </div>
-<div class="line"><span class="comment"> /// \short Return total number of mesh boundaries that make up the </span></div>
+<div class="line"><span class="comment"> ///  Return total number of mesh boundaries that make up the </span></div>
 <div class="line"><span class="comment"> /// in- and outflow boundaries where a traction has to be applied</span></div>
 <div class="line"><span class="comment"></span> <span class="keywordtype">unsigned</span> nfluid_traction_boundary()</div>
 <div class="line">  {<span class="keywordflow">return</span> Inflow_boundary_id.size()+Outflow_boundary_id.size();}</div>
 <div class="line"><span class="comment"></span> </div>
-<div class="line"><span class="comment"> /// \short Return total number of mesh boundaries in the solid mesh that</span></div>
+<div class="line"><span class="comment"> ///  Return total number of mesh boundaries in the solid mesh that</span></div>
 <div class="line"><span class="comment"> /// make up the FSI interface</span></div>
 <div class="line"><span class="comment"></span> <span class="keywordtype">unsigned</span> nsolid_fsi_boundary()</div>
 <div class="line">  {<span class="keywordflow">return</span> Solid_fsi_boundary_id.size();}</div>
 <div class="line"><span class="comment"></span> </div>
-<div class="line"><span class="comment"> /// \short Return total number of mesh boundaries in the fluid mesh that</span></div>
+<div class="line"><span class="comment"> ///  Return total number of mesh boundaries in the fluid mesh that</span></div>
 <div class="line"><span class="comment"> /// make up the FSI interface</span></div>
 <div class="line"><span class="comment"></span> <span class="keywordtype">unsigned</span> nfluid_fsi_boundary()</div>
 <div class="line">  {<span class="keywordflow">return</span> Fluid_fsi_boundary_id.size();}</div>
 <div class="line"><span class="comment"></span> </div>
-<div class="line"><span class="comment"> /// \short Return total number of mesh boundaries in the solid mesh </span></div>
+<div class="line"><span class="comment"> ///  Return total number of mesh boundaries in the solid mesh </span></div>
 <div class="line"><span class="comment"> /// where the position is pinned.</span></div>
 <div class="line"><span class="comment"></span> <span class="keywordtype">unsigned</span> npinned_solid_boundary()</div>
 <div class="line">  {<span class="keywordflow">return</span> Pinned_solid_boundary_id.size();} </div>
@@ -522,18 +522,18 @@ The Problem class</h1>
 <div class="line"><span class="comment"> /// IDs of solid mesh boundaries where displacements are pinned</span></div>
 <div class="line"><span class="comment"></span> Vector&lt;unsigned&gt; Pinned_solid_boundary_id;</div>
 <div class="line">  <span class="comment"></span></div>
-<div class="line"><span class="comment"> /// \short IDs of solid mesh boundaries which make up the FSI interface</span></div>
+<div class="line"><span class="comment"> ///  IDs of solid mesh boundaries which make up the FSI interface</span></div>
 <div class="line"><span class="comment"></span> Vector&lt;unsigned&gt; Solid_fsi_boundary_id;</div>
 <div class="line"><span class="comment"></span> </div>
-<div class="line"><span class="comment"> /// \short IDs of fluid mesh boundaries along which inflow boundary conditions</span></div>
+<div class="line"><span class="comment"> ///  IDs of fluid mesh boundaries along which inflow boundary conditions</span></div>
 <div class="line"><span class="comment"> /// are applied</span></div>
 <div class="line"><span class="comment"></span> Vector&lt;unsigned&gt; Inflow_boundary_id;</div>
 <div class="line"><span class="comment"></span> </div>
-<div class="line"><span class="comment"> /// \short IDs of fluid mesh boundaries along which inflow boundary conditions</span></div>
+<div class="line"><span class="comment"> ///  IDs of fluid mesh boundaries along which inflow boundary conditions</span></div>
 <div class="line"><span class="comment"> /// are applied</span></div>
 <div class="line"><span class="comment"></span> Vector&lt;unsigned&gt; Outflow_boundary_id;</div>
 <div class="line"><span class="comment"></span> </div>
-<div class="line"><span class="comment"> /// \short IDs of fluid mesh boundaries which make up the FSI interface</span></div>
+<div class="line"><span class="comment"> ///  IDs of fluid mesh boundaries which make up the FSI interface</span></div>
 <div class="line"><span class="comment"></span> Vector&lt;unsigned&gt; Fluid_fsi_boundary_id;</div>
 <div class="line"> </div>
 <div class="line">};</div>
@@ -1394,7 +1394,7 @@ PDF file</h1>
     <footer>
       <div class="container">
         <div class="text-muted" style="float:right;">Generated by <a href="http://www.doxygen.org/index.html">
-          <img style="height:18px;" class="footer-img" src="doxygen.png" alt="doxygen"></a> on Wed Oct 13 2021 09:09:29
+          <img style="height:18px;" class="footer-img" src="doxygen.png" alt="doxygen"></a> on Thu Oct 21 2021 17:56:14
         </div>
       </div>
     </footer>

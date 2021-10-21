@@ -127,29 +127,29 @@ As usual, we represent the moving wall as a {\ttfamily Geom\+Object} and define 
 \DoxyCodeLine{\textcolor{comment}{/// \(\backslash\)f]}}
 \DoxyCodeLine{\textcolor{comment}{/// provides a "{}smooth"{} startup of the oscillation. }}
 \DoxyCodeLine{\textcolor{comment}{}\textcolor{comment}{//=========================================================================}}
-\DoxyCodeLine{\textcolor{keyword}{class }\mbox{\hyperlink{classOscillatingWall}{OscillatingWall}} : \textcolor{keyword}{public} GeomObject}
+\DoxyCodeLine{\textcolor{keyword}{class }OscillatingWall : \textcolor{keyword}{public} GeomObject}
 \DoxyCodeLine{\{}
 \DoxyCodeLine{}
 \DoxyCodeLine{\textcolor{keyword}{public}:}
 \DoxyCodeLine{\textcolor{comment}{}}
-\DoxyCodeLine{\textcolor{comment}{ /// \(\backslash\)short Constructor : It's a 2D object, parametrised by }}
+\DoxyCodeLine{\textcolor{comment}{ ///  Constructor : It's a 2D object, parametrised by }}
 \DoxyCodeLine{\textcolor{comment}{ /// one Lagrangian coordinate. Arguments: height at ends, x-\/coordinate of }}
 \DoxyCodeLine{\textcolor{comment}{ /// left end, length, amplitude of deflection, period of oscillation, and}}
 \DoxyCodeLine{\textcolor{comment}{ /// pointer to time object}}
-\DoxyCodeLine{\textcolor{comment}{} \mbox{\hyperlink{classOscillatingWall_a5ededc3d27eef5c4ef7e82ac5cdf6ff9}{OscillatingWall}}(\textcolor{keyword}{const} \textcolor{keywordtype}{double}\& h, \textcolor{keyword}{const} \textcolor{keywordtype}{double}\& x\_left, \textcolor{keyword}{const} \textcolor{keywordtype}{double}\& l, }
-\DoxyCodeLine{                 \textcolor{keyword}{const} \textcolor{keywordtype}{double}\& a, \textcolor{keyword}{const} \textcolor{keywordtype}{double}\& \mbox{\hyperlink{classOscillatingWall_ad4c07e6733140bf7ddd14708e9c51034}{period}}, Time* time\_pt) : }
-\DoxyCodeLine{  GeomObject(1,2), \mbox{\hyperlink{classOscillatingWall_aa587e944cac9e501e6d3323731145b95}{H}}(h), \mbox{\hyperlink{classOscillatingWall_ac5e2ad6d5ef2992ba9295118787190e6}{Length}}(l), \mbox{\hyperlink{classOscillatingWall_a71a60ee3294746875a24aeeffb38f7ec}{X\_left}}(x\_left), \mbox{\hyperlink{classOscillatingWall_ac22b6ac70a42850ddbe2e9c4c16f4664}{A}}(a), \mbox{\hyperlink{classOscillatingWall_a9db810649987a2011c7fe14d10b98b9a}{B}}(0.0), \mbox{\hyperlink{classOscillatingWall_af33b31988c823d33a3b147281ec94599}{T}}(\mbox{\hyperlink{classOscillatingWall_ad4c07e6733140bf7ddd14708e9c51034}{period}}), }
-\DoxyCodeLine{  \mbox{\hyperlink{classOscillatingWall_a9c4bea6ec6e80ba23139cd5a1d4d25d5}{Time\_pt}}(time\_pt) }
+\DoxyCodeLine{\textcolor{comment}{} OscillatingWall(\textcolor{keyword}{const} \textcolor{keywordtype}{double}\& h, \textcolor{keyword}{const} \textcolor{keywordtype}{double}\& x\_left, \textcolor{keyword}{const} \textcolor{keywordtype}{double}\& l, }
+\DoxyCodeLine{                 \textcolor{keyword}{const} \textcolor{keywordtype}{double}\& a, \textcolor{keyword}{const} \textcolor{keywordtype}{double}\& period, Time* time\_pt) : }
+\DoxyCodeLine{  GeomObject(1,2), H(h), Length(l), X\_left(x\_left), A(a), B(0.0), T(period), }
+\DoxyCodeLine{  Time\_pt(time\_pt) }
 \DoxyCodeLine{  \{\}}
 \DoxyCodeLine{ \textcolor{comment}{}}
 \DoxyCodeLine{\textcolor{comment}{ /// Destructor:  Empty}}
-\DoxyCodeLine{\textcolor{comment}{} \mbox{\hyperlink{classOscillatingWall_adc35b40bdd733a244d6399d91fa20ade}{\string~OscillatingWall}}()\{\}}
+\DoxyCodeLine{\textcolor{comment}{} \string~OscillatingWall()\{\}}
 \DoxyCodeLine{\textcolor{comment}{}}
 \DoxyCodeLine{\textcolor{comment}{///Access function to the amplitude}}
-\DoxyCodeLine{\textcolor{comment}{} \textcolor{keywordtype}{double}\& \mbox{\hyperlink{classOscillatingWall_a2a899a4e18f52d50369cd825a341107f}{amplitude}}()\{\textcolor{keywordflow}{return} \mbox{\hyperlink{classOscillatingWall_ac22b6ac70a42850ddbe2e9c4c16f4664}{A}};\}}
+\DoxyCodeLine{\textcolor{comment}{} \textcolor{keywordtype}{double}\& amplitude()\{\textcolor{keywordflow}{return} A;\}}
 \DoxyCodeLine{\textcolor{comment}{}}
 \DoxyCodeLine{\textcolor{comment}{///Access function to the period}}
-\DoxyCodeLine{\textcolor{comment}{} \textcolor{keywordtype}{double}\& \mbox{\hyperlink{classOscillatingWall_ad4c07e6733140bf7ddd14708e9c51034}{period}}()\{\textcolor{keywordflow}{return} \mbox{\hyperlink{classOscillatingWall_af33b31988c823d33a3b147281ec94599}{T}};\}}
+\DoxyCodeLine{\textcolor{comment}{} \textcolor{keywordtype}{double}\& period()\{\textcolor{keywordflow}{return} T;\}}
 
 \end{DoxyCodeInclude}
  Since the {\ttfamily Geom\+Object} represents a moving (i.\+e. time-\/dependent) boundary, we implement both versions of the {\ttfamily Geom\+Object\+::position(...)} function\+: The \char`\"{}unsteady\char`\"{} version computes the position vector at the {\ttfamily t} -\/th previous timestep.
@@ -157,7 +157,7 @@ As usual, we represent the moving wall as a {\ttfamily Geom\+Object} and define 
 
 \begin{DoxyCodeInclude}{0}
 \DoxyCodeLine{\textcolor{comment}{}}
-\DoxyCodeLine{\textcolor{comment}{ /// \(\backslash\)short Position vector at Lagrangian coordinate zeta }}
+\DoxyCodeLine{\textcolor{comment}{ ///  Position vector at Lagrangian coordinate zeta }}
 \DoxyCodeLine{\textcolor{comment}{ /// at time level t.}}
 \DoxyCodeLine{\textcolor{comment}{} \textcolor{keywordtype}{void} position(\textcolor{keyword}{const} \textcolor{keywordtype}{unsigned}\& t, \textcolor{keyword}{const} Vector<double>\&zeta, }
 \DoxyCodeLine{               Vector<double>\& r)\textcolor{keyword}{ const}}
@@ -188,7 +188,7 @@ As usual, we represent the moving wall as a {\ttfamily Geom\+Object} and define 
 \begin{DoxyCodeInclude}{0}
 \DoxyCodeLine{}
 \DoxyCodeLine{\textcolor{comment}{}}
-\DoxyCodeLine{\textcolor{comment}{ /// \(\backslash\)short "{}Current"{} position vector at Lagrangian coordinate zeta }}
+\DoxyCodeLine{\textcolor{comment}{ ///  "{}Current"{} position vector at Lagrangian coordinate zeta }}
 \DoxyCodeLine{\textcolor{comment}{} \textcolor{keywordtype}{void} position(\textcolor{keyword}{const} Vector<double>\&zeta, Vector<double>\& r)\textcolor{keyword}{ const}}
 \DoxyCodeLine{\textcolor{keyword}{  }\{}
 \DoxyCodeLine{   position (0, zeta, r);}
@@ -229,7 +229,7 @@ As usual, we represent the moving wall as a {\ttfamily Geom\+Object} and define 
 \DoxyCodeLine{\}; \textcolor{comment}{// end of oscillating wall}}
 
 \end{DoxyCodeInclude}
- \mbox{[}{\bfseries{Note\+:}} We note that the {\ttfamily \mbox{\hyperlink{classOscillatingWall}{Oscillating\+Wall}}} class allows the wall shape to be slightly more complicated than required by (5). If the parameter {\ttfamily B} is set to a non-\/zero value, the material points on the wall also undergo some horizontal displacement. We will use this capability in one of the exercises in section \mbox{\hyperlink{index_comments}{Comments and Exercises}}.\mbox{]}
+ \mbox{[}{\bfseries{Note\+:}} We note that the {\ttfamily Oscillating\+Wall} class allows the wall shape to be slightly more complicated than required by (5). If the parameter {\ttfamily B} is set to a non-\/zero value, the material points on the wall also undergo some horizontal displacement. We will use this capability in one of the exercises in section \mbox{\hyperlink{index_comments}{Comments and Exercises}}.\mbox{]}
 
 \DoxyHorRuler{0}
  \DoxyHorRuler{0}
@@ -241,16 +241,16 @@ As usual, we define the problem parameters in a namespace and assign default val
 \DoxyCodeLine{\textcolor{comment}{//====start\_of\_Global\_Physical\_Variables================}}
 \DoxyCodeLine{\textcolor{comment}{/// Namespace for phyical parameters}}
 \DoxyCodeLine{\textcolor{comment}{//======================================================}}
-\DoxyCodeLine{\textcolor{keyword}{namespace }\mbox{\hyperlink{namespaceGlobal__Physical__Variables}{Global\_Physical\_Variables}}}
+\DoxyCodeLine{\textcolor{keyword}{namespace }Global\_Physical\_Variables}
 \DoxyCodeLine{\{\textcolor{comment}{}}
 \DoxyCodeLine{\textcolor{comment}{ /// Reynolds number}}
-\DoxyCodeLine{\textcolor{comment}{} \textcolor{keywordtype}{double} \mbox{\hyperlink{namespaceGlobal__Physical__Variables_ab814e627d2eb5bc50318879d19ab16b9}{Re}}=50.0;}
+\DoxyCodeLine{\textcolor{comment}{} \textcolor{keywordtype}{double} Re=50.0;}
 \DoxyCodeLine{\textcolor{comment}{}}
 \DoxyCodeLine{\textcolor{comment}{ /// Womersley = Reynolds times Strouhal}}
-\DoxyCodeLine{\textcolor{comment}{} \textcolor{keywordtype}{double} \mbox{\hyperlink{namespaceGlobal__Physical__Variables_a085ee4bf968ffdd01a41b8c41864f907}{ReSt}}=50.0;}
+\DoxyCodeLine{\textcolor{comment}{} \textcolor{keywordtype}{double} ReSt=50.0;}
 \DoxyCodeLine{ \textcolor{comment}{}}
 \DoxyCodeLine{\textcolor{comment}{ /// Default pressure on the left boundary}}
-\DoxyCodeLine{\textcolor{comment}{} \textcolor{keywordtype}{double} \mbox{\hyperlink{namespaceGlobal__Physical__Variables_ae1a493695b7f4619af32f405b0b28861}{P\_up}}=0.0;}
+\DoxyCodeLine{\textcolor{comment}{} \textcolor{keywordtype}{double} P\_up=0.0;}
 
 \end{DoxyCodeInclude}
  We also implement the function that defines the prescribed (axial) traction at the inflow boundary.
@@ -259,13 +259,13 @@ As usual, we define the problem parameters in a namespace and assign default val
 \begin{DoxyCodeInclude}{0}
 \DoxyCodeLine{\textcolor{comment}{}}
 \DoxyCodeLine{\textcolor{comment}{ /// Traction required at the left boundary}}
-\DoxyCodeLine{\textcolor{comment}{} \textcolor{keywordtype}{void} \mbox{\hyperlink{namespaceGlobal__Physical__Variables_a0de42ee6d39e85c77c16a04c3a05f7a2}{prescribed\_traction}}(\textcolor{keyword}{const} \textcolor{keywordtype}{double}\& t,}
+\DoxyCodeLine{\textcolor{comment}{} \textcolor{keywordtype}{void} prescribed\_traction(\textcolor{keyword}{const} \textcolor{keywordtype}{double}\& t,}
 \DoxyCodeLine{                          \textcolor{keyword}{const} Vector<double>\& x,}
 \DoxyCodeLine{                          \textcolor{keyword}{const} Vector<double>\& n,}
 \DoxyCodeLine{                          Vector<double>\& traction)}
 \DoxyCodeLine{ \{}
 \DoxyCodeLine{  traction.resize(2);}
-\DoxyCodeLine{  traction[0]=\mbox{\hyperlink{namespaceGlobal__Physical__Variables_ae1a493695b7f4619af32f405b0b28861}{P\_up}};}
+\DoxyCodeLine{  traction[0]=P\_up;}
 \DoxyCodeLine{  traction[1]=0.0;}
 \DoxyCodeLine{ \} }
 \DoxyCodeLine{}
@@ -289,7 +289,7 @@ After storing the command line arguments, we choose the number of elements in th
 \DoxyCodeLine{\textcolor{comment}{/// indicates validation run with coarse resolution and small number of}}
 \DoxyCodeLine{\textcolor{comment}{/// timesteps.}}
 \DoxyCodeLine{\textcolor{comment}{}\textcolor{comment}{//=============================================================================}}
-\DoxyCodeLine{\textcolor{keywordtype}{int} \mbox{\hyperlink{collapsible__channel_8cc_a0ddf1224851353fc92bfbff6f499fa97}{main}}(\textcolor{keywordtype}{int} argc, \textcolor{keywordtype}{char}* argv[])}
+\DoxyCodeLine{\textcolor{keywordtype}{int} main(\textcolor{keywordtype}{int} argc, \textcolor{keywordtype}{char}* argv[])}
 \DoxyCodeLine{\{}
 \DoxyCodeLine{}
 \DoxyCodeLine{ \textcolor{comment}{// Store command line arguments}}
@@ -326,7 +326,7 @@ After storing the command line arguments, we choose the number of elements in th
 \DoxyCodeLine{}
 \DoxyCodeLine{ \textcolor{comment}{// Pressure/applied traction on the left boundary: This is consistent with }}
 \DoxyCodeLine{ \textcolor{comment}{// steady Poiseuille flow}}
-\DoxyCodeLine{ \mbox{\hyperlink{namespaceGlobal__Physical__Variables_ae1a493695b7f4619af32f405b0b28861}{Global\_Physical\_Variables::P\_up}}=12.0*(lup+lcollapsible+ldown);}
+\DoxyCodeLine{ Global\_Physical\_Variables::P\_up=12.0*(lup+lcollapsible+ldown);}
 
 \end{DoxyCodeInclude}
  Next, we specify the output directory and build the problem with refineable 2D Crouzeix Raviart Elements.
@@ -346,7 +346,7 @@ After storing the command line arguments, we choose the number of elements in th
 \DoxyCodeLine{ trace\_file.open(filename);}
 \DoxyCodeLine{}
 \DoxyCodeLine{ \textcolor{comment}{// Build the problem with Crouzeix Raviart Elements}}
-\DoxyCodeLine{ \mbox{\hyperlink{classCollapsibleChannelProblem}{CollapsibleChannelProblem<RefineableQCrouzeixRaviartElement<2>}} > }
+\DoxyCodeLine{ CollapsibleChannelProblem<RefineableQCrouzeixRaviartElement<2> > }
 \DoxyCodeLine{  problem(nup, ncollapsible, ndown, ny, }
 \DoxyCodeLine{          lup, lcollapsible, ldown, ly, }
 \DoxyCodeLine{          amplitude,period);}
@@ -467,15 +467,15 @@ As usual, we template the problem class by the element type and provide an acces
 \DoxyCodeLine{\textcolor{comment}{///Problem class}}
 \DoxyCodeLine{\textcolor{comment}{//====================================================================}}
 \DoxyCodeLine{\textcolor{keyword}{template} <\textcolor{keyword}{class} ELEMENT>}
-\DoxyCodeLine{\textcolor{keyword}{class }\mbox{\hyperlink{classCollapsibleChannelProblem}{CollapsibleChannelProblem}} : \textcolor{keyword}{public} Problem}
+\DoxyCodeLine{\textcolor{keyword}{class }CollapsibleChannelProblem : \textcolor{keyword}{public} Problem}
 \DoxyCodeLine{\{}
 \DoxyCodeLine{}
 \DoxyCodeLine{ public :}
 \DoxyCodeLine{\textcolor{comment}{}}
-\DoxyCodeLine{\textcolor{comment}{ /// \(\backslash\)short Constructor : the arguments are the number of elements,}}
+\DoxyCodeLine{\textcolor{comment}{ ///  Constructor : the arguments are the number of elements,}}
 \DoxyCodeLine{\textcolor{comment}{ /// the length of the domain and the amplitude and period of }}
 \DoxyCodeLine{\textcolor{comment}{ ///the oscillations}}
-\DoxyCodeLine{\textcolor{comment}{} \mbox{\hyperlink{classCollapsibleChannelProblem_ab43fa30667f57e8019c8b30fd93156f8}{CollapsibleChannelProblem}}(\textcolor{keyword}{const} \textcolor{keywordtype}{unsigned}\& nup, }
+\DoxyCodeLine{\textcolor{comment}{} CollapsibleChannelProblem(\textcolor{keyword}{const} \textcolor{keywordtype}{unsigned}\& nup, }
 \DoxyCodeLine{                           \textcolor{keyword}{const} \textcolor{keywordtype}{unsigned}\& ncollapsible,}
 \DoxyCodeLine{                           \textcolor{keyword}{const} \textcolor{keywordtype}{unsigned}\& ndown,}
 \DoxyCodeLine{                           \textcolor{keyword}{const} \textcolor{keywordtype}{unsigned}\& ny,}
@@ -487,16 +487,16 @@ As usual, we template the problem class by the element type and provide an acces
 \DoxyCodeLine{                           \textcolor{keyword}{const} \textcolor{keywordtype}{double}\& period);}
 \DoxyCodeLine{ \textcolor{comment}{}}
 \DoxyCodeLine{\textcolor{comment}{ /// Empty destructor}}
-\DoxyCodeLine{\textcolor{comment}{} \mbox{\hyperlink{classCollapsibleChannelProblem_a205e3e654d3205d1d55ac46e7b63ca9d}{\string~CollapsibleChannelProblem}}() \{\} }
+\DoxyCodeLine{\textcolor{comment}{} \string~CollapsibleChannelProblem() \{\} }
 \DoxyCodeLine{ \textcolor{comment}{}}
 \DoxyCodeLine{\textcolor{comment}{ /// Access function for the specific mesh}}
-\DoxyCodeLine{\textcolor{comment}{} RefineableCollapsibleChannelMesh<ELEMENT>* \mbox{\hyperlink{classCollapsibleChannelProblem_ab28e3abd86ca4a5c562311ae1753b517}{bulk\_mesh\_pt}}() }
+\DoxyCodeLine{\textcolor{comment}{} RefineableCollapsibleChannelMesh<ELEMENT>* bulk\_mesh\_pt() }
 \DoxyCodeLine{  \{}
 \DoxyCodeLine{}
 \DoxyCodeLine{   \textcolor{comment}{// Upcast from pointer to the Mesh base class to the specific }}
 \DoxyCodeLine{   \textcolor{comment}{// element type that we're using here.}}
 \DoxyCodeLine{   \textcolor{keywordflow}{return} \textcolor{keyword}{dynamic\_cast<}RefineableCollapsibleChannelMesh<ELEMENT>*\textcolor{keyword}{>}}
-\DoxyCodeLine{    (\mbox{\hyperlink{classCollapsibleChannelProblem_acd96e5a1d72cc3a1aad196c97dcb3883}{Bulk\_mesh\_pt}});}
+\DoxyCodeLine{    (Bulk\_mesh\_pt);}
 \DoxyCodeLine{}
 \DoxyCodeLine{  \} \textcolor{comment}{// end of access to bulk mesh}}
 
@@ -506,7 +506,7 @@ As usual, we template the problem class by the element type and provide an acces
 
 \begin{DoxyCodeInclude}{0}
 \DoxyCodeLine{ \textcolor{comment}{}}
-\DoxyCodeLine{\textcolor{comment}{ /// \(\backslash\)short Update the problem specs before solve (empty) }}
+\DoxyCodeLine{\textcolor{comment}{ ///  Update the problem specs before solve (empty) }}
 \DoxyCodeLine{\textcolor{comment}{} \textcolor{keywordtype}{void} actions\_before\_newton\_solve()\{\}}
 \DoxyCodeLine{\textcolor{comment}{}}
 \DoxyCodeLine{\textcolor{comment}{ /// Update the problem after solve (empty)}}
@@ -557,7 +557,7 @@ As usual, we template the problem class by the element type and provide an acces
 \DoxyCodeLine{\textcolor{comment}{ ///Number of elements in the x direction in the upstream part of the channel}}
 \DoxyCodeLine{\textcolor{comment}{} \textcolor{keywordtype}{unsigned} Nup;}
 \DoxyCodeLine{\textcolor{comment}{}}
-\DoxyCodeLine{\textcolor{comment}{ /// \(\backslash\)short Number of elements in the x direction in the "{}collapsible"{} }}
+\DoxyCodeLine{\textcolor{comment}{ ///  Number of elements in the x direction in the "{}collapsible"{} }}
 \DoxyCodeLine{\textcolor{comment}{ /// part of the channel}}
 \DoxyCodeLine{\textcolor{comment}{} \textcolor{keywordtype}{unsigned} Ncollapsible;}
 \DoxyCodeLine{\textcolor{comment}{}}
@@ -580,7 +580,7 @@ As usual, we template the problem class by the element type and provide an acces
 \DoxyCodeLine{\textcolor{comment}{} \textcolor{keywordtype}{double} Ly;}
 \DoxyCodeLine{\textcolor{comment}{}}
 \DoxyCodeLine{\textcolor{comment}{ ///Pointer to the geometric object that parametrises the "{}collapsible"{} wall}}
-\DoxyCodeLine{\textcolor{comment}{} \mbox{\hyperlink{classOscillatingWall}{OscillatingWall}}* Wall\_pt;}
+\DoxyCodeLine{\textcolor{comment}{} OscillatingWall* Wall\_pt;}
 
 \end{DoxyCodeInclude}
  Further private member data includes pointers to the \char`\"{}bulk\char`\"{} mesh and the surface mesh that contains the traction elements, and pointers to control nodes in the in-\/ and outflow cross-\/sections.
@@ -591,7 +591,7 @@ As usual, we template the problem class by the element type and provide an acces
 \DoxyCodeLine{\textcolor{comment}{ /// Pointer to the "{}bulk"{} mesh}}
 \DoxyCodeLine{\textcolor{comment}{} RefineableCollapsibleChannelMesh<ELEMENT>* Bulk\_mesh\_pt;}
 \DoxyCodeLine{ \textcolor{comment}{}}
-\DoxyCodeLine{\textcolor{comment}{ /// \(\backslash\)short Pointer to the "{}surface"{} mesh that contains the applied traction}}
+\DoxyCodeLine{\textcolor{comment}{ ///  Pointer to the "{}surface"{} mesh that contains the applied traction}}
 \DoxyCodeLine{\textcolor{comment}{ /// elements}}
 \DoxyCodeLine{\textcolor{comment}{} Mesh* Surface\_mesh\_pt; }
 \DoxyCodeLine{ \textcolor{comment}{}}
@@ -619,7 +619,7 @@ We store the parameters in the problem\textquotesingle{}s private member data an
 \DoxyCodeLine{\textcolor{comment}{/// Constructor for the collapsible channel problem}}
 \DoxyCodeLine{\textcolor{comment}{//===============================================================}}
 \DoxyCodeLine{\textcolor{keyword}{template} <\textcolor{keyword}{class} ELEMENT>}
-\DoxyCodeLine{\mbox{\hyperlink{classCollapsibleChannelProblem_ab43fa30667f57e8019c8b30fd93156f8}{CollapsibleChannelProblem<ELEMENT>::CollapsibleChannelProblem}}(}
+\DoxyCodeLine{CollapsibleChannelProblem<ELEMENT>::CollapsibleChannelProblem(}
 \DoxyCodeLine{ \textcolor{keyword}{const} \textcolor{keywordtype}{unsigned}\& nup, }
 \DoxyCodeLine{ \textcolor{keyword}{const} \textcolor{keywordtype}{unsigned}\& ncollapsible,}
 \DoxyCodeLine{ \textcolor{keyword}{const} \textcolor{keywordtype}{unsigned}\& ndown,}
@@ -666,7 +666,7 @@ We continue by building the {\ttfamily BDF$<$2$>$} timestepper and pass a pointe
 
 \begin{DoxyCodeInclude}{0}
 \DoxyCodeLine{ \textcolor{comment}{//Create the geometric object that represents the wall}}
-\DoxyCodeLine{ Wall\_pt=\textcolor{keyword}{new} \mbox{\hyperlink{classOscillatingWall}{OscillatingWall}}(height, x\_left, length, amplitude, period,}
+\DoxyCodeLine{ Wall\_pt=\textcolor{keyword}{new} OscillatingWall(height, x\_left, length, amplitude, period,}
 \DoxyCodeLine{                             time\_pt());}
 \DoxyCodeLine{}
 \DoxyCodeLine{ \textcolor{comment}{//Build mesh}}
@@ -718,10 +718,10 @@ We continue by building the {\ttfamily BDF$<$2$>$} timestepper and pass a pointe
 \DoxyCodeLine{   ELEMENT* el\_pt = \textcolor{keyword}{dynamic\_cast<}ELEMENT*\textcolor{keyword}{>}(Bulk\_mesh\_pt-\/>element\_pt(e));}
 \DoxyCodeLine{   }
 \DoxyCodeLine{   \textcolor{comment}{//Set the Reynolds number}}
-\DoxyCodeLine{   el\_pt-\/>re\_pt() = \&\mbox{\hyperlink{namespaceGlobal__Physical__Variables_ab814e627d2eb5bc50318879d19ab16b9}{Global\_Physical\_Variables::Re}};}
+\DoxyCodeLine{   el\_pt-\/>re\_pt() = \&Global\_Physical\_Variables::Re;}
 \DoxyCodeLine{}
 \DoxyCodeLine{   \textcolor{comment}{// Set the Womersley number}}
-\DoxyCodeLine{   el\_pt-\/>re\_st\_pt() = \&\mbox{\hyperlink{namespaceGlobal__Physical__Variables_a085ee4bf968ffdd01a41b8c41864f907}{Global\_Physical\_Variables::ReSt}};}
+\DoxyCodeLine{   el\_pt-\/>re\_st\_pt() = \&Global\_Physical\_Variables::ReSt;}
 \DoxyCodeLine{   }
 \DoxyCodeLine{  \} \textcolor{comment}{// end loop over bulk elements}}
 
@@ -744,7 +744,7 @@ We continue by building the {\ttfamily BDF$<$2$>$} timestepper and pass a pointe
 \DoxyCodeLine{      Surface\_mesh\_pt-\/>element\_pt(e));}
 \DoxyCodeLine{    }
 \DoxyCodeLine{    \textcolor{comment}{// Set the pointer to the prescribed traction function}}
-\DoxyCodeLine{    el\_pt-\/>traction\_fct\_pt() = \&\mbox{\hyperlink{namespaceGlobal__Physical__Variables_a0de42ee6d39e85c77c16a04c3a05f7a2}{Global\_Physical\_Variables::prescribed\_traction}};}
+\DoxyCodeLine{    el\_pt-\/>traction\_fct\_pt() = \&Global\_Physical\_Variables::prescribed\_traction;}
 \DoxyCodeLine{}
 \DoxyCodeLine{   \}  \textcolor{comment}{// end loop over applied traction elements}}
 
@@ -851,7 +851,7 @@ The function {\ttfamily doc\+\_\+solution(...)} documents the results, and recor
 \DoxyCodeLine{\textcolor{comment}{/// Doc the solution}}
 \DoxyCodeLine{\textcolor{comment}{//============================================================================}}
 \DoxyCodeLine{\textcolor{keyword}{template} <\textcolor{keyword}{class} ELEMENT>}
-\DoxyCodeLine{\textcolor{keywordtype}{void} \mbox{\hyperlink{classCollapsibleChannelProblem_afc4af9796c01d904d4074bd5bbfc5b9b}{CollapsibleChannelProblem<ELEMENT>:: doc\_solution}}(DocInfo\& doc\_info, }
+\DoxyCodeLine{\textcolor{keywordtype}{void} CollapsibleChannelProblem<ELEMENT>:: doc\_solution(DocInfo\& doc\_info, }
 \DoxyCodeLine{                                                       ofstream\& trace\_file)}
 \DoxyCodeLine{\{ }
 \DoxyCodeLine{ ofstream some\_file;}
@@ -910,7 +910,7 @@ The creation of the applied traction elements follows the usual pattern, explain
 \DoxyCodeLine{\textcolor{comment}{/// Create the traction elements}}
 \DoxyCodeLine{\textcolor{comment}{//============================================================================}}
 \DoxyCodeLine{\textcolor{keyword}{template} <\textcolor{keyword}{class} ELEMENT>}
-\DoxyCodeLine{\textcolor{keywordtype}{void} \mbox{\hyperlink{classCollapsibleChannelProblem_a70cfe97c12c0cb6a2a81266cdd4d6088}{CollapsibleChannelProblem<ELEMENT>::create\_traction\_elements}}(}
+\DoxyCodeLine{\textcolor{keywordtype}{void} CollapsibleChannelProblem<ELEMENT>::create\_traction\_elements(}
 \DoxyCodeLine{ \textcolor{keyword}{const} \textcolor{keywordtype}{unsigned} \&b, Mesh* \textcolor{keyword}{const} \&bulk\_mesh\_pt, Mesh* \textcolor{keyword}{const} \&surface\_mesh\_pt)}
 \DoxyCodeLine{\{}
 \DoxyCodeLine{ \textcolor{comment}{// How many bulk elements are adjacent to boundary b?}}
@@ -949,8 +949,8 @@ Since the \char`\"{}bulk\char`\"{} elements that the applied traction elements a
 \DoxyCodeLine{\textcolor{comment}{/// Delete traction elements and wipe the surface mesh}}
 \DoxyCodeLine{\textcolor{comment}{//=======================================================================}}
 \DoxyCodeLine{\textcolor{keyword}{template}<\textcolor{keyword}{class} ELEMENT>}
-\DoxyCodeLine{\textcolor{keywordtype}{void} \mbox{\hyperlink{classCollapsibleChannelProblem_a6a5324dd1efb8c517a7e4d431b10fca4}{CollapsibleChannelProblem<ELEMENT>::}}}
-\DoxyCodeLine{\mbox{\hyperlink{classCollapsibleChannelProblem_a6a5324dd1efb8c517a7e4d431b10fca4}{delete\_traction\_elements}}(Mesh* \textcolor{keyword}{const} \&surface\_mesh\_pt)}
+\DoxyCodeLine{\textcolor{keywordtype}{void} CollapsibleChannelProblem<ELEMENT>::}
+\DoxyCodeLine{delete\_traction\_elements(Mesh* \textcolor{keyword}{const} \&surface\_mesh\_pt)}
 \DoxyCodeLine{\{}
 \DoxyCodeLine{ \textcolor{comment}{// How many surface elements are in the surface mesh}}
 \DoxyCodeLine{ \textcolor{keywordtype}{unsigned} n\_element = surface\_mesh\_pt-\/>nelement();}
@@ -979,7 +979,7 @@ Initial conditions are applied as usual. We start by confirming that the timeste
 \DoxyCodeLine{\textcolor{comment}{/// Apply initial conditions: Impulsive start from steady Poiseuille flow}}
 \DoxyCodeLine{\textcolor{comment}{//============================================================================}}
 \DoxyCodeLine{\textcolor{keyword}{template} <\textcolor{keyword}{class} ELEMENT>}
-\DoxyCodeLine{\textcolor{keywordtype}{void} \mbox{\hyperlink{classCollapsibleChannelProblem_a646147fb75669cfcc5bb56ee79d9b8da}{CollapsibleChannelProblem<ELEMENT>::set\_initial\_condition}}()}
+\DoxyCodeLine{\textcolor{keywordtype}{void} CollapsibleChannelProblem<ELEMENT>::set\_initial\_condition()}
 \DoxyCodeLine{\{ }
 \DoxyCodeLine{}
 \DoxyCodeLine{ \textcolor{comment}{// Check that timestepper is from the BDF family}}
@@ -1032,7 +1032,7 @@ Before each timestep, we update the nodal positions in the fluid mesh, and apply
 \DoxyCodeLine{\textcolor{comment}{/// boundary condition on the moving wall}}
 \DoxyCodeLine{\textcolor{comment}{}\textcolor{comment}{//============================================================================}}
 \DoxyCodeLine{\textcolor{keyword}{template} <\textcolor{keyword}{class} ELEMENT>}
-\DoxyCodeLine{\textcolor{keywordtype}{void} \mbox{\hyperlink{classCollapsibleChannelProblem_a4c365050b11c184007b8e1cd6079147f}{CollapsibleChannelProblem<ELEMENT>::actions\_before\_implicit\_timestep}}()}
+\DoxyCodeLine{\textcolor{keywordtype}{void} CollapsibleChannelProblem<ELEMENT>::actions\_before\_implicit\_timestep()}
 \DoxyCodeLine{\{}
 \DoxyCodeLine{ \textcolor{comment}{// Update the domain shape}}
 \DoxyCodeLine{ bulk\_mesh\_pt()-\/>node\_update();}
@@ -1063,7 +1063,7 @@ As discussed above, we delete the applied traction elements before performing an
 \DoxyCodeLine{\textcolor{comment}{/// Actions before adapt: Wipe the mesh of prescribed traction elements}}
 \DoxyCodeLine{\textcolor{comment}{//========================================================================}}
 \DoxyCodeLine{\textcolor{keyword}{template}<\textcolor{keyword}{class} ELEMENT>}
-\DoxyCodeLine{\textcolor{keywordtype}{void} \mbox{\hyperlink{classCollapsibleChannelProblem_a54abc5259d590154e5dfa458d885c16c}{CollapsibleChannelProblem<ELEMENT>::actions\_before\_adapt}}()}
+\DoxyCodeLine{\textcolor{keywordtype}{void} CollapsibleChannelProblem<ELEMENT>::actions\_before\_adapt()}
 \DoxyCodeLine{\{}
 \DoxyCodeLine{ \textcolor{comment}{// Kill the traction elements and wipe surface mesh}}
 \DoxyCodeLine{ delete\_traction\_elements(Surface\_mesh\_pt);}
@@ -1085,7 +1085,7 @@ Once the mesh has been adapted, we (re-\/)create the prescribed traction element
 \DoxyCodeLine{\textcolor{comment}{/// Actions after adapt: Rebuild the mesh of prescribed traction elements}}
 \DoxyCodeLine{\textcolor{comment}{//========================================================================}}
 \DoxyCodeLine{\textcolor{keyword}{template}<\textcolor{keyword}{class} ELEMENT>}
-\DoxyCodeLine{\textcolor{keywordtype}{void} \mbox{\hyperlink{classCollapsibleChannelProblem_a3ea01d83f0256c588a652741c6c33e0e}{CollapsibleChannelProblem<ELEMENT>::actions\_after\_adapt}}()}
+\DoxyCodeLine{\textcolor{keywordtype}{void} CollapsibleChannelProblem<ELEMENT>::actions\_after\_adapt()}
 \DoxyCodeLine{\{}
 \DoxyCodeLine{ \textcolor{comment}{// Create prescribed-\/flux elements from all elements that are }}
 \DoxyCodeLine{ \textcolor{comment}{// adjacent to boundary 5 and add them to surface mesh}}
@@ -1104,7 +1104,7 @@ Once the mesh has been adapted, we (re-\/)create the prescribed traction element
 \DoxyCodeLine{     Surface\_mesh\_pt-\/>element\_pt(e));}
 \DoxyCodeLine{   }
 \DoxyCodeLine{   \textcolor{comment}{// Set the pointer to the prescribed traction function}}
-\DoxyCodeLine{   el\_pt-\/>traction\_fct\_pt() = \&\mbox{\hyperlink{namespaceGlobal__Physical__Variables_a0de42ee6d39e85c77c16a04c3a05f7a2}{Global\_Physical\_Variables::prescribed\_traction}};}
+\DoxyCodeLine{   el\_pt-\/>traction\_fct\_pt() = \&Global\_Physical\_Variables::prescribed\_traction;}
 \DoxyCodeLine{  \}}
 \DoxyCodeLine{\} \textcolor{comment}{// end of actions\_after\_adapt}}
 
@@ -1144,7 +1144,7 @@ Once the mesh has been adapted, we (re-\/)create the prescribed traction element
 \DoxyCodeLine{\textcolor{comment}{ /// Fraction of points in boundary layer}}
 \DoxyCodeLine{\textcolor{comment}{} \textcolor{keywordtype}{double} \mbox{\hyperlink{namespaceBL__Squash_af84bda39008884cd2b01e630957573df}{Fract\_in\_BL}}=0.5;}
 \DoxyCodeLine{\textcolor{comment}{}}
-\DoxyCodeLine{\textcolor{comment}{ /// \(\backslash\)short Mapping [0,1] -\/> [0,1] that re-\/distributes}}
+\DoxyCodeLine{\textcolor{comment}{ ///  Mapping [0,1] -\/> [0,1] that re-\/distributes}}
 \DoxyCodeLine{\textcolor{comment}{ /// nodal points across the channel width}}
 \DoxyCodeLine{\textcolor{comment}{} \textcolor{keywordtype}{double} \mbox{\hyperlink{namespaceBL__Squash_a0fdaf7661591150041b7102dbe578cdc}{squash\_fct}}(\textcolor{keyword}{const} \textcolor{keywordtype}{double}\& s)}
 \DoxyCodeLine{ \{}

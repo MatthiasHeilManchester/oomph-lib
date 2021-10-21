@@ -1,5 +1,10 @@
 \hypertarget{classoomph_1_1SpineAxisymmetricMarangoniSurfactantFluidInterfaceElement}{}\doxysection{oomph\+::Spine\+Axisymmetric\+Marangoni\+Surfactant\+Fluid\+Interface\+Element\texorpdfstring{$<$}{<} ELEMENT \texorpdfstring{$>$}{>} Class Template Reference}
 \label{classoomph_1_1SpineAxisymmetricMarangoniSurfactantFluidInterfaceElement}\index{oomph::SpineAxisymmetricMarangoniSurfactantFluidInterfaceElement$<$ ELEMENT $>$@{oomph::SpineAxisymmetricMarangoniSurfactantFluidInterfaceElement$<$ ELEMENT $>$}}
+
+
+Spine-\/based Marangoni surface tension elements that add a linear dependence on concentration of a surface chemical to the surface tension, which decreases with increasing concentration. The non-\/dimensionalisation is the same as Campana et al (2004) but we may wish to revisit this.  
+
+
 Inheritance diagram for oomph\+::Spine\+Axisymmetric\+Marangoni\+Surfactant\+Fluid\+Interface\+Element\texorpdfstring{$<$}{<} ELEMENT \texorpdfstring{$>$}{>}\+:\begin{figure}[H]
 \begin{center}
 \leavevmode
@@ -10,7 +15,7 @@ Inheritance diagram for oomph\+::Spine\+Axisymmetric\+Marangoni\+Surfactant\+Flu
 \begin{DoxyCompactItemize}
 \item 
 \mbox{\hyperlink{classoomph_1_1SpineAxisymmetricMarangoniSurfactantFluidInterfaceElement_acb97c1d7f3192309150432c840b34944}{Spine\+Axisymmetric\+Marangoni\+Surfactant\+Fluid\+Interface\+Element}} (Finite\+Element $\ast$const \&element\+\_\+pt, const int \&face\+\_\+index)
-\item 
+\begin{DoxyCompactList}\small\item\em Constructor that passes the bulk element and face index down to the underlying. \end{DoxyCompactList}\item 
 double \mbox{\hyperlink{classoomph_1_1SpineAxisymmetricMarangoniSurfactantFluidInterfaceElement_a898d0f93192f1b42826a5fc1043f8534}{beta}} ()
 \begin{DoxyCompactList}\small\item\em Return the Elasticity number. \end{DoxyCompactList}\item 
 double \mbox{\hyperlink{classoomph_1_1SpineAxisymmetricMarangoniSurfactantFluidInterfaceElement_a6a927de4f0ec496fce8114f5710f1db2}{peclet\+\_\+s}} ()
@@ -35,13 +40,13 @@ double \mbox{\hyperlink{classoomph_1_1SpineAxisymmetricMarangoniSurfactantFluidI
 double \mbox{\hyperlink{classoomph_1_1SpineAxisymmetricMarangoniSurfactantFluidInterfaceElement_a7ee3faea2d8e082efde048e7adb9e9c1}{dcdt\+\_\+surface}} (const unsigned \&l) const
 \begin{DoxyCompactList}\small\item\em The time derivative of the surface concentration. \end{DoxyCompactList}\item 
 double \mbox{\hyperlink{classoomph_1_1SpineAxisymmetricMarangoniSurfactantFluidInterfaceElement_a7312e78a1b5449ea2ff6d856a4fd9c46}{sigma}} (const Vector$<$ double $>$ \&s)
-\item 
+\begin{DoxyCompactList}\small\item\em The surface tension function is linear in the concentration with constant of proportionality equal to the elasticity number. \end{DoxyCompactList}\item 
 void \mbox{\hyperlink{classoomph_1_1SpineAxisymmetricMarangoniSurfactantFluidInterfaceElement_aa34b8b5ac73054e367fd321bf1ae6346}{fill\+\_\+in\+\_\+contribution\+\_\+to\+\_\+jacobian}} (Vector$<$ double $>$ \&residuals, Dense\+Matrix$<$ double $>$ \&jacobian)
 \begin{DoxyCompactList}\small\item\em Fill in the contribution to the residuals Calculate the contribution to the jacobian. \end{DoxyCompactList}\item 
 void \mbox{\hyperlink{classoomph_1_1SpineAxisymmetricMarangoniSurfactantFluidInterfaceElement_a56c90572b8969dff01a4baa9de850d91}{add\+\_\+additional\+\_\+residual\+\_\+contributions\+\_\+interface}} (Vector$<$ double $>$ \&residuals, Dense\+Matrix$<$ double $>$ \&jacobian, const unsigned \&flag, const Shape \&psif, const DShape \&dpsifds, const DShape \&dpsifdS, const DShape \&dpsifd\+S\+\_\+div, const Vector$<$ double $>$ \&s, const Vector$<$ double $>$ \&interpolated\+\_\+x, const Vector$<$ double $>$ \&interpolated\+\_\+n, const double \&W, const double \&J)
 \begin{DoxyCompactList}\small\item\em Overload the Helper function to calculate the residuals and jacobian entries. This particular function ensures that the additional entries are calculated inside the integration loop. \end{DoxyCompactList}\item 
 void \mbox{\hyperlink{classoomph_1_1SpineAxisymmetricMarangoniSurfactantFluidInterfaceElement_ab8e6a649149c0e1aadb95dc820b8be86}{fill\+\_\+in\+\_\+contribution\+\_\+to\+\_\+jacobian\+\_\+and\+\_\+mass\+\_\+matrix}} (Vector$<$ double $>$ \&residuals, Dense\+Matrix$<$ double $>$ \&jacobian, Dense\+Matrix$<$ double $>$ \&mass\+\_\+matrix)
-\end{DoxyCompactItemize}
+\begin{DoxyCompactList}\small\item\em Add the element\textquotesingle{}s contribution to its residuals vector, jacobian matrix and mass matrix. \end{DoxyCompactList}\end{DoxyCompactItemize}
 \doxysubsection*{Private Attributes}
 \begin{DoxyCompactItemize}
 \item 
@@ -52,7 +57,7 @@ double $\ast$ \mbox{\hyperlink{classoomph_1_1SpineAxisymmetricMarangoniSurfactan
 double $\ast$ \mbox{\hyperlink{classoomph_1_1SpineAxisymmetricMarangoniSurfactantFluidInterfaceElement_a8e2a9a53bcc19471bcb36ed2c169fb57}{Peclet\+\_\+\+Strouhal\+\_\+\+S\+\_\+pt}}
 \begin{DoxyCompactList}\small\item\em Pointer to the surface Peclect Strouhal number. \end{DoxyCompactList}\item 
 unsigned \mbox{\hyperlink{classoomph_1_1SpineAxisymmetricMarangoniSurfactantFluidInterfaceElement_a81a18102b611767a582804f1acdc8143}{C\+\_\+index}}
-\end{DoxyCompactItemize}
+\begin{DoxyCompactList}\small\item\em Index at which the surfactant concentration is stored at the nodes. \end{DoxyCompactList}\end{DoxyCompactItemize}
 \doxysubsection*{Static Private Attributes}
 \begin{DoxyCompactItemize}
 \item 
@@ -78,7 +83,11 @@ Definition at line \mbox{\hyperlink{rayleigh__instability__insoluble__surfactant
 {\footnotesize\ttfamily template$<$class ELEMENT $>$ \\
 \mbox{\hyperlink{classoomph_1_1SpineAxisymmetricMarangoniSurfactantFluidInterfaceElement}{oomph\+::\+Spine\+Axisymmetric\+Marangoni\+Surfactant\+Fluid\+Interface\+Element}}$<$ ELEMENT $>$\+::\mbox{\hyperlink{classoomph_1_1SpineAxisymmetricMarangoniSurfactantFluidInterfaceElement}{Spine\+Axisymmetric\+Marangoni\+Surfactant\+Fluid\+Interface\+Element}} (\begin{DoxyParamCaption}\item[{Finite\+Element $\ast$const \&}]{element\+\_\+pt,  }\item[{const int \&}]{face\+\_\+index }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
 
-Constructor that passes the bulk element and face index down to the underlying 
+
+
+Constructor that passes the bulk element and face index down to the underlying. 
+
+
 
 Definition at line \mbox{\hyperlink{rayleigh__instability__insoluble__surfactant_8cc_source_l00532}{532}} of file \mbox{\hyperlink{rayleigh__instability__insoluble__surfactant_8cc_source}{rayleigh\+\_\+instability\+\_\+insoluble\+\_\+surfactant.\+cc}}.
 
@@ -211,7 +220,11 @@ Referenced by \mbox{\hyperlink{rayleigh__instability__insoluble__surfactant_8cc_
 {\footnotesize\ttfamily template$<$class ELEMENT $>$ \\
 void \mbox{\hyperlink{classoomph_1_1SpineAxisymmetricMarangoniSurfactantFluidInterfaceElement}{oomph\+::\+Spine\+Axisymmetric\+Marangoni\+Surfactant\+Fluid\+Interface\+Element}}$<$ ELEMENT $>$\+::fill\+\_\+in\+\_\+contribution\+\_\+to\+\_\+jacobian\+\_\+and\+\_\+mass\+\_\+matrix (\begin{DoxyParamCaption}\item[{Vector$<$ double $>$ \&}]{residuals,  }\item[{Dense\+Matrix$<$ double $>$ \&}]{jacobian,  }\item[{Dense\+Matrix$<$ double $>$ \&}]{mass\+\_\+matrix }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [protected]}}
 
-Add the element\textquotesingle{}s contribution to its residuals vector, jacobian matrix and mass matrix 
+
+
+Add the element\textquotesingle{}s contribution to its residuals vector, jacobian matrix and mass matrix. 
+
+
 
 Definition at line \mbox{\hyperlink{rayleigh__instability__insoluble__surfactant_8cc_source_l00521}{521}} of file \mbox{\hyperlink{rayleigh__instability__insoluble__surfactant_8cc_source}{rayleigh\+\_\+instability\+\_\+insoluble\+\_\+surfactant.\+cc}}.
 
@@ -375,7 +388,11 @@ Referenced by \mbox{\hyperlink{rayleigh__instability__insoluble__surfactant_8cc_
 {\footnotesize\ttfamily template$<$class ELEMENT $>$ \\
 double \mbox{\hyperlink{classoomph_1_1SpineAxisymmetricMarangoniSurfactantFluidInterfaceElement}{oomph\+::\+Spine\+Axisymmetric\+Marangoni\+Surfactant\+Fluid\+Interface\+Element}}$<$ ELEMENT $>$\+::sigma (\begin{DoxyParamCaption}\item[{const Vector$<$ double $>$ \&}]{s }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [protected]}, {\ttfamily [virtual]}}
 
+
+
 The surface tension function is linear in the concentration with constant of proportionality equal to the elasticity number. 
+
+
 
 Reimplemented from \mbox{\hyperlink{classoomph_1_1FluidInterfaceElement_a7e5c3ca1eba5d4dd44c0eab9be252c2a}{oomph\+::\+Fluid\+Interface\+Element}}.
 
@@ -420,7 +437,11 @@ Referenced by \mbox{\hyperlink{rayleigh__instability__insoluble__surfactant_8cc_
 {\footnotesize\ttfamily template$<$class ELEMENT $>$ \\
 unsigned \mbox{\hyperlink{classoomph_1_1SpineAxisymmetricMarangoniSurfactantFluidInterfaceElement}{oomph\+::\+Spine\+Axisymmetric\+Marangoni\+Surfactant\+Fluid\+Interface\+Element}}$<$ ELEMENT $>$\+::C\+\_\+index\hspace{0.3cm}{\ttfamily [private]}}
 
-Index at which the surfactant concentration is stored at the nodes 
+
+
+Index at which the surfactant concentration is stored at the nodes. 
+
+
 
 Definition at line \mbox{\hyperlink{rayleigh__instability__insoluble__surfactant_8cc_source_l00130}{130}} of file \mbox{\hyperlink{rayleigh__instability__insoluble__surfactant_8cc_source}{rayleigh\+\_\+instability\+\_\+insoluble\+\_\+surfactant.\+cc}}.
 

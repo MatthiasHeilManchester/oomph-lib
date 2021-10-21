@@ -170,6 +170,7 @@ Public Member Functions</h2></td></tr>
 <tr class="memdesc:a9b40b8a395a94be77939308cc413828a"><td class="mdescLeft">&#160;</td><td class="mdescRight">Access function that will be called by the read-only round-bracket operator (const)  <a href="classoomph_1_1CCMatrix.html#a9b40b8a395a94be77939308cc413828a">More...</a><br /></td></tr>
 <tr class="separator:a9b40b8a395a94be77939308cc413828a"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a30fb5552543c8d2f0626578ee2f9a5ae"><td class="memItemLeft" align="right" valign="top">T &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classoomph_1_1CCMatrix.html#a30fb5552543c8d2f0626578ee2f9a5ae">entry</a> (const unsigned long &amp;<a class="el" href="cfortran_8h.html#adb50e893b86b3e55e751a42eab3cba82">i</a>, const unsigned long &amp;j)</td></tr>
+<tr class="memdesc:a30fb5552543c8d2f0626578ee2f9a5ae"><td class="mdescLeft">&#160;</td><td class="mdescRight">Read-write access is not permitted for these matrices and is deliberately broken.  <a href="classoomph_1_1CCMatrix.html#a30fb5552543c8d2f0626578ee2f9a5ae">More...</a><br /></td></tr>
 <tr class="separator:a30fb5552543c8d2f0626578ee2f9a5ae"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a9cf931b97d5e6f57ae6dd7d03727dbdd"><td class="memItemLeft" align="right" valign="top">int *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classoomph_1_1CCMatrix.html#a9cf931b97d5e6f57ae6dd7d03727dbdd">column_start</a> ()</td></tr>
 <tr class="memdesc:a9cf931b97d5e6f57ae6dd7d03727dbdd"><td class="mdescLeft">&#160;</td><td class="mdescRight">Access to C-style column_start array.  <a href="classoomph_1_1CCMatrix.html#a9cf931b97d5e6f57ae6dd7d03727dbdd">More...</a><br /></td></tr>
@@ -281,7 +282,7 @@ Protected Attributes</h2></td></tr>
 Additional Inherited Members</h2></td></tr>
 <tr class="inherit_header pro_methods_classoomph_1_1Matrix"><td colspan="2" onclick="javascript:toggleInherit('pro_methods_classoomph_1_1Matrix')"><img src="closed.png" alt="-"/>&#160;Protected Member Functions inherited from <a class="el" href="classoomph_1_1Matrix.html">oomph::Matrix&lt; T, MATRIX_TYPE &gt;</a></td></tr>
 <tr class="memitem:a2fed2ea1840638eb0ddaa2d4ab1da82f inherit pro_methods_classoomph_1_1Matrix"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classoomph_1_1Matrix.html#a2fed2ea1840638eb0ddaa2d4ab1da82f">range_check</a> (const unsigned long &amp;<a class="el" href="cfortran_8h.html#adb50e893b86b3e55e751a42eab3cba82">i</a>, const unsigned long &amp;j) const</td></tr>
-<tr class="memdesc:a2fed2ea1840638eb0ddaa2d4ab1da82f inherit pro_methods_classoomph_1_1Matrix"><td class="mdescLeft">&#160;</td><td class="mdescRight">Range check to catch when an index is out of bounds, if so, it issues a warning message and dies by throwing an <code><a class="el" href="classoomph_1_1OomphLibError.html">OomphLibError</a></code>.  <a href="classoomph_1_1Matrix.html#a2fed2ea1840638eb0ddaa2d4ab1da82f">More...</a><br /></td></tr>
+<tr class="memdesc:a2fed2ea1840638eb0ddaa2d4ab1da82f inherit pro_methods_classoomph_1_1Matrix"><td class="mdescLeft">&#160;</td><td class="mdescRight">Range check to catch when an index is out of bounds, if so, it issues a warning message and dies by throwing an <code><a class="el" href="classoomph_1_1OomphLibError.html" title="An OomphLibError object which should be thrown when an run-time error is encountered....">OomphLibError</a></code>.  <a href="classoomph_1_1Matrix.html#a2fed2ea1840638eb0ddaa2d4ab1da82f">More...</a><br /></td></tr>
 <tr class="separator:a2fed2ea1840638eb0ddaa2d4ab1da82f inherit pro_methods_classoomph_1_1Matrix"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="inherit_header pro_static_attribs_classoomph_1_1SparseMatrix"><td colspan="2" onclick="javascript:toggleInherit('pro_static_attribs_classoomph_1_1SparseMatrix')"><img src="closed.png" alt="-"/>&#160;Static Protected Attributes inherited from <a class="el" href="classoomph_1_1SparseMatrix.html">oomph::SparseMatrix&lt; T, CCMatrix&lt; T &gt; &gt;</a></td></tr>
 <tr class="memitem:a71a5ae159c26f93c314c839f4db6eaaf inherit pro_static_attribs_classoomph_1_1SparseMatrix"><td class="memItemLeft" align="right" valign="top">static T&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classoomph_1_1SparseMatrix.html#a71a5ae159c26f93c314c839f4db6eaaf">Zero</a></td></tr>
@@ -475,13 +476,13 @@ template&lt;class T &gt; </div>
           <td class="paramkey"></td>
           <td></td>
           <td class="paramtype">const <a class="el" href="classoomph_1_1Vector.html">Vector</a>&lt; int &gt; &amp;&#160;</td>
-          <td class="paramname"><em>row_index_</em>, </td>
+          <td class="paramname"><em>row_index</em>, </td>
         </tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
           <td class="paramtype">const <a class="el" href="classoomph_1_1Vector.html">Vector</a>&lt; int &gt; &amp;&#160;</td>
-          <td class="paramname"><em>column_start_</em>, </td>
+          <td class="paramname"><em>column_start</em>, </td>
         </tr>
         <tr>
           <td class="paramkey"></td>
@@ -504,7 +505,6 @@ template&lt;class T &gt; </div>
 </div><div class="memdoc">
 
 <p>Build matrix from compressed representation. Number of nonzero entries is read off from value, so make sure the vector has been shrunk to its correct length. </p>
-<p >Build matrix from compressed representation. Number of nonzero entries is read off from value, so make sure the vector has been shrunk to its correct length. </p>
 
 <p class="definition">Definition at line <a class="el" href="matrices_8h_source.html#l03247">3247</a> of file <a class="el" href="matrices_8h_source.html">matrices.h</a>.</p>
 
@@ -704,7 +704,8 @@ template&lt;class T &gt; </div>
   </tr>
 </table>
 </div><div class="memdoc">
-<p >Read-write access is not permitted for these matrices and is deliberately broken. </p>
+
+<p>Read-write access is not permitted for these matrices and is deliberately broken. </p>
 
 <p class="definition">Definition at line <a class="el" href="matrices_8h_source.html#l02671">2671</a> of file <a class="el" href="matrices_8h_source.html">matrices.h</a>.</p>
 
@@ -1020,7 +1021,7 @@ template&lt;class T &gt; </div>
     <footer>
       <div class="container">
         <div class="text-muted" style="float:right;">Generated by <a href="http://www.doxygen.org/index.html">
-          <img style="height:18px;" class="footer-img" src="doxygen.png" alt="doxygen"></a> on Wed Oct 13 2021 08:45:01
+          <img style="height:18px;" class="footer-img" src="doxygen.png" alt="doxygen"></a> on Thu Oct 21 2021 17:33:33
         </div>
       </div>
     </footer>

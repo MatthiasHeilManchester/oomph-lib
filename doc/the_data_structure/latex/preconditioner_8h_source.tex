@@ -50,7 +50,7 @@
 \DoxyCodeLine{\Hypertarget{preconditioner_8h_source_l00046}00046   \textcolor{keyword}{class }Problem;}
 \DoxyCodeLine{\Hypertarget{preconditioner_8h_source_l00047}00047 }
 \DoxyCodeLine{\Hypertarget{preconditioner_8h_source_l00048}00048   \textcolor{comment}{//=============================================================================}\textcolor{comment}{}}
-\DoxyCodeLine{\Hypertarget{preconditioner_8h_source_l00049}00049 \textcolor{comment}{  /// \(\backslash\)short Preconditioner base class. Gives an interface to call all other}}
+\DoxyCodeLine{\Hypertarget{preconditioner_8h_source_l00049}00049 \textcolor{comment}{  ///  Preconditioner base class. Gives an interface to call all other}}
 \DoxyCodeLine{\Hypertarget{preconditioner_8h_source_l00050}00050 \textcolor{comment}{  /// preconditioners through and stores the matrix and communicator}}
 \DoxyCodeLine{\Hypertarget{preconditioner_8h_source_l00051}00051 \textcolor{comment}{  /// pointers. All preconditioners should be derived from this class.}}
 \DoxyCodeLine{\Hypertarget{preconditioner_8h_source_l00052}00052 \textcolor{comment}{}  \textcolor{comment}{//=============================================================================}}
@@ -74,13 +74,13 @@
 \DoxyCodeLine{\Hypertarget{preconditioner_8h_source_l00070}00070 \textcolor{comment}{    /// Destructor (empty)}}
 \DoxyCodeLine{\Hypertarget{preconditioner_8h_source_l00071}\mbox{\hyperlink{classoomph_1_1Preconditioner_ab60952a82cc1b6b91fff5924eaa62c0e}{00071}} \textcolor{comment}{}    \textcolor{keyword}{virtual} \mbox{\hyperlink{classoomph_1_1Preconditioner_ab60952a82cc1b6b91fff5924eaa62c0e}{\string~Preconditioner}}() \{\}}
 \DoxyCodeLine{\Hypertarget{preconditioner_8h_source_l00072}00072 \textcolor{comment}{}}
-\DoxyCodeLine{\Hypertarget{preconditioner_8h_source_l00073}00073 \textcolor{comment}{    /// \(\backslash\)short Apply the preconditioner. Pure virtual generic interface}}
+\DoxyCodeLine{\Hypertarget{preconditioner_8h_source_l00073}00073 \textcolor{comment}{    ///  Apply the preconditioner. Pure virtual generic interface}}
 \DoxyCodeLine{\Hypertarget{preconditioner_8h_source_l00074}00074 \textcolor{comment}{    /// function. This method should apply the preconditioner operator to the}}
 \DoxyCodeLine{\Hypertarget{preconditioner_8h_source_l00075}00075 \textcolor{comment}{    /// vector r and return the vector z.}}
 \DoxyCodeLine{\Hypertarget{preconditioner_8h_source_l00076}\mbox{\hyperlink{classoomph_1_1Preconditioner_ace1199369e4465cd2b9a34884bb64ec8}{00076}} \textcolor{comment}{}    \textcolor{keyword}{virtual} \textcolor{keywordtype}{void} \mbox{\hyperlink{classoomph_1_1Preconditioner_ace1199369e4465cd2b9a34884bb64ec8}{preconditioner\_solve}}(\textcolor{keyword}{const} \mbox{\hyperlink{classoomph_1_1DoubleVector}{DoubleVector}}\& r,}
 \DoxyCodeLine{\Hypertarget{preconditioner_8h_source_l00077}00077                                       \mbox{\hyperlink{classoomph_1_1DoubleVector}{DoubleVector}}\& z) = 0;}
 \DoxyCodeLine{\Hypertarget{preconditioner_8h_source_l00078}00078 \textcolor{comment}{}}
-\DoxyCodeLine{\Hypertarget{preconditioner_8h_source_l00079}00079 \textcolor{comment}{    /// \(\backslash\)short Apply the preconditioner. Pure virtual generic interface}}
+\DoxyCodeLine{\Hypertarget{preconditioner_8h_source_l00079}00079 \textcolor{comment}{    ///  Apply the preconditioner. Pure virtual generic interface}}
 \DoxyCodeLine{\Hypertarget{preconditioner_8h_source_l00080}00080 \textcolor{comment}{    /// function. This method should apply the preconditioner operator to the}}
 \DoxyCodeLine{\Hypertarget{preconditioner_8h_source_l00081}00081 \textcolor{comment}{    /// vector r and return the vector z. (broken virtual)}}
 \DoxyCodeLine{\Hypertarget{preconditioner_8h_source_l00082}\mbox{\hyperlink{classoomph_1_1Preconditioner_a1e469ffc87f31f6f2eebbe5ccf03d78b}{00082}} \textcolor{comment}{}    \textcolor{keyword}{virtual} \textcolor{keywordtype}{void} \mbox{\hyperlink{classoomph_1_1Preconditioner_a1e469ffc87f31f6f2eebbe5ccf03d78b}{preconditioner\_solve\_transpose}}(\textcolor{keyword}{const} \mbox{\hyperlink{classoomph_1_1DoubleVector}{DoubleVector}}\& r,}
@@ -92,7 +92,7 @@
 \DoxyCodeLine{\Hypertarget{preconditioner_8h_source_l00088}00088                           OOMPH\_EXCEPTION\_LOCATION);}
 \DoxyCodeLine{\Hypertarget{preconditioner_8h_source_l00089}00089     \}}
 \DoxyCodeLine{\Hypertarget{preconditioner_8h_source_l00090}00090 \textcolor{comment}{}}
-\DoxyCodeLine{\Hypertarget{preconditioner_8h_source_l00091}00091 \textcolor{comment}{    /// \(\backslash\)short Setup the preconditioner: store the matrix pointer and the}}
+\DoxyCodeLine{\Hypertarget{preconditioner_8h_source_l00091}00091 \textcolor{comment}{    ///  Setup the preconditioner: store the matrix pointer and the}}
 \DoxyCodeLine{\Hypertarget{preconditioner_8h_source_l00092}00092 \textcolor{comment}{    /// communicator pointer then call preconditioner specific setup()}}
 \DoxyCodeLine{\Hypertarget{preconditioner_8h_source_l00093}00093 \textcolor{comment}{    /// function.}}
 \DoxyCodeLine{\Hypertarget{preconditioner_8h_source_l00094}\mbox{\hyperlink{classoomph_1_1Preconditioner_a0b95e7159585b5151f9e5dc1d1713655}{00094}} \textcolor{comment}{}    \textcolor{keywordtype}{void} \mbox{\hyperlink{classoomph_1_1Preconditioner_a0b95e7159585b5151f9e5dc1d1713655}{setup}}(\mbox{\hyperlink{classoomph_1_1DoubleMatrixBase}{DoubleMatrixBase}}* \mbox{\hyperlink{classoomph_1_1Preconditioner_a08e0582b77c6cbfaf85b80a4ac5c11f3}{matrix\_pt}})}
@@ -118,7 +118,7 @@
 \DoxyCodeLine{\Hypertarget{preconditioner_8h_source_l00114}00114       \mbox{\hyperlink{classoomph_1_1Preconditioner_a00f5ae98e81e7cb9aa6a70a39a9759c8}{Setup\_time}} = setup\_time\_finish -\/ setup\_time\_start;}
 \DoxyCodeLine{\Hypertarget{preconditioner_8h_source_l00115}00115     \}}
 \DoxyCodeLine{\Hypertarget{preconditioner_8h_source_l00116}00116 \textcolor{comment}{}}
-\DoxyCodeLine{\Hypertarget{preconditioner_8h_source_l00117}00117 \textcolor{comment}{    /// \(\backslash\)short Compatability layer for old preconditioners where problem}}
+\DoxyCodeLine{\Hypertarget{preconditioner_8h_source_l00117}00117 \textcolor{comment}{    ///  Compatability layer for old preconditioners where problem}}
 \DoxyCodeLine{\Hypertarget{preconditioner_8h_source_l00118}00118 \textcolor{comment}{    /// pointers were needed. The problem pointer is only used to get a}}
 \DoxyCodeLine{\Hypertarget{preconditioner_8h_source_l00119}00119 \textcolor{comment}{    /// communicator pointer.}}
 \DoxyCodeLine{\Hypertarget{preconditioner_8h_source_l00120}\mbox{\hyperlink{classoomph_1_1Preconditioner_a783fae97e4b898f8de72b504a4f4bec6}{00120}} \textcolor{comment}{}    \textcolor{keywordtype}{void} \mbox{\hyperlink{classoomph_1_1Preconditioner_a783fae97e4b898f8de72b504a4f4bec6}{setup}}(\textcolor{keyword}{const} \mbox{\hyperlink{classoomph_1_1Problem}{Problem}}* problem\_pt, \mbox{\hyperlink{classoomph_1_1DoubleMatrixBase}{DoubleMatrixBase}}* \mbox{\hyperlink{classoomph_1_1Preconditioner_a08e0582b77c6cbfaf85b80a4ac5c11f3}{matrix\_pt}})}
@@ -143,11 +143,11 @@
 \DoxyCodeLine{\Hypertarget{preconditioner_8h_source_l00139}00139     \} \textcolor{comment}{// End of disable\_silent\_preconditioner\_setup}}
 \DoxyCodeLine{\Hypertarget{preconditioner_8h_source_l00140}00140 }
 \DoxyCodeLine{\Hypertarget{preconditioner_8h_source_l00141}00141 \textcolor{comment}{}}
-\DoxyCodeLine{\Hypertarget{preconditioner_8h_source_l00142}00142 \textcolor{comment}{    /// \(\backslash\)short Setup the preconditioner. Pure virtual generic interface}}
+\DoxyCodeLine{\Hypertarget{preconditioner_8h_source_l00142}00142 \textcolor{comment}{    ///  Setup the preconditioner. Pure virtual generic interface}}
 \DoxyCodeLine{\Hypertarget{preconditioner_8h_source_l00143}00143 \textcolor{comment}{    /// function.}}
 \DoxyCodeLine{\Hypertarget{preconditioner_8h_source_l00144}\mbox{\hyperlink{classoomph_1_1Preconditioner_af4886f4efe510e5c9b0eb19422943588}{00144}} \textcolor{comment}{}    \textcolor{keyword}{virtual} \textcolor{keywordtype}{void} \mbox{\hyperlink{classoomph_1_1Preconditioner_af4886f4efe510e5c9b0eb19422943588}{setup}}() = 0;}
 \DoxyCodeLine{\Hypertarget{preconditioner_8h_source_l00145}00145 \textcolor{comment}{}}
-\DoxyCodeLine{\Hypertarget{preconditioner_8h_source_l00146}00146 \textcolor{comment}{    /// \(\backslash\)short Clean up memory (empty). Generic interface function.}}
+\DoxyCodeLine{\Hypertarget{preconditioner_8h_source_l00146}00146 \textcolor{comment}{    ///  Clean up memory (empty). Generic interface function.}}
 \DoxyCodeLine{\Hypertarget{preconditioner_8h_source_l00147}\mbox{\hyperlink{classoomph_1_1Preconditioner_a46c31c416829bedcd9db238431262027}{00147}} \textcolor{comment}{}    \textcolor{keyword}{virtual} \textcolor{keywordtype}{void} \mbox{\hyperlink{classoomph_1_1Preconditioner_a46c31c416829bedcd9db238431262027}{clean\_up\_memory}}() \{\}}
 \DoxyCodeLine{\Hypertarget{preconditioner_8h_source_l00148}00148 \textcolor{comment}{}}
 \DoxyCodeLine{\Hypertarget{preconditioner_8h_source_l00149}00149 \textcolor{comment}{    /// Get function for matrix pointer.}}
@@ -165,7 +165,7 @@
 \DoxyCodeLine{\Hypertarget{preconditioner_8h_source_l00161}00161       \textcolor{keywordflow}{return} \mbox{\hyperlink{classoomph_1_1Preconditioner_a04caf49de41802ef112e4b8b644b1d4d}{Matrix\_pt}};}
 \DoxyCodeLine{\Hypertarget{preconditioner_8h_source_l00162}00162     \}}
 \DoxyCodeLine{\Hypertarget{preconditioner_8h_source_l00163}00163 \textcolor{comment}{}}
-\DoxyCodeLine{\Hypertarget{preconditioner_8h_source_l00164}00164 \textcolor{comment}{    /// \(\backslash\)short Set the matrix pointer.}}
+\DoxyCodeLine{\Hypertarget{preconditioner_8h_source_l00164}00164 \textcolor{comment}{    ///  Set the matrix pointer.}}
 \DoxyCodeLine{\Hypertarget{preconditioner_8h_source_l00165}\mbox{\hyperlink{classoomph_1_1Preconditioner_af459b7333c4c64435fd8fa933535901f}{00165}} \textcolor{comment}{}    \textcolor{keyword}{virtual} \textcolor{keywordtype}{void} \mbox{\hyperlink{classoomph_1_1Preconditioner_af459b7333c4c64435fd8fa933535901f}{set\_matrix\_pt}}(\mbox{\hyperlink{classoomph_1_1DoubleMatrixBase}{DoubleMatrixBase}}* \mbox{\hyperlink{classoomph_1_1Preconditioner_a08e0582b77c6cbfaf85b80a4ac5c11f3}{matrix\_pt}})}
 \DoxyCodeLine{\Hypertarget{preconditioner_8h_source_l00166}00166     \{}
 \DoxyCodeLine{\Hypertarget{preconditioner_8h_source_l00167}00167       \mbox{\hyperlink{classoomph_1_1Preconditioner_a04caf49de41802ef112e4b8b644b1d4d}{Matrix\_pt}} = \mbox{\hyperlink{classoomph_1_1Preconditioner_a08e0582b77c6cbfaf85b80a4ac5c11f3}{matrix\_pt}};}
@@ -193,13 +193,13 @@
 \DoxyCodeLine{\Hypertarget{preconditioner_8h_source_l00189}00189       \textcolor{keywordflow}{return} \mbox{\hyperlink{classoomph_1_1Preconditioner_aa580eb7cc01ac989201aac30c3a8eab5}{Comm\_pt}};}
 \DoxyCodeLine{\Hypertarget{preconditioner_8h_source_l00190}00190     \}}
 \DoxyCodeLine{\Hypertarget{preconditioner_8h_source_l00191}00191 \textcolor{comment}{}}
-\DoxyCodeLine{\Hypertarget{preconditioner_8h_source_l00192}00192 \textcolor{comment}{    /// \(\backslash\)short Set the communicator pointer}}
+\DoxyCodeLine{\Hypertarget{preconditioner_8h_source_l00192}00192 \textcolor{comment}{    ///  Set the communicator pointer}}
 \DoxyCodeLine{\Hypertarget{preconditioner_8h_source_l00193}\mbox{\hyperlink{classoomph_1_1Preconditioner_a306f5a52f493816fcfda2dc9b2ee1dbf}{00193}} \textcolor{comment}{}    \textcolor{keyword}{virtual} \textcolor{keywordtype}{void} \mbox{\hyperlink{classoomph_1_1Preconditioner_a306f5a52f493816fcfda2dc9b2ee1dbf}{set\_comm\_pt}}(\textcolor{keyword}{const} \mbox{\hyperlink{classoomph_1_1OomphCommunicator}{OomphCommunicator}}* \textcolor{keyword}{const} \mbox{\hyperlink{classoomph_1_1Preconditioner_a88d799e18a605c3993c6fcac0a41d901}{comm\_pt}})}
 \DoxyCodeLine{\Hypertarget{preconditioner_8h_source_l00194}00194     \{}
 \DoxyCodeLine{\Hypertarget{preconditioner_8h_source_l00195}00195       \mbox{\hyperlink{classoomph_1_1Preconditioner_aa580eb7cc01ac989201aac30c3a8eab5}{Comm\_pt}} = \mbox{\hyperlink{classoomph_1_1Preconditioner_a88d799e18a605c3993c6fcac0a41d901}{comm\_pt}};}
 \DoxyCodeLine{\Hypertarget{preconditioner_8h_source_l00196}00196     \}}
 \DoxyCodeLine{\Hypertarget{preconditioner_8h_source_l00197}00197 \textcolor{comment}{}}
-\DoxyCodeLine{\Hypertarget{preconditioner_8h_source_l00198}00198 \textcolor{comment}{    /// \(\backslash\)short Returns the time to setup the preconditioner.}}
+\DoxyCodeLine{\Hypertarget{preconditioner_8h_source_l00198}00198 \textcolor{comment}{    ///  Returns the time to setup the preconditioner.}}
 \DoxyCodeLine{\Hypertarget{preconditioner_8h_source_l00199}\mbox{\hyperlink{classoomph_1_1Preconditioner_a9202e15534f063a8e21a8a60623eac9f}{00199}} \textcolor{comment}{}    \textcolor{keywordtype}{double} \mbox{\hyperlink{classoomph_1_1Preconditioner_a9202e15534f063a8e21a8a60623eac9f}{setup\_time}}()\textcolor{keyword}{ const}}
 \DoxyCodeLine{\Hypertarget{preconditioner_8h_source_l00200}00200 \textcolor{keyword}{    }\{}
 \DoxyCodeLine{\Hypertarget{preconditioner_8h_source_l00201}00201       \textcolor{keywordflow}{return} \mbox{\hyperlink{classoomph_1_1Preconditioner_a00f5ae98e81e7cb9aa6a70a39a9759c8}{Setup\_time}};}
@@ -239,7 +239,7 @@
 \DoxyCodeLine{\Hypertarget{preconditioner_8h_source_l00235}00235 \textcolor{comment}{    /// Storage for a pointer to the matrix.}}
 \DoxyCodeLine{\Hypertarget{preconditioner_8h_source_l00236}\mbox{\hyperlink{classoomph_1_1Preconditioner_a04caf49de41802ef112e4b8b644b1d4d}{00236}} \textcolor{comment}{}    \mbox{\hyperlink{classoomph_1_1DoubleMatrixBase}{DoubleMatrixBase}}* \mbox{\hyperlink{classoomph_1_1Preconditioner_a04caf49de41802ef112e4b8b644b1d4d}{Matrix\_pt}};}
 \DoxyCodeLine{\Hypertarget{preconditioner_8h_source_l00237}00237 \textcolor{comment}{}}
-\DoxyCodeLine{\Hypertarget{preconditioner_8h_source_l00238}00238 \textcolor{comment}{    /// \(\backslash\)short Storage for a pointer to the communicator. Null}}
+\DoxyCodeLine{\Hypertarget{preconditioner_8h_source_l00238}00238 \textcolor{comment}{    ///  Storage for a pointer to the communicator. Null}}
 \DoxyCodeLine{\Hypertarget{preconditioner_8h_source_l00239}00239 \textcolor{comment}{    /// if the preconditioner should not be distributed.}}
 \DoxyCodeLine{\Hypertarget{preconditioner_8h_source_l00240}\mbox{\hyperlink{classoomph_1_1Preconditioner_aa580eb7cc01ac989201aac30c3a8eab5}{00240}} \textcolor{comment}{}    \textcolor{keyword}{const} \mbox{\hyperlink{classoomph_1_1OomphCommunicator}{OomphCommunicator}}* \mbox{\hyperlink{classoomph_1_1Preconditioner_aa580eb7cc01ac989201aac30c3a8eab5}{Comm\_pt}};}
 \DoxyCodeLine{\Hypertarget{preconditioner_8h_source_l00241}00241 \textcolor{comment}{}}
@@ -291,7 +291,7 @@
 \DoxyCodeLine{\Hypertarget{preconditioner_8h_source_l00287}00287       \}}
 \DoxyCodeLine{\Hypertarget{preconditioner_8h_source_l00288}00288     \}}
 \DoxyCodeLine{\Hypertarget{preconditioner_8h_source_l00289}00289 \textcolor{comment}{}}
-\DoxyCodeLine{\Hypertarget{preconditioner_8h_source_l00290}00290 \textcolor{comment}{    /// \(\backslash\)short Apply the preconditioner. This method should apply the}}
+\DoxyCodeLine{\Hypertarget{preconditioner_8h_source_l00290}00290 \textcolor{comment}{    ///  Apply the preconditioner. This method should apply the}}
 \DoxyCodeLine{\Hypertarget{preconditioner_8h_source_l00291}00291 \textcolor{comment}{    /// preconditioner operator to the vector r and return the vector z.}}
 \DoxyCodeLine{\Hypertarget{preconditioner_8h_source_l00292}\mbox{\hyperlink{classoomph_1_1IdentityPreconditioner_a8daf11465066158a258b5996984490af}{00292}} \textcolor{comment}{}    \textcolor{keyword}{virtual} \textcolor{keywordtype}{void} \mbox{\hyperlink{classoomph_1_1IdentityPreconditioner_a8daf11465066158a258b5996984490af}{preconditioner\_solve}}(\textcolor{keyword}{const} \mbox{\hyperlink{classoomph_1_1DoubleVector}{DoubleVector}}\& r, \mbox{\hyperlink{classoomph_1_1DoubleVector}{DoubleVector}}\& z)}
 \DoxyCodeLine{\Hypertarget{preconditioner_8h_source_l00293}00293     \{}
@@ -327,7 +327,7 @@
 \DoxyCodeLine{\Hypertarget{preconditioner_8h_source_l00323}00323     \}}
 \DoxyCodeLine{\Hypertarget{preconditioner_8h_source_l00324}00324 }
 \DoxyCodeLine{\Hypertarget{preconditioner_8h_source_l00325}00325 \textcolor{comment}{}}
-\DoxyCodeLine{\Hypertarget{preconditioner_8h_source_l00326}00326 \textcolor{comment}{    /// \(\backslash\)short Apply the preconditioner. This method should apply the}}
+\DoxyCodeLine{\Hypertarget{preconditioner_8h_source_l00326}00326 \textcolor{comment}{    ///  Apply the preconditioner. This method should apply the}}
 \DoxyCodeLine{\Hypertarget{preconditioner_8h_source_l00327}00327 \textcolor{comment}{    /// preconditioner operator to the vector r and return the vector z.}}
 \DoxyCodeLine{\Hypertarget{preconditioner_8h_source_l00328}\mbox{\hyperlink{classoomph_1_1IdentityPreconditioner_a15750aab956899d874149e7dd4ffeed8}{00328}} \textcolor{comment}{}    \textcolor{keywordtype}{void} \mbox{\hyperlink{classoomph_1_1IdentityPreconditioner_a15750aab956899d874149e7dd4ffeed8}{preconditioner\_solve\_transpose}}(\textcolor{keyword}{const} \mbox{\hyperlink{classoomph_1_1DoubleVector}{DoubleVector}}\& r, \mbox{\hyperlink{classoomph_1_1DoubleVector}{DoubleVector}}\& z)}
 \DoxyCodeLine{\Hypertarget{preconditioner_8h_source_l00329}00329     \{}

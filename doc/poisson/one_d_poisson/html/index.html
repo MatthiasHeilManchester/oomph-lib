@@ -148,7 +148,7 @@ Global parameters and functions</h1>
 <div class="line"><span class="keyword">namespace </span><a class="code hl_namespace" href="namespaceFishSolnOneDPoisson.html">FishSolnOneDPoisson</a></div>
 <div class="line">{</div>
 <div class="line"><span class="comment"></span> </div>
-<div class="line"><span class="comment"> /// \short Sign of the source function </span></div>
+<div class="line"><span class="comment"> ///  Sign of the source function </span></div>
 <div class="line"><span class="comment"> /// (- gives the upper half of the fish, + the lower half)</span></div>
 <div class="line"><span class="comment"></span> <span class="keywordtype">int</span> <a class="code hl_variable" href="namespaceFishSolnOneDPoisson.html#a108e814ef887ffcc8caa7c65a7d30f06">Sign</a>=-1;</div>
 <div class="line"> </div>
@@ -263,7 +263,7 @@ The problem class</h1>
 <div class="line"><span class="comment"> /// Update the problem specs after solve (empty)</span></div>
 <div class="line"><span class="comment"></span> <span class="keywordtype">void</span> <a class="code hl_function" href="classOneDPoissonProblem.html#ab023d367cc68b77a7828536333c924ed">actions_after_newton_solve</a>(){}</div>
 <div class="line"><span class="comment"></span> </div>
-<div class="line"><span class="comment"> /// \short Doc the solution, pass the number of the case considered,</span></div>
+<div class="line"><span class="comment"> ///  Doc the solution, pass the number of the case considered,</span></div>
 <div class="line"><span class="comment"> /// so that output files can be distinguished.</span></div>
 <div class="line"><span class="comment"></span> <span class="keywordtype">void</span> <a class="code hl_function" href="classOneDPoissonProblem.html#aaf42d034e42e7615acfa262a9c56b638">doc_solution</a>(<span class="keyword">const</span> <span class="keywordtype">unsigned</span>&amp; label);</div>
 <div class="line"> </div>
@@ -301,7 +301,7 @@ The problem class</h1>
 The Problem constructor</h1>
 <p >In the <code>Problem</code> constructor, we define the domain length and build a <code>Mesh</code>, using <code>oomph-lib's</code> <code>OneDMesh</code> object which is templated by the element type. The required number of elements and the domain length are passed as arguments to the <code>OneDMesh</code> constructors. The subsequent lines of code pin the nodal values at the two boundary nodes. Next we pass the source function pointer to the elements. Finally, we call the generic <code>Problem::assign_eqn_numbers()</code> routine which does precisely what it says...</p>
 <div class="fragment"><div class="line"><span class="comment">//=====start_of_constructor===============================================</span></div>
-<div class="line"><span class="comment">/// \short Constructor for 1D Poisson problem in unit interval.</span><span class="comment"></span></div>
+<div class="line"><span class="comment">///  Constructor for 1D Poisson problem in unit interval.</span><span class="comment"></span></div>
 <div class="line"><span class="comment">/// Discretise the 1D domain with n_element elements of type ELEMENT.</span></div>
 <div class="line"><span class="comment">/// Specify function pointer to source function. </span></div>
 <div class="line"><span class="comment"></span><span class="comment">//========================================================================</span></div>
@@ -361,7 +361,7 @@ The Problem constructor</h1>
 "Actions before solve"</h1>
 <p >The pure virtual function <code>Problem::actions_before_newton_solve()</code> must be implemented for all specific <code>Problems</code> and, as the name suggests, should perform any actions that need to be performed before the system of equations is solved. In the current problem, we use <code>Problem::actions_before_newton_solve()</code> to update the boundary conditions in response to possible changes in the sign of the source function. We use the exact solution (specified in the namespace <code><a class="el" href="namespaceFishSolnOneDPoisson.html" title="Namespace for fish-shaped solution of 1D Poisson equation.">FishSolnOneDPoisson</a></code>) to determine the boundary values that are appropriate for the sign specified in <code><a class="el" href="namespaceFishSolnOneDPoisson.html#a108e814ef887ffcc8caa7c65a7d30f06" title="Sign of the source function (- gives the upper half of the fish, + the lower half)">FishSolnOneDPoisson::Sign</a></code>.</p>
 <div class="fragment"><div class="line"><span class="comment">//===start_of_actions_before_newton_solve========================================</span></div>
-<div class="line"><span class="comment">/// \short Update the problem specs before solve: (Re)set boundary values</span><span class="comment"></span></div>
+<div class="line"><span class="comment">///  Update the problem specs before solve: (Re)set boundary values</span><span class="comment"></span></div>
 <div class="line"><span class="comment">/// from the exact solution. </span></div>
 <div class="line"><span class="comment"></span><span class="comment">//========================================================================</span></div>
 <div class="line"><span class="keyword">template</span>&lt;<span class="keyword">class</span> ELEMENT&gt;</div>
@@ -504,7 +504,7 @@ PDF file</h1>
     <footer>
       <div class="container">
         <div class="text-muted" style="float:right;">Generated by <a href="http://www.doxygen.org/index.html">
-          <img style="height:18px;" class="footer-img" src="doxygen.png" alt="doxygen"></a> on Wed Oct 13 2021 08:49:08
+          <img style="height:18px;" class="footer-img" src="doxygen.png" alt="doxygen"></a> on Thu Oct 21 2021 17:37:27
         </div>
       </div>
     </footer>

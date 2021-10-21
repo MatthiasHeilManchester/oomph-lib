@@ -2,6 +2,11 @@
 \label{classoomph_1_1BinaryTree}\index{oomph::BinaryTree@{oomph::BinaryTree}}
 
 
+\mbox{\hyperlink{classoomph_1_1BinaryTree}{Binary\+Tree}} class\+: Recursively defined, generalised binary tree.  
+
+
+
+
 {\ttfamily \#include $<$binary\+\_\+tree.\+h$>$}
 
 Inheritance diagram for oomph\+::Binary\+Tree\+:\begin{figure}[H]
@@ -73,7 +78,7 @@ static \mbox{\hyperlink{classoomph_1_1DenseMatrix}{Dense\+Matrix}}$<$ int $>$ \m
 
 
 \doxysubsection{Detailed Description}
-\mbox{\hyperlink{classoomph_1_1BinaryTree}{Binary\+Tree}} class\+: Recursively defined, generalised binary tree.
+\mbox{\hyperlink{classoomph_1_1BinaryTree}{Binary\+Tree}} class\+: Recursively defined, generalised binary tree. 
 
 A \mbox{\hyperlink{classoomph_1_1BinaryTree}{Binary\+Tree}} has\+:
 \begin{DoxyItemize}
@@ -208,7 +213,7 @@ Definition at line \mbox{\hyperlink{binary__tree_8cc_source_l00668}{668}} of fil
 
 
 
-References \mbox{\hyperlink{binary__tree_8h_source_l00206}{Colour}}, \mbox{\hyperlink{binary__tree_8h_source_l00162}{Direct\+\_\+string}}, \mbox{\hyperlink{elements_8h_source_l01890}{oomph\+::\+Finite\+Element\+::get\+\_\+x()}}, \mbox{\hyperlink{binary__tree_8cc_source_l00172}{gteq\+\_\+edge\+\_\+neighbour()}}, \mbox{\hyperlink{cfortran_8h_source_l00603}{i}}, \mbox{\hyperlink{tree_8h_source_l00364}{oomph\+::\+Tree\+Root\+::is\+\_\+neighbour\+\_\+periodic()}}, \mbox{\hyperlink{binary__tree_8h_source_l00050}{oomph\+::\+Binary\+Tree\+Names\+::L}}, \mbox{\hyperlink{refineable__elements_8h_source_l00389}{oomph\+::\+Refineable\+Element\+::nodes\+\_\+built()}}, \mbox{\hyperlink{refineable__elements_8h_source_l00395}{oomph\+::\+Refineable\+Element\+::number()}}, \mbox{\hyperlink{tree_8h_source_l00088}{oomph\+::\+Tree\+::object\+\_\+pt()}}, \mbox{\hyperlink{tree_8h_source_l00262}{oomph\+::\+Tree\+::\+OMEGA}}, \mbox{\hyperlink{binary__tree_8h_source_l00051}{oomph\+::\+Binary\+Tree\+Names\+::R}}, \mbox{\hyperlink{tree_8h_source_l00141}{oomph\+::\+Tree\+::root\+\_\+pt()}}, \mbox{\hyperlink{cfortran_8h_source_l00568}{s}}, and \mbox{\hyperlink{binary__tree_8h_source_l00210}{S\+\_\+base}}.
+References \mbox{\hyperlink{binary__tree_8h_source_l00206}{Colour}}, \mbox{\hyperlink{binary__tree_8h_source_l00162}{Direct\+\_\+string}}, \mbox{\hyperlink{elements_8h_source_l01890}{oomph\+::\+Finite\+Element\+::get\+\_\+x()}}, \mbox{\hyperlink{binary__tree_8cc_source_l00172}{gteq\+\_\+edge\+\_\+neighbour()}}, \mbox{\hyperlink{cfortran_8h_source_l00603}{i}}, \mbox{\hyperlink{tree_8h_source_l00364}{oomph\+::\+Tree\+Root\+::is\+\_\+neighbour\+\_\+periodic()}}, \mbox{\hyperlink{binary__tree_8h_source_l00050}{oomph\+::\+Binary\+Tree\+Names\+::L}}, \mbox{\hyperlink{refineable__elements_8h_source_l00389}{oomph\+::\+Refineable\+Element\+::nodes\+\_\+built()}}, \mbox{\hyperlink{refineable__elements_8h_source_l00395}{oomph\+::\+Refineable\+Element\+::number()}}, \mbox{\hyperlink{tree_8h_source_l00088}{oomph\+::\+Tree\+::object\+\_\+pt()}}, \mbox{\hyperlink{tree_8h_source_l00262}{oomph\+::\+Tree\+::\+OMEGA}}, \mbox{\hyperlink{binary__tree_8h_source_l00051}{oomph\+::\+Binary\+Tree\+Names\+::R}}, \mbox{\hyperlink{tree_8h_source_l00141}{oomph\+::\+Tree\+::root\+\_\+pt()}}, \mbox{\hyperlink{cfortran_8h_source_l00568}{s}}, \mbox{\hyperlink{binary__tree_8h_source_l00210}{S\+\_\+base}}, and \mbox{\hyperlink{pseudo__buckling__ring_8h_source_l00049}{oomph\+::x}}.
 
 
 
@@ -260,10 +265,6 @@ Return pointer to greater or equal-\/sized edge neighbour in specified {\ttfamil
 \item We\textquotesingle{}re looking for a neighbour in the specified {\ttfamily direction}. When viewed from the neighbouring binary tree, the edge that separates the present binary tree from its neighbour is the neighbour\textquotesingle{}s {\ttfamily edge} edge. Since in 1D there can be no rotation between the two binary trees, this is a simple reflection. For instance, if we\textquotesingle{}re looking for a neighhbour in the {\ttfamily L} \mbox{[}eft\mbox{]} {\ttfamily direction}, {\ttfamily edge} will be {\ttfamily R} \mbox{[}ight\mbox{]}.
 \item {\ttfamily diff\+\_\+level} \texorpdfstring{$<$}{<}= 0 indicates the difference in refinement levels between the two neighbours. If {\ttfamily diff\+\_\+level==0}, the neighbour has the same size as the current binary tree.
 \item {\ttfamily in\+\_\+neighbouring\+\_\+tree} indicates whether the neighbour is actually in another tree in the forest. The introduction of this flag was necessitated by periodic problems where a \mbox{\hyperlink{classoomph_1_1TreeRoot}{Tree\+Root}} can be its own neighbour.
-\end{DoxyItemize}
-
-Return pointer to greater or equal-\/sized edge neighbour in specified {\ttfamily direction}; also provide info regarding the relative size of the neighbour\+:
-\begin{DoxyItemize}
 \item In the present binary tree, the left vertex is located at the local coordinate s = -\/1. This point is located at the local coordinate s = {\ttfamily s\+\_\+in\+\_\+neighbour}\mbox{[}0\mbox{]} in the neighbouring binary tree.
 \item We\textquotesingle{}re looking for a neighbour in the specified {\ttfamily direction}. When viewed from the neighbouring binary tree, the edge that separates the present binary tree from its neighbour is the neighbour\textquotesingle{}s {\ttfamily edge} edge. Since in 1D there can be no rotation between the two binary trees, this is a simple reflection. For instance, if we\textquotesingle{}re looking for a neighhbour in the {\ttfamily L} \mbox{[}eft\mbox{]} {\ttfamily direction}, {\ttfamily edge} will be {\ttfamily R} \mbox{[}ight\mbox{]}.
 \item {\ttfamily diff\+\_\+level} \texorpdfstring{$<$}{<}= 0 indicates the difference in refinement levels between the two neighbours. If {\ttfamily diff\+\_\+level==0}, the neighbour has the same size as the current binary tree.

@@ -156,13 +156,13 @@ Typical inheritance structure for refineable meshes, illustrated for 2D quad mes
 <div class="caption">
 Plot of the solution with adaptive mesh refinement </div></div>
  <p >We shall discuss the driver code <br  />
- <a href="../../../../demo_drivers/poisson/two_d_poisson_adapt/two_d_poisson_adapt.cc">two_d_poisson_adapt.cc</a> which solves the above problem with adaptive mesh refinement. Its key feature is the creation of the refineable mesh <code><a class="el" href="classSimpleRefineableRectangularQuadMesh.html">SimpleRefineableRectangularQuadMesh</a></code> &ndash; the refineable equivalent of the <code>SimpleRectangularQuadMesh</code> used in the <br  />
+ <a href="../../../../demo_drivers/poisson/two_d_poisson_adapt/two_d_poisson_adapt.cc">two_d_poisson_adapt.cc</a> which solves the above problem with adaptive mesh refinement. Its key feature is the creation of the refineable mesh <code><a class="el" href="classSimpleRefineableRectangularQuadMesh.html" title="Refineable equivalent of the SimpleRectangularQuadMesh. Refinement is performed by the QuadTree-based...">SimpleRefineableRectangularQuadMesh</a></code> &ndash; the refineable equivalent of the <code>SimpleRectangularQuadMesh</code> used in the <br  />
  <a href="../../../poisson/two_d_poisson/html/index.html">earlier example.</a> </p><hr  />
 <p> <br  />
  </p><hr  />
 <h1><a class="anchor" id="refineable"></a>
 Creating the refineable mesh</h1>
-<p ><code>QuadTree-based</code> mesh refinement, as implemented in the <code>RefineableQuadMesh</code> class, requires the coarse initial mesh to be represented by a <code>QuadTreeForest:</code> Each element in the mesh must be associated with a <code>QuadTree</code>, and the relative orientation of the various <code>QuadTrees</code> relative to each other must be established. This can be done automatically by calling the function <code>RefineableQuadMesh::setup_quadtree_forest()</code>. The <code><a class="el" href="classSimpleRefineableRectangularQuadMesh.html">SimpleRefineableRectangularQuadMesh</a></code> class is therefore very compact. The mesh is derived from the <code>SimpleRectangularQuadMesh</code> and the <code>Refineable1QuadMesh</code> classes, both of which are templated by the element type:</p>
+<p ><code>QuadTree-based</code> mesh refinement, as implemented in the <code>RefineableQuadMesh</code> class, requires the coarse initial mesh to be represented by a <code>QuadTreeForest:</code> Each element in the mesh must be associated with a <code>QuadTree</code>, and the relative orientation of the various <code>QuadTrees</code> relative to each other must be established. This can be done automatically by calling the function <code>RefineableQuadMesh::setup_quadtree_forest()</code>. The <code><a class="el" href="classSimpleRefineableRectangularQuadMesh.html" title="Refineable equivalent of the SimpleRectangularQuadMesh. Refinement is performed by the QuadTree-based...">SimpleRefineableRectangularQuadMesh</a></code> class is therefore very compact. The mesh is derived from the <code>SimpleRectangularQuadMesh</code> and the <code>Refineable1QuadMesh</code> classes, both of which are templated by the element type:</p>
  <div class="fragment"><div class="line"><span class="comment">//==============================start_of_mesh======================</span></div>
 <div class="line"><span class="comment">/// Refineable equivalent of the SimpleRectangularQuadMesh.</span><span class="comment"></span></div>
 <div class="line"><span class="comment">/// Refinement is performed by the QuadTree-based procedures</span></div>
@@ -172,11 +172,11 @@ Creating the refineable mesh</h1>
 <div class="line"><span class="keyword">class </span><a class="code hl_class" href="classSimpleRefineableRectangularQuadMesh.html">SimpleRefineableRectangularQuadMesh</a> : </div>
 <div class="line"> <span class="keyword">public</span> <span class="keyword">virtual</span> SimpleRectangularQuadMesh&lt;ELEMENT&gt;,  </div>
 <div class="line"> <span class="keyword">public</span> RefineableQuadMesh&lt;ELEMENT&gt;</div>
-<div class="ttc" id="aclassSimpleRefineableRectangularQuadMesh_html"><div class="ttname"><a href="classSimpleRefineableRectangularQuadMesh.html">SimpleRefineableRectangularQuadMesh</a></div><div class="ttdef"><b>Definition:</b> <a href="two__d__poisson__adapt_8cc_source.html#l00052">two_d_poisson_adapt.cc:55</a></div></div>
+<div class="ttc" id="aclassSimpleRefineableRectangularQuadMesh_html"><div class="ttname"><a href="classSimpleRefineableRectangularQuadMesh.html">SimpleRefineableRectangularQuadMesh</a></div><div class="ttdoc">Refineable equivalent of the SimpleRectangularQuadMesh. Refinement is performed by the QuadTree-based...</div><div class="ttdef"><b>Definition:</b> <a href="two__d__poisson__adapt_8cc_source.html#l00052">two_d_poisson_adapt.cc:55</a></div></div>
 </div><!-- fragment --><p> The mesh constructor first calls the constructor of the underlying <code>SimpleRectangularQuadMesh</code> to create the nodes and elements, and to set up the various boundary lookup schemes. The call to <code>RefineableQuadMesh::setup_quadtree_forest()</code> creates the <code>QuadTreeForest</code> representation of the mesh. That's all!</p>
 <div class="fragment"><div class="line"><span class="keyword">public</span>: </div>
 <div class="line"><span class="comment"></span> </div>
-<div class="line"><span class="comment"> /// \short  Pass number of elements in the horizontal </span></div>
+<div class="line"><span class="comment"> ///   Pass number of elements in the horizontal </span></div>
 <div class="line"><span class="comment"> /// and vertical directions, and the corresponding dimensions.</span></div>
 <div class="line"><span class="comment"> /// Timestepper defaults to Static.</span></div>
 <div class="line"><span class="comment"></span> <a class="code hl_function" href="classSimpleRefineableRectangularQuadMesh.html#ae0eab85a2c97fce00d7c82a613378e79">SimpleRefineableRectangularQuadMesh</a>(<span class="keyword">const</span> <span class="keywordtype">unsigned</span> &amp;Nx,</div>
@@ -260,7 +260,7 @@ The driver code</h1>
 <div class="line"> problem.doc_solution(doc_info);</div>
 <div class="line"> </div>
 <div class="line">} <span class="comment">//end of main</span></div>
-<div class="ttc" id="aclassRefineablePoissonProblem_html"><div class="ttname"><a href="classRefineablePoissonProblem.html">RefineablePoissonProblem</a></div><div class="ttdef"><b>Definition:</b> <a href="two__d__poisson__adapt_8cc_source.html#l00127">two_d_poisson_adapt.cc:128</a></div></div>
+<div class="ttc" id="aclassRefineablePoissonProblem_html"><div class="ttname"><a href="classRefineablePoissonProblem.html">RefineablePoissonProblem</a></div><div class="ttdoc">2D Poisson problem on rectangular domain, discretised with refineable 2D QPoisson elements....</div><div class="ttdef"><b>Definition:</b> <a href="two__d__poisson__adapt_8cc_source.html#l00127">two_d_poisson_adapt.cc:128</a></div></div>
 <div class="ttc" id="anamespaceTanhSolnForPoisson_html_a785ccd00a727125a5138fbbcac173294"><div class="ttname"><a href="namespaceTanhSolnForPoisson.html#a785ccd00a727125a5138fbbcac173294">TanhSolnForPoisson::TanPhi</a></div><div class="ttdeci">double TanPhi</div><div class="ttdoc">Parameter for angle Phi of &quot;step&quot;.</div><div class="ttdef"><b>Definition:</b> <a href="two__d__poisson__adapt_8cc_source.html#l00095">two_d_poisson_adapt.cc:95</a></div></div>
 <div class="ttc" id="anamespaceTanhSolnForPoisson_html_ae1b9d6789ff301e3d63a4e292213036c"><div class="ttname"><a href="namespaceTanhSolnForPoisson.html#ae1b9d6789ff301e3d63a4e292213036c">TanhSolnForPoisson::get_source</a></div><div class="ttdeci">void get_source(const Vector&lt; double &gt; &amp;x, double &amp;source)</div><div class="ttdoc">Source function required to make the solution above an exact solution.</div><div class="ttdef"><b>Definition:</b> <a href="two__d__poisson__adapt_8cc_source.html#l00104">two_d_poisson_adapt.cc:104</a></div></div>
 <div class="ttc" id="anamespaceTanhSolnForPoisson_html_ae676ccd186d5df119cce811596d949c1"><div class="ttname"><a href="namespaceTanhSolnForPoisson.html#ae676ccd186d5df119cce811596d949c1">TanhSolnForPoisson::Alpha</a></div><div class="ttdeci">double Alpha</div><div class="ttdoc">Parameter for steepness of &quot;step&quot;.</div><div class="ttdef"><b>Definition:</b> <a href="two__d__poisson__adapt_8cc_source.html#l00092">two_d_poisson_adapt.cc:92</a></div></div>
@@ -288,18 +288,18 @@ The problem class</h1>
 <div class="line"><span class="comment"> /// Destructor (empty)</span></div>
 <div class="line"><span class="comment"></span> <a class="code hl_function" href="classRefineablePoissonProblem.html#a84980680d8a6576e14af42a8639d391a">~RefineablePoissonProblem</a>(){}</div>
 <div class="line"><span class="comment"></span> </div>
-<div class="line"><span class="comment"> /// \short Update the problem specs before solve: Reset boundary conditions</span></div>
+<div class="line"><span class="comment"> ///  Update the problem specs before solve: Reset boundary conditions</span></div>
 <div class="line"><span class="comment"> /// to the values from the exact solution.</span></div>
 <div class="line"><span class="comment"></span> <span class="keywordtype">void</span> <a class="code hl_function" href="classRefineablePoissonProblem.html#a883906ab6c06ffa10ed55dc4fc02ce96">actions_before_newton_solve</a>();</div>
 <div class="line"><span class="comment"></span> </div>
 <div class="line"><span class="comment"> /// Update the problem after solve (empty)</span></div>
 <div class="line"><span class="comment"></span> <span class="keywordtype">void</span> <a class="code hl_function" href="classRefineablePoissonProblem.html#ac4d433dad09bce5bd9be21e86d347e38">actions_after_newton_solve</a>(){}</div>
 <div class="line"><span class="comment"></span> </div>
-<div class="line"><span class="comment"> /// \short Doc the solution. DocInfo object stores flags/labels for where the</span></div>
+<div class="line"><span class="comment"> ///  Doc the solution. DocInfo object stores flags/labels for where the</span></div>
 <div class="line"><span class="comment"> /// output gets written to</span></div>
 <div class="line"><span class="comment"></span> <span class="keywordtype">void</span> <a class="code hl_function" href="classRefineablePoissonProblem.html#aaf9482084473a6ca2bd0de24acae08e9">doc_solution</a>(DocInfo&amp; doc_info);</div>
 <div class="line"><span class="comment"></span> </div>
-<div class="line"><span class="comment"> /// \short Overloaded version of the Problem&#39;s access function to </span></div>
+<div class="line"><span class="comment"> ///  Overloaded version of the Problem&#39;s access function to </span></div>
 <div class="line"><span class="comment"> /// the mesh. Recasts the pointer to the base Mesh object to </span></div>
 <div class="line"><span class="comment"> /// the actual mesh type.</span></div>
 <div class="line"><span class="comment"></span> <a class="code hl_class" href="classSimpleRefineableRectangularQuadMesh.html">SimpleRefineableRectangularQuadMesh&lt;ELEMENT&gt;</a>* <a class="code hl_function" href="classRefineablePoissonProblem.html#a3cde3ea5577b065e081eb74ff870b5c3">mesh_pt</a>() </div>
@@ -481,7 +481,7 @@ PDF file</h1>
     <footer>
       <div class="container">
         <div class="text-muted" style="float:right;">Generated by <a href="http://www.doxygen.org/index.html">
-          <img style="height:18px;" class="footer-img" src="doxygen.png" alt="doxygen"></a> on Wed Oct 13 2021 08:49:49
+          <img style="height:18px;" class="footer-img" src="doxygen.png" alt="doxygen"></a> on Thu Oct 21 2021 17:38:06
         </div>
       </div>
     </footer>

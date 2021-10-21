@@ -55,15 +55,15 @@
 \DoxyCodeLine{\Hypertarget{refineable__young__laplace__elements_8h_source_l00051}00051 \textcolor{comment}{  ///}}
 \DoxyCodeLine{\Hypertarget{refineable__young__laplace__elements_8h_source_l00052}00052 \textcolor{comment}{}  \textcolor{comment}{//======================================================================}}
 \DoxyCodeLine{\Hypertarget{refineable__young__laplace__elements_8h_source_l00053}\mbox{\hyperlink{classoomph_1_1RefineableYoungLaplaceEquations}{00053}}   \textcolor{keyword}{class }\mbox{\hyperlink{classoomph_1_1RefineableYoungLaplaceEquations}{RefineableYoungLaplaceEquations}}}
-\DoxyCodeLine{\Hypertarget{refineable__young__laplace__elements_8h_source_l00054}00054     : \textcolor{keyword}{public} \textcolor{keyword}{virtual} \mbox{\hyperlink{classoomph_1_1YoungLaplaceEquations}{YoungLaplaceEquations}},}
+\DoxyCodeLine{\Hypertarget{refineable__young__laplace__elements_8h_source_l00054}00054     : \textcolor{keyword}{public} \textcolor{keyword}{virtual} YoungLaplaceEquations,}
 \DoxyCodeLine{\Hypertarget{refineable__young__laplace__elements_8h_source_l00055}00055       \textcolor{keyword}{public} \textcolor{keyword}{virtual} \mbox{\hyperlink{classoomph_1_1RefineableElement}{RefineableElement}},}
 \DoxyCodeLine{\Hypertarget{refineable__young__laplace__elements_8h_source_l00056}00056       \textcolor{keyword}{public} \textcolor{keyword}{virtual} \mbox{\hyperlink{classoomph_1_1ElementWithZ2ErrorEstimator}{ElementWithZ2ErrorEstimator}}}
 \DoxyCodeLine{\Hypertarget{refineable__young__laplace__elements_8h_source_l00057}00057   \{}
 \DoxyCodeLine{\Hypertarget{refineable__young__laplace__elements_8h_source_l00058}00058   \textcolor{keyword}{public}:\textcolor{comment}{}}
-\DoxyCodeLine{\Hypertarget{refineable__young__laplace__elements_8h_source_l00059}00059 \textcolor{comment}{    /// \(\backslash\)short Constructor: Pass refinement level to refineable element}}
+\DoxyCodeLine{\Hypertarget{refineable__young__laplace__elements_8h_source_l00059}00059 \textcolor{comment}{    ///  Constructor: Pass refinement level to refineable element}}
 \DoxyCodeLine{\Hypertarget{refineable__young__laplace__elements_8h_source_l00060}00060 \textcolor{comment}{    /// (default 0 = root)}}
 \DoxyCodeLine{\Hypertarget{refineable__young__laplace__elements_8h_source_l00061}\mbox{\hyperlink{classoomph_1_1RefineableYoungLaplaceEquations_a2a063bf86fb20b2db8cc962947663da2}{00061}} \textcolor{comment}{}    \mbox{\hyperlink{classoomph_1_1RefineableYoungLaplaceEquations_a2a063bf86fb20b2db8cc962947663da2}{RefineableYoungLaplaceEquations}}(\textcolor{keyword}{const} \textcolor{keywordtype}{int}\& refine\_level = 0)}
-\DoxyCodeLine{\Hypertarget{refineable__young__laplace__elements_8h_source_l00062}00062       : \mbox{\hyperlink{classoomph_1_1YoungLaplaceEquations}{YoungLaplaceEquations}}(),}
+\DoxyCodeLine{\Hypertarget{refineable__young__laplace__elements_8h_source_l00062}00062       : YoungLaplaceEquations(),}
 \DoxyCodeLine{\Hypertarget{refineable__young__laplace__elements_8h_source_l00063}00063         \mbox{\hyperlink{classoomph_1_1RefineableElement}{RefineableElement}}(),}
 \DoxyCodeLine{\Hypertarget{refineable__young__laplace__elements_8h_source_l00064}00064         \mbox{\hyperlink{classoomph_1_1ElementWithZ2ErrorEstimator}{ElementWithZ2ErrorEstimator}}()}
 \DoxyCodeLine{\Hypertarget{refineable__young__laplace__elements_8h_source_l00065}00065     \{}
@@ -86,14 +86,14 @@
 \DoxyCodeLine{\Hypertarget{refineable__young__laplace__elements_8h_source_l00082}00082       \textcolor{keywordflow}{return} 2;}
 \DoxyCodeLine{\Hypertarget{refineable__young__laplace__elements_8h_source_l00083}00083     \}}
 \DoxyCodeLine{\Hypertarget{refineable__young__laplace__elements_8h_source_l00084}00084 \textcolor{comment}{}}
-\DoxyCodeLine{\Hypertarget{refineable__young__laplace__elements_8h_source_l00085}00085 \textcolor{comment}{    /// \(\backslash\)short Get 'flux' for Z2 error recovery:  Standard flux}}
+\DoxyCodeLine{\Hypertarget{refineable__young__laplace__elements_8h_source_l00085}00085 \textcolor{comment}{    ///  Get 'flux' for Z2 error recovery:  Standard flux}}
 \DoxyCodeLine{\Hypertarget{refineable__young__laplace__elements_8h_source_l00086}00086 \textcolor{comment}{    /// from YoungLaplace equations}}
 \DoxyCodeLine{\Hypertarget{refineable__young__laplace__elements_8h_source_l00087}\mbox{\hyperlink{classoomph_1_1RefineableYoungLaplaceEquations_ab8d8c6010331d8076a5d6369d331eb4d}{00087}} \textcolor{comment}{}    \textcolor{keywordtype}{void} \mbox{\hyperlink{classoomph_1_1RefineableYoungLaplaceEquations_ab8d8c6010331d8076a5d6369d331eb4d}{get\_Z2\_flux}}(\textcolor{keyword}{const} \mbox{\hyperlink{classoomph_1_1Vector}{Vector<double>}}\& \mbox{\hyperlink{cfortran_8h_ab7123126e4885ef647dd9c6e3807a21c}{s}}, \mbox{\hyperlink{classoomph_1_1Vector}{Vector<double>}}\& flux)}
 \DoxyCodeLine{\Hypertarget{refineable__young__laplace__elements_8h_source_l00088}00088     \{}
-\DoxyCodeLine{\Hypertarget{refineable__young__laplace__elements_8h_source_l00089}00089       this-\/>\mbox{\hyperlink{classoomph_1_1YoungLaplaceEquations_ae0cc35d476be29d1c6395f227bb323e4}{get\_flux}}(s, flux);}
+\DoxyCodeLine{\Hypertarget{refineable__young__laplace__elements_8h_source_l00089}00089       this-\/>get\_flux(\mbox{\hyperlink{cfortran_8h_ab7123126e4885ef647dd9c6e3807a21c}{s}}, flux);}
 \DoxyCodeLine{\Hypertarget{refineable__young__laplace__elements_8h_source_l00090}00090     \}}
 \DoxyCodeLine{\Hypertarget{refineable__young__laplace__elements_8h_source_l00091}00091 \textcolor{comment}{}}
-\DoxyCodeLine{\Hypertarget{refineable__young__laplace__elements_8h_source_l00092}00092 \textcolor{comment}{    /// \(\backslash\)short Get the function value u in Vector.}}
+\DoxyCodeLine{\Hypertarget{refineable__young__laplace__elements_8h_source_l00092}00092 \textcolor{comment}{    ///  Get the function value u in Vector.}}
 \DoxyCodeLine{\Hypertarget{refineable__young__laplace__elements_8h_source_l00093}00093 \textcolor{comment}{    /// Note: Given the generality of the interface (this function}}
 \DoxyCodeLine{\Hypertarget{refineable__young__laplace__elements_8h_source_l00094}00094 \textcolor{comment}{    /// is usually called from black-\/box documentation or interpolation}}
 \DoxyCodeLine{\Hypertarget{refineable__young__laplace__elements_8h_source_l00095}00095 \textcolor{comment}{    /// routines), the values Vector sets its own size in here.}}
@@ -118,12 +118,12 @@
 \DoxyCodeLine{\Hypertarget{refineable__young__laplace__elements_8h_source_l00114}00114       \textcolor{comment}{// Loop over the local nodes and sum}}
 \DoxyCodeLine{\Hypertarget{refineable__young__laplace__elements_8h_source_l00115}00115       \textcolor{keywordflow}{for} (\textcolor{keywordtype}{unsigned} l = 0; l < n\_node; l++)}
 \DoxyCodeLine{\Hypertarget{refineable__young__laplace__elements_8h_source_l00116}00116       \{}
-\DoxyCodeLine{\Hypertarget{refineable__young__laplace__elements_8h_source_l00117}00117         values[0] += this-\/>\mbox{\hyperlink{classoomph_1_1YoungLaplaceEquations_aa3727069bb00e0b2f37d5bc3bb3b16ae}{u}}(l) * psi[l];}
+\DoxyCodeLine{\Hypertarget{refineable__young__laplace__elements_8h_source_l00117}00117         values[0] += this-\/>\mbox{\hyperlink{namespaceoomph_ac0ed65f6db53d9ad737e1d2a69767d25}{u}}(l) * psi[l];}
 \DoxyCodeLine{\Hypertarget{refineable__young__laplace__elements_8h_source_l00118}00118       \}}
 \DoxyCodeLine{\Hypertarget{refineable__young__laplace__elements_8h_source_l00119}00119     \}}
 \DoxyCodeLine{\Hypertarget{refineable__young__laplace__elements_8h_source_l00120}00120 }
 \DoxyCodeLine{\Hypertarget{refineable__young__laplace__elements_8h_source_l00121}00121 \textcolor{comment}{}}
-\DoxyCodeLine{\Hypertarget{refineable__young__laplace__elements_8h_source_l00122}00122 \textcolor{comment}{    /// \(\backslash\)short Get the function value u in Vector.}}
+\DoxyCodeLine{\Hypertarget{refineable__young__laplace__elements_8h_source_l00122}00122 \textcolor{comment}{    ///  Get the function value u in Vector.}}
 \DoxyCodeLine{\Hypertarget{refineable__young__laplace__elements_8h_source_l00123}00123 \textcolor{comment}{    /// Note: Given the generality of the interface (this function}}
 \DoxyCodeLine{\Hypertarget{refineable__young__laplace__elements_8h_source_l00124}00124 \textcolor{comment}{    /// is usually called from black-\/box documentation or interpolation}}
 \DoxyCodeLine{\Hypertarget{refineable__young__laplace__elements_8h_source_l00125}00125 \textcolor{comment}{    /// routines), the values Vector sets its own size in here.}}
@@ -144,25 +144,25 @@
 \DoxyCodeLine{\Hypertarget{refineable__young__laplace__elements_8h_source_l00140}00140     \}}
 \DoxyCodeLine{\Hypertarget{refineable__young__laplace__elements_8h_source_l00141}00141 }
 \DoxyCodeLine{\Hypertarget{refineable__young__laplace__elements_8h_source_l00142}00142 \textcolor{comment}{}}
-\DoxyCodeLine{\Hypertarget{refineable__young__laplace__elements_8h_source_l00143}00143 \textcolor{comment}{    /// \(\backslash\)short Further build: Copy function pointers to spine and spine base}}
+\DoxyCodeLine{\Hypertarget{refineable__young__laplace__elements_8h_source_l00143}00143 \textcolor{comment}{    ///  Further build: Copy function pointers to spine and spine base}}
 \DoxyCodeLine{\Hypertarget{refineable__young__laplace__elements_8h_source_l00144}00144 \textcolor{comment}{    /// functions from father. Kappa is passed across with set\_kappa(...)}}
 \DoxyCodeLine{\Hypertarget{refineable__young__laplace__elements_8h_source_l00145}00145 \textcolor{comment}{    /// to ensure that it's added to the element's external Data.}}
 \DoxyCodeLine{\Hypertarget{refineable__young__laplace__elements_8h_source_l00146}\mbox{\hyperlink{classoomph_1_1RefineableYoungLaplaceEquations_a9c663f1cb9fec2a0d5ec263313741e74}{00146}} \textcolor{comment}{}    \textcolor{keywordtype}{void} \mbox{\hyperlink{classoomph_1_1RefineableYoungLaplaceEquations_a9c663f1cb9fec2a0d5ec263313741e74}{further\_build}}()}
 \DoxyCodeLine{\Hypertarget{refineable__young__laplace__elements_8h_source_l00147}00147     \{}
 \DoxyCodeLine{\Hypertarget{refineable__young__laplace__elements_8h_source_l00148}00148       \textcolor{comment}{// Copy kappa with set\_kappa() to ensure that it's added to the}}
 \DoxyCodeLine{\Hypertarget{refineable__young__laplace__elements_8h_source_l00149}00149       \textcolor{comment}{// element's external Data.}}
-\DoxyCodeLine{\Hypertarget{refineable__young__laplace__elements_8h_source_l00150}00150       this-\/>\mbox{\hyperlink{classoomph_1_1YoungLaplaceEquations_a2f1e916b64e50292e47827ea7ba41db5}{set\_kappa}}(\textcolor{keyword}{dynamic\_cast<}\mbox{\hyperlink{classoomph_1_1RefineableYoungLaplaceEquations}{RefineableYoungLaplaceEquations}}*\textcolor{keyword}{>}(}
+\DoxyCodeLine{\Hypertarget{refineable__young__laplace__elements_8h_source_l00150}00150       this-\/>set\_kappa(\textcolor{keyword}{dynamic\_cast<}\mbox{\hyperlink{classoomph_1_1RefineableYoungLaplaceEquations}{RefineableYoungLaplaceEquations}}*\textcolor{keyword}{>}(}
 \DoxyCodeLine{\Hypertarget{refineable__young__laplace__elements_8h_source_l00151}00151                         this-\/>\mbox{\hyperlink{classoomph_1_1RefineableElement_a637964a7a9892fe0f0b05692c2e8d153}{father\_element\_pt}}())}
-\DoxyCodeLine{\Hypertarget{refineable__young__laplace__elements_8h_source_l00152}00152                         -\/>\mbox{\hyperlink{classoomph_1_1YoungLaplaceEquations_af750cc2ba23ce083c6eba57197780f84}{kappa\_pt}}());}
+\DoxyCodeLine{\Hypertarget{refineable__young__laplace__elements_8h_source_l00152}00152                         -\/>kappa\_pt());}
 \DoxyCodeLine{\Hypertarget{refineable__young__laplace__elements_8h_source_l00153}00153 }
 \DoxyCodeLine{\Hypertarget{refineable__young__laplace__elements_8h_source_l00154}00154       \textcolor{comment}{// Copy spine functions}}
-\DoxyCodeLine{\Hypertarget{refineable__young__laplace__elements_8h_source_l00155}00155       this-\/>\mbox{\hyperlink{classoomph_1_1YoungLaplaceEquations_aceae254105250eef19e75751fdbf45b9}{Spine\_fct\_pt}} = \textcolor{keyword}{dynamic\_cast<}\mbox{\hyperlink{classoomph_1_1RefineableYoungLaplaceEquations}{RefineableYoungLaplaceEquations}}*\textcolor{keyword}{>}(}
+\DoxyCodeLine{\Hypertarget{refineable__young__laplace__elements_8h_source_l00155}00155       this-\/>Spine\_fct\_pt = \textcolor{keyword}{dynamic\_cast<}\mbox{\hyperlink{classoomph_1_1RefineableYoungLaplaceEquations}{RefineableYoungLaplaceEquations}}*\textcolor{keyword}{>}(}
 \DoxyCodeLine{\Hypertarget{refineable__young__laplace__elements_8h_source_l00156}00156                              this-\/>\mbox{\hyperlink{classoomph_1_1RefineableElement_a637964a7a9892fe0f0b05692c2e8d153}{father\_element\_pt}}())}
-\DoxyCodeLine{\Hypertarget{refineable__young__laplace__elements_8h_source_l00157}00157                              -\/>\mbox{\hyperlink{classoomph_1_1YoungLaplaceEquations_a7944ccab81796c198695b43276f9f1d2}{spine\_fct\_pt}}();}
+\DoxyCodeLine{\Hypertarget{refineable__young__laplace__elements_8h_source_l00157}00157                              -\/>spine\_fct\_pt();}
 \DoxyCodeLine{\Hypertarget{refineable__young__laplace__elements_8h_source_l00158}00158 }
-\DoxyCodeLine{\Hypertarget{refineable__young__laplace__elements_8h_source_l00159}00159       this-\/>\mbox{\hyperlink{classoomph_1_1YoungLaplaceEquations_af40879c321f957ff4fb450abcb61a78f}{Spine\_base\_fct\_pt}} = \textcolor{keyword}{dynamic\_cast<}\mbox{\hyperlink{classoomph_1_1RefineableYoungLaplaceEquations}{RefineableYoungLaplaceEquations}}*\textcolor{keyword}{>}(}
+\DoxyCodeLine{\Hypertarget{refineable__young__laplace__elements_8h_source_l00159}00159       this-\/>Spine\_base\_fct\_pt = \textcolor{keyword}{dynamic\_cast<}\mbox{\hyperlink{classoomph_1_1RefineableYoungLaplaceEquations}{RefineableYoungLaplaceEquations}}*\textcolor{keyword}{>}(}
 \DoxyCodeLine{\Hypertarget{refineable__young__laplace__elements_8h_source_l00160}00160                                   this-\/>\mbox{\hyperlink{classoomph_1_1RefineableElement_a637964a7a9892fe0f0b05692c2e8d153}{father\_element\_pt}}())}
-\DoxyCodeLine{\Hypertarget{refineable__young__laplace__elements_8h_source_l00161}00161                                   -\/>\mbox{\hyperlink{classoomph_1_1YoungLaplaceEquations_ad09efe22f226463d949b27af0e3b856e}{spine\_base\_fct\_pt}}();}
+\DoxyCodeLine{\Hypertarget{refineable__young__laplace__elements_8h_source_l00161}00161                                   -\/>spine\_base\_fct\_pt();}
 \DoxyCodeLine{\Hypertarget{refineable__young__laplace__elements_8h_source_l00162}00162     \}}
 \DoxyCodeLine{\Hypertarget{refineable__young__laplace__elements_8h_source_l00163}00163   \};}
 \DoxyCodeLine{\Hypertarget{refineable__young__laplace__elements_8h_source_l00164}00164 }
@@ -179,7 +179,7 @@
 \DoxyCodeLine{\Hypertarget{refineable__young__laplace__elements_8h_source_l00175}00175       \textcolor{keyword}{public} \textcolor{keyword}{virtual} \mbox{\hyperlink{classoomph_1_1RefineableQElement}{RefineableQElement}}<2>}
 \DoxyCodeLine{\Hypertarget{refineable__young__laplace__elements_8h_source_l00176}00176   \{}
 \DoxyCodeLine{\Hypertarget{refineable__young__laplace__elements_8h_source_l00177}00177   \textcolor{keyword}{public}:\textcolor{comment}{}}
-\DoxyCodeLine{\Hypertarget{refineable__young__laplace__elements_8h_source_l00178}00178 \textcolor{comment}{    /// \(\backslash\)short Constructor: Pass refinement level to refineable quad element}}
+\DoxyCodeLine{\Hypertarget{refineable__young__laplace__elements_8h_source_l00178}00178 \textcolor{comment}{    ///  Constructor: Pass refinement level to refineable quad element}}
 \DoxyCodeLine{\Hypertarget{refineable__young__laplace__elements_8h_source_l00179}00179 \textcolor{comment}{    /// (default 0 = root)}}
 \DoxyCodeLine{\Hypertarget{refineable__young__laplace__elements_8h_source_l00180}\mbox{\hyperlink{classoomph_1_1RefineableQYoungLaplaceElement_a550c8d2f04a9d046d3a27a9ab311456e}{00180}} \textcolor{comment}{}    \mbox{\hyperlink{classoomph_1_1RefineableQYoungLaplaceElement_a550c8d2f04a9d046d3a27a9ab311456e}{RefineableQYoungLaplaceElement}}()}
 \DoxyCodeLine{\Hypertarget{refineable__young__laplace__elements_8h_source_l00181}00181       : \mbox{\hyperlink{classoomph_1_1RefineableElement}{RefineableElement}}(),}
@@ -202,14 +202,14 @@
 \DoxyCodeLine{\Hypertarget{refineable__young__laplace__elements_8h_source_l00198}00198       \textcolor{keywordflow}{return} 1;}
 \DoxyCodeLine{\Hypertarget{refineable__young__laplace__elements_8h_source_l00199}00199     \}}
 \DoxyCodeLine{\Hypertarget{refineable__young__laplace__elements_8h_source_l00200}00200 \textcolor{comment}{}}
-\DoxyCodeLine{\Hypertarget{refineable__young__laplace__elements_8h_source_l00201}00201 \textcolor{comment}{    /// \(\backslash\)short Number of vertex nodes in the element}}
+\DoxyCodeLine{\Hypertarget{refineable__young__laplace__elements_8h_source_l00201}00201 \textcolor{comment}{    ///  Number of vertex nodes in the element}}
 \DoxyCodeLine{\Hypertarget{refineable__young__laplace__elements_8h_source_l00202}\mbox{\hyperlink{classoomph_1_1RefineableQYoungLaplaceElement_a529edc16e5232c8f1387f8858f8f20ad}{00202}} \textcolor{comment}{}    \textcolor{keywordtype}{unsigned} \mbox{\hyperlink{classoomph_1_1RefineableQYoungLaplaceElement_a529edc16e5232c8f1387f8858f8f20ad}{nvertex\_node}}()\textcolor{keyword}{ const}}
 \DoxyCodeLine{\Hypertarget{refineable__young__laplace__elements_8h_source_l00203}00203 \textcolor{keyword}{    }\{}
 \DoxyCodeLine{\Hypertarget{refineable__young__laplace__elements_8h_source_l00204}00204       \textcolor{keywordflow}{return} \mbox{\hyperlink{classoomph_1_1QElement_3_012_00_01NNODE__1D_01_4_a6f0b16e49ea89943992de42be44a2786}{QYoungLaplaceElement<NNODE\_1D>::nvertex\_node}}();}
 \DoxyCodeLine{\Hypertarget{refineable__young__laplace__elements_8h_source_l00205}00205     \}}
 \DoxyCodeLine{\Hypertarget{refineable__young__laplace__elements_8h_source_l00206}00206 \textcolor{comment}{}}
-\DoxyCodeLine{\Hypertarget{refineable__young__laplace__elements_8h_source_l00207}00207 \textcolor{comment}{    /// \(\backslash\)short Pointer to the j-\/th vertex node in the element}}
-\DoxyCodeLine{\Hypertarget{refineable__young__laplace__elements_8h_source_l00208}\mbox{\hyperlink{classoomph_1_1RefineableQYoungLaplaceElement_a4b8050e1401ea46f19e3708b7b55c20d}{00208}} \textcolor{comment}{}    \mbox{\hyperlink{classoomph_1_1Node}{Node}}* \mbox{\hyperlink{classoomph_1_1RefineableQYoungLaplaceElement_a4b8050e1401ea46f19e3708b7b55c20d}{vertex\_node\_pt}}(\textcolor{keyword}{const} \textcolor{keywordtype}{unsigned}\& j)\textcolor{keyword}{ const}}
+\DoxyCodeLine{\Hypertarget{refineable__young__laplace__elements_8h_source_l00207}00207 \textcolor{comment}{    ///  Pointer to the j-\/th vertex node in the element}}
+\DoxyCodeLine{\Hypertarget{refineable__young__laplace__elements_8h_source_l00208}\mbox{\hyperlink{classoomph_1_1RefineableQYoungLaplaceElement_a4b8050e1401ea46f19e3708b7b55c20d}{00208}} \textcolor{comment}{}    Node* \mbox{\hyperlink{classoomph_1_1RefineableQYoungLaplaceElement_a4b8050e1401ea46f19e3708b7b55c20d}{vertex\_node\_pt}}(\textcolor{keyword}{const} \textcolor{keywordtype}{unsigned}\& j)\textcolor{keyword}{ const}}
 \DoxyCodeLine{\Hypertarget{refineable__young__laplace__elements_8h_source_l00209}00209 \textcolor{keyword}{    }\{}
 \DoxyCodeLine{\Hypertarget{refineable__young__laplace__elements_8h_source_l00210}00210       \textcolor{keywordflow}{return} \mbox{\hyperlink{classoomph_1_1QElement_3_012_00_01NNODE__1D_01_4_a59252441e251735751a9ebf2b0696c27}{QYoungLaplaceElement<NNODE\_1D>::vertex\_node\_pt}}(j);}
 \DoxyCodeLine{\Hypertarget{refineable__young__laplace__elements_8h_source_l00211}00211     \}}
@@ -217,14 +217,14 @@
 \DoxyCodeLine{\Hypertarget{refineable__young__laplace__elements_8h_source_l00213}00213 \textcolor{comment}{    /// Rebuild from sons: empty}}
 \DoxyCodeLine{\Hypertarget{refineable__young__laplace__elements_8h_source_l00214}\mbox{\hyperlink{classoomph_1_1RefineableQYoungLaplaceElement_a2a8efe3d30e165de70aad77536bf55c9}{00214}} \textcolor{comment}{}    \textcolor{keywordtype}{void} \mbox{\hyperlink{classoomph_1_1RefineableQYoungLaplaceElement_a2a8efe3d30e165de70aad77536bf55c9}{rebuild\_from\_sons}}(\mbox{\hyperlink{classoomph_1_1Mesh}{Mesh}}*\& mesh\_pt) \{\}}
 \DoxyCodeLine{\Hypertarget{refineable__young__laplace__elements_8h_source_l00215}00215 \textcolor{comment}{}}
-\DoxyCodeLine{\Hypertarget{refineable__young__laplace__elements_8h_source_l00216}00216 \textcolor{comment}{    /// \(\backslash\)short Order of recovery shape functions for Z2 error estimation:}}
+\DoxyCodeLine{\Hypertarget{refineable__young__laplace__elements_8h_source_l00216}00216 \textcolor{comment}{    ///  Order of recovery shape functions for Z2 error estimation:}}
 \DoxyCodeLine{\Hypertarget{refineable__young__laplace__elements_8h_source_l00217}00217 \textcolor{comment}{    /// Same order as shape functions.}}
 \DoxyCodeLine{\Hypertarget{refineable__young__laplace__elements_8h_source_l00218}\mbox{\hyperlink{classoomph_1_1RefineableQYoungLaplaceElement_a2a24b6a44fc8c95e9648e9cd5a2a9730}{00218}} \textcolor{comment}{}    \textcolor{keywordtype}{unsigned} \mbox{\hyperlink{classoomph_1_1RefineableQYoungLaplaceElement_a2a24b6a44fc8c95e9648e9cd5a2a9730}{nrecovery\_order}}()}
 \DoxyCodeLine{\Hypertarget{refineable__young__laplace__elements_8h_source_l00219}00219     \{}
 \DoxyCodeLine{\Hypertarget{refineable__young__laplace__elements_8h_source_l00220}00220       \textcolor{keywordflow}{return} (NNODE\_1D -\/ 1);}
 \DoxyCodeLine{\Hypertarget{refineable__young__laplace__elements_8h_source_l00221}00221     \}}
 \DoxyCodeLine{\Hypertarget{refineable__young__laplace__elements_8h_source_l00222}00222 \textcolor{comment}{}}
-\DoxyCodeLine{\Hypertarget{refineable__young__laplace__elements_8h_source_l00223}00223 \textcolor{comment}{    ///  \(\backslash\)short Perform additional hanging node procedures for variables}}
+\DoxyCodeLine{\Hypertarget{refineable__young__laplace__elements_8h_source_l00223}00223 \textcolor{comment}{    ///   Perform additional hanging node procedures for variables}}
 \DoxyCodeLine{\Hypertarget{refineable__young__laplace__elements_8h_source_l00224}00224 \textcolor{comment}{    /// that are not interpolated by all nodes. Empty.}}
 \DoxyCodeLine{\Hypertarget{refineable__young__laplace__elements_8h_source_l00225}\mbox{\hyperlink{classoomph_1_1RefineableQYoungLaplaceElement_a2bf2a41febf535ba6993e7aafbf769c2}{00225}} \textcolor{comment}{}    \textcolor{keywordtype}{void} \mbox{\hyperlink{classoomph_1_1RefineableQYoungLaplaceElement_a2bf2a41febf535ba6993e7aafbf769c2}{further\_setup\_hanging\_nodes}}() \{\}}
 \DoxyCodeLine{\Hypertarget{refineable__young__laplace__elements_8h_source_l00226}00226   \};}
@@ -244,7 +244,7 @@
 \DoxyCodeLine{\Hypertarget{refineable__young__laplace__elements_8h_source_l00240}00240     : \textcolor{keyword}{public} \textcolor{keyword}{virtual} \mbox{\hyperlink{classoomph_1_1QElement}{QElement}}<1, NNODE\_1D>}
 \DoxyCodeLine{\Hypertarget{refineable__young__laplace__elements_8h_source_l00241}00241   \{}
 \DoxyCodeLine{\Hypertarget{refineable__young__laplace__elements_8h_source_l00242}00242   \textcolor{keyword}{public}:\textcolor{comment}{}}
-\DoxyCodeLine{\Hypertarget{refineable__young__laplace__elements_8h_source_l00243}00243 \textcolor{comment}{    /// \(\backslash\)short Constructor: Call the constructor for the}}
+\DoxyCodeLine{\Hypertarget{refineable__young__laplace__elements_8h_source_l00243}00243 \textcolor{comment}{    ///  Constructor: Call the constructor for the}}
 \DoxyCodeLine{\Hypertarget{refineable__young__laplace__elements_8h_source_l00244}00244 \textcolor{comment}{    /// appropriate lower-\/dimensional QElement}}
 \DoxyCodeLine{\Hypertarget{refineable__young__laplace__elements_8h_source_l00245}\mbox{\hyperlink{classoomph_1_1FaceGeometry_3_01RefineableQYoungLaplaceElement_3_01NNODE__1D_01_4_01_4_a8f988cb5e431e02b680aba47cd96c9cb}{00245}} \textcolor{comment}{}    \mbox{\hyperlink{classoomph_1_1FaceGeometry_3_01RefineableQYoungLaplaceElement_3_01NNODE__1D_01_4_01_4_a8f988cb5e431e02b680aba47cd96c9cb}{FaceGeometry}}() : \mbox{\hyperlink{classoomph_1_1QElement}{QElement}}<1, NNODE\_1D>() \{\}}
 \DoxyCodeLine{\Hypertarget{refineable__young__laplace__elements_8h_source_l00246}00246   \};}

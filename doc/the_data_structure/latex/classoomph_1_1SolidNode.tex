@@ -12,7 +12,7 @@ A Class for nodes that deform elastically (i.\+e. position is an unknown in the 
 Inheritance diagram for oomph\+::Solid\+Node\+:\begin{figure}[H]
 \begin{center}
 \leavevmode
-\includegraphics[height=3.000000cm]{classoomph_1_1SolidNode}
+\includegraphics[height=2.000000cm]{classoomph_1_1SolidNode}
 \end{center}
 \end{figure}
 \doxysubsection*{Public Member Functions}
@@ -21,9 +21,9 @@ Inheritance diagram for oomph\+::Solid\+Node\+:\begin{figure}[H]
 \mbox{\hyperlink{classoomph_1_1SolidNode_a7f6839c0a4abd087be6a68601b558da2}{Solid\+Node}} ()
 \begin{DoxyCompactList}\small\item\em Default Constructor. \end{DoxyCompactList}\item 
 \mbox{\hyperlink{classoomph_1_1SolidNode_ad8f4ed97c7124e7e55f1089bab99b9d7}{Solid\+Node}} (const unsigned \&n\+\_\+lagrangian, const unsigned \&n\+\_\+lagrangian\+\_\+type, const unsigned \&n\+\_\+dim, const unsigned \&n\+\_\+position\+\_\+type, const unsigned \&initial\+\_\+n\+\_\+value)
-\begin{DoxyCompactList}\small\item\em \mbox{\hyperlink{classoomph_1_1Steady}{Steady}} constructor. The node has n\+\_\+lagrangian Lagrangian coordinates of n\+\_\+lagrangian\+\_\+type types (1 for Lagrange elements, 2 for 1D Hermite etc.). The Eulerian dimension of the \mbox{\hyperlink{classoomph_1_1Node}{Node}} is n\+\_\+dim and we have n\+\_\+position\+\_\+type (generalised) Eulerian coordinates. There are initial\+\_\+n\+\_\+value values stored at this node. \end{DoxyCompactList}\item 
-\mbox{\hyperlink{classoomph_1_1SolidNode_a439c1ce56488d9fdc9c9511e1df9152d}{Solid\+Node}} (\mbox{\hyperlink{classoomph_1_1TimeStepper}{Time\+Stepper}} $\ast$const \&\mbox{\hyperlink{classoomph_1_1Data_a065d7bffcec82bf4d4bd7b41f9aa80b3}{time\+\_\+stepper\+\_\+pt}}, const unsigned \&n\+\_\+lagrangian, const unsigned \&n\+\_\+lagrangian\+\_\+type, const unsigned \&n\+\_\+dim, const unsigned \&\mbox{\hyperlink{classoomph_1_1Node_aa5419b3f46cb65976e1e1311eed9419d}{Nposition\+\_\+type}}, const unsigned \&initial\+\_\+n\+\_\+value)
-\begin{DoxyCompactList}\small\item\em Unsteady constructor. Allocates storage for initial\+\_\+n\+\_\+value nodal values with history values as required by timestepper. The node has n\+\_\+lagrangian Lagrangian coordinates of n\+\_\+lagrangian\+\_\+type types (1 for Lagrange elements, 2 for 1D Hermite etc.)/ The Eulerian dimension of the \mbox{\hyperlink{classoomph_1_1Node}{Node}} is n\+\_\+dim and we have n\+\_\+position\+\_\+type generalised Eulerian coordinates. \end{DoxyCompactList}\item 
+\begin{DoxyCompactList}\small\item\em \mbox{\hyperlink{classoomph_1_1Steady}{Steady}} constructor. The node has n\+\_\+lagrangian Lagrangian coordinates of n\+\_\+lagrangian\+\_\+type types (1 for Lagrange elements, 2 for 1D Hermite etc.). The Eulerian dimension of the Node is n\+\_\+dim and we have n\+\_\+position\+\_\+type (generalised) Eulerian coordinates. There are initial\+\_\+n\+\_\+value values stored at this node. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{classoomph_1_1SolidNode_a439c1ce56488d9fdc9c9511e1df9152d}{Solid\+Node}} (\mbox{\hyperlink{classoomph_1_1TimeStepper}{Time\+Stepper}} $\ast$const \&time\+\_\+stepper\+\_\+pt, const unsigned \&n\+\_\+lagrangian, const unsigned \&n\+\_\+lagrangian\+\_\+type, const unsigned \&n\+\_\+dim, const unsigned \&Nposition\+\_\+type, const unsigned \&initial\+\_\+n\+\_\+value)
+\begin{DoxyCompactList}\small\item\em Unsteady constructor. Allocates storage for initial\+\_\+n\+\_\+value nodal values with history values as required by timestepper. The node has n\+\_\+lagrangian Lagrangian coordinates of n\+\_\+lagrangian\+\_\+type types (1 for Lagrange elements, 2 for 1D Hermite etc.)/ The Eulerian dimension of the Node is n\+\_\+dim and we have n\+\_\+position\+\_\+type generalised Eulerian coordinates. \end{DoxyCompactList}\item 
 virtual \mbox{\hyperlink{classoomph_1_1SolidNode_a8dd2dcdf8f2585a30da22e391fcb7888}{$\sim$\+Solid\+Node}} ()
 \begin{DoxyCompactList}\small\item\em Destructor that cleans up the additional memory allocated in Solid\+Nodes. \end{DoxyCompactList}\item 
 \mbox{\hyperlink{classoomph_1_1SolidNode_a4fa6a0606a6b7927a403cdb1523674ca}{Solid\+Node}} (const \mbox{\hyperlink{classoomph_1_1SolidNode}{Solid\+Node}} \&solid\+\_\+node)=delete
@@ -42,7 +42,7 @@ const \mbox{\hyperlink{classoomph_1_1Data}{Data}} \& \mbox{\hyperlink{classoomph
 \begin{DoxyCompactList}\small\item\em Pointer to variable\+\_\+position data (const version) \end{DoxyCompactList}\item 
 void \mbox{\hyperlink{classoomph_1_1SolidNode_abd91751e0695df391ecd0e8a9249eb4f}{set\+\_\+external\+\_\+variable\+\_\+position\+\_\+pt}} (\mbox{\hyperlink{classoomph_1_1Data}{Data}} $\ast$const \&data\+\_\+pt)
 \begin{DoxyCompactList}\small\item\em Set the variable position data from an external data object. \end{DoxyCompactList}\item 
-void \mbox{\hyperlink{classoomph_1_1SolidNode_a12b206264401d5b2ff6aefff386bdca4}{set\+\_\+position\+\_\+time\+\_\+stepper}} (\mbox{\hyperlink{classoomph_1_1TimeStepper}{Time\+Stepper}} $\ast$const \&\mbox{\hyperlink{classoomph_1_1Node_a32b32940186f9d1e2abc5d4bedb6ff0d}{position\+\_\+time\+\_\+stepper\+\_\+pt}}, const bool \&preserve\+\_\+existing\+\_\+data)
+void \mbox{\hyperlink{classoomph_1_1SolidNode_a12b206264401d5b2ff6aefff386bdca4}{set\+\_\+position\+\_\+time\+\_\+stepper}} (\mbox{\hyperlink{classoomph_1_1TimeStepper}{Time\+Stepper}} $\ast$const \&position\+\_\+time\+\_\+stepper\+\_\+pt, const bool \&preserve\+\_\+existing\+\_\+data)
 \begin{DoxyCompactList}\small\item\em Set a new position timestepper be resizing the appropriate storage Overloaded from the basic implementation to take into account the fact that position is now \mbox{\hyperlink{classoomph_1_1Data}{Data}}. \end{DoxyCompactList}\item 
 bool \mbox{\hyperlink{classoomph_1_1SolidNode_a33be0ea0fc6c0575d20f303b19a7d4b5}{does\+\_\+pointer\+\_\+correspond\+\_\+to\+\_\+position\+\_\+data}} (double $\ast$const \&parameter\+\_\+pt)
 \begin{DoxyCompactList}\small\item\em Overload the check whether the pointer parameter\+\_\+pt addresses position data values. \end{DoxyCompactList}\item 
@@ -91,7 +91,7 @@ double \mbox{\hyperlink{classoomph_1_1SolidNode_a7d001ac17bfbfdb96209d723577dd59
 void \mbox{\hyperlink{classoomph_1_1SolidNode_ae0f41fc05338192c3e9d4492c516110d}{assign\+\_\+eqn\+\_\+numbers}} (unsigned long \&global\+\_\+number, \mbox{\hyperlink{classoomph_1_1Vector}{Vector}}$<$ double $\ast$ $>$ \&dof\+\_\+pt)
 \begin{DoxyCompactList}\small\item\em Overload the assign equation numbers routine. \end{DoxyCompactList}\item 
 void \mbox{\hyperlink{classoomph_1_1SolidNode_a93ba15b4ab3ccd1d0030179878df4330}{describe\+\_\+dofs}} (std\+::ostream \&out, const std\+::string \&current\+\_\+string) const
-\begin{DoxyCompactList}\small\item\em Function to describe the dofs of the \mbox{\hyperlink{classoomph_1_1Node}{Node}}. The ostream specifies the output stream to which the description is written; the string stores the currently assembled output that is ultimately written to the output stream by Data\+::describe\+\_\+dofs(...); it is typically built up incrementally as we descend through the call hierarchy of this function when called from Problem\+::describe\+\_\+dofs(...) \end{DoxyCompactList}\item 
+\begin{DoxyCompactList}\small\item\em Function to describe the dofs of the Node. The ostream specifies the output stream to which the description is written; the string stores the currently assembled output that is ultimately written to the output stream by Data\+::describe\+\_\+dofs(...); it is typically built up incrementally as we descend through the call hierarchy of this function when called from Problem\+::describe\+\_\+dofs(...) \end{DoxyCompactList}\item 
 void \mbox{\hyperlink{classoomph_1_1SolidNode_a5f40df8654ff95575da7aaa7b31dca2e}{add\+\_\+value\+\_\+pt\+\_\+to\+\_\+map}} (std\+::map$<$ unsigned, double $\ast$ $>$ \&map\+\_\+of\+\_\+value\+\_\+pt)
 \begin{DoxyCompactList}\small\item\em Overload the function add\+\_\+values\+\_\+to\+\_\+map so that it also adds the variable position data. \end{DoxyCompactList}\item 
 void \mbox{\hyperlink{classoomph_1_1SolidNode_a20562ea5133c1150b6999a73badb63e8}{add\+\_\+values\+\_\+to\+\_\+vector}} (\mbox{\hyperlink{classoomph_1_1Vector}{Vector}}$<$ double $>$ \&vector\+\_\+of\+\_\+values)
@@ -120,7 +120,6 @@ double $\ast$ \mbox{\hyperlink{classoomph_1_1SolidNode_ac8ed3701effa80f70d817ee1
 \item 
 void \mbox{\hyperlink{classoomph_1_1SolidNode_a0c5b916610af540ccc98a09584b8f34f}{xi\+\_\+gen\+\_\+range\+\_\+check}} (const unsigned \&k, const unsigned \&\mbox{\hyperlink{cfortran_8h_adb50e893b86b3e55e751a42eab3cba82}{i}}) const
 \begin{DoxyCompactList}\small\item\em Private function to check that the arguments to the position functions are in range. \end{DoxyCompactList}\end{DoxyCompactItemize}
-\doxysubsection*{Additional Inherited Members}
 
 
 \doxysubsection{Detailed Description}
@@ -153,33 +152,33 @@ Definition at line \mbox{\hyperlink{nodes_8h_source_l01709}{1709}} of file \mbox
 
 
 
-\mbox{\hyperlink{classoomph_1_1Steady}{Steady}} constructor. The node has n\+\_\+lagrangian Lagrangian coordinates of n\+\_\+lagrangian\+\_\+type types (1 for Lagrange elements, 2 for 1D Hermite etc.). The Eulerian dimension of the \mbox{\hyperlink{classoomph_1_1Node}{Node}} is n\+\_\+dim and we have n\+\_\+position\+\_\+type (generalised) Eulerian coordinates. There are initial\+\_\+n\+\_\+value values stored at this node. 
+\mbox{\hyperlink{classoomph_1_1Steady}{Steady}} constructor. The node has n\+\_\+lagrangian Lagrangian coordinates of n\+\_\+lagrangian\+\_\+type types (1 for Lagrange elements, 2 for 1D Hermite etc.). The Eulerian dimension of the Node is n\+\_\+dim and we have n\+\_\+position\+\_\+type (generalised) Eulerian coordinates. There are initial\+\_\+n\+\_\+value values stored at this node. 
 
-\mbox{\hyperlink{classoomph_1_1Steady}{Steady}} constructor. The node has NLgrangian Lagrangian coordinates of n\+\_\+lagrangian\+\_\+type types (1 for Lagrange elements, 2 for 1D Hermite etc.). The Eulerian dimension of the \mbox{\hyperlink{classoomph_1_1Node}{Node}} is n\+\_\+dim and we have n\+\_\+position\+\_\+type (generalised) Eulerian coordinates. There are initial\+\_\+n\+\_\+value values stored at this node and NAdditional\+\_\+solid additional values associated with the solid equations are stored in a separate \mbox{\hyperlink{classoomph_1_1Data}{Data}} object at the node. 
+\mbox{\hyperlink{classoomph_1_1Steady}{Steady}} constructor. The node has NLgrangian Lagrangian coordinates of n\+\_\+lagrangian\+\_\+type types (1 for Lagrange elements, 2 for 1D Hermite etc.). The Eulerian dimension of the Node is n\+\_\+dim and we have n\+\_\+position\+\_\+type (generalised) Eulerian coordinates. There are initial\+\_\+n\+\_\+value values stored at this node and NAdditional\+\_\+solid additional values associated with the solid equations are stored in a separate \mbox{\hyperlink{classoomph_1_1Data}{Data}} object at the node. 
 
 Definition at line \mbox{\hyperlink{nodes_8cc_source_l03348}{3348}} of file \mbox{\hyperlink{nodes_8cc_source}{nodes.\+cc}}.
 
 
 
-References \mbox{\hyperlink{nodes_8cc_source_l00237}{oomph\+::\+Data\+::\+Data()}}, \mbox{\hyperlink{nodes_8h_source_l00946}{oomph\+::\+Node\+::\+Ndim}}, \mbox{\hyperlink{nodes_8h_source_l00952}{oomph\+::\+Node\+::\+Nposition\+\_\+type}}, \mbox{\hyperlink{nodes_8h_source_l00112}{oomph\+::\+Data\+::\+Value}}, \mbox{\hyperlink{nodes_8h_source_l01702}{Variable\+\_\+position\+\_\+pt}}, \mbox{\hyperlink{nodes_8h_source_l00930}{oomph\+::\+Node\+::\+X\+\_\+position}}, and \mbox{\hyperlink{nodes_8h_source_l01705}{Xi\+\_\+position}}.
+References \mbox{\hyperlink{nodes_8h_source_l00112}{oomph\+::\+Data\+::\+Value}}, \mbox{\hyperlink{nodes_8h_source_l01702}{Variable\+\_\+position\+\_\+pt}}, and \mbox{\hyperlink{nodes_8h_source_l01705}{Xi\+\_\+position}}.
 
 \mbox{\Hypertarget{classoomph_1_1SolidNode_a439c1ce56488d9fdc9c9511e1df9152d}\label{classoomph_1_1SolidNode_a439c1ce56488d9fdc9c9511e1df9152d}} 
 \index{oomph::SolidNode@{oomph::SolidNode}!SolidNode@{SolidNode}}
 \index{SolidNode@{SolidNode}!oomph::SolidNode@{oomph::SolidNode}}
 \doxysubsubsection{\texorpdfstring{SolidNode()}{SolidNode()}\hspace{0.1cm}{\footnotesize\ttfamily [3/4]}}
-{\footnotesize\ttfamily oomph\+::\+Solid\+Node\+::\+Solid\+Node (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classoomph_1_1TimeStepper}{Time\+Stepper}} $\ast$const \&}]{time\+\_\+stepper\+\_\+pt\+\_\+,  }\item[{const unsigned \&}]{n\+\_\+lagrangian,  }\item[{const unsigned \&}]{n\+\_\+lagrangian\+\_\+type,  }\item[{const unsigned \&}]{n\+\_\+dim,  }\item[{const unsigned \&}]{n\+\_\+position\+\_\+type,  }\item[{const unsigned \&}]{initial\+\_\+n\+\_\+value }\end{DoxyParamCaption})}
+{\footnotesize\ttfamily oomph\+::\+Solid\+Node\+::\+Solid\+Node (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classoomph_1_1TimeStepper}{Time\+Stepper}} $\ast$const \&}]{time\+\_\+stepper\+\_\+pt,  }\item[{const unsigned \&}]{n\+\_\+lagrangian,  }\item[{const unsigned \&}]{n\+\_\+lagrangian\+\_\+type,  }\item[{const unsigned \&}]{n\+\_\+dim,  }\item[{const unsigned \&}]{Nposition\+\_\+type,  }\item[{const unsigned \&}]{initial\+\_\+n\+\_\+value }\end{DoxyParamCaption})}
 
 
 
-Unsteady constructor. Allocates storage for initial\+\_\+n\+\_\+value nodal values with history values as required by timestepper. The node has n\+\_\+lagrangian Lagrangian coordinates of n\+\_\+lagrangian\+\_\+type types (1 for Lagrange elements, 2 for 1D Hermite etc.)/ The Eulerian dimension of the \mbox{\hyperlink{classoomph_1_1Node}{Node}} is n\+\_\+dim and we have n\+\_\+position\+\_\+type generalised Eulerian coordinates. 
+Unsteady constructor. Allocates storage for initial\+\_\+n\+\_\+value nodal values with history values as required by timestepper. The node has n\+\_\+lagrangian Lagrangian coordinates of n\+\_\+lagrangian\+\_\+type types (1 for Lagrange elements, 2 for 1D Hermite etc.)/ The Eulerian dimension of the Node is n\+\_\+dim and we have n\+\_\+position\+\_\+type generalised Eulerian coordinates. 
 
-Unsteady constructor. Allocates storage for initial\+\_\+n\+\_\+value nodal values with history values as required by timestepper. The node has NLgrangian Lagrangian coordinates of n\+\_\+lagrangian\+\_\+type types (1 for Lagrange elements, 2 for 1D Hermite etc.)/ The Eulerian dimension of the \mbox{\hyperlink{classoomph_1_1Node}{Node}} is n\+\_\+dim and we have n\+\_\+position\+\_\+type generalised Eulerian coordinates. 
+Unsteady constructor. Allocates storage for initial\+\_\+n\+\_\+value nodal values with history values as required by timestepper. The node has NLgrangian Lagrangian coordinates of n\+\_\+lagrangian\+\_\+type types (1 for Lagrange elements, 2 for 1D Hermite etc.)/ The Eulerian dimension of the Node is n\+\_\+dim and we have n\+\_\+position\+\_\+type generalised Eulerian coordinates. 
 
 Definition at line \mbox{\hyperlink{nodes_8cc_source_l03384}{3384}} of file \mbox{\hyperlink{nodes_8cc_source}{nodes.\+cc}}.
 
 
 
-References \mbox{\hyperlink{nodes_8cc_source_l00237}{oomph\+::\+Data\+::\+Data()}}, \mbox{\hyperlink{nodes_8h_source_l00112}{oomph\+::\+Data\+::\+Value}}, \mbox{\hyperlink{nodes_8h_source_l01702}{Variable\+\_\+position\+\_\+pt}}, \mbox{\hyperlink{nodes_8h_source_l00930}{oomph\+::\+Node\+::\+X\+\_\+position}}, and \mbox{\hyperlink{nodes_8h_source_l01705}{Xi\+\_\+position}}.
+References \mbox{\hyperlink{nodes_8h_source_l00112}{oomph\+::\+Data\+::\+Value}}, \mbox{\hyperlink{nodes_8h_source_l01702}{Variable\+\_\+position\+\_\+pt}}, and \mbox{\hyperlink{nodes_8h_source_l01705}{Xi\+\_\+position}}.
 
 \mbox{\Hypertarget{classoomph_1_1SolidNode_a8dd2dcdf8f2585a30da22e391fcb7888}\label{classoomph_1_1SolidNode_a8dd2dcdf8f2585a30da22e391fcb7888}} 
 \index{oomph::SolidNode@{oomph::SolidNode}!````~SolidNode@{$\sim$SolidNode}}
@@ -191,13 +190,13 @@ References \mbox{\hyperlink{nodes_8cc_source_l00237}{oomph\+::\+Data\+::\+Data()
 
 Destructor that cleans up the additional memory allocated in Solid\+Nodes. 
 
-Destructor to clean up the memory allocated for nodal positions and additional solid variables 
+Destructor to clean up the memory allocated for nodal positions and additional solid variables. 
 
 Definition at line \mbox{\hyperlink{nodes_8cc_source_l03416}{3416}} of file \mbox{\hyperlink{nodes_8cc_source}{nodes.\+cc}}.
 
 
 
-References \mbox{\hyperlink{nodes_8h_source_l01702}{Variable\+\_\+position\+\_\+pt}}, \mbox{\hyperlink{nodes_8h_source_l00930}{oomph\+::\+Node\+::\+X\+\_\+position}}, and \mbox{\hyperlink{nodes_8h_source_l01705}{Xi\+\_\+position}}.
+References \mbox{\hyperlink{nodes_8h_source_l01702}{Variable\+\_\+position\+\_\+pt}}, and \mbox{\hyperlink{nodes_8h_source_l01705}{Xi\+\_\+position}}.
 
 \mbox{\Hypertarget{classoomph_1_1SolidNode_a4fa6a0606a6b7927a403cdb1523674ca}\label{classoomph_1_1SolidNode_a4fa6a0606a6b7927a403cdb1523674ca}} 
 \index{oomph::SolidNode@{oomph::SolidNode}!SolidNode@{SolidNode}}
@@ -216,17 +215,13 @@ Broken copy constructor.
 \index{oomph::SolidNode@{oomph::SolidNode}!add\_eqn\_numbers\_to\_vector@{add\_eqn\_numbers\_to\_vector}}
 \index{add\_eqn\_numbers\_to\_vector@{add\_eqn\_numbers\_to\_vector}!oomph::SolidNode@{oomph::SolidNode}}
 \doxysubsubsection{\texorpdfstring{add\_eqn\_numbers\_to\_vector()}{add\_eqn\_numbers\_to\_vector()}}
-{\footnotesize\ttfamily void oomph\+::\+Solid\+Node\+::add\+\_\+eqn\+\_\+numbers\+\_\+to\+\_\+vector (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classoomph_1_1Vector}{Vector}}$<$ long $>$ \&}]{vector\+\_\+of\+\_\+eqn\+\_\+numbers }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [virtual]}}
+{\footnotesize\ttfamily void oomph\+::\+Solid\+Node\+::add\+\_\+eqn\+\_\+numbers\+\_\+to\+\_\+vector (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classoomph_1_1Vector}{Vector}}$<$ long $>$ \&}]{vector\+\_\+of\+\_\+eqn\+\_\+numbers }\end{DoxyParamCaption})}
 
 
 
 Add all equation numbers to the vector in the internal storage order. Overload to add equation numbers associated with the positional dofs. 
 
-Add equations numbers associated with the node position to the vector after the standard nodal equation numbers 
-
-Reimplemented from \mbox{\hyperlink{classoomph_1_1Data_a1d3f7c4200506d11fea3c647fe498f5d}{oomph\+::\+Data}}.
-
-
+Add equations numbers associated with the node position to the vector after the standard nodal equation numbers. 
 
 Definition at line \mbox{\hyperlink{nodes_8cc_source_l03799}{3799}} of file \mbox{\hyperlink{nodes_8cc_source}{nodes.\+cc}}.
 
@@ -238,17 +233,13 @@ References \mbox{\hyperlink{nodes_8cc_source_l01236}{oomph\+::\+Data\+::add\+\_\
 \index{oomph::SolidNode@{oomph::SolidNode}!add\_value\_pt\_to\_map@{add\_value\_pt\_to\_map}}
 \index{add\_value\_pt\_to\_map@{add\_value\_pt\_to\_map}!oomph::SolidNode@{oomph::SolidNode}}
 \doxysubsubsection{\texorpdfstring{add\_value\_pt\_to\_map()}{add\_value\_pt\_to\_map()}}
-{\footnotesize\ttfamily void oomph\+::\+Solid\+Node\+::add\+\_\+value\+\_\+pt\+\_\+to\+\_\+map (\begin{DoxyParamCaption}\item[{std\+::map$<$ unsigned, double $\ast$ $>$ \&}]{map\+\_\+of\+\_\+value\+\_\+pt }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [virtual]}}
+{\footnotesize\ttfamily void oomph\+::\+Solid\+Node\+::add\+\_\+value\+\_\+pt\+\_\+to\+\_\+map (\begin{DoxyParamCaption}\item[{std\+::map$<$ unsigned, double $\ast$ $>$ \&}]{map\+\_\+of\+\_\+value\+\_\+pt }\end{DoxyParamCaption})}
 
 
 
 Overload the function add\+\_\+values\+\_\+to\+\_\+map so that it also adds the variable position data. 
 
-Add pointers to all data values (including position data) to a map 
-
-Reimplemented from \mbox{\hyperlink{classoomph_1_1Data_a314ae9723424aa30d1275ab213d38936}{oomph\+::\+Data}}.
-
-
+Add pointers to all data values (including position data) to a map. 
 
 Definition at line \mbox{\hyperlink{nodes_8cc_source_l03693}{3693}} of file \mbox{\hyperlink{nodes_8cc_source}{nodes.\+cc}}.
 
@@ -260,23 +251,19 @@ References \mbox{\hyperlink{nodes_8cc_source_l01089}{oomph\+::\+Data\+::add\+\_\
 \index{oomph::SolidNode@{oomph::SolidNode}!add\_values\_to\_vector@{add\_values\_to\_vector}}
 \index{add\_values\_to\_vector@{add\_values\_to\_vector}!oomph::SolidNode@{oomph::SolidNode}}
 \doxysubsubsection{\texorpdfstring{add\_values\_to\_vector()}{add\_values\_to\_vector()}}
-{\footnotesize\ttfamily void oomph\+::\+Solid\+Node\+::add\+\_\+values\+\_\+to\+\_\+vector (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classoomph_1_1Vector}{Vector}}$<$ double $>$ \&}]{vector\+\_\+of\+\_\+values }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [virtual]}}
+{\footnotesize\ttfamily void oomph\+::\+Solid\+Node\+::add\+\_\+values\+\_\+to\+\_\+vector (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classoomph_1_1Vector}{Vector}}$<$ double $>$ \&}]{vector\+\_\+of\+\_\+values }\end{DoxyParamCaption})}
 
 
 
 Add all data, position and time history values to the vector Overload to add the Lagrangian coordinates to the vector. 
 
-Add Lagrangian coordinates to the vector after positional data and \char`\"{}standard\char`\"{} data 
-
-Reimplemented from \mbox{\hyperlink{classoomph_1_1Node_a11400682e1fd2851777234a779e8bf8d}{oomph\+::\+Node}}.
-
-
+Add Lagrangian coordinates to the vector after positional data and \char`\"{}standard\char`\"{} data. 
 
 Definition at line \mbox{\hyperlink{nodes_8cc_source_l03708}{3708}} of file \mbox{\hyperlink{nodes_8cc_source}{nodes.\+cc}}.
 
 
 
-References \mbox{\hyperlink{nodes_8cc_source_l02777}{oomph\+::\+Node\+::add\+\_\+values\+\_\+to\+\_\+vector()}}, \mbox{\hyperlink{cfortran_8h_source_l00603}{i}}, \mbox{\hyperlink{nodes_8h_source_l01871}{nlagrangian()}}, \mbox{\hyperlink{nodes_8h_source_l01878}{nlagrangian\+\_\+type()}}, and \mbox{\hyperlink{nodes_8h_source_l01705}{Xi\+\_\+position}}.
+References \mbox{\hyperlink{cfortran_8h_source_l00603}{i}}, \mbox{\hyperlink{nodes_8h_source_l01871}{nlagrangian()}}, \mbox{\hyperlink{nodes_8h_source_l01878}{nlagrangian\+\_\+type()}}, and \mbox{\hyperlink{nodes_8h_source_l01705}{Xi\+\_\+position}}.
 
 
 
@@ -286,17 +273,13 @@ Referenced by \mbox{\hyperlink{triangle__mesh_8template_8cc_source_l18330}{oomph
 \index{oomph::SolidNode@{oomph::SolidNode}!assign\_eqn\_numbers@{assign\_eqn\_numbers}}
 \index{assign\_eqn\_numbers@{assign\_eqn\_numbers}!oomph::SolidNode@{oomph::SolidNode}}
 \doxysubsubsection{\texorpdfstring{assign\_eqn\_numbers()}{assign\_eqn\_numbers()}}
-{\footnotesize\ttfamily void oomph\+::\+Solid\+Node\+::assign\+\_\+eqn\+\_\+numbers (\begin{DoxyParamCaption}\item[{unsigned long \&}]{global\+\_\+number,  }\item[{\mbox{\hyperlink{classoomph_1_1Vector}{Vector}}$<$ double $\ast$ $>$ \&}]{dof\+\_\+pt }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [virtual]}}
+{\footnotesize\ttfamily void oomph\+::\+Solid\+Node\+::assign\+\_\+eqn\+\_\+numbers (\begin{DoxyParamCaption}\item[{unsigned long \&}]{global\+\_\+number,  }\item[{\mbox{\hyperlink{classoomph_1_1Vector}{Vector}}$<$ double $\ast$ $>$ \&}]{dof\+\_\+pt }\end{DoxyParamCaption})}
 
 
 
 Overload the assign equation numbers routine. 
 
 Assign (global) equation number, for Solid\+Nodes. 
-
-Reimplemented from \mbox{\hyperlink{classoomph_1_1Node_a5f727227a1c8fdc7d5d422492b98cefd}{oomph\+::\+Node}}.
-
-
 
 Definition at line \mbox{\hyperlink{nodes_8cc_source_l03652}{3652}} of file \mbox{\hyperlink{nodes_8cc_source}{nodes.\+cc}}.
 
@@ -308,15 +291,11 @@ References \mbox{\hyperlink{nodes_8cc_source_l00896}{oomph\+::\+Data\+::assign\+
 \index{oomph::SolidNode@{oomph::SolidNode}!constrain\_positions@{constrain\_positions}}
 \index{constrain\_positions@{constrain\_positions}!oomph::SolidNode@{oomph::SolidNode}}
 \doxysubsubsection{\texorpdfstring{constrain\_positions()}{constrain\_positions()}}
-{\footnotesize\ttfamily void oomph\+::\+Solid\+Node\+::constrain\+\_\+positions (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [virtual]}}
+{\footnotesize\ttfamily void oomph\+::\+Solid\+Node\+::constrain\+\_\+positions (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
 
 
 
 Overload the constrain positions function to constrain all position values. 
-
-
-
-Reimplemented from \mbox{\hyperlink{classoomph_1_1Node_a8758650a2e6d7312ad070bb8ce327c4b}{oomph\+::\+Node}}.
 
 
 
@@ -336,7 +315,7 @@ References \mbox{\hyperlink{nodes_8h_source_l00451}{oomph\+::\+Data\+::constrain
 
 Copy nodal positions and associated data from specified node object. 
 
-Copy nodal positions and associated data from specified node object 
+
 
 Definition at line \mbox{\hyperlink{nodes_8cc_source_l03433}{3433}} of file \mbox{\hyperlink{nodes_8cc_source}{nodes.\+cc}}.
 
@@ -352,17 +331,13 @@ Referenced by \mbox{\hyperlink{mesh_8cc_source_l02590}{oomph\+::\+Mesh\+::conver
 \index{oomph::SolidNode@{oomph::SolidNode}!describe\_dofs@{describe\_dofs}}
 \index{describe\_dofs@{describe\_dofs}!oomph::SolidNode@{oomph::SolidNode}}
 \doxysubsubsection{\texorpdfstring{describe\_dofs()}{describe\_dofs()}}
-{\footnotesize\ttfamily void oomph\+::\+Solid\+Node\+::describe\+\_\+dofs (\begin{DoxyParamCaption}\item[{std\+::ostream \&}]{out,  }\item[{const std\+::string \&}]{current\+\_\+string }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [virtual]}}
+{\footnotesize\ttfamily void oomph\+::\+Solid\+Node\+::describe\+\_\+dofs (\begin{DoxyParamCaption}\item[{std\+::ostream \&}]{out,  }\item[{const std\+::string \&}]{current\+\_\+string }\end{DoxyParamCaption}) const}
 
 
 
-Function to describe the dofs of the \mbox{\hyperlink{classoomph_1_1Node}{Node}}. The ostream specifies the output stream to which the description is written; the string stores the currently assembled output that is ultimately written to the output stream by Data\+::describe\+\_\+dofs(...); it is typically built up incrementally as we descend through the call hierarchy of this function when called from Problem\+::describe\+\_\+dofs(...) 
+Function to describe the dofs of the Node. The ostream specifies the output stream to which the description is written; the string stores the currently assembled output that is ultimately written to the output stream by Data\+::describe\+\_\+dofs(...); it is typically built up incrementally as we descend through the call hierarchy of this function when called from Problem\+::describe\+\_\+dofs(...) 
 
 Function to describe the dofs of the \mbox{\hyperlink{classoomph_1_1SolidNode}{Solid\+Node}}. The ostream specifies the output stream to which the description is written; the string stores the currently assembled output that is ultimately written to the output stream by Data\+::describe\+\_\+dofs(...); it is typically built up incrementally as we descend through the call hierarchy of this function when called from Problem\+::describe\+\_\+dofs(...) 
-
-Reimplemented from \mbox{\hyperlink{classoomph_1_1Data_a2dae16e2dcff9a40029f834c83364df5}{oomph\+::\+Data}}.
-
-
 
 Definition at line \mbox{\hyperlink{nodes_8cc_source_l03671}{3671}} of file \mbox{\hyperlink{nodes_8cc_source}{nodes.\+cc}}.
 
@@ -378,17 +353,13 @@ Referenced by \mbox{\hyperlink{elements_8cc_source_l06878}{oomph\+::\+Solid\+Fin
 \index{oomph::SolidNode@{oomph::SolidNode}!does\_pointer\_correspond\_to\_position\_data@{does\_pointer\_correspond\_to\_position\_data}}
 \index{does\_pointer\_correspond\_to\_position\_data@{does\_pointer\_correspond\_to\_position\_data}!oomph::SolidNode@{oomph::SolidNode}}
 \doxysubsubsection{\texorpdfstring{does\_pointer\_correspond\_to\_position\_data()}{does\_pointer\_correspond\_to\_position\_data()}}
-{\footnotesize\ttfamily bool oomph\+::\+Solid\+Node\+::does\+\_\+pointer\+\_\+correspond\+\_\+to\+\_\+position\+\_\+data (\begin{DoxyParamCaption}\item[{double $\ast$const \&}]{parameter\+\_\+pt }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [virtual]}}
+{\footnotesize\ttfamily bool oomph\+::\+Solid\+Node\+::does\+\_\+pointer\+\_\+correspond\+\_\+to\+\_\+position\+\_\+data (\begin{DoxyParamCaption}\item[{double $\ast$const \&}]{parameter\+\_\+pt }\end{DoxyParamCaption})}
 
 
 
 Overload the check whether the pointer parameter\+\_\+pt addresses position data values. 
 
 Check whether the pointer parameter\+\_\+pt refers to positional data. 
-
-Reimplemented from \mbox{\hyperlink{classoomph_1_1Node_ab5d4bea7ffc69a82fde5720a2a6d784c}{oomph\+::\+Node}}.
-
-
 
 Definition at line \mbox{\hyperlink{nodes_8cc_source_l03573}{3573}} of file \mbox{\hyperlink{nodes_8cc_source}{nodes.\+cc}}.
 
@@ -400,7 +371,7 @@ References \mbox{\hyperlink{nodes_8cc_source_l00568}{oomph\+::\+Data\+::does\+\_
 \index{oomph::SolidNode@{oomph::SolidNode}!dump@{dump}}
 \index{dump@{dump}!oomph::SolidNode@{oomph::SolidNode}}
 \doxysubsubsection{\texorpdfstring{dump()}{dump()}}
-{\footnotesize\ttfamily void oomph\+::\+Solid\+Node\+::dump (\begin{DoxyParamCaption}\item[{std\+::ostream \&}]{dump\+\_\+file }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [virtual]}}
+{\footnotesize\ttfamily void oomph\+::\+Solid\+Node\+::dump (\begin{DoxyParamCaption}\item[{std\+::ostream \&}]{dump\+\_\+file }\end{DoxyParamCaption}) const}
 
 
 
@@ -408,15 +379,11 @@ Dump nodal positions (variable and fixed) and associated data to file for restar
 
 Dump nodal positions and associated data to file for restart. 
 
-Reimplemented from \mbox{\hyperlink{classoomph_1_1Node_acd8bb142619d639d9bbfe813d0ba08df}{oomph\+::\+Node}}.
-
-
-
 Definition at line \mbox{\hyperlink{nodes_8cc_source_l03470}{3470}} of file \mbox{\hyperlink{nodes_8cc_source}{nodes.\+cc}}.
 
 
 
-References \mbox{\hyperlink{nodes_8cc_source_l01969}{oomph\+::\+Node\+::dump()}}, \mbox{\hyperlink{nodes_8h_source_l01695}{Nlagrangian}}, \mbox{\hyperlink{nodes_8h_source_l01699}{Nlagrangian\+\_\+type}}, and \mbox{\hyperlink{nodes_8h_source_l01705}{Xi\+\_\+position}}.
+References \mbox{\hyperlink{nodes_8h_source_l01695}{Nlagrangian}}, \mbox{\hyperlink{nodes_8h_source_l01699}{Nlagrangian\+\_\+type}}, and \mbox{\hyperlink{nodes_8h_source_l01705}{Xi\+\_\+position}}.
 
 \mbox{\Hypertarget{classoomph_1_1SolidNode_a790277999eb7d8ff0c3f2398d8aaedb0}\label{classoomph_1_1SolidNode_a790277999eb7d8ff0c3f2398d8aaedb0}} 
 \index{oomph::SolidNode@{oomph::SolidNode}!lagrangian\_position@{lagrangian\_position}}
@@ -428,13 +395,13 @@ References \mbox{\hyperlink{nodes_8cc_source_l01969}{oomph\+::\+Node\+::dump()}}
 
 Return lagrangian coordinate either directly or via hanging node representation. 
 
-Return lagrangian coordinate either directly or via hanging node representation. 
+
 
 Definition at line \mbox{\hyperlink{nodes_8cc_source_l03586}{3586}} of file \mbox{\hyperlink{nodes_8cc_source}{nodes.\+cc}}.
 
 
 
-References \mbox{\hyperlink{nodes_8h_source_l01229}{oomph\+::\+Node\+::hanging\+\_\+pt()}}, \mbox{\hyperlink{cfortran_8h_source_l00603}{i}}, \mbox{\hyperlink{nodes_8h_source_l01286}{oomph\+::\+Node\+::is\+\_\+hanging()}}, \mbox{\hyperlink{nodes_8h_source_l00791}{oomph\+::\+Hang\+Info\+::master\+\_\+node\+\_\+pt()}}, \mbox{\hyperlink{nodes_8h_source_l00808}{oomph\+::\+Hang\+Info\+::master\+\_\+weight()}}, \mbox{\hyperlink{nodes_8h_source_l00785}{oomph\+::\+Hang\+Info\+::nmaster()}}, and \mbox{\hyperlink{nodes_8h_source_l01884}{xi()}}.
+References \mbox{\hyperlink{cfortran_8h_source_l00603}{i}}, and \mbox{\hyperlink{nodes_8h_source_l01884}{xi()}}.
 
 
 
@@ -450,13 +417,13 @@ Referenced by \mbox{\hyperlink{refineable__mesh_8cc_source_l00926}{oomph\+::\+Tr
 
 Return generalised lagrangian coordinate either directly or via hanging node representation. 
 
-Return generalised lagrangian coordinate either directly or via hanging node representation. 
+
 
 Definition at line \mbox{\hyperlink{nodes_8cc_source_l03619}{3619}} of file \mbox{\hyperlink{nodes_8cc_source}{nodes.\+cc}}.
 
 
 
-References \mbox{\hyperlink{nodes_8h_source_l01229}{oomph\+::\+Node\+::hanging\+\_\+pt()}}, \mbox{\hyperlink{cfortran_8h_source_l00603}{i}}, \mbox{\hyperlink{nodes_8h_source_l01286}{oomph\+::\+Node\+::is\+\_\+hanging()}}, \mbox{\hyperlink{nodes_8h_source_l00791}{oomph\+::\+Hang\+Info\+::master\+\_\+node\+\_\+pt()}}, \mbox{\hyperlink{nodes_8h_source_l00808}{oomph\+::\+Hang\+Info\+::master\+\_\+weight()}}, \mbox{\hyperlink{nodes_8h_source_l00785}{oomph\+::\+Hang\+Info\+::nmaster()}}, and \mbox{\hyperlink{nodes_8h_source_l01903}{xi\+\_\+gen()}}.
+References \mbox{\hyperlink{cfortran_8h_source_l00603}{i}}, and \mbox{\hyperlink{nodes_8h_source_l01903}{xi\+\_\+gen()}}.
 
 \mbox{\Hypertarget{classoomph_1_1SolidNode_af98a0623f9e41a10f48112b9ff7b38a0}\label{classoomph_1_1SolidNode_af98a0623f9e41a10f48112b9ff7b38a0}} 
 \index{oomph::SolidNode@{oomph::SolidNode}!nlagrangian@{nlagrangian}}
@@ -506,7 +473,7 @@ Referenced by \mbox{\hyperlink{nodes_8cc_source_l03708}{add\+\_\+values\+\_\+to\
 \index{oomph::SolidNode@{oomph::SolidNode}!node\_update@{node\_update}}
 \index{node\_update@{node\_update}!oomph::SolidNode@{oomph::SolidNode}}
 \doxysubsubsection{\texorpdfstring{node\_update()}{node\_update()}}
-{\footnotesize\ttfamily void oomph\+::\+Solid\+Node\+::node\+\_\+update (\begin{DoxyParamCaption}\item[{const bool \&}]{update\+\_\+all\+\_\+time\+\_\+levels\+\_\+for\+\_\+new\+\_\+node = {\ttfamily false} }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [virtual]}}
+{\footnotesize\ttfamily void oomph\+::\+Solid\+Node\+::node\+\_\+update (\begin{DoxyParamCaption}\item[{const bool \&}]{update\+\_\+all\+\_\+time\+\_\+levels\+\_\+for\+\_\+new\+\_\+node = {\ttfamily false} }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
 
 
 
@@ -514,15 +481,7 @@ Overload node update function\+: Since the position of Solid\+Nodes is determine
 
 
 
-Reimplemented from \mbox{\hyperlink{classoomph_1_1Node_aecf8c979266300d3609de2b4ddfa3cc8}{oomph\+::\+Node}}.
-
-
-
 Definition at line \mbox{\hyperlink{nodes_8h_source_l01982}{1982}} of file \mbox{\hyperlink{nodes_8h_source}{nodes.\+h}}.
-
-
-
-References \mbox{\hyperlink{nodes_8h_source_l01616}{oomph\+::\+Node\+::perform\+\_\+auxiliary\+\_\+node\+\_\+update\+\_\+fct()}}.
 
 \mbox{\Hypertarget{classoomph_1_1SolidNode_aff78fee3d530bc39c14e231b261219ea}\label{classoomph_1_1SolidNode_aff78fee3d530bc39c14e231b261219ea}} 
 \index{oomph::SolidNode@{oomph::SolidNode}!operator=@{operator=}}
@@ -538,7 +497,7 @@ Broken assignment operator.
 \index{oomph::SolidNode@{oomph::SolidNode}!pin\_all@{pin\_all}}
 \index{pin\_all@{pin\_all}!oomph::SolidNode@{oomph::SolidNode}}
 \doxysubsubsection{\texorpdfstring{pin\_all()}{pin\_all()}}
-{\footnotesize\ttfamily void oomph\+::\+Solid\+Node\+::pin\+\_\+all (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [virtual]}}
+{\footnotesize\ttfamily void oomph\+::\+Solid\+Node\+::pin\+\_\+all (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
 
 
 
@@ -546,15 +505,11 @@ Pin all the stored variables (Overloaded)
 
 
 
-Reimplemented from \mbox{\hyperlink{classoomph_1_1Node_a3f0d0e77ba866ce8ad3c5c012b647080}{oomph\+::\+Node}}.
-
-
-
 Definition at line \mbox{\hyperlink{nodes_8h_source_l01843}{1843}} of file \mbox{\hyperlink{nodes_8h_source}{nodes.\+h}}.
 
 
 
-References \mbox{\hyperlink{nodes_8h_source_l00397}{oomph\+::\+Data\+::pin\+\_\+all()}}, \mbox{\hyperlink{nodes_8h_source_l01198}{oomph\+::\+Node\+::pin\+\_\+all()}}, and \mbox{\hyperlink{nodes_8h_source_l01702}{Variable\+\_\+position\+\_\+pt}}.
+References \mbox{\hyperlink{nodes_8h_source_l00397}{oomph\+::\+Data\+::pin\+\_\+all()}}, and \mbox{\hyperlink{nodes_8h_source_l01702}{Variable\+\_\+position\+\_\+pt}}.
 
 \mbox{\Hypertarget{classoomph_1_1SolidNode_aa283a553b0141e859dd7b4f80bb88e6d}\label{classoomph_1_1SolidNode_aa283a553b0141e859dd7b4f80bb88e6d}} 
 \index{oomph::SolidNode@{oomph::SolidNode}!pin\_position@{pin\_position}}
@@ -572,7 +527,7 @@ Definition at line \mbox{\hyperlink{nodes_8h_source_l01817}{1817}} of file \mbox
 
 
 
-References \mbox{\hyperlink{cfortran_8h_source_l00603}{i}}, \mbox{\hyperlink{nodes_8h_source_l00952}{oomph\+::\+Node\+::\+Nposition\+\_\+type}}, \mbox{\hyperlink{nodes_8h_source_l00385}{oomph\+::\+Data\+::pin()}}, and \mbox{\hyperlink{nodes_8h_source_l01702}{Variable\+\_\+position\+\_\+pt}}.
+References \mbox{\hyperlink{cfortran_8h_source_l00603}{i}}, \mbox{\hyperlink{nodes_8h_source_l00385}{oomph\+::\+Data\+::pin()}}, and \mbox{\hyperlink{nodes_8h_source_l01702}{Variable\+\_\+position\+\_\+pt}}.
 
 
 
@@ -594,7 +549,7 @@ Definition at line \mbox{\hyperlink{nodes_8h_source_l01824}{1824}} of file \mbox
 
 
 
-References \mbox{\hyperlink{cfortran_8h_source_l00603}{i}}, \mbox{\hyperlink{nodes_8h_source_l00952}{oomph\+::\+Node\+::\+Nposition\+\_\+type}}, \mbox{\hyperlink{nodes_8h_source_l00385}{oomph\+::\+Data\+::pin()}}, and \mbox{\hyperlink{nodes_8h_source_l01702}{Variable\+\_\+position\+\_\+pt}}.
+References \mbox{\hyperlink{cfortran_8h_source_l00603}{i}}, \mbox{\hyperlink{nodes_8h_source_l00385}{oomph\+::\+Data\+::pin()}}, and \mbox{\hyperlink{nodes_8h_source_l01702}{Variable\+\_\+position\+\_\+pt}}.
 
 \mbox{\Hypertarget{classoomph_1_1SolidNode_a38c52c20fe9d4783ae93a6f1fda21f24}\label{classoomph_1_1SolidNode_a38c52c20fe9d4783ae93a6f1fda21f24}} 
 \index{oomph::SolidNode@{oomph::SolidNode}!position\_eqn\_number@{position\_eqn\_number}}
@@ -612,7 +567,7 @@ Definition at line \mbox{\hyperlink{nodes_8h_source_l01798}{1798}} of file \mbox
 
 
 
-References \mbox{\hyperlink{nodes_8h_source_l00367}{oomph\+::\+Data\+::eqn\+\_\+number()}}, \mbox{\hyperlink{cfortran_8h_source_l00603}{i}}, \mbox{\hyperlink{nodes_8h_source_l00952}{oomph\+::\+Node\+::\+Nposition\+\_\+type}}, and \mbox{\hyperlink{nodes_8h_source_l01702}{Variable\+\_\+position\+\_\+pt}}.
+References \mbox{\hyperlink{nodes_8h_source_l00367}{oomph\+::\+Data\+::eqn\+\_\+number()}}, \mbox{\hyperlink{cfortran_8h_source_l00603}{i}}, and \mbox{\hyperlink{nodes_8h_source_l01702}{Variable\+\_\+position\+\_\+pt}}.
 
 
 
@@ -622,15 +577,11 @@ Referenced by \mbox{\hyperlink{elements_8cc_source_l06902}{oomph\+::\+Solid\+Fin
 \index{oomph::SolidNode@{oomph::SolidNode}!position\_is\_a\_copy@{position\_is\_a\_copy}}
 \index{position\_is\_a\_copy@{position\_is\_a\_copy}!oomph::SolidNode@{oomph::SolidNode}}
 \doxysubsubsection{\texorpdfstring{position\_is\_a\_copy()}{position\_is\_a\_copy()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
-{\footnotesize\ttfamily bool oomph\+::\+Solid\+Node\+::position\+\_\+is\+\_\+a\+\_\+copy (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [virtual]}}
+{\footnotesize\ttfamily bool oomph\+::\+Solid\+Node\+::position\+\_\+is\+\_\+a\+\_\+copy (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
 
 
 
 Return whether any position component has been copied. 
-
-
-
-Reimplemented from \mbox{\hyperlink{classoomph_1_1Node_a80fe9192b35baa5321e8d0ffba4b8b8a}{oomph\+::\+Node}}.
 
 
 
@@ -644,7 +595,7 @@ References \mbox{\hyperlink{nodes_8h_source_l00253}{oomph\+::\+Data\+::is\+\_\+a
 \index{oomph::SolidNode@{oomph::SolidNode}!position\_is\_a\_copy@{position\_is\_a\_copy}}
 \index{position\_is\_a\_copy@{position\_is\_a\_copy}!oomph::SolidNode@{oomph::SolidNode}}
 \doxysubsubsection{\texorpdfstring{position\_is\_a\_copy()}{position\_is\_a\_copy()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
-{\footnotesize\ttfamily bool oomph\+::\+Solid\+Node\+::position\+\_\+is\+\_\+a\+\_\+copy (\begin{DoxyParamCaption}\item[{const unsigned \&}]{i }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [virtual]}}
+{\footnotesize\ttfamily bool oomph\+::\+Solid\+Node\+::position\+\_\+is\+\_\+a\+\_\+copy (\begin{DoxyParamCaption}\item[{const unsigned \&}]{i }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
 
 
 
@@ -652,15 +603,11 @@ Return whether the position coordinate i has been copied.
 
 
 
-Reimplemented from \mbox{\hyperlink{classoomph_1_1Node_a0e1ad244c2b109fb54a2fa6430d6ad5b}{oomph\+::\+Node}}.
-
-
-
 Definition at line \mbox{\hyperlink{nodes_8h_source_l01791}{1791}} of file \mbox{\hyperlink{nodes_8h_source}{nodes.\+h}}.
 
 
 
-References \mbox{\hyperlink{cfortran_8h_source_l00603}{i}}, \mbox{\hyperlink{nodes_8h_source_l00253}{oomph\+::\+Data\+::is\+\_\+a\+\_\+copy()}}, \mbox{\hyperlink{nodes_8h_source_l00952}{oomph\+::\+Node\+::\+Nposition\+\_\+type}}, and \mbox{\hyperlink{nodes_8h_source_l01702}{Variable\+\_\+position\+\_\+pt}}.
+References \mbox{\hyperlink{cfortran_8h_source_l00603}{i}}, \mbox{\hyperlink{nodes_8h_source_l00253}{oomph\+::\+Data\+::is\+\_\+a\+\_\+copy()}}, and \mbox{\hyperlink{nodes_8h_source_l01702}{Variable\+\_\+position\+\_\+pt}}.
 
 \mbox{\Hypertarget{classoomph_1_1SolidNode_afd8204156be2ff0fa40834ca35daf243}\label{classoomph_1_1SolidNode_afd8204156be2ff0fa40834ca35daf243}} 
 \index{oomph::SolidNode@{oomph::SolidNode}!position\_is\_pinned@{position\_is\_pinned}}
@@ -678,7 +625,7 @@ Definition at line \mbox{\hyperlink{nodes_8h_source_l01804}{1804}} of file \mbox
 
 
 
-References \mbox{\hyperlink{cfortran_8h_source_l00603}{i}}, \mbox{\hyperlink{nodes_8h_source_l00417}{oomph\+::\+Data\+::is\+\_\+pinned()}}, \mbox{\hyperlink{nodes_8h_source_l00952}{oomph\+::\+Node\+::\+Nposition\+\_\+type}}, and \mbox{\hyperlink{nodes_8h_source_l01702}{Variable\+\_\+position\+\_\+pt}}.
+References \mbox{\hyperlink{cfortran_8h_source_l00603}{i}}, \mbox{\hyperlink{nodes_8h_source_l00417}{oomph\+::\+Data\+::is\+\_\+pinned()}}, and \mbox{\hyperlink{nodes_8h_source_l01702}{Variable\+\_\+position\+\_\+pt}}.
 
 
 
@@ -700,7 +647,7 @@ Definition at line \mbox{\hyperlink{nodes_8h_source_l01811}{1811}} of file \mbox
 
 
 
-References \mbox{\hyperlink{cfortran_8h_source_l00603}{i}}, \mbox{\hyperlink{nodes_8h_source_l00417}{oomph\+::\+Data\+::is\+\_\+pinned()}}, \mbox{\hyperlink{nodes_8h_source_l00952}{oomph\+::\+Node\+::\+Nposition\+\_\+type}}, and \mbox{\hyperlink{nodes_8h_source_l01702}{Variable\+\_\+position\+\_\+pt}}.
+References \mbox{\hyperlink{cfortran_8h_source_l00603}{i}}, \mbox{\hyperlink{nodes_8h_source_l00417}{oomph\+::\+Data\+::is\+\_\+pinned()}}, and \mbox{\hyperlink{nodes_8h_source_l01702}{Variable\+\_\+position\+\_\+pt}}.
 
 \mbox{\Hypertarget{classoomph_1_1SolidNode_ac4614b9f9c2222cb40cb004f85a66e57}\label{classoomph_1_1SolidNode_ac4614b9f9c2222cb40cb004f85a66e57}} 
 \index{oomph::SolidNode@{oomph::SolidNode}!read@{read}}
@@ -718,7 +665,7 @@ Definition at line \mbox{\hyperlink{nodes_8cc_source_l03490}{3490}} of file \mbo
 
 
 
-References \mbox{\hyperlink{nodes_8h_source_l01695}{Nlagrangian}}, \mbox{\hyperlink{nodes_8h_source_l01699}{Nlagrangian\+\_\+type}}, \mbox{\hyperlink{nodes_8cc_source_l01996}{oomph\+::\+Node\+::read()}}, \mbox{\hyperlink{oomph__definitions_8cc_source_l00286}{oomph\+::\+Global\+\_\+string\+\_\+for\+\_\+annotation\+::string()}}, and \mbox{\hyperlink{nodes_8h_source_l01705}{Xi\+\_\+position}}.
+References \mbox{\hyperlink{nodes_8h_source_l01695}{Nlagrangian}}, \mbox{\hyperlink{nodes_8h_source_l01699}{Nlagrangian\+\_\+type}}, \mbox{\hyperlink{oomph__definitions_8cc_source_l00286}{oomph\+::\+Global\+\_\+string\+\_\+for\+\_\+annotation\+::string()}}, and \mbox{\hyperlink{nodes_8h_source_l01705}{Xi\+\_\+position}}.
 
 
 
@@ -728,17 +675,13 @@ Referenced by \mbox{\hyperlink{mesh_8cc_source_l01130}{oomph\+::\+Mesh\+::read()
 \index{oomph::SolidNode@{oomph::SolidNode}!read\_eqn\_numbers\_from\_vector@{read\_eqn\_numbers\_from\_vector}}
 \index{read\_eqn\_numbers\_from\_vector@{read\_eqn\_numbers\_from\_vector}!oomph::SolidNode@{oomph::SolidNode}}
 \doxysubsubsection{\texorpdfstring{read\_eqn\_numbers\_from\_vector()}{read\_eqn\_numbers\_from\_vector()}}
-{\footnotesize\ttfamily void oomph\+::\+Solid\+Node\+::read\+\_\+eqn\+\_\+numbers\+\_\+from\+\_\+vector (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{classoomph_1_1Vector}{Vector}}$<$ long $>$ \&}]{vector\+\_\+of\+\_\+eqn\+\_\+numbers,  }\item[{unsigned \&}]{index }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [virtual]}}
+{\footnotesize\ttfamily void oomph\+::\+Solid\+Node\+::read\+\_\+eqn\+\_\+numbers\+\_\+from\+\_\+vector (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{classoomph_1_1Vector}{Vector}}$<$ long $>$ \&}]{vector\+\_\+of\+\_\+eqn\+\_\+numbers,  }\item[{unsigned \&}]{index }\end{DoxyParamCaption})}
 
 
 
 Read all equation numbers from the vector starting from index. On return the index will be set to the value at the end of the data that has been read in Overload to include the equation numbrs associated with the positional dofs. 
 
-Read the equation numbers associated with the node position from the vector after reading in the standard nodal equaiton numbers 
-
-Reimplemented from \mbox{\hyperlink{classoomph_1_1Data_ae958e52df6ede2a08f957db4ee685ca7}{oomph\+::\+Data}}.
-
-
+Read the equation numbers associated with the node position from the vector after reading in the standard nodal equaiton numbers. 
 
 Definition at line \mbox{\hyperlink{nodes_8cc_source_l03811}{3811}} of file \mbox{\hyperlink{nodes_8cc_source}{nodes.\+cc}}.
 
@@ -750,7 +693,7 @@ References \mbox{\hyperlink{nodes_8cc_source_l01274}{oomph\+::\+Data\+::read\+\_
 \index{oomph::SolidNode@{oomph::SolidNode}!read\_values\_from\_vector@{read\_values\_from\_vector}}
 \index{read\_values\_from\_vector@{read\_values\_from\_vector}!oomph::SolidNode@{oomph::SolidNode}}
 \doxysubsubsection{\texorpdfstring{read\_values\_from\_vector()}{read\_values\_from\_vector()}}
-{\footnotesize\ttfamily void oomph\+::\+Solid\+Node\+::read\+\_\+values\+\_\+from\+\_\+vector (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{classoomph_1_1Vector}{Vector}}$<$ double $>$ \&}]{vector\+\_\+of\+\_\+values,  }\item[{unsigned \&}]{index }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [virtual]}}
+{\footnotesize\ttfamily void oomph\+::\+Solid\+Node\+::read\+\_\+values\+\_\+from\+\_\+vector (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{classoomph_1_1Vector}{Vector}}$<$ double $>$ \&}]{vector\+\_\+of\+\_\+values,  }\item[{unsigned \&}]{index }\end{DoxyParamCaption})}
 
 
 
@@ -758,15 +701,11 @@ Read all data and time history values from the vector starting from index. On re
 
 Read the lagrangian coordinates in from the vector after reading in the positional and \char`\"{}standard\char`\"{} data. 
 
-Reimplemented from \mbox{\hyperlink{classoomph_1_1Node_accb033ab8ed4f96331014f7c4cd131f9}{oomph\+::\+Node}}.
-
-
-
 Definition at line \mbox{\hyperlink{nodes_8cc_source_l03755}{3755}} of file \mbox{\hyperlink{nodes_8cc_source}{nodes.\+cc}}.
 
 
 
-References \mbox{\hyperlink{cfortran_8h_source_l00603}{i}}, \mbox{\hyperlink{nodes_8h_source_l01871}{nlagrangian()}}, \mbox{\hyperlink{nodes_8h_source_l01878}{nlagrangian\+\_\+type()}}, \mbox{\hyperlink{nodes_8cc_source_l02832}{oomph\+::\+Node\+::read\+\_\+values\+\_\+from\+\_\+vector()}}, and \mbox{\hyperlink{nodes_8h_source_l01705}{Xi\+\_\+position}}.
+References \mbox{\hyperlink{cfortran_8h_source_l00603}{i}}, \mbox{\hyperlink{nodes_8h_source_l01871}{nlagrangian()}}, \mbox{\hyperlink{nodes_8h_source_l01878}{nlagrangian\+\_\+type()}}, and \mbox{\hyperlink{nodes_8h_source_l01705}{Xi\+\_\+position}}.
 
 
 
@@ -788,13 +727,13 @@ Definition at line \mbox{\hyperlink{nodes_8cc_source_l03532}{3532}} of file \mbo
 
 
 
-References \mbox{\hyperlink{nodes_8h_source_l00094}{oomph\+::\+Data\+::\+Copied\+Data}}, \mbox{\hyperlink{nodes_8h_source_l00112}{oomph\+::\+Data\+::\+Value}}, \mbox{\hyperlink{nodes_8h_source_l01702}{Variable\+\_\+position\+\_\+pt}}, and \mbox{\hyperlink{nodes_8h_source_l00930}{oomph\+::\+Node\+::\+X\+\_\+position}}.
+References \mbox{\hyperlink{nodes_8h_source_l00112}{oomph\+::\+Data\+::\+Value}}, and \mbox{\hyperlink{nodes_8h_source_l01702}{Variable\+\_\+position\+\_\+pt}}.
 
 \mbox{\Hypertarget{classoomph_1_1SolidNode_a12b206264401d5b2ff6aefff386bdca4}\label{classoomph_1_1SolidNode_a12b206264401d5b2ff6aefff386bdca4}} 
 \index{oomph::SolidNode@{oomph::SolidNode}!set\_position\_time\_stepper@{set\_position\_time\_stepper}}
 \index{set\_position\_time\_stepper@{set\_position\_time\_stepper}!oomph::SolidNode@{oomph::SolidNode}}
 \doxysubsubsection{\texorpdfstring{set\_position\_time\_stepper()}{set\_position\_time\_stepper()}}
-{\footnotesize\ttfamily void oomph\+::\+Solid\+Node\+::set\+\_\+position\+\_\+time\+\_\+stepper (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classoomph_1_1TimeStepper}{Time\+Stepper}} $\ast$const \&}]{position\+\_\+time\+\_\+stepper\+\_\+pt,  }\item[{const bool \&}]{preserve\+\_\+existing\+\_\+data }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [virtual]}}
+{\footnotesize\ttfamily void oomph\+::\+Solid\+Node\+::set\+\_\+position\+\_\+time\+\_\+stepper (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classoomph_1_1TimeStepper}{Time\+Stepper}} $\ast$const \&}]{position\+\_\+time\+\_\+stepper\+\_\+pt,  }\item[{const bool \&}]{preserve\+\_\+existing\+\_\+data }\end{DoxyParamCaption})}
 
 
 
@@ -802,29 +741,21 @@ Set a new position timestepper be resizing the appropriate storage Overloaded fr
 
 Set a new position \mbox{\hyperlink{classoomph_1_1TimeStepper}{Time\+Stepper}} be resizing the appropriate storage. The current (zero) values will be unaffected, but all other entries will be set to zero. 
 
-Reimplemented from \mbox{\hyperlink{classoomph_1_1Node_a15d3962d66d92de44e32edc9c5c2fedf}{oomph\+::\+Node}}.
-
-
-
 Definition at line \mbox{\hyperlink{nodes_8cc_source_l03548}{3548}} of file \mbox{\hyperlink{nodes_8cc_source}{nodes.\+cc}}.
 
 
 
-References \mbox{\hyperlink{nodes_8h_source_l00933}{oomph\+::\+Node\+::\+Position\+\_\+time\+\_\+stepper\+\_\+pt}}, \mbox{\hyperlink{nodes_8h_source_l01023}{oomph\+::\+Node\+::position\+\_\+time\+\_\+stepper\+\_\+pt()}}, \mbox{\hyperlink{nodes_8cc_source_l00406}{oomph\+::\+Data\+::set\+\_\+time\+\_\+stepper()}}, \mbox{\hyperlink{nodes_8h_source_l00112}{oomph\+::\+Data\+::\+Value}}, \mbox{\hyperlink{nodes_8h_source_l01702}{Variable\+\_\+position\+\_\+pt}}, and \mbox{\hyperlink{nodes_8h_source_l00930}{oomph\+::\+Node\+::\+X\+\_\+position}}.
+References \mbox{\hyperlink{nodes_8cc_source_l00406}{oomph\+::\+Data\+::set\+\_\+time\+\_\+stepper()}}, \mbox{\hyperlink{nodes_8h_source_l00112}{oomph\+::\+Data\+::\+Value}}, and \mbox{\hyperlink{nodes_8h_source_l01702}{Variable\+\_\+position\+\_\+pt}}.
 
 \mbox{\Hypertarget{classoomph_1_1SolidNode_a1959abfbb37f775a4d6808ceb9afd421}\label{classoomph_1_1SolidNode_a1959abfbb37f775a4d6808ceb9afd421}} 
 \index{oomph::SolidNode@{oomph::SolidNode}!unconstrain\_positions@{unconstrain\_positions}}
 \index{unconstrain\_positions@{unconstrain\_positions}!oomph::SolidNode@{oomph::SolidNode}}
 \doxysubsubsection{\texorpdfstring{unconstrain\_positions()}{unconstrain\_positions()}}
-{\footnotesize\ttfamily void oomph\+::\+Solid\+Node\+::unconstrain\+\_\+positions (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [virtual]}}
+{\footnotesize\ttfamily void oomph\+::\+Solid\+Node\+::unconstrain\+\_\+positions (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
 
 
 
 Overload the unconstrain positions function to unconstrain all position values. 
-
-
-
-Reimplemented from \mbox{\hyperlink{classoomph_1_1Node_ac23aaa36891269f3c9a832618f0c8c2c}{oomph\+::\+Node}}.
 
 
 
@@ -838,7 +769,7 @@ References \mbox{\hyperlink{nodes_8h_source_l00461}{oomph\+::\+Data\+::unconstra
 \index{oomph::SolidNode@{oomph::SolidNode}!unpin\_all@{unpin\_all}}
 \index{unpin\_all@{unpin\_all}!oomph::SolidNode@{oomph::SolidNode}}
 \doxysubsubsection{\texorpdfstring{unpin\_all()}{unpin\_all()}}
-{\footnotesize\ttfamily void oomph\+::\+Solid\+Node\+::unpin\+\_\+all (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [virtual]}}
+{\footnotesize\ttfamily void oomph\+::\+Solid\+Node\+::unpin\+\_\+all (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
 
 
 
@@ -846,15 +777,11 @@ Unpin all the stored variables (Overloaded)
 
 
 
-Reimplemented from \mbox{\hyperlink{classoomph_1_1Node_a8ef38470acf00f344c9567bcc9cbd000}{oomph\+::\+Node}}.
-
-
-
 Definition at line \mbox{\hyperlink{nodes_8h_source_l01850}{1850}} of file \mbox{\hyperlink{nodes_8h_source}{nodes.\+h}}.
 
 
 
-References \mbox{\hyperlink{nodes_8h_source_l00407}{oomph\+::\+Data\+::unpin\+\_\+all()}}, \mbox{\hyperlink{nodes_8h_source_l01205}{oomph\+::\+Node\+::unpin\+\_\+all()}}, and \mbox{\hyperlink{nodes_8h_source_l01702}{Variable\+\_\+position\+\_\+pt}}.
+References \mbox{\hyperlink{nodes_8h_source_l00407}{oomph\+::\+Data\+::unpin\+\_\+all()}}, and \mbox{\hyperlink{nodes_8h_source_l01702}{Variable\+\_\+position\+\_\+pt}}.
 
 \mbox{\Hypertarget{classoomph_1_1SolidNode_ab43707b1893ca89e684609f045ea8101}\label{classoomph_1_1SolidNode_ab43707b1893ca89e684609f045ea8101}} 
 \index{oomph::SolidNode@{oomph::SolidNode}!unpin\_position@{unpin\_position}}
@@ -872,7 +799,7 @@ Definition at line \mbox{\hyperlink{nodes_8h_source_l01830}{1830}} of file \mbox
 
 
 
-References \mbox{\hyperlink{cfortran_8h_source_l00603}{i}}, \mbox{\hyperlink{nodes_8h_source_l00952}{oomph\+::\+Node\+::\+Nposition\+\_\+type}}, \mbox{\hyperlink{nodes_8h_source_l00391}{oomph\+::\+Data\+::unpin()}}, and \mbox{\hyperlink{nodes_8h_source_l01702}{Variable\+\_\+position\+\_\+pt}}.
+References \mbox{\hyperlink{cfortran_8h_source_l00603}{i}}, \mbox{\hyperlink{nodes_8h_source_l00391}{oomph\+::\+Data\+::unpin()}}, and \mbox{\hyperlink{nodes_8h_source_l01702}{Variable\+\_\+position\+\_\+pt}}.
 
 
 
@@ -894,7 +821,7 @@ Definition at line \mbox{\hyperlink{nodes_8h_source_l01837}{1837}} of file \mbox
 
 
 
-References \mbox{\hyperlink{cfortran_8h_source_l00603}{i}}, \mbox{\hyperlink{nodes_8h_source_l00952}{oomph\+::\+Node\+::\+Nposition\+\_\+type}}, \mbox{\hyperlink{nodes_8h_source_l00391}{oomph\+::\+Data\+::unpin()}}, and \mbox{\hyperlink{nodes_8h_source_l01702}{Variable\+\_\+position\+\_\+pt}}.
+References \mbox{\hyperlink{cfortran_8h_source_l00603}{i}}, \mbox{\hyperlink{nodes_8h_source_l00391}{oomph\+::\+Data\+::unpin()}}, and \mbox{\hyperlink{nodes_8h_source_l01702}{Variable\+\_\+position\+\_\+pt}}.
 
 \mbox{\Hypertarget{classoomph_1_1SolidNode_aa2fd2ecf8163f4576d49f08b25280a4d}\label{classoomph_1_1SolidNode_aa2fd2ecf8163f4576d49f08b25280a4d}} 
 \index{oomph::SolidNode@{oomph::SolidNode}!variable\_position@{variable\_position}}
@@ -934,7 +861,7 @@ References \mbox{\hyperlink{nodes_8h_source_l01702}{Variable\+\_\+position\+\_\+
 
 
 
-Referenced by \mbox{\hyperlink{periodic__orbit__handler_8h_source_l01045}{oomph\+::\+Periodic\+Orbit\+Assembly\+Handler$<$ NNODE\+\_\+1\+D $>$\+::adapt\+\_\+temporal\+\_\+mesh()}}, \mbox{\hyperlink{nodes_8h_source_l02829}{oomph\+::\+Boundary\+Node$<$ NODE\+\_\+\+TYPE $>$\+::assign\+\_\+eqn\+\_\+numbers()}}, \mbox{\hyperlink{element__with__external__element_8cc_source_l00246}{oomph\+::\+Element\+With\+External\+Element\+::assign\+\_\+external\+\_\+interaction\+\_\+data\+\_\+local\+\_\+eqn\+\_\+numbers()}}, \mbox{\hyperlink{elements_8cc_source_l00691}{oomph\+::\+Generalised\+Element\+::assign\+\_\+local\+\_\+eqn\+\_\+numbers()}}, \mbox{\hyperlink{mesh_8cc_source_l03262}{oomph\+::\+Mesh\+::classify\+\_\+halo\+\_\+and\+\_\+haloed\+\_\+nodes()}}, \mbox{\hyperlink{multi__domain_8template_8cc_source_l02068}{oomph\+::\+Multi\+\_\+domain\+\_\+functions\+::construct\+\_\+new\+\_\+external\+\_\+halo\+\_\+master\+\_\+node\+\_\+helper()}}, \mbox{\hyperlink{missing__masters_8template_8cc_source_l00251}{oomph\+::\+Missing\+\_\+masters\+\_\+functions\+::construct\+\_\+new\+\_\+external\+\_\+halo\+\_\+master\+\_\+node\+\_\+helper()}}, \mbox{\hyperlink{multi__domain_8cc_source_l01452}{oomph\+::\+Multi\+\_\+domain\+\_\+functions\+::construct\+\_\+new\+\_\+external\+\_\+halo\+\_\+node\+\_\+helper()}}, \mbox{\hyperlink{missing__masters_8cc_source_l01298}{oomph\+::\+Missing\+\_\+masters\+\_\+functions\+::construct\+\_\+new\+\_\+external\+\_\+halo\+\_\+node\+\_\+helper()}}, \mbox{\hyperlink{triangle__mesh_8template_8cc_source_l19416}{oomph\+::\+Refineable\+Triangle\+Mesh$<$ ELEMENT $>$\+::construct\+\_\+new\+\_\+halo\+\_\+node\+\_\+helper()}}, \mbox{\hyperlink{triangle__mesh_8template_8cc_source_l27905}{oomph\+::\+Refineable\+Triangle\+Mesh$<$ ELEMENT $>$\+::construct\+\_\+new\+\_\+node\+\_\+load\+\_\+balance\+\_\+helper()}}, \mbox{\hyperlink{nodes_8cc_source_l03433}{copy()}}, \mbox{\hyperlink{displacement__control__element_8h_source_l00122}{oomph\+::\+Displacement\+Control\+Element\+::\+Displacement\+Control\+Element()}}, \mbox{\hyperlink{fsi_8h_source_l00724}{oomph\+::\+FSI\+\_\+functions\+::doc\+\_\+fsi()}}, \mbox{\hyperlink{missing__masters_8cc_source_l00658}{oomph\+::\+Missing\+\_\+masters\+\_\+functions\+::get\+\_\+required\+\_\+master\+\_\+nodal\+\_\+information\+\_\+helper()}}, \mbox{\hyperlink{multi__domain_8cc_source_l01010}{oomph\+::\+Multi\+\_\+domain\+\_\+functions\+::get\+\_\+required\+\_\+master\+\_\+nodal\+\_\+information\+\_\+helper()}}, \mbox{\hyperlink{missing__masters_8cc_source_l00436}{oomph\+::\+Missing\+\_\+masters\+\_\+functions\+::get\+\_\+required\+\_\+nodal\+\_\+information\+\_\+helper()}}, \mbox{\hyperlink{multi__domain_8cc_source_l00754}{oomph\+::\+Multi\+\_\+domain\+\_\+functions\+::get\+\_\+required\+\_\+nodal\+\_\+information\+\_\+helper()}}, \mbox{\hyperlink{triangle__mesh_8template_8cc_source_l18330}{oomph\+::\+Refineable\+Triangle\+Mesh$<$ ELEMENT $>$\+::get\+\_\+required\+\_\+nodal\+\_\+information\+\_\+helper()}}, \mbox{\hyperlink{triangle__mesh_8template_8cc_source_l26810}{oomph\+::\+Refineable\+Triangle\+Mesh$<$ ELEMENT $>$\+::get\+\_\+required\+\_\+nodal\+\_\+information\+\_\+load\+\_\+balance\+\_\+helper()}}, \mbox{\hyperlink{hijacked__elements_8h_source_l00240}{oomph\+::\+Hijacked$<$ ELEMENT $>$\+::hijack\+\_\+nodal\+\_\+position\+\_\+value()}}, \mbox{\hyperlink{generalised__newtonian__navier__stokes__elements_8h_source_l01007}{oomph\+::\+Generalised\+Newtonian\+Navier\+Stokes\+Equations$<$ DIM $>$\+::pin\+\_\+all\+\_\+non\+\_\+pressure\+\_\+dofs()}}, \mbox{\hyperlink{navier__stokes__elements_8h_source_l01363}{oomph\+::\+Navier\+Stokes\+Equations$<$ DIM $>$\+::pin\+\_\+all\+\_\+non\+\_\+pressure\+\_\+dofs()}}, \mbox{\hyperlink{discontinuous__galerkin__equal__order__pressure__spacetime__navier__stokes__elements_8h_source_l01747}{oomph\+::\+Space\+Time\+Navier\+Stokes\+Equations$<$ DIM $>$\+::pin\+\_\+all\+\_\+non\+\_\+pressure\+\_\+dofs()}}, \mbox{\hyperlink{mixed__order__petrov__galerkin__space__time__navier__stokes__elements_8h_source_l01774}{oomph\+::\+Space\+Time\+Navier\+Stokes\+Mixed\+Order\+Equations$<$ DIM $>$\+::pin\+\_\+all\+\_\+non\+\_\+pressure\+\_\+dofs()}}, \mbox{\hyperlink{problem_8cc_source_l02568}{oomph\+::\+Problem\+::remove\+\_\+duplicate\+\_\+data()}}, \mbox{\hyperlink{navier__stokes__preconditioners_8h_source_l01106}{oomph\+::\+Navier\+Stokes\+Schur\+Complement\+Preconditioner\+::reset\+\_\+pin\+\_\+status()}}, and \mbox{\hyperlink{problem_8cc_source_l16700}{oomph\+::\+Problem\+::synchronise\+\_\+eqn\+\_\+numbers()}}.
+Referenced by \mbox{\hyperlink{periodic__orbit__handler_8h_source_l01045}{oomph\+::\+Periodic\+Orbit\+Assembly\+Handler$<$ NNODE\+\_\+1\+D $>$\+::adapt\+\_\+temporal\+\_\+mesh()}}, \mbox{\hyperlink{nodes_8h_source_l02829}{oomph\+::\+Boundary\+Node$<$ NODE\+\_\+\+TYPE $>$\+::assign\+\_\+eqn\+\_\+numbers()}}, \mbox{\hyperlink{element__with__external__element_8cc_source_l00246}{oomph\+::\+Element\+With\+External\+Element\+::assign\+\_\+external\+\_\+interaction\+\_\+data\+\_\+local\+\_\+eqn\+\_\+numbers()}}, \mbox{\hyperlink{elements_8cc_source_l00691}{oomph\+::\+Generalised\+Element\+::assign\+\_\+local\+\_\+eqn\+\_\+numbers()}}, \mbox{\hyperlink{mesh_8cc_source_l03262}{oomph\+::\+Mesh\+::classify\+\_\+halo\+\_\+and\+\_\+haloed\+\_\+nodes()}}, \mbox{\hyperlink{multi__domain_8template_8cc_source_l02068}{oomph\+::\+Multi\+\_\+domain\+\_\+functions\+::construct\+\_\+new\+\_\+external\+\_\+halo\+\_\+master\+\_\+node\+\_\+helper()}}, \mbox{\hyperlink{missing__masters_8template_8cc_source_l00251}{oomph\+::\+Missing\+\_\+masters\+\_\+functions\+::construct\+\_\+new\+\_\+external\+\_\+halo\+\_\+master\+\_\+node\+\_\+helper()}}, \mbox{\hyperlink{multi__domain_8cc_source_l01452}{oomph\+::\+Multi\+\_\+domain\+\_\+functions\+::construct\+\_\+new\+\_\+external\+\_\+halo\+\_\+node\+\_\+helper()}}, \mbox{\hyperlink{missing__masters_8cc_source_l01298}{oomph\+::\+Missing\+\_\+masters\+\_\+functions\+::construct\+\_\+new\+\_\+external\+\_\+halo\+\_\+node\+\_\+helper()}}, \mbox{\hyperlink{triangle__mesh_8template_8cc_source_l19416}{oomph\+::\+Refineable\+Triangle\+Mesh$<$ ELEMENT $>$\+::construct\+\_\+new\+\_\+halo\+\_\+node\+\_\+helper()}}, \mbox{\hyperlink{triangle__mesh_8template_8cc_source_l27905}{oomph\+::\+Refineable\+Triangle\+Mesh$<$ ELEMENT $>$\+::construct\+\_\+new\+\_\+node\+\_\+load\+\_\+balance\+\_\+helper()}}, \mbox{\hyperlink{nodes_8cc_source_l03433}{copy()}}, \mbox{\hyperlink{displacement__control__element_8h_source_l00122}{oomph\+::\+Displacement\+Control\+Element\+::\+Displacement\+Control\+Element()}}, \mbox{\hyperlink{fsi_8h_source_l00724}{oomph\+::\+FSI\+\_\+functions\+::doc\+\_\+fsi()}}, \mbox{\hyperlink{missing__masters_8cc_source_l00658}{oomph\+::\+Missing\+\_\+masters\+\_\+functions\+::get\+\_\+required\+\_\+master\+\_\+nodal\+\_\+information\+\_\+helper()}}, \mbox{\hyperlink{multi__domain_8cc_source_l01010}{oomph\+::\+Multi\+\_\+domain\+\_\+functions\+::get\+\_\+required\+\_\+master\+\_\+nodal\+\_\+information\+\_\+helper()}}, \mbox{\hyperlink{missing__masters_8cc_source_l00436}{oomph\+::\+Missing\+\_\+masters\+\_\+functions\+::get\+\_\+required\+\_\+nodal\+\_\+information\+\_\+helper()}}, \mbox{\hyperlink{multi__domain_8cc_source_l00754}{oomph\+::\+Multi\+\_\+domain\+\_\+functions\+::get\+\_\+required\+\_\+nodal\+\_\+information\+\_\+helper()}}, \mbox{\hyperlink{triangle__mesh_8template_8cc_source_l18330}{oomph\+::\+Refineable\+Triangle\+Mesh$<$ ELEMENT $>$\+::get\+\_\+required\+\_\+nodal\+\_\+information\+\_\+helper()}}, \mbox{\hyperlink{triangle__mesh_8template_8cc_source_l26810}{oomph\+::\+Refineable\+Triangle\+Mesh$<$ ELEMENT $>$\+::get\+\_\+required\+\_\+nodal\+\_\+information\+\_\+load\+\_\+balance\+\_\+helper()}}, \mbox{\hyperlink{hijacked__elements_8h_source_l00240}{oomph\+::\+Hijacked$<$ ELEMENT $>$\+::hijack\+\_\+nodal\+\_\+position\+\_\+value()}}, \mbox{\hyperlink{navier__stokes__preconditioners_8h_source_l00554}{oomph\+::left()}}, \mbox{\hyperlink{problem_8cc_source_l02568}{oomph\+::\+Problem\+::remove\+\_\+duplicate\+\_\+data()}}, and \mbox{\hyperlink{problem_8cc_source_l16700}{oomph\+::\+Problem\+::synchronise\+\_\+eqn\+\_\+numbers()}}.
 
 \mbox{\Hypertarget{classoomph_1_1SolidNode_aa6780c66ed3f5db5cbb8fe2c0a476974}\label{classoomph_1_1SolidNode_aa6780c66ed3f5db5cbb8fe2c0a476974}} 
 \index{oomph::SolidNode@{oomph::SolidNode}!xi@{xi}}

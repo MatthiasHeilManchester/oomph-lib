@@ -127,6 +127,9 @@
 </div><!--header-->
 <div class="contents">
 
+<p>Triangle mesh build with the help of the scaffold mesh coming from the triangle mesh generator Triangle. <a href="http://www.cs.cmu.edu/~quake/triangle.html">http://www.cs.cmu.edu/~quake/triangle.html</a>.  
+ <a href="classoomph_1_1TriangleMesh.html#details">More...</a></p>
+
 <p><code>#include &lt;<a class="el" href="triangle__mesh_8template_8h_source.html">triangle_mesh.template.h</a>&gt;</code></p>
 <div class="dynheader">
 Inheritance diagram for oomph::TriangleMesh&lt; ELEMENT &gt;:</div>
@@ -216,6 +219,7 @@ Public Member Functions</h2></td></tr>
 <tr class="memdesc:ac023e6d962d37d1cc3089b31dc1d4a2a"><td class="mdescLeft">&#160;</td><td class="mdescRight">Used to read info. related with distributed triangle meshes.  <a href="classoomph_1_1TriangleMesh.html#ac023e6d962d37d1cc3089b31dc1d4a2a">More...</a><br /></td></tr>
 <tr class="separator:ac023e6d962d37d1cc3089b31dc1d4a2a"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:aa4b1cfd4537c1e511fe1f2fb14b1e8a6"><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classoomph_1_1TriangleMesh.html#aa4b1cfd4537c1e511fe1f2fb14b1e8a6">reestablish_distribution_info_for_restart</a> (OomphCommunicator *comm_pt, std::istream &amp;restart_file)</td></tr>
+<tr class="memdesc:aa4b1cfd4537c1e511fe1f2fb14b1e8a6"><td class="mdescLeft">&#160;</td><td class="mdescRight">Virtual function used to re-establish any additional info. related with the distribution after a re-starting for triangle meshes.  <a href="classoomph_1_1TriangleMesh.html#aa4b1cfd4537c1e511fe1f2fb14b1e8a6">More...</a><br /></td></tr>
 <tr class="separator:aa4b1cfd4537c1e511fe1f2fb14b1e8a6"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a9bc95b0f26f8cd352997d2db32a6a292"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classoomph_1_1TriangleMesh.html#a9bc95b0f26f8cd352997d2db32a6a292">remesh_from_internal_triangulateio</a> ()</td></tr>
 <tr class="memdesc:a9bc95b0f26f8cd352997d2db32a6a292"><td class="mdescLeft">&#160;</td><td class="mdescRight">Completely regenerate the mesh from the trianglateio structure.  <a href="classoomph_1_1TriangleMesh.html#a9bc95b0f26f8cd352997d2db32a6a292">More...</a><br /></td></tr>
@@ -236,9 +240,10 @@ Public Member Functions</h2></td></tr>
 <tr class="memdesc:a712bfd68d4b55e9c475347c0146fc8ac"><td class="mdescLeft">&#160;</td><td class="mdescRight">Virtual function to perform the load balance routines.  <a href="classoomph_1_1TriangleMesh.html#a712bfd68d4b55e9c475347c0146fc8ac">More...</a><br /></td></tr>
 <tr class="separator:a712bfd68d4b55e9c475347c0146fc8ac"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a47080ac440e82c099c390b37bf694cfe"><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classoomph_1_1TriangleMesh.html#a47080ac440e82c099c390b37bf694cfe">reset_boundary_element_info</a> (Vector&lt; unsigned &gt; &amp;ntmp_boundary_elements, Vector&lt; Vector&lt; unsigned &gt; &gt; &amp;ntmp_boundary_elements_in_region, Vector&lt; FiniteElement * &gt; &amp;deleted_elements)</td></tr>
-<tr class="memdesc:a47080ac440e82c099c390b37bf694cfe"><td class="mdescLeft">&#160;</td><td class="mdescRight">Reset the boundary elements info. after load balance have taken place.  <a href="classoomph_1_1TriangleMesh.html#a47080ac440e82c099c390b37bf694cfe">More...</a><br /></td></tr>
+<tr class="memdesc:a47080ac440e82c099c390b37bf694cfe"><td class="mdescLeft">&#160;</td><td class="mdescRight">Virtual function to perform the reset boundary elements info routines. Generally used after load balance.  <a href="classoomph_1_1TriangleMesh.html#a47080ac440e82c099c390b37bf694cfe">More...</a><br /></td></tr>
 <tr class="separator:a47080ac440e82c099c390b37bf694cfe"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ac7ea71980a3512c16a4ead623988a1e8"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classoomph_1_1TriangleMesh.html#ac7ea71980a3512c16a4ead623988a1e8">output_boundary_coordinates</a> (const unsigned &amp;b, std::ostream &amp;outfile)</td></tr>
+<tr class="memdesc:ac7ea71980a3512c16a4ead623988a1e8"><td class="mdescLeft">&#160;</td><td class="mdescRight">Output the nodes on the boundary and their respective boundary coordinates(into separate tecplot zones)  <a href="classoomph_1_1TriangleMesh.html#ac7ea71980a3512c16a4ead623988a1e8">More...</a><br /></td></tr>
 <tr class="separator:ac7ea71980a3512c16a4ead623988a1e8"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pub-attribs" name="pub-attribs"></a>
@@ -247,6 +252,7 @@ Public Attributes</h2></td></tr>
 <tr class="memdesc:a0478e2d31a2787eb4536bb61aa4bbbfd"><td class="mdescLeft">&#160;</td><td class="mdescRight">Timestepper used to build elements.  <a href="classoomph_1_1TriangleMesh.html#a0478e2d31a2787eb4536bb61aa4bbbfd">More...</a><br /></td></tr>
 <tr class="separator:a0478e2d31a2787eb4536bb61aa4bbbfd"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a166a8057de8390280acb6365c3df87d0"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classoomph_1_1TriangleMesh.html#a166a8057de8390280acb6365c3df87d0">Use_attributes</a></td></tr>
+<tr class="memdesc:a166a8057de8390280acb6365c3df87d0"><td class="mdescLeft">&#160;</td><td class="mdescRight">Boolean flag to indicate whether to use attributes or not (required for multidomain meshes)  <a href="classoomph_1_1TriangleMesh.html#a166a8057de8390280acb6365c3df87d0">More...</a><br /></td></tr>
 <tr class="separator:a166a8057de8390280acb6365c3df87d0"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pro-methods" name="pro-methods"></a>
@@ -477,7 +483,7 @@ Private Member Functions</h2></td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock"><div class="compoundTemplParams">template&lt;class ELEMENT&gt;<br />
-class oomph::TriangleMesh&lt; ELEMENT &gt;</div><p >Triangle mesh build with the help of the scaffold mesh coming from the triangle mesh generator Triangle. <a href="http://www.cs.cmu.edu/~quake/triangle.html">http://www.cs.cmu.edu/~quake/triangle.html</a> </p>
+class oomph::TriangleMesh&lt; ELEMENT &gt;</div><p >Triangle mesh build with the help of the scaffold mesh coming from the triangle mesh generator Triangle. <a href="http://www.cs.cmu.edu/~quake/triangle.html">http://www.cs.cmu.edu/~quake/triangle.html</a>. </p>
 
 <p class="definition">Definition at line <a class="el" href="triangle__mesh_8template_8h_source.html#l00423">423</a> of file <a class="el" href="triangle__mesh_8template_8h_source.html">triangle_mesh.template.h</a>.</p>
 </div><h2 class="groupheader">Member Typedef Documentation</h2>
@@ -3178,7 +3184,8 @@ template&lt;class ELEMENT &gt; </div>
         </tr>
       </table>
 </div><div class="memdoc">
-<p >Output the nodes on the boundary and their respective boundary coordinates(into separate tecplot zones) </p>
+
+<p>Output the nodes on the boundary and their respective boundary coordinates(into separate tecplot zones) </p>
 
 <p class="definition">Definition at line <a class="el" href="triangle__mesh_8template_8cc_source.html#l08014">8014</a> of file <a class="el" href="triangle__mesh_8template_8cc_source.html">triangle_mesh.template.cc</a>.</p>
 
@@ -3339,7 +3346,8 @@ template&lt;class ELEMENT &gt; </div>
   </tr>
 </table>
 </div><div class="memdoc">
-<p >Virtual function used to re-establish any additional info. related with the distribution after a re-starting for triangle meshes </p>
+
+<p>Virtual function used to re-establish any additional info. related with the distribution after a re-starting for triangle meshes. </p>
 
 <p>Reimplemented in <a class="el" href="classoomph_1_1RefineableTriangleMesh.html#a3ecdb3b15c3fefbc96f407c4fdf5b155">oomph::RefineableTriangleMesh&lt; ELEMENT &gt;</a>.</p>
 
@@ -3422,8 +3430,8 @@ template&lt;class ELEMENT &gt; </div>
 </table>
 </div><div class="memdoc">
 
-<p>Reset the boundary elements info. after load balance have taken place. </p>
-<p >Virtual function to perform the reset boundary elements info routines. Generally used after load balance. </p>
+<p>Virtual function to perform the reset boundary elements info routines. Generally used after load balance. </p>
+<p >Reset the boundary elements info. after load balance have taken place. </p>
 
 <p class="definition">Definition at line <a class="el" href="triangle__mesh_8template_8cc_source.html#l14860">14860</a> of file <a class="el" href="triangle__mesh_8template_8cc_source.html">triangle_mesh.template.cc</a>.</p>
 
@@ -3470,7 +3478,7 @@ template&lt;class ELEMENT &gt; </div>
 </div><div class="memdoc">
 
 <p>Select face element from boundary using the criteria to decide which of the two face elements should be used on internal boundaries. </p>
-<p >===================================================================== Select face elements from a given boundary. In case the we are dealing with an internal boundary we use a set of criterias to decide which of the two face elements should be used on represent the internal boundary. We return the face elements, halo or haloed on this processor that form the boundary. The caller method should be in charge of selecting nonhalo elements and deleting the face </p>
+<p >===================================================================== Select face elements from a given boundary. In case the we are dealing with an internal boundary we use a set of criterias to decide which of the two face elements should be used on represent the internal boundary. We return the face elements, halo or haloed on this processor that form the boundary. The caller method should be in charge of selecting nonhalo elements and deleting the face</p>
 <h1><a class="anchor" id="autotoc_md1"></a>
 elements created by this method</h1>
 
@@ -4223,7 +4231,7 @@ template&lt;class ELEMENT &gt; </div>
 </div><div class="memdoc">
 
 <p>In charge of sinchronize the boundary coordinates for internal boundaries that were split as part of the distribution process. Called after setup_boundary_coordinates() for the original mesh only. </p>
-<p >======================================================================== In charge of sinchronize the boundary coordinates for internal boundaries that were split as part of the distribution process. Called after setup_boundary_coordinates() for the </p>
+<p >======================================================================== In charge of sinchronize the boundary coordinates for internal boundaries that were split as part of the distribution process. Called after setup_boundary_coordinates() for the</p>
 <h1><a class="anchor" id="autotoc_md2"></a>
 original mesh only</h1>
 
@@ -4951,7 +4959,8 @@ template&lt;class ELEMENT &gt; </div>
         </tr>
       </table>
 </div><div class="memdoc">
-<p >Boolean flag to indicate whether to use attributes or not (required for multidomain meshes) </p>
+
+<p>Boolean flag to indicate whether to use attributes or not (required for multidomain meshes) </p>
 
 <p class="definition">Definition at line <a class="el" href="triangle__mesh_8template_8h_source.html#l01183">1183</a> of file <a class="el" href="triangle__mesh_8template_8h_source.html">triangle_mesh.template.h</a>.</p>
 
@@ -4991,7 +5000,7 @@ template&lt;class ELEMENT &gt; </div>
     <footer>
       <div class="container">
         <div class="text-muted" style="float:right;">Generated by <a href="http://www.doxygen.org/index.html">
-          <img style="height:18px;" class="footer-img" src="doxygen.png" alt="doxygen"></a> on Wed Oct 13 2021 08:43:42
+          <img style="height:18px;" class="footer-img" src="doxygen.png" alt="doxygen"></a> on Thu Oct 21 2021 17:30:50
         </div>
       </div>
     </footer>

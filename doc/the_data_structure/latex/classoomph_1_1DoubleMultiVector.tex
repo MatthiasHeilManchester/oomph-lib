@@ -33,7 +33,7 @@ Inheritance diagram for oomph\+::Double\+Multi\+Vector\+:\begin{figure}[H]
 \mbox{\hyperlink{classoomph_1_1DoubleMultiVector_af9eb30b7fa130f8d6211b8f63c962e68}{Double\+Multi\+Vector}} (const \mbox{\hyperlink{classoomph_1_1DoubleMultiVector}{Double\+Multi\+Vector}} \&new\+\_\+vector)
 \begin{DoxyCompactList}\small\item\em Copy constructor. \end{DoxyCompactList}\item 
 \mbox{\hyperlink{classoomph_1_1DoubleMultiVector_a551268cff3ee84866a102db6fb1fd6b0}{$\sim$\+Double\+Multi\+Vector}} ()
-\item 
+\begin{DoxyCompactList}\small\item\em Destructor -\/ just calls this-\/\texorpdfstring{$>$}{>}\mbox{\hyperlink{classoomph_1_1DoubleMultiVector_a6e4ab708964cd1dce2d47ea2c0fc91df}{clear()}} to delete the distribution and data. \end{DoxyCompactList}\item 
 void \mbox{\hyperlink{classoomph_1_1DoubleMultiVector_a7f48a5a0d0330bd6ee2f9b0ac1c5fa08}{operator=}} (const \mbox{\hyperlink{classoomph_1_1DoubleMultiVector}{Double\+Multi\+Vector}} \&old\+\_\+vector)
 \begin{DoxyCompactList}\small\item\em assignment operator (deep copy) \end{DoxyCompactList}\item 
 unsigned \mbox{\hyperlink{classoomph_1_1DoubleMultiVector_ae5d4d50a01bb6537701921e0d1a1cdff}{nvector}} () const
@@ -97,7 +97,7 @@ void \mbox{\hyperlink{classoomph_1_1DoubleMultiVector_a09b97b4d4c7d0945178e8bf19
 \begin{DoxyCompactItemize}
 \item 
 double $\ast$$\ast$ \mbox{\hyperlink{classoomph_1_1DoubleMultiVector_a562d13abfae53ad5b3e3c6020b4da0e5}{Values}}
-\item 
+\begin{DoxyCompactList}\small\item\em the local data, need a pointer to a pointer so that the individual vectors can be extracted \end{DoxyCompactList}\item 
 unsigned \mbox{\hyperlink{classoomph_1_1DoubleMultiVector_a21446924694c708c6a82cc908bf7846a}{Nvector}}
 \begin{DoxyCompactList}\small\item\em The number of vectors. \end{DoxyCompactList}\item 
 bool \mbox{\hyperlink{classoomph_1_1DoubleMultiVector_adf8fe4053c07e949f8e9cbea9e29e6e6}{Internal\+\_\+values}}
@@ -245,7 +245,11 @@ References \mbox{\hyperlink{double__multi__vector_8h_source_l00281}{build()}}, a
 \doxysubsubsection{\texorpdfstring{$\sim$DoubleMultiVector()}{~DoubleMultiVector()}}
 {\footnotesize\ttfamily oomph\+::\+Double\+Multi\+Vector\+::$\sim$\+Double\+Multi\+Vector (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
 
-Destructor -\/ just calls this-\/\texorpdfstring{$>$}{>}\mbox{\hyperlink{classoomph_1_1DoubleMultiVector_a6e4ab708964cd1dce2d47ea2c0fc91df}{clear()}} to delete the distribution and data 
+
+
+Destructor -\/ just calls this-\/\texorpdfstring{$>$}{>}\mbox{\hyperlink{classoomph_1_1DoubleMultiVector_a6e4ab708964cd1dce2d47ea2c0fc91df}{clear()}} to delete the distribution and data. 
+
+
 
 Definition at line \mbox{\hyperlink{double__multi__vector_8h_source_l00198}{198}} of file \mbox{\hyperlink{double__multi__vector_8h_source}{double\+\_\+multi\+\_\+vector.\+h}}.
 
@@ -394,10 +398,6 @@ Definition at line \mbox{\hyperlink{double__multi__vector_8h_source_l00692}{692}
 
 References \mbox{\hyperlink{cfortran_8h_source_l00603}{i}}, and \mbox{\hyperlink{double__multi__vector_8h_source_l01015}{Internal\+\_\+doublevector}}.
 
-
-
-Referenced by \mbox{\hyperlink{trilinos__eigen__solver_8h_source_l00524}{oomph\+::\+Problem\+Based\+Shift\+Invert\+Operator\+::apply()}}.
-
 \mbox{\Hypertarget{classoomph_1_1DoubleMultiVector_a09c71db2f4bfb57e64922d19e2f5c250}\label{classoomph_1_1DoubleMultiVector_a09c71db2f4bfb57e64922d19e2f5c250}} 
 \index{oomph::DoubleMultiVector@{oomph::DoubleMultiVector}!doublevector@{doublevector}}
 \index{doublevector@{doublevector}!oomph::DoubleMultiVector@{oomph::DoubleMultiVector}}
@@ -480,7 +480,7 @@ References \mbox{\hyperlink{double__multi__vector_8h_source_l01005}{Nvector}}.
 
 
 
-Referenced by \mbox{\hyperlink{trilinos__eigen__solver_8h_source_l00524}{oomph\+::\+Problem\+Based\+Shift\+Invert\+Operator\+::apply()}}, \mbox{\hyperlink{double__multi__vector_8h_source_l00281}{build()}}, \mbox{\hyperlink{double__multi__vector_8h_source_l00809}{dot()}}, \mbox{\hyperlink{trilinos__eigen__solver_8h_source_l00148}{Anasazi\+::\+Multi\+Vec\+Traits$<$ double, oomph\+::\+Double\+Multi\+Vector $>$\+::\+Get\+Number\+Vecs()}}, \mbox{\hyperlink{trilinos__eigen__solver_8h_source_l00189}{Anasazi\+::\+Multi\+Vec\+Traits$<$ double, oomph\+::\+Double\+Multi\+Vector $>$\+::\+Mv\+Add\+Mv()}}, \mbox{\hyperlink{trilinos__eigen__solver_8h_source_l00396}{Anasazi\+::\+Multi\+Vec\+Traits$<$ double, oomph\+::\+Double\+Multi\+Vector $>$\+::\+Mv\+Random()}}, \mbox{\hyperlink{trilinos__eigen__solver_8h_source_l00216}{Anasazi\+::\+Multi\+Vec\+Traits$<$ double, oomph\+::\+Double\+Multi\+Vector $>$\+::\+Mv\+Scale()}}, \mbox{\hyperlink{trilinos__eigen__solver_8h_source_l00154}{Anasazi\+::\+Multi\+Vec\+Traits$<$ double, oomph\+::\+Double\+Multi\+Vector $>$\+::\+Mv\+Times\+Mat\+Add\+Mv()}}, \mbox{\hyperlink{trilinos__eigen__solver_8h_source_l00233}{Anasazi\+::\+Multi\+Vec\+Traits$<$ double, oomph\+::\+Double\+Multi\+Vector $>$\+::\+Mv\+Trans\+Mv()}}, \mbox{\hyperlink{double__multi__vector_8h_source_l00889}{norm()}}, \mbox{\hyperlink{double__multi__vector_8h_source_l00642}{operator$\ast$=()}}, \mbox{\hyperlink{double__multi__vector_8h_source_l00549}{operator+=()}}, \mbox{\hyperlink{double__multi__vector_8h_source_l00596}{operator-\/=()}}, \mbox{\hyperlink{double__multi__vector_8h_source_l00514}{operator==()}}, \mbox{\hyperlink{double__multi__vector_8h_source_l00704}{output()}}, \mbox{\hyperlink{double__multi__vector_8h_source_l00988}{setup\+\_\+doublevector\+\_\+representation()}}, and \mbox{\hyperlink{double__multi__vector_8h_source_l00217}{shallow\+\_\+build()}}.
+Referenced by \mbox{\hyperlink{double__multi__vector_8h_source_l00281}{build()}}, \mbox{\hyperlink{double__multi__vector_8h_source_l00809}{dot()}}, \mbox{\hyperlink{trilinos__eigen__solver_8h_source_l00148}{Anasazi\+::\+Multi\+Vec\+Traits$<$ double, oomph\+::\+Double\+Multi\+Vector $>$\+::\+Get\+Number\+Vecs()}}, \mbox{\hyperlink{trilinos__eigen__solver_8h_source_l00189}{Anasazi\+::\+Multi\+Vec\+Traits$<$ double, oomph\+::\+Double\+Multi\+Vector $>$\+::\+Mv\+Add\+Mv()}}, \mbox{\hyperlink{trilinos__eigen__solver_8h_source_l00396}{Anasazi\+::\+Multi\+Vec\+Traits$<$ double, oomph\+::\+Double\+Multi\+Vector $>$\+::\+Mv\+Random()}}, \mbox{\hyperlink{trilinos__eigen__solver_8h_source_l00216}{Anasazi\+::\+Multi\+Vec\+Traits$<$ double, oomph\+::\+Double\+Multi\+Vector $>$\+::\+Mv\+Scale()}}, \mbox{\hyperlink{trilinos__eigen__solver_8h_source_l00154}{Anasazi\+::\+Multi\+Vec\+Traits$<$ double, oomph\+::\+Double\+Multi\+Vector $>$\+::\+Mv\+Times\+Mat\+Add\+Mv()}}, \mbox{\hyperlink{trilinos__eigen__solver_8h_source_l00233}{Anasazi\+::\+Multi\+Vec\+Traits$<$ double, oomph\+::\+Double\+Multi\+Vector $>$\+::\+Mv\+Trans\+Mv()}}, \mbox{\hyperlink{double__multi__vector_8h_source_l00889}{norm()}}, \mbox{\hyperlink{double__multi__vector_8h_source_l00642}{operator$\ast$=()}}, \mbox{\hyperlink{double__multi__vector_8h_source_l00549}{operator+=()}}, \mbox{\hyperlink{double__multi__vector_8h_source_l00596}{operator-\/=()}}, \mbox{\hyperlink{double__multi__vector_8h_source_l00514}{operator==()}}, \mbox{\hyperlink{double__multi__vector_8h_source_l00704}{output()}}, \mbox{\hyperlink{double__multi__vector_8h_source_l00988}{setup\+\_\+doublevector\+\_\+representation()}}, and \mbox{\hyperlink{double__multi__vector_8h_source_l00217}{shallow\+\_\+build()}}.
 
 \mbox{\Hypertarget{classoomph_1_1DoubleMultiVector_a909469237e8d3cf140e782766d61b8ac}\label{classoomph_1_1DoubleMultiVector_a909469237e8d3cf140e782766d61b8ac}} 
 \index{oomph::DoubleMultiVector@{oomph::DoubleMultiVector}!operator()@{operator()}}
@@ -640,23 +640,19 @@ References \mbox{\hyperlink{double__multi__vector_8h_source_l00704}{output()}}.
 
 Allows are external data to be used by this vector. WARNING\+: The size of the external data must correspond to the \mbox{\hyperlink{classoomph_1_1LinearAlgebraDistribution}{Linear\+Algebra\+Distribution}} dist\+\_\+pt argument. 
 
-
-\begin{DoxyEnumerate}
-\item When a rebuild method is called new internal values are created.
-\item It is not possible to redistribute(...) a vector with external values .
-\item External values are only deleted by this vector if delete\+\_\+external\+\_\+values = true.
-\end{DoxyEnumerate}
-
-Allows are external data to be used by this vector. WARNING\+: The size of the external data must correspond to the distribution of this vector.
-\begin{DoxyEnumerate}
-\item When a rebuild method is called new internal values are created.
-\item It is not possible to redistribute(...) a vector with external values .
-\item External values are only deleted by this vector if delete\+\_\+external\+\_\+values = true.
-\end{DoxyEnumerate}
-
 The contents of the vector are redistributed to match the new distribution. In a non-\/\+MPI rebuild this method works, but does nothing. {\bfseries{NOTE}} 1\+: The current distribution and the new distribution must have the same number of global rows. {\bfseries{NOTE}} 2\+: The current distribution and the new distribution must have the same Communicator.
 
-The contents of the vector are redistributed to match the new distribution. In a non-\/\+MPI rebuild this method works, but does nothing. {\bfseries{NOTE}} 1\+: The current distribution and the new distribution must have the same number of global rows. {\bfseries{NOTE}} 2\+: The current distribution and the new distribution must have the same Communicator. 
+
+\begin{DoxyEnumerate}
+\item When a rebuild method is called new internal values are created.
+\item It is not possible to redistribute(...) a vector with external values .
+\item External values are only deleted by this vector if delete\+\_\+external\+\_\+values = true. Allows are external data to be used by this vector. WARNING\+: The size of the external data must correspond to the distribution of this vector.
+\end{DoxyEnumerate}
+\begin{DoxyEnumerate}
+\item When a rebuild method is called new internal values are created.
+\item It is not possible to redistribute(...) a vector with external values .
+\item External values are only deleted by this vector if delete\+\_\+external\+\_\+values = true. The contents of the vector are redistributed to match the new distribution. In a non-\/\+MPI rebuild this method works, but does nothing. {\bfseries{NOTE}} 1\+: The current distribution and the new distribution must have the same number of global rows. {\bfseries{NOTE}} 2\+: The current distribution and the new distribution must have the same Communicator. 
+\end{DoxyEnumerate}
 
 Definition at line \mbox{\hyperlink{double__multi__vector_8cc_source_l00037}{37}} of file \mbox{\hyperlink{double__multi__vector_8cc_source}{double\+\_\+multi\+\_\+vector.\+cc}}.
 
@@ -901,7 +897,11 @@ Referenced by \mbox{\hyperlink{double__multi__vector_8h_source_l00281}{build()}}
 \doxysubsubsection{\texorpdfstring{Values}{Values}}
 {\footnotesize\ttfamily double$\ast$$\ast$ oomph\+::\+Double\+Multi\+Vector\+::\+Values\hspace{0.3cm}{\ttfamily [private]}}
 
+
+
 the local data, need a pointer to a pointer so that the individual vectors can be extracted 
+
+
 
 Definition at line \mbox{\hyperlink{double__multi__vector_8h_source_l01002}{1002}} of file \mbox{\hyperlink{double__multi__vector_8h_source}{double\+\_\+multi\+\_\+vector.\+h}}.
 

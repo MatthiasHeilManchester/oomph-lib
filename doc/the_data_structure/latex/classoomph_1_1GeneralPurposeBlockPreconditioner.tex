@@ -2,6 +2,11 @@
 \label{classoomph_1_1GeneralPurposeBlockPreconditioner}\index{oomph::GeneralPurposeBlockPreconditioner$<$ MATRIX $>$@{oomph::GeneralPurposeBlockPreconditioner$<$ MATRIX $>$}}
 
 
+Base class for general purpose block preconditioners. Deals with setting subsidiary preconditioners and dof to block maps. Subsidiary preconditioners can be set in two ways\+: 1) A pointer to a subsidiary preconditioner for block i can be passed to set\+\_\+subsidiary\+\_\+preconditioner\+\_\+pt(prec, i). 2) A default subsidiary preconditioner can be set up by providing a function pointer to a function which creates a preconditioner. During \mbox{\hyperlink{classoomph_1_1Preconditioner_af4886f4efe510e5c9b0eb19422943588}{setup()}} all unset subsidiary preconditioner pointers will be filled in using this function. By default this uses Super\+LU.  
+
+
+
+
 {\ttfamily \#include $<$general\+\_\+purpose\+\_\+block\+\_\+preconditioners.\+h$>$}
 
 Inheritance diagram for oomph\+::General\+Purpose\+Block\+Preconditioner\texorpdfstring{$<$}{<} MATRIX \texorpdfstring{$>$}{>}\+:\begin{figure}[H]
@@ -21,7 +26,7 @@ typedef \mbox{\hyperlink{classoomph_1_1Preconditioner}{Preconditioner}} $\ast$($
 \mbox{\hyperlink{classoomph_1_1GeneralPurposeBlockPreconditioner_a4269f62ded274bb1b58a46e3773dc739}{General\+Purpose\+Block\+Preconditioner}} ()
 \begin{DoxyCompactList}\small\item\em constructor \end{DoxyCompactList}\item 
 virtual \mbox{\hyperlink{classoomph_1_1GeneralPurposeBlockPreconditioner_a434ab0c34c615bf29f82cf81e2639258}{$\sim$\+General\+Purpose\+Block\+Preconditioner}} ()
-\item 
+\begin{DoxyCompactList}\small\item\em Destructor\+: clean up memory then delete all subsidiary preconditioners. \end{DoxyCompactList}\item 
 virtual void \mbox{\hyperlink{classoomph_1_1GeneralPurposeBlockPreconditioner_a3272742d3c7f86327d33c5647af874e6}{clean\+\_\+up\+\_\+memory}} ()
 \begin{DoxyCompactList}\small\item\em ??ds I think clean\+\_\+up\+\_\+memory is supposed to clear out any stuff that doesn\textquotesingle{}t need to be stored between solves. Call clean up on any non-\/null subsidiary preconditioners. \end{DoxyCompactList}\item 
 \mbox{\hyperlink{classoomph_1_1GeneralPurposeBlockPreconditioner_a9f11540261b2ede6f079c76a4b0cf721}{General\+Purpose\+Block\+Preconditioner}} (const \mbox{\hyperlink{classoomph_1_1GeneralPurposeBlockPreconditioner}{General\+Purpose\+Block\+Preconditioner}} \&)=delete
@@ -57,14 +62,14 @@ void \mbox{\hyperlink{classoomph_1_1GeneralPurposeBlockPreconditioner_aba4af8088
 \mbox{\hyperlink{classoomph_1_1Vector}{Vector}}$<$ \mbox{\hyperlink{classoomph_1_1Preconditioner}{Preconditioner}} $\ast$ $>$ \mbox{\hyperlink{classoomph_1_1GeneralPurposeBlockPreconditioner_a6bbfedf5de19fd5ee595e73dd8853d41}{Subsidiary\+\_\+preconditioner\+\_\+pt}}
 \begin{DoxyCompactList}\small\item\em List of preconditioners to use for the blocks to be solved. \end{DoxyCompactList}\item 
 \mbox{\hyperlink{classoomph_1_1GeneralPurposeBlockPreconditioner_ad46829c6e2a9300dc9813df3c50464ba}{Subsidiary\+Preconditioner\+Fct\+Pt}} \mbox{\hyperlink{classoomph_1_1GeneralPurposeBlockPreconditioner_a5c29b06a7668e63309cfe27efdf1a60a}{Subsidiary\+\_\+preconditioner\+\_\+creation\+\_\+function\+\_\+pt}}
-\end{DoxyCompactItemize}
+\begin{DoxyCompactList}\small\item\em Function to create any subsidiary preconditioners not set in Subsidiary\+\_\+preconditioner\+\_\+pt. \end{DoxyCompactList}\end{DoxyCompactItemize}
 \doxysubsection*{Private Attributes}
 \begin{DoxyCompactItemize}
 \item 
 \mbox{\hyperlink{classoomph_1_1Vector}{Vector}}$<$ unsigned $>$ \mbox{\hyperlink{classoomph_1_1GeneralPurposeBlockPreconditioner_a098199f5d175c6357aa74d2b40f4540d}{Dof\+\_\+to\+\_\+block\+\_\+map}}
 \begin{DoxyCompactList}\small\item\em the set of dof to block maps for this preconditioner \end{DoxyCompactList}\item 
 \mbox{\hyperlink{classoomph_1_1Vector}{Vector}}$<$ std\+::pair$<$ const \mbox{\hyperlink{classoomph_1_1Mesh}{Mesh}} $\ast$, bool $>$ $>$ \mbox{\hyperlink{classoomph_1_1GeneralPurposeBlockPreconditioner_a7d4b1aedf5b481972a3a13f6f5e06720}{Gp\+\_\+mesh\+\_\+pt}}
-\end{DoxyCompactItemize}
+\begin{DoxyCompactList}\small\item\em \mbox{\hyperlink{classoomph_1_1Vector}{Vector}} of mesh pointers and a boolean indicating if we allow multiple element types in the same mesh. \end{DoxyCompactList}\end{DoxyCompactItemize}
 
 
 \doxysubsection{Detailed Description}
@@ -121,7 +126,11 @@ References \mbox{\hyperlink{general__purpose__block__preconditioners_8h_source_l
 {\footnotesize\ttfamily template$<$typename MATRIX $>$ \\
 virtual \mbox{\hyperlink{classoomph_1_1GeneralPurposeBlockPreconditioner}{oomph\+::\+General\+Purpose\+Block\+Preconditioner}}$<$ MATRIX $>$\+::$\sim$\mbox{\hyperlink{classoomph_1_1GeneralPurposeBlockPreconditioner}{General\+Purpose\+Block\+Preconditioner}} (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [virtual]}}
 
+
+
 Destructor\+: clean up memory then delete all subsidiary preconditioners. 
+
+
 
 Definition at line \mbox{\hyperlink{general__purpose__block__preconditioners_8h_source_l00098}{98}} of file \mbox{\hyperlink{general__purpose__block__preconditioners_8h_source}{general\+\_\+purpose\+\_\+block\+\_\+preconditioners.\+h}}.
 
@@ -416,7 +425,11 @@ Referenced by \mbox{\hyperlink{general__purpose__block__preconditioners_8h_sourc
 {\footnotesize\ttfamily template$<$typename MATRIX $>$ \\
 \mbox{\hyperlink{classoomph_1_1Vector}{Vector}}$<$std\+::pair$<$const \mbox{\hyperlink{classoomph_1_1Mesh}{Mesh}}$\ast$, bool$>$ $>$ \mbox{\hyperlink{classoomph_1_1GeneralPurposeBlockPreconditioner}{oomph\+::\+General\+Purpose\+Block\+Preconditioner}}$<$ MATRIX $>$\+::Gp\+\_\+mesh\+\_\+pt\hspace{0.3cm}{\ttfamily [private]}}
 
+
+
 \mbox{\hyperlink{classoomph_1_1Vector}{Vector}} of mesh pointers and a boolean indicating if we allow multiple element types in the same mesh. 
+
+
 
 Definition at line \mbox{\hyperlink{general__purpose__block__preconditioners_8h_source_l00307}{307}} of file \mbox{\hyperlink{general__purpose__block__preconditioners_8h_source}{general\+\_\+purpose\+\_\+block\+\_\+preconditioners.\+h}}.
 
@@ -431,7 +444,11 @@ Referenced by \mbox{\hyperlink{general__purpose__block__preconditioners_8h_sourc
 {\footnotesize\ttfamily template$<$typename MATRIX $>$ \\
 \mbox{\hyperlink{classoomph_1_1GeneralPurposeBlockPreconditioner_ad46829c6e2a9300dc9813df3c50464ba}{Subsidiary\+Preconditioner\+Fct\+Pt}} \mbox{\hyperlink{classoomph_1_1GeneralPurposeBlockPreconditioner}{oomph\+::\+General\+Purpose\+Block\+Preconditioner}}$<$ MATRIX $>$\+::Subsidiary\+\_\+preconditioner\+\_\+creation\+\_\+function\+\_\+pt\hspace{0.3cm}{\ttfamily [protected]}}
 
+
+
 Function to create any subsidiary preconditioners not set in Subsidiary\+\_\+preconditioner\+\_\+pt. 
+
+
 
 Definition at line \mbox{\hyperlink{general__purpose__block__preconditioners_8h_source_l00299}{299}} of file \mbox{\hyperlink{general__purpose__block__preconditioners_8h_source}{general\+\_\+purpose\+\_\+block\+\_\+preconditioners.\+h}}.
 

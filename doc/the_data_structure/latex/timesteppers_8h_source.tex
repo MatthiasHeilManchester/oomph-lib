@@ -54,7 +54,7 @@
 \DoxyCodeLine{\Hypertarget{timesteppers_8h_source_l00050}00050   \textcolor{keyword}{class }ExplicitTimeStepper;}
 \DoxyCodeLine{\Hypertarget{timesteppers_8h_source_l00051}00051 }
 \DoxyCodeLine{\Hypertarget{timesteppers_8h_source_l00052}00052   \textcolor{comment}{//====================================================================}\textcolor{comment}{}}
-\DoxyCodeLine{\Hypertarget{timesteppers_8h_source_l00053}00053 \textcolor{comment}{  /// \(\backslash\)short Class to keep track of discrete/continous time. It is essential}}
+\DoxyCodeLine{\Hypertarget{timesteppers_8h_source_l00053}00053 \textcolor{comment}{  ///  Class to keep track of discrete/continous time. It is essential}}
 \DoxyCodeLine{\Hypertarget{timesteppers_8h_source_l00054}00054 \textcolor{comment}{  /// to have a single Time object when using multiple time-\/stepping schemes;}}
 \DoxyCodeLine{\Hypertarget{timesteppers_8h_source_l00055}00055 \textcolor{comment}{  /// e.g., in fluid-\/structure interaction problems, it is common to use}}
 \DoxyCodeLine{\Hypertarget{timesteppers_8h_source_l00056}00056 \textcolor{comment}{  /// different schemes for the fluid and solid domains.}}
@@ -73,11 +73,11 @@
 \DoxyCodeLine{\Hypertarget{timesteppers_8h_source_l00069}\mbox{\hyperlink{classoomph_1_1Time_a3fbca07ec14a12aaffc2fbfc8503def2}{00069}} \textcolor{comment}{}    \mbox{\hyperlink{classoomph_1_1Vector}{Vector<double>}} \mbox{\hyperlink{classoomph_1_1Time_a3fbca07ec14a12aaffc2fbfc8503def2}{Dt}};}
 \DoxyCodeLine{\Hypertarget{timesteppers_8h_source_l00070}00070 }
 \DoxyCodeLine{\Hypertarget{timesteppers_8h_source_l00071}00071   \textcolor{keyword}{public}:\textcolor{comment}{}}
-\DoxyCodeLine{\Hypertarget{timesteppers_8h_source_l00072}00072 \textcolor{comment}{    /// \(\backslash\)short Constructor: Do not allocate any storage for previous timesteps,}}
+\DoxyCodeLine{\Hypertarget{timesteppers_8h_source_l00072}00072 \textcolor{comment}{    ///  Constructor: Do not allocate any storage for previous timesteps,}}
 \DoxyCodeLine{\Hypertarget{timesteppers_8h_source_l00073}00073 \textcolor{comment}{    /// but set the initial value of the time to zero}}
 \DoxyCodeLine{\Hypertarget{timesteppers_8h_source_l00074}\mbox{\hyperlink{classoomph_1_1Time_aed3c6b92973210d2347fc5be372e41a8}{00074}} \textcolor{comment}{}    \mbox{\hyperlink{classoomph_1_1Time_aed3c6b92973210d2347fc5be372e41a8}{Time}}() : \mbox{\hyperlink{classoomph_1_1Time_a0d304d449babd0531b76668c6548ad4b}{Continuous\_time}}(0.0) \{\}}
 \DoxyCodeLine{\Hypertarget{timesteppers_8h_source_l00075}00075 \textcolor{comment}{}}
-\DoxyCodeLine{\Hypertarget{timesteppers_8h_source_l00076}00076 \textcolor{comment}{    /// \(\backslash\)short Constructor: Pass the number of timesteps to be stored}}
+\DoxyCodeLine{\Hypertarget{timesteppers_8h_source_l00076}00076 \textcolor{comment}{    ///  Constructor: Pass the number of timesteps to be stored}}
 \DoxyCodeLine{\Hypertarget{timesteppers_8h_source_l00077}00077 \textcolor{comment}{    /// and set the initial value of time to zero.}}
 \DoxyCodeLine{\Hypertarget{timesteppers_8h_source_l00078}\mbox{\hyperlink{classoomph_1_1Time_af933eb465690f9630983aa0fe24782a3}{00078}} \textcolor{comment}{}    \mbox{\hyperlink{classoomph_1_1Time_af933eb465690f9630983aa0fe24782a3}{Time}}(\textcolor{keyword}{const} \textcolor{keywordtype}{unsigned}\& \mbox{\hyperlink{classoomph_1_1Time_ad40953c471eb3ce59921e6870ed755f3}{ndt}}) : \mbox{\hyperlink{classoomph_1_1Time_a0d304d449babd0531b76668c6548ad4b}{Continuous\_time}}(0.0)}
 \DoxyCodeLine{\Hypertarget{timesteppers_8h_source_l00079}00079     \{}
@@ -92,21 +92,21 @@
 \DoxyCodeLine{\Hypertarget{timesteppers_8h_source_l00088}00088 \textcolor{comment}{    /// Broken assignment operator}}
 \DoxyCodeLine{\Hypertarget{timesteppers_8h_source_l00089}\mbox{\hyperlink{classoomph_1_1Time_a3956b3d03307c28cbeab777bc8ff5476}{00089}} \textcolor{comment}{}    \textcolor{keywordtype}{void} \mbox{\hyperlink{classoomph_1_1Time_a3956b3d03307c28cbeab777bc8ff5476}{operator=}}(\textcolor{keyword}{const} \mbox{\hyperlink{classoomph_1_1Time}{Time}}\&) = \textcolor{keyword}{delete};}
 \DoxyCodeLine{\Hypertarget{timesteppers_8h_source_l00090}00090 \textcolor{comment}{}}
-\DoxyCodeLine{\Hypertarget{timesteppers_8h_source_l00091}00091 \textcolor{comment}{    /// \(\backslash\)short Resize the vector holding the number of previous timesteps}}
+\DoxyCodeLine{\Hypertarget{timesteppers_8h_source_l00091}00091 \textcolor{comment}{    ///  Resize the vector holding the number of previous timesteps}}
 \DoxyCodeLine{\Hypertarget{timesteppers_8h_source_l00092}00092 \textcolor{comment}{    /// and initialise the new values to zero.}}
 \DoxyCodeLine{\Hypertarget{timesteppers_8h_source_l00093}\mbox{\hyperlink{classoomph_1_1Time_aeab1acb1e182797c4194af84c0583c3f}{00093}} \textcolor{comment}{}    \textcolor{keywordtype}{void} \mbox{\hyperlink{classoomph_1_1Time_aeab1acb1e182797c4194af84c0583c3f}{resize}}(\textcolor{keyword}{const} \textcolor{keywordtype}{unsigned}\& n\_dt)}
 \DoxyCodeLine{\Hypertarget{timesteppers_8h_source_l00094}00094     \{}
 \DoxyCodeLine{\Hypertarget{timesteppers_8h_source_l00095}00095       \mbox{\hyperlink{classoomph_1_1Time_a3fbca07ec14a12aaffc2fbfc8503def2}{Dt}}.resize(n\_dt, 0.0);}
 \DoxyCodeLine{\Hypertarget{timesteppers_8h_source_l00096}00096     \}}
 \DoxyCodeLine{\Hypertarget{timesteppers_8h_source_l00097}00097 \textcolor{comment}{}}
-\DoxyCodeLine{\Hypertarget{timesteppers_8h_source_l00098}00098 \textcolor{comment}{    /// \(\backslash\)short Set all timesteps to the same value, dt.}}
+\DoxyCodeLine{\Hypertarget{timesteppers_8h_source_l00098}00098 \textcolor{comment}{    ///  Set all timesteps to the same value, dt.}}
 \DoxyCodeLine{\Hypertarget{timesteppers_8h_source_l00099}\mbox{\hyperlink{classoomph_1_1Time_abc1e02cc2988b603bd5e1f6747381546}{00099}} \textcolor{comment}{}    \textcolor{keywordtype}{void} \mbox{\hyperlink{classoomph_1_1Time_abc1e02cc2988b603bd5e1f6747381546}{initialise\_dt}}(\textcolor{keyword}{const} \textcolor{keywordtype}{double}\& dt\_)}
 \DoxyCodeLine{\Hypertarget{timesteppers_8h_source_l00100}00100     \{}
 \DoxyCodeLine{\Hypertarget{timesteppers_8h_source_l00101}00101       \textcolor{keywordtype}{unsigned} \mbox{\hyperlink{classoomph_1_1Time_ad40953c471eb3ce59921e6870ed755f3}{ndt}} = \mbox{\hyperlink{classoomph_1_1Time_a3fbca07ec14a12aaffc2fbfc8503def2}{Dt}}.size();}
 \DoxyCodeLine{\Hypertarget{timesteppers_8h_source_l00102}00102       \mbox{\hyperlink{classoomph_1_1Time_a3fbca07ec14a12aaffc2fbfc8503def2}{Dt}}.assign(\mbox{\hyperlink{classoomph_1_1Time_ad40953c471eb3ce59921e6870ed755f3}{ndt}}, dt\_);}
 \DoxyCodeLine{\Hypertarget{timesteppers_8h_source_l00103}00103     \}}
 \DoxyCodeLine{\Hypertarget{timesteppers_8h_source_l00104}00104 \textcolor{comment}{}}
-\DoxyCodeLine{\Hypertarget{timesteppers_8h_source_l00105}00105 \textcolor{comment}{    /// \(\backslash\)short Set the value of the timesteps to be equal to the values passed}}
+\DoxyCodeLine{\Hypertarget{timesteppers_8h_source_l00105}00105 \textcolor{comment}{    ///  Set the value of the timesteps to be equal to the values passed}}
 \DoxyCodeLine{\Hypertarget{timesteppers_8h_source_l00106}00106 \textcolor{comment}{    /// in a vector}}
 \DoxyCodeLine{\Hypertarget{timesteppers_8h_source_l00107}\mbox{\hyperlink{classoomph_1_1Time_a7c0e382ecec0abb600c36bc5a0820a43}{00107}} \textcolor{comment}{}    \textcolor{keywordtype}{void} \mbox{\hyperlink{classoomph_1_1Time_a7c0e382ecec0abb600c36bc5a0820a43}{initialise\_dt}}(\textcolor{keyword}{const} \mbox{\hyperlink{classoomph_1_1Vector}{Vector<double>}}\& dt\_)}
 \DoxyCodeLine{\Hypertarget{timesteppers_8h_source_l00108}00108     \{}
@@ -149,7 +149,7 @@
 \DoxyCodeLine{\Hypertarget{timesteppers_8h_source_l00145}00145       \textcolor{keywordflow}{return} \mbox{\hyperlink{classoomph_1_1Time_a3fbca07ec14a12aaffc2fbfc8503def2}{Dt}}[\mbox{\hyperlink{cfortran_8h_af6f0bd3dc13317f895c91323c25c2b8f}{t}}];}
 \DoxyCodeLine{\Hypertarget{timesteppers_8h_source_l00146}00146     \}}
 \DoxyCodeLine{\Hypertarget{timesteppers_8h_source_l00147}00147 \textcolor{comment}{}}
-\DoxyCodeLine{\Hypertarget{timesteppers_8h_source_l00148}00148 \textcolor{comment}{    /// \(\backslash\)short Return the value of the continuous time at the t-\/th previous}}
+\DoxyCodeLine{\Hypertarget{timesteppers_8h_source_l00148}00148 \textcolor{comment}{    ///  Return the value of the continuous time at the t-\/th previous}}
 \DoxyCodeLine{\Hypertarget{timesteppers_8h_source_l00149}00149 \textcolor{comment}{    /// time level (t=0: current; t>0 previous).}}
 \DoxyCodeLine{\Hypertarget{timesteppers_8h_source_l00150}\mbox{\hyperlink{classoomph_1_1Time_a4af91dd6c41ca7defd431bf53c518ba5}{00150}} \textcolor{comment}{}    \textcolor{keywordtype}{double} \mbox{\hyperlink{classoomph_1_1Time_a4af91dd6c41ca7defd431bf53c518ba5}{time}}(\textcolor{keyword}{const} \textcolor{keywordtype}{unsigned}\& \mbox{\hyperlink{cfortran_8h_af6f0bd3dc13317f895c91323c25c2b8f}{t}} = 0)\textcolor{keyword}{ const}}
 \DoxyCodeLine{\Hypertarget{timesteppers_8h_source_l00151}00151 \textcolor{keyword}{    }\{}
@@ -172,7 +172,7 @@
 \DoxyCodeLine{\Hypertarget{timesteppers_8h_source_l00168}00168       \textcolor{keywordflow}{return} time\_local;}
 \DoxyCodeLine{\Hypertarget{timesteppers_8h_source_l00169}00169     \}}
 \DoxyCodeLine{\Hypertarget{timesteppers_8h_source_l00170}00170 \textcolor{comment}{}}
-\DoxyCodeLine{\Hypertarget{timesteppers_8h_source_l00171}00171 \textcolor{comment}{    /// \(\backslash\)short Update all stored values of dt by shifting each value along}}
+\DoxyCodeLine{\Hypertarget{timesteppers_8h_source_l00171}00171 \textcolor{comment}{    ///  Update all stored values of dt by shifting each value along}}
 \DoxyCodeLine{\Hypertarget{timesteppers_8h_source_l00172}00172 \textcolor{comment}{    /// the array. This function must be called before starting to solve at a}}
 \DoxyCodeLine{\Hypertarget{timesteppers_8h_source_l00173}00173 \textcolor{comment}{    /// new time level.}}
 \DoxyCodeLine{\Hypertarget{timesteppers_8h_source_l00174}\mbox{\hyperlink{classoomph_1_1Time_a92ca0ca34a1491744a3315d61d7cee5f}{00174}} \textcolor{comment}{}    \textcolor{keywordtype}{void} \mbox{\hyperlink{classoomph_1_1Time_a92ca0ca34a1491744a3315d61d7cee5f}{shift\_dt}}()}
@@ -198,7 +198,7 @@
 \DoxyCodeLine{\Hypertarget{timesteppers_8h_source_l00194}00194 \textcolor{comment}{}}
 \DoxyCodeLine{\Hypertarget{timesteppers_8h_source_l00195}00195 }
 \DoxyCodeLine{\Hypertarget{timesteppers_8h_source_l00196}00196   \textcolor{comment}{//====================================================================}\textcolor{comment}{}}
-\DoxyCodeLine{\Hypertarget{timesteppers_8h_source_l00197}00197 \textcolor{comment}{  /// \(\backslash\)short Base class for time-\/stepping schemes.}}
+\DoxyCodeLine{\Hypertarget{timesteppers_8h_source_l00197}00197 \textcolor{comment}{  ///  Base class for time-\/stepping schemes.}}
 \DoxyCodeLine{\Hypertarget{timesteppers_8h_source_l00198}00198 \textcolor{comment}{  /// Timestepper provides an approximation of the temporal derivatives of}}
 \DoxyCodeLine{\Hypertarget{timesteppers_8h_source_l00199}00199 \textcolor{comment}{  /// Data such that the i-\/th derivative of the j-\/th value in Data is}}
 \DoxyCodeLine{\Hypertarget{timesteppers_8h_source_l00200}00200 \textcolor{comment}{  /// represented as}}
@@ -240,26 +240,26 @@
 \DoxyCodeLine{\Hypertarget{timesteppers_8h_source_l00236}00236 \textcolor{comment}{    /// Storage for the weights associated with the timestepper}}
 \DoxyCodeLine{\Hypertarget{timesteppers_8h_source_l00237}\mbox{\hyperlink{classoomph_1_1TimeStepper_a0dbf867c7f0e06f790a470d547b6b3f2}{00237}} \textcolor{comment}{}    \mbox{\hyperlink{classoomph_1_1DenseMatrix}{DenseMatrix<double>}} \mbox{\hyperlink{classoomph_1_1TimeStepper_a0dbf867c7f0e06f790a470d547b6b3f2}{Weight}};}
 \DoxyCodeLine{\Hypertarget{timesteppers_8h_source_l00238}00238 \textcolor{comment}{}}
-\DoxyCodeLine{\Hypertarget{timesteppers_8h_source_l00239}00239 \textcolor{comment}{    /// \(\backslash\)short String that indicates the type of the timestepper}}
+\DoxyCodeLine{\Hypertarget{timesteppers_8h_source_l00239}00239 \textcolor{comment}{    ///  String that indicates the type of the timestepper}}
 \DoxyCodeLine{\Hypertarget{timesteppers_8h_source_l00240}00240 \textcolor{comment}{    ///(e.g. "{}BDF"{}, "{}Newmark"{}, etc.)}}
 \DoxyCodeLine{\Hypertarget{timesteppers_8h_source_l00241}\mbox{\hyperlink{classoomph_1_1TimeStepper_a39dfe6cf216263d547c430d6f7a67530}{00241}} \textcolor{comment}{}    \mbox{\hyperlink{namespaceoomph_1_1Global__string__for__annotation_ac5379de2fa7fe44f2cb31785fc208135}{std::string}} \mbox{\hyperlink{classoomph_1_1TimeStepper_a39dfe6cf216263d547c430d6f7a67530}{Type}};}
 \DoxyCodeLine{\Hypertarget{timesteppers_8h_source_l00242}00242 \textcolor{comment}{}}
-\DoxyCodeLine{\Hypertarget{timesteppers_8h_source_l00243}00243 \textcolor{comment}{    /// \(\backslash\)short Boolean variable to indicate whether the timestepping scheme can}}
+\DoxyCodeLine{\Hypertarget{timesteppers_8h_source_l00243}00243 \textcolor{comment}{    ///  Boolean variable to indicate whether the timestepping scheme can}}
 \DoxyCodeLine{\Hypertarget{timesteppers_8h_source_l00244}00244 \textcolor{comment}{    /// be adaptive}}
 \DoxyCodeLine{\Hypertarget{timesteppers_8h_source_l00245}\mbox{\hyperlink{classoomph_1_1TimeStepper_afe6d4d7cf3e0b2a186694f24c8cf016f}{00245}} \textcolor{comment}{}    \textcolor{keywordtype}{bool} \mbox{\hyperlink{classoomph_1_1TimeStepper_afe6d4d7cf3e0b2a186694f24c8cf016f}{Adaptive\_Flag}};}
 \DoxyCodeLine{\Hypertarget{timesteppers_8h_source_l00246}00246 \textcolor{comment}{}}
-\DoxyCodeLine{\Hypertarget{timesteppers_8h_source_l00247}00247 \textcolor{comment}{    /// \(\backslash\)short Bool to indicate if the timestepper is steady, i.e. its}}
+\DoxyCodeLine{\Hypertarget{timesteppers_8h_source_l00247}00247 \textcolor{comment}{    ///  Bool to indicate if the timestepper is steady, i.e. its}}
 \DoxyCodeLine{\Hypertarget{timesteppers_8h_source_l00248}00248 \textcolor{comment}{    /// time-\/derivatives evaluate to zero. This status may be achieved}}
 \DoxyCodeLine{\Hypertarget{timesteppers_8h_source_l00249}00249 \textcolor{comment}{    /// temporarily by calling make\_steady(). It can be reset to the}}
 \DoxyCodeLine{\Hypertarget{timesteppers_8h_source_l00250}00250 \textcolor{comment}{    /// appropriate default by the function undo\_make\_steady().}}
 \DoxyCodeLine{\Hypertarget{timesteppers_8h_source_l00251}\mbox{\hyperlink{classoomph_1_1TimeStepper_a5a23db485d16d7f9598c011850d0563f}{00251}} \textcolor{comment}{}    \textcolor{keywordtype}{bool} \mbox{\hyperlink{classoomph_1_1TimeStepper_a5a23db485d16d7f9598c011850d0563f}{Is\_steady}};}
 \DoxyCodeLine{\Hypertarget{timesteppers_8h_source_l00252}00252 \textcolor{comment}{}}
-\DoxyCodeLine{\Hypertarget{timesteppers_8h_source_l00253}00253 \textcolor{comment}{    /// \(\backslash\)short Boolean to indicate if the timestepper will output warnings when}}
+\DoxyCodeLine{\Hypertarget{timesteppers_8h_source_l00253}00253 \textcolor{comment}{    ///  Boolean to indicate if the timestepper will output warnings when}}
 \DoxyCodeLine{\Hypertarget{timesteppers_8h_source_l00254}00254 \textcolor{comment}{    /// setting possibly an incorrect number of initial data values from}}
 \DoxyCodeLine{\Hypertarget{timesteppers_8h_source_l00255}00255 \textcolor{comment}{    /// function pointers}}
 \DoxyCodeLine{\Hypertarget{timesteppers_8h_source_l00256}\mbox{\hyperlink{classoomph_1_1TimeStepper_a1a8928784f3903a8f0f3f5e2400fa430}{00256}} \textcolor{comment}{}    \textcolor{keywordtype}{bool} \mbox{\hyperlink{classoomph_1_1TimeStepper_a1a8928784f3903a8f0f3f5e2400fa430}{Shut\_up\_in\_assign\_initial\_data\_values}};}
 \DoxyCodeLine{\Hypertarget{timesteppers_8h_source_l00257}00257 \textcolor{comment}{}}
-\DoxyCodeLine{\Hypertarget{timesteppers_8h_source_l00258}00258 \textcolor{comment}{    /// \(\backslash\)short Flag: is adaptivity done by taking a separate step using an}}
+\DoxyCodeLine{\Hypertarget{timesteppers_8h_source_l00258}00258 \textcolor{comment}{    ///  Flag: is adaptivity done by taking a separate step using an}}
 \DoxyCodeLine{\Hypertarget{timesteppers_8h_source_l00259}00259 \textcolor{comment}{    /// ExplicitTimeStepper object?}}
 \DoxyCodeLine{\Hypertarget{timesteppers_8h_source_l00260}\mbox{\hyperlink{classoomph_1_1TimeStepper_a30f71fb3ee14db4dd9d9d2cef1189ddc}{00260}} \textcolor{comment}{}    \textcolor{keywordtype}{bool} \mbox{\hyperlink{classoomph_1_1TimeStepper_a30f71fb3ee14db4dd9d9d2cef1189ddc}{Predict\_by\_explicit\_step}};}
 \DoxyCodeLine{\Hypertarget{timesteppers_8h_source_l00261}00261 \textcolor{comment}{}}
@@ -272,12 +272,12 @@
 \DoxyCodeLine{\Hypertarget{timesteppers_8h_source_l00268}00268 \textcolor{comment}{    /// compare for paranoid checks.}}
 \DoxyCodeLine{\Hypertarget{timesteppers_8h_source_l00269}\mbox{\hyperlink{classoomph_1_1TimeStepper_af41318cc5f48050e143182f59a06e5d6}{00269}} \textcolor{comment}{}    \textcolor{keywordtype}{double} \mbox{\hyperlink{classoomph_1_1TimeStepper_af41318cc5f48050e143182f59a06e5d6}{Predicted\_time}};}
 \DoxyCodeLine{\Hypertarget{timesteppers_8h_source_l00270}00270 \textcolor{comment}{}}
-\DoxyCodeLine{\Hypertarget{timesteppers_8h_source_l00271}00271 \textcolor{comment}{    /// \(\backslash\)short The time-\/index in each Data object where predicted values are}}
+\DoxyCodeLine{\Hypertarget{timesteppers_8h_source_l00271}00271 \textcolor{comment}{    ///  The time-\/index in each Data object where predicted values are}}
 \DoxyCodeLine{\Hypertarget{timesteppers_8h_source_l00272}00272 \textcolor{comment}{    /// stored. -\/1 if not set.}}
 \DoxyCodeLine{\Hypertarget{timesteppers_8h_source_l00273}\mbox{\hyperlink{classoomph_1_1TimeStepper_af91eb510f32a9d072399f37389853174}{00273}} \textcolor{comment}{}    \textcolor{keywordtype}{int} \mbox{\hyperlink{classoomph_1_1TimeStepper_af91eb510f32a9d072399f37389853174}{Predictor\_storage\_index}};}
 \DoxyCodeLine{\Hypertarget{timesteppers_8h_source_l00274}00274 }
 \DoxyCodeLine{\Hypertarget{timesteppers_8h_source_l00275}00275   \textcolor{keyword}{public}:\textcolor{comment}{}}
-\DoxyCodeLine{\Hypertarget{timesteppers_8h_source_l00276}00276 \textcolor{comment}{    /// \(\backslash\)short Constructor. Pass the amount of storage required by}}
+\DoxyCodeLine{\Hypertarget{timesteppers_8h_source_l00276}00276 \textcolor{comment}{    ///  Constructor. Pass the amount of storage required by}}
 \DoxyCodeLine{\Hypertarget{timesteppers_8h_source_l00277}00277 \textcolor{comment}{    /// timestepper (present value + history values) and the}}
 \DoxyCodeLine{\Hypertarget{timesteppers_8h_source_l00278}00278 \textcolor{comment}{    /// order of highest time-\/derivative.}}
 \DoxyCodeLine{\Hypertarget{timesteppers_8h_source_l00279}\mbox{\hyperlink{classoomph_1_1TimeStepper_a8a4f14d18d49b82f0a6ad1c279485cd9}{00279}} \textcolor{comment}{}    \mbox{\hyperlink{classoomph_1_1TimeStepper_a8a4f14d18d49b82f0a6ad1c279485cd9}{TimeStepper}}(\textcolor{keyword}{const} \textcolor{keywordtype}{unsigned}\& tstorage, \textcolor{keyword}{const} \textcolor{keywordtype}{unsigned}\& max\_deriv)}
@@ -355,7 +355,7 @@
 \DoxyCodeLine{\Hypertarget{timesteppers_8h_source_l00351}00351 \textcolor{comment}{    /// Number of timestep increments that are required by the scheme}}
 \DoxyCodeLine{\Hypertarget{timesteppers_8h_source_l00352}\mbox{\hyperlink{classoomph_1_1TimeStepper_a00e57b6436cff4fc82af481b81a78a1a}{00352}} \textcolor{comment}{}    \textcolor{keyword}{virtual} \textcolor{keywordtype}{unsigned} \mbox{\hyperlink{classoomph_1_1TimeStepper_a00e57b6436cff4fc82af481b81a78a1a}{ndt}}() \textcolor{keyword}{const} = 0;}
 \DoxyCodeLine{\Hypertarget{timesteppers_8h_source_l00353}00353 \textcolor{comment}{}}
-\DoxyCodeLine{\Hypertarget{timesteppers_8h_source_l00354}00354 \textcolor{comment}{    /// \(\backslash\)short Number of previous values needed to calculate the value at the}}
+\DoxyCodeLine{\Hypertarget{timesteppers_8h_source_l00354}00354 \textcolor{comment}{    ///  Number of previous values needed to calculate the value at the}}
 \DoxyCodeLine{\Hypertarget{timesteppers_8h_source_l00355}00355 \textcolor{comment}{    /// current time. i.e. how many previous values must we loop over to}}
 \DoxyCodeLine{\Hypertarget{timesteppers_8h_source_l00356}00356 \textcolor{comment}{    /// calculate the values at the evaluation time. For most methods this is}}
 \DoxyCodeLine{\Hypertarget{timesteppers_8h_source_l00357}00357 \textcolor{comment}{    /// 1, i.e. just use the value at t\_\{n+1\}. See midpoint method for a}}
@@ -368,12 +368,12 @@
 \DoxyCodeLine{\Hypertarget{timesteppers_8h_source_l00364}00364 \textcolor{comment}{    /// Number of previous values available: 0 for static, 1 for BDF<1>,...}}
 \DoxyCodeLine{\Hypertarget{timesteppers_8h_source_l00365}\mbox{\hyperlink{classoomph_1_1TimeStepper_a0f38713ed304c18d9f7b5cf8131664c1}{00365}} \textcolor{comment}{}    \textcolor{keyword}{virtual} \textcolor{keywordtype}{unsigned} \mbox{\hyperlink{classoomph_1_1TimeStepper_a0f38713ed304c18d9f7b5cf8131664c1}{nprev\_values}}() \textcolor{keyword}{const} = 0;}
 \DoxyCodeLine{\Hypertarget{timesteppers_8h_source_l00366}00366 \textcolor{comment}{}}
-\DoxyCodeLine{\Hypertarget{timesteppers_8h_source_l00367}00367 \textcolor{comment}{    /// \(\backslash\)short Function to set the weights for present timestep (don't}}
+\DoxyCodeLine{\Hypertarget{timesteppers_8h_source_l00367}00367 \textcolor{comment}{    ///  Function to set the weights for present timestep (don't}}
 \DoxyCodeLine{\Hypertarget{timesteppers_8h_source_l00368}00368 \textcolor{comment}{    /// need to pass present timestep or previous timesteps as they}}
 \DoxyCodeLine{\Hypertarget{timesteppers_8h_source_l00369}00369 \textcolor{comment}{    /// are available via Time\_pt)}}
 \DoxyCodeLine{\Hypertarget{timesteppers_8h_source_l00370}\mbox{\hyperlink{classoomph_1_1TimeStepper_a028fa3a8d3c6db6b0ddf580cb0468d55}{00370}} \textcolor{comment}{}    \textcolor{keyword}{virtual} \textcolor{keywordtype}{void} \mbox{\hyperlink{classoomph_1_1TimeStepper_a028fa3a8d3c6db6b0ddf580cb0468d55}{set\_weights}}() = 0;}
 \DoxyCodeLine{\Hypertarget{timesteppers_8h_source_l00371}00371 \textcolor{comment}{}}
-\DoxyCodeLine{\Hypertarget{timesteppers_8h_source_l00372}00372 \textcolor{comment}{    /// \(\backslash\)short Function to make the time stepper temporarily steady. This}}
+\DoxyCodeLine{\Hypertarget{timesteppers_8h_source_l00372}00372 \textcolor{comment}{    ///  Function to make the time stepper temporarily steady. This}}
 \DoxyCodeLine{\Hypertarget{timesteppers_8h_source_l00373}00373 \textcolor{comment}{    /// is trivially achieved by setting all the weights to zero}}
 \DoxyCodeLine{\Hypertarget{timesteppers_8h_source_l00374}\mbox{\hyperlink{classoomph_1_1TimeStepper_a81ea0ff2e66cef5e0184b616c608e418}{00374}} \textcolor{comment}{}    \textcolor{keywordtype}{void} \mbox{\hyperlink{classoomph_1_1TimeStepper_a81ea0ff2e66cef5e0184b616c608e418}{make\_steady}}()}
 \DoxyCodeLine{\Hypertarget{timesteppers_8h_source_l00375}00375     \{}
@@ -388,14 +388,14 @@
 \DoxyCodeLine{\Hypertarget{timesteppers_8h_source_l00384}00384       \mbox{\hyperlink{classoomph_1_1TimeStepper_a5a23db485d16d7f9598c011850d0563f}{Is\_steady}} = \textcolor{keyword}{true};}
 \DoxyCodeLine{\Hypertarget{timesteppers_8h_source_l00385}00385     \}}
 \DoxyCodeLine{\Hypertarget{timesteppers_8h_source_l00386}00386 \textcolor{comment}{}}
-\DoxyCodeLine{\Hypertarget{timesteppers_8h_source_l00387}00387 \textcolor{comment}{    /// \(\backslash\)short Flag to indicate if a timestepper has been made steady (possibly}}
+\DoxyCodeLine{\Hypertarget{timesteppers_8h_source_l00387}00387 \textcolor{comment}{    ///  Flag to indicate if a timestepper has been made steady (possibly}}
 \DoxyCodeLine{\Hypertarget{timesteppers_8h_source_l00388}00388 \textcolor{comment}{    /// temporarily to switch off time-\/dependence)}}
 \DoxyCodeLine{\Hypertarget{timesteppers_8h_source_l00389}\mbox{\hyperlink{classoomph_1_1TimeStepper_ad341ba9e80265e1c26c1cda0f40c8292}{00389}} \textcolor{comment}{}    \textcolor{keywordtype}{bool} \mbox{\hyperlink{classoomph_1_1TimeStepper_ad341ba9e80265e1c26c1cda0f40c8292}{is\_steady}}()\textcolor{keyword}{ const}}
 \DoxyCodeLine{\Hypertarget{timesteppers_8h_source_l00390}00390 \textcolor{keyword}{    }\{}
 \DoxyCodeLine{\Hypertarget{timesteppers_8h_source_l00391}00391       \textcolor{keywordflow}{return} \mbox{\hyperlink{classoomph_1_1TimeStepper_a5a23db485d16d7f9598c011850d0563f}{Is\_steady}};}
 \DoxyCodeLine{\Hypertarget{timesteppers_8h_source_l00392}00392     \}}
 \DoxyCodeLine{\Hypertarget{timesteppers_8h_source_l00393}00393 \textcolor{comment}{}}
-\DoxyCodeLine{\Hypertarget{timesteppers_8h_source_l00394}00394 \textcolor{comment}{    /// \(\backslash\)short Flag: is adaptivity done by taking a separate step using an}}
+\DoxyCodeLine{\Hypertarget{timesteppers_8h_source_l00394}00394 \textcolor{comment}{    ///  Flag: is adaptivity done by taking a separate step using an}}
 \DoxyCodeLine{\Hypertarget{timesteppers_8h_source_l00395}00395 \textcolor{comment}{    /// ExplicitTimeStepper object?}}
 \DoxyCodeLine{\Hypertarget{timesteppers_8h_source_l00396}\mbox{\hyperlink{classoomph_1_1TimeStepper_abf0f84ac9e7c1266dea9bd9e479fb2bf}{00396}} \textcolor{comment}{}    \textcolor{keywordtype}{bool} \mbox{\hyperlink{classoomph_1_1TimeStepper_abf0f84ac9e7c1266dea9bd9e479fb2bf}{predict\_by\_explicit\_step}}()\textcolor{keyword}{ const}}
 \DoxyCodeLine{\Hypertarget{timesteppers_8h_source_l00397}00397 \textcolor{keyword}{    }\{}
@@ -437,7 +437,7 @@
 \DoxyCodeLine{\Hypertarget{timesteppers_8h_source_l00433}00433 \textcolor{preprocessor}{\#endif}}
 \DoxyCodeLine{\Hypertarget{timesteppers_8h_source_l00434}00434     \}}
 \DoxyCodeLine{\Hypertarget{timesteppers_8h_source_l00435}00435 \textcolor{comment}{}}
-\DoxyCodeLine{\Hypertarget{timesteppers_8h_source_l00436}00436 \textcolor{comment}{    /// \(\backslash\)short Return the time-\/index in each Data where predicted values are}}
+\DoxyCodeLine{\Hypertarget{timesteppers_8h_source_l00436}00436 \textcolor{comment}{    ///  Return the time-\/index in each Data where predicted values are}}
 \DoxyCodeLine{\Hypertarget{timesteppers_8h_source_l00437}00437 \textcolor{comment}{    /// stored if the timestepper is adaptive.}}
 \DoxyCodeLine{\Hypertarget{timesteppers_8h_source_l00438}\mbox{\hyperlink{classoomph_1_1TimeStepper_a31e756a339277e21f74b21a5d61c9841}{00438}} \textcolor{comment}{}    \textcolor{keywordtype}{unsigned} \mbox{\hyperlink{classoomph_1_1TimeStepper_a31e756a339277e21f74b21a5d61c9841}{predictor\_storage\_index}}()\textcolor{keyword}{ const}}
 \DoxyCodeLine{\Hypertarget{timesteppers_8h_source_l00439}00439 \textcolor{keyword}{    }\{}
@@ -461,27 +461,27 @@
 \DoxyCodeLine{\Hypertarget{timesteppers_8h_source_l00457}00457 \textcolor{preprocessor}{\#endif}}
 \DoxyCodeLine{\Hypertarget{timesteppers_8h_source_l00458}00458     \}}
 \DoxyCodeLine{\Hypertarget{timesteppers_8h_source_l00459}00459 \textcolor{comment}{}}
-\DoxyCodeLine{\Hypertarget{timesteppers_8h_source_l00460}00460 \textcolor{comment}{    /// \(\backslash\)short Enable the output of warnings due to possible fct pointer vector}}
+\DoxyCodeLine{\Hypertarget{timesteppers_8h_source_l00460}00460 \textcolor{comment}{    ///  Enable the output of warnings due to possible fct pointer vector}}
 \DoxyCodeLine{\Hypertarget{timesteppers_8h_source_l00461}00461 \textcolor{comment}{    /// size mismatch in assign\_initial\_data\_values (Default)}}
 \DoxyCodeLine{\Hypertarget{timesteppers_8h_source_l00462}\mbox{\hyperlink{classoomph_1_1TimeStepper_a365cc834ec75291eba462f671ec997e1}{00462}} \textcolor{comment}{}    \textcolor{keywordtype}{void} \mbox{\hyperlink{classoomph_1_1TimeStepper_a365cc834ec75291eba462f671ec997e1}{enable\_warning\_in\_assign\_initial\_data\_values}}()}
 \DoxyCodeLine{\Hypertarget{timesteppers_8h_source_l00463}00463     \{}
 \DoxyCodeLine{\Hypertarget{timesteppers_8h_source_l00464}00464       \mbox{\hyperlink{classoomph_1_1TimeStepper_a1a8928784f3903a8f0f3f5e2400fa430}{Shut\_up\_in\_assign\_initial\_data\_values}} = \textcolor{keyword}{false};}
 \DoxyCodeLine{\Hypertarget{timesteppers_8h_source_l00465}00465     \}}
 \DoxyCodeLine{\Hypertarget{timesteppers_8h_source_l00466}00466 \textcolor{comment}{}}
-\DoxyCodeLine{\Hypertarget{timesteppers_8h_source_l00467}00467 \textcolor{comment}{    /// \(\backslash\)short Disable the output of warnings due to possible fct pointer vector}}
+\DoxyCodeLine{\Hypertarget{timesteppers_8h_source_l00467}00467 \textcolor{comment}{    ///  Disable the output of warnings due to possible fct pointer vector}}
 \DoxyCodeLine{\Hypertarget{timesteppers_8h_source_l00468}00468 \textcolor{comment}{    /// size mismatch in assign\_initial\_data\_values}}
 \DoxyCodeLine{\Hypertarget{timesteppers_8h_source_l00469}\mbox{\hyperlink{classoomph_1_1TimeStepper_a7f97ab9e4d8d4269cf75bf79b72da5bc}{00469}} \textcolor{comment}{}    \textcolor{keywordtype}{void} \mbox{\hyperlink{classoomph_1_1TimeStepper_a7f97ab9e4d8d4269cf75bf79b72da5bc}{disable\_warning\_in\_assign\_initial\_data\_values}}()}
 \DoxyCodeLine{\Hypertarget{timesteppers_8h_source_l00470}00470     \{}
 \DoxyCodeLine{\Hypertarget{timesteppers_8h_source_l00471}00471       \mbox{\hyperlink{classoomph_1_1TimeStepper_a1a8928784f3903a8f0f3f5e2400fa430}{Shut\_up\_in\_assign\_initial\_data\_values}} = \textcolor{keyword}{true};}
 \DoxyCodeLine{\Hypertarget{timesteppers_8h_source_l00472}00472     \}}
 \DoxyCodeLine{\Hypertarget{timesteppers_8h_source_l00473}00473 \textcolor{comment}{}}
-\DoxyCodeLine{\Hypertarget{timesteppers_8h_source_l00474}00474 \textcolor{comment}{    /// \(\backslash\)short Get a (const) pointer to the weights.}}
+\DoxyCodeLine{\Hypertarget{timesteppers_8h_source_l00474}00474 \textcolor{comment}{    ///  Get a (const) pointer to the weights.}}
 \DoxyCodeLine{\Hypertarget{timesteppers_8h_source_l00475}\mbox{\hyperlink{classoomph_1_1TimeStepper_ac59f0fb50e6ca3622c03cd9b4d29ee8c}{00475}} \textcolor{comment}{}    \textcolor{keyword}{const} \mbox{\hyperlink{classoomph_1_1DenseMatrix}{DenseMatrix<double>}}* \mbox{\hyperlink{classoomph_1_1TimeStepper_ac59f0fb50e6ca3622c03cd9b4d29ee8c}{weights\_pt}}()\textcolor{keyword}{ const}}
 \DoxyCodeLine{\Hypertarget{timesteppers_8h_source_l00476}00476 \textcolor{keyword}{    }\{}
 \DoxyCodeLine{\Hypertarget{timesteppers_8h_source_l00477}00477       \textcolor{keywordflow}{return} \&\mbox{\hyperlink{classoomph_1_1TimeStepper_a0dbf867c7f0e06f790a470d547b6b3f2}{Weight}};}
 \DoxyCodeLine{\Hypertarget{timesteppers_8h_source_l00478}00478     \}}
 \DoxyCodeLine{\Hypertarget{timesteppers_8h_source_l00479}00479 \textcolor{comment}{}}
-\DoxyCodeLine{\Hypertarget{timesteppers_8h_source_l00480}00480 \textcolor{comment}{    /// \(\backslash\)short Reset the is\_steady status of a specific TimeStepper to its}}
+\DoxyCodeLine{\Hypertarget{timesteppers_8h_source_l00480}00480 \textcolor{comment}{    ///  Reset the is\_steady status of a specific TimeStepper to its}}
 \DoxyCodeLine{\Hypertarget{timesteppers_8h_source_l00481}00481 \textcolor{comment}{    /// default and re-\/assign the weights.}}
 \DoxyCodeLine{\Hypertarget{timesteppers_8h_source_l00482}\mbox{\hyperlink{classoomph_1_1TimeStepper_aada05f89e86aae352bd5b32bfb173b18}{00482}} \textcolor{comment}{}    \textcolor{keyword}{virtual} \textcolor{keywordtype}{void} \mbox{\hyperlink{classoomph_1_1TimeStepper_aada05f89e86aae352bd5b32bfb173b18}{undo\_make\_steady}}()}
 \DoxyCodeLine{\Hypertarget{timesteppers_8h_source_l00483}00483     \{}
@@ -489,7 +489,7 @@
 \DoxyCodeLine{\Hypertarget{timesteppers_8h_source_l00485}00485       \mbox{\hyperlink{classoomph_1_1TimeStepper_a028fa3a8d3c6db6b0ddf580cb0468d55}{set\_weights}}();}
 \DoxyCodeLine{\Hypertarget{timesteppers_8h_source_l00486}00486     \}}
 \DoxyCodeLine{\Hypertarget{timesteppers_8h_source_l00487}00487 \textcolor{comment}{}}
-\DoxyCodeLine{\Hypertarget{timesteppers_8h_source_l00488}00488 \textcolor{comment}{    /// \(\backslash\)short Return string that indicates the type of the timestepper}}
+\DoxyCodeLine{\Hypertarget{timesteppers_8h_source_l00488}00488 \textcolor{comment}{    ///  Return string that indicates the type of the timestepper}}
 \DoxyCodeLine{\Hypertarget{timesteppers_8h_source_l00489}00489 \textcolor{comment}{    /// (e.g. "{}BDF"{}, "{}Newmark"{}, etc.)}}
 \DoxyCodeLine{\Hypertarget{timesteppers_8h_source_l00490}\mbox{\hyperlink{classoomph_1_1TimeStepper_acbd69b35e54efa29b219bbb56ba49260}{00490}} \textcolor{comment}{}    \mbox{\hyperlink{namespaceoomph_1_1Global__string__for__annotation_ac5379de2fa7fe44f2cb31785fc208135}{std::string}} \mbox{\hyperlink{classoomph_1_1TimeStepper_acbd69b35e54efa29b219bbb56ba49260}{type}}()\textcolor{keyword}{ const}}
 \DoxyCodeLine{\Hypertarget{timesteppers_8h_source_l00491}00491 \textcolor{keyword}{    }\{}
@@ -501,7 +501,7 @@
 \DoxyCodeLine{\Hypertarget{timesteppers_8h_source_l00497}00497     \textcolor{comment}{// normal polymorphism because data.value is different to node.value and}}
 \DoxyCodeLine{\Hypertarget{timesteppers_8h_source_l00498}00498     \textcolor{comment}{// value is not a virtual function.}}
 \DoxyCodeLine{\Hypertarget{timesteppers_8h_source_l00499}00499 \textcolor{comment}{}}
-\DoxyCodeLine{\Hypertarget{timesteppers_8h_source_l00500}00500 \textcolor{comment}{    /// \(\backslash\)short Evaluate i-\/th derivative of all values in Data and return in}}
+\DoxyCodeLine{\Hypertarget{timesteppers_8h_source_l00500}00500 \textcolor{comment}{    ///  Evaluate i-\/th derivative of all values in Data and return in}}
 \DoxyCodeLine{\Hypertarget{timesteppers_8h_source_l00501}00501 \textcolor{comment}{    /// Vector deriv[].}}
 \DoxyCodeLine{\Hypertarget{timesteppers_8h_source_l00502}\mbox{\hyperlink{classoomph_1_1TimeStepper_a802c8b2a2e1933e4e8da30c6d10d1f9c}{00502}} \textcolor{comment}{}    \textcolor{keywordtype}{void} \mbox{\hyperlink{classoomph_1_1TimeStepper_a802c8b2a2e1933e4e8da30c6d10d1f9c}{time\_derivative}}(\textcolor{keyword}{const} \textcolor{keywordtype}{unsigned}\& \mbox{\hyperlink{cfortran_8h_adb50e893b86b3e55e751a42eab3cba82}{i}},}
 \DoxyCodeLine{\Hypertarget{timesteppers_8h_source_l00503}00503                          \mbox{\hyperlink{classoomph_1_1Data}{Data}}* \textcolor{keyword}{const}\& data\_pt,}
@@ -518,7 +518,7 @@
 \DoxyCodeLine{\Hypertarget{timesteppers_8h_source_l00514}00514       \}}
 \DoxyCodeLine{\Hypertarget{timesteppers_8h_source_l00515}00515     \}}
 \DoxyCodeLine{\Hypertarget{timesteppers_8h_source_l00516}00516 \textcolor{comment}{}}
-\DoxyCodeLine{\Hypertarget{timesteppers_8h_source_l00517}00517 \textcolor{comment}{    /// \(\backslash\)short Evaluate i-\/th derivative of j-\/th value in Data.}}
+\DoxyCodeLine{\Hypertarget{timesteppers_8h_source_l00517}00517 \textcolor{comment}{    ///  Evaluate i-\/th derivative of j-\/th value in Data.}}
 \DoxyCodeLine{\Hypertarget{timesteppers_8h_source_l00518}\mbox{\hyperlink{classoomph_1_1TimeStepper_ab88e09cb347f024c07d7341ee6ba7389}{00518}} \textcolor{comment}{}    \textcolor{keywordtype}{double} \mbox{\hyperlink{classoomph_1_1TimeStepper_ab88e09cb347f024c07d7341ee6ba7389}{time\_derivative}}(\textcolor{keyword}{const} \textcolor{keywordtype}{unsigned}\& \mbox{\hyperlink{cfortran_8h_adb50e893b86b3e55e751a42eab3cba82}{i}},}
 \DoxyCodeLine{\Hypertarget{timesteppers_8h_source_l00519}00519                            \mbox{\hyperlink{classoomph_1_1Data}{Data}}* \textcolor{keyword}{const}\& data\_pt,}
 \DoxyCodeLine{\Hypertarget{timesteppers_8h_source_l00520}00520                            \textcolor{keyword}{const} \textcolor{keywordtype}{unsigned}\& j)}
@@ -534,15 +534,15 @@
 \DoxyCodeLine{\Hypertarget{timesteppers_8h_source_l00530}00530       \textcolor{keywordflow}{return} deriv;}
 \DoxyCodeLine{\Hypertarget{timesteppers_8h_source_l00531}00531     \}}
 \DoxyCodeLine{\Hypertarget{timesteppers_8h_source_l00532}00532 \textcolor{comment}{}}
-\DoxyCodeLine{\Hypertarget{timesteppers_8h_source_l00533}00533 \textcolor{comment}{    /// \(\backslash\)short Evaluate i-\/th derivative of all values in Node and return in}}
+\DoxyCodeLine{\Hypertarget{timesteppers_8h_source_l00533}00533 \textcolor{comment}{    ///  Evaluate i-\/th derivative of all values in Node and return in}}
 \DoxyCodeLine{\Hypertarget{timesteppers_8h_source_l00534}00534 \textcolor{comment}{    /// Vector deriv[] (this can't be simply combined with time\_derivative(..,}}
 \DoxyCodeLine{\Hypertarget{timesteppers_8h_source_l00535}00535 \textcolor{comment}{    /// Data, ...) because of differences with haning nodes).}}
 \DoxyCodeLine{\Hypertarget{timesteppers_8h_source_l00536}\mbox{\hyperlink{classoomph_1_1TimeStepper_a3adfcfcf4ba99366d1475df8b4722082}{00536}} \textcolor{comment}{}    \textcolor{keywordtype}{void} \mbox{\hyperlink{classoomph_1_1TimeStepper_a3adfcfcf4ba99366d1475df8b4722082}{time\_derivative}}(\textcolor{keyword}{const} \textcolor{keywordtype}{unsigned}\& \mbox{\hyperlink{cfortran_8h_adb50e893b86b3e55e751a42eab3cba82}{i}},}
-\DoxyCodeLine{\Hypertarget{timesteppers_8h_source_l00537}00537                          \mbox{\hyperlink{classoomph_1_1Node}{Node}}* \textcolor{keyword}{const}\& node\_pt,}
+\DoxyCodeLine{\Hypertarget{timesteppers_8h_source_l00537}00537                          Node* \textcolor{keyword}{const}\& node\_pt,}
 \DoxyCodeLine{\Hypertarget{timesteppers_8h_source_l00538}00538                          \mbox{\hyperlink{classoomph_1_1Vector}{Vector<double>}}\& deriv)}
 \DoxyCodeLine{\Hypertarget{timesteppers_8h_source_l00539}00539     \{}
 \DoxyCodeLine{\Hypertarget{timesteppers_8h_source_l00540}00540       \textcolor{comment}{// Number of values stored in the Data object}}
-\DoxyCodeLine{\Hypertarget{timesteppers_8h_source_l00541}00541       \textcolor{keywordtype}{unsigned} nvalue = node\_pt-\/>\mbox{\hyperlink{classoomph_1_1Data_a7e67fc78a2e8a2fd6eb75bd292d42ff8}{nvalue}}();}
+\DoxyCodeLine{\Hypertarget{timesteppers_8h_source_l00541}00541       \textcolor{keywordtype}{unsigned} nvalue = node\_pt-\/>nvalue();}
 \DoxyCodeLine{\Hypertarget{timesteppers_8h_source_l00542}00542       deriv.assign(nvalue, 0.0);}
 \DoxyCodeLine{\Hypertarget{timesteppers_8h_source_l00543}00543 }
 \DoxyCodeLine{\Hypertarget{timesteppers_8h_source_l00544}00544       \textcolor{comment}{// Loop over all values}}
@@ -552,12 +552,12 @@
 \DoxyCodeLine{\Hypertarget{timesteppers_8h_source_l00548}00548       \}}
 \DoxyCodeLine{\Hypertarget{timesteppers_8h_source_l00549}00549     \}}
 \DoxyCodeLine{\Hypertarget{timesteppers_8h_source_l00550}00550 \textcolor{comment}{}}
-\DoxyCodeLine{\Hypertarget{timesteppers_8h_source_l00551}00551 \textcolor{comment}{    /// \(\backslash\)short Evaluate i-\/th derivative of j-\/th value in Node. Note the use of}}
+\DoxyCodeLine{\Hypertarget{timesteppers_8h_source_l00551}00551 \textcolor{comment}{    ///  Evaluate i-\/th derivative of j-\/th value in Node. Note the use of}}
 \DoxyCodeLine{\Hypertarget{timesteppers_8h_source_l00552}00552 \textcolor{comment}{    /// the node's value() function so that hanging nodes are taken into}}
 \DoxyCodeLine{\Hypertarget{timesteppers_8h_source_l00553}00553 \textcolor{comment}{    /// account (this is why the functions for Data and Node cannot be}}
 \DoxyCodeLine{\Hypertarget{timesteppers_8h_source_l00554}00554 \textcolor{comment}{    /// combined through simple polymorphism: value is not virtual).}}
 \DoxyCodeLine{\Hypertarget{timesteppers_8h_source_l00555}\mbox{\hyperlink{classoomph_1_1TimeStepper_af02a53d7047869cbf0d563272b4de908}{00555}} \textcolor{comment}{}    \textcolor{keywordtype}{double} \mbox{\hyperlink{classoomph_1_1TimeStepper_af02a53d7047869cbf0d563272b4de908}{time\_derivative}}(\textcolor{keyword}{const} \textcolor{keywordtype}{unsigned}\& \mbox{\hyperlink{cfortran_8h_adb50e893b86b3e55e751a42eab3cba82}{i}},}
-\DoxyCodeLine{\Hypertarget{timesteppers_8h_source_l00556}00556                            \mbox{\hyperlink{classoomph_1_1Node}{Node}}* \textcolor{keyword}{const}\& node\_pt,}
+\DoxyCodeLine{\Hypertarget{timesteppers_8h_source_l00556}00556                            Node* \textcolor{keyword}{const}\& node\_pt,}
 \DoxyCodeLine{\Hypertarget{timesteppers_8h_source_l00557}00557                            \textcolor{keyword}{const} \textcolor{keywordtype}{unsigned}\& j)}
 \DoxyCodeLine{\Hypertarget{timesteppers_8h_source_l00558}00558     \{}
 \DoxyCodeLine{\Hypertarget{timesteppers_8h_source_l00559}00559       \textcolor{keywordtype}{double} deriv = 0.0;}
@@ -566,7 +566,7 @@
 \DoxyCodeLine{\Hypertarget{timesteppers_8h_source_l00562}00562       \textcolor{comment}{// to the derivative}}
 \DoxyCodeLine{\Hypertarget{timesteppers_8h_source_l00563}00563       \textcolor{keywordflow}{for} (\textcolor{keywordtype}{unsigned} \mbox{\hyperlink{cfortran_8h_af6f0bd3dc13317f895c91323c25c2b8f}{t}} = 0; \mbox{\hyperlink{cfortran_8h_af6f0bd3dc13317f895c91323c25c2b8f}{t}} < n\_tstorage; \mbox{\hyperlink{cfortran_8h_af6f0bd3dc13317f895c91323c25c2b8f}{t}}++)}
 \DoxyCodeLine{\Hypertarget{timesteppers_8h_source_l00564}00564       \{}
-\DoxyCodeLine{\Hypertarget{timesteppers_8h_source_l00565}00565         deriv += \mbox{\hyperlink{classoomph_1_1TimeStepper_a4cb0aecb044b77ba0553cdd54b586d8a}{weight}}(\mbox{\hyperlink{cfortran_8h_adb50e893b86b3e55e751a42eab3cba82}{i}}, \mbox{\hyperlink{cfortran_8h_af6f0bd3dc13317f895c91323c25c2b8f}{t}}) * node\_pt-\/>\mbox{\hyperlink{classoomph_1_1Node_afcc5cdba40bca251826ae5bee5ca15b4}{value}}(\mbox{\hyperlink{cfortran_8h_af6f0bd3dc13317f895c91323c25c2b8f}{t}}, j);}
+\DoxyCodeLine{\Hypertarget{timesteppers_8h_source_l00565}00565         deriv += \mbox{\hyperlink{classoomph_1_1TimeStepper_a4cb0aecb044b77ba0553cdd54b586d8a}{weight}}(\mbox{\hyperlink{cfortran_8h_adb50e893b86b3e55e751a42eab3cba82}{i}}, \mbox{\hyperlink{cfortran_8h_af6f0bd3dc13317f895c91323c25c2b8f}{t}}) * node\_pt-\/>value(\mbox{\hyperlink{cfortran_8h_af6f0bd3dc13317f895c91323c25c2b8f}{t}}, j);}
 \DoxyCodeLine{\Hypertarget{timesteppers_8h_source_l00566}00566       \}}
 \DoxyCodeLine{\Hypertarget{timesteppers_8h_source_l00567}00567       \textcolor{keywordflow}{return} deriv;}
 \DoxyCodeLine{\Hypertarget{timesteppers_8h_source_l00568}00568     \}}
@@ -600,28 +600,28 @@
 \DoxyCodeLine{\Hypertarget{timesteppers_8h_source_l00596}00596       \textcolor{keywordflow}{return} \mbox{\hyperlink{classoomph_1_1TimeStepper_a0dbf867c7f0e06f790a470d547b6b3f2}{Weight}}(\mbox{\hyperlink{cfortran_8h_adb50e893b86b3e55e751a42eab3cba82}{i}}, j);}
 \DoxyCodeLine{\Hypertarget{timesteppers_8h_source_l00597}00597     \}}
 \DoxyCodeLine{\Hypertarget{timesteppers_8h_source_l00598}00598 \textcolor{comment}{}}
-\DoxyCodeLine{\Hypertarget{timesteppers_8h_source_l00599}00599 \textcolor{comment}{    /// \(\backslash\)short Return the number of doubles required to represent history}}
+\DoxyCodeLine{\Hypertarget{timesteppers_8h_source_l00599}00599 \textcolor{comment}{    ///  Return the number of doubles required to represent history}}
 \DoxyCodeLine{\Hypertarget{timesteppers_8h_source_l00600}00600 \textcolor{comment}{    /// (one for steady)}}
 \DoxyCodeLine{\Hypertarget{timesteppers_8h_source_l00601}\mbox{\hyperlink{classoomph_1_1TimeStepper_a3939b77ec3578e4bd5b453c85649d631}{00601}} \textcolor{comment}{}    \textcolor{keywordtype}{unsigned} \mbox{\hyperlink{classoomph_1_1TimeStepper_a3939b77ec3578e4bd5b453c85649d631}{ntstorage}}()\textcolor{keyword}{ const}}
 \DoxyCodeLine{\Hypertarget{timesteppers_8h_source_l00602}00602 \textcolor{keyword}{    }\{}
 \DoxyCodeLine{\Hypertarget{timesteppers_8h_source_l00603}00603       \textcolor{keywordflow}{return} (\mbox{\hyperlink{classoomph_1_1TimeStepper_a0dbf867c7f0e06f790a470d547b6b3f2}{Weight}}.\mbox{\hyperlink{classoomph_1_1DenseMatrix_a9937181f1cb4cfaed7aaf3b483c42456}{ncol}}());}
 \DoxyCodeLine{\Hypertarget{timesteppers_8h_source_l00604}00604     \}}
 \DoxyCodeLine{\Hypertarget{timesteppers_8h_source_l00605}00605 \textcolor{comment}{}}
-\DoxyCodeLine{\Hypertarget{timesteppers_8h_source_l00606}00606 \textcolor{comment}{    /// \(\backslash\)short Initialise the time-\/history for the Data values}}
+\DoxyCodeLine{\Hypertarget{timesteppers_8h_source_l00606}00606 \textcolor{comment}{    ///  Initialise the time-\/history for the Data values}}
 \DoxyCodeLine{\Hypertarget{timesteppers_8h_source_l00607}00607 \textcolor{comment}{    /// corresponding to an impulsive start.}}
 \DoxyCodeLine{\Hypertarget{timesteppers_8h_source_l00608}\mbox{\hyperlink{classoomph_1_1TimeStepper_a7e894df13c88c96dd8eced2700228225}{00608}} \textcolor{comment}{}    \textcolor{keyword}{virtual} \textcolor{keywordtype}{void} \mbox{\hyperlink{classoomph_1_1TimeStepper_a7e894df13c88c96dd8eced2700228225}{assign\_initial\_values\_impulsive}}(\mbox{\hyperlink{classoomph_1_1Data}{Data}}* \textcolor{keyword}{const}\& data\_pt) = 0;}
 \DoxyCodeLine{\Hypertarget{timesteppers_8h_source_l00609}00609 \textcolor{comment}{}}
-\DoxyCodeLine{\Hypertarget{timesteppers_8h_source_l00610}00610 \textcolor{comment}{    /// \(\backslash\)short Initialiset the positions for the node corresponding to}}
+\DoxyCodeLine{\Hypertarget{timesteppers_8h_source_l00610}00610 \textcolor{comment}{    ///  Initialiset the positions for the node corresponding to}}
 \DoxyCodeLine{\Hypertarget{timesteppers_8h_source_l00611}00611 \textcolor{comment}{    /// an impulsive start}}
-\DoxyCodeLine{\Hypertarget{timesteppers_8h_source_l00612}\mbox{\hyperlink{classoomph_1_1TimeStepper_ab66972f0eaf3ba34645793e23e46afd5}{00612}} \textcolor{comment}{}    \textcolor{keyword}{virtual} \textcolor{keywordtype}{void} \mbox{\hyperlink{classoomph_1_1TimeStepper_ab66972f0eaf3ba34645793e23e46afd5}{assign\_initial\_positions\_impulsive}}(\mbox{\hyperlink{classoomph_1_1Node}{Node}}* \textcolor{keyword}{const}\& node\_pt) = 0;}
+\DoxyCodeLine{\Hypertarget{timesteppers_8h_source_l00612}\mbox{\hyperlink{classoomph_1_1TimeStepper_ab66972f0eaf3ba34645793e23e46afd5}{00612}} \textcolor{comment}{}    \textcolor{keyword}{virtual} \textcolor{keywordtype}{void} \mbox{\hyperlink{classoomph_1_1TimeStepper_ab66972f0eaf3ba34645793e23e46afd5}{assign\_initial\_positions\_impulsive}}(Node* \textcolor{keyword}{const}\& node\_pt) = 0;}
 \DoxyCodeLine{\Hypertarget{timesteppers_8h_source_l00613}00613 \textcolor{comment}{}}
-\DoxyCodeLine{\Hypertarget{timesteppers_8h_source_l00614}00614 \textcolor{comment}{    /// \(\backslash\)short This function advances the Data's time history so that}}
+\DoxyCodeLine{\Hypertarget{timesteppers_8h_source_l00614}00614 \textcolor{comment}{    ///  This function advances the Data's time history so that}}
 \DoxyCodeLine{\Hypertarget{timesteppers_8h_source_l00615}00615 \textcolor{comment}{    /// we can move on to the next timestep}}
 \DoxyCodeLine{\Hypertarget{timesteppers_8h_source_l00616}\mbox{\hyperlink{classoomph_1_1TimeStepper_a010a3b03a23a1c48dd8ca10641427255}{00616}} \textcolor{comment}{}    \textcolor{keyword}{virtual} \textcolor{keywordtype}{void} \mbox{\hyperlink{classoomph_1_1TimeStepper_a010a3b03a23a1c48dd8ca10641427255}{shift\_time\_values}}(\mbox{\hyperlink{classoomph_1_1Data}{Data}}* \textcolor{keyword}{const}\& data\_pt) = 0;}
 \DoxyCodeLine{\Hypertarget{timesteppers_8h_source_l00617}00617 \textcolor{comment}{}}
-\DoxyCodeLine{\Hypertarget{timesteppers_8h_source_l00618}00618 \textcolor{comment}{    ///\(\backslash\)short This function advances the time history of the positions}}
+\DoxyCodeLine{\Hypertarget{timesteppers_8h_source_l00618}00618 \textcolor{comment}{    /// This function advances the time history of the positions}}
 \DoxyCodeLine{\Hypertarget{timesteppers_8h_source_l00619}00619 \textcolor{comment}{    /// at a node. The default should be OK, but would need to be overloaded}}
-\DoxyCodeLine{\Hypertarget{timesteppers_8h_source_l00620}\mbox{\hyperlink{classoomph_1_1TimeStepper_a518b1bee5dc3aae8c5ef13560d1954ac}{00620}} \textcolor{comment}{}    \textcolor{keyword}{virtual} \textcolor{keywordtype}{void} \mbox{\hyperlink{classoomph_1_1TimeStepper_a518b1bee5dc3aae8c5ef13560d1954ac}{shift\_time\_positions}}(\mbox{\hyperlink{classoomph_1_1Node}{Node}}* \textcolor{keyword}{const}\& node\_pt) = 0;}
+\DoxyCodeLine{\Hypertarget{timesteppers_8h_source_l00620}\mbox{\hyperlink{classoomph_1_1TimeStepper_a518b1bee5dc3aae8c5ef13560d1954ac}{00620}} \textcolor{comment}{}    \textcolor{keyword}{virtual} \textcolor{keywordtype}{void} \mbox{\hyperlink{classoomph_1_1TimeStepper_a518b1bee5dc3aae8c5ef13560d1954ac}{shift\_time\_positions}}(Node* \textcolor{keyword}{const}\& node\_pt) = 0;}
 \DoxyCodeLine{\Hypertarget{timesteppers_8h_source_l00621}00621 \textcolor{comment}{}}
 \DoxyCodeLine{\Hypertarget{timesteppers_8h_source_l00622}00622 \textcolor{comment}{    /// Function to indicate whether the scheme is adaptive (false by default)}}
 \DoxyCodeLine{\Hypertarget{timesteppers_8h_source_l00623}\mbox{\hyperlink{classoomph_1_1TimeStepper_a6168cca9a2a3c7bfd50c8797aed72d2d}{00623}} \textcolor{comment}{}    \textcolor{keywordtype}{bool} \mbox{\hyperlink{classoomph_1_1TimeStepper_a6168cca9a2a3c7bfd50c8797aed72d2d}{adaptive\_flag}}()\textcolor{keyword}{ const}}
@@ -629,25 +629,25 @@
 \DoxyCodeLine{\Hypertarget{timesteppers_8h_source_l00625}00625       \textcolor{keywordflow}{return} \mbox{\hyperlink{classoomph_1_1TimeStepper_afe6d4d7cf3e0b2a186694f24c8cf016f}{Adaptive\_Flag}};}
 \DoxyCodeLine{\Hypertarget{timesteppers_8h_source_l00626}00626     \}}
 \DoxyCodeLine{\Hypertarget{timesteppers_8h_source_l00627}00627 \textcolor{comment}{}}
-\DoxyCodeLine{\Hypertarget{timesteppers_8h_source_l00628}00628 \textcolor{comment}{    /// \(\backslash\)short Set the weights for the predictor}}
+\DoxyCodeLine{\Hypertarget{timesteppers_8h_source_l00628}00628 \textcolor{comment}{    ///  Set the weights for the predictor}}
 \DoxyCodeLine{\Hypertarget{timesteppers_8h_source_l00629}00629 \textcolor{comment}{    /// previous timestep (currently empty -\/-\/ overwrite for specific scheme)}}
 \DoxyCodeLine{\Hypertarget{timesteppers_8h_source_l00630}\mbox{\hyperlink{classoomph_1_1TimeStepper_a2dfb949155ba433066fd69dc427ba1ce}{00630}} \textcolor{comment}{}    \textcolor{keyword}{virtual} \textcolor{keywordtype}{void} \mbox{\hyperlink{classoomph_1_1TimeStepper_a2dfb949155ba433066fd69dc427ba1ce}{set\_predictor\_weights}}() \{\}}
 \DoxyCodeLine{\Hypertarget{timesteppers_8h_source_l00631}00631 \textcolor{comment}{}}
-\DoxyCodeLine{\Hypertarget{timesteppers_8h_source_l00632}00632 \textcolor{comment}{    /// \(\backslash\)short Do the predictor step for data stored in a Data object}}
+\DoxyCodeLine{\Hypertarget{timesteppers_8h_source_l00632}00632 \textcolor{comment}{    ///  Do the predictor step for data stored in a Data object}}
 \DoxyCodeLine{\Hypertarget{timesteppers_8h_source_l00633}00633 \textcolor{comment}{    /// (currently empty -\/-\/ overwrite for specific scheme)}}
 \DoxyCodeLine{\Hypertarget{timesteppers_8h_source_l00634}\mbox{\hyperlink{classoomph_1_1TimeStepper_a159d508b1ae643fe31b55da9ee789dbf}{00634}} \textcolor{comment}{}    \textcolor{keyword}{virtual} \textcolor{keywordtype}{void} \mbox{\hyperlink{classoomph_1_1TimeStepper_a159d508b1ae643fe31b55da9ee789dbf}{calculate\_predicted\_values}}(\mbox{\hyperlink{classoomph_1_1Data}{Data}}* \textcolor{keyword}{const}\& data\_pt) \{\}}
 \DoxyCodeLine{\Hypertarget{timesteppers_8h_source_l00635}00635 \textcolor{comment}{}}
-\DoxyCodeLine{\Hypertarget{timesteppers_8h_source_l00636}00636 \textcolor{comment}{    ///\(\backslash\)short Do the predictor step for the positions at a node}}
+\DoxyCodeLine{\Hypertarget{timesteppers_8h_source_l00636}00636 \textcolor{comment}{    /// Do the predictor step for the positions at a node}}
 \DoxyCodeLine{\Hypertarget{timesteppers_8h_source_l00637}00637 \textcolor{comment}{    /// (currently empty -\/-\/-\/ overwrite for a specific scheme)}}
-\DoxyCodeLine{\Hypertarget{timesteppers_8h_source_l00638}\mbox{\hyperlink{classoomph_1_1TimeStepper_a2e7fafceb9330ac971078cf9dc248701}{00638}} \textcolor{comment}{}    \textcolor{keyword}{virtual} \textcolor{keywordtype}{void} \mbox{\hyperlink{classoomph_1_1TimeStepper_a2e7fafceb9330ac971078cf9dc248701}{calculate\_predicted\_positions}}(\mbox{\hyperlink{classoomph_1_1Node}{Node}}* \textcolor{keyword}{const}\& node\_pt) \{\}}
+\DoxyCodeLine{\Hypertarget{timesteppers_8h_source_l00638}\mbox{\hyperlink{classoomph_1_1TimeStepper_a2e7fafceb9330ac971078cf9dc248701}{00638}} \textcolor{comment}{}    \textcolor{keyword}{virtual} \textcolor{keywordtype}{void} \mbox{\hyperlink{classoomph_1_1TimeStepper_a2e7fafceb9330ac971078cf9dc248701}{calculate\_predicted\_positions}}(Node* \textcolor{keyword}{const}\& node\_pt) \{\}}
 \DoxyCodeLine{\Hypertarget{timesteppers_8h_source_l00639}00639 \textcolor{comment}{}}
-\DoxyCodeLine{\Hypertarget{timesteppers_8h_source_l00640}00640 \textcolor{comment}{    /// \(\backslash\)short Set the weights for the error computation,}}
+\DoxyCodeLine{\Hypertarget{timesteppers_8h_source_l00640}00640 \textcolor{comment}{    ///  Set the weights for the error computation,}}
 \DoxyCodeLine{\Hypertarget{timesteppers_8h_source_l00641}00641 \textcolor{comment}{    /// (currently empty -\/-\/ overwrite for specific scheme)}}
 \DoxyCodeLine{\Hypertarget{timesteppers_8h_source_l00642}\mbox{\hyperlink{classoomph_1_1TimeStepper_aee0c1da870a603e64efebb51dfc96a3d}{00642}} \textcolor{comment}{}    \textcolor{keyword}{virtual} \textcolor{keywordtype}{void} \mbox{\hyperlink{classoomph_1_1TimeStepper_aee0c1da870a603e64efebb51dfc96a3d}{set\_error\_weights}}() \{\}}
 \DoxyCodeLine{\Hypertarget{timesteppers_8h_source_l00643}00643 \textcolor{comment}{}}
 \DoxyCodeLine{\Hypertarget{timesteppers_8h_source_l00644}00644 \textcolor{comment}{    /// Compute the error in the position i at a node}}
 \DoxyCodeLine{\Hypertarget{timesteppers_8h_source_l00645}00645 \textcolor{comment}{    /// zero here -\/-\/ overwrite for specific scheme.}}
-\DoxyCodeLine{\Hypertarget{timesteppers_8h_source_l00646}\mbox{\hyperlink{classoomph_1_1TimeStepper_ac463807aff4bcbedd6e8a463c7390536}{00646}} \textcolor{comment}{}    \textcolor{keyword}{virtual} \textcolor{keywordtype}{double} \mbox{\hyperlink{classoomph_1_1TimeStepper_ac463807aff4bcbedd6e8a463c7390536}{temporal\_error\_in\_position}}(\mbox{\hyperlink{classoomph_1_1Node}{Node}}* \textcolor{keyword}{const}\& node\_pt,}
+\DoxyCodeLine{\Hypertarget{timesteppers_8h_source_l00646}\mbox{\hyperlink{classoomph_1_1TimeStepper_ac463807aff4bcbedd6e8a463c7390536}{00646}} \textcolor{comment}{}    \textcolor{keyword}{virtual} \textcolor{keywordtype}{double} \mbox{\hyperlink{classoomph_1_1TimeStepper_ac463807aff4bcbedd6e8a463c7390536}{temporal\_error\_in\_position}}(Node* \textcolor{keyword}{const}\& node\_pt,}
 \DoxyCodeLine{\Hypertarget{timesteppers_8h_source_l00647}00647                                               \textcolor{keyword}{const} \textcolor{keywordtype}{unsigned}\& \mbox{\hyperlink{cfortran_8h_adb50e893b86b3e55e751a42eab3cba82}{i}})}
 \DoxyCodeLine{\Hypertarget{timesteppers_8h_source_l00648}00648     \{}
 \DoxyCodeLine{\Hypertarget{timesteppers_8h_source_l00649}00649       \textcolor{keywordflow}{return} 0.0;}
@@ -684,7 +684,7 @@
 \DoxyCodeLine{\Hypertarget{timesteppers_8h_source_l00680}\mbox{\hyperlink{classoomph_1_1Steady}{00680}}   \textcolor{keyword}{class }\mbox{\hyperlink{classoomph_1_1Steady}{Steady}} : \textcolor{keyword}{virtual} \textcolor{keyword}{public} \mbox{\hyperlink{classoomph_1_1TimeStepper}{TimeStepper}}}
 \DoxyCodeLine{\Hypertarget{timesteppers_8h_source_l00681}00681   \{}
 \DoxyCodeLine{\Hypertarget{timesteppers_8h_source_l00682}00682   \textcolor{keyword}{public}:\textcolor{comment}{}}
-\DoxyCodeLine{\Hypertarget{timesteppers_8h_source_l00683}00683 \textcolor{comment}{    /// \(\backslash\)short Constructor: Creates storage for NSTEPS previous timesteps}}
+\DoxyCodeLine{\Hypertarget{timesteppers_8h_source_l00683}00683 \textcolor{comment}{    ///  Constructor: Creates storage for NSTEPS previous timesteps}}
 \DoxyCodeLine{\Hypertarget{timesteppers_8h_source_l00684}00684 \textcolor{comment}{    /// and can evaluate up to 2nd derivatives (though it doesn't}}
 \DoxyCodeLine{\Hypertarget{timesteppers_8h_source_l00685}00685 \textcolor{comment}{    /// actually do anything -\/-\/ all time-\/derivatives}}
 \DoxyCodeLine{\Hypertarget{timesteppers_8h_source_l00686}00686 \textcolor{comment}{    /// evaluate to zero)}}
@@ -705,14 +705,14 @@
 \DoxyCodeLine{\Hypertarget{timesteppers_8h_source_l00701}00701 \textcolor{comment}{    /// Broken assignment operator}}
 \DoxyCodeLine{\Hypertarget{timesteppers_8h_source_l00702}\mbox{\hyperlink{classoomph_1_1Steady_a48512caa4948348768c35bcb695b75a4}{00702}} \textcolor{comment}{}    \textcolor{keywordtype}{void} \mbox{\hyperlink{classoomph_1_1Steady_a48512caa4948348768c35bcb695b75a4}{operator=}}(\textcolor{keyword}{const} \mbox{\hyperlink{classoomph_1_1Steady}{Steady}}\&) = \textcolor{keyword}{delete};}
 \DoxyCodeLine{\Hypertarget{timesteppers_8h_source_l00703}00703 \textcolor{comment}{}}
-\DoxyCodeLine{\Hypertarget{timesteppers_8h_source_l00704}00704 \textcolor{comment}{    /// \(\backslash\)short Return the actual order of the scheme. Returning zero here -\/-\/}}
+\DoxyCodeLine{\Hypertarget{timesteppers_8h_source_l00704}00704 \textcolor{comment}{    ///  Return the actual order of the scheme. Returning zero here -\/-\/}}
 \DoxyCodeLine{\Hypertarget{timesteppers_8h_source_l00705}00705 \textcolor{comment}{    /// doesn't make much sense, though}}
 \DoxyCodeLine{\Hypertarget{timesteppers_8h_source_l00706}\mbox{\hyperlink{classoomph_1_1Steady_ac1735b614e9adf73a889e37afdd6d3a2}{00706}} \textcolor{comment}{}    \textcolor{keywordtype}{unsigned} \mbox{\hyperlink{classoomph_1_1Steady_ac1735b614e9adf73a889e37afdd6d3a2}{order}}()\textcolor{keyword}{ const}}
 \DoxyCodeLine{\Hypertarget{timesteppers_8h_source_l00707}00707 \textcolor{keyword}{    }\{}
 \DoxyCodeLine{\Hypertarget{timesteppers_8h_source_l00708}00708       \textcolor{keywordflow}{return} 0;}
 \DoxyCodeLine{\Hypertarget{timesteppers_8h_source_l00709}00709     \}}
 \DoxyCodeLine{\Hypertarget{timesteppers_8h_source_l00710}00710 \textcolor{comment}{}}
-\DoxyCodeLine{\Hypertarget{timesteppers_8h_source_l00711}00711 \textcolor{comment}{    /// \(\backslash\)short  Initialise the time-\/history for the Data values,}}
+\DoxyCodeLine{\Hypertarget{timesteppers_8h_source_l00711}00711 \textcolor{comment}{    ///   Initialise the time-\/history for the Data values,}}
 \DoxyCodeLine{\Hypertarget{timesteppers_8h_source_l00712}00712 \textcolor{comment}{    /// corresponding to an impulsive start.}}
 \DoxyCodeLine{\Hypertarget{timesteppers_8h_source_l00713}\mbox{\hyperlink{classoomph_1_1Steady_a1e25537dc2c134d8d23a9d5c1a1be328}{00713}} \textcolor{comment}{}    \textcolor{keywordtype}{void} \mbox{\hyperlink{classoomph_1_1Steady_a1e25537dc2c134d8d23a9d5c1a1be328}{assign\_initial\_values\_impulsive}}(\mbox{\hyperlink{classoomph_1_1Data}{Data}}* \textcolor{keyword}{const}\& data\_pt)}
 \DoxyCodeLine{\Hypertarget{timesteppers_8h_source_l00714}00714     \{}
@@ -732,26 +732,26 @@
 \DoxyCodeLine{\Hypertarget{timesteppers_8h_source_l00728}00728       \}}
 \DoxyCodeLine{\Hypertarget{timesteppers_8h_source_l00729}00729     \}}
 \DoxyCodeLine{\Hypertarget{timesteppers_8h_source_l00730}00730 \textcolor{comment}{}}
-\DoxyCodeLine{\Hypertarget{timesteppers_8h_source_l00731}00731 \textcolor{comment}{    /// \(\backslash\)short  Initialise the time-\/history for the nodal positions}}
+\DoxyCodeLine{\Hypertarget{timesteppers_8h_source_l00731}00731 \textcolor{comment}{    ///   Initialise the time-\/history for the nodal positions}}
 \DoxyCodeLine{\Hypertarget{timesteppers_8h_source_l00732}00732 \textcolor{comment}{    /// corresponding to an impulsive start.}}
-\DoxyCodeLine{\Hypertarget{timesteppers_8h_source_l00733}\mbox{\hyperlink{classoomph_1_1Steady_ad0aa4ed8297b77af2295827b1c0052b0}{00733}} \textcolor{comment}{}    \textcolor{keywordtype}{void} \mbox{\hyperlink{classoomph_1_1Steady_ad0aa4ed8297b77af2295827b1c0052b0}{assign\_initial\_positions\_impulsive}}(\mbox{\hyperlink{classoomph_1_1Node}{Node}}* \textcolor{keyword}{const}\& node\_pt)}
+\DoxyCodeLine{\Hypertarget{timesteppers_8h_source_l00733}\mbox{\hyperlink{classoomph_1_1Steady_ad0aa4ed8297b77af2295827b1c0052b0}{00733}} \textcolor{comment}{}    \textcolor{keywordtype}{void} \mbox{\hyperlink{classoomph_1_1Steady_ad0aa4ed8297b77af2295827b1c0052b0}{assign\_initial\_positions\_impulsive}}(Node* \textcolor{keyword}{const}\& node\_pt)}
 \DoxyCodeLine{\Hypertarget{timesteppers_8h_source_l00734}00734     \{}
 \DoxyCodeLine{\Hypertarget{timesteppers_8h_source_l00735}00735       \textcolor{comment}{// Find the number of coordinates}}
-\DoxyCodeLine{\Hypertarget{timesteppers_8h_source_l00736}00736       \textcolor{keywordtype}{unsigned} n\_dim = node\_pt-\/>\mbox{\hyperlink{classoomph_1_1Node_a786c96a8e46eb27a03b2b31f629d41b3}{ndim}}();}
+\DoxyCodeLine{\Hypertarget{timesteppers_8h_source_l00736}00736       \textcolor{keywordtype}{unsigned} n\_dim = node\_pt-\/>ndim();}
 \DoxyCodeLine{\Hypertarget{timesteppers_8h_source_l00737}00737       \textcolor{comment}{// Find the number of positoin types}}
-\DoxyCodeLine{\Hypertarget{timesteppers_8h_source_l00738}00738       \textcolor{keywordtype}{unsigned} n\_position\_type = node\_pt-\/>\mbox{\hyperlink{classoomph_1_1Node_aee6f2b7a46fc9d875c6736895d7fc095}{nposition\_type}}();}
+\DoxyCodeLine{\Hypertarget{timesteppers_8h_source_l00738}00738       \textcolor{keywordtype}{unsigned} n\_position\_type = node\_pt-\/>nposition\_type();}
 \DoxyCodeLine{\Hypertarget{timesteppers_8h_source_l00739}00739 }
 \DoxyCodeLine{\Hypertarget{timesteppers_8h_source_l00740}00740       \textcolor{comment}{// Loop over values}}
 \DoxyCodeLine{\Hypertarget{timesteppers_8h_source_l00741}00741       \textcolor{keywordflow}{for} (\textcolor{keywordtype}{unsigned} \mbox{\hyperlink{cfortran_8h_adb50e893b86b3e55e751a42eab3cba82}{i}} = 0; \mbox{\hyperlink{cfortran_8h_adb50e893b86b3e55e751a42eab3cba82}{i}} < n\_dim; \mbox{\hyperlink{cfortran_8h_adb50e893b86b3e55e751a42eab3cba82}{i}}++)}
 \DoxyCodeLine{\Hypertarget{timesteppers_8h_source_l00742}00742       \{}
 \DoxyCodeLine{\Hypertarget{timesteppers_8h_source_l00743}00743         \textcolor{comment}{// Set previous values to the initial value, if not a copy}}
-\DoxyCodeLine{\Hypertarget{timesteppers_8h_source_l00744}00744         \textcolor{keywordflow}{if} (node\_pt-\/>\mbox{\hyperlink{classoomph_1_1Node_a80fe9192b35baa5321e8d0ffba4b8b8a}{position\_is\_a\_copy}}(\mbox{\hyperlink{cfortran_8h_adb50e893b86b3e55e751a42eab3cba82}{i}}) == \textcolor{keyword}{false})}
+\DoxyCodeLine{\Hypertarget{timesteppers_8h_source_l00744}00744         \textcolor{keywordflow}{if} (node\_pt-\/>position\_is\_a\_copy(\mbox{\hyperlink{cfortran_8h_adb50e893b86b3e55e751a42eab3cba82}{i}}) == \textcolor{keyword}{false})}
 \DoxyCodeLine{\Hypertarget{timesteppers_8h_source_l00745}00745         \{}
 \DoxyCodeLine{\Hypertarget{timesteppers_8h_source_l00746}00746           \textcolor{keywordflow}{for} (\textcolor{keywordtype}{unsigned} k = 0; k < n\_position\_type; k++)}
 \DoxyCodeLine{\Hypertarget{timesteppers_8h_source_l00747}00747           \{}
 \DoxyCodeLine{\Hypertarget{timesteppers_8h_source_l00748}00748             \textcolor{keywordflow}{for} (\textcolor{keywordtype}{unsigned} \mbox{\hyperlink{cfortran_8h_af6f0bd3dc13317f895c91323c25c2b8f}{t}} = 1; \mbox{\hyperlink{cfortran_8h_af6f0bd3dc13317f895c91323c25c2b8f}{t}} <= NSTEPS; \mbox{\hyperlink{cfortran_8h_af6f0bd3dc13317f895c91323c25c2b8f}{t}}++)}
 \DoxyCodeLine{\Hypertarget{timesteppers_8h_source_l00749}00749             \{}
-\DoxyCodeLine{\Hypertarget{timesteppers_8h_source_l00750}00750               node\_pt-\/>\mbox{\hyperlink{classoomph_1_1Node_af7fdc0dfda495d69bd31c790ee77da73}{x\_gen}}(\mbox{\hyperlink{cfortran_8h_af6f0bd3dc13317f895c91323c25c2b8f}{t}}, k, \mbox{\hyperlink{cfortran_8h_adb50e893b86b3e55e751a42eab3cba82}{i}}) = node\_pt-\/>\mbox{\hyperlink{classoomph_1_1Node_af7fdc0dfda495d69bd31c790ee77da73}{x\_gen}}(k, \mbox{\hyperlink{cfortran_8h_adb50e893b86b3e55e751a42eab3cba82}{i}});}
+\DoxyCodeLine{\Hypertarget{timesteppers_8h_source_l00750}00750               node\_pt-\/>x\_gen(\mbox{\hyperlink{cfortran_8h_af6f0bd3dc13317f895c91323c25c2b8f}{t}}, k, \mbox{\hyperlink{cfortran_8h_adb50e893b86b3e55e751a42eab3cba82}{i}}) = node\_pt-\/>x\_gen(k, \mbox{\hyperlink{cfortran_8h_adb50e893b86b3e55e751a42eab3cba82}{i}});}
 \DoxyCodeLine{\Hypertarget{timesteppers_8h_source_l00751}00751             \}}
 \DoxyCodeLine{\Hypertarget{timesteppers_8h_source_l00752}00752           \}}
 \DoxyCodeLine{\Hypertarget{timesteppers_8h_source_l00753}00753         \}}
@@ -759,11 +759,11 @@
 \DoxyCodeLine{\Hypertarget{timesteppers_8h_source_l00755}00755     \}}
 \DoxyCodeLine{\Hypertarget{timesteppers_8h_source_l00756}00756 }
 \DoxyCodeLine{\Hypertarget{timesteppers_8h_source_l00757}00757 \textcolor{comment}{}}
-\DoxyCodeLine{\Hypertarget{timesteppers_8h_source_l00758}00758 \textcolor{comment}{    /// \(\backslash\)short Typedef for function that returns the (scalar) initial}}
+\DoxyCodeLine{\Hypertarget{timesteppers_8h_source_l00758}00758 \textcolor{comment}{    ///  Typedef for function that returns the (scalar) initial}}
 \DoxyCodeLine{\Hypertarget{timesteppers_8h_source_l00759}00759 \textcolor{comment}{    /// value at a given value of the continuous time t.}}
 \DoxyCodeLine{\Hypertarget{timesteppers_8h_source_l00760}\mbox{\hyperlink{classoomph_1_1Steady_a107849d71562b3efa4bf785de60490b3}{00760}} \textcolor{comment}{}    \textcolor{keyword}{typedef} double (*\mbox{\hyperlink{classoomph_1_1Steady_a107849d71562b3efa4bf785de60490b3}{InitialConditionFctPt}})(\textcolor{keyword}{const} \textcolor{keywordtype}{double}\& \mbox{\hyperlink{cfortran_8h_af6f0bd3dc13317f895c91323c25c2b8f}{t}});}
 \DoxyCodeLine{\Hypertarget{timesteppers_8h_source_l00761}00761 \textcolor{comment}{}}
-\DoxyCodeLine{\Hypertarget{timesteppers_8h_source_l00762}00762 \textcolor{comment}{    /// \(\backslash\)short  Initialise the time-\/history for the Data values,}}
+\DoxyCodeLine{\Hypertarget{timesteppers_8h_source_l00762}00762 \textcolor{comment}{    ///   Initialise the time-\/history for the Data values,}}
 \DoxyCodeLine{\Hypertarget{timesteppers_8h_source_l00763}00763 \textcolor{comment}{    /// corresponding to given time history, specified by}}
 \DoxyCodeLine{\Hypertarget{timesteppers_8h_source_l00764}00764 \textcolor{comment}{    /// Vector of function pointers.}}
 \DoxyCodeLine{\Hypertarget{timesteppers_8h_source_l00765}\mbox{\hyperlink{classoomph_1_1Steady_a9598718f5a8ab37a123fb183ba4b8bf9}{00765}} \textcolor{comment}{}    \textcolor{keywordtype}{void} \mbox{\hyperlink{classoomph_1_1Steady_a9598718f5a8ab37a123fb183ba4b8bf9}{assign\_initial\_data\_values}}(}
@@ -789,7 +789,7 @@
 \DoxyCodeLine{\Hypertarget{timesteppers_8h_source_l00785}00785       \}}
 \DoxyCodeLine{\Hypertarget{timesteppers_8h_source_l00786}00786     \}}
 \DoxyCodeLine{\Hypertarget{timesteppers_8h_source_l00787}00787 \textcolor{comment}{}}
-\DoxyCodeLine{\Hypertarget{timesteppers_8h_source_l00788}00788 \textcolor{comment}{    /// \(\backslash\)short This function updates the Data's time history so that}}
+\DoxyCodeLine{\Hypertarget{timesteppers_8h_source_l00788}00788 \textcolor{comment}{    ///  This function updates the Data's time history so that}}
 \DoxyCodeLine{\Hypertarget{timesteppers_8h_source_l00789}00789 \textcolor{comment}{    /// we can advance to the next timestep. As for BDF schemes,}}
 \DoxyCodeLine{\Hypertarget{timesteppers_8h_source_l00790}00790 \textcolor{comment}{    /// we simply push the values backwards...}}
 \DoxyCodeLine{\Hypertarget{timesteppers_8h_source_l00791}\mbox{\hyperlink{classoomph_1_1Steady_aa1c00b0014a2394f7b2e1b302ebbce00}{00791}} \textcolor{comment}{}    \textcolor{keywordtype}{void} \mbox{\hyperlink{classoomph_1_1Steady_aa1c00b0014a2394f7b2e1b302ebbce00}{shift\_time\_values}}(\mbox{\hyperlink{classoomph_1_1Data}{Data}}* \textcolor{keyword}{const}\& data\_pt)}
@@ -812,27 +812,27 @@
 \DoxyCodeLine{\Hypertarget{timesteppers_8h_source_l00808}00808       \}}
 \DoxyCodeLine{\Hypertarget{timesteppers_8h_source_l00809}00809     \}}
 \DoxyCodeLine{\Hypertarget{timesteppers_8h_source_l00810}00810 \textcolor{comment}{}}
-\DoxyCodeLine{\Hypertarget{timesteppers_8h_source_l00811}00811 \textcolor{comment}{    ///\(\backslash\)short This function advances the time history of the positions}}
+\DoxyCodeLine{\Hypertarget{timesteppers_8h_source_l00811}00811 \textcolor{comment}{    /// This function advances the time history of the positions}}
 \DoxyCodeLine{\Hypertarget{timesteppers_8h_source_l00812}00812 \textcolor{comment}{    /// at a node.}}
-\DoxyCodeLine{\Hypertarget{timesteppers_8h_source_l00813}\mbox{\hyperlink{classoomph_1_1Steady_a4b3c9877146cb5a3673b54e0f02d9625}{00813}} \textcolor{comment}{}    \textcolor{keywordtype}{void} \mbox{\hyperlink{classoomph_1_1Steady_a4b3c9877146cb5a3673b54e0f02d9625}{shift\_time\_positions}}(\mbox{\hyperlink{classoomph_1_1Node}{Node}}* \textcolor{keyword}{const}\& node\_pt)}
+\DoxyCodeLine{\Hypertarget{timesteppers_8h_source_l00813}\mbox{\hyperlink{classoomph_1_1Steady_a4b3c9877146cb5a3673b54e0f02d9625}{00813}} \textcolor{comment}{}    \textcolor{keywordtype}{void} \mbox{\hyperlink{classoomph_1_1Steady_a4b3c9877146cb5a3673b54e0f02d9625}{shift\_time\_positions}}(Node* \textcolor{keyword}{const}\& node\_pt)}
 \DoxyCodeLine{\Hypertarget{timesteppers_8h_source_l00814}00814     \{}
 \DoxyCodeLine{\Hypertarget{timesteppers_8h_source_l00815}00815       \textcolor{comment}{// Find the number of coordinates}}
-\DoxyCodeLine{\Hypertarget{timesteppers_8h_source_l00816}00816       \textcolor{keywordtype}{unsigned} n\_dim = node\_pt-\/>\mbox{\hyperlink{classoomph_1_1Node_a786c96a8e46eb27a03b2b31f629d41b3}{ndim}}();}
+\DoxyCodeLine{\Hypertarget{timesteppers_8h_source_l00816}00816       \textcolor{keywordtype}{unsigned} n\_dim = node\_pt-\/>ndim();}
 \DoxyCodeLine{\Hypertarget{timesteppers_8h_source_l00817}00817       \textcolor{comment}{// Find the number of position types}}
-\DoxyCodeLine{\Hypertarget{timesteppers_8h_source_l00818}00818       \textcolor{keywordtype}{unsigned} n\_position\_type = node\_pt-\/>\mbox{\hyperlink{classoomph_1_1Node_aee6f2b7a46fc9d875c6736895d7fc095}{nposition\_type}}();}
+\DoxyCodeLine{\Hypertarget{timesteppers_8h_source_l00818}00818       \textcolor{keywordtype}{unsigned} n\_position\_type = node\_pt-\/>nposition\_type();}
 \DoxyCodeLine{\Hypertarget{timesteppers_8h_source_l00819}00819 }
 \DoxyCodeLine{\Hypertarget{timesteppers_8h_source_l00820}00820       \textcolor{comment}{// Loop over the positions}}
 \DoxyCodeLine{\Hypertarget{timesteppers_8h_source_l00821}00821       \textcolor{keywordflow}{for} (\textcolor{keywordtype}{unsigned} \mbox{\hyperlink{cfortran_8h_adb50e893b86b3e55e751a42eab3cba82}{i}} = 0; \mbox{\hyperlink{cfortran_8h_adb50e893b86b3e55e751a42eab3cba82}{i}} < n\_dim; \mbox{\hyperlink{cfortran_8h_adb50e893b86b3e55e751a42eab3cba82}{i}}++)}
 \DoxyCodeLine{\Hypertarget{timesteppers_8h_source_l00822}00822       \{}
 \DoxyCodeLine{\Hypertarget{timesteppers_8h_source_l00823}00823         \textcolor{comment}{// If the position is not a copy}}
-\DoxyCodeLine{\Hypertarget{timesteppers_8h_source_l00824}00824         \textcolor{keywordflow}{if} (node\_pt-\/>\mbox{\hyperlink{classoomph_1_1Node_a80fe9192b35baa5321e8d0ffba4b8b8a}{position\_is\_a\_copy}}(\mbox{\hyperlink{cfortran_8h_adb50e893b86b3e55e751a42eab3cba82}{i}}) == \textcolor{keyword}{false})}
+\DoxyCodeLine{\Hypertarget{timesteppers_8h_source_l00824}00824         \textcolor{keywordflow}{if} (node\_pt-\/>position\_is\_a\_copy(\mbox{\hyperlink{cfortran_8h_adb50e893b86b3e55e751a42eab3cba82}{i}}) == \textcolor{keyword}{false})}
 \DoxyCodeLine{\Hypertarget{timesteppers_8h_source_l00825}00825         \{}
 \DoxyCodeLine{\Hypertarget{timesteppers_8h_source_l00826}00826           \textcolor{keywordflow}{for} (\textcolor{keywordtype}{unsigned} k = 0; k < n\_position\_type; k++)}
 \DoxyCodeLine{\Hypertarget{timesteppers_8h_source_l00827}00827           \{}
 \DoxyCodeLine{\Hypertarget{timesteppers_8h_source_l00828}00828             \textcolor{comment}{// Loop over stored times, and set values to previous values}}
 \DoxyCodeLine{\Hypertarget{timesteppers_8h_source_l00829}00829             \textcolor{keywordflow}{for} (\textcolor{keywordtype}{unsigned} \mbox{\hyperlink{cfortran_8h_af6f0bd3dc13317f895c91323c25c2b8f}{t}} = NSTEPS; \mbox{\hyperlink{cfortran_8h_af6f0bd3dc13317f895c91323c25c2b8f}{t}} > 0; \mbox{\hyperlink{cfortran_8h_af6f0bd3dc13317f895c91323c25c2b8f}{t}}-\/-\/)}
 \DoxyCodeLine{\Hypertarget{timesteppers_8h_source_l00830}00830             \{}
-\DoxyCodeLine{\Hypertarget{timesteppers_8h_source_l00831}00831               node\_pt-\/>\mbox{\hyperlink{classoomph_1_1Node_af7fdc0dfda495d69bd31c790ee77da73}{x\_gen}}(\mbox{\hyperlink{cfortran_8h_af6f0bd3dc13317f895c91323c25c2b8f}{t}}, k, \mbox{\hyperlink{cfortran_8h_adb50e893b86b3e55e751a42eab3cba82}{i}}) = node\_pt-\/>\mbox{\hyperlink{classoomph_1_1Node_af7fdc0dfda495d69bd31c790ee77da73}{x\_gen}}(\mbox{\hyperlink{cfortran_8h_af6f0bd3dc13317f895c91323c25c2b8f}{t}} -\/ 1, k, \mbox{\hyperlink{cfortran_8h_adb50e893b86b3e55e751a42eab3cba82}{i}});}
+\DoxyCodeLine{\Hypertarget{timesteppers_8h_source_l00831}00831               node\_pt-\/>x\_gen(\mbox{\hyperlink{cfortran_8h_af6f0bd3dc13317f895c91323c25c2b8f}{t}}, k, \mbox{\hyperlink{cfortran_8h_adb50e893b86b3e55e751a42eab3cba82}{i}}) = node\_pt-\/>x\_gen(\mbox{\hyperlink{cfortran_8h_af6f0bd3dc13317f895c91323c25c2b8f}{t}} -\/ 1, k, \mbox{\hyperlink{cfortran_8h_adb50e893b86b3e55e751a42eab3cba82}{i}});}
 \DoxyCodeLine{\Hypertarget{timesteppers_8h_source_l00832}00832             \}}
 \DoxyCodeLine{\Hypertarget{timesteppers_8h_source_l00833}00833           \}}
 \DoxyCodeLine{\Hypertarget{timesteppers_8h_source_l00834}00834         \}}
@@ -899,7 +899,7 @@
 \DoxyCodeLine{\Hypertarget{timesteppers_8h_source_l00895}00895 \textcolor{comment}{}}
 \DoxyCodeLine{\Hypertarget{timesteppers_8h_source_l00896}00896 }
 \DoxyCodeLine{\Hypertarget{timesteppers_8h_source_l00897}00897   \textcolor{comment}{//====================================================================}\textcolor{comment}{}}
-\DoxyCodeLine{\Hypertarget{timesteppers_8h_source_l00898}00898 \textcolor{comment}{  /// \(\backslash\)short Newmark scheme for second time deriv. Stored data represents}}
+\DoxyCodeLine{\Hypertarget{timesteppers_8h_source_l00898}00898 \textcolor{comment}{  ///  Newmark scheme for second time deriv. Stored data represents}}
 \DoxyCodeLine{\Hypertarget{timesteppers_8h_source_l00899}00899 \textcolor{comment}{  /// -\/ t=0: value at at present time, Time\_pt-\/>time()}}
 \DoxyCodeLine{\Hypertarget{timesteppers_8h_source_l00900}00900 \textcolor{comment}{  /// -\/ t=1: value at previous time, Time\_pt-\/>time()-\/dt}}
 \DoxyCodeLine{\Hypertarget{timesteppers_8h_source_l00901}00901 \textcolor{comment}{  /// -\/  ...}}
@@ -915,7 +915,7 @@
 \DoxyCodeLine{\Hypertarget{timesteppers_8h_source_l00911}\mbox{\hyperlink{classoomph_1_1Newmark}{00911}}   \textcolor{keyword}{class }\mbox{\hyperlink{classoomph_1_1Newmark}{Newmark}} : \textcolor{keyword}{public} \mbox{\hyperlink{classoomph_1_1TimeStepper}{TimeStepper}}}
 \DoxyCodeLine{\Hypertarget{timesteppers_8h_source_l00912}00912   \{}
 \DoxyCodeLine{\Hypertarget{timesteppers_8h_source_l00913}00913   \textcolor{keyword}{public}:\textcolor{comment}{}}
-\DoxyCodeLine{\Hypertarget{timesteppers_8h_source_l00914}00914 \textcolor{comment}{    /// \(\backslash\)short Constructor: Pass pointer to global time. We set up a}}
+\DoxyCodeLine{\Hypertarget{timesteppers_8h_source_l00914}00914 \textcolor{comment}{    ///  Constructor: Pass pointer to global time. We set up a}}
 \DoxyCodeLine{\Hypertarget{timesteppers_8h_source_l00915}00915 \textcolor{comment}{    /// timestepping scheme with NSTEPS+2 doubles to represent the history and}}
 \DoxyCodeLine{\Hypertarget{timesteppers_8h_source_l00916}00916 \textcolor{comment}{    /// the highest deriv is 2.}}
 \DoxyCodeLine{\Hypertarget{timesteppers_8h_source_l00917}\mbox{\hyperlink{classoomph_1_1Newmark_a0fb7152525d4098b4adc5f7956c8c73f}{00917}} \textcolor{comment}{}    \mbox{\hyperlink{classoomph_1_1Newmark_a0fb7152525d4098b4adc5f7956c8c73f}{Newmark}}() : \mbox{\hyperlink{classoomph_1_1TimeStepper}{TimeStepper}}(NSTEPS + 3, 2)}
@@ -946,19 +946,19 @@
 \DoxyCodeLine{\Hypertarget{timesteppers_8h_source_l00942}00942       \textcolor{keywordflow}{return} 2;}
 \DoxyCodeLine{\Hypertarget{timesteppers_8h_source_l00943}00943     \}}
 \DoxyCodeLine{\Hypertarget{timesteppers_8h_source_l00944}00944 \textcolor{comment}{}}
-\DoxyCodeLine{\Hypertarget{timesteppers_8h_source_l00945}00945 \textcolor{comment}{    /// \(\backslash\)short Initialise the time-\/history for the values,}}
+\DoxyCodeLine{\Hypertarget{timesteppers_8h_source_l00945}00945 \textcolor{comment}{    ///  Initialise the time-\/history for the values,}}
 \DoxyCodeLine{\Hypertarget{timesteppers_8h_source_l00946}00946 \textcolor{comment}{    /// corresponding to an impulsive start.}}
 \DoxyCodeLine{\Hypertarget{timesteppers_8h_source_l00947}00947 \textcolor{comment}{}    \textcolor{keywordtype}{void} \mbox{\hyperlink{classoomph_1_1Newmark_a97195b87c11688ae6c17f1a5d2f821e1}{assign\_initial\_values\_impulsive}}(\mbox{\hyperlink{classoomph_1_1Data}{Data}}* \textcolor{keyword}{const}\& data\_pt);}
 \DoxyCodeLine{\Hypertarget{timesteppers_8h_source_l00948}00948 \textcolor{comment}{}}
-\DoxyCodeLine{\Hypertarget{timesteppers_8h_source_l00949}00949 \textcolor{comment}{    /// \(\backslash\)short Initialise the time-\/history for the values,}}
+\DoxyCodeLine{\Hypertarget{timesteppers_8h_source_l00949}00949 \textcolor{comment}{    ///  Initialise the time-\/history for the values,}}
 \DoxyCodeLine{\Hypertarget{timesteppers_8h_source_l00950}00950 \textcolor{comment}{    /// corresponding to an impulsive start.}}
-\DoxyCodeLine{\Hypertarget{timesteppers_8h_source_l00951}00951 \textcolor{comment}{}    \textcolor{keywordtype}{void} \mbox{\hyperlink{classoomph_1_1Newmark_a8b058a0cc65b0f24a119d5d9120952a2}{assign\_initial\_positions\_impulsive}}(\mbox{\hyperlink{classoomph_1_1Node}{Node}}* \textcolor{keyword}{const}\& node\_pt);}
+\DoxyCodeLine{\Hypertarget{timesteppers_8h_source_l00951}00951 \textcolor{comment}{}    \textcolor{keywordtype}{void} \mbox{\hyperlink{classoomph_1_1Newmark_a8b058a0cc65b0f24a119d5d9120952a2}{assign\_initial\_positions\_impulsive}}(Node* \textcolor{keyword}{const}\& node\_pt);}
 \DoxyCodeLine{\Hypertarget{timesteppers_8h_source_l00952}00952 \textcolor{comment}{}}
-\DoxyCodeLine{\Hypertarget{timesteppers_8h_source_l00953}00953 \textcolor{comment}{    /// \(\backslash\)short Typedef for function that returns the (scalar) initial}}
+\DoxyCodeLine{\Hypertarget{timesteppers_8h_source_l00953}00953 \textcolor{comment}{    ///  Typedef for function that returns the (scalar) initial}}
 \DoxyCodeLine{\Hypertarget{timesteppers_8h_source_l00954}00954 \textcolor{comment}{    /// value at a given value of the continuous time t.}}
 \DoxyCodeLine{\Hypertarget{timesteppers_8h_source_l00955}\mbox{\hyperlink{classoomph_1_1Newmark_a40793f69efc56441a46296ad428dc3d4}{00955}} \textcolor{comment}{}    \textcolor{keyword}{typedef} double (*\mbox{\hyperlink{classoomph_1_1Newmark_a40793f69efc56441a46296ad428dc3d4}{InitialConditionFctPt}})(\textcolor{keyword}{const} \textcolor{keywordtype}{double}\& \mbox{\hyperlink{cfortran_8h_af6f0bd3dc13317f895c91323c25c2b8f}{t}});}
 \DoxyCodeLine{\Hypertarget{timesteppers_8h_source_l00956}00956 \textcolor{comment}{}}
-\DoxyCodeLine{\Hypertarget{timesteppers_8h_source_l00957}00957 \textcolor{comment}{    /// \(\backslash\)short  Initialise the time-\/history for the Data values,}}
+\DoxyCodeLine{\Hypertarget{timesteppers_8h_source_l00957}00957 \textcolor{comment}{    ///   Initialise the time-\/history for the Data values,}}
 \DoxyCodeLine{\Hypertarget{timesteppers_8h_source_l00958}00958 \textcolor{comment}{    /// so that the Newmark representations for current veloc and}}
 \DoxyCodeLine{\Hypertarget{timesteppers_8h_source_l00959}00959 \textcolor{comment}{    /// acceleration are exact.}}
 \DoxyCodeLine{\Hypertarget{timesteppers_8h_source_l00960}00960 \textcolor{comment}{}    \textcolor{keywordtype}{void} \mbox{\hyperlink{classoomph_1_1Newmark_ab5d5983bf3c821d738c429e24f157f05}{assign\_initial\_data\_values}}(}
@@ -968,23 +968,23 @@
 \DoxyCodeLine{\Hypertarget{timesteppers_8h_source_l00964}00964       \mbox{\hyperlink{classoomph_1_1Vector}{Vector<InitialConditionFctPt>}} initial\_accel\_fct);}
 \DoxyCodeLine{\Hypertarget{timesteppers_8h_source_l00965}00965 }
 \DoxyCodeLine{\Hypertarget{timesteppers_8h_source_l00966}00966 \textcolor{comment}{}}
-\DoxyCodeLine{\Hypertarget{timesteppers_8h_source_l00967}00967 \textcolor{comment}{    /// \(\backslash\)short Typedef for function that returns the (scalar) initial}}
+\DoxyCodeLine{\Hypertarget{timesteppers_8h_source_l00967}00967 \textcolor{comment}{    ///  Typedef for function that returns the (scalar) initial}}
 \DoxyCodeLine{\Hypertarget{timesteppers_8h_source_l00968}00968 \textcolor{comment}{    /// value at a given value of the continuous time t and the spatial}}
 \DoxyCodeLine{\Hypertarget{timesteppers_8h_source_l00969}00969 \textcolor{comment}{    /// coordinate -\/-\/ appropriate for assignement of initial conditions for}}
 \DoxyCodeLine{\Hypertarget{timesteppers_8h_source_l00970}00970 \textcolor{comment}{    /// nodes}}
 \DoxyCodeLine{\Hypertarget{timesteppers_8h_source_l00971}\mbox{\hyperlink{classoomph_1_1Newmark_af7c5c0d8127484525f751f084aa36d67}{00971}} \textcolor{comment}{}    \textcolor{keyword}{typedef} double (*\mbox{\hyperlink{classoomph_1_1Newmark_af7c5c0d8127484525f751f084aa36d67}{NodeInitialConditionFctPt}})(\textcolor{keyword}{const} \textcolor{keywordtype}{double}\& \mbox{\hyperlink{cfortran_8h_af6f0bd3dc13317f895c91323c25c2b8f}{t}},}
-\DoxyCodeLine{\Hypertarget{timesteppers_8h_source_l00972}00972                                                 \textcolor{keyword}{const} \mbox{\hyperlink{classoomph_1_1Vector}{Vector<double>}}\& x);}
+\DoxyCodeLine{\Hypertarget{timesteppers_8h_source_l00972}00972                                                 \textcolor{keyword}{const} \mbox{\hyperlink{classoomph_1_1Vector}{Vector<double>}}\& \mbox{\hyperlink{namespaceoomph_a9d1d2da2b8bb8e73af72b5cadb8fe97c}{x}});}
 \DoxyCodeLine{\Hypertarget{timesteppers_8h_source_l00973}00973 \textcolor{comment}{}}
-\DoxyCodeLine{\Hypertarget{timesteppers_8h_source_l00974}00974 \textcolor{comment}{    /// \(\backslash\)short  Initialise the time-\/history for the nodal values,}}
+\DoxyCodeLine{\Hypertarget{timesteppers_8h_source_l00974}00974 \textcolor{comment}{    ///   Initialise the time-\/history for the nodal values,}}
 \DoxyCodeLine{\Hypertarget{timesteppers_8h_source_l00975}00975 \textcolor{comment}{    /// so that the Newmark representations for current veloc and}}
 \DoxyCodeLine{\Hypertarget{timesteppers_8h_source_l00976}00976 \textcolor{comment}{    /// acceleration are exact.}}
 \DoxyCodeLine{\Hypertarget{timesteppers_8h_source_l00977}00977 \textcolor{comment}{}    \textcolor{keywordtype}{void} \mbox{\hyperlink{classoomph_1_1Newmark_ab5d5983bf3c821d738c429e24f157f05}{assign\_initial\_data\_values}}(}
-\DoxyCodeLine{\Hypertarget{timesteppers_8h_source_l00978}00978       \mbox{\hyperlink{classoomph_1_1Node}{Node}}* \textcolor{keyword}{const}\& node\_pt,}
+\DoxyCodeLine{\Hypertarget{timesteppers_8h_source_l00978}00978       Node* \textcolor{keyword}{const}\& node\_pt,}
 \DoxyCodeLine{\Hypertarget{timesteppers_8h_source_l00979}00979       \mbox{\hyperlink{classoomph_1_1Vector}{Vector<NodeInitialConditionFctPt>}} initial\_value\_fct,}
 \DoxyCodeLine{\Hypertarget{timesteppers_8h_source_l00980}00980       \mbox{\hyperlink{classoomph_1_1Vector}{Vector<NodeInitialConditionFctPt>}} initial\_veloc\_fct,}
 \DoxyCodeLine{\Hypertarget{timesteppers_8h_source_l00981}00981       \mbox{\hyperlink{classoomph_1_1Vector}{Vector<NodeInitialConditionFctPt>}} initial\_accel\_fct);}
 \DoxyCodeLine{\Hypertarget{timesteppers_8h_source_l00982}00982 \textcolor{comment}{}}
-\DoxyCodeLine{\Hypertarget{timesteppers_8h_source_l00983}00983 \textcolor{comment}{    /// \(\backslash\)short  First step in a two-\/stage procedure to assign}}
+\DoxyCodeLine{\Hypertarget{timesteppers_8h_source_l00983}00983 \textcolor{comment}{    ///   First step in a two-\/stage procedure to assign}}
 \DoxyCodeLine{\Hypertarget{timesteppers_8h_source_l00984}00984 \textcolor{comment}{    /// the history values for the Newmark scheme so}}
 \DoxyCodeLine{\Hypertarget{timesteppers_8h_source_l00985}00985 \textcolor{comment}{    /// that the veloc and accel that are computed by the scheme}}
 \DoxyCodeLine{\Hypertarget{timesteppers_8h_source_l00986}00986 \textcolor{comment}{    /// are correct at the current time.}}
@@ -1009,7 +1009,7 @@
 \DoxyCodeLine{\Hypertarget{timesteppers_8h_source_l01005}01005 \textcolor{comment}{}    \textcolor{keywordtype}{void} \mbox{\hyperlink{classoomph_1_1Newmark_a520bb445dfb9f4418058ab1d40bd57ea}{assign\_initial\_data\_values\_stage1}}(\textcolor{keyword}{const} \textcolor{keywordtype}{unsigned} t\_deriv,}
 \DoxyCodeLine{\Hypertarget{timesteppers_8h_source_l01006}01006                                            \mbox{\hyperlink{classoomph_1_1Data}{Data}}* \textcolor{keyword}{const}\& data\_pt);}
 \DoxyCodeLine{\Hypertarget{timesteppers_8h_source_l01007}01007 \textcolor{comment}{}}
-\DoxyCodeLine{\Hypertarget{timesteppers_8h_source_l01008}01008 \textcolor{comment}{    /// \(\backslash\)short Second step in a two-\/stage procedure to assign}}
+\DoxyCodeLine{\Hypertarget{timesteppers_8h_source_l01008}01008 \textcolor{comment}{    ///  Second step in a two-\/stage procedure to assign}}
 \DoxyCodeLine{\Hypertarget{timesteppers_8h_source_l01009}01009 \textcolor{comment}{    /// the history values for the Newmark scheme so}}
 \DoxyCodeLine{\Hypertarget{timesteppers_8h_source_l01010}01010 \textcolor{comment}{    /// that the veloc and accel that are computed by the scheme}}
 \DoxyCodeLine{\Hypertarget{timesteppers_8h_source_l01011}01011 \textcolor{comment}{    /// are correct at the current time.}}
@@ -1021,13 +1021,13 @@
 \DoxyCodeLine{\Hypertarget{timesteppers_8h_source_l01017}01017 \textcolor{comment}{}    \textcolor{keywordtype}{void} \mbox{\hyperlink{classoomph_1_1Newmark_a7bc09dd3b0ede9ebbb6b0b1488751301}{assign\_initial\_data\_values\_stage2}}(\mbox{\hyperlink{classoomph_1_1Data}{Data}}* \textcolor{keyword}{const}\& data\_pt);}
 \DoxyCodeLine{\Hypertarget{timesteppers_8h_source_l01018}01018 }
 \DoxyCodeLine{\Hypertarget{timesteppers_8h_source_l01019}01019 \textcolor{comment}{}}
-\DoxyCodeLine{\Hypertarget{timesteppers_8h_source_l01020}01020 \textcolor{comment}{    /// \(\backslash\)short This function updates the Data's time history so that}}
+\DoxyCodeLine{\Hypertarget{timesteppers_8h_source_l01020}01020 \textcolor{comment}{    ///  This function updates the Data's time history so that}}
 \DoxyCodeLine{\Hypertarget{timesteppers_8h_source_l01021}01021 \textcolor{comment}{    /// we can advance to the next timestep.}}
 \DoxyCodeLine{\Hypertarget{timesteppers_8h_source_l01022}01022 \textcolor{comment}{}    \textcolor{keywordtype}{void} \mbox{\hyperlink{classoomph_1_1Newmark_a3f8606d569f947669006b9b079ac4c82}{shift\_time\_values}}(\mbox{\hyperlink{classoomph_1_1Data}{Data}}* \textcolor{keyword}{const}\& data\_pt);}
 \DoxyCodeLine{\Hypertarget{timesteppers_8h_source_l01023}01023 \textcolor{comment}{}}
-\DoxyCodeLine{\Hypertarget{timesteppers_8h_source_l01024}01024 \textcolor{comment}{    /// \(\backslash\)short This function updates a nodal time history so that}}
+\DoxyCodeLine{\Hypertarget{timesteppers_8h_source_l01024}01024 \textcolor{comment}{    ///  This function updates a nodal time history so that}}
 \DoxyCodeLine{\Hypertarget{timesteppers_8h_source_l01025}01025 \textcolor{comment}{    /// we can advance to the next timestep.}}
-\DoxyCodeLine{\Hypertarget{timesteppers_8h_source_l01026}01026 \textcolor{comment}{}    \textcolor{keywordtype}{void} \mbox{\hyperlink{classoomph_1_1Newmark_af56a2965f66e9a181b336e11cc613b21}{shift\_time\_positions}}(\mbox{\hyperlink{classoomph_1_1Node}{Node}}* \textcolor{keyword}{const}\& node\_pt);}
+\DoxyCodeLine{\Hypertarget{timesteppers_8h_source_l01026}01026 \textcolor{comment}{}    \textcolor{keywordtype}{void} \mbox{\hyperlink{classoomph_1_1Newmark_af56a2965f66e9a181b336e11cc613b21}{shift\_time\_positions}}(Node* \textcolor{keyword}{const}\& node\_pt);}
 \DoxyCodeLine{\Hypertarget{timesteppers_8h_source_l01027}01027 \textcolor{comment}{}}
 \DoxyCodeLine{\Hypertarget{timesteppers_8h_source_l01028}01028 \textcolor{comment}{    /// Set weights}}
 \DoxyCodeLine{\Hypertarget{timesteppers_8h_source_l01029}01029 \textcolor{comment}{}    \textcolor{keywordtype}{void} \mbox{\hyperlink{classoomph_1_1Newmark_ad175de47f064359fa319a11088b759aa}{set\_weights}}();}
@@ -1060,7 +1060,7 @@
 \DoxyCodeLine{\Hypertarget{timesteppers_8h_source_l01056}01056 \textcolor{comment}{}}
 \DoxyCodeLine{\Hypertarget{timesteppers_8h_source_l01057}01057 }
 \DoxyCodeLine{\Hypertarget{timesteppers_8h_source_l01058}01058   \textcolor{comment}{//====================================================================}\textcolor{comment}{}}
-\DoxyCodeLine{\Hypertarget{timesteppers_8h_source_l01059}01059 \textcolor{comment}{  /// \(\backslash\)short Newmark scheme for second time deriv with first derivatives}}
+\DoxyCodeLine{\Hypertarget{timesteppers_8h_source_l01059}01059 \textcolor{comment}{  ///  Newmark scheme for second time deriv with first derivatives}}
 \DoxyCodeLine{\Hypertarget{timesteppers_8h_source_l01060}01060 \textcolor{comment}{  /// calculated using BDF. . Stored data represents}}
 \DoxyCodeLine{\Hypertarget{timesteppers_8h_source_l01061}01061 \textcolor{comment}{  /// -\/ t=0: value at at present time, Time\_pt-\/>time()}}
 \DoxyCodeLine{\Hypertarget{timesteppers_8h_source_l01062}01062 \textcolor{comment}{  /// -\/ t=1: value at previous time, Time\_pt-\/>time()-\/dt}}
@@ -1077,7 +1077,7 @@
 \DoxyCodeLine{\Hypertarget{timesteppers_8h_source_l01073}\mbox{\hyperlink{classoomph_1_1NewmarkBDF}{01073}}   \textcolor{keyword}{class }\mbox{\hyperlink{classoomph_1_1NewmarkBDF}{NewmarkBDF}} : \textcolor{keyword}{public} \mbox{\hyperlink{classoomph_1_1Newmark}{Newmark}}<NSTEPS>}
 \DoxyCodeLine{\Hypertarget{timesteppers_8h_source_l01074}01074   \{}
 \DoxyCodeLine{\Hypertarget{timesteppers_8h_source_l01075}01075   \textcolor{keyword}{public}:\textcolor{comment}{}}
-\DoxyCodeLine{\Hypertarget{timesteppers_8h_source_l01076}01076 \textcolor{comment}{    /// \(\backslash\)short Constructor: Pass pointer to global time. We set up a}}
+\DoxyCodeLine{\Hypertarget{timesteppers_8h_source_l01076}01076 \textcolor{comment}{    ///  Constructor: Pass pointer to global time. We set up a}}
 \DoxyCodeLine{\Hypertarget{timesteppers_8h_source_l01077}01077 \textcolor{comment}{    /// timestepping scheme with NSTEPS+2 doubles to represent the history and}}
 \DoxyCodeLine{\Hypertarget{timesteppers_8h_source_l01078}01078 \textcolor{comment}{    /// the highest deriv is 2.}}
 \DoxyCodeLine{\Hypertarget{timesteppers_8h_source_l01079}\mbox{\hyperlink{classoomph_1_1NewmarkBDF_aa816cebef30ae6149297a9d325946649}{01079}} \textcolor{comment}{}    \mbox{\hyperlink{classoomph_1_1NewmarkBDF_aa816cebef30ae6149297a9d325946649}{NewmarkBDF}}()}
@@ -1096,15 +1096,15 @@
 \DoxyCodeLine{\Hypertarget{timesteppers_8h_source_l01092}01092 \textcolor{comment}{    /// Set weights}}
 \DoxyCodeLine{\Hypertarget{timesteppers_8h_source_l01093}\mbox{\hyperlink{classoomph_1_1NewmarkBDF_a338055c11a633d2d22e5fd3b378910b2}{01093}} \textcolor{comment}{}    \textcolor{keywordtype}{void} \mbox{\hyperlink{classoomph_1_1NewmarkBDF_a338055c11a633d2d22e5fd3b378910b2}{set\_weights}}();}
 \DoxyCodeLine{\Hypertarget{timesteppers_8h_source_l01094}01094 \textcolor{comment}{}}
-\DoxyCodeLine{\Hypertarget{timesteppers_8h_source_l01095}01095 \textcolor{comment}{    /// \(\backslash\)short This function updates the Data's time history so that}}
+\DoxyCodeLine{\Hypertarget{timesteppers_8h_source_l01095}01095 \textcolor{comment}{    ///  This function updates the Data's time history so that}}
 \DoxyCodeLine{\Hypertarget{timesteppers_8h_source_l01096}01096 \textcolor{comment}{    /// we can advance to the next timestep.}}
 \DoxyCodeLine{\Hypertarget{timesteppers_8h_source_l01097}01097 \textcolor{comment}{}    \textcolor{keywordtype}{void} \mbox{\hyperlink{classoomph_1_1NewmarkBDF_a4726c0ea901167bc2124c63bf6e5f692}{shift\_time\_values}}(\mbox{\hyperlink{classoomph_1_1Data}{Data}}* \textcolor{keyword}{const}\& data\_pt);}
 \DoxyCodeLine{\Hypertarget{timesteppers_8h_source_l01098}01098 \textcolor{comment}{}}
-\DoxyCodeLine{\Hypertarget{timesteppers_8h_source_l01099}01099 \textcolor{comment}{    /// \(\backslash\)short This function updates a nodal time history so that}}
+\DoxyCodeLine{\Hypertarget{timesteppers_8h_source_l01099}01099 \textcolor{comment}{    ///  This function updates a nodal time history so that}}
 \DoxyCodeLine{\Hypertarget{timesteppers_8h_source_l01100}01100 \textcolor{comment}{    /// we can advance to the next timestep.}}
-\DoxyCodeLine{\Hypertarget{timesteppers_8h_source_l01101}01101 \textcolor{comment}{}    \textcolor{keywordtype}{void} \mbox{\hyperlink{classoomph_1_1NewmarkBDF_a86ac259d50e62295d13790a5fe49010d}{shift\_time\_positions}}(\mbox{\hyperlink{classoomph_1_1Node}{Node}}* \textcolor{keyword}{const}\& node\_pt);}
+\DoxyCodeLine{\Hypertarget{timesteppers_8h_source_l01101}01101 \textcolor{comment}{}    \textcolor{keywordtype}{void} \mbox{\hyperlink{classoomph_1_1NewmarkBDF_a86ac259d50e62295d13790a5fe49010d}{shift\_time\_positions}}(Node* \textcolor{keyword}{const}\& node\_pt);}
 \DoxyCodeLine{\Hypertarget{timesteppers_8h_source_l01102}01102 \textcolor{comment}{}}
-\DoxyCodeLine{\Hypertarget{timesteppers_8h_source_l01103}01103 \textcolor{comment}{    /// \(\backslash\)short Degrade scheme to first order BDF (for first derivs/veloc);}}
+\DoxyCodeLine{\Hypertarget{timesteppers_8h_source_l01103}01103 \textcolor{comment}{    ///  Degrade scheme to first order BDF (for first derivs/veloc);}}
 \DoxyCodeLine{\Hypertarget{timesteppers_8h_source_l01104}01104 \textcolor{comment}{    /// usually for start-\/up.}}
 \DoxyCodeLine{\Hypertarget{timesteppers_8h_source_l01105}\mbox{\hyperlink{classoomph_1_1NewmarkBDF_ae86538697fa6188d8fd14fe87312e078}{01105}} \textcolor{comment}{}    \textcolor{keywordtype}{void} \mbox{\hyperlink{classoomph_1_1NewmarkBDF_ae86538697fa6188d8fd14fe87312e078}{enable\_degrade\_first\_derivatives\_to\_bdf1}}()}
 \DoxyCodeLine{\Hypertarget{timesteppers_8h_source_l01106}01106     \{}
@@ -1112,14 +1112,14 @@
 \DoxyCodeLine{\Hypertarget{timesteppers_8h_source_l01108}01108     \}}
 \DoxyCodeLine{\Hypertarget{timesteppers_8h_source_l01109}01109 }
 \DoxyCodeLine{\Hypertarget{timesteppers_8h_source_l01110}01110 \textcolor{comment}{}}
-\DoxyCodeLine{\Hypertarget{timesteppers_8h_source_l01111}01111 \textcolor{comment}{    /// \(\backslash\)short Disable degradation to first order BDF.}}
+\DoxyCodeLine{\Hypertarget{timesteppers_8h_source_l01111}01111 \textcolor{comment}{    ///  Disable degradation to first order BDF.}}
 \DoxyCodeLine{\Hypertarget{timesteppers_8h_source_l01112}\mbox{\hyperlink{classoomph_1_1NewmarkBDF_a377f4f3fd695a29024eb27d6748c689b}{01112}} \textcolor{comment}{}    \textcolor{keywordtype}{void} \mbox{\hyperlink{classoomph_1_1NewmarkBDF_a377f4f3fd695a29024eb27d6748c689b}{disable\_degrade\_first\_derivatives\_to\_bdf1}}()}
 \DoxyCodeLine{\Hypertarget{timesteppers_8h_source_l01113}01113     \{}
 \DoxyCodeLine{\Hypertarget{timesteppers_8h_source_l01114}01114       \mbox{\hyperlink{classoomph_1_1NewmarkBDF_a772c06965e20fdbe72520024c845131a}{Degrade\_to\_bdf1\_for\_first\_derivs}} = \textcolor{keyword}{false};}
 \DoxyCodeLine{\Hypertarget{timesteppers_8h_source_l01115}01115     \}}
 \DoxyCodeLine{\Hypertarget{timesteppers_8h_source_l01116}01116 }
 \DoxyCodeLine{\Hypertarget{timesteppers_8h_source_l01117}01117   \textcolor{keyword}{private}:\textcolor{comment}{}}
-\DoxyCodeLine{\Hypertarget{timesteppers_8h_source_l01118}01118 \textcolor{comment}{    /// \(\backslash\)short Set original Newmark weights for velocities (needed when}}
+\DoxyCodeLine{\Hypertarget{timesteppers_8h_source_l01118}01118 \textcolor{comment}{    ///  Set original Newmark weights for velocities (needed when}}
 \DoxyCodeLine{\Hypertarget{timesteppers_8h_source_l01119}01119 \textcolor{comment}{    /// shifting history values -\/-\/ they're used when updating the}}
 \DoxyCodeLine{\Hypertarget{timesteppers_8h_source_l01120}01120 \textcolor{comment}{    /// previous accelerations and doing this with bdf can make the}}
 \DoxyCodeLine{\Hypertarget{timesteppers_8h_source_l01121}01121 \textcolor{comment}{    /// scheme unstable...}}
@@ -1138,11 +1138,11 @@
 \DoxyCodeLine{\Hypertarget{timesteppers_8h_source_l01134}01134         this-\/>\mbox{\hyperlink{classoomph_1_1Newmark_a916754e6f33077cf6c0e4f4b2f3cff09}{Beta1}} * dt * this-\/>\mbox{\hyperlink{classoomph_1_1TimeStepper_a0dbf867c7f0e06f790a470d547b6b3f2}{Weight}}(2, NSTEPS + 2);}
 \DoxyCodeLine{\Hypertarget{timesteppers_8h_source_l01135}01135     \}}
 \DoxyCodeLine{\Hypertarget{timesteppers_8h_source_l01136}01136 \textcolor{comment}{}}
-\DoxyCodeLine{\Hypertarget{timesteppers_8h_source_l01137}01137 \textcolor{comment}{    /// \(\backslash\)short Boolean flag to indicate degradation of scheme to first}}
+\DoxyCodeLine{\Hypertarget{timesteppers_8h_source_l01137}01137 \textcolor{comment}{    ///  Boolean flag to indicate degradation of scheme to first}}
 \DoxyCodeLine{\Hypertarget{timesteppers_8h_source_l01138}01138 \textcolor{comment}{    /// order BDF (for first derivs/veloc); usually for start-\/up.}}
 \DoxyCodeLine{\Hypertarget{timesteppers_8h_source_l01139}\mbox{\hyperlink{classoomph_1_1NewmarkBDF_a772c06965e20fdbe72520024c845131a}{01139}} \textcolor{comment}{}    \textcolor{keywordtype}{bool} \mbox{\hyperlink{classoomph_1_1NewmarkBDF_a772c06965e20fdbe72520024c845131a}{Degrade\_to\_bdf1\_for\_first\_derivs}};}
 \DoxyCodeLine{\Hypertarget{timesteppers_8h_source_l01140}01140 \textcolor{comment}{}}
-\DoxyCodeLine{\Hypertarget{timesteppers_8h_source_l01141}01141 \textcolor{comment}{    /// \(\backslash\)short Original Newmark weights for velocities (needed when}}
+\DoxyCodeLine{\Hypertarget{timesteppers_8h_source_l01141}01141 \textcolor{comment}{    ///  Original Newmark weights for velocities (needed when}}
 \DoxyCodeLine{\Hypertarget{timesteppers_8h_source_l01142}01142 \textcolor{comment}{    /// shifting history values -\/-\/ they're used when updating the}}
 \DoxyCodeLine{\Hypertarget{timesteppers_8h_source_l01143}01143 \textcolor{comment}{    /// previous accelerations and doing this with bdf can make the}}
 \DoxyCodeLine{\Hypertarget{timesteppers_8h_source_l01144}01144 \textcolor{comment}{    /// scheme unstable...}}
@@ -1156,7 +1156,7 @@
 \DoxyCodeLine{\Hypertarget{timesteppers_8h_source_l01152}01152 \textcolor{comment}{}}
 \DoxyCodeLine{\Hypertarget{timesteppers_8h_source_l01153}01153 }
 \DoxyCodeLine{\Hypertarget{timesteppers_8h_source_l01154}01154   \textcolor{comment}{//====================================================================}\textcolor{comment}{}}
-\DoxyCodeLine{\Hypertarget{timesteppers_8h_source_l01155}01155 \textcolor{comment}{  /// \(\backslash\)short Templated class for BDF-\/type time-\/steppers with fixed or}}
+\DoxyCodeLine{\Hypertarget{timesteppers_8h_source_l01155}01155 \textcolor{comment}{  ///  Templated class for BDF-\/type time-\/steppers with fixed or}}
 \DoxyCodeLine{\Hypertarget{timesteppers_8h_source_l01156}01156 \textcolor{comment}{  /// variable timestep.}}
 \DoxyCodeLine{\Hypertarget{timesteppers_8h_source_l01157}01157 \textcolor{comment}{  /// 1st time derivative recovered directly from the previous function}}
 \DoxyCodeLine{\Hypertarget{timesteppers_8h_source_l01158}01158 \textcolor{comment}{  /// values. Template parameter represents the number of previous timesteps}}
@@ -1233,7 +1233,7 @@
 \DoxyCodeLine{\Hypertarget{timesteppers_8h_source_l01229}01229       \textcolor{keywordflow}{return} NSTEPS;}
 \DoxyCodeLine{\Hypertarget{timesteppers_8h_source_l01230}01230     \}}
 \DoxyCodeLine{\Hypertarget{timesteppers_8h_source_l01231}01231 \textcolor{comment}{}}
-\DoxyCodeLine{\Hypertarget{timesteppers_8h_source_l01232}01232 \textcolor{comment}{    /// \(\backslash\)short  Initialise the time-\/history for the Data values,}}
+\DoxyCodeLine{\Hypertarget{timesteppers_8h_source_l01232}01232 \textcolor{comment}{    ///   Initialise the time-\/history for the Data values,}}
 \DoxyCodeLine{\Hypertarget{timesteppers_8h_source_l01233}01233 \textcolor{comment}{    /// corresponding to an impulsive start.}}
 \DoxyCodeLine{\Hypertarget{timesteppers_8h_source_l01234}\mbox{\hyperlink{classoomph_1_1BDF_a569e571e8f96382bfa9cecd7abb05af4}{01234}} \textcolor{comment}{}    \textcolor{keywordtype}{void} \mbox{\hyperlink{classoomph_1_1BDF_a569e571e8f96382bfa9cecd7abb05af4}{assign\_initial\_values\_impulsive}}(\mbox{\hyperlink{classoomph_1_1Data}{Data}}* \textcolor{keyword}{const}\& data\_pt)}
 \DoxyCodeLine{\Hypertarget{timesteppers_8h_source_l01235}01235     \{}
@@ -1262,21 +1262,21 @@
 \DoxyCodeLine{\Hypertarget{timesteppers_8h_source_l01258}01258       \}}
 \DoxyCodeLine{\Hypertarget{timesteppers_8h_source_l01259}01259     \}}
 \DoxyCodeLine{\Hypertarget{timesteppers_8h_source_l01260}01260 \textcolor{comment}{}}
-\DoxyCodeLine{\Hypertarget{timesteppers_8h_source_l01261}01261 \textcolor{comment}{    /// \(\backslash\)short  Initialise the time-\/history for the nodal positions}}
+\DoxyCodeLine{\Hypertarget{timesteppers_8h_source_l01261}01261 \textcolor{comment}{    ///   Initialise the time-\/history for the nodal positions}}
 \DoxyCodeLine{\Hypertarget{timesteppers_8h_source_l01262}01262 \textcolor{comment}{    /// corresponding to an impulsive start.}}
-\DoxyCodeLine{\Hypertarget{timesteppers_8h_source_l01263}\mbox{\hyperlink{classoomph_1_1BDF_a2506824a840f47d5d816b68f6144c7e7}{01263}} \textcolor{comment}{}    \textcolor{keywordtype}{void} \mbox{\hyperlink{classoomph_1_1BDF_a2506824a840f47d5d816b68f6144c7e7}{assign\_initial\_positions\_impulsive}}(\mbox{\hyperlink{classoomph_1_1Node}{Node}}* \textcolor{keyword}{const}\& node\_pt)}
+\DoxyCodeLine{\Hypertarget{timesteppers_8h_source_l01263}\mbox{\hyperlink{classoomph_1_1BDF_a2506824a840f47d5d816b68f6144c7e7}{01263}} \textcolor{comment}{}    \textcolor{keywordtype}{void} \mbox{\hyperlink{classoomph_1_1BDF_a2506824a840f47d5d816b68f6144c7e7}{assign\_initial\_positions\_impulsive}}(Node* \textcolor{keyword}{const}\& node\_pt)}
 \DoxyCodeLine{\Hypertarget{timesteppers_8h_source_l01264}01264     \{}
 \DoxyCodeLine{\Hypertarget{timesteppers_8h_source_l01265}01265       \textcolor{comment}{// Find the dimension of the node}}
-\DoxyCodeLine{\Hypertarget{timesteppers_8h_source_l01266}01266       \textcolor{keywordtype}{unsigned} n\_dim = node\_pt-\/>\mbox{\hyperlink{classoomph_1_1Node_a786c96a8e46eb27a03b2b31f629d41b3}{ndim}}();}
+\DoxyCodeLine{\Hypertarget{timesteppers_8h_source_l01266}01266       \textcolor{keywordtype}{unsigned} n\_dim = node\_pt-\/>ndim();}
 \DoxyCodeLine{\Hypertarget{timesteppers_8h_source_l01267}01267       \textcolor{comment}{// Find the number of position types at the node}}
-\DoxyCodeLine{\Hypertarget{timesteppers_8h_source_l01268}01268       \textcolor{keywordtype}{unsigned} n\_position\_type = node\_pt-\/>\mbox{\hyperlink{classoomph_1_1Node_aee6f2b7a46fc9d875c6736895d7fc095}{nposition\_type}}();}
+\DoxyCodeLine{\Hypertarget{timesteppers_8h_source_l01268}01268       \textcolor{keywordtype}{unsigned} n\_position\_type = node\_pt-\/>nposition\_type();}
 \DoxyCodeLine{\Hypertarget{timesteppers_8h_source_l01269}01269 }
 \DoxyCodeLine{\Hypertarget{timesteppers_8h_source_l01270}01270       \textcolor{comment}{// Loop over the position variables}}
 \DoxyCodeLine{\Hypertarget{timesteppers_8h_source_l01271}01271       \textcolor{keywordflow}{for} (\textcolor{keywordtype}{unsigned} \mbox{\hyperlink{cfortran_8h_adb50e893b86b3e55e751a42eab3cba82}{i}} = 0; \mbox{\hyperlink{cfortran_8h_adb50e893b86b3e55e751a42eab3cba82}{i}} < n\_dim; \mbox{\hyperlink{cfortran_8h_adb50e893b86b3e55e751a42eab3cba82}{i}}++)}
 \DoxyCodeLine{\Hypertarget{timesteppers_8h_source_l01272}01272       \{}
 \DoxyCodeLine{\Hypertarget{timesteppers_8h_source_l01273}01273         \textcolor{comment}{// If the position is not copied}}
 \DoxyCodeLine{\Hypertarget{timesteppers_8h_source_l01274}01274         \textcolor{comment}{// We copy entire coordinates at once}}
-\DoxyCodeLine{\Hypertarget{timesteppers_8h_source_l01275}01275         \textcolor{keywordflow}{if} (node\_pt-\/>\mbox{\hyperlink{classoomph_1_1Node_a80fe9192b35baa5321e8d0ffba4b8b8a}{position\_is\_a\_copy}}(\mbox{\hyperlink{cfortran_8h_adb50e893b86b3e55e751a42eab3cba82}{i}}) == \textcolor{keyword}{false})}
+\DoxyCodeLine{\Hypertarget{timesteppers_8h_source_l01275}01275         \textcolor{keywordflow}{if} (node\_pt-\/>position\_is\_a\_copy(\mbox{\hyperlink{cfortran_8h_adb50e893b86b3e55e751a42eab3cba82}{i}}) == \textcolor{keyword}{false})}
 \DoxyCodeLine{\Hypertarget{timesteppers_8h_source_l01276}01276         \{}
 \DoxyCodeLine{\Hypertarget{timesteppers_8h_source_l01277}01277           \textcolor{comment}{// Loop over the position types}}
 \DoxyCodeLine{\Hypertarget{timesteppers_8h_source_l01278}01278           \textcolor{keywordflow}{for} (\textcolor{keywordtype}{unsigned} k = 0; k < n\_position\_type; k++)}
@@ -1284,16 +1284,16 @@
 \DoxyCodeLine{\Hypertarget{timesteppers_8h_source_l01280}01280             \textcolor{comment}{// Set previous values to the initial value, if not a copy}}
 \DoxyCodeLine{\Hypertarget{timesteppers_8h_source_l01281}01281             \textcolor{keywordflow}{for} (\textcolor{keywordtype}{unsigned} \mbox{\hyperlink{cfortran_8h_af6f0bd3dc13317f895c91323c25c2b8f}{t}} = 1; \mbox{\hyperlink{cfortran_8h_af6f0bd3dc13317f895c91323c25c2b8f}{t}} <= NSTEPS; \mbox{\hyperlink{cfortran_8h_af6f0bd3dc13317f895c91323c25c2b8f}{t}}++)}
 \DoxyCodeLine{\Hypertarget{timesteppers_8h_source_l01282}01282             \{}
-\DoxyCodeLine{\Hypertarget{timesteppers_8h_source_l01283}01283               node\_pt-\/>\mbox{\hyperlink{classoomph_1_1Node_af7fdc0dfda495d69bd31c790ee77da73}{x\_gen}}(\mbox{\hyperlink{cfortran_8h_af6f0bd3dc13317f895c91323c25c2b8f}{t}}, k, \mbox{\hyperlink{cfortran_8h_adb50e893b86b3e55e751a42eab3cba82}{i}}) = node\_pt-\/>\mbox{\hyperlink{classoomph_1_1Node_af7fdc0dfda495d69bd31c790ee77da73}{x\_gen}}(k, \mbox{\hyperlink{cfortran_8h_adb50e893b86b3e55e751a42eab3cba82}{i}});}
+\DoxyCodeLine{\Hypertarget{timesteppers_8h_source_l01283}01283               node\_pt-\/>x\_gen(\mbox{\hyperlink{cfortran_8h_af6f0bd3dc13317f895c91323c25c2b8f}{t}}, k, \mbox{\hyperlink{cfortran_8h_adb50e893b86b3e55e751a42eab3cba82}{i}}) = node\_pt-\/>x\_gen(k, \mbox{\hyperlink{cfortran_8h_adb50e893b86b3e55e751a42eab3cba82}{i}});}
 \DoxyCodeLine{\Hypertarget{timesteppers_8h_source_l01284}01284             \}}
 \DoxyCodeLine{\Hypertarget{timesteppers_8h_source_l01285}01285 }
 \DoxyCodeLine{\Hypertarget{timesteppers_8h_source_l01286}01286             \textcolor{comment}{// If it's adaptive}}
 \DoxyCodeLine{\Hypertarget{timesteppers_8h_source_l01287}01287             \textcolor{keywordflow}{if} (\mbox{\hyperlink{classoomph_1_1TimeStepper_a6168cca9a2a3c7bfd50c8797aed72d2d}{adaptive\_flag}}())}
 \DoxyCodeLine{\Hypertarget{timesteppers_8h_source_l01288}01288             \{}
 \DoxyCodeLine{\Hypertarget{timesteppers_8h_source_l01289}01289               \textcolor{comment}{// Initial mesh velocity is zero}}
-\DoxyCodeLine{\Hypertarget{timesteppers_8h_source_l01290}01290               node\_pt-\/>\mbox{\hyperlink{classoomph_1_1Node_af7fdc0dfda495d69bd31c790ee77da73}{x\_gen}}(NSTEPS + 1, k, \mbox{\hyperlink{cfortran_8h_adb50e893b86b3e55e751a42eab3cba82}{i}}) = 0.0;}
+\DoxyCodeLine{\Hypertarget{timesteppers_8h_source_l01290}01290               node\_pt-\/>x\_gen(NSTEPS + 1, k, \mbox{\hyperlink{cfortran_8h_adb50e893b86b3e55e751a42eab3cba82}{i}}) = 0.0;}
 \DoxyCodeLine{\Hypertarget{timesteppers_8h_source_l01291}01291               \textcolor{comment}{// Initial prediction is the value}}
-\DoxyCodeLine{\Hypertarget{timesteppers_8h_source_l01292}01292               node\_pt-\/>\mbox{\hyperlink{classoomph_1_1Node_af7fdc0dfda495d69bd31c790ee77da73}{x\_gen}}(NSTEPS + 2, k, \mbox{\hyperlink{cfortran_8h_adb50e893b86b3e55e751a42eab3cba82}{i}}) = node\_pt-\/>\mbox{\hyperlink{classoomph_1_1Node_af7fdc0dfda495d69bd31c790ee77da73}{x\_gen}}(k, \mbox{\hyperlink{cfortran_8h_adb50e893b86b3e55e751a42eab3cba82}{i}});}
+\DoxyCodeLine{\Hypertarget{timesteppers_8h_source_l01292}01292               node\_pt-\/>x\_gen(NSTEPS + 2, k, \mbox{\hyperlink{cfortran_8h_adb50e893b86b3e55e751a42eab3cba82}{i}}) = node\_pt-\/>x\_gen(k, \mbox{\hyperlink{cfortran_8h_adb50e893b86b3e55e751a42eab3cba82}{i}});}
 \DoxyCodeLine{\Hypertarget{timesteppers_8h_source_l01293}01293             \}}
 \DoxyCodeLine{\Hypertarget{timesteppers_8h_source_l01294}01294           \}}
 \DoxyCodeLine{\Hypertarget{timesteppers_8h_source_l01295}01295         \}}
@@ -1301,11 +1301,11 @@
 \DoxyCodeLine{\Hypertarget{timesteppers_8h_source_l01297}01297     \}}
 \DoxyCodeLine{\Hypertarget{timesteppers_8h_source_l01298}01298 }
 \DoxyCodeLine{\Hypertarget{timesteppers_8h_source_l01299}01299 \textcolor{comment}{}}
-\DoxyCodeLine{\Hypertarget{timesteppers_8h_source_l01300}01300 \textcolor{comment}{    /// \(\backslash\)short Typedef for function that returns the (scalar) initial}}
+\DoxyCodeLine{\Hypertarget{timesteppers_8h_source_l01300}01300 \textcolor{comment}{    ///  Typedef for function that returns the (scalar) initial}}
 \DoxyCodeLine{\Hypertarget{timesteppers_8h_source_l01301}01301 \textcolor{comment}{    /// value at a given value of the continuous time t.}}
 \DoxyCodeLine{\Hypertarget{timesteppers_8h_source_l01302}\mbox{\hyperlink{classoomph_1_1BDF_a7b4271c53928ee107dc9b5ab218bfe74}{01302}} \textcolor{comment}{}    \textcolor{keyword}{typedef} double (*\mbox{\hyperlink{classoomph_1_1BDF_a7b4271c53928ee107dc9b5ab218bfe74}{InitialConditionFctPt}})(\textcolor{keyword}{const} \textcolor{keywordtype}{double}\& \mbox{\hyperlink{cfortran_8h_af6f0bd3dc13317f895c91323c25c2b8f}{t}});}
 \DoxyCodeLine{\Hypertarget{timesteppers_8h_source_l01303}01303 \textcolor{comment}{}}
-\DoxyCodeLine{\Hypertarget{timesteppers_8h_source_l01304}01304 \textcolor{comment}{    /// \(\backslash\)short  Initialise the time-\/history for the Data values,}}
+\DoxyCodeLine{\Hypertarget{timesteppers_8h_source_l01304}01304 \textcolor{comment}{    ///   Initialise the time-\/history for the Data values,}}
 \DoxyCodeLine{\Hypertarget{timesteppers_8h_source_l01305}01305 \textcolor{comment}{    /// corresponding to given time history, specified by}}
 \DoxyCodeLine{\Hypertarget{timesteppers_8h_source_l01306}01306 \textcolor{comment}{    /// Vector of function pointers.}}
 \DoxyCodeLine{\Hypertarget{timesteppers_8h_source_l01307}\mbox{\hyperlink{classoomph_1_1BDF_ae40c166092d039798704a8969c0acc0e}{01307}} \textcolor{comment}{}    \textcolor{keywordtype}{void} \mbox{\hyperlink{classoomph_1_1BDF_ae40c166092d039798704a8969c0acc0e}{assign\_initial\_data\_values}}(}
@@ -1331,7 +1331,7 @@
 \DoxyCodeLine{\Hypertarget{timesteppers_8h_source_l01327}01327       \}}
 \DoxyCodeLine{\Hypertarget{timesteppers_8h_source_l01328}01328     \}}
 \DoxyCodeLine{\Hypertarget{timesteppers_8h_source_l01329}01329 \textcolor{comment}{}}
-\DoxyCodeLine{\Hypertarget{timesteppers_8h_source_l01330}01330 \textcolor{comment}{    /// \(\backslash\)short This function updates the Data's time history so that}}
+\DoxyCodeLine{\Hypertarget{timesteppers_8h_source_l01330}01330 \textcolor{comment}{    ///  This function updates the Data's time history so that}}
 \DoxyCodeLine{\Hypertarget{timesteppers_8h_source_l01331}01331 \textcolor{comment}{    /// we can advance to the next timestep. For BDF schemes,}}
 \DoxyCodeLine{\Hypertarget{timesteppers_8h_source_l01332}01332 \textcolor{comment}{    /// we simply push the values backwards...}}
 \DoxyCodeLine{\Hypertarget{timesteppers_8h_source_l01333}\mbox{\hyperlink{classoomph_1_1BDF_a037ce83f202e4ba2e61666bfdb1ce4b9}{01333}} \textcolor{comment}{}    \textcolor{keywordtype}{void} \mbox{\hyperlink{classoomph_1_1BDF_a037ce83f202e4ba2e61666bfdb1ce4b9}{shift\_time\_values}}(\mbox{\hyperlink{classoomph_1_1Data}{Data}}* \textcolor{keyword}{const}\& data\_pt)}
@@ -1372,14 +1372,14 @@
 \DoxyCodeLine{\Hypertarget{timesteppers_8h_source_l01368}01368       \}}
 \DoxyCodeLine{\Hypertarget{timesteppers_8h_source_l01369}01369     \}}
 \DoxyCodeLine{\Hypertarget{timesteppers_8h_source_l01370}01370 \textcolor{comment}{}}
-\DoxyCodeLine{\Hypertarget{timesteppers_8h_source_l01371}01371 \textcolor{comment}{    ///\(\backslash\)short This function advances the time history of the positions}}
+\DoxyCodeLine{\Hypertarget{timesteppers_8h_source_l01371}01371 \textcolor{comment}{    /// This function advances the time history of the positions}}
 \DoxyCodeLine{\Hypertarget{timesteppers_8h_source_l01372}01372 \textcolor{comment}{    /// at a node.}}
-\DoxyCodeLine{\Hypertarget{timesteppers_8h_source_l01373}\mbox{\hyperlink{classoomph_1_1BDF_aad5191a5605337d43458d42f67460dbd}{01373}} \textcolor{comment}{}    \textcolor{keywordtype}{void} \mbox{\hyperlink{classoomph_1_1BDF_aad5191a5605337d43458d42f67460dbd}{shift\_time\_positions}}(\mbox{\hyperlink{classoomph_1_1Node}{Node}}* \textcolor{keyword}{const}\& node\_pt)}
+\DoxyCodeLine{\Hypertarget{timesteppers_8h_source_l01373}\mbox{\hyperlink{classoomph_1_1BDF_aad5191a5605337d43458d42f67460dbd}{01373}} \textcolor{comment}{}    \textcolor{keywordtype}{void} \mbox{\hyperlink{classoomph_1_1BDF_aad5191a5605337d43458d42f67460dbd}{shift\_time\_positions}}(Node* \textcolor{keyword}{const}\& node\_pt)}
 \DoxyCodeLine{\Hypertarget{timesteppers_8h_source_l01374}01374     \{}
 \DoxyCodeLine{\Hypertarget{timesteppers_8h_source_l01375}01375       \textcolor{comment}{// Find the number of coordinates}}
-\DoxyCodeLine{\Hypertarget{timesteppers_8h_source_l01376}01376       \textcolor{keywordtype}{unsigned} n\_dim = node\_pt-\/>\mbox{\hyperlink{classoomph_1_1Node_a786c96a8e46eb27a03b2b31f629d41b3}{ndim}}();}
+\DoxyCodeLine{\Hypertarget{timesteppers_8h_source_l01376}01376       \textcolor{keywordtype}{unsigned} n\_dim = node\_pt-\/>ndim();}
 \DoxyCodeLine{\Hypertarget{timesteppers_8h_source_l01377}01377       \textcolor{comment}{// Find the number of position types}}
-\DoxyCodeLine{\Hypertarget{timesteppers_8h_source_l01378}01378       \textcolor{keywordtype}{unsigned} n\_position\_type = node\_pt-\/>\mbox{\hyperlink{classoomph_1_1Node_aee6f2b7a46fc9d875c6736895d7fc095}{nposition\_type}}();}
+\DoxyCodeLine{\Hypertarget{timesteppers_8h_source_l01378}01378       \textcolor{keywordtype}{unsigned} n\_position\_type = node\_pt-\/>nposition\_type();}
 \DoxyCodeLine{\Hypertarget{timesteppers_8h_source_l01379}01379 }
 \DoxyCodeLine{\Hypertarget{timesteppers_8h_source_l01380}01380       \textcolor{comment}{// Find number of stored timesteps}}
 \DoxyCodeLine{\Hypertarget{timesteppers_8h_source_l01381}01381       \textcolor{keywordtype}{unsigned} n\_tstorage = \mbox{\hyperlink{classoomph_1_1TimeStepper_a3939b77ec3578e4bd5b453c85649d631}{ntstorage}}();}
@@ -1400,7 +1400,7 @@
 \DoxyCodeLine{\Hypertarget{timesteppers_8h_source_l01396}01396             \textcolor{comment}{// Loop over all history data}}
 \DoxyCodeLine{\Hypertarget{timesteppers_8h_source_l01397}01397             \textcolor{keywordflow}{for} (\textcolor{keywordtype}{unsigned} \mbox{\hyperlink{cfortran_8h_af6f0bd3dc13317f895c91323c25c2b8f}{t}} = 0; \mbox{\hyperlink{cfortran_8h_af6f0bd3dc13317f895c91323c25c2b8f}{t}} < n\_tstorage; \mbox{\hyperlink{cfortran_8h_af6f0bd3dc13317f895c91323c25c2b8f}{t}}++)}
 \DoxyCodeLine{\Hypertarget{timesteppers_8h_source_l01398}01398             \{}
-\DoxyCodeLine{\Hypertarget{timesteppers_8h_source_l01399}01399               velocity[k][\mbox{\hyperlink{cfortran_8h_adb50e893b86b3e55e751a42eab3cba82}{i}}] += \mbox{\hyperlink{classoomph_1_1TimeStepper_a0dbf867c7f0e06f790a470d547b6b3f2}{Weight}}(1, \mbox{\hyperlink{cfortran_8h_af6f0bd3dc13317f895c91323c25c2b8f}{t}}) * node\_pt-\/>\mbox{\hyperlink{classoomph_1_1Node_af7fdc0dfda495d69bd31c790ee77da73}{x\_gen}}(\mbox{\hyperlink{cfortran_8h_af6f0bd3dc13317f895c91323c25c2b8f}{t}}, k, \mbox{\hyperlink{cfortran_8h_adb50e893b86b3e55e751a42eab3cba82}{i}});}
+\DoxyCodeLine{\Hypertarget{timesteppers_8h_source_l01399}01399               velocity[k][\mbox{\hyperlink{cfortran_8h_adb50e893b86b3e55e751a42eab3cba82}{i}}] += \mbox{\hyperlink{classoomph_1_1TimeStepper_a0dbf867c7f0e06f790a470d547b6b3f2}{Weight}}(1, \mbox{\hyperlink{cfortran_8h_af6f0bd3dc13317f895c91323c25c2b8f}{t}}) * node\_pt-\/>x\_gen(\mbox{\hyperlink{cfortran_8h_af6f0bd3dc13317f895c91323c25c2b8f}{t}}, k, \mbox{\hyperlink{cfortran_8h_adb50e893b86b3e55e751a42eab3cba82}{i}});}
 \DoxyCodeLine{\Hypertarget{timesteppers_8h_source_l01400}01400             \}}
 \DoxyCodeLine{\Hypertarget{timesteppers_8h_source_l01401}01401           \}}
 \DoxyCodeLine{\Hypertarget{timesteppers_8h_source_l01402}01402         \}}
@@ -1410,7 +1410,7 @@
 \DoxyCodeLine{\Hypertarget{timesteppers_8h_source_l01406}01406       \textcolor{keywordflow}{for} (\textcolor{keywordtype}{unsigned} \mbox{\hyperlink{cfortran_8h_adb50e893b86b3e55e751a42eab3cba82}{i}} = 0; \mbox{\hyperlink{cfortran_8h_adb50e893b86b3e55e751a42eab3cba82}{i}} < n\_dim; \mbox{\hyperlink{cfortran_8h_adb50e893b86b3e55e751a42eab3cba82}{i}}++)}
 \DoxyCodeLine{\Hypertarget{timesteppers_8h_source_l01407}01407       \{}
 \DoxyCodeLine{\Hypertarget{timesteppers_8h_source_l01408}01408         \textcolor{comment}{// If the position is not a copy}}
-\DoxyCodeLine{\Hypertarget{timesteppers_8h_source_l01409}01409         \textcolor{keywordflow}{if} (node\_pt-\/>\mbox{\hyperlink{classoomph_1_1Node_a80fe9192b35baa5321e8d0ffba4b8b8a}{position\_is\_a\_copy}}(\mbox{\hyperlink{cfortran_8h_adb50e893b86b3e55e751a42eab3cba82}{i}}) == \textcolor{keyword}{false})}
+\DoxyCodeLine{\Hypertarget{timesteppers_8h_source_l01409}01409         \textcolor{keywordflow}{if} (node\_pt-\/>position\_is\_a\_copy(\mbox{\hyperlink{cfortran_8h_adb50e893b86b3e55e751a42eab3cba82}{i}}) == \textcolor{keyword}{false})}
 \DoxyCodeLine{\Hypertarget{timesteppers_8h_source_l01410}01410         \{}
 \DoxyCodeLine{\Hypertarget{timesteppers_8h_source_l01411}01411           \textcolor{comment}{// Loop over the position types}}
 \DoxyCodeLine{\Hypertarget{timesteppers_8h_source_l01412}01412           \textcolor{keywordflow}{for} (\textcolor{keywordtype}{unsigned} k = 0; k < n\_position\_type; k++)}
@@ -1418,13 +1418,13 @@
 \DoxyCodeLine{\Hypertarget{timesteppers_8h_source_l01414}01414             \textcolor{comment}{// Loop over stored times, and set values to previous values}}
 \DoxyCodeLine{\Hypertarget{timesteppers_8h_source_l01415}01415             \textcolor{keywordflow}{for} (\textcolor{keywordtype}{unsigned} \mbox{\hyperlink{cfortran_8h_af6f0bd3dc13317f895c91323c25c2b8f}{t}} = NSTEPS; \mbox{\hyperlink{cfortran_8h_af6f0bd3dc13317f895c91323c25c2b8f}{t}} > 0; \mbox{\hyperlink{cfortran_8h_af6f0bd3dc13317f895c91323c25c2b8f}{t}}-\/-\/)}
 \DoxyCodeLine{\Hypertarget{timesteppers_8h_source_l01416}01416             \{}
-\DoxyCodeLine{\Hypertarget{timesteppers_8h_source_l01417}01417               node\_pt-\/>\mbox{\hyperlink{classoomph_1_1Node_af7fdc0dfda495d69bd31c790ee77da73}{x\_gen}}(\mbox{\hyperlink{cfortran_8h_af6f0bd3dc13317f895c91323c25c2b8f}{t}}, k, \mbox{\hyperlink{cfortran_8h_adb50e893b86b3e55e751a42eab3cba82}{i}}) = node\_pt-\/>\mbox{\hyperlink{classoomph_1_1Node_af7fdc0dfda495d69bd31c790ee77da73}{x\_gen}}(\mbox{\hyperlink{cfortran_8h_af6f0bd3dc13317f895c91323c25c2b8f}{t}} -\/ 1, k, \mbox{\hyperlink{cfortran_8h_adb50e893b86b3e55e751a42eab3cba82}{i}});}
+\DoxyCodeLine{\Hypertarget{timesteppers_8h_source_l01417}01417               node\_pt-\/>x\_gen(\mbox{\hyperlink{cfortran_8h_af6f0bd3dc13317f895c91323c25c2b8f}{t}}, k, \mbox{\hyperlink{cfortran_8h_adb50e893b86b3e55e751a42eab3cba82}{i}}) = node\_pt-\/>x\_gen(\mbox{\hyperlink{cfortran_8h_af6f0bd3dc13317f895c91323c25c2b8f}{t}} -\/ 1, k, \mbox{\hyperlink{cfortran_8h_adb50e893b86b3e55e751a42eab3cba82}{i}});}
 \DoxyCodeLine{\Hypertarget{timesteppers_8h_source_l01418}01418             \}}
 \DoxyCodeLine{\Hypertarget{timesteppers_8h_source_l01419}01419 }
 \DoxyCodeLine{\Hypertarget{timesteppers_8h_source_l01420}01420             \textcolor{comment}{// If we are using the adaptive scheme, set the velocity}}
 \DoxyCodeLine{\Hypertarget{timesteppers_8h_source_l01421}01421             \textcolor{keywordflow}{if} (\mbox{\hyperlink{classoomph_1_1TimeStepper_a6168cca9a2a3c7bfd50c8797aed72d2d}{adaptive\_flag}}())}
 \DoxyCodeLine{\Hypertarget{timesteppers_8h_source_l01422}01422             \{}
-\DoxyCodeLine{\Hypertarget{timesteppers_8h_source_l01423}01423               node\_pt-\/>\mbox{\hyperlink{classoomph_1_1Node_af7fdc0dfda495d69bd31c790ee77da73}{x\_gen}}(NSTEPS + 1, k, \mbox{\hyperlink{cfortran_8h_adb50e893b86b3e55e751a42eab3cba82}{i}}) = velocity[k][\mbox{\hyperlink{cfortran_8h_adb50e893b86b3e55e751a42eab3cba82}{i}}];}
+\DoxyCodeLine{\Hypertarget{timesteppers_8h_source_l01423}01423               node\_pt-\/>x\_gen(NSTEPS + 1, k, \mbox{\hyperlink{cfortran_8h_adb50e893b86b3e55e751a42eab3cba82}{i}}) = velocity[k][\mbox{\hyperlink{cfortran_8h_adb50e893b86b3e55e751a42eab3cba82}{i}}];}
 \DoxyCodeLine{\Hypertarget{timesteppers_8h_source_l01424}01424             \}}
 \DoxyCodeLine{\Hypertarget{timesteppers_8h_source_l01425}01425           \}}
 \DoxyCodeLine{\Hypertarget{timesteppers_8h_source_l01426}01426         \}}
@@ -1450,7 +1450,7 @@
 \DoxyCodeLine{\Hypertarget{timesteppers_8h_source_l01446}\mbox{\hyperlink{classoomph_1_1BDF_a9c5b309e589b0e0da14d912556e5cc4a}{01446}} \textcolor{comment}{}    \textcolor{keywordtype}{void} \mbox{\hyperlink{classoomph_1_1BDF_a9c5b309e589b0e0da14d912556e5cc4a}{set\_predictor\_weights}}();}
 \DoxyCodeLine{\Hypertarget{timesteppers_8h_source_l01447}01447 \textcolor{comment}{}}
 \DoxyCodeLine{\Hypertarget{timesteppers_8h_source_l01448}01448 \textcolor{comment}{    /// Function to calculate predicted positions at a node}}
-\DoxyCodeLine{\Hypertarget{timesteppers_8h_source_l01449}\mbox{\hyperlink{classoomph_1_1BDF_a24a8bcf4fffc8cd4514ef36fc2c997f8}{01449}} \textcolor{comment}{}    \textcolor{keywordtype}{void} \mbox{\hyperlink{classoomph_1_1BDF_a24a8bcf4fffc8cd4514ef36fc2c997f8}{calculate\_predicted\_positions}}(\mbox{\hyperlink{classoomph_1_1Node}{Node}}* \textcolor{keyword}{const}\& node\_pt);}
+\DoxyCodeLine{\Hypertarget{timesteppers_8h_source_l01449}\mbox{\hyperlink{classoomph_1_1BDF_a24a8bcf4fffc8cd4514ef36fc2c997f8}{01449}} \textcolor{comment}{}    \textcolor{keywordtype}{void} \mbox{\hyperlink{classoomph_1_1BDF_a24a8bcf4fffc8cd4514ef36fc2c997f8}{calculate\_predicted\_positions}}(Node* \textcolor{keyword}{const}\& node\_pt);}
 \DoxyCodeLine{\Hypertarget{timesteppers_8h_source_l01450}01450 \textcolor{comment}{}}
 \DoxyCodeLine{\Hypertarget{timesteppers_8h_source_l01451}01451 \textcolor{comment}{    /// Function to calculate predicted data values in a Data object}}
 \DoxyCodeLine{\Hypertarget{timesteppers_8h_source_l01452}\mbox{\hyperlink{classoomph_1_1BDF_a4c3da151a405c2041103cb2795c3ff95}{01452}} \textcolor{comment}{}    \textcolor{keywordtype}{void} \mbox{\hyperlink{classoomph_1_1BDF_a4c3da151a405c2041103cb2795c3ff95}{calculate\_predicted\_values}}(\mbox{\hyperlink{classoomph_1_1Data}{Data}}* \textcolor{keyword}{const}\& data\_pt);}
@@ -1459,7 +1459,7 @@
 \DoxyCodeLine{\Hypertarget{timesteppers_8h_source_l01455}\mbox{\hyperlink{classoomph_1_1BDF_ae7edaffc90cfe8cca6817751fa3cccb8}{01455}} \textcolor{comment}{}    \textcolor{keywordtype}{void} \mbox{\hyperlink{classoomph_1_1BDF_ae7edaffc90cfe8cca6817751fa3cccb8}{set\_error\_weights}}();}
 \DoxyCodeLine{\Hypertarget{timesteppers_8h_source_l01456}01456 \textcolor{comment}{}}
 \DoxyCodeLine{\Hypertarget{timesteppers_8h_source_l01457}01457 \textcolor{comment}{    /// Compute the error in the position i at a node}}
-\DoxyCodeLine{\Hypertarget{timesteppers_8h_source_l01458}\mbox{\hyperlink{classoomph_1_1BDF_ae4ef2e161fb944b7e6fcf6f7ee47579b}{01458}} \textcolor{comment}{}    \textcolor{keywordtype}{double} \mbox{\hyperlink{classoomph_1_1BDF_ae4ef2e161fb944b7e6fcf6f7ee47579b}{temporal\_error\_in\_position}}(\mbox{\hyperlink{classoomph_1_1Node}{Node}}* \textcolor{keyword}{const}\& node\_pt, \textcolor{keyword}{const} \textcolor{keywordtype}{unsigned}\& \mbox{\hyperlink{cfortran_8h_adb50e893b86b3e55e751a42eab3cba82}{i}});}
+\DoxyCodeLine{\Hypertarget{timesteppers_8h_source_l01458}\mbox{\hyperlink{classoomph_1_1BDF_ae4ef2e161fb944b7e6fcf6f7ee47579b}{01458}} \textcolor{comment}{}    \textcolor{keywordtype}{double} \mbox{\hyperlink{classoomph_1_1BDF_ae4ef2e161fb944b7e6fcf6f7ee47579b}{temporal\_error\_in\_position}}(Node* \textcolor{keyword}{const}\& node\_pt, \textcolor{keyword}{const} \textcolor{keywordtype}{unsigned}\& \mbox{\hyperlink{cfortran_8h_adb50e893b86b3e55e751a42eab3cba82}{i}});}
 \DoxyCodeLine{\Hypertarget{timesteppers_8h_source_l01459}01459 \textcolor{comment}{}}
 \DoxyCodeLine{\Hypertarget{timesteppers_8h_source_l01460}01460 \textcolor{comment}{    /// Compute the error in the value i in a Data structure}}
 \DoxyCodeLine{\Hypertarget{timesteppers_8h_source_l01461}\mbox{\hyperlink{classoomph_1_1BDF_aab34e35252db11052c72ae7692825149}{01461}} \textcolor{comment}{}    \textcolor{keywordtype}{double} \mbox{\hyperlink{classoomph_1_1BDF_aab34e35252db11052c72ae7692825149}{temporal\_error\_in\_value}}(\mbox{\hyperlink{classoomph_1_1Data}{Data}}* \textcolor{keyword}{const}\& data\_pt, \textcolor{keyword}{const} \textcolor{keywordtype}{unsigned}\& \mbox{\hyperlink{cfortran_8h_adb50e893b86b3e55e751a42eab3cba82}{i}});}

@@ -182,14 +182,14 @@ Background: ALE methods and the evaluation of time-derivatives in moving domains
  <hr  />
 <h1><a class="anchor" id="namespace"></a>
 Global parameters and functions</h1>
-<p >As usual, we store the problem parameters in a namespace, <code><a class="el" href="namespaceTanhSolnForUnsteadyHeat.html">TanhSolnForUnsteadyHeat</a></code>, in which we also specify the source function, the prescribed flux along the Neumann boundary and the exact solution. The namespace is identical to that used in <a href="../../two_d_unsteady_heat/html/index.html">the fixed domain example.</a></p>
+<p >As usual, we store the problem parameters in a namespace, <code><a class="el" href="namespaceTanhSolnForUnsteadyHeat.html" title="Namespace for exact solution of unsteady heat equation with sharp step.">TanhSolnForUnsteadyHeat</a></code>, in which we also specify the source function, the prescribed flux along the Neumann boundary and the exact solution. The namespace is identical to that used in <a href="../../two_d_unsteady_heat/html/index.html">the fixed domain example.</a></p>
 <hr  />
  <hr  />
 <h1><a class="anchor" id="ellipse"></a>
 Representing the moving curvilinear domain boundary by a time-dependent GeomObject</h1>
 <p >As discussed above, we will incorporate the time-dependence of the moving curvilinear boundary into the specification of the <code>GeomObject</code> that defines that boundary. For this purpose we represent the elliptical boundary by the <code>GeomObject</code> <code><a class="el" href="classMyEllipse.html" title="Oscillating ellipse.">MyEllipse</a></code>. Its constructor stores the geometric parameters (the mean values of the ellipse's half axes, <img class="formulaInl" alt="$ a $" src="form_33.png" width="6" height="6"/> and <img class="formulaInl" alt="$ b $" src="form_34.png" width="5" height="10"/> , the amplitude of their temporal variations <img class="formulaInl" alt="$ \hat{a} $" src="form_35.png" width="6" height="10"/> and <img class="formulaInl" alt="$ \hat{b} $" src="form_36.png" width="5" height="13"/> , and the period of the oscillation, <img class="formulaInl" alt="$ \hat{T} $" src="form_37.png" width="10" height="13"/> , in its private member data. We also store a pointer to a <code>Time</code> object to give the <code>GeomObject</code> access to the "current" and "previous" values of the "continuous time". The destructor can remain empty.</p>
  <div class="fragment"><div class="line"><span class="comment">//============start_of_MyEllipse===========================================</span></div>
-<div class="line"><span class="comment">/// \short Oscillating ellipse</span><span class="comment"></span></div>
+<div class="line"><span class="comment">///  Oscillating ellipse</span><span class="comment"></span></div>
 <div class="line"><span class="comment">/// \f[ x = (a + \widehat{a} \sin(2\Pi t/T)) \cos(\xi)  \f]</span></div>
 <div class="line"><span class="comment">/// \f[ y = (b + \widehat{b} \sin(2\Pi t/T)) \sin(\xi)  \f]</span></div>
 <div class="line"><span class="comment"></span><span class="comment">//=========================================================================</span></div>
@@ -198,7 +198,7 @@ Representing the moving curvilinear domain boundary by a time-dependent GeomObje
 <div class="line"> </div>
 <div class="line"><span class="keyword">public</span>:</div>
 <div class="line"><span class="comment"></span> </div>
-<div class="line"><span class="comment"> /// \short Constructor:  Pass half axes, amplitudes of their variation, period</span></div>
+<div class="line"><span class="comment"> ///  Constructor:  Pass half axes, amplitudes of their variation, period</span></div>
 <div class="line"><span class="comment"> /// of oscillation and pointer to time object.</span></div>
 <div class="line"><span class="comment"></span> <a class="code hl_function" href="classMyEllipse.html#aaa00984813af171e611e420eb3433653">MyEllipse</a>(<span class="keyword">const</span> <span class="keywordtype">double</span>&amp; a, <span class="keyword">const</span> <span class="keywordtype">double</span>&amp; b, </div>
 <div class="line">           <span class="keyword">const</span> <span class="keywordtype">double</span>&amp; a_hat, <span class="keyword">const</span> <span class="keywordtype">double</span>&amp; b_hat, </div>
@@ -217,7 +217,7 @@ Representing the moving curvilinear domain boundary by a time-dependent GeomObje
 <div class="ttc" id="aclassMyEllipse_html_ab098069ab23bbbd8f30b0da3523dc87f"><div class="ttname"><a href="classMyEllipse.html#ab098069ab23bbbd8f30b0da3523dc87f">MyEllipse::T</a></div><div class="ttdeci">double T</div><div class="ttdoc">Period of oscillation.</div><div class="ttdef"><b>Definition:</b> <a href="two__d__unsteady__heat__ALE_8cc_source.html#l00111">two_d_unsteady_heat_ALE.cc:111</a></div></div>
 <div class="ttc" id="aclassMyEllipse_html_abc1c4c863a599ce87bdff1abb9971953"><div class="ttname"><a href="classMyEllipse.html#abc1c4c863a599ce87bdff1abb9971953">MyEllipse::Time_pt</a></div><div class="ttdeci">Time * Time_pt</div><div class="ttdoc">Pointer to time object.</div><div class="ttdef"><b>Definition:</b> <a href="two__d__unsteady__heat__ALE_8cc_source.html#l00114">two_d_unsteady_heat_ALE.cc:114</a></div></div>
 <div class="ttc" id="aclassMyEllipse_html_ac2f2d3fb269c57fb26b4db6d9a0c7c05"><div class="ttname"><a href="classMyEllipse.html#ac2f2d3fb269c57fb26b4db6d9a0c7c05">MyEllipse::~MyEllipse</a></div><div class="ttdeci">virtual ~MyEllipse()</div><div class="ttdoc">Destructor: Empty.</div><div class="ttdef"><b>Definition:</b> <a href="two__d__unsteady__heat__ALE_8cc_source.html#l00063">two_d_unsteady_heat_ALE.cc:63</a></div></div>
-</div><!-- fragment --><p> The "steady" version of the <code>position(...)</code> function must return the position vector to the point on the <code>GeomObject</code>, identified by its intrinsic coordinate <code>xi</code>, and evaluated at the current value of the continuous time, which we extract from <code>Time::time()</code>: </p><div class="fragment"><div class="line"><span class="comment"> /// \short Current position vector to material point at </span></div>
+</div><!-- fragment --><p> The "steady" version of the <code>position(...)</code> function must return the position vector to the point on the <code>GeomObject</code>, identified by its intrinsic coordinate <code>xi</code>, and evaluated at the current value of the continuous time, which we extract from <code>Time::time()</code>: </p><div class="fragment"><div class="line"><span class="comment"> ///  Current position vector to material point at </span></div>
 <div class="line"><span class="comment"> /// Lagrangian coordinate xi </span></div>
 <div class="line"> <span class="keywordtype">void</span> position(<span class="keyword">const</span> Vector&lt;double&gt;&amp; xi, Vector&lt;double&gt;&amp; r)<span class="keyword"> const</span></div>
 <div class="line"><span class="keyword">  </span>{</div>
@@ -229,7 +229,7 @@ Representing the moving curvilinear domain boundary by a time-dependent GeomObje
 <div class="line">   r[1] = (B+B_hat*sin(2.0*MathematicalConstants::Pi*time/T))*sin(xi[0]);</div>
 <div class="line"> </div>
 <div class="line">  } <span class="comment">// end of position(...)</span></div>
-</div><!-- fragment --><p >The "time-dependent" version of the <code>position(...)</code> function must return the position vector to the <code>GeomObject</code>, evaluated at the <code>t</code> - th previous timestep. The value of the continuous time at that timestep is available from from <code>Time::time(t)</code>: </p><div class="fragment"><div class="line"><span class="comment"> /// \short Parametrised position on object: r(xi). Evaluated at</span></div>
+</div><!-- fragment --><p >The "time-dependent" version of the <code>position(...)</code> function must return the position vector to the <code>GeomObject</code>, evaluated at the <code>t</code> - th previous timestep. The value of the continuous time at that timestep is available from from <code>Time::time(t)</code>: </p><div class="fragment"><div class="line"><span class="comment"> ///  Parametrised position on object: r(xi). Evaluated at</span></div>
 <div class="line"><span class="comment"> /// previous time level. t=0: current time; t&gt;0: previous</span><span class="comment"></span></div>
 <div class="line"><span class="comment"> /// time level.</span></div>
 <div class="line"><span class="comment"></span> <span class="keywordtype">void</span> position(<span class="keyword">const</span> <span class="keywordtype">unsigned</span>&amp; t, <span class="keyword">const</span> Vector&lt;double&gt;&amp; xi,</div>
@@ -295,7 +295,7 @@ The Problem constructor</h1>
 Actions before timestep</h1>
 <p >As discussed above, the addition of a single line to <code>Problem::actions_before_implicit_timestep()</code> suffices to update the nodal positions in response to the changes in the domain boundary.</p>
  <div class="fragment"><div class="line"><span class="comment">//=========start of actions_before_implicit_timestep===============================</span></div>
-<div class="line"><span class="comment">/// \short Actions before timestep: Update the domain shape, then set the </span><span class="comment"></span></div>
+<div class="line"><span class="comment">///  Actions before timestep: Update the domain shape, then set the </span><span class="comment"></span></div>
 <div class="line"><span class="comment">/// boundary conditions for the current time.</span></div>
 <div class="line"><span class="comment"></span><span class="comment">//========================================================================</span></div>
 <div class="line"><span class="keyword">template</span>&lt;<span class="keyword">class</span> ELEMENT&gt;</div>
@@ -396,7 +396,7 @@ PDF file</h1>
     <footer>
       <div class="container">
         <div class="text-muted" style="float:right;">Generated by <a href="http://www.doxygen.org/index.html">
-          <img style="height:18px;" class="footer-img" src="doxygen.png" alt="doxygen"></a> on Wed Oct 13 2021 08:51:35
+          <img style="height:18px;" class="footer-img" src="doxygen.png" alt="doxygen"></a> on Thu Oct 21 2021 17:39:41
         </div>
       </div>
     </footer>

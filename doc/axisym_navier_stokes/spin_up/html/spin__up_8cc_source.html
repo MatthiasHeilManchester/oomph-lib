@@ -183,7 +183,7 @@
 <div class="line"><a id="l00064" name="l00064"></a><span class="lineno">   64</span><span class="comment"></span> </div>
 <div class="line"><a id="l00065" name="l00065"></a><span class="lineno">   65</span> </div>
 <div class="line"><a id="l00066" name="l00066"></a><span class="lineno">   66</span><span class="comment">//==start_of_problem_class================================================</span><span class="comment"></span></div>
-<div class="line"><a id="l00067" name="l00067"></a><span class="lineno">   67</span><span class="comment">/// \short Refineable rotating cylinder problem in a rectangular</span></div>
+<div class="line"><a id="l00067" name="l00067"></a><span class="lineno">   67</span><span class="comment">///  Refineable rotating cylinder problem in a rectangular</span></div>
 <div class="line"><a id="l00068" name="l00068"></a><span class="lineno">   68</span><span class="comment">/// axisymmetric domain</span></div>
 <div class="line"><a id="l00069" name="l00069"></a><span class="lineno">   69</span><span class="comment"></span><span class="comment">//========================================================================</span></div>
 <div class="line"><a id="l00070" name="l00070"></a><span class="lineno">   70</span><span class="keyword">template</span> &lt;<span class="keyword">class</span> ELEMENT, <span class="keyword">class</span> TIMESTEPPER&gt;</div>
@@ -222,14 +222,14 @@
 <div class="line"><a id="l00103" name="l00103"></a><span class="lineno">  103</span> </div>
 <div class="line"><a id="l00104" name="l00104"></a><span class="lineno">  104</span><span class="keyword">private</span>:</div>
 <div class="line"><a id="l00105" name="l00105"></a><span class="lineno">  105</span><span class="comment"></span> </div>
-<div class="line"><a id="l00106" name="l00106"></a><span class="lineno">  106</span><span class="comment"> /// \short Update the problem specs before solve. </span></div>
+<div class="line"><a id="l00106" name="l00106"></a><span class="lineno">  106</span><span class="comment"> ///  Update the problem specs before solve. </span></div>
 <div class="line"><a id="l00107" name="l00107"></a><span class="lineno">  107</span><span class="comment"> /// Reset velocity boundary conditions just to be on the safe side...</span></div>
 <div class="line"><a id="l00108" name="l00108"></a><span class="lineno"><a class="line" href="classRotatingCylinderProblem.html#af6678f4329624865484d52058d8902a3">  108</a></span><span class="comment"></span> <span class="keywordtype">void</span> <a class="code hl_function" href="classRotatingCylinderProblem.html#af6678f4329624865484d52058d8902a3">actions_before_newton_solve</a>() { <a class="code hl_function" href="classRotatingCylinderProblem.html#a37efdb2d7059535a48b12f69869996ee">set_boundary_conditions</a>(); }</div>
 <div class="line"><a id="l00109" name="l00109"></a><span class="lineno">  109</span> <span class="comment"></span></div>
 <div class="line"><a id="l00110" name="l00110"></a><span class="lineno">  110</span><span class="comment"> /// No actions required after solve step</span></div>
 <div class="line"><a id="l00111" name="l00111"></a><span class="lineno"><a class="line" href="classRotatingCylinderProblem.html#a2cac6acd0607a98fd1b5f2c155335dbd">  111</a></span><span class="comment"></span> <span class="keywordtype">void</span> <a class="code hl_function" href="classRotatingCylinderProblem.html#a2cac6acd0607a98fd1b5f2c155335dbd">actions_after_newton_solve</a>() {}</div>
 <div class="line"><a id="l00112" name="l00112"></a><span class="lineno">  112</span><span class="comment"></span> </div>
-<div class="line"><a id="l00113" name="l00113"></a><span class="lineno">  113</span><span class="comment"> /// \short After adaptation: Pin pressure again (the previously pinned</span></div>
+<div class="line"><a id="l00113" name="l00113"></a><span class="lineno">  113</span><span class="comment"> ///  After adaptation: Pin pressure again (the previously pinned</span></div>
 <div class="line"><a id="l00114" name="l00114"></a><span class="lineno">  114</span><span class="comment"> /// value might have disappeared) and pin redudant pressure dofs</span></div>
 <div class="line"><a id="l00115" name="l00115"></a><span class="lineno"><a class="line" href="classRotatingCylinderProblem.html#a7d2fc60789ca6e2458be45b94ee40a1c">  115</a></span><span class="comment"></span> <span class="keywordtype">void</span> <a class="code hl_function" href="classRotatingCylinderProblem.html#a7d2fc60789ca6e2458be45b94ee40a1c">actions_after_adapt</a>()</div>
 <div class="line"><a id="l00116" name="l00116"></a><span class="lineno">  116</span>  {</div>
@@ -356,7 +356,7 @@
 <div class="line"><a id="l00237" name="l00237"></a><span class="lineno">  237</span> </div>
 <div class="line"><a id="l00238" name="l00238"></a><span class="lineno">  238</span> </div>
 <div class="line"><a id="l00239" name="l00239"></a><span class="lineno">  239</span><span class="comment">//==start_of_set_initial_condition========================================</span><span class="comment"></span></div>
-<div class="line"><a id="l00240" name="l00240"></a><span class="lineno">  240</span><span class="comment">/// \short Set initial conditions: Set all nodal velocities to zero and</span></div>
+<div class="line"><a id="l00240" name="l00240"></a><span class="lineno">  240</span><span class="comment">///  Set initial conditions: Set all nodal velocities to zero and</span></div>
 <div class="line"><a id="l00241" name="l00241"></a><span class="lineno">  241</span><span class="comment">/// initialise the previous velocities to correspond to an impulsive start</span></div>
 <div class="line"><a id="l00242" name="l00242"></a><span class="lineno">  242</span><span class="comment"></span><span class="comment">//========================================================================</span></div>
 <div class="line"><a id="l00243" name="l00243"></a><span class="lineno">  243</span><span class="keyword">template</span> &lt;<span class="keyword">class</span> ELEMENT, <span class="keyword">class</span> TIMESTEPPER&gt;</div>
@@ -385,7 +385,7 @@
 <div class="line"><a id="l00266" name="l00266"></a><span class="lineno">  266</span> </div>
 <div class="line"><a id="l00267" name="l00267"></a><span class="lineno">  267</span> </div>
 <div class="line"><a id="l00268" name="l00268"></a><span class="lineno">  268</span><span class="comment">//==start_of_set_boundary_conditions======================================</span><span class="comment"></span></div>
-<div class="line"><a id="l00269" name="l00269"></a><span class="lineno">  269</span><span class="comment">/// \short Set boundary conditions: Set both velocity components to zero</span></div>
+<div class="line"><a id="l00269" name="l00269"></a><span class="lineno">  269</span><span class="comment">///  Set boundary conditions: Set both velocity components to zero</span></div>
 <div class="line"><a id="l00270" name="l00270"></a><span class="lineno">  270</span><span class="comment">/// on the bottom (solid) wall and the horizontal component only to zero</span></div>
 <div class="line"><a id="l00271" name="l00271"></a><span class="lineno">  271</span><span class="comment">/// on the side (periodic) boundaries</span></div>
 <div class="line"><a id="l00272" name="l00272"></a><span class="lineno">  272</span><span class="comment"></span><span class="comment">//========================================================================</span></div>
@@ -611,7 +611,7 @@
 <div class="ttc" id="aclassRotatingCylinderProblem_html_a22f82fba41d68b9748642f9a29a12592"><div class="ttname"><a href="classRotatingCylinderProblem.html#a22f82fba41d68b9748642f9a29a12592">RotatingCylinderProblem::doc_solution</a></div><div class="ttdeci">void doc_solution(DocInfo &amp;doc_info)</div><div class="ttdoc">Document the solution.</div><div class="ttdef"><b>Definition:</b> <a href="spin__up_8cc_source.html#l00319">spin_up.cc:320</a></div></div>
 <div class="ttc" id="aclassRotatingCylinderProblem_html_a2cac6acd0607a98fd1b5f2c155335dbd"><div class="ttname"><a href="classRotatingCylinderProblem.html#a2cac6acd0607a98fd1b5f2c155335dbd">RotatingCylinderProblem::actions_after_newton_solve</a></div><div class="ttdeci">void actions_after_newton_solve()</div><div class="ttdoc">No actions required after solve step.</div><div class="ttdef"><b>Definition:</b> <a href="spin__up_8cc_source.html#l00111">spin_up.cc:111</a></div></div>
 <div class="ttc" id="aclassRotatingCylinderProblem_html_a37efdb2d7059535a48b12f69869996ee"><div class="ttname"><a href="classRotatingCylinderProblem.html#a37efdb2d7059535a48b12f69869996ee">RotatingCylinderProblem::set_boundary_conditions</a></div><div class="ttdeci">void set_boundary_conditions()</div><div class="ttdoc">Set boundary conditions.</div><div class="ttdef"><b>Definition:</b> <a href="spin__up_8cc_source.html#l00274">spin_up.cc:274</a></div></div>
-<div class="ttc" id="aclassRotatingCylinderProblem_html_a436b0ff8c4ac33acfe10492c587ad80d"><div class="ttname"><a href="classRotatingCylinderProblem.html#a436b0ff8c4ac33acfe10492c587ad80d">RotatingCylinderProblem::RotatingCylinderProblem</a></div><div class="ttdeci">RotatingCylinderProblem(const unsigned &amp;n_r, const unsigned &amp;n_z, const double &amp;l_r, const double &amp;l_z)</div><div class="ttdoc">Constructor for refineable rotating cylinder problem.</div><div class="ttdef"><b>Definition:</b> <a href="spin__up_8cc_source.html#l00148">spin_up.cc:149</a></div></div>
+<div class="ttc" id="aclassRotatingCylinderProblem_html_a436b0ff8c4ac33acfe10492c587ad80d"><div class="ttname"><a href="classRotatingCylinderProblem.html#a436b0ff8c4ac33acfe10492c587ad80d">RotatingCylinderProblem::RotatingCylinderProblem</a></div><div class="ttdeci">RotatingCylinderProblem(const unsigned &amp;n_r, const unsigned &amp;n_z, const double &amp;l_r, const double &amp;l_z)</div><div class="ttdoc">Constructor: Pass the number of elements and the lengths of the domain in the radial (r) and axial (z...</div><div class="ttdef"><b>Definition:</b> <a href="spin__up_8cc_source.html#l00148">spin_up.cc:149</a></div></div>
 <div class="ttc" id="aclassRotatingCylinderProblem_html_a586e71f48ee21cfc3bc93d17e91bbc11"><div class="ttname"><a href="classRotatingCylinderProblem.html#a586e71f48ee21cfc3bc93d17e91bbc11">RotatingCylinderProblem::~RotatingCylinderProblem</a></div><div class="ttdeci">~RotatingCylinderProblem()</div><div class="ttdoc">Destructor (empty)</div><div class="ttdef"><b>Definition:</b> <a href="spin__up_8cc_source.html#l00082">spin_up.cc:82</a></div></div>
 <div class="ttc" id="aclassRotatingCylinderProblem_html_a5e4316cce2306c4aab4a20b88cdfe6e3"><div class="ttname"><a href="classRotatingCylinderProblem.html#a5e4316cce2306c4aab4a20b88cdfe6e3">RotatingCylinderProblem::set_initial_condition</a></div><div class="ttdeci">void set_initial_condition()</div><div class="ttdoc">Set initial conditions.</div><div class="ttdef"><b>Definition:</b> <a href="spin__up_8cc_source.html#l00244">spin_up.cc:244</a></div></div>
 <div class="ttc" id="aclassRotatingCylinderProblem_html_a7d2fc60789ca6e2458be45b94ee40a1c"><div class="ttname"><a href="classRotatingCylinderProblem.html#a7d2fc60789ca6e2458be45b94ee40a1c">RotatingCylinderProblem::actions_after_adapt</a></div><div class="ttdeci">void actions_after_adapt()</div><div class="ttdoc">After adaptation: Pin pressure again (the previously pinned value might have disappeared) and pin red...</div><div class="ttdef"><b>Definition:</b> <a href="spin__up_8cc_source.html#l00115">spin_up.cc:115</a></div></div>
@@ -650,7 +650,7 @@
     <footer>
       <div class="container">
         <div class="text-muted" style="float:right;">Generated by <a href="http://www.doxygen.org/index.html">
-          <img style="height:18px;" class="footer-img" src="doxygen.png" alt="doxygen"></a> on Wed Oct 13 2021 09:00:02
+          <img style="height:18px;" class="footer-img" src="doxygen.png" alt="doxygen"></a> on Thu Oct 21 2021 17:47:38
         </div>
       </div>
     </footer>

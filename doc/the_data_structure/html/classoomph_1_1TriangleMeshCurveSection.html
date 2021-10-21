@@ -133,6 +133,9 @@ $(function() {
 </div><!--header-->
 <div class="contents">
 
+<p>Base class for defining a triangle mesh boundary, this class has the methods that allow to connect the initial and final ends to other triangle mesh boundaries.  
+ <a href="classoomph_1_1TriangleMeshCurveSection.html#details">More...</a></p>
+
 <p><code>#include &lt;<a class="el" href="unstructured__two__d__mesh__geometry__base_8h_source.html">unstructured_two_d_mesh_geometry_base.h</a>&gt;</code></p>
 <div id="dynsection-0" onclick="return toggleVisibility(this)" class="dynheader closed" style="cursor:pointer;">
   <img id="dynsection-0-trigger" src="closed.png" alt="+"/> Inheritance diagram for oomph::TriangleMeshCurveSection:</div>
@@ -142,7 +145,7 @@ $(function() {
  <div class="center">
   <img src="classoomph_1_1TriangleMeshCurveSection.png" usemap="#oomph::TriangleMeshCurveSection_map" alt=""/>
   <map id="oomph::TriangleMeshCurveSection_map" name="oomph::TriangleMeshCurveSection_map">
-<area href="classoomph_1_1TriangleMeshCurviLine.html" alt="oomph::TriangleMeshCurviLine" shape="rect" coords="0,56,209,80"/>
+<area href="classoomph_1_1TriangleMeshCurviLine.html" title="Class definining a curvilinear triangle mesh boundary in terms of a GeomObject. Curvlinear equivalent..." alt="oomph::TriangleMeshCurviLine" shape="rect" coords="0,56,209,80"/>
 <area href="classoomph_1_1TriangleMeshPolyLine.html" title="Class defining a polyline for use in Triangle Mesh generation." alt="oomph::TriangleMeshPolyLine" shape="rect" coords="219,56,428,80"/>
   </map>
 </div></div>
@@ -162,6 +165,7 @@ Public Member Functions</h2></td></tr>
 <tr class="memdesc:a2e6d22017ce7abe7e84e3f16360f5444"><td class="mdescLeft">&#160;</td><td class="mdescRight">Boundary id.  <a href="classoomph_1_1TriangleMeshCurveSection.html#a2e6d22017ce7abe7e84e3f16360f5444">More...</a><br /></td></tr>
 <tr class="separator:a2e6d22017ce7abe7e84e3f16360f5444"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a106d1f0e203e8e17c8296419be284c16"><td class="memItemLeft" align="right" valign="top">virtual unsigned&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classoomph_1_1TriangleMeshCurveSection.html#a106d1f0e203e8e17c8296419be284c16">boundary_chunk</a> () const =0</td></tr>
+<tr class="memdesc:a106d1f0e203e8e17c8296419be284c16"><td class="mdescLeft">&#160;</td><td class="mdescRight">Boundary chunk (Used when a boundary is represented by more than one polyline.  <a href="classoomph_1_1TriangleMeshCurveSection.html#a106d1f0e203e8e17c8296419be284c16">More...</a><br /></td></tr>
 <tr class="separator:a106d1f0e203e8e17c8296419be284c16"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a491d849e8147152c10d55c8ca6c3d63d"><td class="memItemLeft" align="right" valign="top">virtual unsigned&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classoomph_1_1TriangleMeshCurveSection.html#a491d849e8147152c10d55c8ca6c3d63d">nvertex</a> () const =0</td></tr>
 <tr class="memdesc:a491d849e8147152c10d55c8ca6c3d63d"><td class="mdescLeft">&#160;</td><td class="mdescRight">Number of vertices.  <a href="classoomph_1_1TriangleMeshCurveSection.html#a491d849e8147152c10d55c8ca6c3d63d">More...</a><br /></td></tr>
@@ -230,8 +234,10 @@ Public Member Functions</h2></td></tr>
 <tr class="memdesc:a6175f89dbb33a53d596e9374857cbefb"><td class="mdescLeft">&#160;</td><td class="mdescRight">Sets the initial vertex as non connected.  <a href="classoomph_1_1TriangleMeshCurveSection.html#a6175f89dbb33a53d596e9374857cbefb">More...</a><br /></td></tr>
 <tr class="separator:a6175f89dbb33a53d596e9374857cbefb"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ade6528a99d26583c05a5fd44e21d1ec4"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classoomph_1_1TriangleMeshCurveSection.html#ade6528a99d26583c05a5fd44e21d1ec4">suspend_initial_vertex_connected</a> ()</td></tr>
+<tr class="memdesc:ade6528a99d26583c05a5fd44e21d1ec4"><td class="mdescLeft">&#160;</td><td class="mdescRight">Set the initial vertex connection as suspended, it will be resumed when the method to resume the connections is called This method is only used in a distributed context, when the boundary to connect is no longer part of the domain in the processor.  <a href="classoomph_1_1TriangleMeshCurveSection.html#ade6528a99d26583c05a5fd44e21d1ec4">More...</a><br /></td></tr>
 <tr class="separator:ade6528a99d26583c05a5fd44e21d1ec4"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a34923cad75967b4efa95ad6e1ea3c72e"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classoomph_1_1TriangleMeshCurveSection.html#a34923cad75967b4efa95ad6e1ea3c72e">resume_initial_vertex_connected</a> ()</td></tr>
+<tr class="memdesc:a34923cad75967b4efa95ad6e1ea3c72e"><td class="mdescLeft">&#160;</td><td class="mdescRight">Resumes the initial vertex connection, it may be that after load balancing the boundary to which the connection was suspended be part of the domain.  <a href="classoomph_1_1TriangleMeshCurveSection.html#a34923cad75967b4efa95ad6e1ea3c72e">More...</a><br /></td></tr>
 <tr class="separator:a34923cad75967b4efa95ad6e1ea3c72e"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a937df77a1a0d3bf60f0a52ab3c0e268d"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classoomph_1_1TriangleMeshCurveSection.html#a937df77a1a0d3bf60f0a52ab3c0e268d">is_final_vertex_connected</a> () const</td></tr>
 <tr class="memdesc:a937df77a1a0d3bf60f0a52ab3c0e268d"><td class="mdescLeft">&#160;</td><td class="mdescRight">Test whether final vertex is connected or not.  <a href="classoomph_1_1TriangleMeshCurveSection.html#a937df77a1a0d3bf60f0a52ab3c0e268d">More...</a><br /></td></tr>
@@ -243,8 +249,10 @@ Public Member Functions</h2></td></tr>
 <tr class="memdesc:ac44effdfc3a04ba90668e7f3f54b248a"><td class="mdescLeft">&#160;</td><td class="mdescRight">Sets the final vertex as non connected.  <a href="classoomph_1_1TriangleMeshCurveSection.html#ac44effdfc3a04ba90668e7f3f54b248a">More...</a><br /></td></tr>
 <tr class="separator:ac44effdfc3a04ba90668e7f3f54b248a"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a379677086ad13d5cd7d0c5c669a37e2f"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classoomph_1_1TriangleMeshCurveSection.html#a379677086ad13d5cd7d0c5c669a37e2f">suspend_final_vertex_connected</a> ()</td></tr>
+<tr class="memdesc:a379677086ad13d5cd7d0c5c669a37e2f"><td class="mdescLeft">&#160;</td><td class="mdescRight">Set the final vertex connection as suspended, it will be resumed when the method to resume the connections is called This method is only used in a distributed context, when the boundary to connect is no longer part of the domain in the processor.  <a href="classoomph_1_1TriangleMeshCurveSection.html#a379677086ad13d5cd7d0c5c669a37e2f">More...</a><br /></td></tr>
 <tr class="separator:a379677086ad13d5cd7d0c5c669a37e2f"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a3c6277b6c1a1c6a5a6a7d234c4afc101"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classoomph_1_1TriangleMeshCurveSection.html#a3c6277b6c1a1c6a5a6a7d234c4afc101">resume_final_vertex_connected</a> ()</td></tr>
+<tr class="memdesc:a3c6277b6c1a1c6a5a6a7d234c4afc101"><td class="mdescLeft">&#160;</td><td class="mdescRight">Resumes the final vertex connection, it may be that after load balancing the boundary to which the connection was suspended be part of the domain.  <a href="classoomph_1_1TriangleMeshCurveSection.html#a3c6277b6c1a1c6a5a6a7d234c4afc101">More...</a><br /></td></tr>
 <tr class="separator:a3c6277b6c1a1c6a5a6a7d234c4afc101"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:aa20f1e54ff6f0f1ef0c550e0a2d119bb"><td class="memItemLeft" align="right" valign="top">unsigned&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classoomph_1_1TriangleMeshCurveSection.html#aa20f1e54ff6f0f1ef0c550e0a2d119bb">initial_vertex_connected_bnd_id</a> () const</td></tr>
 <tr class="memdesc:aa20f1e54ff6f0f1ef0c550e0a2d119bb"><td class="mdescLeft">&#160;</td><td class="mdescRight">Gets the id to which the initial end is connected.  <a href="classoomph_1_1TriangleMeshCurveSection.html#aa20f1e54ff6f0f1ef0c550e0a2d119bb">More...</a><br /></td></tr>
@@ -370,14 +378,17 @@ Protected Attributes</h2></td></tr>
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pri-attribs" name="pri-attribs"></a>
 Private Attributes</h2></td></tr>
 <tr class="memitem:a3e8dad0254ccbc33232d86d4488ab475"><td class="memItemLeft" align="right" valign="top">double&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classoomph_1_1TriangleMeshCurveSection.html#a3e8dad0254ccbc33232d86d4488ab475">Refinement_tolerance</a></td></tr>
+<tr class="memdesc:a3e8dad0254ccbc33232d86d4488ab475"><td class="mdescLeft">&#160;</td><td class="mdescRight">Tolerance for refinement of curve sections (neg if refinement is disabled)  <a href="classoomph_1_1TriangleMeshCurveSection.html#a3e8dad0254ccbc33232d86d4488ab475">More...</a><br /></td></tr>
 <tr class="separator:a3e8dad0254ccbc33232d86d4488ab475"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a27532c6686f1c29c6ac47a84ce561895"><td class="memItemLeft" align="right" valign="top">double&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classoomph_1_1TriangleMeshCurveSection.html#a27532c6686f1c29c6ac47a84ce561895">Unrefinement_tolerance</a></td></tr>
+<tr class="memdesc:a27532c6686f1c29c6ac47a84ce561895"><td class="mdescLeft">&#160;</td><td class="mdescRight">Tolerance for unrefinement of curve sections (neg if refinement is disabled)  <a href="classoomph_1_1TriangleMeshCurveSection.html#a27532c6686f1c29c6ac47a84ce561895">More...</a><br /></td></tr>
 <tr class="separator:a27532c6686f1c29c6ac47a84ce561895"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a5449b283a0b07ef923253b5fc9e9d024"><td class="memItemLeft" align="right" valign="top">double&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classoomph_1_1TriangleMeshCurveSection.html#a5449b283a0b07ef923253b5fc9e9d024">Maximum_length</a></td></tr>
+<tr class="memdesc:a5449b283a0b07ef923253b5fc9e9d024"><td class="mdescLeft">&#160;</td><td class="mdescRight">Maximum allowed distance between two vertices on the polyline representation of the curve section.  <a href="classoomph_1_1TriangleMeshCurveSection.html#a5449b283a0b07ef923253b5fc9e9d024">More...</a><br /></td></tr>
 <tr class="separator:a5449b283a0b07ef923253b5fc9e9d024"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
-<div class="textblock"><p >Base class for defining a triangle mesh boundary, this class has the methods that allow to connect the initial and final ends to other triangle mesh boundaries </p>
+<div class="textblock"><p >Base class for defining a triangle mesh boundary, this class has the methods that allow to connect the initial and final ends to other triangle mesh boundaries. </p>
 
 <p class="definition">Definition at line <a class="el" href="unstructured__two__d__mesh__geometry__base_8h_source.html#l00162">162</a> of file <a class="el" href="unstructured__two__d__mesh__geometry__base_8h_source.html">unstructured_two_d_mesh_geometry_base.h</a>.</p>
 </div><h2 class="groupheader">Constructor &amp; Destructor Documentation</h2>
@@ -462,7 +473,8 @@ Private Attributes</h2></td></tr>
   </tr>
 </table>
 </div><div class="memdoc">
-<p >Boundary chunk (Used when a boundary is represented by more than one polyline </p>
+
+<p>Boundary chunk (Used when a boundary is represented by more than one polyline. </p>
 
 <p>Implemented in <a class="el" href="classoomph_1_1TriangleMeshCurviLine.html#a42b8ef1fb0ad0078413d0fedc87af679">oomph::TriangleMeshCurviLine</a>, and <a class="el" href="classoomph_1_1TriangleMeshPolyLine.html#a4535773043c6b9516b81df42468294c1">oomph::TriangleMeshPolyLine</a>.</p>
 
@@ -1722,7 +1734,8 @@ Private Attributes</h2></td></tr>
   </tr>
 </table>
 </div><div class="memdoc">
-<p >Resumes the final vertex connection, it may be that after load balancing the boundary to which the connection was suspended be part of the domain </p>
+
+<p>Resumes the final vertex connection, it may be that after load balancing the boundary to which the connection was suspended be part of the domain. </p>
 
 <p class="definition">Definition at line <a class="el" href="unstructured__two__d__mesh__geometry__base_8h_source.html#l00429">429</a> of file <a class="el" href="unstructured__two__d__mesh__geometry__base_8h_source.html">unstructured_two_d_mesh_geometry_base.h</a>.</p>
 
@@ -1754,7 +1767,8 @@ Private Attributes</h2></td></tr>
   </tr>
 </table>
 </div><div class="memdoc">
-<p >Resumes the initial vertex connection, it may be that after load balancing the boundary to which the connection was suspended be part of the domain </p>
+
+<p>Resumes the initial vertex connection, it may be that after load balancing the boundary to which the connection was suspended be part of the domain. </p>
 
 <p class="definition">Definition at line <a class="el" href="unstructured__two__d__mesh__geometry__base_8h_source.html#l00385">385</a> of file <a class="el" href="unstructured__two__d__mesh__geometry__base_8h_source.html">unstructured_two_d_mesh_geometry_base.h</a>.</p>
 
@@ -2020,7 +2034,8 @@ Private Attributes</h2></td></tr>
   </tr>
 </table>
 </div><div class="memdoc">
-<p >Set the final vertex connection as suspended, it will be resumed when the method to resume the connections is called This method is only used in a distributed context, when the boundary to connect is no longer part of the domain in the processor </p>
+
+<p>Set the final vertex connection as suspended, it will be resumed when the method to resume the connections is called This method is only used in a distributed context, when the boundary to connect is no longer part of the domain in the processor. </p>
 
 <p class="definition">Definition at line <a class="el" href="unstructured__two__d__mesh__geometry__base_8h_source.html#l00417">417</a> of file <a class="el" href="unstructured__two__d__mesh__geometry__base_8h_source.html">unstructured_two_d_mesh_geometry_base.h</a>.</p>
 
@@ -2052,7 +2067,8 @@ Private Attributes</h2></td></tr>
   </tr>
 </table>
 </div><div class="memdoc">
-<p >Set the initial vertex connection as suspended, it will be resumed when the method to resume the connections is called This method is only used in a distributed context, when the boundary to connect is no longer part of the domain in the processor </p>
+
+<p>Set the initial vertex connection as suspended, it will be resumed when the method to resume the connections is called This method is only used in a distributed context, when the boundary to connect is no longer part of the domain in the processor. </p>
 
 <p class="definition">Definition at line <a class="el" href="unstructured__two__d__mesh__geometry__base_8h_source.html#l00373">373</a> of file <a class="el" href="unstructured__two__d__mesh__geometry__base_8h_source.html">unstructured_two_d_mesh_geometry_base.h</a>.</p>
 
@@ -2703,7 +2719,8 @@ Private Attributes</h2></td></tr>
   </tr>
 </table>
 </div><div class="memdoc">
-<p >Maximum allowed distance between two vertices on the polyline representation of the curve section </p>
+
+<p>Maximum allowed distance between two vertices on the polyline representation of the curve section. </p>
 
 <p class="definition">Definition at line <a class="el" href="unstructured__two__d__mesh__geometry__base_8h_source.html#l00653">653</a> of file <a class="el" href="unstructured__two__d__mesh__geometry__base_8h_source.html">unstructured_two_d_mesh_geometry_base.h</a>.</p>
 
@@ -2730,7 +2747,8 @@ Private Attributes</h2></td></tr>
   </tr>
 </table>
 </div><div class="memdoc">
-<p >Tolerance for refinement of curve sections (neg if refinement is disabled) </p>
+
+<p>Tolerance for refinement of curve sections (neg if refinement is disabled) </p>
 
 <p class="definition">Definition at line <a class="el" href="unstructured__two__d__mesh__geometry__base_8h_source.html#l00645">645</a> of file <a class="el" href="unstructured__two__d__mesh__geometry__base_8h_source.html">unstructured_two_d_mesh_geometry_base.h</a>.</p>
 
@@ -2785,7 +2803,8 @@ Private Attributes</h2></td></tr>
   </tr>
 </table>
 </div><div class="memdoc">
-<p >Tolerance for unrefinement of curve sections (neg if refinement is disabled) </p>
+
+<p>Tolerance for unrefinement of curve sections (neg if refinement is disabled) </p>
 
 <p class="definition">Definition at line <a class="el" href="unstructured__two__d__mesh__geometry__base_8h_source.html#l00649">649</a> of file <a class="el" href="unstructured__two__d__mesh__geometry__base_8h_source.html">unstructured_two_d_mesh_geometry_base.h</a>.</p>
 
@@ -2825,7 +2844,7 @@ Private Attributes</h2></td></tr>
     <footer>
       <div class="container">
         <div class="text-muted" style="float:right;">Generated by <a href="http://www.doxygen.org/index.html">
-          <img style="height:18px;" class="footer-img" src="doxygen.png" alt="doxygen"></a> on Wed Oct 13 2021 08:48:32
+          <img style="height:18px;" class="footer-img" src="doxygen.png" alt="doxygen"></a> on Thu Oct 21 2021 17:36:51
         </div>
       </div>
     </footer>

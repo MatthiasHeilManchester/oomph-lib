@@ -2,6 +2,11 @@
 \label{classoomph_1_1TriangleMeshCurveSection}\index{oomph::TriangleMeshCurveSection@{oomph::TriangleMeshCurveSection}}
 
 
+Base class for defining a triangle mesh boundary, this class has the methods that allow to connect the initial and final ends to other triangle mesh boundaries.  
+
+
+
+
 {\ttfamily \#include $<$unstructured\+\_\+two\+\_\+d\+\_\+mesh\+\_\+geometry\+\_\+base.\+h$>$}
 
 Inheritance diagram for oomph\+::Triangle\+Mesh\+Curve\+Section\+:\begin{figure}[H]
@@ -22,7 +27,7 @@ virtual unsigned \mbox{\hyperlink{classoomph_1_1TriangleMeshCurveSection_a52af59
 virtual unsigned \mbox{\hyperlink{classoomph_1_1TriangleMeshCurveSection_a2e6d22017ce7abe7e84e3f16360f5444}{boundary\+\_\+id}} () const =0
 \begin{DoxyCompactList}\small\item\em Boundary id. \end{DoxyCompactList}\item 
 virtual unsigned \mbox{\hyperlink{classoomph_1_1TriangleMeshCurveSection_a106d1f0e203e8e17c8296419be284c16}{boundary\+\_\+chunk}} () const =0
-\item 
+\begin{DoxyCompactList}\small\item\em Boundary chunk (Used when a boundary is represented by more than one polyline. \end{DoxyCompactList}\item 
 virtual unsigned \mbox{\hyperlink{classoomph_1_1TriangleMeshCurveSection_a491d849e8147152c10d55c8ca6c3d63d}{nvertex}} () const =0
 \begin{DoxyCompactList}\small\item\em Number of vertices. \end{DoxyCompactList}\item 
 virtual void \mbox{\hyperlink{classoomph_1_1TriangleMeshCurveSection_a140b0bb85d7bf85cc025e19e996d5c53}{output}} (std\+::ostream \&outfile, const unsigned \&n\+\_\+sample=50)=0
@@ -68,9 +73,9 @@ void \mbox{\hyperlink{classoomph_1_1TriangleMeshCurveSection_ab3294da2b5f14d38e1
 void \mbox{\hyperlink{classoomph_1_1TriangleMeshCurveSection_a6175f89dbb33a53d596e9374857cbefb}{unset\+\_\+initial\+\_\+vertex\+\_\+connected}} ()
 \begin{DoxyCompactList}\small\item\em Sets the initial vertex as non connected. \end{DoxyCompactList}\item 
 void \mbox{\hyperlink{classoomph_1_1TriangleMeshCurveSection_ade6528a99d26583c05a5fd44e21d1ec4}{suspend\+\_\+initial\+\_\+vertex\+\_\+connected}} ()
-\item 
+\begin{DoxyCompactList}\small\item\em Set the initial vertex connection as suspended, it will be resumed when the method to resume the connections is called This method is only used in a distributed context, when the boundary to connect is no longer part of the domain in the processor. \end{DoxyCompactList}\item 
 void \mbox{\hyperlink{classoomph_1_1TriangleMeshCurveSection_a34923cad75967b4efa95ad6e1ea3c72e}{resume\+\_\+initial\+\_\+vertex\+\_\+connected}} ()
-\item 
+\begin{DoxyCompactList}\small\item\em Resumes the initial vertex connection, it may be that after load balancing the boundary to which the connection was suspended be part of the domain. \end{DoxyCompactList}\item 
 bool \mbox{\hyperlink{classoomph_1_1TriangleMeshCurveSection_a937df77a1a0d3bf60f0a52ab3c0e268d}{is\+\_\+final\+\_\+vertex\+\_\+connected}} () const
 \begin{DoxyCompactList}\small\item\em Test whether final vertex is connected or not. \end{DoxyCompactList}\item 
 void \mbox{\hyperlink{classoomph_1_1TriangleMeshCurveSection_abcdf60aacf4153498fe4dfa0821691d7}{set\+\_\+final\+\_\+vertex\+\_\+connected}} ()
@@ -78,9 +83,9 @@ void \mbox{\hyperlink{classoomph_1_1TriangleMeshCurveSection_abcdf60aacf4153498f
 void \mbox{\hyperlink{classoomph_1_1TriangleMeshCurveSection_ac44effdfc3a04ba90668e7f3f54b248a}{unset\+\_\+final\+\_\+vertex\+\_\+connected}} ()
 \begin{DoxyCompactList}\small\item\em Sets the final vertex as non connected. \end{DoxyCompactList}\item 
 void \mbox{\hyperlink{classoomph_1_1TriangleMeshCurveSection_a379677086ad13d5cd7d0c5c669a37e2f}{suspend\+\_\+final\+\_\+vertex\+\_\+connected}} ()
-\item 
+\begin{DoxyCompactList}\small\item\em Set the final vertex connection as suspended, it will be resumed when the method to resume the connections is called This method is only used in a distributed context, when the boundary to connect is no longer part of the domain in the processor. \end{DoxyCompactList}\item 
 void \mbox{\hyperlink{classoomph_1_1TriangleMeshCurveSection_a3c6277b6c1a1c6a5a6a7d234c4afc101}{resume\+\_\+final\+\_\+vertex\+\_\+connected}} ()
-\item 
+\begin{DoxyCompactList}\small\item\em Resumes the final vertex connection, it may be that after load balancing the boundary to which the connection was suspended be part of the domain. \end{DoxyCompactList}\item 
 unsigned \mbox{\hyperlink{classoomph_1_1TriangleMeshCurveSection_aa20f1e54ff6f0f1ef0c550e0a2d119bb}{initial\+\_\+vertex\+\_\+connected\+\_\+bnd\+\_\+id}} () const
 \begin{DoxyCompactList}\small\item\em Gets the id to which the initial end is connected. \end{DoxyCompactList}\item 
 unsigned \& \mbox{\hyperlink{classoomph_1_1TriangleMeshCurveSection_a8bcc5fdc8b54c6e907146cd6c6c240c2}{initial\+\_\+vertex\+\_\+connected\+\_\+bnd\+\_\+id}} ()
@@ -166,15 +171,15 @@ double \mbox{\hyperlink{classoomph_1_1TriangleMeshCurveSection_a9776c1484d720242
 \begin{DoxyCompactItemize}
 \item 
 double \mbox{\hyperlink{classoomph_1_1TriangleMeshCurveSection_a3e8dad0254ccbc33232d86d4488ab475}{Refinement\+\_\+tolerance}}
-\item 
+\begin{DoxyCompactList}\small\item\em Tolerance for refinement of curve sections (neg if refinement is disabled) \end{DoxyCompactList}\item 
 double \mbox{\hyperlink{classoomph_1_1TriangleMeshCurveSection_a27532c6686f1c29c6ac47a84ce561895}{Unrefinement\+\_\+tolerance}}
-\item 
+\begin{DoxyCompactList}\small\item\em Tolerance for unrefinement of curve sections (neg if refinement is disabled) \end{DoxyCompactList}\item 
 double \mbox{\hyperlink{classoomph_1_1TriangleMeshCurveSection_a5449b283a0b07ef923253b5fc9e9d024}{Maximum\+\_\+length}}
-\end{DoxyCompactItemize}
+\begin{DoxyCompactList}\small\item\em Maximum allowed distance between two vertices on the polyline representation of the curve section. \end{DoxyCompactList}\end{DoxyCompactItemize}
 
 
 \doxysubsection{Detailed Description}
-Base class for defining a triangle mesh boundary, this class has the methods that allow to connect the initial and final ends to other triangle mesh boundaries 
+Base class for defining a triangle mesh boundary, this class has the methods that allow to connect the initial and final ends to other triangle mesh boundaries. 
 
 Definition at line \mbox{\hyperlink{unstructured__two__d__mesh__geometry__base_8h_source_l00162}{162}} of file \mbox{\hyperlink{unstructured__two__d__mesh__geometry__base_8h_source}{unstructured\+\_\+two\+\_\+d\+\_\+mesh\+\_\+geometry\+\_\+base.\+h}}.
 
@@ -218,7 +223,11 @@ Definition at line \mbox{\hyperlink{unstructured__two__d__mesh__geometry__base_8
 \doxysubsubsection{\texorpdfstring{boundary\_chunk()}{boundary\_chunk()}}
 {\footnotesize\ttfamily virtual unsigned oomph\+::\+Triangle\+Mesh\+Curve\+Section\+::boundary\+\_\+chunk (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [pure virtual]}}
 
-Boundary chunk (Used when a boundary is represented by more than one polyline 
+
+
+Boundary chunk (Used when a boundary is represented by more than one polyline. 
+
+
 
 Implemented in \mbox{\hyperlink{classoomph_1_1TriangleMeshCurviLine_a42b8ef1fb0ad0078413d0fedc87af679}{oomph\+::\+Triangle\+Mesh\+Curvi\+Line}}, and \mbox{\hyperlink{classoomph_1_1TriangleMeshPolyLine_a4535773043c6b9516b81df42468294c1}{oomph\+::\+Triangle\+Mesh\+Poly\+Line}}.
 
@@ -954,7 +963,11 @@ Referenced by \mbox{\hyperlink{unstructured__two__d__mesh__geometry__base_8h_sou
 \doxysubsubsection{\texorpdfstring{resume\_final\_vertex\_connected()}{resume\_final\_vertex\_connected()}}
 {\footnotesize\ttfamily void oomph\+::\+Triangle\+Mesh\+Curve\+Section\+::resume\+\_\+final\+\_\+vertex\+\_\+connected (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
 
-Resumes the final vertex connection, it may be that after load balancing the boundary to which the connection was suspended be part of the domain 
+
+
+Resumes the final vertex connection, it may be that after load balancing the boundary to which the connection was suspended be part of the domain. 
+
+
 
 Definition at line \mbox{\hyperlink{unstructured__two__d__mesh__geometry__base_8h_source_l00429}{429}} of file \mbox{\hyperlink{unstructured__two__d__mesh__geometry__base_8h_source}{unstructured\+\_\+two\+\_\+d\+\_\+mesh\+\_\+geometry\+\_\+base.\+h}}.
 
@@ -972,7 +985,11 @@ Referenced by \mbox{\hyperlink{triangle__mesh_8template_8cc_source_l34048}{oomph
 \doxysubsubsection{\texorpdfstring{resume\_initial\_vertex\_connected()}{resume\_initial\_vertex\_connected()}}
 {\footnotesize\ttfamily void oomph\+::\+Triangle\+Mesh\+Curve\+Section\+::resume\+\_\+initial\+\_\+vertex\+\_\+connected (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
 
-Resumes the initial vertex connection, it may be that after load balancing the boundary to which the connection was suspended be part of the domain 
+
+
+Resumes the initial vertex connection, it may be that after load balancing the boundary to which the connection was suspended be part of the domain. 
+
+
 
 Definition at line \mbox{\hyperlink{unstructured__two__d__mesh__geometry__base_8h_source_l00385}{385}} of file \mbox{\hyperlink{unstructured__two__d__mesh__geometry__base_8h_source}{unstructured\+\_\+two\+\_\+d\+\_\+mesh\+\_\+geometry\+\_\+base.\+h}}.
 
@@ -1144,7 +1161,11 @@ Referenced by \mbox{\hyperlink{triangle__mesh_8template_8cc_source_l42038}{oomph
 \doxysubsubsection{\texorpdfstring{suspend\_final\_vertex\_connected()}{suspend\_final\_vertex\_connected()}}
 {\footnotesize\ttfamily void oomph\+::\+Triangle\+Mesh\+Curve\+Section\+::suspend\+\_\+final\+\_\+vertex\+\_\+connected (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
 
-Set the final vertex connection as suspended, it will be resumed when the method to resume the connections is called This method is only used in a distributed context, when the boundary to connect is no longer part of the domain in the processor 
+
+
+Set the final vertex connection as suspended, it will be resumed when the method to resume the connections is called This method is only used in a distributed context, when the boundary to connect is no longer part of the domain in the processor. 
+
+
 
 Definition at line \mbox{\hyperlink{unstructured__two__d__mesh__geometry__base_8h_source_l00417}{417}} of file \mbox{\hyperlink{unstructured__two__d__mesh__geometry__base_8h_source}{unstructured\+\_\+two\+\_\+d\+\_\+mesh\+\_\+geometry\+\_\+base.\+h}}.
 
@@ -1162,7 +1183,11 @@ Referenced by \mbox{\hyperlink{triangle__mesh_8template_8cc_source_l33295}{oomph
 \doxysubsubsection{\texorpdfstring{suspend\_initial\_vertex\_connected()}{suspend\_initial\_vertex\_connected()}}
 {\footnotesize\ttfamily void oomph\+::\+Triangle\+Mesh\+Curve\+Section\+::suspend\+\_\+initial\+\_\+vertex\+\_\+connected (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
 
-Set the initial vertex connection as suspended, it will be resumed when the method to resume the connections is called This method is only used in a distributed context, when the boundary to connect is no longer part of the domain in the processor 
+
+
+Set the initial vertex connection as suspended, it will be resumed when the method to resume the connections is called This method is only used in a distributed context, when the boundary to connect is no longer part of the domain in the processor. 
+
+
 
 Definition at line \mbox{\hyperlink{unstructured__two__d__mesh__geometry__base_8h_source_l00373}{373}} of file \mbox{\hyperlink{unstructured__two__d__mesh__geometry__base_8h_source}{unstructured\+\_\+two\+\_\+d\+\_\+mesh\+\_\+geometry\+\_\+base.\+h}}.
 
@@ -1585,7 +1610,11 @@ Referenced by \mbox{\hyperlink{unstructured__two__d__mesh__geometry__base_8cc_so
 \doxysubsubsection{\texorpdfstring{Maximum\_length}{Maximum\_length}}
 {\footnotesize\ttfamily double oomph\+::\+Triangle\+Mesh\+Curve\+Section\+::\+Maximum\+\_\+length\hspace{0.3cm}{\ttfamily [private]}}
 
-Maximum allowed distance between two vertices on the polyline representation of the curve section 
+
+
+Maximum allowed distance between two vertices on the polyline representation of the curve section. 
+
+
 
 Definition at line \mbox{\hyperlink{unstructured__two__d__mesh__geometry__base_8h_source_l00653}{653}} of file \mbox{\hyperlink{unstructured__two__d__mesh__geometry__base_8h_source}{unstructured\+\_\+two\+\_\+d\+\_\+mesh\+\_\+geometry\+\_\+base.\+h}}.
 
@@ -1599,7 +1628,11 @@ Referenced by \mbox{\hyperlink{unstructured__two__d__mesh__geometry__base_8h_sou
 \doxysubsubsection{\texorpdfstring{Refinement\_tolerance}{Refinement\_tolerance}}
 {\footnotesize\ttfamily double oomph\+::\+Triangle\+Mesh\+Curve\+Section\+::\+Refinement\+\_\+tolerance\hspace{0.3cm}{\ttfamily [private]}}
 
+
+
 Tolerance for refinement of curve sections (neg if refinement is disabled) 
+
+
 
 Definition at line \mbox{\hyperlink{unstructured__two__d__mesh__geometry__base_8h_source_l00645}{645}} of file \mbox{\hyperlink{unstructured__two__d__mesh__geometry__base_8h_source}{unstructured\+\_\+two\+\_\+d\+\_\+mesh\+\_\+geometry\+\_\+base.\+h}}.
 
@@ -1631,7 +1664,11 @@ Referenced by \mbox{\hyperlink{unstructured__two__d__mesh__geometry__base_8cc_so
 \doxysubsubsection{\texorpdfstring{Unrefinement\_tolerance}{Unrefinement\_tolerance}}
 {\footnotesize\ttfamily double oomph\+::\+Triangle\+Mesh\+Curve\+Section\+::\+Unrefinement\+\_\+tolerance\hspace{0.3cm}{\ttfamily [private]}}
 
+
+
 Tolerance for unrefinement of curve sections (neg if refinement is disabled) 
+
+
 
 Definition at line \mbox{\hyperlink{unstructured__two__d__mesh__geometry__base_8h_source_l00649}{649}} of file \mbox{\hyperlink{unstructured__two__d__mesh__geometry__base_8h_source}{unstructured\+\_\+two\+\_\+d\+\_\+mesh\+\_\+geometry\+\_\+base.\+h}}.
 

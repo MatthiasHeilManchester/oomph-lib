@@ -2,6 +2,11 @@
 \label{classoomph_1_1RefineableNavierStokesBoussinesqElement}\index{oomph::RefineableNavierStokesBoussinesqElement$<$ NST\_ELEMENT, AD\_ELEMENT $>$@{oomph::RefineableNavierStokesBoussinesqElement$<$ NST\_ELEMENT, AD\_ELEMENT $>$}}
 
 
+Build a refineable Navier Stokes element that inherits from Element\+With\+External\+Element so that it can \char`\"{}communicate\char`\"{} with an advection diffusion element that provides the temperature in the body force term.  
+
+
+
+
 {\ttfamily \#include $<$multi\+\_\+domain\+\_\+boussinesq\+\_\+elements.\+h$>$}
 
 Inheritance diagram for oomph\+::Refineable\+Navier\+Stokes\+Boussinesq\+Element\texorpdfstring{$<$}{<} NST\+\_\+\+ELEMENT, AD\+\_\+\+ELEMENT \texorpdfstring{$>$}{>}\+:\begin{figure}[H]
@@ -26,7 +31,7 @@ void \mbox{\hyperlink{classoomph_1_1RefineableNavierStokesBoussinesqElement_a7c4
 void \mbox{\hyperlink{classoomph_1_1RefineableNavierStokesBoussinesqElement_aab6bae7d0704ab7e3e121ee594ac887a}{fill\+\_\+in\+\_\+contribution\+\_\+to\+\_\+jacobian}} (Vector$<$ double $>$ \&residuals, Dense\+Matrix$<$ double $>$ \&jacobian)
 \begin{DoxyCompactList}\small\item\em Compute the element\textquotesingle{}s residual vector and the Jacobian matrix. \end{DoxyCompactList}\item 
 void \mbox{\hyperlink{classoomph_1_1RefineableNavierStokesBoussinesqElement_a02e9c7f347aa1c6defbcb20049fc8985}{fill\+\_\+in\+\_\+contribution\+\_\+to\+\_\+jacobian\+\_\+and\+\_\+mass\+\_\+matrix}} (Vector$<$ double $>$ \&residuals, Dense\+Matrix$<$ double $>$ \&jacobian, Dense\+Matrix$<$ double $>$ \&mass\+\_\+matrix)
-\item 
+\begin{DoxyCompactList}\small\item\em Add the element\textquotesingle{}s contribution to its residuals vector, jacobian matrix and mass matrix. \end{DoxyCompactList}\item 
 void \mbox{\hyperlink{classoomph_1_1RefineableNavierStokesBoussinesqElement_a4450f88be1c003160b9fa99df70a923b}{get\+\_\+dbody\+\_\+force\+\_\+nst\+\_\+dexternal\+\_\+element\+\_\+data}} (const unsigned \&ipt, Dense\+Matrix$<$ double $>$ \&result, Vector$<$ unsigned $>$ \&global\+\_\+eqn\+\_\+number)
 \begin{DoxyCompactList}\small\item\em Fill in the derivatives of the body force with respect to the external unknowns. \end{DoxyCompactList}\item 
 void \mbox{\hyperlink{classoomph_1_1RefineableNavierStokesBoussinesqElement_a9609dc454ef3d29b1e256fa32fb2c665}{fill\+\_\+in\+\_\+off\+\_\+diagonal\+\_\+block\+\_\+analytic}} (Vector$<$ double $>$ \&residuals, Dense\+Matrix$<$ double $>$ \&jacobian)
@@ -100,7 +105,11 @@ References \mbox{\hyperlink{multi__domain__boussinesq__elements_8h_source_l00202
 {\footnotesize\ttfamily template$<$class NST\+\_\+\+ELEMENT , class AD\+\_\+\+ELEMENT $>$ \\
 void \mbox{\hyperlink{classoomph_1_1RefineableNavierStokesBoussinesqElement}{oomph\+::\+Refineable\+Navier\+Stokes\+Boussinesq\+Element}}$<$ NST\+\_\+\+ELEMENT, AD\+\_\+\+ELEMENT $>$\+::fill\+\_\+in\+\_\+contribution\+\_\+to\+\_\+jacobian\+\_\+and\+\_\+mass\+\_\+matrix (\begin{DoxyParamCaption}\item[{Vector$<$ double $>$ \&}]{residuals,  }\item[{Dense\+Matrix$<$ double $>$ \&}]{jacobian,  }\item[{Dense\+Matrix$<$ double $>$ \&}]{mass\+\_\+matrix }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
 
-Add the element\textquotesingle{}s contribution to its residuals vector, jacobian matrix and mass matrix 
+
+
+Add the element\textquotesingle{}s contribution to its residuals vector, jacobian matrix and mass matrix. 
+
+
 
 Definition at line \mbox{\hyperlink{multi__domain__boussinesq__elements_8h_source_l00179}{179}} of file \mbox{\hyperlink{multi__domain__boussinesq__elements_8h_source}{multi\+\_\+domain\+\_\+boussinesq\+\_\+elements.\+h}}.
 
@@ -176,7 +185,7 @@ void \mbox{\hyperlink{classoomph_1_1RefineableNavierStokesBoussinesqElement}{oom
 
 Fill in the derivatives of the body force with respect to the external unknowns. 
 
-Fill in the derivatives of the body force with respect to the external unknowns in the Navier--Stokes equations 
+Fill in the derivatives of the body force with respect to the external unknowns in the Navier--Stokes equations. 
 
 Definition at line \mbox{\hyperlink{multi__domain__boussinesq__elements_8h_source_l01434}{1434}} of file \mbox{\hyperlink{multi__domain__boussinesq__elements_8h_source}{multi\+\_\+domain\+\_\+boussinesq\+\_\+elements.\+h}}.
 

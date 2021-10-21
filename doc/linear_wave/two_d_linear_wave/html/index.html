@@ -205,7 +205,7 @@ Global parameters and functions</h1>
 <div class="line"> }</div>
 <div class="line"> </div>
 <div class="line">} <span class="comment">// end of tanh solution</span></div>
-<div class="ttc" id="anamespaceTanhSolnForLinearWave_html"><div class="ttname"><a href="namespaceTanhSolnForLinearWave.html">TanhSolnForLinearWave</a></div><div class="ttdef"><b>Definition:</b> <a href="two__d__linear__wave_8cc_source.html#l00048">two_d_linear_wave.cc:49</a></div></div>
+<div class="ttc" id="anamespaceTanhSolnForLinearWave_html"><div class="ttname"><a href="namespaceTanhSolnForLinearWave.html">TanhSolnForLinearWave</a></div><div class="ttdoc">Namespace for exact solution for LinearWave equation with sharp step.</div><div class="ttdef"><b>Definition:</b> <a href="two__d__linear__wave_8cc_source.html#l00048">two_d_linear_wave.cc:49</a></div></div>
 <div class="ttc" id="anamespaceTanhSolnForLinearWave_html_a3bc9643b40e62283dc09f405ed17c805"><div class="ttname"><a href="namespaceTanhSolnForLinearWave.html#a3bc9643b40e62283dc09f405ed17c805">TanhSolnForLinearWave::get_source</a></div><div class="ttdeci">void get_source(const double &amp;time, const Vector&lt; double &gt; &amp;x, double &amp;source)</div><div class="ttdoc">Source function to make it an exact solution.</div><div class="ttdef"><b>Definition:</b> <a href="two__d__linear__wave_8cc_source.html#l00091">two_d_linear_wave.cc:91</a></div></div>
 <div class="ttc" id="anamespaceTanhSolnForLinearWave_html_a48021142056bdea20e6432e360fd0314"><div class="ttname"><a href="namespaceTanhSolnForLinearWave.html#a48021142056bdea20e6432e360fd0314">TanhSolnForLinearWave::Alpha</a></div><div class="ttdeci">double Alpha</div><div class="ttdoc">Parameter for steepness of step.</div><div class="ttdef"><b>Definition:</b> <a href="two__d__linear__wave_8cc_source.html#l00052">two_d_linear_wave.cc:52</a></div></div>
 <div class="ttc" id="anamespaceTanhSolnForLinearWave_html_a5242d421b567b803323bc127081351a6"><div class="ttname"><a href="namespaceTanhSolnForLinearWave.html#a5242d421b567b803323bc127081351a6">TanhSolnForLinearWave::Phi</a></div><div class="ttdeci">double Phi</div><div class="ttdoc">Orientation of step wave.</div><div class="ttdef"><b>Definition:</b> <a href="two__d__linear__wave_8cc_source.html#l00055">two_d_linear_wave.cc:55</a></div></div>
@@ -282,7 +282,7 @@ The problem class</h1>
 <div class="line"> </div>
 <div class="line"><span class="keyword">public</span>:</div>
 <div class="line"><span class="comment"></span> </div>
-<div class="line"><span class="comment"> /// \short Constructor: pass number of elements in x and y directions,</span></div>
+<div class="line"><span class="comment"> ///  Constructor: pass number of elements in x and y directions,</span></div>
 <div class="line"><span class="comment"> /// bool indicating impulsive or &quot;smooth&quot; start,</span></div>
 <div class="line"><span class="comment"> /// and pointer to source function</span></div>
 <div class="line"><span class="comment"></span> <a class="code hl_function" href="classLinearWaveProblem.html#a459a58b7afd588cfa78a5e1e98c3c41e">LinearWaveProblem</a>(<span class="keyword">const</span> <span class="keywordtype">unsigned</span>&amp; nx, <span class="keyword">const</span> <span class="keywordtype">unsigned</span>&amp; ny, </div>
@@ -295,13 +295,13 @@ The problem class</h1>
 <div class="line"><span class="comment"> /// Update the problem specs after solve (empty)</span></div>
 <div class="line"><span class="comment"></span> <span class="keywordtype">void</span> <a class="code hl_function" href="classLinearWaveProblem.html#a5b45c619af141b19162f990a95490e80">actions_after_newton_solve</a>() {}</div>
 <div class="line"><span class="comment"></span> </div>
-<div class="line"><span class="comment"> /// \short Update the problem specs before solve (empty)</span></div>
+<div class="line"><span class="comment"> ///  Update the problem specs before solve (empty)</span></div>
 <div class="line"><span class="comment"></span> <span class="keywordtype">void</span> <a class="code hl_function" href="classLinearWaveProblem.html#a66e87510f6fa8af693cede514cb7a62e">actions_before_newton_solve</a>() {}</div>
 <div class="line"><span class="comment"></span> </div>
 <div class="line"><span class="comment"> /// Update the problem specs after solve (empty)</span></div>
 <div class="line"><span class="comment"></span> <span class="keywordtype">void</span> <a class="code hl_function" href="classLinearWaveProblem.html#a521290f43f9aac37c9604e744fa71075">actions_after_implicit_timestep</a>() {}</div>
 <div class="line"><span class="comment"></span> </div>
-<div class="line"><span class="comment"> /// \short Update the problem specs before next timestep: </span></div>
+<div class="line"><span class="comment"> ///  Update the problem specs before next timestep: </span></div>
 <div class="line"><span class="comment"> /// Set time-dependent Dirchlet boundary from exact solution.</span></div>
 <div class="line"><span class="comment"></span> <span class="keywordtype">void</span> <a class="code hl_function" href="classLinearWaveProblem.html#a39cfcb8ce06463ace1ac09fa43afa00a">actions_before_implicit_timestep</a>()</div>
 <div class="line">  {</div>
@@ -362,7 +362,7 @@ The problem class</h1>
 <div class="line"><span class="comment"> /// Doc the solution</span></div>
 <div class="line"><span class="comment"></span> <span class="keywordtype">void</span> <a class="code hl_function" href="classLinearWaveProblem.html#a6d9396a693be0479ece9ac1f14f9233a">doc_solution</a>(DocInfo&amp; doc_info);</div>
 <div class="line"><span class="comment"></span> </div>
-<div class="line"><span class="comment"> /// \short Do unsteady run </span></div>
+<div class="line"><span class="comment"> ///  Do unsteady run </span></div>
 <div class="line"><span class="comment"></span> <span class="keywordtype">void</span> <a class="code hl_function" href="classLinearWaveProblem.html#a9993365201bfffcc04dd2034f0d3d391">unsteady_run</a>();</div>
 <div class="line"> </div>
 <div class="line"><span class="keyword">private</span>:</div>
@@ -509,7 +509,7 @@ Implementation in the demo code</h2>
 <div class="line"> </div>
 <div class="line"> <span class="comment">// Get timestepper</span></div>
 <div class="line"> TIMESTEPPER* timestepper_pt=<span class="keyword">dynamic_cast&lt;</span>TIMESTEPPER*<span class="keyword">&gt;</span>(time_stepper_pt());</div>
-</div><!-- fragment --><p> To start the simulation with an impulsive start from the travelling-wave solution, defined in the namespace <code><a class="el" href="namespaceTanhSolnForLinearWave.html">TanhSolnForLinearWave</a></code>, we loop over all nodes and determine their positions. We then compute the value of the exact solution at that point and assign it to the current nodal value. "History values" that correspond to an impulsive start from this value are then assigned by calling <code>Newmark&lt;NSTEPS&gt;::assign_initial_values_impulsive(...)</code>.</p>
+</div><!-- fragment --><p> To start the simulation with an impulsive start from the travelling-wave solution, defined in the namespace <code><a class="el" href="namespaceTanhSolnForLinearWave.html" title="Namespace for exact solution for LinearWave equation with sharp step.">TanhSolnForLinearWave</a></code>, we loop over all nodes and determine their positions. We then compute the value of the exact solution at that point and assign it to the current nodal value. "History values" that correspond to an impulsive start from this value are then assigned by calling <code>Newmark&lt;NSTEPS&gt;::assign_initial_values_impulsive(...)</code>.</p>
 <div class="fragment"><div class="line"> </div>
 <div class="line"> </div>
 <div class="line"> <span class="comment">// Impulsive start</span></div>
@@ -776,7 +776,7 @@ The timestepping loop</h1>
 Comments and Exercises</h1>
 <h2><a class="anchor" id="default"></a>
 Default parameters for the linear wave equations</h2>
-<p >The linear wave equation does not contain any parameters, therefore the <code>Problem</code> constructor only passed the pointer to the pointer to the source function to the elements. Passing the pointer to the source function is optional &ndash; if no source function pointer is specified, the linear-wave elements will use the default <img class="formulaInl" alt="$ f(x_1,x_2,t)=0 $" src="form_20.png" width="81" height="14"/> , so that the unforced linear wave equation is solved. You should confirm this by commenting out the assignment of the source function pointer in the Problem constructor &ndash; the code should (and does!) still compute the correct results. This is because the travelling-wave solution (5) is in fact a solution of the <em>unforced</em> wave equation &ndash; the source function defined in the namespace <code><a class="el" href="namespaceTanhSolnForLinearWave.html">TanhSolnForLinearWave</a></code> implements <img class="formulaInl" alt="$ f(x_1,x_2,t)=0 $" src="form_20.png" width="81" height="14"/> .</p>
+<p >The linear wave equation does not contain any parameters, therefore the <code>Problem</code> constructor only passed the pointer to the pointer to the source function to the elements. Passing the pointer to the source function is optional &ndash; if no source function pointer is specified, the linear-wave elements will use the default <img class="formulaInl" alt="$ f(x_1,x_2,t)=0 $" src="form_20.png" width="81" height="14"/> , so that the unforced linear wave equation is solved. You should confirm this by commenting out the assignment of the source function pointer in the Problem constructor &ndash; the code should (and does!) still compute the correct results. This is because the travelling-wave solution (5) is in fact a solution of the <em>unforced</em> wave equation &ndash; the source function defined in the namespace <code><a class="el" href="namespaceTanhSolnForLinearWave.html" title="Namespace for exact solution for LinearWave equation with sharp step.">TanhSolnForLinearWave</a></code> implements <img class="formulaInl" alt="$ f(x_1,x_2,t)=0 $" src="form_20.png" width="81" height="14"/> .</p>
 <h2><a class="anchor" id="imp_soln"></a>
 The errors induced by an impulsive start</h2>
 <ol type="1">
@@ -828,7 +828,7 @@ PDF file</h1>
     <footer>
       <div class="container">
         <div class="text-muted" style="float:right;">Generated by <a href="http://www.doxygen.org/index.html">
-          <img style="height:18px;" class="footer-img" src="doxygen.png" alt="doxygen"></a> on Wed Oct 13 2021 08:52:02
+          <img style="height:18px;" class="footer-img" src="doxygen.png" alt="doxygen"></a> on Thu Oct 21 2021 17:40:06
         </div>
       </div>
     </footer>

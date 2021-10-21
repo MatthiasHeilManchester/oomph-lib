@@ -133,6 +133,9 @@ $(function() {
 </div><!--header-->
 <div class="contents">
 
+<p>A Class for shape functions. In simple cases, the shape functions have only one index that can be thought of as corresponding to the nodal points. In general, however, when quantities and their gradients are interpolated separately, the shape function have two indices: one corresponding to the nodal points, and the other to the "type" of quantity being interpolated: function, derivative, &amp;c The second index can also represent the vector coordinate for vector-valued (Nedelec) shape functions.  
+ <a href="classoomph_1_1Shape.html#details">More...</a></p>
+
 <p><code>#include &lt;<a class="el" href="shape_8h_source.html">shape.h</a>&gt;</code></p>
 <div id="dynsection-0" onclick="return toggleVisibility(this)" class="dynheader closed" style="cursor:pointer;">
   <img id="dynsection-0-trigger" src="closed.png" alt="+"/> Inheritance diagram for oomph::Shape:</div>
@@ -147,8 +150,8 @@ $(function() {
 <area href="classoomph_1_1OneDimensionalLegendreDShape.html" alt="oomph::OneDimensionalLegendreDShape&lt; NNODE_1D &gt;" shape="rect" coords="696,56,1034,80"/>
 <area href="classoomph_1_1OneDimensionalLegendreShape.html" title="Class that returns the shape functions associated with legendre." alt="oomph::OneDimensionalLegendreShape&lt; NNODE_1D &gt;" shape="rect" coords="1044,56,1382,80"/>
 <area href="classoomph_1_1OneDimensionalModalDShape.html" alt="oomph::OneDimensionalModalDShape" shape="rect" coords="1392,56,1730,80"/>
-<area href="classoomph_1_1OneDimensionalModalShape.html" alt="oomph::OneDimensionalModalShape" shape="rect" coords="1740,56,2078,80"/>
-<area href="classoomph_1_1ShapeWithDeepCopy.html" alt="oomph::ShapeWithDeepCopy" shape="rect" coords="2088,56,2426,80"/>
+<area href="classoomph_1_1OneDimensionalModalShape.html" title="Non-templated class that returns modal hierachical shape functions based on Legendre polynomials." alt="oomph::OneDimensionalModalShape" shape="rect" coords="1740,56,2078,80"/>
+<area href="classoomph_1_1ShapeWithDeepCopy.html" title="A shape function with a deep copy constructor. This allows for use with stl operations (e...." alt="oomph::ShapeWithDeepCopy" shape="rect" coords="2088,56,2426,80"/>
   </map>
 </div></div>
 <table class="memberdecls">
@@ -164,10 +167,13 @@ Public Member Functions</h2></td></tr>
 <tr class="memdesc:aecba4a024c9c1595f253dd6ce48613c9"><td class="mdescLeft">&#160;</td><td class="mdescRight">Broken copy constructor.  <a href="classoomph_1_1Shape.html#aecba4a024c9c1595f253dd6ce48613c9">More...</a><br /></td></tr>
 <tr class="separator:aecba4a024c9c1595f253dd6ce48613c9"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:af6d7a3572de5743ca382d275711a814e"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classoomph_1_1Shape.html#af6d7a3572de5743ca382d275711a814e">Shape</a> ()</td></tr>
+<tr class="memdesc:af6d7a3572de5743ca382d275711a814e"><td class="mdescLeft">&#160;</td><td class="mdescRight">Default constructor - just assigns a null pointers and zero index sizes.  <a href="classoomph_1_1Shape.html#af6d7a3572de5743ca382d275711a814e">More...</a><br /></td></tr>
 <tr class="separator:af6d7a3572de5743ca382d275711a814e"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:aa9d3d4203abf1e39fc3db2732355c801"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classoomph_1_1Shape.html#aa9d3d4203abf1e39fc3db2732355c801">operator=</a> (const <a class="el" href="classoomph_1_1Shape.html">Shape</a> &amp;shape)</td></tr>
+<tr class="memdesc:aa9d3d4203abf1e39fc3db2732355c801"><td class="mdescLeft">&#160;</td><td class="mdescRight">The assignment operator does a shallow copy (resets the pointer to the data)  <a href="classoomph_1_1Shape.html#aa9d3d4203abf1e39fc3db2732355c801">More...</a><br /></td></tr>
 <tr class="separator:aa9d3d4203abf1e39fc3db2732355c801"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ae56db76f6d0b46acb57869896dc9be20"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classoomph_1_1Shape.html#ae56db76f6d0b46acb57869896dc9be20">operator=</a> (<a class="el" href="classoomph_1_1Shape.html">Shape</a> *const &amp;shape_pt)</td></tr>
+<tr class="memdesc:ae56db76f6d0b46acb57869896dc9be20"><td class="mdescLeft">&#160;</td><td class="mdescRight">The assignment operator does a shallow copy (resets the pointer to the data)  <a href="classoomph_1_1Shape.html#ae56db76f6d0b46acb57869896dc9be20">More...</a><br /></td></tr>
 <tr class="separator:ae56db76f6d0b46acb57869896dc9be20"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:af6e38eb7b8c072b0acac31c61f11cc27"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classoomph_1_1Shape.html#af6e38eb7b8c072b0acac31c61f11cc27">~Shape</a> ()</td></tr>
 <tr class="memdesc:af6e38eb7b8c072b0acac31c61f11cc27"><td class="mdescLeft">&#160;</td><td class="mdescRight">Destructor, clear up the memory allocated by the object.  <a href="classoomph_1_1Shape.html#af6e38eb7b8c072b0acac31c61f11cc27">More...</a><br /></td></tr>
@@ -222,8 +228,8 @@ Protected Attributes</h2></td></tr>
 <tr class="separator:aae154e349eaa0a2f4b415c2bdaef0708"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
-<div class="textblock"><p >A Class for shape functions. In simple cases, the shape functions have only one index that can be thought of as corresponding to the nodal points. In general, however, when quantities and their gradients are interpolated separately, the shape function have two indices: one corresponding to the nodal points, and the other to the "type" of quantity being interpolated: function, derivative, &amp;c The second index can also represent the vector coordinate for vector-valued (Nedelec) shape functions.</p>
-<p >The implementation of <a class="el" href="classoomph_1_1Shape.html">Shape</a> functions is designed to permit fast copying of entire sets of values by resetting the internal pointer to the data, Psi; functionality that is required, for example, when setting the test functions in Galerkin elements and when reading pre-computed values of the shape functions. In general, we cannot know at construction time whether the pointer to the values will be reset or not and, therefore, whether the storage for values should be allocated by the object. We choose to allocate storage on construction and store an additional pointer Allocated_data that <b>always</b> addresses the storage allocated by the object. If the Psi pointer is reset then this storage will be "wasted", but only for the lifetime of the object. The cost for non-copied <a class="el" href="classoomph_1_1Shape.html">Shape</a> functions is one additional pointer. </p>
+<div class="textblock"><p >A Class for shape functions. In simple cases, the shape functions have only one index that can be thought of as corresponding to the nodal points. In general, however, when quantities and their gradients are interpolated separately, the shape function have two indices: one corresponding to the nodal points, and the other to the "type" of quantity being interpolated: function, derivative, &amp;c The second index can also represent the vector coordinate for vector-valued (Nedelec) shape functions. </p>
+<p >The implementation of <a class="el" href="classoomph_1_1Shape.html" title="A Class for shape functions. In simple cases, the shape functions have only one index that can be tho...">Shape</a> functions is designed to permit fast copying of entire sets of values by resetting the internal pointer to the data, Psi; functionality that is required, for example, when setting the test functions in Galerkin elements and when reading pre-computed values of the shape functions. In general, we cannot know at construction time whether the pointer to the values will be reset or not and, therefore, whether the storage for values should be allocated by the object. We choose to allocate storage on construction and store an additional pointer Allocated_data that <b>always</b> addresses the storage allocated by the object. If the Psi pointer is reset then this storage will be "wasted", but only for the lifetime of the object. The cost for non-copied <a class="el" href="classoomph_1_1Shape.html" title="A Class for shape functions. In simple cases, the shape functions have only one index that can be tho...">Shape</a> functions is one additional pointer. </p>
 
 <p class="definition">Definition at line <a class="el" href="shape_8h_source.html#l00075">75</a> of file <a class="el" href="shape_8h_source.html">shape.h</a>.</p>
 </div><h2 class="groupheader">Constructor &amp; Destructor Documentation</h2>
@@ -351,7 +357,8 @@ Protected Attributes</h2></td></tr>
   </tr>
 </table>
 </div><div class="memdoc">
-<p >Default constructor - just assigns a null pointers and zero index sizes. </p>
+
+<p>Default constructor - just assigns a null pointers and zero index sizes. </p>
 
 <p class="definition">Definition at line <a class="el" href="shape_8h_source.html#l00137">137</a> of file <a class="el" href="shape_8h_source.html">shape.h</a>.</p>
 
@@ -626,7 +633,8 @@ Protected Attributes</h2></td></tr>
   </tr>
 </table>
 </div><div class="memdoc">
-<p >The assignment operator does a shallow copy (resets the pointer to the data) </p>
+
+<p>The assignment operator does a shallow copy (resets the pointer to the data) </p>
 
 <p class="definition">Definition at line <a class="el" href="shape_8h_source.html#l00141">141</a> of file <a class="el" href="shape_8h_source.html">shape.h</a>.</p>
 
@@ -657,7 +665,8 @@ Protected Attributes</h2></td></tr>
   </tr>
 </table>
 </div><div class="memdoc">
-<p >The assignment operator does a shallow copy (resets the pointer to the data) </p>
+
+<p>The assignment operator does a shallow copy (resets the pointer to the data) </p>
 
 <p class="definition">Definition at line <a class="el" href="shape_8h_source.html#l00162">162</a> of file <a class="el" href="shape_8h_source.html">shape.h</a>.</p>
 
@@ -959,7 +968,7 @@ Protected Attributes</h2></td></tr>
     <footer>
       <div class="container">
         <div class="text-muted" style="float:right;">Generated by <a href="http://www.doxygen.org/index.html">
-          <img style="height:18px;" class="footer-img" src="doxygen.png" alt="doxygen"></a> on Wed Oct 13 2021 08:48:02
+          <img style="height:18px;" class="footer-img" src="doxygen.png" alt="doxygen"></a> on Thu Oct 21 2021 17:36:23
         </div>
       </div>
     </footer>

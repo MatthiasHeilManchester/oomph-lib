@@ -2,6 +2,11 @@
 \label{classoomph_1_1RefineableLineMesh}\index{oomph::RefineableLineMesh$<$ ELEMENT $>$@{oomph::RefineableLineMesh$<$ ELEMENT $>$}}
 
 
+Intermediate mesh class that implements the mesh adaptation functions specified in the Refineable\+Mesh class for meshes that contain the refineable variant of \mbox{\hyperlink{classoomph_1_1QElement}{QElement}} s \mbox{[}The class ELEMENT provided as the template parameter must be of type \mbox{\hyperlink{classoomph_1_1RefineableQElement_3_011_01_4}{Refineable\+QElement$<$1$>$}}\mbox{]}.  
+
+
+
+
 {\ttfamily \#include $<$refineable\+\_\+line\+\_\+mesh.\+h$>$}
 
 Inheritance diagram for oomph\+::Refineable\+Line\+Mesh\texorpdfstring{$<$}{<} ELEMENT \texorpdfstring{$>$}{>}\+:\begin{figure}[H]
@@ -24,14 +29,14 @@ virtual \mbox{\hyperlink{classoomph_1_1RefineableLineMesh_a7939a82970c7aa6ad2e3e
 virtual void \mbox{\hyperlink{classoomph_1_1RefineableLineMesh_a11ee25cace35f302fdf64b623906ea35}{setup\+\_\+tree\+\_\+forest}} ()
 \begin{DoxyCompactList}\small\item\em Set up the tree forest associated with the \mbox{\hyperlink{classoomph_1_1Mesh}{Mesh}}. Forwards call to \mbox{\hyperlink{classoomph_1_1RefineableLineMesh_ac87ad1a1be6f9a9e444acea2e42598ff}{setup\+\_\+binary\+\_\+tree\+\_\+forest()}}. \end{DoxyCompactList}\item 
 void \mbox{\hyperlink{classoomph_1_1RefineableLineMesh_ac87ad1a1be6f9a9e444acea2e42598ff}{setup\+\_\+binary\+\_\+tree\+\_\+forest}} ()
-\end{DoxyCompactItemize}
+\begin{DoxyCompactList}\small\item\em Set up \mbox{\hyperlink{classoomph_1_1BinaryTreeForest}{Binary\+Tree\+Forest}}. Wipes any existing tree structure and regards the currently active elements as the root trees in the forest. \end{DoxyCompactList}\end{DoxyCompactItemize}
 \doxysubsection*{Additional Inherited Members}
 
 
 \doxysubsection{Detailed Description}
 \subsubsection*{template$<$class ELEMENT$>$\newline
 class oomph\+::\+Refineable\+Line\+Mesh$<$ ELEMENT $>$}
-Intermediate mesh class that implements the mesh adaptation functions specified in the Refineable\+Mesh class for meshes that contain the refineable variant of \mbox{\hyperlink{classoomph_1_1QElement}{QElement}} s \mbox{[}The class ELEMENT provided as the template parameter must be of type \mbox{\hyperlink{classoomph_1_1RefineableQElement_3_011_01_4}{Refineable\+QElement$<$1$>$}}\mbox{]}.
+Intermediate mesh class that implements the mesh adaptation functions specified in the Refineable\+Mesh class for meshes that contain the refineable variant of \mbox{\hyperlink{classoomph_1_1QElement}{QElement}} s \mbox{[}The class ELEMENT provided as the template parameter must be of type \mbox{\hyperlink{classoomph_1_1RefineableQElement_3_011_01_4}{Refineable\+QElement$<$1$>$}}\mbox{]}. 
 
 \mbox{\hyperlink{classoomph_1_1Mesh}{Mesh}} adaptation/refinement is implemented by \mbox{\hyperlink{classoomph_1_1BinaryTree}{Binary\+Tree}} procedures and any concrete implementation of this class needs to provide a \mbox{\hyperlink{classoomph_1_1BinaryTreeForest}{Binary\+Tree\+Forest}} representation of the initial (coarse) mesh. 
 
@@ -106,7 +111,11 @@ Broken assignment operator.
 {\footnotesize\ttfamily template$<$class ELEMENT $>$ \\
 void \mbox{\hyperlink{classoomph_1_1RefineableLineMesh}{oomph\+::\+Refineable\+Line\+Mesh}}$<$ ELEMENT $>$\+::setup\+\_\+binary\+\_\+tree\+\_\+forest (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
 
+
+
 Set up \mbox{\hyperlink{classoomph_1_1BinaryTreeForest}{Binary\+Tree\+Forest}}. Wipes any existing tree structure and regards the currently active elements as the root trees in the forest. 
+
+
 
 Definition at line \mbox{\hyperlink{refineable__line__mesh_8h_source_l00078}{78}} of file \mbox{\hyperlink{refineable__line__mesh_8h_source}{refineable\+\_\+line\+\_\+mesh.\+h}}.
 

@@ -26,7 +26,7 @@ Most specific geometric objects store some additional parameters as private data
  
 \begin{DoxyCodeInclude}{0}
 \DoxyCodeLine{\textcolor{comment}{//=====start\_of\_circle=====================================================}}
-\DoxyCodeLine{\textcolor{comment}{/// \(\backslash\)short Simple circle in 2D space.}\textcolor{comment}{}}
+\DoxyCodeLine{\textcolor{comment}{///  Simple circle in 2D space.}\textcolor{comment}{}}
 \DoxyCodeLine{\textcolor{comment}{/// \(\backslash\)f[ x = X\_c + R \(\backslash\)cos(\(\backslash\)zeta)  \(\backslash\)f]}}
 \DoxyCodeLine{\textcolor{comment}{/// \(\backslash\)f[ y = Y\_c + R \(\backslash\)sin(\(\backslash\)zeta)  \(\backslash\)f]}}
 \DoxyCodeLine{\textcolor{comment}{}\textcolor{comment}{//=========================================================================}}
@@ -40,7 +40,7 @@ Most specific geometric objects store some additional parameters as private data
 \DoxyCodeLine{               \textcolor{keyword}{const} \textcolor{keywordtype}{double}\& r) : GeomObject(1,2), X\_c(x\_c), Y\_c(y\_c), R(r)}
 \DoxyCodeLine{  \{\}}
 \DoxyCodeLine{\textcolor{comment}{}}
-\DoxyCodeLine{\textcolor{comment}{ /// \(\backslash\)short Position Vector at Lagrangian coordinate zeta }}
+\DoxyCodeLine{\textcolor{comment}{ ///  Position Vector at Lagrangian coordinate zeta }}
 \DoxyCodeLine{\textcolor{comment}{} \textcolor{keywordtype}{void} position(\textcolor{keyword}{const} Vector<double>\& zeta, Vector<double>\& r)\textcolor{keyword}{ const}}
 \DoxyCodeLine{\textcolor{keyword}{  }\{}
 \DoxyCodeLine{   \textcolor{comment}{// Position vector}}
@@ -48,7 +48,7 @@ Most specific geometric objects store some additional parameters as private data
 \DoxyCodeLine{   r[1] = Y\_c+R*sin(zeta[0]);}
 \DoxyCodeLine{  \}}
 \DoxyCodeLine{\textcolor{comment}{}}
-\DoxyCodeLine{\textcolor{comment}{ /// \(\backslash\)short Position Vector at Lagrangian coordinate zeta  at time level t}}
+\DoxyCodeLine{\textcolor{comment}{ ///  Position Vector at Lagrangian coordinate zeta  at time level t}}
 \DoxyCodeLine{\textcolor{comment}{ /// (t=0: present; t>0: previous level). Steady object, so we }}
 \DoxyCodeLine{\textcolor{comment}{ /// simply forward the call to the steady version.}}
 \DoxyCodeLine{\textcolor{comment}{} \textcolor{keywordtype}{void} position(\textcolor{keyword}{const} \textcolor{keywordtype}{unsigned}\& t, \textcolor{keyword}{const} Vector<double>\& zeta,}
@@ -98,7 +98,7 @@ Here is a re-\/implementation of the above {\ttfamily Geom\+Object} in a form th
 
 \begin{DoxyCodeInclude}{0}
 \DoxyCodeLine{\textcolor{comment}{//=========================================================================}}
-\DoxyCodeLine{\textcolor{comment}{/// \(\backslash\)short GeneralCircle in 2D space.}\textcolor{comment}{}}
+\DoxyCodeLine{\textcolor{comment}{///  GeneralCircle in 2D space.}\textcolor{comment}{}}
 \DoxyCodeLine{\textcolor{comment}{/// \(\backslash\)f[ x = X\_c + R \(\backslash\)cos(\(\backslash\)zeta)  \(\backslash\)f]}}
 \DoxyCodeLine{\textcolor{comment}{/// \(\backslash\)f[ y = Y\_c + R \(\backslash\)sin(\(\backslash\)zeta)  \(\backslash\)f]}}
 \DoxyCodeLine{\textcolor{comment}{/// The three parameters \(\backslash\)f\$ X\_c, Y\_c \(\backslash\)f\$ and \(\backslash\)f\$ R \(\backslash\)f\$ are represented}}
@@ -170,7 +170,7 @@ Here is a re-\/implementation of the above {\ttfamily Geom\+Object} in a form th
 \DoxyCodeLine{\textcolor{comment}{ /// How many items of Data does the shape of the object depend on?}}
 \DoxyCodeLine{ \textcolor{keywordtype}{unsigned} ngeom\_data()\textcolor{keyword}{ const }\{\textcolor{keywordflow}{return} Geom\_data\_pt.size();\}}
 \DoxyCodeLine{ \textcolor{comment}{}}
-\DoxyCodeLine{\textcolor{comment}{ /// \(\backslash\)short Return pointer to the j-\/th Data item that the object's }}
+\DoxyCodeLine{\textcolor{comment}{ ///  Return pointer to the j-\/th Data item that the object's }}
 \DoxyCodeLine{\textcolor{comment}{ /// shape depends on }}
 \DoxyCodeLine{\textcolor{comment}{} Data* geom\_data\_pt(\textcolor{keyword}{const} \textcolor{keywordtype}{unsigned}\& j) \{\textcolor{keywordflow}{return} Geom\_data\_pt[j];\}}
 
@@ -181,13 +181,13 @@ Here is a re-\/implementation of the above {\ttfamily Geom\+Object} in a form th
 \begin{DoxyCodeInclude}{0}
 \DoxyCodeLine{\textcolor{keyword}{protected}:}
 \DoxyCodeLine{\textcolor{comment}{}}
-\DoxyCodeLine{\textcolor{comment}{ /// \(\backslash\)short Vector of pointers to Data items that affects the object's shape}}
+\DoxyCodeLine{\textcolor{comment}{ ///  Vector of pointers to Data items that affects the object's shape}}
 \DoxyCodeLine{\textcolor{comment}{} Vector<Data*> Geom\_data\_pt;}
 
 \end{DoxyCodeInclude}
  The second constructor is appropriate for cases in which the {\ttfamily Data} object that specifies the object\textquotesingle{}s shape has already been created elsewhere. In this case, we simply pass the pointer to the Data object to the constructor and store it in the first entry of the {\ttfamily Geom\+\_\+data\+\_\+pt} vector\+:  
 \begin{DoxyCodeInclude}{0}
-\DoxyCodeLine{\textcolor{comment}{ /// \(\backslash\)short Alternative constructor:  Pass x and y-\/coords of centre and radius}}
+\DoxyCodeLine{\textcolor{comment}{ ///  Alternative constructor:  Pass x and y-\/coords of centre and radius}}
 \DoxyCodeLine{\textcolor{comment}{ /// (all as part of Data)}\textcolor{comment}{}}
 \DoxyCodeLine{\textcolor{comment}{ /// \(\backslash\)code }}
 \DoxyCodeLine{\textcolor{comment}{ /// Geom\_data\_pt[0]-\/>value(0) = X\_c;}}
@@ -243,7 +243,7 @@ The boolean flag {\ttfamily Must\+\_\+clean\+\_\+up} is stored as private member
 
 
 \begin{DoxyCodeInclude}{0}
-\DoxyCodeLine{\textcolor{comment}{ /// \(\backslash\)short Position Vector at Lagrangian coordinate zeta }}
+\DoxyCodeLine{\textcolor{comment}{ ///  Position Vector at Lagrangian coordinate zeta }}
 \DoxyCodeLine{ \textcolor{keywordtype}{void} position(\textcolor{keyword}{const} Vector<double>\& zeta, Vector<double>\& r)\textcolor{keyword}{ const}}
 \DoxyCodeLine{\textcolor{keyword}{  }\{}
 \DoxyCodeLine{   \textcolor{comment}{// Extract data}}
@@ -285,7 +285,7 @@ Here is the class definition for the {\ttfamily Elastically\+Supported\+Ring\+El
  
 \begin{DoxyCodeInclude}{0}
 \DoxyCodeLine{\textcolor{comment}{//===========start\_of\_general\_circle=========================================}}
-\DoxyCodeLine{\textcolor{comment}{/// \(\backslash\)short GeneralCircle "{}upgraded"{} to a GeneralisedElement: Circular }\textcolor{comment}{}}
+\DoxyCodeLine{\textcolor{comment}{///  GeneralCircle "{}upgraded"{} to a GeneralisedElement: Circular }\textcolor{comment}{}}
 \DoxyCodeLine{\textcolor{comment}{/// ring whose position is given by}}
 \DoxyCodeLine{\textcolor{comment}{/// \(\backslash\)f[ x = X\_c + R \(\backslash\)cos(\(\backslash\)zeta)  \(\backslash\)f]}}
 \DoxyCodeLine{\textcolor{comment}{/// \(\backslash\)f[ y = Y\_c + R \(\backslash\)sin(\(\backslash\)zeta)  \(\backslash\)f]}}
@@ -307,7 +307,7 @@ Here is the class definition for the {\ttfamily Elastically\+Supported\+Ring\+El
 
 The arguments to the constructor specify the initial geometric parameters, $ X_c, Y_c $ and $ R $. We pass them to the constructor of the {\ttfamily General\+Circle} object and assign a default value for the spring stiffness $ k_{stiff}$ (stored as a private data member of the class; see below)\+:  
 \begin{DoxyCodeInclude}{0}
-\DoxyCodeLine{\textcolor{comment}{ /// \(\backslash\)short Constructor: Build  ring from doubles that describe }}
+\DoxyCodeLine{\textcolor{comment}{ ///  Constructor: Build  ring from doubles that describe }}
 \DoxyCodeLine{\textcolor{comment}{ /// the geometry: x and y positions of centre and the radius.}\textcolor{comment}{}}
 \DoxyCodeLine{\textcolor{comment}{ /// Initialise stiffness to 1.0. By default, no load is set.}}
 \DoxyCodeLine{\textcolor{comment}{} ElasticallySupportedRingElement(\textcolor{keyword}{const} \textcolor{keywordtype}{double}\& x\_c, \textcolor{keyword}{const} \textcolor{keywordtype}{double}\& y\_c, }
@@ -361,7 +361,7 @@ Since the {\ttfamily Generalised\+Element\textquotesingle{}s} destructor will de
 
  
 \begin{DoxyCodeInclude}{0}
-\DoxyCodeLine{\textcolor{comment}{ /// \(\backslash\)short Set pointer to Data object that specifies the "{}load"{}}}
+\DoxyCodeLine{\textcolor{comment}{ ///  Set pointer to Data object that specifies the "{}load"{}}}
 \DoxyCodeLine{\textcolor{comment}{ /// on the ElasticallySupportedRingElement}}
 \DoxyCodeLine{ \textcolor{keywordtype}{void} set\_load\_pt(Data* load\_pt)}
 \DoxyCodeLine{  \{}
@@ -485,7 +485,7 @@ Next, we provide an access functions to the spring stiffness parameter,
 
 
 \begin{DoxyCodeInclude}{0}
-\DoxyCodeLine{\textcolor{comment}{ /// \(\backslash\)short Compute element residual Vector (only if flag=0) and also}}
+\DoxyCodeLine{\textcolor{comment}{ ///  Compute element residual Vector (only if flag=0) and also}}
 \DoxyCodeLine{\textcolor{comment}{ /// the element Jacobian matrix (if flag=1)}}
 \DoxyCodeLine{ \textcolor{keywordtype}{void} fill\_in\_generic\_residual\_contribution(Vector<double> \&residuals,}
 \DoxyCodeLine{                                            DenseMatrix<double> \&jacobian,}
@@ -649,7 +649,7 @@ Here is the problem class definition which requires little comment\+:
 \DoxyCodeLine{\textcolor{comment}{ /// Trace file}}
 \DoxyCodeLine{\textcolor{comment}{} ofstream \mbox{\hyperlink{classGeomObjectAsGeneralisedElementProblem_ad6261e556a52596ba8904ee902ea6d70}{Trace\_file}};}
 \DoxyCodeLine{\textcolor{comment}{}}
-\DoxyCodeLine{\textcolor{comment}{ /// \(\backslash\)short Pointer to data item that stores the "{}load"{} on the ring}}
+\DoxyCodeLine{\textcolor{comment}{ ///  Pointer to data item that stores the "{}load"{} on the ring}}
 \DoxyCodeLine{\textcolor{comment}{} Data* \mbox{\hyperlink{classGeomObjectAsGeneralisedElementProblem_ac04469b2dbce010fff3f5b2cf5591bcd}{Load\_pt}};}
 \DoxyCodeLine{\textcolor{comment}{}}
 \DoxyCodeLine{\textcolor{comment}{ /// Doc info object}}

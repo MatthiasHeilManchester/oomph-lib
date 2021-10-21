@@ -203,7 +203,7 @@
 <div class="line"> </div>
 <div class="line"><span class="keyword">public</span>:</div>
 <div class="line"><span class="comment"></span> </div>
-<div class="line"><span class="comment"> /// \short Constructor: Pass timestep and function pointer to the </span></div>
+<div class="line"><span class="comment"> ///  Constructor: Pass timestep and function pointer to the </span></div>
 <div class="line"><span class="comment"> /// solution that provides the initial conditions for the fluid</span></div>
 <div class="line"><span class="comment"></span> <a class="code hl_function" href="classOscRingNStProblem.html#acd5f633c43eb4cfb43c45361ecf85e6b">OscRingNStProblem</a>(<span class="keyword">const</span> <span class="keywordtype">double</span>&amp; dt,</div>
 <div class="line">                   FiniteElement::UnsteadyExactSolutionFctPt IC_fct_pt);</div>
@@ -220,10 +220,10 @@
 <div class="line"><span class="comment"> /// Update after solve (empty)</span></div>
 <div class="line"><span class="comment"></span> <span class="keywordtype">void</span> <a class="code hl_function" href="classOscRingNStProblem.html#a6e4be6a46ab263941b76ab4e6706f63a">actions_after_newton_solve</a>(){}</div>
 <div class="line"><span class="comment"></span> </div>
-<div class="line"><span class="comment"> /// \short Update the problem specs before solve (empty)</span></div>
+<div class="line"><span class="comment"> ///  Update the problem specs before solve (empty)</span></div>
 <div class="line"><span class="comment"></span> <span class="keywordtype">void</span> <a class="code hl_function" href="classOscRingNStProblem.html#a7d8ff9543c042752b649ed326d6c5915">actions_before_newton_solve</a>(){}</div>
 <div class="line"><span class="comment"></span> </div>
-<div class="line"><span class="comment"> /// \short Update the problem specs before checking Newton</span></div>
+<div class="line"><span class="comment"> ///  Update the problem specs before checking Newton</span></div>
 <div class="line"><span class="comment"> /// convergence: Update the fluid mesh and re-set velocity</span></div>
 <div class="line"><span class="comment"> ///  boundary conditions -- no slip velocity on the wall means</span></div>
 <div class="line"><span class="comment"> /// that the velocity on the wall is dependent.</span></div>
@@ -235,7 +235,7 @@
 <div class="line"> }</div>
 <div class="line"> </div>
 <div class="line"><span class="comment"></span> </div>
-<div class="line"><span class="comment"> /// \short Update the problem specs after adaptation:</span></div>
+<div class="line"><span class="comment"> ///  Update the problem specs after adaptation:</span></div>
 <div class="line"><span class="comment"> /// Set auxiliary update function that applies no slip on all </span></div>
 <div class="line"><span class="comment"> /// boundary nodes and choose fluid pressure dof that drives</span></div>
 <div class="line"><span class="comment"> /// the wall deformation</span></div>
@@ -268,7 +268,7 @@
 <div class="line"><span class="comment"></span> <span class="keywordtype">void</span> <a class="code hl_function" href="classOscRingNStProblem.html#a00e957fb6a313a9c1de784d0fa3a7a36">unsteady_run</a>(<span class="keyword">const</span> <span class="keywordtype">unsigned</span> &amp;ntsteps, <span class="keyword">const</span> <span class="keywordtype">bool</span>&amp; restarted,</div>
 <div class="line">                   DocInfo&amp; doc_info);</div>
 <div class="line"><span class="comment"></span> </div>
-<div class="line"><span class="comment"> /// \short Set initial condition (incl previous timesteps) according</span></div>
+<div class="line"><span class="comment"> ///  Set initial condition (incl previous timesteps) according</span></div>
 <div class="line"><span class="comment"> /// to specified function. </span></div>
 <div class="line"><span class="comment"></span> <span class="keywordtype">void</span> <a class="code hl_function" href="classOscRingNStProblem.html#ab1f2083699d00da4b7f6116e10792e86">set_initial_condition</a>();</div>
 <div class="line"> <span class="comment"></span></div>
@@ -281,10 +281,10 @@
 <div class="line">   <span class="keywordflow">return</span> <a class="code hl_variable" href="classOscRingNStProblem.html#af9ccaa9a5c41ffadda773d704793c76e">Fluid_mesh_pt</a>; </div>
 <div class="line">  }</div>
 <div class="line"> <span class="comment"></span></div>
-<div class="line"><span class="comment"> /// \short Dump problem data.</span></div>
+<div class="line"><span class="comment"> ///  Dump problem data.</span></div>
 <div class="line"><span class="comment"></span> <span class="keywordtype">void</span> <a class="code hl_function" href="classOscRingNStProblem.html#af32f94658174188b1f029446161755b2">dump_it</a>(ofstream&amp; dump_file, DocInfo doc_info);</div>
 <div class="line"><span class="comment"></span> </div>
-<div class="line"><span class="comment"> /// \short Read problem data.</span></div>
+<div class="line"><span class="comment"> ///  Read problem data.</span></div>
 <div class="line"><span class="comment"></span> <span class="keywordtype">void</span> <a class="code hl_function" href="classOscRingNStProblem.html#a0cf01737b8d53213d644413e84251d0f">restart</a>(ifstream&amp; restart_file);</div>
 <div class="line"> </div>
 <div class="line"><span class="keyword">private</span>:</div>
@@ -310,7 +310,7 @@
 <div class="line"><span class="comment"> /// Pointer to node on coarsest mesh on which velocity is traced</span></div>
 <div class="line"><span class="comment"></span> Node* <a class="code hl_variable" href="classOscRingNStProblem.html#aed51269a285ffdc064739d6d363b1179">Veloc_trace_node_pt</a>;</div>
 <div class="line"><span class="comment"></span> </div>
-<div class="line"><span class="comment"> /// \short Pointer to node in symmetry plane on coarsest mesh at </span></div>
+<div class="line"><span class="comment"> ///  Pointer to node in symmetry plane on coarsest mesh at </span></div>
 <div class="line"><span class="comment"> /// which velocity is traced</span></div>
 <div class="line"><span class="comment"></span> Node* <a class="code hl_variable" href="classOscRingNStProblem.html#a6688cac5da1f4092a9cd343ad5fdfd53">Sarah_veloc_trace_node_pt</a>;</div>
 <div class="line"> </div>
@@ -1180,7 +1180,7 @@
 <div class="line"> </div>
 <div class="line"> </div>
 <div class="line"> </div>
-<div class="ttc" id="aclassOscRingNStProblem_html"><div class="ttname"><a href="classOscRingNStProblem.html">OscRingNStProblem</a></div><div class="ttdef"><b>Definition:</b> <a href="osc__ring__alg_8cc_source.html#l00085">osc_ring_alg.cc:86</a></div></div>
+<div class="ttc" id="aclassOscRingNStProblem_html"><div class="ttname"><a href="classOscRingNStProblem.html">OscRingNStProblem</a></div><div class="ttdoc">Driver for oscillating ring problem: Wall performs oscillations that resemble eigenmodes of freely os...</div><div class="ttdef"><b>Definition:</b> <a href="osc__ring__alg_8cc_source.html#l00085">osc_ring_alg.cc:86</a></div></div>
 <div class="ttc" id="aclassOscRingNStProblem_html_a00e957fb6a313a9c1de784d0fa3a7a36"><div class="ttname"><a href="classOscRingNStProblem.html#a00e957fb6a313a9c1de784d0fa3a7a36">OscRingNStProblem::unsteady_run</a></div><div class="ttdeci">void unsteady_run(const unsigned &amp;ntsteps, const bool &amp;restarted, DocInfo &amp;doc_info)</div><div class="ttdoc">Run the time integration for ntsteps steps.</div><div class="ttdef"><b>Definition:</b> <a href="osc__ring__alg_8cc_source.html#l00731">osc_ring_alg.cc:731</a></div></div>
 <div class="ttc" id="aclassOscRingNStProblem_html_a0cf01737b8d53213d644413e84251d0f"><div class="ttname"><a href="classOscRingNStProblem.html#a0cf01737b8d53213d644413e84251d0f">OscRingNStProblem::restart</a></div><div class="ttdeci">void restart(ifstream &amp;restart_file)</div><div class="ttdoc">Read problem data.</div><div class="ttdef"><b>Definition:</b> <a href="osc__ring__alg_8cc_source.html#l00704">osc_ring_alg.cc:704</a></div></div>
 <div class="ttc" id="aclassOscRingNStProblem_html_a1349ecb860cacb34792fde6807d92905"><div class="ttname"><a href="classOscRingNStProblem.html#a1349ecb860cacb34792fde6807d92905">OscRingNStProblem::Wall_pt</a></div><div class="ttdeci">GeomObject * Wall_pt</div><div class="ttdoc">Pointer to wall.</div><div class="ttdef"><b>Definition:</b> <a href="osc__ring__alg_8cc_source.html#l00183">osc_ring_alg.cc:183</a></div></div>
@@ -1251,7 +1251,7 @@ PDF file</h1>
     <footer>
       <div class="container">
         <div class="text-muted" style="float:right;">Generated by <a href="http://www.doxygen.org/index.html">
-          <img style="height:18px;" class="footer-img" src="doxygen.png" alt="doxygen"></a> on Wed Oct 13 2021 09:05:50
+          <img style="height:18px;" class="footer-img" src="doxygen.png" alt="doxygen"></a> on Thu Oct 21 2021 17:52:55
         </div>
       </div>
     </footer>
