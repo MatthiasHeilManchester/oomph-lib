@@ -1,16 +1,11 @@
-In this document, we demonstrate how a solve the 1D Poisson problem using existing objects from the {\ttfamily oomph-\/lib} library\+: \begin{center} \tabulinesep=1mm
-\begin{longtabu}spread 0pt [c]{*{0}{|X[-1]}|}
+In this document, we demonstrate how a solve the 1D Poisson problem using existing objects from the {\ttfamily oomph-\/lib} library\+:
+
+\begin{center} \tabulinesep=1mm
+\begin{longtabu}spread 0pt [c]{*{1}{|X[-1]}|}
 \hline
+\begin{center} {\bfseries{One-\/dimensional model Poisson problem}} \end{center}  Solve \[ \frac{\mbox{d}^2u}{\mbox{d}x^2} = f(x), \ \ \ \ \ \ \ \ \ \ (1) \] in a one-\/dimensional domain $ x\in[0,1] $, with boundary conditions \[ u(0)=u_0 \ \mbox{\ \ \ and \ \ \ } \ \ u(1)=u_1, \ \ \ \ \ \ \ \ \ \ (2) \] where $ u_0 $ and $ u_1 $ are given.   \\\cline{1-1}
 \end{longtabu}
 \end{center} 
-
-\begin{center} \end{center} 
-
-\begin{center} ~\newline
- \begin{center} {\bfseries{One-\/dimensional model Poisson problem}} \end{center}  Solve \[ \frac{\mbox{d}^2u}{\mbox{d}x^2} = f(x), \ \ \ \ \ \ \ \ \ \ (1) \] in a one-\/dimensional domain $ x\in[0,1] $, with boundary conditions \[ u(0)=u_0 \ \mbox{\ \ \ and \ \ \ } \ \ u(1)=u_1, \ \ \ \ \ \ \ \ \ \ (2) \] where $ u_0 $ and $ u_1 $ are given.   \end{center} 
-
-\begin{center} ~\newline
- \end{center} 
 
 We provide a detailed discussion of the driver code \href{../../../../demo_drivers/poisson/one_d_poisson/one_d_poisson.cc}{\texttt{ one\+\_\+d\+\_\+poisson.\+cc}} which solves the problem for the specific source function \[ f(x) = \pm 30 \sin(\sqrt{30} x), \ \ \ \ (3) \] and boundary conditions \[ u_0= 0; \ \ \ u_1 = \mp 1. \] In this case, the problem has the (fish-\/shaped) exact solution \[ u(x) = \pm \left[ \left(\sin(\sqrt{30})-1\right) x - \sin(\sqrt{30} x)\right]. \ \ \ \ \ (4)\]
 
