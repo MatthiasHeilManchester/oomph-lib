@@ -132,7 +132,7 @@ As usual, we represent the moving wall as a {\ttfamily Geom\+Object} and define 
 \DoxyCodeLine{}
 \DoxyCodeLine{\textcolor{keyword}{public}:}
 \DoxyCodeLine{\textcolor{comment}{}}
-\DoxyCodeLine{\textcolor{comment}{ ///  Constructor : It's a 2D object, parametrised by }}
+\DoxyCodeLine{\textcolor{comment}{ /// Constructor : It's a 2D object, parametrised by }}
 \DoxyCodeLine{\textcolor{comment}{ /// one Lagrangian coordinate. Arguments: height at ends, x-\/coordinate of }}
 \DoxyCodeLine{\textcolor{comment}{ /// left end, length, amplitude of deflection, period of oscillation, and}}
 \DoxyCodeLine{\textcolor{comment}{ /// pointer to time object}}
@@ -157,7 +157,7 @@ As usual, we represent the moving wall as a {\ttfamily Geom\+Object} and define 
 
 \begin{DoxyCodeInclude}{0}
 \DoxyCodeLine{\textcolor{comment}{}}
-\DoxyCodeLine{\textcolor{comment}{ ///  Position vector at Lagrangian coordinate zeta }}
+\DoxyCodeLine{\textcolor{comment}{ /// Position vector at Lagrangian coordinate zeta }}
 \DoxyCodeLine{\textcolor{comment}{ /// at time level t.}}
 \DoxyCodeLine{\textcolor{comment}{} \textcolor{keywordtype}{void} position(\textcolor{keyword}{const} \textcolor{keywordtype}{unsigned}\& t, \textcolor{keyword}{const} Vector<double>\&zeta, }
 \DoxyCodeLine{               Vector<double>\& r)\textcolor{keyword}{ const}}
@@ -188,7 +188,7 @@ As usual, we represent the moving wall as a {\ttfamily Geom\+Object} and define 
 \begin{DoxyCodeInclude}{0}
 \DoxyCodeLine{}
 \DoxyCodeLine{\textcolor{comment}{}}
-\DoxyCodeLine{\textcolor{comment}{ ///  "{}Current"{} position vector at Lagrangian coordinate zeta }}
+\DoxyCodeLine{\textcolor{comment}{ /// "{}Current"{} position vector at Lagrangian coordinate zeta }}
 \DoxyCodeLine{\textcolor{comment}{} \textcolor{keywordtype}{void} position(\textcolor{keyword}{const} Vector<double>\&zeta, Vector<double>\& r)\textcolor{keyword}{ const}}
 \DoxyCodeLine{\textcolor{keyword}{  }\{}
 \DoxyCodeLine{   position (0, zeta, r);}
@@ -472,7 +472,7 @@ As usual, we template the problem class by the element type and provide an acces
 \DoxyCodeLine{}
 \DoxyCodeLine{ public :}
 \DoxyCodeLine{\textcolor{comment}{}}
-\DoxyCodeLine{\textcolor{comment}{ ///  Constructor : the arguments are the number of elements,}}
+\DoxyCodeLine{\textcolor{comment}{ /// Constructor : the arguments are the number of elements,}}
 \DoxyCodeLine{\textcolor{comment}{ /// the length of the domain and the amplitude and period of }}
 \DoxyCodeLine{\textcolor{comment}{ ///the oscillations}}
 \DoxyCodeLine{\textcolor{comment}{} CollapsibleChannelProblem(\textcolor{keyword}{const} \textcolor{keywordtype}{unsigned}\& nup, }
@@ -506,7 +506,7 @@ As usual, we template the problem class by the element type and provide an acces
 
 \begin{DoxyCodeInclude}{0}
 \DoxyCodeLine{ \textcolor{comment}{}}
-\DoxyCodeLine{\textcolor{comment}{ ///  Update the problem specs before solve (empty) }}
+\DoxyCodeLine{\textcolor{comment}{ /// Update the problem specs before solve (empty) }}
 \DoxyCodeLine{\textcolor{comment}{} \textcolor{keywordtype}{void} actions\_before\_newton\_solve()\{\}}
 \DoxyCodeLine{\textcolor{comment}{}}
 \DoxyCodeLine{\textcolor{comment}{ /// Update the problem after solve (empty)}}
@@ -557,7 +557,7 @@ As usual, we template the problem class by the element type and provide an acces
 \DoxyCodeLine{\textcolor{comment}{ ///Number of elements in the x direction in the upstream part of the channel}}
 \DoxyCodeLine{\textcolor{comment}{} \textcolor{keywordtype}{unsigned} Nup;}
 \DoxyCodeLine{\textcolor{comment}{}}
-\DoxyCodeLine{\textcolor{comment}{ ///  Number of elements in the x direction in the "{}collapsible"{} }}
+\DoxyCodeLine{\textcolor{comment}{ /// Number of elements in the x direction in the "{}collapsible"{} }}
 \DoxyCodeLine{\textcolor{comment}{ /// part of the channel}}
 \DoxyCodeLine{\textcolor{comment}{} \textcolor{keywordtype}{unsigned} Ncollapsible;}
 \DoxyCodeLine{\textcolor{comment}{}}
@@ -591,7 +591,7 @@ As usual, we template the problem class by the element type and provide an acces
 \DoxyCodeLine{\textcolor{comment}{ /// Pointer to the "{}bulk"{} mesh}}
 \DoxyCodeLine{\textcolor{comment}{} RefineableCollapsibleChannelMesh<ELEMENT>* Bulk\_mesh\_pt;}
 \DoxyCodeLine{ \textcolor{comment}{}}
-\DoxyCodeLine{\textcolor{comment}{ ///  Pointer to the "{}surface"{} mesh that contains the applied traction}}
+\DoxyCodeLine{\textcolor{comment}{ /// Pointer to the "{}surface"{} mesh that contains the applied traction}}
 \DoxyCodeLine{\textcolor{comment}{ /// elements}}
 \DoxyCodeLine{\textcolor{comment}{} Mesh* Surface\_mesh\_pt; }
 \DoxyCodeLine{ \textcolor{comment}{}}
@@ -1144,7 +1144,7 @@ Once the mesh has been adapted, we (re-\/)create the prescribed traction element
 \DoxyCodeLine{\textcolor{comment}{ /// Fraction of points in boundary layer}}
 \DoxyCodeLine{\textcolor{comment}{} \textcolor{keywordtype}{double} \mbox{\hyperlink{namespaceBL__Squash_af84bda39008884cd2b01e630957573df}{Fract\_in\_BL}}=0.5;}
 \DoxyCodeLine{\textcolor{comment}{}}
-\DoxyCodeLine{\textcolor{comment}{ ///  Mapping [0,1] -\/> [0,1] that re-\/distributes}}
+\DoxyCodeLine{\textcolor{comment}{ /// Mapping [0,1] -\/> [0,1] that re-\/distributes}}
 \DoxyCodeLine{\textcolor{comment}{ /// nodal points across the channel width}}
 \DoxyCodeLine{\textcolor{comment}{} \textcolor{keywordtype}{double} \mbox{\hyperlink{namespaceBL__Squash_a0fdaf7661591150041b7102dbe578cdc}{squash\_fct}}(\textcolor{keyword}{const} \textcolor{keywordtype}{double}\& s)}
 \DoxyCodeLine{ \{}

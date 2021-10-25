@@ -189,12 +189,12 @@ $(function() {
 <div class="line"><a id="l00060" name="l00060"></a><span class="lineno">   60</span>  <span class="keyword">class </span>FoepplvonKarmanEquations : <span class="keyword">public</span> <span class="keyword">virtual</span> <a class="code hl_class" href="classoomph_1_1FiniteElement.html">FiniteElement</a></div>
 <div class="line"><a id="l00061" name="l00061"></a><span class="lineno">   61</span>  {</div>
 <div class="line"><a id="l00062" name="l00062"></a><span class="lineno">   62</span>  <span class="keyword">public</span>:<span class="comment"></span></div>
-<div class="line"><a id="l00063" name="l00063"></a><span class="lineno">   63</span><span class="comment">    ///  Function pointer to pressure function fct(x,f(x)) --</span></div>
+<div class="line"><a id="l00063" name="l00063"></a><span class="lineno">   63</span><span class="comment">    /// Function pointer to pressure function fct(x,f(x)) --</span></div>
 <div class="line"><a id="l00064" name="l00064"></a><span class="lineno">   64</span><span class="comment">    /// x is a Vector!</span></div>
 <div class="line"><a id="l00065" name="l00065"></a><span class="lineno">   65</span><span class="comment"></span>    <span class="keyword">typedef</span> void (*FoepplvonKarmanPressureFctPt)(<span class="keyword">const</span> <a class="code hl_class" href="classoomph_1_1Vector.html">Vector&lt;double&gt;</a>&amp; <a class="code hl_variable" href="namespaceoomph.html#a9d1d2da2b8bb8e73af72b5cadb8fe97c">x</a>,</div>
 <div class="line"><a id="l00066" name="l00066"></a><span class="lineno">   66</span>                                                 <span class="keywordtype">double</span>&amp; <a class="code hl_function" href="namespaceoomph.html#ad835af913df4cbdc5648440f91b794ab">f</a>);</div>
 <div class="line"><a id="l00067" name="l00067"></a><span class="lineno">   67</span><span class="comment"></span> </div>
-<div class="line"><a id="l00068" name="l00068"></a><span class="lineno">   68</span><span class="comment">    ///  Constructor (must initialise the Pressure_fct_pt and</span></div>
+<div class="line"><a id="l00068" name="l00068"></a><span class="lineno">   68</span><span class="comment">    /// Constructor (must initialise the Pressure_fct_pt and</span></div>
 <div class="line"><a id="l00069" name="l00069"></a><span class="lineno">   69</span><span class="comment">    /// Airy_forcing_fct_pt to null). Also set physical parameters to their</span></div>
 <div class="line"><a id="l00070" name="l00070"></a><span class="lineno">   70</span><span class="comment">    /// default values. No volume constraint applied by default.</span></div>
 <div class="line"><a id="l00071" name="l00071"></a><span class="lineno">   71</span><span class="comment"></span>    FoepplvonKarmanEquations() : Pressure_fct_pt(0), Airy_forcing_fct_pt(0)</div>
@@ -228,7 +228,7 @@ $(function() {
 <div class="line"><a id="l00099" name="l00099"></a><span class="lineno">   99</span>    }</div>
 <div class="line"><a id="l00100" name="l00100"></a><span class="lineno">  100</span> </div>
 <div class="line"><a id="l00101" name="l00101"></a><span class="lineno">  101</span><span class="comment"></span> </div>
-<div class="line"><a id="l00102" name="l00102"></a><span class="lineno">  102</span><span class="comment">    ///  Set Data value containing a single value which represents the</span></div>
+<div class="line"><a id="l00102" name="l00102"></a><span class="lineno">  102</span><span class="comment">    /// Set Data value containing a single value which represents the</span></div>
 <div class="line"><a id="l00103" name="l00103"></a><span class="lineno">  103</span><span class="comment">    /// volume control pressure as external data for this element.</span></div>
 <div class="line"><a id="l00104" name="l00104"></a><span class="lineno">  104</span><span class="comment">    /// Only used for volume controlled problems in conjunction with</span></div>
 <div class="line"><a id="l00105" name="l00105"></a><span class="lineno">  105</span><span class="comment">    /// FoepplvonKarmanVolumeConstraintElement.</span></div>
@@ -250,7 +250,7 @@ $(function() {
 <div class="line"><a id="l00121" name="l00121"></a><span class="lineno">  121</span>        add_external_data(data_pt);</div>
 <div class="line"><a id="l00122" name="l00122"></a><span class="lineno">  122</span>    }</div>
 <div class="line"><a id="l00123" name="l00123"></a><span class="lineno">  123</span><span class="comment"></span> </div>
-<div class="line"><a id="l00124" name="l00124"></a><span class="lineno">  124</span><span class="comment">    ///  Return the index at which the i-th unknown value</span></div>
+<div class="line"><a id="l00124" name="l00124"></a><span class="lineno">  124</span><span class="comment">    /// Return the index at which the i-th unknown value</span></div>
 <div class="line"><a id="l00125" name="l00125"></a><span class="lineno">  125</span><span class="comment">    /// is stored. The default value, i, is appropriate for single-physics</span></div>
 <div class="line"><a id="l00126" name="l00126"></a><span class="lineno">  126</span><span class="comment">    /// problems. By default, these are:</span></div>
 <div class="line"><a id="l00127" name="l00127"></a><span class="lineno">  127</span><span class="comment">    /// 0: w</span></div>
@@ -273,7 +273,7 @@ $(function() {
 <div class="line"><a id="l00144" name="l00144"></a><span class="lineno">  144</span>      <a class="code hl_function" href="namespaceoomph_1_1CommandLineArgs.html#aca07d359a96b9c7b566142112604ea87">output</a>(outfile, n_plot);</div>
 <div class="line"><a id="l00145" name="l00145"></a><span class="lineno">  145</span>    }</div>
 <div class="line"><a id="l00146" name="l00146"></a><span class="lineno">  146</span><span class="comment"></span> </div>
-<div class="line"><a id="l00147" name="l00147"></a><span class="lineno">  147</span><span class="comment">    ///  Output FE representation of soln: x,y,w at</span></div>
+<div class="line"><a id="l00147" name="l00147"></a><span class="lineno">  147</span><span class="comment">    /// Output FE representation of soln: x,y,w at</span></div>
 <div class="line"><a id="l00148" name="l00148"></a><span class="lineno">  148</span><span class="comment">    /// n_plot^DIM plot points</span></div>
 <div class="line"><a id="l00149" name="l00149"></a><span class="lineno">  149</span><span class="comment"></span>    <span class="keywordtype">void</span> <a class="code hl_function" href="namespaceoomph_1_1CommandLineArgs.html#aca07d359a96b9c7b566142112604ea87">output</a>(std::ostream&amp; outfile, <span class="keyword">const</span> <span class="keywordtype">unsigned</span>&amp; n_plot);</div>
 <div class="line"><a id="l00150" name="l00150"></a><span class="lineno">  150</span><span class="comment"></span> </div>
@@ -284,7 +284,7 @@ $(function() {
 <div class="line"><a id="l00155" name="l00155"></a><span class="lineno">  155</span>      <a class="code hl_function" href="namespaceoomph_1_1CommandLineArgs.html#aca07d359a96b9c7b566142112604ea87">output</a>(file_pt, n_plot);</div>
 <div class="line"><a id="l00156" name="l00156"></a><span class="lineno">  156</span>    }</div>
 <div class="line"><a id="l00157" name="l00157"></a><span class="lineno">  157</span><span class="comment"></span> </div>
-<div class="line"><a id="l00158" name="l00158"></a><span class="lineno">  158</span><span class="comment">    ///  C-style output FE representation of soln: x,y,w at</span></div>
+<div class="line"><a id="l00158" name="l00158"></a><span class="lineno">  158</span><span class="comment">    /// C-style output FE representation of soln: x,y,w at</span></div>
 <div class="line"><a id="l00159" name="l00159"></a><span class="lineno">  159</span><span class="comment">    /// n_plot^DIM plot points</span></div>
 <div class="line"><a id="l00160" name="l00160"></a><span class="lineno">  160</span><span class="comment"></span>    <span class="keywordtype">void</span> <a class="code hl_function" href="namespaceoomph_1_1CommandLineArgs.html#aca07d359a96b9c7b566142112604ea87">output</a>(FILE* file_pt, <span class="keyword">const</span> <span class="keywordtype">unsigned</span>&amp; n_plot);</div>
 <div class="line"><a id="l00161" name="l00161"></a><span class="lineno">  161</span><span class="comment"></span> </div>
@@ -293,7 +293,7 @@ $(function() {
 <div class="line"><a id="l00164" name="l00164"></a><span class="lineno">  164</span>                    <span class="keyword">const</span> <span class="keywordtype">unsigned</span>&amp; n_plot,</div>
 <div class="line"><a id="l00165" name="l00165"></a><span class="lineno">  165</span>                    <a class="code hl_typedef" href="classoomph_1_1FiniteElement.html#a690fd33af26cc3e84f39bba6d5a85202">FiniteElement::SteadyExactSolutionFctPt</a> exact_soln_pt);</div>
 <div class="line"><a id="l00166" name="l00166"></a><span class="lineno">  166</span><span class="comment"></span> </div>
-<div class="line"><a id="l00167" name="l00167"></a><span class="lineno">  167</span><span class="comment">    ///  Output exact soln: x,y,w_exact at</span></div>
+<div class="line"><a id="l00167" name="l00167"></a><span class="lineno">  167</span><span class="comment">    /// Output exact soln: x,y,w_exact at</span></div>
 <div class="line"><a id="l00168" name="l00168"></a><span class="lineno">  168</span><span class="comment">    /// n_plot^DIM plot points (dummy time-dependent version to</span></div>
 <div class="line"><a id="l00169" name="l00169"></a><span class="lineno">  169</span><span class="comment">    /// keep intel compiler happy)</span></div>
 <div class="line"><a id="l00170" name="l00170"></a><span class="lineno">  170</span><span class="comment"></span>    <span class="keyword">virtual</span> <span class="keywordtype">void</span> output_fct(</div>
@@ -355,7 +355,7 @@ $(function() {
 <div class="line"><a id="l00226" name="l00226"></a><span class="lineno">  226</span>      <span class="keywordflow">return</span> Airy_forcing_fct_pt;</div>
 <div class="line"><a id="l00227" name="l00227"></a><span class="lineno">  227</span>    }</div>
 <div class="line"><a id="l00228" name="l00228"></a><span class="lineno">  228</span><span class="comment"></span> </div>
-<div class="line"><a id="l00229" name="l00229"></a><span class="lineno">  229</span><span class="comment">    ///  Get pressure term at (Eulerian) position x. This function is</span></div>
+<div class="line"><a id="l00229" name="l00229"></a><span class="lineno">  229</span><span class="comment">    /// Get pressure term at (Eulerian) position x. This function is</span></div>
 <div class="line"><a id="l00230" name="l00230"></a><span class="lineno">  230</span><span class="comment">    /// virtual to allow overloading in multi-physics problems where</span></div>
 <div class="line"><a id="l00231" name="l00231"></a><span class="lineno">  231</span><span class="comment">    /// the strength of the pressure function might be determined by</span></div>
 <div class="line"><a id="l00232" name="l00232"></a><span class="lineno">  232</span><span class="comment">    /// another system of equations.</span></div>
@@ -375,7 +375,7 @@ $(function() {
 <div class="line"><a id="l00246" name="l00246"></a><span class="lineno">  246</span>      }</div>
 <div class="line"><a id="l00247" name="l00247"></a><span class="lineno">  247</span>    }</div>
 <div class="line"><a id="l00248" name="l00248"></a><span class="lineno">  248</span><span class="comment"></span> </div>
-<div class="line"><a id="l00249" name="l00249"></a><span class="lineno">  249</span><span class="comment">    ///  Get Airy forcing term at (Eulerian) position x. This function is</span></div>
+<div class="line"><a id="l00249" name="l00249"></a><span class="lineno">  249</span><span class="comment">    /// Get Airy forcing term at (Eulerian) position x. This function is</span></div>
 <div class="line"><a id="l00250" name="l00250"></a><span class="lineno">  250</span><span class="comment">    /// virtual to allow overloading in multi-physics problems where</span></div>
 <div class="line"><a id="l00251" name="l00251"></a><span class="lineno">  251</span><span class="comment">    /// the strength of the pressure function might be determined by</span></div>
 <div class="line"><a id="l00252" name="l00252"></a><span class="lineno">  252</span><span class="comment">    /// another system of equations.</span></div>
@@ -435,7 +435,7 @@ $(function() {
 <div class="line"><a id="l00306" name="l00306"></a><span class="lineno">  306</span>    <span class="comment">// void fill_in_contribution_to_jacobian(Vector&lt;double&gt; &amp;residuals,</span></div>
 <div class="line"><a id="l00307" name="l00307"></a><span class="lineno">  307</span>    <span class="comment">//                                      DenseMatrix&lt;double&gt; &amp;jacobian);</span></div>
 <div class="line"><a id="l00308" name="l00308"></a><span class="lineno">  308</span><span class="comment"></span> </div>
-<div class="line"><a id="l00309" name="l00309"></a><span class="lineno">  309</span><span class="comment">    ///  Return FE representation of function value w_fvk(s)</span></div>
+<div class="line"><a id="l00309" name="l00309"></a><span class="lineno">  309</span><span class="comment">    /// Return FE representation of function value w_fvk(s)</span></div>
 <div class="line"><a id="l00310" name="l00310"></a><span class="lineno">  310</span><span class="comment">    /// at local coordinate s (by default - if index &gt; 0, returns</span></div>
 <div class="line"><a id="l00311" name="l00311"></a><span class="lineno">  311</span><span class="comment">    /// FE representation of valued stored at index^th nodal index</span></div>
 <div class="line"><a id="l00312" name="l00312"></a><span class="lineno">  312</span><span class="comment"></span>    <span class="keyword">inline</span> <span class="keywordtype">double</span> interpolated_w_fvk(<span class="keyword">const</span> <a class="code hl_class" href="classoomph_1_1Vector.html">Vector&lt;double&gt;</a>&amp; <a class="code hl_variable" href="cfortran_8h.html#ab7123126e4885ef647dd9c6e3807a21c">s</a>,</div>
@@ -471,7 +471,7 @@ $(function() {
 <div class="line"><a id="l00342" name="l00342"></a><span class="lineno">  342</span>                             <span class="keywordtype">double</span>&amp; sigma_yy,</div>
 <div class="line"><a id="l00343" name="l00343"></a><span class="lineno">  343</span>                             <span class="keywordtype">double</span>&amp; sigma_xy);</div>
 <div class="line"><a id="l00344" name="l00344"></a><span class="lineno">  344</span><span class="comment"></span> </div>
-<div class="line"><a id="l00345" name="l00345"></a><span class="lineno">  345</span><span class="comment">    ///  Return the integral of the displacement over the current</span></div>
+<div class="line"><a id="l00345" name="l00345"></a><span class="lineno">  345</span><span class="comment">    /// Return the integral of the displacement over the current</span></div>
 <div class="line"><a id="l00346" name="l00346"></a><span class="lineno">  346</span><span class="comment">    /// element, effectively calculating its contribution to the volume under</span></div>
 <div class="line"><a id="l00347" name="l00347"></a><span class="lineno">  347</span><span class="comment">    /// the membrane. Virtual so it can be overloaded in multi-physics</span></div>
 <div class="line"><a id="l00348" name="l00348"></a><span class="lineno">  348</span><span class="comment">    /// where the volume may incorporate an offset, say.</span></div>
@@ -524,10 +524,10 @@ $(function() {
 <div class="line"><a id="l00395" name="l00395"></a><span class="lineno">  395</span>      <span class="keywordflow">return</span> integral_w;</div>
 <div class="line"><a id="l00396" name="l00396"></a><span class="lineno">  396</span>    }</div>
 <div class="line"><a id="l00397" name="l00397"></a><span class="lineno">  397</span><span class="comment"></span> </div>
-<div class="line"><a id="l00398" name="l00398"></a><span class="lineno">  398</span><span class="comment">    ///  Self-test: Return 0 for OK</span></div>
+<div class="line"><a id="l00398" name="l00398"></a><span class="lineno">  398</span><span class="comment">    /// Self-test: Return 0 for OK</span></div>
 <div class="line"><a id="l00399" name="l00399"></a><span class="lineno">  399</span><span class="comment"></span>    <span class="keywordtype">unsigned</span> self_test();</div>
 <div class="line"><a id="l00400" name="l00400"></a><span class="lineno">  400</span><span class="comment"></span> </div>
-<div class="line"><a id="l00401" name="l00401"></a><span class="lineno">  401</span><span class="comment">    ///  Sets a flag to signify that we are solving the linear, pure</span></div>
+<div class="line"><a id="l00401" name="l00401"></a><span class="lineno">  401</span><span class="comment">    /// Sets a flag to signify that we are solving the linear, pure</span></div>
 <div class="line"><a id="l00402" name="l00402"></a><span class="lineno">  402</span><span class="comment">    /// bending equations, and pin all the nodal values that will not be used in</span></div>
 <div class="line"><a id="l00403" name="l00403"></a><span class="lineno">  403</span><span class="comment">    /// this case</span></div>
 <div class="line"><a id="l00404" name="l00404"></a><span class="lineno">  404</span><span class="comment"></span>    <span class="keywordtype">void</span> use_linear_bending_model()</div>
@@ -561,7 +561,7 @@ $(function() {
 <div class="line"><a id="l00432" name="l00432"></a><span class="lineno">  432</span> </div>
 <div class="line"><a id="l00433" name="l00433"></a><span class="lineno">  433</span> </div>
 <div class="line"><a id="l00434" name="l00434"></a><span class="lineno">  434</span>  <span class="keyword">protected</span>:<span class="comment"></span></div>
-<div class="line"><a id="l00435" name="l00435"></a><span class="lineno">  435</span><span class="comment">    ///  Shape/test functions and derivs w.r.t. to global coords at</span></div>
+<div class="line"><a id="l00435" name="l00435"></a><span class="lineno">  435</span><span class="comment">    /// Shape/test functions and derivs w.r.t. to global coords at</span></div>
 <div class="line"><a id="l00436" name="l00436"></a><span class="lineno">  436</span><span class="comment">    /// local coord. s; return  Jacobian of mapping</span></div>
 <div class="line"><a id="l00437" name="l00437"></a><span class="lineno">  437</span><span class="comment"></span>    <span class="keyword">virtual</span> <span class="keywordtype">double</span> dshape_and_dtest_eulerian_fvk(<span class="keyword">const</span> <a class="code hl_class" href="classoomph_1_1Vector.html">Vector&lt;double&gt;</a>&amp; <a class="code hl_variable" href="cfortran_8h.html#ab7123126e4885ef647dd9c6e3807a21c">s</a>,</div>
 <div class="line"><a id="l00438" name="l00438"></a><span class="lineno">  438</span>                                                 <a class="code hl_class" href="classoomph_1_1Shape.html">Shape</a>&amp; psi,</div>
@@ -570,7 +570,7 @@ $(function() {
 <div class="line"><a id="l00441" name="l00441"></a><span class="lineno">  441</span>                                                 <a class="code hl_class" href="classoomph_1_1DShape.html">DShape</a>&amp; dtestdx) <span class="keyword">const</span> = 0;</div>
 <div class="line"><a id="l00442" name="l00442"></a><span class="lineno">  442</span> </div>
 <div class="line"><a id="l00443" name="l00443"></a><span class="lineno">  443</span><span class="comment"></span> </div>
-<div class="line"><a id="l00444" name="l00444"></a><span class="lineno">  444</span><span class="comment">    ///  Shape/test functions and derivs w.r.t. to global coords at</span></div>
+<div class="line"><a id="l00444" name="l00444"></a><span class="lineno">  444</span><span class="comment">    /// Shape/test functions and derivs w.r.t. to global coords at</span></div>
 <div class="line"><a id="l00445" name="l00445"></a><span class="lineno">  445</span><span class="comment">    /// integration point ipt; return  Jacobian of mapping</span></div>
 <div class="line"><a id="l00446" name="l00446"></a><span class="lineno">  446</span><span class="comment"></span>    <span class="keyword">virtual</span> <span class="keywordtype">double</span> dshape_and_dtest_eulerian_at_knot_fvk(</div>
 <div class="line"><a id="l00447" name="l00447"></a><span class="lineno">  447</span>      <span class="keyword">const</span> <span class="keywordtype">unsigned</span>&amp; ipt,</div>
@@ -594,11 +594,11 @@ $(function() {
 <div class="line"><a id="l00465" name="l00465"></a><span class="lineno">  465</span><span class="comment">    /// Default value for physical constants</span></div>
 <div class="line"><a id="l00466" name="l00466"></a><span class="lineno">  466</span><span class="comment"></span>    <span class="keyword">static</span> <span class="keywordtype">double</span> <a class="code hl_variable" href="namespaceoomph_1_1MultiDomainBoussinesqHelper.html#ae77c07b69cffe295ac07e2c25c31a8aa">Default_Physical_Constant_Value</a>;</div>
 <div class="line"><a id="l00467" name="l00467"></a><span class="lineno">  467</span><span class="comment"></span> </div>
-<div class="line"><a id="l00468" name="l00468"></a><span class="lineno">  468</span><span class="comment">    ///  Flag which stores whether we are using a linear, pure bending</span></div>
+<div class="line"><a id="l00468" name="l00468"></a><span class="lineno">  468</span><span class="comment">    /// Flag which stores whether we are using a linear, pure bending</span></div>
 <div class="line"><a id="l00469" name="l00469"></a><span class="lineno">  469</span><span class="comment">    /// model instead of the full non-linear Foeppl-von Karman</span></div>
 <div class="line"><a id="l00470" name="l00470"></a><span class="lineno">  470</span><span class="comment"></span>    <span class="keywordtype">bool</span> Linear_bending_model;</div>
 <div class="line"><a id="l00471" name="l00471"></a><span class="lineno">  471</span><span class="comment"></span> </div>
-<div class="line"><a id="l00472" name="l00472"></a><span class="lineno">  472</span><span class="comment">    ///  Index of the external Data object that represents the volume</span></div>
+<div class="line"><a id="l00472" name="l00472"></a><span class="lineno">  472</span><span class="comment">    /// Index of the external Data object that represents the volume</span></div>
 <div class="line"><a id="l00473" name="l00473"></a><span class="lineno">  473</span><span class="comment">    /// constraint pressure (initialised to -1 indicating no such constraint)</span></div>
 <div class="line"><a id="l00474" name="l00474"></a><span class="lineno">  474</span><span class="comment">    /// Gets overwritten when calling</span></div>
 <div class="line"><a id="l00475" name="l00475"></a><span class="lineno">  475</span><span class="comment">    /// set_volume_constraint_pressure_data_as_external_data(...)</span></div>
@@ -624,12 +624,12 @@ $(function() {
 <div class="line"><a id="l00495" name="l00495"></a><span class="lineno">  495</span>                                  <span class="keyword">public</span> <span class="keyword">virtual</span> FoepplvonKarmanEquations</div>
 <div class="line"><a id="l00496" name="l00496"></a><span class="lineno">  496</span>  {</div>
 <div class="line"><a id="l00497" name="l00497"></a><span class="lineno">  497</span>  <span class="keyword">private</span>:<span class="comment"></span></div>
-<div class="line"><a id="l00498" name="l00498"></a><span class="lineno">  498</span><span class="comment">    ///  Static int that holds the number of variables at</span></div>
+<div class="line"><a id="l00498" name="l00498"></a><span class="lineno">  498</span><span class="comment">    /// Static int that holds the number of variables at</span></div>
 <div class="line"><a id="l00499" name="l00499"></a><span class="lineno">  499</span><span class="comment">    /// nodes: always the same</span></div>
 <div class="line"><a id="l00500" name="l00500"></a><span class="lineno"><a class="line" href="classoomph_1_1QFoepplvonKarmanElement.html#a5af9d6e7f38cd9a97d81cbf52f4de51a">  500</a></span><span class="comment"></span>    <span class="keyword">static</span> <span class="keyword">const</span> <span class="keywordtype">unsigned</span> <a class="code hl_variable" href="classoomph_1_1QFoepplvonKarmanElement.html#a5af9d6e7f38cd9a97d81cbf52f4de51a">Initial_Nvalue</a>;</div>
 <div class="line"><a id="l00501" name="l00501"></a><span class="lineno">  501</span> </div>
 <div class="line"><a id="l00502" name="l00502"></a><span class="lineno">  502</span>  <span class="keyword">public</span>:<span class="comment"></span></div>
-<div class="line"><a id="l00503" name="l00503"></a><span class="lineno">  503</span><span class="comment">    ///  Constructor: Call constructors for QElement and</span></div>
+<div class="line"><a id="l00503" name="l00503"></a><span class="lineno">  503</span><span class="comment">    /// Constructor: Call constructors for QElement and</span></div>
 <div class="line"><a id="l00504" name="l00504"></a><span class="lineno">  504</span><span class="comment">    /// FoepplvonKarmanEquations</span></div>
 <div class="line"><a id="l00505" name="l00505"></a><span class="lineno"><a class="line" href="classoomph_1_1QFoepplvonKarmanElement.html#ab07e4a0c36aeee8d2915ba128b490fb9">  505</a></span><span class="comment"></span>    <a class="code hl_function" href="classoomph_1_1QFoepplvonKarmanElement.html#ab07e4a0c36aeee8d2915ba128b490fb9">QFoepplvonKarmanElement</a>()</div>
 <div class="line"><a id="l00506" name="l00506"></a><span class="lineno">  506</span>      : <a class="code hl_class" href="classoomph_1_1QElement.html">QElement</a>&lt;2, NNODE_1D&gt;(), FoepplvonKarmanEquations()</div>
@@ -643,14 +643,14 @@ $(function() {
 <div class="line"><a id="l00514" name="l00514"></a><span class="lineno">  514</span><span class="comment">    /// Broken assignment operator</span></div>
 <div class="line"><a id="l00515" name="l00515"></a><span class="lineno"><a class="line" href="classoomph_1_1QFoepplvonKarmanElement.html#afee84759b2a2778015ee5203eeb69ab2">  515</a></span><span class="comment"></span>    <span class="keywordtype">void</span> <a class="code hl_function" href="classoomph_1_1QFoepplvonKarmanElement.html#afee84759b2a2778015ee5203eeb69ab2">operator=</a>(<span class="keyword">const</span> <a class="code hl_class" href="classoomph_1_1QFoepplvonKarmanElement.html">QFoepplvonKarmanElement&lt;NNODE_1D&gt;</a>&amp;) = <span class="keyword">delete</span>;</div>
 <div class="line"><a id="l00516" name="l00516"></a><span class="lineno">  516</span><span class="comment"></span> </div>
-<div class="line"><a id="l00517" name="l00517"></a><span class="lineno">  517</span><span class="comment">    ///   Required  # of `values&#39; (pinned or dofs)</span></div>
+<div class="line"><a id="l00517" name="l00517"></a><span class="lineno">  517</span><span class="comment">    ///  Required  # of `values&#39; (pinned or dofs)</span></div>
 <div class="line"><a id="l00518" name="l00518"></a><span class="lineno">  518</span><span class="comment">    /// at node n</span></div>
 <div class="line"><a id="l00519" name="l00519"></a><span class="lineno"><a class="line" href="classoomph_1_1QFoepplvonKarmanElement.html#a9fb4b0ecf405369f564e0c8c6a169d00">  519</a></span><span class="comment"></span>    <span class="keyword">inline</span> <span class="keywordtype">unsigned</span> <a class="code hl_function" href="classoomph_1_1QFoepplvonKarmanElement.html#a9fb4b0ecf405369f564e0c8c6a169d00">required_nvalue</a>(<span class="keyword">const</span> <span class="keywordtype">unsigned</span>&amp; n)<span class="keyword"> const</span></div>
 <div class="line"><a id="l00520" name="l00520"></a><span class="lineno">  520</span><span class="keyword">    </span>{</div>
 <div class="line"><a id="l00521" name="l00521"></a><span class="lineno">  521</span>      <span class="keywordflow">return</span> <a class="code hl_variable" href="classoomph_1_1QFoepplvonKarmanElement.html#a5af9d6e7f38cd9a97d81cbf52f4de51a">Initial_Nvalue</a>;</div>
 <div class="line"><a id="l00522" name="l00522"></a><span class="lineno">  522</span>    }</div>
 <div class="line"><a id="l00523" name="l00523"></a><span class="lineno">  523</span><span class="comment"></span> </div>
-<div class="line"><a id="l00524" name="l00524"></a><span class="lineno">  524</span><span class="comment">    ///  Output function:</span></div>
+<div class="line"><a id="l00524" name="l00524"></a><span class="lineno">  524</span><span class="comment">    /// Output function:</span></div>
 <div class="line"><a id="l00525" name="l00525"></a><span class="lineno">  525</span><span class="comment">    ///  x,y,w</span></div>
 <div class="line"><a id="l00526" name="l00526"></a><span class="lineno"><a class="line" href="classoomph_1_1QFoepplvonKarmanElement.html#a283a3078077c6feefb9894e17e9f7b7a">  526</a></span><span class="comment"></span>    <span class="keywordtype">void</span> <a class="code hl_function" href="classoomph_1_1QFoepplvonKarmanElement.html#a283a3078077c6feefb9894e17e9f7b7a">output</a>(std::ostream&amp; outfile)</div>
 <div class="line"><a id="l00527" name="l00527"></a><span class="lineno">  527</span>    {</div>
@@ -658,7 +658,7 @@ $(function() {
 <div class="line"><a id="l00529" name="l00529"></a><span class="lineno">  529</span>    }</div>
 <div class="line"><a id="l00530" name="l00530"></a><span class="lineno">  530</span> </div>
 <div class="line"><a id="l00531" name="l00531"></a><span class="lineno">  531</span><span class="comment"></span> </div>
-<div class="line"><a id="l00532" name="l00532"></a><span class="lineno">  532</span><span class="comment">    ///   Output function:</span></div>
+<div class="line"><a id="l00532" name="l00532"></a><span class="lineno">  532</span><span class="comment">    ///  Output function:</span></div>
 <div class="line"><a id="l00533" name="l00533"></a><span class="lineno">  533</span><span class="comment">    ///   x,y,w at n_plot^DIM plot points</span></div>
 <div class="line"><a id="l00534" name="l00534"></a><span class="lineno"><a class="line" href="classoomph_1_1QFoepplvonKarmanElement.html#a7cf9bdcf7294233f27d8fc6c87ac7bbe">  534</a></span><span class="comment"></span>    <span class="keywordtype">void</span> <a class="code hl_function" href="classoomph_1_1QFoepplvonKarmanElement.html#a7cf9bdcf7294233f27d8fc6c87ac7bbe">output</a>(std::ostream&amp; outfile, <span class="keyword">const</span> <span class="keywordtype">unsigned</span>&amp; n_plot)</div>
 <div class="line"><a id="l00535" name="l00535"></a><span class="lineno">  535</span>    {</div>
@@ -666,7 +666,7 @@ $(function() {
 <div class="line"><a id="l00537" name="l00537"></a><span class="lineno">  537</span>    }</div>
 <div class="line"><a id="l00538" name="l00538"></a><span class="lineno">  538</span> </div>
 <div class="line"><a id="l00539" name="l00539"></a><span class="lineno">  539</span><span class="comment"></span> </div>
-<div class="line"><a id="l00540" name="l00540"></a><span class="lineno">  540</span><span class="comment">    ///  C-style output function:</span></div>
+<div class="line"><a id="l00540" name="l00540"></a><span class="lineno">  540</span><span class="comment">    /// C-style output function:</span></div>
 <div class="line"><a id="l00541" name="l00541"></a><span class="lineno">  541</span><span class="comment">    ///  x,y,w</span></div>
 <div class="line"><a id="l00542" name="l00542"></a><span class="lineno"><a class="line" href="classoomph_1_1QFoepplvonKarmanElement.html#a8ac6c9196e21b2848e1519f572a0e24e">  542</a></span><span class="comment"></span>    <span class="keywordtype">void</span> <a class="code hl_function" href="classoomph_1_1QFoepplvonKarmanElement.html#a8ac6c9196e21b2848e1519f572a0e24e">output</a>(FILE* file_pt)</div>
 <div class="line"><a id="l00543" name="l00543"></a><span class="lineno">  543</span>    {</div>
@@ -674,7 +674,7 @@ $(function() {
 <div class="line"><a id="l00545" name="l00545"></a><span class="lineno">  545</span>    }</div>
 <div class="line"><a id="l00546" name="l00546"></a><span class="lineno">  546</span> </div>
 <div class="line"><a id="l00547" name="l00547"></a><span class="lineno">  547</span><span class="comment"></span> </div>
-<div class="line"><a id="l00548" name="l00548"></a><span class="lineno">  548</span><span class="comment">    ///   C-style output function:</span></div>
+<div class="line"><a id="l00548" name="l00548"></a><span class="lineno">  548</span><span class="comment">    ///  C-style output function:</span></div>
 <div class="line"><a id="l00549" name="l00549"></a><span class="lineno">  549</span><span class="comment">    ///   x,y,w at n_plot^DIM plot points</span></div>
 <div class="line"><a id="l00550" name="l00550"></a><span class="lineno"><a class="line" href="classoomph_1_1QFoepplvonKarmanElement.html#a06a3e1ea84c4177bc32c819b5aa0f01e">  550</a></span><span class="comment"></span>    <span class="keywordtype">void</span> <a class="code hl_function" href="classoomph_1_1QFoepplvonKarmanElement.html#a06a3e1ea84c4177bc32c819b5aa0f01e">output</a>(FILE* file_pt, <span class="keyword">const</span> <span class="keywordtype">unsigned</span>&amp; n_plot)</div>
 <div class="line"><a id="l00551" name="l00551"></a><span class="lineno">  551</span>    {</div>
@@ -682,7 +682,7 @@ $(function() {
 <div class="line"><a id="l00553" name="l00553"></a><span class="lineno">  553</span>    }</div>
 <div class="line"><a id="l00554" name="l00554"></a><span class="lineno">  554</span> </div>
 <div class="line"><a id="l00555" name="l00555"></a><span class="lineno">  555</span><span class="comment"></span> </div>
-<div class="line"><a id="l00556" name="l00556"></a><span class="lineno">  556</span><span class="comment">    ///  Output function for an exact solution:</span></div>
+<div class="line"><a id="l00556" name="l00556"></a><span class="lineno">  556</span><span class="comment">    /// Output function for an exact solution:</span></div>
 <div class="line"><a id="l00557" name="l00557"></a><span class="lineno">  557</span><span class="comment">    ///  x,y,w_exact at n_plot^DIM plot points</span></div>
 <div class="line"><a id="l00558" name="l00558"></a><span class="lineno"><a class="line" href="classoomph_1_1QFoepplvonKarmanElement.html#a8bfd0ab0a5a7726f154deec3bde0a22b">  558</a></span><span class="comment"></span>    <span class="keywordtype">void</span> <a class="code hl_function" href="classoomph_1_1QFoepplvonKarmanElement.html#a8bfd0ab0a5a7726f154deec3bde0a22b">output_fct</a>(std::ostream&amp; outfile,</div>
 <div class="line"><a id="l00559" name="l00559"></a><span class="lineno">  559</span>                    <span class="keyword">const</span> <span class="keywordtype">unsigned</span>&amp; n_plot,</div>
@@ -692,7 +692,7 @@ $(function() {
 <div class="line"><a id="l00563" name="l00563"></a><span class="lineno">  563</span>    }</div>
 <div class="line"><a id="l00564" name="l00564"></a><span class="lineno">  564</span> </div>
 <div class="line"><a id="l00565" name="l00565"></a><span class="lineno">  565</span><span class="comment"></span> </div>
-<div class="line"><a id="l00566" name="l00566"></a><span class="lineno">  566</span><span class="comment">    ///  Output function for a time-dependent exact solution.</span></div>
+<div class="line"><a id="l00566" name="l00566"></a><span class="lineno">  566</span><span class="comment">    /// Output function for a time-dependent exact solution.</span></div>
 <div class="line"><a id="l00567" name="l00567"></a><span class="lineno">  567</span><span class="comment">    ///  x,y,w_exact at n_plot^DIM plot points</span></div>
 <div class="line"><a id="l00568" name="l00568"></a><span class="lineno">  568</span><span class="comment">    /// (Calls the steady version)</span></div>
 <div class="line"><a id="l00569" name="l00569"></a><span class="lineno"><a class="line" href="classoomph_1_1QFoepplvonKarmanElement.html#aaf40f9b3c63ec3e5feebccaedbe7d012">  569</a></span><span class="comment"></span>    <span class="keywordtype">void</span> <a class="code hl_function" href="classoomph_1_1QFoepplvonKarmanElement.html#aaf40f9b3c63ec3e5feebccaedbe7d012">output_fct</a>(std::ostream&amp; outfile,</div>
@@ -715,7 +715,7 @@ $(function() {
 <div class="line"><a id="l00586" name="l00586"></a><span class="lineno">  586</span>                                                <a class="code hl_class" href="classoomph_1_1DShape.html">DShape</a>&amp; dtestdx) <span class="keyword">const</span>;</div>
 <div class="line"><a id="l00587" name="l00587"></a><span class="lineno">  587</span> </div>
 <div class="line"><a id="l00588" name="l00588"></a><span class="lineno">  588</span><span class="comment"></span> </div>
-<div class="line"><a id="l00589" name="l00589"></a><span class="lineno">  589</span><span class="comment">    ///  Shape, test functions &amp; derivs. w.r.t. to global coords. at</span></div>
+<div class="line"><a id="l00589" name="l00589"></a><span class="lineno">  589</span><span class="comment">    /// Shape, test functions &amp; derivs. w.r.t. to global coords. at</span></div>
 <div class="line"><a id="l00590" name="l00590"></a><span class="lineno">  590</span><span class="comment">    /// integration point ipt. Return Jacobian.</span></div>
 <div class="line"><a id="l00591" name="l00591"></a><span class="lineno">  591</span><span class="comment"></span>    <span class="keyword">inline</span> <span class="keywordtype">double</span> <a class="code hl_function" href="classoomph_1_1QFoepplvonKarmanElement.html#a405228612fc3349bda3cb6965b740da6">dshape_and_dtest_eulerian_at_knot_fvk</a>(<span class="keyword">const</span> <span class="keywordtype">unsigned</span>&amp; ipt,</div>
 <div class="line"><a id="l00592" name="l00592"></a><span class="lineno">  592</span>                                                        <a class="code hl_class" href="classoomph_1_1Shape.html">Shape</a>&amp; psi,</div>
@@ -796,7 +796,7 @@ $(function() {
 <div class="line"><a id="l00667" name="l00667"></a><span class="lineno">  667</span>    : <span class="keyword">public</span> <span class="keyword">virtual</span> <a class="code hl_class" href="classoomph_1_1QElement.html">QElement</a>&lt;1, NNODE_1D&gt;</div>
 <div class="line"><a id="l00668" name="l00668"></a><span class="lineno">  668</span>  {</div>
 <div class="line"><a id="l00669" name="l00669"></a><span class="lineno">  669</span>  <span class="keyword">public</span>:<span class="comment"></span></div>
-<div class="line"><a id="l00670" name="l00670"></a><span class="lineno">  670</span><span class="comment">    ///  Constructor: Call the constructor for the</span></div>
+<div class="line"><a id="l00670" name="l00670"></a><span class="lineno">  670</span><span class="comment">    /// Constructor: Call the constructor for the</span></div>
 <div class="line"><a id="l00671" name="l00671"></a><span class="lineno">  671</span><span class="comment">    /// appropriate lower-dimensional QElement</span></div>
 <div class="line"><a id="l00672" name="l00672"></a><span class="lineno"><a class="line" href="classoomph_1_1FaceGeometry_3_01QFoepplvonKarmanElement_3_01NNODE__1D_01_4_01_4.html#a8a335d862dfc293ada89c1aa2b52efa0">  672</a></span><span class="comment"></span>    <a class="code hl_function" href="classoomph_1_1FaceGeometry_3_01QFoepplvonKarmanElement_3_01NNODE__1D_01_4_01_4.html#a8a335d862dfc293ada89c1aa2b52efa0">FaceGeometry</a>() : <a class="code hl_class" href="classoomph_1_1QElement.html">QElement</a>&lt;1, NNODE_1D&gt;() {}</div>
 <div class="line"><a id="l00673" name="l00673"></a><span class="lineno">  673</span>  };</div>
@@ -814,7 +814,7 @@ $(function() {
 <div class="line"><a id="l00685" name="l00685"></a><span class="lineno">  685</span>    : <span class="keyword">public</span> <span class="keyword">virtual</span> <a class="code hl_class" href="classoomph_1_1ProjectableElement.html">ProjectableElement</a>&lt;FVK_ELEMENT&gt;</div>
 <div class="line"><a id="l00686" name="l00686"></a><span class="lineno">  686</span>  {</div>
 <div class="line"><a id="l00687" name="l00687"></a><span class="lineno">  687</span>  <span class="keyword">public</span>:<span class="comment"></span></div>
-<div class="line"><a id="l00688" name="l00688"></a><span class="lineno">  688</span><span class="comment">    ///  Specify the values associated with field fld.</span></div>
+<div class="line"><a id="l00688" name="l00688"></a><span class="lineno">  688</span><span class="comment">    /// Specify the values associated with field fld.</span></div>
 <div class="line"><a id="l00689" name="l00689"></a><span class="lineno">  689</span><span class="comment">    /// The information is returned in a vector of pairs which comprise</span></div>
 <div class="line"><a id="l00690" name="l00690"></a><span class="lineno">  690</span><span class="comment">    /// the Data object and the value within it, that correspond to field fld.</span></div>
 <div class="line"><a id="l00691" name="l00691"></a><span class="lineno"><a class="line" href="classoomph_1_1ProjectableFoepplvonKarmanElement.html#ad5536f5e2df25f6d035403cb1743961d">  691</a></span><span class="comment"></span>    <a class="code hl_class" href="classoomph_1_1Vector.html">Vector&lt;std::pair&lt;Data*, unsigned&gt;</a>&gt; <a class="code hl_function" href="classoomph_1_1ProjectableFoepplvonKarmanElement.html#ad5536f5e2df25f6d035403cb1743961d">data_values_of_field</a>(<span class="keyword">const</span> <span class="keywordtype">unsigned</span>&amp; fld)</div>
@@ -846,13 +846,13 @@ $(function() {
 <div class="line"><a id="l00717" name="l00717"></a><span class="lineno">  717</span>      <span class="keywordflow">return</span> data_values;</div>
 <div class="line"><a id="l00718" name="l00718"></a><span class="lineno">  718</span>    }</div>
 <div class="line"><a id="l00719" name="l00719"></a><span class="lineno">  719</span><span class="comment"></span> </div>
-<div class="line"><a id="l00720" name="l00720"></a><span class="lineno">  720</span><span class="comment">    ///  Number of fields to be projected: Just two</span></div>
+<div class="line"><a id="l00720" name="l00720"></a><span class="lineno">  720</span><span class="comment">    /// Number of fields to be projected: Just two</span></div>
 <div class="line"><a id="l00721" name="l00721"></a><span class="lineno"><a class="line" href="classoomph_1_1ProjectableFoepplvonKarmanElement.html#aaa74e7c246f86929e7ceeeced8819d6c">  721</a></span><span class="comment"></span>    <span class="keywordtype">unsigned</span> <a class="code hl_function" href="classoomph_1_1ProjectableFoepplvonKarmanElement.html#aaa74e7c246f86929e7ceeeced8819d6c">nfields_for_projection</a>()</div>
 <div class="line"><a id="l00722" name="l00722"></a><span class="lineno">  722</span>    {</div>
 <div class="line"><a id="l00723" name="l00723"></a><span class="lineno">  723</span>      <span class="keywordflow">return</span> 8;</div>
 <div class="line"><a id="l00724" name="l00724"></a><span class="lineno">  724</span>    }</div>
 <div class="line"><a id="l00725" name="l00725"></a><span class="lineno">  725</span><span class="comment"></span> </div>
-<div class="line"><a id="l00726" name="l00726"></a><span class="lineno">  726</span><span class="comment">    ///  Number of history values to be stored for fld-th field.</span></div>
+<div class="line"><a id="l00726" name="l00726"></a><span class="lineno">  726</span><span class="comment">    /// Number of history values to be stored for fld-th field.</span></div>
 <div class="line"><a id="l00727" name="l00727"></a><span class="lineno">  727</span><span class="comment">    /// (Note: count includes current value!)</span></div>
 <div class="line"><a id="l00728" name="l00728"></a><span class="lineno"><a class="line" href="classoomph_1_1ProjectableFoepplvonKarmanElement.html#afbac2a4519a482c9a7fdc9994e783147">  728</a></span><span class="comment"></span>    <span class="keywordtype">unsigned</span> <a class="code hl_function" href="classoomph_1_1ProjectableFoepplvonKarmanElement.html#afbac2a4519a482c9a7fdc9994e783147">nhistory_values_for_projection</a>(<span class="keyword">const</span> <span class="keywordtype">unsigned</span>&amp; fld)</div>
 <div class="line"><a id="l00729" name="l00729"></a><span class="lineno">  729</span>    {</div>
@@ -878,7 +878,7 @@ $(function() {
 <div class="line"><a id="l00749" name="l00749"></a><span class="lineno">  749</span>      <span class="keywordflow">return</span> this-&gt;<a class="code hl_function" href="classoomph_1_1FiniteElement.html#a9addfe893ab8205619963aa96204cdc4">node_pt</a>(0)-&gt;position_time_stepper_pt()-&gt;ntstorage();</div>
 <div class="line"><a id="l00750" name="l00750"></a><span class="lineno">  750</span>    }</div>
 <div class="line"><a id="l00751" name="l00751"></a><span class="lineno">  751</span><span class="comment"></span> </div>
-<div class="line"><a id="l00752" name="l00752"></a><span class="lineno">  752</span><span class="comment">    ///  Return Jacobian of mapping and shape functions of field fld</span></div>
+<div class="line"><a id="l00752" name="l00752"></a><span class="lineno">  752</span><span class="comment">    /// Return Jacobian of mapping and shape functions of field fld</span></div>
 <div class="line"><a id="l00753" name="l00753"></a><span class="lineno">  753</span><span class="comment">    /// at local coordinate s</span></div>
 <div class="line"><a id="l00754" name="l00754"></a><span class="lineno"><a class="line" href="classoomph_1_1ProjectableFoepplvonKarmanElement.html#a1fd58ba72daf96c1849cb48350684d74">  754</a></span><span class="comment"></span>    <span class="keywordtype">double</span> <a class="code hl_function" href="classoomph_1_1ProjectableFoepplvonKarmanElement.html#a1fd58ba72daf96c1849cb48350684d74">jacobian_and_shape_of_field</a>(<span class="keyword">const</span> <span class="keywordtype">unsigned</span>&amp; fld,</div>
 <div class="line"><a id="l00755" name="l00755"></a><span class="lineno">  755</span>                                       <span class="keyword">const</span> <a class="code hl_class" href="classoomph_1_1Vector.html">Vector&lt;double&gt;</a>&amp; <a class="code hl_variable" href="cfortran_8h.html#ab7123126e4885ef647dd9c6e3807a21c">s</a>,</div>
@@ -905,7 +905,7 @@ $(function() {
 <div class="line"><a id="l00776" name="l00776"></a><span class="lineno">  776</span>    }</div>
 <div class="line"><a id="l00777" name="l00777"></a><span class="lineno">  777</span> </div>
 <div class="line"><a id="l00778" name="l00778"></a><span class="lineno">  778</span><span class="comment"></span> </div>
-<div class="line"><a id="l00779" name="l00779"></a><span class="lineno">  779</span><span class="comment">    ///  Return interpolated field fld at local coordinate s, at time</span></div>
+<div class="line"><a id="l00779" name="l00779"></a><span class="lineno">  779</span><span class="comment">    /// Return interpolated field fld at local coordinate s, at time</span></div>
 <div class="line"><a id="l00780" name="l00780"></a><span class="lineno">  780</span><span class="comment">    /// level t (t=0: present; t&gt;0: history values)</span></div>
 <div class="line"><a id="l00781" name="l00781"></a><span class="lineno"><a class="line" href="classoomph_1_1ProjectableFoepplvonKarmanElement.html#a762989fdeb0489dec57bb386ea6ebf58">  781</a></span><span class="comment"></span>    <span class="keywordtype">double</span> <a class="code hl_function" href="classoomph_1_1ProjectableFoepplvonKarmanElement.html#a762989fdeb0489dec57bb386ea6ebf58">get_field</a>(<span class="keyword">const</span> <span class="keywordtype">unsigned</span>&amp; <a class="code hl_variable" href="cfortran_8h.html#af6f0bd3dc13317f895c91323c25c2b8f">t</a>,</div>
 <div class="line"><a id="l00782" name="l00782"></a><span class="lineno">  782</span>                     <span class="keyword">const</span> <span class="keywordtype">unsigned</span>&amp; fld,</div>
@@ -1091,7 +1091,7 @@ $(function() {
     <footer>
       <div class="container">
         <div class="text-muted" style="float:right;">Generated by <a href="http://www.doxygen.org/index.html">
-          <img style="height:18px;" class="footer-img" src="doxygen.png" alt="doxygen"></a> on Fri Oct 22 2021 12:23:21
+          <img style="height:18px;" class="footer-img" src="doxygen.png" alt="doxygen"></a> on Mon Oct 25 2021 14:41:40
         </div>
       </div>
     </footer>

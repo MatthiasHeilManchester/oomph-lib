@@ -206,7 +206,7 @@ The constructor calls the constructors of the underlying elements, initialises t
 
 \begin{DoxyCodeInclude}{0}
 \DoxyCodeLine{  \textcolor{keyword}{public}:\textcolor{comment}{}}
-\DoxyCodeLine{\textcolor{comment}{    ///  Constructor: call the underlying constructors and}}
+\DoxyCodeLine{\textcolor{comment}{    /// Constructor: call the underlying constructors and}}
 \DoxyCodeLine{\textcolor{comment}{    /// initialise the pointer to the Rayleigh number to point}}
 \DoxyCodeLine{\textcolor{comment}{    /// to the default value of 0.0.}}
 \DoxyCodeLine{\textcolor{comment}{}    RefineableNavierStokesBoussinesqElement()}
@@ -250,7 +250,7 @@ and, given that we are dealing with a refineable element, make sure that the poi
 
  
 \begin{DoxyCodeInclude}{0}
-\DoxyCodeLine{\textcolor{comment}{    ///  Overload get\_body\_force\_nst() to return the temperature-\/dependent}}
+\DoxyCodeLine{\textcolor{comment}{    /// Overload get\_body\_force\_nst() to return the temperature-\/dependent}}
 \DoxyCodeLine{\textcolor{comment}{    /// buoyancy force, using the temperature computed by the}\textcolor{comment}{}}
 \DoxyCodeLine{\textcolor{comment}{    /// "{}external"{} advection diffusion element associated with}}
 \DoxyCodeLine{\textcolor{comment}{    /// integration point \(\backslash\)c ipt.}}
@@ -293,7 +293,7 @@ Finally, we have to compute the element\textquotesingle{}s Jacobian matrix. The 
 
  
 \begin{DoxyCodeInclude}{0}
-\DoxyCodeLine{\textcolor{comment}{    ///  Compute the element's residual vector and the Jacobian matrix.}}
+\DoxyCodeLine{\textcolor{comment}{    /// Compute the element's residual vector and the Jacobian matrix.}}
 \DoxyCodeLine{    \textcolor{keywordtype}{void} fill\_in\_contribution\_to\_jacobian(Vector<double>\& residuals,}
 \DoxyCodeLine{                                          DenseMatrix<double>\& jacobian)}
 \DoxyCodeLine{    \{}
@@ -353,7 +353,7 @@ Upgrading the advection-\/diffusion element to an {\ttfamily Element\+With\+Exte
 \DoxyCodeLine{      \textcolor{keyword}{public} \textcolor{keyword}{virtual} ElementWithExternalElement}
 \DoxyCodeLine{  \{}
 \DoxyCodeLine{  \textcolor{keyword}{public}:\textcolor{comment}{}}
-\DoxyCodeLine{\textcolor{comment}{    ///  Constructor: call the underlying constructors}}
+\DoxyCodeLine{\textcolor{comment}{    /// Constructor: call the underlying constructors}}
 \DoxyCodeLine{\textcolor{comment}{}    RefineableAdvectionDiffusionBoussinesqElement()}
 \DoxyCodeLine{      : AD\_ELEMENT(), ElementWithExternalElement()}
 \DoxyCodeLine{    \{}
@@ -368,7 +368,7 @@ We overload the function that computes the \char`\"{}wind\char`\"{} for the adve
 
  
 \begin{DoxyCodeInclude}{0}
-\DoxyCodeLine{\textcolor{comment}{    ///  Overload the wind function in the advection-\/diffusion equations.}}
+\DoxyCodeLine{\textcolor{comment}{    /// Overload the wind function in the advection-\/diffusion equations.}}
 \DoxyCodeLine{\textcolor{comment}{    /// This provides the coupling from the Navier-\/-\/Stokes equations to the}\textcolor{comment}{}}
 \DoxyCodeLine{\textcolor{comment}{    /// advection-\/diffusion equations because the wind is the fluid velocity,}}
 \DoxyCodeLine{\textcolor{comment}{    /// obtained from the "{}external"{} element}}
@@ -432,7 +432,7 @@ The problem class is similar to that of the \href{../../refine_b_convect/html/in
 
  
 \begin{DoxyCodeInclude}{0}
-\DoxyCodeLine{\textcolor{comment}{ ///  Access function to the NST mesh. }}
+\DoxyCodeLine{\textcolor{comment}{ /// Access function to the NST mesh. }}
 \DoxyCodeLine{\textcolor{comment}{ /// Casts the pointer to the base Mesh object to }\textcolor{comment}{}}
 \DoxyCodeLine{\textcolor{comment}{ /// the actual mesh type.}}
 \DoxyCodeLine{\textcolor{comment}{} RefineableRectangularQuadMesh<NST\_ELEMENT>* nst\_mesh\_pt() }
@@ -440,7 +440,7 @@ The problem class is similar to that of the \href{../../refine_b_convect/html/in
 \DoxyCodeLine{   \textcolor{keywordflow}{return} \textcolor{keyword}{dynamic\_cast<}RefineableRectangularQuadMesh<NST\_ELEMENT>*\textcolor{keyword}{>}}
 \DoxyCodeLine{    (Nst\_mesh\_pt);}
 \DoxyCodeLine{  \} \textcolor{comment}{// end\_of\_nst\_mesh}}
-\DoxyCodeLine{\textcolor{comment}{ ///  Access function to the AD mesh. }}
+\DoxyCodeLine{\textcolor{comment}{ /// Access function to the AD mesh. }}
 \DoxyCodeLine{\textcolor{comment}{ /// Casts the pointer to the base Mesh object to }\textcolor{comment}{}}
 \DoxyCodeLine{\textcolor{comment}{ /// the actual mesh type.}}
 \DoxyCodeLine{\textcolor{comment}{} RefineableRectangularQuadMesh<AD\_ELEMENT>* adv\_diff\_mesh\_pt() }
@@ -454,7 +454,7 @@ The problem class is similar to that of the \href{../../refine_b_convect/html/in
 
 
 \begin{DoxyCodeInclude}{0}
-\DoxyCodeLine{\textcolor{comment}{ ///  Actions after adaptation, reset all sources, then}}
+\DoxyCodeLine{\textcolor{comment}{ /// Actions after adaptation, reset all sources, then}}
 \DoxyCodeLine{\textcolor{comment}{ /// re-\/pin a single pressure degree of freedom}}
 \DoxyCodeLine{ \textcolor{keywordtype}{void} actions\_after\_adapt()}
 \DoxyCodeLine{  \{}

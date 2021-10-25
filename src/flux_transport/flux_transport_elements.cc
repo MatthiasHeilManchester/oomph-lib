@@ -269,7 +269,7 @@ namespace oomph
   }
 
   //======================================================================
-  ///  i-th component of du/dt at local node n.
+  /// i-th component of du/dt at local node n.
   /// Uses suitably interpolated value for hanging nodes.
   //======================================================================
   template<unsigned DIM>

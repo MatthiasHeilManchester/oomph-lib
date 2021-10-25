@@ -74,7 +74,7 @@ namespace oomph
     static double Default_Physical_Constant_Value;
 
   public:
-    ///  Constructor: call the underlying constructors and
+    /// Constructor: call the underlying constructors and
     /// initialise the pointer to the Rayleigh number to point
     /// to the default value of 0.0.
     BuoyantQCrouzeixRaviartElement()
@@ -126,7 +126,7 @@ namespace oomph
       AdvectionDiffusionEquations<DIM>::enable_ALE();
     }
 
-    ///  Number of scalars/fields output by this element. Broken
+    /// Number of scalars/fields output by this element. Broken
     /// virtual. Needs to be implemented for each new specific element type.
     /// Temporary dummy
     unsigned nscalar_paraview() const
@@ -140,7 +140,7 @@ namespace oomph
       return 0;
     }
 
-    ///  Write values of the i-th scalar field at the plot points. Broken
+    /// Write values of the i-th scalar field at the plot points. Broken
     /// virtual. Needs to be implemented for each new specific element type.
     /// Temporary dummy
     void scalar_value_paraview(std::ofstream& file_out,
@@ -154,7 +154,7 @@ namespace oomph
     }
 
 
-    ///  Name of the i-th scalar field. Default implementation
+    /// Name of the i-th scalar field. Default implementation
     /// returns V1 for the first one, V2 for the second etc. Can (should!) be
     /// overloaded with more meaningful names.
     std::string scalar_name_paraview(const unsigned& i) const
@@ -169,7 +169,7 @@ namespace oomph
       FiniteElement::output(outfile);
     }
 
-    ///  Output function:
+    /// Output function:
     ///  Output x, y, u, v, p, theta at Nplot^DIM plot points
     // Start of output function
     void output(std::ostream& outfile, const unsigned& nplot)
@@ -212,19 +212,19 @@ namespace oomph
     } // End of output function
 
 
-    ///  C-style output function: Broken default
+    /// C-style output function: Broken default
     void output(FILE* file_pt)
     {
       FiniteElement::output(file_pt);
     }
 
-    ///   C-style output function: Broken default
+    ///  C-style output function: Broken default
     void output(FILE* file_pt, const unsigned& n_plot)
     {
       FiniteElement::output(file_pt, n_plot);
     }
 
-    ///  Output function for an exact solution: Broken default
+    /// Output function for an exact solution: Broken default
     void output_fct(std::ostream& outfile,
                     const unsigned& Nplot,
                     FiniteElement::SteadyExactSolutionFctPt exact_soln_pt)
@@ -233,7 +233,7 @@ namespace oomph
     }
 
 
-    ///  Output function for a time-dependent exact solution:
+    /// Output function for a time-dependent exact solution:
     /// Broken default.
     void output_fct(std::ostream& outfile,
                     const unsigned& Nplot,
@@ -250,7 +250,7 @@ namespace oomph
       return DIM;
     }
 
-    ///  Validate against exact solution at given time
+    /// Validate against exact solution at given time
     /// Solution is provided via function pointer.
     /// Plot at a given number of plot points and compute L2 error
     /// and L2 norm of velocity solution over element
@@ -264,7 +264,7 @@ namespace oomph
       FiniteElement::compute_error(outfile, exact_soln_pt, time, error, norm);
     }
 
-    ///  Validate against exact solution.
+    /// Validate against exact solution.
     /// Solution is provided via function pointer.
     /// Plot at a given number of plot points and compute L2 error
     /// and L2 norm of velocity solution over element
@@ -277,7 +277,7 @@ namespace oomph
       FiniteElement::compute_error(outfile, exact_soln_pt, error, norm);
     }
 
-    ///  Overload the wind function in the advection-diffusion equations.
+    /// Overload the wind function in the advection-diffusion equations.
     /// This provides the coupling from the Navier--Stokes equations to the
     /// advection-diffusion equations because the wind is the fluid velocity.
     void get_wind_adv_diff(const unsigned& ipt,
@@ -290,7 +290,7 @@ namespace oomph
     }
 
 
-    ///  Overload the body force in the Navier-Stokes equations
+    /// Overload the body force in the Navier-Stokes equations
     /// This provides the coupling from the advection-diffusion equations
     /// to the Navier--Stokes equations, the body force is the
     /// temperature multiplied by the Rayleigh number acting in the
@@ -315,7 +315,7 @@ namespace oomph
       }
     } // end of get_body_force
 
-    ///  Calculate the element's contribution to the residual vector.
+    /// Calculate the element's contribution to the residual vector.
     /// Recall that fill_in_* functions MUST NOT initialise the entries
     /// in the vector to zero. This allows us to call the
     /// fill_in_* functions of the constituent single-physics elements
@@ -858,7 +858,7 @@ namespace oomph
     }
 
 
-    ///  Number of scalars/fields output by this element. Broken
+    /// Number of scalars/fields output by this element. Broken
     /// virtual. Needs to be implemented for each new specific element type.
     /// Temporary dummy
     unsigned nscalar_paraview() const
@@ -872,7 +872,7 @@ namespace oomph
       return 0;
     }
 
-    ///  Write values of the i-th scalar field at the plot points. Broken
+    /// Write values of the i-th scalar field at the plot points. Broken
     /// virtual. Needs to be implemented for each new specific element type.
     /// Temporary dummy
     void scalar_value_paraview(std::ofstream& file_out,
@@ -886,7 +886,7 @@ namespace oomph
     }
 
 
-    ///  Name of the i-th scalar field. Default implementation
+    /// Name of the i-th scalar field. Default implementation
     /// returns V1 for the first one, V2 for the second etc. Can (should!) be
     /// overloaded with more meaningful names.
     std::string scalar_name_paraview(const unsigned& i) const
@@ -900,7 +900,7 @@ namespace oomph
       FiniteElement::output(outfile);
     }
 
-    ///  Output function:
+    /// Output function:
     ///  x,y,u   or    x,y,z,u at Nplot^DIM plot points
     void output(std::ostream& outfile, const unsigned& nplot)
     {
@@ -941,19 +941,19 @@ namespace oomph
       this->write_tecplot_zone_footer(outfile, nplot);
     }
 
-    ///  C-style output function:  Broken default
+    /// C-style output function:  Broken default
     void output(FILE* file_pt)
     {
       FiniteElement::output(file_pt);
     }
 
-    ///   C-style output function: Broken default
+    ///  C-style output function: Broken default
     void output(FILE* file_pt, const unsigned& n_plot)
     {
       FiniteElement::output(file_pt, n_plot);
     }
 
-    ///  Output function for an exact solution: Broken default
+    /// Output function for an exact solution: Broken default
     void output_fct(std::ostream& outfile,
                     const unsigned& Nplot,
                     FiniteElement::SteadyExactSolutionFctPt exact_soln_pt)
@@ -962,7 +962,7 @@ namespace oomph
     }
 
 
-    ///  Output function for a time-dependent exact solution.
+    /// Output function for a time-dependent exact solution.
     /// Broken default
     void output_fct(std::ostream& outfile,
                     const unsigned& Nplot,
@@ -979,21 +979,21 @@ namespace oomph
       return DIM;
     }
 
-    ///  Number of vertex nodes in the element is obtained from the
+    /// Number of vertex nodes in the element is obtained from the
     /// geometric element.
     unsigned nvertex_node() const
     {
       return QElement<DIM, 3>::nvertex_node();
     }
 
-    ///  Pointer to the j-th vertex node in the element,
+    /// Pointer to the j-th vertex node in the element,
     /// Call the geometric element's function.
     Node* vertex_node_pt(const unsigned& j) const
     {
       return QElement<DIM, 3>::vertex_node_pt(j);
     }
 
-    ///  The total number of continously interpolated values is
+    /// The total number of continously interpolated values is
     /// DIM+1 (DIM fluid velocities and one temperature).
     unsigned ncont_interpolated_values() const
     {
@@ -1001,7 +1001,7 @@ namespace oomph
     }
 
 
-    ///  Get the continuously interpolated values at the local coordinate
+    /// Get the continuously interpolated values at the local coordinate
     /// s. We choose to put the fluid velocities first, followed by the
     /// temperature.
     void get_interpolated_values(const Vector<double>& s,
@@ -1032,7 +1032,7 @@ namespace oomph
     }
 
 
-    ///  Get all continuously interpolated values at the local
+    /// Get all continuously interpolated values at the local
     /// coordinate s at time level t (t=0: present; t>0: previous).
     /// We choose to put the fluid velocities first, followed by the
     /// temperature
@@ -1066,7 +1066,7 @@ namespace oomph
     } // end of get_interpolated_values
 
 
-    ///  The additional hanging node information must be set up
+    /// The additional hanging node information must be set up
     /// for both single-physics elements.
     void further_setup_hanging_nodes()
     {
@@ -1076,7 +1076,7 @@ namespace oomph
     }
 
 
-    ///  Call the rebuild_from_sons functions for each of the
+    /// Call the rebuild_from_sons functions for each of the
     /// constituent multi-physics elements.
     void rebuild_from_sons(Mesh*& mesh_pt)
     {
@@ -1085,7 +1085,7 @@ namespace oomph
     }
 
 
-    ///  Call the underlying single-physics element's further_build()
+    /// Call the underlying single-physics element's further_build()
     /// functions and make sure that the pointer to the Rayleigh number
     /// is passed to the sons
     void further_build()
@@ -1111,7 +1111,7 @@ namespace oomph
       return RefineableQCrouzeixRaviartElement<DIM>::nrecovery_order();
     }
 
-    ///  The number of Z2 flux terms is the same as that in
+    /// The number of Z2 flux terms is the same as that in
     /// the fluid element plus that in the advection-diffusion element
     unsigned num_Z2_flux_terms()
     {
@@ -1121,7 +1121,7 @@ namespace oomph
     }
 
 
-    ///  Get the Z2 flux by concatenating the fluxes from the fluid and
+    /// Get the Z2 flux by concatenating the fluxes from the fluid and
     /// the advection diffusion elements.
     void get_Z2_flux(const Vector<double>& s, Vector<double>& flux)
     {
@@ -1148,14 +1148,14 @@ namespace oomph
 
     } // end of get_Z2_flux
 
-    ///  The number of compound fluxes is two (one for the fluid and
+    /// The number of compound fluxes is two (one for the fluid and
     /// one for the temperature)
     unsigned ncompound_fluxes()
     {
       return 2;
     }
 
-    ///  Fill in which flux components are associated with the fluid
+    /// Fill in which flux components are associated with the fluid
     /// measure and which are associated with the temperature measure
     void get_Z2_compound_flux_indices(Vector<unsigned>& flux_index)
     {
@@ -1183,7 +1183,7 @@ namespace oomph
     } // end of get_Z2_compound_flux_indices
 
 
-    ///  Validate against exact solution at given time
+    /// Validate against exact solution at given time
     /// Solution is provided via function pointer.
     /// Plot at a given number of plot points and compute L2 error
     /// and L2 norm of velocity solution over element
@@ -1197,7 +1197,7 @@ namespace oomph
       FiniteElement::compute_error(outfile, exact_soln_pt, time, error, norm);
     }
 
-    ///  Validate against exact solution.
+    /// Validate against exact solution.
     /// Solution is provided via function pointer.
     /// Plot at a given number of plot points and compute L2 error
     /// and L2 norm of velocity solution over element
@@ -1210,7 +1210,7 @@ namespace oomph
       FiniteElement::compute_error(outfile, exact_soln_pt, error, norm);
     }
 
-    ///  Overload the wind function in the advection-diffusion equations.
+    /// Overload the wind function in the advection-diffusion equations.
     /// This provides the coupling from the Navier--Stokes equations to the
     /// advection-diffusion equations because the wind is the fluid velocity.
     void get_wind_adv_diff(const unsigned& ipt,
@@ -1223,7 +1223,7 @@ namespace oomph
     }
 
 
-    ///  Overload the body force in the navier-stokes equations
+    /// Overload the body force in the navier-stokes equations
     /// This provides the coupling from the advection-diffusion equations
     /// to the Navier--Stokes equations, the body force is the
     /// temperature multiplied by the Rayleigh number acting in the
@@ -1296,7 +1296,7 @@ namespace oomph
         residuals, jacobian, mass_matrix);
     }
 
-    ///  Compute the contribution of the off-diagonal blocks
+    /// Compute the contribution of the off-diagonal blocks
     /// analytically.
     void fill_in_off_diagonal_jacobian_blocks_analytic(
       Vector<double>& residuals, DenseMatrix<double>& jacobian)

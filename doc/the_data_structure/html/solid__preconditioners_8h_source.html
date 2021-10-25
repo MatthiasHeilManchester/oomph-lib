@@ -175,7 +175,7 @@ $(function() {
 <div class="line"><a id="l00046" name="l00046"></a><span class="lineno">   46</span><span class="keyword">namespace </span><a class="code hl_namespace" href="namespaceoomph.html">oomph</a></div>
 <div class="line"><a id="l00047" name="l00047"></a><span class="lineno">   47</span>{</div>
 <div class="line"><a id="l00048" name="l00048"></a><span class="lineno">   48</span>  <span class="comment">//===========================================================================</span><span class="comment"></span></div>
-<div class="line"><a id="l00049" name="l00049"></a><span class="lineno">   49</span><span class="comment">  ///  The least-squares commutator (LSC; formerly BFBT)</span></div>
+<div class="line"><a id="l00049" name="l00049"></a><span class="lineno">   49</span><span class="comment">  /// The least-squares commutator (LSC; formerly BFBT)</span></div>
 <div class="line"><a id="l00050" name="l00050"></a><span class="lineno">   50</span><span class="comment">  /// preconditioner. It uses blocks corresponding to the displacement/position</span></div>
 <div class="line"><a id="l00051" name="l00051"></a><span class="lineno">   51</span><span class="comment">  /// and pressure unknowns, i.e. there are a total of 2x2 blocks,</span></div>
 <div class="line"><a id="l00052" name="l00052"></a><span class="lineno">   52</span><span class="comment">  /// and all displacement/position components are treated as a</span></div>
@@ -361,21 +361,21 @@ $(function() {
 <div class="line"><a id="l00232" name="l00232"></a><span class="lineno">  232</span>      Solid_mesh_pt = mesh_pt;</div>
 <div class="line"><a id="l00233" name="l00233"></a><span class="lineno">  233</span>    }</div>
 <div class="line"><a id="l00234" name="l00234"></a><span class="lineno">  234</span><span class="comment"></span> </div>
-<div class="line"><a id="l00235" name="l00235"></a><span class="lineno">  235</span><span class="comment">    ///  Enable mass matrix diagonal scaling in the</span></div>
+<div class="line"><a id="l00235" name="l00235"></a><span class="lineno">  235</span><span class="comment">    /// Enable mass matrix diagonal scaling in the</span></div>
 <div class="line"><a id="l00236" name="l00236"></a><span class="lineno">  236</span><span class="comment">    /// Schur complement approximation</span></div>
 <div class="line"><a id="l00237" name="l00237"></a><span class="lineno">  237</span><span class="comment"></span>    <span class="keywordtype">void</span> enable_p_matrix_scaling()</div>
 <div class="line"><a id="l00238" name="l00238"></a><span class="lineno">  238</span>    {</div>
 <div class="line"><a id="l00239" name="l00239"></a><span class="lineno">  239</span>      P_matrix_using_scaling = <span class="keyword">true</span>;</div>
 <div class="line"><a id="l00240" name="l00240"></a><span class="lineno">  240</span>    }</div>
 <div class="line"><a id="l00241" name="l00241"></a><span class="lineno">  241</span><span class="comment"></span> </div>
-<div class="line"><a id="l00242" name="l00242"></a><span class="lineno">  242</span><span class="comment">    ///  Enable mass matrix diagonal scaling in the</span></div>
+<div class="line"><a id="l00242" name="l00242"></a><span class="lineno">  242</span><span class="comment">    /// Enable mass matrix diagonal scaling in the</span></div>
 <div class="line"><a id="l00243" name="l00243"></a><span class="lineno">  243</span><span class="comment">    /// Schur complement approximation</span></div>
 <div class="line"><a id="l00244" name="l00244"></a><span class="lineno">  244</span><span class="comment"></span>    <span class="keywordtype">void</span> disable_p_matrix_scaling()</div>
 <div class="line"><a id="l00245" name="l00245"></a><span class="lineno">  245</span>    {</div>
 <div class="line"><a id="l00246" name="l00246"></a><span class="lineno">  246</span>      P_matrix_using_scaling = <span class="keyword">false</span>;</div>
 <div class="line"><a id="l00247" name="l00247"></a><span class="lineno">  247</span>    }</div>
 <div class="line"><a id="l00248" name="l00248"></a><span class="lineno">  248</span><span class="comment"></span> </div>
-<div class="line"><a id="l00249" name="l00249"></a><span class="lineno">  249</span><span class="comment">    ///  Return whether the mass matrix is using diagonal</span></div>
+<div class="line"><a id="l00249" name="l00249"></a><span class="lineno">  249</span><span class="comment">    /// Return whether the mass matrix is using diagonal</span></div>
 <div class="line"><a id="l00250" name="l00250"></a><span class="lineno">  250</span><span class="comment">    /// scaling or not</span></div>
 <div class="line"><a id="l00251" name="l00251"></a><span class="lineno">  251</span><span class="comment"></span>    <span class="keywordtype">bool</span> is_p_matrix_using_scaling()<span class="keyword"> const</span></div>
 <div class="line"><a id="l00252" name="l00252"></a><span class="lineno">  252</span><span class="keyword">    </span>{</div>
@@ -395,7 +395,7 @@ $(function() {
 <div class="line"><a id="l00266" name="l00266"></a><span class="lineno">  266</span>      Using_default_p_preconditioner = <span class="keyword">false</span>;</div>
 <div class="line"><a id="l00267" name="l00267"></a><span class="lineno">  267</span>    }</div>
 <div class="line"><a id="l00268" name="l00268"></a><span class="lineno">  268</span><span class="comment"></span> </div>
-<div class="line"><a id="l00269" name="l00269"></a><span class="lineno">  269</span><span class="comment">    ///  Function to (re-)set pressure matrix preconditioner  (inexact</span></div>
+<div class="line"><a id="l00269" name="l00269"></a><span class="lineno">  269</span><span class="comment">    /// Function to (re-)set pressure matrix preconditioner  (inexact</span></div>
 <div class="line"><a id="l00270" name="l00270"></a><span class="lineno">  270</span><span class="comment">    /// solver) to SuperLU</span></div>
 <div class="line"><a id="l00271" name="l00271"></a><span class="lineno">  271</span><span class="comment"></span>    <span class="keywordtype">void</span> set_p_superlu_preconditioner()</div>
 <div class="line"><a id="l00272" name="l00272"></a><span class="lineno">  272</span>    {</div>
@@ -443,7 +443,7 @@ $(function() {
 <div class="line"><a id="l00314" name="l00314"></a><span class="lineno">  314</span>      Doc_time = <span class="keyword">false</span>;</div>
 <div class="line"><a id="l00315" name="l00315"></a><span class="lineno">  315</span>    }</div>
 <div class="line"><a id="l00316" name="l00316"></a><span class="lineno">  316</span><span class="comment"></span> </div>
-<div class="line"><a id="l00317" name="l00317"></a><span class="lineno">  317</span><span class="comment">    ///  If this function is called then:</span></div>
+<div class="line"><a id="l00317" name="l00317"></a><span class="lineno">  317</span><span class="comment">    /// If this function is called then:</span></div>
 <div class="line"><a id="l00318" name="l00318"></a><span class="lineno">  318</span><span class="comment">    /// in setup(...) : BFBt is computed.</span></div>
 <div class="line"><a id="l00319" name="l00319"></a><span class="lineno">  319</span><span class="comment">    /// in preconditioner_solve(...) : a single matrix vector product with</span></div>
 <div class="line"><a id="l00320" name="l00320"></a><span class="lineno">  320</span><span class="comment">    /// BFBt is performed.</span></div>
@@ -452,7 +452,7 @@ $(function() {
 <div class="line"><a id="l00323" name="l00323"></a><span class="lineno">  323</span>      Form_BFBt_product = <span class="keyword">true</span>;</div>
 <div class="line"><a id="l00324" name="l00324"></a><span class="lineno">  324</span>    }</div>
 <div class="line"><a id="l00325" name="l00325"></a><span class="lineno">  325</span><span class="comment"></span> </div>
-<div class="line"><a id="l00326" name="l00326"></a><span class="lineno">  326</span><span class="comment">    ///  if this function is called  then:</span></div>
+<div class="line"><a id="l00326" name="l00326"></a><span class="lineno">  326</span><span class="comment">    /// if this function is called  then:</span></div>
 <div class="line"><a id="l00327" name="l00327"></a><span class="lineno">  327</span><span class="comment">    /// in setup(...) : the matrices B, F are assembled and stored</span></div>
 <div class="line"><a id="l00328" name="l00328"></a><span class="lineno">  328</span><span class="comment">    /// (the default behaviour) .</span></div>
 <div class="line"><a id="l00329" name="l00329"></a><span class="lineno">  329</span><span class="comment">    /// in preconditioner_solve(...) : a sequence of matrix vector products</span></div>
@@ -464,7 +464,7 @@ $(function() {
 <div class="line"><a id="l00335" name="l00335"></a><span class="lineno">  335</span>      Form_BFBt_product = <span class="keyword">false</span>;</div>
 <div class="line"><a id="l00336" name="l00336"></a><span class="lineno">  336</span>    }</div>
 <div class="line"><a id="l00337" name="l00337"></a><span class="lineno">  337</span><span class="comment"></span> </div>
-<div class="line"><a id="l00338" name="l00338"></a><span class="lineno">  338</span><span class="comment">    ///  Helper function to delete preconditioner data.</span></div>
+<div class="line"><a id="l00338" name="l00338"></a><span class="lineno">  338</span><span class="comment">    /// Helper function to delete preconditioner data.</span></div>
 <div class="line"><a id="l00339" name="l00339"></a><span class="lineno">  339</span><span class="comment"></span>    <span class="keywordtype">void</span> <a class="code hl_function" href="namespaceoomph_1_1TerminateHelper.html#a20615123e22554c3c485484f4c23bfb5">clean_up_memory</a>();</div>
 <div class="line"><a id="l00340" name="l00340"></a><span class="lineno">  340</span> </div>
 <div class="line"><a id="l00341" name="l00341"></a><span class="lineno">  341</span>  <span class="keyword">private</span>:</div>
@@ -485,12 +485,12 @@ $(function() {
 <div class="line"><a id="l00356" name="l00356"></a><span class="lineno">  356</span><span class="comment">    /// flag indicating whether the default P preconditioner is used</span></div>
 <div class="line"><a id="l00357" name="l00357"></a><span class="lineno">  357</span><span class="comment"></span>    <span class="keywordtype">bool</span> Using_default_p_preconditioner;</div>
 <div class="line"><a id="l00358" name="l00358"></a><span class="lineno">  358</span><span class="comment"></span> </div>
-<div class="line"><a id="l00359" name="l00359"></a><span class="lineno">  359</span><span class="comment">    ///  Control flag is true if the preconditioner has been setup</span></div>
+<div class="line"><a id="l00359" name="l00359"></a><span class="lineno">  359</span><span class="comment">    /// Control flag is true if the preconditioner has been setup</span></div>
 <div class="line"><a id="l00360" name="l00360"></a><span class="lineno">  360</span><span class="comment">    /// (used so we can wipe the data when the preconditioner is</span></div>
 <div class="line"><a id="l00361" name="l00361"></a><span class="lineno">  361</span><span class="comment">    /// called again)</span></div>
 <div class="line"><a id="l00362" name="l00362"></a><span class="lineno">  362</span><span class="comment"></span>    <span class="keywordtype">bool</span> Preconditioner_has_been_setup;</div>
 <div class="line"><a id="l00363" name="l00363"></a><span class="lineno">  363</span><span class="comment"></span> </div>
-<div class="line"><a id="l00364" name="l00364"></a><span class="lineno">  364</span><span class="comment">    ///  Control flag is true if mass matrix diagonal scaling</span></div>
+<div class="line"><a id="l00364" name="l00364"></a><span class="lineno">  364</span><span class="comment">    /// Control flag is true if mass matrix diagonal scaling</span></div>
 <div class="line"><a id="l00365" name="l00365"></a><span class="lineno">  365</span><span class="comment">    /// is used in the Schur complement approximation</span></div>
 <div class="line"><a id="l00366" name="l00366"></a><span class="lineno">  366</span><span class="comment"></span>    <span class="keywordtype">bool</span> P_matrix_using_scaling;</div>
 <div class="line"><a id="l00367" name="l00367"></a><span class="lineno">  367</span><span class="comment"></span> </div>
@@ -499,7 +499,7 @@ $(function() {
 <div class="line"><a id="l00370" name="l00370"></a><span class="lineno">  370</span><span class="comment">    /// PressureBasedSolidEquations&lt;DIM&gt;::get_mass_matrix_diagonal(...).</span></div>
 <div class="line"><a id="l00371" name="l00371"></a><span class="lineno">  371</span><span class="comment"></span>    CRDoubleMatrix* assemble_mass_matrix_diagonal();</div>
 <div class="line"><a id="l00372" name="l00372"></a><span class="lineno">  372</span><span class="comment"></span> </div>
-<div class="line"><a id="l00373" name="l00373"></a><span class="lineno">  373</span><span class="comment">    ///  Boolean indicating whether the momentum system preconditioner</span></div>
+<div class="line"><a id="l00373" name="l00373"></a><span class="lineno">  373</span><span class="comment">    /// Boolean indicating whether the momentum system preconditioner</span></div>
 <div class="line"><a id="l00374" name="l00374"></a><span class="lineno">  374</span><span class="comment">    /// is a block preconditioner</span></div>
 <div class="line"><a id="l00375" name="l00375"></a><span class="lineno">  375</span><span class="comment"></span>    <span class="keywordtype">bool</span> F_preconditioner_is_block_preconditioner;</div>
 <div class="line"><a id="l00376" name="l00376"></a><span class="lineno">  376</span><span class="comment"></span> </div>
@@ -518,7 +518,7 @@ $(function() {
 <div class="line"><a id="l00389" name="l00389"></a><span class="lineno">  389</span><span class="comment">    /// MatrixVectorProduct operator for E (BFBt) if BFBt is to be formed.</span></div>
 <div class="line"><a id="l00390" name="l00390"></a><span class="lineno">  390</span><span class="comment"></span>    MatrixVectorProduct* E_mat_vec_pt;</div>
 <div class="line"><a id="l00391" name="l00391"></a><span class="lineno">  391</span><span class="comment"></span> </div>
-<div class="line"><a id="l00392" name="l00392"></a><span class="lineno">  392</span><span class="comment">    ///  indicates whether BFBt should be formed or the component matrices</span></div>
+<div class="line"><a id="l00392" name="l00392"></a><span class="lineno">  392</span><span class="comment">    /// indicates whether BFBt should be formed or the component matrices</span></div>
 <div class="line"><a id="l00393" name="l00393"></a><span class="lineno">  393</span><span class="comment">    /// should be retained.</span></div>
 <div class="line"><a id="l00394" name="l00394"></a><span class="lineno">  394</span><span class="comment">    /// If true then:</span></div>
 <div class="line"><a id="l00395" name="l00395"></a><span class="lineno">  395</span><span class="comment">    /// in setup(...) : BFBt is computed.</span></div>
@@ -532,7 +532,7 @@ $(function() {
 <div class="line"><a id="l00403" name="l00403"></a><span class="lineno">  403</span><span class="comment">    ///  are replaced with BQ and QBt with scaling)</span></div>
 <div class="line"><a id="l00404" name="l00404"></a><span class="lineno">  404</span><span class="comment"></span>    <span class="keywordtype">bool</span> Form_BFBt_product;</div>
 <div class="line"><a id="l00405" name="l00405"></a><span class="lineno">  405</span><span class="comment"></span> </div>
-<div class="line"><a id="l00406" name="l00406"></a><span class="lineno">  406</span><span class="comment">    ///  the pointer to the mesh of block preconditionable solid</span></div>
+<div class="line"><a id="l00406" name="l00406"></a><span class="lineno">  406</span><span class="comment">    /// the pointer to the mesh of block preconditionable solid</span></div>
 <div class="line"><a id="l00407" name="l00407"></a><span class="lineno">  407</span><span class="comment">    /// elements.</span></div>
 <div class="line"><a id="l00408" name="l00408"></a><span class="lineno">  408</span><span class="comment"></span>    Mesh* Solid_mesh_pt;</div>
 <div class="line"><a id="l00409" name="l00409"></a><span class="lineno">  409</span>  };</div>
@@ -544,7 +544,7 @@ $(function() {
 <div class="line"><a id="l00415" name="l00415"></a><span class="lineno">  415</span><span class="comment"></span> </div>
 <div class="line"><a id="l00416" name="l00416"></a><span class="lineno">  416</span> </div>
 <div class="line"><a id="l00417" name="l00417"></a><span class="lineno">  417</span>  <span class="comment">//============================================================================</span><span class="comment"></span></div>
-<div class="line"><a id="l00418" name="l00418"></a><span class="lineno">  418</span><span class="comment">  ///  The exact solid preconditioner. This extracts 2x2 blocks</span></div>
+<div class="line"><a id="l00418" name="l00418"></a><span class="lineno">  418</span><span class="comment">  /// The exact solid preconditioner. This extracts 2x2 blocks</span></div>
 <div class="line"><a id="l00419" name="l00419"></a><span class="lineno">  419</span><span class="comment">  /// (corresponding to the displacement/position and pressure unknowns)</span></div>
 <div class="line"><a id="l00420" name="l00420"></a><span class="lineno">  420</span><span class="comment">  /// and uses these to</span></div>
 <div class="line"><a id="l00421" name="l00421"></a><span class="lineno">  421</span><span class="comment">  /// build a single preconditioner matrix for testing purposes.</span></div>
@@ -626,7 +626,7 @@ $(function() {
     <footer>
       <div class="container">
         <div class="text-muted" style="float:right;">Generated by <a href="http://www.doxygen.org/index.html">
-          <img style="height:18px;" class="footer-img" src="doxygen.png" alt="doxygen"></a> on Fri Oct 22 2021 12:23:26
+          <img style="height:18px;" class="footer-img" src="doxygen.png" alt="doxygen"></a> on Mon Oct 25 2021 14:41:46
         </div>
       </div>
     </footer>

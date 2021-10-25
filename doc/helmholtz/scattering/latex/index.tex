@@ -102,7 +102,7 @@ The function {\ttfamily get\+\_\+exact\+\_\+u} returns the exact solution for th
 
  
 \begin{DoxyCodeInclude}{0}
-\DoxyCodeLine{\textcolor{comment}{ ///  Exact solution for scattered field }}
+\DoxyCodeLine{\textcolor{comment}{ /// Exact solution for scattered field }}
 \DoxyCodeLine{\textcolor{comment}{ /// (vector returns real and impaginary parts).}}
 \DoxyCodeLine{ \textcolor{keywordtype}{void} \mbox{\hyperlink{namespaceGlobalParameters_ae2320da6053f5527b2af5ebb362a8a07}{get\_exact\_u}}(\textcolor{keyword}{const} Vector<double>\& x, Vector<double>\& u)}
 \DoxyCodeLine{ \{}
@@ -175,7 +175,7 @@ The function {\ttfamily get\+\_\+exact\+\_\+u} returns the exact solution for th
 
  
 \begin{DoxyCodeInclude}{0}
-\DoxyCodeLine{\textcolor{comment}{ ///  Flux (normal derivative) on the unit disk}}
+\DoxyCodeLine{\textcolor{comment}{ /// Flux (normal derivative) on the unit disk}}
 \DoxyCodeLine{\textcolor{comment}{ /// for a planar incoming wave}}
 \DoxyCodeLine{ \textcolor{keywordtype}{void} \mbox{\hyperlink{namespaceGlobalParameters_a5183de63b992338ee60bb4da78a45039}{prescribed\_incoming\_flux}}(\textcolor{keyword}{const} Vector<double>\& x, }
 \DoxyCodeLine{                               complex<double>\& flux)}
@@ -368,11 +368,11 @@ The problem class is very similar to that employed for the \href{../../../poisso
 \DoxyCodeLine{\textcolor{comment}{ /// Destructor (empty)}}
 \DoxyCodeLine{\textcolor{comment}{} \mbox{\hyperlink{classScatteringProblem_a0a9838027d0286f22706fe6945bbac0a}{\string~ScatteringProblem}}()\{\}}
 \DoxyCodeLine{\textcolor{comment}{}}
-\DoxyCodeLine{\textcolor{comment}{ ///  Doc the solution. DocInfo object stores flags/labels for where the}}
+\DoxyCodeLine{\textcolor{comment}{ /// Doc the solution. DocInfo object stores flags/labels for where the}}
 \DoxyCodeLine{\textcolor{comment}{ /// output gets written to}}
 \DoxyCodeLine{\textcolor{comment}{} \textcolor{keywordtype}{void} \mbox{\hyperlink{classScatteringProblem_af83ab14c4f4750ea17c21466f6c6364f}{doc\_solution}}(DocInfo\& doc\_info);}
 \DoxyCodeLine{ \textcolor{comment}{}}
-\DoxyCodeLine{\textcolor{comment}{ ///  Update the problem specs before solve (empty)}}
+\DoxyCodeLine{\textcolor{comment}{ /// Update the problem specs before solve (empty)}}
 \DoxyCodeLine{\textcolor{comment}{} \textcolor{keywordtype}{void} \mbox{\hyperlink{classScatteringProblem_a91ce14b928ec6edbb9d85515a310b1fb}{actions\_before\_newton\_solve}}()\{\} }
 \DoxyCodeLine{\textcolor{comment}{}}
 \DoxyCodeLine{\textcolor{comment}{ /// Update the problem specs after solve (empty)}}
@@ -393,25 +393,25 @@ The problem class is very similar to that employed for the \href{../../../poisso
 \DoxyCodeLine{\textcolor{comment}{ /// Actions after adapt: Rebuild the mesh of prescribed flux elements}}
 \DoxyCodeLine{\textcolor{comment}{} \textcolor{keywordtype}{void} \mbox{\hyperlink{classScatteringProblem_a13d8f85e74666c260de7364917359ed5}{actions\_after\_adapt}}();}
 \DoxyCodeLine{ \textcolor{comment}{}}
-\DoxyCodeLine{\textcolor{comment}{ ///  Create BC elements on boundary b of the Mesh pointed}}
+\DoxyCodeLine{\textcolor{comment}{ /// Create BC elements on boundary b of the Mesh pointed}}
 \DoxyCodeLine{\textcolor{comment}{ /// to by bulk\_mesh\_pt and add them to the specified survace Mesh }}
 \DoxyCodeLine{\textcolor{comment}{} \textcolor{keywordtype}{void} \mbox{\hyperlink{classScatteringProblem_a408e05fbe1f1456ab7013a7e8ab29ccc}{create\_outer\_bc\_elements}}(}
 \DoxyCodeLine{  \textcolor{keyword}{const} \textcolor{keywordtype}{unsigned} \&b, Mesh* \textcolor{keyword}{const} \&bulk\_mesh\_pt,}
 \DoxyCodeLine{  Mesh* \textcolor{keyword}{const} \& helmholtz\_outer\_boundary\_mesh\_pt);}
 \DoxyCodeLine{ \textcolor{comment}{}}
-\DoxyCodeLine{\textcolor{comment}{ ///  Create Helmholtz flux elements on boundary b of the Mesh pointed}}
+\DoxyCodeLine{\textcolor{comment}{ /// Create Helmholtz flux elements on boundary b of the Mesh pointed}}
 \DoxyCodeLine{\textcolor{comment}{ /// to by bulk\_mesh\_pt and add them to the specified surface Mesh }}
 \DoxyCodeLine{\textcolor{comment}{} \textcolor{keywordtype}{void} \mbox{\hyperlink{classScatteringProblem_af06ff518ad3250f914c0c659af3001c8}{create\_flux\_elements}}(\textcolor{keyword}{const} \textcolor{keywordtype}{unsigned} \&b, Mesh* \textcolor{keyword}{const} \&bulk\_mesh\_pt,}
 \DoxyCodeLine{                           Mesh* \textcolor{keyword}{const} \& helmholtz\_inner\_boundary\_mesh\_pt);}
 \DoxyCodeLine{ \textcolor{comment}{}}
-\DoxyCodeLine{\textcolor{comment}{ ///  Delete boundary face elements and wipe the surface mesh}}
+\DoxyCodeLine{\textcolor{comment}{ /// Delete boundary face elements and wipe the surface mesh}}
 \DoxyCodeLine{\textcolor{comment}{} \textcolor{keywordtype}{void} \mbox{\hyperlink{classScatteringProblem_aaef8a78e317333ddadd0be6a500c1134}{delete\_face\_elements}}( Mesh* \textcolor{keyword}{const} \& boundary\_mesh\_pt);}
 \DoxyCodeLine{ \textcolor{comment}{}}
-\DoxyCodeLine{\textcolor{comment}{ ///  Set pointer to prescribed-\/flux function for all}}
+\DoxyCodeLine{\textcolor{comment}{ /// Set pointer to prescribed-\/flux function for all}}
 \DoxyCodeLine{\textcolor{comment}{ /// elements in the surface mesh on the surface of the unit disk}}
 \DoxyCodeLine{\textcolor{comment}{} \textcolor{keywordtype}{void} \mbox{\hyperlink{classScatteringProblem_ae75307dde909513a0f11057c96cdd622}{set\_prescribed\_incoming\_flux\_pt}}();}
 \DoxyCodeLine{\textcolor{comment}{}}
-\DoxyCodeLine{\textcolor{comment}{ ///  Set up boundary condition elements on outer boundary}}
+\DoxyCodeLine{\textcolor{comment}{ /// Set up boundary condition elements on outer boundary}}
 \DoxyCodeLine{\textcolor{comment}{} \textcolor{keywordtype}{void} \mbox{\hyperlink{classScatteringProblem_a76bd8299ea7ed559681b294acfb2aad4}{setup\_outer\_boundary}}();}
 \DoxyCodeLine{}
 \DoxyCodeLine{\textcolor{preprocessor}{\#ifdef ADAPTIVE}}
@@ -426,11 +426,11 @@ The problem class is very similar to that employed for the \href{../../../poisso
 \DoxyCodeLine{}
 \DoxyCodeLine{\textcolor{preprocessor}{\#endif}}
 \DoxyCodeLine{\textcolor{comment}{}}
-\DoxyCodeLine{\textcolor{comment}{ ///  Pointer to mesh containing the DtN (or ABC) boundary}}
+\DoxyCodeLine{\textcolor{comment}{ /// Pointer to mesh containing the DtN (or ABC) boundary}}
 \DoxyCodeLine{\textcolor{comment}{ /// condition elements}}
 \DoxyCodeLine{\textcolor{comment}{} HelmholtzDtNMesh<ELEMENT>* \mbox{\hyperlink{classScatteringProblem_a9692c8592b57a4363e557e5b012c744b}{Helmholtz\_outer\_boundary\_mesh\_pt}};}
 \DoxyCodeLine{ \textcolor{comment}{}}
-\DoxyCodeLine{\textcolor{comment}{ ///  Pointer to the mesh containing }}
+\DoxyCodeLine{\textcolor{comment}{ /// Pointer to the mesh containing }}
 \DoxyCodeLine{\textcolor{comment}{ /// the Helmholtz inner boundary condition elements }}
 \DoxyCodeLine{\textcolor{comment}{} Mesh* \mbox{\hyperlink{classScatteringProblem_a56b5fc73bbb51b701a43dc38f9815104}{Helmholtz\_inner\_boundary\_mesh\_pt}};}
 \DoxyCodeLine{}

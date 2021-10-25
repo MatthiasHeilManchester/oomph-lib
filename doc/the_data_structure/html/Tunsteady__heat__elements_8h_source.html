@@ -190,7 +190,7 @@ $(function() {
 <div class="line"><a id="l00061" name="l00061"></a><span class="lineno">   61</span>                               <span class="keyword">public</span> <span class="keyword">virtual</span> <a class="code hl_class" href="classoomph_1_1ElementWithZ2ErrorEstimator.html">ElementWithZ2ErrorEstimator</a></div>
 <div class="line"><a id="l00062" name="l00062"></a><span class="lineno">   62</span>  {</div>
 <div class="line"><a id="l00063" name="l00063"></a><span class="lineno">   63</span>  <span class="keyword">public</span>:<span class="comment"></span></div>
-<div class="line"><a id="l00064" name="l00064"></a><span class="lineno">   64</span><span class="comment">    ///  Constructor: Call constructors for TElement and</span></div>
+<div class="line"><a id="l00064" name="l00064"></a><span class="lineno">   64</span><span class="comment">    /// Constructor: Call constructors for TElement and</span></div>
 <div class="line"><a id="l00065" name="l00065"></a><span class="lineno">   65</span><span class="comment">    /// UnsteadyHeat equations</span></div>
 <div class="line"><a id="l00066" name="l00066"></a><span class="lineno"><a class="line" href="classoomph_1_1TUnsteadyHeatElement.html#a1ef76545b77561b462358a593d829844">   66</a></span><span class="comment"></span>    <a class="code hl_function" href="classoomph_1_1TUnsteadyHeatElement.html#a1ef76545b77561b462358a593d829844">TUnsteadyHeatElement</a>()</div>
 <div class="line"><a id="l00067" name="l00067"></a><span class="lineno">   67</span>      : <a class="code hl_class" href="classoomph_1_1TElement.html">TElement</a>&lt;DIM, NNODE_1D&gt;(), UnsteadyHeatEquations&lt;DIM&gt;()</div>
@@ -210,21 +210,21 @@ $(function() {
 <div class="line"><a id="l00081" name="l00081"></a><span class="lineno">   81</span>    <span class="comment">// rightly, it shouts.</span></div>
 <div class="line"><a id="l00082" name="l00082"></a><span class="lineno">   82</span>    <span class="comment">/*void operator=(const TUnsteadyHeatElement&lt;DIM,NNODE_1D&gt;&amp;) = delete;*/</span></div>
 <div class="line"><a id="l00083" name="l00083"></a><span class="lineno">   83</span><span class="comment"></span> </div>
-<div class="line"><a id="l00084" name="l00084"></a><span class="lineno">   84</span><span class="comment">    ///   Access function for Nvalue: # of `values&#39; (pinned or dofs)</span></div>
+<div class="line"><a id="l00084" name="l00084"></a><span class="lineno">   84</span><span class="comment">    ///  Access function for Nvalue: # of `values&#39; (pinned or dofs)</span></div>
 <div class="line"><a id="l00085" name="l00085"></a><span class="lineno">   85</span><span class="comment">    /// at node n (always returns the same value at every node, 1)</span></div>
 <div class="line"><a id="l00086" name="l00086"></a><span class="lineno"><a class="line" href="classoomph_1_1TUnsteadyHeatElement.html#af3e705367ab5d37d0016ad00a8b81592">   86</a></span><span class="comment"></span>    <span class="keyword">inline</span> <span class="keywordtype">unsigned</span> <a class="code hl_function" href="classoomph_1_1TUnsteadyHeatElement.html#af3e705367ab5d37d0016ad00a8b81592">required_nvalue</a>(<span class="keyword">const</span> <span class="keywordtype">unsigned</span>&amp; n)<span class="keyword"> const</span></div>
 <div class="line"><a id="l00087" name="l00087"></a><span class="lineno">   87</span><span class="keyword">    </span>{</div>
 <div class="line"><a id="l00088" name="l00088"></a><span class="lineno">   88</span>      <span class="keywordflow">return</span> <a class="code hl_variable" href="classoomph_1_1TUnsteadyHeatElement.html#aba29bc3837ccd8a26538b4b6b0d87e53">Initial_Nvalue</a>;</div>
 <div class="line"><a id="l00089" name="l00089"></a><span class="lineno">   89</span>    }</div>
 <div class="line"><a id="l00090" name="l00090"></a><span class="lineno">   90</span><span class="comment"></span> </div>
-<div class="line"><a id="l00091" name="l00091"></a><span class="lineno">   91</span><span class="comment">    ///  Output function:</span></div>
+<div class="line"><a id="l00091" name="l00091"></a><span class="lineno">   91</span><span class="comment">    /// Output function:</span></div>
 <div class="line"><a id="l00092" name="l00092"></a><span class="lineno">   92</span><span class="comment">    ///  x,y,u   or    x,y,z,u</span></div>
 <div class="line"><a id="l00093" name="l00093"></a><span class="lineno"><a class="line" href="classoomph_1_1TUnsteadyHeatElement.html#a03456d7b303e01a92f634a99fad1eacf">   93</a></span><span class="comment"></span>    <span class="keywordtype">void</span> <a class="code hl_function" href="classoomph_1_1TUnsteadyHeatElement.html#a03456d7b303e01a92f634a99fad1eacf">output</a>(std::ostream&amp; outfile)</div>
 <div class="line"><a id="l00094" name="l00094"></a><span class="lineno">   94</span>    {</div>
 <div class="line"><a id="l00095" name="l00095"></a><span class="lineno">   95</span>      <a class="code hl_function" href="namespaceoomph_1_1CommandLineArgs.html#aca07d359a96b9c7b566142112604ea87">UnsteadyHeatEquations&lt;DIM&gt;::output</a>(outfile);</div>
 <div class="line"><a id="l00096" name="l00096"></a><span class="lineno">   96</span>    }</div>
 <div class="line"><a id="l00097" name="l00097"></a><span class="lineno">   97</span><span class="comment"></span> </div>
-<div class="line"><a id="l00098" name="l00098"></a><span class="lineno">   98</span><span class="comment">    ///   Output function:</span></div>
+<div class="line"><a id="l00098" name="l00098"></a><span class="lineno">   98</span><span class="comment">    ///  Output function:</span></div>
 <div class="line"><a id="l00099" name="l00099"></a><span class="lineno">   99</span><span class="comment">    ///   x,y,u   or    x,y,z,u at n_plot^DIM plot points</span></div>
 <div class="line"><a id="l00100" name="l00100"></a><span class="lineno"><a class="line" href="classoomph_1_1TUnsteadyHeatElement.html#a2602a84d853cda483fd52abadb524da9">  100</a></span><span class="comment"></span>    <span class="keywordtype">void</span> <a class="code hl_function" href="classoomph_1_1TUnsteadyHeatElement.html#a2602a84d853cda483fd52abadb524da9">output</a>(std::ostream&amp; outfile, <span class="keyword">const</span> <span class="keywordtype">unsigned</span>&amp; n_plot)</div>
 <div class="line"><a id="l00101" name="l00101"></a><span class="lineno">  101</span>    {</div>
@@ -232,7 +232,7 @@ $(function() {
 <div class="line"><a id="l00103" name="l00103"></a><span class="lineno">  103</span>    }</div>
 <div class="line"><a id="l00104" name="l00104"></a><span class="lineno">  104</span> </div>
 <div class="line"><a id="l00105" name="l00105"></a><span class="lineno">  105</span><span class="comment"></span> </div>
-<div class="line"><a id="l00106" name="l00106"></a><span class="lineno">  106</span><span class="comment">    ///  C-style output function:</span></div>
+<div class="line"><a id="l00106" name="l00106"></a><span class="lineno">  106</span><span class="comment">    /// C-style output function:</span></div>
 <div class="line"><a id="l00107" name="l00107"></a><span class="lineno">  107</span><span class="comment">    ///  x,y,u   or    x,y,z,u</span></div>
 <div class="line"><a id="l00108" name="l00108"></a><span class="lineno"><a class="line" href="classoomph_1_1TUnsteadyHeatElement.html#a278bcf1033d234317dd3a0f8ed306e89">  108</a></span><span class="comment"></span>    <span class="keywordtype">void</span> <a class="code hl_function" href="classoomph_1_1TUnsteadyHeatElement.html#a278bcf1033d234317dd3a0f8ed306e89">output</a>(FILE* file_pt)</div>
 <div class="line"><a id="l00109" name="l00109"></a><span class="lineno">  109</span>    {</div>
@@ -240,7 +240,7 @@ $(function() {
 <div class="line"><a id="l00111" name="l00111"></a><span class="lineno">  111</span>    }</div>
 <div class="line"><a id="l00112" name="l00112"></a><span class="lineno">  112</span> </div>
 <div class="line"><a id="l00113" name="l00113"></a><span class="lineno">  113</span><span class="comment"></span> </div>
-<div class="line"><a id="l00114" name="l00114"></a><span class="lineno">  114</span><span class="comment">    ///   C-style output function:</span></div>
+<div class="line"><a id="l00114" name="l00114"></a><span class="lineno">  114</span><span class="comment">    ///  C-style output function:</span></div>
 <div class="line"><a id="l00115" name="l00115"></a><span class="lineno">  115</span><span class="comment">    ///   x,y,u   or    x,y,z,u at n_plot^DIM plot points</span></div>
 <div class="line"><a id="l00116" name="l00116"></a><span class="lineno"><a class="line" href="classoomph_1_1TUnsteadyHeatElement.html#ae557037d0c9eef1143aef52decb559ca">  116</a></span><span class="comment"></span>    <span class="keywordtype">void</span> <a class="code hl_function" href="classoomph_1_1TUnsteadyHeatElement.html#ae557037d0c9eef1143aef52decb559ca">output</a>(FILE* file_pt, <span class="keyword">const</span> <span class="keywordtype">unsigned</span>&amp; n_plot)</div>
 <div class="line"><a id="l00117" name="l00117"></a><span class="lineno">  117</span>    {</div>
@@ -248,7 +248,7 @@ $(function() {
 <div class="line"><a id="l00119" name="l00119"></a><span class="lineno">  119</span>    }</div>
 <div class="line"><a id="l00120" name="l00120"></a><span class="lineno">  120</span> </div>
 <div class="line"><a id="l00121" name="l00121"></a><span class="lineno">  121</span><span class="comment"></span> </div>
-<div class="line"><a id="l00122" name="l00122"></a><span class="lineno">  122</span><span class="comment">    ///  Output function for an exact solution:</span></div>
+<div class="line"><a id="l00122" name="l00122"></a><span class="lineno">  122</span><span class="comment">    /// Output function for an exact solution:</span></div>
 <div class="line"><a id="l00123" name="l00123"></a><span class="lineno">  123</span><span class="comment">    ///  x,y,u_exact</span></div>
 <div class="line"><a id="l00124" name="l00124"></a><span class="lineno"><a class="line" href="classoomph_1_1TUnsteadyHeatElement.html#ab96efdf223b23caa747ca79dae88c847">  124</a></span><span class="comment"></span>    <span class="keywordtype">void</span> <a class="code hl_function" href="classoomph_1_1TUnsteadyHeatElement.html#ab96efdf223b23caa747ca79dae88c847">output_fct</a>(std::ostream&amp; outfile,</div>
 <div class="line"><a id="l00125" name="l00125"></a><span class="lineno">  125</span>                    <span class="keyword">const</span> <span class="keywordtype">unsigned</span>&amp; n_plot,</div>
@@ -258,7 +258,7 @@ $(function() {
 <div class="line"><a id="l00129" name="l00129"></a><span class="lineno">  129</span>    }</div>
 <div class="line"><a id="l00130" name="l00130"></a><span class="lineno">  130</span> </div>
 <div class="line"><a id="l00131" name="l00131"></a><span class="lineno">  131</span><span class="comment"></span> </div>
-<div class="line"><a id="l00132" name="l00132"></a><span class="lineno">  132</span><span class="comment">    ///  Output function for a time-dependent exact solution.</span></div>
+<div class="line"><a id="l00132" name="l00132"></a><span class="lineno">  132</span><span class="comment">    /// Output function for a time-dependent exact solution.</span></div>
 <div class="line"><a id="l00133" name="l00133"></a><span class="lineno">  133</span><span class="comment">    ///  x,y,u_exact (calls the steady version)</span></div>
 <div class="line"><a id="l00134" name="l00134"></a><span class="lineno"><a class="line" href="classoomph_1_1TUnsteadyHeatElement.html#af550a3be2cd261c495ee0c97a3ca29a7">  134</a></span><span class="comment"></span>    <span class="keywordtype">void</span> <a class="code hl_function" href="classoomph_1_1TUnsteadyHeatElement.html#af550a3be2cd261c495ee0c97a3ca29a7">output_fct</a>(std::ostream&amp; outfile,</div>
 <div class="line"><a id="l00135" name="l00135"></a><span class="lineno">  135</span>                    <span class="keyword">const</span> <span class="keywordtype">unsigned</span>&amp; n_plot,</div>
@@ -288,7 +288,7 @@ $(function() {
 <div class="line"><a id="l00159" name="l00159"></a><span class="lineno">  159</span>      <a class="code hl_class" href="classoomph_1_1Shape.html">Shape</a>&amp; test,</div>
 <div class="line"><a id="l00160" name="l00160"></a><span class="lineno">  160</span>      <a class="code hl_class" href="classoomph_1_1DShape.html">DShape</a>&amp; dtestdx) <span class="keyword">const</span>;</div>
 <div class="line"><a id="l00161" name="l00161"></a><span class="lineno">  161</span><span class="comment"></span> </div>
-<div class="line"><a id="l00162" name="l00162"></a><span class="lineno">  162</span><span class="comment">    ///  Shape/test functions and derivs w.r.t. to global coords at</span></div>
+<div class="line"><a id="l00162" name="l00162"></a><span class="lineno">  162</span><span class="comment">    /// Shape/test functions and derivs w.r.t. to global coords at</span></div>
 <div class="line"><a id="l00163" name="l00163"></a><span class="lineno">  163</span><span class="comment">    /// integration point ipt; return Jacobian of mapping (J). Also compute</span></div>
 <div class="line"><a id="l00164" name="l00164"></a><span class="lineno">  164</span><span class="comment">    /// derivatives of dpsidx, dtestdx and J w.r.t. nodal coordinates.</span></div>
 <div class="line"><a id="l00165" name="l00165"></a><span class="lineno">  165</span><span class="comment"></span>    <span class="keyword">inline</span> <span class="keywordtype">double</span> <a class="code hl_function" href="classoomph_1_1TUnsteadyHeatElement.html#a0e7b03ebbf897295a34bae8d0dfe9686">dshape_and_dtest_eulerian_at_knot_ust_heat</a>(</div>
@@ -301,7 +301,7 @@ $(function() {
 <div class="line"><a id="l00172" name="l00172"></a><span class="lineno">  172</span>      <a class="code hl_class" href="classoomph_1_1RankFourTensor.html">RankFourTensor&lt;double&gt;</a>&amp; d_dtestdx_dX,</div>
 <div class="line"><a id="l00173" name="l00173"></a><span class="lineno">  173</span>      <a class="code hl_class" href="classoomph_1_1DenseMatrix.html">DenseMatrix&lt;double&gt;</a>&amp; <a class="code hl_variable" href="classoomph_1_1FiniteElement.html#ab808fc2c7224b2ca13cbe287ad906f32">djacobian_dX</a>) <span class="keyword">const</span>;</div>
 <div class="line"><a id="l00174" name="l00174"></a><span class="lineno">  174</span><span class="comment"></span> </div>
-<div class="line"><a id="l00175" name="l00175"></a><span class="lineno">  175</span><span class="comment">    ///  Order of recovery shape functions for Z2 error estimation:</span></div>
+<div class="line"><a id="l00175" name="l00175"></a><span class="lineno">  175</span><span class="comment">    /// Order of recovery shape functions for Z2 error estimation:</span></div>
 <div class="line"><a id="l00176" name="l00176"></a><span class="lineno">  176</span><span class="comment">    /// Same order as shape functions.</span></div>
 <div class="line"><a id="l00177" name="l00177"></a><span class="lineno"><a class="line" href="classoomph_1_1TUnsteadyHeatElement.html#a5216b9570896508b5fd6063ca46223a5">  177</a></span><span class="comment"></span>    <span class="keywordtype">unsigned</span> <a class="code hl_function" href="classoomph_1_1TUnsteadyHeatElement.html#a5216b9570896508b5fd6063ca46223a5">nrecovery_order</a>()</div>
 <div class="line"><a id="l00178" name="l00178"></a><span class="lineno">  178</span>    {</div>
@@ -314,20 +314,20 @@ $(function() {
 <div class="line"><a id="l00185" name="l00185"></a><span class="lineno">  185</span>      <span class="keywordflow">return</span> DIM;</div>
 <div class="line"><a id="l00186" name="l00186"></a><span class="lineno">  186</span>    }</div>
 <div class="line"><a id="l00187" name="l00187"></a><span class="lineno">  187</span><span class="comment"></span> </div>
-<div class="line"><a id="l00188" name="l00188"></a><span class="lineno">  188</span><span class="comment">    ///  Get &#39;flux&#39; for Z2 error recovery:  Standard flux from</span></div>
+<div class="line"><a id="l00188" name="l00188"></a><span class="lineno">  188</span><span class="comment">    /// Get &#39;flux&#39; for Z2 error recovery:  Standard flux from</span></div>
 <div class="line"><a id="l00189" name="l00189"></a><span class="lineno">  189</span><span class="comment">    /// UnsteadyHeat equations</span></div>
 <div class="line"><a id="l00190" name="l00190"></a><span class="lineno"><a class="line" href="classoomph_1_1TUnsteadyHeatElement.html#ac29f36351e80c4af68fe9e728872985d">  190</a></span><span class="comment"></span>    <span class="keywordtype">void</span> <a class="code hl_function" href="classoomph_1_1TUnsteadyHeatElement.html#ac29f36351e80c4af68fe9e728872985d">get_Z2_flux</a>(<span class="keyword">const</span> <a class="code hl_class" href="classoomph_1_1Vector.html">Vector&lt;double&gt;</a>&amp; <a class="code hl_variable" href="cfortran_8h.html#ab7123126e4885ef647dd9c6e3807a21c">s</a>, <a class="code hl_class" href="classoomph_1_1Vector.html">Vector&lt;double&gt;</a>&amp; flux)</div>
 <div class="line"><a id="l00191" name="l00191"></a><span class="lineno">  191</span>    {</div>
 <div class="line"><a id="l00192" name="l00192"></a><span class="lineno">  192</span>      this-&gt;get_flux(<a class="code hl_variable" href="cfortran_8h.html#ab7123126e4885ef647dd9c6e3807a21c">s</a>, flux);</div>
 <div class="line"><a id="l00193" name="l00193"></a><span class="lineno">  193</span>    }</div>
 <div class="line"><a id="l00194" name="l00194"></a><span class="lineno">  194</span><span class="comment"></span> </div>
-<div class="line"><a id="l00195" name="l00195"></a><span class="lineno">  195</span><span class="comment">    ///  Number of vertex nodes in the element</span></div>
+<div class="line"><a id="l00195" name="l00195"></a><span class="lineno">  195</span><span class="comment">    /// Number of vertex nodes in the element</span></div>
 <div class="line"><a id="l00196" name="l00196"></a><span class="lineno"><a class="line" href="classoomph_1_1TUnsteadyHeatElement.html#a8fb6b9483f1e78e21144e1443a6f0f4d">  196</a></span><span class="comment"></span>    <span class="keywordtype">unsigned</span> <a class="code hl_function" href="classoomph_1_1TUnsteadyHeatElement.html#a8fb6b9483f1e78e21144e1443a6f0f4d">nvertex_node</a>()<span class="keyword"> const</span></div>
 <div class="line"><a id="l00197" name="l00197"></a><span class="lineno">  197</span><span class="keyword">    </span>{</div>
 <div class="line"><a id="l00198" name="l00198"></a><span class="lineno">  198</span>      <span class="keywordflow">return</span> <a class="code hl_class" href="classoomph_1_1TElement.html">TElement&lt;DIM, NNODE_1D&gt;::nvertex_node</a>();</div>
 <div class="line"><a id="l00199" name="l00199"></a><span class="lineno">  199</span>    }</div>
 <div class="line"><a id="l00200" name="l00200"></a><span class="lineno">  200</span><span class="comment"></span> </div>
-<div class="line"><a id="l00201" name="l00201"></a><span class="lineno">  201</span><span class="comment">    ///  Pointer to the j-th vertex node in the element</span></div>
+<div class="line"><a id="l00201" name="l00201"></a><span class="lineno">  201</span><span class="comment">    /// Pointer to the j-th vertex node in the element</span></div>
 <div class="line"><a id="l00202" name="l00202"></a><span class="lineno"><a class="line" href="classoomph_1_1TUnsteadyHeatElement.html#a18dfb03f3b6af61a477e047d589d089c">  202</a></span><span class="comment"></span>    Node* <a class="code hl_function" href="classoomph_1_1TUnsteadyHeatElement.html#a18dfb03f3b6af61a477e047d589d089c">vertex_node_pt</a>(<span class="keyword">const</span> <span class="keywordtype">unsigned</span>&amp; j)<span class="keyword"> const</span></div>
 <div class="line"><a id="l00203" name="l00203"></a><span class="lineno">  203</span><span class="keyword">    </span>{</div>
 <div class="line"><a id="l00204" name="l00204"></a><span class="lineno">  204</span>      <span class="keywordflow">return</span> <a class="code hl_class" href="classoomph_1_1TElement.html">TElement&lt;DIM, NNODE_1D&gt;::vertex_node_pt</a>(j);</div>
@@ -446,7 +446,7 @@ $(function() {
 <div class="line"><a id="l00317" name="l00317"></a><span class="lineno">  317</span>    : <span class="keyword">public</span> <span class="keyword">virtual</span> <a class="code hl_class" href="classoomph_1_1TElement.html">TElement</a>&lt;DIM - 1, NNODE_1D&gt;</div>
 <div class="line"><a id="l00318" name="l00318"></a><span class="lineno">  318</span>  {</div>
 <div class="line"><a id="l00319" name="l00319"></a><span class="lineno">  319</span>  <span class="keyword">public</span>:<span class="comment"></span></div>
-<div class="line"><a id="l00320" name="l00320"></a><span class="lineno">  320</span><span class="comment">    ///  Constructor: Call the constructor for the</span></div>
+<div class="line"><a id="l00320" name="l00320"></a><span class="lineno">  320</span><span class="comment">    /// Constructor: Call the constructor for the</span></div>
 <div class="line"><a id="l00321" name="l00321"></a><span class="lineno">  321</span><span class="comment">    /// appropriate lower-dimensional TElement</span></div>
 <div class="line"><a id="l00322" name="l00322"></a><span class="lineno"><a class="line" href="classoomph_1_1FaceGeometry_3_01TUnsteadyHeatElement_3_01DIM_00_01NNODE__1D_01_4_01_4.html#aaa769e2b78896380662b06975efd752e">  322</a></span><span class="comment"></span>    <a class="code hl_function" href="classoomph_1_1FaceGeometry_3_01TUnsteadyHeatElement_3_01DIM_00_01NNODE__1D_01_4_01_4.html#aaa769e2b78896380662b06975efd752e">FaceGeometry</a>() : <a class="code hl_class" href="classoomph_1_1TElement.html">TElement</a>&lt;DIM - 1, NNODE_1D&gt;() {}</div>
 <div class="line"><a id="l00323" name="l00323"></a><span class="lineno">  323</span>  };</div>
@@ -459,7 +459,7 @@ $(function() {
 <div class="line"><a id="l00330" name="l00330"></a><span class="lineno">  330</span>    : <span class="keyword">public</span> <span class="keyword">virtual</span> <a class="code hl_class" href="classoomph_1_1PointElement.html">PointElement</a></div>
 <div class="line"><a id="l00331" name="l00331"></a><span class="lineno">  331</span>  {</div>
 <div class="line"><a id="l00332" name="l00332"></a><span class="lineno">  332</span>  <span class="keyword">public</span>:<span class="comment"></span></div>
-<div class="line"><a id="l00333" name="l00333"></a><span class="lineno">  333</span><span class="comment">    ///  Constructor: Call the constructor for the</span></div>
+<div class="line"><a id="l00333" name="l00333"></a><span class="lineno">  333</span><span class="comment">    /// Constructor: Call the constructor for the</span></div>
 <div class="line"><a id="l00334" name="l00334"></a><span class="lineno">  334</span><span class="comment">    /// appropriate lower-dimensional TElement</span></div>
 <div class="line"><a id="l00335" name="l00335"></a><span class="lineno"><a class="line" href="classoomph_1_1FaceGeometry_3_01TUnsteadyHeatElement_3_011_00_01NNODE__1D_01_4_01_4.html#ab38443959b2c1d097897f4e35fefdde2">  335</a></span><span class="comment"></span>    <a class="code hl_function" href="classoomph_1_1FaceGeometry_3_01TUnsteadyHeatElement_3_011_00_01NNODE__1D_01_4_01_4.html#ab38443959b2c1d097897f4e35fefdde2">FaceGeometry</a>() : <a class="code hl_class" href="classoomph_1_1PointElement.html">PointElement</a>() {}</div>
 <div class="line"><a id="l00336" name="l00336"></a><span class="lineno">  336</span>  };</div>
@@ -533,7 +533,7 @@ $(function() {
     <footer>
       <div class="container">
         <div class="text-muted" style="float:right;">Generated by <a href="http://www.doxygen.org/index.html">
-          <img style="height:18px;" class="footer-img" src="doxygen.png" alt="doxygen"></a> on Fri Oct 22 2021 12:23:27
+          <img style="height:18px;" class="footer-img" src="doxygen.png" alt="doxygen"></a> on Mon Oct 25 2021 14:41:47
         </div>
       </div>
     </footer>

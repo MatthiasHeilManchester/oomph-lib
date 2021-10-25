@@ -98,7 +98,7 @@ namespace oomph
   //======================================================================
   namespace Global_timings
   {
-    ///  Global boolean to switch on comprehensive timing -- can
+    /// Global boolean to switch on comprehensive timing -- can
     /// probably be declared const false when development on hector
     /// is complete
     extern bool Doc_comprehensive_timings;
@@ -119,13 +119,13 @@ namespace oomph
     /// Setup terminate helper
     extern void setup();
 
-    ///  Suppress error messages (e.g. because error has been caught)
+    /// Suppress error messages (e.g. because error has been caught)
     extern void suppress_exception_error_messages();
 
     /// Function to spawn messages from uncaught errors
     extern void spawn_errors_from_uncaught_errors();
 
-    ///  Clean up function that deletes anything dynamically allocated
+    /// Clean up function that deletes anything dynamically allocated
     /// in this namespace
     extern void clean_up_memory();
 
@@ -173,7 +173,7 @@ namespace oomph
   class OomphLibException : public std::runtime_error
   {
   public:
-    ///  Suppress issueing of the error message in destructor
+    /// Suppress issueing of the error message in destructor
     /// (useful if error is caught successfully!)
     void disable_error_message()
     {
@@ -208,7 +208,7 @@ namespace oomph
     /// String stream that records the error message
     std::stringstream* Exception_stringstream_pt;
 
-    ///  Boolean to suppress issuing of the error message in destructor
+    /// Boolean to suppress issuing of the error message in destructor
     /// (useful if error is caught successfully!)
     bool Suppress_error_message;
   };
@@ -243,14 +243,14 @@ namespace oomph
     {
     }
 
-    ///  Static member function used to specify the error stream,
+    /// Static member function used to specify the error stream,
     /// which must be passed as a pointer because streams cannot be copied.
     static inline void set_stream_pt(std::ostream* const& stream_pt)
     {
       Stream_pt = stream_pt;
     }
 
-    ///  Static member function used to specify the width (in characters)
+    /// Static member function used to specify the width (in characters)
     /// of the error stream
     static inline void set_output_width(const unsigned& output_width)
     {
@@ -287,14 +287,14 @@ namespace oomph
     {
     }
 
-    ///  Static member function used to specify the error stream,
+    /// Static member function used to specify the error stream,
     /// which must be passed as a pointer because streams cannot be copied.
     static inline void set_stream_pt(std::ostream* const& stream_pt)
     {
       Stream_pt = stream_pt;
     }
 
-    ///  Static member function used to specify the width (in characters)
+    /// Static member function used to specify the width (in characters)
     /// of the error stream
     static inline void set_output_width(const unsigned& output_width)
     {
@@ -344,7 +344,7 @@ namespace oomph
     /// Empty virtual destructor
     virtual ~OutputModifier() {}
 
-    ///  Function that will be called before output from an
+    /// Function that will be called before output from an
     /// OomphOutput object. It returns a bool (true in this default
     /// implementation) to indicate that output should be continued.
     virtual bool operator()(std::ostream& stream)
@@ -406,11 +406,11 @@ namespace oomph
   //=======================================================================
   namespace Global_string_for_annotation
   {
-    ///  Return the i-th string or "" if the relevant string hasn't
+    /// Return the i-th string or "" if the relevant string hasn't
     /// been defined
     extern std::string string(const unsigned& i);
 
-    ///  Storage for strings that may be used for global annotations.
+    /// Storage for strings that may be used for global annotations.
     /// This is global data and you use it at your own risk!
     extern std::vector<std::string> String;
   } // namespace Global_string_for_annotation

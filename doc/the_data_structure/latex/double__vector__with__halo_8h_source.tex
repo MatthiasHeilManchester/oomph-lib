@@ -54,41 +54,41 @@
 \DoxyCodeLine{\Hypertarget{double__vector__with__halo_8h_source_l00050}00050 \textcolor{comment}{}  \textcolor{comment}{//=====================================================================}}
 \DoxyCodeLine{\Hypertarget{double__vector__with__halo_8h_source_l00051}\mbox{\hyperlink{classoomph_1_1DoubleVectorHaloScheme}{00051}}   \textcolor{keyword}{class }\mbox{\hyperlink{classoomph_1_1DoubleVectorHaloScheme}{DoubleVectorHaloScheme}}}
 \DoxyCodeLine{\Hypertarget{double__vector__with__halo_8h_source_l00052}00052   \{\textcolor{comment}{}}
-\DoxyCodeLine{\Hypertarget{double__vector__with__halo_8h_source_l00053}00053 \textcolor{comment}{    ///  The DoubleVectorWithHaloEntries should be able to access the}}
+\DoxyCodeLine{\Hypertarget{double__vector__with__halo_8h_source_l00053}00053 \textcolor{comment}{    /// The DoubleVectorWithHaloEntries should be able to access the}}
 \DoxyCodeLine{\Hypertarget{double__vector__with__halo_8h_source_l00054}00054 \textcolor{comment}{    /// private data.}}
 \DoxyCodeLine{\Hypertarget{double__vector__with__halo_8h_source_l00055}\mbox{\hyperlink{classoomph_1_1DoubleVectorHaloScheme_acae5914031232d05e22888b081f2598f}{00055}} \textcolor{comment}{}    \textcolor{keyword}{friend} \textcolor{keyword}{class }\mbox{\hyperlink{classoomph_1_1DoubleVectorWithHaloEntries}{DoubleVectorWithHaloEntries}};}
 \DoxyCodeLine{\Hypertarget{double__vector__with__halo_8h_source_l00056}00056 \textcolor{comment}{}}
-\DoxyCodeLine{\Hypertarget{double__vector__with__halo_8h_source_l00057}00057 \textcolor{comment}{    ///  Storage for the translation scheme from global unknown}}
+\DoxyCodeLine{\Hypertarget{double__vector__with__halo_8h_source_l00057}00057 \textcolor{comment}{    /// Storage for the translation scheme from global unknown}}
 \DoxyCodeLine{\Hypertarget{double__vector__with__halo_8h_source_l00058}00058 \textcolor{comment}{    /// to local index in the additional storage vector.}}
 \DoxyCodeLine{\Hypertarget{double__vector__with__halo_8h_source_l00059}\mbox{\hyperlink{classoomph_1_1DoubleVectorHaloScheme_a796210b483850bd17f09a0ba85033a1b}{00059}} \textcolor{comment}{}    std::map<unsigned, unsigned> \mbox{\hyperlink{classoomph_1_1DoubleVectorHaloScheme_a796210b483850bd17f09a0ba85033a1b}{Local\_index}};}
 \DoxyCodeLine{\Hypertarget{double__vector__with__halo_8h_source_l00060}00060 \textcolor{comment}{}}
-\DoxyCodeLine{\Hypertarget{double__vector__with__halo_8h_source_l00061}00061 \textcolor{comment}{    ///  The haloed entries that will be sent in a format compatible}}
+\DoxyCodeLine{\Hypertarget{double__vector__with__halo_8h_source_l00061}00061 \textcolor{comment}{    /// The haloed entries that will be sent in a format compatible}}
 \DoxyCodeLine{\Hypertarget{double__vector__with__halo_8h_source_l00062}00062 \textcolor{comment}{    /// with MPI\_Alltoallv i.e. (send\_to\_proc0,send\_to\_proc1 ... send\_to\_procn)}}
 \DoxyCodeLine{\Hypertarget{double__vector__with__halo_8h_source_l00063}\mbox{\hyperlink{classoomph_1_1DoubleVectorHaloScheme_aac79c7fe19ec6fae41e2528a540d0eae}{00063}} \textcolor{comment}{}    \mbox{\hyperlink{classoomph_1_1Vector}{Vector<unsigned>}} \mbox{\hyperlink{classoomph_1_1DoubleVectorHaloScheme_aac79c7fe19ec6fae41e2528a540d0eae}{Haloed\_eqns}};}
 \DoxyCodeLine{\Hypertarget{double__vector__with__halo_8h_source_l00064}00064 \textcolor{comment}{}}
-\DoxyCodeLine{\Hypertarget{double__vector__with__halo_8h_source_l00065}00065 \textcolor{comment}{    ///  Storage for the number of haloed entries to be sent to each}}
+\DoxyCodeLine{\Hypertarget{double__vector__with__halo_8h_source_l00065}00065 \textcolor{comment}{    /// Storage for the number of haloed entries to be sent to each}}
 \DoxyCodeLine{\Hypertarget{double__vector__with__halo_8h_source_l00066}00066 \textcolor{comment}{    /// processor}}
 \DoxyCodeLine{\Hypertarget{double__vector__with__halo_8h_source_l00067}\mbox{\hyperlink{classoomph_1_1DoubleVectorHaloScheme_a13f0645d32135d7ffaedef8c888f7382}{00067}} \textcolor{comment}{}    \mbox{\hyperlink{classoomph_1_1Vector}{Vector<int>}} \mbox{\hyperlink{classoomph_1_1DoubleVectorHaloScheme_a13f0645d32135d7ffaedef8c888f7382}{Haloed\_n}};}
 \DoxyCodeLine{\Hypertarget{double__vector__with__halo_8h_source_l00068}00068 \textcolor{comment}{}}
-\DoxyCodeLine{\Hypertarget{double__vector__with__halo_8h_source_l00069}00069 \textcolor{comment}{    ///  Storage for the offsets of the haloed entries for each processor}}
+\DoxyCodeLine{\Hypertarget{double__vector__with__halo_8h_source_l00069}00069 \textcolor{comment}{    /// Storage for the offsets of the haloed entries for each processor}}
 \DoxyCodeLine{\Hypertarget{double__vector__with__halo_8h_source_l00070}00070 \textcolor{comment}{    /// in the packed Haloed\_eqns array}}
 \DoxyCodeLine{\Hypertarget{double__vector__with__halo_8h_source_l00071}\mbox{\hyperlink{classoomph_1_1DoubleVectorHaloScheme_a7e8278718224d7348051443805bf145e}{00071}} \textcolor{comment}{}    \mbox{\hyperlink{classoomph_1_1Vector}{Vector<int>}} \mbox{\hyperlink{classoomph_1_1DoubleVectorHaloScheme_a7e8278718224d7348051443805bf145e}{Haloed\_displacement}};}
 \DoxyCodeLine{\Hypertarget{double__vector__with__halo_8h_source_l00072}00072 \textcolor{comment}{}}
-\DoxyCodeLine{\Hypertarget{double__vector__with__halo_8h_source_l00073}00073 \textcolor{comment}{    ///  Storage for all the entries that are to be received from}}
+\DoxyCodeLine{\Hypertarget{double__vector__with__halo_8h_source_l00073}00073 \textcolor{comment}{    /// Storage for all the entries that are to be received from}}
 \DoxyCodeLine{\Hypertarget{double__vector__with__halo_8h_source_l00074}00074 \textcolor{comment}{    /// other processors}}
 \DoxyCodeLine{\Hypertarget{double__vector__with__halo_8h_source_l00075}00075 \textcolor{comment}{    /// (received\_from\_proc0,received\_from\_proc1,...received\_from\_procn)}}
 \DoxyCodeLine{\Hypertarget{double__vector__with__halo_8h_source_l00076}\mbox{\hyperlink{classoomph_1_1DoubleVectorHaloScheme_ae9dc75c67359f762bd09bdaf904158fe}{00076}} \textcolor{comment}{}    \mbox{\hyperlink{classoomph_1_1Vector}{Vector<unsigned>}} \mbox{\hyperlink{classoomph_1_1DoubleVectorHaloScheme_ae9dc75c67359f762bd09bdaf904158fe}{Halo\_eqns}};}
 \DoxyCodeLine{\Hypertarget{double__vector__with__halo_8h_source_l00077}00077 \textcolor{comment}{}}
-\DoxyCodeLine{\Hypertarget{double__vector__with__halo_8h_source_l00078}00078 \textcolor{comment}{    ///  Storage for the number of entries to be received from each}}
+\DoxyCodeLine{\Hypertarget{double__vector__with__halo_8h_source_l00078}00078 \textcolor{comment}{    /// Storage for the number of entries to be received from each}}
 \DoxyCodeLine{\Hypertarget{double__vector__with__halo_8h_source_l00079}00079 \textcolor{comment}{    /// other processor}}
 \DoxyCodeLine{\Hypertarget{double__vector__with__halo_8h_source_l00080}\mbox{\hyperlink{classoomph_1_1DoubleVectorHaloScheme_a47895cdeb23fef294e0facf880847063}{00080}} \textcolor{comment}{}    \mbox{\hyperlink{classoomph_1_1Vector}{Vector<int>}} \mbox{\hyperlink{classoomph_1_1DoubleVectorHaloScheme_a47895cdeb23fef294e0facf880847063}{Halo\_n}};}
 \DoxyCodeLine{\Hypertarget{double__vector__with__halo_8h_source_l00081}00081 \textcolor{comment}{}}
-\DoxyCodeLine{\Hypertarget{double__vector__with__halo_8h_source_l00082}00082 \textcolor{comment}{    ///  Storage for the offsets of the processor data in the}}
+\DoxyCodeLine{\Hypertarget{double__vector__with__halo_8h_source_l00082}00082 \textcolor{comment}{    /// Storage for the offsets of the processor data in the}}
 \DoxyCodeLine{\Hypertarget{double__vector__with__halo_8h_source_l00083}00083 \textcolor{comment}{    /// receive buffer}}
 \DoxyCodeLine{\Hypertarget{double__vector__with__halo_8h_source_l00084}\mbox{\hyperlink{classoomph_1_1DoubleVectorHaloScheme_a4357c43e12dbadede7f9852a96db4391}{00084}} \textcolor{comment}{}    \mbox{\hyperlink{classoomph_1_1Vector}{Vector<int>}} \mbox{\hyperlink{classoomph_1_1DoubleVectorHaloScheme_a4357c43e12dbadede7f9852a96db4391}{Halo\_displacement}};}
 \DoxyCodeLine{\Hypertarget{double__vector__with__halo_8h_source_l00085}00085 }
 \DoxyCodeLine{\Hypertarget{double__vector__with__halo_8h_source_l00086}00086 \textcolor{comment}{}}
-\DoxyCodeLine{\Hypertarget{double__vector__with__halo_8h_source_l00087}00087 \textcolor{comment}{    ///  Store the distribution that was used to setup the halo scheme}}
+\DoxyCodeLine{\Hypertarget{double__vector__with__halo_8h_source_l00087}00087 \textcolor{comment}{    /// Store the distribution that was used to setup the halo scheme}}
 \DoxyCodeLine{\Hypertarget{double__vector__with__halo_8h_source_l00088}\mbox{\hyperlink{classoomph_1_1DoubleVectorHaloScheme_a4c3aa7f9d1da907fdbacf79c36355004}{00088}} \textcolor{comment}{}    \mbox{\hyperlink{classoomph_1_1LinearAlgebraDistribution}{LinearAlgebraDistribution}}* \mbox{\hyperlink{classoomph_1_1DoubleVectorHaloScheme_a4c3aa7f9d1da907fdbacf79c36355004}{Distribution\_pt}};}
 \DoxyCodeLine{\Hypertarget{double__vector__with__halo_8h_source_l00089}00089 }
 \DoxyCodeLine{\Hypertarget{double__vector__with__halo_8h_source_l00090}00090   \textcolor{keyword}{public}:\textcolor{comment}{}}
@@ -152,18 +152,18 @@
 \DoxyCodeLine{\Hypertarget{double__vector__with__halo_8h_source_l00148}00148 \textcolor{comment}{  ///======================================================================}}
 \DoxyCodeLine{\Hypertarget{double__vector__with__halo_8h_source_l00149}\mbox{\hyperlink{classoomph_1_1DoubleVectorWithHaloEntries}{00149}} \textcolor{comment}{}  \textcolor{keyword}{class }\mbox{\hyperlink{classoomph_1_1DoubleVectorWithHaloEntries}{DoubleVectorWithHaloEntries}} : \textcolor{keyword}{public} \mbox{\hyperlink{classoomph_1_1DoubleVector}{DoubleVector}}}
 \DoxyCodeLine{\Hypertarget{double__vector__with__halo_8h_source_l00150}00150   \{\textcolor{comment}{}}
-\DoxyCodeLine{\Hypertarget{double__vector__with__halo_8h_source_l00151}00151 \textcolor{comment}{    ///  Pointer to the lookup scheme that stores information about}}
+\DoxyCodeLine{\Hypertarget{double__vector__with__halo_8h_source_l00151}00151 \textcolor{comment}{    /// Pointer to the lookup scheme that stores information about}}
 \DoxyCodeLine{\Hypertarget{double__vector__with__halo_8h_source_l00152}00152 \textcolor{comment}{    /// on which processor the required information is haloed}}
 \DoxyCodeLine{\Hypertarget{double__vector__with__halo_8h_source_l00153}\mbox{\hyperlink{classoomph_1_1DoubleVectorWithHaloEntries_a59c62401e999f683365a34151362e328}{00153}} \textcolor{comment}{}    \mbox{\hyperlink{classoomph_1_1DoubleVectorHaloScheme}{DoubleVectorHaloScheme}}* \mbox{\hyperlink{classoomph_1_1DoubleVectorWithHaloEntries_a59c62401e999f683365a34151362e328}{Halo\_scheme\_pt}};}
 \DoxyCodeLine{\Hypertarget{double__vector__with__halo_8h_source_l00154}00154 \textcolor{comment}{}}
-\DoxyCodeLine{\Hypertarget{double__vector__with__halo_8h_source_l00155}00155 \textcolor{comment}{    ///  Vector of the halo values}}
+\DoxyCodeLine{\Hypertarget{double__vector__with__halo_8h_source_l00155}00155 \textcolor{comment}{    /// Vector of the halo values}}
 \DoxyCodeLine{\Hypertarget{double__vector__with__halo_8h_source_l00156}\mbox{\hyperlink{classoomph_1_1DoubleVectorWithHaloEntries_ac2b04ca1db09db85401e0d59a225856b}{00156}} \textcolor{comment}{}    \mbox{\hyperlink{classoomph_1_1Vector}{Vector<double>}} \mbox{\hyperlink{classoomph_1_1DoubleVectorWithHaloEntries_ac2b04ca1db09db85401e0d59a225856b}{Halo\_value}};}
 \DoxyCodeLine{\Hypertarget{double__vector__with__halo_8h_source_l00157}00157 }
 \DoxyCodeLine{\Hypertarget{double__vector__with__halo_8h_source_l00158}00158   \textcolor{keyword}{public}:\textcolor{comment}{}}
-\DoxyCodeLine{\Hypertarget{double__vector__with__halo_8h_source_l00159}00159 \textcolor{comment}{    ///  Constructor for an uninitialized DoubleVectorWithHaloEntries}}
+\DoxyCodeLine{\Hypertarget{double__vector__with__halo_8h_source_l00159}00159 \textcolor{comment}{    /// Constructor for an uninitialized DoubleVectorWithHaloEntries}}
 \DoxyCodeLine{\Hypertarget{double__vector__with__halo_8h_source_l00160}\mbox{\hyperlink{classoomph_1_1DoubleVectorWithHaloEntries_a023d72d2bd81de0e62c5c860edbca5d5}{00160}} \textcolor{comment}{}    \mbox{\hyperlink{classoomph_1_1DoubleVectorWithHaloEntries_a023d72d2bd81de0e62c5c860edbca5d5}{DoubleVectorWithHaloEntries}}() : \mbox{\hyperlink{classoomph_1_1DoubleVector}{DoubleVector}}(), \mbox{\hyperlink{classoomph_1_1DoubleVectorWithHaloEntries_a59c62401e999f683365a34151362e328}{Halo\_scheme\_pt}}(0) \{\}}
 \DoxyCodeLine{\Hypertarget{double__vector__with__halo_8h_source_l00161}00161 \textcolor{comment}{}}
-\DoxyCodeLine{\Hypertarget{double__vector__with__halo_8h_source_l00162}00162 \textcolor{comment}{    ///  Constructor. Assembles a DoubleVectorWithHaloEntries}}
+\DoxyCodeLine{\Hypertarget{double__vector__with__halo_8h_source_l00162}00162 \textcolor{comment}{    /// Constructor. Assembles a DoubleVectorWithHaloEntries}}
 \DoxyCodeLine{\Hypertarget{double__vector__with__halo_8h_source_l00163}00163 \textcolor{comment}{    /// with a prescribed}}
 \DoxyCodeLine{\Hypertarget{double__vector__with__halo_8h_source_l00164}00164 \textcolor{comment}{    /// distribution. Additionally every entry can be set (with argument v -\/}}
 \DoxyCodeLine{\Hypertarget{double__vector__with__halo_8h_source_l00165}00165 \textcolor{comment}{    /// defaults to 0).}}
@@ -177,7 +177,7 @@
 \DoxyCodeLine{\Hypertarget{double__vector__with__halo_8h_source_l00173}00173       this-\/>\mbox{\hyperlink{classoomph_1_1DoubleVectorWithHaloEntries_a1aab1a84c6a82a755fdc3c6b27ce49d7}{build\_halo\_scheme}}(\mbox{\hyperlink{classoomph_1_1DoubleVectorWithHaloEntries_a7d753121acddfdc4b29d04812b91b5ec}{halo\_scheme\_pt}});}
 \DoxyCodeLine{\Hypertarget{double__vector__with__halo_8h_source_l00174}00174     \}}
 \DoxyCodeLine{\Hypertarget{double__vector__with__halo_8h_source_l00175}00175 \textcolor{comment}{}}
-\DoxyCodeLine{\Hypertarget{double__vector__with__halo_8h_source_l00176}00176 \textcolor{comment}{    ///  Constructor. Assembles a DoubleVectorWithHaloEntries}}
+\DoxyCodeLine{\Hypertarget{double__vector__with__halo_8h_source_l00176}00176 \textcolor{comment}{    /// Constructor. Assembles a DoubleVectorWithHaloEntries}}
 \DoxyCodeLine{\Hypertarget{double__vector__with__halo_8h_source_l00177}00177 \textcolor{comment}{    /// with a prescribed}}
 \DoxyCodeLine{\Hypertarget{double__vector__with__halo_8h_source_l00178}00178 \textcolor{comment}{    /// distribution. Additionally every entry can be set (with argument v -\/}}
 \DoxyCodeLine{\Hypertarget{double__vector__with__halo_8h_source_l00179}00179 \textcolor{comment}{    /// defaults to 0).}}

@@ -171,7 +171,7 @@ $(function() {
 <div class="line"><a id="l00042" name="l00042"></a><span class="lineno">   42</span><span class="keyword">namespace </span><a class="code hl_namespace" href="namespaceoomph.html">oomph</a></div>
 <div class="line"><a id="l00043" name="l00043"></a><span class="lineno">   43</span>{</div>
 <div class="line"><a id="l00044" name="l00044"></a><span class="lineno">   44</span>  <span class="comment">//======================================================================</span><span class="comment"></span></div>
-<div class="line"><a id="l00045" name="l00045"></a><span class="lineno">   45</span><span class="comment">  ///  A class for elements that allow the imposition of an</span></div>
+<div class="line"><a id="l00045" name="l00045"></a><span class="lineno">   45</span><span class="comment">  /// A class for elements that allow the imposition of an</span></div>
 <div class="line"><a id="l00046" name="l00046"></a><span class="lineno">   46</span><span class="comment">  /// applied flux on the boundaries of Helmholtz elements.</span></div>
 <div class="line"><a id="l00047" name="l00047"></a><span class="lineno">   47</span><span class="comment">  /// The element geometry is obtained from the  FaceGeometry&lt;ELEMENT&gt;</span></div>
 <div class="line"><a id="l00048" name="l00048"></a><span class="lineno">   48</span><span class="comment">  /// policy class.</span></div>
@@ -181,18 +181,18 @@ $(function() {
 <div class="line"><a id="l00052" name="l00052"></a><span class="lineno">   52</span>                               <span class="keyword">public</span> <span class="keyword">virtual</span> <a class="code hl_class" href="classoomph_1_1FaceElement.html">FaceElement</a></div>
 <div class="line"><a id="l00053" name="l00053"></a><span class="lineno">   53</span>  {</div>
 <div class="line"><a id="l00054" name="l00054"></a><span class="lineno">   54</span>  <span class="keyword">public</span>:<span class="comment"></span></div>
-<div class="line"><a id="l00055" name="l00055"></a><span class="lineno">   55</span><span class="comment">    ///  Function pointer to the prescribed-flux function fct(x,f(x)) --</span></div>
+<div class="line"><a id="l00055" name="l00055"></a><span class="lineno">   55</span><span class="comment">    /// Function pointer to the prescribed-flux function fct(x,f(x)) --</span></div>
 <div class="line"><a id="l00056" name="l00056"></a><span class="lineno">   56</span><span class="comment">    /// x is a Vector and  the flux is a complex</span></div>
 <div class="line"><a id="l00057" name="l00057"></a><span class="lineno">   57</span><span class="comment"></span> </div>
 <div class="line"><a id="l00058" name="l00058"></a><span class="lineno"><a class="line" href="classoomph_1_1HelmholtzFluxElement.html#ad53ce405c551a39ac9baeaaab7f254df">   58</a></span>    <span class="keyword">typedef</span> void (*<a class="code hl_typedef" href="classoomph_1_1HelmholtzFluxElement.html#ad53ce405c551a39ac9baeaaab7f254df">HelmholtzPrescribedFluxFctPt</a>)(<span class="keyword">const</span> <a class="code hl_class" href="classoomph_1_1Vector.html">Vector&lt;double&gt;</a>&amp; <a class="code hl_variable" href="namespaceoomph.html#a9d1d2da2b8bb8e73af72b5cadb8fe97c">x</a>,</div>
 <div class="line"><a id="l00059" name="l00059"></a><span class="lineno">   59</span>                                                 std::complex&lt;double&gt;&amp; flux);</div>
 <div class="line"><a id="l00060" name="l00060"></a><span class="lineno">   60</span><span class="comment"></span> </div>
-<div class="line"><a id="l00061" name="l00061"></a><span class="lineno">   61</span><span class="comment">    ///  Constructor, takes the pointer to the &quot;bulk&quot; element and the</span></div>
+<div class="line"><a id="l00061" name="l00061"></a><span class="lineno">   61</span><span class="comment">    /// Constructor, takes the pointer to the &quot;bulk&quot; element and the</span></div>
 <div class="line"><a id="l00062" name="l00062"></a><span class="lineno">   62</span><span class="comment">    /// index of the face to which the element is attached.</span></div>
 <div class="line"><a id="l00063" name="l00063"></a><span class="lineno">   63</span><span class="comment"></span>    <a class="code hl_function" href="classoomph_1_1HelmholtzFluxElement.html#a73182cbef5c3c2ccb7abdb6337b3651b">HelmholtzFluxElement</a>(<a class="code hl_class" href="classoomph_1_1FiniteElement.html">FiniteElement</a>* <span class="keyword">const</span>&amp; bulk_el_pt,</div>
 <div class="line"><a id="l00064" name="l00064"></a><span class="lineno">   64</span>                         <span class="keyword">const</span> <span class="keywordtype">int</span>&amp; <a class="code hl_function" href="classoomph_1_1FaceElement.html#a14990bd081523c47cfe57e5ecf54dfe1">face_index</a>);</div>
 <div class="line"><a id="l00065" name="l00065"></a><span class="lineno">   65</span><span class="comment"></span> </div>
-<div class="line"><a id="l00066" name="l00066"></a><span class="lineno">   66</span><span class="comment">    ///  Broken empty constructor</span></div>
+<div class="line"><a id="l00066" name="l00066"></a><span class="lineno">   66</span><span class="comment">    /// Broken empty constructor</span></div>
 <div class="line"><a id="l00067" name="l00067"></a><span class="lineno"><a class="line" href="classoomph_1_1HelmholtzFluxElement.html#a73182cbef5c3c2ccb7abdb6337b3651b">   67</a></span><span class="comment"></span>    <a class="code hl_function" href="classoomph_1_1HelmholtzFluxElement.html#a73182cbef5c3c2ccb7abdb6337b3651b">HelmholtzFluxElement</a>()</div>
 <div class="line"><a id="l00068" name="l00068"></a><span class="lineno">   68</span>    {</div>
 <div class="line"><a id="l00069" name="l00069"></a><span class="lineno">   69</span>      <span class="keywordflow">throw</span> <a class="code hl_class" href="classoomph_1_1OomphLibError.html">OomphLibError</a>(</div>
@@ -230,7 +230,7 @@ $(function() {
 <div class="line"><a id="l00101" name="l00101"></a><span class="lineno">  101</span>    }</div>
 <div class="line"><a id="l00102" name="l00102"></a><span class="lineno">  102</span> </div>
 <div class="line"><a id="l00103" name="l00103"></a><span class="lineno">  103</span><span class="comment"></span> </div>
-<div class="line"><a id="l00104" name="l00104"></a><span class="lineno">  104</span><span class="comment">    ///  Add the element&#39;s contribution to its residual vector and its</span></div>
+<div class="line"><a id="l00104" name="l00104"></a><span class="lineno">  104</span><span class="comment">    /// Add the element&#39;s contribution to its residual vector and its</span></div>
 <div class="line"><a id="l00105" name="l00105"></a><span class="lineno">  105</span><span class="comment">    /// Jacobian matrix</span></div>
 <div class="line"><a id="l00106" name="l00106"></a><span class="lineno"><a class="line" href="classoomph_1_1HelmholtzFluxElement.html#ac388e1c565715ffc9953fc548def1bf5">  106</a></span><span class="comment"></span>    <span class="keyword">inline</span> <span class="keywordtype">void</span> <a class="code hl_function" href="classoomph_1_1HelmholtzFluxElement.html#ac388e1c565715ffc9953fc548def1bf5">fill_in_contribution_to_jacobian</a>(<a class="code hl_class" href="classoomph_1_1Vector.html">Vector&lt;double&gt;</a>&amp; residuals,</div>
 <div class="line"><a id="l00107" name="l00107"></a><span class="lineno">  107</span>                                                 <a class="code hl_class" href="classoomph_1_1DenseMatrix.html">DenseMatrix&lt;double&gt;</a>&amp; <a class="code hl_variable" href="classoomph_1_1FiniteElement.html#aa6c806dab803b82ba4f02cf806971af8">jacobian</a>)</div>
@@ -241,7 +241,7 @@ $(function() {
 <div class="line"><a id="l00112" name="l00112"></a><span class="lineno">  112</span>    }</div>
 <div class="line"><a id="l00113" name="l00113"></a><span class="lineno">  113</span> </div>
 <div class="line"><a id="l00114" name="l00114"></a><span class="lineno">  114</span><span class="comment"></span> </div>
-<div class="line"><a id="l00115" name="l00115"></a><span class="lineno">  115</span><span class="comment">    ///  Specify the value of nodal zeta from the face geometry</span></div>
+<div class="line"><a id="l00115" name="l00115"></a><span class="lineno">  115</span><span class="comment">    /// Specify the value of nodal zeta from the face geometry</span></div>
 <div class="line"><a id="l00116" name="l00116"></a><span class="lineno">  116</span><span class="comment">    /// The &quot;global&quot; intrinsic coordinate of the element when</span></div>
 <div class="line"><a id="l00117" name="l00117"></a><span class="lineno">  117</span><span class="comment">    /// viewed as part of a geometric object should be given by</span></div>
 <div class="line"><a id="l00118" name="l00118"></a><span class="lineno">  118</span><span class="comment">    /// the FaceElement representation, by default (needed to break</span></div>
@@ -261,7 +261,7 @@ $(function() {
 <div class="line"><a id="l00132" name="l00132"></a><span class="lineno">  132</span>      <a class="code hl_function" href="classoomph_1_1FiniteElement.html#a2ad98a3d2ef4999f1bef62c0ff13f2a7">FiniteElement::output</a>(outfile);</div>
 <div class="line"><a id="l00133" name="l00133"></a><span class="lineno">  133</span>    }</div>
 <div class="line"><a id="l00134" name="l00134"></a><span class="lineno">  134</span><span class="comment"></span> </div>
-<div class="line"><a id="l00135" name="l00135"></a><span class="lineno">  135</span><span class="comment">    ///  Output function -- forward to broken version in FiniteElement</span></div>
+<div class="line"><a id="l00135" name="l00135"></a><span class="lineno">  135</span><span class="comment">    /// Output function -- forward to broken version in FiniteElement</span></div>
 <div class="line"><a id="l00136" name="l00136"></a><span class="lineno">  136</span><span class="comment">    /// until somebody decides what exactly they want to plot here...</span></div>
 <div class="line"><a id="l00137" name="l00137"></a><span class="lineno"><a class="line" href="classoomph_1_1HelmholtzFluxElement.html#a8df42455a8d4584c1d67e8e0d7ab44a0">  137</a></span><span class="comment"></span>    <span class="keywordtype">void</span> <a class="code hl_function" href="classoomph_1_1HelmholtzFluxElement.html#a8df42455a8d4584c1d67e8e0d7ab44a0">output</a>(std::ostream&amp; outfile, <span class="keyword">const</span> <span class="keywordtype">unsigned</span>&amp; n_plot)</div>
 <div class="line"><a id="l00138" name="l00138"></a><span class="lineno">  138</span>    {</div>
@@ -276,7 +276,7 @@ $(function() {
 <div class="line"><a id="l00147" name="l00147"></a><span class="lineno">  147</span>      <a class="code hl_function" href="classoomph_1_1FiniteElement.html#a2ad98a3d2ef4999f1bef62c0ff13f2a7">FiniteElement::output</a>(file_pt);</div>
 <div class="line"><a id="l00148" name="l00148"></a><span class="lineno">  148</span>    }</div>
 <div class="line"><a id="l00149" name="l00149"></a><span class="lineno">  149</span><span class="comment"></span> </div>
-<div class="line"><a id="l00150" name="l00150"></a><span class="lineno">  150</span><span class="comment">    ///  C-style output function -- forward to broken version in</span></div>
+<div class="line"><a id="l00150" name="l00150"></a><span class="lineno">  150</span><span class="comment">    /// C-style output function -- forward to broken version in</span></div>
 <div class="line"><a id="l00151" name="l00151"></a><span class="lineno">  151</span><span class="comment">    /// FiniteElement until somebody decides what exactly they want to plot</span></div>
 <div class="line"><a id="l00152" name="l00152"></a><span class="lineno">  152</span><span class="comment">    /// here...</span></div>
 <div class="line"><a id="l00153" name="l00153"></a><span class="lineno"><a class="line" href="classoomph_1_1HelmholtzFluxElement.html#a125673c600acb76787db63810c51066d">  153</a></span><span class="comment"></span>    <span class="keywordtype">void</span> <a class="code hl_function" href="classoomph_1_1HelmholtzFluxElement.html#a125673c600acb76787db63810c51066d">output</a>(FILE* file_pt, <span class="keyword">const</span> <span class="keywordtype">unsigned</span>&amp; n_plot)</div>
@@ -285,7 +285,7 @@ $(function() {
 <div class="line"><a id="l00156" name="l00156"></a><span class="lineno">  156</span>    }</div>
 <div class="line"><a id="l00157" name="l00157"></a><span class="lineno">  157</span> </div>
 <div class="line"><a id="l00158" name="l00158"></a><span class="lineno">  158</span><span class="comment"></span> </div>
-<div class="line"><a id="l00159" name="l00159"></a><span class="lineno">  159</span><span class="comment">    ///  Return the index at which the unknown value</span></div>
+<div class="line"><a id="l00159" name="l00159"></a><span class="lineno">  159</span><span class="comment">    /// Return the index at which the unknown value</span></div>
 <div class="line"><a id="l00160" name="l00160"></a><span class="lineno">  160</span><span class="comment">    /// is stored.</span></div>
 <div class="line"><a id="l00161" name="l00161"></a><span class="lineno"><a class="line" href="classoomph_1_1HelmholtzFluxElement.html#aeb7d32f5e95b2ce8682b89c4f8e7d0c5">  161</a></span><span class="comment"></span>    <span class="keyword">virtual</span> <span class="keyword">inline</span> std::complex&lt;unsigned&gt; <a class="code hl_function" href="classoomph_1_1HelmholtzFluxElement.html#aeb7d32f5e95b2ce8682b89c4f8e7d0c5">u_index_helmholtz</a>()<span class="keyword"> const</span></div>
 <div class="line"><a id="l00162" name="l00162"></a><span class="lineno">  162</span><span class="keyword">    </span>{</div>
@@ -295,7 +295,7 @@ $(function() {
 <div class="line"><a id="l00166" name="l00166"></a><span class="lineno">  166</span> </div>
 <div class="line"><a id="l00167" name="l00167"></a><span class="lineno">  167</span> </div>
 <div class="line"><a id="l00168" name="l00168"></a><span class="lineno">  168</span>  <span class="keyword">protected</span>:<span class="comment"></span></div>
-<div class="line"><a id="l00169" name="l00169"></a><span class="lineno">  169</span><span class="comment">    ///  Function to compute the shape and test functions and to return</span></div>
+<div class="line"><a id="l00169" name="l00169"></a><span class="lineno">  169</span><span class="comment">    /// Function to compute the shape and test functions and to return</span></div>
 <div class="line"><a id="l00170" name="l00170"></a><span class="lineno">  170</span><span class="comment">    /// the Jacobian of mapping between local and global (Eulerian)</span></div>
 <div class="line"><a id="l00171" name="l00171"></a><span class="lineno">  171</span><span class="comment">    /// coordinates</span></div>
 <div class="line"><a id="l00172" name="l00172"></a><span class="lineno"><a class="line" href="classoomph_1_1HelmholtzFluxElement.html#a7d4c36738cba6e0620fa394d66ea28c5">  172</a></span><span class="comment"></span>    <span class="keyword">inline</span> <span class="keywordtype">double</span> <a class="code hl_function" href="classoomph_1_1HelmholtzFluxElement.html#a7d4c36738cba6e0620fa394d66ea28c5">shape_and_test</a>(<span class="keyword">const</span> <a class="code hl_class" href="classoomph_1_1Vector.html">Vector&lt;double&gt;</a>&amp; <a class="code hl_variable" href="cfortran_8h.html#ab7123126e4885ef647dd9c6e3807a21c">s</a>,</div>
@@ -319,7 +319,7 @@ $(function() {
 <div class="line"><a id="l00190" name="l00190"></a><span class="lineno">  190</span>    }</div>
 <div class="line"><a id="l00191" name="l00191"></a><span class="lineno">  191</span> </div>
 <div class="line"><a id="l00192" name="l00192"></a><span class="lineno">  192</span><span class="comment"></span> </div>
-<div class="line"><a id="l00193" name="l00193"></a><span class="lineno">  193</span><span class="comment">    ///  Function to compute the shape and test functions and to return</span></div>
+<div class="line"><a id="l00193" name="l00193"></a><span class="lineno">  193</span><span class="comment">    /// Function to compute the shape and test functions and to return</span></div>
 <div class="line"><a id="l00194" name="l00194"></a><span class="lineno">  194</span><span class="comment">    /// the Jacobian of mapping between local and global (Eulerian)</span></div>
 <div class="line"><a id="l00195" name="l00195"></a><span class="lineno">  195</span><span class="comment">    /// coordinates</span></div>
 <div class="line"><a id="l00196" name="l00196"></a><span class="lineno"><a class="line" href="classoomph_1_1HelmholtzFluxElement.html#a463b7abfac1cc3aa698437b484b51683">  196</a></span><span class="comment"></span>    <span class="keyword">inline</span> <span class="keywordtype">double</span> <a class="code hl_function" href="classoomph_1_1HelmholtzFluxElement.html#a463b7abfac1cc3aa698437b484b51683">shape_and_test_at_knot</a>(<span class="keyword">const</span> <span class="keywordtype">unsigned</span>&amp; ipt,</div>
@@ -360,12 +360,12 @@ $(function() {
 <div class="line"><a id="l00231" name="l00231"></a><span class="lineno">  231</span>    }</div>
 <div class="line"><a id="l00232" name="l00232"></a><span class="lineno">  232</span> </div>
 <div class="line"><a id="l00233" name="l00233"></a><span class="lineno">  233</span><span class="comment"></span> </div>
-<div class="line"><a id="l00234" name="l00234"></a><span class="lineno">  234</span><span class="comment">    ///  The index at which the real and imag part of the unknown is</span></div>
+<div class="line"><a id="l00234" name="l00234"></a><span class="lineno">  234</span><span class="comment">    /// The index at which the real and imag part of the unknown is</span></div>
 <div class="line"><a id="l00235" name="l00235"></a><span class="lineno">  235</span><span class="comment">    /// stored at the nodes</span></div>
 <div class="line"><a id="l00236" name="l00236"></a><span class="lineno"><a class="line" href="classoomph_1_1HelmholtzFluxElement.html#ac5fd419a34614c3ae7a784faa28b773e">  236</a></span><span class="comment"></span>    std::complex&lt;unsigned&gt; <a class="code hl_variable" href="classoomph_1_1HelmholtzFluxElement.html#ac5fd419a34614c3ae7a784faa28b773e">U_index_helmholtz</a>;</div>
 <div class="line"><a id="l00237" name="l00237"></a><span class="lineno">  237</span> </div>
 <div class="line"><a id="l00238" name="l00238"></a><span class="lineno">  238</span><span class="comment"></span> </div>
-<div class="line"><a id="l00239" name="l00239"></a><span class="lineno">  239</span><span class="comment">    ///  Add the element&#39;s contribution to its residual vector.</span></div>
+<div class="line"><a id="l00239" name="l00239"></a><span class="lineno">  239</span><span class="comment">    /// Add the element&#39;s contribution to its residual vector.</span></div>
 <div class="line"><a id="l00240" name="l00240"></a><span class="lineno">  240</span><span class="comment">    /// flag=1(or 0): do (or don&#39;t) compute the contribution to the</span></div>
 <div class="line"><a id="l00241" name="l00241"></a><span class="lineno">  241</span><span class="comment">    /// Jacobian as well.</span></div>
 <div class="line"><a id="l00242" name="l00242"></a><span class="lineno">  242</span><span class="comment"></span>    <span class="keyword">virtual</span> <span class="keywordtype">void</span> <a class="code hl_function" href="classoomph_1_1HelmholtzFluxElement.html#a4f6caf80f078c526144990ee77bfaf92">fill_in_generic_residual_contribution_helmholtz_flux</a>(</div>
@@ -712,7 +712,7 @@ $(function() {
     <footer>
       <div class="container">
         <div class="text-muted" style="float:right;">Generated by <a href="http://www.doxygen.org/index.html">
-          <img style="height:18px;" class="footer-img" src="doxygen.png" alt="doxygen"></a> on Fri Oct 22 2021 12:23:24
+          <img style="height:18px;" class="footer-img" src="doxygen.png" alt="doxygen"></a> on Mon Oct 25 2021 14:41:44
         </div>
       </div>
     </footer>

@@ -189,7 +189,7 @@ elements" (specified via one or more <code>Meshes</code> &ndash; here simply use
 <div class="line"> </div>
 <div class="line"><span class="keyword">public</span>: </div>
 <div class="line"><span class="comment"></span> </div>
-<div class="line"><span class="comment"> ///  The number of &quot;DOF types&quot; that degrees of freedom in this element</span></div>
+<div class="line"><span class="comment"> /// The number of &quot;DOF types&quot; that degrees of freedom in this element</span></div>
 <div class="line"><span class="comment"> /// are sub-divided into: The displacement components</span></div>
 <div class="line"><span class="comment"></span> <span class="keywordtype">unsigned</span> ndof_types()<span class="keyword"> const</span></div>
 <div class="line"><span class="keyword">  </span>{</div>
@@ -316,7 +316,7 @@ Theory</h3>
 Implementation as a BlockPreconditioner</h3>
 <p >Here is a sample implementation of the diagonal block preconditioner as a class <code>Diagonal</code>, derived from the <code>BlockPreconditioner</code> base class. The class provides storage for the subsidiary preconditioners that solve the linear systems associated with the diagonal blocks, implements the <code>setup()</code> and <code>preconditioner_solve(...)</code> functions, and provides a helper function <code>clean_up_my_memory()</code> which does what it says. We also provide an access function which allows the user to specify the pointer to the <code>Mesh</code> that contains the <code>MultiPoissonElements</code> which classify the dofs.</p>
  <div class="fragment"><div class="line"><span class="comment">//=========================start_of_diagonal_class=============================</span></div>
-<div class="line"><span class="comment">///  Simple proof-of-concept block diagonal preconditioner for</span><span class="comment"></span></div>
+<div class="line"><span class="comment">/// Simple proof-of-concept block diagonal preconditioner for</span><span class="comment"></span></div>
 <div class="line"><span class="comment">/// demo purposes. There&#39;s a much better version in src/generic!</span></div>
 <div class="line"><span class="comment"></span><span class="comment">//=============================================================================</span></div>
 <div class="line"> <span class="keyword">template</span>&lt;<span class="keyword">typename</span> MATRIX&gt; </div>
@@ -332,7 +332,7 @@ Implementation as a BlockPreconditioner</h3>
 <div class="line">   } <span class="comment">// end_of_constructor</span></div>
 <div class="line"> </div>
 <div class="line"> <span class="comment"></span></div>
-<div class="line"><span class="comment">  ///  Destructor - delete the subsidiary preconditioners (solvers for</span></div>
+<div class="line"><span class="comment">  /// Destructor - delete the subsidiary preconditioners (solvers for</span></div>
 <div class="line"><span class="comment">  /// linear systems involving diagonal block)</span></div>
 <div class="line"><span class="comment"></span>  ~Diagonal()</div>
 <div class="line">   {</div>
@@ -355,7 +355,7 @@ Implementation as a BlockPreconditioner</h3>
 <div class="line">   }</div>
 <div class="line"> </div>
 <div class="line"><span class="comment"></span> </div>
-<div class="line"><span class="comment">  ///  Setup the preconditioner </span></div>
+<div class="line"><span class="comment">  /// Setup the preconditioner </span></div>
 <div class="line"><span class="comment"></span>  <span class="keywordtype">void</span> setup();</div>
 <div class="line">  </div>
 <div class="line">  <span class="comment">// Use the version in the Preconditioner base class for the alternative</span></div>
@@ -374,11 +374,11 @@ Implementation as a BlockPreconditioner</h3>
 <div class="line"> </div>
 <div class="line"> private :</div>
 <div class="line">  <span class="comment"></span></div>
-<div class="line"><span class="comment">  ///  Vector of pointers to preconditioners/inexact solvers </span></div>
+<div class="line"><span class="comment">  /// Vector of pointers to preconditioners/inexact solvers </span></div>
 <div class="line"><span class="comment">  /// for each diagonal block</span></div>
 <div class="line"><span class="comment"></span>  Vector&lt;Preconditioner*&gt; Diagonal_block_preconditioner_pt;</div>
 <div class="line">  <span class="comment"></span></div>
-<div class="line"><span class="comment">  ///  Mesh pointers with preconditionable elements used</span></div>
+<div class="line"><span class="comment">  /// Mesh pointers with preconditionable elements used</span></div>
 <div class="line"><span class="comment">  /// for classification of dof types.</span></div>
 <div class="line"><span class="comment"></span>  Mesh* Multi_poisson_mesh_pt;</div>
 <div class="line"> </div>
@@ -528,7 +528,7 @@ Theory</h3>
 Implementation as a BlockPreconditioner</h3>
 <p >Here is a sample implementation of the upper triangular block preconditioner as a class <code>UpperTriangular</code>, derived from the <code>BlockPreconditioner</code> base class. The class provides storage for the subsidiary preconditioners that solve the linear systems associated with the diagonal blocks, and the <code>MatrixVectorProduct</code> operators. We also implement the <code>setup()</code> and <code>preconditioner_solve(...)</code> functions, and provide a helper function <code>clean_up_my_memory()</code> which does what it says. As before we also provide an access function which allows the user to specify the pointer to the <code>Mesh</code> that contains the <code>MultiPoissonElements</code> which classify the dofs.</p>
  <div class="fragment"><div class="line"><span class="comment">//=========================start_of_upper_triangular_class=====================</span></div>
-<div class="line"><span class="comment">///  Upper triangular preconditioner for a system </span><span class="comment"></span></div>
+<div class="line"><span class="comment">/// Upper triangular preconditioner for a system </span><span class="comment"></span></div>
 <div class="line"><span class="comment">/// with any number of dof types.</span></div>
 <div class="line"><span class="comment"></span><span class="comment">//=============================================================================</span></div>
 <div class="line"> <span class="keyword">template</span>&lt;<span class="keyword">typename</span> MATRIX&gt; </div>
@@ -567,7 +567,7 @@ Implementation as a BlockPreconditioner</h3>
 <div class="line"><span class="comment">  /// Apply preconditioner to r</span></div>
 <div class="line"><span class="comment"></span>  <span class="keywordtype">void</span> preconditioner_solve(<span class="keyword">const</span> DoubleVector &amp;r, DoubleVector &amp;z);</div>
 <div class="line"> <span class="comment"></span></div>
-<div class="line"><span class="comment">  ///  Setup the preconditioner </span></div>
+<div class="line"><span class="comment">  /// Setup the preconditioner </span></div>
 <div class="line"><span class="comment"></span>  <span class="keywordtype">void</span> setup();</div>
 <div class="line">  </div>
 <div class="line">  <span class="comment">// Use the version in the Preconditioner base class for the alternative</span></div>
@@ -585,11 +585,11 @@ Implementation as a BlockPreconditioner</h3>
 <div class="line"><span class="comment">  /// Pointers to matrix vector product operators for the off diagonals</span></div>
 <div class="line"><span class="comment"></span>  DenseMatrix&lt;MatrixVectorProduct*&gt; Off_diagonal_matrix_vector_product_pt;</div>
 <div class="line"><span class="comment"></span> </div>
-<div class="line"><span class="comment">  ///  Vector of pointers to preconditioners/inexact solvers </span></div>
+<div class="line"><span class="comment">  /// Vector of pointers to preconditioners/inexact solvers </span></div>
 <div class="line"><span class="comment">  /// for each diagonal block</span></div>
 <div class="line"><span class="comment"></span>  Vector&lt;Preconditioner*&gt; Block_preconditioner_pt;</div>
 <div class="line"><span class="comment"></span> </div>
-<div class="line"><span class="comment">  ///  Pointer to mesh with preconditionable elements used</span></div>
+<div class="line"><span class="comment">  /// Pointer to mesh with preconditionable elements used</span></div>
 <div class="line"><span class="comment">  /// for classification of dof types.</span></div>
 <div class="line"><span class="comment"></span>  Mesh* Multi_poisson_mesh_pt;</div>
 <div class="line"> </div>
@@ -791,7 +791,7 @@ Theory</h3>
 Implementation as a BlockPreconditioner</h3>
 <p >The implementation of the preconditioner closely follows that of the block diagonal preconditioner discussed above, the main difference being that the current preconditioner only ever operates with exactly two blocks. Therefore we store pointers to the two subsidiary preconditioners (rather than a vector of pointers that can store an arbitrary number of these).</p>
 <div class="fragment"><div class="line"><span class="comment">//=======================start_of_two_plus_three_class=========================</span><span class="comment"></span></div>
-<div class="line"><span class="comment">///  Block diagonal preconditioner for system with 5 dof types</span></div>
+<div class="line"><span class="comment">/// Block diagonal preconditioner for system with 5 dof types</span></div>
 <div class="line"><span class="comment">/// assembled into a 2x2 block system, with (0,0) block containing the </span></div>
 <div class="line"><span class="comment">/// first two dof types and the (1,1) block the remaining three dof types.</span></div>
 <div class="line"><span class="comment"></span><span class="comment">//=============================================================================</span></div>
@@ -832,7 +832,7 @@ Implementation as a BlockPreconditioner</h3>
 <div class="line"><span class="comment">  /// Apply preconditioner to r, i.e. return z such that P z = r</span></div>
 <div class="line"><span class="comment"></span>  <span class="keywordtype">void</span> preconditioner_solve(<span class="keyword">const</span> DoubleVector &amp;r, DoubleVector &amp;z);</div>
 <div class="line">  <span class="comment"></span></div>
-<div class="line"><span class="comment">  ///  Setup the preconditioner </span></div>
+<div class="line"><span class="comment">  /// Setup the preconditioner </span></div>
 <div class="line"><span class="comment"></span>  <span class="keyword">virtual</span> <span class="keywordtype">void</span> setup();</div>
 <div class="line"> <span class="comment"></span></div>
 <div class="line"><span class="comment">  /// Specify the mesh that contains multi-poisson elements</span></div>
@@ -843,15 +843,15 @@ Implementation as a BlockPreconditioner</h3>
 <div class="line"> </div>
 <div class="line"> private :</div>
 <div class="line">  <span class="comment"></span></div>
-<div class="line"><span class="comment">  ///  Pointer to preconditioners/inexact solver</span></div>
+<div class="line"><span class="comment">  /// Pointer to preconditioners/inexact solver</span></div>
 <div class="line"><span class="comment">  /// for (0,0) block</span></div>
 <div class="line"><span class="comment"></span>  Preconditioner* First_subsidiary_preconditioner_pt;</div>
 <div class="line">  <span class="comment"></span></div>
-<div class="line"><span class="comment">  ///  Pointer to preconditioners/inexact solver</span></div>
+<div class="line"><span class="comment">  /// Pointer to preconditioners/inexact solver</span></div>
 <div class="line"><span class="comment">  /// for (1,1) block</span></div>
 <div class="line"><span class="comment"></span>  Preconditioner* Second_subsidiary_preconditioner_pt;</div>
 <div class="line"><span class="comment"></span> </div>
-<div class="line"><span class="comment">  ///  Pointer to mesh with preconditionable elements used</span></div>
+<div class="line"><span class="comment">  /// Pointer to mesh with preconditionable elements used</span></div>
 <div class="line"><span class="comment">  /// for classification of dof types.  </span></div>
 <div class="line"><span class="comment"></span>  Mesh* Multi_poisson_mesh_pt; </div>
 <div class="line"> };</div>
@@ -1013,7 +1013,7 @@ Theory</h3>
 Implementation as a BlockPreconditioner</h3>
 <p >The implementation is very similar to that in the previous example &ndash; we simply provide additional storage for the (single) matrix vector product operator required for the multiplication with <img class="formulaInl" alt="$ B_{12} $" src="form_78.png" width="19" height="13"/> when updating the right-hand-side in equation (11).</p>
 <div class="fragment"><div class="line"><span class="comment">//=================start_of_two_plus_three_upper_triangular_class==============</span><span class="comment"></span></div>
-<div class="line"><span class="comment">///  Upper triangular two plus three triangular preconditioner for a </span></div>
+<div class="line"><span class="comment">/// Upper triangular two plus three triangular preconditioner for a </span></div>
 <div class="line"><span class="comment">/// system with  5 dof types.</span></div>
 <div class="line"><span class="comment"></span><span class="comment">//=============================================================================</span></div>
 <div class="line"> <span class="keyword">template</span>&lt;<span class="keyword">typename</span> MATRIX&gt; </div>
@@ -1057,7 +1057,7 @@ Implementation as a BlockPreconditioner</h3>
 <div class="line"><span class="comment">  /// Apply preconditioner to r</span></div>
 <div class="line"><span class="comment"></span>  <span class="keywordtype">void</span> preconditioner_solve(<span class="keyword">const</span> DoubleVector &amp;r, DoubleVector &amp;z);</div>
 <div class="line"> <span class="comment"></span></div>
-<div class="line"><span class="comment">  ///  Setup the preconditioner </span></div>
+<div class="line"><span class="comment">  /// Setup the preconditioner </span></div>
 <div class="line"><span class="comment"></span>  <span class="keywordtype">void</span> setup();</div>
 <div class="line">  </div>
 <div class="line">  <span class="comment">// Use the version in the Preconditioner base class for the alternative</span></div>
@@ -1075,15 +1075,15 @@ Implementation as a BlockPreconditioner</h3>
 <div class="line"><span class="comment">  /// Pointer to matrix vector product operator for the single off diagonals</span></div>
 <div class="line"><span class="comment"></span>  MatrixVectorProduct* Off_diagonal_matrix_vector_product_pt;</div>
 <div class="line"><span class="comment"></span> </div>
-<div class="line"><span class="comment">  ///  Pointer to preconditioners/inexact solver</span></div>
+<div class="line"><span class="comment">  /// Pointer to preconditioners/inexact solver</span></div>
 <div class="line"><span class="comment">  /// for (0,0) block</span></div>
 <div class="line"><span class="comment"></span>  Preconditioner* First_subsidiary_preconditioner_pt;</div>
 <div class="line">  <span class="comment"></span></div>
-<div class="line"><span class="comment">  ///  Pointer to preconditioners/inexact solver</span></div>
+<div class="line"><span class="comment">  /// Pointer to preconditioners/inexact solver</span></div>
 <div class="line"><span class="comment">  /// for (1,1) block</span></div>
 <div class="line"><span class="comment"></span>  Preconditioner* Second_subsidiary_preconditioner_pt;</div>
 <div class="line"><span class="comment"></span> </div>
-<div class="line"><span class="comment">  ///  Pointer to mesh with preconditionable elements used</span></div>
+<div class="line"><span class="comment">  /// Pointer to mesh with preconditionable elements used</span></div>
 <div class="line"><span class="comment">  /// for classification of dof types.</span></div>
 <div class="line"><span class="comment"></span>  Mesh* Multi_poisson_mesh_pt;</div>
 <div class="line"> </div>
@@ -1291,7 +1291,7 @@ Theory</h3>
 Implementation as a BlockPreconditioner</h3>
 <p >The implementation of the preconditioner is completely equivalent to the corresponding block triangular preconditioner considered in the previous example:</p>
 <div class="fragment"><div class="line"><span class="comment">//=========start_of_two_plus_three_upper_triangular_with_sub_class=============</span><span class="comment"></span></div>
-<div class="line"><span class="comment">///  Upper block triangular with subsidiary block preconditioners </span></div>
+<div class="line"><span class="comment">/// Upper block triangular with subsidiary block preconditioners </span></div>
 <div class="line"><span class="comment">/// for a system with 5 dof types.</span></div>
 <div class="line"><span class="comment"></span><span class="comment">//=============================================================================</span></div>
 <div class="line"> <span class="keyword">template</span>&lt;<span class="keyword">typename</span> MATRIX&gt; </div>
@@ -1339,7 +1339,7 @@ Implementation as a BlockPreconditioner</h3>
 <div class="line"><span class="comment">  /// Apply preconditioner to r</span></div>
 <div class="line"><span class="comment"></span>  <span class="keywordtype">void</span> preconditioner_solve(<span class="keyword">const</span> DoubleVector &amp;r, DoubleVector &amp;z);</div>
 <div class="line"> <span class="comment"></span></div>
-<div class="line"><span class="comment">  ///  Setup the preconditioner </span></div>
+<div class="line"><span class="comment">  /// Setup the preconditioner </span></div>
 <div class="line"><span class="comment"></span>  <span class="keywordtype">void</span> setup();</div>
 <div class="line"> </div>
 <div class="line">  <span class="comment">// Use the version in the Preconditioner base class for the alternative</span></div>
@@ -1357,15 +1357,15 @@ Implementation as a BlockPreconditioner</h3>
 <div class="line"><span class="comment">  /// Pointer to matrix vector product operators for the off diagonal block</span></div>
 <div class="line"><span class="comment"></span>  MatrixVectorProduct* Off_diagonal_matrix_vector_product_pt;</div>
 <div class="line"><span class="comment"></span> </div>
-<div class="line"><span class="comment">  ///  Pointer to preconditioners/inexact solver</span></div>
+<div class="line"><span class="comment">  /// Pointer to preconditioners/inexact solver</span></div>
 <div class="line"><span class="comment">  /// for (0,0) block</span></div>
 <div class="line"><span class="comment"></span>  Preconditioner* First_subsidiary_preconditioner_pt;</div>
 <div class="line">  <span class="comment"></span></div>
-<div class="line"><span class="comment">  ///  Pointer to preconditioners/inexact solver</span></div>
+<div class="line"><span class="comment">  /// Pointer to preconditioners/inexact solver</span></div>
 <div class="line"><span class="comment">  /// for (1,1) block</span></div>
 <div class="line"><span class="comment"></span>  Preconditioner* Second_subsidiary_preconditioner_pt;</div>
 <div class="line"><span class="comment"></span> </div>
-<div class="line"><span class="comment">  ///  Pointer to mesh with preconditionable elements used</span></div>
+<div class="line"><span class="comment">  /// Pointer to mesh with preconditionable elements used</span></div>
 <div class="line"><span class="comment">  /// for classification of dof types.</span></div>
 <div class="line"><span class="comment"></span>  Mesh* Multi_poisson_mesh_pt;</div>
 <div class="line"> </div>
@@ -1608,7 +1608,7 @@ Theory</h3>
 Implementation as a BlockPreconditioner</h3>
 <p >The implementation of the preconditioner is completely equivalent to the preconditioner considered in the previous example. The only additional feature is the provision a matrix of pointers to the replacement matrices, <code>Replacement_matrix_pt</code>.</p>
 <div class="fragment"><div class="line"><span class="comment">//=============start_of_two_plus_three_upper_triangular_with_replace_class=====</span><span class="comment"></span></div>
-<div class="line"><span class="comment">///  Block diagonal preconditioner for system with 5 dof types</span></div>
+<div class="line"><span class="comment">/// Block diagonal preconditioner for system with 5 dof types</span></div>
 <div class="line"><span class="comment">/// assembled into a 2x2 block system, with (0,0) block containing</span></div>
 <div class="line"><span class="comment">/// the first two dof types, the (1,1) block the remaining dof types.</span></div>
 <div class="line"><span class="comment">/// The blocks are solved by upper block triangular preconditioners.</span></div>
@@ -1661,7 +1661,7 @@ Implementation as a BlockPreconditioner</h3>
 <div class="line"><span class="comment">  /// Apply preconditioner to r, i.e. return z such that P z = r</span></div>
 <div class="line"><span class="comment"></span>  <span class="keywordtype">void</span> preconditioner_solve(<span class="keyword">const</span> DoubleVector &amp;r, DoubleVector &amp;z);</div>
 <div class="line">  <span class="comment"></span></div>
-<div class="line"><span class="comment">  ///  Setup the preconditioner </span></div>
+<div class="line"><span class="comment">  /// Setup the preconditioner </span></div>
 <div class="line"><span class="comment"></span>  <span class="keywordtype">void</span> setup();</div>
 <div class="line"> <span class="comment"></span></div>
 <div class="line"><span class="comment">  /// Specify the mesh that contains multi-poisson elements</span></div>
@@ -1672,22 +1672,22 @@ Implementation as a BlockPreconditioner</h3>
 <div class="line"> </div>
 <div class="line">   private :</div>
 <div class="line">  <span class="comment"></span></div>
-<div class="line"><span class="comment">  ///  Pointer to preconditioners/inexact solver</span></div>
+<div class="line"><span class="comment">  /// Pointer to preconditioners/inexact solver</span></div>
 <div class="line"><span class="comment">  /// for compound  (0,0) block</span></div>
 <div class="line"><span class="comment"></span>  Preconditioner* First_subsidiary_preconditioner_pt;</div>
 <div class="line">  <span class="comment"></span></div>
-<div class="line"><span class="comment">  ///  Pointer to preconditioners/inexact solver</span></div>
+<div class="line"><span class="comment">  /// Pointer to preconditioners/inexact solver</span></div>
 <div class="line"><span class="comment">  /// for compound (1,1) block</span></div>
 <div class="line"><span class="comment"></span>  Preconditioner* Second_subsidiary_preconditioner_pt;</div>
 <div class="line"><span class="comment"></span> </div>
-<div class="line"><span class="comment">  ///  Matrix vector product operator with the compound </span></div>
+<div class="line"><span class="comment">  /// Matrix vector product operator with the compound </span></div>
 <div class="line"><span class="comment">  /// (0,1) off diagonal block.</span></div>
 <div class="line"><span class="comment"></span>  MatrixVectorProduct* Off_diagonal_matrix_vector_product_pt;</div>
 <div class="line"> </div>
 <div class="line">  <span class="comment">// Matrix of pointers to replacement matrix blocks</span></div>
 <div class="line">  DenseMatrix&lt;CRDoubleMatrix*&gt; Replacement_matrix_pt;</div>
 <div class="line"><span class="comment"></span> </div>
-<div class="line"><span class="comment">  ///  Pointer to mesh with preconditionable elements used</span></div>
+<div class="line"><span class="comment">  /// Pointer to mesh with preconditionable elements used</span></div>
 <div class="line"><span class="comment">  /// for classification of dof types.</span></div>
 <div class="line"><span class="comment"></span>  Mesh* Multi_poisson_mesh_pt;</div>
 <div class="line">  </div>
@@ -1898,7 +1898,7 @@ Theory</h3>
 Implementation as a BlockPreconditioner</h3>
 <p >The implementation of the preconditioner is completely equivalent to the preconditioner considered in the previous examples:</p>
 <div class="fragment"><div class="line"><span class="comment">//==================start_of_coarse_two_plus_two_plus_one_class================</span><span class="comment"></span></div>
-<div class="line"><span class="comment">///  Block diagonal preconditioner for system with 5 dof types</span></div>
+<div class="line"><span class="comment">/// Block diagonal preconditioner for system with 5 dof types</span></div>
 <div class="line"><span class="comment">/// assembled into a 2x2 block system, with the (0,0) block containing</span></div>
 <div class="line"><span class="comment">/// the first two dof types, the (1,1) block containing the three remaining </span></div>
 <div class="line"><span class="comment">/// ones.</span></div>
@@ -1949,7 +1949,7 @@ Implementation as a BlockPreconditioner</h3>
 <div class="line"><span class="comment">  /// Apply preconditioner to r, i.e. return z such that P z = r</span></div>
 <div class="line"><span class="comment"></span>  <span class="keywordtype">void</span> preconditioner_solve(<span class="keyword">const</span> DoubleVector &amp;r, DoubleVector &amp;z);</div>
 <div class="line">  <span class="comment"></span></div>
-<div class="line"><span class="comment">  ///  Setup the preconditioner </span></div>
+<div class="line"><span class="comment">  /// Setup the preconditioner </span></div>
 <div class="line"><span class="comment"></span>  <span class="keyword">virtual</span> <span class="keywordtype">void</span> setup();</div>
 <div class="line"> <span class="comment"></span></div>
 <div class="line"><span class="comment">  /// Specify the mesh that contains multi-poisson elements</span></div>
@@ -1960,11 +1960,11 @@ Implementation as a BlockPreconditioner</h3>
 <div class="line"> </div>
 <div class="line"> private :</div>
 <div class="line">  <span class="comment"></span></div>
-<div class="line"><span class="comment">  ///  Pointer to preconditioners/inexact solver</span></div>
+<div class="line"><span class="comment">  /// Pointer to preconditioners/inexact solver</span></div>
 <div class="line"><span class="comment">  /// for (0,0) block</span></div>
 <div class="line"><span class="comment"></span>  Preconditioner* First_subsidiary_preconditioner_pt;</div>
 <div class="line">  <span class="comment"></span></div>
-<div class="line"><span class="comment">  ///  Pointer to preconditioners/inexact solver</span></div>
+<div class="line"><span class="comment">  /// Pointer to preconditioners/inexact solver</span></div>
 <div class="line"><span class="comment">  /// for (1,1) block</span></div>
 <div class="line"><span class="comment"></span>  Preconditioner* Second_subsidiary_preconditioner_pt;</div>
 <div class="line"> </div>
@@ -1974,7 +1974,7 @@ Implementation as a BlockPreconditioner</h3>
 <div class="line"><span class="comment">  /// Matrix vector product operator</span></div>
 <div class="line"><span class="comment"></span>  MatrixVectorProduct* Off_diagonal_matrix_vector_product_pt;</div>
 <div class="line"><span class="comment"></span> </div>
-<div class="line"><span class="comment">  ///  Pointer to mesh with preconditionable elements used</span></div>
+<div class="line"><span class="comment">  /// Pointer to mesh with preconditionable elements used</span></div>
 <div class="line"><span class="comment">  /// for classification of dof types.  </span></div>
 <div class="line"><span class="comment"></span>  Mesh* Multi_poisson_mesh_pt;</div>
 <div class="line"> };</div>
@@ -2198,7 +2198,7 @@ The Implementation of the FSI Preconditioner</h3>
 <p >We implement the FSI preconditioner in the class <code>SimpleFSIPreconditioner</code>. This class inherits from the base class <code>BlockPreconditioner</code> which provides the generic functionality required for common block preconditioning operations.</p>
 <p >The overall structure of the class is similar to that of the preconditioners considered before, the main difference being that we now store pointers to two meshes.</p>
  <div class="fragment"><div class="line"><span class="comment">//=start_of_simple_fsi_preconditioner========================================== </span></div>
-<div class="line"><span class="comment">///  Simple FSI preconditioner. A block uppper triangular preconditioner</span><span class="comment"></span></div>
+<div class="line"><span class="comment">/// Simple FSI preconditioner. A block uppper triangular preconditioner</span><span class="comment"></span></div>
 <div class="line"><span class="comment">/// for the 2x2 FSI block system -- DOFs are decomposed into fluid DOFs and </span></div>
 <div class="line"><span class="comment">/// solid DOFs. The fluid subisidiary system is solved with the </span></div>
 <div class="line"><span class="comment">/// Navier Stokes Preconditioner and the solid subsidiary system with the</span></div>
@@ -2210,7 +2210,7 @@ The Implementation of the FSI Preconditioner</h3>
 <div class="line"> </div>
 <div class="line">public :</div>
 <div class="line"> <span class="comment"></span></div>
-<div class="line"><span class="comment"> ///  Constructor for SimpleFSIPreconditioner</span></div>
+<div class="line"><span class="comment"> /// Constructor for SimpleFSIPreconditioner</span></div>
 <div class="line"><span class="comment"></span> SimpleFSIPreconditioner(Problem* problem_pt)</div>
 <div class="line">  : BlockPreconditioner&lt;MATRIX&gt;(), Navier_stokes_preconditioner_pt(0),</div>
 <div class="line">    Solid_preconditioner_pt(0), Fluid_solid_coupling_matvec_pt(0),</div>
@@ -2249,24 +2249,24 @@ The Implementation of the FSI Preconditioner</h3>
 <div class="line">  }</div>
 <div class="line"> </div>
 <div class="line">  <span class="comment"></span></div>
-<div class="line"><span class="comment"> ///  Access function to mesh containing the block-preconditionable</span></div>
+<div class="line"><span class="comment"> /// Access function to mesh containing the block-preconditionable</span></div>
 <div class="line"><span class="comment"> /// Navier-Stokes elements. </span></div>
 <div class="line"><span class="comment"></span> <span class="keywordtype">void</span> set_navier_stokes_mesh(Mesh* mesh_pt) </div>
 <div class="line">  {</div>
 <div class="line">   Navier_stokes_mesh_pt = mesh_pt;</div>
 <div class="line">  }</div>
 <div class="line"><span class="comment"></span> </div>
-<div class="line"><span class="comment"> ///  Access function to mesh containing the block-preconditionable</span></div>
+<div class="line"><span class="comment"> /// Access function to mesh containing the block-preconditionable</span></div>
 <div class="line"><span class="comment"> /// FSI solid elements. </span></div>
 <div class="line"><span class="comment"></span> <span class="keywordtype">void</span> set_solid_mesh(Mesh* mesh_pt) </div>
 <div class="line">  {</div>
 <div class="line">   Solid_mesh_pt = mesh_pt;</div>
 <div class="line">  }</div>
 <div class="line"><span class="comment"></span> </div>
-<div class="line"><span class="comment"> ///  Setup the preconditioner</span></div>
+<div class="line"><span class="comment"> /// Setup the preconditioner</span></div>
 <div class="line"><span class="comment"></span> <span class="keywordtype">void</span> setup();</div>
 <div class="line"> <span class="comment"></span></div>
-<div class="line"><span class="comment"> ///  Apply preconditioner to r</span></div>
+<div class="line"><span class="comment"> /// Apply preconditioner to r</span></div>
 <div class="line"><span class="comment"></span> <span class="keywordtype">void</span> preconditioner_solve(<span class="keyword">const</span> DoubleVector &amp;r,</div>
 <div class="line">                           DoubleVector &amp;z);</div>
 <div class="line"> </div>
@@ -2492,7 +2492,7 @@ PDF file</h1>
     <footer>
       <div class="container">
         <div class="text-muted" style="float:right;">Generated by <a href="http://www.doxygen.org/index.html">
-          <img style="height:18px;" class="footer-img" src="doxygen.png" alt="doxygen"></a> on Fri Oct 22 2021 12:53:57
+          <img style="height:18px;" class="footer-img" src="doxygen.png" alt="doxygen"></a> on Mon Oct 25 2021 15:12:07
         </div>
       </div>
     </footer>

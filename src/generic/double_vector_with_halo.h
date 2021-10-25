@@ -50,41 +50,41 @@ namespace oomph
   //=====================================================================
   class DoubleVectorHaloScheme
   {
-    ///  The DoubleVectorWithHaloEntries should be able to access the
+    /// The DoubleVectorWithHaloEntries should be able to access the
     /// private data.
     friend class DoubleVectorWithHaloEntries;
 
-    ///  Storage for the translation scheme from global unknown
+    /// Storage for the translation scheme from global unknown
     /// to local index in the additional storage vector.
     std::map<unsigned, unsigned> Local_index;
 
-    ///  The haloed entries that will be sent in a format compatible
+    /// The haloed entries that will be sent in a format compatible
     /// with MPI_Alltoallv i.e. (send_to_proc0,send_to_proc1 ... send_to_procn)
     Vector<unsigned> Haloed_eqns;
 
-    ///  Storage for the number of haloed entries to be sent to each
+    /// Storage for the number of haloed entries to be sent to each
     /// processor
     Vector<int> Haloed_n;
 
-    ///  Storage for the offsets of the haloed entries for each processor
+    /// Storage for the offsets of the haloed entries for each processor
     /// in the packed Haloed_eqns array
     Vector<int> Haloed_displacement;
 
-    ///  Storage for all the entries that are to be received from
+    /// Storage for all the entries that are to be received from
     /// other processors
     /// (received_from_proc0,received_from_proc1,...received_from_procn)
     Vector<unsigned> Halo_eqns;
 
-    ///  Storage for the number of entries to be received from each
+    /// Storage for the number of entries to be received from each
     /// other processor
     Vector<int> Halo_n;
 
-    ///  Storage for the offsets of the processor data in the
+    /// Storage for the offsets of the processor data in the
     /// receive buffer
     Vector<int> Halo_displacement;
 
 
-    ///  Store the distribution that was used to setup the halo scheme
+    /// Store the distribution that was used to setup the halo scheme
     LinearAlgebraDistribution* Distribution_pt;
 
   public:
@@ -148,18 +148,18 @@ namespace oomph
   ///======================================================================
   class DoubleVectorWithHaloEntries : public DoubleVector
   {
-    ///  Pointer to the lookup scheme that stores information about
+    /// Pointer to the lookup scheme that stores information about
     /// on which processor the required information is haloed
     DoubleVectorHaloScheme* Halo_scheme_pt;
 
-    ///  Vector of the halo values
+    /// Vector of the halo values
     Vector<double> Halo_value;
 
   public:
-    ///  Constructor for an uninitialized DoubleVectorWithHaloEntries
+    /// Constructor for an uninitialized DoubleVectorWithHaloEntries
     DoubleVectorWithHaloEntries() : DoubleVector(), Halo_scheme_pt(0) {}
 
-    ///  Constructor. Assembles a DoubleVectorWithHaloEntries
+    /// Constructor. Assembles a DoubleVectorWithHaloEntries
     /// with a prescribed
     /// distribution. Additionally every entry can be set (with argument v -
     /// defaults to 0).
@@ -173,7 +173,7 @@ namespace oomph
       this->build_halo_scheme(halo_scheme_pt);
     }
 
-    ///  Constructor. Assembles a DoubleVectorWithHaloEntries
+    /// Constructor. Assembles a DoubleVectorWithHaloEntries
     /// with a prescribed
     /// distribution. Additionally every entry can be set (with argument v -
     /// defaults to 0).

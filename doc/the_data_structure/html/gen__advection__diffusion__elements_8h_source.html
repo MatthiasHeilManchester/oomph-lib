@@ -170,7 +170,7 @@ $(function() {
 <div class="line"><a id="l00041" name="l00041"></a><span class="lineno">   41</span><span class="keyword">namespace </span><a class="code hl_namespace" href="namespaceoomph.html">oomph</a></div>
 <div class="line"><a id="l00042" name="l00042"></a><span class="lineno">   42</span>{</div>
 <div class="line"><a id="l00043" name="l00043"></a><span class="lineno">   43</span>  <span class="comment">//=============================================================</span><span class="comment"></span></div>
-<div class="line"><a id="l00044" name="l00044"></a><span class="lineno">   44</span><span class="comment">  ///  A class for all elements that solve the Advection</span></div>
+<div class="line"><a id="l00044" name="l00044"></a><span class="lineno">   44</span><span class="comment">  /// A class for all elements that solve the Advection</span></div>
 <div class="line"><a id="l00045" name="l00045"></a><span class="lineno">   45</span><span class="comment">  /// Diffusion equations in conservative form using isoparametric elements.</span></div>
 <div class="line"><a id="l00046" name="l00046"></a><span class="lineno">   46</span><span class="comment">  /// \f[</span></div>
 <div class="line"><a id="l00047" name="l00047"></a><span class="lineno">   47</span><span class="comment">  /// \frac{\partial}{\partial x_{i}}\left(</span></div>
@@ -184,22 +184,22 @@ $(function() {
 <div class="line"><a id="l00055" name="l00055"></a><span class="lineno">   55</span>  <span class="keyword">class </span>GeneralisedAdvectionDiffusionEquations : <span class="keyword">public</span> <span class="keyword">virtual</span> FiniteElement</div>
 <div class="line"><a id="l00056" name="l00056"></a><span class="lineno">   56</span>  {</div>
 <div class="line"><a id="l00057" name="l00057"></a><span class="lineno">   57</span>  <span class="keyword">public</span>:<span class="comment"></span></div>
-<div class="line"><a id="l00058" name="l00058"></a><span class="lineno">   58</span><span class="comment">    ///  Function pointer to source function fct(x,f(x)) --</span></div>
+<div class="line"><a id="l00058" name="l00058"></a><span class="lineno">   58</span><span class="comment">    /// Function pointer to source function fct(x,f(x)) --</span></div>
 <div class="line"><a id="l00059" name="l00059"></a><span class="lineno">   59</span><span class="comment">    /// x is a Vector!</span></div>
 <div class="line"><a id="l00060" name="l00060"></a><span class="lineno">   60</span><span class="comment"></span>    <span class="keyword">typedef</span> void (*GeneralisedAdvectionDiffusionSourceFctPt)(</div>
 <div class="line"><a id="l00061" name="l00061"></a><span class="lineno">   61</span>      <span class="keyword">const</span> Vector&lt;double&gt;&amp; <a class="code hl_variable" href="namespaceoomph.html#a9d1d2da2b8bb8e73af72b5cadb8fe97c">x</a>, <span class="keywordtype">double</span>&amp; <a class="code hl_function" href="namespaceoomph.html#ad835af913df4cbdc5648440f91b794ab">f</a>);</div>
 <div class="line"><a id="l00062" name="l00062"></a><span class="lineno">   62</span><span class="comment"></span> </div>
-<div class="line"><a id="l00063" name="l00063"></a><span class="lineno">   63</span><span class="comment">    ///  Function pointer to wind function fct(x,w(x)) --</span></div>
+<div class="line"><a id="l00063" name="l00063"></a><span class="lineno">   63</span><span class="comment">    /// Function pointer to wind function fct(x,w(x)) --</span></div>
 <div class="line"><a id="l00064" name="l00064"></a><span class="lineno">   64</span><span class="comment">    /// x is a Vector!</span></div>
 <div class="line"><a id="l00065" name="l00065"></a><span class="lineno">   65</span><span class="comment"></span>    <span class="keyword">typedef</span> void (*GeneralisedAdvectionDiffusionWindFctPt)(</div>
 <div class="line"><a id="l00066" name="l00066"></a><span class="lineno">   66</span>      <span class="keyword">const</span> Vector&lt;double&gt;&amp; <a class="code hl_variable" href="namespaceoomph.html#a9d1d2da2b8bb8e73af72b5cadb8fe97c">x</a>, Vector&lt;double&gt;&amp; wind);</div>
 <div class="line"><a id="l00067" name="l00067"></a><span class="lineno">   67</span> </div>
 <div class="line"><a id="l00068" name="l00068"></a><span class="lineno">   68</span><span class="comment"></span> </div>
-<div class="line"><a id="l00069" name="l00069"></a><span class="lineno">   69</span><span class="comment">    ///  Funciton pointer to a diffusivity function</span></div>
+<div class="line"><a id="l00069" name="l00069"></a><span class="lineno">   69</span><span class="comment">    /// Funciton pointer to a diffusivity function</span></div>
 <div class="line"><a id="l00070" name="l00070"></a><span class="lineno">   70</span><span class="comment"></span>    <span class="keyword">typedef</span> void (*GeneralisedAdvectionDiffusionDiffFctPt)(</div>
 <div class="line"><a id="l00071" name="l00071"></a><span class="lineno">   71</span>      <span class="keyword">const</span> Vector&lt;double&gt;&amp; <a class="code hl_variable" href="namespaceoomph.html#a9d1d2da2b8bb8e73af72b5cadb8fe97c">x</a>, DenseMatrix&lt;double&gt;&amp; <a class="code hl_enumvalue" href="namespaceoomph_1_1OcTreeNames.html#ae7e7e58298b85825061eeff362656c40a51292b8e4d96f2bb9f0d6bb0340d1620">D</a>);</div>
 <div class="line"><a id="l00072" name="l00072"></a><span class="lineno">   72</span><span class="comment"></span> </div>
-<div class="line"><a id="l00073" name="l00073"></a><span class="lineno">   73</span><span class="comment">    ///  Constructor: Initialise the Source_fct_pt and Wind_fct_pt</span></div>
+<div class="line"><a id="l00073" name="l00073"></a><span class="lineno">   73</span><span class="comment">    /// Constructor: Initialise the Source_fct_pt and Wind_fct_pt</span></div>
 <div class="line"><a id="l00074" name="l00074"></a><span class="lineno">   74</span><span class="comment">    /// to null and set (pointer to) Peclet number to default</span></div>
 <div class="line"><a id="l00075" name="l00075"></a><span class="lineno">   75</span><span class="comment"></span>    GeneralisedAdvectionDiffusionEquations()</div>
 <div class="line"><a id="l00076" name="l00076"></a><span class="lineno">   76</span>      : Source_fct_pt(0),</div>
@@ -221,7 +221,7 @@ $(function() {
 <div class="line"><a id="l00092" name="l00092"></a><span class="lineno">   92</span><span class="comment">    /// Broken assignment operator</span></div>
 <div class="line"><a id="l00093" name="l00093"></a><span class="lineno">   93</span><span class="comment"></span>    <span class="keywordtype">void</span> operator=(<span class="keyword">const</span> GeneralisedAdvectionDiffusionEquations&amp;) = <span class="keyword">delete</span>;</div>
 <div class="line"><a id="l00094" name="l00094"></a><span class="lineno">   94</span><span class="comment"></span> </div>
-<div class="line"><a id="l00095" name="l00095"></a><span class="lineno">   95</span><span class="comment">    ///  Return the index at which the unknown value</span></div>
+<div class="line"><a id="l00095" name="l00095"></a><span class="lineno">   95</span><span class="comment">    /// Return the index at which the unknown value</span></div>
 <div class="line"><a id="l00096" name="l00096"></a><span class="lineno">   96</span><span class="comment">    /// is stored. The default value, 0, is appropriate for single-physics</span></div>
 <div class="line"><a id="l00097" name="l00097"></a><span class="lineno">   97</span><span class="comment">    /// problems, when there is only one variable, the value that satisfies</span></div>
 <div class="line"><a id="l00098" name="l00098"></a><span class="lineno">   98</span><span class="comment">    /// the advection-diffusion equation.</span></div>
@@ -233,7 +233,7 @@ $(function() {
 <div class="line"><a id="l00104" name="l00104"></a><span class="lineno">  104</span>      <span class="keywordflow">return</span> 0;</div>
 <div class="line"><a id="l00105" name="l00105"></a><span class="lineno">  105</span>    }</div>
 <div class="line"><a id="l00106" name="l00106"></a><span class="lineno">  106</span><span class="comment"></span> </div>
-<div class="line"><a id="l00107" name="l00107"></a><span class="lineno">  107</span><span class="comment">    ///  du/dt at local node n.</span></div>
+<div class="line"><a id="l00107" name="l00107"></a><span class="lineno">  107</span><span class="comment">    /// du/dt at local node n.</span></div>
 <div class="line"><a id="l00108" name="l00108"></a><span class="lineno">  108</span><span class="comment">    /// Uses suitably interpolated value for hanging nodes.</span></div>
 <div class="line"><a id="l00109" name="l00109"></a><span class="lineno">  109</span><span class="comment"></span>    <span class="keywordtype">double</span> du_dt_cons_adv_diff(<span class="keyword">const</span> <span class="keywordtype">unsigned</span>&amp; n)<span class="keyword"> const</span></div>
 <div class="line"><a id="l00110" name="l00110"></a><span class="lineno">  110</span><span class="keyword">    </span>{</div>
@@ -260,7 +260,7 @@ $(function() {
 <div class="line"><a id="l00131" name="l00131"></a><span class="lineno">  131</span>      <span class="keywordflow">return</span> dudt;</div>
 <div class="line"><a id="l00132" name="l00132"></a><span class="lineno">  132</span>    }</div>
 <div class="line"><a id="l00133" name="l00133"></a><span class="lineno">  133</span><span class="comment"></span> </div>
-<div class="line"><a id="l00134" name="l00134"></a><span class="lineno">  134</span><span class="comment">    ///  Disable ALE, i.e. assert the mesh is not moving -- you do this</span></div>
+<div class="line"><a id="l00134" name="l00134"></a><span class="lineno">  134</span><span class="comment">    /// Disable ALE, i.e. assert the mesh is not moving -- you do this</span></div>
 <div class="line"><a id="l00135" name="l00135"></a><span class="lineno">  135</span><span class="comment">    /// at your own risk!</span></div>
 <div class="line"><a id="l00136" name="l00136"></a><span class="lineno">  136</span><span class="comment"></span>    <span class="keywordtype">void</span> disable_ALE()</div>
 <div class="line"><a id="l00137" name="l00137"></a><span class="lineno">  137</span>    {</div>
@@ -268,7 +268,7 @@ $(function() {
 <div class="line"><a id="l00139" name="l00139"></a><span class="lineno">  139</span>    }</div>
 <div class="line"><a id="l00140" name="l00140"></a><span class="lineno">  140</span> </div>
 <div class="line"><a id="l00141" name="l00141"></a><span class="lineno">  141</span><span class="comment"></span> </div>
-<div class="line"><a id="l00142" name="l00142"></a><span class="lineno">  142</span><span class="comment">    ///  (Re-)enable ALE, i.e. take possible mesh motion into account</span></div>
+<div class="line"><a id="l00142" name="l00142"></a><span class="lineno">  142</span><span class="comment">    /// (Re-)enable ALE, i.e. take possible mesh motion into account</span></div>
 <div class="line"><a id="l00143" name="l00143"></a><span class="lineno">  143</span><span class="comment">    /// when evaluating the time-derivative. Note: By default, ALE is</span></div>
 <div class="line"><a id="l00144" name="l00144"></a><span class="lineno">  144</span><span class="comment">    /// enabled, at the expense of possibly creating unnecessary work</span></div>
 <div class="line"><a id="l00145" name="l00145"></a><span class="lineno">  145</span><span class="comment">    /// in problems where the mesh is, in fact, stationary.</span></div>
@@ -285,7 +285,7 @@ $(function() {
 <div class="line"><a id="l00156" name="l00156"></a><span class="lineno">  156</span>      <a class="code hl_function" href="namespaceoomph_1_1CommandLineArgs.html#aca07d359a96b9c7b566142112604ea87">output</a>(outfile, nplot);</div>
 <div class="line"><a id="l00157" name="l00157"></a><span class="lineno">  157</span>    }</div>
 <div class="line"><a id="l00158" name="l00158"></a><span class="lineno">  158</span><span class="comment"></span> </div>
-<div class="line"><a id="l00159" name="l00159"></a><span class="lineno">  159</span><span class="comment">    ///  Output FE representation of soln: x,y,u or x,y,z,u at</span></div>
+<div class="line"><a id="l00159" name="l00159"></a><span class="lineno">  159</span><span class="comment">    /// Output FE representation of soln: x,y,u or x,y,z,u at</span></div>
 <div class="line"><a id="l00160" name="l00160"></a><span class="lineno">  160</span><span class="comment">    /// nplot^DIM plot points</span></div>
 <div class="line"><a id="l00161" name="l00161"></a><span class="lineno">  161</span><span class="comment"></span>    <span class="keywordtype">void</span> <a class="code hl_function" href="namespaceoomph_1_1CommandLineArgs.html#aca07d359a96b9c7b566142112604ea87">output</a>(std::ostream&amp; outfile, <span class="keyword">const</span> <span class="keywordtype">unsigned</span>&amp; nplot);</div>
 <div class="line"><a id="l00162" name="l00162"></a><span class="lineno">  162</span> </div>
@@ -297,7 +297,7 @@ $(function() {
 <div class="line"><a id="l00168" name="l00168"></a><span class="lineno">  168</span>      <a class="code hl_function" href="namespaceoomph_1_1CommandLineArgs.html#aca07d359a96b9c7b566142112604ea87">output</a>(file_pt, n_plot);</div>
 <div class="line"><a id="l00169" name="l00169"></a><span class="lineno">  169</span>    }</div>
 <div class="line"><a id="l00170" name="l00170"></a><span class="lineno">  170</span><span class="comment"></span> </div>
-<div class="line"><a id="l00171" name="l00171"></a><span class="lineno">  171</span><span class="comment">    ///  C-style output FE representation of soln: x,y,u or x,y,z,u at</span></div>
+<div class="line"><a id="l00171" name="l00171"></a><span class="lineno">  171</span><span class="comment">    /// C-style output FE representation of soln: x,y,u or x,y,z,u at</span></div>
 <div class="line"><a id="l00172" name="l00172"></a><span class="lineno">  172</span><span class="comment">    /// n_plot^DIM plot points</span></div>
 <div class="line"><a id="l00173" name="l00173"></a><span class="lineno">  173</span><span class="comment"></span>    <span class="keywordtype">void</span> <a class="code hl_function" href="namespaceoomph_1_1CommandLineArgs.html#aca07d359a96b9c7b566142112604ea87">output</a>(FILE* file_pt, <span class="keyword">const</span> <span class="keywordtype">unsigned</span>&amp; n_plot);</div>
 <div class="line"><a id="l00174" name="l00174"></a><span class="lineno">  174</span> </div>
@@ -307,7 +307,7 @@ $(function() {
 <div class="line"><a id="l00178" name="l00178"></a><span class="lineno">  178</span>                    <span class="keyword">const</span> <span class="keywordtype">unsigned</span>&amp; nplot,</div>
 <div class="line"><a id="l00179" name="l00179"></a><span class="lineno">  179</span>                    <a class="code hl_typedef" href="classoomph_1_1FiniteElement.html#a690fd33af26cc3e84f39bba6d5a85202">FiniteElement::SteadyExactSolutionFctPt</a> exact_soln_pt);</div>
 <div class="line"><a id="l00180" name="l00180"></a><span class="lineno">  180</span><span class="comment"></span> </div>
-<div class="line"><a id="l00181" name="l00181"></a><span class="lineno">  181</span><span class="comment">    ///  Output exact soln: x,y,u_exact or x,y,z,u_exact at</span></div>
+<div class="line"><a id="l00181" name="l00181"></a><span class="lineno">  181</span><span class="comment">    /// Output exact soln: x,y,u_exact or x,y,z,u_exact at</span></div>
 <div class="line"><a id="l00182" name="l00182"></a><span class="lineno">  182</span><span class="comment">    /// nplot^DIM plot points (dummy time-dependent version to</span></div>
 <div class="line"><a id="l00183" name="l00183"></a><span class="lineno">  183</span><span class="comment">    /// keep intel compiler happy)</span></div>
 <div class="line"><a id="l00184" name="l00184"></a><span class="lineno">  184</span><span class="comment"></span>    <span class="keyword">virtual</span> <span class="keywordtype">void</span> output_fct(</div>
@@ -343,7 +343,7 @@ $(function() {
 <div class="line"><a id="l00214" name="l00214"></a><span class="lineno">  214</span>        OOMPH_EXCEPTION_LOCATION);</div>
 <div class="line"><a id="l00215" name="l00215"></a><span class="lineno">  215</span>    }</div>
 <div class="line"><a id="l00216" name="l00216"></a><span class="lineno">  216</span><span class="comment"></span> </div>
-<div class="line"><a id="l00217" name="l00217"></a><span class="lineno">  217</span><span class="comment">    ///  Integrate the concentration over the element</span></div>
+<div class="line"><a id="l00217" name="l00217"></a><span class="lineno">  217</span><span class="comment">    /// Integrate the concentration over the element</span></div>
 <div class="line"><a id="l00218" name="l00218"></a><span class="lineno">  218</span><span class="comment"></span>    <span class="keywordtype">double</span> integrate_u();</div>
 <div class="line"><a id="l00219" name="l00219"></a><span class="lineno">  219</span> </div>
 <div class="line"><a id="l00220" name="l00220"></a><span class="lineno">  220</span><span class="comment"></span> </div>
@@ -382,7 +382,7 @@ $(function() {
 <div class="line"><a id="l00253" name="l00253"></a><span class="lineno">  253</span>    }</div>
 <div class="line"><a id="l00254" name="l00254"></a><span class="lineno">  254</span> </div>
 <div class="line"><a id="l00255" name="l00255"></a><span class="lineno">  255</span><span class="comment"></span> </div>
-<div class="line"><a id="l00256" name="l00256"></a><span class="lineno">  256</span><span class="comment">    ///  Access function: Pointer to additoinal (conservative)</span></div>
+<div class="line"><a id="l00256" name="l00256"></a><span class="lineno">  256</span><span class="comment">    /// Access function: Pointer to additoinal (conservative)</span></div>
 <div class="line"><a id="l00257" name="l00257"></a><span class="lineno">  257</span><span class="comment">    /// wind function.</span></div>
 <div class="line"><a id="l00258" name="l00258"></a><span class="lineno">  258</span><span class="comment">    /// Const version</span></div>
 <div class="line"><a id="l00259" name="l00259"></a><span class="lineno">  259</span><span class="comment"></span>    GeneralisedAdvectionDiffusionWindFctPt conserved_wind_fct_pt()<span class="keyword"> const</span></div>
@@ -426,7 +426,7 @@ $(function() {
 <div class="line"><a id="l00297" name="l00297"></a><span class="lineno">  297</span>      <span class="keywordflow">return</span> PeSt_pt;</div>
 <div class="line"><a id="l00298" name="l00298"></a><span class="lineno">  298</span>    }</div>
 <div class="line"><a id="l00299" name="l00299"></a><span class="lineno">  299</span><span class="comment"></span> </div>
-<div class="line"><a id="l00300" name="l00300"></a><span class="lineno">  300</span><span class="comment">    ///  Get source term at (Eulerian) position x. This function is</span></div>
+<div class="line"><a id="l00300" name="l00300"></a><span class="lineno">  300</span><span class="comment">    /// Get source term at (Eulerian) position x. This function is</span></div>
 <div class="line"><a id="l00301" name="l00301"></a><span class="lineno">  301</span><span class="comment">    /// virtual to allow overloading in multi-physics problems where</span></div>
 <div class="line"><a id="l00302" name="l00302"></a><span class="lineno">  302</span><span class="comment">    /// the strength of the source function might be determined by</span></div>
 <div class="line"><a id="l00303" name="l00303"></a><span class="lineno">  303</span><span class="comment">    /// another system of equations</span></div>
@@ -446,7 +446,7 @@ $(function() {
 <div class="line"><a id="l00317" name="l00317"></a><span class="lineno">  317</span>      }</div>
 <div class="line"><a id="l00318" name="l00318"></a><span class="lineno">  318</span>    }</div>
 <div class="line"><a id="l00319" name="l00319"></a><span class="lineno">  319</span><span class="comment"></span> </div>
-<div class="line"><a id="l00320" name="l00320"></a><span class="lineno">  320</span><span class="comment">    ///  Get wind at (Eulerian) position x and/or local coordinate s.</span></div>
+<div class="line"><a id="l00320" name="l00320"></a><span class="lineno">  320</span><span class="comment">    /// Get wind at (Eulerian) position x and/or local coordinate s.</span></div>
 <div class="line"><a id="l00321" name="l00321"></a><span class="lineno">  321</span><span class="comment">    /// This function is</span></div>
 <div class="line"><a id="l00322" name="l00322"></a><span class="lineno">  322</span><span class="comment">    /// virtual to allow overloading in multi-physics problems where</span></div>
 <div class="line"><a id="l00323" name="l00323"></a><span class="lineno">  323</span><span class="comment">    /// the wind function might be determined by</span></div>
@@ -472,7 +472,7 @@ $(function() {
 <div class="line"><a id="l00343" name="l00343"></a><span class="lineno">  343</span>    }</div>
 <div class="line"><a id="l00344" name="l00344"></a><span class="lineno">  344</span> </div>
 <div class="line"><a id="l00345" name="l00345"></a><span class="lineno">  345</span><span class="comment"></span> </div>
-<div class="line"><a id="l00346" name="l00346"></a><span class="lineno">  346</span><span class="comment">    ///  Get additional (conservative)</span></div>
+<div class="line"><a id="l00346" name="l00346"></a><span class="lineno">  346</span><span class="comment">    /// Get additional (conservative)</span></div>
 <div class="line"><a id="l00347" name="l00347"></a><span class="lineno">  347</span><span class="comment">    /// wind at (Eulerian) position x and/or local coordinate s.</span></div>
 <div class="line"><a id="l00348" name="l00348"></a><span class="lineno">  348</span><span class="comment">    /// This function is</span></div>
 <div class="line"><a id="l00349" name="l00349"></a><span class="lineno">  349</span><span class="comment">    /// virtual to allow overloading in multi-physics problems where</span></div>
@@ -500,7 +500,7 @@ $(function() {
 <div class="line"><a id="l00371" name="l00371"></a><span class="lineno">  371</span>    }</div>
 <div class="line"><a id="l00372" name="l00372"></a><span class="lineno">  372</span> </div>
 <div class="line"><a id="l00373" name="l00373"></a><span class="lineno">  373</span><span class="comment"></span> </div>
-<div class="line"><a id="l00374" name="l00374"></a><span class="lineno">  374</span><span class="comment">    ///  Get diffusivity tensor at (Eulerian) position</span></div>
+<div class="line"><a id="l00374" name="l00374"></a><span class="lineno">  374</span><span class="comment">    /// Get diffusivity tensor at (Eulerian) position</span></div>
 <div class="line"><a id="l00375" name="l00375"></a><span class="lineno">  375</span><span class="comment">    /// x and/or local coordinate s.</span></div>
 <div class="line"><a id="l00376" name="l00376"></a><span class="lineno">  376</span><span class="comment">    /// This function is</span></div>
 <div class="line"><a id="l00377" name="l00377"></a><span class="lineno">  377</span><span class="comment">    /// virtual to allow overloading in multi-physics problems where</span></div>
@@ -646,7 +646,7 @@ $(function() {
 <div class="line"><a id="l00517" name="l00517"></a><span class="lineno">  517</span>    }</div>
 <div class="line"><a id="l00518" name="l00518"></a><span class="lineno">  518</span> </div>
 <div class="line"><a id="l00519" name="l00519"></a><span class="lineno">  519</span><span class="comment"></span> </div>
-<div class="line"><a id="l00520" name="l00520"></a><span class="lineno">  520</span><span class="comment">    ///  Add the element&#39;s contribution to its residual vector and</span></div>
+<div class="line"><a id="l00520" name="l00520"></a><span class="lineno">  520</span><span class="comment">    /// Add the element&#39;s contribution to its residual vector and</span></div>
 <div class="line"><a id="l00521" name="l00521"></a><span class="lineno">  521</span><span class="comment">    /// the element Jacobian matrix (wrapper)</span></div>
 <div class="line"><a id="l00522" name="l00522"></a><span class="lineno">  522</span><span class="comment"></span>    <span class="keywordtype">void</span> fill_in_contribution_to_jacobian(Vector&lt;double&gt;&amp; residuals,</div>
 <div class="line"><a id="l00523" name="l00523"></a><span class="lineno">  523</span>                                          DenseMatrix&lt;double&gt;&amp; jacobian)</div>
@@ -698,11 +698,11 @@ $(function() {
 <div class="line"><a id="l00569" name="l00569"></a><span class="lineno">  569</span>    }</div>
 <div class="line"><a id="l00570" name="l00570"></a><span class="lineno">  570</span> </div>
 <div class="line"><a id="l00571" name="l00571"></a><span class="lineno">  571</span><span class="comment"></span> </div>
-<div class="line"><a id="l00572" name="l00572"></a><span class="lineno">  572</span><span class="comment">    ///  Self-test: Return 0 for OK</span></div>
+<div class="line"><a id="l00572" name="l00572"></a><span class="lineno">  572</span><span class="comment">    /// Self-test: Return 0 for OK</span></div>
 <div class="line"><a id="l00573" name="l00573"></a><span class="lineno">  573</span><span class="comment"></span>    <span class="keywordtype">unsigned</span> self_test();</div>
 <div class="line"><a id="l00574" name="l00574"></a><span class="lineno">  574</span> </div>
 <div class="line"><a id="l00575" name="l00575"></a><span class="lineno">  575</span>  <span class="keyword">protected</span>:<span class="comment"></span></div>
-<div class="line"><a id="l00576" name="l00576"></a><span class="lineno">  576</span><span class="comment">    ///  Shape/test functions and derivs w.r.t. to global coords at</span></div>
+<div class="line"><a id="l00576" name="l00576"></a><span class="lineno">  576</span><span class="comment">    /// Shape/test functions and derivs w.r.t. to global coords at</span></div>
 <div class="line"><a id="l00577" name="l00577"></a><span class="lineno">  577</span><span class="comment">    /// local coord. s; return  Jacobian of mapping</span></div>
 <div class="line"><a id="l00578" name="l00578"></a><span class="lineno">  578</span><span class="comment"></span>    <span class="keyword">virtual</span> <span class="keywordtype">double</span> dshape_and_dtest_eulerian_cons_adv_diff(</div>
 <div class="line"><a id="l00579" name="l00579"></a><span class="lineno">  579</span>      <span class="keyword">const</span> Vector&lt;double&gt;&amp; <a class="code hl_variable" href="cfortran_8h.html#ab7123126e4885ef647dd9c6e3807a21c">s</a>,</div>
@@ -711,7 +711,7 @@ $(function() {
 <div class="line"><a id="l00582" name="l00582"></a><span class="lineno">  582</span>      Shape&amp; test,</div>
 <div class="line"><a id="l00583" name="l00583"></a><span class="lineno">  583</span>      DShape&amp; dtestdx) <span class="keyword">const</span> = 0;</div>
 <div class="line"><a id="l00584" name="l00584"></a><span class="lineno">  584</span><span class="comment"></span> </div>
-<div class="line"><a id="l00585" name="l00585"></a><span class="lineno">  585</span><span class="comment">    ///  Shape/test functions and derivs w.r.t. to global coords at</span></div>
+<div class="line"><a id="l00585" name="l00585"></a><span class="lineno">  585</span><span class="comment">    /// Shape/test functions and derivs w.r.t. to global coords at</span></div>
 <div class="line"><a id="l00586" name="l00586"></a><span class="lineno">  586</span><span class="comment">    /// integration point ipt; return  Jacobian of mapping</span></div>
 <div class="line"><a id="l00587" name="l00587"></a><span class="lineno">  587</span><span class="comment"></span>    <span class="keyword">virtual</span> <span class="keywordtype">double</span> dshape_and_dtest_eulerian_at_knot_cons_adv_diff(</div>
 <div class="line"><a id="l00588" name="l00588"></a><span class="lineno">  588</span>      <span class="keyword">const</span> <span class="keywordtype">unsigned</span>&amp; ipt,</div>
@@ -720,7 +720,7 @@ $(function() {
 <div class="line"><a id="l00591" name="l00591"></a><span class="lineno">  591</span>      Shape&amp; test,</div>
 <div class="line"><a id="l00592" name="l00592"></a><span class="lineno">  592</span>      DShape&amp; dtestdx) <span class="keyword">const</span> = 0;</div>
 <div class="line"><a id="l00593" name="l00593"></a><span class="lineno">  593</span><span class="comment"></span> </div>
-<div class="line"><a id="l00594" name="l00594"></a><span class="lineno">  594</span><span class="comment">    ///  Add the element&#39;s contribution to its residual vector only</span></div>
+<div class="line"><a id="l00594" name="l00594"></a><span class="lineno">  594</span><span class="comment">    /// Add the element&#39;s contribution to its residual vector only</span></div>
 <div class="line"><a id="l00595" name="l00595"></a><span class="lineno">  595</span><span class="comment">    /// (if flag=and/or element  Jacobian matrix</span></div>
 <div class="line"><a id="l00596" name="l00596"></a><span class="lineno">  596</span><span class="comment"></span>    <span class="keyword">virtual</span> <span class="keywordtype">void</span> fill_in_generic_residual_contribution_cons_adv_diff(</div>
 <div class="line"><a id="l00597" name="l00597"></a><span class="lineno">  597</span>      Vector&lt;double&gt;&amp; residuals,</div>
@@ -746,7 +746,7 @@ $(function() {
 <div class="line"><a id="l00617" name="l00617"></a><span class="lineno">  617</span><span class="comment">    /// Pointer to diffusivity funciton</span></div>
 <div class="line"><a id="l00618" name="l00618"></a><span class="lineno">  618</span><span class="comment"></span>    GeneralisedAdvectionDiffusionDiffFctPt Diff_fct_pt;</div>
 <div class="line"><a id="l00619" name="l00619"></a><span class="lineno">  619</span><span class="comment"></span> </div>
-<div class="line"><a id="l00620" name="l00620"></a><span class="lineno">  620</span><span class="comment">    ///  Boolean flag to indicate if ALE formulation is disabled when</span></div>
+<div class="line"><a id="l00620" name="l00620"></a><span class="lineno">  620</span><span class="comment">    /// Boolean flag to indicate if ALE formulation is disabled when</span></div>
 <div class="line"><a id="l00621" name="l00621"></a><span class="lineno">  621</span><span class="comment">    /// time-derivatives are computed. Only set to false if you&#39;re sure</span></div>
 <div class="line"><a id="l00622" name="l00622"></a><span class="lineno">  622</span><span class="comment">    /// that the mesh is stationary.</span></div>
 <div class="line"><a id="l00623" name="l00623"></a><span class="lineno">  623</span><span class="comment"></span>    <span class="keywordtype">bool</span> ALE_is_disabled;</div>
@@ -763,7 +763,7 @@ $(function() {
 <div class="line"><a id="l00634" name="l00634"></a><span class="lineno">  634</span><span class="comment"></span> </div>
 <div class="line"><a id="l00635" name="l00635"></a><span class="lineno">  635</span> </div>
 <div class="line"><a id="l00636" name="l00636"></a><span class="lineno">  636</span>  <span class="comment">//======================================================================</span><span class="comment"></span></div>
-<div class="line"><a id="l00637" name="l00637"></a><span class="lineno">  637</span><span class="comment">  ///  QGeneralisedAdvectionDiffusionElement elements are</span></div>
+<div class="line"><a id="l00637" name="l00637"></a><span class="lineno">  637</span><span class="comment">  /// QGeneralisedAdvectionDiffusionElement elements are</span></div>
 <div class="line"><a id="l00638" name="l00638"></a><span class="lineno">  638</span><span class="comment">  /// linear/quadrilateral/brick-shaped Advection Diffusion elements with</span></div>
 <div class="line"><a id="l00639" name="l00639"></a><span class="lineno">  639</span><span class="comment">  /// isoparametric interpolation for the function.</span></div>
 <div class="line"><a id="l00640" name="l00640"></a><span class="lineno">  640</span><span class="comment"></span>  <span class="comment">//======================================================================</span></div>
@@ -773,12 +773,12 @@ $(function() {
 <div class="line"><a id="l00644" name="l00644"></a><span class="lineno">  644</span>      <span class="keyword">public</span> <span class="keyword">virtual</span> GeneralisedAdvectionDiffusionEquations&lt;DIM&gt;</div>
 <div class="line"><a id="l00645" name="l00645"></a><span class="lineno">  645</span>  {</div>
 <div class="line"><a id="l00646" name="l00646"></a><span class="lineno">  646</span>  <span class="keyword">private</span>:<span class="comment"></span></div>
-<div class="line"><a id="l00647" name="l00647"></a><span class="lineno">  647</span><span class="comment">    ///  Static array of ints to hold number of variables at</span></div>
+<div class="line"><a id="l00647" name="l00647"></a><span class="lineno">  647</span><span class="comment">    /// Static array of ints to hold number of variables at</span></div>
 <div class="line"><a id="l00648" name="l00648"></a><span class="lineno">  648</span><span class="comment">    /// nodes: Initial_Nvalue[n]</span></div>
 <div class="line"><a id="l00649" name="l00649"></a><span class="lineno"><a class="line" href="classoomph_1_1QGeneralisedAdvectionDiffusionElement.html#a2ea29796b838cb53f0cfbc99a377274c">  649</a></span><span class="comment"></span>    <span class="keyword">static</span> <span class="keyword">const</span> <span class="keywordtype">unsigned</span> <a class="code hl_variable" href="classoomph_1_1QGeneralisedAdvectionDiffusionElement.html#a2ea29796b838cb53f0cfbc99a377274c">Initial_Nvalue</a>;</div>
 <div class="line"><a id="l00650" name="l00650"></a><span class="lineno">  650</span> </div>
 <div class="line"><a id="l00651" name="l00651"></a><span class="lineno">  651</span>  <span class="keyword">public</span>:<span class="comment"></span></div>
-<div class="line"><a id="l00652" name="l00652"></a><span class="lineno">  652</span><span class="comment">    ///  Constructor: Call constructors for QElement and</span></div>
+<div class="line"><a id="l00652" name="l00652"></a><span class="lineno">  652</span><span class="comment">    /// Constructor: Call constructors for QElement and</span></div>
 <div class="line"><a id="l00653" name="l00653"></a><span class="lineno">  653</span><span class="comment">    /// Advection Diffusion equations</span></div>
 <div class="line"><a id="l00654" name="l00654"></a><span class="lineno"><a class="line" href="classoomph_1_1QGeneralisedAdvectionDiffusionElement.html#ac856e8a06e73d469496339fa6ce8f9dc">  654</a></span><span class="comment"></span>    <a class="code hl_function" href="classoomph_1_1QGeneralisedAdvectionDiffusionElement.html#ac856e8a06e73d469496339fa6ce8f9dc">QGeneralisedAdvectionDiffusionElement</a>()</div>
 <div class="line"><a id="l00655" name="l00655"></a><span class="lineno">  655</span>      : <a class="code hl_class" href="classoomph_1_1QElement.html">QElement</a>&lt;DIM, NNODE_1D&gt;(), GeneralisedAdvectionDiffusionEquations&lt;DIM&gt;()</div>
@@ -794,21 +794,21 @@ $(function() {
 <div class="line"><a id="l00665" name="l00665"></a><span class="lineno"><a class="line" href="classoomph_1_1QGeneralisedAdvectionDiffusionElement.html#a0de1029a114b765e75d38fb71622c89f">  665</a></span><span class="comment"></span>    <span class="keywordtype">void</span> <a class="code hl_function" href="classoomph_1_1QGeneralisedAdvectionDiffusionElement.html#a0de1029a114b765e75d38fb71622c89f">operator=</a>(</div>
 <div class="line"><a id="l00666" name="l00666"></a><span class="lineno">  666</span>      <span class="keyword">const</span> <a class="code hl_class" href="classoomph_1_1QGeneralisedAdvectionDiffusionElement.html">QGeneralisedAdvectionDiffusionElement&lt;DIM, NNODE_1D&gt;</a>&amp;) = <span class="keyword">delete</span>;</div>
 <div class="line"><a id="l00667" name="l00667"></a><span class="lineno">  667</span><span class="comment"></span> </div>
-<div class="line"><a id="l00668" name="l00668"></a><span class="lineno">  668</span><span class="comment">    ///   Required  # of `values&#39; (pinned or dofs)</span></div>
+<div class="line"><a id="l00668" name="l00668"></a><span class="lineno">  668</span><span class="comment">    ///  Required  # of `values&#39; (pinned or dofs)</span></div>
 <div class="line"><a id="l00669" name="l00669"></a><span class="lineno">  669</span><span class="comment">    /// at node n</span></div>
 <div class="line"><a id="l00670" name="l00670"></a><span class="lineno"><a class="line" href="classoomph_1_1QGeneralisedAdvectionDiffusionElement.html#acd259476019fc5a54a1925777527bd38">  670</a></span><span class="comment"></span>    <span class="keyword">inline</span> <span class="keywordtype">unsigned</span> <a class="code hl_function" href="classoomph_1_1QGeneralisedAdvectionDiffusionElement.html#acd259476019fc5a54a1925777527bd38">required_nvalue</a>(<span class="keyword">const</span> <span class="keywordtype">unsigned</span>&amp; n)<span class="keyword"> const</span></div>
 <div class="line"><a id="l00671" name="l00671"></a><span class="lineno">  671</span><span class="keyword">    </span>{</div>
 <div class="line"><a id="l00672" name="l00672"></a><span class="lineno">  672</span>      <span class="keywordflow">return</span> <a class="code hl_variable" href="classoomph_1_1QGeneralisedAdvectionDiffusionElement.html#a2ea29796b838cb53f0cfbc99a377274c">Initial_Nvalue</a>;</div>
 <div class="line"><a id="l00673" name="l00673"></a><span class="lineno">  673</span>    }</div>
 <div class="line"><a id="l00674" name="l00674"></a><span class="lineno">  674</span><span class="comment"></span> </div>
-<div class="line"><a id="l00675" name="l00675"></a><span class="lineno">  675</span><span class="comment">    ///  Output function:</span></div>
+<div class="line"><a id="l00675" name="l00675"></a><span class="lineno">  675</span><span class="comment">    /// Output function:</span></div>
 <div class="line"><a id="l00676" name="l00676"></a><span class="lineno">  676</span><span class="comment">    ///  x,y,u   or    x,y,z,u</span></div>
 <div class="line"><a id="l00677" name="l00677"></a><span class="lineno"><a class="line" href="classoomph_1_1QGeneralisedAdvectionDiffusionElement.html#adcbd395387f1665caeede9ee8020a8cc">  677</a></span><span class="comment"></span>    <span class="keywordtype">void</span> <a class="code hl_function" href="classoomph_1_1QGeneralisedAdvectionDiffusionElement.html#adcbd395387f1665caeede9ee8020a8cc">output</a>(std::ostream&amp; outfile)</div>
 <div class="line"><a id="l00678" name="l00678"></a><span class="lineno">  678</span>    {</div>
 <div class="line"><a id="l00679" name="l00679"></a><span class="lineno">  679</span>      <a class="code hl_function" href="namespaceoomph_1_1CommandLineArgs.html#aca07d359a96b9c7b566142112604ea87">GeneralisedAdvectionDiffusionEquations&lt;DIM&gt;::output</a>(outfile);</div>
 <div class="line"><a id="l00680" name="l00680"></a><span class="lineno">  680</span>    }</div>
 <div class="line"><a id="l00681" name="l00681"></a><span class="lineno">  681</span><span class="comment"></span> </div>
-<div class="line"><a id="l00682" name="l00682"></a><span class="lineno">  682</span><span class="comment">    ///  Output function:</span></div>
+<div class="line"><a id="l00682" name="l00682"></a><span class="lineno">  682</span><span class="comment">    /// Output function:</span></div>
 <div class="line"><a id="l00683" name="l00683"></a><span class="lineno">  683</span><span class="comment">    ///  x,y,u   or    x,y,z,u at n_plot^DIM plot points</span></div>
 <div class="line"><a id="l00684" name="l00684"></a><span class="lineno"><a class="line" href="classoomph_1_1QGeneralisedAdvectionDiffusionElement.html#ae9327403058a327074ab0de659dc4609">  684</a></span><span class="comment"></span>    <span class="keywordtype">void</span> <a class="code hl_function" href="classoomph_1_1QGeneralisedAdvectionDiffusionElement.html#ae9327403058a327074ab0de659dc4609">output</a>(std::ostream&amp; outfile, <span class="keyword">const</span> <span class="keywordtype">unsigned</span>&amp; n_plot)</div>
 <div class="line"><a id="l00685" name="l00685"></a><span class="lineno">  685</span>    {</div>
@@ -816,21 +816,21 @@ $(function() {
 <div class="line"><a id="l00687" name="l00687"></a><span class="lineno">  687</span>    }</div>
 <div class="line"><a id="l00688" name="l00688"></a><span class="lineno">  688</span> </div>
 <div class="line"><a id="l00689" name="l00689"></a><span class="lineno">  689</span><span class="comment"></span> </div>
-<div class="line"><a id="l00690" name="l00690"></a><span class="lineno">  690</span><span class="comment">    ///  C-style output function:</span></div>
+<div class="line"><a id="l00690" name="l00690"></a><span class="lineno">  690</span><span class="comment">    /// C-style output function:</span></div>
 <div class="line"><a id="l00691" name="l00691"></a><span class="lineno">  691</span><span class="comment">    ///  x,y,u   or    x,y,z,u</span></div>
 <div class="line"><a id="l00692" name="l00692"></a><span class="lineno"><a class="line" href="classoomph_1_1QGeneralisedAdvectionDiffusionElement.html#a291f773ee4bab3e9323b64c27448e89d">  692</a></span><span class="comment"></span>    <span class="keywordtype">void</span> <a class="code hl_function" href="classoomph_1_1QGeneralisedAdvectionDiffusionElement.html#a291f773ee4bab3e9323b64c27448e89d">output</a>(FILE* file_pt)</div>
 <div class="line"><a id="l00693" name="l00693"></a><span class="lineno">  693</span>    {</div>
 <div class="line"><a id="l00694" name="l00694"></a><span class="lineno">  694</span>      <a class="code hl_function" href="namespaceoomph_1_1CommandLineArgs.html#aca07d359a96b9c7b566142112604ea87">GeneralisedAdvectionDiffusionEquations&lt;DIM&gt;::output</a>(file_pt);</div>
 <div class="line"><a id="l00695" name="l00695"></a><span class="lineno">  695</span>    }</div>
 <div class="line"><a id="l00696" name="l00696"></a><span class="lineno">  696</span><span class="comment"></span> </div>
-<div class="line"><a id="l00697" name="l00697"></a><span class="lineno">  697</span><span class="comment">    ///   C-style output function:</span></div>
+<div class="line"><a id="l00697" name="l00697"></a><span class="lineno">  697</span><span class="comment">    ///  C-style output function:</span></div>
 <div class="line"><a id="l00698" name="l00698"></a><span class="lineno">  698</span><span class="comment">    ///   x,y,u   or    x,y,z,u at n_plot^DIM plot points</span></div>
 <div class="line"><a id="l00699" name="l00699"></a><span class="lineno"><a class="line" href="classoomph_1_1QGeneralisedAdvectionDiffusionElement.html#a40f61af18b55e3570fec3ea7e11c7127">  699</a></span><span class="comment"></span>    <span class="keywordtype">void</span> <a class="code hl_function" href="classoomph_1_1QGeneralisedAdvectionDiffusionElement.html#a40f61af18b55e3570fec3ea7e11c7127">output</a>(FILE* file_pt, <span class="keyword">const</span> <span class="keywordtype">unsigned</span>&amp; n_plot)</div>
 <div class="line"><a id="l00700" name="l00700"></a><span class="lineno">  700</span>    {</div>
 <div class="line"><a id="l00701" name="l00701"></a><span class="lineno">  701</span>      <a class="code hl_function" href="namespaceoomph_1_1CommandLineArgs.html#aca07d359a96b9c7b566142112604ea87">GeneralisedAdvectionDiffusionEquations&lt;DIM&gt;::output</a>(file_pt, n_plot);</div>
 <div class="line"><a id="l00702" name="l00702"></a><span class="lineno">  702</span>    }</div>
 <div class="line"><a id="l00703" name="l00703"></a><span class="lineno">  703</span><span class="comment"></span> </div>
-<div class="line"><a id="l00704" name="l00704"></a><span class="lineno">  704</span><span class="comment">    ///  Output function for an exact solution:</span></div>
+<div class="line"><a id="l00704" name="l00704"></a><span class="lineno">  704</span><span class="comment">    /// Output function for an exact solution:</span></div>
 <div class="line"><a id="l00705" name="l00705"></a><span class="lineno">  705</span><span class="comment">    ///  x,y,u_exact   or    x,y,z,u_exact at n_plot^DIM plot points</span></div>
 <div class="line"><a id="l00706" name="l00706"></a><span class="lineno"><a class="line" href="classoomph_1_1QGeneralisedAdvectionDiffusionElement.html#ad45f14c0a13af6ac3cefd0a065bcec7c">  706</a></span><span class="comment"></span>    <span class="keywordtype">void</span> <a class="code hl_function" href="classoomph_1_1QGeneralisedAdvectionDiffusionElement.html#ad45f14c0a13af6ac3cefd0a065bcec7c">output_fct</a>(std::ostream&amp; outfile,</div>
 <div class="line"><a id="l00707" name="l00707"></a><span class="lineno">  707</span>                    <span class="keyword">const</span> <span class="keywordtype">unsigned</span>&amp; n_plot,</div>
@@ -841,7 +841,7 @@ $(function() {
 <div class="line"><a id="l00712" name="l00712"></a><span class="lineno">  712</span>    }</div>
 <div class="line"><a id="l00713" name="l00713"></a><span class="lineno">  713</span> </div>
 <div class="line"><a id="l00714" name="l00714"></a><span class="lineno">  714</span><span class="comment"></span> </div>
-<div class="line"><a id="l00715" name="l00715"></a><span class="lineno">  715</span><span class="comment">    ///  Output function for a time-dependent exact solution.</span></div>
+<div class="line"><a id="l00715" name="l00715"></a><span class="lineno">  715</span><span class="comment">    /// Output function for a time-dependent exact solution.</span></div>
 <div class="line"><a id="l00716" name="l00716"></a><span class="lineno">  716</span><span class="comment">    ///  x,y,u_exact   or    x,y,z,u_exact at n_plot^DIM plot points</span></div>
 <div class="line"><a id="l00717" name="l00717"></a><span class="lineno">  717</span><span class="comment">    /// (Calls the steady version)</span></div>
 <div class="line"><a id="l00718" name="l00718"></a><span class="lineno"><a class="line" href="classoomph_1_1QGeneralisedAdvectionDiffusionElement.html#ab8bec1be15a037df4628282d01ca57a7">  718</a></span><span class="comment"></span>    <span class="keywordtype">void</span> <a class="code hl_function" href="classoomph_1_1QGeneralisedAdvectionDiffusionElement.html#ab8bec1be15a037df4628282d01ca57a7">output_fct</a>(std::ostream&amp; outfile,</div>
@@ -864,7 +864,7 @@ $(function() {
 <div class="line"><a id="l00735" name="l00735"></a><span class="lineno">  735</span>      <a class="code hl_class" href="classoomph_1_1Shape.html">Shape</a>&amp; test,</div>
 <div class="line"><a id="l00736" name="l00736"></a><span class="lineno">  736</span>      <a class="code hl_class" href="classoomph_1_1DShape.html">DShape</a>&amp; dtestdx) <span class="keyword">const</span>;</div>
 <div class="line"><a id="l00737" name="l00737"></a><span class="lineno">  737</span><span class="comment"></span> </div>
-<div class="line"><a id="l00738" name="l00738"></a><span class="lineno">  738</span><span class="comment">    ///  Shape, test functions &amp; derivs. w.r.t. to global coords. at</span></div>
+<div class="line"><a id="l00738" name="l00738"></a><span class="lineno">  738</span><span class="comment">    /// Shape, test functions &amp; derivs. w.r.t. to global coords. at</span></div>
 <div class="line"><a id="l00739" name="l00739"></a><span class="lineno">  739</span><span class="comment">    /// integration point ipt. Return Jacobian.</span></div>
 <div class="line"><a id="l00740" name="l00740"></a><span class="lineno">  740</span><span class="comment"></span>    <span class="keyword">inline</span> <span class="keywordtype">double</span> <a class="code hl_function" href="classoomph_1_1QGeneralisedAdvectionDiffusionElement.html#a86385db741884733eb3ec459cc40290d">dshape_and_dtest_eulerian_at_knot_cons_adv_diff</a>(</div>
 <div class="line"><a id="l00741" name="l00741"></a><span class="lineno">  741</span>      <span class="keyword">const</span> <span class="keywordtype">unsigned</span>&amp; ipt,</div>
@@ -878,7 +878,7 @@ $(function() {
 <div class="line"><a id="l00749" name="l00749"></a><span class="lineno">  749</span> </div>
 <div class="line"><a id="l00750" name="l00750"></a><span class="lineno">  750</span> </div>
 <div class="line"><a id="l00751" name="l00751"></a><span class="lineno">  751</span>  <span class="comment">//======================================================================</span><span class="comment"></span></div>
-<div class="line"><a id="l00752" name="l00752"></a><span class="lineno">  752</span><span class="comment">  ///  Define the shape functions and test functions and derivatives</span></div>
+<div class="line"><a id="l00752" name="l00752"></a><span class="lineno">  752</span><span class="comment">  /// Define the shape functions and test functions and derivatives</span></div>
 <div class="line"><a id="l00753" name="l00753"></a><span class="lineno">  753</span><span class="comment">  /// w.r.t. global coordinates and return Jacobian of mapping.</span></div>
 <div class="line"><a id="l00754" name="l00754"></a><span class="lineno">  754</span><span class="comment">  ///</span></div>
 <div class="line"><a id="l00755" name="l00755"></a><span class="lineno">  755</span><span class="comment">  /// Galerkin: Test functions = shape functions</span></div>
@@ -942,7 +942,7 @@ $(function() {
 <div class="line"><a id="l00813" name="l00813"></a><span class="lineno">  813</span><span class="comment"></span> </div>
 <div class="line"><a id="l00814" name="l00814"></a><span class="lineno">  814</span> </div>
 <div class="line"><a id="l00815" name="l00815"></a><span class="lineno">  815</span>  <span class="comment">//=======================================================================</span><span class="comment"></span></div>
-<div class="line"><a id="l00816" name="l00816"></a><span class="lineno">  816</span><span class="comment">  ///  Face geometry for the QGeneralisedAdvectionDiffusionElement</span></div>
+<div class="line"><a id="l00816" name="l00816"></a><span class="lineno">  816</span><span class="comment">  /// Face geometry for the QGeneralisedAdvectionDiffusionElement</span></div>
 <div class="line"><a id="l00817" name="l00817"></a><span class="lineno">  817</span><span class="comment">  /// elements: The spatial dimension of the face elements is one lower than</span></div>
 <div class="line"><a id="l00818" name="l00818"></a><span class="lineno">  818</span><span class="comment">  /// that of the bulk element but they have the same number of points along</span></div>
 <div class="line"><a id="l00819" name="l00819"></a><span class="lineno">  819</span><span class="comment">  /// their 1D edges.</span></div>
@@ -952,7 +952,7 @@ $(function() {
 <div class="line"><a id="l00823" name="l00823"></a><span class="lineno">  823</span>    : <span class="keyword">public</span> <span class="keyword">virtual</span> <a class="code hl_class" href="classoomph_1_1QElement.html">QElement</a>&lt;DIM - 1, NNODE_1D&gt;</div>
 <div class="line"><a id="l00824" name="l00824"></a><span class="lineno">  824</span>  {</div>
 <div class="line"><a id="l00825" name="l00825"></a><span class="lineno">  825</span>  <span class="keyword">public</span>:<span class="comment"></span></div>
-<div class="line"><a id="l00826" name="l00826"></a><span class="lineno">  826</span><span class="comment">    ///  Constructor: Call the constructor for the</span></div>
+<div class="line"><a id="l00826" name="l00826"></a><span class="lineno">  826</span><span class="comment">    /// Constructor: Call the constructor for the</span></div>
 <div class="line"><a id="l00827" name="l00827"></a><span class="lineno">  827</span><span class="comment">    /// appropriate lower-dimensional QElement</span></div>
 <div class="line"><a id="l00828" name="l00828"></a><span class="lineno"><a class="line" href="classoomph_1_1FaceGeometry_3_01QGeneralisedAdvectionDiffusionElement_3_01DIM_00_01NNODE__1D_01_4_01_4.html#a88ec5bd82caba197e610feb10b9884b1">  828</a></span><span class="comment"></span>    <a class="code hl_function" href="classoomph_1_1FaceGeometry_3_01QGeneralisedAdvectionDiffusionElement_3_01DIM_00_01NNODE__1D_01_4_01_4.html#a88ec5bd82caba197e610feb10b9884b1">FaceGeometry</a>() : <a class="code hl_class" href="classoomph_1_1QElement.html">QElement</a>&lt;DIM - 1, NNODE_1D&gt;() {}</div>
 <div class="line"><a id="l00829" name="l00829"></a><span class="lineno">  829</span>  };</div>
@@ -972,7 +972,7 @@ $(function() {
 <div class="line"><a id="l00843" name="l00843"></a><span class="lineno">  843</span>    : <span class="keyword">public</span> <span class="keyword">virtual</span> <a class="code hl_class" href="classoomph_1_1PointElement.html">PointElement</a></div>
 <div class="line"><a id="l00844" name="l00844"></a><span class="lineno">  844</span>  {</div>
 <div class="line"><a id="l00845" name="l00845"></a><span class="lineno">  845</span>  <span class="keyword">public</span>:<span class="comment"></span></div>
-<div class="line"><a id="l00846" name="l00846"></a><span class="lineno">  846</span><span class="comment">    ///  Constructor: Call the constructor for the</span></div>
+<div class="line"><a id="l00846" name="l00846"></a><span class="lineno">  846</span><span class="comment">    /// Constructor: Call the constructor for the</span></div>
 <div class="line"><a id="l00847" name="l00847"></a><span class="lineno">  847</span><span class="comment">    /// appropriate lower-dimensional QElement</span></div>
 <div class="line"><a id="l00848" name="l00848"></a><span class="lineno"><a class="line" href="classoomph_1_1FaceGeometry_3_01QGeneralisedAdvectionDiffusionElement_3_011_00_01NNODE__1D_01_4_01_4.html#afea1308a286ac676d6f8dd20329b7603">  848</a></span><span class="comment"></span>    <a class="code hl_function" href="classoomph_1_1FaceGeometry_3_01QGeneralisedAdvectionDiffusionElement_3_011_00_01NNODE__1D_01_4_01_4.html#afea1308a286ac676d6f8dd20329b7603">FaceGeometry</a>() : <a class="code hl_class" href="classoomph_1_1PointElement.html">PointElement</a>() {}</div>
 <div class="line"><a id="l00849" name="l00849"></a><span class="lineno">  849</span>  };</div>
@@ -1042,7 +1042,7 @@ $(function() {
     <footer>
       <div class="container">
         <div class="text-muted" style="float:right;">Generated by <a href="http://www.doxygen.org/index.html">
-          <img style="height:18px;" class="footer-img" src="doxygen.png" alt="doxygen"></a> on Fri Oct 22 2021 12:23:20
+          <img style="height:18px;" class="footer-img" src="doxygen.png" alt="doxygen"></a> on Mon Oct 25 2021 14:41:39
         </div>
       </div>
     </footer>

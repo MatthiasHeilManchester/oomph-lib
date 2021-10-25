@@ -205,7 +205,7 @@ Creating the elements</h2>
 <div class="line"><span class="comment"></span> HarmonicEquations() {}</div>
 </div><!-- fragment --><p> The unknowns that represent the discretised eigenfunction are assumed to be stored at the nodes.</p>
 <div class="fragment"><div class="line"> <span class="comment"></span></div>
-<div class="line"><span class="comment"> ///  Access function: Eigenfunction value at local node n</span></div>
+<div class="line"><span class="comment"> /// Access function: Eigenfunction value at local node n</span></div>
 <div class="line"><span class="comment"> /// Note that solving the eigenproblem does not assign values</span></div>
 <div class="line"><span class="comment"> /// to this storage space. It is used for output purposes only.</span></div>
 <div class="line"><span class="comment"></span> <span class="keyword">virtual</span> <span class="keyword">inline</span> <span class="keywordtype">double</span> u(<span class="keyword">const</span> <span class="keywordtype">unsigned</span>&amp; n)<span class="keyword"> const </span></div>
@@ -272,19 +272,19 @@ Creating the elements</h2>
 <div class="line"> </div>
 <div class="line">  <span class="keyword">public</span>:</div>
 <div class="line"><span class="comment"></span> </div>
-<div class="line"><span class="comment"> ///  Constructor: Call constructors for QElement and </span></div>
+<div class="line"><span class="comment"> /// Constructor: Call constructors for QElement and </span></div>
 <div class="line"><span class="comment"> /// Poisson equations</span></div>
 <div class="line"><span class="comment"></span> <a class="code hl_function" href="classQHarmonicElement.html#a0e7480a0064b51e87ba197551bb10373">QHarmonicElement</a>() : QElement&lt;1,NNODE_1D&gt;(), HarmonicEquations() {}</div>
 <div class="line"><span class="comment"></span> </div>
-<div class="line"><span class="comment"> ///   Required  # of `values&#39; (pinned or dofs) </span></div>
+<div class="line"><span class="comment"> ///  Required  # of `values&#39; (pinned or dofs) </span></div>
 <div class="line"><span class="comment"> /// at node n</span></div>
 <div class="line"><span class="comment"></span> <span class="keyword">inline</span> <span class="keywordtype">unsigned</span> <a class="code hl_function" href="classQHarmonicElement.html#a8574a452983b15fb2b4d40ec4ef3e890">required_nvalue</a>(<span class="keyword">const</span> <span class="keywordtype">unsigned</span> &amp;n)<span class="keyword"> const </span>{<span class="keywordflow">return</span> 1;}</div>
 <div class="line"><span class="comment"></span> </div>
-<div class="line"><span class="comment"> ///  Output function overloaded from HarmonicEquations</span></div>
+<div class="line"><span class="comment"> /// Output function overloaded from HarmonicEquations</span></div>
 <div class="line"><span class="comment"></span> <span class="keywordtype">void</span> <a class="code hl_function" href="classQHarmonicElement.html#a8b38012f3d62ef419c359f5e545e5f85">output</a>(ostream &amp;outfile) </div>
 <div class="line">  {HarmonicEquations::output(outfile);}</div>
 <div class="line"><span class="comment"></span> </div>
-<div class="line"><span class="comment"> ///   Output function overloaded from HarmonicEquations</span></div>
+<div class="line"><span class="comment"> ///  Output function overloaded from HarmonicEquations</span></div>
 <div class="line"><span class="comment"></span> <span class="keywordtype">void</span> <a class="code hl_function" href="classQHarmonicElement.html#a8b38012f3d62ef419c359f5e545e5f85">output</a>(ostream &amp;outfile, <span class="keyword">const</span> <span class="keywordtype">unsigned</span> &amp;Nplot) </div>
 <div class="line">  {HarmonicEquations::output(outfile,Nplot);}</div>
 <div class="line"> </div>
@@ -298,7 +298,7 @@ Creating the elements</h2>
 <div class="line"><span class="keyword">  </span>{<span class="keywordflow">return</span> QElement&lt;1,NNODE_1D&gt;::dshape_eulerian(s,psi,dpsidx);}</div>
 <div class="line"> </div>
 <div class="line"><span class="comment"></span> </div>
-<div class="line"><span class="comment"> ///  Shape, test functions &amp; derivs. w.r.t. to global coords. at</span></div>
+<div class="line"><span class="comment"> /// Shape, test functions &amp; derivs. w.r.t. to global coords. at</span></div>
 <div class="line"><span class="comment"> /// integration point ipt. Return Jacobian.</span></div>
 <div class="line"><span class="comment"></span> <span class="keyword">inline</span> <span class="keywordtype">double</span> <a class="code hl_function" href="classQHarmonicElement.html#a6b11b5a42bd20c4e1d1e9840ba22a80a">dshape_eulerian_at_knot</a>(<span class="keyword">const</span> <span class="keywordtype">unsigned</span>&amp; ipt,</div>
 <div class="line">                                       Shape &amp;psi, </div>
@@ -364,7 +364,7 @@ The problem class</h1>
 The Problem constructor</h1>
 <p >In the <code>Problem</code> constructor, we start by creating the eigensolver specified by the second template parameter. We then discretise the domain using <code>oomph-lib's</code> <code>1DMesh</code> object. The arguments of this object's constructor are the number of elements (whose type is specified by the template parameter), and the domain length. Next, we pin the nodal values on the domain boundaries, which corresponds to applying the Dirichlet boundary conditions. Finally we call the generic <code>Problem::assign_eqn_numbers()</code> routine to set up the equation numbers.</p>
  <div class="fragment"><div class="line"><span class="comment">//=====start_of_constructor===============================================</span></div>
-<div class="line"><span class="comment">///  Constructor for 1D Harmonic problem in unit interval.</span><span class="comment"></span></div>
+<div class="line"><span class="comment">/// Constructor for 1D Harmonic problem in unit interval.</span><span class="comment"></span></div>
 <div class="line"><span class="comment">/// Discretise the 1D domain with n_element elements of type ELEMENT.</span></div>
 <div class="line"><span class="comment">/// Specify function pointer to source function. </span></div>
 <div class="line"><span class="comment"></span><span class="comment">//========================================================================</span></div>
@@ -547,7 +547,7 @@ PDF file</h1>
     <footer>
       <div class="container">
         <div class="text-muted" style="float:right;">Generated by <a href="http://www.doxygen.org/index.html">
-          <img style="height:18px;" class="footer-img" src="doxygen.png" alt="doxygen"></a> on Fri Oct 22 2021 12:48:09
+          <img style="height:18px;" class="footer-img" src="doxygen.png" alt="doxygen"></a> on Mon Oct 25 2021 15:06:22
         </div>
       </div>
     </footer>

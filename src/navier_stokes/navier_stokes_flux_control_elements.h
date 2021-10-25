@@ -63,7 +63,7 @@ namespace oomph
     /// Pure virtual function to calculate integral of the volume flux
     virtual double get_volume_flux() = 0;
 
-    ///  Function adds to the external data the Data object whose
+    /// Function adds to the external data the Data object whose
     /// single value is the pressure applied by the element
     void add_pressure_data(Data* pressure_data_pt)
     {
@@ -71,7 +71,7 @@ namespace oomph
     }
 
   protected:
-    ///  Access function gives id of external Data object whose
+    /// Access function gives id of external Data object whose
     /// single value is the pressure applied by the element
     unsigned& pressure_data_id()
     {
@@ -79,7 +79,7 @@ namespace oomph
     }
 
   private:
-    ///  Id of external Data object whose single value is the
+    /// Id of external Data object whose single value is the
     /// pressure applied by the elements
     unsigned Pressure_data_id;
   };
@@ -103,7 +103,7 @@ namespace oomph
   class NetFluxControlElement : public virtual GeneralisedElement
   {
   public:
-    ///  Constructor takes a mesh of
+    /// Constructor takes a mesh of
     /// TemplateFreeNavierStokesFluxControlElementBase elements
     /// that impose the pressure to control the flux, plus a pointer to
     /// the double which contains the desired flux value
@@ -164,7 +164,7 @@ namespace oomph
       return Dim;
     }
 
-    ///  Function to return a pointer to the Data object whose
+    /// Function to return a pointer to the Data object whose
     /// single value is the pressure applied by the
     /// NavierStokesFluxControlElement elements
     Data* pressure_data_pt() const
@@ -173,7 +173,7 @@ namespace oomph
     }
 
 
-    ///  Add the element's contribution to its residual vector:
+    /// Add the element's contribution to its residual vector:
     /// i.e. the flux constraint.
     inline void fill_in_contribution_to_residuals(Vector<double>& residuals)
     {
@@ -181,7 +181,7 @@ namespace oomph
       fill_in_generic_residual_contribution_flux_control(residuals);
     }
 
-    ///  This function returns the residuals, but adds nothing to the
+    /// This function returns the residuals, but adds nothing to the
     /// Jacobian as this element's Jacobian contributions are calculated by
     /// the NavierStokesFluxControlElements which impose the traction
     /// used to control the flux.
@@ -193,7 +193,7 @@ namespace oomph
     }
 
 
-    ///  The number of "DOF types" that degrees of freedom in this element
+    /// The number of "DOF types" that degrees of freedom in this element
     /// are sub-divided into - it's set to Dof_number_for_unknown+1
     /// because it's expected this element is added to a fluid mesh
     /// containing navier stokes elements
@@ -214,7 +214,7 @@ namespace oomph
       return Dof_number_for_unknown + 1;
     }
 
-    ///  Function to set / get the nodal value of the "DOF type" to which
+    /// Function to set / get the nodal value of the "DOF type" to which
     /// the degree of freedom in this element (the pressure that enforces
     /// the required volume flux!) is added to.
     /// This should be set to the Navier-Stokes pressure DOF type
@@ -231,7 +231,7 @@ namespace oomph
       return Dof_number_for_unknown;
     }
 
-    ///  Create a list of pairs for all unknowns in this element,
+    /// Create a list of pairs for all unknowns in this element,
     /// so that the first entry in each pair contains the global equation
     /// number of the unknown, while the second one contains the number
     /// of the "DOF type" that this unknown is associated with.
@@ -307,18 +307,18 @@ namespace oomph
 
 
   private:
-    ///  Data object whose single value is the pressure
+    /// Data object whose single value is the pressure
     /// applied by the elements in the Flux_control_mesh_pt
     Data* Pressure_data_pt;
 
-    ///  Mesh of elements which impose the pressure which controls
+    /// Mesh of elements which impose the pressure which controls
     /// the net flux
     Mesh* Flux_control_mesh_pt;
 
-    ///  Pointer to the value that stores the prescribed flux
+    /// Pointer to the value that stores the prescribed flux
     double* Prescribed_flux_value_pt;
 
-    ///  The id number of the "DOF type" to which the degree
+    /// The id number of the "DOF type" to which the degree
     /// of freedom in this element is added to. This should be set to the
     /// number id of the Navier-Stokes pressure DOF block (which is dimension
     /// dependent!) if this element is added to a fluid mesh
@@ -419,7 +419,7 @@ namespace oomph
     }
 
   protected:
-    ///  Access function that returns the local equation numbers
+    /// Access function that returns the local equation numbers
     /// for velocity components.
     /// u_local_eqn(n,i) = local equation number or < 0 if pinned.
     /// The default is to asssume that n is the local node number
@@ -578,7 +578,7 @@ namespace oomph
     ~RefineableNavierStokesFluxControlElement() {}
 
 
-    ///  Number of continuously interpolated values are the
+    /// Number of continuously interpolated values are the
     /// same as those in the bulk element.
     unsigned ncont_interpolated_values() const
     {

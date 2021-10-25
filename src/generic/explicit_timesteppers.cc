@@ -142,7 +142,7 @@ namespace oomph
     return Dummy_time_value;
   }
 
-  ///  Virtual function that should be overloaded to return a pointer to a
+  /// Virtual function that should be overloaded to return a pointer to a
   /// Time object.
   Time* ExplicitTimeSteppableObject::time_pt() const
   {

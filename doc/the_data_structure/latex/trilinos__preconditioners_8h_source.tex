@@ -67,13 +67,13 @@
 \DoxyCodeLine{\Hypertarget{trilinos__preconditioners_8h_source_l00063}00063       \mbox{\hyperlink{classoomph_1_1TrilinosPreconditionerBase_a515a6df2a535337d520cfe98bdcd38f4}{Epetra\_matrix\_pt}} = 0;}
 \DoxyCodeLine{\Hypertarget{trilinos__preconditioners_8h_source_l00064}00064     \}}
 \DoxyCodeLine{\Hypertarget{trilinos__preconditioners_8h_source_l00065}00065 \textcolor{comment}{}}
-\DoxyCodeLine{\Hypertarget{trilinos__preconditioners_8h_source_l00066}00066 \textcolor{comment}{    ///  Destructor.}}
+\DoxyCodeLine{\Hypertarget{trilinos__preconditioners_8h_source_l00066}00066 \textcolor{comment}{    /// Destructor.}}
 \DoxyCodeLine{\Hypertarget{trilinos__preconditioners_8h_source_l00067}\mbox{\hyperlink{classoomph_1_1TrilinosPreconditionerBase_a5d82e0cefa29fee69f80fb376763e584}{00067}} \textcolor{comment}{}    \textcolor{keyword}{virtual} \mbox{\hyperlink{classoomph_1_1TrilinosPreconditionerBase_a5d82e0cefa29fee69f80fb376763e584}{\string~TrilinosPreconditionerBase}}()}
 \DoxyCodeLine{\Hypertarget{trilinos__preconditioners_8h_source_l00068}00068     \{}
 \DoxyCodeLine{\Hypertarget{trilinos__preconditioners_8h_source_l00069}00069       \mbox{\hyperlink{classoomph_1_1TrilinosPreconditionerBase_a6cc1da6ffb61bec844ccd33f6e5e8807}{clean\_up\_memory}}();}
 \DoxyCodeLine{\Hypertarget{trilinos__preconditioners_8h_source_l00070}00070     \}}
 \DoxyCodeLine{\Hypertarget{trilinos__preconditioners_8h_source_l00071}00071 \textcolor{comment}{}}
-\DoxyCodeLine{\Hypertarget{trilinos__preconditioners_8h_source_l00072}00072 \textcolor{comment}{    ///  Static double that accumulates the preconditioner}}
+\DoxyCodeLine{\Hypertarget{trilinos__preconditioners_8h_source_l00072}00072 \textcolor{comment}{    /// Static double that accumulates the preconditioner}}
 \DoxyCodeLine{\Hypertarget{trilinos__preconditioners_8h_source_l00073}00073 \textcolor{comment}{    /// solve time of all instantiations of this class. Reset}}
 \DoxyCodeLine{\Hypertarget{trilinos__preconditioners_8h_source_l00074}00074 \textcolor{comment}{    /// it manually, e.g. after every Newton solve.}}
 \DoxyCodeLine{\Hypertarget{trilinos__preconditioners_8h_source_l00075}\mbox{\hyperlink{classoomph_1_1TrilinosPreconditionerBase_a6fefea3562e20d9b446dbe72ce88d506}{00075}} \textcolor{comment}{}    \textcolor{keyword}{static} \textcolor{keywordtype}{double} \mbox{\hyperlink{classoomph_1_1TrilinosPreconditionerBase_a6fefea3562e20d9b446dbe72ce88d506}{Cumulative\_preconditioner\_solve\_time}};}
@@ -101,7 +101,7 @@
 \DoxyCodeLine{\Hypertarget{trilinos__preconditioners_8h_source_l00097}00097     \textcolor{comment}{// rightly, it shouts.}}
 \DoxyCodeLine{\Hypertarget{trilinos__preconditioners_8h_source_l00098}00098     \textcolor{comment}{/*void operator=(const TrilinosPreconditionerBase\&) = delete;*/}}
 \DoxyCodeLine{\Hypertarget{trilinos__preconditioners_8h_source_l00099}00099 \textcolor{comment}{}}
-\DoxyCodeLine{\Hypertarget{trilinos__preconditioners_8h_source_l00100}00100 \textcolor{comment}{    ///  Function to set up a preconditioner for the linear system}}
+\DoxyCodeLine{\Hypertarget{trilinos__preconditioners_8h_source_l00100}00100 \textcolor{comment}{    /// Function to set up a preconditioner for the linear system}}
 \DoxyCodeLine{\Hypertarget{trilinos__preconditioners_8h_source_l00101}00101 \textcolor{comment}{    /// defined by matrix\_pt. This function must be called before using}}
 \DoxyCodeLine{\Hypertarget{trilinos__preconditioners_8h_source_l00102}00102 \textcolor{comment}{    /// preconditioner\_solve.}}
 \DoxyCodeLine{\Hypertarget{trilinos__preconditioners_8h_source_l00103}00103 \textcolor{comment}{    /// \(\backslash\)b NOTE 1. matrix\_pt must point to an object of class CRDoubleMatrix or}}
@@ -109,12 +109,12 @@
 \DoxyCodeLine{\Hypertarget{trilinos__preconditioners_8h_source_l00105}00105 \textcolor{comment}{    /// This method should be called by oomph-\/lib solvers and preconditioners}}
 \DoxyCodeLine{\Hypertarget{trilinos__preconditioners_8h_source_l00106}00106 \textcolor{comment}{}    \textcolor{keywordtype}{void} \mbox{\hyperlink{classoomph_1_1TrilinosPreconditionerBase_aaef80c74c1d94a42420e3362194efce9}{setup}}();}
 \DoxyCodeLine{\Hypertarget{trilinos__preconditioners_8h_source_l00107}00107 \textcolor{comment}{}}
-\DoxyCodeLine{\Hypertarget{trilinos__preconditioners_8h_source_l00108}00108 \textcolor{comment}{    ///  Function to setup a preconditioner for the linear system defined}}
+\DoxyCodeLine{\Hypertarget{trilinos__preconditioners_8h_source_l00108}00108 \textcolor{comment}{    /// Function to setup a preconditioner for the linear system defined}}
 \DoxyCodeLine{\Hypertarget{trilinos__preconditioners_8h_source_l00109}00109 \textcolor{comment}{    /// by the oomph-\/lib oomph\_matrix\_pt and Epetra epetra\_matrix\_pt matrices.}}
 \DoxyCodeLine{\Hypertarget{trilinos__preconditioners_8h_source_l00110}00110 \textcolor{comment}{    /// This method is called by Trilinos solvers.}}
 \DoxyCodeLine{\Hypertarget{trilinos__preconditioners_8h_source_l00111}00111 \textcolor{comment}{}    \textcolor{keywordtype}{void} \mbox{\hyperlink{classoomph_1_1TrilinosPreconditionerBase_aaef80c74c1d94a42420e3362194efce9}{setup}}(Epetra\_CrsMatrix* epetra\_matrix\_pt);}
 \DoxyCodeLine{\Hypertarget{trilinos__preconditioners_8h_source_l00112}00112 \textcolor{comment}{}}
-\DoxyCodeLine{\Hypertarget{trilinos__preconditioners_8h_source_l00113}00113 \textcolor{comment}{    ///  applies the preconditioner}}
+\DoxyCodeLine{\Hypertarget{trilinos__preconditioners_8h_source_l00113}00113 \textcolor{comment}{    /// applies the preconditioner}}
 \DoxyCodeLine{\Hypertarget{trilinos__preconditioners_8h_source_l00114}00114 \textcolor{comment}{}    \textcolor{keywordtype}{void} \mbox{\hyperlink{classoomph_1_1TrilinosPreconditionerBase_a12ec6cf14b8d27ed9ef810dcad5e1182}{preconditioner\_solve}}(\textcolor{keyword}{const} \mbox{\hyperlink{classoomph_1_1DoubleVector}{DoubleVector}}\& r, \mbox{\hyperlink{classoomph_1_1DoubleVector}{DoubleVector}}\& z);}
 \DoxyCodeLine{\Hypertarget{trilinos__preconditioners_8h_source_l00115}00115 \textcolor{comment}{}}
 \DoxyCodeLine{\Hypertarget{trilinos__preconditioners_8h_source_l00116}00116 \textcolor{comment}{    /// Access function to Epetra\_preconditioner\_pt.}}
@@ -132,30 +132,30 @@
 \DoxyCodeLine{\Hypertarget{trilinos__preconditioners_8h_source_l00128}00128     \}}
 \DoxyCodeLine{\Hypertarget{trilinos__preconditioners_8h_source_l00129}00129 }
 \DoxyCodeLine{\Hypertarget{trilinos__preconditioners_8h_source_l00130}00130   \textcolor{keyword}{protected}:\textcolor{comment}{}}
-\DoxyCodeLine{\Hypertarget{trilinos__preconditioners_8h_source_l00131}00131 \textcolor{comment}{    ///  Function to set up a specific Trilinos preconditioner.}}
+\DoxyCodeLine{\Hypertarget{trilinos__preconditioners_8h_source_l00131}00131 \textcolor{comment}{    /// Function to set up a specific Trilinos preconditioner.}}
 \DoxyCodeLine{\Hypertarget{trilinos__preconditioners_8h_source_l00132}00132 \textcolor{comment}{    /// This is called by setup(...).}}
 \DoxyCodeLine{\Hypertarget{trilinos__preconditioners_8h_source_l00133}\mbox{\hyperlink{classoomph_1_1TrilinosPreconditionerBase_aeb2b1cee61617fd68a8beb911ddc4a62}{00133}} \textcolor{comment}{}    \textcolor{keyword}{virtual} \textcolor{keywordtype}{void} \mbox{\hyperlink{classoomph_1_1TrilinosPreconditionerBase_aeb2b1cee61617fd68a8beb911ddc4a62}{setup\_trilinos\_preconditioner}}(}
 \DoxyCodeLine{\Hypertarget{trilinos__preconditioners_8h_source_l00134}00134       Epetra\_CrsMatrix* epetra\_matrix\_pt) = 0;}
 \DoxyCodeLine{\Hypertarget{trilinos__preconditioners_8h_source_l00135}00135 \textcolor{comment}{}}
-\DoxyCodeLine{\Hypertarget{trilinos__preconditioners_8h_source_l00136}00136 \textcolor{comment}{    ///  The preconditioner which will be set up using function}}
+\DoxyCodeLine{\Hypertarget{trilinos__preconditioners_8h_source_l00136}00136 \textcolor{comment}{    /// The preconditioner which will be set up using function}}
 \DoxyCodeLine{\Hypertarget{trilinos__preconditioners_8h_source_l00137}00137 \textcolor{comment}{    /// setup\_trilinos\_preconditioner(...)}}
 \DoxyCodeLine{\Hypertarget{trilinos__preconditioners_8h_source_l00138}\mbox{\hyperlink{classoomph_1_1TrilinosPreconditionerBase_a082fb118f5c9cb80daffba53d85a74d8}{00138}} \textcolor{comment}{}    Epetra\_Operator* \mbox{\hyperlink{classoomph_1_1TrilinosPreconditionerBase_a082fb118f5c9cb80daffba53d85a74d8}{Epetra\_preconditioner\_pt}};}
 \DoxyCodeLine{\Hypertarget{trilinos__preconditioners_8h_source_l00139}00139 \textcolor{comment}{}}
-\DoxyCodeLine{\Hypertarget{trilinos__preconditioners_8h_source_l00140}00140 \textcolor{comment}{    ///  Pointer used to store the epetra matrix -\/ only used when this}}
+\DoxyCodeLine{\Hypertarget{trilinos__preconditioners_8h_source_l00140}00140 \textcolor{comment}{    /// Pointer used to store the epetra matrix -\/ only used when this}}
 \DoxyCodeLine{\Hypertarget{trilinos__preconditioners_8h_source_l00141}00141 \textcolor{comment}{    /// preconditioner is setup using the oomph-\/lib interface}}
 \DoxyCodeLine{\Hypertarget{trilinos__preconditioners_8h_source_l00142}\mbox{\hyperlink{classoomph_1_1TrilinosPreconditionerBase_a515a6df2a535337d520cfe98bdcd38f4}{00142}} \textcolor{comment}{}    Epetra\_CrsMatrix* \mbox{\hyperlink{classoomph_1_1TrilinosPreconditionerBase_a515a6df2a535337d520cfe98bdcd38f4}{Epetra\_matrix\_pt}};}
 \DoxyCodeLine{\Hypertarget{trilinos__preconditioners_8h_source_l00143}00143   \};}
 \DoxyCodeLine{\Hypertarget{trilinos__preconditioners_8h_source_l00144}00144 }
 \DoxyCodeLine{\Hypertarget{trilinos__preconditioners_8h_source_l00145}00145 }
 \DoxyCodeLine{\Hypertarget{trilinos__preconditioners_8h_source_l00146}00146   \textcolor{comment}{//============================================================================}\textcolor{comment}{}}
-\DoxyCodeLine{\Hypertarget{trilinos__preconditioners_8h_source_l00147}00147 \textcolor{comment}{  ///  An interface to the Trilinos ML class -\/ provides a function}}
+\DoxyCodeLine{\Hypertarget{trilinos__preconditioners_8h_source_l00147}00147 \textcolor{comment}{  /// An interface to the Trilinos ML class -\/ provides a function}}
 \DoxyCodeLine{\Hypertarget{trilinos__preconditioners_8h_source_l00148}00148 \textcolor{comment}{  /// to construct a serial ML object, and functions to modify some}}
 \DoxyCodeLine{\Hypertarget{trilinos__preconditioners_8h_source_l00149}00149 \textcolor{comment}{  /// of the ML paramaters.}}
 \DoxyCodeLine{\Hypertarget{trilinos__preconditioners_8h_source_l00150}00150 \textcolor{comment}{}  \textcolor{comment}{//============================================================================}}
 \DoxyCodeLine{\Hypertarget{trilinos__preconditioners_8h_source_l00151}\mbox{\hyperlink{classoomph_1_1TrilinosMLPreconditioner}{00151}}   \textcolor{keyword}{class }\mbox{\hyperlink{classoomph_1_1TrilinosMLPreconditioner}{TrilinosMLPreconditioner}} : \textcolor{keyword}{public} \mbox{\hyperlink{classoomph_1_1TrilinosPreconditionerBase}{TrilinosPreconditionerBase}}}
 \DoxyCodeLine{\Hypertarget{trilinos__preconditioners_8h_source_l00152}00152   \{}
 \DoxyCodeLine{\Hypertarget{trilinos__preconditioners_8h_source_l00153}00153   \textcolor{keyword}{public}:\textcolor{comment}{}}
-\DoxyCodeLine{\Hypertarget{trilinos__preconditioners_8h_source_l00154}00154 \textcolor{comment}{    ///  Constructor. Build with Smooth Aggretation (SA) default}}
+\DoxyCodeLine{\Hypertarget{trilinos__preconditioners_8h_source_l00154}00154 \textcolor{comment}{    /// Constructor. Build with Smooth Aggretation (SA) default}}
 \DoxyCodeLine{\Hypertarget{trilinos__preconditioners_8h_source_l00155}00155 \textcolor{comment}{    /// settings, but our own default number of V cycles (initialised}}
 \DoxyCodeLine{\Hypertarget{trilinos__preconditioners_8h_source_l00156}00156 \textcolor{comment}{    /// to 1 to replicate TrilinosML's own behaviour).}}
 \DoxyCodeLine{\Hypertarget{trilinos__preconditioners_8h_source_l00157}\mbox{\hyperlink{classoomph_1_1TrilinosMLPreconditioner_a98c9e7ce547973570a53b138912ea20a}{00157}} \textcolor{comment}{}    \mbox{\hyperlink{classoomph_1_1TrilinosMLPreconditioner_a98c9e7ce547973570a53b138912ea20a}{TrilinosMLPreconditioner}}()}
@@ -176,7 +176,7 @@
 \DoxyCodeLine{\Hypertarget{trilinos__preconditioners_8h_source_l00172}00172 \textcolor{comment}{    /// Broken assignment operator.}}
 \DoxyCodeLine{\Hypertarget{trilinos__preconditioners_8h_source_l00173}00173 \textcolor{comment}{}    \textcolor{comment}{/*void operator=(const TrilinosMLPreconditioner\&) = delete;*/}}
 \DoxyCodeLine{\Hypertarget{trilinos__preconditioners_8h_source_l00174}00174 \textcolor{comment}{}}
-\DoxyCodeLine{\Hypertarget{trilinos__preconditioners_8h_source_l00175}00175 \textcolor{comment}{    ///  Set control flags to values for Petrov-\/Galerkin}}
+\DoxyCodeLine{\Hypertarget{trilinos__preconditioners_8h_source_l00175}00175 \textcolor{comment}{    /// Set control flags to values for Petrov-\/Galerkin}}
 \DoxyCodeLine{\Hypertarget{trilinos__preconditioners_8h_source_l00176}00176 \textcolor{comment}{    /// preconditioning -\/ for non symmetric systems}}
 \DoxyCodeLine{\Hypertarget{trilinos__preconditioners_8h_source_l00177}\mbox{\hyperlink{classoomph_1_1TrilinosMLPreconditioner_aa52463ce0cef9095c44dfaa08afd53bd}{00177}} \textcolor{comment}{}    \textcolor{keywordtype}{void} \mbox{\hyperlink{classoomph_1_1TrilinosMLPreconditioner_aa52463ce0cef9095c44dfaa08afd53bd}{set\_NSSA\_default\_values}}()}
 \DoxyCodeLine{\Hypertarget{trilinos__preconditioners_8h_source_l00178}00178     \{}
@@ -184,7 +184,7 @@
 \DoxyCodeLine{\Hypertarget{trilinos__preconditioners_8h_source_l00180}00180     \}}
 \DoxyCodeLine{\Hypertarget{trilinos__preconditioners_8h_source_l00181}00181 }
 \DoxyCodeLine{\Hypertarget{trilinos__preconditioners_8h_source_l00182}00182 \textcolor{comment}{}}
-\DoxyCodeLine{\Hypertarget{trilinos__preconditioners_8h_source_l00183}00183 \textcolor{comment}{    ///  Set control flags to values for classical smoothed aggregation-\/}}
+\DoxyCodeLine{\Hypertarget{trilinos__preconditioners_8h_source_l00183}00183 \textcolor{comment}{    /// Set control flags to values for classical smoothed aggregation-\/}}
 \DoxyCodeLine{\Hypertarget{trilinos__preconditioners_8h_source_l00184}00184 \textcolor{comment}{    /// based 2-\/level domain decomposition}}
 \DoxyCodeLine{\Hypertarget{trilinos__preconditioners_8h_source_l00185}\mbox{\hyperlink{classoomph_1_1TrilinosMLPreconditioner_aeb180c16b994e172649e7bafd1818bcb}{00185}} \textcolor{comment}{}    \textcolor{keywordtype}{void} \mbox{\hyperlink{classoomph_1_1TrilinosMLPreconditioner_aeb180c16b994e172649e7bafd1818bcb}{set\_DD\_default\_values}}()}
 \DoxyCodeLine{\Hypertarget{trilinos__preconditioners_8h_source_l00186}00186     \{}
@@ -192,14 +192,14 @@
 \DoxyCodeLine{\Hypertarget{trilinos__preconditioners_8h_source_l00188}00188     \}}
 \DoxyCodeLine{\Hypertarget{trilinos__preconditioners_8h_source_l00189}00189 }
 \DoxyCodeLine{\Hypertarget{trilinos__preconditioners_8h_source_l00190}00190 \textcolor{comment}{}}
-\DoxyCodeLine{\Hypertarget{trilinos__preconditioners_8h_source_l00191}00191 \textcolor{comment}{    ///  Set control flags to values 3-\/level algebraic domain}}
+\DoxyCodeLine{\Hypertarget{trilinos__preconditioners_8h_source_l00191}00191 \textcolor{comment}{    /// Set control flags to values 3-\/level algebraic domain}}
 \DoxyCodeLine{\Hypertarget{trilinos__preconditioners_8h_source_l00192}00192 \textcolor{comment}{    /// decomposition}}
 \DoxyCodeLine{\Hypertarget{trilinos__preconditioners_8h_source_l00193}\mbox{\hyperlink{classoomph_1_1TrilinosMLPreconditioner_ac34c8a71081f1d7b50e478d541939e2c}{00193}} \textcolor{comment}{}    \textcolor{keywordtype}{void} \mbox{\hyperlink{classoomph_1_1TrilinosMLPreconditioner_ac34c8a71081f1d7b50e478d541939e2c}{set\_DDML\_default\_values}}()}
 \DoxyCodeLine{\Hypertarget{trilinos__preconditioners_8h_source_l00194}00194     \{}
 \DoxyCodeLine{\Hypertarget{trilinos__preconditioners_8h_source_l00195}00195       ML\_Epetra::SetDefaults(\textcolor{stringliteral}{"{}DD-\/ML"{}}, \mbox{\hyperlink{classoomph_1_1TrilinosMLPreconditioner_aa324e487780da0351288965209253e74}{ML\_parameters}});}
 \DoxyCodeLine{\Hypertarget{trilinos__preconditioners_8h_source_l00196}00196     \}}
 \DoxyCodeLine{\Hypertarget{trilinos__preconditioners_8h_source_l00197}00197 \textcolor{comment}{}}
-\DoxyCodeLine{\Hypertarget{trilinos__preconditioners_8h_source_l00198}00198 \textcolor{comment}{    ///  Set control flags to values for classical smoothed}}
+\DoxyCodeLine{\Hypertarget{trilinos__preconditioners_8h_source_l00198}00198 \textcolor{comment}{    /// Set control flags to values for classical smoothed}}
 \DoxyCodeLine{\Hypertarget{trilinos__preconditioners_8h_source_l00199}00199 \textcolor{comment}{    /// aggregation preconditioning}}
 \DoxyCodeLine{\Hypertarget{trilinos__preconditioners_8h_source_l00200}\mbox{\hyperlink{classoomph_1_1TrilinosMLPreconditioner_ae5eae67f55f43c4b5be04635e5c844af}{00200}} \textcolor{comment}{}    \textcolor{keywordtype}{void} \mbox{\hyperlink{classoomph_1_1TrilinosMLPreconditioner_ae5eae67f55f43c4b5be04635e5c844af}{set\_SA\_default\_values}}()}
 \DoxyCodeLine{\Hypertarget{trilinos__preconditioners_8h_source_l00201}00201     \{}
@@ -249,12 +249,12 @@
 \DoxyCodeLine{\Hypertarget{trilinos__preconditioners_8h_source_l00245}00245     \}}
 \DoxyCodeLine{\Hypertarget{trilinos__preconditioners_8h_source_l00246}00246 }
 \DoxyCodeLine{\Hypertarget{trilinos__preconditioners_8h_source_l00247}00247 \textcolor{comment}{}}
-\DoxyCodeLine{\Hypertarget{trilinos__preconditioners_8h_source_l00248}00248 \textcolor{comment}{    ///  Default number of V cycles (one to be consistent with}}
+\DoxyCodeLine{\Hypertarget{trilinos__preconditioners_8h_source_l00248}00248 \textcolor{comment}{    /// Default number of V cycles (one to be consistent with}}
 \DoxyCodeLine{\Hypertarget{trilinos__preconditioners_8h_source_l00249}00249 \textcolor{comment}{    /// previous default) (It's an int because Trilinos wants it to be!)}}
 \DoxyCodeLine{\Hypertarget{trilinos__preconditioners_8h_source_l00250}\mbox{\hyperlink{classoomph_1_1TrilinosMLPreconditioner_a638b49c98a6afa2a4133038b42d6dea7}{00250}} \textcolor{comment}{}    \textcolor{keyword}{static} \textcolor{keywordtype}{int} \mbox{\hyperlink{classoomph_1_1TrilinosMLPreconditioner_a638b49c98a6afa2a4133038b42d6dea7}{Default\_n\_cycles}};}
 \DoxyCodeLine{\Hypertarget{trilinos__preconditioners_8h_source_l00251}00251 }
 \DoxyCodeLine{\Hypertarget{trilinos__preconditioners_8h_source_l00252}00252   \textcolor{keyword}{protected}:\textcolor{comment}{}}
-\DoxyCodeLine{\Hypertarget{trilinos__preconditioners_8h_source_l00253}00253 \textcolor{comment}{    ///  Function to set up the ML preconditioner. It is assumed}}
+\DoxyCodeLine{\Hypertarget{trilinos__preconditioners_8h_source_l00253}00253 \textcolor{comment}{    /// Function to set up the ML preconditioner. It is assumed}}
 \DoxyCodeLine{\Hypertarget{trilinos__preconditioners_8h_source_l00254}00254 \textcolor{comment}{    /// Trilinos\_matrix\_pt points to a suitable matrix.}}
 \DoxyCodeLine{\Hypertarget{trilinos__preconditioners_8h_source_l00255}00255 \textcolor{comment}{}    \textcolor{keywordtype}{void} \mbox{\hyperlink{classoomph_1_1TrilinosMLPreconditioner_af3042313db1f0a5565bcd33ef36d2c6a}{setup\_trilinos\_preconditioner}}(Epetra\_CrsMatrix* epetra\_matrix\_pt);}
 \DoxyCodeLine{\Hypertarget{trilinos__preconditioners_8h_source_l00256}00256 }
@@ -264,7 +264,7 @@
 \DoxyCodeLine{\Hypertarget{trilinos__preconditioners_8h_source_l00260}00260 }
 \DoxyCodeLine{\Hypertarget{trilinos__preconditioners_8h_source_l00261}00261 }
 \DoxyCodeLine{\Hypertarget{trilinos__preconditioners_8h_source_l00262}00262   \textcolor{comment}{//============================================================================}\textcolor{comment}{}}
-\DoxyCodeLine{\Hypertarget{trilinos__preconditioners_8h_source_l00263}00263 \textcolor{comment}{  ///  An interface to the Trilinos IFPACK class-\/ provides a function}}
+\DoxyCodeLine{\Hypertarget{trilinos__preconditioners_8h_source_l00263}00263 \textcolor{comment}{  /// An interface to the Trilinos IFPACK class-\/ provides a function}}
 \DoxyCodeLine{\Hypertarget{trilinos__preconditioners_8h_source_l00264}00264 \textcolor{comment}{  /// to construct an IFPACK object, and functions to modify some}}
 \DoxyCodeLine{\Hypertarget{trilinos__preconditioners_8h_source_l00265}00265 \textcolor{comment}{  /// of the IFPACK paramaters.}}
 \DoxyCodeLine{\Hypertarget{trilinos__preconditioners_8h_source_l00266}00266 \textcolor{comment}{}  \textcolor{comment}{//============================================================================}}
@@ -329,7 +329,7 @@
 \DoxyCodeLine{\Hypertarget{trilinos__preconditioners_8h_source_l00325}00325     \}}
 \DoxyCodeLine{\Hypertarget{trilinos__preconditioners_8h_source_l00326}00326 }
 \DoxyCodeLine{\Hypertarget{trilinos__preconditioners_8h_source_l00327}00327   \textcolor{keyword}{protected}:\textcolor{comment}{}}
-\DoxyCodeLine{\Hypertarget{trilinos__preconditioners_8h_source_l00328}00328 \textcolor{comment}{    ///  Function to set up an IFPACK preconditioner. It is assumed}}
+\DoxyCodeLine{\Hypertarget{trilinos__preconditioners_8h_source_l00328}00328 \textcolor{comment}{    /// Function to set up an IFPACK preconditioner. It is assumed}}
 \DoxyCodeLine{\Hypertarget{trilinos__preconditioners_8h_source_l00329}00329 \textcolor{comment}{    /// Trilinos\_matrix\_pt points to a suitable matrix.}}
 \DoxyCodeLine{\Hypertarget{trilinos__preconditioners_8h_source_l00330}00330 \textcolor{comment}{}    \textcolor{keywordtype}{void} \mbox{\hyperlink{classoomph_1_1TrilinosIFPACKPreconditioner_a947df99c1dd6afa6a3149d045f9452a4}{setup\_trilinos\_preconditioner}}(Epetra\_CrsMatrix* epetra\_matrix\_pt);}
 \DoxyCodeLine{\Hypertarget{trilinos__preconditioners_8h_source_l00331}00331 \textcolor{comment}{}}

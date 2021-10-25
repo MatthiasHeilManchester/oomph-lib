@@ -193,7 +193,7 @@ Problem Parameters</h1>
 <div class="line"><span class="comment">  /// Strouhal number</span></div>
 <div class="line"><span class="comment"></span>  <span class="keywordtype">double</span> <a class="code hl_variable" href="namespaceProblem__Parameter.html#a8d9b76e390569bac0095bd0952281a30">St</a> = 1.0;</div>
 <div class="line"> <span class="comment"></span></div>
-<div class="line"><span class="comment">  ///  Density ratio (Solid density / Fluid density)</span></div>
+<div class="line"><span class="comment">  /// Density ratio (Solid density / Fluid density)</span></div>
 <div class="line"><span class="comment"></span>  <span class="keywordtype">double</span> <a class="code hl_variable" href="namespaceProblem__Parameter.html#a7fcb9a415485247d626190923235be2a">Density_ratio</a> = 1.0;</div>
 <div class="line"><span class="comment"></span> </div>
 <div class="line"><span class="comment">  /// Initial axis of the elliptical solid in x-direction</span></div>
@@ -206,7 +206,7 @@ Problem Parameters</h1>
 <div class="line"><span class="comment">  /// Pseudo-solid (mesh) Poisson ratio</span></div>
 <div class="line"><span class="comment"></span>  <span class="keywordtype">double</span> <a class="code hl_variable" href="namespaceProblem__Parameter.html#abec2e733c8f2d3c18ebc702b3f80cc17">Nu</a>=0.3;</div>
 <div class="line"><span class="comment"></span> </div>
-<div class="line"><span class="comment">  ///  Pseudo-solid (mesh) &quot;density&quot; </span></div>
+<div class="line"><span class="comment">  /// Pseudo-solid (mesh) &quot;density&quot; </span></div>
 <div class="line"><span class="comment">  /// Set to zero because we don&#39;t want inertia in the node update!</span></div>
 <div class="line"><span class="comment"></span>  <span class="keywordtype">double</span> <a class="code hl_variable" href="namespaceProblem__Parameter.html#a20ea33c391abd96d43f79913377c1e12">Lambda_sq</a>=0.0;</div>
 <div class="line"><span class="comment"></span> </div>
@@ -230,7 +230,7 @@ Problem Parameters</h1>
 Defining the ellipse as a GeomObject</h1>
 <p >We create a basic <code>GeomObject</code> to represent the ellipse whose boundary we parametrise by the polar angle, measured from its centre of mass.</p>
  <div class="fragment"><div class="line"><span class="comment">//===================start_of_general_ellipse=================================</span></div>
-<div class="line"><span class="comment">///  A geometric object for an ellipse with initial centre of mass at</span><span class="comment"></span></div>
+<div class="line"><span class="comment">/// A geometric object for an ellipse with initial centre of mass at</span><span class="comment"></span></div>
 <div class="line"><span class="comment">/// (centre_x, centre_y) with axis in the x direction given by 2a</span></div>
 <div class="line"><span class="comment">/// and in the y-direction given by 2b. The boundary of the ellipse is</span></div>
 <div class="line"><span class="comment">/// parametrised by its angle.</span></div>
@@ -244,7 +244,7 @@ Defining the ellipse as a GeomObject</h1>
 <div class="line"> </div>
 <div class="line"><span class="keyword">public</span>:</div>
 <div class="line"> <span class="comment"></span></div>
-<div class="line"><span class="comment"> ///  Simple Constructor that transfers appropriate geometric </span></div>
+<div class="line"><span class="comment"> /// Simple Constructor that transfers appropriate geometric </span></div>
 <div class="line"><span class="comment"> /// parameters into internal data</span></div>
 <div class="line"><span class="comment"></span> <a class="code hl_function" href="classGeneralEllipse.html#a50dc036d709bcd1d53eafb62b5548f67">GeneralEllipse</a>(<span class="keyword">const</span> <span class="keywordtype">double</span> &amp;centre_x, <span class="keyword">const</span> <span class="keywordtype">double</span> &amp;centre_y,</div>
 <div class="line">                <span class="keyword">const</span> <span class="keywordtype">double</span> &amp;a, <span class="keyword">const</span> <span class="keywordtype">double</span> &amp;b)</div>
@@ -386,7 +386,7 @@ The Problem class</h1>
 <div class="line"><span class="comment"> /// Rebuild the meshes of Lagrange multiplier and drag elements</span></div>
 <div class="line"><span class="comment"></span> <span class="keywordtype">void</span> <a class="code hl_function" href="classUnstructuredImmersedEllipseProblem.html#ab1558b409285aea617f4abf7d3a64b3d">actions_after_adapt</a>();</div>
 <div class="line"> <span class="comment"></span></div>
-<div class="line"><span class="comment"> ///  Re-apply the no slip condition (imposed indirectly via dependent</span></div>
+<div class="line"><span class="comment"> /// Re-apply the no slip condition (imposed indirectly via dependent</span></div>
 <div class="line"><span class="comment"> /// velocities)</span></div>
 <div class="line"><span class="comment"></span> <span class="keywordtype">void</span> <a class="code hl_function" href="classUnstructuredImmersedEllipseProblem.html#afa51876a2af9dd7640ff1f5a434804bf">actions_before_newton_convergence_check</a>()</div>
 <div class="line">  {</div>
@@ -394,7 +394,7 @@ The Problem class</h1>
 <div class="line">   <a class="code hl_variable" href="classUnstructuredImmersedEllipseProblem.html#a0ba79ccde26b781b66d9839460f08bd3">Fluid_mesh_pt</a>-&gt;node_update();</div>
 <div class="line">  }</div>
 <div class="line"> <span class="comment"></span></div>
-<div class="line"><span class="comment"> ///  Set boundary condition, assign auxiliary node update fct.</span></div>
+<div class="line"><span class="comment"> /// Set boundary condition, assign auxiliary node update fct.</span></div>
 <div class="line"><span class="comment"> /// Complete the build of all elements, attach power elements that allow</span></div>
 <div class="line"><span class="comment"> /// computation of drag vector</span></div>
 <div class="line"><span class="comment"></span> <span class="keywordtype">void</span> <a class="code hl_function" href="classUnstructuredImmersedEllipseProblem.html#a42b13e3306ff2a94053907644ba17c8d">complete_problem_setup</a>();</div>
@@ -402,7 +402,7 @@ The Problem class</h1>
 <div class="line"><span class="comment"> ///Set the boundary velocity</span></div>
 <div class="line"><span class="comment"></span> <span class="keywordtype">void</span> <a class="code hl_function" href="classUnstructuredImmersedEllipseProblem.html#ab201b187b240105fd8d444d943f6dada">set_boundary_velocity</a>();</div>
 <div class="line"><span class="comment"></span> </div>
-<div class="line"><span class="comment"> /// Function that solves a simplified problem to ensure that </span></div>
+<div class="line"><span class="comment"> ///Function that solves a simplified problem to ensure that </span></div>
 <div class="line"><span class="comment"> ///the positions of the boundary nodes are initially consistent with</span></div>
 <div class="line"><span class="comment"> ///the lagrange multiplier formulation</span></div>
 <div class="line"><span class="comment"></span> <span class="keywordtype">void</span> <a class="code hl_function" href="classUnstructuredImmersedEllipseProblem.html#a2a88b40ff1988de0fc696f1eb755ea54">solve_for_consistent_nodal_positions</a>();</div>
@@ -415,19 +415,19 @@ The Problem class</h1>
 <div class="line"> </div>
 <div class="line"><span class="keyword">private</span>:</div>
 <div class="line"> <span class="comment"></span></div>
-<div class="line"><span class="comment"> ///  Create elements that enforce prescribed boundary motion</span></div>
+<div class="line"><span class="comment"> /// Create elements that enforce prescribed boundary motion</span></div>
 <div class="line"><span class="comment"> /// for the pseudo-solid fluid mesh by Lagrange multipliers</span></div>
 <div class="line"><span class="comment"></span> <span class="keywordtype">void</span> <a class="code hl_function" href="classUnstructuredImmersedEllipseProblem.html#a3b4a4e279a11b37d79d040b348008765">create_lagrange_multiplier_elements</a>();</div>
 <div class="line"><span class="comment"></span> </div>
-<div class="line"><span class="comment"> ///  Delete elements that impose the prescribed boundary displacement</span></div>
+<div class="line"><span class="comment"> /// Delete elements that impose the prescribed boundary displacement</span></div>
 <div class="line"><span class="comment"> /// and wipe the associated mesh</span></div>
 <div class="line"><span class="comment"></span> <span class="keywordtype">void</span> <a class="code hl_function" href="classUnstructuredImmersedEllipseProblem.html#a51555f77dc360c94591ee68c3fc9928a">delete_lagrange_multiplier_elements</a>();</div>
 <div class="line"><span class="comment"></span> </div>
-<div class="line"><span class="comment"> ///  Create elements that calculate the drag and torque on</span></div>
+<div class="line"><span class="comment"> /// Create elements that calculate the drag and torque on</span></div>
 <div class="line"><span class="comment"> /// the boundaries</span></div>
 <div class="line"><span class="comment"></span> <span class="keywordtype">void</span> <a class="code hl_function" href="classUnstructuredImmersedEllipseProblem.html#a16a7c6022867f709ebdd59b8fee2004a">create_drag_elements</a>();</div>
 <div class="line"> <span class="comment"></span></div>
-<div class="line"><span class="comment"> ///  Delete elements that calculate the drag and torque on the </span></div>
+<div class="line"><span class="comment"> /// Delete elements that calculate the drag and torque on the </span></div>
 <div class="line"><span class="comment"> /// boundaries</span></div>
 <div class="line"><span class="comment"></span> <span class="keywordtype">void</span> <a class="code hl_function" href="classUnstructuredImmersedEllipseProblem.html#a7d7b84968988d37091b29957b0af5bfa">delete_drag_elements</a>();</div>
 <div class="line"><span class="comment"></span> </div>
@@ -762,7 +762,7 @@ The Problem Constructor</h1>
 Completing the problem setup</h1>
 <p >The helper function <code>complete_problem_setup()</code> starts by (re-)applying the boundary conditions by pinning the fluid velocity in the <img class="formulaInl" alt="$ x_{2}$" src="form_50.png" width="13" height="9"/>-direction on all boundaries and that in the <img class="formulaInl" alt="$ x_{1} $" src="form_51.png" width="13" height="9"/>-direction on the top and bottom (boundaries 1 and 3).</p>
  <div class="fragment"><div class="line"><span class="comment">//============start_complete_problem_setup=================================</span></div>
-<div class="line"><span class="comment">///  Set boundary condition, assign auxiliary node update fct.</span><span class="comment"></span></div>
+<div class="line"><span class="comment">/// Set boundary condition, assign auxiliary node update fct.</span><span class="comment"></span></div>
 <div class="line"><span class="comment">/// Complete the build of all elements, attach power elements that allow</span></div>
 <div class="line"><span class="comment">/// computation of drag vector</span></div>
 <div class="line"><span class="comment"></span><span class="comment">//=========================================================================</span></div>
@@ -961,7 +961,7 @@ PDF file</h1>
     <footer>
       <div class="container">
         <div class="text-muted" style="float:right;">Generated by <a href="http://www.doxygen.org/index.html">
-          <img style="height:18px;" class="footer-img" src="doxygen.png" alt="doxygen"></a> on Fri Oct 22 2021 12:36:54
+          <img style="height:18px;" class="footer-img" src="doxygen.png" alt="doxygen"></a> on Mon Oct 25 2021 14:55:07
         </div>
       </div>
     </footer>

@@ -270,7 +270,7 @@ namespace oomph
     /// Number of macro element rows above the leaflet
     unsigned Ny2;
 
-    ///  Center of the domain : origin of the leaflet, extracted
+    /// Center of the domain : origin of the leaflet, extracted
     /// from GeomObject and stored for fast access.
     double X_0;
 

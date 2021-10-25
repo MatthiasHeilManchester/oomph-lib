@@ -190,7 +190,7 @@ The driver code</h1>
 <div class="line"><span class="comment"></span> <span class="keyword">static</span> <span class="keywordtype">double</span> <a class="code hl_variable" href="classQThermalPVDElement.html#ad0722326e8c25746f63b35a46cac5886">Default_Physical_Constant_Value</a>;</div>
 <div class="line"> </div>
 <div class="line"><span class="keyword">public</span>:<span class="comment"></span></div>
-<div class="line"><span class="comment"> ///  Constructor: call the underlying constructors and </span></div>
+<div class="line"><span class="comment"> /// Constructor: call the underlying constructors and </span></div>
 <div class="line"><span class="comment"> /// initialise the pointer to Alpha to point</span></div>
 <div class="line"><span class="comment"> /// to the default value of 1.0.</span></div>
 <div class="line"><span class="comment"></span> <a class="code hl_function" href="classQThermalPVDElement.html#a24d60d6461b169603388f263cbdccd75">QThermalPVDElement</a>() : QPVDElement&lt;DIM,3&gt;(),</div>
@@ -199,7 +199,7 @@ The driver code</h1>
 <div class="line">   <a class="code hl_variable" href="classQThermalPVDElement.html#a97267a52ceec2a2153b23e18e2a2c631">Alpha_pt</a> = &amp;<a class="code hl_variable" href="classQThermalPVDElement.html#ad0722326e8c25746f63b35a46cac5886">Default_Physical_Constant_Value</a>;</div>
 <div class="line">  }</div>
 <div class="line"><span class="comment"></span> </div>
-<div class="line"><span class="comment"> /// The required number of values stored at the nodes is the sum of the</span></div>
+<div class="line"><span class="comment"> ///The required number of values stored at the nodes is the sum of the</span></div>
 <div class="line"><span class="comment"> ///required values of the two single-physics elements. Note that this step is</span></div>
 <div class="line"><span class="comment"> ///generic for any multi-physics element of this type.</span></div>
 <div class="line"><span class="comment"></span> <span class="keywordtype">unsigned</span> <a class="code hl_function" href="classQThermalPVDElement.html#a55025994fc3d2799fde6f9c1142340af">required_nvalue</a>(<span class="keyword">const</span> <span class="keywordtype">unsigned</span> &amp;n)<span class="keyword"> const</span></div>
@@ -215,7 +215,7 @@ The driver code</h1>
 <div class="line"><span class="comment"> ///  Overload the standard output function with the broken default</span></div>
 <div class="line"><span class="comment"></span> <span class="keywordtype">void</span> <a class="code hl_function" href="classQThermalPVDElement.html#a99e482f47a98c1b5ec7ec069211de827">output</a>(ostream &amp;outfile) {FiniteElement::output(outfile);}</div>
 <div class="line"><span class="comment"></span> </div>
-<div class="line"><span class="comment"> ///  Output function:  </span></div>
+<div class="line"><span class="comment"> /// Output function:  </span></div>
 <div class="line"><span class="comment"> ///  Output x, y, u, v, p, theta at Nplot^DIM plot points</span></div>
 <div class="line"><span class="comment"></span> <span class="comment">// Start of output function</span></div>
 <div class="line"> <span class="keywordtype">void</span> <a class="code hl_function" href="classQThermalPVDElement.html#a99e482f47a98c1b5ec7ec069211de827">output</a>(ostream &amp;outfile, <span class="keyword">const</span> <span class="keywordtype">unsigned</span> &amp;nplot)</div>
@@ -250,22 +250,22 @@ The driver code</h1>
 <div class="line">   this-&gt;write_tecplot_zone_footer(outfile,nplot);</div>
 <div class="line">  } <span class="comment">//End of output function</span></div>
 <div class="line"><span class="comment"></span> </div>
-<div class="line"><span class="comment"> ///  C-style output function: Broken default</span></div>
+<div class="line"><span class="comment"> /// C-style output function: Broken default</span></div>
 <div class="line"><span class="comment"></span> <span class="keywordtype">void</span> <a class="code hl_function" href="classQThermalPVDElement.html#a99e482f47a98c1b5ec7ec069211de827">output</a>(FILE* file_pt)</div>
 <div class="line">  {FiniteElement::output(file_pt);}</div>
 <div class="line"><span class="comment"></span> </div>
-<div class="line"><span class="comment"> ///   C-style output function: Broken default</span></div>
+<div class="line"><span class="comment"> ///  C-style output function: Broken default</span></div>
 <div class="line"><span class="comment"></span> <span class="keywordtype">void</span> <a class="code hl_function" href="classQThermalPVDElement.html#a99e482f47a98c1b5ec7ec069211de827">output</a>(FILE* file_pt, <span class="keyword">const</span> <span class="keywordtype">unsigned</span> &amp;n_plot)</div>
 <div class="line">  {FiniteElement::output(file_pt,n_plot);}</div>
 <div class="line"><span class="comment"></span> </div>
-<div class="line"><span class="comment"> ///  Output function for an exact solution: Broken default</span></div>
+<div class="line"><span class="comment"> /// Output function for an exact solution: Broken default</span></div>
 <div class="line"><span class="comment"></span> <span class="keywordtype">void</span> <a class="code hl_function" href="classQThermalPVDElement.html#accda081c3fb783b2c24715ec0c8e8e19">output_fct</a>(ostream &amp;outfile, <span class="keyword">const</span> <span class="keywordtype">unsigned</span> &amp;Nplot,</div>
 <div class="line">                 FiniteElement::SteadyExactSolutionFctPt </div>
 <div class="line">                 exact_soln_pt)</div>
 <div class="line">  {FiniteElement::output_fct(outfile,Nplot,exact_soln_pt);}</div>
 <div class="line"> </div>
 <div class="line"><span class="comment"></span> </div>
-<div class="line"><span class="comment"> ///  Output function for a time-dependent exact solution:</span></div>
+<div class="line"><span class="comment"> /// Output function for a time-dependent exact solution:</span></div>
 <div class="line"><span class="comment"> /// Broken default.</span></div>
 <div class="line"><span class="comment"></span> <span class="keywordtype">void</span> <a class="code hl_function" href="classQThermalPVDElement.html#accda081c3fb783b2c24715ec0c8e8e19">output_fct</a>(ostream &amp;outfile, <span class="keyword">const</span> <span class="keywordtype">unsigned</span> &amp;Nplot,</div>
 <div class="line">                 <span class="keyword">const</span> <span class="keywordtype">double</span>&amp; time,</div>
@@ -276,14 +276,14 @@ The driver code</h1>
 <div class="line">    output_fct(outfile,Nplot,time,exact_soln_pt);</div>
 <div class="line">  }</div>
 <div class="line">  <span class="comment"></span></div>
-<div class="line"><span class="comment"> ///  Compute norm of solution: use the version in the unsteady heat</span></div>
+<div class="line"><span class="comment"> /// Compute norm of solution: use the version in the unsteady heat</span></div>
 <div class="line"><span class="comment"> /// class </span></div>
 <div class="line"><span class="comment"></span> <span class="keywordtype">void</span> <a class="code hl_function" href="classQThermalPVDElement.html#a7824ab9fd50480c1eb8b20e57620afe5">compute_norm</a>(<span class="keywordtype">double</span>&amp; el_norm)</div>
 <div class="line"> {</div>
 <div class="line">  QUnsteadyHeatElement&lt;DIM,3&gt;::compute_norm(el_norm);</div>
 <div class="line"> }</div>
 <div class="line"><span class="comment"></span> </div>
-<div class="line"><span class="comment"> ///  Validate against exact solution at given time</span></div>
+<div class="line"><span class="comment"> /// Validate against exact solution at given time</span></div>
 <div class="line"><span class="comment"> /// Solution is provided via function pointer.</span></div>
 <div class="line"><span class="comment"> /// Plot at a given number of plot points and compute L2 error</span></div>
 <div class="line"><span class="comment"> /// and L2 norm of velocity solution over element</span></div>
@@ -295,7 +295,7 @@ The driver code</h1>
 <div class="line">  {FiniteElement::compute_error(outfile,exact_soln_pt,</div>
 <div class="line">                                time,error,norm);}</div>
 <div class="line"> <span class="comment"></span></div>
-<div class="line"><span class="comment"> ///  Validate against exact solution.</span></div>
+<div class="line"><span class="comment"> /// Validate against exact solution.</span></div>
 <div class="line"><span class="comment"> /// Solution is provided via function pointer.</span></div>
 <div class="line"><span class="comment"> /// Plot at a given number of plot points and compute L2 error</span></div>
 <div class="line"><span class="comment"> /// and L2 norm of velocity solution over element</span></div>
@@ -305,7 +305,7 @@ The driver code</h1>
 <div class="line">                    <span class="keywordtype">double</span>&amp; error, <span class="keywordtype">double</span>&amp; norm)</div>
 <div class="line">  {FiniteElement::compute_error(outfile,exact_soln_pt,error,norm);}</div>
 <div class="line"><span class="comment"></span> </div>
-<div class="line"><span class="comment"> ///  Overload the growth function in the advection-diffusion equations.</span></div>
+<div class="line"><span class="comment"> /// Overload the growth function in the advection-diffusion equations.</span></div>
 <div class="line"><span class="comment"> /// to be temperature-dependent.</span></div>
 <div class="line"><span class="comment"></span> <span class="keywordtype">void</span> <a class="code hl_function" href="classQThermalPVDElement.html#a25774a0b8d2a7ec688e91420527cc5c4">get_isotropic_growth</a>(<span class="keyword">const</span> <span class="keywordtype">unsigned</span>&amp; ipt, <span class="keyword">const</span> Vector&lt;double&gt; &amp;s, </div>
 <div class="line">                           <span class="keyword">const</span> Vector&lt;double&gt;&amp; xi, <span class="keywordtype">double</span> &amp;gamma)<span class="keyword"> const</span></div>
@@ -315,7 +315,7 @@ The driver code</h1>
 <div class="line">  gamma = 1.0 + (*Alpha_pt)*this-&gt;interpolated_u_ust_heat(s);</div>
 <div class="line"> }</div>
 <div class="line"> <span class="comment"></span></div>
-<div class="line"><span class="comment"> ///  Calculate the contribution to the residual vector.</span></div>
+<div class="line"><span class="comment"> /// Calculate the contribution to the residual vector.</span></div>
 <div class="line"><span class="comment"> /// We assume that the vector has been initialised to zero</span></div>
 <div class="line"><span class="comment"> /// before this function is called.</span></div>
 <div class="line"><span class="comment"></span> <span class="keywordtype">void</span> <a class="code hl_function" href="classQThermalPVDElement.html#ab26361e4164834860ec74603276b0207">fill_in_contribution_to_residuals</a>(Vector&lt;double&gt; &amp;residuals)</div>
@@ -328,7 +328,7 @@ The driver code</h1>
 <div class="line">    fill_in_contribution_to_residuals(residuals);</div>
 <div class="line">  }</div>
 <div class="line"><span class="comment"></span> </div>
-<div class="line"><span class="comment"> /// Compute the element&#39;s residual Vector and the jacobian matrix</span></div>
+<div class="line"><span class="comment"> ///Compute the element&#39;s residual Vector and the jacobian matrix</span></div>
 <div class="line"><span class="comment"> /// We assume that the residuals vector and jacobian matrix have been</span></div>
 <div class="line"><span class="comment"> /// initialised to zero before calling this function</span></div>
 <div class="line"><span class="comment"></span> <span class="keywordtype">void</span> <a class="code hl_function" href="classQThermalPVDElement.html#a6fe89466bee5ebcf16a14a68550ff447">fill_in_contribution_to_jacobian</a>(Vector&lt;double&gt; &amp;residuals,</div>
@@ -387,7 +387,7 @@ The driver code</h1>
 <div class="line"><span class="comment"> /// Destructor. Empty</span></div>
 <div class="line"><span class="comment"></span> <a class="code hl_function" href="classThermalProblem.html#af563f946765bdae233c202738bf7e725">~ThermalProblem</a>() {}</div>
 <div class="line"><span class="comment"></span> </div>
-<div class="line"><span class="comment"> ///  Update the problem specs before solve (empty)</span></div>
+<div class="line"><span class="comment"> /// Update the problem specs before solve (empty)</span></div>
 <div class="line"><span class="comment"></span> <span class="keywordtype">void</span> <a class="code hl_function" href="classThermalProblem.html#ab2d2efaf155756144c9796b76af3ee8d">actions_before_newton_solve</a>() {}</div>
 <div class="line"><span class="comment"></span> </div>
 <div class="line"><span class="comment"> /// Update the problem after solve (empty)</span></div>
@@ -396,10 +396,10 @@ The driver code</h1>
 <div class="line"><span class="comment"> /// Actions before adapt:(empty)</span></div>
 <div class="line"><span class="comment"></span> <span class="keywordtype">void</span> <a class="code hl_function" href="classThermalProblem.html#a40bda0a4d45851f7e45dc461107d7c0f">actions_before_adapt</a>(){}</div>
 <div class="line"> <span class="comment"></span></div>
-<div class="line"><span class="comment"> ///  Doc the solution.</span></div>
+<div class="line"><span class="comment"> /// Doc the solution.</span></div>
 <div class="line"><span class="comment"></span> <span class="keywordtype">void</span> <a class="code hl_function" href="classThermalProblem.html#aa085f248542811385fefe623a9193fd8">doc_solution</a>();</div>
 <div class="line"><span class="comment"></span> </div>
-<div class="line"><span class="comment"> ///  Overloaded version of the problem&#39;s access function to </span></div>
+<div class="line"><span class="comment"> /// Overloaded version of the problem&#39;s access function to </span></div>
 <div class="line"><span class="comment"> /// the mesh. Recasts the pointer to the base Mesh object to </span></div>
 <div class="line"><span class="comment"> /// the actual mesh type.</span></div>
 <div class="line"><span class="comment"></span> ElasticRectangularQuadMesh&lt;ELEMENT&gt;* <a class="code hl_function" href="classThermalProblem.html#a7fb970db30cf4f352fda8a86827b8d09">mesh_pt</a>() </div>
@@ -416,7 +416,7 @@ The driver code</h1>
 <div class="line">}; <span class="comment">// end of problem class</span></div>
 <div class="line"> </div>
 <div class="line"><span class="comment">//========================================================================</span><span class="comment"></span></div>
-<div class="line"><span class="comment">///  Constructor for Convection problem</span></div>
+<div class="line"><span class="comment">/// Constructor for Convection problem</span></div>
 <div class="line"><span class="comment"></span><span class="comment">//========================================================================</span></div>
 <div class="line"><span class="keyword">template</span>&lt;<span class="keyword">class</span> ELEMENT&gt;</div>
 <div class="line"><a class="code hl_function" href="classThermalProblem.html#a12ad5d383929b1ef4ed29503c5a271b0">ThermalProblem&lt;ELEMENT&gt;::ThermalProblem</a>()</div>
@@ -649,7 +649,7 @@ PDF file</h1>
     <footer>
       <div class="container">
         <div class="text-muted" style="float:right;">Generated by <a href="http://www.doxygen.org/index.html">
-          <img style="height:18px;" class="footer-img" src="doxygen.png" alt="doxygen"></a> on Fri Oct 22 2021 12:47:38
+          <img style="height:18px;" class="footer-img" src="doxygen.png" alt="doxygen"></a> on Mon Oct 25 2021 15:05:51
         </div>
       </div>
     </footer>

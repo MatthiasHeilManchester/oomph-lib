@@ -43,7 +43,7 @@
 \DoxyCodeLine{\Hypertarget{osc__quarter__ellipse_8cc_source_l00039}00039 \textcolor{keyword}{using namespace }oomph;}
 \DoxyCodeLine{\Hypertarget{osc__quarter__ellipse_8cc_source_l00040}00040 }
 \DoxyCodeLine{\Hypertarget{osc__quarter__ellipse_8cc_source_l00041}00041 \textcolor{comment}{//============start\_of\_MyEllipse===========================================}\textcolor{comment}{}}
-\DoxyCodeLine{\Hypertarget{osc__quarter__ellipse_8cc_source_l00042}00042 \textcolor{comment}{///  Oscillating ellipse}}
+\DoxyCodeLine{\Hypertarget{osc__quarter__ellipse_8cc_source_l00042}00042 \textcolor{comment}{/// Oscillating ellipse}}
 \DoxyCodeLine{\Hypertarget{osc__quarter__ellipse_8cc_source_l00043}00043 \textcolor{comment}{/// \(\backslash\)f[ x = (A + \(\backslash\)widehat\{A\} \(\backslash\)cos(2\(\backslash\)pi t/T)) \(\backslash\)cos(\(\backslash\)xi)  \(\backslash\)f]}}
 \DoxyCodeLine{\Hypertarget{osc__quarter__ellipse_8cc_source_l00044}00044 \textcolor{comment}{/// \(\backslash\)f[ y = \(\backslash\)frac\{\(\backslash\)sin(\(\backslash\)xi)\}\{A + \(\backslash\)widehat\{A\} \(\backslash\)cos(2\(\backslash\)pi t/T)\}   \(\backslash\)f]}}
 \DoxyCodeLine{\Hypertarget{osc__quarter__ellipse_8cc_source_l00045}00045 \textcolor{comment}{/// Note that cross-\/sectional area is conserved.}}
@@ -53,7 +53,7 @@
 \DoxyCodeLine{\Hypertarget{osc__quarter__ellipse_8cc_source_l00049}00049 }
 \DoxyCodeLine{\Hypertarget{osc__quarter__ellipse_8cc_source_l00050}00050 \textcolor{keyword}{public}:}
 \DoxyCodeLine{\Hypertarget{osc__quarter__ellipse_8cc_source_l00051}00051 \textcolor{comment}{}}
-\DoxyCodeLine{\Hypertarget{osc__quarter__ellipse_8cc_source_l00052}00052 \textcolor{comment}{ ///  Constructor:  Pass initial x-\/half axis, amplitude of x-\/variation, }}
+\DoxyCodeLine{\Hypertarget{osc__quarter__ellipse_8cc_source_l00052}00052 \textcolor{comment}{ /// Constructor:  Pass initial x-\/half axis, amplitude of x-\/variation, }}
 \DoxyCodeLine{\Hypertarget{osc__quarter__ellipse_8cc_source_l00053}00053 \textcolor{comment}{ /// period of oscillation and pointer to time object.}}
 \DoxyCodeLine{\Hypertarget{osc__quarter__ellipse_8cc_source_l00054}\mbox{\hyperlink{classMyEllipse_a6d780f1f450d99e175842e88a3079069}{00054}} \textcolor{comment}{} \mbox{\hyperlink{classMyEllipse_a6d780f1f450d99e175842e88a3079069}{MyEllipse}}(\textcolor{keyword}{const} \textcolor{keywordtype}{double}\& a, \textcolor{keyword}{const} \textcolor{keywordtype}{double}\& a\_hat,}
 \DoxyCodeLine{\Hypertarget{osc__quarter__ellipse_8cc_source_l00055}00055            \textcolor{keyword}{const} \textcolor{keywordtype}{double}\& period, Time* time\_pt) : }
@@ -62,7 +62,7 @@
 \DoxyCodeLine{\Hypertarget{osc__quarter__ellipse_8cc_source_l00058}00058 \textcolor{comment}{ /// Destructor: Empty}}
 \DoxyCodeLine{\Hypertarget{osc__quarter__ellipse_8cc_source_l00059}\mbox{\hyperlink{classMyEllipse_ac2f2d3fb269c57fb26b4db6d9a0c7c05}{00059}} \textcolor{comment}{} \textcolor{keyword}{virtual} \mbox{\hyperlink{classMyEllipse_ac2f2d3fb269c57fb26b4db6d9a0c7c05}{\string~MyEllipse}}() \{\}}
 \DoxyCodeLine{\Hypertarget{osc__quarter__ellipse_8cc_source_l00060}00060 \textcolor{comment}{}}
-\DoxyCodeLine{\Hypertarget{osc__quarter__ellipse_8cc_source_l00061}00061 \textcolor{comment}{ ///  Current position vector to material point at }}
+\DoxyCodeLine{\Hypertarget{osc__quarter__ellipse_8cc_source_l00061}00061 \textcolor{comment}{ /// Current position vector to material point at }}
 \DoxyCodeLine{\Hypertarget{osc__quarter__ellipse_8cc_source_l00062}00062 \textcolor{comment}{ /// Lagrangian coordinate xi }}
 \DoxyCodeLine{\Hypertarget{osc__quarter__ellipse_8cc_source_l00063}\mbox{\hyperlink{classMyEllipse_a7b139a2f4564005773c83325f2414e3e}{00063}} \textcolor{comment}{} \textcolor{keywordtype}{void} \mbox{\hyperlink{classMyEllipse_a7b139a2f4564005773c83325f2414e3e}{position}}(\textcolor{keyword}{const} Vector<double>\& xi, Vector<double>\& r)\textcolor{keyword}{ const}}
 \DoxyCodeLine{\Hypertarget{osc__quarter__ellipse_8cc_source_l00064}00064 \textcolor{keyword}{  }\{}
@@ -75,7 +75,7 @@
 \DoxyCodeLine{\Hypertarget{osc__quarter__ellipse_8cc_source_l00071}00071    r[1] = (1.0/axis)*sin(xi[0]);}
 \DoxyCodeLine{\Hypertarget{osc__quarter__ellipse_8cc_source_l00072}00072   \} }
 \DoxyCodeLine{\Hypertarget{osc__quarter__ellipse_8cc_source_l00073}00073 \textcolor{comment}{}}
-\DoxyCodeLine{\Hypertarget{osc__quarter__ellipse_8cc_source_l00074}00074 \textcolor{comment}{ ///  Parametrised position on object: r(xi). Evaluated at}}
+\DoxyCodeLine{\Hypertarget{osc__quarter__ellipse_8cc_source_l00074}00074 \textcolor{comment}{ /// Parametrised position on object: r(xi). Evaluated at}}
 \DoxyCodeLine{\Hypertarget{osc__quarter__ellipse_8cc_source_l00075}00075 \textcolor{comment}{ /// previous time level. t=0: current time; t>0: previous}}
 \DoxyCodeLine{\Hypertarget{osc__quarter__ellipse_8cc_source_l00076}00076 \textcolor{comment}{ /// time level.}}
 \DoxyCodeLine{\Hypertarget{osc__quarter__ellipse_8cc_source_l00077}\mbox{\hyperlink{classMyEllipse_a93f75bf33969037e35d779738a8493f5}{00077}} \textcolor{comment}{} \textcolor{keywordtype}{void} \mbox{\hyperlink{classMyEllipse_a93f75bf33969037e35d779738a8493f5}{position}}(\textcolor{keyword}{const} \textcolor{keywordtype}{unsigned}\& t, \textcolor{keyword}{const} Vector<double>\& xi,}
@@ -193,7 +193,7 @@
 \DoxyCodeLine{\Hypertarget{osc__quarter__ellipse_8cc_source_l00189}00189 \textcolor{comment}{ /// Update the problem specs after solve (empty)}}
 \DoxyCodeLine{\Hypertarget{osc__quarter__ellipse_8cc_source_l00190}\mbox{\hyperlink{classOscEllipseProblem_a268e14b24e3ac922e7362bbb37ccde1f}{00190}} \textcolor{comment}{} \textcolor{keywordtype}{void} \mbox{\hyperlink{classOscEllipseProblem_a268e14b24e3ac922e7362bbb37ccde1f}{actions\_after\_newton\_solve}}()\{\}}
 \DoxyCodeLine{\Hypertarget{osc__quarter__ellipse_8cc_source_l00191}00191 \textcolor{comment}{}}
-\DoxyCodeLine{\Hypertarget{osc__quarter__ellipse_8cc_source_l00192}00192 \textcolor{comment}{ ///  Update problem specs before solve (empty)}}
+\DoxyCodeLine{\Hypertarget{osc__quarter__ellipse_8cc_source_l00192}00192 \textcolor{comment}{ /// Update problem specs before solve (empty)}}
 \DoxyCodeLine{\Hypertarget{osc__quarter__ellipse_8cc_source_l00193}\mbox{\hyperlink{classOscEllipseProblem_a18bbd70aa8c140637637053a5f839c11}{00193}} \textcolor{comment}{} \textcolor{keywordtype}{void} \mbox{\hyperlink{classOscEllipseProblem_a18bbd70aa8c140637637053a5f839c11}{actions\_before\_newton\_solve}}() \{\} }
 \DoxyCodeLine{\Hypertarget{osc__quarter__ellipse_8cc_source_l00194}00194  \textcolor{comment}{}}
 \DoxyCodeLine{\Hypertarget{osc__quarter__ellipse_8cc_source_l00195}00195 \textcolor{comment}{ /// Actions before adapt (empty)}}
@@ -216,7 +216,7 @@
 \DoxyCodeLine{\Hypertarget{osc__quarter__ellipse_8cc_source_l00212}00212   \} \textcolor{comment}{// end of actions\_after\_adapt}}
 \DoxyCodeLine{\Hypertarget{osc__quarter__ellipse_8cc_source_l00213}00213 }
 \DoxyCodeLine{\Hypertarget{osc__quarter__ellipse_8cc_source_l00214}00214 \textcolor{comment}{}}
-\DoxyCodeLine{\Hypertarget{osc__quarter__ellipse_8cc_source_l00215}00215 \textcolor{comment}{ ///  Update the problem specs before next timestep}}
+\DoxyCodeLine{\Hypertarget{osc__quarter__ellipse_8cc_source_l00215}00215 \textcolor{comment}{ /// Update the problem specs before next timestep}}
 \DoxyCodeLine{\Hypertarget{osc__quarter__ellipse_8cc_source_l00216}\mbox{\hyperlink{classOscEllipseProblem_a7b12b4fdfcb46c3f00885f0a1f9965b3}{00216}} \textcolor{comment}{} \textcolor{keywordtype}{void} \mbox{\hyperlink{classOscEllipseProblem_a7b12b4fdfcb46c3f00885f0a1f9965b3}{actions\_before\_implicit\_timestep}}()}
 \DoxyCodeLine{\Hypertarget{osc__quarter__ellipse_8cc_source_l00217}00217   \{}
 \DoxyCodeLine{\Hypertarget{osc__quarter__ellipse_8cc_source_l00218}00218    \textcolor{comment}{// Update the domain shape}}
@@ -245,7 +245,7 @@
 \DoxyCodeLine{\Hypertarget{osc__quarter__ellipse_8cc_source_l00241}00241 \textcolor{comment}{ /// Timestepping loop}}
 \DoxyCodeLine{\Hypertarget{osc__quarter__ellipse_8cc_source_l00242}00242 \textcolor{comment}{} \textcolor{keywordtype}{void} \mbox{\hyperlink{classOscEllipseProblem_ad0d879edbbd8b09b61e802ab66ef98a3}{unsteady\_run}}(DocInfo\& doc\_info);}
 \DoxyCodeLine{\Hypertarget{osc__quarter__ellipse_8cc_source_l00243}00243 \textcolor{comment}{}}
-\DoxyCodeLine{\Hypertarget{osc__quarter__ellipse_8cc_source_l00244}00244 \textcolor{comment}{ ///  Set initial condition}}
+\DoxyCodeLine{\Hypertarget{osc__quarter__ellipse_8cc_source_l00244}00244 \textcolor{comment}{ /// Set initial condition}}
 \DoxyCodeLine{\Hypertarget{osc__quarter__ellipse_8cc_source_l00245}00245 \textcolor{comment}{} \textcolor{keywordtype}{void} \mbox{\hyperlink{classOscEllipseProblem_ae638f238a7b0e0acb5d6087b7363fe01}{set\_initial\_condition}}();}
 \DoxyCodeLine{\Hypertarget{osc__quarter__ellipse_8cc_source_l00246}00246 }
 \DoxyCodeLine{\Hypertarget{osc__quarter__ellipse_8cc_source_l00247}00247 \textcolor{keyword}{private}:}
@@ -389,7 +389,7 @@
 \DoxyCodeLine{\Hypertarget{osc__quarter__ellipse_8cc_source_l00385}00385 }
 \DoxyCodeLine{\Hypertarget{osc__quarter__ellipse_8cc_source_l00386}00386 }
 \DoxyCodeLine{\Hypertarget{osc__quarter__ellipse_8cc_source_l00387}00387 \textcolor{comment}{//======================start\_of\_set\_initial\_condition====================}\textcolor{comment}{}}
-\DoxyCodeLine{\Hypertarget{osc__quarter__ellipse_8cc_source_l00388}00388 \textcolor{comment}{///  Set initial condition: Assign previous and current values}}
+\DoxyCodeLine{\Hypertarget{osc__quarter__ellipse_8cc_source_l00388}00388 \textcolor{comment}{/// Set initial condition: Assign previous and current values}}
 \DoxyCodeLine{\Hypertarget{osc__quarter__ellipse_8cc_source_l00389}00389 \textcolor{comment}{/// from exact solution.}}
 \DoxyCodeLine{\Hypertarget{osc__quarter__ellipse_8cc_source_l00390}00390 \textcolor{comment}{}\textcolor{comment}{//========================================================================}}
 \DoxyCodeLine{\Hypertarget{osc__quarter__ellipse_8cc_source_l00391}00391 \textcolor{keyword}{template}<\textcolor{keyword}{class} ELEMENT,\textcolor{keyword}{class} TIMESTEPPER>}

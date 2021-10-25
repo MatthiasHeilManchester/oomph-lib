@@ -179,13 +179,13 @@ Creating the elements</h2>
 <div class="line"><span class="comment"> /// Empty Constructor</span></div>
 <div class="line"><span class="comment"></span> ComplexHarmonicEquations() {}</div>
 </div><!-- fragment --><p> The unknowns that represent the discretised eigenfunction are assumed to be stored at the nodes, but there are now two unknowns: <img class="formulaInl" alt="$u$" src="form_23.png" width="9" height="6"/> is assumed to be the first and <img class="formulaInl" alt="$w$" src="form_24.png" width="10" height="6"/> is the second.</p>
-<div class="fragment"><div class="line"><span class="comment"> ///  Access function: First eigenfunction value at local node n</span></div>
+<div class="fragment"><div class="line"><span class="comment"> /// Access function: First eigenfunction value at local node n</span></div>
 <div class="line"><span class="comment"> /// Note that solving the eigenproblem does not assign values</span><span class="comment"></span></div>
 <div class="line"><span class="comment"> /// to this storage space. It is used for output purposes only.</span></div>
 <div class="line"><span class="comment"></span> <span class="keyword">virtual</span> <span class="keyword">inline</span> <span class="keywordtype">double</span> u(<span class="keyword">const</span> <span class="keywordtype">unsigned</span>&amp; n)<span class="keyword"> const </span></div>
 <div class="line"><span class="keyword">  </span>{<span class="keywordflow">return</span> nodal_value(n,0);}</div>
 <div class="line"><span class="comment"></span> </div>
-<div class="line"><span class="comment"> ///  Second eigenfunction value at local node n</span></div>
+<div class="line"><span class="comment"> /// Second eigenfunction value at local node n</span></div>
 <div class="line"><span class="comment"></span> <span class="keyword">virtual</span> <span class="keyword">inline</span> <span class="keywordtype">double</span> w(<span class="keyword">const</span> <span class="keywordtype">unsigned</span>&amp; n)<span class="keyword"> const </span></div>
 <div class="line"><span class="keyword">  </span>{<span class="keywordflow">return</span> nodal_value(n,1);}</div>
 </div><!-- fragment --><p> As before, the key function is <code>fill_in_contribution_to_jacobian_and_mass_matrix</code> which implements the calculation of the equations.</p>
@@ -287,20 +287,20 @@ Creating the elements</h2>
 <div class="line"> </div>
 <div class="line">  <span class="keyword">public</span>:</div>
 <div class="line"><span class="comment"></span> </div>
-<div class="line"><span class="comment"> ///  Constructor: Call constructors for QElement and </span></div>
+<div class="line"><span class="comment"> /// Constructor: Call constructors for QElement and </span></div>
 <div class="line"><span class="comment"> /// Poisson equations</span></div>
 <div class="line"><span class="comment"></span> <a class="code hl_function" href="classQComplexHarmonicElement.html#a9f1e88c4b5c7031d77c6f6dd3758de2a">QComplexHarmonicElement</a>() : QElement&lt;1,NNODE_1D&gt;(), </div>
 <div class="line">                             ComplexHarmonicEquations() {}</div>
 <div class="line"><span class="comment"></span> </div>
-<div class="line"><span class="comment"> ///   Required  # of `values&#39; (pinned or dofs) </span></div>
+<div class="line"><span class="comment"> ///  Required  # of `values&#39; (pinned or dofs) </span></div>
 <div class="line"><span class="comment"> /// at node n. Here there are two (u and w)</span></div>
 <div class="line"><span class="comment"></span> <span class="keyword">inline</span> <span class="keywordtype">unsigned</span> <a class="code hl_function" href="classQComplexHarmonicElement.html#a3f1d68324e9d8b9e143044d716c72a87">required_nvalue</a>(<span class="keyword">const</span> <span class="keywordtype">unsigned</span> &amp;n)<span class="keyword"> const </span>{<span class="keywordflow">return</span> 2;}</div>
 <div class="line"><span class="comment"></span> </div>
-<div class="line"><span class="comment"> ///  Output function overloaded from ComplexHarmonicEquations</span></div>
+<div class="line"><span class="comment"> /// Output function overloaded from ComplexHarmonicEquations</span></div>
 <div class="line"><span class="comment"></span> <span class="keywordtype">void</span> <a class="code hl_function" href="classQComplexHarmonicElement.html#a8c45d7281a7bc7e2e2d53a7f87339ca4">output</a>(ostream &amp;outfile) </div>
 <div class="line">  {ComplexHarmonicEquations::output(outfile);}</div>
 <div class="line"><span class="comment"></span> </div>
-<div class="line"><span class="comment"> ///   Output function overloaded from ComplexHarmonicEquations</span></div>
+<div class="line"><span class="comment"> ///  Output function overloaded from ComplexHarmonicEquations</span></div>
 <div class="line"><span class="comment"></span> <span class="keywordtype">void</span> <a class="code hl_function" href="classQComplexHarmonicElement.html#a8c45d7281a7bc7e2e2d53a7f87339ca4">output</a>(ostream &amp;outfile, <span class="keyword">const</span> <span class="keywordtype">unsigned</span> &amp;Nplot) </div>
 <div class="line">  {ComplexHarmonicEquations::output(outfile,Nplot);}</div>
 <div class="line"> </div>
@@ -314,7 +314,7 @@ Creating the elements</h2>
 <div class="line"><span class="keyword">  </span>{<span class="keywordflow">return</span> QElement&lt;1,NNODE_1D&gt;::dshape_eulerian(s,psi,dpsidx);}</div>
 <div class="line"> </div>
 <div class="line"><span class="comment"></span> </div>
-<div class="line"><span class="comment"> ///  Shape, test functions &amp; derivs. w.r.t. to global coords. at</span></div>
+<div class="line"><span class="comment"> /// Shape, test functions &amp; derivs. w.r.t. to global coords. at</span></div>
 <div class="line"><span class="comment"> /// integration point ipt. Return Jacobian.</span></div>
 <div class="line"><span class="comment"></span> <span class="keyword">inline</span> <span class="keywordtype">double</span> <a class="code hl_function" href="classQComplexHarmonicElement.html#a3f8d1d9396135d4d86f416dcf6c23904">dshape_eulerian_at_knot</a>(<span class="keyword">const</span> <span class="keywordtype">unsigned</span>&amp; ipt,</div>
 <div class="line">                                       Shape &amp;psi, </div>
@@ -388,7 +388,7 @@ PDF file</h1>
     <footer>
       <div class="container">
         <div class="text-muted" style="float:right;">Generated by <a href="http://www.doxygen.org/index.html">
-          <img style="height:18px;" class="footer-img" src="doxygen.png" alt="doxygen"></a> on Fri Oct 22 2021 12:48:18
+          <img style="height:18px;" class="footer-img" src="doxygen.png" alt="doxygen"></a> on Mon Oct 25 2021 15:06:31
         </div>
       </div>
     </footer>

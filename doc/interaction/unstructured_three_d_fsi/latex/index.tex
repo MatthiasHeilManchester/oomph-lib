@@ -233,7 +233,7 @@ The creation of the fluid mesh follows the same process but uses the mesh create
 \DoxyCodeLine{ }
 \DoxyCodeLine{\textcolor{keyword}{public}:}
 \DoxyCodeLine{ \textcolor{comment}{}}
-\DoxyCodeLine{\textcolor{comment}{ ///  Constructor: }}
+\DoxyCodeLine{\textcolor{comment}{ /// Constructor: }}
 \DoxyCodeLine{\textcolor{comment}{} \mbox{\hyperlink{classFluidTetMesh_a5f8ea145d68623198abc97209a0491a6}{FluidTetMesh}}(\textcolor{keyword}{const} std::string\& node\_file\_name,}
 \DoxyCodeLine{              \textcolor{keyword}{const} std::string\& element\_file\_name,}
 \DoxyCodeLine{              \textcolor{keyword}{const} std::string\& face\_file\_name,}
@@ -389,7 +389,7 @@ The {\ttfamily Problem} class has the usual members, with access functions to th
 \DoxyCodeLine{\textcolor{comment}{ /// Create FSI traction elements}}
 \DoxyCodeLine{\textcolor{comment}{} \textcolor{keywordtype}{void} create\_fsi\_traction\_elements();}
 \DoxyCodeLine{\textcolor{comment}{}}
-\DoxyCodeLine{\textcolor{comment}{ ///  Create elements that enforce prescribed boundary motion}}
+\DoxyCodeLine{\textcolor{comment}{ /// Create elements that enforce prescribed boundary motion}}
 \DoxyCodeLine{\textcolor{comment}{ /// for the pseudo-\/solid fluid mesh by Lagrange multipliers}}
 \DoxyCodeLine{\textcolor{comment}{} \textcolor{keywordtype}{void} create\_lagrange\_multiplier\_elements();}
 
@@ -414,32 +414,32 @@ We also provide a helper function that documents the boundary coordinates on the
 
 \begin{DoxyCodeInclude}{0}
 \DoxyCodeLine{ \textcolor{comment}{}}
-\DoxyCodeLine{\textcolor{comment}{ ///  Return total number of mesh boundaries that make up the inflow }}
+\DoxyCodeLine{\textcolor{comment}{ /// Return total number of mesh boundaries that make up the inflow }}
 \DoxyCodeLine{\textcolor{comment}{ /// boundary}}
 \DoxyCodeLine{\textcolor{comment}{} \textcolor{keywordtype}{unsigned} nfluid\_inflow\_traction\_boundary()}
 \DoxyCodeLine{  \{\textcolor{keywordflow}{return} Inflow\_boundary\_id.size();\}}
 \DoxyCodeLine{\textcolor{comment}{}}
-\DoxyCodeLine{\textcolor{comment}{ ///   Return total number of mesh boundaries that make up the outflow }}
+\DoxyCodeLine{\textcolor{comment}{ ///  Return total number of mesh boundaries that make up the outflow }}
 \DoxyCodeLine{\textcolor{comment}{ /// boundary}}
 \DoxyCodeLine{\textcolor{comment}{} \textcolor{keywordtype}{unsigned} nfluid\_outflow\_traction\_boundary()}
 \DoxyCodeLine{  \{\textcolor{keywordflow}{return} Outflow\_boundary\_id.size();\}}
 \DoxyCodeLine{\textcolor{comment}{}}
-\DoxyCodeLine{\textcolor{comment}{ ///  Return total number of mesh boundaries that make up the }}
+\DoxyCodeLine{\textcolor{comment}{ /// Return total number of mesh boundaries that make up the }}
 \DoxyCodeLine{\textcolor{comment}{ /// in-\/ and outflow boundaries where a traction has to be applied}}
 \DoxyCodeLine{\textcolor{comment}{} \textcolor{keywordtype}{unsigned} nfluid\_traction\_boundary()}
 \DoxyCodeLine{  \{\textcolor{keywordflow}{return} Inflow\_boundary\_id.size()+Outflow\_boundary\_id.size();\}}
 \DoxyCodeLine{\textcolor{comment}{}}
-\DoxyCodeLine{\textcolor{comment}{ ///  Return total number of mesh boundaries in the solid mesh that}}
+\DoxyCodeLine{\textcolor{comment}{ /// Return total number of mesh boundaries in the solid mesh that}}
 \DoxyCodeLine{\textcolor{comment}{ /// make up the FSI interface}}
 \DoxyCodeLine{\textcolor{comment}{} \textcolor{keywordtype}{unsigned} nsolid\_fsi\_boundary()}
 \DoxyCodeLine{  \{\textcolor{keywordflow}{return} Solid\_fsi\_boundary\_id.size();\}}
 \DoxyCodeLine{\textcolor{comment}{}}
-\DoxyCodeLine{\textcolor{comment}{ ///  Return total number of mesh boundaries in the fluid mesh that}}
+\DoxyCodeLine{\textcolor{comment}{ /// Return total number of mesh boundaries in the fluid mesh that}}
 \DoxyCodeLine{\textcolor{comment}{ /// make up the FSI interface}}
 \DoxyCodeLine{\textcolor{comment}{} \textcolor{keywordtype}{unsigned} nfluid\_fsi\_boundary()}
 \DoxyCodeLine{  \{\textcolor{keywordflow}{return} Fluid\_fsi\_boundary\_id.size();\}}
 \DoxyCodeLine{\textcolor{comment}{}}
-\DoxyCodeLine{\textcolor{comment}{ ///  Return total number of mesh boundaries in the solid mesh }}
+\DoxyCodeLine{\textcolor{comment}{ /// Return total number of mesh boundaries in the solid mesh }}
 \DoxyCodeLine{\textcolor{comment}{ /// where the position is pinned.}}
 \DoxyCodeLine{\textcolor{comment}{} \textcolor{keywordtype}{unsigned} npinned\_solid\_boundary()}
 \DoxyCodeLine{  \{\textcolor{keywordflow}{return} Pinned\_solid\_boundary\_id.size();\} }
@@ -480,18 +480,18 @@ We also provide a helper function that documents the boundary coordinates on the
 \DoxyCodeLine{\textcolor{comment}{ /// IDs of solid mesh boundaries where displacements are pinned}}
 \DoxyCodeLine{\textcolor{comment}{} Vector<unsigned> Pinned\_solid\_boundary\_id;}
 \DoxyCodeLine{  \textcolor{comment}{}}
-\DoxyCodeLine{\textcolor{comment}{ ///  IDs of solid mesh boundaries which make up the FSI interface}}
+\DoxyCodeLine{\textcolor{comment}{ /// IDs of solid mesh boundaries which make up the FSI interface}}
 \DoxyCodeLine{\textcolor{comment}{} Vector<unsigned> Solid\_fsi\_boundary\_id;}
 \DoxyCodeLine{\textcolor{comment}{}}
-\DoxyCodeLine{\textcolor{comment}{ ///  IDs of fluid mesh boundaries along which inflow boundary conditions}}
+\DoxyCodeLine{\textcolor{comment}{ /// IDs of fluid mesh boundaries along which inflow boundary conditions}}
 \DoxyCodeLine{\textcolor{comment}{ /// are applied}}
 \DoxyCodeLine{\textcolor{comment}{} Vector<unsigned> Inflow\_boundary\_id;}
 \DoxyCodeLine{\textcolor{comment}{}}
-\DoxyCodeLine{\textcolor{comment}{ ///  IDs of fluid mesh boundaries along which inflow boundary conditions}}
+\DoxyCodeLine{\textcolor{comment}{ /// IDs of fluid mesh boundaries along which inflow boundary conditions}}
 \DoxyCodeLine{\textcolor{comment}{ /// are applied}}
 \DoxyCodeLine{\textcolor{comment}{} Vector<unsigned> Outflow\_boundary\_id;}
 \DoxyCodeLine{\textcolor{comment}{}}
-\DoxyCodeLine{\textcolor{comment}{ ///  IDs of fluid mesh boundaries which make up the FSI interface}}
+\DoxyCodeLine{\textcolor{comment}{ /// IDs of fluid mesh boundaries which make up the FSI interface}}
 \DoxyCodeLine{\textcolor{comment}{} Vector<unsigned> Fluid\_fsi\_boundary\_id;}
 \DoxyCodeLine{}
 \DoxyCodeLine{\};}

@@ -211,13 +211,13 @@
 <div class="line"><a id="l00092" name="l00092"></a><span class="lineno">   92</span><span class="comment"> /// Empty Constructor</span></div>
 <div class="line"><a id="l00093" name="l00093"></a><span class="lineno">   93</span><span class="comment"></span> ComplexHarmonicEquations() {}</div>
 <div class="line"><a id="l00094" name="l00094"></a><span class="lineno">   94</span><span class="comment"></span> </div>
-<div class="line"><a id="l00095" name="l00095"></a><span class="lineno">   95</span><span class="comment"> ///  Access function: First eigenfunction value at local node n</span></div>
+<div class="line"><a id="l00095" name="l00095"></a><span class="lineno">   95</span><span class="comment"> /// Access function: First eigenfunction value at local node n</span></div>
 <div class="line"><a id="l00096" name="l00096"></a><span class="lineno">   96</span><span class="comment"> /// Note that solving the eigenproblem does not assign values</span></div>
 <div class="line"><a id="l00097" name="l00097"></a><span class="lineno">   97</span><span class="comment"> /// to this storage space. It is used for output purposes only.</span></div>
 <div class="line"><a id="l00098" name="l00098"></a><span class="lineno">   98</span><span class="comment"></span> <span class="keyword">virtual</span> <span class="keyword">inline</span> <span class="keywordtype">double</span> u(<span class="keyword">const</span> <span class="keywordtype">unsigned</span>&amp; n)<span class="keyword"> const </span></div>
 <div class="line"><a id="l00099" name="l00099"></a><span class="lineno">   99</span><span class="keyword">  </span>{<span class="keywordflow">return</span> nodal_value(n,0);}</div>
 <div class="line"><a id="l00100" name="l00100"></a><span class="lineno">  100</span><span class="comment"></span> </div>
-<div class="line"><a id="l00101" name="l00101"></a><span class="lineno">  101</span><span class="comment"> ///  Second eigenfunction value at local node n</span></div>
+<div class="line"><a id="l00101" name="l00101"></a><span class="lineno">  101</span><span class="comment"> /// Second eigenfunction value at local node n</span></div>
 <div class="line"><a id="l00102" name="l00102"></a><span class="lineno">  102</span><span class="comment"></span> <span class="keyword">virtual</span> <span class="keyword">inline</span> <span class="keywordtype">double</span> w(<span class="keyword">const</span> <span class="keywordtype">unsigned</span>&amp; n)<span class="keyword"> const </span></div>
 <div class="line"><a id="l00103" name="l00103"></a><span class="lineno">  103</span><span class="keyword">  </span>{<span class="keywordflow">return</span> nodal_value(n,1);}</div>
 <div class="line"><a id="l00104" name="l00104"></a><span class="lineno">  104</span><span class="comment"></span> </div>
@@ -228,7 +228,7 @@
 <div class="line"><a id="l00109" name="l00109"></a><span class="lineno">  109</span>   output(outfile,nplot);</div>
 <div class="line"><a id="l00110" name="l00110"></a><span class="lineno">  110</span>  }</div>
 <div class="line"><a id="l00111" name="l00111"></a><span class="lineno">  111</span><span class="comment"></span> </div>
-<div class="line"><a id="l00112" name="l00112"></a><span class="lineno">  112</span><span class="comment"> ///  Output FE representation of soln: x,y,u or x,y,z,u at </span></div>
+<div class="line"><a id="l00112" name="l00112"></a><span class="lineno">  112</span><span class="comment"> /// Output FE representation of soln: x,y,u or x,y,z,u at </span></div>
 <div class="line"><a id="l00113" name="l00113"></a><span class="lineno">  113</span><span class="comment"> /// Nplot  plot points</span></div>
 <div class="line"><a id="l00114" name="l00114"></a><span class="lineno">  114</span><span class="comment"></span> <span class="keywordtype">void</span> output(ostream &amp;outfile, <span class="keyword">const</span> <span class="keywordtype">unsigned</span> &amp;nplot)</div>
 <div class="line"><a id="l00115" name="l00115"></a><span class="lineno">  115</span>  {</div>
@@ -252,7 +252,7 @@
 <div class="line"><a id="l00133" name="l00133"></a><span class="lineno">  133</span>   write_tecplot_zone_footer(outfile,nplot);</div>
 <div class="line"><a id="l00134" name="l00134"></a><span class="lineno">  134</span>  }</div>
 <div class="line"><a id="l00135" name="l00135"></a><span class="lineno">  135</span><span class="comment"></span> </div>
-<div class="line"><a id="l00136" name="l00136"></a><span class="lineno">  136</span><span class="comment"> ///  Assemble the contributions to the jacobian and mass</span></div>
+<div class="line"><a id="l00136" name="l00136"></a><span class="lineno">  136</span><span class="comment"> /// Assemble the contributions to the jacobian and mass</span></div>
 <div class="line"><a id="l00137" name="l00137"></a><span class="lineno">  137</span><span class="comment"> /// matrices</span></div>
 <div class="line"><a id="l00138" name="l00138"></a><span class="lineno">  138</span><span class="comment"></span> <span class="keywordtype">void</span> fill_in_contribution_to_jacobian_and_mass_matrix(</div>
 <div class="line"><a id="l00139" name="l00139"></a><span class="lineno">  139</span>  Vector&lt;double&gt; &amp;residuals,</div>
@@ -388,19 +388,19 @@
 <div class="line"><a id="l00269" name="l00269"></a><span class="lineno">  269</span> </div>
 <div class="line"><a id="l00270" name="l00270"></a><span class="lineno">  270</span><span class="keyword">protected</span>:</div>
 <div class="line"><a id="l00271" name="l00271"></a><span class="lineno">  271</span><span class="comment"></span> </div>
-<div class="line"><a id="l00272" name="l00272"></a><span class="lineno">  272</span><span class="comment"> ///  Shape/test functions and derivs w.r.t. to global coords at </span></div>
+<div class="line"><a id="l00272" name="l00272"></a><span class="lineno">  272</span><span class="comment"> /// Shape/test functions and derivs w.r.t. to global coords at </span></div>
 <div class="line"><a id="l00273" name="l00273"></a><span class="lineno">  273</span><span class="comment"> /// local coord. s; return  Jacobian of mapping</span></div>
 <div class="line"><a id="l00274" name="l00274"></a><span class="lineno">  274</span><span class="comment"></span> <span class="keyword">virtual</span> <span class="keywordtype">double</span> dshape_eulerian(<span class="keyword">const</span> Vector&lt;double&gt; &amp;s, </div>
 <div class="line"><a id="l00275" name="l00275"></a><span class="lineno">  275</span>                                Shape &amp;psi, </div>
 <div class="line"><a id="l00276" name="l00276"></a><span class="lineno">  276</span>                                DShape &amp;dpsidx) <span class="keyword">const</span>=0;</div>
 <div class="line"><a id="l00277" name="l00277"></a><span class="lineno">  277</span><span class="comment"></span> </div>
-<div class="line"><a id="l00278" name="l00278"></a><span class="lineno">  278</span><span class="comment"> ///  Shape/test functions and derivs w.r.t. to global coords at </span></div>
+<div class="line"><a id="l00278" name="l00278"></a><span class="lineno">  278</span><span class="comment"> /// Shape/test functions and derivs w.r.t. to global coords at </span></div>
 <div class="line"><a id="l00279" name="l00279"></a><span class="lineno">  279</span><span class="comment"> /// integration point ipt; return  Jacobian of mapping</span></div>
 <div class="line"><a id="l00280" name="l00280"></a><span class="lineno">  280</span><span class="comment"></span> <span class="keyword">virtual</span> <span class="keywordtype">double</span> dshape_eulerian_at_knot(<span class="keyword">const</span> <span class="keywordtype">unsigned</span> &amp;ipt, </div>
 <div class="line"><a id="l00281" name="l00281"></a><span class="lineno">  281</span>                                        Shape &amp;psi, </div>
 <div class="line"><a id="l00282" name="l00282"></a><span class="lineno">  282</span>                                        DShape &amp;dpsidx) <span class="keyword">const</span>=0;</div>
 <div class="line"><a id="l00283" name="l00283"></a><span class="lineno">  283</span> <span class="comment"></span></div>
-<div class="line"><a id="l00284" name="l00284"></a><span class="lineno">  284</span><span class="comment"> ///  Access function that returns the local equation number</span></div>
+<div class="line"><a id="l00284" name="l00284"></a><span class="lineno">  284</span><span class="comment"> /// Access function that returns the local equation number</span></div>
 <div class="line"><a id="l00285" name="l00285"></a><span class="lineno">  285</span><span class="comment"> /// of the unknown in the problem. Default is to assume that it is the</span></div>
 <div class="line"><a id="l00286" name="l00286"></a><span class="lineno">  286</span><span class="comment"> /// first (only) value stored at the node.</span></div>
 <div class="line"><a id="l00287" name="l00287"></a><span class="lineno">  287</span><span class="comment"></span> <span class="keyword">virtual</span> <span class="keyword">inline</span> <span class="keywordtype">int</span> u_local_eqn(<span class="keyword">const</span> <span class="keywordtype">unsigned</span> &amp;n, <span class="keyword">const</span> <span class="keywordtype">unsigned</span> &amp;i)</div>
@@ -424,20 +424,20 @@
 <div class="line"><a id="l00305" name="l00305"></a><span class="lineno">  305</span> </div>
 <div class="line"><a id="l00306" name="l00306"></a><span class="lineno">  306</span>  <span class="keyword">public</span>:</div>
 <div class="line"><a id="l00307" name="l00307"></a><span class="lineno">  307</span><span class="comment"></span> </div>
-<div class="line"><a id="l00308" name="l00308"></a><span class="lineno">  308</span><span class="comment"> ///  Constructor: Call constructors for QElement and </span></div>
+<div class="line"><a id="l00308" name="l00308"></a><span class="lineno">  308</span><span class="comment"> /// Constructor: Call constructors for QElement and </span></div>
 <div class="line"><a id="l00309" name="l00309"></a><span class="lineno">  309</span><span class="comment"> /// Poisson equations</span></div>
 <div class="line"><a id="l00310" name="l00310"></a><span class="lineno"><a class="line" href="classQComplexHarmonicElement.html#a9f1e88c4b5c7031d77c6f6dd3758de2a">  310</a></span><span class="comment"></span> <a class="code hl_function" href="classQComplexHarmonicElement.html#a9f1e88c4b5c7031d77c6f6dd3758de2a">QComplexHarmonicElement</a>() : QElement&lt;1,NNODE_1D&gt;(), </div>
 <div class="line"><a id="l00311" name="l00311"></a><span class="lineno">  311</span>                             ComplexHarmonicEquations() {}</div>
 <div class="line"><a id="l00312" name="l00312"></a><span class="lineno">  312</span><span class="comment"></span> </div>
-<div class="line"><a id="l00313" name="l00313"></a><span class="lineno">  313</span><span class="comment"> ///   Required  # of `values&#39; (pinned or dofs) </span></div>
+<div class="line"><a id="l00313" name="l00313"></a><span class="lineno">  313</span><span class="comment"> ///  Required  # of `values&#39; (pinned or dofs) </span></div>
 <div class="line"><a id="l00314" name="l00314"></a><span class="lineno">  314</span><span class="comment"> /// at node n. Here there are two (u and w)</span></div>
 <div class="line"><a id="l00315" name="l00315"></a><span class="lineno"><a class="line" href="classQComplexHarmonicElement.html#a3f1d68324e9d8b9e143044d716c72a87">  315</a></span><span class="comment"></span> <span class="keyword">inline</span> <span class="keywordtype">unsigned</span> <a class="code hl_function" href="classQComplexHarmonicElement.html#a3f1d68324e9d8b9e143044d716c72a87">required_nvalue</a>(<span class="keyword">const</span> <span class="keywordtype">unsigned</span> &amp;n)<span class="keyword"> const </span>{<span class="keywordflow">return</span> 2;}</div>
 <div class="line"><a id="l00316" name="l00316"></a><span class="lineno">  316</span><span class="comment"></span> </div>
-<div class="line"><a id="l00317" name="l00317"></a><span class="lineno">  317</span><span class="comment"> ///  Output function overloaded from ComplexHarmonicEquations</span></div>
+<div class="line"><a id="l00317" name="l00317"></a><span class="lineno">  317</span><span class="comment"> /// Output function overloaded from ComplexHarmonicEquations</span></div>
 <div class="line"><a id="l00318" name="l00318"></a><span class="lineno"><a class="line" href="classQComplexHarmonicElement.html#a8c45d7281a7bc7e2e2d53a7f87339ca4">  318</a></span><span class="comment"></span> <span class="keywordtype">void</span> <a class="code hl_function" href="classQComplexHarmonicElement.html#a8c45d7281a7bc7e2e2d53a7f87339ca4">output</a>(ostream &amp;outfile) </div>
 <div class="line"><a id="l00319" name="l00319"></a><span class="lineno">  319</span>  {ComplexHarmonicEquations::output(outfile);}</div>
 <div class="line"><a id="l00320" name="l00320"></a><span class="lineno">  320</span><span class="comment"></span> </div>
-<div class="line"><a id="l00321" name="l00321"></a><span class="lineno">  321</span><span class="comment"> ///   Output function overloaded from ComplexHarmonicEquations</span></div>
+<div class="line"><a id="l00321" name="l00321"></a><span class="lineno">  321</span><span class="comment"> ///  Output function overloaded from ComplexHarmonicEquations</span></div>
 <div class="line"><a id="l00322" name="l00322"></a><span class="lineno"><a class="line" href="classQComplexHarmonicElement.html#a7f63f8532a6295a3ba86f94355f889b8">  322</a></span><span class="comment"></span> <span class="keywordtype">void</span> <a class="code hl_function" href="classQComplexHarmonicElement.html#a7f63f8532a6295a3ba86f94355f889b8">output</a>(ostream &amp;outfile, <span class="keyword">const</span> <span class="keywordtype">unsigned</span> &amp;Nplot) </div>
 <div class="line"><a id="l00323" name="l00323"></a><span class="lineno">  323</span>  {ComplexHarmonicEquations::output(outfile,Nplot);}</div>
 <div class="line"><a id="l00324" name="l00324"></a><span class="lineno">  324</span> </div>
@@ -451,7 +451,7 @@
 <div class="line"><a id="l00332" name="l00332"></a><span class="lineno">  332</span><span class="keyword">  </span>{<span class="keywordflow">return</span> QElement&lt;1,NNODE_1D&gt;::dshape_eulerian(s,psi,dpsidx);}</div>
 <div class="line"><a id="l00333" name="l00333"></a><span class="lineno">  333</span> </div>
 <div class="line"><a id="l00334" name="l00334"></a><span class="lineno">  334</span><span class="comment"></span> </div>
-<div class="line"><a id="l00335" name="l00335"></a><span class="lineno">  335</span><span class="comment"> ///  Shape, test functions &amp; derivs. w.r.t. to global coords. at</span></div>
+<div class="line"><a id="l00335" name="l00335"></a><span class="lineno">  335</span><span class="comment"> /// Shape, test functions &amp; derivs. w.r.t. to global coords. at</span></div>
 <div class="line"><a id="l00336" name="l00336"></a><span class="lineno">  336</span><span class="comment"> /// integration point ipt. Return Jacobian.</span></div>
 <div class="line"><a id="l00337" name="l00337"></a><span class="lineno"><a class="line" href="classQComplexHarmonicElement.html#a3f8d1d9396135d4d86f416dcf6c23904">  337</a></span><span class="comment"></span> <span class="keyword">inline</span> <span class="keywordtype">double</span> <a class="code hl_function" href="classQComplexHarmonicElement.html#a3f8d1d9396135d4d86f416dcf6c23904">dshape_eulerian_at_knot</a>(<span class="keyword">const</span> <span class="keywordtype">unsigned</span>&amp; ipt,</div>
 <div class="line"><a id="l00338" name="l00338"></a><span class="lineno">  338</span>                                       Shape &amp;psi, </div>
@@ -479,7 +479,7 @@
 <div class="line"><a id="l00360" name="l00360"></a><span class="lineno">  360</span><span class="comment"> /// Solve the problem</span></div>
 <div class="line"><a id="l00361" name="l00361"></a><span class="lineno">  361</span><span class="comment"></span> <span class="keywordtype">void</span> <a class="code hl_function" href="classComplexHarmonicProblem.html#a3453c3c11a76fbab8c6383b52b6b33d7">solve</a>(<span class="keyword">const</span> <span class="keywordtype">unsigned</span> &amp;label);</div>
 <div class="line"><a id="l00362" name="l00362"></a><span class="lineno">  362</span><span class="comment"></span> </div>
-<div class="line"><a id="l00363" name="l00363"></a><span class="lineno">  363</span><span class="comment"> ///  Doc the solution, pass the number of the case considered,</span></div>
+<div class="line"><a id="l00363" name="l00363"></a><span class="lineno">  363</span><span class="comment"> /// Doc the solution, pass the number of the case considered,</span></div>
 <div class="line"><a id="l00364" name="l00364"></a><span class="lineno">  364</span><span class="comment"> /// so that output files can be distinguished.</span></div>
 <div class="line"><a id="l00365" name="l00365"></a><span class="lineno">  365</span><span class="comment"></span> <span class="keywordtype">void</span> <a class="code hl_function" href="classComplexHarmonicProblem.html#a984616c738c9bc14a93ad825a87b0051">doc_solution</a>(<span class="keyword">const</span> <span class="keywordtype">unsigned</span>&amp; label);</div>
 <div class="line"><a id="l00366" name="l00366"></a><span class="lineno">  366</span> </div>
@@ -488,7 +488,7 @@
 <div class="line"><a id="l00369" name="l00369"></a><span class="lineno">  369</span> </div>
 <div class="line"><a id="l00370" name="l00370"></a><span class="lineno">  370</span> </div>
 <div class="line"><a id="l00371" name="l00371"></a><span class="lineno">  371</span><span class="comment">//=====start_of_constructor===============================================</span><span class="comment"></span></div>
-<div class="line"><a id="l00372" name="l00372"></a><span class="lineno">  372</span><span class="comment">///  Constructor for 1D ComplexHarmonic problem in unit interval.</span></div>
+<div class="line"><a id="l00372" name="l00372"></a><span class="lineno">  372</span><span class="comment">/// Constructor for 1D ComplexHarmonic problem in unit interval.</span></div>
 <div class="line"><a id="l00373" name="l00373"></a><span class="lineno">  373</span><span class="comment">/// Discretise the 1D domain with n_element elements of type ELEMENT.</span></div>
 <div class="line"><a id="l00374" name="l00374"></a><span class="lineno">  374</span><span class="comment">/// Specify function pointer to source function. </span></div>
 <div class="line"><a id="l00375" name="l00375"></a><span class="lineno">  375</span><span class="comment"></span><span class="comment">//========================================================================</span></div>
@@ -757,7 +757,7 @@
     <footer>
       <div class="container">
         <div class="text-muted" style="float:right;">Generated by <a href="http://www.doxygen.org/index.html">
-          <img style="height:18px;" class="footer-img" src="doxygen.png" alt="doxygen"></a> on Fri Oct 22 2021 12:48:09
+          <img style="height:18px;" class="footer-img" src="doxygen.png" alt="doxygen"></a> on Mon Oct 25 2021 15:06:22
         </div>
       </div>
     </footer>

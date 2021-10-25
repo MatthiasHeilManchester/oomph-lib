@@ -172,7 +172,7 @@
 <div class="line"><a id="l00053" name="l00053"></a><span class="lineno"><a class="line" href="classoomph_1_1XdaTetMesh.html">   53</a></span>  <span class="keyword">class </span><a class="code hl_class" href="classoomph_1_1XdaTetMesh.html">XdaTetMesh</a> : <span class="keyword">public</span> <span class="keyword">virtual</span> TetMeshBase</div>
 <div class="line"><a id="l00054" name="l00054"></a><span class="lineno">   54</span>  {</div>
 <div class="line"><a id="l00055" name="l00055"></a><span class="lineno">   55</span>  <span class="keyword">public</span>:<span class="comment"></span></div>
-<div class="line"><a id="l00056" name="l00056"></a><span class="lineno">   56</span><span class="comment">    ///  Constructor: Pass name of xda file. Note that</span></div>
+<div class="line"><a id="l00056" name="l00056"></a><span class="lineno">   56</span><span class="comment">    /// Constructor: Pass name of xda file. Note that</span></div>
 <div class="line"><a id="l00057" name="l00057"></a><span class="lineno">   57</span><span class="comment">    /// all boundary elements get their own ID -- this is required for</span></div>
 <div class="line"><a id="l00058" name="l00058"></a><span class="lineno">   58</span><span class="comment">    /// FSI problems. In this case; the vector containing the oomph-lib</span></div>
 <div class="line"><a id="l00059" name="l00059"></a><span class="lineno">   59</span><span class="comment">    /// boundary IDs of all oomph-lib boundaries that collectively form</span></div>
@@ -182,7 +182,7 @@
 <div class="line"><a id="l00063" name="l00063"></a><span class="lineno">   63</span><span class="comment"></span>    <a class="code hl_function" href="classoomph_1_1XdaTetMesh.html#a4cea32a11d0899ac230de66899e503d1">XdaTetMesh</a>(<span class="keyword">const</span> std::string xda_file_name,</div>
 <div class="line"><a id="l00064" name="l00064"></a><span class="lineno">   64</span>               TimeStepper* time_stepper_pt = &amp;Mesh::Default_TimeStepper);</div>
 <div class="line"><a id="l00065" name="l00065"></a><span class="lineno">   65</span><span class="comment"></span> </div>
-<div class="line"><a id="l00066" name="l00066"></a><span class="lineno">   66</span><span class="comment">    ///  Setup boundary coordinate on boundary b while is</span></div>
+<div class="line"><a id="l00066" name="l00066"></a><span class="lineno">   66</span><span class="comment">    /// Setup boundary coordinate on boundary b while is</span></div>
 <div class="line"><a id="l00067" name="l00067"></a><span class="lineno">   67</span><span class="comment">    /// temporarily flattened to simplex faces. Boundary coordinates are the</span></div>
 <div class="line"><a id="l00068" name="l00068"></a><span class="lineno">   68</span><span class="comment">    /// x-y coordinates in the plane of that boundary with the</span></div>
 <div class="line"><a id="l00069" name="l00069"></a><span class="lineno">   69</span><span class="comment">    /// x-axis along the line from the (lexicographically)</span></div>
@@ -212,14 +212,14 @@
 <div class="line"><a id="l00093" name="l00093"></a><span class="lineno">   93</span>                                    <span class="keyword">const</span> <span class="keywordtype">bool</span>&amp; switch_normal,</div>
 <div class="line"><a id="l00094" name="l00094"></a><span class="lineno">   94</span>                                    std::ofstream&amp; outfile);</div>
 <div class="line"><a id="l00095" name="l00095"></a><span class="lineno">   95</span><span class="comment"></span> </div>
-<div class="line"><a id="l00096" name="l00096"></a><span class="lineno">   96</span><span class="comment">    ///  Access function to the number of distinct boundaries specified</span></div>
+<div class="line"><a id="l00096" name="l00096"></a><span class="lineno">   96</span><span class="comment">    /// Access function to the number of distinct boundaries specified</span></div>
 <div class="line"><a id="l00097" name="l00097"></a><span class="lineno">   97</span><span class="comment">    /// in the original xda enumeration.</span></div>
 <div class="line"><a id="l00098" name="l00098"></a><span class="lineno"><a class="line" href="classoomph_1_1XdaTetMesh.html#ad81712bc6c7215d64494ccafc8c99dd5">   98</a></span><span class="comment"></span>    <span class="keywordtype">unsigned</span> <a class="code hl_function" href="classoomph_1_1XdaTetMesh.html#ad81712bc6c7215d64494ccafc8c99dd5">nxda_boundary</a>()</div>
 <div class="line"><a id="l00099" name="l00099"></a><span class="lineno">   99</span>    {</div>
 <div class="line"><a id="l00100" name="l00100"></a><span class="lineno">  100</span>      <span class="keywordflow">return</span> <a class="code hl_variable" href="classoomph_1_1XdaTetMesh.html#a1774abc96e730c89e95b99933a7c0ae3">Boundary_id</a>.size();</div>
 <div class="line"><a id="l00101" name="l00101"></a><span class="lineno">  101</span>    }</div>
 <div class="line"><a id="l00102" name="l00102"></a><span class="lineno">  102</span><span class="comment"></span> </div>
-<div class="line"><a id="l00103" name="l00103"></a><span class="lineno">  103</span><span class="comment">    ///  Access functions to the Vector of oomph-lib boundary ids</span></div>
+<div class="line"><a id="l00103" name="l00103"></a><span class="lineno">  103</span><span class="comment">    /// Access functions to the Vector of oomph-lib boundary ids</span></div>
 <div class="line"><a id="l00104" name="l00104"></a><span class="lineno">  104</span><span class="comment">    /// that make up boundary b in the original xda enumeration</span></div>
 <div class="line"><a id="l00105" name="l00105"></a><span class="lineno"><a class="line" href="classoomph_1_1XdaTetMesh.html#a0597a3e3d72a756631beac452b9240c5">  105</a></span><span class="comment"></span>    Vector&lt;unsigned&gt; <a class="code hl_function" href="classoomph_1_1XdaTetMesh.html#a0597a3e3d72a756631beac452b9240c5">oomph_lib_boundary_ids</a>(<span class="keyword">const</span> <span class="keywordtype">unsigned</span>&amp; xda_boundary_id)</div>
 <div class="line"><a id="l00106" name="l00106"></a><span class="lineno">  106</span>    {</div>
@@ -227,7 +227,7 @@
 <div class="line"><a id="l00108" name="l00108"></a><span class="lineno">  108</span>    }</div>
 <div class="line"><a id="l00109" name="l00109"></a><span class="lineno">  109</span> </div>
 <div class="line"><a id="l00110" name="l00110"></a><span class="lineno">  110</span>  <span class="keyword">private</span>:<span class="comment"></span></div>
-<div class="line"><a id="l00111" name="l00111"></a><span class="lineno">  111</span><span class="comment">    ///  Vector of vectors containing the boundary IDs of</span></div>
+<div class="line"><a id="l00111" name="l00111"></a><span class="lineno">  111</span><span class="comment">    /// Vector of vectors containing the boundary IDs of</span></div>
 <div class="line"><a id="l00112" name="l00112"></a><span class="lineno">  112</span><span class="comment">    /// the overall boundary specified in the xda file.</span></div>
 <div class="line"><a id="l00113" name="l00113"></a><span class="lineno"><a class="line" href="classoomph_1_1XdaTetMesh.html#a1774abc96e730c89e95b99933a7c0ae3">  113</a></span><span class="comment"></span>    Vector&lt;Vector&lt;unsigned&gt;&gt; <a class="code hl_variable" href="classoomph_1_1XdaTetMesh.html#a1774abc96e730c89e95b99933a7c0ae3">Boundary_id</a>;</div>
 <div class="line"><a id="l00114" name="l00114"></a><span class="lineno">  114</span>  };</div>
@@ -246,7 +246,7 @@
 <div class="line"><a id="l00127" name="l00127"></a><span class="lineno">  127</span>                          <span class="keyword">public</span> <span class="keyword">virtual</span> SolidMesh</div>
 <div class="line"><a id="l00128" name="l00128"></a><span class="lineno">  128</span>  {</div>
 <div class="line"><a id="l00129" name="l00129"></a><span class="lineno">  129</span>  <span class="keyword">public</span>:<span class="comment"></span></div>
-<div class="line"><a id="l00130" name="l00130"></a><span class="lineno">  130</span><span class="comment">    ///  Constructor. Boundary coordinates are setup</span></div>
+<div class="line"><a id="l00130" name="l00130"></a><span class="lineno">  130</span><span class="comment">    /// Constructor. Boundary coordinates are setup</span></div>
 <div class="line"><a id="l00131" name="l00131"></a><span class="lineno">  131</span><span class="comment">    /// automatically.</span></div>
 <div class="line"><a id="l00132" name="l00132"></a><span class="lineno"><a class="line" href="classoomph_1_1SolidXdaTetMesh.html#a1242b23a2df9f424ec17aa2059ba116d">  132</a></span><span class="comment"></span>    <a class="code hl_function" href="classoomph_1_1SolidXdaTetMesh.html#a1242b23a2df9f424ec17aa2059ba116d">SolidXdaTetMesh</a>(<span class="keyword">const</span> std::string xda_file_name,</div>
 <div class="line"><a id="l00133" name="l00133"></a><span class="lineno">  133</span>                    TimeStepper* time_stepper_pt = &amp;Mesh::Default_TimeStepper)</div>
@@ -308,7 +308,7 @@
     <footer>
       <div class="container">
         <div class="text-muted" style="float:right;">Generated by <a href="http://www.doxygen.org/index.html">
-          <img style="height:18px;" class="footer-img" src="doxygen.png" alt="doxygen"></a> on Fri Oct 22 2021 12:21:07
+          <img style="height:18px;" class="footer-img" src="doxygen.png" alt="doxygen"></a> on Mon Oct 25 2021 14:39:28
         </div>
       </div>
     </footer>

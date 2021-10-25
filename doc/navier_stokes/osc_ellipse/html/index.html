@@ -177,7 +177,7 @@ Plot of the velocity and pressure fields computed with 2D Taylor-Hood elements, 
 The moving wall</h1>
 <p >As usual, we represent the moving wall as a <code>GeomObject</code> and define its shape by implementing the pure virtual function <code>GeomObject::position(...)</code>. The arguments to the constructor specify the mean half-axis of the ellipse, <img class="formulaInl" alt="$ A $" src="form_5.png" width="10" height="10"/>, the amplitude of its variations, <img class="formulaInl" alt="$ \widehat{A} $" src="form_7.png" width="11" height="14"/>, and the period of the oscillation, <img class="formulaInl" alt="$ T $" src="form_26.png" width="10" height="9"/> . We also pass the pointer to a <code>Time</code> object to the constructor and store it in a private data member, to allow the <code>position(...)</code> functions to access the current value of the continuous time.</p>
  <div class="fragment"><div class="line"><span class="comment">//============start_of_MyEllipse===========================================</span></div>
-<div class="line"><span class="comment">///  Oscillating ellipse</span><span class="comment"></span></div>
+<div class="line"><span class="comment">/// Oscillating ellipse</span><span class="comment"></span></div>
 <div class="line"><span class="comment">/// \f[ x = (A + \widehat{A} \cos(2\pi t/T)) \cos(\xi)  \f]</span></div>
 <div class="line"><span class="comment">/// \f[ y = \frac{\sin(\xi)}{A + \widehat{A} \cos(2\pi t/T)}   \f]</span></div>
 <div class="line"><span class="comment">/// Note that cross-sectional area is conserved.</span></div>
@@ -187,7 +187,7 @@ The moving wall</h1>
 <div class="line"> </div>
 <div class="line"><span class="keyword">public</span>:</div>
 <div class="line"><span class="comment"></span> </div>
-<div class="line"><span class="comment"> ///  Constructor:  Pass initial x-half axis, amplitude of x-variation, </span></div>
+<div class="line"><span class="comment"> /// Constructor:  Pass initial x-half axis, amplitude of x-variation, </span></div>
 <div class="line"><span class="comment"> /// period of oscillation and pointer to time object.</span></div>
 <div class="line"><span class="comment"></span> <a class="code hl_function" href="classMyEllipse.html#a6d780f1f450d99e175842e88a3079069">MyEllipse</a>(<span class="keyword">const</span> <span class="keywordtype">double</span>&amp; a, <span class="keyword">const</span> <span class="keywordtype">double</span>&amp; a_hat,</div>
 <div class="line">           <span class="keyword">const</span> <span class="keywordtype">double</span>&amp; period, Time* time_pt) : </div>
@@ -196,7 +196,7 @@ The moving wall</h1>
 <div class="line"><span class="comment"> /// Destructor: Empty</span></div>
 <div class="line"><span class="comment"></span> <span class="keyword">virtual</span> <a class="code hl_function" href="classMyEllipse.html#ac2f2d3fb269c57fb26b4db6d9a0c7c05">~MyEllipse</a>() {}</div>
 <div class="line"><span class="comment"></span> </div>
-<div class="line"><span class="comment"> ///  Current position vector to material point at </span></div>
+<div class="line"><span class="comment"> /// Current position vector to material point at </span></div>
 <div class="line"><span class="comment"> /// Lagrangian coordinate xi </span></div>
 <div class="line"><span class="comment"></span> <span class="keywordtype">void</span> <a class="code hl_function" href="classMyEllipse.html#a7b139a2f4564005773c83325f2414e3e">position</a>(<span class="keyword">const</span> Vector&lt;double&gt;&amp; xi, Vector&lt;double&gt;&amp; r)<span class="keyword"> const</span></div>
 <div class="line"><span class="keyword">  </span>{</div>
@@ -209,7 +209,7 @@ The moving wall</h1>
 <div class="line">   r[1] = (1.0/axis)*sin(xi[0]);</div>
 <div class="line">  } </div>
 <div class="line"><span class="comment"></span> </div>
-<div class="line"><span class="comment"> ///  Parametrised position on object: r(xi). Evaluated at</span></div>
+<div class="line"><span class="comment"> /// Parametrised position on object: r(xi). Evaluated at</span></div>
 <div class="line"><span class="comment"> /// previous time level. t=0: current time; t&gt;0: previous</span></div>
 <div class="line"><span class="comment"> /// time level.</span></div>
 <div class="line"><span class="comment"></span> <span class="keywordtype">void</span> <a class="code hl_function" href="classMyEllipse.html#a7b139a2f4564005773c83325f2414e3e">position</a>(<span class="keyword">const</span> <span class="keywordtype">unsigned</span>&amp; t, <span class="keyword">const</span> Vector&lt;double&gt;&amp; xi,</div>
@@ -384,7 +384,7 @@ The problem class</h1>
 <div class="line"><span class="comment"> /// Update the problem specs after solve (empty)</span></div>
 <div class="line"><span class="comment"></span> <span class="keywordtype">void</span> <a class="code hl_function" href="classOscEllipseProblem.html#a268e14b24e3ac922e7362bbb37ccde1f">actions_after_newton_solve</a>(){}</div>
 <div class="line"><span class="comment"></span> </div>
-<div class="line"><span class="comment"> ///  Update problem specs before solve (empty)</span></div>
+<div class="line"><span class="comment"> /// Update problem specs before solve (empty)</span></div>
 <div class="line"><span class="comment"></span> <span class="keywordtype">void</span> <a class="code hl_function" href="classOscEllipseProblem.html#a18bbd70aa8c140637637053a5f839c11">actions_before_newton_solve</a>() {} </div>
 <div class="line"> <span class="comment"></span></div>
 <div class="line"><span class="comment"> /// Actions before adapt (empty)</span></div>
@@ -423,7 +423,7 @@ The problem class</h1>
 <p >Here is the implementation of these tasks:</p>
 <div class="fragment"><div class="line"> </div>
 <div class="line"><span class="comment"></span> </div>
-<div class="line"><span class="comment"> ///  Update the problem specs before next timestep</span></div>
+<div class="line"><span class="comment"> /// Update the problem specs before next timestep</span></div>
 <div class="line"><span class="comment"></span> <span class="keywordtype">void</span> actions_before_implicit_timestep()</div>
 <div class="line">  {</div>
 <div class="line">   <span class="comment">// Update the domain shape</span></div>
@@ -453,7 +453,7 @@ The problem class</h1>
 <div class="line"><span class="comment"> /// Timestepping loop</span></div>
 <div class="line"><span class="comment"></span> <span class="keywordtype">void</span> unsteady_run(DocInfo&amp; doc_info);</div>
 <div class="line"><span class="comment"></span> </div>
-<div class="line"><span class="comment"> ///  Set initial condition</span></div>
+<div class="line"><span class="comment"> /// Set initial condition</span></div>
 <div class="line"><span class="comment"></span> <span class="keywordtype">void</span> set_initial_condition();</div>
 <div class="line"> </div>
 <div class="line"><span class="keyword">private</span>:</div>
@@ -608,7 +608,7 @@ The problem constructor</h1>
 Assigning the initial conditions</h1>
 <p >This function assigns "history values" for the velocities and the nodal positions from the exact solution. It is implemented in exactly the same way as in the solution of the <a href="../../../unsteady_heat/two_d_unsteady_heat_ALE/html/index.html#IC">unsteady heat equation in a moving domain</a>. Note that because the domain is moving, the nodal positions must be updated (according to the position of the domain boundary at the relevant previous timestep), before evaluating the exact solution at the nodal position.</p>
 <div class="fragment"><div class="line"><span class="comment">//======================start_of_set_initial_condition====================</span></div>
-<div class="line"><span class="comment">///  Set initial condition: Assign previous and current values</span><span class="comment"></span></div>
+<div class="line"><span class="comment">/// Set initial condition: Assign previous and current values</span><span class="comment"></span></div>
 <div class="line"><span class="comment">/// from exact solution.</span></div>
 <div class="line"><span class="comment"></span><span class="comment">//========================================================================</span></div>
 <div class="line"><span class="keyword">template</span>&lt;<span class="keyword">class</span> ELEMENT,<span class="keyword">class</span> TIMESTEPPER&gt;</div>
@@ -895,7 +895,7 @@ PDF file</h1>
     <footer>
       <div class="container">
         <div class="text-muted" style="float:right;">Generated by <a href="http://www.doxygen.org/index.html">
-          <img style="height:18px;" class="footer-img" src="doxygen.png" alt="doxygen"></a> on Fri Oct 22 2021 12:32:26
+          <img style="height:18px;" class="footer-img" src="doxygen.png" alt="doxygen"></a> on Mon Oct 25 2021 14:50:42
         </div>
       </div>
     </footer>

@@ -57,12 +57,12 @@
 \DoxyCodeLine{\Hypertarget{interface__elements_8h_source_l00053}\mbox{\hyperlink{classoomph_1_1FluidInterfaceBoundingElement}{00053}}   \textcolor{keyword}{class }\mbox{\hyperlink{classoomph_1_1FluidInterfaceBoundingElement}{FluidInterfaceBoundingElement}} : \textcolor{keyword}{public} \textcolor{keyword}{virtual} FaceElement}
 \DoxyCodeLine{\Hypertarget{interface__elements_8h_source_l00054}00054   \{}
 \DoxyCodeLine{\Hypertarget{interface__elements_8h_source_l00055}00055   \textcolor{keyword}{private}:\textcolor{comment}{}}
-\DoxyCodeLine{\Hypertarget{interface__elements_8h_source_l00056}00056 \textcolor{comment}{    ///  Function pointer to a wall unit normal function. Returns the}}
+\DoxyCodeLine{\Hypertarget{interface__elements_8h_source_l00056}00056 \textcolor{comment}{    /// Function pointer to a wall unit normal function. Returns the}}
 \DoxyCodeLine{\Hypertarget{interface__elements_8h_source_l00057}00057 \textcolor{comment}{    /// unit normal on the wall, at the specified Eulerian coordinate.}}
 \DoxyCodeLine{\Hypertarget{interface__elements_8h_source_l00058}\mbox{\hyperlink{classoomph_1_1FluidInterfaceBoundingElement_a09c0b1df7d653eaf55e94e3951d409dd}{00058}} \textcolor{comment}{}    \textcolor{keyword}{typedef} void (*\mbox{\hyperlink{classoomph_1_1FluidInterfaceBoundingElement_a09c0b1df7d653eaf55e94e3951d409dd}{WallUnitNormalFctPt}})(\textcolor{keyword}{const} Vector<double>\& x,}
 \DoxyCodeLine{\Hypertarget{interface__elements_8h_source_l00059}00059                                         Vector<double>\& unit\_normal);}
 \DoxyCodeLine{\Hypertarget{interface__elements_8h_source_l00060}00060 \textcolor{comment}{}}
-\DoxyCodeLine{\Hypertarget{interface__elements_8h_source_l00061}00061 \textcolor{comment}{    ///  Pointer to a wall normal function that returns}}
+\DoxyCodeLine{\Hypertarget{interface__elements_8h_source_l00061}00061 \textcolor{comment}{    /// Pointer to a wall normal function that returns}}
 \DoxyCodeLine{\Hypertarget{interface__elements_8h_source_l00062}00062 \textcolor{comment}{    /// the wall unit normal as a function of position in global}}
 \DoxyCodeLine{\Hypertarget{interface__elements_8h_source_l00063}00063 \textcolor{comment}{    /// Eulerian coordinates.}}
 \DoxyCodeLine{\Hypertarget{interface__elements_8h_source_l00064}\mbox{\hyperlink{classoomph_1_1FluidInterfaceBoundingElement_abc765a3b2c4eac762a1a5ba85ac4a7a4}{00064}} \textcolor{comment}{}    \mbox{\hyperlink{classoomph_1_1FluidInterfaceBoundingElement_a09c0b1df7d653eaf55e94e3951d409dd}{WallUnitNormalFctPt}} \mbox{\hyperlink{classoomph_1_1FluidInterfaceBoundingElement_abc765a3b2c4eac762a1a5ba85ac4a7a4}{Wall\_unit\_normal\_fct\_pt}};}
@@ -74,22 +74,22 @@
 \DoxyCodeLine{\Hypertarget{interface__elements_8h_source_l00070}\mbox{\hyperlink{classoomph_1_1FluidInterfaceBoundingElement_abf47719443253c1117705b0a20e9ef70}{00070}} \textcolor{comment}{}    \textcolor{keywordtype}{double}* \mbox{\hyperlink{classoomph_1_1FluidInterfaceBoundingElement_abf47719443253c1117705b0a20e9ef70}{Ca\_pt}};}
 \DoxyCodeLine{\Hypertarget{interface__elements_8h_source_l00071}00071 }
 \DoxyCodeLine{\Hypertarget{interface__elements_8h_source_l00072}00072   \textcolor{keyword}{protected}:\textcolor{comment}{}}
-\DoxyCodeLine{\Hypertarget{interface__elements_8h_source_l00073}00073 \textcolor{comment}{    ///  Flag used to determine whether the contact angle is to be}}
+\DoxyCodeLine{\Hypertarget{interface__elements_8h_source_l00073}00073 \textcolor{comment}{    /// Flag used to determine whether the contact angle is to be}}
 \DoxyCodeLine{\Hypertarget{interface__elements_8h_source_l00074}00074 \textcolor{comment}{    /// used (0 if not), and whether it will be applied weakly as a force term}}
 \DoxyCodeLine{\Hypertarget{interface__elements_8h_source_l00075}00075 \textcolor{comment}{    /// in the momentum equations (1) or by hijacking the kinematic}}
 \DoxyCodeLine{\Hypertarget{interface__elements_8h_source_l00076}00076 \textcolor{comment}{    /// condition (2).}}
 \DoxyCodeLine{\Hypertarget{interface__elements_8h_source_l00077}\mbox{\hyperlink{classoomph_1_1FluidInterfaceBoundingElement_affa8d787e58ca23c2e73b4c8a2c30766}{00077}} \textcolor{comment}{}    \textcolor{keywordtype}{unsigned} \mbox{\hyperlink{classoomph_1_1FluidInterfaceBoundingElement_affa8d787e58ca23c2e73b4c8a2c30766}{Contact\_angle\_flag}};}
 \DoxyCodeLine{\Hypertarget{interface__elements_8h_source_l00078}00078 \textcolor{comment}{}}
-\DoxyCodeLine{\Hypertarget{interface__elements_8h_source_l00079}00079 \textcolor{comment}{    ///  Index at which the i-\/th velocity component is stored in the}}
+\DoxyCodeLine{\Hypertarget{interface__elements_8h_source_l00079}00079 \textcolor{comment}{    /// Index at which the i-\/th velocity component is stored in the}}
 \DoxyCodeLine{\Hypertarget{interface__elements_8h_source_l00080}00080 \textcolor{comment}{    /// element's nodes}}
 \DoxyCodeLine{\Hypertarget{interface__elements_8h_source_l00081}\mbox{\hyperlink{classoomph_1_1FluidInterfaceBoundingElement_a08223fefc36922f4661e30e9de16830f}{00081}} \textcolor{comment}{}    Vector<unsigned> \mbox{\hyperlink{classoomph_1_1FluidInterfaceBoundingElement_a08223fefc36922f4661e30e9de16830f}{U\_index\_interface\_boundary}};}
 \DoxyCodeLine{\Hypertarget{interface__elements_8h_source_l00082}00082 \textcolor{comment}{}}
-\DoxyCodeLine{\Hypertarget{interface__elements_8h_source_l00083}00083 \textcolor{comment}{    ///  Function that is used to determine the local equation number of}}
+\DoxyCodeLine{\Hypertarget{interface__elements_8h_source_l00083}00083 \textcolor{comment}{    /// Function that is used to determine the local equation number of}}
 \DoxyCodeLine{\Hypertarget{interface__elements_8h_source_l00084}00084 \textcolor{comment}{    /// the kinematic equation associated with the nodes of the element}}
 \DoxyCodeLine{\Hypertarget{interface__elements_8h_source_l00085}00085 \textcolor{comment}{    /// This must be overloaded depending on the node update scheme}}
 \DoxyCodeLine{\Hypertarget{interface__elements_8h_source_l00086}\mbox{\hyperlink{classoomph_1_1FluidInterfaceBoundingElement_a12a0a6d7c3c1c1a5a0f42a57e60eab34}{00086}} \textcolor{comment}{}    \textcolor{keyword}{virtual} \textcolor{keywordtype}{int} \mbox{\hyperlink{classoomph_1_1FluidInterfaceBoundingElement_a12a0a6d7c3c1c1a5a0f42a57e60eab34}{kinematic\_local\_eqn}}(\textcolor{keyword}{const} \textcolor{keywordtype}{unsigned}\& n) = 0;}
 \DoxyCodeLine{\Hypertarget{interface__elements_8h_source_l00087}00087 \textcolor{comment}{}}
-\DoxyCodeLine{\Hypertarget{interface__elements_8h_source_l00088}00088 \textcolor{comment}{    ///  Function that returns the unit normal of the bounding wall}}
+\DoxyCodeLine{\Hypertarget{interface__elements_8h_source_l00088}00088 \textcolor{comment}{    /// Function that returns the unit normal of the bounding wall}}
 \DoxyCodeLine{\Hypertarget{interface__elements_8h_source_l00089}00089 \textcolor{comment}{    /// directed out of the fluid}}
 \DoxyCodeLine{\Hypertarget{interface__elements_8h_source_l00090}\mbox{\hyperlink{classoomph_1_1FluidInterfaceBoundingElement_a1a715427e2037278891c06afd5d096fb}{00090}} \textcolor{comment}{}    \textcolor{keywordtype}{void} \mbox{\hyperlink{classoomph_1_1FluidInterfaceBoundingElement_a1a715427e2037278891c06afd5d096fb}{wall\_unit\_normal}}(\textcolor{keyword}{const} Vector<double>\& x, Vector<double>\& normal)}
 \DoxyCodeLine{\Hypertarget{interface__elements_8h_source_l00091}00091     \{}
@@ -123,7 +123,7 @@
 \DoxyCodeLine{\Hypertarget{interface__elements_8h_source_l00119}00119 \textcolor{comment}{}    \textcolor{comment}{// function to take care of the remesh)}}
 \DoxyCodeLine{\Hypertarget{interface__elements_8h_source_l00120}\mbox{\hyperlink{classoomph_1_1FluidInterfaceBoundingElement_a7347eb5984a18ffb1cfea1f9240badee}{00120}}     \textcolor{keyword}{inline} \textcolor{keywordtype}{void} \mbox{\hyperlink{classoomph_1_1FluidInterfaceBoundingElement_a7347eb5984a18ffb1cfea1f9240badee}{reset\_in\_external\_fd}}(\textcolor{keyword}{const} \textcolor{keywordtype}{unsigned}\& i) \{\}}
 \DoxyCodeLine{\Hypertarget{interface__elements_8h_source_l00121}00121 \textcolor{comment}{}}
-\DoxyCodeLine{\Hypertarget{interface__elements_8h_source_l00122}00122 \textcolor{comment}{    ///  We require a final node update in the bulk element}}
+\DoxyCodeLine{\Hypertarget{interface__elements_8h_source_l00122}00122 \textcolor{comment}{    /// We require a final node update in the bulk element}}
 \DoxyCodeLine{\Hypertarget{interface__elements_8h_source_l00123}00123 \textcolor{comment}{    /// after all finite differencing}}
 \DoxyCodeLine{\Hypertarget{interface__elements_8h_source_l00124}\mbox{\hyperlink{classoomph_1_1FluidInterfaceBoundingElement_a6b0de0d11dfcfc912e2f56fbd6359ebe}{00124}} \textcolor{comment}{}    \textcolor{keyword}{inline} \textcolor{keywordtype}{void} \mbox{\hyperlink{classoomph_1_1FluidInterfaceBoundingElement_a6b0de0d11dfcfc912e2f56fbd6359ebe}{reset\_after\_external\_fd}}()}
 \DoxyCodeLine{\Hypertarget{interface__elements_8h_source_l00125}00125     \{}
@@ -159,7 +159,7 @@
 \DoxyCodeLine{\Hypertarget{interface__elements_8h_source_l00155}00155       \textcolor{keywordflow}{return} \mbox{\hyperlink{classoomph_1_1FluidInterfaceBoundingElement_a08223fefc36922f4661e30e9de16830f}{U\_index\_interface\_boundary}};}
 \DoxyCodeLine{\Hypertarget{interface__elements_8h_source_l00156}00156     \}}
 \DoxyCodeLine{\Hypertarget{interface__elements_8h_source_l00157}00157 \textcolor{comment}{}}
-\DoxyCodeLine{\Hypertarget{interface__elements_8h_source_l00158}00158 \textcolor{comment}{    ///  Set a pointer to the desired contact angle. Optional boolean}}
+\DoxyCodeLine{\Hypertarget{interface__elements_8h_source_l00158}00158 \textcolor{comment}{    /// Set a pointer to the desired contact angle. Optional boolean}}
 \DoxyCodeLine{\Hypertarget{interface__elements_8h_source_l00159}00159 \textcolor{comment}{    /// (defaults to true)}}
 \DoxyCodeLine{\Hypertarget{interface__elements_8h_source_l00160}00160 \textcolor{comment}{    /// chooses strong imposition via hijacking (true) or weak imposition}}
 \DoxyCodeLine{\Hypertarget{interface__elements_8h_source_l00161}00161 \textcolor{comment}{    /// via addition to momentum equation (false). The default strong imposition}}
@@ -229,7 +229,7 @@
 \DoxyCodeLine{\Hypertarget{interface__elements_8h_source_l00225}00225       \textcolor{keywordtype}{unsigned} flag) = 0;}
 \DoxyCodeLine{\Hypertarget{interface__elements_8h_source_l00226}00226 }
 \DoxyCodeLine{\Hypertarget{interface__elements_8h_source_l00227}00227 \textcolor{comment}{}}
-\DoxyCodeLine{\Hypertarget{interface__elements_8h_source_l00228}00228 \textcolor{comment}{    ///  Empty helper function to calculate the additional contributions}}
+\DoxyCodeLine{\Hypertarget{interface__elements_8h_source_l00228}00228 \textcolor{comment}{    /// Empty helper function to calculate the additional contributions}}
 \DoxyCodeLine{\Hypertarget{interface__elements_8h_source_l00229}00229 \textcolor{comment}{    /// arising from the node update strategy to the Jacobian within the}}
 \DoxyCodeLine{\Hypertarget{interface__elements_8h_source_l00230}00230 \textcolor{comment}{    /// integration loop. This will be overloaded by elements that require}}
 \DoxyCodeLine{\Hypertarget{interface__elements_8h_source_l00231}00231 \textcolor{comment}{    /// contributions to their underlying equations from boundary integrals.}}
@@ -280,7 +280,7 @@
 \DoxyCodeLine{\Hypertarget{interface__elements_8h_source_l00276}00276     : \textcolor{keyword}{public} \mbox{\hyperlink{classoomph_1_1FluidInterfaceBoundingElement}{FluidInterfaceBoundingElement}}}
 \DoxyCodeLine{\Hypertarget{interface__elements_8h_source_l00277}00277   \{}
 \DoxyCodeLine{\Hypertarget{interface__elements_8h_source_l00278}00278   \textcolor{keyword}{protected}:\textcolor{comment}{}}
-\DoxyCodeLine{\Hypertarget{interface__elements_8h_source_l00279}00279 \textcolor{comment}{    ///  Overload the helper function to calculate the residuals and}}
+\DoxyCodeLine{\Hypertarget{interface__elements_8h_source_l00279}00279 \textcolor{comment}{    /// Overload the helper function to calculate the residuals and}}
 \DoxyCodeLine{\Hypertarget{interface__elements_8h_source_l00280}00280 \textcolor{comment}{    /// (if flag==1) the Jacobian -\/-\/ this function only deals with}}
 \DoxyCodeLine{\Hypertarget{interface__elements_8h_source_l00281}00281 \textcolor{comment}{    /// the part of the Jacobian that can be handled generically.}}
 \DoxyCodeLine{\Hypertarget{interface__elements_8h_source_l00282}00282 \textcolor{comment}{    /// Specific additional contributions may be provided in}}
@@ -300,7 +300,7 @@
 \DoxyCodeLine{\Hypertarget{interface__elements_8h_source_l00296}\mbox{\hyperlink{classoomph_1_1LineFluidInterfaceBoundingElement}{00296}}   \textcolor{keyword}{class }\mbox{\hyperlink{classoomph_1_1LineFluidInterfaceBoundingElement}{LineFluidInterfaceBoundingElement}} : \textcolor{keyword}{public} \mbox{\hyperlink{classoomph_1_1FluidInterfaceBoundingElement}{FluidInterfaceBoundingElement}}}
 \DoxyCodeLine{\Hypertarget{interface__elements_8h_source_l00297}00297   \{}
 \DoxyCodeLine{\Hypertarget{interface__elements_8h_source_l00298}00298   \textcolor{keyword}{protected}:\textcolor{comment}{}}
-\DoxyCodeLine{\Hypertarget{interface__elements_8h_source_l00299}00299 \textcolor{comment}{    ///  Overload the helper function to calculate the residuals and}}
+\DoxyCodeLine{\Hypertarget{interface__elements_8h_source_l00299}00299 \textcolor{comment}{    /// Overload the helper function to calculate the residuals and}}
 \DoxyCodeLine{\Hypertarget{interface__elements_8h_source_l00300}00300 \textcolor{comment}{    /// (if flag==true) the Jacobian -\/-\/ this function only deals with}}
 \DoxyCodeLine{\Hypertarget{interface__elements_8h_source_l00301}00301 \textcolor{comment}{    /// the part of the Jacobian that can be handled generically.}}
 \DoxyCodeLine{\Hypertarget{interface__elements_8h_source_l00302}00302 \textcolor{comment}{    /// Specific additional contributions may be provided in}}
@@ -341,25 +341,25 @@
 \DoxyCodeLine{\Hypertarget{interface__elements_8h_source_l00337}00337 \textcolor{comment}{    /// Nodal index at which the i-\/th velocity component is stored.}}
 \DoxyCodeLine{\Hypertarget{interface__elements_8h_source_l00338}\mbox{\hyperlink{classoomph_1_1FluidInterfaceElement_a6a818d9999c68641223edcad217a8c3f}{00338}} \textcolor{comment}{}    Vector<unsigned> \mbox{\hyperlink{classoomph_1_1FluidInterfaceElement_a6a818d9999c68641223edcad217a8c3f}{U\_index\_interface}};}
 \DoxyCodeLine{\Hypertarget{interface__elements_8h_source_l00339}00339 \textcolor{comment}{}}
-\DoxyCodeLine{\Hypertarget{interface__elements_8h_source_l00340}00340 \textcolor{comment}{    ///  The Data that contains the external  pressure is stored}}
+\DoxyCodeLine{\Hypertarget{interface__elements_8h_source_l00340}00340 \textcolor{comment}{    /// The Data that contains the external  pressure is stored}}
 \DoxyCodeLine{\Hypertarget{interface__elements_8h_source_l00341}00341 \textcolor{comment}{    /// as external Data for the element. Which external Data item is it?}}
 \DoxyCodeLine{\Hypertarget{interface__elements_8h_source_l00342}00342 \textcolor{comment}{    /// (int so it can be initialised to -\/1, indicating that external}}
 \DoxyCodeLine{\Hypertarget{interface__elements_8h_source_l00343}00343 \textcolor{comment}{    /// pressure hasn't been set).}}
 \DoxyCodeLine{\Hypertarget{interface__elements_8h_source_l00344}\mbox{\hyperlink{classoomph_1_1FluidInterfaceElement_a2d4c5b3e08177f5695fa9e76bf08b570}{00344}} \textcolor{comment}{}    \textcolor{keywordtype}{int} \mbox{\hyperlink{classoomph_1_1FluidInterfaceElement_a2d4c5b3e08177f5695fa9e76bf08b570}{External\_data\_number\_of\_external\_pressure}};}
 \DoxyCodeLine{\Hypertarget{interface__elements_8h_source_l00345}00345 \textcolor{comment}{}}
-\DoxyCodeLine{\Hypertarget{interface__elements_8h_source_l00346}00346 \textcolor{comment}{    ///  Pointer to the Data item that stores the external pressure}}
+\DoxyCodeLine{\Hypertarget{interface__elements_8h_source_l00346}00346 \textcolor{comment}{    /// Pointer to the Data item that stores the external pressure}}
 \DoxyCodeLine{\Hypertarget{interface__elements_8h_source_l00347}\mbox{\hyperlink{classoomph_1_1FluidInterfaceElement_a9177eb6e96e5ac13fe092596bc104910}{00347}} \textcolor{comment}{}    Data* \mbox{\hyperlink{classoomph_1_1FluidInterfaceElement_a9177eb6e96e5ac13fe092596bc104910}{Pext\_data\_pt}};}
 \DoxyCodeLine{\Hypertarget{interface__elements_8h_source_l00348}00348 \textcolor{comment}{}}
-\DoxyCodeLine{\Hypertarget{interface__elements_8h_source_l00349}00349 \textcolor{comment}{    ///  Which of the values in Pext\_data\_pt stores the external pressure}}
+\DoxyCodeLine{\Hypertarget{interface__elements_8h_source_l00349}00349 \textcolor{comment}{    /// Which of the values in Pext\_data\_pt stores the external pressure}}
 \DoxyCodeLine{\Hypertarget{interface__elements_8h_source_l00350}\mbox{\hyperlink{classoomph_1_1FluidInterfaceElement_a2a49c97d42ce05d1876626e5918bb8eb}{00350}} \textcolor{comment}{}    \textcolor{keywordtype}{unsigned} \mbox{\hyperlink{classoomph_1_1FluidInterfaceElement_a2a49c97d42ce05d1876626e5918bb8eb}{Index\_of\_external\_pressure\_value}};}
 \DoxyCodeLine{\Hypertarget{interface__elements_8h_source_l00351}00351 \textcolor{comment}{}}
-\DoxyCodeLine{\Hypertarget{interface__elements_8h_source_l00352}00352 \textcolor{comment}{    ///  Access function that returns the local equation number}}
+\DoxyCodeLine{\Hypertarget{interface__elements_8h_source_l00352}00352 \textcolor{comment}{    /// Access function that returns the local equation number}}
 \DoxyCodeLine{\Hypertarget{interface__elements_8h_source_l00353}00353 \textcolor{comment}{    /// for the (scalar) kinematic equation associated with the j-\/th local}}
 \DoxyCodeLine{\Hypertarget{interface__elements_8h_source_l00354}00354 \textcolor{comment}{    /// node. This must be overloaded by specific interface elements}}
 \DoxyCodeLine{\Hypertarget{interface__elements_8h_source_l00355}00355 \textcolor{comment}{    /// and depends on the method for handing the free-\/surface deformation.}}
 \DoxyCodeLine{\Hypertarget{interface__elements_8h_source_l00356}\mbox{\hyperlink{classoomph_1_1FluidInterfaceElement_a58a82e2fd839d4381e43d46a22bf1f25}{00356}} \textcolor{comment}{}    \textcolor{keyword}{virtual} \textcolor{keywordtype}{int} \mbox{\hyperlink{classoomph_1_1FluidInterfaceElement_a58a82e2fd839d4381e43d46a22bf1f25}{kinematic\_local\_eqn}}(\textcolor{keyword}{const} \textcolor{keywordtype}{unsigned}\& n) = 0;}
 \DoxyCodeLine{\Hypertarget{interface__elements_8h_source_l00357}00357 \textcolor{comment}{}}
-\DoxyCodeLine{\Hypertarget{interface__elements_8h_source_l00358}00358 \textcolor{comment}{    ///  Access function for the local equation number that}}
+\DoxyCodeLine{\Hypertarget{interface__elements_8h_source_l00358}00358 \textcolor{comment}{    /// Access function for the local equation number that}}
 \DoxyCodeLine{\Hypertarget{interface__elements_8h_source_l00359}00359 \textcolor{comment}{    /// corresponds to the external pressure.}}
 \DoxyCodeLine{\Hypertarget{interface__elements_8h_source_l00360}\mbox{\hyperlink{classoomph_1_1FluidInterfaceElement_abd4aece98dee8173c6d796e23ccf1e03}{00360}} \textcolor{comment}{}    \textcolor{keywordtype}{int} \mbox{\hyperlink{classoomph_1_1FluidInterfaceElement_abd4aece98dee8173c6d796e23ccf1e03}{pext\_local\_eqn}}()}
 \DoxyCodeLine{\Hypertarget{interface__elements_8h_source_l00361}00361     \{}
@@ -375,7 +375,7 @@
 \DoxyCodeLine{\Hypertarget{interface__elements_8h_source_l00371}00371                                 \mbox{\hyperlink{classoomph_1_1FluidInterfaceElement_a2a49c97d42ce05d1876626e5918bb8eb}{Index\_of\_external\_pressure\_value}});}
 \DoxyCodeLine{\Hypertarget{interface__elements_8h_source_l00372}00372     \}}
 \DoxyCodeLine{\Hypertarget{interface__elements_8h_source_l00373}00373 \textcolor{comment}{}}
-\DoxyCodeLine{\Hypertarget{interface__elements_8h_source_l00374}00374 \textcolor{comment}{    ///  Helper function to calculate the residuals and}}
+\DoxyCodeLine{\Hypertarget{interface__elements_8h_source_l00374}00374 \textcolor{comment}{    /// Helper function to calculate the residuals and}}
 \DoxyCodeLine{\Hypertarget{interface__elements_8h_source_l00375}00375 \textcolor{comment}{    /// (if flag==1) the Jacobian of the equations.}}
 \DoxyCodeLine{\Hypertarget{interface__elements_8h_source_l00376}00376 \textcolor{comment}{    /// This is implemented generically using the surface}}
 \DoxyCodeLine{\Hypertarget{interface__elements_8h_source_l00377}00377 \textcolor{comment}{    /// divergence information that is overloaded in each element}}
@@ -383,7 +383,7 @@
 \DoxyCodeLine{\Hypertarget{interface__elements_8h_source_l00379}00379 \textcolor{comment}{}    \textcolor{keyword}{virtual} \textcolor{keywordtype}{void} \mbox{\hyperlink{classoomph_1_1FluidInterfaceElement_ae4ea3a18a513bed3725fdf413cf18874}{fill\_in\_generic\_residual\_contribution\_interface}}(}
 \DoxyCodeLine{\Hypertarget{interface__elements_8h_source_l00380}00380       Vector<double>\& residuals, DenseMatrix<double>\& jacobian, \textcolor{keywordtype}{unsigned} flag);}
 \DoxyCodeLine{\Hypertarget{interface__elements_8h_source_l00381}00381 \textcolor{comment}{}}
-\DoxyCodeLine{\Hypertarget{interface__elements_8h_source_l00382}00382 \textcolor{comment}{    ///  Compute the surface gradient and surface divergence}}
+\DoxyCodeLine{\Hypertarget{interface__elements_8h_source_l00382}00382 \textcolor{comment}{    /// Compute the surface gradient and surface divergence}}
 \DoxyCodeLine{\Hypertarget{interface__elements_8h_source_l00383}00383 \textcolor{comment}{    /// operators given the shape functions, derivatives,}}
 \DoxyCodeLine{\Hypertarget{interface__elements_8h_source_l00384}00384 \textcolor{comment}{    /// tangent vectors and position. All derivatives and}}
 \DoxyCodeLine{\Hypertarget{interface__elements_8h_source_l00385}00385 \textcolor{comment}{    /// tangent vectors should be formed}}
@@ -412,7 +412,7 @@
 \DoxyCodeLine{\Hypertarget{interface__elements_8h_source_l00408}00408       DShape\& dpsidS,}
 \DoxyCodeLine{\Hypertarget{interface__elements_8h_source_l00409}00409       DShape\& dpsidS\_div) = 0;}
 \DoxyCodeLine{\Hypertarget{interface__elements_8h_source_l00410}00410 \textcolor{comment}{}}
-\DoxyCodeLine{\Hypertarget{interface__elements_8h_source_l00411}00411 \textcolor{comment}{    ///  Helper function to calculate the additional contributions}}
+\DoxyCodeLine{\Hypertarget{interface__elements_8h_source_l00411}00411 \textcolor{comment}{    /// Helper function to calculate the additional contributions}}
 \DoxyCodeLine{\Hypertarget{interface__elements_8h_source_l00412}00412 \textcolor{comment}{    /// to the resisuals and Jacobian that arise from specific node update}}
 \DoxyCodeLine{\Hypertarget{interface__elements_8h_source_l00413}00413 \textcolor{comment}{    /// strategies. This is called within the integration loop over the}}
 \DoxyCodeLine{\Hypertarget{interface__elements_8h_source_l00414}00414 \textcolor{comment}{    /// element (for efficiency) and therefore requires a fairly large}}
@@ -454,7 +454,7 @@
 \DoxyCodeLine{\Hypertarget{interface__elements_8h_source_l00450}00450       \mbox{\hyperlink{classoomph_1_1FluidInterfaceElement_ae32ade5ea1742938f538e5d5f812bb2a}{St\_pt}} = \&\mbox{\hyperlink{classoomph_1_1FluidInterfaceElement_adbe9dc951b87449522f6d19e4acac538}{Default\_Physical\_Constant\_Value}};}
 \DoxyCodeLine{\Hypertarget{interface__elements_8h_source_l00451}00451     \}}
 \DoxyCodeLine{\Hypertarget{interface__elements_8h_source_l00452}00452 \textcolor{comment}{}}
-\DoxyCodeLine{\Hypertarget{interface__elements_8h_source_l00453}00453 \textcolor{comment}{    ///  Virtual function that specifies the non-\/dimensional}}
+\DoxyCodeLine{\Hypertarget{interface__elements_8h_source_l00453}00453 \textcolor{comment}{    /// Virtual function that specifies the non-\/dimensional}}
 \DoxyCodeLine{\Hypertarget{interface__elements_8h_source_l00454}00454 \textcolor{comment}{    ///  surface tension as a function of local position within the element.}}
 \DoxyCodeLine{\Hypertarget{interface__elements_8h_source_l00455}00455 \textcolor{comment}{    /// The default behaviour is a constant surface tension of value 1.0}}
 \DoxyCodeLine{\Hypertarget{interface__elements_8h_source_l00456}00456 \textcolor{comment}{    /// This function can be overloaded in more specialised elements to}}
@@ -510,13 +510,13 @@
 \DoxyCodeLine{\Hypertarget{interface__elements_8h_source_l00506}00506       \textcolor{keywordflow}{return} \mbox{\hyperlink{classoomph_1_1FluidInterfaceElement_ae32ade5ea1742938f538e5d5f812bb2a}{St\_pt}};}
 \DoxyCodeLine{\Hypertarget{interface__elements_8h_source_l00507}00507     \}}
 \DoxyCodeLine{\Hypertarget{interface__elements_8h_source_l00508}00508 \textcolor{comment}{}}
-\DoxyCodeLine{\Hypertarget{interface__elements_8h_source_l00509}00509 \textcolor{comment}{    ///  Return the i-\/th velocity component at local node j.}}
+\DoxyCodeLine{\Hypertarget{interface__elements_8h_source_l00509}00509 \textcolor{comment}{    /// Return the i-\/th velocity component at local node j.}}
 \DoxyCodeLine{\Hypertarget{interface__elements_8h_source_l00510}\mbox{\hyperlink{classoomph_1_1FluidInterfaceElement_a50a509413ea7f2a481678837846dd476}{00510}} \textcolor{comment}{}    \textcolor{keywordtype}{double} \mbox{\hyperlink{classoomph_1_1FluidInterfaceElement_a50a509413ea7f2a481678837846dd476}{u}}(\textcolor{keyword}{const} \textcolor{keywordtype}{unsigned}\& j, \textcolor{keyword}{const} \textcolor{keywordtype}{unsigned}\& i)}
 \DoxyCodeLine{\Hypertarget{interface__elements_8h_source_l00511}00511     \{}
 \DoxyCodeLine{\Hypertarget{interface__elements_8h_source_l00512}00512       \textcolor{keywordflow}{return} node\_pt(j)-\/>value(\mbox{\hyperlink{classoomph_1_1FluidInterfaceElement_a6a818d9999c68641223edcad217a8c3f}{U\_index\_interface}}[i]);}
 \DoxyCodeLine{\Hypertarget{interface__elements_8h_source_l00513}00513     \}}
 \DoxyCodeLine{\Hypertarget{interface__elements_8h_source_l00514}00514 \textcolor{comment}{}}
-\DoxyCodeLine{\Hypertarget{interface__elements_8h_source_l00515}00515 \textcolor{comment}{    ///  Calculate the i-\/th velocity component at the local coordinate s.}}
+\DoxyCodeLine{\Hypertarget{interface__elements_8h_source_l00515}00515 \textcolor{comment}{    /// Calculate the i-\/th velocity component at the local coordinate s.}}
 \DoxyCodeLine{\Hypertarget{interface__elements_8h_source_l00516}00516 \textcolor{comment}{}    \textcolor{keywordtype}{double} \mbox{\hyperlink{classoomph_1_1FluidInterfaceElement_a8f807a6456da7785b12e45a4c17fb969}{interpolated\_u}}(\textcolor{keyword}{const} Vector<double>\& s, \textcolor{keyword}{const} \textcolor{keywordtype}{unsigned}\& i);}
 \DoxyCodeLine{\Hypertarget{interface__elements_8h_source_l00517}00517 \textcolor{comment}{}}
 \DoxyCodeLine{\Hypertarget{interface__elements_8h_source_l00518}00518 \textcolor{comment}{    /// Return the value of the external pressure}}
@@ -535,7 +535,7 @@
 \DoxyCodeLine{\Hypertarget{interface__elements_8h_source_l00531}00531       \}}
 \DoxyCodeLine{\Hypertarget{interface__elements_8h_source_l00532}00532     \}}
 \DoxyCodeLine{\Hypertarget{interface__elements_8h_source_l00533}00533 \textcolor{comment}{}}
-\DoxyCodeLine{\Hypertarget{interface__elements_8h_source_l00534}00534 \textcolor{comment}{    ///  Set the Data that contains the single pressure value}}
+\DoxyCodeLine{\Hypertarget{interface__elements_8h_source_l00534}00534 \textcolor{comment}{    /// Set the Data that contains the single pressure value}}
 \DoxyCodeLine{\Hypertarget{interface__elements_8h_source_l00535}00535 \textcolor{comment}{    /// that specifies the "{}external pressure"{} for the}}
 \DoxyCodeLine{\Hypertarget{interface__elements_8h_source_l00536}00536 \textcolor{comment}{    /// interface/free-\/surface. Setting this only makes sense}}
 \DoxyCodeLine{\Hypertarget{interface__elements_8h_source_l00537}00537 \textcolor{comment}{    /// if the interface is, in fact, a free surface (well,}}
@@ -572,7 +572,7 @@
 \DoxyCodeLine{\Hypertarget{interface__elements_8h_source_l00568}00568       \mbox{\hyperlink{classoomph_1_1FluidInterfaceElement_a2a49c97d42ce05d1876626e5918bb8eb}{Index\_of\_external\_pressure\_value}} = 0;}
 \DoxyCodeLine{\Hypertarget{interface__elements_8h_source_l00569}00569     \}}
 \DoxyCodeLine{\Hypertarget{interface__elements_8h_source_l00570}00570 \textcolor{comment}{}}
-\DoxyCodeLine{\Hypertarget{interface__elements_8h_source_l00571}00571 \textcolor{comment}{    ///  Set the Data that contains the pressure value}}
+\DoxyCodeLine{\Hypertarget{interface__elements_8h_source_l00571}00571 \textcolor{comment}{    /// Set the Data that contains the pressure value}}
 \DoxyCodeLine{\Hypertarget{interface__elements_8h_source_l00572}00572 \textcolor{comment}{    /// that specifies the "{}external pressure"{} for the}}
 \DoxyCodeLine{\Hypertarget{interface__elements_8h_source_l00573}00573 \textcolor{comment}{    /// interface/free-\/surface. Setting this only makes sense}}
 \DoxyCodeLine{\Hypertarget{interface__elements_8h_source_l00574}00574 \textcolor{comment}{    /// if the interface is, in fact, a free surface (well,}}
@@ -616,7 +616,7 @@
 \DoxyCodeLine{\Hypertarget{interface__elements_8h_source_l00612}00612     \}}
 \DoxyCodeLine{\Hypertarget{interface__elements_8h_source_l00613}00613 }
 \DoxyCodeLine{\Hypertarget{interface__elements_8h_source_l00614}00614 \textcolor{comment}{}}
-\DoxyCodeLine{\Hypertarget{interface__elements_8h_source_l00615}00615 \textcolor{comment}{    ///  Create a bounding element e.g. to apply a contact angle boundary}}
+\DoxyCodeLine{\Hypertarget{interface__elements_8h_source_l00615}00615 \textcolor{comment}{    /// Create a bounding element e.g. to apply a contact angle boundary}}
 \DoxyCodeLine{\Hypertarget{interface__elements_8h_source_l00616}00616 \textcolor{comment}{    /// condition}}
 \DoxyCodeLine{\Hypertarget{interface__elements_8h_source_l00617}\mbox{\hyperlink{classoomph_1_1FluidInterfaceElement_aa0881cdfbb1b6d5f4ede287ad9ff87c8}{00617}} \textcolor{comment}{}    \textcolor{keyword}{virtual} \mbox{\hyperlink{classoomph_1_1FluidInterfaceBoundingElement}{FluidInterfaceBoundingElement}}* \mbox{\hyperlink{classoomph_1_1FluidInterfaceElement_aa0881cdfbb1b6d5f4ede287ad9ff87c8}{make\_bounding\_element}}(}
 \DoxyCodeLine{\Hypertarget{interface__elements_8h_source_l00618}00618       \textcolor{keyword}{const} \textcolor{keywordtype}{int}\& face\_index)}
@@ -628,7 +628,7 @@
 \DoxyCodeLine{\Hypertarget{interface__elements_8h_source_l00624}00624     \}}
 \DoxyCodeLine{\Hypertarget{interface__elements_8h_source_l00625}00625 }
 \DoxyCodeLine{\Hypertarget{interface__elements_8h_source_l00626}00626 \textcolor{comment}{}}
-\DoxyCodeLine{\Hypertarget{interface__elements_8h_source_l00627}00627 \textcolor{comment}{    ///  Hijack the kinematic condition at the node numbers passed in}}
+\DoxyCodeLine{\Hypertarget{interface__elements_8h_source_l00627}00627 \textcolor{comment}{    /// Hijack the kinematic condition at the node numbers passed in}}
 \DoxyCodeLine{\Hypertarget{interface__elements_8h_source_l00628}00628 \textcolor{comment}{    /// the vector. The node numbers correspond to the local numbers of}}
 \DoxyCodeLine{\Hypertarget{interface__elements_8h_source_l00629}00629 \textcolor{comment}{    /// nodes in the associated bulk element.}}
 \DoxyCodeLine{\Hypertarget{interface__elements_8h_source_l00630}00630 \textcolor{comment}{    /// This is required so that contact-\/angle conditions can be applied}}

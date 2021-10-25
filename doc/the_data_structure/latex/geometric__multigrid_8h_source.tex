@@ -66,12 +66,12 @@
 \DoxyCodeLine{\Hypertarget{geometric__multigrid_8h_source_l00062}00062 \textcolor{comment}{    /// Destructor (empty)}}
 \DoxyCodeLine{\Hypertarget{geometric__multigrid_8h_source_l00063}\mbox{\hyperlink{classoomph_1_1MGProblem_aefc32d5105fc72b8367891794d087a93}{00063}} \textcolor{comment}{}    \textcolor{keyword}{virtual} \mbox{\hyperlink{classoomph_1_1MGProblem_aefc32d5105fc72b8367891794d087a93}{\string~MGProblem}}() \{\}}
 \DoxyCodeLine{\Hypertarget{geometric__multigrid_8h_source_l00064}00064 \textcolor{comment}{}}
-\DoxyCodeLine{\Hypertarget{geometric__multigrid_8h_source_l00065}00065 \textcolor{comment}{    ///  This function needs to be implemented in the derived problem:}}
+\DoxyCodeLine{\Hypertarget{geometric__multigrid_8h_source_l00065}00065 \textcolor{comment}{    /// This function needs to be implemented in the derived problem:}}
 \DoxyCodeLine{\Hypertarget{geometric__multigrid_8h_source_l00066}00066 \textcolor{comment}{    /// Returns a pointer to a new object of the same type as the derived}}
 \DoxyCodeLine{\Hypertarget{geometric__multigrid_8h_source_l00067}00067 \textcolor{comment}{    /// problem}}
 \DoxyCodeLine{\Hypertarget{geometric__multigrid_8h_source_l00068}\mbox{\hyperlink{classoomph_1_1MGProblem_ad4915d5a571798060f2f7724a2c8b9c8}{00068}} \textcolor{comment}{}    \textcolor{keyword}{virtual} \mbox{\hyperlink{classoomph_1_1MGProblem}{MGProblem}}* \mbox{\hyperlink{classoomph_1_1MGProblem_ad4915d5a571798060f2f7724a2c8b9c8}{make\_new\_problem}}() = 0;}
 \DoxyCodeLine{\Hypertarget{geometric__multigrid_8h_source_l00069}00069 \textcolor{comment}{}}
-\DoxyCodeLine{\Hypertarget{geometric__multigrid_8h_source_l00070}00070 \textcolor{comment}{    ///  Function to get a pointer to the mesh we will be working}}
+\DoxyCodeLine{\Hypertarget{geometric__multigrid_8h_source_l00070}00070 \textcolor{comment}{    /// Function to get a pointer to the mesh we will be working}}
 \DoxyCodeLine{\Hypertarget{geometric__multigrid_8h_source_l00071}00071 \textcolor{comment}{    /// with. If there are flux elements present in the mesh this will}}
 \DoxyCodeLine{\Hypertarget{geometric__multigrid_8h_source_l00072}00072 \textcolor{comment}{    /// be overloaded to return a pointer to the bulk mesh otherwise}}
 \DoxyCodeLine{\Hypertarget{geometric__multigrid_8h_source_l00073}00073 \textcolor{comment}{    /// it can be overloaded to point to the global mesh but it must}}
@@ -93,11 +93,11 @@
 \DoxyCodeLine{\Hypertarget{geometric__multigrid_8h_source_l00089}\mbox{\hyperlink{classoomph_1_1MGSolver}{00089}}   \textcolor{keyword}{class }\mbox{\hyperlink{classoomph_1_1MGSolver}{MGSolver}} : \textcolor{keyword}{public} \mbox{\hyperlink{classoomph_1_1IterativeLinearSolver}{IterativeLinearSolver}}}
 \DoxyCodeLine{\Hypertarget{geometric__multigrid_8h_source_l00090}00090   \{}
 \DoxyCodeLine{\Hypertarget{geometric__multigrid_8h_source_l00091}00091   \textcolor{keyword}{public}:\textcolor{comment}{}}
-\DoxyCodeLine{\Hypertarget{geometric__multigrid_8h_source_l00092}00092 \textcolor{comment}{    ///  typedef for a function that returns a pointer to an object}}
+\DoxyCodeLine{\Hypertarget{geometric__multigrid_8h_source_l00092}00092 \textcolor{comment}{    /// typedef for a function that returns a pointer to an object}}
 \DoxyCodeLine{\Hypertarget{geometric__multigrid_8h_source_l00093}00093 \textcolor{comment}{    /// of the class Smoother to be used as the pre-\/smoother}}
 \DoxyCodeLine{\Hypertarget{geometric__multigrid_8h_source_l00094}\mbox{\hyperlink{classoomph_1_1MGSolver_a60aa316ebfc000491554e28dbfbebc10}{00094}} \textcolor{comment}{}    \textcolor{keyword}{typedef} \mbox{\hyperlink{classoomph_1_1Smoother}{Smoother}}* (*PreSmootherFactoryFctPt)();}
 \DoxyCodeLine{\Hypertarget{geometric__multigrid_8h_source_l00095}00095 \textcolor{comment}{}}
-\DoxyCodeLine{\Hypertarget{geometric__multigrid_8h_source_l00096}00096 \textcolor{comment}{    ///  typedef for a function that returns a pointer to an object}}
+\DoxyCodeLine{\Hypertarget{geometric__multigrid_8h_source_l00096}00096 \textcolor{comment}{    /// typedef for a function that returns a pointer to an object}}
 \DoxyCodeLine{\Hypertarget{geometric__multigrid_8h_source_l00097}00097 \textcolor{comment}{    /// of the class Smoother to be used as the post-\/smoother}}
 \DoxyCodeLine{\Hypertarget{geometric__multigrid_8h_source_l00098}\mbox{\hyperlink{classoomph_1_1MGSolver_a0a46fa180d8a32f54272fc98e28001cf}{00098}} \textcolor{comment}{}    \textcolor{keyword}{typedef} \mbox{\hyperlink{classoomph_1_1Smoother}{Smoother}}* (*PostSmootherFactoryFctPt)();}
 \DoxyCodeLine{\Hypertarget{geometric__multigrid_8h_source_l00099}00099 \textcolor{comment}{}}
@@ -117,7 +117,7 @@
 \DoxyCodeLine{\Hypertarget{geometric__multigrid_8h_source_l00113}00113       \mbox{\hyperlink{classoomph_1_1MGSolver_a2c105a6889f43968c9e57366f44ebd79}{Post\_smoother\_factory\_function\_pt}} = post\_smoother\_fn;}
 \DoxyCodeLine{\Hypertarget{geometric__multigrid_8h_source_l00114}00114     \}}
 \DoxyCodeLine{\Hypertarget{geometric__multigrid_8h_source_l00115}00115 \textcolor{comment}{}}
-\DoxyCodeLine{\Hypertarget{geometric__multigrid_8h_source_l00116}00116 \textcolor{comment}{    ///  Constructor: Set up default values for number of V-\/cycles}}
+\DoxyCodeLine{\Hypertarget{geometric__multigrid_8h_source_l00116}00116 \textcolor{comment}{    /// Constructor: Set up default values for number of V-\/cycles}}
 \DoxyCodeLine{\Hypertarget{geometric__multigrid_8h_source_l00117}00117 \textcolor{comment}{    /// and pre-\/ and post-\/smoothing steps.}}
 \DoxyCodeLine{\Hypertarget{geometric__multigrid_8h_source_l00118}\mbox{\hyperlink{classoomph_1_1MGSolver_a61354743e9989dc8eb69efe2b1414cfa}{00118}} \textcolor{comment}{}    \mbox{\hyperlink{classoomph_1_1MGSolver_a61354743e9989dc8eb69efe2b1414cfa}{MGSolver}}(\mbox{\hyperlink{classoomph_1_1MGProblem}{MGProblem}}* mg\_problem\_pt)}
 \DoxyCodeLine{\Hypertarget{geometric__multigrid_8h_source_l00119}00119       : \mbox{\hyperlink{classoomph_1_1MGSolver_ab3d4af8ea6d7bc8d0a6f528cb669e920}{Nvcycle}}(200),}
@@ -217,34 +217,34 @@
 \DoxyCodeLine{\Hypertarget{geometric__multigrid_8h_source_l00213}00213       \} \textcolor{comment}{// if (Has\_been\_setup)}}
 \DoxyCodeLine{\Hypertarget{geometric__multigrid_8h_source_l00214}00214     \} \textcolor{comment}{// End of clean\_up\_memory}}
 \DoxyCodeLine{\Hypertarget{geometric__multigrid_8h_source_l00215}00215 \textcolor{comment}{}}
-\DoxyCodeLine{\Hypertarget{geometric__multigrid_8h_source_l00216}00216 \textcolor{comment}{    ///  Makes a vector which will be used in the self-\/test. Is currently}}
+\DoxyCodeLine{\Hypertarget{geometric__multigrid_8h_source_l00216}00216 \textcolor{comment}{    /// Makes a vector which will be used in the self-\/test. Is currently}}
 \DoxyCodeLine{\Hypertarget{geometric__multigrid_8h_source_l00217}00217 \textcolor{comment}{    /// set to make the entries of the vector represent a plane wave propagating}}
 \DoxyCodeLine{\Hypertarget{geometric__multigrid_8h_source_l00218}00218 \textcolor{comment}{    /// at an angle of 45 degrees}}
 \DoxyCodeLine{\Hypertarget{geometric__multigrid_8h_source_l00219}00219 \textcolor{comment}{}    \textcolor{keywordtype}{void} \mbox{\hyperlink{classoomph_1_1MGSolver_a081eb7bcdd49dfce9a03f0ae3ab4cfab}{set\_self\_test\_vector}}();}
 \DoxyCodeLine{\Hypertarget{geometric__multigrid_8h_source_l00220}00220 \textcolor{comment}{}}
-\DoxyCodeLine{\Hypertarget{geometric__multigrid_8h_source_l00221}00221 \textcolor{comment}{    ///  Makes a vector, restricts it down the levels of the hierarchy}}
+\DoxyCodeLine{\Hypertarget{geometric__multigrid_8h_source_l00221}00221 \textcolor{comment}{    /// Makes a vector, restricts it down the levels of the hierarchy}}
 \DoxyCodeLine{\Hypertarget{geometric__multigrid_8h_source_l00222}00222 \textcolor{comment}{    /// and documents it at each level. After this is done the vector is}}
 \DoxyCodeLine{\Hypertarget{geometric__multigrid_8h_source_l00223}00223 \textcolor{comment}{    /// interpolated up the levels of the hierarchy with the output}}
 \DoxyCodeLine{\Hypertarget{geometric__multigrid_8h_source_l00224}00224 \textcolor{comment}{    /// being documented at each level}}
 \DoxyCodeLine{\Hypertarget{geometric__multigrid_8h_source_l00225}00225 \textcolor{comment}{}    \textcolor{keywordtype}{void} \mbox{\hyperlink{classoomph_1_1MGSolver_a88efa5f110e824947f50306e3b56e07b}{self\_test}}();}
 \DoxyCodeLine{\Hypertarget{geometric__multigrid_8h_source_l00226}00226 \textcolor{comment}{}}
-\DoxyCodeLine{\Hypertarget{geometric__multigrid_8h_source_l00227}00227 \textcolor{comment}{    ///  Make a self-\/test to make sure that the interpolation matrices}}
+\DoxyCodeLine{\Hypertarget{geometric__multigrid_8h_source_l00227}00227 \textcolor{comment}{    /// Make a self-\/test to make sure that the interpolation matrices}}
 \DoxyCodeLine{\Hypertarget{geometric__multigrid_8h_source_l00228}00228 \textcolor{comment}{    /// are doing the same thing to restrict the vectors down through the}}
 \DoxyCodeLine{\Hypertarget{geometric__multigrid_8h_source_l00229}00229 \textcolor{comment}{    /// heirachy.}}
 \DoxyCodeLine{\Hypertarget{geometric__multigrid_8h_source_l00230}00230 \textcolor{comment}{}    \textcolor{keywordtype}{void} \mbox{\hyperlink{classoomph_1_1MGSolver_acfc50241a9dc27e7e60b06564e5dd726}{restriction\_self\_test}}();}
 \DoxyCodeLine{\Hypertarget{geometric__multigrid_8h_source_l00231}00231 \textcolor{comment}{}}
-\DoxyCodeLine{\Hypertarget{geometric__multigrid_8h_source_l00232}00232 \textcolor{comment}{    ///  Make a self-\/test to make sure that the interpolation matrices}}
+\DoxyCodeLine{\Hypertarget{geometric__multigrid_8h_source_l00232}00232 \textcolor{comment}{    /// Make a self-\/test to make sure that the interpolation matrices}}
 \DoxyCodeLine{\Hypertarget{geometric__multigrid_8h_source_l00233}00233 \textcolor{comment}{    /// are doing the same thing to interpolate the vectors up.}}
 \DoxyCodeLine{\Hypertarget{geometric__multigrid_8h_source_l00234}00234 \textcolor{comment}{}    \textcolor{keywordtype}{void} \mbox{\hyperlink{classoomph_1_1MGSolver_a25fbe00e277a8fba8c7f54902b92c417}{interpolation\_self\_test}}();}
 \DoxyCodeLine{\Hypertarget{geometric__multigrid_8h_source_l00235}00235 \textcolor{comment}{}}
-\DoxyCodeLine{\Hypertarget{geometric__multigrid_8h_source_l00236}00236 \textcolor{comment}{    ///  Given a level in the hierarchy, an input vector and a filename}}
+\DoxyCodeLine{\Hypertarget{geometric__multigrid_8h_source_l00236}00236 \textcolor{comment}{    /// Given a level in the hierarchy, an input vector and a filename}}
 \DoxyCodeLine{\Hypertarget{geometric__multigrid_8h_source_l00237}00237 \textcolor{comment}{    /// this function will document the given vector according to the structure}}
 \DoxyCodeLine{\Hypertarget{geometric__multigrid_8h_source_l00238}00238 \textcolor{comment}{    /// of the mesh on the given level}}
 \DoxyCodeLine{\Hypertarget{geometric__multigrid_8h_source_l00239}00239 \textcolor{comment}{}    \textcolor{keywordtype}{void} \mbox{\hyperlink{classoomph_1_1MGSolver_a4af1269b75f9dcd598474d242de1f4ef}{plot}}(\textcolor{keyword}{const} \textcolor{keywordtype}{unsigned}\& hierarchy\_level,}
 \DoxyCodeLine{\Hypertarget{geometric__multigrid_8h_source_l00240}00240               \textcolor{keyword}{const} \mbox{\hyperlink{classoomph_1_1DoubleVector}{DoubleVector}}\& input\_vector,}
 \DoxyCodeLine{\Hypertarget{geometric__multigrid_8h_source_l00241}00241               \textcolor{keyword}{const} \mbox{\hyperlink{namespaceoomph_1_1Global__string__for__annotation_ac5379de2fa7fe44f2cb31785fc208135}{std::string}}\& filename);}
 \DoxyCodeLine{\Hypertarget{geometric__multigrid_8h_source_l00242}00242 \textcolor{comment}{}}
-\DoxyCodeLine{\Hypertarget{geometric__multigrid_8h_source_l00243}00243 \textcolor{comment}{    ///  Disable all output from mg\_solve apart from the number of}}
+\DoxyCodeLine{\Hypertarget{geometric__multigrid_8h_source_l00243}00243 \textcolor{comment}{    /// Disable all output from mg\_solve apart from the number of}}
 \DoxyCodeLine{\Hypertarget{geometric__multigrid_8h_source_l00244}00244 \textcolor{comment}{    /// V-\/cycles used to solve the problem}}
 \DoxyCodeLine{\Hypertarget{geometric__multigrid_8h_source_l00245}\mbox{\hyperlink{classoomph_1_1MGSolver_aa96a2b512287d603f3be8fb1c693e05a}{00245}} \textcolor{comment}{}    \textcolor{keywordtype}{void} \mbox{\hyperlink{classoomph_1_1MGSolver_aa96a2b512287d603f3be8fb1c693e05a}{disable\_v\_cycle\_output}}()}
 \DoxyCodeLine{\Hypertarget{geometric__multigrid_8h_source_l00246}00246     \{}
@@ -255,7 +255,7 @@
 \DoxyCodeLine{\Hypertarget{geometric__multigrid_8h_source_l00251}00251       \mbox{\hyperlink{classoomph_1_1MGSolver_ac533f8f9a9f6efaf5b3c63fbdd09e0d1}{Suppress\_v\_cycle\_output}} = \textcolor{keyword}{true};}
 \DoxyCodeLine{\Hypertarget{geometric__multigrid_8h_source_l00252}00252     \} \textcolor{comment}{// End of disable\_v\_cycle\_output}}
 \DoxyCodeLine{\Hypertarget{geometric__multigrid_8h_source_l00253}00253 \textcolor{comment}{}}
-\DoxyCodeLine{\Hypertarget{geometric__multigrid_8h_source_l00254}00254 \textcolor{comment}{    ///  Suppress anything that can be suppressed, i.e. any timings.}}
+\DoxyCodeLine{\Hypertarget{geometric__multigrid_8h_source_l00254}00254 \textcolor{comment}{    /// Suppress anything that can be suppressed, i.e. any timings.}}
 \DoxyCodeLine{\Hypertarget{geometric__multigrid_8h_source_l00255}00255 \textcolor{comment}{    /// Things like mesh adaptation can not however be silenced using this}}
 \DoxyCodeLine{\Hypertarget{geometric__multigrid_8h_source_l00256}\mbox{\hyperlink{classoomph_1_1MGSolver_a72dcbb3e6fd8420e7236ada2b5e33b91}{00256}} \textcolor{comment}{}    \textcolor{keywordtype}{void} \mbox{\hyperlink{classoomph_1_1MGSolver_a72dcbb3e6fd8420e7236ada2b5e33b91}{disable\_output}}()}
 \DoxyCodeLine{\Hypertarget{geometric__multigrid_8h_source_l00257}00257     \{}
@@ -276,7 +276,7 @@
 \DoxyCodeLine{\Hypertarget{geometric__multigrid_8h_source_l00272}00272       \mbox{\hyperlink{namespaceoomph_aec474227917784dc0a255faf289cfc16}{oomph\_info}}.\mbox{\hyperlink{classoomph_1_1OomphInfo_a353cd56d96da9152d6d730b328c07a06}{stream\_pt}}() = \&\mbox{\hyperlink{namespaceoomph_a71421688cd14bcbb18a23c64b7245941}{oomph\_nullstream}};}
 \DoxyCodeLine{\Hypertarget{geometric__multigrid_8h_source_l00273}00273     \} \textcolor{comment}{// End of disable\_output}}
 \DoxyCodeLine{\Hypertarget{geometric__multigrid_8h_source_l00274}00274 \textcolor{comment}{}}
-\DoxyCodeLine{\Hypertarget{geometric__multigrid_8h_source_l00275}00275 \textcolor{comment}{    ///  Enable the output of the V-\/cycle timings and other output}}
+\DoxyCodeLine{\Hypertarget{geometric__multigrid_8h_source_l00275}00275 \textcolor{comment}{    /// Enable the output of the V-\/cycle timings and other output}}
 \DoxyCodeLine{\Hypertarget{geometric__multigrid_8h_source_l00276}\mbox{\hyperlink{classoomph_1_1MGSolver_a34098c30d954bc884b7df62ec61bd836}{00276}} \textcolor{comment}{}    \textcolor{keywordtype}{void} \mbox{\hyperlink{classoomph_1_1MGSolver_a34098c30d954bc884b7df62ec61bd836}{enable\_v\_cycle\_output}}()}
 \DoxyCodeLine{\Hypertarget{geometric__multigrid_8h_source_l00277}00277     \{}
 \DoxyCodeLine{\Hypertarget{geometric__multigrid_8h_source_l00278}00278       \textcolor{comment}{// Enable time documentation}}
@@ -286,7 +286,7 @@
 \DoxyCodeLine{\Hypertarget{geometric__multigrid_8h_source_l00282}00282       \mbox{\hyperlink{classoomph_1_1MGSolver_ac533f8f9a9f6efaf5b3c63fbdd09e0d1}{Suppress\_v\_cycle\_output}} = \textcolor{keyword}{false};}
 \DoxyCodeLine{\Hypertarget{geometric__multigrid_8h_source_l00283}00283     \} \textcolor{comment}{// End of enable\_v\_cycle\_output}}
 \DoxyCodeLine{\Hypertarget{geometric__multigrid_8h_source_l00284}00284 \textcolor{comment}{}}
-\DoxyCodeLine{\Hypertarget{geometric__multigrid_8h_source_l00285}00285 \textcolor{comment}{    ///  Enable the output from anything that could have been suppressed}}
+\DoxyCodeLine{\Hypertarget{geometric__multigrid_8h_source_l00285}00285 \textcolor{comment}{    /// Enable the output from anything that could have been suppressed}}
 \DoxyCodeLine{\Hypertarget{geometric__multigrid_8h_source_l00286}\mbox{\hyperlink{classoomph_1_1MGSolver_ac1e06a4689b41bbb9a05ba9a0eecdb23}{00286}} \textcolor{comment}{}    \textcolor{keywordtype}{void} \mbox{\hyperlink{classoomph_1_1MGSolver_ac1e06a4689b41bbb9a05ba9a0eecdb23}{enable\_doc\_everything}}()}
 \DoxyCodeLine{\Hypertarget{geometric__multigrid_8h_source_l00287}00287     \{}
 \DoxyCodeLine{\Hypertarget{geometric__multigrid_8h_source_l00288}00288       \textcolor{comment}{// Enable the documentation of everything (if this is set to TRUE then}}
@@ -295,7 +295,7 @@
 \DoxyCodeLine{\Hypertarget{geometric__multigrid_8h_source_l00291}00291       \mbox{\hyperlink{classoomph_1_1MGSolver_a3134e1d815d8d6d974f4ba4cabec2bd7}{Doc\_everything}} = \textcolor{keyword}{true};}
 \DoxyCodeLine{\Hypertarget{geometric__multigrid_8h_source_l00292}00292     \} \textcolor{comment}{// End of enable\_doc\_everything}}
 \DoxyCodeLine{\Hypertarget{geometric__multigrid_8h_source_l00293}00293 \textcolor{comment}{}}
-\DoxyCodeLine{\Hypertarget{geometric__multigrid_8h_source_l00294}00294 \textcolor{comment}{    ///  Enable the output from anything that could have been suppressed}}
+\DoxyCodeLine{\Hypertarget{geometric__multigrid_8h_source_l00294}00294 \textcolor{comment}{    /// Enable the output from anything that could have been suppressed}}
 \DoxyCodeLine{\Hypertarget{geometric__multigrid_8h_source_l00295}\mbox{\hyperlink{classoomph_1_1MGSolver_abf5d8dc2a2a116a41bb625e1d6985f2e}{00295}} \textcolor{comment}{}    \textcolor{keywordtype}{void} \mbox{\hyperlink{classoomph_1_1MGSolver_abf5d8dc2a2a116a41bb625e1d6985f2e}{enable\_output}}()}
 \DoxyCodeLine{\Hypertarget{geometric__multigrid_8h_source_l00296}00296     \{}
 \DoxyCodeLine{\Hypertarget{geometric__multigrid_8h_source_l00297}00297       \textcolor{comment}{// Enable time documentation}}
@@ -308,7 +308,7 @@
 \DoxyCodeLine{\Hypertarget{geometric__multigrid_8h_source_l00304}00304       \mbox{\hyperlink{classoomph_1_1MGSolver_ac533f8f9a9f6efaf5b3c63fbdd09e0d1}{Suppress\_v\_cycle\_output}} = \textcolor{keyword}{false};}
 \DoxyCodeLine{\Hypertarget{geometric__multigrid_8h_source_l00305}00305     \} \textcolor{comment}{// End of enable\_output}}
 \DoxyCodeLine{\Hypertarget{geometric__multigrid_8h_source_l00306}00306 \textcolor{comment}{}}
-\DoxyCodeLine{\Hypertarget{geometric__multigrid_8h_source_l00307}00307 \textcolor{comment}{    ///  Suppress the output of both smoothers and SuperLU}}
+\DoxyCodeLine{\Hypertarget{geometric__multigrid_8h_source_l00307}00307 \textcolor{comment}{    /// Suppress the output of both smoothers and SuperLU}}
 \DoxyCodeLine{\Hypertarget{geometric__multigrid_8h_source_l00308}\mbox{\hyperlink{classoomph_1_1MGSolver_a84a562088ef3ec0514027cac6a69d5a9}{00308}} \textcolor{comment}{}    \textcolor{keywordtype}{void} \mbox{\hyperlink{classoomph_1_1MGSolver_a84a562088ef3ec0514027cac6a69d5a9}{disable\_smoother\_and\_superlu\_doc\_time}}()}
 \DoxyCodeLine{\Hypertarget{geometric__multigrid_8h_source_l00309}00309     \{}
 \DoxyCodeLine{\Hypertarget{geometric__multigrid_8h_source_l00310}00310       \textcolor{comment}{// Loop over all levels of the hierarchy}}
@@ -344,7 +344,7 @@
 \DoxyCodeLine{\Hypertarget{geometric__multigrid_8h_source_l00340}00340       \textcolor{keywordflow}{return} \mbox{\hyperlink{classoomph_1_1MGSolver_acc27929d8448646bd1551a32db05c966}{Npre\_smooth}};}
 \DoxyCodeLine{\Hypertarget{geometric__multigrid_8h_source_l00341}00341     \} \textcolor{comment}{// End of npre\_smooth}}
 \DoxyCodeLine{\Hypertarget{geometric__multigrid_8h_source_l00342}00342 \textcolor{comment}{}}
-\DoxyCodeLine{\Hypertarget{geometric__multigrid_8h_source_l00343}00343 \textcolor{comment}{    ///  Pre-\/smoother: Perform 'max\_iter' smoothing steps on the}}
+\DoxyCodeLine{\Hypertarget{geometric__multigrid_8h_source_l00343}00343 \textcolor{comment}{    /// Pre-\/smoother: Perform 'max\_iter' smoothing steps on the}}
 \DoxyCodeLine{\Hypertarget{geometric__multigrid_8h_source_l00344}00344 \textcolor{comment}{    /// linear system Ax=b with current RHS vector, b, starting with}}
 \DoxyCodeLine{\Hypertarget{geometric__multigrid_8h_source_l00345}00345 \textcolor{comment}{    /// current solution vector, x. Return the residual vector r=b-\/Ax.}}
 \DoxyCodeLine{\Hypertarget{geometric__multigrid_8h_source_l00346}00346 \textcolor{comment}{    /// Uses the default smoother (set in the MGProblem constructor)}}
@@ -362,7 +362,7 @@
 \DoxyCodeLine{\Hypertarget{geometric__multigrid_8h_source_l00358}00358         \mbox{\hyperlink{classoomph_1_1MGSolver_a2c3f9d64997faf275de633fe3c799fee}{Residual\_mg\_vectors\_storage}}[level]);}
 \DoxyCodeLine{\Hypertarget{geometric__multigrid_8h_source_l00359}00359     \} \textcolor{comment}{// End of pre\_smooth}}
 \DoxyCodeLine{\Hypertarget{geometric__multigrid_8h_source_l00360}00360 \textcolor{comment}{}}
-\DoxyCodeLine{\Hypertarget{geometric__multigrid_8h_source_l00361}00361 \textcolor{comment}{    ///  Post-\/smoother: Perform max\_iter smoothing steps on the}}
+\DoxyCodeLine{\Hypertarget{geometric__multigrid_8h_source_l00361}00361 \textcolor{comment}{    /// Post-\/smoother: Perform max\_iter smoothing steps on the}}
 \DoxyCodeLine{\Hypertarget{geometric__multigrid_8h_source_l00362}00362 \textcolor{comment}{    /// linear system Ax=b with current RHS vector, b, starting with}}
 \DoxyCodeLine{\Hypertarget{geometric__multigrid_8h_source_l00363}00363 \textcolor{comment}{    /// current solution vector, x. Uses the default smoother (set in}}
 \DoxyCodeLine{\Hypertarget{geometric__multigrid_8h_source_l00364}00364 \textcolor{comment}{    /// the MGProblem constructor) which can be overloaded for specific}}
@@ -374,7 +374,7 @@
 \DoxyCodeLine{\Hypertarget{geometric__multigrid_8h_source_l00370}00370         \mbox{\hyperlink{classoomph_1_1MGSolver_a18889939fb1256a86e5862c1e5ecbd31}{Rhs\_mg\_vectors\_storage}}[level], \mbox{\hyperlink{classoomph_1_1MGSolver_ad0117f918473d50a9ca8526103401534}{X\_mg\_vectors\_storage}}[level]);}
 \DoxyCodeLine{\Hypertarget{geometric__multigrid_8h_source_l00371}00371     \} \textcolor{comment}{// End of post\_smooth}}
 \DoxyCodeLine{\Hypertarget{geometric__multigrid_8h_source_l00372}00372 \textcolor{comment}{}}
-\DoxyCodeLine{\Hypertarget{geometric__multigrid_8h_source_l00373}00373 \textcolor{comment}{    ///  Return norm of residual r=b-\/Ax and the residual vector itself}}
+\DoxyCodeLine{\Hypertarget{geometric__multigrid_8h_source_l00373}00373 \textcolor{comment}{    /// Return norm of residual r=b-\/Ax and the residual vector itself}}
 \DoxyCodeLine{\Hypertarget{geometric__multigrid_8h_source_l00374}00374 \textcolor{comment}{    /// on the level-\/th level}}
 \DoxyCodeLine{\Hypertarget{geometric__multigrid_8h_source_l00375}\mbox{\hyperlink{classoomph_1_1MGSolver_ae1780530c59f06913884eec764a4b6cc}{00375}} \textcolor{comment}{}    \textcolor{keywordtype}{double} \mbox{\hyperlink{classoomph_1_1MGSolver_ae1780530c59f06913884eec764a4b6cc}{residual\_norm}}(\textcolor{keyword}{const} \textcolor{keywordtype}{unsigned}\& level)}
 \DoxyCodeLine{\Hypertarget{geometric__multigrid_8h_source_l00376}00376     \{}
@@ -391,7 +391,7 @@
 \DoxyCodeLine{\Hypertarget{geometric__multigrid_8h_source_l00387}00387       \textcolor{keywordflow}{return} \mbox{\hyperlink{classoomph_1_1MGSolver_a2c3f9d64997faf275de633fe3c799fee}{Residual\_mg\_vectors\_storage}}[level].norm();}
 \DoxyCodeLine{\Hypertarget{geometric__multigrid_8h_source_l00388}00388     \} \textcolor{comment}{// End of residual\_norm}}
 \DoxyCodeLine{\Hypertarget{geometric__multigrid_8h_source_l00389}00389 \textcolor{comment}{}}
-\DoxyCodeLine{\Hypertarget{geometric__multigrid_8h_source_l00390}00390 \textcolor{comment}{    ///  Call the direct solver (SuperLU) to solve the problem exactly.}}
+\DoxyCodeLine{\Hypertarget{geometric__multigrid_8h_source_l00390}00390 \textcolor{comment}{    /// Call the direct solver (SuperLU) to solve the problem exactly.}}
 \DoxyCodeLine{\Hypertarget{geometric__multigrid_8h_source_l00391}00391 \textcolor{comment}{}    \textcolor{comment}{// The result is placed in X\_mg}}
 \DoxyCodeLine{\Hypertarget{geometric__multigrid_8h_source_l00392}\mbox{\hyperlink{classoomph_1_1MGSolver_a966b9775086c2a238c212605a9bb16de}{00392}}     \textcolor{keywordtype}{void} \mbox{\hyperlink{classoomph_1_1MGSolver_a966b9775086c2a238c212605a9bb16de}{direct\_solve}}()}
 \DoxyCodeLine{\Hypertarget{geometric__multigrid_8h_source_l00393}00393     \{}
@@ -400,7 +400,7 @@
 \DoxyCodeLine{\Hypertarget{geometric__multigrid_8h_source_l00396}00396         \mbox{\hyperlink{classoomph_1_1MGSolver_a18889939fb1256a86e5862c1e5ecbd31}{Rhs\_mg\_vectors\_storage}}[\mbox{\hyperlink{classoomph_1_1MGSolver_a4ab5b80c46b66867e720b1c28f170bb9}{Nlevel}} -\/ 1], \mbox{\hyperlink{classoomph_1_1MGSolver_ad0117f918473d50a9ca8526103401534}{X\_mg\_vectors\_storage}}[\mbox{\hyperlink{classoomph_1_1MGSolver_a4ab5b80c46b66867e720b1c28f170bb9}{Nlevel}} -\/ 1]);}
 \DoxyCodeLine{\Hypertarget{geometric__multigrid_8h_source_l00397}00397     \} \textcolor{comment}{// End of direct\_solve}}
 \DoxyCodeLine{\Hypertarget{geometric__multigrid_8h_source_l00398}00398 \textcolor{comment}{}}
-\DoxyCodeLine{\Hypertarget{geometric__multigrid_8h_source_l00399}00399 \textcolor{comment}{    ///  Builds a CRDoubleMatrix that is used to interpolate the}}
+\DoxyCodeLine{\Hypertarget{geometric__multigrid_8h_source_l00399}00399 \textcolor{comment}{    /// Builds a CRDoubleMatrix that is used to interpolate the}}
 \DoxyCodeLine{\Hypertarget{geometric__multigrid_8h_source_l00400}00400 \textcolor{comment}{    /// residual between levels. The transpose can be used as the full}}
 \DoxyCodeLine{\Hypertarget{geometric__multigrid_8h_source_l00401}00401 \textcolor{comment}{    /// weighting restriction.}}
 \DoxyCodeLine{\Hypertarget{geometric__multigrid_8h_source_l00402}\mbox{\hyperlink{classoomph_1_1MGSolver_ad749205517822b5855faab5701f90afe}{00402}} \textcolor{comment}{}    \textcolor{keywordtype}{void} \mbox{\hyperlink{classoomph_1_1MGSolver_ad749205517822b5855faab5701f90afe}{interpolation\_matrix\_set}}(\textcolor{keyword}{const} \textcolor{keywordtype}{unsigned}\& level,}
@@ -418,7 +418,7 @@
 \DoxyCodeLine{\Hypertarget{geometric__multigrid_8h_source_l00414}00414         ncol, nnz, value, col\_index, row\_st);}
 \DoxyCodeLine{\Hypertarget{geometric__multigrid_8h_source_l00415}00415     \} \textcolor{comment}{// End of interpolation\_matrix\_set}}
 \DoxyCodeLine{\Hypertarget{geometric__multigrid_8h_source_l00416}00416 \textcolor{comment}{}}
-\DoxyCodeLine{\Hypertarget{geometric__multigrid_8h_source_l00417}00417 \textcolor{comment}{    ///  Builds a CRDoubleMatrix that is used to interpolate the}}
+\DoxyCodeLine{\Hypertarget{geometric__multigrid_8h_source_l00417}00417 \textcolor{comment}{    /// Builds a CRDoubleMatrix that is used to interpolate the}}
 \DoxyCodeLine{\Hypertarget{geometric__multigrid_8h_source_l00418}00418 \textcolor{comment}{    /// residual between levels. The transpose can be used as the full}}
 \DoxyCodeLine{\Hypertarget{geometric__multigrid_8h_source_l00419}00419 \textcolor{comment}{    /// weighting restriction.}}
 \DoxyCodeLine{\Hypertarget{geometric__multigrid_8h_source_l00420}\mbox{\hyperlink{classoomph_1_1MGSolver_a7f96b229fb357fdf817f790f92197745}{00420}} \textcolor{comment}{}    \textcolor{keywordtype}{void} \mbox{\hyperlink{classoomph_1_1MGSolver_a7f96b229fb357fdf817f790f92197745}{interpolation\_matrix\_set}}(\textcolor{keyword}{const} \textcolor{keywordtype}{unsigned}\& level,}
@@ -463,7 +463,7 @@
 \DoxyCodeLine{\Hypertarget{geometric__multigrid_8h_source_l00459}00459       dist\_pt = 0;}
 \DoxyCodeLine{\Hypertarget{geometric__multigrid_8h_source_l00460}00460     \} \textcolor{comment}{// End of interpolation\_matrix\_set}}
 \DoxyCodeLine{\Hypertarget{geometric__multigrid_8h_source_l00461}00461 \textcolor{comment}{}}
-\DoxyCodeLine{\Hypertarget{geometric__multigrid_8h_source_l00462}00462 \textcolor{comment}{    ///  Builds a CRDoubleMatrix on each level that is used to}}
+\DoxyCodeLine{\Hypertarget{geometric__multigrid_8h_source_l00462}00462 \textcolor{comment}{    /// Builds a CRDoubleMatrix on each level that is used to}}
 \DoxyCodeLine{\Hypertarget{geometric__multigrid_8h_source_l00463}00463 \textcolor{comment}{    /// restrict the residual between levels. The transpose can be used}}
 \DoxyCodeLine{\Hypertarget{geometric__multigrid_8h_source_l00464}00464 \textcolor{comment}{    /// as the interpolation matrix}}
 \DoxyCodeLine{\Hypertarget{geometric__multigrid_8h_source_l00465}\mbox{\hyperlink{classoomph_1_1MGSolver_a52dcf1e19aa7f5d77697575b341a838b}{00465}} \textcolor{comment}{}    \textcolor{keywordtype}{void} \mbox{\hyperlink{classoomph_1_1MGSolver_a52dcf1e19aa7f5d77697575b341a838b}{set\_restriction\_matrices\_as\_interpolation\_transposes}}()}
@@ -480,35 +480,35 @@
 \DoxyCodeLine{\Hypertarget{geometric__multigrid_8h_source_l00476}00476       \}}
 \DoxyCodeLine{\Hypertarget{geometric__multigrid_8h_source_l00477}00477     \} \textcolor{comment}{// End of set\_restriction\_matrices\_as\_interpolation\_transposes}}
 \DoxyCodeLine{\Hypertarget{geometric__multigrid_8h_source_l00478}00478 \textcolor{comment}{}}
-\DoxyCodeLine{\Hypertarget{geometric__multigrid_8h_source_l00479}00479 \textcolor{comment}{    ///  Restrict residual (computed on level-\/th MG level) to the next}}
+\DoxyCodeLine{\Hypertarget{geometric__multigrid_8h_source_l00479}00479 \textcolor{comment}{    /// Restrict residual (computed on level-\/th MG level) to the next}}
 \DoxyCodeLine{\Hypertarget{geometric__multigrid_8h_source_l00480}00480 \textcolor{comment}{    /// coarser mesh and stick it into the coarse mesh RHS vector.}}
 \DoxyCodeLine{\Hypertarget{geometric__multigrid_8h_source_l00481}00481 \textcolor{comment}{}    \textcolor{keywordtype}{void} \mbox{\hyperlink{classoomph_1_1MGSolver_a755ee1fd473faa22f342829dadbe4e51}{restrict\_residual}}(\textcolor{keyword}{const} \textcolor{keywordtype}{unsigned}\& level);}
 \DoxyCodeLine{\Hypertarget{geometric__multigrid_8h_source_l00482}00482 \textcolor{comment}{}}
-\DoxyCodeLine{\Hypertarget{geometric__multigrid_8h_source_l00483}00483 \textcolor{comment}{    ///  Interpolate solution at current level onto next finer mesh}}
+\DoxyCodeLine{\Hypertarget{geometric__multigrid_8h_source_l00483}00483 \textcolor{comment}{    /// Interpolate solution at current level onto next finer mesh}}
 \DoxyCodeLine{\Hypertarget{geometric__multigrid_8h_source_l00484}00484 \textcolor{comment}{    /// and correct the solution x at that level}}
 \DoxyCodeLine{\Hypertarget{geometric__multigrid_8h_source_l00485}00485 \textcolor{comment}{}    \textcolor{keywordtype}{void} \mbox{\hyperlink{classoomph_1_1MGSolver_addc29a0b865681c3eaf7d67e702ee995}{interpolate\_and\_correct}}(\textcolor{keyword}{const} \textcolor{keywordtype}{unsigned}\& level);}
 \DoxyCodeLine{\Hypertarget{geometric__multigrid_8h_source_l00486}00486 \textcolor{comment}{}}
-\DoxyCodeLine{\Hypertarget{geometric__multigrid_8h_source_l00487}00487 \textcolor{comment}{    ///  Given the son\_type of an element and a local node number}}
+\DoxyCodeLine{\Hypertarget{geometric__multigrid_8h_source_l00487}00487 \textcolor{comment}{    /// Given the son\_type of an element and a local node number}}
 \DoxyCodeLine{\Hypertarget{geometric__multigrid_8h_source_l00488}00488 \textcolor{comment}{    /// j in that element with nnode\_1d nodes per coordinate direction,}}
 \DoxyCodeLine{\Hypertarget{geometric__multigrid_8h_source_l00489}00489 \textcolor{comment}{    /// return the local coordinate s in its father element. Needed in}}
 \DoxyCodeLine{\Hypertarget{geometric__multigrid_8h_source_l00490}00490 \textcolor{comment}{    /// the setup of the interpolation matrices}}
 \DoxyCodeLine{\Hypertarget{geometric__multigrid_8h_source_l00491}\mbox{\hyperlink{classoomph_1_1MGSolver_a28c5bc08c12849ac16bc0d78bdb9b58a}{00491}} \textcolor{comment}{}    \textcolor{keywordtype}{void} \mbox{\hyperlink{classoomph_1_1MGSolver_a28c5bc08c12849ac16bc0d78bdb9b58a}{level\_up\_local\_coord\_of\_node}}(\textcolor{keyword}{const} \textcolor{keywordtype}{int}\& son\_type, \mbox{\hyperlink{classoomph_1_1Vector}{Vector<double>}}\& \mbox{\hyperlink{cfortran_8h_ab7123126e4885ef647dd9c6e3807a21c}{s}});}
 \DoxyCodeLine{\Hypertarget{geometric__multigrid_8h_source_l00492}00492 \textcolor{comment}{}}
-\DoxyCodeLine{\Hypertarget{geometric__multigrid_8h_source_l00493}00493 \textcolor{comment}{    ///  Setup the interpolation matrix on each level}}
+\DoxyCodeLine{\Hypertarget{geometric__multigrid_8h_source_l00493}00493 \textcolor{comment}{    /// Setup the interpolation matrix on each level}}
 \DoxyCodeLine{\Hypertarget{geometric__multigrid_8h_source_l00494}00494 \textcolor{comment}{}    \textcolor{keywordtype}{void} \mbox{\hyperlink{classoomph_1_1MGSolver_a368106b0ca8332ab5a6571b9421822e2}{setup\_interpolation\_matrices}}();}
 \DoxyCodeLine{\Hypertarget{geometric__multigrid_8h_source_l00495}00495 \textcolor{comment}{}}
-\DoxyCodeLine{\Hypertarget{geometric__multigrid_8h_source_l00496}00496 \textcolor{comment}{    ///  Setup the interpolation matrix on each level (used for}}
+\DoxyCodeLine{\Hypertarget{geometric__multigrid_8h_source_l00496}00496 \textcolor{comment}{    /// Setup the interpolation matrix on each level (used for}}
 \DoxyCodeLine{\Hypertarget{geometric__multigrid_8h_source_l00497}00497 \textcolor{comment}{    /// unstructured meshes)}}
 \DoxyCodeLine{\Hypertarget{geometric__multigrid_8h_source_l00498}00498 \textcolor{comment}{}    \textcolor{keywordtype}{void} \mbox{\hyperlink{classoomph_1_1MGSolver_a923c121b000fc5372664045c764b163f}{setup\_interpolation\_matrices\_unstructured}}();}
 \DoxyCodeLine{\Hypertarget{geometric__multigrid_8h_source_l00499}00499 \textcolor{comment}{}}
-\DoxyCodeLine{\Hypertarget{geometric__multigrid_8h_source_l00500}00500 \textcolor{comment}{    ///  Setup the transfer matrices on each level}}
+\DoxyCodeLine{\Hypertarget{geometric__multigrid_8h_source_l00500}00500 \textcolor{comment}{    /// Setup the transfer matrices on each level}}
 \DoxyCodeLine{\Hypertarget{geometric__multigrid_8h_source_l00501}00501 \textcolor{comment}{}    \textcolor{keywordtype}{void} \mbox{\hyperlink{classoomph_1_1MGSolver_a332a6b1028732481a4954fa0a9337a80}{setup\_transfer\_matrices}}();}
 \DoxyCodeLine{\Hypertarget{geometric__multigrid_8h_source_l00502}00502 \textcolor{comment}{}}
-\DoxyCodeLine{\Hypertarget{geometric__multigrid_8h_source_l00503}00503 \textcolor{comment}{    ///  Do a full setup (assumes everything will be setup around the}}
+\DoxyCodeLine{\Hypertarget{geometric__multigrid_8h_source_l00503}00503 \textcolor{comment}{    /// Do a full setup (assumes everything will be setup around the}}
 \DoxyCodeLine{\Hypertarget{geometric__multigrid_8h_source_l00504}00504 \textcolor{comment}{    /// MGProblem pointer given in the constructor)}}
 \DoxyCodeLine{\Hypertarget{geometric__multigrid_8h_source_l00505}00505 \textcolor{comment}{}    \textcolor{keywordtype}{void} \mbox{\hyperlink{classoomph_1_1MGSolver_a104b2f66ce3e177c31cdd666bbc1f17d}{full\_setup}}();}
 \DoxyCodeLine{\Hypertarget{geometric__multigrid_8h_source_l00506}00506 \textcolor{comment}{}}
-\DoxyCodeLine{\Hypertarget{geometric__multigrid_8h_source_l00507}00507 \textcolor{comment}{    ///  Virtual function in the base class that needs to be implemented}}
+\DoxyCodeLine{\Hypertarget{geometric__multigrid_8h_source_l00507}00507 \textcolor{comment}{    /// Virtual function in the base class that needs to be implemented}}
 \DoxyCodeLine{\Hypertarget{geometric__multigrid_8h_source_l00508}00508 \textcolor{comment}{    /// later but for now just leave it empty}}
 \DoxyCodeLine{\Hypertarget{geometric__multigrid_8h_source_l00509}\mbox{\hyperlink{classoomph_1_1MGSolver_a68f8c874b922c5b67e73c836048e34f5}{00509}} \textcolor{comment}{}    \textcolor{keywordtype}{void} \mbox{\hyperlink{classoomph_1_1MGSolver_a68f8c874b922c5b67e73c836048e34f5}{solve}}(\mbox{\hyperlink{classoomph_1_1Problem}{Problem}}* \textcolor{keyword}{const}\& problem\_pt, \mbox{\hyperlink{classoomph_1_1DoubleVector}{DoubleVector}}\& result)}
 \DoxyCodeLine{\Hypertarget{geometric__multigrid_8h_source_l00510}00510     \{}
@@ -610,63 +610,63 @@
 \DoxyCodeLine{\Hypertarget{geometric__multigrid_8h_source_l00606}00606     \} \textcolor{comment}{// End of iterations}}
 \DoxyCodeLine{\Hypertarget{geometric__multigrid_8h_source_l00607}00607 }
 \DoxyCodeLine{\Hypertarget{geometric__multigrid_8h_source_l00608}00608   \textcolor{keyword}{protected}:\textcolor{comment}{}}
-\DoxyCodeLine{\Hypertarget{geometric__multigrid_8h_source_l00609}00609 \textcolor{comment}{    ///  Do the actual solve -\/-\/ this is called through the pure virtual}}
+\DoxyCodeLine{\Hypertarget{geometric__multigrid_8h_source_l00609}00609 \textcolor{comment}{    /// Do the actual solve -\/-\/ this is called through the pure virtual}}
 \DoxyCodeLine{\Hypertarget{geometric__multigrid_8h_source_l00610}00610 \textcolor{comment}{    /// solve function in the LinearSolver base class. The function is stored}}
 \DoxyCodeLine{\Hypertarget{geometric__multigrid_8h_source_l00611}00611 \textcolor{comment}{    /// as protected to allow the MGPreconditioner derived class to use the}}
 \DoxyCodeLine{\Hypertarget{geometric__multigrid_8h_source_l00612}00612 \textcolor{comment}{    /// solver}}
 \DoxyCodeLine{\Hypertarget{geometric__multigrid_8h_source_l00613}00613 \textcolor{comment}{}    \textcolor{keywordtype}{void} \mbox{\hyperlink{classoomph_1_1MGSolver_a70f1090e0673b8f9c4b87080adff0e2f}{mg\_solve}}(\mbox{\hyperlink{classoomph_1_1DoubleVector}{DoubleVector}}\& result);}
 \DoxyCodeLine{\Hypertarget{geometric__multigrid_8h_source_l00614}00614 \textcolor{comment}{}}
-\DoxyCodeLine{\Hypertarget{geometric__multigrid_8h_source_l00615}00615 \textcolor{comment}{    ///  Normalise the rows of the restriction matrices to avoid}}
+\DoxyCodeLine{\Hypertarget{geometric__multigrid_8h_source_l00615}00615 \textcolor{comment}{    /// Normalise the rows of the restriction matrices to avoid}}
 \DoxyCodeLine{\Hypertarget{geometric__multigrid_8h_source_l00616}00616 \textcolor{comment}{    /// amplifications when projecting to the coarser level}}
 \DoxyCodeLine{\Hypertarget{geometric__multigrid_8h_source_l00617}00617 \textcolor{comment}{}    \textcolor{keywordtype}{void} \mbox{\hyperlink{classoomph_1_1MGSolver_ad31f3a5daa8edec01ab20c92e5fcca54}{modify\_restriction\_matrices}}();}
 \DoxyCodeLine{\Hypertarget{geometric__multigrid_8h_source_l00618}00618 \textcolor{comment}{}}
-\DoxyCodeLine{\Hypertarget{geometric__multigrid_8h_source_l00619}00619 \textcolor{comment}{    ///  Maximum number of V-\/cycles (this is set as a protected variable}}
+\DoxyCodeLine{\Hypertarget{geometric__multigrid_8h_source_l00619}00619 \textcolor{comment}{    /// Maximum number of V-\/cycles (this is set as a protected variable}}
 \DoxyCodeLine{\Hypertarget{geometric__multigrid_8h_source_l00620}00620 \textcolor{comment}{    /// so}}
 \DoxyCodeLine{\Hypertarget{geometric__multigrid_8h_source_l00621}00621 \textcolor{comment}{}    \textcolor{comment}{// that it can be changed in the MGPreconditioner class)}}
 \DoxyCodeLine{\Hypertarget{geometric__multigrid_8h_source_l00622}\mbox{\hyperlink{classoomph_1_1MGSolver_ab3d4af8ea6d7bc8d0a6f528cb669e920}{00622}}     \textcolor{keywordtype}{unsigned} \mbox{\hyperlink{classoomph_1_1MGSolver_ab3d4af8ea6d7bc8d0a6f528cb669e920}{Nvcycle}};}
 \DoxyCodeLine{\Hypertarget{geometric__multigrid_8h_source_l00623}00623 \textcolor{comment}{}}
-\DoxyCodeLine{\Hypertarget{geometric__multigrid_8h_source_l00624}00624 \textcolor{comment}{    ///  Pointer to the MG problem (deep copy). This is protected to}}
+\DoxyCodeLine{\Hypertarget{geometric__multigrid_8h_source_l00624}00624 \textcolor{comment}{    /// Pointer to the MG problem (deep copy). This is protected to}}
 \DoxyCodeLine{\Hypertarget{geometric__multigrid_8h_source_l00625}00625 \textcolor{comment}{    /// provide access to the MG preconditioner}}
 \DoxyCodeLine{\Hypertarget{geometric__multigrid_8h_source_l00626}\mbox{\hyperlink{classoomph_1_1MGSolver_af48a7c051423b2a5d27b19aa8adb996a}{00626}} \textcolor{comment}{}    \mbox{\hyperlink{classoomph_1_1MGProblem}{MGProblem}}* \mbox{\hyperlink{classoomph_1_1MGSolver_af48a7c051423b2a5d27b19aa8adb996a}{Mg\_problem\_pt}};}
 \DoxyCodeLine{\Hypertarget{geometric__multigrid_8h_source_l00627}00627 \textcolor{comment}{}}
-\DoxyCodeLine{\Hypertarget{geometric__multigrid_8h_source_l00628}00628 \textcolor{comment}{    ///  Vector to store the RHS vectors (Rhs\_mg). This is protected to}}
+\DoxyCodeLine{\Hypertarget{geometric__multigrid_8h_source_l00628}00628 \textcolor{comment}{    /// Vector to store the RHS vectors (Rhs\_mg). This is protected to}}
 \DoxyCodeLine{\Hypertarget{geometric__multigrid_8h_source_l00629}00629 \textcolor{comment}{    /// allow the multigrid preconditioner to assign the RHS vector during}}
 \DoxyCodeLine{\Hypertarget{geometric__multigrid_8h_source_l00630}00630 \textcolor{comment}{    /// preconditioner\_solve()}}
 \DoxyCodeLine{\Hypertarget{geometric__multigrid_8h_source_l00631}\mbox{\hyperlink{classoomph_1_1MGSolver_a18889939fb1256a86e5862c1e5ecbd31}{00631}} \textcolor{comment}{}    \mbox{\hyperlink{classoomph_1_1Vector}{Vector<DoubleVector>}} \mbox{\hyperlink{classoomph_1_1MGSolver_a18889939fb1256a86e5862c1e5ecbd31}{Rhs\_mg\_vectors\_storage}};}
 \DoxyCodeLine{\Hypertarget{geometric__multigrid_8h_source_l00632}00632 \textcolor{comment}{}}
-\DoxyCodeLine{\Hypertarget{geometric__multigrid_8h_source_l00633}00633 \textcolor{comment}{    ///  Indicates whether or not the V-\/cycle output should be}}
+\DoxyCodeLine{\Hypertarget{geometric__multigrid_8h_source_l00633}00633 \textcolor{comment}{    /// Indicates whether or not the V-\/cycle output should be}}
 \DoxyCodeLine{\Hypertarget{geometric__multigrid_8h_source_l00634}00634 \textcolor{comment}{    /// suppressed. Needs to be protected member data for the multigrid}}
 \DoxyCodeLine{\Hypertarget{geometric__multigrid_8h_source_l00635}00635 \textcolor{comment}{    /// preconditioner to know whether or not to output information}}
 \DoxyCodeLine{\Hypertarget{geometric__multigrid_8h_source_l00636}00636 \textcolor{comment}{    /// with each preconditioning step}}
 \DoxyCodeLine{\Hypertarget{geometric__multigrid_8h_source_l00637}\mbox{\hyperlink{classoomph_1_1MGSolver_ac533f8f9a9f6efaf5b3c63fbdd09e0d1}{00637}} \textcolor{comment}{}    \textcolor{keywordtype}{bool} \mbox{\hyperlink{classoomph_1_1MGSolver_ac533f8f9a9f6efaf5b3c63fbdd09e0d1}{Suppress\_v\_cycle\_output}};}
 \DoxyCodeLine{\Hypertarget{geometric__multigrid_8h_source_l00638}00638 \textcolor{comment}{}}
-\DoxyCodeLine{\Hypertarget{geometric__multigrid_8h_source_l00639}00639 \textcolor{comment}{    ///  If this is set to true then all output from the solver is}}
+\DoxyCodeLine{\Hypertarget{geometric__multigrid_8h_source_l00639}00639 \textcolor{comment}{    /// If this is set to true then all output from the solver is}}
 \DoxyCodeLine{\Hypertarget{geometric__multigrid_8h_source_l00640}00640 \textcolor{comment}{    /// suppressed. This is protected member data so that the multigrid}}
 \DoxyCodeLine{\Hypertarget{geometric__multigrid_8h_source_l00641}00641 \textcolor{comment}{    /// preconditioner knows whether or not to restore the stream pointer}}
 \DoxyCodeLine{\Hypertarget{geometric__multigrid_8h_source_l00642}\mbox{\hyperlink{classoomph_1_1MGSolver_a0cd765279d8e8f3929cc253fd00ba9eb}{00642}} \textcolor{comment}{}    \textcolor{keywordtype}{bool} \mbox{\hyperlink{classoomph_1_1MGSolver_a0cd765279d8e8f3929cc253fd00ba9eb}{Suppress\_all\_output}};}
 \DoxyCodeLine{\Hypertarget{geometric__multigrid_8h_source_l00643}00643 \textcolor{comment}{}}
-\DoxyCodeLine{\Hypertarget{geometric__multigrid_8h_source_l00644}00644 \textcolor{comment}{    ///  Pointer to the output stream -\/-\/ defaults to std::cout.}}
+\DoxyCodeLine{\Hypertarget{geometric__multigrid_8h_source_l00644}00644 \textcolor{comment}{    /// Pointer to the output stream -\/-\/ defaults to std::cout.}}
 \DoxyCodeLine{\Hypertarget{geometric__multigrid_8h_source_l00645}00645 \textcolor{comment}{    /// This is protected member data to allow the preconditioner to}}
 \DoxyCodeLine{\Hypertarget{geometric__multigrid_8h_source_l00646}00646 \textcolor{comment}{    /// restore normal output if everything was chosen to be}}
 \DoxyCodeLine{\Hypertarget{geometric__multigrid_8h_source_l00647}00647 \textcolor{comment}{    /// suppressed by the user}}
 \DoxyCodeLine{\Hypertarget{geometric__multigrid_8h_source_l00648}\mbox{\hyperlink{classoomph_1_1MGSolver_a5184053b6d2a717a6d6865c76acef14b}{00648}} \textcolor{comment}{}    std::ostream* \mbox{\hyperlink{classoomph_1_1MGSolver_a5184053b6d2a717a6d6865c76acef14b}{Stream\_pt}};}
 \DoxyCodeLine{\Hypertarget{geometric__multigrid_8h_source_l00649}00649 }
 \DoxyCodeLine{\Hypertarget{geometric__multigrid_8h_source_l00650}00650   \textcolor{keyword}{private}:\textcolor{comment}{}}
-\DoxyCodeLine{\Hypertarget{geometric__multigrid_8h_source_l00651}00651 \textcolor{comment}{    ///  Function to create pre-\/smoothers}}
+\DoxyCodeLine{\Hypertarget{geometric__multigrid_8h_source_l00651}00651 \textcolor{comment}{    /// Function to create pre-\/smoothers}}
 \DoxyCodeLine{\Hypertarget{geometric__multigrid_8h_source_l00652}\mbox{\hyperlink{classoomph_1_1MGSolver_af7d8204d7b71b18f5362b01a971aad02}{00652}} \textcolor{comment}{}    \mbox{\hyperlink{classoomph_1_1MGSolver_a60aa316ebfc000491554e28dbfbebc10}{PreSmootherFactoryFctPt}} \mbox{\hyperlink{classoomph_1_1MGSolver_af7d8204d7b71b18f5362b01a971aad02}{Pre\_smoother\_factory\_function\_pt}};}
 \DoxyCodeLine{\Hypertarget{geometric__multigrid_8h_source_l00653}00653 \textcolor{comment}{}}
-\DoxyCodeLine{\Hypertarget{geometric__multigrid_8h_source_l00654}00654 \textcolor{comment}{    ///  Function to create post-\/smoothers}}
+\DoxyCodeLine{\Hypertarget{geometric__multigrid_8h_source_l00654}00654 \textcolor{comment}{    /// Function to create post-\/smoothers}}
 \DoxyCodeLine{\Hypertarget{geometric__multigrid_8h_source_l00655}\mbox{\hyperlink{classoomph_1_1MGSolver_a2c105a6889f43968c9e57366f44ebd79}{00655}} \textcolor{comment}{}    \mbox{\hyperlink{classoomph_1_1MGSolver_a0a46fa180d8a32f54272fc98e28001cf}{PostSmootherFactoryFctPt}} \mbox{\hyperlink{classoomph_1_1MGSolver_a2c105a6889f43968c9e57366f44ebd79}{Post\_smoother\_factory\_function\_pt}};}
 \DoxyCodeLine{\Hypertarget{geometric__multigrid_8h_source_l00656}00656 \textcolor{comment}{}}
-\DoxyCodeLine{\Hypertarget{geometric__multigrid_8h_source_l00657}00657 \textcolor{comment}{    ///  Function to set up the hierachy of levels. Creates a vector}}
+\DoxyCodeLine{\Hypertarget{geometric__multigrid_8h_source_l00657}00657 \textcolor{comment}{    /// Function to set up the hierachy of levels. Creates a vector}}
 \DoxyCodeLine{\Hypertarget{geometric__multigrid_8h_source_l00658}00658 \textcolor{comment}{    /// of pointers to each MG level}}
 \DoxyCodeLine{\Hypertarget{geometric__multigrid_8h_source_l00659}00659 \textcolor{comment}{}    \textcolor{keywordtype}{void} \mbox{\hyperlink{classoomph_1_1MGSolver_a8b25ea9a7781f95ddf46b4b8d427d3d0}{setup\_mg\_hierarchy}}();}
 \DoxyCodeLine{\Hypertarget{geometric__multigrid_8h_source_l00660}00660 \textcolor{comment}{}}
-\DoxyCodeLine{\Hypertarget{geometric__multigrid_8h_source_l00661}00661 \textcolor{comment}{    ///  Function to set up the hierachy of levels. Creates a vector}}
+\DoxyCodeLine{\Hypertarget{geometric__multigrid_8h_source_l00661}00661 \textcolor{comment}{    /// Function to set up the hierachy of levels. Creates a vector}}
 \DoxyCodeLine{\Hypertarget{geometric__multigrid_8h_source_l00662}00662 \textcolor{comment}{    /// of pointers to each MG level}}
 \DoxyCodeLine{\Hypertarget{geometric__multigrid_8h_source_l00663}00663 \textcolor{comment}{}    \textcolor{keywordtype}{void} \mbox{\hyperlink{classoomph_1_1MGSolver_a24b2cc3ce0eefde4eef0b80b38339b38}{setup\_mg\_structures}}();}
 \DoxyCodeLine{\Hypertarget{geometric__multigrid_8h_source_l00664}00664 \textcolor{comment}{}}
-\DoxyCodeLine{\Hypertarget{geometric__multigrid_8h_source_l00665}00665 \textcolor{comment}{    ///  Function to set up all of the smoothers once the system matrices}}
+\DoxyCodeLine{\Hypertarget{geometric__multigrid_8h_source_l00665}00665 \textcolor{comment}{    /// Function to set up all of the smoothers once the system matrices}}
 \DoxyCodeLine{\Hypertarget{geometric__multigrid_8h_source_l00666}00666 \textcolor{comment}{    /// have been set up}}
 \DoxyCodeLine{\Hypertarget{geometric__multigrid_8h_source_l00667}00667 \textcolor{comment}{}    \textcolor{keywordtype}{void} \mbox{\hyperlink{classoomph_1_1MGSolver_a9b3674f92da65b8cacada47325107804}{setup\_smoothers}}();}
 \DoxyCodeLine{\Hypertarget{geometric__multigrid_8h_source_l00668}00668 \textcolor{comment}{}}
@@ -691,12 +691,12 @@
 \DoxyCodeLine{\Hypertarget{geometric__multigrid_8h_source_l00687}00687 \textcolor{comment}{    /// Vector to store the residual vectors}}
 \DoxyCodeLine{\Hypertarget{geometric__multigrid_8h_source_l00688}\mbox{\hyperlink{classoomph_1_1MGSolver_a2c3f9d64997faf275de633fe3c799fee}{00688}} \textcolor{comment}{}    \mbox{\hyperlink{classoomph_1_1Vector}{Vector<DoubleVector>}} \mbox{\hyperlink{classoomph_1_1MGSolver_a2c3f9d64997faf275de633fe3c799fee}{Residual\_mg\_vectors\_storage}};}
 \DoxyCodeLine{\Hypertarget{geometric__multigrid_8h_source_l00689}00689 \textcolor{comment}{}}
-\DoxyCodeLine{\Hypertarget{geometric__multigrid_8h_source_l00690}00690 \textcolor{comment}{    ///  Vector to store the result of interpolation on each level (only}}
+\DoxyCodeLine{\Hypertarget{geometric__multigrid_8h_source_l00690}00690 \textcolor{comment}{    /// Vector to store the result of interpolation on each level (only}}
 \DoxyCodeLine{\Hypertarget{geometric__multigrid_8h_source_l00691}00691 \textcolor{comment}{    /// required if the user wishes to document the output of interpolation}}
 \DoxyCodeLine{\Hypertarget{geometric__multigrid_8h_source_l00692}00692 \textcolor{comment}{    /// and restriction on each level)}}
 \DoxyCodeLine{\Hypertarget{geometric__multigrid_8h_source_l00693}\mbox{\hyperlink{classoomph_1_1MGSolver_ab751da487614e6f661b8d944f37c20ec}{00693}} \textcolor{comment}{}    \mbox{\hyperlink{classoomph_1_1Vector}{Vector<DoubleVector>}} \mbox{\hyperlink{classoomph_1_1MGSolver_ab751da487614e6f661b8d944f37c20ec}{Interpolation\_self\_test\_vectors\_storage}};}
 \DoxyCodeLine{\Hypertarget{geometric__multigrid_8h_source_l00694}00694 \textcolor{comment}{}}
-\DoxyCodeLine{\Hypertarget{geometric__multigrid_8h_source_l00695}00695 \textcolor{comment}{    ///  Vector to store the result of restriction on each level (only}}
+\DoxyCodeLine{\Hypertarget{geometric__multigrid_8h_source_l00695}00695 \textcolor{comment}{    /// Vector to store the result of restriction on each level (only}}
 \DoxyCodeLine{\Hypertarget{geometric__multigrid_8h_source_l00696}00696 \textcolor{comment}{    /// required if the user wishes to document the output of interpolation}}
 \DoxyCodeLine{\Hypertarget{geometric__multigrid_8h_source_l00697}00697 \textcolor{comment}{    /// and restriction on each level)}}
 \DoxyCodeLine{\Hypertarget{geometric__multigrid_8h_source_l00698}\mbox{\hyperlink{classoomph_1_1MGSolver_a79fd640c7e43f08dca60f41d3ff91d59}{00698}} \textcolor{comment}{}    \mbox{\hyperlink{classoomph_1_1Vector}{Vector<DoubleVector>}} \mbox{\hyperlink{classoomph_1_1MGSolver_a79fd640c7e43f08dca60f41d3ff91d59}{Restriction\_self\_test\_vectors\_storage}};}
@@ -713,7 +713,7 @@
 \DoxyCodeLine{\Hypertarget{geometric__multigrid_8h_source_l00709}00709 \textcolor{comment}{    /// Number of post-\/smoothing steps}}
 \DoxyCodeLine{\Hypertarget{geometric__multigrid_8h_source_l00710}\mbox{\hyperlink{classoomph_1_1MGSolver_aa1bd9b32d6d5976582b57739bcc10b6d}{00710}} \textcolor{comment}{}    \textcolor{keywordtype}{unsigned} \mbox{\hyperlink{classoomph_1_1MGSolver_aa1bd9b32d6d5976582b57739bcc10b6d}{Npost\_smooth}};}
 \DoxyCodeLine{\Hypertarget{geometric__multigrid_8h_source_l00711}00711 \textcolor{comment}{}}
-\DoxyCodeLine{\Hypertarget{geometric__multigrid_8h_source_l00712}00712 \textcolor{comment}{    ///  If this is set to true we document everything. In addition}}
+\DoxyCodeLine{\Hypertarget{geometric__multigrid_8h_source_l00712}00712 \textcolor{comment}{    /// If this is set to true we document everything. In addition}}
 \DoxyCodeLine{\Hypertarget{geometric__multigrid_8h_source_l00713}00713 \textcolor{comment}{    /// to outputting the information of the setup timings and V-\/cycle}}
 \DoxyCodeLine{\Hypertarget{geometric__multigrid_8h_source_l00714}00714 \textcolor{comment}{    /// data we document the refinement and unrefinement patterns given}}
 \DoxyCodeLine{\Hypertarget{geometric__multigrid_8h_source_l00715}00715 \textcolor{comment}{    /// by the transfer operators which is done by keeping the coarser}}
@@ -754,7 +754,7 @@
 \DoxyCodeLine{\Hypertarget{geometric__multigrid_8h_source_l00750}00750 \textcolor{comment}{    /// Broken assignment operator.}}
 \DoxyCodeLine{\Hypertarget{geometric__multigrid_8h_source_l00751}\mbox{\hyperlink{classoomph_1_1MGPreconditioner_a7b41da26388cb9955576c395927c67f6}{00751}} \textcolor{comment}{}    \textcolor{keywordtype}{void} \mbox{\hyperlink{classoomph_1_1MGPreconditioner_a7b41da26388cb9955576c395927c67f6}{operator=}}(\textcolor{keyword}{const} \mbox{\hyperlink{classoomph_1_1MGPreconditioner}{MGPreconditioner}}\&) = \textcolor{keyword}{delete};}
 \DoxyCodeLine{\Hypertarget{geometric__multigrid_8h_source_l00752}00752 \textcolor{comment}{}}
-\DoxyCodeLine{\Hypertarget{geometric__multigrid_8h_source_l00753}00753 \textcolor{comment}{    ///  Function to set up a preconditioner for the linear system}}
+\DoxyCodeLine{\Hypertarget{geometric__multigrid_8h_source_l00753}00753 \textcolor{comment}{    /// Function to set up a preconditioner for the linear system}}
 \DoxyCodeLine{\Hypertarget{geometric__multigrid_8h_source_l00754}\mbox{\hyperlink{classoomph_1_1MGPreconditioner_a476a8e769a62e52e1db6c618ede7408d}{00754}} \textcolor{comment}{}    \textcolor{keywordtype}{void} \mbox{\hyperlink{classoomph_1_1MGPreconditioner_a476a8e769a62e52e1db6c618ede7408d}{setup}}()}
 \DoxyCodeLine{\Hypertarget{geometric__multigrid_8h_source_l00755}00755     \{}
 \DoxyCodeLine{\Hypertarget{geometric__multigrid_8h_source_l00756}00756 \textcolor{preprocessor}{\#ifdef OOMPH\_HAS\_MPI}}
@@ -781,7 +781,7 @@
 \DoxyCodeLine{\Hypertarget{geometric__multigrid_8h_source_l00777}00777       \}}
 \DoxyCodeLine{\Hypertarget{geometric__multigrid_8h_source_l00778}00778     \} \textcolor{comment}{// End of setup}}
 \DoxyCodeLine{\Hypertarget{geometric__multigrid_8h_source_l00779}00779 \textcolor{comment}{}}
-\DoxyCodeLine{\Hypertarget{geometric__multigrid_8h_source_l00780}00780 \textcolor{comment}{    ///  Function applies MG to the vector r for a full solve}}
+\DoxyCodeLine{\Hypertarget{geometric__multigrid_8h_source_l00780}00780 \textcolor{comment}{    /// Function applies MG to the vector r for a full solve}}
 \DoxyCodeLine{\Hypertarget{geometric__multigrid_8h_source_l00781}\mbox{\hyperlink{classoomph_1_1MGPreconditioner_afa4c545cc49e9712e4d68f5c0275aefe}{00781}} \textcolor{comment}{}    \textcolor{keyword}{virtual} \textcolor{keywordtype}{void} \mbox{\hyperlink{classoomph_1_1MGPreconditioner_afa4c545cc49e9712e4d68f5c0275aefe}{preconditioner\_solve}}(\textcolor{keyword}{const} \mbox{\hyperlink{classoomph_1_1DoubleVector}{DoubleVector}}\& rhs, \mbox{\hyperlink{classoomph_1_1DoubleVector}{DoubleVector}}\& z)}
 \DoxyCodeLine{\Hypertarget{geometric__multigrid_8h_source_l00782}00782     \{}
 \DoxyCodeLine{\Hypertarget{geometric__multigrid_8h_source_l00783}00783 \textcolor{preprocessor}{\#ifdef PARANOID}}
@@ -964,7 +964,7 @@
 \DoxyCodeLine{\Hypertarget{geometric__multigrid_8h_source_l00960}00960   \} \textcolor{comment}{// End of full\_setup}}
 \DoxyCodeLine{\Hypertarget{geometric__multigrid_8h_source_l00961}00961 }
 \DoxyCodeLine{\Hypertarget{geometric__multigrid_8h_source_l00962}00962   \textcolor{comment}{//===================================================================}\textcolor{comment}{}}
-\DoxyCodeLine{\Hypertarget{geometric__multigrid_8h_source_l00963}00963 \textcolor{comment}{  ///  Set up the MG hierarchy}}
+\DoxyCodeLine{\Hypertarget{geometric__multigrid_8h_source_l00963}00963 \textcolor{comment}{  /// Set up the MG hierarchy}}
 \DoxyCodeLine{\Hypertarget{geometric__multigrid_8h_source_l00964}00964 \textcolor{comment}{}  \textcolor{comment}{//===================================================================}}
 \DoxyCodeLine{\Hypertarget{geometric__multigrid_8h_source_l00965}00965   \textcolor{comment}{// Function to set up the hierachy of levels. Creates a vector of}}
 \DoxyCodeLine{\Hypertarget{geometric__multigrid_8h_source_l00966}00966   \textcolor{comment}{// pointers to each MG level}}
@@ -1111,7 +1111,7 @@
 \DoxyCodeLine{\Hypertarget{geometric__multigrid_8h_source_l01107}01107   \} \textcolor{comment}{// End of setup\_mg\_hierarchy}}
 \DoxyCodeLine{\Hypertarget{geometric__multigrid_8h_source_l01108}01108 }
 \DoxyCodeLine{\Hypertarget{geometric__multigrid_8h_source_l01109}01109   \textcolor{comment}{//===================================================================}\textcolor{comment}{}}
-\DoxyCodeLine{\Hypertarget{geometric__multigrid_8h_source_l01110}01110 \textcolor{comment}{  ///  Set up the transfer matrices. Both the pure injection and}}
+\DoxyCodeLine{\Hypertarget{geometric__multigrid_8h_source_l01110}01110 \textcolor{comment}{  /// Set up the transfer matrices. Both the pure injection and}}
 \DoxyCodeLine{\Hypertarget{geometric__multigrid_8h_source_l01111}01111 \textcolor{comment}{  /// full weighting method have been implemented here but it is highly}}
 \DoxyCodeLine{\Hypertarget{geometric__multigrid_8h_source_l01112}01112 \textcolor{comment}{  /// recommended that full weighting is used in general. In both}}
 \DoxyCodeLine{\Hypertarget{geometric__multigrid_8h_source_l01113}01113 \textcolor{comment}{  /// methods the transpose of the transfer matrix is used to transfer}}
@@ -1176,7 +1176,7 @@
 \DoxyCodeLine{\Hypertarget{geometric__multigrid_8h_source_l01172}01172   \} \textcolor{comment}{// End of setup\_transfer\_matrices function}}
 \DoxyCodeLine{\Hypertarget{geometric__multigrid_8h_source_l01173}01173 }
 \DoxyCodeLine{\Hypertarget{geometric__multigrid_8h_source_l01174}01174   \textcolor{comment}{//===================================================================}\textcolor{comment}{}}
-\DoxyCodeLine{\Hypertarget{geometric__multigrid_8h_source_l01175}01175 \textcolor{comment}{  ///  Set up the MG hierarchy structures}}
+\DoxyCodeLine{\Hypertarget{geometric__multigrid_8h_source_l01175}01175 \textcolor{comment}{  /// Set up the MG hierarchy structures}}
 \DoxyCodeLine{\Hypertarget{geometric__multigrid_8h_source_l01176}01176 \textcolor{comment}{}  \textcolor{comment}{//===================================================================}}
 \DoxyCodeLine{\Hypertarget{geometric__multigrid_8h_source_l01177}01177   \textcolor{comment}{// Function to set up the hierachy of levels. Creates a vector of}}
 \DoxyCodeLine{\Hypertarget{geometric__multigrid_8h_source_l01178}01178   \textcolor{comment}{// pointers to each MG level}}
@@ -1358,7 +1358,7 @@
 \DoxyCodeLine{\Hypertarget{geometric__multigrid_8h_source_l01354}01354 }
 \DoxyCodeLine{\Hypertarget{geometric__multigrid_8h_source_l01355}01355 }
 \DoxyCodeLine{\Hypertarget{geometric__multigrid_8h_source_l01356}01356   \textcolor{comment}{//=========================================================================}\textcolor{comment}{}}
-\DoxyCodeLine{\Hypertarget{geometric__multigrid_8h_source_l01357}01357 \textcolor{comment}{  ///  Set up the smoothers on all levels}}
+\DoxyCodeLine{\Hypertarget{geometric__multigrid_8h_source_l01357}01357 \textcolor{comment}{  /// Set up the smoothers on all levels}}
 \DoxyCodeLine{\Hypertarget{geometric__multigrid_8h_source_l01358}01358 \textcolor{comment}{}  \textcolor{comment}{//=========================================================================}}
 \DoxyCodeLine{\Hypertarget{geometric__multigrid_8h_source_l01359}01359   \textcolor{keyword}{template}<\textcolor{keywordtype}{unsigned} DIM>}
 \DoxyCodeLine{\Hypertarget{geometric__multigrid_8h_source_l01360}\mbox{\hyperlink{classoomph_1_1MGSolver_a9b3674f92da65b8cacada47325107804}{01360}}   \textcolor{keywordtype}{void} \mbox{\hyperlink{classoomph_1_1MGSolver_a9b3674f92da65b8cacada47325107804}{MGSolver<DIM>::setup\_smoothers}}()}
@@ -1508,7 +1508,7 @@
 \DoxyCodeLine{\Hypertarget{geometric__multigrid_8h_source_l01504}01504 }
 \DoxyCodeLine{\Hypertarget{geometric__multigrid_8h_source_l01505}01505 }
 \DoxyCodeLine{\Hypertarget{geometric__multigrid_8h_source_l01506}01506   \textcolor{comment}{//===================================================================}\textcolor{comment}{}}
-\DoxyCodeLine{\Hypertarget{geometric__multigrid_8h_source_l01507}01507 \textcolor{comment}{  ///  Setup the interpolation matrices}}
+\DoxyCodeLine{\Hypertarget{geometric__multigrid_8h_source_l01507}01507 \textcolor{comment}{  /// Setup the interpolation matrices}}
 \DoxyCodeLine{\Hypertarget{geometric__multigrid_8h_source_l01508}01508 \textcolor{comment}{}  \textcolor{comment}{//===================================================================}}
 \DoxyCodeLine{\Hypertarget{geometric__multigrid_8h_source_l01509}01509   \textcolor{keyword}{template}<\textcolor{keywordtype}{unsigned} DIM>}
 \DoxyCodeLine{\Hypertarget{geometric__multigrid_8h_source_l01510}\mbox{\hyperlink{classoomph_1_1MGSolver_a368106b0ca8332ab5a6571b9421822e2}{01510}}   \textcolor{keywordtype}{void} \mbox{\hyperlink{classoomph_1_1MGSolver_a368106b0ca8332ab5a6571b9421822e2}{MGSolver<DIM>::setup\_interpolation\_matrices}}()}
@@ -1830,7 +1830,7 @@
 \DoxyCodeLine{\Hypertarget{geometric__multigrid_8h_source_l01826}01826   \} \textcolor{comment}{// End of setup\_interpolation\_matrices}}
 \DoxyCodeLine{\Hypertarget{geometric__multigrid_8h_source_l01827}01827 }
 \DoxyCodeLine{\Hypertarget{geometric__multigrid_8h_source_l01828}01828   \textcolor{comment}{//===================================================================}\textcolor{comment}{}}
-\DoxyCodeLine{\Hypertarget{geometric__multigrid_8h_source_l01829}01829 \textcolor{comment}{  ///  Setup the interpolation matrices}}
+\DoxyCodeLine{\Hypertarget{geometric__multigrid_8h_source_l01829}01829 \textcolor{comment}{  /// Setup the interpolation matrices}}
 \DoxyCodeLine{\Hypertarget{geometric__multigrid_8h_source_l01830}01830 \textcolor{comment}{}  \textcolor{comment}{//===================================================================}}
 \DoxyCodeLine{\Hypertarget{geometric__multigrid_8h_source_l01831}01831   \textcolor{keyword}{template}<\textcolor{keywordtype}{unsigned} DIM>}
 \DoxyCodeLine{\Hypertarget{geometric__multigrid_8h_source_l01832}\mbox{\hyperlink{classoomph_1_1MGSolver_a923c121b000fc5372664045c764b163f}{01832}}   \textcolor{keywordtype}{void} \mbox{\hyperlink{classoomph_1_1MGSolver_a923c121b000fc5372664045c764b163f}{MGSolver<DIM>::setup\_interpolation\_matrices\_unstructured}}()}
@@ -2015,7 +2015,7 @@
 \DoxyCodeLine{\Hypertarget{geometric__multigrid_8h_source_l02011}02011   \} \textcolor{comment}{// End of setup\_interpolation\_matrices\_unstructured}}
 \DoxyCodeLine{\Hypertarget{geometric__multigrid_8h_source_l02012}02012 }
 \DoxyCodeLine{\Hypertarget{geometric__multigrid_8h_source_l02013}02013   \textcolor{comment}{//===================================================================}\textcolor{comment}{}}
-\DoxyCodeLine{\Hypertarget{geometric__multigrid_8h_source_l02014}02014 \textcolor{comment}{  ///  Restrict residual (computed on current MG level) to}}
+\DoxyCodeLine{\Hypertarget{geometric__multigrid_8h_source_l02014}02014 \textcolor{comment}{  /// Restrict residual (computed on current MG level) to}}
 \DoxyCodeLine{\Hypertarget{geometric__multigrid_8h_source_l02015}02015 \textcolor{comment}{  /// next coarser mesh and stick it into the coarse mesh RHS vector}}
 \DoxyCodeLine{\Hypertarget{geometric__multigrid_8h_source_l02016}02016 \textcolor{comment}{  /// using the restriction matrix (if restrict\_flag=1) or the transpose}}
 \DoxyCodeLine{\Hypertarget{geometric__multigrid_8h_source_l02017}02017 \textcolor{comment}{  /// of the interpolation matrix (if restrict\_flag=2)}}
@@ -2040,7 +2040,7 @@
 \DoxyCodeLine{\Hypertarget{geometric__multigrid_8h_source_l02036}02036   \} \textcolor{comment}{// End of restrict\_residual}}
 \DoxyCodeLine{\Hypertarget{geometric__multigrid_8h_source_l02037}02037 }
 \DoxyCodeLine{\Hypertarget{geometric__multigrid_8h_source_l02038}02038   \textcolor{comment}{//===================================================================}\textcolor{comment}{}}
-\DoxyCodeLine{\Hypertarget{geometric__multigrid_8h_source_l02039}02039 \textcolor{comment}{  ///  Interpolate solution at current level onto}}
+\DoxyCodeLine{\Hypertarget{geometric__multigrid_8h_source_l02039}02039 \textcolor{comment}{  /// Interpolate solution at current level onto}}
 \DoxyCodeLine{\Hypertarget{geometric__multigrid_8h_source_l02040}02040 \textcolor{comment}{  /// next finer mesh and correct the solution x at that level}}
 \DoxyCodeLine{\Hypertarget{geometric__multigrid_8h_source_l02041}02041 \textcolor{comment}{}  \textcolor{comment}{//===================================================================}}
 \DoxyCodeLine{\Hypertarget{geometric__multigrid_8h_source_l02042}02042   \textcolor{keyword}{template}<\textcolor{keywordtype}{unsigned} DIM>}
@@ -2068,7 +2068,7 @@
 \DoxyCodeLine{\Hypertarget{geometric__multigrid_8h_source_l02064}02064   \} \textcolor{comment}{// End of interpolate\_and\_correct}}
 \DoxyCodeLine{\Hypertarget{geometric__multigrid_8h_source_l02065}02065 }
 \DoxyCodeLine{\Hypertarget{geometric__multigrid_8h_source_l02066}02066   \textcolor{comment}{//===================================================================}\textcolor{comment}{}}
-\DoxyCodeLine{\Hypertarget{geometric__multigrid_8h_source_l02067}02067 \textcolor{comment}{  ///  Modify the restriction matrices}}
+\DoxyCodeLine{\Hypertarget{geometric__multigrid_8h_source_l02067}02067 \textcolor{comment}{  /// Modify the restriction matrices}}
 \DoxyCodeLine{\Hypertarget{geometric__multigrid_8h_source_l02068}02068 \textcolor{comment}{}  \textcolor{comment}{//===================================================================}}
 \DoxyCodeLine{\Hypertarget{geometric__multigrid_8h_source_l02069}02069   \textcolor{keyword}{template}<\textcolor{keywordtype}{unsigned} DIM>}
 \DoxyCodeLine{\Hypertarget{geometric__multigrid_8h_source_l02070}\mbox{\hyperlink{classoomph_1_1MGSolver_ad31f3a5daa8edec01ab20c92e5fcca54}{02070}}   \textcolor{keywordtype}{void} \mbox{\hyperlink{classoomph_1_1MGSolver_ad31f3a5daa8edec01ab20c92e5fcca54}{MGSolver<DIM>::modify\_restriction\_matrices}}()}
@@ -2130,7 +2130,7 @@
 \DoxyCodeLine{\Hypertarget{geometric__multigrid_8h_source_l02126}02126   \} \textcolor{comment}{// End of modify\_restriction\_matrices}}
 \DoxyCodeLine{\Hypertarget{geometric__multigrid_8h_source_l02127}02127 }
 \DoxyCodeLine{\Hypertarget{geometric__multigrid_8h_source_l02128}02128   \textcolor{comment}{//===================================================================}\textcolor{comment}{}}
-\DoxyCodeLine{\Hypertarget{geometric__multigrid_8h_source_l02129}02129 \textcolor{comment}{  ///  Makes a vector, restricts it down the levels of the hierarchy}}
+\DoxyCodeLine{\Hypertarget{geometric__multigrid_8h_source_l02129}02129 \textcolor{comment}{  /// Makes a vector, restricts it down the levels of the hierarchy}}
 \DoxyCodeLine{\Hypertarget{geometric__multigrid_8h_source_l02130}02130 \textcolor{comment}{  /// and documents it at each level. After this is done the vector is}}
 \DoxyCodeLine{\Hypertarget{geometric__multigrid_8h_source_l02131}02131 \textcolor{comment}{  /// interpolated up the levels of the hierarchy with the output}}
 \DoxyCodeLine{\Hypertarget{geometric__multigrid_8h_source_l02132}02132 \textcolor{comment}{  /// being documented at each level}}
@@ -2216,7 +2216,7 @@
 \DoxyCodeLine{\Hypertarget{geometric__multigrid_8h_source_l02212}02212   \} \textcolor{comment}{// End of self\_test}}
 \DoxyCodeLine{\Hypertarget{geometric__multigrid_8h_source_l02213}02213 }
 \DoxyCodeLine{\Hypertarget{geometric__multigrid_8h_source_l02214}02214   \textcolor{comment}{//===================================================================}\textcolor{comment}{}}
-\DoxyCodeLine{\Hypertarget{geometric__multigrid_8h_source_l02215}02215 \textcolor{comment}{  ///  Sets the initial vector to be used in the restriction and}}
+\DoxyCodeLine{\Hypertarget{geometric__multigrid_8h_source_l02215}02215 \textcolor{comment}{  /// Sets the initial vector to be used in the restriction and}}
 \DoxyCodeLine{\Hypertarget{geometric__multigrid_8h_source_l02216}02216 \textcolor{comment}{  /// interpolation self-\/tests}}
 \DoxyCodeLine{\Hypertarget{geometric__multigrid_8h_source_l02217}02217 \textcolor{comment}{}  \textcolor{comment}{//===================================================================}}
 \DoxyCodeLine{\Hypertarget{geometric__multigrid_8h_source_l02218}02218   \textcolor{keyword}{template}<\textcolor{keywordtype}{unsigned} DIM>}
@@ -2303,7 +2303,7 @@
 \DoxyCodeLine{\Hypertarget{geometric__multigrid_8h_source_l02299}02299   \} \textcolor{comment}{// End of set\_self\_test\_vector}}
 \DoxyCodeLine{\Hypertarget{geometric__multigrid_8h_source_l02300}02300 }
 \DoxyCodeLine{\Hypertarget{geometric__multigrid_8h_source_l02301}02301   \textcolor{comment}{//===================================================================}\textcolor{comment}{}}
-\DoxyCodeLine{\Hypertarget{geometric__multigrid_8h_source_l02302}02302 \textcolor{comment}{  ///  Function which implements a self-\/test to restrict the}}
+\DoxyCodeLine{\Hypertarget{geometric__multigrid_8h_source_l02302}02302 \textcolor{comment}{  /// Function which implements a self-\/test to restrict the}}
 \DoxyCodeLine{\Hypertarget{geometric__multigrid_8h_source_l02303}02303 \textcolor{comment}{  /// residual vector down all of the coarser grids and output}}
 \DoxyCodeLine{\Hypertarget{geometric__multigrid_8h_source_l02304}02304 \textcolor{comment}{  /// the restricted vectors to file}}
 \DoxyCodeLine{\Hypertarget{geometric__multigrid_8h_source_l02305}02305 \textcolor{comment}{}  \textcolor{comment}{//===================================================================}}
@@ -2340,7 +2340,7 @@
 \DoxyCodeLine{\Hypertarget{geometric__multigrid_8h_source_l02336}02336   \} \textcolor{comment}{// End of restriction\_self\_test}}
 \DoxyCodeLine{\Hypertarget{geometric__multigrid_8h_source_l02337}02337 }
 \DoxyCodeLine{\Hypertarget{geometric__multigrid_8h_source_l02338}02338   \textcolor{comment}{//=======================================================================}\textcolor{comment}{}}
-\DoxyCodeLine{\Hypertarget{geometric__multigrid_8h_source_l02339}02339 \textcolor{comment}{  ///  Function which implements a self-\/test to interpolate a}}
+\DoxyCodeLine{\Hypertarget{geometric__multigrid_8h_source_l02339}02339 \textcolor{comment}{  /// Function which implements a self-\/test to interpolate a}}
 \DoxyCodeLine{\Hypertarget{geometric__multigrid_8h_source_l02340}02340 \textcolor{comment}{  /// vector up all of levels of the MG hierarchy and outputs the}}
 \DoxyCodeLine{\Hypertarget{geometric__multigrid_8h_source_l02341}02341 \textcolor{comment}{  /// restricted vectors to file}}
 \DoxyCodeLine{\Hypertarget{geometric__multigrid_8h_source_l02342}02342 \textcolor{comment}{}  \textcolor{comment}{//=======================================================================}}
@@ -2376,7 +2376,7 @@
 \DoxyCodeLine{\Hypertarget{geometric__multigrid_8h_source_l02372}02372   \} \textcolor{comment}{// End of interpolation\_self\_test}}
 \DoxyCodeLine{\Hypertarget{geometric__multigrid_8h_source_l02373}02373 }
 \DoxyCodeLine{\Hypertarget{geometric__multigrid_8h_source_l02374}02374   \textcolor{comment}{//===================================================================}\textcolor{comment}{}}
-\DoxyCodeLine{\Hypertarget{geometric__multigrid_8h_source_l02375}02375 \textcolor{comment}{  ///  Plots the input vector (assuming we're dealing with scalar}}
+\DoxyCodeLine{\Hypertarget{geometric__multigrid_8h_source_l02375}02375 \textcolor{comment}{  /// Plots the input vector (assuming we're dealing with scalar}}
 \DoxyCodeLine{\Hypertarget{geometric__multigrid_8h_source_l02376}02376 \textcolor{comment}{  /// nodal data, otherwise I don't know how to implement this...)}}
 \DoxyCodeLine{\Hypertarget{geometric__multigrid_8h_source_l02377}02377 \textcolor{comment}{}  \textcolor{comment}{//===================================================================}}
 \DoxyCodeLine{\Hypertarget{geometric__multigrid_8h_source_l02378}02378   \textcolor{keyword}{template}<\textcolor{keywordtype}{unsigned} DIM>}
@@ -2523,7 +2523,7 @@
 \DoxyCodeLine{\Hypertarget{geometric__multigrid_8h_source_l02519}02519   \} \textcolor{comment}{// End of plot}}
 \DoxyCodeLine{\Hypertarget{geometric__multigrid_8h_source_l02520}02520 }
 \DoxyCodeLine{\Hypertarget{geometric__multigrid_8h_source_l02521}02521   \textcolor{comment}{//===================================================================}\textcolor{comment}{}}
-\DoxyCodeLine{\Hypertarget{geometric__multigrid_8h_source_l02522}02522 \textcolor{comment}{  ///  Linear solver}}
+\DoxyCodeLine{\Hypertarget{geometric__multigrid_8h_source_l02522}02522 \textcolor{comment}{  /// Linear solver}}
 \DoxyCodeLine{\Hypertarget{geometric__multigrid_8h_source_l02523}02523 \textcolor{comment}{}  \textcolor{comment}{//===================================================================}}
 \DoxyCodeLine{\Hypertarget{geometric__multigrid_8h_source_l02524}02524   \textcolor{keyword}{template}<\textcolor{keywordtype}{unsigned} DIM>}
 \DoxyCodeLine{\Hypertarget{geometric__multigrid_8h_source_l02525}\mbox{\hyperlink{classoomph_1_1MGSolver_a70f1090e0673b8f9c4b87080adff0e2f}{02525}}   \textcolor{keywordtype}{void} \mbox{\hyperlink{classoomph_1_1MGSolver_a70f1090e0673b8f9c4b87080adff0e2f}{MGSolver<DIM>::mg\_solve}}(\mbox{\hyperlink{classoomph_1_1DoubleVector}{DoubleVector}}\& result)}

@@ -61,7 +61,7 @@ namespace oomph
                             Vector<double>& result);
 
   protected:
-    ///  The "global" intrinsic coordinate of the element when
+    /// The "global" intrinsic coordinate of the element when
     /// viewed as part of a geometric object should be given by
     /// the FaceElement representation, by default
     double zeta_nodal(const unsigned& n,
@@ -71,7 +71,7 @@ namespace oomph
       return FaceElement::zeta_nodal(n, k, i);
     }
 
-    ///  Access function that returns the local equation numbers
+    /// Access function that returns the local equation numbers
     /// for velocity components.
     /// u_local_eqn(n,i) = local equation number or < 0 if pinned.
     /// The default is to asssume that n is the local node number
@@ -349,7 +349,7 @@ namespace oomph
     ~RefineableNavierStokesTractionElement() {}
 
 
-    ///  Number of continuously interpolated values are the
+    /// Number of continuously interpolated values are the
     /// same as those in the bulk element.
     unsigned ncont_interpolated_values() const
     {

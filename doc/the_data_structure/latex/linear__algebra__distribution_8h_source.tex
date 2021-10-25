@@ -51,7 +51,7 @@
 \DoxyCodeLine{\Hypertarget{linear__algebra__distribution_8h_source_l00047}00047 \textcolor{keyword}{namespace }\mbox{\hyperlink{namespaceoomph}{oomph}}}
 \DoxyCodeLine{\Hypertarget{linear__algebra__distribution_8h_source_l00048}00048 \{}
 \DoxyCodeLine{\Hypertarget{linear__algebra__distribution_8h_source_l00049}00049   \textcolor{comment}{//=============================================================================}\textcolor{comment}{}}
-\DoxyCodeLine{\Hypertarget{linear__algebra__distribution_8h_source_l00050}00050 \textcolor{comment}{  ///  Describes the distribution of a distributable linear algebra type}}
+\DoxyCodeLine{\Hypertarget{linear__algebra__distribution_8h_source_l00050}00050 \textcolor{comment}{  /// Describes the distribution of a distributable linear algebra type}}
 \DoxyCodeLine{\Hypertarget{linear__algebra__distribution_8h_source_l00051}00051 \textcolor{comment}{  /// object. Typically this is a container (such as a DoubleVector) or an}}
 \DoxyCodeLine{\Hypertarget{linear__algebra__distribution_8h_source_l00052}00052 \textcolor{comment}{  /// operator (e.g Preconditioner or LinearSolver).}}
 \DoxyCodeLine{\Hypertarget{linear__algebra__distribution_8h_source_l00053}00053 \textcolor{comment}{  /// This object is used in both serial and parallel implementations. In the}}
@@ -67,11 +67,11 @@
 \DoxyCodeLine{\Hypertarget{linear__algebra__distribution_8h_source_l00063}\mbox{\hyperlink{classoomph_1_1LinearAlgebraDistribution}{00063}}   \textcolor{keyword}{class }\mbox{\hyperlink{classoomph_1_1LinearAlgebraDistribution}{LinearAlgebraDistribution}}}
 \DoxyCodeLine{\Hypertarget{linear__algebra__distribution_8h_source_l00064}00064   \{}
 \DoxyCodeLine{\Hypertarget{linear__algebra__distribution_8h_source_l00065}00065   \textcolor{keyword}{public}:\textcolor{comment}{}}
-\DoxyCodeLine{\Hypertarget{linear__algebra__distribution_8h_source_l00066}00066 \textcolor{comment}{    ///  Default Constructor -\/ creates a Distribution that has not been}}
+\DoxyCodeLine{\Hypertarget{linear__algebra__distribution_8h_source_l00066}00066 \textcolor{comment}{    /// Default Constructor -\/ creates a Distribution that has not been}}
 \DoxyCodeLine{\Hypertarget{linear__algebra__distribution_8h_source_l00067}00067 \textcolor{comment}{    /// setup}}
 \DoxyCodeLine{\Hypertarget{linear__algebra__distribution_8h_source_l00068}\mbox{\hyperlink{classoomph_1_1LinearAlgebraDistribution_ad1f6bbede398679d0e257abebae17951}{00068}} \textcolor{comment}{}    \mbox{\hyperlink{classoomph_1_1LinearAlgebraDistribution_ad1f6bbede398679d0e257abebae17951}{LinearAlgebraDistribution}}() : \mbox{\hyperlink{classoomph_1_1LinearAlgebraDistribution_a4ed739bdcab7465b2e7651a9e2a23ed8}{Comm\_pt}}(0) \{\}}
 \DoxyCodeLine{\Hypertarget{linear__algebra__distribution_8h_source_l00069}00069 \textcolor{comment}{}}
-\DoxyCodeLine{\Hypertarget{linear__algebra__distribution_8h_source_l00070}00070 \textcolor{comment}{    ///  Constructor. Takes the first\_row, nrow\_local (both for this}}
+\DoxyCodeLine{\Hypertarget{linear__algebra__distribution_8h_source_l00070}00070 \textcolor{comment}{    /// Constructor. Takes the first\_row, nrow\_local (both for this}}
 \DoxyCodeLine{\Hypertarget{linear__algebra__distribution_8h_source_l00071}00071 \textcolor{comment}{    /// processor) and nrow as arguments. If nrow is not provided}}
 \DoxyCodeLine{\Hypertarget{linear__algebra__distribution_8h_source_l00072}00072 \textcolor{comment}{    /// or equal to 0 then it will be computed automatically}}
 \DoxyCodeLine{\Hypertarget{linear__algebra__distribution_8h_source_l00073}\mbox{\hyperlink{classoomph_1_1LinearAlgebraDistribution_ae8714449bcd3d63c7bb7ebe7e6e01c7a}{00073}} \textcolor{comment}{}    \mbox{\hyperlink{classoomph_1_1LinearAlgebraDistribution_ae8714449bcd3d63c7bb7ebe7e6e01c7a}{LinearAlgebraDistribution}}(\textcolor{keyword}{const} \mbox{\hyperlink{classoomph_1_1OomphCommunicator}{OomphCommunicator}}\& comm,}
@@ -83,7 +83,7 @@
 \DoxyCodeLine{\Hypertarget{linear__algebra__distribution_8h_source_l00079}00079       this-\/>\mbox{\hyperlink{classoomph_1_1LinearAlgebraDistribution_a3cab441019e738e4c6db6ee22dd71515}{build}}(\&comm, first\_row\_, n\_row\_local, n\_row);}
 \DoxyCodeLine{\Hypertarget{linear__algebra__distribution_8h_source_l00080}00080     \};}
 \DoxyCodeLine{\Hypertarget{linear__algebra__distribution_8h_source_l00081}00081 \textcolor{comment}{}}
-\DoxyCodeLine{\Hypertarget{linear__algebra__distribution_8h_source_l00082}00082 \textcolor{comment}{    ///  Constructor. Takes the number of global rows and uniformly}}
+\DoxyCodeLine{\Hypertarget{linear__algebra__distribution_8h_source_l00082}00082 \textcolor{comment}{    /// Constructor. Takes the number of global rows and uniformly}}
 \DoxyCodeLine{\Hypertarget{linear__algebra__distribution_8h_source_l00083}00083 \textcolor{comment}{    /// distributes them over the processors if distributed = true (default),}}
 \DoxyCodeLine{\Hypertarget{linear__algebra__distribution_8h_source_l00084}00084 \textcolor{comment}{    /// if distributed = false then every row is duplicated on every processor}}
 \DoxyCodeLine{\Hypertarget{linear__algebra__distribution_8h_source_l00085}\mbox{\hyperlink{classoomph_1_1LinearAlgebraDistribution_a65474439fb8537b2236f933c9225142a}{00085}} \textcolor{comment}{}    \mbox{\hyperlink{classoomph_1_1LinearAlgebraDistribution_a65474439fb8537b2236f933c9225142a}{LinearAlgebraDistribution}}(\textcolor{keyword}{const} \mbox{\hyperlink{classoomph_1_1OomphCommunicator}{OomphCommunicator}}\& comm,}
@@ -94,7 +94,7 @@
 \DoxyCodeLine{\Hypertarget{linear__algebra__distribution_8h_source_l00090}00090       this-\/>\mbox{\hyperlink{classoomph_1_1LinearAlgebraDistribution_a3cab441019e738e4c6db6ee22dd71515}{build}}(\&comm, n\_row, distributed\_);}
 \DoxyCodeLine{\Hypertarget{linear__algebra__distribution_8h_source_l00091}00091     \};}
 \DoxyCodeLine{\Hypertarget{linear__algebra__distribution_8h_source_l00092}00092 \textcolor{comment}{}}
-\DoxyCodeLine{\Hypertarget{linear__algebra__distribution_8h_source_l00093}00093 \textcolor{comment}{    ///  Constructor. Takes the first\_row, nrow\_local (both for this}}
+\DoxyCodeLine{\Hypertarget{linear__algebra__distribution_8h_source_l00093}00093 \textcolor{comment}{    /// Constructor. Takes the first\_row, nrow\_local (both for this}}
 \DoxyCodeLine{\Hypertarget{linear__algebra__distribution_8h_source_l00094}00094 \textcolor{comment}{    /// processor) and nrow as arguments. If nrow is not provided}}
 \DoxyCodeLine{\Hypertarget{linear__algebra__distribution_8h_source_l00095}00095 \textcolor{comment}{    /// or equal to 0 then it will be computed automatically}}
 \DoxyCodeLine{\Hypertarget{linear__algebra__distribution_8h_source_l00096}\mbox{\hyperlink{classoomph_1_1LinearAlgebraDistribution_a1fcec07ae49b0cb9799dcc87cc0d9ffe}{00096}} \textcolor{comment}{}    \mbox{\hyperlink{classoomph_1_1LinearAlgebraDistribution_a1fcec07ae49b0cb9799dcc87cc0d9ffe}{LinearAlgebraDistribution}}(\textcolor{keyword}{const} \mbox{\hyperlink{classoomph_1_1OomphCommunicator}{OomphCommunicator}}* \textcolor{keyword}{const} comm\_pt,}
@@ -106,7 +106,7 @@
 \DoxyCodeLine{\Hypertarget{linear__algebra__distribution_8h_source_l00102}00102       this-\/>\mbox{\hyperlink{classoomph_1_1LinearAlgebraDistribution_a3cab441019e738e4c6db6ee22dd71515}{build}}(comm\_pt, first\_row\_, n\_row\_local, n\_row);}
 \DoxyCodeLine{\Hypertarget{linear__algebra__distribution_8h_source_l00103}00103     \};}
 \DoxyCodeLine{\Hypertarget{linear__algebra__distribution_8h_source_l00104}00104 \textcolor{comment}{}}
-\DoxyCodeLine{\Hypertarget{linear__algebra__distribution_8h_source_l00105}00105 \textcolor{comment}{    ///  Constructor. Takes the number of global rows and uniformly}}
+\DoxyCodeLine{\Hypertarget{linear__algebra__distribution_8h_source_l00105}00105 \textcolor{comment}{    /// Constructor. Takes the number of global rows and uniformly}}
 \DoxyCodeLine{\Hypertarget{linear__algebra__distribution_8h_source_l00106}00106 \textcolor{comment}{    /// distributes them over the processors if distributed = true (default),}}
 \DoxyCodeLine{\Hypertarget{linear__algebra__distribution_8h_source_l00107}00107 \textcolor{comment}{    /// if distributed = false then every row is duplicated on every processor}}
 \DoxyCodeLine{\Hypertarget{linear__algebra__distribution_8h_source_l00108}\mbox{\hyperlink{classoomph_1_1LinearAlgebraDistribution_a5bb5b3cfbe3b635779066e5a3e00be6e}{00108}} \textcolor{comment}{}    \mbox{\hyperlink{classoomph_1_1LinearAlgebraDistribution_a5bb5b3cfbe3b635779066e5a3e00be6e}{LinearAlgebraDistribution}}(\textcolor{keyword}{const} \mbox{\hyperlink{classoomph_1_1OomphCommunicator}{OomphCommunicator}}* \textcolor{keyword}{const} comm\_pt,}
@@ -117,21 +117,21 @@
 \DoxyCodeLine{\Hypertarget{linear__algebra__distribution_8h_source_l00113}00113       this-\/>\mbox{\hyperlink{classoomph_1_1LinearAlgebraDistribution_a3cab441019e738e4c6db6ee22dd71515}{build}}(comm\_pt, n\_row, distributed\_);}
 \DoxyCodeLine{\Hypertarget{linear__algebra__distribution_8h_source_l00114}00114     \};}
 \DoxyCodeLine{\Hypertarget{linear__algebra__distribution_8h_source_l00115}00115 \textcolor{comment}{}}
-\DoxyCodeLine{\Hypertarget{linear__algebra__distribution_8h_source_l00116}00116 \textcolor{comment}{    ///  Copy Constructor.}}
+\DoxyCodeLine{\Hypertarget{linear__algebra__distribution_8h_source_l00116}00116 \textcolor{comment}{    /// Copy Constructor.}}
 \DoxyCodeLine{\Hypertarget{linear__algebra__distribution_8h_source_l00117}\mbox{\hyperlink{classoomph_1_1LinearAlgebraDistribution_ad1857bf3eaab8d87991b651f7a52d4ff}{00117}} \textcolor{comment}{}    \mbox{\hyperlink{classoomph_1_1LinearAlgebraDistribution_ad1857bf3eaab8d87991b651f7a52d4ff}{LinearAlgebraDistribution}}(\textcolor{keyword}{const} \mbox{\hyperlink{classoomph_1_1LinearAlgebraDistribution}{LinearAlgebraDistribution}}\& old\_dist)}
 \DoxyCodeLine{\Hypertarget{linear__algebra__distribution_8h_source_l00118}00118       : \mbox{\hyperlink{classoomph_1_1LinearAlgebraDistribution_a4ed739bdcab7465b2e7651a9e2a23ed8}{Comm\_pt}}(0)}
 \DoxyCodeLine{\Hypertarget{linear__algebra__distribution_8h_source_l00119}00119     \{}
 \DoxyCodeLine{\Hypertarget{linear__algebra__distribution_8h_source_l00120}00120       this-\/>\mbox{\hyperlink{classoomph_1_1LinearAlgebraDistribution_a3cab441019e738e4c6db6ee22dd71515}{build}}(old\_dist);}
 \DoxyCodeLine{\Hypertarget{linear__algebra__distribution_8h_source_l00121}00121     \}}
 \DoxyCodeLine{\Hypertarget{linear__algebra__distribution_8h_source_l00122}00122 \textcolor{comment}{}}
-\DoxyCodeLine{\Hypertarget{linear__algebra__distribution_8h_source_l00123}00123 \textcolor{comment}{    ///  pointer based copy constructor}}
+\DoxyCodeLine{\Hypertarget{linear__algebra__distribution_8h_source_l00123}00123 \textcolor{comment}{    /// pointer based copy constructor}}
 \DoxyCodeLine{\Hypertarget{linear__algebra__distribution_8h_source_l00124}\mbox{\hyperlink{classoomph_1_1LinearAlgebraDistribution_ad7984b69feba8f8797f60639dc962fe4}{00124}} \textcolor{comment}{}    \mbox{\hyperlink{classoomph_1_1LinearAlgebraDistribution_ad7984b69feba8f8797f60639dc962fe4}{LinearAlgebraDistribution}}(\textcolor{keyword}{const} \mbox{\hyperlink{classoomph_1_1LinearAlgebraDistribution}{LinearAlgebraDistribution}}* old\_dist\_pt)}
 \DoxyCodeLine{\Hypertarget{linear__algebra__distribution_8h_source_l00125}00125       : \mbox{\hyperlink{classoomph_1_1LinearAlgebraDistribution_a4ed739bdcab7465b2e7651a9e2a23ed8}{Comm\_pt}}(0)}
 \DoxyCodeLine{\Hypertarget{linear__algebra__distribution_8h_source_l00126}00126     \{}
 \DoxyCodeLine{\Hypertarget{linear__algebra__distribution_8h_source_l00127}00127       this-\/>\mbox{\hyperlink{classoomph_1_1LinearAlgebraDistribution_a3cab441019e738e4c6db6ee22dd71515}{build}}(old\_dist\_pt);}
 \DoxyCodeLine{\Hypertarget{linear__algebra__distribution_8h_source_l00128}00128     \}}
 \DoxyCodeLine{\Hypertarget{linear__algebra__distribution_8h_source_l00129}00129 \textcolor{comment}{}}
-\DoxyCodeLine{\Hypertarget{linear__algebra__distribution_8h_source_l00130}00130 \textcolor{comment}{    ///  Destructor}}
+\DoxyCodeLine{\Hypertarget{linear__algebra__distribution_8h_source_l00130}00130 \textcolor{comment}{    /// Destructor}}
 \DoxyCodeLine{\Hypertarget{linear__algebra__distribution_8h_source_l00131}\mbox{\hyperlink{classoomph_1_1LinearAlgebraDistribution_a3d4a398895bcdd1a66493ac555cd6dee}{00131}} \textcolor{comment}{}    \mbox{\hyperlink{classoomph_1_1LinearAlgebraDistribution_a3d4a398895bcdd1a66493ac555cd6dee}{\string~LinearAlgebraDistribution}}()}
 \DoxyCodeLine{\Hypertarget{linear__algebra__distribution_8h_source_l00132}00132     \{}
 \DoxyCodeLine{\Hypertarget{linear__algebra__distribution_8h_source_l00133}00133       \textcolor{keyword}{delete} \mbox{\hyperlink{classoomph_1_1LinearAlgebraDistribution_a4ed739bdcab7465b2e7651a9e2a23ed8}{Comm\_pt}};}
@@ -143,7 +143,7 @@
 \DoxyCodeLine{\Hypertarget{linear__algebra__distribution_8h_source_l00139}00139       this-\/>\mbox{\hyperlink{classoomph_1_1LinearAlgebraDistribution_a3cab441019e738e4c6db6ee22dd71515}{build}}(old\_dist);}
 \DoxyCodeLine{\Hypertarget{linear__algebra__distribution_8h_source_l00140}00140     \}}
 \DoxyCodeLine{\Hypertarget{linear__algebra__distribution_8h_source_l00141}00141 \textcolor{comment}{}}
-\DoxyCodeLine{\Hypertarget{linear__algebra__distribution_8h_source_l00142}00142 \textcolor{comment}{    ///  Sets the distribution. Takes first\_row, nrow\_local and}}
+\DoxyCodeLine{\Hypertarget{linear__algebra__distribution_8h_source_l00142}00142 \textcolor{comment}{    /// Sets the distribution. Takes first\_row, nrow\_local and}}
 \DoxyCodeLine{\Hypertarget{linear__algebra__distribution_8h_source_l00143}00143 \textcolor{comment}{    /// nrow as arguments. If nrow is not provided or equal to}}
 \DoxyCodeLine{\Hypertarget{linear__algebra__distribution_8h_source_l00144}00144 \textcolor{comment}{    /// 0 then it is computed automatically}}
 \DoxyCodeLine{\Hypertarget{linear__algebra__distribution_8h_source_l00145}00145 \textcolor{comment}{}    \textcolor{keywordtype}{void} \mbox{\hyperlink{classoomph_1_1LinearAlgebraDistribution_a3cab441019e738e4c6db6ee22dd71515}{build}}(\textcolor{keyword}{const} \mbox{\hyperlink{classoomph_1_1OomphCommunicator}{OomphCommunicator}}* \textcolor{keyword}{const} comm\_pt,}
@@ -151,7 +151,7 @@
 \DoxyCodeLine{\Hypertarget{linear__algebra__distribution_8h_source_l00147}00147                \textcolor{keyword}{const} \textcolor{keywordtype}{unsigned}\& \mbox{\hyperlink{classoomph_1_1LinearAlgebraDistribution_ac9310de740f9c3a61f8d5dab9bef88ca}{nrow\_local}},}
 \DoxyCodeLine{\Hypertarget{linear__algebra__distribution_8h_source_l00148}00148                \textcolor{keyword}{const} \textcolor{keywordtype}{unsigned}\& \mbox{\hyperlink{classoomph_1_1LinearAlgebraDistribution_aafad0b69de2284808366b65bd63e493b}{nrow}} = 0);}
 \DoxyCodeLine{\Hypertarget{linear__algebra__distribution_8h_source_l00149}00149 \textcolor{comment}{}}
-\DoxyCodeLine{\Hypertarget{linear__algebra__distribution_8h_source_l00150}00150 \textcolor{comment}{    ///  Build the LinearAlgebraDistribution. if distributed = true}}
+\DoxyCodeLine{\Hypertarget{linear__algebra__distribution_8h_source_l00150}00150 \textcolor{comment}{    /// Build the LinearAlgebraDistribution. if distributed = true}}
 \DoxyCodeLine{\Hypertarget{linear__algebra__distribution_8h_source_l00151}00151 \textcolor{comment}{    /// (default) then uniformly distribute nrow over all processors where}}
 \DoxyCodeLine{\Hypertarget{linear__algebra__distribution_8h_source_l00152}00152 \textcolor{comment}{    /// processors 0 holds approximately the first nrow/n\_proc, processor}}
 \DoxyCodeLine{\Hypertarget{linear__algebra__distribution_8h_source_l00153}00153 \textcolor{comment}{    /// 1 holds the next nrow/n\_proc and so on... or if distributed = false}}
@@ -160,18 +160,18 @@
 \DoxyCodeLine{\Hypertarget{linear__algebra__distribution_8h_source_l00156}00156                \textcolor{keyword}{const} \textcolor{keywordtype}{unsigned}\& \mbox{\hyperlink{classoomph_1_1LinearAlgebraDistribution_aafad0b69de2284808366b65bd63e493b}{nrow}},}
 \DoxyCodeLine{\Hypertarget{linear__algebra__distribution_8h_source_l00157}00157                \textcolor{keyword}{const} \textcolor{keywordtype}{bool}\& \mbox{\hyperlink{classoomph_1_1LinearAlgebraDistribution_a05842d032d28880ae37951deae804ad8}{distributed}} = \textcolor{keyword}{true});}
 \DoxyCodeLine{\Hypertarget{linear__algebra__distribution_8h_source_l00158}00158 \textcolor{comment}{}}
-\DoxyCodeLine{\Hypertarget{linear__algebra__distribution_8h_source_l00159}00159 \textcolor{comment}{    ///  Copy the argument distribution.}}
+\DoxyCodeLine{\Hypertarget{linear__algebra__distribution_8h_source_l00159}00159 \textcolor{comment}{    /// Copy the argument distribution.}}
 \DoxyCodeLine{\Hypertarget{linear__algebra__distribution_8h_source_l00160}00160 \textcolor{comment}{    /// Also a helper method for the =assignment operator and copy constructor}}
 \DoxyCodeLine{\Hypertarget{linear__algebra__distribution_8h_source_l00161}00161 \textcolor{comment}{}    \textcolor{keywordtype}{void} \mbox{\hyperlink{classoomph_1_1LinearAlgebraDistribution_a3cab441019e738e4c6db6ee22dd71515}{build}}(\textcolor{keyword}{const} \mbox{\hyperlink{classoomph_1_1LinearAlgebraDistribution}{LinearAlgebraDistribution}}\& new\_dist);}
 \DoxyCodeLine{\Hypertarget{linear__algebra__distribution_8h_source_l00162}00162 \textcolor{comment}{}}
-\DoxyCodeLine{\Hypertarget{linear__algebra__distribution_8h_source_l00163}00163 \textcolor{comment}{    ///  Copy the argument distribution.}}
+\DoxyCodeLine{\Hypertarget{linear__algebra__distribution_8h_source_l00163}00163 \textcolor{comment}{    /// Copy the argument distribution.}}
 \DoxyCodeLine{\Hypertarget{linear__algebra__distribution_8h_source_l00164}00164 \textcolor{comment}{    /// Also a helper method for the =assignment operator and copy constructor}}
 \DoxyCodeLine{\Hypertarget{linear__algebra__distribution_8h_source_l00165}\mbox{\hyperlink{classoomph_1_1LinearAlgebraDistribution_ae1ac321822ddea9a156dc46a1d3bad86}{00165}} \textcolor{comment}{}    \textcolor{keywordtype}{void} \mbox{\hyperlink{classoomph_1_1LinearAlgebraDistribution_ae1ac321822ddea9a156dc46a1d3bad86}{build}}(\textcolor{keyword}{const} \mbox{\hyperlink{classoomph_1_1LinearAlgebraDistribution}{LinearAlgebraDistribution}}* new\_dist\_pt)}
 \DoxyCodeLine{\Hypertarget{linear__algebra__distribution_8h_source_l00166}00166     \{}
 \DoxyCodeLine{\Hypertarget{linear__algebra__distribution_8h_source_l00167}00167       this-\/>\mbox{\hyperlink{classoomph_1_1LinearAlgebraDistribution_a3cab441019e738e4c6db6ee22dd71515}{build}}(*new\_dist\_pt);}
 \DoxyCodeLine{\Hypertarget{linear__algebra__distribution_8h_source_l00168}00168     \}}
 \DoxyCodeLine{\Hypertarget{linear__algebra__distribution_8h_source_l00169}00169 \textcolor{comment}{}}
-\DoxyCodeLine{\Hypertarget{linear__algebra__distribution_8h_source_l00170}00170 \textcolor{comment}{    ///  clears the distribution}}
+\DoxyCodeLine{\Hypertarget{linear__algebra__distribution_8h_source_l00170}00170 \textcolor{comment}{    /// clears the distribution}}
 \DoxyCodeLine{\Hypertarget{linear__algebra__distribution_8h_source_l00171}\mbox{\hyperlink{classoomph_1_1LinearAlgebraDistribution_ac23e08b5c10d041a01bead478573a8ea}{00171}} \textcolor{comment}{}    \textcolor{keywordtype}{void} \mbox{\hyperlink{classoomph_1_1LinearAlgebraDistribution_ac23e08b5c10d041a01bead478573a8ea}{clear}}()}
 \DoxyCodeLine{\Hypertarget{linear__algebra__distribution_8h_source_l00172}00172     \{}
 \DoxyCodeLine{\Hypertarget{linear__algebra__distribution_8h_source_l00173}00173       \textcolor{comment}{// delete the communicator}}
@@ -186,13 +186,13 @@
 \DoxyCodeLine{\Hypertarget{linear__algebra__distribution_8h_source_l00182}00182       \mbox{\hyperlink{classoomph_1_1LinearAlgebraDistribution_a59d82db90a05edbf0444a31cc6b8f0b2}{Nrow}} = 0;}
 \DoxyCodeLine{\Hypertarget{linear__algebra__distribution_8h_source_l00183}00183     \}}
 \DoxyCodeLine{\Hypertarget{linear__algebra__distribution_8h_source_l00184}00184 \textcolor{comment}{}}
-\DoxyCodeLine{\Hypertarget{linear__algebra__distribution_8h_source_l00185}00185 \textcolor{comment}{    ///  access function to the number of global rows.}}
+\DoxyCodeLine{\Hypertarget{linear__algebra__distribution_8h_source_l00185}00185 \textcolor{comment}{    /// access function to the number of global rows.}}
 \DoxyCodeLine{\Hypertarget{linear__algebra__distribution_8h_source_l00186}\mbox{\hyperlink{classoomph_1_1LinearAlgebraDistribution_aafad0b69de2284808366b65bd63e493b}{00186}} \textcolor{comment}{}    \textcolor{keywordtype}{unsigned} \mbox{\hyperlink{classoomph_1_1LinearAlgebraDistribution_aafad0b69de2284808366b65bd63e493b}{nrow}}()\textcolor{keyword}{ const}}
 \DoxyCodeLine{\Hypertarget{linear__algebra__distribution_8h_source_l00187}00187 \textcolor{keyword}{    }\{}
 \DoxyCodeLine{\Hypertarget{linear__algebra__distribution_8h_source_l00188}00188       \textcolor{keywordflow}{return} \mbox{\hyperlink{classoomph_1_1LinearAlgebraDistribution_a59d82db90a05edbf0444a31cc6b8f0b2}{Nrow}};}
 \DoxyCodeLine{\Hypertarget{linear__algebra__distribution_8h_source_l00189}00189     \}}
 \DoxyCodeLine{\Hypertarget{linear__algebra__distribution_8h_source_l00190}00190 \textcolor{comment}{}}
-\DoxyCodeLine{\Hypertarget{linear__algebra__distribution_8h_source_l00191}00191 \textcolor{comment}{    ///  access function for the num of local rows on this processor. If}}
+\DoxyCodeLine{\Hypertarget{linear__algebra__distribution_8h_source_l00191}00191 \textcolor{comment}{    /// access function for the num of local rows on this processor. If}}
 \DoxyCodeLine{\Hypertarget{linear__algebra__distribution_8h_source_l00192}00192 \textcolor{comment}{    /// no MPI then Nrow is returned.}}
 \DoxyCodeLine{\Hypertarget{linear__algebra__distribution_8h_source_l00193}\mbox{\hyperlink{classoomph_1_1LinearAlgebraDistribution_ac9310de740f9c3a61f8d5dab9bef88ca}{00193}} \textcolor{comment}{}    \textcolor{keywordtype}{unsigned} \mbox{\hyperlink{classoomph_1_1LinearAlgebraDistribution_ac9310de740f9c3a61f8d5dab9bef88ca}{nrow\_local}}()\textcolor{keyword}{ const}}
 \DoxyCodeLine{\Hypertarget{linear__algebra__distribution_8h_source_l00194}00194 \textcolor{keyword}{    }\{}
@@ -221,7 +221,7 @@
 \DoxyCodeLine{\Hypertarget{linear__algebra__distribution_8h_source_l00217}00217 \textcolor{preprocessor}{\#endif}}
 \DoxyCodeLine{\Hypertarget{linear__algebra__distribution_8h_source_l00218}00218     \}}
 \DoxyCodeLine{\Hypertarget{linear__algebra__distribution_8h_source_l00219}00219 \textcolor{comment}{}}
-\DoxyCodeLine{\Hypertarget{linear__algebra__distribution_8h_source_l00220}00220 \textcolor{comment}{    ///  access function for the num of local rows on this processor. If}}
+\DoxyCodeLine{\Hypertarget{linear__algebra__distribution_8h_source_l00220}00220 \textcolor{comment}{    /// access function for the num of local rows on this processor. If}}
 \DoxyCodeLine{\Hypertarget{linear__algebra__distribution_8h_source_l00221}00221 \textcolor{comment}{    /// no MPI the nrow is returned}}
 \DoxyCodeLine{\Hypertarget{linear__algebra__distribution_8h_source_l00222}\mbox{\hyperlink{classoomph_1_1LinearAlgebraDistribution_aa58810320f461524a5e1181be3477fe7}{00222}} \textcolor{comment}{}    \textcolor{keywordtype}{unsigned} \mbox{\hyperlink{classoomph_1_1LinearAlgebraDistribution_aa58810320f461524a5e1181be3477fe7}{nrow\_local}}(\textcolor{keyword}{const} \textcolor{keywordtype}{unsigned}\& p)\textcolor{keyword}{ const}}
 \DoxyCodeLine{\Hypertarget{linear__algebra__distribution_8h_source_l00223}00223 \textcolor{keyword}{    }\{}
@@ -260,7 +260,7 @@
 \DoxyCodeLine{\Hypertarget{linear__algebra__distribution_8h_source_l00256}00256 \textcolor{preprocessor}{\#endif}}
 \DoxyCodeLine{\Hypertarget{linear__algebra__distribution_8h_source_l00257}00257     \}}
 \DoxyCodeLine{\Hypertarget{linear__algebra__distribution_8h_source_l00258}00258 \textcolor{comment}{}}
-\DoxyCodeLine{\Hypertarget{linear__algebra__distribution_8h_source_l00259}00259 \textcolor{comment}{    ///  access function for the first row on this processor. If not}}
+\DoxyCodeLine{\Hypertarget{linear__algebra__distribution_8h_source_l00259}00259 \textcolor{comment}{    /// access function for the first row on this processor. If not}}
 \DoxyCodeLine{\Hypertarget{linear__algebra__distribution_8h_source_l00260}00260 \textcolor{comment}{    /// distributed then this is just zero.}}
 \DoxyCodeLine{\Hypertarget{linear__algebra__distribution_8h_source_l00261}\mbox{\hyperlink{classoomph_1_1LinearAlgebraDistribution_a2634e540a78fe1ee3f5c907aff500b58}{00261}} \textcolor{comment}{}    \textcolor{keywordtype}{unsigned} \mbox{\hyperlink{classoomph_1_1LinearAlgebraDistribution_a2634e540a78fe1ee3f5c907aff500b58}{first\_row}}()\textcolor{keyword}{ const}}
 \DoxyCodeLine{\Hypertarget{linear__algebra__distribution_8h_source_l00262}00262 \textcolor{keyword}{    }\{}
@@ -289,7 +289,7 @@
 \DoxyCodeLine{\Hypertarget{linear__algebra__distribution_8h_source_l00285}00285 \textcolor{preprocessor}{\#endif}}
 \DoxyCodeLine{\Hypertarget{linear__algebra__distribution_8h_source_l00286}00286     \}}
 \DoxyCodeLine{\Hypertarget{linear__algebra__distribution_8h_source_l00287}00287 \textcolor{comment}{}}
-\DoxyCodeLine{\Hypertarget{linear__algebra__distribution_8h_source_l00288}00288 \textcolor{comment}{    ///  access function for the first row on the p-\/th processor}}
+\DoxyCodeLine{\Hypertarget{linear__algebra__distribution_8h_source_l00288}00288 \textcolor{comment}{    /// access function for the first row on the p-\/th processor}}
 \DoxyCodeLine{\Hypertarget{linear__algebra__distribution_8h_source_l00289}\mbox{\hyperlink{classoomph_1_1LinearAlgebraDistribution_a128e0a982fdbfd658b261981c9740b20}{00289}} \textcolor{comment}{}    \textcolor{keywordtype}{unsigned} \mbox{\hyperlink{classoomph_1_1LinearAlgebraDistribution_a128e0a982fdbfd658b261981c9740b20}{first\_row}}(\textcolor{keyword}{const} \textcolor{keywordtype}{unsigned}\& p)\textcolor{keyword}{ const}}
 \DoxyCodeLine{\Hypertarget{linear__algebra__distribution_8h_source_l00290}00290 \textcolor{keyword}{    }\{}
 \DoxyCodeLine{\Hypertarget{linear__algebra__distribution_8h_source_l00291}00291 \textcolor{preprocessor}{\#ifdef PARANOID}}
@@ -328,7 +328,7 @@
 \DoxyCodeLine{\Hypertarget{linear__algebra__distribution_8h_source_l00324}00324 \textcolor{preprocessor}{\#endif}}
 \DoxyCodeLine{\Hypertarget{linear__algebra__distribution_8h_source_l00325}00325     \}}
 \DoxyCodeLine{\Hypertarget{linear__algebra__distribution_8h_source_l00326}00326 \textcolor{comment}{}}
-\DoxyCodeLine{\Hypertarget{linear__algebra__distribution_8h_source_l00327}00327 \textcolor{comment}{    ///  access function to the distributed -\/ indicates whether the}}
+\DoxyCodeLine{\Hypertarget{linear__algebra__distribution_8h_source_l00327}00327 \textcolor{comment}{    /// access function to the distributed -\/ indicates whether the}}
 \DoxyCodeLine{\Hypertarget{linear__algebra__distribution_8h_source_l00328}00328 \textcolor{comment}{    /// distribution is serial or distributed}}
 \DoxyCodeLine{\Hypertarget{linear__algebra__distribution_8h_source_l00329}\mbox{\hyperlink{classoomph_1_1LinearAlgebraDistribution_a05842d032d28880ae37951deae804ad8}{00329}} \textcolor{comment}{}    \textcolor{keywordtype}{bool} \mbox{\hyperlink{classoomph_1_1LinearAlgebraDistribution_a05842d032d28880ae37951deae804ad8}{distributed}}()\textcolor{keyword}{ const}}
 \DoxyCodeLine{\Hypertarget{linear__algebra__distribution_8h_source_l00330}00330 \textcolor{keyword}{    }\{}
@@ -352,20 +352,20 @@
 \DoxyCodeLine{\Hypertarget{linear__algebra__distribution_8h_source_l00348}00348       \textcolor{keywordflow}{return} \textcolor{keyword}{true};}
 \DoxyCodeLine{\Hypertarget{linear__algebra__distribution_8h_source_l00349}00349     \}}
 \DoxyCodeLine{\Hypertarget{linear__algebra__distribution_8h_source_l00350}00350 \textcolor{comment}{}}
-\DoxyCodeLine{\Hypertarget{linear__algebra__distribution_8h_source_l00351}00351 \textcolor{comment}{    ///  == Operator}}
+\DoxyCodeLine{\Hypertarget{linear__algebra__distribution_8h_source_l00351}00351 \textcolor{comment}{    /// == Operator}}
 \DoxyCodeLine{\Hypertarget{linear__algebra__distribution_8h_source_l00352}00352 \textcolor{comment}{}    \textcolor{keywordtype}{bool} \mbox{\hyperlink{classoomph_1_1LinearAlgebraDistribution_a2b38cf76c6636227fb3144812250a7e8}{operator==}}(\textcolor{keyword}{const} \mbox{\hyperlink{classoomph_1_1LinearAlgebraDistribution}{LinearAlgebraDistribution}}\& other\_dist) \textcolor{keyword}{const};}
 \DoxyCodeLine{\Hypertarget{linear__algebra__distribution_8h_source_l00353}00353 \textcolor{comment}{}}
-\DoxyCodeLine{\Hypertarget{linear__algebra__distribution_8h_source_l00354}00354 \textcolor{comment}{    ///  != operator}}
+\DoxyCodeLine{\Hypertarget{linear__algebra__distribution_8h_source_l00354}00354 \textcolor{comment}{    /// != operator}}
 \DoxyCodeLine{\Hypertarget{linear__algebra__distribution_8h_source_l00355}\mbox{\hyperlink{classoomph_1_1LinearAlgebraDistribution_a40765b8fee6c000dbe5b94c38d76466e}{00355}} \textcolor{comment}{}    \textcolor{keywordtype}{bool} \mbox{\hyperlink{classoomph_1_1LinearAlgebraDistribution_a40765b8fee6c000dbe5b94c38d76466e}{operator!=}}(\textcolor{keyword}{const} \mbox{\hyperlink{classoomph_1_1LinearAlgebraDistribution}{LinearAlgebraDistribution}}\& other\_dist)\textcolor{keyword}{ const}}
 \DoxyCodeLine{\Hypertarget{linear__algebra__distribution_8h_source_l00356}00356 \textcolor{keyword}{    }\{}
 \DoxyCodeLine{\Hypertarget{linear__algebra__distribution_8h_source_l00357}00357       \textcolor{keywordflow}{return} !(*\textcolor{keyword}{this} == other\_dist);}
 \DoxyCodeLine{\Hypertarget{linear__algebra__distribution_8h_source_l00358}00358     \}}
 \DoxyCodeLine{\Hypertarget{linear__algebra__distribution_8h_source_l00359}00359 \textcolor{comment}{}}
-\DoxyCodeLine{\Hypertarget{linear__algebra__distribution_8h_source_l00360}00360 \textcolor{comment}{    ///  << operator}}
+\DoxyCodeLine{\Hypertarget{linear__algebra__distribution_8h_source_l00360}00360 \textcolor{comment}{    /// << operator}}
 \DoxyCodeLine{\Hypertarget{linear__algebra__distribution_8h_source_l00361}00361 \textcolor{comment}{}    \textcolor{keyword}{friend} std::ostream\& \mbox{\hyperlink{classoomph_1_1LinearAlgebraDistribution_a68d48bec1430b3a51286a8fb298eda7e}{operator<<}}(std::ostream\& stream,}
 \DoxyCodeLine{\Hypertarget{linear__algebra__distribution_8h_source_l00362}00362                                     \mbox{\hyperlink{classoomph_1_1LinearAlgebraDistribution}{LinearAlgebraDistribution}}\& dist);}
 \DoxyCodeLine{\Hypertarget{linear__algebra__distribution_8h_source_l00363}00363 \textcolor{comment}{}}
-\DoxyCodeLine{\Hypertarget{linear__algebra__distribution_8h_source_l00364}00364 \textcolor{comment}{    ///  return the local index corresponding to the global index}}
+\DoxyCodeLine{\Hypertarget{linear__algebra__distribution_8h_source_l00364}00364 \textcolor{comment}{    /// return the local index corresponding to the global index}}
 \DoxyCodeLine{\Hypertarget{linear__algebra__distribution_8h_source_l00365}\mbox{\hyperlink{classoomph_1_1LinearAlgebraDistribution_a899aa7ebf7b1aab1fae2fccfc5b3b43d}{00365}} \textcolor{comment}{}    \textcolor{keywordtype}{unsigned} \mbox{\hyperlink{classoomph_1_1LinearAlgebraDistribution_a899aa7ebf7b1aab1fae2fccfc5b3b43d}{global\_to\_local\_row\_map}}(\textcolor{keyword}{const} \textcolor{keywordtype}{unsigned}\& global\_i)\textcolor{keyword}{ const}}
 \DoxyCodeLine{\Hypertarget{linear__algebra__distribution_8h_source_l00366}00366 \textcolor{keyword}{    }\{}
 \DoxyCodeLine{\Hypertarget{linear__algebra__distribution_8h_source_l00367}00367 \textcolor{preprocessor}{\#ifdef PARANOID}}
@@ -387,7 +387,7 @@
 \DoxyCodeLine{\Hypertarget{linear__algebra__distribution_8h_source_l00383}00383       \textcolor{keywordflow}{return} (\textcolor{keywordtype}{unsigned})local\_i;}
 \DoxyCodeLine{\Hypertarget{linear__algebra__distribution_8h_source_l00384}00384     \}}
 \DoxyCodeLine{\Hypertarget{linear__algebra__distribution_8h_source_l00385}00385 \textcolor{comment}{}}
-\DoxyCodeLine{\Hypertarget{linear__algebra__distribution_8h_source_l00386}00386 \textcolor{comment}{    ///  return the processor rank of the global row number i}}
+\DoxyCodeLine{\Hypertarget{linear__algebra__distribution_8h_source_l00386}00386 \textcolor{comment}{    /// return the processor rank of the global row number i}}
 \DoxyCodeLine{\Hypertarget{linear__algebra__distribution_8h_source_l00387}\mbox{\hyperlink{classoomph_1_1LinearAlgebraDistribution_acd5ffc5ff4b91a8e63677f9677cd0039}{00387}} \textcolor{comment}{}    \textcolor{keywordtype}{unsigned} \mbox{\hyperlink{classoomph_1_1LinearAlgebraDistribution_acd5ffc5ff4b91a8e63677f9677cd0039}{rank\_of\_global\_row}}(\textcolor{keyword}{const} \textcolor{keywordtype}{unsigned} \mbox{\hyperlink{cfortran_8h_adb50e893b86b3e55e751a42eab3cba82}{i}})\textcolor{keyword}{ const}}
 \DoxyCodeLine{\Hypertarget{linear__algebra__distribution_8h_source_l00388}00388 \textcolor{keyword}{    }\{}
 \DoxyCodeLine{\Hypertarget{linear__algebra__distribution_8h_source_l00389}00389       \textcolor{keywordtype}{unsigned} p = 0;}
@@ -398,13 +398,13 @@
 \DoxyCodeLine{\Hypertarget{linear__algebra__distribution_8h_source_l00394}00394       \textcolor{keywordflow}{return} p;}
 \DoxyCodeLine{\Hypertarget{linear__algebra__distribution_8h_source_l00395}00395     \}}
 \DoxyCodeLine{\Hypertarget{linear__algebra__distribution_8h_source_l00396}00396 \textcolor{comment}{}}
-\DoxyCodeLine{\Hypertarget{linear__algebra__distribution_8h_source_l00397}00397 \textcolor{comment}{    ///  return the nrow\_local Vector}}
+\DoxyCodeLine{\Hypertarget{linear__algebra__distribution_8h_source_l00397}00397 \textcolor{comment}{    /// return the nrow\_local Vector}}
 \DoxyCodeLine{\Hypertarget{linear__algebra__distribution_8h_source_l00398}\mbox{\hyperlink{classoomph_1_1LinearAlgebraDistribution_ad8661a3595916679741aa9b428d9dfe3}{00398}} \textcolor{comment}{}    \mbox{\hyperlink{classoomph_1_1Vector}{Vector<unsigned>}} \mbox{\hyperlink{classoomph_1_1LinearAlgebraDistribution_ad8661a3595916679741aa9b428d9dfe3}{nrow\_local\_vector}}()\textcolor{keyword}{ const}}
 \DoxyCodeLine{\Hypertarget{linear__algebra__distribution_8h_source_l00399}00399 \textcolor{keyword}{    }\{}
 \DoxyCodeLine{\Hypertarget{linear__algebra__distribution_8h_source_l00400}00400       \textcolor{keywordflow}{return} \mbox{\hyperlink{classoomph_1_1LinearAlgebraDistribution_a3b9b16db35836dc06b160c0ddaa8e3fc}{Nrow\_local}};}
 \DoxyCodeLine{\Hypertarget{linear__algebra__distribution_8h_source_l00401}00401     \}}
 \DoxyCodeLine{\Hypertarget{linear__algebra__distribution_8h_source_l00402}00402 \textcolor{comment}{}}
-\DoxyCodeLine{\Hypertarget{linear__algebra__distribution_8h_source_l00403}00403 \textcolor{comment}{    ///  return the first\_row Vector}}
+\DoxyCodeLine{\Hypertarget{linear__algebra__distribution_8h_source_l00403}00403 \textcolor{comment}{    /// return the first\_row Vector}}
 \DoxyCodeLine{\Hypertarget{linear__algebra__distribution_8h_source_l00404}\mbox{\hyperlink{classoomph_1_1LinearAlgebraDistribution_a97d1762124e055dda6dc567f039afff5}{00404}} \textcolor{comment}{}    \mbox{\hyperlink{classoomph_1_1Vector}{Vector<unsigned>}} \mbox{\hyperlink{classoomph_1_1LinearAlgebraDistribution_a97d1762124e055dda6dc567f039afff5}{first\_row\_vector}}()\textcolor{keyword}{ const}}
 \DoxyCodeLine{\Hypertarget{linear__algebra__distribution_8h_source_l00405}00405 \textcolor{keyword}{    }\{}
 \DoxyCodeLine{\Hypertarget{linear__algebra__distribution_8h_source_l00406}00406       \textcolor{keywordflow}{return} \mbox{\hyperlink{classoomph_1_1LinearAlgebraDistribution_a6dfae7ca9376aee99ca97d490a79dd9b}{First\_row}};}
@@ -431,7 +431,7 @@
 \DoxyCodeLine{\Hypertarget{linear__algebra__distribution_8h_source_l00427}00427 }
 \DoxyCodeLine{\Hypertarget{linear__algebra__distribution_8h_source_l00428}00428 }
 \DoxyCodeLine{\Hypertarget{linear__algebra__distribution_8h_source_l00429}00429   \textcolor{comment}{//=============================================================================}\textcolor{comment}{}}
-\DoxyCodeLine{\Hypertarget{linear__algebra__distribution_8h_source_l00430}00430 \textcolor{comment}{  ///  Base class for any linear algebra object that is distributable.}}
+\DoxyCodeLine{\Hypertarget{linear__algebra__distribution_8h_source_l00430}00430 \textcolor{comment}{  /// Base class for any linear algebra object that is distributable.}}
 \DoxyCodeLine{\Hypertarget{linear__algebra__distribution_8h_source_l00431}00431 \textcolor{comment}{  /// Just contains storage for the LinearAlgebraDistribution object and}}
 \DoxyCodeLine{\Hypertarget{linear__algebra__distribution_8h_source_l00432}00432 \textcolor{comment}{  /// access functions}}
 \DoxyCodeLine{\Hypertarget{linear__algebra__distribution_8h_source_l00433}00433 \textcolor{comment}{}  \textcolor{comment}{//=============================================================================}}
@@ -463,31 +463,31 @@
 \DoxyCodeLine{\Hypertarget{linear__algebra__distribution_8h_source_l00459}00459       \textcolor{keywordflow}{return} \mbox{\hyperlink{classoomph_1_1DistributableLinearAlgebraObject_a94280ec477823427098dc46b20e29f5a}{Distribution\_pt}};}
 \DoxyCodeLine{\Hypertarget{linear__algebra__distribution_8h_source_l00460}00460     \}}
 \DoxyCodeLine{\Hypertarget{linear__algebra__distribution_8h_source_l00461}00461 \textcolor{comment}{}}
-\DoxyCodeLine{\Hypertarget{linear__algebra__distribution_8h_source_l00462}00462 \textcolor{comment}{    ///  access function to the number of global rows.}}
+\DoxyCodeLine{\Hypertarget{linear__algebra__distribution_8h_source_l00462}00462 \textcolor{comment}{    /// access function to the number of global rows.}}
 \DoxyCodeLine{\Hypertarget{linear__algebra__distribution_8h_source_l00463}\mbox{\hyperlink{classoomph_1_1DistributableLinearAlgebraObject_a7569556f14fd68b28508920e89bd5eee}{00463}} \textcolor{comment}{}    \textcolor{keywordtype}{unsigned} \mbox{\hyperlink{classoomph_1_1DistributableLinearAlgebraObject_a7569556f14fd68b28508920e89bd5eee}{nrow}}()\textcolor{keyword}{ const}}
 \DoxyCodeLine{\Hypertarget{linear__algebra__distribution_8h_source_l00464}00464 \textcolor{keyword}{    }\{}
 \DoxyCodeLine{\Hypertarget{linear__algebra__distribution_8h_source_l00465}00465       \textcolor{keywordflow}{return} \mbox{\hyperlink{classoomph_1_1DistributableLinearAlgebraObject_a94280ec477823427098dc46b20e29f5a}{Distribution\_pt}}-\/>\mbox{\hyperlink{classoomph_1_1LinearAlgebraDistribution_aafad0b69de2284808366b65bd63e493b}{nrow}}();}
 \DoxyCodeLine{\Hypertarget{linear__algebra__distribution_8h_source_l00466}00466     \}}
 \DoxyCodeLine{\Hypertarget{linear__algebra__distribution_8h_source_l00467}00467 \textcolor{comment}{}}
-\DoxyCodeLine{\Hypertarget{linear__algebra__distribution_8h_source_l00468}00468 \textcolor{comment}{    ///  access function for the num of local rows on this processor.}}
+\DoxyCodeLine{\Hypertarget{linear__algebra__distribution_8h_source_l00468}00468 \textcolor{comment}{    /// access function for the num of local rows on this processor.}}
 \DoxyCodeLine{\Hypertarget{linear__algebra__distribution_8h_source_l00469}\mbox{\hyperlink{classoomph_1_1DistributableLinearAlgebraObject_a9bd7e1d242c69a28da85a804a7717fce}{00469}} \textcolor{comment}{}    \textcolor{keywordtype}{unsigned} \mbox{\hyperlink{classoomph_1_1DistributableLinearAlgebraObject_a9bd7e1d242c69a28da85a804a7717fce}{nrow\_local}}()\textcolor{keyword}{ const}}
 \DoxyCodeLine{\Hypertarget{linear__algebra__distribution_8h_source_l00470}00470 \textcolor{keyword}{    }\{}
 \DoxyCodeLine{\Hypertarget{linear__algebra__distribution_8h_source_l00471}00471       \textcolor{keywordflow}{return} \mbox{\hyperlink{classoomph_1_1DistributableLinearAlgebraObject_a94280ec477823427098dc46b20e29f5a}{Distribution\_pt}}-\/>\mbox{\hyperlink{classoomph_1_1LinearAlgebraDistribution_ac9310de740f9c3a61f8d5dab9bef88ca}{nrow\_local}}();}
 \DoxyCodeLine{\Hypertarget{linear__algebra__distribution_8h_source_l00472}00472     \}}
 \DoxyCodeLine{\Hypertarget{linear__algebra__distribution_8h_source_l00473}00473 \textcolor{comment}{}}
-\DoxyCodeLine{\Hypertarget{linear__algebra__distribution_8h_source_l00474}00474 \textcolor{comment}{    ///  access function for the num of local rows on this processor.}}
+\DoxyCodeLine{\Hypertarget{linear__algebra__distribution_8h_source_l00474}00474 \textcolor{comment}{    /// access function for the num of local rows on this processor.}}
 \DoxyCodeLine{\Hypertarget{linear__algebra__distribution_8h_source_l00475}\mbox{\hyperlink{classoomph_1_1DistributableLinearAlgebraObject_a21e966b025edec79067b41d7f1f25220}{00475}} \textcolor{comment}{}    \textcolor{keywordtype}{unsigned} \mbox{\hyperlink{classoomph_1_1DistributableLinearAlgebraObject_a21e966b025edec79067b41d7f1f25220}{nrow\_local}}(\textcolor{keyword}{const} \textcolor{keywordtype}{unsigned}\& p)\textcolor{keyword}{ const}}
 \DoxyCodeLine{\Hypertarget{linear__algebra__distribution_8h_source_l00476}00476 \textcolor{keyword}{    }\{}
 \DoxyCodeLine{\Hypertarget{linear__algebra__distribution_8h_source_l00477}00477       \textcolor{keywordflow}{return} \mbox{\hyperlink{classoomph_1_1DistributableLinearAlgebraObject_a94280ec477823427098dc46b20e29f5a}{Distribution\_pt}}-\/>\mbox{\hyperlink{classoomph_1_1LinearAlgebraDistribution_ac9310de740f9c3a61f8d5dab9bef88ca}{nrow\_local}}(p);}
 \DoxyCodeLine{\Hypertarget{linear__algebra__distribution_8h_source_l00478}00478     \}}
 \DoxyCodeLine{\Hypertarget{linear__algebra__distribution_8h_source_l00479}00479 \textcolor{comment}{}}
-\DoxyCodeLine{\Hypertarget{linear__algebra__distribution_8h_source_l00480}00480 \textcolor{comment}{    ///  access function for the first row on this processor}}
+\DoxyCodeLine{\Hypertarget{linear__algebra__distribution_8h_source_l00480}00480 \textcolor{comment}{    /// access function for the first row on this processor}}
 \DoxyCodeLine{\Hypertarget{linear__algebra__distribution_8h_source_l00481}\mbox{\hyperlink{classoomph_1_1DistributableLinearAlgebraObject_ab00a3919b8634c698749f14a4d92947d}{00481}} \textcolor{comment}{}    \textcolor{keywordtype}{unsigned} \mbox{\hyperlink{classoomph_1_1DistributableLinearAlgebraObject_ab00a3919b8634c698749f14a4d92947d}{first\_row}}()\textcolor{keyword}{ const}}
 \DoxyCodeLine{\Hypertarget{linear__algebra__distribution_8h_source_l00482}00482 \textcolor{keyword}{    }\{}
 \DoxyCodeLine{\Hypertarget{linear__algebra__distribution_8h_source_l00483}00483       \textcolor{keywordflow}{return} \mbox{\hyperlink{classoomph_1_1DistributableLinearAlgebraObject_a94280ec477823427098dc46b20e29f5a}{Distribution\_pt}}-\/>\mbox{\hyperlink{classoomph_1_1LinearAlgebraDistribution_a2634e540a78fe1ee3f5c907aff500b58}{first\_row}}();}
 \DoxyCodeLine{\Hypertarget{linear__algebra__distribution_8h_source_l00484}00484     \}}
 \DoxyCodeLine{\Hypertarget{linear__algebra__distribution_8h_source_l00485}00485 \textcolor{comment}{}}
-\DoxyCodeLine{\Hypertarget{linear__algebra__distribution_8h_source_l00486}00486 \textcolor{comment}{    ///  access function for the first row on this processor}}
+\DoxyCodeLine{\Hypertarget{linear__algebra__distribution_8h_source_l00486}00486 \textcolor{comment}{    /// access function for the first row on this processor}}
 \DoxyCodeLine{\Hypertarget{linear__algebra__distribution_8h_source_l00487}\mbox{\hyperlink{classoomph_1_1DistributableLinearAlgebraObject_a4266c1d18d8e102bad3f4aec26c9b7cf}{00487}} \textcolor{comment}{}    \textcolor{keywordtype}{unsigned} \mbox{\hyperlink{classoomph_1_1DistributableLinearAlgebraObject_a4266c1d18d8e102bad3f4aec26c9b7cf}{first\_row}}(\textcolor{keyword}{const} \textcolor{keywordtype}{unsigned}\& p)\textcolor{keyword}{ const}}
 \DoxyCodeLine{\Hypertarget{linear__algebra__distribution_8h_source_l00488}00488 \textcolor{keyword}{    }\{}
 \DoxyCodeLine{\Hypertarget{linear__algebra__distribution_8h_source_l00489}00489       \textcolor{keywordflow}{return} \mbox{\hyperlink{classoomph_1_1DistributableLinearAlgebraObject_a94280ec477823427098dc46b20e29f5a}{Distribution\_pt}}-\/>\mbox{\hyperlink{classoomph_1_1LinearAlgebraDistribution_a2634e540a78fe1ee3f5c907aff500b58}{first\_row}}(p);}
@@ -506,14 +506,14 @@
 \DoxyCodeLine{\Hypertarget{linear__algebra__distribution_8h_source_l00502}00502       \textcolor{keywordflow}{return} \mbox{\hyperlink{classoomph_1_1DistributableLinearAlgebraObject_a94280ec477823427098dc46b20e29f5a}{Distribution\_pt}}-\/>\mbox{\hyperlink{classoomph_1_1LinearAlgebraDistribution_a92bfff97fd228b9c528922c39ab563b2}{built}}();}
 \DoxyCodeLine{\Hypertarget{linear__algebra__distribution_8h_source_l00503}00503     \}}
 \DoxyCodeLine{\Hypertarget{linear__algebra__distribution_8h_source_l00504}00504 \textcolor{comment}{}}
-\DoxyCodeLine{\Hypertarget{linear__algebra__distribution_8h_source_l00505}00505 \textcolor{comment}{    ///  setup the distribution of this distributable linear algebra}}
+\DoxyCodeLine{\Hypertarget{linear__algebra__distribution_8h_source_l00505}00505 \textcolor{comment}{    /// setup the distribution of this distributable linear algebra}}
 \DoxyCodeLine{\Hypertarget{linear__algebra__distribution_8h_source_l00506}00506 \textcolor{comment}{    /// object}}
 \DoxyCodeLine{\Hypertarget{linear__algebra__distribution_8h_source_l00507}\mbox{\hyperlink{classoomph_1_1DistributableLinearAlgebraObject_ac5340bac40b9559b0378037b57005203}{00507}} \textcolor{comment}{}    \textcolor{keywordtype}{void} \mbox{\hyperlink{classoomph_1_1DistributableLinearAlgebraObject_ac5340bac40b9559b0378037b57005203}{build\_distribution}}(\textcolor{keyword}{const} \mbox{\hyperlink{classoomph_1_1LinearAlgebraDistribution}{LinearAlgebraDistribution}}* \textcolor{keyword}{const} dist\_pt)}
 \DoxyCodeLine{\Hypertarget{linear__algebra__distribution_8h_source_l00508}00508     \{}
 \DoxyCodeLine{\Hypertarget{linear__algebra__distribution_8h_source_l00509}00509       \mbox{\hyperlink{classoomph_1_1DistributableLinearAlgebraObject_a94280ec477823427098dc46b20e29f5a}{Distribution\_pt}}-\/>\mbox{\hyperlink{classoomph_1_1LinearAlgebraDistribution_a3cab441019e738e4c6db6ee22dd71515}{build}}(dist\_pt);}
 \DoxyCodeLine{\Hypertarget{linear__algebra__distribution_8h_source_l00510}00510     \}}
 \DoxyCodeLine{\Hypertarget{linear__algebra__distribution_8h_source_l00511}00511 \textcolor{comment}{}}
-\DoxyCodeLine{\Hypertarget{linear__algebra__distribution_8h_source_l00512}00512 \textcolor{comment}{    ///  setup the distribution of this distributable linear algebra}}
+\DoxyCodeLine{\Hypertarget{linear__algebra__distribution_8h_source_l00512}00512 \textcolor{comment}{    /// setup the distribution of this distributable linear algebra}}
 \DoxyCodeLine{\Hypertarget{linear__algebra__distribution_8h_source_l00513}00513 \textcolor{comment}{    /// object}}
 \DoxyCodeLine{\Hypertarget{linear__algebra__distribution_8h_source_l00514}\mbox{\hyperlink{classoomph_1_1DistributableLinearAlgebraObject_adad20ac61a61d907f823da7694b50616}{00514}} \textcolor{comment}{}    \textcolor{keywordtype}{void} \mbox{\hyperlink{classoomph_1_1DistributableLinearAlgebraObject_adad20ac61a61d907f823da7694b50616}{build\_distribution}}(\textcolor{keyword}{const} \mbox{\hyperlink{classoomph_1_1LinearAlgebraDistribution}{LinearAlgebraDistribution}}\& dist)}
 \DoxyCodeLine{\Hypertarget{linear__algebra__distribution_8h_source_l00515}00515     \{}
@@ -521,7 +521,7 @@
 \DoxyCodeLine{\Hypertarget{linear__algebra__distribution_8h_source_l00517}00517     \}}
 \DoxyCodeLine{\Hypertarget{linear__algebra__distribution_8h_source_l00518}00518 }
 \DoxyCodeLine{\Hypertarget{linear__algebra__distribution_8h_source_l00519}00519   \textcolor{keyword}{protected}:\textcolor{comment}{}}
-\DoxyCodeLine{\Hypertarget{linear__algebra__distribution_8h_source_l00520}00520 \textcolor{comment}{    ///  clear the distribution of this distributable linear algebra}}
+\DoxyCodeLine{\Hypertarget{linear__algebra__distribution_8h_source_l00520}00520 \textcolor{comment}{    /// clear the distribution of this distributable linear algebra}}
 \DoxyCodeLine{\Hypertarget{linear__algebra__distribution_8h_source_l00521}00521 \textcolor{comment}{    /// object}}
 \DoxyCodeLine{\Hypertarget{linear__algebra__distribution_8h_source_l00522}\mbox{\hyperlink{classoomph_1_1DistributableLinearAlgebraObject_a30742aa2ac9abcfa037179f2d28ff43a}{00522}} \textcolor{comment}{}    \textcolor{keywordtype}{void} \mbox{\hyperlink{classoomph_1_1DistributableLinearAlgebraObject_a30742aa2ac9abcfa037179f2d28ff43a}{clear\_distribution}}()}
 \DoxyCodeLine{\Hypertarget{linear__algebra__distribution_8h_source_l00523}00523     \{}
@@ -538,7 +538,7 @@
 \DoxyCodeLine{\Hypertarget{linear__algebra__distribution_8h_source_l00534}00534 \textcolor{comment}{}  \textcolor{comment}{//=============================================================================}}
 \DoxyCodeLine{\Hypertarget{linear__algebra__distribution_8h_source_l00535}00535   \textcolor{keyword}{namespace }LinearAlgebraDistributionHelpers}
 \DoxyCodeLine{\Hypertarget{linear__algebra__distribution_8h_source_l00536}00536   \{\textcolor{comment}{}}
-\DoxyCodeLine{\Hypertarget{linear__algebra__distribution_8h_source_l00537}00537 \textcolor{comment}{    ///  Takes a vector of LinearAlgebraDistribution objects and}}
+\DoxyCodeLine{\Hypertarget{linear__algebra__distribution_8h_source_l00537}00537 \textcolor{comment}{    /// Takes a vector of LinearAlgebraDistribution objects and}}
 \DoxyCodeLine{\Hypertarget{linear__algebra__distribution_8h_source_l00538}00538 \textcolor{comment}{    /// concatenates them such that the nrow\_local of the out\_distribution}}
 \DoxyCodeLine{\Hypertarget{linear__algebra__distribution_8h_source_l00539}00539 \textcolor{comment}{    /// is the sum of the nrow\_local of all the in\_distributions and the number}}
 \DoxyCodeLine{\Hypertarget{linear__algebra__distribution_8h_source_l00540}00540 \textcolor{comment}{    /// of global rows of the out\_distribution is the sum of the number of}}

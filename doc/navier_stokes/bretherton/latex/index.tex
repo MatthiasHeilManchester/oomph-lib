@@ -207,7 +207,7 @@ The discretisation of the problem is reasonably straightforward, the most (human
 \DoxyCodeLine{}
 \DoxyCodeLine{\textcolor{keyword}{public}:}
 \DoxyCodeLine{\textcolor{comment}{}}
-\DoxyCodeLine{\textcolor{comment}{ ///  Typedef for pointer (global) function that specifies the}}
+\DoxyCodeLine{\textcolor{comment}{ /// Typedef for pointer (global) function that specifies the}}
 \DoxyCodeLine{\textcolor{comment}{ /// the inflow}}
 \DoxyCodeLine{\textcolor{comment}{} \textcolor{keyword}{typedef} void (*\mbox{\hyperlink{classBrethertonElement_a313d868ce6fbd8df07b0360db25133ce}{InflowFctPt}})(\textcolor{keyword}{const} Vector<double>\& x, Vector<double>\& veloc);}
 \DoxyCodeLine{\textcolor{comment}{}}
@@ -215,7 +215,7 @@ The discretisation of the problem is reasonably straightforward, the most (human
 \DoxyCodeLine{\textcolor{comment}{} \mbox{\hyperlink{classBrethertonElement_acbc668eed3ea683a67b6b822d6e59974}{BrethertonElement}}() : ELEMENT() \{\}}
 \DoxyCodeLine{}
 \DoxyCodeLine{\textcolor{comment}{}}
-\DoxyCodeLine{\textcolor{comment}{ ///  Activate the dependency of the "{}inflow"{} on the external}}
+\DoxyCodeLine{\textcolor{comment}{ /// Activate the dependency of the "{}inflow"{} on the external}}
 \DoxyCodeLine{\textcolor{comment}{ /// data. Pass the vector of pointers to the external Data that affects}}
 \DoxyCodeLine{\textcolor{comment}{ /// the inflow, the id of the boundary on which the inflow}}
 \DoxyCodeLine{\textcolor{comment}{ /// condition is to be applied and the function pointer to }}
@@ -239,7 +239,7 @@ The discretisation of the problem is reasonably straightforward, the most (human
 \DoxyCodeLine{  \}}
 \DoxyCodeLine{ }
 \DoxyCodeLine{\textcolor{comment}{}}
-\DoxyCodeLine{\textcolor{comment}{ /// short Overload assign local equation numbers: Add the dependency }}
+\DoxyCodeLine{\textcolor{comment}{ /// Overload assign local equation numbers: Add the dependency }}
 \DoxyCodeLine{\textcolor{comment}{ /// on the external Data that affects the inflow profile}}
 \DoxyCodeLine{\textcolor{comment}{} \textcolor{keywordtype}{void} \mbox{\hyperlink{classBrethertonElement_a40f35d9e03eae08954b6b32badadcf61}{assign\_local\_eqn\_numbers}}(\textcolor{keyword}{const} \textcolor{keywordtype}{bool}  \&store\_local\_dof\_pt)}
 \DoxyCodeLine{  \{}
@@ -385,7 +385,7 @@ The discretisation of the problem is reasonably straightforward, the most (human
 \DoxyCodeLine{ }
 \DoxyCodeLine{}
 \DoxyCodeLine{\textcolor{comment}{}}
-\DoxyCodeLine{\textcolor{comment}{ ///  For all nodes that are located on specified boundary}}
+\DoxyCodeLine{\textcolor{comment}{ /// For all nodes that are located on specified boundary}}
 \DoxyCodeLine{\textcolor{comment}{ /// re-\/assign the inflow velocity, using the function pointed to}}
 \DoxyCodeLine{\textcolor{comment}{ /// by the function pointer}}
 \DoxyCodeLine{\textcolor{comment}{} \textcolor{keywordtype}{void} \mbox{\hyperlink{classBrethertonElement_a7e655df2ed6104862cc70c2408daf93c}{reassign\_inflow}}()}
@@ -434,14 +434,14 @@ The discretisation of the problem is reasonably straightforward, the most (human
 \DoxyCodeLine{\textcolor{comment}{ /// Storage for the external Data that affects the inflow}}
 \DoxyCodeLine{\textcolor{comment}{} Vector<Data*> \mbox{\hyperlink{classBrethertonElement_a84c7822cf2a97fe45e936429faa16788}{Inflow\_ext\_data}};}
 \DoxyCodeLine{\textcolor{comment}{}}
-\DoxyCodeLine{\textcolor{comment}{ ///  Storage for the local equation numbers associated the Data}}
+\DoxyCodeLine{\textcolor{comment}{ /// Storage for the local equation numbers associated the Data}}
 \DoxyCodeLine{\textcolor{comment}{ /// values that affect the inflow}}
 \DoxyCodeLine{\textcolor{comment}{} DenseMatrix<int> \mbox{\hyperlink{classBrethertonElement_ad1ddf8c7a6fd590bf7156d13640303d1}{Inflow\_ext\_data\_eqn}};}
 \DoxyCodeLine{\textcolor{comment}{}}
 \DoxyCodeLine{\textcolor{comment}{ /// Number of the inflow boundary in the global mesh}}
 \DoxyCodeLine{\textcolor{comment}{} \textcolor{keywordtype}{unsigned} \mbox{\hyperlink{classBrethertonElement_a2d3a3d4837d41865d5f62271c98715c5}{Inflow\_boundary}};}
 \DoxyCodeLine{\textcolor{comment}{}}
-\DoxyCodeLine{\textcolor{comment}{ ///  Function pointer to the global function that specifies the}}
+\DoxyCodeLine{\textcolor{comment}{ /// Function pointer to the global function that specifies the}}
 \DoxyCodeLine{\textcolor{comment}{ /// inflow velocity profile on the global mesh boundary Inflow\_boundary}}
 \DoxyCodeLine{\textcolor{comment}{} \mbox{\hyperlink{classBrethertonElement_a313d868ce6fbd8df07b0360db25133ce}{InflowFctPt}} \mbox{\hyperlink{classBrethertonElement_a6ded0faba9d7fcfe96834c56af461977}{Inflow\_fct\_pt}};}
 \DoxyCodeLine{}
@@ -522,7 +522,7 @@ The discretisation of the problem is reasonably straightforward, the most (human
 \DoxyCodeLine{\textcolor{comment}{ /// Constructor: }}
 \DoxyCodeLine{\textcolor{comment}{} \mbox{\hyperlink{classBrethertonProblem_a207cdfe4cf60e83257e759b1ac15e5eb}{BrethertonProblem}}();}
 \DoxyCodeLine{\textcolor{comment}{}}
-\DoxyCodeLine{\textcolor{comment}{ ///  Spine heights/lengths are unknowns in the problem so their}}
+\DoxyCodeLine{\textcolor{comment}{ /// Spine heights/lengths are unknowns in the problem so their}}
 \DoxyCodeLine{\textcolor{comment}{ /// values get corrected during each Newton step. However,}}
 \DoxyCodeLine{\textcolor{comment}{ /// changing their value does not automatically change the}}
 \DoxyCodeLine{\textcolor{comment}{ /// nodal positions, so we need to update all of them}}
@@ -553,10 +553,10 @@ The discretisation of the problem is reasonably straightforward, the most (human
 \DoxyCodeLine{    \}}
 \DoxyCodeLine{  \}}
 \DoxyCodeLine{\textcolor{comment}{}}
-\DoxyCodeLine{\textcolor{comment}{ ///  Update before solve: empty}}
+\DoxyCodeLine{\textcolor{comment}{ /// Update before solve: empty}}
 \DoxyCodeLine{\textcolor{comment}{} \textcolor{keywordtype}{void} \mbox{\hyperlink{classBrethertonProblem_a7112e0efe4c0cd0269cf47f02df4fe22}{actions\_before\_newton\_solve}}() \{\}}
 \DoxyCodeLine{\textcolor{comment}{}}
-\DoxyCodeLine{\textcolor{comment}{ ///  Update after solve can remain empty, because the update }}
+\DoxyCodeLine{\textcolor{comment}{ /// Update after solve can remain empty, because the update }}
 \DoxyCodeLine{\textcolor{comment}{ /// is performed automatically after every Newton step.}}
 \DoxyCodeLine{\textcolor{comment}{} \textcolor{keywordtype}{void} \mbox{\hyperlink{classBrethertonProblem_a2e84e3ce784b0f0de5eeefe1175d48ff}{actions\_after\_newton\_solve}}() \{\}}
 \DoxyCodeLine{\textcolor{comment}{}}
@@ -570,7 +570,7 @@ The discretisation of the problem is reasonably straightforward, the most (human
 \DoxyCodeLine{  \}}
 \DoxyCodeLine{}
 \DoxyCodeLine{ \textcolor{comment}{}}
-\DoxyCodeLine{\textcolor{comment}{ ///  Activate the dependency of the inflow velocity on the }}
+\DoxyCodeLine{\textcolor{comment}{ /// Activate the dependency of the inflow velocity on the }}
 \DoxyCodeLine{\textcolor{comment}{ /// spine heights at the outflow}}
 \DoxyCodeLine{\textcolor{comment}{} \textcolor{keywordtype}{void} \mbox{\hyperlink{classBrethertonProblem_a04257edfb80f2ff3bf865442d9eb01fb}{activate\_inflow\_dependency}}();}
 \DoxyCodeLine{\textcolor{comment}{}}

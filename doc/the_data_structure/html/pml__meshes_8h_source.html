@@ -200,7 +200,7 @@ $(function() {
 <div class="line"><a id="l00071" name="l00071"></a><span class="lineno">   71</span><span class="comment">    /// Virtual destructor</span></div>
 <div class="line"><a id="l00072" name="l00072"></a><span class="lineno"><a class="line" href="classoomph_1_1PMLElementBase.html#a2a9399aa63600f5276e865dde49f164a">   72</a></span><span class="comment"></span>    <span class="keyword">virtual</span> <a class="code hl_function" href="classoomph_1_1PMLElementBase.html#a2a9399aa63600f5276e865dde49f164a">~PMLElementBase</a>() {}</div>
 <div class="line"><a id="l00073" name="l00073"></a><span class="lineno">   73</span><span class="comment"></span> </div>
-<div class="line"><a id="l00074" name="l00074"></a><span class="lineno">   74</span><span class="comment">    ///  Disable pml. Ensures the PML-ification in all directions</span></div>
+<div class="line"><a id="l00074" name="l00074"></a><span class="lineno">   74</span><span class="comment">    /// Disable pml. Ensures the PML-ification in all directions</span></div>
 <div class="line"><a id="l00075" name="l00075"></a><span class="lineno">   75</span><span class="comment">    /// has been deactivated</span></div>
 <div class="line"><a id="l00076" name="l00076"></a><span class="lineno"><a class="line" href="classoomph_1_1PMLElementBase.html#a42fdef3b3171d372e2b2dc792e8be664">   76</a></span><span class="comment"></span>    <span class="keywordtype">void</span> <a class="code hl_function" href="classoomph_1_1PMLElementBase.html#a42fdef3b3171d372e2b2dc792e8be664">disable_pml</a>()</div>
 <div class="line"><a id="l00077" name="l00077"></a><span class="lineno">   77</span>    {</div>
@@ -216,7 +216,7 @@ $(function() {
 <div class="line"><a id="l00087" name="l00087"></a><span class="lineno">   87</span>      }</div>
 <div class="line"><a id="l00088" name="l00088"></a><span class="lineno">   88</span>    } <span class="comment">// End of disable_pml</span></div>
 <div class="line"><a id="l00089" name="l00089"></a><span class="lineno">   89</span><span class="comment"></span> </div>
-<div class="line"><a id="l00090" name="l00090"></a><span class="lineno">   90</span><span class="comment">    ///  Enable pml. Specify the coordinate direction along which</span></div>
+<div class="line"><a id="l00090" name="l00090"></a><span class="lineno">   90</span><span class="comment">    /// Enable pml. Specify the coordinate direction along which</span></div>
 <div class="line"><a id="l00091" name="l00091"></a><span class="lineno">   91</span><span class="comment">    /// pml boundary is constant, as well as the coordinate</span></div>
 <div class="line"><a id="l00092" name="l00092"></a><span class="lineno">   92</span><span class="comment">    /// along the dimension for the interface between the physical and</span></div>
 <div class="line"><a id="l00093" name="l00093"></a><span class="lineno">   93</span><span class="comment">    /// artificial domains and the coordinate for the outer boundary. All of</span></div>
@@ -233,7 +233,7 @@ $(function() {
 <div class="line"><a id="l00104" name="l00104"></a><span class="lineno">  104</span>      <a class="code hl_variable" href="classoomph_1_1PMLElementBase.html#a7f3365fcb393848b926a836e10a3a288">Pml_outer_boundary</a>[direction] = outer_domain_border_value;</div>
 <div class="line"><a id="l00105" name="l00105"></a><span class="lineno">  105</span>    }</div>
 <div class="line"><a id="l00106" name="l00106"></a><span class="lineno">  106</span><span class="comment"></span> </div>
-<div class="line"><a id="l00107" name="l00107"></a><span class="lineno">  107</span><span class="comment">    ///  Pure virtual function in which we have to specify the</span></div>
+<div class="line"><a id="l00107" name="l00107"></a><span class="lineno">  107</span><span class="comment">    /// Pure virtual function in which we have to specify the</span></div>
 <div class="line"><a id="l00108" name="l00108"></a><span class="lineno">  108</span><span class="comment">    /// values to be pinned (and set to zero) on the outer edge of</span></div>
 <div class="line"><a id="l00109" name="l00109"></a><span class="lineno">  109</span><span class="comment">    /// the pml layer. This is usually all of the nodal values</span></div>
 <div class="line"><a id="l00110" name="l00110"></a><span class="lineno">  110</span><span class="comment">    /// (values 0 and 1 (real and imag part) for Helmholtz;</span></div>
@@ -247,17 +247,17 @@ $(function() {
 <div class="line"><a id="l00118" name="l00118"></a><span class="lineno">  118</span><span class="comment">    /// Boolean indicating if element is used in pml mode</span></div>
 <div class="line"><a id="l00119" name="l00119"></a><span class="lineno"><a class="line" href="classoomph_1_1PMLElementBase.html#a0b0e980998764978801a1f0463a31989">  119</a></span><span class="comment"></span>    <span class="keywordtype">bool</span> <a class="code hl_variable" href="classoomph_1_1PMLElementBase.html#a0b0e980998764978801a1f0463a31989">Pml_is_enabled</a>;</div>
 <div class="line"><a id="l00120" name="l00120"></a><span class="lineno">  120</span><span class="comment"></span> </div>
-<div class="line"><a id="l00121" name="l00121"></a><span class="lineno">  121</span><span class="comment">    ///  Coordinate direction along which pml boundary is constant;</span></div>
+<div class="line"><a id="l00121" name="l00121"></a><span class="lineno">  121</span><span class="comment">    /// Coordinate direction along which pml boundary is constant;</span></div>
 <div class="line"><a id="l00122" name="l00122"></a><span class="lineno">  122</span><span class="comment">    /// alternatively: coordinate direction in which coordinate stretching</span></div>
 <div class="line"><a id="l00123" name="l00123"></a><span class="lineno">  123</span><span class="comment">    /// is performed.</span></div>
 <div class="line"><a id="l00124" name="l00124"></a><span class="lineno"><a class="line" href="classoomph_1_1PMLElementBase.html#a5e460c58f3fe82696004d21e3f713d73">  124</a></span><span class="comment"></span>    std::vector&lt;bool&gt; <a class="code hl_variable" href="classoomph_1_1PMLElementBase.html#a5e460c58f3fe82696004d21e3f713d73">Pml_direction_active</a>;</div>
 <div class="line"><a id="l00125" name="l00125"></a><span class="lineno">  125</span><span class="comment"></span> </div>
-<div class="line"><a id="l00126" name="l00126"></a><span class="lineno">  126</span><span class="comment">    ///  Coordinate of inner pml boundary</span></div>
+<div class="line"><a id="l00126" name="l00126"></a><span class="lineno">  126</span><span class="comment">    /// Coordinate of inner pml boundary</span></div>
 <div class="line"><a id="l00127" name="l00127"></a><span class="lineno">  127</span><span class="comment">    /// (Storage is provided for any coordinate</span></div>
 <div class="line"><a id="l00128" name="l00128"></a><span class="lineno">  128</span><span class="comment">    /// direction; only the entries for &quot;active&quot; directions is used.)</span></div>
 <div class="line"><a id="l00129" name="l00129"></a><span class="lineno"><a class="line" href="classoomph_1_1PMLElementBase.html#a952ab0485b0834249e5eac1e8448f43f">  129</a></span><span class="comment"></span>    <a class="code hl_class" href="classoomph_1_1Vector.html">Vector&lt;double&gt;</a> <a class="code hl_variable" href="classoomph_1_1PMLElementBase.html#a952ab0485b0834249e5eac1e8448f43f">Pml_inner_boundary</a>;</div>
 <div class="line"><a id="l00130" name="l00130"></a><span class="lineno">  130</span><span class="comment"></span> </div>
-<div class="line"><a id="l00131" name="l00131"></a><span class="lineno">  131</span><span class="comment">    ///  Coordinate of outer pml boundary</span></div>
+<div class="line"><a id="l00131" name="l00131"></a><span class="lineno">  131</span><span class="comment">    /// Coordinate of outer pml boundary</span></div>
 <div class="line"><a id="l00132" name="l00132"></a><span class="lineno">  132</span><span class="comment">    /// (Storage is provided for any coordinate</span></div>
 <div class="line"><a id="l00133" name="l00133"></a><span class="lineno">  133</span><span class="comment">    /// direction; only the entries for &quot;active&quot; directions is used.)</span></div>
 <div class="line"><a id="l00134" name="l00134"></a><span class="lineno"><a class="line" href="classoomph_1_1PMLElementBase.html#a7f3365fcb393848b926a836e10a3a288">  134</a></span><span class="comment"></span>    <a class="code hl_class" href="classoomph_1_1Vector.html">Vector&lt;double&gt;</a> <a class="code hl_variable" href="classoomph_1_1PMLElementBase.html#a7f3365fcb393848b926a836e10a3a288">Pml_outer_boundary</a>;</div>
@@ -268,7 +268,7 @@ $(function() {
 <div class="line"><a id="l00139" name="l00139"></a><span class="lineno">  139</span><span class="comment">  //////////////////////////////////////////////////////////////////////</span></div>
 <div class="line"><a id="l00140" name="l00140"></a><span class="lineno">  140</span><span class="comment"></span> </div>
 <div class="line"><a id="l00141" name="l00141"></a><span class="lineno">  141</span>  <span class="comment">//===================================================================</span><span class="comment"></span></div>
-<div class="line"><a id="l00142" name="l00142"></a><span class="lineno">  142</span><span class="comment">  ///  All helper routines for 2D bulk boundary mesh usage in order to</span></div>
+<div class="line"><a id="l00142" name="l00142"></a><span class="lineno">  142</span><span class="comment">  /// All helper routines for 2D bulk boundary mesh usage in order to</span></div>
 <div class="line"><a id="l00143" name="l00143"></a><span class="lineno">  143</span><span class="comment">  /// generate PML meshes aligned to the main mesh</span></div>
 <div class="line"><a id="l00144" name="l00144"></a><span class="lineno">  144</span><span class="comment"></span>  <span class="comment">//===================================================================</span></div>
 <div class="line"><a id="l00145" name="l00145"></a><span class="lineno">  145</span>  <span class="keyword">namespace </span>TwoDimensionalPMLHelper</div>
@@ -299,7 +299,7 @@ $(function() {
 <div class="line"><a id="l00170" name="l00170"></a><span class="lineno"><a class="line" href="classoomph_1_1PMLMeshBase.html">  170</a></span>  <span class="keyword">class </span><a class="code hl_class" href="classoomph_1_1PMLMeshBase.html">PMLMeshBase</a></div>
 <div class="line"><a id="l00171" name="l00171"></a><span class="lineno">  171</span>  {</div>
 <div class="line"><a id="l00172" name="l00172"></a><span class="lineno">  172</span>  <span class="keyword">public</span>:<span class="comment"></span></div>
-<div class="line"><a id="l00173" name="l00173"></a><span class="lineno">  173</span><span class="comment">    ///  Pure virtual function to provide an optimised version of</span></div>
+<div class="line"><a id="l00173" name="l00173"></a><span class="lineno">  173</span><span class="comment">    /// Pure virtual function to provide an optimised version of</span></div>
 <div class="line"><a id="l00174" name="l00174"></a><span class="lineno">  174</span><span class="comment">    /// the locate_zeta function for PML meshes. As the PML meshes are</span></div>
 <div class="line"><a id="l00175" name="l00175"></a><span class="lineno">  175</span><span class="comment">    /// rectangular (in 2D, or rectangular prisms in 3D) the location of</span></div>
 <div class="line"><a id="l00176" name="l00176"></a><span class="lineno">  176</span><span class="comment">    /// a point in the mesh is simpler than in a more complex mesh</span></div>
@@ -315,7 +315,7 @@ $(function() {
 <div class="line"><a id="l00186" name="l00186"></a><span class="lineno">  186</span>                          <span class="keyword">public</span> <a class="code hl_class" href="classoomph_1_1PMLMeshBase.html">PMLMeshBase</a></div>
 <div class="line"><a id="l00187" name="l00187"></a><span class="lineno">  187</span>  {</div>
 <div class="line"><a id="l00188" name="l00188"></a><span class="lineno">  188</span>  <span class="keyword">public</span>:<span class="comment"></span></div>
-<div class="line"><a id="l00189" name="l00189"></a><span class="lineno">  189</span><span class="comment">    ///  Constructor: Create the underlying rectangular quad mesh</span></div>
+<div class="line"><a id="l00189" name="l00189"></a><span class="lineno">  189</span><span class="comment">    /// Constructor: Create the underlying rectangular quad mesh</span></div>
 <div class="line"><a id="l00190" name="l00190"></a><span class="lineno"><a class="line" href="classoomph_1_1PMLQuadMeshBase.html#aff4042f75a253b56f06cb321605c2afe">  190</a></span><span class="comment"></span>    <a class="code hl_function" href="classoomph_1_1PMLQuadMeshBase.html#aff4042f75a253b56f06cb321605c2afe">PMLQuadMeshBase</a>(<span class="keyword">const</span> <span class="keywordtype">unsigned</span>&amp; n_pml_x,</div>
 <div class="line"><a id="l00191" name="l00191"></a><span class="lineno">  191</span>                    <span class="keyword">const</span> <span class="keywordtype">unsigned</span>&amp; n_pml_y,</div>
 <div class="line"><a id="l00192" name="l00192"></a><span class="lineno">  192</span>                    <span class="keyword">const</span> <span class="keywordtype">double</span>&amp; x_pml_start,</div>
@@ -333,7 +333,7 @@ $(function() {
 <div class="line"><a id="l00204" name="l00204"></a><span class="lineno">  204</span>    {</div>
 <div class="line"><a id="l00205" name="l00205"></a><span class="lineno">  205</span>    }</div>
 <div class="line"><a id="l00206" name="l00206"></a><span class="lineno">  206</span><span class="comment"></span> </div>
-<div class="line"><a id="l00207" name="l00207"></a><span class="lineno">  207</span><span class="comment">    ///  Overloaded function to allow the user to locate an element</span></div>
+<div class="line"><a id="l00207" name="l00207"></a><span class="lineno">  207</span><span class="comment">    /// Overloaded function to allow the user to locate an element</span></div>
 <div class="line"><a id="l00208" name="l00208"></a><span class="lineno">  208</span><span class="comment">    /// in mesh given the (Eulerian) position of a point. Note, the result</span></div>
 <div class="line"><a id="l00209" name="l00209"></a><span class="lineno">  209</span><span class="comment">    /// may be nonunique if the given point lies on the boundary of two</span></div>
 <div class="line"><a id="l00210" name="l00210"></a><span class="lineno">  210</span><span class="comment">    /// elements in the mesh. Additionally, we assume that the PML mesh is</span></div>
@@ -559,7 +559,7 @@ $(function() {
 <div class="line"><a id="l00430" name="l00430"></a><span class="lineno"><a class="line" href="classoomph_1_1PMLQuadMesh.html">  430</a></span>  <span class="keyword">class </span><a class="code hl_class" href="classoomph_1_1PMLQuadMesh.html">PMLQuadMesh</a> : <span class="keyword">public</span> <a class="code hl_class" href="classoomph_1_1PMLQuadMeshBase.html">PMLQuadMeshBase</a>&lt;ELEMENT&gt;</div>
 <div class="line"><a id="l00431" name="l00431"></a><span class="lineno">  431</span>  {</div>
 <div class="line"><a id="l00432" name="l00432"></a><span class="lineno">  432</span>  <span class="keyword">public</span>:<span class="comment"></span></div>
-<div class="line"><a id="l00433" name="l00433"></a><span class="lineno">  433</span><span class="comment">    ///  Constructor: Pass pointer to &quot;bulk&quot; mesh,</span></div>
+<div class="line"><a id="l00433" name="l00433"></a><span class="lineno">  433</span><span class="comment">    /// Constructor: Pass pointer to &quot;bulk&quot; mesh,</span></div>
 <div class="line"><a id="l00434" name="l00434"></a><span class="lineno">  434</span><span class="comment">    /// the boundary ID of axis aligned boundary to which the</span></div>
 <div class="line"><a id="l00435" name="l00435"></a><span class="lineno">  435</span><span class="comment">    /// mesh is supposed to be attached and the boundary ID in the</span></div>
 <div class="line"><a id="l00436" name="l00436"></a><span class="lineno">  436</span><span class="comment">    /// rectangular quad mesh that contains the pml elements.</span></div>
@@ -633,7 +633,7 @@ $(function() {
 <div class="line"><a id="l00504" name="l00504"></a><span class="lineno">  504</span> </div>
 <div class="line"><a id="l00505" name="l00505"></a><span class="lineno">  505</span>      <span class="keywordtype">unsigned</span> nnode_1d = this-&gt;<a class="code hl_function" href="classoomph_1_1Mesh.html#a479059b0964826a8cee6eb506b57268a">finite_element_pt</a>(0)-&gt;<a class="code hl_function" href="classoomph_1_1FiniteElement.html#ab65c7a94dda80c1876a09ac12be4e39c">nnode_1d</a>();</div>
 <div class="line"><a id="l00506" name="l00506"></a><span class="lineno">  506</span><span class="comment"></span> </div>
-<div class="line"><a id="l00507" name="l00507"></a><span class="lineno">  507</span><span class="comment">      ///  Simple interior node numbering helpers</span></div>
+<div class="line"><a id="l00507" name="l00507"></a><span class="lineno">  507</span><span class="comment">      /// Simple interior node numbering helpers</span></div>
 <div class="line"><a id="l00508" name="l00508"></a><span class="lineno">  508</span><span class="comment">      /// to be precomputed before the main loop</span></div>
 <div class="line"><a id="l00509" name="l00509"></a><span class="lineno">  509</span><span class="comment"></span><span class="comment"></span> </div>
 <div class="line"><a id="l00510" name="l00510"></a><span class="lineno">  510</span><span class="comment">      /// Top left node in element</span></div>
@@ -643,7 +643,7 @@ $(function() {
 <div class="line"><a id="l00514" name="l00514"></a><span class="lineno">  514</span><span class="comment">      /// Used to find nodes in top row</span></div>
 <div class="line"><a id="l00515" name="l00515"></a><span class="lineno">  515</span><span class="comment"></span>      <span class="keywordtype">unsigned</span> interior_node_nr_helper_3 = nnode_1d * (nnode_1d - 1) - 1;</div>
 <div class="line"><a id="l00516" name="l00516"></a><span class="lineno">  516</span><span class="comment"></span> </div>
-<div class="line"><a id="l00517" name="l00517"></a><span class="lineno">  517</span><span class="comment">      ///  Set all nodes from the PML mesh that must disappear</span></div>
+<div class="line"><a id="l00517" name="l00517"></a><span class="lineno">  517</span><span class="comment">      /// Set all nodes from the PML mesh that must disappear</span></div>
 <div class="line"><a id="l00518" name="l00518"></a><span class="lineno">  518</span><span class="comment">      /// after merging as obsolete</span></div>
 <div class="line"><a id="l00519" name="l00519"></a><span class="lineno">  519</span><span class="comment"></span>      <span class="keywordtype">unsigned</span> nnod = this-&gt;<a class="code hl_function" href="classoomph_1_1Mesh.html#a034677ceb48c67769acb83f304c84f7d">nboundary_node</a>(quad_boundary_id);</div>
 <div class="line"><a id="l00520" name="l00520"></a><span class="lineno">  520</span>      <span class="keywordflow">for</span> (<span class="keywordtype">unsigned</span> j = 0; j &lt; nnod; j++)</div>
@@ -798,7 +798,7 @@ $(function() {
 <div class="line"><a id="l00669" name="l00669"></a><span class="lineno">  669</span>        }</div>
 <div class="line"><a id="l00670" name="l00670"></a><span class="lineno">  670</span>      }</div>
 <div class="line"><a id="l00671" name="l00671"></a><span class="lineno">  671</span><span class="comment"></span> </div>
-<div class="line"><a id="l00672" name="l00672"></a><span class="lineno">  672</span><span class="comment">      ///  The alignment is done individually for each boundary</span></div>
+<div class="line"><a id="l00672" name="l00672"></a><span class="lineno">  672</span><span class="comment">      /// The alignment is done individually for each boundary</span></div>
 <div class="line"><a id="l00673" name="l00673"></a><span class="lineno">  673</span><span class="comment">      /// and depends on the ordering of the nodes, in this case of the</span></div>
 <div class="line"><a id="l00674" name="l00674"></a><span class="lineno">  674</span><span class="comment">      /// RectangularQuadMesh&lt;2,3&gt; for each boundary. There are operations</span></div>
 <div class="line"><a id="l00675" name="l00675"></a><span class="lineno">  675</span><span class="comment">      /// with mod and div 3 necessary in this case, as well as specific</span></div>
@@ -905,7 +905,7 @@ $(function() {
 <div class="line"><a id="l00776" name="l00776"></a><span class="lineno"><a class="line" href="classoomph_1_1PMLCornerQuadMesh.html">  776</a></span>  <span class="keyword">class </span><a class="code hl_class" href="classoomph_1_1PMLCornerQuadMesh.html">PMLCornerQuadMesh</a> : <span class="keyword">public</span> <a class="code hl_class" href="classoomph_1_1PMLQuadMeshBase.html">PMLQuadMeshBase</a>&lt;ELEMENT&gt;</div>
 <div class="line"><a id="l00777" name="l00777"></a><span class="lineno">  777</span>  {</div>
 <div class="line"><a id="l00778" name="l00778"></a><span class="lineno">  778</span>  <span class="keyword">public</span>:<span class="comment"></span></div>
-<div class="line"><a id="l00779" name="l00779"></a><span class="lineno">  779</span><span class="comment">    ///  Constructor: Pass pointer to &quot;bulk&quot; mesh</span></div>
+<div class="line"><a id="l00779" name="l00779"></a><span class="lineno">  779</span><span class="comment">    /// Constructor: Pass pointer to &quot;bulk&quot; mesh</span></div>
 <div class="line"><a id="l00780" name="l00780"></a><span class="lineno">  780</span><span class="comment">    /// and the two existing PML meshes in order to construct the corner</span></div>
 <div class="line"><a id="l00781" name="l00781"></a><span class="lineno">  781</span><span class="comment">    /// PML mesh in between them based on their element number</span></div>
 <div class="line"><a id="l00782" name="l00782"></a><span class="lineno">  782</span><span class="comment">    /// and coordinates.</span></div>
@@ -934,7 +934,7 @@ $(function() {
 <div class="line"><a id="l00805" name="l00805"></a><span class="lineno">  805</span>    {</div>
 <div class="line"><a id="l00806" name="l00806"></a><span class="lineno">  806</span>      <span class="keywordtype">unsigned</span> nnode_1d = this-&gt;<a class="code hl_function" href="classoomph_1_1Mesh.html#a479059b0964826a8cee6eb506b57268a">finite_element_pt</a>(0)-&gt;<a class="code hl_function" href="classoomph_1_1FiniteElement.html#ab65c7a94dda80c1876a09ac12be4e39c">nnode_1d</a>();</div>
 <div class="line"><a id="l00807" name="l00807"></a><span class="lineno">  807</span><span class="comment"></span> </div>
-<div class="line"><a id="l00808" name="l00808"></a><span class="lineno">  808</span><span class="comment">      ///  Simple interior node numbering helpers</span></div>
+<div class="line"><a id="l00808" name="l00808"></a><span class="lineno">  808</span><span class="comment">      /// Simple interior node numbering helpers</span></div>
 <div class="line"><a id="l00809" name="l00809"></a><span class="lineno">  809</span><span class="comment">      /// to be precomputed before the main loop</span></div>
 <div class="line"><a id="l00810" name="l00810"></a><span class="lineno">  810</span><span class="comment"></span><span class="comment"></span> </div>
 <div class="line"><a id="l00811" name="l00811"></a><span class="lineno">  811</span><span class="comment">      /// Top left node in element</span></div>
@@ -1655,7 +1655,7 @@ $(function() {
 <div class="line"><a id="l01526" name="l01526"></a><span class="lineno"> 1526</span><span class="comment"></span> </div>
 <div class="line"><a id="l01527" name="l01527"></a><span class="lineno"> 1527</span> </div>
 <div class="line"><a id="l01528" name="l01528"></a><span class="lineno"> 1528</span>  <span class="comment">//===================================================================</span><span class="comment"></span></div>
-<div class="line"><a id="l01529" name="l01529"></a><span class="lineno"> 1529</span><span class="comment">  ///  All helper routines for 2D bulk boundary mesh usage in order to</span></div>
+<div class="line"><a id="l01529" name="l01529"></a><span class="lineno"> 1529</span><span class="comment">  /// All helper routines for 2D bulk boundary mesh usage in order to</span></div>
 <div class="line"><a id="l01530" name="l01530"></a><span class="lineno"> 1530</span><span class="comment">  /// generate PML meshes aligned to the main mesh</span></div>
 <div class="line"><a id="l01531" name="l01531"></a><span class="lineno"> 1531</span><span class="comment"></span>  <span class="comment">//===================================================================</span></div>
 <div class="line"><a id="l01532" name="l01532"></a><span class="lineno"> 1532</span>  <span class="keyword">namespace </span>TwoDimensionalPMLHelper</div>
@@ -1697,7 +1697,7 @@ $(function() {
 <div class="line"><a id="l01568" name="l01568"></a><span class="lineno"> 1568</span> </div>
 <div class="line"><a id="l01569" name="l01569"></a><span class="lineno"> 1569</span>      <span class="comment">// Specific PML sizes needed, taken directly from physical domain</span></div>
 <div class="line"><a id="l01570" name="l01570"></a><span class="lineno"> 1570</span>      <span class="keywordtype">double</span> l_pml_right_x_start = ordered_right_boundary_node_pt[0]-&gt;x(0);<span class="comment"></span></div>
-<div class="line"><a id="l01571" name="l01571"></a><span class="lineno"> 1571</span><span class="comment">      ///  PML layer with added to the bulk mesh coordinate</span></div>
+<div class="line"><a id="l01571" name="l01571"></a><span class="lineno"> 1571</span><span class="comment">      /// PML layer with added to the bulk mesh coordinate</span></div>
 <div class="line"><a id="l01572" name="l01572"></a><span class="lineno"> 1572</span><span class="comment"></span>      <span class="keywordtype">double</span> l_pml_right_x_end =</div>
 <div class="line"><a id="l01573" name="l01573"></a><span class="lineno"> 1573</span>        width_x_right_pml + ordered_right_boundary_node_pt[0]-&gt;x(0);</div>
 <div class="line"><a id="l01574" name="l01574"></a><span class="lineno"> 1574</span>      <span class="keywordtype">double</span> l_pml_right_y_start = ordered_right_boundary_node_pt[0]-&gt;x(1);</div>
@@ -1762,7 +1762,7 @@ $(function() {
 <div class="line"><a id="l01633" name="l01633"></a><span class="lineno"> 1633</span>        }</div>
 <div class="line"><a id="l01634" name="l01634"></a><span class="lineno"> 1634</span>      }</div>
 <div class="line"><a id="l01635" name="l01635"></a><span class="lineno"> 1635</span><span class="comment"></span> </div>
-<div class="line"><a id="l01636" name="l01636"></a><span class="lineno"> 1636</span><span class="comment">      ///  Return the finalized mesh, with PML enabled</span></div>
+<div class="line"><a id="l01636" name="l01636"></a><span class="lineno"> 1636</span><span class="comment">      /// Return the finalized mesh, with PML enabled</span></div>
 <div class="line"><a id="l01637" name="l01637"></a><span class="lineno"> 1637</span><span class="comment">      /// and boundary conditions added</span></div>
 <div class="line"><a id="l01638" name="l01638"></a><span class="lineno"> 1638</span><span class="comment"></span>      <span class="keywordflow">return</span> pml_right_mesh_pt;</div>
 <div class="line"><a id="l01639" name="l01639"></a><span class="lineno"> 1639</span>    }</div>
@@ -1806,7 +1806,7 @@ $(function() {
 <div class="line"><a id="l01677" name="l01677"></a><span class="lineno"> 1677</span>      <span class="keywordtype">double</span> l_pml_top_x_end =</div>
 <div class="line"><a id="l01678" name="l01678"></a><span class="lineno"> 1678</span>        ordered_top_boundary_node_pt[n_top_boundary_node - 1]-&gt;x(0);</div>
 <div class="line"><a id="l01679" name="l01679"></a><span class="lineno"> 1679</span>      <span class="keywordtype">double</span> l_pml_top_y_start = ordered_top_boundary_node_pt[0]-&gt;x(1);<span class="comment"></span></div>
-<div class="line"><a id="l01680" name="l01680"></a><span class="lineno"> 1680</span><span class="comment">      ///  PML layer width added to the bulk mesh coordinate</span></div>
+<div class="line"><a id="l01680" name="l01680"></a><span class="lineno"> 1680</span><span class="comment">      /// PML layer width added to the bulk mesh coordinate</span></div>
 <div class="line"><a id="l01681" name="l01681"></a><span class="lineno"> 1681</span><span class="comment"></span>      <span class="keywordtype">double</span> l_pml_top_y_end =</div>
 <div class="line"><a id="l01682" name="l01682"></a><span class="lineno"> 1682</span>        width_y_top_pml + ordered_top_boundary_node_pt[0]-&gt;x(1);</div>
 <div class="line"><a id="l01683" name="l01683"></a><span class="lineno"> 1683</span> </div>
@@ -1868,7 +1868,7 @@ $(function() {
 <div class="line"><a id="l01739" name="l01739"></a><span class="lineno"> 1739</span>        }</div>
 <div class="line"><a id="l01740" name="l01740"></a><span class="lineno"> 1740</span>      }</div>
 <div class="line"><a id="l01741" name="l01741"></a><span class="lineno"> 1741</span><span class="comment"></span> </div>
-<div class="line"><a id="l01742" name="l01742"></a><span class="lineno"> 1742</span><span class="comment">      ///  Return the finalized mesh, with PML enabled</span></div>
+<div class="line"><a id="l01742" name="l01742"></a><span class="lineno"> 1742</span><span class="comment">      /// Return the finalized mesh, with PML enabled</span></div>
 <div class="line"><a id="l01743" name="l01743"></a><span class="lineno"> 1743</span><span class="comment">      /// and boundary conditions added</span></div>
 <div class="line"><a id="l01744" name="l01744"></a><span class="lineno"> 1744</span><span class="comment"></span>      <span class="keywordflow">return</span> pml_top_mesh_pt;</div>
 <div class="line"><a id="l01745" name="l01745"></a><span class="lineno"> 1745</span>    }</div>
@@ -1908,7 +1908,7 @@ $(function() {
 <div class="line"><a id="l01779" name="l01779"></a><span class="lineno"> 1779</span>      <span class="keywordtype">unsigned</span> n_y_left_pml = bulk_mesh_pt-&gt;<a class="code hl_function" href="classoomph_1_1Mesh.html#a68e04b3b70cff70d53d75f66661555e8">nboundary_element</a>(left_boundary_id);</div>
 <div class="line"><a id="l01780" name="l01780"></a><span class="lineno"> 1780</span> </div>
 <div class="line"><a id="l01781" name="l01781"></a><span class="lineno"> 1781</span>      <span class="comment">// Specific PML sizes needed, taken directly from physical domain</span><span class="comment"></span></div>
-<div class="line"><a id="l01782" name="l01782"></a><span class="lineno"> 1782</span><span class="comment">      ///  PML layer width subtracted from left bulk mesh coordinate</span></div>
+<div class="line"><a id="l01782" name="l01782"></a><span class="lineno"> 1782</span><span class="comment">      /// PML layer width subtracted from left bulk mesh coordinate</span></div>
 <div class="line"><a id="l01783" name="l01783"></a><span class="lineno"> 1783</span><span class="comment"></span>      <span class="keywordtype">double</span> l_pml_left_x_start =</div>
 <div class="line"><a id="l01784" name="l01784"></a><span class="lineno"> 1784</span>        -width_x_left_pml +</div>
 <div class="line"><a id="l01785" name="l01785"></a><span class="lineno"> 1785</span>        ordered_left_boundary_node_pt[n_left_boundary_node - 1]-&gt;x(0);</div>
@@ -1976,7 +1976,7 @@ $(function() {
 <div class="line"><a id="l01847" name="l01847"></a><span class="lineno"> 1847</span>        }</div>
 <div class="line"><a id="l01848" name="l01848"></a><span class="lineno"> 1848</span>      }</div>
 <div class="line"><a id="l01849" name="l01849"></a><span class="lineno"> 1849</span><span class="comment"></span> </div>
-<div class="line"><a id="l01850" name="l01850"></a><span class="lineno"> 1850</span><span class="comment">      ///  Return the finalized mesh, with PML enabled</span></div>
+<div class="line"><a id="l01850" name="l01850"></a><span class="lineno"> 1850</span><span class="comment">      /// Return the finalized mesh, with PML enabled</span></div>
 <div class="line"><a id="l01851" name="l01851"></a><span class="lineno"> 1851</span><span class="comment">      /// and boundary conditions added</span></div>
 <div class="line"><a id="l01852" name="l01852"></a><span class="lineno"> 1852</span><span class="comment"></span>      <span class="keywordflow">return</span> pml_left_mesh_pt;</div>
 <div class="line"><a id="l01853" name="l01853"></a><span class="lineno"> 1853</span>    }</div>
@@ -2020,7 +2020,7 @@ $(function() {
 <div class="line"><a id="l01891" name="l01891"></a><span class="lineno"> 1891</span>      <span class="keywordtype">double</span> l_pml_bottom_x_start =</div>
 <div class="line"><a id="l01892" name="l01892"></a><span class="lineno"> 1892</span>        ordered_bottom_boundary_node_pt[n_bottom_boundary_node - 1]-&gt;x(0);</div>
 <div class="line"><a id="l01893" name="l01893"></a><span class="lineno"> 1893</span>      <span class="keywordtype">double</span> l_pml_bottom_x_end = ordered_bottom_boundary_node_pt[0]-&gt;x(0);<span class="comment"></span></div>
-<div class="line"><a id="l01894" name="l01894"></a><span class="lineno"> 1894</span><span class="comment">      ///  PML layer width subtracted from the bulk mesh lower</span></div>
+<div class="line"><a id="l01894" name="l01894"></a><span class="lineno"> 1894</span><span class="comment">      /// PML layer width subtracted from the bulk mesh lower</span></div>
 <div class="line"><a id="l01895" name="l01895"></a><span class="lineno"> 1895</span><span class="comment">      /// boundary coordinate</span></div>
 <div class="line"><a id="l01896" name="l01896"></a><span class="lineno"> 1896</span><span class="comment"></span>      <span class="keywordtype">double</span> l_pml_bottom_y_start =</div>
 <div class="line"><a id="l01897" name="l01897"></a><span class="lineno"> 1897</span>        -width_y_bottom_pml + ordered_bottom_boundary_node_pt[0]-&gt;x(1);</div>
@@ -2084,13 +2084,13 @@ $(function() {
 <div class="line"><a id="l01955" name="l01955"></a><span class="lineno"> 1955</span>        }</div>
 <div class="line"><a id="l01956" name="l01956"></a><span class="lineno"> 1956</span>      }</div>
 <div class="line"><a id="l01957" name="l01957"></a><span class="lineno"> 1957</span><span class="comment"></span> </div>
-<div class="line"><a id="l01958" name="l01958"></a><span class="lineno"> 1958</span><span class="comment">      ///  Return the finalized mesh, with PML enabled</span></div>
+<div class="line"><a id="l01958" name="l01958"></a><span class="lineno"> 1958</span><span class="comment">      /// Return the finalized mesh, with PML enabled</span></div>
 <div class="line"><a id="l01959" name="l01959"></a><span class="lineno"> 1959</span><span class="comment">      /// and boundary conditions added</span></div>
 <div class="line"><a id="l01960" name="l01960"></a><span class="lineno"> 1960</span><span class="comment"></span>      <span class="keywordflow">return</span> pml_bottom_mesh_pt;</div>
 <div class="line"><a id="l01961" name="l01961"></a><span class="lineno"> 1961</span>    }</div>
 <div class="line"><a id="l01962" name="l01962"></a><span class="lineno"> 1962</span> </div>
 <div class="line"><a id="l01963" name="l01963"></a><span class="lineno"> 1963</span>    <span class="comment">//==========================================================================</span><span class="comment"></span></div>
-<div class="line"><a id="l01964" name="l01964"></a><span class="lineno"> 1964</span><span class="comment">    ///  &quot;Constructor&quot; for PML top right corner mesh,</span></div>
+<div class="line"><a id="l01964" name="l01964"></a><span class="lineno"> 1964</span><span class="comment">    /// &quot;Constructor&quot; for PML top right corner mesh,</span></div>
 <div class="line"><a id="l01965" name="l01965"></a><span class="lineno"> 1965</span><span class="comment">    /// aligned with the existing PML meshes</span></div>
 <div class="line"><a id="l01966" name="l01966"></a><span class="lineno"> 1966</span><span class="comment"></span>    <span class="comment">//==========================================================================</span></div>
 <div class="line"><a id="l01967" name="l01967"></a><span class="lineno"> 1967</span>    <span class="keyword">template</span>&lt;<span class="keyword">class</span> ASSOCIATED_PML_QUAD_ELEMENT&gt;</div>
@@ -2101,7 +2101,7 @@ $(function() {
 <div class="line"><a id="l01972" name="l01972"></a><span class="lineno"> 1972</span>      <span class="keyword">const</span> <span class="keywordtype">unsigned</span>&amp; right_boundary_id,</div>
 <div class="line"><a id="l01973" name="l01973"></a><span class="lineno"> 1973</span>      <a class="code hl_class" href="classoomph_1_1TimeStepper.html">TimeStepper</a>* time_stepper_pt = &amp;<a class="code hl_variable" href="classoomph_1_1Mesh.html#a12243d0fee2b1fcee729ee5a4777ea10">Mesh::Default_TimeStepper</a>)</div>
 <div class="line"><a id="l01974" name="l01974"></a><span class="lineno"> 1974</span>    {<span class="comment"></span></div>
-<div class="line"><a id="l01975" name="l01975"></a><span class="lineno"> 1975</span><span class="comment">      ///  Relevant boundary id&#39;s to be used in construction</span></div>
+<div class="line"><a id="l01975" name="l01975"></a><span class="lineno"> 1975</span><span class="comment">      /// Relevant boundary id&#39;s to be used in construction</span></div>
 <div class="line"><a id="l01976" name="l01976"></a><span class="lineno"> 1976</span><span class="comment">      /// Parent id refers to already existing PML meshes</span></div>
 <div class="line"><a id="l01977" name="l01977"></a><span class="lineno"> 1977</span><span class="comment"></span>      <span class="keywordtype">unsigned</span> parent_boundary_x_id = 2;</div>
 <div class="line"><a id="l01978" name="l01978"></a><span class="lineno"> 1978</span>      <span class="keywordtype">unsigned</span> parent_boundary_y_id = 1;</div>
@@ -2128,7 +2128,7 @@ $(function() {
 <div class="line"><a id="l01999" name="l01999"></a><span class="lineno"> 1999</span>                ordered_right_boundary_node_pt.end(),</div>
 <div class="line"><a id="l02000" name="l02000"></a><span class="lineno"> 2000</span>                <a class="code hl_function" href="namespaceoomph_1_1TwoDimensionalPMLHelper.html#ae66c595a953e030ae366699eec3ca3ab">sorter_right_boundary</a>);</div>
 <div class="line"><a id="l02001" name="l02001"></a><span class="lineno"> 2001</span><span class="comment"></span> </div>
-<div class="line"><a id="l02002" name="l02002"></a><span class="lineno"> 2002</span><span class="comment">      ///  Number of elements and boundary nodes to be acted upon during</span></div>
+<div class="line"><a id="l02002" name="l02002"></a><span class="lineno"> 2002</span><span class="comment">      /// Number of elements and boundary nodes to be acted upon during</span></div>
 <div class="line"><a id="l02003" name="l02003"></a><span class="lineno"> 2003</span><span class="comment">      /// construction are extracted from the &#39;parent&#39; PML meshes</span></div>
 <div class="line"><a id="l02004" name="l02004"></a><span class="lineno"> 2004</span><span class="comment"></span>      <span class="keywordtype">unsigned</span> n_x_right_pml =</div>
 <div class="line"><a id="l02005" name="l02005"></a><span class="lineno"> 2005</span>        pml_right_mesh_pt-&gt;<a class="code hl_function" href="classoomph_1_1Mesh.html#a68e04b3b70cff70d53d75f66661555e8">nboundary_element</a>(parent_boundary_x_id);</div>
@@ -2139,7 +2139,7 @@ $(function() {
 <div class="line"><a id="l02010" name="l02010"></a><span class="lineno"> 2010</span>      <span class="keywordtype">unsigned</span> n_y_boundary_nodes =</div>
 <div class="line"><a id="l02011" name="l02011"></a><span class="lineno"> 2011</span>        pml_top_mesh_pt-&gt;<a class="code hl_function" href="classoomph_1_1Mesh.html#a034677ceb48c67769acb83f304c84f7d">nboundary_node</a>(parent_boundary_y_id);</div>
 <div class="line"><a id="l02012" name="l02012"></a><span class="lineno"> 2012</span><span class="comment"></span> </div>
-<div class="line"><a id="l02013" name="l02013"></a><span class="lineno"> 2013</span><span class="comment">      ///  Specific PML sizes needed, taken directly from physical domain</span></div>
+<div class="line"><a id="l02013" name="l02013"></a><span class="lineno"> 2013</span><span class="comment">      /// Specific PML sizes needed, taken directly from physical domain</span></div>
 <div class="line"><a id="l02014" name="l02014"></a><span class="lineno"> 2014</span><span class="comment">      /// and existing PML meshes</span></div>
 <div class="line"><a id="l02015" name="l02015"></a><span class="lineno"> 2015</span><span class="comment"></span>      <span class="keywordtype">double</span> l_pml_right_x_start =</div>
 <div class="line"><a id="l02016" name="l02016"></a><span class="lineno"> 2016</span>        ordered_right_boundary_node_pt[n_right_boundary_node - 1]-&gt;x(0);</div>
@@ -2177,7 +2177,7 @@ $(function() {
 <div class="line"><a id="l02048" name="l02048"></a><span class="lineno"> 2048</span>          time_stepper_pt);</div>
 <div class="line"><a id="l02049" name="l02049"></a><span class="lineno"> 2049</span> </div>
 <div class="line"><a id="l02050" name="l02050"></a><span class="lineno"> 2050</span>      <span class="comment">// Enable PML damping on the entire mesh</span><span class="comment"></span></div>
-<div class="line"><a id="l02051" name="l02051"></a><span class="lineno"> 2051</span><span class="comment">      ///  The enabling must be perfromed in both x- and y-directions</span></div>
+<div class="line"><a id="l02051" name="l02051"></a><span class="lineno"> 2051</span><span class="comment">      /// The enabling must be perfromed in both x- and y-directions</span></div>
 <div class="line"><a id="l02052" name="l02052"></a><span class="lineno"> 2052</span><span class="comment">      /// as this is a corner PML mesh</span></div>
 <div class="line"><a id="l02053" name="l02053"></a><span class="lineno"> 2053</span><span class="comment"></span>      <span class="keywordtype">unsigned</span> n_element_pml_top_right = pml_top_right_mesh_pt-&gt;<a class="code hl_function" href="classoomph_1_1Mesh.html#af01dfefb66c15579b540be62999d93ee">nelement</a>();</div>
 <div class="line"><a id="l02054" name="l02054"></a><span class="lineno"> 2054</span>      <span class="keywordflow">for</span> (<span class="keywordtype">unsigned</span> <a class="code hl_variable" href="cfortran_8h.html#a37cd013acc76697829c324bdd8562d82">e</a> = 0; <a class="code hl_variable" href="cfortran_8h.html#a37cd013acc76697829c324bdd8562d82">e</a> &lt; n_element_pml_top_right; <a class="code hl_variable" href="cfortran_8h.html#a37cd013acc76697829c324bdd8562d82">e</a>++)</div>
@@ -2219,13 +2219,13 @@ $(function() {
 <div class="line"><a id="l02090" name="l02090"></a><span class="lineno"> 2090</span>        }</div>
 <div class="line"><a id="l02091" name="l02091"></a><span class="lineno"> 2091</span>      }</div>
 <div class="line"><a id="l02092" name="l02092"></a><span class="lineno"> 2092</span><span class="comment"></span> </div>
-<div class="line"><a id="l02093" name="l02093"></a><span class="lineno"> 2093</span><span class="comment">      ///  Return the finalized mesh, with PML enabled</span></div>
+<div class="line"><a id="l02093" name="l02093"></a><span class="lineno"> 2093</span><span class="comment">      /// Return the finalized mesh, with PML enabled</span></div>
 <div class="line"><a id="l02094" name="l02094"></a><span class="lineno"> 2094</span><span class="comment">      /// and boundary conditions added</span></div>
 <div class="line"><a id="l02095" name="l02095"></a><span class="lineno"> 2095</span><span class="comment"></span>      <span class="keywordflow">return</span> pml_top_right_mesh_pt;</div>
 <div class="line"><a id="l02096" name="l02096"></a><span class="lineno"> 2096</span>    }</div>
 <div class="line"><a id="l02097" name="l02097"></a><span class="lineno"> 2097</span> </div>
 <div class="line"><a id="l02098" name="l02098"></a><span class="lineno"> 2098</span>    <span class="comment">//==========================================================================</span><span class="comment"></span></div>
-<div class="line"><a id="l02099" name="l02099"></a><span class="lineno"> 2099</span><span class="comment">    ///   &quot;Constructor&quot; for PML bottom right corner mesh,</span></div>
+<div class="line"><a id="l02099" name="l02099"></a><span class="lineno"> 2099</span><span class="comment">    ///  &quot;Constructor&quot; for PML bottom right corner mesh,</span></div>
 <div class="line"><a id="l02100" name="l02100"></a><span class="lineno"> 2100</span><span class="comment">    /// aligned with the existing PML meshes</span></div>
 <div class="line"><a id="l02101" name="l02101"></a><span class="lineno"> 2101</span><span class="comment"></span>    <span class="comment">//==========================================================================</span></div>
 <div class="line"><a id="l02102" name="l02102"></a><span class="lineno"> 2102</span>    <span class="keyword">template</span>&lt;<span class="keyword">class</span> ASSOCIATED_PML_QUAD_ELEMENT&gt;</div>
@@ -2236,7 +2236,7 @@ $(function() {
 <div class="line"><a id="l02107" name="l02107"></a><span class="lineno"> 2107</span>      <span class="keyword">const</span> <span class="keywordtype">unsigned</span>&amp; right_boundary_id,</div>
 <div class="line"><a id="l02108" name="l02108"></a><span class="lineno"> 2108</span>      <a class="code hl_class" href="classoomph_1_1TimeStepper.html">TimeStepper</a>* time_stepper_pt = &amp;<a class="code hl_variable" href="classoomph_1_1Mesh.html#a12243d0fee2b1fcee729ee5a4777ea10">Mesh::Default_TimeStepper</a>)</div>
 <div class="line"><a id="l02109" name="l02109"></a><span class="lineno"> 2109</span>    {<span class="comment"></span></div>
-<div class="line"><a id="l02110" name="l02110"></a><span class="lineno"> 2110</span><span class="comment">      ///  Relevant boundary id&#39;s to be used in construction</span></div>
+<div class="line"><a id="l02110" name="l02110"></a><span class="lineno"> 2110</span><span class="comment">      /// Relevant boundary id&#39;s to be used in construction</span></div>
 <div class="line"><a id="l02111" name="l02111"></a><span class="lineno"> 2111</span><span class="comment">      /// Parent id refers to already existing PML meshes</span></div>
 <div class="line"><a id="l02112" name="l02112"></a><span class="lineno"> 2112</span><span class="comment"></span>      <span class="keywordtype">unsigned</span> parent_boundary_x_id = 0;</div>
 <div class="line"><a id="l02113" name="l02113"></a><span class="lineno"> 2113</span>      <span class="keywordtype">unsigned</span> parent_boundary_y_id = 1;</div>
@@ -2263,7 +2263,7 @@ $(function() {
 <div class="line"><a id="l02134" name="l02134"></a><span class="lineno"> 2134</span>                ordered_right_boundary_node_pt.end(),</div>
 <div class="line"><a id="l02135" name="l02135"></a><span class="lineno"> 2135</span>                <a class="code hl_function" href="namespaceoomph_1_1TwoDimensionalPMLHelper.html#ae66c595a953e030ae366699eec3ca3ab">sorter_right_boundary</a>);</div>
 <div class="line"><a id="l02136" name="l02136"></a><span class="lineno"> 2136</span><span class="comment"></span> </div>
-<div class="line"><a id="l02137" name="l02137"></a><span class="lineno"> 2137</span><span class="comment">      ///  Number of elements and boundary nodes to be acted upon during</span></div>
+<div class="line"><a id="l02137" name="l02137"></a><span class="lineno"> 2137</span><span class="comment">      /// Number of elements and boundary nodes to be acted upon during</span></div>
 <div class="line"><a id="l02138" name="l02138"></a><span class="lineno"> 2138</span><span class="comment">      /// construction are extracted from the &#39;parent&#39; PML meshes</span></div>
 <div class="line"><a id="l02139" name="l02139"></a><span class="lineno"> 2139</span><span class="comment"></span>      <span class="keywordtype">unsigned</span> n_x_right_pml =</div>
 <div class="line"><a id="l02140" name="l02140"></a><span class="lineno"> 2140</span>        pml_right_mesh_pt-&gt;<a class="code hl_function" href="classoomph_1_1Mesh.html#a68e04b3b70cff70d53d75f66661555e8">nboundary_element</a>(parent_boundary_x_id);</div>
@@ -2272,7 +2272,7 @@ $(function() {
 <div class="line"><a id="l02143" name="l02143"></a><span class="lineno"> 2143</span>      <span class="keywordtype">unsigned</span> n_x_boundary_nodes =</div>
 <div class="line"><a id="l02144" name="l02144"></a><span class="lineno"> 2144</span>        pml_right_mesh_pt-&gt;<a class="code hl_function" href="classoomph_1_1Mesh.html#a034677ceb48c67769acb83f304c84f7d">nboundary_node</a>(parent_boundary_x_id);</div>
 <div class="line"><a id="l02145" name="l02145"></a><span class="lineno"> 2145</span><span class="comment"></span> </div>
-<div class="line"><a id="l02146" name="l02146"></a><span class="lineno"> 2146</span><span class="comment">      ///  Specific PML sizes needed, taken directly from physical domain</span></div>
+<div class="line"><a id="l02146" name="l02146"></a><span class="lineno"> 2146</span><span class="comment">      /// Specific PML sizes needed, taken directly from physical domain</span></div>
 <div class="line"><a id="l02147" name="l02147"></a><span class="lineno"> 2147</span><span class="comment">      /// and existing PML meshes</span></div>
 <div class="line"><a id="l02148" name="l02148"></a><span class="lineno"> 2148</span><span class="comment"></span>      <span class="keywordtype">double</span> l_pml_right_x_start = ordered_right_boundary_node_pt[0]-&gt;x(0);</div>
 <div class="line"><a id="l02149" name="l02149"></a><span class="lineno"> 2149</span>      <span class="keywordtype">double</span> l_pml_right_x_end =</div>
@@ -2306,7 +2306,7 @@ $(function() {
 <div class="line"><a id="l02177" name="l02177"></a><span class="lineno"> 2177</span>          time_stepper_pt);</div>
 <div class="line"><a id="l02178" name="l02178"></a><span class="lineno"> 2178</span> </div>
 <div class="line"><a id="l02179" name="l02179"></a><span class="lineno"> 2179</span>      <span class="comment">// Enable PML damping on the entire mesh</span><span class="comment"></span></div>
-<div class="line"><a id="l02180" name="l02180"></a><span class="lineno"> 2180</span><span class="comment">      ///  The enabling must be perfromed in both x- and y-directions</span></div>
+<div class="line"><a id="l02180" name="l02180"></a><span class="lineno"> 2180</span><span class="comment">      /// The enabling must be perfromed in both x- and y-directions</span></div>
 <div class="line"><a id="l02181" name="l02181"></a><span class="lineno"> 2181</span><span class="comment">      /// as this is a corner PML mesh</span></div>
 <div class="line"><a id="l02182" name="l02182"></a><span class="lineno"> 2182</span><span class="comment"></span>      <span class="keywordtype">unsigned</span> n_element_pml_bottom_right =</div>
 <div class="line"><a id="l02183" name="l02183"></a><span class="lineno"> 2183</span>        pml_bottom_right_mesh_pt-&gt;<a class="code hl_function" href="classoomph_1_1Mesh.html#af01dfefb66c15579b540be62999d93ee">nelement</a>();</div>
@@ -2350,13 +2350,13 @@ $(function() {
 <div class="line"><a id="l02221" name="l02221"></a><span class="lineno"> 2221</span>        }</div>
 <div class="line"><a id="l02222" name="l02222"></a><span class="lineno"> 2222</span>      }</div>
 <div class="line"><a id="l02223" name="l02223"></a><span class="lineno"> 2223</span><span class="comment"></span> </div>
-<div class="line"><a id="l02224" name="l02224"></a><span class="lineno"> 2224</span><span class="comment">      ///  Return the finalized mesh, with PML enabled</span></div>
+<div class="line"><a id="l02224" name="l02224"></a><span class="lineno"> 2224</span><span class="comment">      /// Return the finalized mesh, with PML enabled</span></div>
 <div class="line"><a id="l02225" name="l02225"></a><span class="lineno"> 2225</span><span class="comment">      /// and boundary conditions added</span></div>
 <div class="line"><a id="l02226" name="l02226"></a><span class="lineno"> 2226</span><span class="comment"></span>      <span class="keywordflow">return</span> pml_bottom_right_mesh_pt;</div>
 <div class="line"><a id="l02227" name="l02227"></a><span class="lineno"> 2227</span>    }</div>
 <div class="line"><a id="l02228" name="l02228"></a><span class="lineno"> 2228</span> </div>
 <div class="line"><a id="l02229" name="l02229"></a><span class="lineno"> 2229</span>    <span class="comment">//==========================================================================</span><span class="comment"></span></div>
-<div class="line"><a id="l02230" name="l02230"></a><span class="lineno"> 2230</span><span class="comment">    ///  &quot;Constructor&quot; for PML top left corner mesh,</span></div>
+<div class="line"><a id="l02230" name="l02230"></a><span class="lineno"> 2230</span><span class="comment">    /// &quot;Constructor&quot; for PML top left corner mesh,</span></div>
 <div class="line"><a id="l02231" name="l02231"></a><span class="lineno"> 2231</span><span class="comment">    /// aligned with the existing PML meshes</span></div>
 <div class="line"><a id="l02232" name="l02232"></a><span class="lineno"> 2232</span><span class="comment"></span>    <span class="comment">//==========================================================================</span></div>
 <div class="line"><a id="l02233" name="l02233"></a><span class="lineno"> 2233</span>    <span class="keyword">template</span>&lt;<span class="keyword">class</span> ASSOCIATED_PML_QUAD_ELEMENT&gt;</div>
@@ -2367,7 +2367,7 @@ $(function() {
 <div class="line"><a id="l02238" name="l02238"></a><span class="lineno"> 2238</span>      <span class="keyword">const</span> <span class="keywordtype">unsigned</span>&amp; left_boundary_id,</div>
 <div class="line"><a id="l02239" name="l02239"></a><span class="lineno"> 2239</span>      <a class="code hl_class" href="classoomph_1_1TimeStepper.html">TimeStepper</a>* time_stepper_pt = &amp;<a class="code hl_variable" href="classoomph_1_1Mesh.html#a12243d0fee2b1fcee729ee5a4777ea10">Mesh::Default_TimeStepper</a>)</div>
 <div class="line"><a id="l02240" name="l02240"></a><span class="lineno"> 2240</span>    {<span class="comment"></span></div>
-<div class="line"><a id="l02241" name="l02241"></a><span class="lineno"> 2241</span><span class="comment">      ///  Relevant boundary id&#39;s to be used in construction</span></div>
+<div class="line"><a id="l02241" name="l02241"></a><span class="lineno"> 2241</span><span class="comment">      /// Relevant boundary id&#39;s to be used in construction</span></div>
 <div class="line"><a id="l02242" name="l02242"></a><span class="lineno"> 2242</span><span class="comment">      /// Parent id refers to already existing PML meshes</span></div>
 <div class="line"><a id="l02243" name="l02243"></a><span class="lineno"> 2243</span><span class="comment"></span>      <span class="keywordtype">unsigned</span> parent_boundary_x_id = 2;</div>
 <div class="line"><a id="l02244" name="l02244"></a><span class="lineno"> 2244</span>      <span class="keywordtype">unsigned</span> parent_boundary_y_id = 3;</div>
@@ -2389,14 +2389,14 @@ $(function() {
 <div class="line"><a id="l02260" name="l02260"></a><span class="lineno"> 2260</span>          bulk_mesh_pt-&gt;<a class="code hl_function" href="classoomph_1_1Mesh.html#afc4d1204afc31b9ec88fe82d8fc01625">boundary_node_pt</a>(left_boundary_id, n);</div>
 <div class="line"><a id="l02261" name="l02261"></a><span class="lineno"> 2261</span>      }</div>
 <div class="line"><a id="l02262" name="l02262"></a><span class="lineno"> 2262</span><span class="comment"></span> </div>
-<div class="line"><a id="l02263" name="l02263"></a><span class="lineno"> 2263</span><span class="comment">      ///  Sort them from lowest to highest (in y coordinate)</span></div>
+<div class="line"><a id="l02263" name="l02263"></a><span class="lineno"> 2263</span><span class="comment">      /// Sort them from lowest to highest (in y coordinate)</span></div>
 <div class="line"><a id="l02264" name="l02264"></a><span class="lineno"> 2264</span><span class="comment">      /// sorter_right_boundary is still functional, as the sorting</span></div>
 <div class="line"><a id="l02265" name="l02265"></a><span class="lineno"> 2265</span><span class="comment">      /// is performed by the same criterion</span></div>
 <div class="line"><a id="l02266" name="l02266"></a><span class="lineno"> 2266</span><span class="comment"></span>      std::sort(ordered_left_boundary_node_pt.begin(),</div>
 <div class="line"><a id="l02267" name="l02267"></a><span class="lineno"> 2267</span>                ordered_left_boundary_node_pt.end(),</div>
 <div class="line"><a id="l02268" name="l02268"></a><span class="lineno"> 2268</span>                <a class="code hl_function" href="namespaceoomph_1_1TwoDimensionalPMLHelper.html#ae66c595a953e030ae366699eec3ca3ab">sorter_right_boundary</a>);</div>
 <div class="line"><a id="l02269" name="l02269"></a><span class="lineno"> 2269</span><span class="comment"></span> </div>
-<div class="line"><a id="l02270" name="l02270"></a><span class="lineno"> 2270</span><span class="comment">      ///  Number of elements and boundary nodes to be acted upon during</span></div>
+<div class="line"><a id="l02270" name="l02270"></a><span class="lineno"> 2270</span><span class="comment">      /// Number of elements and boundary nodes to be acted upon during</span></div>
 <div class="line"><a id="l02271" name="l02271"></a><span class="lineno"> 2271</span><span class="comment">      /// construction are extracted from the &#39;parent&#39; PML meshes</span></div>
 <div class="line"><a id="l02272" name="l02272"></a><span class="lineno"> 2272</span><span class="comment"></span>      <span class="keywordtype">unsigned</span> n_x_left_pml =</div>
 <div class="line"><a id="l02273" name="l02273"></a><span class="lineno"> 2273</span>        pml_left_mesh_pt-&gt;<a class="code hl_function" href="classoomph_1_1Mesh.html#a68e04b3b70cff70d53d75f66661555e8">nboundary_element</a>(parent_boundary_x_id);</div>
@@ -2405,7 +2405,7 @@ $(function() {
 <div class="line"><a id="l02276" name="l02276"></a><span class="lineno"> 2276</span>      <span class="keywordtype">unsigned</span> n_y_boundary_nodes =</div>
 <div class="line"><a id="l02277" name="l02277"></a><span class="lineno"> 2277</span>        pml_top_mesh_pt-&gt;<a class="code hl_function" href="classoomph_1_1Mesh.html#a034677ceb48c67769acb83f304c84f7d">nboundary_node</a>(parent_boundary_y_id);</div>
 <div class="line"><a id="l02278" name="l02278"></a><span class="lineno"> 2278</span><span class="comment"></span> </div>
-<div class="line"><a id="l02279" name="l02279"></a><span class="lineno"> 2279</span><span class="comment">      ///  Specific PML sizes needed, taken directly from physical domain</span></div>
+<div class="line"><a id="l02279" name="l02279"></a><span class="lineno"> 2279</span><span class="comment">      /// Specific PML sizes needed, taken directly from physical domain</span></div>
 <div class="line"><a id="l02280" name="l02280"></a><span class="lineno"> 2280</span><span class="comment">      /// and existing PML meshes</span></div>
 <div class="line"><a id="l02281" name="l02281"></a><span class="lineno"> 2281</span><span class="comment"></span>      <span class="keywordtype">double</span> l_pml_left_x_start =</div>
 <div class="line"><a id="l02282" name="l02282"></a><span class="lineno"> 2282</span>        pml_left_mesh_pt-&gt;<a class="code hl_function" href="classoomph_1_1Mesh.html#afc4d1204afc31b9ec88fe82d8fc01625">boundary_node_pt</a>(parent_boundary_x_id, 0)-&gt;x(0);</div>
@@ -2440,7 +2440,7 @@ $(function() {
 <div class="line"><a id="l02311" name="l02311"></a><span class="lineno"> 2311</span>        time_stepper_pt);</div>
 <div class="line"><a id="l02312" name="l02312"></a><span class="lineno"> 2312</span> </div>
 <div class="line"><a id="l02313" name="l02313"></a><span class="lineno"> 2313</span>      <span class="comment">// Enable PML damping on the entire mesh</span><span class="comment"></span></div>
-<div class="line"><a id="l02314" name="l02314"></a><span class="lineno"> 2314</span><span class="comment">      ///  The enabling must be perfromed in both x- and y-directions</span></div>
+<div class="line"><a id="l02314" name="l02314"></a><span class="lineno"> 2314</span><span class="comment">      /// The enabling must be perfromed in both x- and y-directions</span></div>
 <div class="line"><a id="l02315" name="l02315"></a><span class="lineno"> 2315</span><span class="comment">      /// as this is a corner PML mesh</span></div>
 <div class="line"><a id="l02316" name="l02316"></a><span class="lineno"> 2316</span><span class="comment"></span>      <span class="keywordtype">unsigned</span> n_element_pml_top_left = pml_top_left_mesh_pt-&gt;<a class="code hl_function" href="classoomph_1_1Mesh.html#af01dfefb66c15579b540be62999d93ee">nelement</a>();</div>
 <div class="line"><a id="l02317" name="l02317"></a><span class="lineno"> 2317</span> </div>
@@ -2483,13 +2483,13 @@ $(function() {
 <div class="line"><a id="l02354" name="l02354"></a><span class="lineno"> 2354</span>        }</div>
 <div class="line"><a id="l02355" name="l02355"></a><span class="lineno"> 2355</span>      }</div>
 <div class="line"><a id="l02356" name="l02356"></a><span class="lineno"> 2356</span><span class="comment"></span> </div>
-<div class="line"><a id="l02357" name="l02357"></a><span class="lineno"> 2357</span><span class="comment">      ///  Return the finalized mesh, with PML enabled</span></div>
+<div class="line"><a id="l02357" name="l02357"></a><span class="lineno"> 2357</span><span class="comment">      /// Return the finalized mesh, with PML enabled</span></div>
 <div class="line"><a id="l02358" name="l02358"></a><span class="lineno"> 2358</span><span class="comment">      /// and boundary conditions added</span></div>
 <div class="line"><a id="l02359" name="l02359"></a><span class="lineno"> 2359</span><span class="comment"></span>      <span class="keywordflow">return</span> pml_top_left_mesh_pt;</div>
 <div class="line"><a id="l02360" name="l02360"></a><span class="lineno"> 2360</span>    }</div>
 <div class="line"><a id="l02361" name="l02361"></a><span class="lineno"> 2361</span> </div>
 <div class="line"><a id="l02362" name="l02362"></a><span class="lineno"> 2362</span>    <span class="comment">//==========================================================================</span><span class="comment"></span></div>
-<div class="line"><a id="l02363" name="l02363"></a><span class="lineno"> 2363</span><span class="comment">    ///  &quot;Constructor&quot; for PML bottom left corner mesh,</span></div>
+<div class="line"><a id="l02363" name="l02363"></a><span class="lineno"> 2363</span><span class="comment">    /// &quot;Constructor&quot; for PML bottom left corner mesh,</span></div>
 <div class="line"><a id="l02364" name="l02364"></a><span class="lineno"> 2364</span><span class="comment">    /// aligned with the existing PML meshes</span></div>
 <div class="line"><a id="l02365" name="l02365"></a><span class="lineno"> 2365</span><span class="comment"></span>    <span class="comment">//==========================================================================</span></div>
 <div class="line"><a id="l02366" name="l02366"></a><span class="lineno"> 2366</span>    <span class="keyword">template</span>&lt;<span class="keyword">class</span> ASSOCIATED_PML_QUAD_ELEMENT&gt;</div>
@@ -2500,7 +2500,7 @@ $(function() {
 <div class="line"><a id="l02371" name="l02371"></a><span class="lineno"> 2371</span>      <span class="keyword">const</span> <span class="keywordtype">unsigned</span>&amp; left_boundary_id,</div>
 <div class="line"><a id="l02372" name="l02372"></a><span class="lineno"> 2372</span>      <a class="code hl_class" href="classoomph_1_1TimeStepper.html">TimeStepper</a>* time_stepper_pt = &amp;<a class="code hl_variable" href="classoomph_1_1Mesh.html#a12243d0fee2b1fcee729ee5a4777ea10">Mesh::Default_TimeStepper</a>)</div>
 <div class="line"><a id="l02373" name="l02373"></a><span class="lineno"> 2373</span>    {<span class="comment"></span></div>
-<div class="line"><a id="l02374" name="l02374"></a><span class="lineno"> 2374</span><span class="comment">      ///  Relevant boundary id&#39;s to be used in construction</span></div>
+<div class="line"><a id="l02374" name="l02374"></a><span class="lineno"> 2374</span><span class="comment">      /// Relevant boundary id&#39;s to be used in construction</span></div>
 <div class="line"><a id="l02375" name="l02375"></a><span class="lineno"> 2375</span><span class="comment">      /// Parent id refers to already existing PML meshes</span></div>
 <div class="line"><a id="l02376" name="l02376"></a><span class="lineno"> 2376</span><span class="comment"></span>      <span class="keywordtype">unsigned</span> parent_boundary_x_id = 0;</div>
 <div class="line"><a id="l02377" name="l02377"></a><span class="lineno"> 2377</span>      <span class="keywordtype">unsigned</span> parent_boundary_y_id = 3;</div>
@@ -2522,21 +2522,21 @@ $(function() {
 <div class="line"><a id="l02393" name="l02393"></a><span class="lineno"> 2393</span>          bulk_mesh_pt-&gt;<a class="code hl_function" href="classoomph_1_1Mesh.html#afc4d1204afc31b9ec88fe82d8fc01625">boundary_node_pt</a>(left_boundary_id, n);</div>
 <div class="line"><a id="l02394" name="l02394"></a><span class="lineno"> 2394</span>      }</div>
 <div class="line"><a id="l02395" name="l02395"></a><span class="lineno"> 2395</span><span class="comment"></span> </div>
-<div class="line"><a id="l02396" name="l02396"></a><span class="lineno"> 2396</span><span class="comment">      ///  Sort them from lowest to highest (in y coordinate)</span></div>
+<div class="line"><a id="l02396" name="l02396"></a><span class="lineno"> 2396</span><span class="comment">      /// Sort them from lowest to highest (in y coordinate)</span></div>
 <div class="line"><a id="l02397" name="l02397"></a><span class="lineno"> 2397</span><span class="comment">      /// sorter_right_boundary is still functional, as the sorting</span></div>
 <div class="line"><a id="l02398" name="l02398"></a><span class="lineno"> 2398</span><span class="comment">      /// is performed by the same criterion</span></div>
 <div class="line"><a id="l02399" name="l02399"></a><span class="lineno"> 2399</span><span class="comment"></span>      std::sort(ordered_left_boundary_node_pt.begin(),</div>
 <div class="line"><a id="l02400" name="l02400"></a><span class="lineno"> 2400</span>                ordered_left_boundary_node_pt.end(),</div>
 <div class="line"><a id="l02401" name="l02401"></a><span class="lineno"> 2401</span>                <a class="code hl_function" href="namespaceoomph_1_1TwoDimensionalPMLHelper.html#ae66c595a953e030ae366699eec3ca3ab">sorter_right_boundary</a>);</div>
 <div class="line"><a id="l02402" name="l02402"></a><span class="lineno"> 2402</span><span class="comment"></span> </div>
-<div class="line"><a id="l02403" name="l02403"></a><span class="lineno"> 2403</span><span class="comment">      ///  Number of elements and boundary nodes to be acted upon during</span></div>
+<div class="line"><a id="l02403" name="l02403"></a><span class="lineno"> 2403</span><span class="comment">      /// Number of elements and boundary nodes to be acted upon during</span></div>
 <div class="line"><a id="l02404" name="l02404"></a><span class="lineno"> 2404</span><span class="comment">      /// construction are extracted from the &#39;parent&#39; PML meshes</span></div>
 <div class="line"><a id="l02405" name="l02405"></a><span class="lineno"> 2405</span><span class="comment"></span>      <span class="keywordtype">unsigned</span> n_x_left_pml =</div>
 <div class="line"><a id="l02406" name="l02406"></a><span class="lineno"> 2406</span>        pml_left_mesh_pt-&gt;<a class="code hl_function" href="classoomph_1_1Mesh.html#a68e04b3b70cff70d53d75f66661555e8">nboundary_element</a>(parent_boundary_x_id);</div>
 <div class="line"><a id="l02407" name="l02407"></a><span class="lineno"> 2407</span>      <span class="keywordtype">unsigned</span> n_y_bottom_pml =</div>
 <div class="line"><a id="l02408" name="l02408"></a><span class="lineno"> 2408</span>        pml_bottom_mesh_pt-&gt;<a class="code hl_function" href="classoomph_1_1Mesh.html#a68e04b3b70cff70d53d75f66661555e8">nboundary_element</a>(parent_boundary_y_id);</div>
 <div class="line"><a id="l02409" name="l02409"></a><span class="lineno"> 2409</span><span class="comment"></span> </div>
-<div class="line"><a id="l02410" name="l02410"></a><span class="lineno"> 2410</span><span class="comment">      ///  Specific PML sizes needed, taken directly from physical domain</span></div>
+<div class="line"><a id="l02410" name="l02410"></a><span class="lineno"> 2410</span><span class="comment">      /// Specific PML sizes needed, taken directly from physical domain</span></div>
 <div class="line"><a id="l02411" name="l02411"></a><span class="lineno"> 2411</span><span class="comment">      /// and existing PML meshes</span></div>
 <div class="line"><a id="l02412" name="l02412"></a><span class="lineno"> 2412</span><span class="comment"></span>      <span class="keywordtype">double</span> l_pml_left_x_start =</div>
 <div class="line"><a id="l02413" name="l02413"></a><span class="lineno"> 2413</span>        pml_left_mesh_pt-&gt;<a class="code hl_function" href="classoomph_1_1Mesh.html#afc4d1204afc31b9ec88fe82d8fc01625">boundary_node_pt</a>(parent_boundary_x_id, 0)-&gt;x(0);</div>
@@ -2569,7 +2569,7 @@ $(function() {
 <div class="line"><a id="l02440" name="l02440"></a><span class="lineno"> 2440</span>          time_stepper_pt);</div>
 <div class="line"><a id="l02441" name="l02441"></a><span class="lineno"> 2441</span> </div>
 <div class="line"><a id="l02442" name="l02442"></a><span class="lineno"> 2442</span>      <span class="comment">// Enable PML damping on the entire mesh</span><span class="comment"></span></div>
-<div class="line"><a id="l02443" name="l02443"></a><span class="lineno"> 2443</span><span class="comment">      ///  The enabling must be perfromed in both x- and y-directions</span></div>
+<div class="line"><a id="l02443" name="l02443"></a><span class="lineno"> 2443</span><span class="comment">      /// The enabling must be perfromed in both x- and y-directions</span></div>
 <div class="line"><a id="l02444" name="l02444"></a><span class="lineno"> 2444</span><span class="comment">      /// as this is a corner PML mesh</span></div>
 <div class="line"><a id="l02445" name="l02445"></a><span class="lineno"> 2445</span><span class="comment"></span>      <span class="keywordtype">unsigned</span> n_element_pml_bottom_left = pml_bottom_left_mesh_pt-&gt;<a class="code hl_function" href="classoomph_1_1Mesh.html#af01dfefb66c15579b540be62999d93ee">nelement</a>();</div>
 <div class="line"><a id="l02446" name="l02446"></a><span class="lineno"> 2446</span>      <span class="keywordflow">for</span> (<span class="keywordtype">unsigned</span> <a class="code hl_variable" href="cfortran_8h.html#a37cd013acc76697829c324bdd8562d82">e</a> = 0; <a class="code hl_variable" href="cfortran_8h.html#a37cd013acc76697829c324bdd8562d82">e</a> &lt; n_element_pml_bottom_left; <a class="code hl_variable" href="cfortran_8h.html#a37cd013acc76697829c324bdd8562d82">e</a>++)</div>
@@ -2611,7 +2611,7 @@ $(function() {
 <div class="line"><a id="l02482" name="l02482"></a><span class="lineno"> 2482</span>        }</div>
 <div class="line"><a id="l02483" name="l02483"></a><span class="lineno"> 2483</span>      }</div>
 <div class="line"><a id="l02484" name="l02484"></a><span class="lineno"> 2484</span><span class="comment"></span> </div>
-<div class="line"><a id="l02485" name="l02485"></a><span class="lineno"> 2485</span><span class="comment">      ///  Return the finalized mesh, with PML enabled</span></div>
+<div class="line"><a id="l02485" name="l02485"></a><span class="lineno"> 2485</span><span class="comment">      /// Return the finalized mesh, with PML enabled</span></div>
 <div class="line"><a id="l02486" name="l02486"></a><span class="lineno"> 2486</span><span class="comment">      /// and boundary conditions added</span></div>
 <div class="line"><a id="l02487" name="l02487"></a><span class="lineno"> 2487</span><span class="comment"></span>      <span class="keywordflow">return</span> pml_bottom_left_mesh_pt;</div>
 <div class="line"><a id="l02488" name="l02488"></a><span class="lineno"> 2488</span>    }</div>
@@ -2717,7 +2717,7 @@ $(function() {
     <footer>
       <div class="container">
         <div class="text-muted" style="float:right;">Generated by <a href="http://www.doxygen.org/index.html">
-          <img style="height:18px;" class="footer-img" src="doxygen.png" alt="doxygen"></a> on Fri Oct 22 2021 12:23:23
+          <img style="height:18px;" class="footer-img" src="doxygen.png" alt="doxygen"></a> on Mon Oct 25 2021 14:41:42
         </div>
       </div>
     </footer>

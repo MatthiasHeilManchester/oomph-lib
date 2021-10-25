@@ -225,15 +225,15 @@
 <div class="line"><a id="l00106" name="l00106"></a><span class="lineno">  106</span><span class="comment"> /// Do unsteady run up to maximum time t_max with given timestep dt</span></div>
 <div class="line"><a id="l00107" name="l00107"></a><span class="lineno"><a class="line" href="classInterfaceProblem.html#adf1f4e43d10939e4323e0e315b711085">  107</a></span><span class="comment"></span> <span class="keywordtype">void</span> <a class="code hl_function" href="classInterfaceProblem.html#adf1f4e43d10939e4323e0e315b711085">unsteady_run</a>(<span class="keyword">const</span> <span class="keywordtype">double</span> &amp;t_max, <span class="keyword">const</span> <span class="keywordtype">double</span> &amp;dt);</div>
 <div class="line"><a id="l00108" name="l00108"></a><span class="lineno">  108</span><span class="comment"></span> </div>
-<div class="line"><a id="l00109" name="l00109"></a><span class="lineno">  109</span><span class="comment"> ///  The bulk fluid mesh, complete with spines and update information</span></div>
+<div class="line"><a id="l00109" name="l00109"></a><span class="lineno">  109</span><span class="comment"> /// The bulk fluid mesh, complete with spines and update information</span></div>
 <div class="line"><a id="l00110" name="l00110"></a><span class="lineno"><a class="line" href="classInterfaceProblem.html#a3e9ad7667f6f978a1e7c4c55e8e69e6d">  110</a></span><span class="comment"></span> SingleLayerSpineMesh&lt;ELEMENT&gt; *<a class="code hl_variable" href="classInterfaceProblem.html#a3e9ad7667f6f978a1e7c4c55e8e69e6d">Bulk_mesh_pt</a>;</div>
 <div class="line"><a id="l00111" name="l00111"></a><span class="lineno">  111</span><span class="comment"></span> </div>
-<div class="line"><a id="l00112" name="l00112"></a><span class="lineno">  112</span><span class="comment"> ///  The mesh that contains the free surface elements</span></div>
+<div class="line"><a id="l00112" name="l00112"></a><span class="lineno">  112</span><span class="comment"> /// The mesh that contains the free surface elements</span></div>
 <div class="line"><a id="l00113" name="l00113"></a><span class="lineno">  113</span><span class="comment"></span> Mesh* <a class="code hl_variable" href="classInterfaceProblem.html#a011c7b4f2307ff909f64dc158e8fc674">Surface_mesh_pt</a>;</div>
 <div class="line"><a id="l00114" name="l00114"></a><span class="lineno">  114</span> </div>
 <div class="line"><a id="l00115" name="l00115"></a><span class="lineno">  115</span><span class="keyword">private</span>:</div>
 <div class="line"><a id="l00116" name="l00116"></a><span class="lineno">  116</span><span class="comment"></span> </div>
-<div class="line"><a id="l00117" name="l00117"></a><span class="lineno">  117</span><span class="comment"> ///  Spine heights/lengths are unknowns in the problem so their</span></div>
+<div class="line"><a id="l00117" name="l00117"></a><span class="lineno">  117</span><span class="comment"> /// Spine heights/lengths are unknowns in the problem so their</span></div>
 <div class="line"><a id="l00118" name="l00118"></a><span class="lineno">  118</span><span class="comment"> /// values get corrected during each Newton step. However, changing</span></div>
 <div class="line"><a id="l00119" name="l00119"></a><span class="lineno">  119</span><span class="comment"> /// their value does not automatically change the nodal positions, so</span></div>
 <div class="line"><a id="l00120" name="l00120"></a><span class="lineno">  120</span><span class="comment"> /// we need to update all of them here.</span></div>
@@ -245,7 +245,7 @@
 <div class="line"><a id="l00126" name="l00126"></a><span class="lineno">  126</span><span class="comment"> /// No actions required before solve step</span></div>
 <div class="line"><a id="l00127" name="l00127"></a><span class="lineno"><a class="line" href="classInterfaceProblem.html#ade63c8a74f666edf530460b989968b4f">  127</a></span><span class="comment"></span> <span class="keywordtype">void</span> <a class="code hl_function" href="classInterfaceProblem.html#ade63c8a74f666edf530460b989968b4f">actions_before_newton_solve</a>() {}</div>
 <div class="line"><a id="l00128" name="l00128"></a><span class="lineno">  128</span><span class="comment"></span> </div>
-<div class="line"><a id="l00129" name="l00129"></a><span class="lineno">  129</span><span class="comment"> ///  Update after solve can remain empty, because the update </span></div>
+<div class="line"><a id="l00129" name="l00129"></a><span class="lineno">  129</span><span class="comment"> /// Update after solve can remain empty, because the update </span></div>
 <div class="line"><a id="l00130" name="l00130"></a><span class="lineno">  130</span><span class="comment"> /// is performed automatically after every Newton step.</span></div>
 <div class="line"><a id="l00131" name="l00131"></a><span class="lineno"><a class="line" href="classInterfaceProblem.html#aedc2e58b3d2f5f8c898a21ba2d245cee">  131</a></span><span class="comment"></span> <span class="keywordtype">void</span> <a class="code hl_function" href="classInterfaceProblem.html#aedc2e58b3d2f5f8c898a21ba2d245cee">actions_after_newton_solve</a>() {}</div>
 <div class="line"><a id="l00132" name="l00132"></a><span class="lineno">  132</span><span class="comment"></span> </div>
@@ -408,7 +408,7 @@
 <div class="line"><a id="l00289" name="l00289"></a><span class="lineno">  289</span> </div>
 <div class="line"><a id="l00290" name="l00290"></a><span class="lineno">  290</span><span class="comment">//========================================================================</span></div>
 <div class="line"><a id="l00291" name="l00291"></a><span class="lineno">  291</span><span class="comment">//==start_of_set_initial_condition========================================</span><span class="comment"></span></div>
-<div class="line"><a id="l00292" name="l00292"></a><span class="lineno">  292</span><span class="comment">///  Set initial conditions: Set all nodal velocities to zero and</span></div>
+<div class="line"><a id="l00292" name="l00292"></a><span class="lineno">  292</span><span class="comment">/// Set initial conditions: Set all nodal velocities to zero and</span></div>
 <div class="line"><a id="l00293" name="l00293"></a><span class="lineno">  293</span><span class="comment">/// initialise the previous velocities and nodal positions to correspond</span></div>
 <div class="line"><a id="l00294" name="l00294"></a><span class="lineno">  294</span><span class="comment">/// to an impulsive start</span></div>
 <div class="line"><a id="l00295" name="l00295"></a><span class="lineno">  295</span><span class="comment"></span><span class="comment">//========================================================================</span></div>
@@ -438,7 +438,7 @@
 <div class="line"><a id="l00319" name="l00319"></a><span class="lineno">  319</span> </div>
 <div class="line"><a id="l00320" name="l00320"></a><span class="lineno">  320</span> </div>
 <div class="line"><a id="l00321" name="l00321"></a><span class="lineno">  321</span><span class="comment">//==start_of_set_boundary_conditions======================================</span><span class="comment"></span></div>
-<div class="line"><a id="l00322" name="l00322"></a><span class="lineno">  322</span><span class="comment">///  Set boundary conditions: Set both velocity components to zero</span></div>
+<div class="line"><a id="l00322" name="l00322"></a><span class="lineno">  322</span><span class="comment">/// Set boundary conditions: Set both velocity components to zero</span></div>
 <div class="line"><a id="l00323" name="l00323"></a><span class="lineno">  323</span><span class="comment">/// on the bottom (solid) wall and the horizontal component only to zero</span></div>
 <div class="line"><a id="l00324" name="l00324"></a><span class="lineno">  324</span><span class="comment">/// on the side (periodic) boundaries</span></div>
 <div class="line"><a id="l00325" name="l00325"></a><span class="lineno">  325</span><span class="comment"></span><span class="comment">//========================================================================</span></div>
@@ -713,7 +713,7 @@
     <footer>
       <div class="container">
         <div class="text-muted" style="float:right;">Generated by <a href="http://www.doxygen.org/index.html">
-          <img style="height:18px;" class="footer-img" src="doxygen.png" alt="doxygen"></a> on Fri Oct 22 2021 12:33:09
+          <img style="height:18px;" class="footer-img" src="doxygen.png" alt="doxygen"></a> on Mon Oct 25 2021 14:51:24
         </div>
       </div>
     </footer>

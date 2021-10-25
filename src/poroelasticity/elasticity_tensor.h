@@ -152,7 +152,7 @@ namespace oomph
     static const unsigned StaticIndex[21];
 
   public:
-    ///  Constructor. Passing in the values of the Poisson's ratio
+    /// Constructor. Passing in the values of the Poisson's ratio
     /// and Young's modulus (interpreted as the ratio of the actual
     /// Young's modulus to the Young's modulus (or other reference stiffness)
     /// used to non-dimensionalise stresses and tractions in the governing
@@ -167,7 +167,7 @@ namespace oomph
       this->set_lame_coefficients(lambda, mu);
     }
 
-    ///  Constructor. Passing in the value of the Poisson's ratio.
+    /// Constructor. Passing in the value of the Poisson's ratio.
     /// Stresses and tractions in the governing equations are assumed
     /// to have been non-dimensionalised on Young's modulus.
     IsotropicElasticityTensor(const double& nu) : ElasticityTensor()
@@ -182,7 +182,7 @@ namespace oomph
       this->set_lame_coefficients(lambda, mu);
     }
 
-    ///  Constructur. Passing in the values of the two lame
+    /// Constructur. Passing in the values of the two lame
     /// coefficients directly (interpreted as the ratios of these
     /// quantities to a reference stiffness used to non-dimensionalised
     IsotropicElasticityTensor(const Vector<double>& lame)
@@ -236,7 +236,7 @@ namespace oomph
     static const unsigned StaticIndex[21];
 
   public:
-    ///  Constructor. For use with incompressibility. Requires no
+    /// Constructor. For use with incompressibility. Requires no
     /// parameters since Poisson's ratio is fixed at 0.5 and lambda is set to a
     /// dummy value of 0 (since it would be infinite)
     DeviatoricIsotropicElasticityTensor() : ElasticityTensor()
@@ -249,7 +249,7 @@ namespace oomph
       this->set_lame_coefficients(lambda, mu);
     }
 
-    ///  Constructor. Passing in the values of the Poisson's ratio
+    /// Constructor. Passing in the values of the Poisson's ratio
     /// and Young's modulus (interpreted as the ratio of the actual
     /// Young's modulus to the Young's modulus (or other reference stiffness)
     /// used to non-dimensionalise stresses and tractions in the governing
@@ -264,7 +264,7 @@ namespace oomph
       this->set_lame_coefficients(lambda, mu);
     }
 
-    ///  Constructor. Passing in the value of the Poisson's ratio.
+    /// Constructor. Passing in the value of the Poisson's ratio.
     /// Stresses and tractions in the governing equations are assumed
     /// to have been non-dimensionalised on Young's modulus.
     DeviatoricIsotropicElasticityTensor(const double& nu) : ElasticityTensor()
@@ -279,7 +279,7 @@ namespace oomph
       this->set_lame_coefficients(lambda, mu);
     }
 
-    ///  Constructur. Passing in the values of the two lame
+    /// Constructur. Passing in the values of the two lame
     /// coefficients directly (interpreted as the ratios of these
     /// quantities to a reference stiffness used to non-dimensionalised
     DeviatoricIsotropicElasticityTensor(const Vector<double>& lame)

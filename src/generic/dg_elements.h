@@ -41,7 +41,7 @@
 namespace oomph
 {
   //=============================================================
-  ///  Base class for Discontinuous Galerkin Faces.
+  /// Base class for Discontinuous Galerkin Faces.
   /// These are responsible for calculating the normal fluxes
   /// that provide the communication between the discontinuous
   /// elements.
@@ -63,7 +63,7 @@ namespace oomph
     Vector<Vector<unsigned>> Neighbour_external_data;
 
   protected:
-    ///  Return the index at which the i-th unknown flux is stored.
+    /// Return the index at which the i-th unknown flux is stored.
     // The default return is suitable for single-physics problem
     virtual inline unsigned flux_index(const unsigned& i) const
     {
@@ -174,7 +174,7 @@ namespace oomph
     /// desired
     DenseDoubleMatrix* M_pt;
 
-    ///  Pointer to storage for the average values of the of the
+    /// Pointer to storage for the average values of the of the
     /// variables over the element
     double* Average_value;
 
@@ -432,7 +432,7 @@ namespace oomph
       this->calculate_element_averages(this->Average_value);
     }
 
-    ///  Return the average values
+    /// Return the average values
     double& average_value(const unsigned& i)
     {
       if (Average_value == 0)
@@ -445,7 +445,7 @@ namespace oomph
     }
 
 
-    ///  Return the average values
+    /// Return the average values
     const double& average_value(const unsigned& i) const
     {
       if (Average_value == 0)
@@ -519,7 +519,7 @@ namespace oomph
 
 
   //======================================================
-  ///  Base class for slope limiters
+  /// Base class for slope limiters
   //=====================================================
   class SlopeLimiter
   {

@@ -61,12 +61,12 @@
 \DoxyCodeLine{\Hypertarget{Twomersley__elements_8h_source_l00057}00057                             \textcolor{keyword}{public} \textcolor{keyword}{virtual} WomersleyEquations<DIM>}
 \DoxyCodeLine{\Hypertarget{Twomersley__elements_8h_source_l00058}00058   \{}
 \DoxyCodeLine{\Hypertarget{Twomersley__elements_8h_source_l00059}00059   \textcolor{keyword}{private}:\textcolor{comment}{}}
-\DoxyCodeLine{\Hypertarget{Twomersley__elements_8h_source_l00060}00060 \textcolor{comment}{    ///  Static array of ints to hold number of variables at}}
+\DoxyCodeLine{\Hypertarget{Twomersley__elements_8h_source_l00060}00060 \textcolor{comment}{    /// Static array of ints to hold number of variables at}}
 \DoxyCodeLine{\Hypertarget{Twomersley__elements_8h_source_l00061}00061 \textcolor{comment}{    /// nodes: Initial\_Nvalue[n]}}
 \DoxyCodeLine{\Hypertarget{Twomersley__elements_8h_source_l00062}\mbox{\hyperlink{classoomph_1_1TWomersleyElement_a58a6e5ed2d7fa22414e8878204886fbf}{00062}} \textcolor{comment}{}    \textcolor{keyword}{static} \textcolor{keyword}{const} \textcolor{keywordtype}{unsigned} \mbox{\hyperlink{classoomph_1_1TWomersleyElement_a58a6e5ed2d7fa22414e8878204886fbf}{Initial\_Nvalue}};}
 \DoxyCodeLine{\Hypertarget{Twomersley__elements_8h_source_l00063}00063 }
 \DoxyCodeLine{\Hypertarget{Twomersley__elements_8h_source_l00064}00064   \textcolor{keyword}{public}:\textcolor{comment}{}}
-\DoxyCodeLine{\Hypertarget{Twomersley__elements_8h_source_l00065}00065 \textcolor{comment}{    ///  Constructor: Call constructors for TElement and}}
+\DoxyCodeLine{\Hypertarget{Twomersley__elements_8h_source_l00065}00065 \textcolor{comment}{    /// Constructor: Call constructors for TElement and}}
 \DoxyCodeLine{\Hypertarget{Twomersley__elements_8h_source_l00066}00066 \textcolor{comment}{    /// Womersley equations}}
 \DoxyCodeLine{\Hypertarget{Twomersley__elements_8h_source_l00067}\mbox{\hyperlink{classoomph_1_1TWomersleyElement_a5dea12fa38a29c02bf0ddfcb3ba703f4}{00067}} \textcolor{comment}{}    \mbox{\hyperlink{classoomph_1_1TWomersleyElement_a5dea12fa38a29c02bf0ddfcb3ba703f4}{TWomersleyElement}}() : \mbox{\hyperlink{classoomph_1_1TElement}{TElement}}<DIM, NNODE\_1D>(), WomersleyEquations<DIM>()}
 \DoxyCodeLine{\Hypertarget{Twomersley__elements_8h_source_l00068}00068     \{}
@@ -78,14 +78,14 @@
 \DoxyCodeLine{\Hypertarget{Twomersley__elements_8h_source_l00074}00074 \textcolor{comment}{    /// Broken assignment operator}}
 \DoxyCodeLine{\Hypertarget{Twomersley__elements_8h_source_l00075}\mbox{\hyperlink{classoomph_1_1TWomersleyElement_a3b7291e16509fc783d019d35784247d8}{00075}} \textcolor{comment}{}    \textcolor{keywordtype}{void} \mbox{\hyperlink{classoomph_1_1TWomersleyElement_a3b7291e16509fc783d019d35784247d8}{operator=}}(\textcolor{keyword}{const} \mbox{\hyperlink{classoomph_1_1TWomersleyElement}{TWomersleyElement<DIM, NNODE\_1D>}}\&) = \textcolor{keyword}{delete};}
 \DoxyCodeLine{\Hypertarget{Twomersley__elements_8h_source_l00076}00076 \textcolor{comment}{}}
-\DoxyCodeLine{\Hypertarget{Twomersley__elements_8h_source_l00077}00077 \textcolor{comment}{    ///   Required  \# of `values' (pinned or dofs)}}
+\DoxyCodeLine{\Hypertarget{Twomersley__elements_8h_source_l00077}00077 \textcolor{comment}{    ///  Required  \# of `values' (pinned or dofs)}}
 \DoxyCodeLine{\Hypertarget{Twomersley__elements_8h_source_l00078}00078 \textcolor{comment}{    /// at node n}}
 \DoxyCodeLine{\Hypertarget{Twomersley__elements_8h_source_l00079}\mbox{\hyperlink{classoomph_1_1TWomersleyElement_a2ba850b7e9fc70b8100b50dfaceb3e30}{00079}} \textcolor{comment}{}    \textcolor{keyword}{inline} \textcolor{keywordtype}{unsigned} \mbox{\hyperlink{classoomph_1_1TWomersleyElement_a2ba850b7e9fc70b8100b50dfaceb3e30}{required\_nvalue}}(\textcolor{keyword}{const} \textcolor{keywordtype}{unsigned}\& n)\textcolor{keyword}{ const}}
 \DoxyCodeLine{\Hypertarget{Twomersley__elements_8h_source_l00080}00080 \textcolor{keyword}{    }\{}
 \DoxyCodeLine{\Hypertarget{Twomersley__elements_8h_source_l00081}00081       \textcolor{keywordflow}{return} \mbox{\hyperlink{classoomph_1_1TWomersleyElement_a58a6e5ed2d7fa22414e8878204886fbf}{Initial\_Nvalue}};}
 \DoxyCodeLine{\Hypertarget{Twomersley__elements_8h_source_l00082}00082     \}}
 \DoxyCodeLine{\Hypertarget{Twomersley__elements_8h_source_l00083}00083 \textcolor{comment}{}}
-\DoxyCodeLine{\Hypertarget{Twomersley__elements_8h_source_l00084}00084 \textcolor{comment}{    ///  Output function:}}
+\DoxyCodeLine{\Hypertarget{Twomersley__elements_8h_source_l00084}00084 \textcolor{comment}{    /// Output function:}}
 \DoxyCodeLine{\Hypertarget{Twomersley__elements_8h_source_l00085}00085 \textcolor{comment}{    ///  x,y,u   or    x,y,z,u}}
 \DoxyCodeLine{\Hypertarget{Twomersley__elements_8h_source_l00086}\mbox{\hyperlink{classoomph_1_1TWomersleyElement_a8f98e2f615c46e68737600059820ac96}{00086}} \textcolor{comment}{}    \textcolor{keywordtype}{void} \mbox{\hyperlink{classoomph_1_1TWomersleyElement_a8f98e2f615c46e68737600059820ac96}{output}}(std::ostream\& outfile)}
 \DoxyCodeLine{\Hypertarget{Twomersley__elements_8h_source_l00087}00087     \{}
@@ -93,7 +93,7 @@
 \DoxyCodeLine{\Hypertarget{Twomersley__elements_8h_source_l00089}00089     \}}
 \DoxyCodeLine{\Hypertarget{Twomersley__elements_8h_source_l00090}00090 }
 \DoxyCodeLine{\Hypertarget{Twomersley__elements_8h_source_l00091}00091 \textcolor{comment}{}}
-\DoxyCodeLine{\Hypertarget{Twomersley__elements_8h_source_l00092}00092 \textcolor{comment}{    ///   Output function:}}
+\DoxyCodeLine{\Hypertarget{Twomersley__elements_8h_source_l00092}00092 \textcolor{comment}{    ///  Output function:}}
 \DoxyCodeLine{\Hypertarget{Twomersley__elements_8h_source_l00093}00093 \textcolor{comment}{    ///   x,y,u   or    x,y,z,u at n\_plot\string^DIM plot points}}
 \DoxyCodeLine{\Hypertarget{Twomersley__elements_8h_source_l00094}\mbox{\hyperlink{classoomph_1_1TWomersleyElement_a2cb05fae719db7212c14d4952bb542c0}{00094}} \textcolor{comment}{}    \textcolor{keywordtype}{void} \mbox{\hyperlink{classoomph_1_1TWomersleyElement_a2cb05fae719db7212c14d4952bb542c0}{output}}(std::ostream\& outfile, \textcolor{keyword}{const} \textcolor{keywordtype}{unsigned}\& n\_plot)}
 \DoxyCodeLine{\Hypertarget{Twomersley__elements_8h_source_l00095}00095     \{}
@@ -101,7 +101,7 @@
 \DoxyCodeLine{\Hypertarget{Twomersley__elements_8h_source_l00097}00097     \}}
 \DoxyCodeLine{\Hypertarget{Twomersley__elements_8h_source_l00098}00098 }
 \DoxyCodeLine{\Hypertarget{Twomersley__elements_8h_source_l00099}00099 \textcolor{comment}{}}
-\DoxyCodeLine{\Hypertarget{Twomersley__elements_8h_source_l00100}00100 \textcolor{comment}{    ///  C-\/style output function:}}
+\DoxyCodeLine{\Hypertarget{Twomersley__elements_8h_source_l00100}00100 \textcolor{comment}{    /// C-\/style output function:}}
 \DoxyCodeLine{\Hypertarget{Twomersley__elements_8h_source_l00101}00101 \textcolor{comment}{    ///  x,y,u   or    x,y,z,u}}
 \DoxyCodeLine{\Hypertarget{Twomersley__elements_8h_source_l00102}\mbox{\hyperlink{classoomph_1_1TWomersleyElement_a9ff6ea219c58419d6c487dc14d1e3b7e}{00102}} \textcolor{comment}{}    \textcolor{keywordtype}{void} \mbox{\hyperlink{classoomph_1_1TWomersleyElement_a9ff6ea219c58419d6c487dc14d1e3b7e}{output}}(FILE* file\_pt)}
 \DoxyCodeLine{\Hypertarget{Twomersley__elements_8h_source_l00103}00103     \{}
@@ -109,7 +109,7 @@
 \DoxyCodeLine{\Hypertarget{Twomersley__elements_8h_source_l00105}00105     \}}
 \DoxyCodeLine{\Hypertarget{Twomersley__elements_8h_source_l00106}00106 }
 \DoxyCodeLine{\Hypertarget{Twomersley__elements_8h_source_l00107}00107 \textcolor{comment}{}}
-\DoxyCodeLine{\Hypertarget{Twomersley__elements_8h_source_l00108}00108 \textcolor{comment}{    ///   C-\/style output function:}}
+\DoxyCodeLine{\Hypertarget{Twomersley__elements_8h_source_l00108}00108 \textcolor{comment}{    ///  C-\/style output function:}}
 \DoxyCodeLine{\Hypertarget{Twomersley__elements_8h_source_l00109}00109 \textcolor{comment}{    ///   x,y,u   or    x,y,z,u at n\_plot\string^DIM plot points}}
 \DoxyCodeLine{\Hypertarget{Twomersley__elements_8h_source_l00110}\mbox{\hyperlink{classoomph_1_1TWomersleyElement_af96702fecfe94145a5af02bb4037b608}{00110}} \textcolor{comment}{}    \textcolor{keywordtype}{void} \mbox{\hyperlink{classoomph_1_1TWomersleyElement_af96702fecfe94145a5af02bb4037b608}{output}}(FILE* file\_pt, \textcolor{keyword}{const} \textcolor{keywordtype}{unsigned}\& n\_plot)}
 \DoxyCodeLine{\Hypertarget{Twomersley__elements_8h_source_l00111}00111     \{}
@@ -117,7 +117,7 @@
 \DoxyCodeLine{\Hypertarget{Twomersley__elements_8h_source_l00113}00113     \}}
 \DoxyCodeLine{\Hypertarget{Twomersley__elements_8h_source_l00114}00114 }
 \DoxyCodeLine{\Hypertarget{Twomersley__elements_8h_source_l00115}00115 \textcolor{comment}{}}
-\DoxyCodeLine{\Hypertarget{Twomersley__elements_8h_source_l00116}00116 \textcolor{comment}{    ///  Output function for an exact solution:}}
+\DoxyCodeLine{\Hypertarget{Twomersley__elements_8h_source_l00116}00116 \textcolor{comment}{    /// Output function for an exact solution:}}
 \DoxyCodeLine{\Hypertarget{Twomersley__elements_8h_source_l00117}00117 \textcolor{comment}{    ///  x,y,u\_exact   or    x,y,z,u\_exact at n\_plot\string^DIM plot points}}
 \DoxyCodeLine{\Hypertarget{Twomersley__elements_8h_source_l00118}\mbox{\hyperlink{classoomph_1_1TWomersleyElement_ad72387529709878cf5778881b2ced002}{00118}} \textcolor{comment}{}    \textcolor{keywordtype}{void} \mbox{\hyperlink{classoomph_1_1TWomersleyElement_ad72387529709878cf5778881b2ced002}{output\_fct}}(std::ostream\& outfile,}
 \DoxyCodeLine{\Hypertarget{Twomersley__elements_8h_source_l00119}00119                     \textcolor{keyword}{const} \textcolor{keywordtype}{unsigned}\& n\_plot,}
@@ -127,7 +127,7 @@
 \DoxyCodeLine{\Hypertarget{Twomersley__elements_8h_source_l00123}00123     \}}
 \DoxyCodeLine{\Hypertarget{Twomersley__elements_8h_source_l00124}00124 }
 \DoxyCodeLine{\Hypertarget{Twomersley__elements_8h_source_l00125}00125 \textcolor{comment}{}}
-\DoxyCodeLine{\Hypertarget{Twomersley__elements_8h_source_l00126}00126 \textcolor{comment}{    ///  Output function for a time-\/dependent exact solution.}}
+\DoxyCodeLine{\Hypertarget{Twomersley__elements_8h_source_l00126}00126 \textcolor{comment}{    /// Output function for a time-\/dependent exact solution.}}
 \DoxyCodeLine{\Hypertarget{Twomersley__elements_8h_source_l00127}00127 \textcolor{comment}{    ///  x,y,u\_exact   or    x,y,z,u\_exact at n\_plot\string^DIM plot points}}
 \DoxyCodeLine{\Hypertarget{Twomersley__elements_8h_source_l00128}00128 \textcolor{comment}{    /// (Calls the steady version)}}
 \DoxyCodeLine{\Hypertarget{Twomersley__elements_8h_source_l00129}\mbox{\hyperlink{classoomph_1_1TWomersleyElement_a2ff66a70ff364d1ddfc0ef0a99ad70cb}{00129}} \textcolor{comment}{}    \textcolor{keywordtype}{void} \mbox{\hyperlink{classoomph_1_1TWomersleyElement_a2ff66a70ff364d1ddfc0ef0a99ad70cb}{output\_fct}}(std::ostream\& outfile,}
@@ -149,7 +149,7 @@
 \DoxyCodeLine{\Hypertarget{Twomersley__elements_8h_source_l00145}00145                                                       \mbox{\hyperlink{classoomph_1_1DShape}{DShape}}\& dtestdx) \textcolor{keyword}{const};}
 \DoxyCodeLine{\Hypertarget{Twomersley__elements_8h_source_l00146}00146 }
 \DoxyCodeLine{\Hypertarget{Twomersley__elements_8h_source_l00147}00147 \textcolor{comment}{}}
-\DoxyCodeLine{\Hypertarget{Twomersley__elements_8h_source_l00148}00148 \textcolor{comment}{    ///  Shape/test functions and derivs w.r.t. to global coords at}}
+\DoxyCodeLine{\Hypertarget{Twomersley__elements_8h_source_l00148}00148 \textcolor{comment}{    /// Shape/test functions and derivs w.r.t. to global coords at}}
 \DoxyCodeLine{\Hypertarget{Twomersley__elements_8h_source_l00149}00149 \textcolor{comment}{    /// integration point ipt; return  Jacobian of mapping}}
 \DoxyCodeLine{\Hypertarget{Twomersley__elements_8h_source_l00150}00150 \textcolor{comment}{}    \textcolor{keyword}{inline} \textcolor{keywordtype}{double} \mbox{\hyperlink{classoomph_1_1TWomersleyElement_a497b00b2f011802e86fa8a0ad45546e7}{dshape\_and\_dtest\_eulerian\_at\_knot\_womersley}}(}
 \DoxyCodeLine{\Hypertarget{Twomersley__elements_8h_source_l00151}00151       \textcolor{keyword}{const} \textcolor{keywordtype}{unsigned}\& ipt,}
@@ -240,7 +240,7 @@
 \DoxyCodeLine{\Hypertarget{Twomersley__elements_8h_source_l00236}00236     : \textcolor{keyword}{public} \textcolor{keyword}{virtual} \mbox{\hyperlink{classoomph_1_1TElement}{TElement}}<DIM -\/ 1, NNODE\_1D>}
 \DoxyCodeLine{\Hypertarget{Twomersley__elements_8h_source_l00237}00237   \{}
 \DoxyCodeLine{\Hypertarget{Twomersley__elements_8h_source_l00238}00238   \textcolor{keyword}{public}:\textcolor{comment}{}}
-\DoxyCodeLine{\Hypertarget{Twomersley__elements_8h_source_l00239}00239 \textcolor{comment}{    ///  Constructor: Call the constructor for the}}
+\DoxyCodeLine{\Hypertarget{Twomersley__elements_8h_source_l00239}00239 \textcolor{comment}{    /// Constructor: Call the constructor for the}}
 \DoxyCodeLine{\Hypertarget{Twomersley__elements_8h_source_l00240}00240 \textcolor{comment}{    /// appropriate lower-\/dimensional TElement}}
 \DoxyCodeLine{\Hypertarget{Twomersley__elements_8h_source_l00241}\mbox{\hyperlink{classoomph_1_1FaceGeometry_3_01TWomersleyElement_3_01DIM_00_01NNODE__1D_01_4_01_4_ad6124924235d691ccb2db24394e9b973}{00241}} \textcolor{comment}{}    \mbox{\hyperlink{classoomph_1_1FaceGeometry_3_01TWomersleyElement_3_01DIM_00_01NNODE__1D_01_4_01_4_ad6124924235d691ccb2db24394e9b973}{FaceGeometry}}() : \mbox{\hyperlink{classoomph_1_1TElement}{TElement}}<DIM -\/ 1, NNODE\_1D>() \{\}}
 \DoxyCodeLine{\Hypertarget{Twomersley__elements_8h_source_l00242}00242   \};}
@@ -259,7 +259,7 @@
 \DoxyCodeLine{\Hypertarget{Twomersley__elements_8h_source_l00255}00255     : \textcolor{keyword}{public} \textcolor{keyword}{virtual} \mbox{\hyperlink{classoomph_1_1PointElement}{PointElement}}}
 \DoxyCodeLine{\Hypertarget{Twomersley__elements_8h_source_l00256}00256   \{}
 \DoxyCodeLine{\Hypertarget{Twomersley__elements_8h_source_l00257}00257   \textcolor{keyword}{public}:\textcolor{comment}{}}
-\DoxyCodeLine{\Hypertarget{Twomersley__elements_8h_source_l00258}00258 \textcolor{comment}{    ///  Constructor: Call the constructor for the}}
+\DoxyCodeLine{\Hypertarget{Twomersley__elements_8h_source_l00258}00258 \textcolor{comment}{    /// Constructor: Call the constructor for the}}
 \DoxyCodeLine{\Hypertarget{Twomersley__elements_8h_source_l00259}00259 \textcolor{comment}{    /// appropriate lower-\/dimensional TElement}}
 \DoxyCodeLine{\Hypertarget{Twomersley__elements_8h_source_l00260}\mbox{\hyperlink{classoomph_1_1FaceGeometry_3_01TWomersleyElement_3_011_00_01NNODE__1D_01_4_01_4_a6db1b1f549675de60e0847709a2b925a}{00260}} \textcolor{comment}{}    \mbox{\hyperlink{classoomph_1_1FaceGeometry_3_01TWomersleyElement_3_011_00_01NNODE__1D_01_4_01_4_a6db1b1f549675de60e0847709a2b925a}{FaceGeometry}}() : \mbox{\hyperlink{classoomph_1_1PointElement}{PointElement}}() \{\}}
 \DoxyCodeLine{\Hypertarget{Twomersley__elements_8h_source_l00261}00261   \};}

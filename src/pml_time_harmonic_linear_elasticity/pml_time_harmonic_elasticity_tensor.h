@@ -151,7 +151,7 @@ namespace oomph
     /// Storage for the independent components of the elasticity tensor
     std::complex<double> C[4];
 
-    ///  Translation scheme between the 21 independent components of the
+    /// Translation scheme between the 21 independent components of the
     /// general elasticity tensor and the isotropic case
     static const unsigned StaticIndex[21];
 
@@ -159,7 +159,7 @@ namespace oomph
     double Nu;
 
   public:
-    ///  Constructor. Passing in the values of the Poisson's ratio
+    /// Constructor. Passing in the values of the Poisson's ratio
     /// and Young's modulus (interpreted as the ratio of the actual
     /// Young's modulus to the Young's modulus (or other reference stiffness)
     /// used to non-dimensionalise stresses and tractions in the governing
@@ -174,7 +174,7 @@ namespace oomph
       this->set_lame_coefficients(lambda, mu);
     }
 
-    ///  Constructor. Passing in the value of the Poisson's ratio.
+    /// Constructor. Passing in the value of the Poisson's ratio.
     /// Stresses and tractions in the governing equations are assumed
     /// to have been non-dimensionalised on Young's modulus.
     PMLTimeHarmonicIsotropicElasticityTensor(const double& nu)
@@ -196,7 +196,7 @@ namespace oomph
       return Nu;
     }
 
-    ///  Update parameters: Specify values of the Poisson's ratio
+    /// Update parameters: Specify values of the Poisson's ratio
     /// and (optionally) Young's modulus (interpreted as the ratio of the actual
     /// Young's modulus to the Young's modulus (or other reference stiffness)
     /// used to non-dimensionalise stresses and tractions in the governing

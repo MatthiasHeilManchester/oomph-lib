@@ -34,7 +34,7 @@
 
 namespace oomph
 {
-  ///  This function advances the Data's time history so that
+  /// This function advances the Data's time history so that
   /// we can move on to the next timestep
   void IMRBase::shift_time_values(Data* const& data_pt)
   {

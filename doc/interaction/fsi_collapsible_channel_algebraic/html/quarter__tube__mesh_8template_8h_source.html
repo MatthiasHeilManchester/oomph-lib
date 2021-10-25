@@ -160,7 +160,7 @@
 <div class="line"><a id="l00041" name="l00041"></a><span class="lineno">   41</span><span class="keyword">namespace </span><a class="code hl_namespace" href="namespaceoomph.html">oomph</a></div>
 <div class="line"><a id="l00042" name="l00042"></a><span class="lineno">   42</span>{</div>
 <div class="line"><a id="l00043" name="l00043"></a><span class="lineno">   43</span>  <span class="comment">//====================================================================</span><span class="comment"></span></div>
-<div class="line"><a id="l00044" name="l00044"></a><span class="lineno">   44</span><span class="comment">  ///  3D quarter tube mesh class.</span></div>
+<div class="line"><a id="l00044" name="l00044"></a><span class="lineno">   44</span><span class="comment">  /// 3D quarter tube mesh class.</span></div>
 <div class="line"><a id="l00045" name="l00045"></a><span class="lineno">   45</span><span class="comment">  /// The domain is specified by the GeomObject that identifies</span></div>
 <div class="line"><a id="l00046" name="l00046"></a><span class="lineno">   46</span><span class="comment">  /// boundary 3. Non-refineable base version!</span></div>
 <div class="line"><a id="l00047" name="l00047"></a><span class="lineno">   47</span><span class="comment">  ///</span></div>
@@ -183,7 +183,7 @@
 <div class="line"><a id="l00064" name="l00064"></a><span class="lineno"><a class="line" href="classoomph_1_1QuarterTubeMesh.html">   64</a></span>  <span class="keyword">class </span><a class="code hl_class" href="classoomph_1_1QuarterTubeMesh.html">QuarterTubeMesh</a> : <span class="keyword">public</span> <span class="keyword">virtual</span> BrickMeshBase</div>
 <div class="line"><a id="l00065" name="l00065"></a><span class="lineno">   65</span>  {</div>
 <div class="line"><a id="l00066" name="l00066"></a><span class="lineno">   66</span>  <span class="keyword">public</span>:<span class="comment"></span></div>
-<div class="line"><a id="l00067" name="l00067"></a><span class="lineno">   67</span><span class="comment">    ///  Constructor: Pass pointer to geometric object that</span></div>
+<div class="line"><a id="l00067" name="l00067"></a><span class="lineno">   67</span><span class="comment">    /// Constructor: Pass pointer to geometric object that</span></div>
 <div class="line"><a id="l00068" name="l00068"></a><span class="lineno">   68</span><span class="comment">    /// specifies the wall, start and end coordinates on the</span></div>
 <div class="line"><a id="l00069" name="l00069"></a><span class="lineno">   69</span><span class="comment">    /// geometric object, and the fraction along</span></div>
 <div class="line"><a id="l00070" name="l00070"></a><span class="lineno">   70</span><span class="comment">    /// which the dividing line is to be placed, and the timestepper.</span></div>
@@ -195,7 +195,7 @@
 <div class="line"><a id="l00076" name="l00076"></a><span class="lineno">   76</span>                    <span class="keyword">const</span> <span class="keywordtype">unsigned</span>&amp; nlayer,</div>
 <div class="line"><a id="l00077" name="l00077"></a><span class="lineno">   77</span>                    TimeStepper* time_stepper_pt = &amp;Mesh::Default_TimeStepper);</div>
 <div class="line"><a id="l00078" name="l00078"></a><span class="lineno">   78</span><span class="comment"></span> </div>
-<div class="line"><a id="l00079" name="l00079"></a><span class="lineno">   79</span><span class="comment">    ///  Destructor: empty</span></div>
+<div class="line"><a id="l00079" name="l00079"></a><span class="lineno">   79</span><span class="comment">    /// Destructor: empty</span></div>
 <div class="line"><a id="l00080" name="l00080"></a><span class="lineno"><a class="line" href="classoomph_1_1QuarterTubeMesh.html#aeb6ec7337a9e1666ebc6c942e788bab7">   80</a></span><span class="comment"></span>    <span class="keyword">virtual</span> <a class="code hl_function" href="classoomph_1_1QuarterTubeMesh.html#aeb6ec7337a9e1666ebc6c942e788bab7">~QuarterTubeMesh</a>()</div>
 <div class="line"><a id="l00081" name="l00081"></a><span class="lineno">   81</span>    {</div>
 <div class="line"><a id="l00082" name="l00082"></a><span class="lineno">   82</span>      <span class="keyword">delete</span> <a class="code hl_variable" href="classoomph_1_1QuarterTubeMesh.html#a250577dc1d699b4035a42ddabd84c121">Domain_pt</a>;</div>
@@ -213,7 +213,7 @@
 <div class="line"><a id="l00094" name="l00094"></a><span class="lineno">   94</span>      <span class="keywordflow">return</span> <a class="code hl_variable" href="classoomph_1_1QuarterTubeMesh.html#a250577dc1d699b4035a42ddabd84c121">Domain_pt</a>;</div>
 <div class="line"><a id="l00095" name="l00095"></a><span class="lineno">   95</span>    }</div>
 <div class="line"><a id="l00096" name="l00096"></a><span class="lineno">   96</span><span class="comment"></span> </div>
-<div class="line"><a id="l00097" name="l00097"></a><span class="lineno">   97</span><span class="comment">    ///  Function pointer for function that squashes</span></div>
+<div class="line"><a id="l00097" name="l00097"></a><span class="lineno">   97</span><span class="comment">    /// Function pointer for function that squashes</span></div>
 <div class="line"><a id="l00098" name="l00098"></a><span class="lineno">   98</span><span class="comment">    /// the outer macro elements towards</span></div>
 <div class="line"><a id="l00099" name="l00099"></a><span class="lineno">   99</span><span class="comment">    /// the wall by mapping the input value of the &quot;radial&quot; macro element</span></div>
 <div class="line"><a id="l00100" name="l00100"></a><span class="lineno">  100</span><span class="comment">    /// coordinate to the return value (defined in the underlying Domain object)</span></div>
@@ -223,7 +223,7 @@
 <div class="line"><a id="l00104" name="l00104"></a><span class="lineno">  104</span>    }</div>
 <div class="line"><a id="l00105" name="l00105"></a><span class="lineno">  105</span> </div>
 <div class="line"><a id="l00106" name="l00106"></a><span class="lineno">  106</span><span class="comment"></span> </div>
-<div class="line"><a id="l00107" name="l00107"></a><span class="lineno">  107</span><span class="comment">    ///  Function pointer for function for axial spacing</span></div>
+<div class="line"><a id="l00107" name="l00107"></a><span class="lineno">  107</span><span class="comment">    /// Function pointer for function for axial spacing</span></div>
 <div class="line"><a id="l00108" name="l00108"></a><span class="lineno"><a class="line" href="classoomph_1_1QuarterTubeMesh.html#ab4c35233e74407691a0d22549034ecb9">  108</a></span><span class="comment"></span>    <span class="keyword">virtual</span> <a class="code hl_typedef" href="classoomph_1_1QuarterTubeDomain.html#ae347af42a5dcb9b3b82c2247975b01db">QuarterTubeDomain::AxialSpacingFctPt</a>&amp; <a class="code hl_function" href="classoomph_1_1QuarterTubeMesh.html#ab4c35233e74407691a0d22549034ecb9">axial_spacing_fct_pt</a>()</div>
 <div class="line"><a id="l00109" name="l00109"></a><span class="lineno">  109</span>    {</div>
 <div class="line"><a id="l00110" name="l00110"></a><span class="lineno">  110</span>      <span class="keywordflow">return</span> <a class="code hl_variable" href="classoomph_1_1QuarterTubeMesh.html#a250577dc1d699b4035a42ddabd84c121">Domain_pt</a>-&gt;<a class="code hl_function" href="classoomph_1_1QuarterTubeDomain.html#a38e86ecf50aba889ac8e32ba2d109e91">axial_spacing_fct_pt</a>();</div>
@@ -280,7 +280,7 @@
 <div class="line"><a id="l00161" name="l00161"></a><span class="lineno">  161</span> </div>
 <div class="line"><a id="l00162" name="l00162"></a><span class="lineno">  162</span>  {</div>
 <div class="line"><a id="l00163" name="l00163"></a><span class="lineno">  163</span>  <span class="keyword">public</span>:<span class="comment"></span></div>
-<div class="line"><a id="l00164" name="l00164"></a><span class="lineno">  164</span><span class="comment">    ///  Constructor for adaptive deformable quarter tube mesh class.</span></div>
+<div class="line"><a id="l00164" name="l00164"></a><span class="lineno">  164</span><span class="comment">    /// Constructor for adaptive deformable quarter tube mesh class.</span></div>
 <div class="line"><a id="l00165" name="l00165"></a><span class="lineno">  165</span><span class="comment">    /// The domain is specified by the GeomObject that</span></div>
 <div class="line"><a id="l00166" name="l00166"></a><span class="lineno">  166</span><span class="comment">    /// identifies boundary 3. Pass pointer to geometric object that</span></div>
 <div class="line"><a id="l00167" name="l00167"></a><span class="lineno">  167</span><span class="comment">    /// specifies the wall, start and end coordinates on the</span></div>
@@ -336,7 +336,7 @@
 <div class="line"><a id="l00217" name="l00217"></a><span class="lineno">  217</span><span class="preprocessor">#endif</span></div>
 <div class="line"><a id="l00218" name="l00218"></a><span class="lineno">  218</span>    }</div>
 <div class="line"><a id="l00219" name="l00219"></a><span class="lineno">  219</span><span class="comment"></span> </div>
-<div class="line"><a id="l00220" name="l00220"></a><span class="lineno">  220</span><span class="comment">    ///  Destructor: empty</span></div>
+<div class="line"><a id="l00220" name="l00220"></a><span class="lineno">  220</span><span class="comment">    /// Destructor: empty</span></div>
 <div class="line"><a id="l00221" name="l00221"></a><span class="lineno"><a class="line" href="classoomph_1_1RefineableQuarterTubeMesh.html#a229ad0335ba60176c578897b558790eb">  221</a></span><span class="comment"></span>    <span class="keyword">virtual</span> <a class="code hl_function" href="classoomph_1_1RefineableQuarterTubeMesh.html#a229ad0335ba60176c578897b558790eb">~RefineableQuarterTubeMesh</a>() {}</div>
 <div class="line"><a id="l00222" name="l00222"></a><span class="lineno">  222</span>  };</div>
 <div class="line"><a id="l00223" name="l00223"></a><span class="lineno">  223</span> </div>
@@ -358,7 +358,7 @@
 <div class="line"><a id="l00239" name="l00239"></a><span class="lineno">  239</span>      <span class="keyword">public</span> <span class="keyword">virtual</span> <a class="code hl_class" href="classoomph_1_1RefineableQuarterTubeMesh.html">RefineableQuarterTubeMesh</a>&lt;ELEMENT&gt;</div>
 <div class="line"><a id="l00240" name="l00240"></a><span class="lineno">  240</span>  {</div>
 <div class="line"><a id="l00241" name="l00241"></a><span class="lineno">  241</span>  <span class="keyword">public</span>:<span class="comment"></span></div>
-<div class="line"><a id="l00242" name="l00242"></a><span class="lineno">  242</span><span class="comment">    ///  Constructor: Pass pointer to geometric object, start and</span></div>
+<div class="line"><a id="l00242" name="l00242"></a><span class="lineno">  242</span><span class="comment">    /// Constructor: Pass pointer to geometric object, start and</span></div>
 <div class="line"><a id="l00243" name="l00243"></a><span class="lineno">  243</span><span class="comment">    /// end coordinates on the geometric object and the fraction along</span></div>
 <div class="line"><a id="l00244" name="l00244"></a><span class="lineno">  244</span><span class="comment">    /// which the dividing line is to be placed when updating the nodal</span></div>
 <div class="line"><a id="l00245" name="l00245"></a><span class="lineno">  245</span><span class="comment">    /// positions, and timestepper (defaults to (Steady) default timestepper</span></div>
@@ -407,10 +407,10 @@
 <div class="line"><a id="l00288" name="l00288"></a><span class="lineno">  288</span>      this-&gt;<a class="code hl_function" href="classoomph_1_1MacroElementNodeUpdateRefineableQuarterTubeMesh.html#ae98ab46cf2030928d805894dffe1b642">setup_macro_element_node_update</a>();</div>
 <div class="line"><a id="l00289" name="l00289"></a><span class="lineno">  289</span>    }</div>
 <div class="line"><a id="l00290" name="l00290"></a><span class="lineno">  290</span><span class="comment"></span> </div>
-<div class="line"><a id="l00291" name="l00291"></a><span class="lineno">  291</span><span class="comment">    ///  Destructor: empty</span></div>
+<div class="line"><a id="l00291" name="l00291"></a><span class="lineno">  291</span><span class="comment">    /// Destructor: empty</span></div>
 <div class="line"><a id="l00292" name="l00292"></a><span class="lineno"><a class="line" href="classoomph_1_1MacroElementNodeUpdateRefineableQuarterTubeMesh.html#ae4a4028ac41a7721c87bd484be894d02">  292</a></span><span class="comment"></span>    <span class="keyword">virtual</span> <a class="code hl_function" href="classoomph_1_1MacroElementNodeUpdateRefineableQuarterTubeMesh.html#ae4a4028ac41a7721c87bd484be894d02">~MacroElementNodeUpdateRefineableQuarterTubeMesh</a>() {}</div>
 <div class="line"><a id="l00293" name="l00293"></a><span class="lineno">  293</span><span class="comment"></span> </div>
-<div class="line"><a id="l00294" name="l00294"></a><span class="lineno">  294</span><span class="comment">    ///  Resolve mesh update: Update current nodal</span></div>
+<div class="line"><a id="l00294" name="l00294"></a><span class="lineno">  294</span><span class="comment">    /// Resolve mesh update: Update current nodal</span></div>
 <div class="line"><a id="l00295" name="l00295"></a><span class="lineno">  295</span><span class="comment">    /// positions via sparse MacroElement-based update.</span></div>
 <div class="line"><a id="l00296" name="l00296"></a><span class="lineno">  296</span><span class="comment">    /// [Doesn&#39;t make sense to use this mesh with SolidElements anyway,</span></div>
 <div class="line"><a id="l00297" name="l00297"></a><span class="lineno">  297</span><span class="comment">    /// so we buffer the case if update_all_solid_nodes is set to</span></div>
@@ -438,7 +438,7 @@
 <div class="line"><a id="l00319" name="l00319"></a><span class="lineno">  319</span>    }</div>
 <div class="line"><a id="l00320" name="l00320"></a><span class="lineno">  320</span> </div>
 <div class="line"><a id="l00321" name="l00321"></a><span class="lineno">  321</span>  <span class="keyword">private</span>:<span class="comment"></span></div>
-<div class="line"><a id="l00322" name="l00322"></a><span class="lineno">  322</span><span class="comment">    ///  Setup all the information that&#39;s required for MacroElement-based</span></div>
+<div class="line"><a id="l00322" name="l00322"></a><span class="lineno">  322</span><span class="comment">    /// Setup all the information that&#39;s required for MacroElement-based</span></div>
 <div class="line"><a id="l00323" name="l00323"></a><span class="lineno">  323</span><span class="comment">    /// node update: Tell the elements that their geometry depends on the</span></div>
 <div class="line"><a id="l00324" name="l00324"></a><span class="lineno">  324</span><span class="comment">    /// geometric object that parametrises the wall</span></div>
 <div class="line"><a id="l00325" name="l00325"></a><span class="lineno"><a class="line" href="classoomph_1_1MacroElementNodeUpdateRefineableQuarterTubeMesh.html#ae98ab46cf2030928d805894dffe1b642">  325</a></span><span class="comment"></span>    <span class="keywordtype">void</span> <a class="code hl_function" href="classoomph_1_1MacroElementNodeUpdateRefineableQuarterTubeMesh.html#ae98ab46cf2030928d805894dffe1b642">setup_macro_element_node_update</a>()</div>
@@ -497,7 +497,7 @@
 <div class="line"><a id="l00378" name="l00378"></a><span class="lineno">  378</span> </div>
 <div class="line"><a id="l00379" name="l00379"></a><span class="lineno">  379</span> </div>
 <div class="line"><a id="l00380" name="l00380"></a><span class="lineno">  380</span>  <span class="comment">//====================================================================</span><span class="comment"></span></div>
-<div class="line"><a id="l00381" name="l00381"></a><span class="lineno">  381</span><span class="comment">  ///  Algebraic 3D quarter tube mesh class.</span></div>
+<div class="line"><a id="l00381" name="l00381"></a><span class="lineno">  381</span><span class="comment">  /// Algebraic 3D quarter tube mesh class.</span></div>
 <div class="line"><a id="l00382" name="l00382"></a><span class="lineno">  382</span><span class="comment">  ///</span></div>
 <div class="line"><a id="l00383" name="l00383"></a><span class="lineno">  383</span><span class="comment">  /// The mesh boundaries are numbered as follows:</span></div>
 <div class="line"><a id="l00384" name="l00384"></a><span class="lineno">  384</span><span class="comment">  /// - Boundary 0: &quot;Inflow&quot; cross section; located along the</span></div>
@@ -557,7 +557,7 @@
 <div class="line"><a id="l00438" name="l00438"></a><span class="lineno">  438</span>      <span class="keyword">public</span> <a class="code hl_class" href="classoomph_1_1RefineableQuarterTubeMesh.html">RefineableQuarterTubeMesh</a>&lt;ELEMENT&gt;</div>
 <div class="line"><a id="l00439" name="l00439"></a><span class="lineno">  439</span>  {</div>
 <div class="line"><a id="l00440" name="l00440"></a><span class="lineno">  440</span>  <span class="keyword">public</span>:<span class="comment"></span></div>
-<div class="line"><a id="l00441" name="l00441"></a><span class="lineno">  441</span><span class="comment">    ///  Constructor: Pass pointer to geometric object, start and</span></div>
+<div class="line"><a id="l00441" name="l00441"></a><span class="lineno">  441</span><span class="comment">    /// Constructor: Pass pointer to geometric object, start and</span></div>
 <div class="line"><a id="l00442" name="l00442"></a><span class="lineno">  442</span><span class="comment">    /// end coordinates of the geometric object and the fraction along</span></div>
 <div class="line"><a id="l00443" name="l00443"></a><span class="lineno">  443</span><span class="comment">    /// the 2nd Lagrangian coordinate at which the dividing line between</span></div>
 <div class="line"><a id="l00444" name="l00444"></a><span class="lineno">  444</span><span class="comment">    /// region 1 and region 2 is to be placed, and timestepper</span></div>
@@ -616,7 +616,7 @@
 <div class="line"><a id="l00497" name="l00497"></a><span class="lineno">  497</span>      <span class="keywordflow">return</span> AlgebraicMesh::self_test();</div>
 <div class="line"><a id="l00498" name="l00498"></a><span class="lineno">  498</span>    }</div>
 <div class="line"><a id="l00499" name="l00499"></a><span class="lineno">  499</span><span class="comment"></span> </div>
-<div class="line"><a id="l00500" name="l00500"></a><span class="lineno">  500</span><span class="comment">    ///  Broken version of the QuarterTubeDomain function</span></div>
+<div class="line"><a id="l00500" name="l00500"></a><span class="lineno">  500</span><span class="comment">    /// Broken version of the QuarterTubeDomain function</span></div>
 <div class="line"><a id="l00501" name="l00501"></a><span class="lineno">  501</span><span class="comment">    /// Function is broken because axial spacing isn&#39;t implemented</span></div>
 <div class="line"><a id="l00502" name="l00502"></a><span class="lineno">  502</span><span class="comment">    /// yet for the Algebraic version of the RefineableQuarterTubeMesh.</span></div>
 <div class="line"><a id="l00503" name="l00503"></a><span class="lineno">  503</span><span class="comment">    /// Note: this function must be used BEFORE algebraic_node_update(...)</span></div>
@@ -636,7 +636,7 @@
 <div class="line"><a id="l00517" name="l00517"></a><span class="lineno">  517</span>      <span class="keywordflow">return</span> this-&gt;<a class="code hl_variable" href="classoomph_1_1QuarterTubeMesh.html#a250577dc1d699b4035a42ddabd84c121">Domain_pt</a>-&gt;<a class="code hl_function" href="classoomph_1_1QuarterTubeDomain.html#a38e86ecf50aba889ac8e32ba2d109e91">axial_spacing_fct_pt</a>();</div>
 <div class="line"><a id="l00518" name="l00518"></a><span class="lineno">  518</span>    }</div>
 <div class="line"><a id="l00519" name="l00519"></a><span class="lineno">  519</span><span class="comment"></span> </div>
-<div class="line"><a id="l00520" name="l00520"></a><span class="lineno">  520</span><span class="comment">    ///  Resolve mesh update: Update current nodal</span></div>
+<div class="line"><a id="l00520" name="l00520"></a><span class="lineno">  520</span><span class="comment">    /// Resolve mesh update: Update current nodal</span></div>
 <div class="line"><a id="l00521" name="l00521"></a><span class="lineno">  521</span><span class="comment">    /// positions via algebraic node update.</span></div>
 <div class="line"><a id="l00522" name="l00522"></a><span class="lineno">  522</span><span class="comment">    /// [Doesn&#39;t make sense to use this mesh with SolidElements anyway,</span></div>
 <div class="line"><a id="l00523" name="l00523"></a><span class="lineno">  523</span><span class="comment">    /// so we buffer the case if update_all_solid_nodes is set to</span></div>
@@ -664,7 +664,7 @@
 <div class="line"><a id="l00545" name="l00545"></a><span class="lineno">  545</span>    }</div>
 <div class="line"><a id="l00546" name="l00546"></a><span class="lineno">  546</span> </div>
 <div class="line"><a id="l00547" name="l00547"></a><span class="lineno">  547</span><span class="comment"></span> </div>
-<div class="line"><a id="l00548" name="l00548"></a><span class="lineno">  548</span><span class="comment">    ///  Implement the algebraic node update function for a node</span></div>
+<div class="line"><a id="l00548" name="l00548"></a><span class="lineno">  548</span><span class="comment">    /// Implement the algebraic node update function for a node</span></div>
 <div class="line"><a id="l00549" name="l00549"></a><span class="lineno">  549</span><span class="comment">    /// at time level t (t=0: present; t&gt;0: previous): Update with</span></div>
 <div class="line"><a id="l00550" name="l00550"></a><span class="lineno">  550</span><span class="comment">    /// the node&#39;s first (default) update function.</span></div>
 <div class="line"><a id="l00551" name="l00551"></a><span class="lineno"><a class="line" href="classoomph_1_1AlgebraicRefineableQuarterTubeMesh.html#af98a0aaff29c54ffa35f72f7dcf6b8c7">  551</a></span><span class="comment"></span>    <span class="keywordtype">void</span> <a class="code hl_function" href="classoomph_1_1AlgebraicRefineableQuarterTubeMesh.html#af98a0aaff29c54ffa35f72f7dcf6b8c7">algebraic_node_update</a>(<span class="keyword">const</span> <span class="keywordtype">unsigned</span>&amp; t, AlgebraicNode*&amp; node_pt)</div>
@@ -709,7 +709,7 @@
 <div class="line"><a id="l00590" name="l00590"></a><span class="lineno">  590</span>      }</div>
 <div class="line"><a id="l00591" name="l00591"></a><span class="lineno">  591</span>    }</div>
 <div class="line"><a id="l00592" name="l00592"></a><span class="lineno">  592</span><span class="comment"></span> </div>
-<div class="line"><a id="l00593" name="l00593"></a><span class="lineno">  593</span><span class="comment">    ///  Update the node update info for specified algebraic node</span></div>
+<div class="line"><a id="l00593" name="l00593"></a><span class="lineno">  593</span><span class="comment">    /// Update the node update info for specified algebraic node</span></div>
 <div class="line"><a id="l00594" name="l00594"></a><span class="lineno">  594</span><span class="comment">    /// following any spatial mesh adaptation.</span></div>
 <div class="line"><a id="l00595" name="l00595"></a><span class="lineno"><a class="line" href="classoomph_1_1AlgebraicRefineableQuarterTubeMesh.html#a7ed9f4ce0442a6f962a1561318542a67">  595</a></span><span class="comment"></span>    <span class="keywordtype">void</span> <a class="code hl_function" href="classoomph_1_1AlgebraicRefineableQuarterTubeMesh.html#a7ed9f4ce0442a6f962a1561318542a67">update_node_update</a>(AlgebraicNode*&amp; node_pt)</div>
 <div class="line"><a id="l00596" name="l00596"></a><span class="lineno">  596</span>    {</div>
@@ -743,24 +743,24 @@
 <div class="line"><a id="l00624" name="l00624"></a><span class="lineno">  624</span><span class="comment">    /// Fractional height of central region</span></div>
 <div class="line"><a id="l00625" name="l00625"></a><span class="lineno"><a class="line" href="classoomph_1_1AlgebraicRefineableQuarterTubeMesh.html#a8e3b05ebb0b69e3ca3cbedb39b5b8e47">  625</a></span><span class="comment"></span>    <span class="keywordtype">double</span> <a class="code hl_variable" href="classoomph_1_1AlgebraicRefineableQuarterTubeMesh.html#a8e3b05ebb0b69e3ca3cbedb39b5b8e47">Lambda_y</a>;</div>
 <div class="line"><a id="l00626" name="l00626"></a><span class="lineno">  626</span><span class="comment"></span> </div>
-<div class="line"><a id="l00627" name="l00627"></a><span class="lineno">  627</span><span class="comment">    ///  Algebraic update function for a node that is located</span></div>
+<div class="line"><a id="l00627" name="l00627"></a><span class="lineno">  627</span><span class="comment">    /// Algebraic update function for a node that is located</span></div>
 <div class="line"><a id="l00628" name="l00628"></a><span class="lineno">  628</span><span class="comment">    /// in the central region</span></div>
 <div class="line"><a id="l00629" name="l00629"></a><span class="lineno">  629</span><span class="comment"></span>    <span class="keywordtype">void</span> <a class="code hl_function" href="classoomph_1_1AlgebraicRefineableQuarterTubeMesh.html#a064653020f5d2a0c7de789283dac305c">node_update_central_region</a>(<span class="keyword">const</span> <span class="keywordtype">unsigned</span>&amp; t, AlgebraicNode*&amp; node_pt);</div>
 <div class="line"><a id="l00630" name="l00630"></a><span class="lineno">  630</span><span class="comment"></span> </div>
-<div class="line"><a id="l00631" name="l00631"></a><span class="lineno">  631</span><span class="comment">    ///  Algebraic update function for a node that is located</span></div>
+<div class="line"><a id="l00631" name="l00631"></a><span class="lineno">  631</span><span class="comment">    /// Algebraic update function for a node that is located</span></div>
 <div class="line"><a id="l00632" name="l00632"></a><span class="lineno">  632</span><span class="comment">    /// in the lower-right region</span></div>
 <div class="line"><a id="l00633" name="l00633"></a><span class="lineno">  633</span><span class="comment"></span>    <span class="keywordtype">void</span> <a class="code hl_function" href="classoomph_1_1AlgebraicRefineableQuarterTubeMesh.html#a52fb1161ebff25b5c638ac35cb541817">node_update_lower_right_region</a>(<span class="keyword">const</span> <span class="keywordtype">unsigned</span>&amp; t,</div>
 <div class="line"><a id="l00634" name="l00634"></a><span class="lineno">  634</span>                                        AlgebraicNode*&amp; node_pt);</div>
 <div class="line"><a id="l00635" name="l00635"></a><span class="lineno">  635</span><span class="comment"></span> </div>
-<div class="line"><a id="l00636" name="l00636"></a><span class="lineno">  636</span><span class="comment">    ///  Algebraic update function for a node that is located</span></div>
+<div class="line"><a id="l00636" name="l00636"></a><span class="lineno">  636</span><span class="comment">    /// Algebraic update function for a node that is located</span></div>
 <div class="line"><a id="l00637" name="l00637"></a><span class="lineno">  637</span><span class="comment">    /// in the upper-left region</span></div>
 <div class="line"><a id="l00638" name="l00638"></a><span class="lineno">  638</span><span class="comment"></span>    <span class="keywordtype">void</span> <a class="code hl_function" href="classoomph_1_1AlgebraicRefineableQuarterTubeMesh.html#ac82a39ccaed8016a9b1e841d91658a75">node_update_upper_left_region</a>(<span class="keyword">const</span> <span class="keywordtype">unsigned</span>&amp; t,</div>
 <div class="line"><a id="l00639" name="l00639"></a><span class="lineno">  639</span>                                       AlgebraicNode*&amp; node_pt);</div>
 <div class="line"><a id="l00640" name="l00640"></a><span class="lineno">  640</span><span class="comment"></span> </div>
-<div class="line"><a id="l00641" name="l00641"></a><span class="lineno">  641</span><span class="comment">    ///  Setup algebraic update operation for all nodes</span></div>
+<div class="line"><a id="l00641" name="l00641"></a><span class="lineno">  641</span><span class="comment">    /// Setup algebraic update operation for all nodes</span></div>
 <div class="line"><a id="l00642" name="l00642"></a><span class="lineno">  642</span><span class="comment"></span>    <span class="keywordtype">void</span> <a class="code hl_function" href="classoomph_1_1AlgebraicRefineableQuarterTubeMesh.html#a2d0312615834a2aec8d0d6d4e2c846ef">setup_algebraic_node_update</a>();</div>
 <div class="line"><a id="l00643" name="l00643"></a><span class="lineno">  643</span><span class="comment"></span> </div>
-<div class="line"><a id="l00644" name="l00644"></a><span class="lineno">  644</span><span class="comment">    ///  Update algebraic node update function for nodes in</span></div>
+<div class="line"><a id="l00644" name="l00644"></a><span class="lineno">  644</span><span class="comment">    /// Update algebraic node update function for nodes in</span></div>
 <div class="line"><a id="l00645" name="l00645"></a><span class="lineno">  645</span><span class="comment">    /// the region defined by region_id</span></div>
 <div class="line"><a id="l00646" name="l00646"></a><span class="lineno">  646</span><span class="comment"></span>    <span class="keywordtype">void</span> <a class="code hl_function" href="classoomph_1_1AlgebraicRefineableQuarterTubeMesh.html#ae2014e91ad7f5a226b35aa96964f4bf1">update_node_update_in_region</a>(AlgebraicNode*&amp; node_pt, <span class="keywordtype">int</span>&amp; region_id);</div>
 <div class="line"><a id="l00647" name="l00647"></a><span class="lineno">  647</span>  };</div>
@@ -842,7 +842,7 @@
     <footer>
       <div class="container">
         <div class="text-muted" style="float:right;">Generated by <a href="http://www.doxygen.org/index.html">
-          <img style="height:18px;" class="footer-img" src="doxygen.png" alt="doxygen"></a> on Fri Oct 22 2021 12:43:47
+          <img style="height:18px;" class="footer-img" src="doxygen.png" alt="doxygen"></a> on Mon Oct 25 2021 15:02:02
         </div>
       </div>
     </footer>

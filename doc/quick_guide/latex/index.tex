@@ -544,7 +544,7 @@ Most specific finite element classes will contain further member functions and m
 \end{DoxyCodeInclude}
  Finally, it is good practice to implement a self-\/test function that provides a sanity check of all data before the problem is solved. {\ttfamily oomph-\/lib} already provides self-\/test functions for all fundamental objects. Additional tests can be added by overloading these. For instance, in our Poisson element, the {\ttfamily Sign} variable should only take the values $ \pm 1 $. This can be tested with the following function, which also executes the {\ttfamily self\+\_\+test()} function of the underlying {\ttfamily Finite\+Element\+:}  
 \begin{DoxyCodeInclude}{0}
-\DoxyCodeLine{\textcolor{comment}{  ///  Self test function: The sign in the source function should}\textcolor{comment}{}}
+\DoxyCodeLine{\textcolor{comment}{  /// Self test function: The sign in the source function should}\textcolor{comment}{}}
 \DoxyCodeLine{\textcolor{comment}{  /// only have the values +/-\/ 1. Following the general oomph-\/lib convention,}}
 \DoxyCodeLine{\textcolor{comment}{  /// the self\_test() returns 0 for success, and 1 for failure:}}
 \DoxyCodeLine{\textcolor{comment}{}  \textcolor{keywordtype}{unsigned} self\_test()}
@@ -938,7 +938,7 @@ As a concrete example, we consider the implementation of the one-\/dimensional, 
 \end{DoxyCodeInclude}
  and it uses a one-\/dimensional, two-\/point Gauss rule as the default spatial integration scheme 
 \begin{DoxyCodeInclude}{0}
-\DoxyCodeLine{\textcolor{comment}{ ///  Integration scheme that will be used to integrate over the element.}}
+\DoxyCodeLine{\textcolor{comment}{ /// Integration scheme that will be used to integrate over the element.}}
 \DoxyCodeLine{\textcolor{comment}{ /// Simple Gaussian quadrature in one dimension, with two Gauss points.}}
 \DoxyCodeLine{ \textcolor{keyword}{static} Gauss<1,2> Default\_spatial\_integration\_scheme;}
 

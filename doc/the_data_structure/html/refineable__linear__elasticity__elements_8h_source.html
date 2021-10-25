@@ -176,7 +176,7 @@ $(function() {
 <div class="line"><a id="l00047" name="l00047"></a><span class="lineno">   47</span>      <span class="keyword">public</span> <span class="keyword">virtual</span> <a class="code hl_class" href="classoomph_1_1ElementWithZ2ErrorEstimator.html">ElementWithZ2ErrorEstimator</a></div>
 <div class="line"><a id="l00048" name="l00048"></a><span class="lineno">   48</span>  {</div>
 <div class="line"><a id="l00049" name="l00049"></a><span class="lineno">   49</span>  <span class="keyword">public</span>:<span class="comment"></span></div>
-<div class="line"><a id="l00050" name="l00050"></a><span class="lineno">   50</span><span class="comment">    ///  Constructor</span></div>
+<div class="line"><a id="l00050" name="l00050"></a><span class="lineno">   50</span><span class="comment">    /// Constructor</span></div>
 <div class="line"><a id="l00051" name="l00051"></a><span class="lineno"><a class="line" href="classoomph_1_1RefineableLinearElasticityEquations.html#a948ffa175a7a2299beb06150f69cb750">   51</a></span><span class="comment"></span>    <a class="code hl_function" href="classoomph_1_1RefineableLinearElasticityEquations.html#a948ffa175a7a2299beb06150f69cb750">RefineableLinearElasticityEquations</a>()</div>
 <div class="line"><a id="l00052" name="l00052"></a><span class="lineno">   52</span>      : <a class="code hl_class" href="classoomph_1_1LinearElasticityEquations.html">LinearElasticityEquations</a>&lt;DIM&gt;(),</div>
 <div class="line"><a id="l00053" name="l00053"></a><span class="lineno">   53</span>        <a class="code hl_class" href="classoomph_1_1RefineableElement.html">RefineableElement</a>(),</div>
@@ -185,7 +185,7 @@ $(function() {
 <div class="line"><a id="l00056" name="l00056"></a><span class="lineno">   56</span>    }</div>
 <div class="line"><a id="l00057" name="l00057"></a><span class="lineno">   57</span> </div>
 <div class="line"><a id="l00058" name="l00058"></a><span class="lineno">   58</span><span class="comment"></span> </div>
-<div class="line"><a id="l00059" name="l00059"></a><span class="lineno">   59</span><span class="comment">    ///  Get the function value u in Vector.</span></div>
+<div class="line"><a id="l00059" name="l00059"></a><span class="lineno">   59</span><span class="comment">    /// Get the function value u in Vector.</span></div>
 <div class="line"><a id="l00060" name="l00060"></a><span class="lineno">   60</span><span class="comment">    /// Note: Given the generality of the interface (this function</span></div>
 <div class="line"><a id="l00061" name="l00061"></a><span class="lineno">   61</span><span class="comment">    /// is usually called from black-box documentation or interpolation</span></div>
 <div class="line"><a id="l00062" name="l00062"></a><span class="lineno">   62</span><span class="comment">    /// routines), the values Vector sets its own size in here.</span></div>
@@ -215,7 +215,7 @@ $(function() {
 <div class="line"><a id="l00086" name="l00086"></a><span class="lineno">   86</span>      }</div>
 <div class="line"><a id="l00087" name="l00087"></a><span class="lineno">   87</span>    }</div>
 <div class="line"><a id="l00088" name="l00088"></a><span class="lineno">   88</span><span class="comment"></span> </div>
-<div class="line"><a id="l00089" name="l00089"></a><span class="lineno">   89</span><span class="comment">    ///  Get the current interpolated values (displacements).</span></div>
+<div class="line"><a id="l00089" name="l00089"></a><span class="lineno">   89</span><span class="comment">    /// Get the current interpolated values (displacements).</span></div>
 <div class="line"><a id="l00090" name="l00090"></a><span class="lineno">   90</span><span class="comment">    /// Note: Given the generality of the interface (this function</span></div>
 <div class="line"><a id="l00091" name="l00091"></a><span class="lineno">   91</span><span class="comment">    /// is usually called from black-box documentation or interpolation</span></div>
 <div class="line"><a id="l00092" name="l00092"></a><span class="lineno">   92</span><span class="comment">    /// routines),the values Vector sets its own size in here.</span></div>
@@ -233,7 +233,7 @@ $(function() {
 <div class="line"><a id="l00104" name="l00104"></a><span class="lineno">  104</span>      <span class="keywordflow">return</span> DIM + DIM * (DIM - 1) / 2;</div>
 <div class="line"><a id="l00105" name="l00105"></a><span class="lineno">  105</span>    }</div>
 <div class="line"><a id="l00106" name="l00106"></a><span class="lineno">  106</span><span class="comment"></span> </div>
-<div class="line"><a id="l00107" name="l00107"></a><span class="lineno">  107</span><span class="comment">    ///  Get &#39;flux&#39; for Z2 error recovery:   Upper triangular entries</span></div>
+<div class="line"><a id="l00107" name="l00107"></a><span class="lineno">  107</span><span class="comment">    /// Get &#39;flux&#39; for Z2 error recovery:   Upper triangular entries</span></div>
 <div class="line"><a id="l00108" name="l00108"></a><span class="lineno">  108</span><span class="comment">    /// in strain tensor.</span></div>
 <div class="line"><a id="l00109" name="l00109"></a><span class="lineno"><a class="line" href="classoomph_1_1RefineableLinearElasticityEquations.html#aa3b8251eb0a6d153eb7de8b032c1ffcd">  109</a></span><span class="comment"></span>    <span class="keywordtype">void</span> <a class="code hl_function" href="classoomph_1_1RefineableLinearElasticityEquations.html#aa3b8251eb0a6d153eb7de8b032c1ffcd">get_Z2_flux</a>(<span class="keyword">const</span> <a class="code hl_class" href="classoomph_1_1Vector.html">Vector&lt;double&gt;</a>&amp; <a class="code hl_variable" href="cfortran_8h.html#ab7123126e4885ef647dd9c6e3807a21c">s</a>, <a class="code hl_class" href="classoomph_1_1Vector.html">Vector&lt;double&gt;</a>&amp; flux)</div>
 <div class="line"><a id="l00110" name="l00110"></a><span class="lineno">  110</span>    {</div>
@@ -337,26 +337,26 @@ $(function() {
 <div class="line"><a id="l00208" name="l00208"></a><span class="lineno">  208</span><span class="comment">    /// Empty rebuild from sons, no need to reconstruct anything here</span></div>
 <div class="line"><a id="l00209" name="l00209"></a><span class="lineno"><a class="line" href="classoomph_1_1RefineableQLinearElasticityElement.html#a700c92182b25ecdda8c4454efd347c58">  209</a></span><span class="comment"></span>    <span class="keywordtype">void</span> <a class="code hl_function" href="classoomph_1_1RefineableQLinearElasticityElement.html#a700c92182b25ecdda8c4454efd347c58">rebuild_from_sons</a>(<a class="code hl_class" href="classoomph_1_1Mesh.html">Mesh</a>*&amp; mesh_pt) {}</div>
 <div class="line"><a id="l00210" name="l00210"></a><span class="lineno">  210</span><span class="comment"></span> </div>
-<div class="line"><a id="l00211" name="l00211"></a><span class="lineno">  211</span><span class="comment">    ///  Number of vertex nodes in the element</span></div>
+<div class="line"><a id="l00211" name="l00211"></a><span class="lineno">  211</span><span class="comment">    /// Number of vertex nodes in the element</span></div>
 <div class="line"><a id="l00212" name="l00212"></a><span class="lineno"><a class="line" href="classoomph_1_1RefineableQLinearElasticityElement.html#a9d830361d2e7c275ff4adda026f70c00">  212</a></span><span class="comment"></span>    <span class="keywordtype">unsigned</span> <a class="code hl_function" href="classoomph_1_1RefineableQLinearElasticityElement.html#a9d830361d2e7c275ff4adda026f70c00">nvertex_node</a>()<span class="keyword"> const</span></div>
 <div class="line"><a id="l00213" name="l00213"></a><span class="lineno">  213</span><span class="keyword">    </span>{</div>
 <div class="line"><a id="l00214" name="l00214"></a><span class="lineno">  214</span>      <span class="keywordflow">return</span> <a class="code hl_function" href="classoomph_1_1FiniteElement.html#a45631a7aa50efc3123a921d114f84cba">QLinearElasticityElement&lt;DIM, NNODE_1D&gt;::nvertex_node</a>();</div>
 <div class="line"><a id="l00215" name="l00215"></a><span class="lineno">  215</span>    }</div>
 <div class="line"><a id="l00216" name="l00216"></a><span class="lineno">  216</span><span class="comment"></span> </div>
-<div class="line"><a id="l00217" name="l00217"></a><span class="lineno">  217</span><span class="comment">    ///  Pointer to the j-th vertex node in the element</span></div>
+<div class="line"><a id="l00217" name="l00217"></a><span class="lineno">  217</span><span class="comment">    /// Pointer to the j-th vertex node in the element</span></div>
 <div class="line"><a id="l00218" name="l00218"></a><span class="lineno"><a class="line" href="classoomph_1_1RefineableQLinearElasticityElement.html#a4a48ee3c0ae63c75c4f91c2faaa9bec4">  218</a></span><span class="comment"></span>    Node* <a class="code hl_function" href="classoomph_1_1RefineableQLinearElasticityElement.html#a4a48ee3c0ae63c75c4f91c2faaa9bec4">vertex_node_pt</a>(<span class="keyword">const</span> <span class="keywordtype">unsigned</span>&amp; j)<span class="keyword"> const</span></div>
 <div class="line"><a id="l00219" name="l00219"></a><span class="lineno">  219</span><span class="keyword">    </span>{</div>
 <div class="line"><a id="l00220" name="l00220"></a><span class="lineno">  220</span>      <span class="keywordflow">return</span> <a class="code hl_function" href="classoomph_1_1FiniteElement.html#ac8b551c9d6f1f8e30e8b18fe2f9ae072">QLinearElasticityElement&lt;DIM, NNODE_1D&gt;::vertex_node_pt</a>(j);</div>
 <div class="line"><a id="l00221" name="l00221"></a><span class="lineno">  221</span>    }</div>
 <div class="line"><a id="l00222" name="l00222"></a><span class="lineno">  222</span><span class="comment"></span> </div>
-<div class="line"><a id="l00223" name="l00223"></a><span class="lineno">  223</span><span class="comment">    ///  Order of recovery shape functions for Z2 error estimation:</span></div>
+<div class="line"><a id="l00223" name="l00223"></a><span class="lineno">  223</span><span class="comment">    /// Order of recovery shape functions for Z2 error estimation:</span></div>
 <div class="line"><a id="l00224" name="l00224"></a><span class="lineno">  224</span><span class="comment">    /// Same order as shape functions.</span></div>
 <div class="line"><a id="l00225" name="l00225"></a><span class="lineno"><a class="line" href="classoomph_1_1RefineableQLinearElasticityElement.html#a79d93d3bf7c5bcf54537eeb900ee4404">  225</a></span><span class="comment"></span>    <span class="keywordtype">unsigned</span> <a class="code hl_function" href="classoomph_1_1RefineableQLinearElasticityElement.html#a79d93d3bf7c5bcf54537eeb900ee4404">nrecovery_order</a>()</div>
 <div class="line"><a id="l00226" name="l00226"></a><span class="lineno">  226</span>    {</div>
 <div class="line"><a id="l00227" name="l00227"></a><span class="lineno">  227</span>      <span class="keywordflow">return</span> NNODE_1D - 1;</div>
 <div class="line"><a id="l00228" name="l00228"></a><span class="lineno">  228</span>    }</div>
 <div class="line"><a id="l00229" name="l00229"></a><span class="lineno">  229</span><span class="comment"></span> </div>
-<div class="line"><a id="l00230" name="l00230"></a><span class="lineno">  230</span><span class="comment">    ///   No additional hanging node procedures are required</span></div>
+<div class="line"><a id="l00230" name="l00230"></a><span class="lineno">  230</span><span class="comment">    ///  No additional hanging node procedures are required</span></div>
 <div class="line"><a id="l00231" name="l00231"></a><span class="lineno"><a class="line" href="classoomph_1_1RefineableQLinearElasticityElement.html#a2e72b739f026bfdb6aac2d7d72092679">  231</a></span><span class="comment"></span>    <span class="keywordtype">void</span> <a class="code hl_function" href="classoomph_1_1RefineableQLinearElasticityElement.html#a2e72b739f026bfdb6aac2d7d72092679">further_setup_hanging_nodes</a>() {}</div>
 <div class="line"><a id="l00232" name="l00232"></a><span class="lineno">  232</span>  };</div>
 <div class="line"><a id="l00233" name="l00233"></a><span class="lineno">  233</span> </div>
@@ -371,7 +371,7 @@ $(function() {
 <div class="line"><a id="l00242" name="l00242"></a><span class="lineno">  242</span>      <span class="keyword">public</span> <span class="keyword">virtual</span> <a class="code hl_class" href="classoomph_1_1PRefineableQElement.html">PRefineableQElement</a>&lt;DIM&gt;</div>
 <div class="line"><a id="l00243" name="l00243"></a><span class="lineno">  243</span>  {</div>
 <div class="line"><a id="l00244" name="l00244"></a><span class="lineno">  244</span>  <span class="keyword">public</span>:<span class="comment"></span></div>
-<div class="line"><a id="l00245" name="l00245"></a><span class="lineno">  245</span><span class="comment">    ///  Constructor, simply call the other constructors</span></div>
+<div class="line"><a id="l00245" name="l00245"></a><span class="lineno">  245</span><span class="comment">    /// Constructor, simply call the other constructors</span></div>
 <div class="line"><a id="l00246" name="l00246"></a><span class="lineno"><a class="line" href="classoomph_1_1PRefineableQLinearElasticityElement.html#a11d268420f81bc8c502f9b27a11f1b46">  246</a></span><span class="comment"></span>    <a class="code hl_function" href="classoomph_1_1PRefineableQLinearElasticityElement.html#a11d268420f81bc8c502f9b27a11f1b46">PRefineableQLinearElasticityElement</a>()</div>
 <div class="line"><a id="l00247" name="l00247"></a><span class="lineno">  247</span>      : <a class="code hl_class" href="classoomph_1_1RefineableElement.html">RefineableElement</a>(),</div>
 <div class="line"><a id="l00248" name="l00248"></a><span class="lineno">  248</span>        <a class="code hl_class" href="classoomph_1_1RefineableLinearElasticityEquations.html">RefineableLinearElasticityEquations</a>&lt;DIM&gt;(),</div>
@@ -407,19 +407,19 @@ $(function() {
 <div class="line"><a id="l00278" name="l00278"></a><span class="lineno">  278</span>      <span class="keywordflow">return</span> 1;</div>
 <div class="line"><a id="l00279" name="l00279"></a><span class="lineno">  279</span>    }</div>
 <div class="line"><a id="l00280" name="l00280"></a><span class="lineno">  280</span><span class="comment"></span> </div>
-<div class="line"><a id="l00281" name="l00281"></a><span class="lineno">  281</span><span class="comment">    ///  Number of vertex nodes in the element</span></div>
+<div class="line"><a id="l00281" name="l00281"></a><span class="lineno">  281</span><span class="comment">    /// Number of vertex nodes in the element</span></div>
 <div class="line"><a id="l00282" name="l00282"></a><span class="lineno"><a class="line" href="classoomph_1_1PRefineableQLinearElasticityElement.html#a1c3378ffd265b23eb9702a600742782b">  282</a></span><span class="comment"></span>    <span class="keywordtype">unsigned</span> <a class="code hl_function" href="classoomph_1_1PRefineableQLinearElasticityElement.html#a1c3378ffd265b23eb9702a600742782b">nvertex_node</a>()<span class="keyword"> const</span></div>
 <div class="line"><a id="l00283" name="l00283"></a><span class="lineno">  283</span><span class="keyword">    </span>{</div>
 <div class="line"><a id="l00284" name="l00284"></a><span class="lineno">  284</span>      <span class="keywordflow">return</span> <a class="code hl_function" href="classoomph_1_1FiniteElement.html#a45631a7aa50efc3123a921d114f84cba">QLinearElasticityElement&lt;DIM, 2&gt;::nvertex_node</a>();</div>
 <div class="line"><a id="l00285" name="l00285"></a><span class="lineno">  285</span>    }</div>
 <div class="line"><a id="l00286" name="l00286"></a><span class="lineno">  286</span><span class="comment"></span> </div>
-<div class="line"><a id="l00287" name="l00287"></a><span class="lineno">  287</span><span class="comment">    ///  Pointer to the j-th vertex node in the element</span></div>
+<div class="line"><a id="l00287" name="l00287"></a><span class="lineno">  287</span><span class="comment">    /// Pointer to the j-th vertex node in the element</span></div>
 <div class="line"><a id="l00288" name="l00288"></a><span class="lineno"><a class="line" href="classoomph_1_1PRefineableQLinearElasticityElement.html#a9ff7b9a9410ee45f4613d43987a8bc4e">  288</a></span><span class="comment"></span>    Node* <a class="code hl_function" href="classoomph_1_1PRefineableQLinearElasticityElement.html#a9ff7b9a9410ee45f4613d43987a8bc4e">vertex_node_pt</a>(<span class="keyword">const</span> <span class="keywordtype">unsigned</span>&amp; j)<span class="keyword"> const</span></div>
 <div class="line"><a id="l00289" name="l00289"></a><span class="lineno">  289</span><span class="keyword">    </span>{</div>
 <div class="line"><a id="l00290" name="l00290"></a><span class="lineno">  290</span>      <span class="keywordflow">return</span> <a class="code hl_function" href="classoomph_1_1FiniteElement.html#ac8b551c9d6f1f8e30e8b18fe2f9ae072">QLinearElasticityElement&lt;DIM, 2&gt;::vertex_node_pt</a>(j);</div>
 <div class="line"><a id="l00291" name="l00291"></a><span class="lineno">  291</span>    }</div>
 <div class="line"><a id="l00292" name="l00292"></a><span class="lineno">  292</span><span class="comment"></span> </div>
-<div class="line"><a id="l00293" name="l00293"></a><span class="lineno">  293</span><span class="comment">    ///  Order of recovery shape functions for Z2 error estimation:</span></div>
+<div class="line"><a id="l00293" name="l00293"></a><span class="lineno">  293</span><span class="comment">    /// Order of recovery shape functions for Z2 error estimation:</span></div>
 <div class="line"><a id="l00294" name="l00294"></a><span class="lineno">  294</span><span class="comment">    /// - Same order as shape functions.</span></div>
 <div class="line"><a id="l00295" name="l00295"></a><span class="lineno">  295</span><span class="comment"></span>    <span class="comment">// unsigned nrecovery_order()</span></div>
 <div class="line"><a id="l00296" name="l00296"></a><span class="lineno">  296</span>    <span class="comment">// {</span></div>
@@ -601,7 +601,7 @@ $(function() {
     <footer>
       <div class="container">
         <div class="text-muted" style="float:right;">Generated by <a href="http://www.doxygen.org/index.html">
-          <img style="height:18px;" class="footer-img" src="doxygen.png" alt="doxygen"></a> on Fri Oct 22 2021 12:23:24
+          <img style="height:18px;" class="footer-img" src="doxygen.png" alt="doxygen"></a> on Mon Oct 25 2021 14:41:44
         </div>
       </div>
     </footer>

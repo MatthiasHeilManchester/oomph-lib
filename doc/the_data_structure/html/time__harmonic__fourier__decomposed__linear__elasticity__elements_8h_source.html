@@ -187,7 +187,7 @@ $(function() {
 <div class="line"><a id="l00058" name="l00058"></a><span class="lineno">   58</span>    : <span class="keyword">public</span> <span class="keyword">virtual</span> <a class="code hl_class" href="classoomph_1_1FiniteElement.html">FiniteElement</a></div>
 <div class="line"><a id="l00059" name="l00059"></a><span class="lineno">   59</span>  {</div>
 <div class="line"><a id="l00060" name="l00060"></a><span class="lineno">   60</span>  <span class="keyword">public</span>:<span class="comment"></span></div>
-<div class="line"><a id="l00061" name="l00061"></a><span class="lineno">   61</span><span class="comment">    ///  Return the index at which the i-th (i=0: r, i=1: z; i=2: theta)</span></div>
+<div class="line"><a id="l00061" name="l00061"></a><span class="lineno">   61</span><span class="comment">    /// Return the index at which the i-th (i=0: r, i=1: z; i=2: theta)</span></div>
 <div class="line"><a id="l00062" name="l00062"></a><span class="lineno">   62</span><span class="comment">    /// real or imag unknown displacement component is stored at the nodes.</span></div>
 <div class="line"><a id="l00063" name="l00063"></a><span class="lineno">   63</span><span class="comment">    /// The default assignment here (u_r_real, u_z_real, ..., u_theta_imag)</span></div>
 <div class="line"><a id="l00064" name="l00064"></a><span class="lineno">   64</span><span class="comment">    /// is appropriate for single-physics problems.</span></div>
@@ -231,7 +231,7 @@ $(function() {
 <div class="line"><a id="l00102" name="l00102"></a><span class="lineno">  102</span>      }</div>
 <div class="line"><a id="l00103" name="l00103"></a><span class="lineno">  103</span>    }</div>
 <div class="line"><a id="l00104" name="l00104"></a><span class="lineno">  104</span><span class="comment"></span> </div>
-<div class="line"><a id="l00105" name="l00105"></a><span class="lineno">  105</span><span class="comment">    ///  Return FE interpolated displacement u[i] (i=0: r, i=1: z; i=2:</span></div>
+<div class="line"><a id="l00105" name="l00105"></a><span class="lineno">  105</span><span class="comment">    /// Return FE interpolated displacement u[i] (i=0: r, i=1: z; i=2:</span></div>
 <div class="line"><a id="l00106" name="l00106"></a><span class="lineno">  106</span><span class="comment">    /// theta) at local coordinate s</span></div>
 <div class="line"><a id="l00107" name="l00107"></a><span class="lineno"><a class="line" href="classoomph_1_1TimeHarmonicFourierDecomposedLinearElasticityEquationsBase.html#acb4d805ab2cad61656012ee34540f8cd">  107</a></span><span class="comment"></span>    std::complex&lt;double&gt; <a class="code hl_function" href="classoomph_1_1TimeHarmonicFourierDecomposedLinearElasticityEquationsBase.html#acb4d805ab2cad61656012ee34540f8cd">interpolated_u_time_harmonic_fourier_decomposed_linear_elasticity</a>(</div>
 <div class="line"><a id="l00108" name="l00108"></a><span class="lineno">  108</span>      <span class="keyword">const</span> <a class="code hl_class" href="classoomph_1_1Vector.html">Vector&lt;double&gt;</a>&amp; <a class="code hl_variable" href="cfortran_8h.html#ab7123126e4885ef647dd9c6e3807a21c">s</a>, <span class="keyword">const</span> <span class="keywordtype">unsigned</span>&amp; <a class="code hl_variable" href="cfortran_8h.html#adb50e893b86b3e55e751a42eab3cba82">i</a>)<span class="keyword"> const</span></div>
@@ -266,13 +266,13 @@ $(function() {
 <div class="line"><a id="l00137" name="l00137"></a><span class="lineno">  137</span>    }</div>
 <div class="line"><a id="l00138" name="l00138"></a><span class="lineno">  138</span> </div>
 <div class="line"><a id="l00139" name="l00139"></a><span class="lineno">  139</span><span class="comment"></span> </div>
-<div class="line"><a id="l00140" name="l00140"></a><span class="lineno">  140</span><span class="comment">    ///  Function pointer to function that specifies the body force</span></div>
+<div class="line"><a id="l00140" name="l00140"></a><span class="lineno">  140</span><span class="comment">    /// Function pointer to function that specifies the body force</span></div>
 <div class="line"><a id="l00141" name="l00141"></a><span class="lineno">  141</span><span class="comment">    /// as a function of the Cartesian coordinates and time FCT(x,b) --</span></div>
 <div class="line"><a id="l00142" name="l00142"></a><span class="lineno">  142</span><span class="comment">    /// x and b are  Vectors!</span></div>
 <div class="line"><a id="l00143" name="l00143"></a><span class="lineno"><a class="line" href="classoomph_1_1TimeHarmonicFourierDecomposedLinearElasticityEquationsBase.html#ac582edc989cd98af8a03f5bf58d7a05a">  143</a></span><span class="comment"></span>    <span class="keyword">typedef</span> void (*<a class="code hl_typedef" href="classoomph_1_1TimeHarmonicFourierDecomposedLinearElasticityEquationsBase.html#ac582edc989cd98af8a03f5bf58d7a05a">BodyForceFctPt</a>)(<span class="keyword">const</span> <a class="code hl_class" href="classoomph_1_1Vector.html">Vector&lt;double&gt;</a>&amp; <a class="code hl_variable" href="namespaceoomph.html#a9d1d2da2b8bb8e73af72b5cadb8fe97c">x</a>,</div>
 <div class="line"><a id="l00144" name="l00144"></a><span class="lineno">  144</span>                                   <a class="code hl_class" href="classoomph_1_1Vector.html">Vector&lt;std::complex&lt;double&gt;</a>&gt;&amp; b);</div>
 <div class="line"><a id="l00145" name="l00145"></a><span class="lineno">  145</span><span class="comment"></span> </div>
-<div class="line"><a id="l00146" name="l00146"></a><span class="lineno">  146</span><span class="comment">    ///  Constructor: Set null pointers for constitutive law.</span></div>
+<div class="line"><a id="l00146" name="l00146"></a><span class="lineno">  146</span><span class="comment">    /// Constructor: Set null pointers for constitutive law.</span></div>
 <div class="line"><a id="l00147" name="l00147"></a><span class="lineno">  147</span><span class="comment">    /// Set physical parameter values to</span></div>
 <div class="line"><a id="l00148" name="l00148"></a><span class="lineno">  148</span><span class="comment">    /// default values, and set body force to zero.</span></div>
 <div class="line"><a id="l00149" name="l00149"></a><span class="lineno"><a class="line" href="classoomph_1_1TimeHarmonicFourierDecomposedLinearElasticityEquationsBase.html#a8c30a3f47a37399b416c493d81504406">  149</a></span><span class="comment"></span>    <a class="code hl_function" href="classoomph_1_1TimeHarmonicFourierDecomposedLinearElasticityEquationsBase.html#a8c30a3f47a37399b416c493d81504406">TimeHarmonicFourierDecomposedLinearElasticityEquationsBase</a>()</div>
@@ -365,7 +365,7 @@ $(function() {
 <div class="line"><a id="l00236" name="l00236"></a><span class="lineno">  236</span>      <span class="keywordflow">return</span> <a class="code hl_variable" href="classoomph_1_1TimeHarmonicFourierDecomposedLinearElasticityEquationsBase.html#a65c341e132adbe3baf9c3d6332f1212d">Body_force_fct_pt</a>;</div>
 <div class="line"><a id="l00237" name="l00237"></a><span class="lineno">  237</span>    }</div>
 <div class="line"><a id="l00238" name="l00238"></a><span class="lineno">  238</span><span class="comment"></span> </div>
-<div class="line"><a id="l00239" name="l00239"></a><span class="lineno">  239</span><span class="comment">    ///  Evaluate body force at Eulerian coordinate x at present time</span></div>
+<div class="line"><a id="l00239" name="l00239"></a><span class="lineno">  239</span><span class="comment">    /// Evaluate body force at Eulerian coordinate x at present time</span></div>
 <div class="line"><a id="l00240" name="l00240"></a><span class="lineno">  240</span><span class="comment">    /// (returns zero vector if no body force function pointer has been set)</span></div>
 <div class="line"><a id="l00241" name="l00241"></a><span class="lineno"><a class="line" href="classoomph_1_1TimeHarmonicFourierDecomposedLinearElasticityEquationsBase.html#a7e28782573e1210b9a5f98f17360f6e9">  241</a></span><span class="comment"></span>    <span class="keyword">inline</span> <span class="keywordtype">void</span> <a class="code hl_function" href="classoomph_1_1TimeHarmonicFourierDecomposedLinearElasticityEquationsBase.html#a7e28782573e1210b9a5f98f17360f6e9">body_force</a>(<span class="keyword">const</span> <a class="code hl_class" href="classoomph_1_1Vector.html">Vector&lt;double&gt;</a>&amp; <a class="code hl_variable" href="namespaceoomph.html#a9d1d2da2b8bb8e73af72b5cadb8fe97c">x</a>,</div>
 <div class="line"><a id="l00242" name="l00242"></a><span class="lineno">  242</span>                           <a class="code hl_class" href="classoomph_1_1Vector.html">Vector</a>&lt;std::complex&lt;double&gt;&gt;&amp; b)<span class="keyword"> const</span></div>
@@ -386,7 +386,7 @@ $(function() {
 <div class="line"><a id="l00257" name="l00257"></a><span class="lineno">  257</span>      }</div>
 <div class="line"><a id="l00258" name="l00258"></a><span class="lineno">  258</span>    }</div>
 <div class="line"><a id="l00259" name="l00259"></a><span class="lineno">  259</span><span class="comment"></span> </div>
-<div class="line"><a id="l00260" name="l00260"></a><span class="lineno">  260</span><span class="comment">    ///  The number of &quot;DOF types&quot; that degrees of freedom in this element</span></div>
+<div class="line"><a id="l00260" name="l00260"></a><span class="lineno">  260</span><span class="comment">    /// The number of &quot;DOF types&quot; that degrees of freedom in this element</span></div>
 <div class="line"><a id="l00261" name="l00261"></a><span class="lineno">  261</span><span class="comment">    /// are sub-divided into: for now lump them all into one DOF type.</span></div>
 <div class="line"><a id="l00262" name="l00262"></a><span class="lineno">  262</span><span class="comment">    /// Can be adjusted later</span></div>
 <div class="line"><a id="l00263" name="l00263"></a><span class="lineno"><a class="line" href="classoomph_1_1TimeHarmonicFourierDecomposedLinearElasticityEquationsBase.html#a7fc55ec08c580274e0f0de664c43c249">  263</a></span><span class="comment"></span>    <span class="keywordtype">unsigned</span> <a class="code hl_function" href="classoomph_1_1TimeHarmonicFourierDecomposedLinearElasticityEquationsBase.html#a7fc55ec08c580274e0f0de664c43c249">ndof_types</a>()<span class="keyword"> const</span></div>
@@ -394,7 +394,7 @@ $(function() {
 <div class="line"><a id="l00265" name="l00265"></a><span class="lineno">  265</span>      <span class="keywordflow">return</span> 1;</div>
 <div class="line"><a id="l00266" name="l00266"></a><span class="lineno">  266</span>    }</div>
 <div class="line"><a id="l00267" name="l00267"></a><span class="lineno">  267</span><span class="comment"></span> </div>
-<div class="line"><a id="l00268" name="l00268"></a><span class="lineno">  268</span><span class="comment">    ///  Create a list of pairs for all unknowns in this element,</span></div>
+<div class="line"><a id="l00268" name="l00268"></a><span class="lineno">  268</span><span class="comment">    /// Create a list of pairs for all unknowns in this element,</span></div>
 <div class="line"><a id="l00269" name="l00269"></a><span class="lineno">  269</span><span class="comment">    /// so that the first entry in each pair contains the global equation</span></div>
 <div class="line"><a id="l00270" name="l00270"></a><span class="lineno">  270</span><span class="comment">    /// number of the unknown, while the second one contains the number</span></div>
 <div class="line"><a id="l00271" name="l00271"></a><span class="lineno">  271</span><span class="comment">    /// of the &quot;DOF type&quot; that this unknown is associated with.</span></div>
@@ -480,7 +480,7 @@ $(function() {
 <div class="line"><a id="l00351" name="l00351"></a><span class="lineno">  351</span>    : <span class="keyword">public</span> <a class="code hl_class" href="classoomph_1_1TimeHarmonicFourierDecomposedLinearElasticityEquationsBase.html">TimeHarmonicFourierDecomposedLinearElasticityEquationsBase</a></div>
 <div class="line"><a id="l00352" name="l00352"></a><span class="lineno">  352</span>  {</div>
 <div class="line"><a id="l00353" name="l00353"></a><span class="lineno">  353</span>  <span class="keyword">public</span>:<span class="comment"></span></div>
-<div class="line"><a id="l00354" name="l00354"></a><span class="lineno">  354</span><span class="comment">    ///   Constructor</span></div>
+<div class="line"><a id="l00354" name="l00354"></a><span class="lineno">  354</span><span class="comment">    ///  Constructor</span></div>
 <div class="line"><a id="l00355" name="l00355"></a><span class="lineno"><a class="line" href="classoomph_1_1TimeHarmonicFourierDecomposedLinearElasticityEquations.html#a2e154a0615ab34321abb0c6a76966cc9">  355</a></span><span class="comment"></span>    <a class="code hl_function" href="classoomph_1_1TimeHarmonicFourierDecomposedLinearElasticityEquations.html#a2e154a0615ab34321abb0c6a76966cc9">TimeHarmonicFourierDecomposedLinearElasticityEquations</a>() {}</div>
 <div class="line"><a id="l00356" name="l00356"></a><span class="lineno">  356</span><span class="comment"></span> </div>
 <div class="line"><a id="l00357" name="l00357"></a><span class="lineno">  357</span><span class="comment">    /// Number of values required at node n.</span></div>
@@ -489,7 +489,7 @@ $(function() {
 <div class="line"><a id="l00360" name="l00360"></a><span class="lineno">  360</span>      <span class="keywordflow">return</span> 6;</div>
 <div class="line"><a id="l00361" name="l00361"></a><span class="lineno">  361</span>    }</div>
 <div class="line"><a id="l00362" name="l00362"></a><span class="lineno">  362</span><span class="comment"></span> </div>
-<div class="line"><a id="l00363" name="l00363"></a><span class="lineno">  363</span><span class="comment">    ///  Return the residuals for the equations (the discretised</span></div>
+<div class="line"><a id="l00363" name="l00363"></a><span class="lineno">  363</span><span class="comment">    /// Return the residuals for the equations (the discretised</span></div>
 <div class="line"><a id="l00364" name="l00364"></a><span class="lineno">  364</span><span class="comment">    /// principle of virtual displacements)</span></div>
 <div class="line"><a id="l00365" name="l00365"></a><span class="lineno"><a class="line" href="classoomph_1_1TimeHarmonicFourierDecomposedLinearElasticityEquations.html#a38dec4f82df17e0eced052a2aff8aa7c">  365</a></span><span class="comment"></span>    <span class="keywordtype">void</span> <a class="code hl_function" href="classoomph_1_1TimeHarmonicFourierDecomposedLinearElasticityEquations.html#a38dec4f82df17e0eced052a2aff8aa7c">fill_in_contribution_to_residuals</a>(<a class="code hl_class" href="classoomph_1_1Vector.html">Vector&lt;double&gt;</a>&amp; residuals)</div>
 <div class="line"><a id="l00366" name="l00366"></a><span class="lineno">  366</span>    {</div>
@@ -515,7 +515,7 @@ $(function() {
 <div class="line"><a id="l00386" name="l00386"></a><span class="lineno">  386</span><span class="comment"></span>    <span class="keywordtype">void</span> <a class="code hl_function" href="classoomph_1_1TimeHarmonicFourierDecomposedLinearElasticityEquations.html#aed013f2b28d4fc1b776763e75104834b">get_strain</a>(<span class="keyword">const</span> <a class="code hl_class" href="classoomph_1_1Vector.html">Vector&lt;double&gt;</a>&amp; <a class="code hl_variable" href="cfortran_8h.html#ab7123126e4885ef647dd9c6e3807a21c">s</a>,</div>
 <div class="line"><a id="l00387" name="l00387"></a><span class="lineno">  387</span>                    <a class="code hl_class" href="classoomph_1_1DenseMatrix.html">DenseMatrix</a>&lt;std::complex&lt;double&gt;&gt;&amp; strain);</div>
 <div class="line"><a id="l00388" name="l00388"></a><span class="lineno">  388</span><span class="comment"></span> </div>
-<div class="line"><a id="l00389" name="l00389"></a><span class="lineno">  389</span><span class="comment">    ///  Compute norm of solution: square of the L2 norm</span></div>
+<div class="line"><a id="l00389" name="l00389"></a><span class="lineno">  389</span><span class="comment">    /// Compute norm of solution: square of the L2 norm</span></div>
 <div class="line"><a id="l00390" name="l00390"></a><span class="lineno">  390</span><span class="comment"></span>    <span class="keywordtype">void</span> <a class="code hl_function" href="classoomph_1_1TimeHarmonicFourierDecomposedLinearElasticityEquations.html#a5dc79c23b17db6bf138f757859e2b53e">compute_norm</a>(<span class="keywordtype">double</span>&amp; norm);</div>
 <div class="line"><a id="l00391" name="l00391"></a><span class="lineno">  391</span><span class="comment"></span> </div>
 <div class="line"><a id="l00392" name="l00392"></a><span class="lineno">  392</span><span class="comment">    /// Output exact solution: r,z, u_r_real, u_z_real, ..., u_theta_imag</span></div>
@@ -554,7 +554,7 @@ $(function() {
 <div class="line"><a id="l00425" name="l00425"></a><span class="lineno">  425</span> </div>
 <div class="line"><a id="l00426" name="l00426"></a><span class="lineno">  426</span> </div>
 <div class="line"><a id="l00427" name="l00427"></a><span class="lineno">  427</span>  <span class="keyword">private</span>:<span class="comment"></span></div>
-<div class="line"><a id="l00428" name="l00428"></a><span class="lineno">  428</span><span class="comment">    ///  Private helper function to compute residuals and (if requested</span></div>
+<div class="line"><a id="l00428" name="l00428"></a><span class="lineno">  428</span><span class="comment">    /// Private helper function to compute residuals and (if requested</span></div>
 <div class="line"><a id="l00429" name="l00429"></a><span class="lineno">  429</span><span class="comment">    /// via flag) also the Jacobian matrix.</span></div>
 <div class="line"><a id="l00430" name="l00430"></a><span class="lineno">  430</span><span class="comment"></span>    <span class="keyword">virtual</span> <span class="keywordtype">void</span> <a class="code hl_function" href="classoomph_1_1TimeHarmonicFourierDecomposedLinearElasticityEquations.html#abf2e9e9a58dae02f8ca72ee454d2ded7">fill_in_generic_contribution_to_residuals_fourier_decomp_time_harmonic_linear_elasticity</a>(</div>
 <div class="line"><a id="l00431" name="l00431"></a><span class="lineno">  431</span>      <a class="code hl_class" href="classoomph_1_1Vector.html">Vector&lt;double&gt;</a>&amp; residuals, <a class="code hl_class" href="classoomph_1_1DenseMatrix.html">DenseMatrix&lt;double&gt;</a>&amp; <a class="code hl_variable" href="classoomph_1_1FiniteElement.html#aa6c806dab803b82ba4f02cf806971af8">jacobian</a>, <span class="keywordtype">unsigned</span> flag);</div>
@@ -677,19 +677,19 @@ $(function() {
 <div class="line"><a id="l00548" name="l00548"></a><span class="lineno">  548</span>    }</div>
 <div class="line"><a id="l00549" name="l00549"></a><span class="lineno">  549</span> </div>
 <div class="line"><a id="l00550" name="l00550"></a><span class="lineno">  550</span><span class="comment"></span> </div>
-<div class="line"><a id="l00551" name="l00551"></a><span class="lineno">  551</span><span class="comment">    ///  Number of vertex nodes in the element</span></div>
+<div class="line"><a id="l00551" name="l00551"></a><span class="lineno">  551</span><span class="comment">    /// Number of vertex nodes in the element</span></div>
 <div class="line"><a id="l00552" name="l00552"></a><span class="lineno"><a class="line" href="classoomph_1_1TTimeHarmonicFourierDecomposedLinearElasticityElement.html#a57870ab2c9c506070441d8a428820d27">  552</a></span><span class="comment"></span>    <span class="keywordtype">unsigned</span> <a class="code hl_function" href="classoomph_1_1TTimeHarmonicFourierDecomposedLinearElasticityElement.html#a57870ab2c9c506070441d8a428820d27">nvertex_node</a>()<span class="keyword"> const</span></div>
 <div class="line"><a id="l00553" name="l00553"></a><span class="lineno">  553</span><span class="keyword">    </span>{</div>
 <div class="line"><a id="l00554" name="l00554"></a><span class="lineno">  554</span>      <span class="keywordflow">return</span> <a class="code hl_class" href="classoomph_1_1TElement.html">TElement&lt;2, NNODE_1D&gt;::nvertex_node</a>();</div>
 <div class="line"><a id="l00555" name="l00555"></a><span class="lineno">  555</span>    }</div>
 <div class="line"><a id="l00556" name="l00556"></a><span class="lineno">  556</span><span class="comment"></span> </div>
-<div class="line"><a id="l00557" name="l00557"></a><span class="lineno">  557</span><span class="comment">    ///  Pointer to the j-th vertex node in the element</span></div>
+<div class="line"><a id="l00557" name="l00557"></a><span class="lineno">  557</span><span class="comment">    /// Pointer to the j-th vertex node in the element</span></div>
 <div class="line"><a id="l00558" name="l00558"></a><span class="lineno"><a class="line" href="classoomph_1_1TTimeHarmonicFourierDecomposedLinearElasticityElement.html#ae80b82ebcb5127358ea2ed68f2f647ec">  558</a></span><span class="comment"></span>    Node* <a class="code hl_function" href="classoomph_1_1TTimeHarmonicFourierDecomposedLinearElasticityElement.html#ae80b82ebcb5127358ea2ed68f2f647ec">vertex_node_pt</a>(<span class="keyword">const</span> <span class="keywordtype">unsigned</span>&amp; j)<span class="keyword"> const</span></div>
 <div class="line"><a id="l00559" name="l00559"></a><span class="lineno">  559</span><span class="keyword">    </span>{</div>
 <div class="line"><a id="l00560" name="l00560"></a><span class="lineno">  560</span>      <span class="keywordflow">return</span> <a class="code hl_class" href="classoomph_1_1TElement.html">TElement&lt;2, NNODE_1D&gt;::vertex_node_pt</a>(j);</div>
 <div class="line"><a id="l00561" name="l00561"></a><span class="lineno">  561</span>    }</div>
 <div class="line"><a id="l00562" name="l00562"></a><span class="lineno">  562</span><span class="comment"></span> </div>
-<div class="line"><a id="l00563" name="l00563"></a><span class="lineno">  563</span><span class="comment">    ///  Order of recovery shape functions for Z2 error estimation:</span></div>
+<div class="line"><a id="l00563" name="l00563"></a><span class="lineno">  563</span><span class="comment">    /// Order of recovery shape functions for Z2 error estimation:</span></div>
 <div class="line"><a id="l00564" name="l00564"></a><span class="lineno">  564</span><span class="comment">    /// Same order as shape functions.</span></div>
 <div class="line"><a id="l00565" name="l00565"></a><span class="lineno"><a class="line" href="classoomph_1_1TTimeHarmonicFourierDecomposedLinearElasticityElement.html#a6b8053ed436ccb21829f78b9df39ea23">  565</a></span><span class="comment"></span>    <span class="keywordtype">unsigned</span> <a class="code hl_function" href="classoomph_1_1TTimeHarmonicFourierDecomposedLinearElasticityElement.html#a6b8053ed436ccb21829f78b9df39ea23">nrecovery_order</a>()</div>
 <div class="line"><a id="l00566" name="l00566"></a><span class="lineno">  566</span>    {</div>
@@ -703,7 +703,7 @@ $(function() {
 <div class="line"><a id="l00574" name="l00574"></a><span class="lineno">  574</span>      <span class="keywordflow">return</span> 12;</div>
 <div class="line"><a id="l00575" name="l00575"></a><span class="lineno">  575</span>    }</div>
 <div class="line"><a id="l00576" name="l00576"></a><span class="lineno">  576</span><span class="comment"></span> </div>
-<div class="line"><a id="l00577" name="l00577"></a><span class="lineno">  577</span><span class="comment">    ///  Get &#39;flux&#39; for Z2 error recovery:   Upper triangular entries</span></div>
+<div class="line"><a id="l00577" name="l00577"></a><span class="lineno">  577</span><span class="comment">    /// Get &#39;flux&#39; for Z2 error recovery:   Upper triangular entries</span></div>
 <div class="line"><a id="l00578" name="l00578"></a><span class="lineno">  578</span><span class="comment">    /// in strain tensor.</span></div>
 <div class="line"><a id="l00579" name="l00579"></a><span class="lineno"><a class="line" href="classoomph_1_1TTimeHarmonicFourierDecomposedLinearElasticityElement.html#ad910e9982be82dee39ec30f0967e00cd">  579</a></span><span class="comment"></span>    <span class="keywordtype">void</span> <a class="code hl_function" href="classoomph_1_1TTimeHarmonicFourierDecomposedLinearElasticityElement.html#ad910e9982be82dee39ec30f0967e00cd">get_Z2_flux</a>(<span class="keyword">const</span> <a class="code hl_class" href="classoomph_1_1Vector.html">Vector&lt;double&gt;</a>&amp; <a class="code hl_variable" href="cfortran_8h.html#ab7123126e4885ef647dd9c6e3807a21c">s</a>, <a class="code hl_class" href="classoomph_1_1Vector.html">Vector&lt;double&gt;</a>&amp; flux)</div>
 <div class="line"><a id="l00580" name="l00580"></a><span class="lineno">  580</span>    {</div>
@@ -781,11 +781,11 @@ $(function() {
 <div class="line"><a id="l00652" name="l00652"></a><span class="lineno">  652</span>    : <span class="keyword">public</span> <span class="keyword">virtual</span> <a class="code hl_class" href="classoomph_1_1ProjectableElement.html">ProjectableElement</a>&lt;TIME_HARMONIC_LINEAR_ELAST_ELEMENT&gt;</div>
 <div class="line"><a id="l00653" name="l00653"></a><span class="lineno">  653</span>  {</div>
 <div class="line"><a id="l00654" name="l00654"></a><span class="lineno">  654</span>  <span class="keyword">public</span>:<span class="comment"></span></div>
-<div class="line"><a id="l00655" name="l00655"></a><span class="lineno">  655</span><span class="comment">    ///  Constructor [this was only required explicitly</span></div>
+<div class="line"><a id="l00655" name="l00655"></a><span class="lineno">  655</span><span class="comment">    /// Constructor [this was only required explicitly</span></div>
 <div class="line"><a id="l00656" name="l00656"></a><span class="lineno">  656</span><span class="comment">    /// from gcc 4.5.2 onwards...]</span></div>
 <div class="line"><a id="l00657" name="l00657"></a><span class="lineno"><a class="line" href="classoomph_1_1ProjectableTimeHarmonicFourierDecomposedLinearElasticityElement.html#afd1c2909e2576ba90dddb2b86b22dd99">  657</a></span><span class="comment"></span>    <a class="code hl_function" href="classoomph_1_1ProjectableTimeHarmonicFourierDecomposedLinearElasticityElement.html#afd1c2909e2576ba90dddb2b86b22dd99">ProjectableTimeHarmonicFourierDecomposedLinearElasticityElement</a>() {}</div>
 <div class="line"><a id="l00658" name="l00658"></a><span class="lineno">  658</span><span class="comment"></span> </div>
-<div class="line"><a id="l00659" name="l00659"></a><span class="lineno">  659</span><span class="comment">    ///  Specify the values associated with field fld.</span></div>
+<div class="line"><a id="l00659" name="l00659"></a><span class="lineno">  659</span><span class="comment">    /// Specify the values associated with field fld.</span></div>
 <div class="line"><a id="l00660" name="l00660"></a><span class="lineno">  660</span><span class="comment">    /// The information is returned in a vector of pairs which comprise</span></div>
 <div class="line"><a id="l00661" name="l00661"></a><span class="lineno">  661</span><span class="comment">    /// the Data object and the value within it, that correspond to field fld.</span></div>
 <div class="line"><a id="l00662" name="l00662"></a><span class="lineno">  662</span><span class="comment">    /// In the underlying time-harmonic linear elasticity elemements the</span></div>
@@ -808,14 +808,14 @@ $(function() {
 <div class="line"><a id="l00679" name="l00679"></a><span class="lineno">  679</span>      <span class="keywordflow">return</span> data_values;</div>
 <div class="line"><a id="l00680" name="l00680"></a><span class="lineno">  680</span>    }</div>
 <div class="line"><a id="l00681" name="l00681"></a><span class="lineno">  681</span><span class="comment"></span> </div>
-<div class="line"><a id="l00682" name="l00682"></a><span class="lineno">  682</span><span class="comment">    ///  Number of fields to be projected: 3*dim, corresponding to</span></div>
+<div class="line"><a id="l00682" name="l00682"></a><span class="lineno">  682</span><span class="comment">    /// Number of fields to be projected: 3*dim, corresponding to</span></div>
 <div class="line"><a id="l00683" name="l00683"></a><span class="lineno">  683</span><span class="comment">    /// real and imag parts of the displacement components</span></div>
 <div class="line"><a id="l00684" name="l00684"></a><span class="lineno"><a class="line" href="classoomph_1_1ProjectableTimeHarmonicFourierDecomposedLinearElasticityElement.html#aee73e1027994f0c4908d048a930c3992">  684</a></span><span class="comment"></span>    <span class="keywordtype">unsigned</span> <a class="code hl_function" href="classoomph_1_1ProjectableTimeHarmonicFourierDecomposedLinearElasticityElement.html#aee73e1027994f0c4908d048a930c3992">nfields_for_projection</a>()</div>
 <div class="line"><a id="l00685" name="l00685"></a><span class="lineno">  685</span>    {</div>
 <div class="line"><a id="l00686" name="l00686"></a><span class="lineno">  686</span>      <span class="keywordflow">return</span> 3 * this-&gt;<a class="code hl_function" href="classoomph_1_1FiniteElement.html#a5f8fe59f06da1da9f6b7bbcbdb90ef93">dim</a>();</div>
 <div class="line"><a id="l00687" name="l00687"></a><span class="lineno">  687</span>    }</div>
 <div class="line"><a id="l00688" name="l00688"></a><span class="lineno">  688</span><span class="comment"></span> </div>
-<div class="line"><a id="l00689" name="l00689"></a><span class="lineno">  689</span><span class="comment">    ///  Number of history values to be stored for fld-th field.</span></div>
+<div class="line"><a id="l00689" name="l00689"></a><span class="lineno">  689</span><span class="comment">    /// Number of history values to be stored for fld-th field.</span></div>
 <div class="line"><a id="l00690" name="l00690"></a><span class="lineno">  690</span><span class="comment">    /// (includes present value!)</span></div>
 <div class="line"><a id="l00691" name="l00691"></a><span class="lineno"><a class="line" href="classoomph_1_1ProjectableTimeHarmonicFourierDecomposedLinearElasticityElement.html#a6ab68c3941f90a662a1b696bc7d4b3d7">  691</a></span><span class="comment"></span>    <span class="keywordtype">unsigned</span> <a class="code hl_function" href="classoomph_1_1ProjectableTimeHarmonicFourierDecomposedLinearElasticityElement.html#a6ab68c3941f90a662a1b696bc7d4b3d7">nhistory_values_for_projection</a>(<span class="keyword">const</span> <span class="keywordtype">unsigned</span>&amp; fld)</div>
 <div class="line"><a id="l00692" name="l00692"></a><span class="lineno">  692</span>    {</div>
@@ -840,7 +840,7 @@ $(function() {
 <div class="line"><a id="l00711" name="l00711"></a><span class="lineno">  711</span>      <span class="keywordflow">return</span> this-&gt;<a class="code hl_function" href="classoomph_1_1FiniteElement.html#a9addfe893ab8205619963aa96204cdc4">node_pt</a>(0)-&gt;position_time_stepper_pt()-&gt;ntstorage();</div>
 <div class="line"><a id="l00712" name="l00712"></a><span class="lineno">  712</span>    }</div>
 <div class="line"><a id="l00713" name="l00713"></a><span class="lineno">  713</span><span class="comment"></span> </div>
-<div class="line"><a id="l00714" name="l00714"></a><span class="lineno">  714</span><span class="comment">    ///  Return Jacobian of mapping and shape functions of field fld</span></div>
+<div class="line"><a id="l00714" name="l00714"></a><span class="lineno">  714</span><span class="comment">    /// Return Jacobian of mapping and shape functions of field fld</span></div>
 <div class="line"><a id="l00715" name="l00715"></a><span class="lineno">  715</span><span class="comment">    /// at local coordinate s</span></div>
 <div class="line"><a id="l00716" name="l00716"></a><span class="lineno"><a class="line" href="classoomph_1_1ProjectableTimeHarmonicFourierDecomposedLinearElasticityElement.html#a74c726d77137a9693a37d3b01eb321b8">  716</a></span><span class="comment"></span>    <span class="keywordtype">double</span> <a class="code hl_function" href="classoomph_1_1ProjectableTimeHarmonicFourierDecomposedLinearElasticityElement.html#a74c726d77137a9693a37d3b01eb321b8">jacobian_and_shape_of_field</a>(<span class="keyword">const</span> <span class="keywordtype">unsigned</span>&amp; fld,</div>
 <div class="line"><a id="l00717" name="l00717"></a><span class="lineno">  717</span>                                       <span class="keyword">const</span> <a class="code hl_class" href="classoomph_1_1Vector.html">Vector&lt;double&gt;</a>&amp; <a class="code hl_variable" href="cfortran_8h.html#ab7123126e4885ef647dd9c6e3807a21c">s</a>,</div>
@@ -856,7 +856,7 @@ $(function() {
 <div class="line"><a id="l00727" name="l00727"></a><span class="lineno">  727</span>    }</div>
 <div class="line"><a id="l00728" name="l00728"></a><span class="lineno">  728</span> </div>
 <div class="line"><a id="l00729" name="l00729"></a><span class="lineno">  729</span><span class="comment"></span> </div>
-<div class="line"><a id="l00730" name="l00730"></a><span class="lineno">  730</span><span class="comment">    ///  Return interpolated field fld at local coordinate s, at time</span></div>
+<div class="line"><a id="l00730" name="l00730"></a><span class="lineno">  730</span><span class="comment">    /// Return interpolated field fld at local coordinate s, at time</span></div>
 <div class="line"><a id="l00731" name="l00731"></a><span class="lineno">  731</span><span class="comment">    /// level t (t=0: present; t&gt;0: history values)</span></div>
 <div class="line"><a id="l00732" name="l00732"></a><span class="lineno"><a class="line" href="classoomph_1_1ProjectableTimeHarmonicFourierDecomposedLinearElasticityElement.html#a789c16121f259adb1a04f9f283a1e277">  732</a></span><span class="comment"></span>    <span class="keywordtype">double</span> <a class="code hl_function" href="classoomph_1_1ProjectableTimeHarmonicFourierDecomposedLinearElasticityElement.html#a789c16121f259adb1a04f9f283a1e277">get_field</a>(<span class="keyword">const</span> <span class="keywordtype">unsigned</span>&amp; <a class="code hl_variable" href="cfortran_8h.html#af6f0bd3dc13317f895c91323c25c2b8f">t</a>,</div>
 <div class="line"><a id="l00733" name="l00733"></a><span class="lineno">  733</span>                     <span class="keyword">const</span> <span class="keywordtype">unsigned</span>&amp; fld,</div>
@@ -1085,7 +1085,7 @@ $(function() {
     <footer>
       <div class="container">
         <div class="text-muted" style="float:right;">Generated by <a href="http://www.doxygen.org/index.html">
-          <img style="height:18px;" class="footer-img" src="doxygen.png" alt="doxygen"></a> on Fri Oct 22 2021 12:23:27
+          <img style="height:18px;" class="footer-img" src="doxygen.png" alt="doxygen"></a> on Mon Oct 25 2021 14:41:47
         </div>
       </div>
     </footer>

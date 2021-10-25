@@ -131,7 +131,7 @@ Part 1: A closer look at the GeomObject class: Geometric Data</h1>
 </p>
 <p> may be implemented as follows:</p>
  <div class="fragment"><div class="line"><span class="comment">//=====start_of_circle=====================================================</span></div>
-<div class="line"><span class="comment">///  Simple circle in 2D space.</span><span class="comment"></span></div>
+<div class="line"><span class="comment">/// Simple circle in 2D space.</span><span class="comment"></span></div>
 <div class="line"><span class="comment">/// \f[ x = X_c + R \cos(\zeta)  \f]</span></div>
 <div class="line"><span class="comment">/// \f[ y = Y_c + R \sin(\zeta)  \f]</span></div>
 <div class="line"><span class="comment"></span><span class="comment">//=========================================================================</span></div>
@@ -145,7 +145,7 @@ Part 1: A closer look at the GeomObject class: Geometric Data</h1>
 <div class="line">               <span class="keyword">const</span> <span class="keywordtype">double</span>&amp; r) : GeomObject(1,2), X_c(x_c), Y_c(y_c), R(r)</div>
 <div class="line">  {}</div>
 <div class="line"><span class="comment"></span> </div>
-<div class="line"><span class="comment"> ///  Position Vector at Lagrangian coordinate zeta </span></div>
+<div class="line"><span class="comment"> /// Position Vector at Lagrangian coordinate zeta </span></div>
 <div class="line"><span class="comment"></span> <span class="keywordtype">void</span> position(<span class="keyword">const</span> Vector&lt;double&gt;&amp; zeta, Vector&lt;double&gt;&amp; r)<span class="keyword"> const</span></div>
 <div class="line"><span class="keyword">  </span>{</div>
 <div class="line">   <span class="comment">// Position vector</span></div>
@@ -153,7 +153,7 @@ Part 1: A closer look at the GeomObject class: Geometric Data</h1>
 <div class="line">   r[1] = Y_c+R*sin(zeta[0]);</div>
 <div class="line">  }</div>
 <div class="line"><span class="comment"></span> </div>
-<div class="line"><span class="comment"> ///  Position Vector at Lagrangian coordinate zeta  at time level t</span></div>
+<div class="line"><span class="comment"> /// Position Vector at Lagrangian coordinate zeta  at time level t</span></div>
 <div class="line"><span class="comment"> /// (t=0: present; t&gt;0: previous level). Steady object, so we </span></div>
 <div class="line"><span class="comment"> /// simply forward the call to the steady version.</span></div>
 <div class="line"><span class="comment"></span> <span class="keywordtype">void</span> position(<span class="keyword">const</span> <span class="keywordtype">unsigned</span>&amp; t, <span class="keyword">const</span> Vector&lt;double&gt;&amp; zeta,</div>
@@ -180,7 +180,7 @@ Part 1: A closer look at the GeomObject class: Geometric Data</h1>
 </div><!-- fragment --><p >should return a pointer to the <code>GeomObject's</code> <code>j</code> - th geometric <code>Data</code> object. Both functions are implemented as "broken" virtual functions in the <code>GeomObject</code> base class in order to facilitate the creation of new <code>GeomObjects</code>. The functions should be overloaded in <code>GeomObjects</code> that actually contain geometric <code>Data</code>. If this is not done, the broken versions in the base class issue a suitable explanation before throwing an error.</p>
 <p >Here is a re-implementation of the above <code>GeomObject</code> in a form that allows the the parameters <img class="formulaInl" alt="$ X_c, Y_c $" src="form_2.png" width="34" height="13"/> and <img class="formulaInl" alt="$ R $" src="form_3.png" width="10" height="10"/> to be regarded as unknowns, by storing them as values in a suitable <code>Data</code> object:</p>
 <div class="fragment"><div class="line"><span class="comment">//=========================================================================</span></div>
-<div class="line"><span class="comment">///  GeneralCircle in 2D space.</span><span class="comment"></span></div>
+<div class="line"><span class="comment">/// GeneralCircle in 2D space.</span><span class="comment"></span></div>
 <div class="line"><span class="comment">/// \f[ x = X_c + R \cos(\zeta)  \f]</span></div>
 <div class="line"><span class="comment">/// \f[ y = Y_c + R \sin(\zeta)  \f]</span></div>
 <div class="line"><span class="comment">/// The three parameters \f$ X_c, Y_c \f$ and \f$ R \f$ are represented</span></div>
@@ -237,15 +237,15 @@ Part 1: A closer look at the GeomObject class: Geometric Data</h1>
 <div class="fragment"><div class="line"><span class="comment"> /// How many items of Data does the shape of the object depend on?</span></div>
 <div class="line"> <span class="keywordtype">unsigned</span> ngeom_data()<span class="keyword"> const </span>{<span class="keywordflow">return</span> Geom_data_pt.size();}</div>
 <div class="line"> <span class="comment"></span></div>
-<div class="line"><span class="comment"> ///  Return pointer to the j-th Data item that the object&#39;s </span></div>
+<div class="line"><span class="comment"> /// Return pointer to the j-th Data item that the object&#39;s </span></div>
 <div class="line"><span class="comment"> /// shape depends on </span></div>
 <div class="line"><span class="comment"></span> Data* geom_data_pt(<span class="keyword">const</span> <span class="keywordtype">unsigned</span>&amp; j) {<span class="keywordflow">return</span> Geom_data_pt[j];}</div>
 </div><!-- fragment --><p> which overload the broken versions in the <code>GeomObject</code> base class. Both functions access the protected vector of pointers to the object's geometric <code>Data:</code> </p>
 <div class="fragment"><div class="line"><span class="keyword">protected</span>:</div>
 <div class="line"><span class="comment"></span> </div>
-<div class="line"><span class="comment"> ///  Vector of pointers to Data items that affects the object&#39;s shape</span></div>
+<div class="line"><span class="comment"> /// Vector of pointers to Data items that affects the object&#39;s shape</span></div>
 <div class="line"><span class="comment"></span> Vector&lt;Data*&gt; Geom_data_pt;</div>
-</div><!-- fragment --><p> The second constructor is appropriate for cases in which the <code>Data</code> object that specifies the object's shape has already been created elsewhere. In this case, we simply pass the pointer to the Data object to the constructor and store it in the first entry of the <code>Geom_data_pt</code> vector:  </p><div class="fragment"><div class="line"><span class="comment"> ///  Alternative constructor:  Pass x and y-coords of centre and radius</span></div>
+</div><!-- fragment --><p> The second constructor is appropriate for cases in which the <code>Data</code> object that specifies the object's shape has already been created elsewhere. In this case, we simply pass the pointer to the Data object to the constructor and store it in the first entry of the <code>Geom_data_pt</code> vector:  </p><div class="fragment"><div class="line"><span class="comment"> /// Alternative constructor:  Pass x and y-coords of centre and radius</span></div>
 <div class="line"><span class="comment"> /// (all as part of Data)</span><span class="comment"></span></div>
 <div class="line"><span class="comment"> /// \code </span></div>
 <div class="line"><span class="comment"> /// Geom_data_pt[0]-&gt;value(0) = X_c;</span></div>
@@ -289,7 +289,7 @@ Part 1: A closer look at the GeomObject class: Geometric Data</h1>
 <div class="line">    }</div>
 <div class="line">  } <span class="comment">// end of destructor</span></div>
 </div><!-- fragment --><p> The function <code>GeomObject::position(...)</code> simply extracts the relevant parameters ( <img class="formulaInl" alt="$ X_c, Y_c, R $" src="form_12.png" width="50" height="13"/>) from the <code>Geom_data_pt</code> vector and computes the position vector as a function of the 1D Lagrangian coordinate <img class="formulaInl" alt="$ \zeta $" src="form_8.png" width="6" height="13"/>:</p>
-<div class="fragment"><div class="line"><span class="comment"> ///  Position Vector at Lagrangian coordinate zeta </span></div>
+<div class="fragment"><div class="line"><span class="comment"> /// Position Vector at Lagrangian coordinate zeta </span></div>
 <div class="line"> <span class="keywordtype">void</span> position(<span class="keyword">const</span> Vector&lt;double&gt;&amp; zeta, Vector&lt;double&gt;&amp; r)<span class="keyword"> const</span></div>
 <div class="line"><span class="keyword">  </span>{</div>
 <div class="line">   <span class="comment">// Extract data</span></div>
@@ -322,7 +322,7 @@ Sketch of the example problem. </div></div>
 <p>In the present context, it is most natural to regard the <code>GeneralCircle's</code> geometric <code>Data</code> as internal to the element and the load <code>Data</code> as external.</p>
 <p >Here is the class definition for the <code>ElasticallySupportedRingElement</code> which combines the <code>GeneralisedElement</code> and <code>GeneralCircle</code> classes by multiple inheritance. Its role as a <code>GeomObject</code> allows the object to be used in the parametrisation of domain boundaries; its role as a <code>GeneralisedElement</code> allows the value of <img class="formulaInl" alt="$ Y_c $" src="form_4.png" width="13" height="13"/> to be determined as part of the solution.</p>
  <div class="fragment"><div class="line"><span class="comment">//===========start_of_general_circle=========================================</span></div>
-<div class="line"><span class="comment">///  GeneralCircle &quot;upgraded&quot; to a GeneralisedElement: Circular </span><span class="comment"></span></div>
+<div class="line"><span class="comment">/// GeneralCircle &quot;upgraded&quot; to a GeneralisedElement: Circular </span><span class="comment"></span></div>
 <div class="line"><span class="comment">/// ring whose position is given by</span></div>
 <div class="line"><span class="comment">/// \f[ x = X_c + R \cos(\zeta)  \f]</span></div>
 <div class="line"><span class="comment">/// \f[ y = Y_c + R \sin(\zeta)  \f]</span></div>
@@ -338,7 +338,7 @@ Sketch of the example problem. </div></div>
 <div class="line"><span class="comment"></span><span class="comment">//=========================================================================</span></div>
 <div class="line"><span class="keyword">class </span>ElasticallySupportedRingElement : <span class="keyword">public</span> GeneralisedElement, </div>
 <div class="line">                                        <span class="keyword">public</span> GeneralCircle</div>
-</div><!-- fragment --><p >The arguments to the constructor specify the initial geometric parameters, <img class="formulaInl" alt="$ X_c, Y_c $" src="form_2.png" width="34" height="13"/> and <img class="formulaInl" alt="$ R $" src="form_3.png" width="10" height="10"/>. We pass them to the constructor of the <code>GeneralCircle</code> object and assign a default value for the spring stiffness <img class="formulaInl" alt="$ k_{stiff}$" src="form_17.png" width="30" height="14"/> (stored as a private data member of the class; see below):  </p><div class="fragment"><div class="line"><span class="comment"> ///  Constructor: Build  ring from doubles that describe </span></div>
+</div><!-- fragment --><p >The arguments to the constructor specify the initial geometric parameters, <img class="formulaInl" alt="$ X_c, Y_c $" src="form_2.png" width="34" height="13"/> and <img class="formulaInl" alt="$ R $" src="form_3.png" width="10" height="10"/>. We pass them to the constructor of the <code>GeneralCircle</code> object and assign a default value for the spring stiffness <img class="formulaInl" alt="$ k_{stiff}$" src="form_17.png" width="30" height="14"/> (stored as a private data member of the class; see below):  </p><div class="fragment"><div class="line"><span class="comment"> /// Constructor: Build  ring from doubles that describe </span></div>
 <div class="line"><span class="comment"> /// the geometry: x and y positions of centre and the radius.</span><span class="comment"></span></div>
 <div class="line"><span class="comment"> /// Initialise stiffness to 1.0. By default, no load is set.</span></div>
 <div class="line"><span class="comment"></span> ElasticallySupportedRingElement(<span class="keyword">const</span> <span class="keywordtype">double</span>&amp; x_c, <span class="keyword">const</span> <span class="keywordtype">double</span>&amp; y_c, </div>
@@ -371,7 +371,7 @@ Sketch of the example problem. </div></div>
 <div class="line">   <span class="comment">// destructor of GeneralisedElement --&gt; No need to kill it here</span></div>
 <div class="line">  }</div>
 </div><!-- fragment --><p> The <code>Data</code> whose one-and-only value represents the load must be set by the "user", using the function <code>set_load_pt(...)</code> As discussed above, we store the pointer to the load <code>Data</code> object in the <code>GeneralisedElement's</code> external <code>Data</code> and record its index within that storage scheme.</p>
- <div class="fragment"><div class="line"><span class="comment"> ///  Set pointer to Data object that specifies the &quot;load&quot;</span></div>
+ <div class="fragment"><div class="line"><span class="comment"> /// Set pointer to Data object that specifies the &quot;load&quot;</span></div>
 <div class="line"><span class="comment"> /// on the ElasticallySupportedRingElement</span></div>
 <div class="line"> <span class="keywordtype">void</span> set_load_pt(Data* load_pt)</div>
 <div class="line">  {</div>
@@ -480,7 +480,7 @@ Sketch of the example problem. </div></div>
 </li>
 </ol>
 <p>Note that we have (correctly!) assumed that the (fully automatic) local equation numbering procedure, implemented in <code>GeneralisedElement::assign_local_eqn_numbers()</code>, regards the internal degree of freedom as local unknown "0" and the external one (if it exists) as unknown "1". However, to be on the safe side, we determine the local equation numbers via the access functions <code>internal_local_eqn(i,j)</code> and <code>external_local_eqn(i,j)</code>, which return the local equation numbers of the j-th value, stored in the element's i-th internal (or external) <code>Data</code> object:</p>
-<div class="fragment"><div class="line"><span class="comment"> ///  Compute element residual Vector (only if flag=0) and also</span></div>
+<div class="fragment"><div class="line"><span class="comment"> /// Compute element residual Vector (only if flag=0) and also</span></div>
 <div class="line"><span class="comment"> /// the element Jacobian matrix (if flag=1)</span></div>
 <div class="line"> <span class="keywordtype">void</span> fill_in_generic_residual_contribution(Vector&lt;double&gt; &amp;residuals,</div>
 <div class="line">                                            DenseMatrix&lt;double&gt; &amp;jacobian,</div>
@@ -634,7 +634,7 @@ The problem class definition</h2>
 <div class="line"><span class="comment"> /// Trace file</span></div>
 <div class="line"><span class="comment"></span> ofstream <a class="code hl_variable" href="classGeomObjectAsGeneralisedElementProblem.html#ad6261e556a52596ba8904ee902ea6d70">Trace_file</a>;</div>
 <div class="line"><span class="comment"></span> </div>
-<div class="line"><span class="comment"> ///  Pointer to data item that stores the &quot;load&quot; on the ring</span></div>
+<div class="line"><span class="comment"> /// Pointer to data item that stores the &quot;load&quot; on the ring</span></div>
 <div class="line"><span class="comment"></span> Data* <a class="code hl_variable" href="classGeomObjectAsGeneralisedElementProblem.html#ac04469b2dbce010fff3f5b2cf5591bcd">Load_pt</a>;</div>
 <div class="line"><span class="comment"></span> </div>
 <div class="line"><span class="comment"> /// Doc info object</span></div>
@@ -808,7 +808,7 @@ PDF file</h1>
     <footer>
       <div class="container">
         <div class="text-muted" style="float:right;">Generated by <a href="http://www.doxygen.org/index.html">
-          <img style="height:18px;" class="footer-img" src="doxygen.png" alt="doxygen"></a> on Fri Oct 22 2021 12:42:37
+          <img style="height:18px;" class="footer-img" src="doxygen.png" alt="doxygen"></a> on Mon Oct 25 2021 15:00:52
         </div>
       </div>
     </footer>

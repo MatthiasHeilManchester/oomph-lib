@@ -60,18 +60,18 @@
 \DoxyCodeLine{\Hypertarget{spherical__navier__stokes__elements_8h_source_l00056}00056       \textcolor{keyword}{public} \textcolor{keyword}{virtual} \mbox{\hyperlink{classoomph_1_1NavierStokesElementWithDiagonalMassMatrices}{NavierStokesElementWithDiagonalMassMatrices}}}
 \DoxyCodeLine{\Hypertarget{spherical__navier__stokes__elements_8h_source_l00057}00057   \{}
 \DoxyCodeLine{\Hypertarget{spherical__navier__stokes__elements_8h_source_l00058}00058   \textcolor{keyword}{public}:\textcolor{comment}{}}
-\DoxyCodeLine{\Hypertarget{spherical__navier__stokes__elements_8h_source_l00059}00059 \textcolor{comment}{    ///  Function pointer to body force function fct(t,x,f(x))}}
+\DoxyCodeLine{\Hypertarget{spherical__navier__stokes__elements_8h_source_l00059}00059 \textcolor{comment}{    /// Function pointer to body force function fct(t,x,f(x))}}
 \DoxyCodeLine{\Hypertarget{spherical__navier__stokes__elements_8h_source_l00060}00060 \textcolor{comment}{    /// x is a Vector!}}
 \DoxyCodeLine{\Hypertarget{spherical__navier__stokes__elements_8h_source_l00061}\mbox{\hyperlink{classoomph_1_1SphericalNavierStokesEquations_aee36bea87063e9648a488de9e21f551d}{00061}} \textcolor{comment}{}    \textcolor{keyword}{typedef} void (*\mbox{\hyperlink{classoomph_1_1SphericalNavierStokesEquations_aee36bea87063e9648a488de9e21f551d}{SphericalNavierStokesBodyForceFctPt}})(}
 \DoxyCodeLine{\Hypertarget{spherical__navier__stokes__elements_8h_source_l00062}00062       \textcolor{keyword}{const} \textcolor{keywordtype}{double}\& time, \textcolor{keyword}{const} \mbox{\hyperlink{classoomph_1_1Vector}{Vector<double>}}\& \mbox{\hyperlink{namespaceoomph_a9d1d2da2b8bb8e73af72b5cadb8fe97c}{x}}, \mbox{\hyperlink{classoomph_1_1Vector}{Vector<double>}}\& body\_force);}
 \DoxyCodeLine{\Hypertarget{spherical__navier__stokes__elements_8h_source_l00063}00063 \textcolor{comment}{}}
-\DoxyCodeLine{\Hypertarget{spherical__navier__stokes__elements_8h_source_l00064}00064 \textcolor{comment}{    ///  Function pointer to source function fct(t,x)}}
+\DoxyCodeLine{\Hypertarget{spherical__navier__stokes__elements_8h_source_l00064}00064 \textcolor{comment}{    /// Function pointer to source function fct(t,x)}}
 \DoxyCodeLine{\Hypertarget{spherical__navier__stokes__elements_8h_source_l00065}00065 \textcolor{comment}{    /// x is a Vector!}}
 \DoxyCodeLine{\Hypertarget{spherical__navier__stokes__elements_8h_source_l00066}\mbox{\hyperlink{classoomph_1_1SphericalNavierStokesEquations_abd522fea532c3de15dbe80205e53bdf8}{00066}} \textcolor{comment}{}    \textcolor{keyword}{typedef} double (*\mbox{\hyperlink{classoomph_1_1SphericalNavierStokesEquations_abd522fea532c3de15dbe80205e53bdf8}{SphericalNavierStokesSourceFctPt}})(\textcolor{keyword}{const} \textcolor{keywordtype}{double}\& time,}
 \DoxyCodeLine{\Hypertarget{spherical__navier__stokes__elements_8h_source_l00067}00067                                                        \textcolor{keyword}{const} \mbox{\hyperlink{classoomph_1_1Vector}{Vector<double>}}\& \mbox{\hyperlink{namespaceoomph_a9d1d2da2b8bb8e73af72b5cadb8fe97c}{x}});}
 \DoxyCodeLine{\Hypertarget{spherical__navier__stokes__elements_8h_source_l00068}00068 }
 \DoxyCodeLine{\Hypertarget{spherical__navier__stokes__elements_8h_source_l00069}00069   \textcolor{keyword}{private}:\textcolor{comment}{}}
-\DoxyCodeLine{\Hypertarget{spherical__navier__stokes__elements_8h_source_l00070}00070 \textcolor{comment}{    ///  Static "{}magic"{} number that indicates that the pressure is}}
+\DoxyCodeLine{\Hypertarget{spherical__navier__stokes__elements_8h_source_l00070}00070 \textcolor{comment}{    /// Static "{}magic"{} number that indicates that the pressure is}}
 \DoxyCodeLine{\Hypertarget{spherical__navier__stokes__elements_8h_source_l00071}00071 \textcolor{comment}{    /// not stored at a node}}
 \DoxyCodeLine{\Hypertarget{spherical__navier__stokes__elements_8h_source_l00072}\mbox{\hyperlink{classoomph_1_1SphericalNavierStokesEquations_a6e9d12a0f822100dea121402eabcab1d}{00072}} \textcolor{comment}{}    \textcolor{keyword}{static} \textcolor{keywordtype}{int} \mbox{\hyperlink{classoomph_1_1SphericalNavierStokesEquations_a6e9d12a0f822100dea121402eabcab1d}{Pressure\_not\_stored\_at\_node}};}
 \DoxyCodeLine{\Hypertarget{spherical__navier__stokes__elements_8h_source_l00073}00073 \textcolor{comment}{}}
@@ -89,11 +89,11 @@
 \DoxyCodeLine{\Hypertarget{spherical__navier__stokes__elements_8h_source_l00085}00085   \textcolor{keyword}{protected}:}
 \DoxyCodeLine{\Hypertarget{spherical__navier__stokes__elements_8h_source_l00086}00086     \textcolor{comment}{// Physical constants}}
 \DoxyCodeLine{\Hypertarget{spherical__navier__stokes__elements_8h_source_l00087}00087 \textcolor{comment}{}}
-\DoxyCodeLine{\Hypertarget{spherical__navier__stokes__elements_8h_source_l00088}00088 \textcolor{comment}{    ///  Pointer to the viscosity ratio (relative to the}}
+\DoxyCodeLine{\Hypertarget{spherical__navier__stokes__elements_8h_source_l00088}00088 \textcolor{comment}{    /// Pointer to the viscosity ratio (relative to the}}
 \DoxyCodeLine{\Hypertarget{spherical__navier__stokes__elements_8h_source_l00089}00089 \textcolor{comment}{    /// viscosity used in the definition of the Reynolds number)}}
 \DoxyCodeLine{\Hypertarget{spherical__navier__stokes__elements_8h_source_l00090}\mbox{\hyperlink{classoomph_1_1SphericalNavierStokesEquations_a7c52a5669ff71d86186bd88149df9b33}{00090}} \textcolor{comment}{}    \textcolor{keywordtype}{double}* \mbox{\hyperlink{classoomph_1_1SphericalNavierStokesEquations_a7c52a5669ff71d86186bd88149df9b33}{Viscosity\_Ratio\_pt}};}
 \DoxyCodeLine{\Hypertarget{spherical__navier__stokes__elements_8h_source_l00091}00091 \textcolor{comment}{}}
-\DoxyCodeLine{\Hypertarget{spherical__navier__stokes__elements_8h_source_l00092}00092 \textcolor{comment}{    ///  Pointer to the density ratio (relative to the density used in the}}
+\DoxyCodeLine{\Hypertarget{spherical__navier__stokes__elements_8h_source_l00092}00092 \textcolor{comment}{    /// Pointer to the density ratio (relative to the density used in the}}
 \DoxyCodeLine{\Hypertarget{spherical__navier__stokes__elements_8h_source_l00093}00093 \textcolor{comment}{    /// definition of the Reynolds number)}}
 \DoxyCodeLine{\Hypertarget{spherical__navier__stokes__elements_8h_source_l00094}\mbox{\hyperlink{classoomph_1_1SphericalNavierStokesEquations_a330d4410267b95650489d41dec74a3fd}{00094}} \textcolor{comment}{}    \textcolor{keywordtype}{double}* \mbox{\hyperlink{classoomph_1_1SphericalNavierStokesEquations_a330d4410267b95650489d41dec74a3fd}{Density\_Ratio\_pt}};}
 \DoxyCodeLine{\Hypertarget{spherical__navier__stokes__elements_8h_source_l00095}00095 }
@@ -105,11 +105,11 @@
 \DoxyCodeLine{\Hypertarget{spherical__navier__stokes__elements_8h_source_l00101}00101 \textcolor{comment}{    /// Pointer to global Reynolds number x Strouhal number (=Womersley)}}
 \DoxyCodeLine{\Hypertarget{spherical__navier__stokes__elements_8h_source_l00102}\mbox{\hyperlink{classoomph_1_1SphericalNavierStokesEquations_a4312d4d7e7e51c89dea51c21acb6a89d}{00102}} \textcolor{comment}{}    \textcolor{keywordtype}{double}* \mbox{\hyperlink{classoomph_1_1SphericalNavierStokesEquations_a4312d4d7e7e51c89dea51c21acb6a89d}{ReSt\_pt}};}
 \DoxyCodeLine{\Hypertarget{spherical__navier__stokes__elements_8h_source_l00103}00103 \textcolor{comment}{}}
-\DoxyCodeLine{\Hypertarget{spherical__navier__stokes__elements_8h_source_l00104}00104 \textcolor{comment}{    ///  Pointer to global Reynolds number x inverse Froude number}}
+\DoxyCodeLine{\Hypertarget{spherical__navier__stokes__elements_8h_source_l00104}00104 \textcolor{comment}{    /// Pointer to global Reynolds number x inverse Froude number}}
 \DoxyCodeLine{\Hypertarget{spherical__navier__stokes__elements_8h_source_l00105}00105 \textcolor{comment}{    /// (= Bond number / Capillary number)}}
 \DoxyCodeLine{\Hypertarget{spherical__navier__stokes__elements_8h_source_l00106}\mbox{\hyperlink{classoomph_1_1SphericalNavierStokesEquations_ac85eb74fde9c8c5b31cdf2ae80f1f9bc}{00106}} \textcolor{comment}{}    \textcolor{keywordtype}{double}* \mbox{\hyperlink{classoomph_1_1SphericalNavierStokesEquations_ac85eb74fde9c8c5b31cdf2ae80f1f9bc}{ReInvFr\_pt}};}
 \DoxyCodeLine{\Hypertarget{spherical__navier__stokes__elements_8h_source_l00107}00107 \textcolor{comment}{}}
-\DoxyCodeLine{\Hypertarget{spherical__navier__stokes__elements_8h_source_l00108}00108 \textcolor{comment}{    ///  Pointer to global Reynolds number x inverse Rossby number}}
+\DoxyCodeLine{\Hypertarget{spherical__navier__stokes__elements_8h_source_l00108}00108 \textcolor{comment}{    /// Pointer to global Reynolds number x inverse Rossby number}}
 \DoxyCodeLine{\Hypertarget{spherical__navier__stokes__elements_8h_source_l00109}00109 \textcolor{comment}{    /// (used when in a rotating frame)}}
 \DoxyCodeLine{\Hypertarget{spherical__navier__stokes__elements_8h_source_l00110}\mbox{\hyperlink{classoomph_1_1SphericalNavierStokesEquations_a71e5db6ef157796354a86a91694203cf}{00110}} \textcolor{comment}{}    \textcolor{keywordtype}{double}* \mbox{\hyperlink{classoomph_1_1SphericalNavierStokesEquations_a71e5db6ef157796354a86a91694203cf}{ReInvRo\_pt}};}
 \DoxyCodeLine{\Hypertarget{spherical__navier__stokes__elements_8h_source_l00111}00111 \textcolor{comment}{}}
@@ -122,17 +122,17 @@
 \DoxyCodeLine{\Hypertarget{spherical__navier__stokes__elements_8h_source_l00118}00118 \textcolor{comment}{    /// Pointer to volumetric source function}}
 \DoxyCodeLine{\Hypertarget{spherical__navier__stokes__elements_8h_source_l00119}\mbox{\hyperlink{classoomph_1_1SphericalNavierStokesEquations_a0f8bbc9d353784821db5781ebedeece5}{00119}} \textcolor{comment}{}    \mbox{\hyperlink{classoomph_1_1SphericalNavierStokesEquations_abd522fea532c3de15dbe80205e53bdf8}{SphericalNavierStokesSourceFctPt}} \mbox{\hyperlink{classoomph_1_1SphericalNavierStokesEquations_a0f8bbc9d353784821db5781ebedeece5}{Source\_fct\_pt}};}
 \DoxyCodeLine{\Hypertarget{spherical__navier__stokes__elements_8h_source_l00120}00120 \textcolor{comment}{}}
-\DoxyCodeLine{\Hypertarget{spherical__navier__stokes__elements_8h_source_l00121}00121 \textcolor{comment}{    ///  Boolean flag to indicate if ALE formulation is disabled when}}
+\DoxyCodeLine{\Hypertarget{spherical__navier__stokes__elements_8h_source_l00121}00121 \textcolor{comment}{    /// Boolean flag to indicate if ALE formulation is disabled when}}
 \DoxyCodeLine{\Hypertarget{spherical__navier__stokes__elements_8h_source_l00122}00122 \textcolor{comment}{    /// time-\/derivatives are computed. Only set to true if you're sure}}
 \DoxyCodeLine{\Hypertarget{spherical__navier__stokes__elements_8h_source_l00123}00123 \textcolor{comment}{    /// that the mesh is stationary.}}
 \DoxyCodeLine{\Hypertarget{spherical__navier__stokes__elements_8h_source_l00124}\mbox{\hyperlink{classoomph_1_1SphericalNavierStokesEquations_ae99a23d65958a96ae2d90151b86d30ab}{00124}} \textcolor{comment}{}    \textcolor{keywordtype}{bool} \mbox{\hyperlink{classoomph_1_1SphericalNavierStokesEquations_ae99a23d65958a96ae2d90151b86d30ab}{ALE\_is\_disabled}};}
 \DoxyCodeLine{\Hypertarget{spherical__navier__stokes__elements_8h_source_l00125}00125 \textcolor{comment}{}}
-\DoxyCodeLine{\Hypertarget{spherical__navier__stokes__elements_8h_source_l00126}00126 \textcolor{comment}{    ///  Access function for the local equation number information for}}
+\DoxyCodeLine{\Hypertarget{spherical__navier__stokes__elements_8h_source_l00126}00126 \textcolor{comment}{    /// Access function for the local equation number information for}}
 \DoxyCodeLine{\Hypertarget{spherical__navier__stokes__elements_8h_source_l00127}00127 \textcolor{comment}{    /// the pressure.}}
 \DoxyCodeLine{\Hypertarget{spherical__navier__stokes__elements_8h_source_l00128}00128 \textcolor{comment}{    /// p\_local\_eqn[n] = local equation number or < 0 if pinned}}
 \DoxyCodeLine{\Hypertarget{spherical__navier__stokes__elements_8h_source_l00129}\mbox{\hyperlink{classoomph_1_1SphericalNavierStokesEquations_ad8d9a0edbe3793a008a6bff670c26643}{00129}} \textcolor{comment}{}    \textcolor{keyword}{virtual} \textcolor{keywordtype}{int} \mbox{\hyperlink{classoomph_1_1SphericalNavierStokesEquations_ad8d9a0edbe3793a008a6bff670c26643}{p\_local\_eqn}}(\textcolor{keyword}{const} \textcolor{keywordtype}{unsigned}\& n) \textcolor{keyword}{const} = 0;}
 \DoxyCodeLine{\Hypertarget{spherical__navier__stokes__elements_8h_source_l00130}00130 \textcolor{comment}{}}
-\DoxyCodeLine{\Hypertarget{spherical__navier__stokes__elements_8h_source_l00131}00131 \textcolor{comment}{    ///  Compute the shape functions and derivatives}}
+\DoxyCodeLine{\Hypertarget{spherical__navier__stokes__elements_8h_source_l00131}00131 \textcolor{comment}{    /// Compute the shape functions and derivatives}}
 \DoxyCodeLine{\Hypertarget{spherical__navier__stokes__elements_8h_source_l00132}00132 \textcolor{comment}{    /// w.r.t. global coords at local coordinate s.}}
 \DoxyCodeLine{\Hypertarget{spherical__navier__stokes__elements_8h_source_l00133}00133 \textcolor{comment}{    /// Return Jacobian of mapping between local and global coordinates.}}
 \DoxyCodeLine{\Hypertarget{spherical__navier__stokes__elements_8h_source_l00134}\mbox{\hyperlink{classoomph_1_1SphericalNavierStokesEquations_a3b9e9cf2d59dffcf278b4c9f73be6d62}{00134}} \textcolor{comment}{}    \textcolor{keyword}{virtual} \textcolor{keywordtype}{double} \mbox{\hyperlink{classoomph_1_1SphericalNavierStokesEquations_a3b9e9cf2d59dffcf278b4c9f73be6d62}{dshape\_and\_dtest\_eulerian\_spherical\_nst}}(}
@@ -142,7 +142,7 @@
 \DoxyCodeLine{\Hypertarget{spherical__navier__stokes__elements_8h_source_l00138}00138       \mbox{\hyperlink{classoomph_1_1Shape}{Shape}}\& test,}
 \DoxyCodeLine{\Hypertarget{spherical__navier__stokes__elements_8h_source_l00139}00139       \mbox{\hyperlink{classoomph_1_1DShape}{DShape}}\& dtestdx) \textcolor{keyword}{const} = 0;}
 \DoxyCodeLine{\Hypertarget{spherical__navier__stokes__elements_8h_source_l00140}00140 \textcolor{comment}{}}
-\DoxyCodeLine{\Hypertarget{spherical__navier__stokes__elements_8h_source_l00141}00141 \textcolor{comment}{    ///  Compute the shape functions and derivatives}}
+\DoxyCodeLine{\Hypertarget{spherical__navier__stokes__elements_8h_source_l00141}00141 \textcolor{comment}{    /// Compute the shape functions and derivatives}}
 \DoxyCodeLine{\Hypertarget{spherical__navier__stokes__elements_8h_source_l00142}00142 \textcolor{comment}{    /// w.r.t. global coords at ipt-\/th integration point}}
 \DoxyCodeLine{\Hypertarget{spherical__navier__stokes__elements_8h_source_l00143}00143 \textcolor{comment}{    /// Return Jacobian of mapping between local and global coordinates.}}
 \DoxyCodeLine{\Hypertarget{spherical__navier__stokes__elements_8h_source_l00144}\mbox{\hyperlink{classoomph_1_1SphericalNavierStokesEquations_a10ed6f34245f5b31095ae636fc08749a}{00144}} \textcolor{comment}{}    \textcolor{keyword}{virtual} \textcolor{keywordtype}{double} \mbox{\hyperlink{classoomph_1_1SphericalNavierStokesEquations_a10ed6f34245f5b31095ae636fc08749a}{dshape\_and\_dtest\_eulerian\_at\_knot\_spherical\_nst}}(}
@@ -156,14 +156,14 @@
 \DoxyCodeLine{\Hypertarget{spherical__navier__stokes__elements_8h_source_l00152}\mbox{\hyperlink{classoomph_1_1SphericalNavierStokesEquations_a17799ec1f3a1d8bbeee1d357bba0a249}{00152}} \textcolor{comment}{}    \textcolor{keyword}{virtual} \textcolor{keywordtype}{void} \mbox{\hyperlink{classoomph_1_1SphericalNavierStokesEquations_a17799ec1f3a1d8bbeee1d357bba0a249}{pshape\_spherical\_nst}}(\textcolor{keyword}{const} \mbox{\hyperlink{classoomph_1_1Vector}{Vector<double>}}\& \mbox{\hyperlink{cfortran_8h_ab7123126e4885ef647dd9c6e3807a21c}{s}},}
 \DoxyCodeLine{\Hypertarget{spherical__navier__stokes__elements_8h_source_l00153}00153                                       \mbox{\hyperlink{classoomph_1_1Shape}{Shape}}\& psi) \textcolor{keyword}{const} = 0;}
 \DoxyCodeLine{\Hypertarget{spherical__navier__stokes__elements_8h_source_l00154}00154 \textcolor{comment}{}}
-\DoxyCodeLine{\Hypertarget{spherical__navier__stokes__elements_8h_source_l00155}00155 \textcolor{comment}{    ///  Compute the pressure shape and test functions}}
+\DoxyCodeLine{\Hypertarget{spherical__navier__stokes__elements_8h_source_l00155}00155 \textcolor{comment}{    /// Compute the pressure shape and test functions}}
 \DoxyCodeLine{\Hypertarget{spherical__navier__stokes__elements_8h_source_l00156}00156 \textcolor{comment}{    /// at local coordinate s}}
 \DoxyCodeLine{\Hypertarget{spherical__navier__stokes__elements_8h_source_l00157}\mbox{\hyperlink{classoomph_1_1SphericalNavierStokesEquations_a862f1da9ef70c289f4220391443b7d09}{00157}} \textcolor{comment}{}    \textcolor{keyword}{virtual} \textcolor{keywordtype}{void} \mbox{\hyperlink{classoomph_1_1SphericalNavierStokesEquations_a862f1da9ef70c289f4220391443b7d09}{pshape\_spherical\_nst}}(\textcolor{keyword}{const} \mbox{\hyperlink{classoomph_1_1Vector}{Vector<double>}}\& \mbox{\hyperlink{cfortran_8h_ab7123126e4885ef647dd9c6e3807a21c}{s}},}
 \DoxyCodeLine{\Hypertarget{spherical__navier__stokes__elements_8h_source_l00158}00158                                       \mbox{\hyperlink{classoomph_1_1Shape}{Shape}}\& psi,}
 \DoxyCodeLine{\Hypertarget{spherical__navier__stokes__elements_8h_source_l00159}00159                                       \mbox{\hyperlink{classoomph_1_1Shape}{Shape}}\& test) \textcolor{keyword}{const} = 0;}
 \DoxyCodeLine{\Hypertarget{spherical__navier__stokes__elements_8h_source_l00160}00160 }
 \DoxyCodeLine{\Hypertarget{spherical__navier__stokes__elements_8h_source_l00161}00161 \textcolor{comment}{}}
-\DoxyCodeLine{\Hypertarget{spherical__navier__stokes__elements_8h_source_l00162}00162 \textcolor{comment}{    ///  Calculate the body force at a given time and local and/or}}
+\DoxyCodeLine{\Hypertarget{spherical__navier__stokes__elements_8h_source_l00162}00162 \textcolor{comment}{    /// Calculate the body force at a given time and local and/or}}
 \DoxyCodeLine{\Hypertarget{spherical__navier__stokes__elements_8h_source_l00163}00163 \textcolor{comment}{    /// Eulerian position. This function is virtual so that it can be}}
 \DoxyCodeLine{\Hypertarget{spherical__navier__stokes__elements_8h_source_l00164}00164 \textcolor{comment}{    /// overloaded in multi-\/physics elements where the body force might}}
 \DoxyCodeLine{\Hypertarget{spherical__navier__stokes__elements_8h_source_l00165}00165 \textcolor{comment}{    /// depend on another variable.}}
@@ -189,7 +189,7 @@
 \DoxyCodeLine{\Hypertarget{spherical__navier__stokes__elements_8h_source_l00185}00185       \}}
 \DoxyCodeLine{\Hypertarget{spherical__navier__stokes__elements_8h_source_l00186}00186     \}}
 \DoxyCodeLine{\Hypertarget{spherical__navier__stokes__elements_8h_source_l00187}00187 \textcolor{comment}{}}
-\DoxyCodeLine{\Hypertarget{spherical__navier__stokes__elements_8h_source_l00188}00188 \textcolor{comment}{    ///  Calculate the source fct at given time and}}
+\DoxyCodeLine{\Hypertarget{spherical__navier__stokes__elements_8h_source_l00188}00188 \textcolor{comment}{    /// Calculate the source fct at given time and}}
 \DoxyCodeLine{\Hypertarget{spherical__navier__stokes__elements_8h_source_l00189}00189 \textcolor{comment}{    /// Eulerian position}}
 \DoxyCodeLine{\Hypertarget{spherical__navier__stokes__elements_8h_source_l00190}\mbox{\hyperlink{classoomph_1_1SphericalNavierStokesEquations_afac2bf109a54ca1753b3e9eb5b5859ff}{00190}} \textcolor{comment}{}    \textcolor{keyword}{virtual} \textcolor{keywordtype}{double} \mbox{\hyperlink{classoomph_1_1SphericalNavierStokesEquations_afac2bf109a54ca1753b3e9eb5b5859ff}{get\_source\_spherical\_nst}}(\textcolor{keywordtype}{double} time,}
 \DoxyCodeLine{\Hypertarget{spherical__navier__stokes__elements_8h_source_l00191}00191                                             \textcolor{keyword}{const} \textcolor{keywordtype}{unsigned}\& ipt,}
@@ -225,7 +225,7 @@
 \DoxyCodeLine{\Hypertarget{spherical__navier__stokes__elements_8h_source_l00221}00221     \}}
 \DoxyCodeLine{\Hypertarget{spherical__navier__stokes__elements_8h_source_l00222}00222 }
 \DoxyCodeLine{\Hypertarget{spherical__navier__stokes__elements_8h_source_l00223}00223 \textcolor{comment}{}}
-\DoxyCodeLine{\Hypertarget{spherical__navier__stokes__elements_8h_source_l00224}00224 \textcolor{comment}{    ///  Constructor: NULL the body force and source function}}
+\DoxyCodeLine{\Hypertarget{spherical__navier__stokes__elements_8h_source_l00224}00224 \textcolor{comment}{    /// Constructor: NULL the body force and source function}}
 \DoxyCodeLine{\Hypertarget{spherical__navier__stokes__elements_8h_source_l00225}00225 \textcolor{comment}{    /// and make sure the ALE terms are included by default.}}
 \DoxyCodeLine{\Hypertarget{spherical__navier__stokes__elements_8h_source_l00226}\mbox{\hyperlink{classoomph_1_1SphericalNavierStokesEquations_adb7856b86fa6d5d35b03596649c86a70}{00226}} \textcolor{comment}{}    \mbox{\hyperlink{classoomph_1_1SphericalNavierStokesEquations_adb7856b86fa6d5d35b03596649c86a70}{SphericalNavierStokesEquations}}()}
 \DoxyCodeLine{\Hypertarget{spherical__navier__stokes__elements_8h_source_l00227}00227       : \mbox{\hyperlink{classoomph_1_1SphericalNavierStokesEquations_ad1847f826dc0e33cb793319bfa41d985}{Body\_force\_fct\_pt}}(0), \mbox{\hyperlink{classoomph_1_1SphericalNavierStokesEquations_a0f8bbc9d353784821db5781ebedeece5}{Source\_fct\_pt}}(0), \mbox{\hyperlink{classoomph_1_1SphericalNavierStokesEquations_ae99a23d65958a96ae2d90151b86d30ab}{ALE\_is\_disabled}}(false)}
@@ -273,7 +273,7 @@
 \DoxyCodeLine{\Hypertarget{spherical__navier__stokes__elements_8h_source_l00269}00269       \textcolor{keywordflow}{return} \mbox{\hyperlink{classoomph_1_1SphericalNavierStokesEquations_a4312d4d7e7e51c89dea51c21acb6a89d}{ReSt\_pt}};}
 \DoxyCodeLine{\Hypertarget{spherical__navier__stokes__elements_8h_source_l00270}00270     \}}
 \DoxyCodeLine{\Hypertarget{spherical__navier__stokes__elements_8h_source_l00271}00271 \textcolor{comment}{}}
-\DoxyCodeLine{\Hypertarget{spherical__navier__stokes__elements_8h_source_l00272}00272 \textcolor{comment}{    ///  Viscosity ratio for element: Element's viscosity relative to the}}
+\DoxyCodeLine{\Hypertarget{spherical__navier__stokes__elements_8h_source_l00272}00272 \textcolor{comment}{    /// Viscosity ratio for element: Element's viscosity relative to the}}
 \DoxyCodeLine{\Hypertarget{spherical__navier__stokes__elements_8h_source_l00273}00273 \textcolor{comment}{    /// viscosity used in the definition of the Reynolds number}}
 \DoxyCodeLine{\Hypertarget{spherical__navier__stokes__elements_8h_source_l00274}\mbox{\hyperlink{classoomph_1_1SphericalNavierStokesEquations_abfb98be16fd059518333456722ca8459}{00274}} \textcolor{comment}{}    \textcolor{keyword}{const} \textcolor{keywordtype}{double}\& \mbox{\hyperlink{classoomph_1_1SphericalNavierStokesEquations_abfb98be16fd059518333456722ca8459}{viscosity\_ratio}}()\textcolor{keyword}{ const}}
 \DoxyCodeLine{\Hypertarget{spherical__navier__stokes__elements_8h_source_l00275}00275 \textcolor{keyword}{    }\{}
@@ -286,7 +286,7 @@
 \DoxyCodeLine{\Hypertarget{spherical__navier__stokes__elements_8h_source_l00282}00282       \textcolor{keywordflow}{return} \mbox{\hyperlink{classoomph_1_1SphericalNavierStokesEquations_a7c52a5669ff71d86186bd88149df9b33}{Viscosity\_Ratio\_pt}};}
 \DoxyCodeLine{\Hypertarget{spherical__navier__stokes__elements_8h_source_l00283}00283     \}}
 \DoxyCodeLine{\Hypertarget{spherical__navier__stokes__elements_8h_source_l00284}00284 \textcolor{comment}{}}
-\DoxyCodeLine{\Hypertarget{spherical__navier__stokes__elements_8h_source_l00285}00285 \textcolor{comment}{    ///  Density ratio for element: Element's density relative to the}}
+\DoxyCodeLine{\Hypertarget{spherical__navier__stokes__elements_8h_source_l00285}00285 \textcolor{comment}{    /// Density ratio for element: Element's density relative to the}}
 \DoxyCodeLine{\Hypertarget{spherical__navier__stokes__elements_8h_source_l00286}00286 \textcolor{comment}{    ///  viscosity used in the definition of the Reynolds number}}
 \DoxyCodeLine{\Hypertarget{spherical__navier__stokes__elements_8h_source_l00287}\mbox{\hyperlink{classoomph_1_1SphericalNavierStokesEquations_a85677bad4aba0227e9e2428aa3328154}{00287}} \textcolor{comment}{}    \textcolor{keyword}{const} \textcolor{keywordtype}{double}\& \mbox{\hyperlink{classoomph_1_1SphericalNavierStokesEquations_a85677bad4aba0227e9e2428aa3328154}{density\_ratio}}()\textcolor{keyword}{ const}}
 \DoxyCodeLine{\Hypertarget{spherical__navier__stokes__elements_8h_source_l00288}00288 \textcolor{keyword}{    }\{}
@@ -362,7 +362,7 @@
 \DoxyCodeLine{\Hypertarget{spherical__navier__stokes__elements_8h_source_l00358}00358 \textcolor{comment}{    /// Function to return number of pressure degrees of freedom}}
 \DoxyCodeLine{\Hypertarget{spherical__navier__stokes__elements_8h_source_l00359}\mbox{\hyperlink{classoomph_1_1SphericalNavierStokesEquations_ae01203564bc66dacf84c1ed65e4b7930}{00359}} \textcolor{comment}{}    \textcolor{keyword}{virtual} \textcolor{keywordtype}{unsigned} \mbox{\hyperlink{classoomph_1_1SphericalNavierStokesEquations_ae01203564bc66dacf84c1ed65e4b7930}{npres\_spherical\_nst}}() \textcolor{keyword}{const} = 0;}
 \DoxyCodeLine{\Hypertarget{spherical__navier__stokes__elements_8h_source_l00360}00360 \textcolor{comment}{}}
-\DoxyCodeLine{\Hypertarget{spherical__navier__stokes__elements_8h_source_l00361}00361 \textcolor{comment}{    ///  Velocity i at local node n. Uses suitably interpolated value}}
+\DoxyCodeLine{\Hypertarget{spherical__navier__stokes__elements_8h_source_l00361}00361 \textcolor{comment}{    /// Velocity i at local node n. Uses suitably interpolated value}}
 \DoxyCodeLine{\Hypertarget{spherical__navier__stokes__elements_8h_source_l00362}00362 \textcolor{comment}{    /// for hanging nodes.}}
 \DoxyCodeLine{\Hypertarget{spherical__navier__stokes__elements_8h_source_l00363}00363 \textcolor{comment}{    /// The use of u\_index\_spherical\_nst() permits the use of this}}
 \DoxyCodeLine{\Hypertarget{spherical__navier__stokes__elements_8h_source_l00364}00364 \textcolor{comment}{    /// element as the basis for multi-\/physics elements. The default}}
@@ -373,7 +373,7 @@
 \DoxyCodeLine{\Hypertarget{spherical__navier__stokes__elements_8h_source_l00369}00369       \textcolor{keywordflow}{return} \mbox{\hyperlink{classoomph_1_1FiniteElement_a28fd5c2d4aeba5ef65bee0e0d72569f5}{nodal\_value}}(n, \mbox{\hyperlink{classoomph_1_1SphericalNavierStokesEquations_a2f269e20874a87df919cc4ece4b05fe5}{u\_index\_spherical\_nst}}(\mbox{\hyperlink{cfortran_8h_adb50e893b86b3e55e751a42eab3cba82}{i}}));}
 \DoxyCodeLine{\Hypertarget{spherical__navier__stokes__elements_8h_source_l00370}00370     \}}
 \DoxyCodeLine{\Hypertarget{spherical__navier__stokes__elements_8h_source_l00371}00371 \textcolor{comment}{}}
-\DoxyCodeLine{\Hypertarget{spherical__navier__stokes__elements_8h_source_l00372}00372 \textcolor{comment}{    ///  Velocity i at local node n at timestep t (t=0: present;}}
+\DoxyCodeLine{\Hypertarget{spherical__navier__stokes__elements_8h_source_l00372}00372 \textcolor{comment}{    /// Velocity i at local node n at timestep t (t=0: present;}}
 \DoxyCodeLine{\Hypertarget{spherical__navier__stokes__elements_8h_source_l00373}00373 \textcolor{comment}{    /// t>0: previous). Uses suitably interpolated value for hanging nodes.}}
 \DoxyCodeLine{\Hypertarget{spherical__navier__stokes__elements_8h_source_l00374}\mbox{\hyperlink{classoomph_1_1SphericalNavierStokesEquations_ad51d5e5080680802ad1ee5daab91765d}{00374}} \textcolor{comment}{}    \textcolor{keywordtype}{double} \mbox{\hyperlink{classoomph_1_1SphericalNavierStokesEquations_ad51d5e5080680802ad1ee5daab91765d}{u\_spherical\_nst}}(\textcolor{keyword}{const} \textcolor{keywordtype}{unsigned}\& \mbox{\hyperlink{cfortran_8h_af6f0bd3dc13317f895c91323c25c2b8f}{t}},}
 \DoxyCodeLine{\Hypertarget{spherical__navier__stokes__elements_8h_source_l00375}00375                            \textcolor{keyword}{const} \textcolor{keywordtype}{unsigned}\& n,}
@@ -382,7 +382,7 @@
 \DoxyCodeLine{\Hypertarget{spherical__navier__stokes__elements_8h_source_l00378}00378       \textcolor{keywordflow}{return} \mbox{\hyperlink{classoomph_1_1FiniteElement_a28fd5c2d4aeba5ef65bee0e0d72569f5}{nodal\_value}}(\mbox{\hyperlink{cfortran_8h_af6f0bd3dc13317f895c91323c25c2b8f}{t}}, n, \mbox{\hyperlink{classoomph_1_1SphericalNavierStokesEquations_a2f269e20874a87df919cc4ece4b05fe5}{u\_index\_spherical\_nst}}(\mbox{\hyperlink{cfortran_8h_adb50e893b86b3e55e751a42eab3cba82}{i}}));}
 \DoxyCodeLine{\Hypertarget{spherical__navier__stokes__elements_8h_source_l00379}00379     \}}
 \DoxyCodeLine{\Hypertarget{spherical__navier__stokes__elements_8h_source_l00380}00380 \textcolor{comment}{}}
-\DoxyCodeLine{\Hypertarget{spherical__navier__stokes__elements_8h_source_l00381}00381 \textcolor{comment}{    ///  Return the index at which the i-\/th unknown velocity component}}
+\DoxyCodeLine{\Hypertarget{spherical__navier__stokes__elements_8h_source_l00381}00381 \textcolor{comment}{    /// Return the index at which the i-\/th unknown velocity component}}
 \DoxyCodeLine{\Hypertarget{spherical__navier__stokes__elements_8h_source_l00382}00382 \textcolor{comment}{    /// is stored. The default value, i, is appropriate for single-\/physics}}
 \DoxyCodeLine{\Hypertarget{spherical__navier__stokes__elements_8h_source_l00383}00383 \textcolor{comment}{    /// problems.}}
 \DoxyCodeLine{\Hypertarget{spherical__navier__stokes__elements_8h_source_l00384}00384 \textcolor{comment}{    /// In derived multi-\/physics elements, this function should be overloaded}}
@@ -394,7 +394,7 @@
 \DoxyCodeLine{\Hypertarget{spherical__navier__stokes__elements_8h_source_l00390}00390     \}}
 \DoxyCodeLine{\Hypertarget{spherical__navier__stokes__elements_8h_source_l00391}00391 }
 \DoxyCodeLine{\Hypertarget{spherical__navier__stokes__elements_8h_source_l00392}00392 \textcolor{comment}{}}
-\DoxyCodeLine{\Hypertarget{spherical__navier__stokes__elements_8h_source_l00393}00393 \textcolor{comment}{    ///  i-\/th component of du/dt at local node n.}}
+\DoxyCodeLine{\Hypertarget{spherical__navier__stokes__elements_8h_source_l00393}00393 \textcolor{comment}{    /// i-\/th component of du/dt at local node n.}}
 \DoxyCodeLine{\Hypertarget{spherical__navier__stokes__elements_8h_source_l00394}00394 \textcolor{comment}{    /// Uses suitably interpolated value for hanging nodes.}}
 \DoxyCodeLine{\Hypertarget{spherical__navier__stokes__elements_8h_source_l00395}\mbox{\hyperlink{classoomph_1_1SphericalNavierStokesEquations_a6f9ce7398b2f2a767fddc7473046c674}{00395}} \textcolor{comment}{}    \textcolor{keywordtype}{double} \mbox{\hyperlink{classoomph_1_1SphericalNavierStokesEquations_a6f9ce7398b2f2a767fddc7473046c674}{du\_dt\_spherical\_nst}}(\textcolor{keyword}{const} \textcolor{keywordtype}{unsigned}\& n, \textcolor{keyword}{const} \textcolor{keywordtype}{unsigned}\& \mbox{\hyperlink{cfortran_8h_adb50e893b86b3e55e751a42eab3cba82}{i}})\textcolor{keyword}{ const}}
 \DoxyCodeLine{\Hypertarget{spherical__navier__stokes__elements_8h_source_l00396}00396 \textcolor{keyword}{    }\{}
@@ -423,14 +423,14 @@
 \DoxyCodeLine{\Hypertarget{spherical__navier__stokes__elements_8h_source_l00419}00419       \textcolor{keywordflow}{return} dudt;}
 \DoxyCodeLine{\Hypertarget{spherical__navier__stokes__elements_8h_source_l00420}00420     \}}
 \DoxyCodeLine{\Hypertarget{spherical__navier__stokes__elements_8h_source_l00421}00421 \textcolor{comment}{}}
-\DoxyCodeLine{\Hypertarget{spherical__navier__stokes__elements_8h_source_l00422}00422 \textcolor{comment}{    ///  Disable ALE, i.e. assert the mesh is not moving -\/-\/ you do this}}
+\DoxyCodeLine{\Hypertarget{spherical__navier__stokes__elements_8h_source_l00422}00422 \textcolor{comment}{    /// Disable ALE, i.e. assert the mesh is not moving -\/-\/ you do this}}
 \DoxyCodeLine{\Hypertarget{spherical__navier__stokes__elements_8h_source_l00423}00423 \textcolor{comment}{    /// at your own risk!}}
 \DoxyCodeLine{\Hypertarget{spherical__navier__stokes__elements_8h_source_l00424}\mbox{\hyperlink{classoomph_1_1SphericalNavierStokesEquations_a88010a11c69e6d5f189f5ce24e6c70da}{00424}} \textcolor{comment}{}    \textcolor{keywordtype}{void} \mbox{\hyperlink{classoomph_1_1SphericalNavierStokesEquations_a88010a11c69e6d5f189f5ce24e6c70da}{disable\_ALE}}()}
 \DoxyCodeLine{\Hypertarget{spherical__navier__stokes__elements_8h_source_l00425}00425     \{}
 \DoxyCodeLine{\Hypertarget{spherical__navier__stokes__elements_8h_source_l00426}00426       \mbox{\hyperlink{classoomph_1_1SphericalNavierStokesEquations_ae99a23d65958a96ae2d90151b86d30ab}{ALE\_is\_disabled}} = \textcolor{keyword}{true};}
 \DoxyCodeLine{\Hypertarget{spherical__navier__stokes__elements_8h_source_l00427}00427     \}}
 \DoxyCodeLine{\Hypertarget{spherical__navier__stokes__elements_8h_source_l00428}00428 \textcolor{comment}{}}
-\DoxyCodeLine{\Hypertarget{spherical__navier__stokes__elements_8h_source_l00429}00429 \textcolor{comment}{    ///  (Re-\/)enable ALE, i.e. take possible mesh motion into account}}
+\DoxyCodeLine{\Hypertarget{spherical__navier__stokes__elements_8h_source_l00429}00429 \textcolor{comment}{    /// (Re-\/)enable ALE, i.e. take possible mesh motion into account}}
 \DoxyCodeLine{\Hypertarget{spherical__navier__stokes__elements_8h_source_l00430}00430 \textcolor{comment}{    /// when evaluating the time-\/derivative. Note: By default, ALE is}}
 \DoxyCodeLine{\Hypertarget{spherical__navier__stokes__elements_8h_source_l00431}00431 \textcolor{comment}{    /// enabled, at the expense of possibly creating unnecessary work}}
 \DoxyCodeLine{\Hypertarget{spherical__navier__stokes__elements_8h_source_l00432}00432 \textcolor{comment}{    /// in problems where the mesh is, in fact, stationary.}}
@@ -439,14 +439,14 @@
 \DoxyCodeLine{\Hypertarget{spherical__navier__stokes__elements_8h_source_l00435}00435       \mbox{\hyperlink{classoomph_1_1SphericalNavierStokesEquations_ae99a23d65958a96ae2d90151b86d30ab}{ALE\_is\_disabled}} = \textcolor{keyword}{false};}
 \DoxyCodeLine{\Hypertarget{spherical__navier__stokes__elements_8h_source_l00436}00436     \}}
 \DoxyCodeLine{\Hypertarget{spherical__navier__stokes__elements_8h_source_l00437}00437 \textcolor{comment}{}}
-\DoxyCodeLine{\Hypertarget{spherical__navier__stokes__elements_8h_source_l00438}00438 \textcolor{comment}{    ///  Pressure at local pressure "{}node"{} n\_p}}
+\DoxyCodeLine{\Hypertarget{spherical__navier__stokes__elements_8h_source_l00438}00438 \textcolor{comment}{    /// Pressure at local pressure "{}node"{} n\_p}}
 \DoxyCodeLine{\Hypertarget{spherical__navier__stokes__elements_8h_source_l00439}00439 \textcolor{comment}{    /// Uses suitably interpolated value for hanging nodes.}}
 \DoxyCodeLine{\Hypertarget{spherical__navier__stokes__elements_8h_source_l00440}\mbox{\hyperlink{classoomph_1_1SphericalNavierStokesEquations_a5b50d547e5a2ad5896dc9612e2bb4176}{00440}} \textcolor{comment}{}    \textcolor{keyword}{virtual} \textcolor{keywordtype}{double} \mbox{\hyperlink{classoomph_1_1SphericalNavierStokesEquations_a5b50d547e5a2ad5896dc9612e2bb4176}{p\_spherical\_nst}}(\textcolor{keyword}{const} \textcolor{keywordtype}{unsigned}\& n\_p) \textcolor{keyword}{const} = 0;}
 \DoxyCodeLine{\Hypertarget{spherical__navier__stokes__elements_8h_source_l00441}00441 \textcolor{comment}{}}
 \DoxyCodeLine{\Hypertarget{spherical__navier__stokes__elements_8h_source_l00442}00442 \textcolor{comment}{    /// Pin p\_dof-\/th pressure dof and set it to value specified by p\_value.}}
 \DoxyCodeLine{\Hypertarget{spherical__navier__stokes__elements_8h_source_l00443}\mbox{\hyperlink{classoomph_1_1SphericalNavierStokesEquations_ae4dc4c80f271ed2b31296f01862dc536}{00443}} \textcolor{comment}{}    \textcolor{keyword}{virtual} \textcolor{keywordtype}{void} \mbox{\hyperlink{classoomph_1_1SphericalNavierStokesEquations_ae4dc4c80f271ed2b31296f01862dc536}{fix\_pressure}}(\textcolor{keyword}{const} \textcolor{keywordtype}{unsigned}\& p\_dof, \textcolor{keyword}{const} \textcolor{keywordtype}{double}\& p\_value) = 0;}
 \DoxyCodeLine{\Hypertarget{spherical__navier__stokes__elements_8h_source_l00444}00444 \textcolor{comment}{}}
-\DoxyCodeLine{\Hypertarget{spherical__navier__stokes__elements_8h_source_l00445}00445 \textcolor{comment}{    ///  Return the index at which the pressure is stored if it is}}
+\DoxyCodeLine{\Hypertarget{spherical__navier__stokes__elements_8h_source_l00445}00445 \textcolor{comment}{    /// Return the index at which the pressure is stored if it is}}
 \DoxyCodeLine{\Hypertarget{spherical__navier__stokes__elements_8h_source_l00446}00446 \textcolor{comment}{    /// stored at the nodes. If not stored at the nodes this will return}}
 \DoxyCodeLine{\Hypertarget{spherical__navier__stokes__elements_8h_source_l00447}00447 \textcolor{comment}{    /// a negative number.}}
 \DoxyCodeLine{\Hypertarget{spherical__navier__stokes__elements_8h_source_l00448}\mbox{\hyperlink{classoomph_1_1SphericalNavierStokesEquations_a7b0edc8eedacaef9e55f3551a7cb5400}{00448}} \textcolor{comment}{}    \textcolor{keyword}{virtual} \textcolor{keywordtype}{int} \mbox{\hyperlink{classoomph_1_1SphericalNavierStokesEquations_a7b0edc8eedacaef9e55f3551a7cb5400}{p\_nodal\_index\_spherical\_nst}}()\textcolor{keyword}{ const}}
@@ -457,27 +457,27 @@
 \DoxyCodeLine{\Hypertarget{spherical__navier__stokes__elements_8h_source_l00453}00453 \textcolor{comment}{    /// Integral of pressure over element}}
 \DoxyCodeLine{\Hypertarget{spherical__navier__stokes__elements_8h_source_l00454}00454 \textcolor{comment}{}    \textcolor{keywordtype}{double} \mbox{\hyperlink{classoomph_1_1SphericalNavierStokesEquations_a1776fe3c26e4ee175a0c71a2db66a78d}{pressure\_integral}}() \textcolor{keyword}{const};}
 \DoxyCodeLine{\Hypertarget{spherical__navier__stokes__elements_8h_source_l00455}00455 \textcolor{comment}{}}
-\DoxyCodeLine{\Hypertarget{spherical__navier__stokes__elements_8h_source_l00456}00456 \textcolor{comment}{    ///  Return integral of dissipation over element}}
+\DoxyCodeLine{\Hypertarget{spherical__navier__stokes__elements_8h_source_l00456}00456 \textcolor{comment}{    /// Return integral of dissipation over element}}
 \DoxyCodeLine{\Hypertarget{spherical__navier__stokes__elements_8h_source_l00457}00457 \textcolor{comment}{}    \textcolor{keywordtype}{double} \mbox{\hyperlink{classoomph_1_1SphericalNavierStokesEquations_aa9939f3a44b64430e10e28657d70634c}{dissipation}}() \textcolor{keyword}{const};}
 \DoxyCodeLine{\Hypertarget{spherical__navier__stokes__elements_8h_source_l00458}00458 \textcolor{comment}{}}
-\DoxyCodeLine{\Hypertarget{spherical__navier__stokes__elements_8h_source_l00459}00459 \textcolor{comment}{    ///  Return dissipation at local coordinate s}}
+\DoxyCodeLine{\Hypertarget{spherical__navier__stokes__elements_8h_source_l00459}00459 \textcolor{comment}{    /// Return dissipation at local coordinate s}}
 \DoxyCodeLine{\Hypertarget{spherical__navier__stokes__elements_8h_source_l00460}00460 \textcolor{comment}{}    \textcolor{keywordtype}{double} \mbox{\hyperlink{classoomph_1_1SphericalNavierStokesEquations_aa9939f3a44b64430e10e28657d70634c}{dissipation}}(\textcolor{keyword}{const} \mbox{\hyperlink{classoomph_1_1Vector}{Vector<double>}}\& \mbox{\hyperlink{cfortran_8h_ab7123126e4885ef647dd9c6e3807a21c}{s}}) \textcolor{keyword}{const};}
 \DoxyCodeLine{\Hypertarget{spherical__navier__stokes__elements_8h_source_l00461}00461 \textcolor{comment}{}}
-\DoxyCodeLine{\Hypertarget{spherical__navier__stokes__elements_8h_source_l00462}00462 \textcolor{comment}{    ///  Compute the vorticity vector at local coordinate s}}
+\DoxyCodeLine{\Hypertarget{spherical__navier__stokes__elements_8h_source_l00462}00462 \textcolor{comment}{    /// Compute the vorticity vector at local coordinate s}}
 \DoxyCodeLine{\Hypertarget{spherical__navier__stokes__elements_8h_source_l00463}00463 \textcolor{comment}{}    \textcolor{keywordtype}{void} \mbox{\hyperlink{classoomph_1_1SphericalNavierStokesEquations_a0ef3334439b336f5ec21c7cd223e05f9}{get\_vorticity}}(\textcolor{keyword}{const} \mbox{\hyperlink{classoomph_1_1Vector}{Vector<double>}}\& \mbox{\hyperlink{cfortran_8h_ab7123126e4885ef647dd9c6e3807a21c}{s}},}
 \DoxyCodeLine{\Hypertarget{spherical__navier__stokes__elements_8h_source_l00464}00464                        \mbox{\hyperlink{classoomph_1_1Vector}{Vector<double>}}\& vorticity) \textcolor{keyword}{const};}
 \DoxyCodeLine{\Hypertarget{spherical__navier__stokes__elements_8h_source_l00465}00465 \textcolor{comment}{}}
-\DoxyCodeLine{\Hypertarget{spherical__navier__stokes__elements_8h_source_l00466}00466 \textcolor{comment}{    ///  Get integral of kinetic energy over element}}
+\DoxyCodeLine{\Hypertarget{spherical__navier__stokes__elements_8h_source_l00466}00466 \textcolor{comment}{    /// Get integral of kinetic energy over element}}
 \DoxyCodeLine{\Hypertarget{spherical__navier__stokes__elements_8h_source_l00467}00467 \textcolor{comment}{}    \textcolor{keywordtype}{double} \mbox{\hyperlink{classoomph_1_1SphericalNavierStokesEquations_aa374af3cc246ada66f17b19a9564a6d3}{kin\_energy}}() \textcolor{keyword}{const};}
 \DoxyCodeLine{\Hypertarget{spherical__navier__stokes__elements_8h_source_l00468}00468 \textcolor{comment}{}}
-\DoxyCodeLine{\Hypertarget{spherical__navier__stokes__elements_8h_source_l00469}00469 \textcolor{comment}{    ///  Get integral of time derivative of kinetic energy over element}}
+\DoxyCodeLine{\Hypertarget{spherical__navier__stokes__elements_8h_source_l00469}00469 \textcolor{comment}{    /// Get integral of time derivative of kinetic energy over element}}
 \DoxyCodeLine{\Hypertarget{spherical__navier__stokes__elements_8h_source_l00470}00470 \textcolor{comment}{}    \textcolor{keywordtype}{double} \mbox{\hyperlink{classoomph_1_1SphericalNavierStokesEquations_a0c6aba8fc927c3e40e9abb362dc8797f}{d\_kin\_energy\_dt}}() \textcolor{keyword}{const};}
 \DoxyCodeLine{\Hypertarget{spherical__navier__stokes__elements_8h_source_l00471}00471 \textcolor{comment}{}}
 \DoxyCodeLine{\Hypertarget{spherical__navier__stokes__elements_8h_source_l00472}00472 \textcolor{comment}{    /// Strain-\/rate tensor: 1/2 (du\_i/dx\_j + du\_j/dx\_i)}}
 \DoxyCodeLine{\Hypertarget{spherical__navier__stokes__elements_8h_source_l00473}00473 \textcolor{comment}{}    \textcolor{keywordtype}{void} \mbox{\hyperlink{classoomph_1_1SphericalNavierStokesEquations_a4688b8021ff388a878ac9edbb218ef56}{strain\_rate}}(\textcolor{keyword}{const} \mbox{\hyperlink{classoomph_1_1Vector}{Vector<double>}}\& \mbox{\hyperlink{cfortran_8h_ab7123126e4885ef647dd9c6e3807a21c}{s}},}
 \DoxyCodeLine{\Hypertarget{spherical__navier__stokes__elements_8h_source_l00474}00474                      \mbox{\hyperlink{classoomph_1_1DenseMatrix}{DenseMatrix<double>}}\& \mbox{\hyperlink{classoomph_1_1SphericalNavierStokesEquations_a4688b8021ff388a878ac9edbb218ef56}{strain\_rate}}) \textcolor{keyword}{const};}
 \DoxyCodeLine{\Hypertarget{spherical__navier__stokes__elements_8h_source_l00475}00475 \textcolor{comment}{}}
-\DoxyCodeLine{\Hypertarget{spherical__navier__stokes__elements_8h_source_l00476}00476 \textcolor{comment}{    ///  Compute traction (on the viscous scale) exerted onto}}
+\DoxyCodeLine{\Hypertarget{spherical__navier__stokes__elements_8h_source_l00476}00476 \textcolor{comment}{    /// Compute traction (on the viscous scale) exerted onto}}
 \DoxyCodeLine{\Hypertarget{spherical__navier__stokes__elements_8h_source_l00477}00477 \textcolor{comment}{    /// the fluid at local coordinate s. N has to be outer unit normal}}
 \DoxyCodeLine{\Hypertarget{spherical__navier__stokes__elements_8h_source_l00478}00478 \textcolor{comment}{    /// to the fluid.}}
 \DoxyCodeLine{\Hypertarget{spherical__navier__stokes__elements_8h_source_l00479}00479 \textcolor{comment}{}    \textcolor{keywordtype}{void} \mbox{\hyperlink{classoomph_1_1SphericalNavierStokesEquations_aaf2cd60aa4dc7524aab4cf2ace49805c}{get\_traction}}(\textcolor{keyword}{const} \mbox{\hyperlink{classoomph_1_1Vector}{Vector<double>}}\& \mbox{\hyperlink{cfortran_8h_ab7123126e4885ef647dd9c6e3807a21c}{s}},}
@@ -485,7 +485,7 @@
 \DoxyCodeLine{\Hypertarget{spherical__navier__stokes__elements_8h_source_l00481}00481                       \mbox{\hyperlink{classoomph_1_1Vector}{Vector<double>}}\& traction);}
 \DoxyCodeLine{\Hypertarget{spherical__navier__stokes__elements_8h_source_l00482}00482 }
 \DoxyCodeLine{\Hypertarget{spherical__navier__stokes__elements_8h_source_l00483}00483 \textcolor{comment}{}}
-\DoxyCodeLine{\Hypertarget{spherical__navier__stokes__elements_8h_source_l00484}00484 \textcolor{comment}{    ///  This implements a pure virtual function defined}}
+\DoxyCodeLine{\Hypertarget{spherical__navier__stokes__elements_8h_source_l00484}00484 \textcolor{comment}{    /// This implements a pure virtual function defined}}
 \DoxyCodeLine{\Hypertarget{spherical__navier__stokes__elements_8h_source_l00485}00485 \textcolor{comment}{    /// in the FSIFluidElement class. The function computes}}
 \DoxyCodeLine{\Hypertarget{spherical__navier__stokes__elements_8h_source_l00486}00486 \textcolor{comment}{    /// the traction (on the viscous scale), at the element's local}}
 \DoxyCodeLine{\Hypertarget{spherical__navier__stokes__elements_8h_source_l00487}00487 \textcolor{comment}{    /// coordinate s, that the fluid element exerts onto an adjacent}}
@@ -504,7 +504,7 @@
 \DoxyCodeLine{\Hypertarget{spherical__navier__stokes__elements_8h_source_l00500}00500       \mbox{\hyperlink{classoomph_1_1SphericalNavierStokesEquations_aaf2cd60aa4dc7524aab4cf2ace49805c}{get\_traction}}(\mbox{\hyperlink{cfortran_8h_ab7123126e4885ef647dd9c6e3807a21c}{s}}, \mbox{\hyperlink{namespaceoomph_1_1QuadTreeNames_a8954a5947b19986b8c4b755bc7639f7dabc60bec4cc294aa2adf92726c6d6823a}{N}}, load);}
 \DoxyCodeLine{\Hypertarget{spherical__navier__stokes__elements_8h_source_l00501}00501     \}}
 \DoxyCodeLine{\Hypertarget{spherical__navier__stokes__elements_8h_source_l00502}00502 \textcolor{comment}{}}
-\DoxyCodeLine{\Hypertarget{spherical__navier__stokes__elements_8h_source_l00503}00503 \textcolor{comment}{    ///  Compute the diagonal of the velocity/pressure mass matrices.}}
+\DoxyCodeLine{\Hypertarget{spherical__navier__stokes__elements_8h_source_l00503}00503 \textcolor{comment}{    /// Compute the diagonal of the velocity/pressure mass matrices.}}
 \DoxyCodeLine{\Hypertarget{spherical__navier__stokes__elements_8h_source_l00504}00504 \textcolor{comment}{    /// If which one=0, both are computed, otherwise only the pressure}}
 \DoxyCodeLine{\Hypertarget{spherical__navier__stokes__elements_8h_source_l00505}00505 \textcolor{comment}{    /// (which\_one=1) or the velocity mass matrix (which\_one=2 -\/-\/ the}}
 \DoxyCodeLine{\Hypertarget{spherical__navier__stokes__elements_8h_source_l00506}00506 \textcolor{comment}{    /// LSC version of the preconditioner only needs that one)}}
@@ -516,7 +516,7 @@
 \DoxyCodeLine{\Hypertarget{spherical__navier__stokes__elements_8h_source_l00512}00512       \textcolor{keyword}{const} \textcolor{keywordtype}{unsigned}\& which\_one = 0);}
 \DoxyCodeLine{\Hypertarget{spherical__navier__stokes__elements_8h_source_l00513}00513 }
 \DoxyCodeLine{\Hypertarget{spherical__navier__stokes__elements_8h_source_l00514}00514 \textcolor{comment}{}}
-\DoxyCodeLine{\Hypertarget{spherical__navier__stokes__elements_8h_source_l00515}00515 \textcolor{comment}{    ///  Output function: x,y,[z],u,v,[w],p}}
+\DoxyCodeLine{\Hypertarget{spherical__navier__stokes__elements_8h_source_l00515}00515 \textcolor{comment}{    /// Output function: x,y,[z],u,v,[w],p}}
 \DoxyCodeLine{\Hypertarget{spherical__navier__stokes__elements_8h_source_l00516}00516 \textcolor{comment}{    /// in tecplot format. Default number of plot points}}
 \DoxyCodeLine{\Hypertarget{spherical__navier__stokes__elements_8h_source_l00517}\mbox{\hyperlink{classoomph_1_1SphericalNavierStokesEquations_a1d08588d3d9462de04d447506af5cdd5}{00517}} \textcolor{comment}{}    \textcolor{keywordtype}{void} \mbox{\hyperlink{classoomph_1_1SphericalNavierStokesEquations_a1d08588d3d9462de04d447506af5cdd5}{output}}(std::ostream\& outfile)}
 \DoxyCodeLine{\Hypertarget{spherical__navier__stokes__elements_8h_source_l00518}00518     \{}
@@ -524,11 +524,11 @@
 \DoxyCodeLine{\Hypertarget{spherical__navier__stokes__elements_8h_source_l00520}00520       \mbox{\hyperlink{classoomph_1_1SphericalNavierStokesEquations_a1d08588d3d9462de04d447506af5cdd5}{output}}(outfile, nplot);}
 \DoxyCodeLine{\Hypertarget{spherical__navier__stokes__elements_8h_source_l00521}00521     \}}
 \DoxyCodeLine{\Hypertarget{spherical__navier__stokes__elements_8h_source_l00522}00522 \textcolor{comment}{}}
-\DoxyCodeLine{\Hypertarget{spherical__navier__stokes__elements_8h_source_l00523}00523 \textcolor{comment}{    ///  Output function: x,y,[z],u,v,[w],p}}
+\DoxyCodeLine{\Hypertarget{spherical__navier__stokes__elements_8h_source_l00523}00523 \textcolor{comment}{    /// Output function: x,y,[z],u,v,[w],p}}
 \DoxyCodeLine{\Hypertarget{spherical__navier__stokes__elements_8h_source_l00524}00524 \textcolor{comment}{    /// in tecplot format. nplot points in each coordinate direction}}
 \DoxyCodeLine{\Hypertarget{spherical__navier__stokes__elements_8h_source_l00525}00525 \textcolor{comment}{}    \textcolor{keywordtype}{void} \mbox{\hyperlink{classoomph_1_1SphericalNavierStokesEquations_a1d08588d3d9462de04d447506af5cdd5}{output}}(std::ostream\& outfile, \textcolor{keyword}{const} \textcolor{keywordtype}{unsigned}\& nplot);}
 \DoxyCodeLine{\Hypertarget{spherical__navier__stokes__elements_8h_source_l00526}00526 \textcolor{comment}{}}
-\DoxyCodeLine{\Hypertarget{spherical__navier__stokes__elements_8h_source_l00527}00527 \textcolor{comment}{    ///  C-\/style output function: x,y,[z],u,v,[w],p}}
+\DoxyCodeLine{\Hypertarget{spherical__navier__stokes__elements_8h_source_l00527}00527 \textcolor{comment}{    /// C-\/style output function: x,y,[z],u,v,[w],p}}
 \DoxyCodeLine{\Hypertarget{spherical__navier__stokes__elements_8h_source_l00528}00528 \textcolor{comment}{    /// in tecplot format. Default number of plot points}}
 \DoxyCodeLine{\Hypertarget{spherical__navier__stokes__elements_8h_source_l00529}\mbox{\hyperlink{classoomph_1_1SphericalNavierStokesEquations_a76ad2e32bc8d2efa6242e78ea66076ed}{00529}} \textcolor{comment}{}    \textcolor{keywordtype}{void} \mbox{\hyperlink{classoomph_1_1SphericalNavierStokesEquations_a76ad2e32bc8d2efa6242e78ea66076ed}{output}}(FILE* file\_pt)}
 \DoxyCodeLine{\Hypertarget{spherical__navier__stokes__elements_8h_source_l00530}00530     \{}
@@ -536,11 +536,11 @@
 \DoxyCodeLine{\Hypertarget{spherical__navier__stokes__elements_8h_source_l00532}00532       \mbox{\hyperlink{classoomph_1_1SphericalNavierStokesEquations_a1d08588d3d9462de04d447506af5cdd5}{output}}(file\_pt, nplot);}
 \DoxyCodeLine{\Hypertarget{spherical__navier__stokes__elements_8h_source_l00533}00533     \}}
 \DoxyCodeLine{\Hypertarget{spherical__navier__stokes__elements_8h_source_l00534}00534 \textcolor{comment}{}}
-\DoxyCodeLine{\Hypertarget{spherical__navier__stokes__elements_8h_source_l00535}00535 \textcolor{comment}{    ///  C-\/style output function: x,y,[z],u,v,[w],p}}
+\DoxyCodeLine{\Hypertarget{spherical__navier__stokes__elements_8h_source_l00535}00535 \textcolor{comment}{    /// C-\/style output function: x,y,[z],u,v,[w],p}}
 \DoxyCodeLine{\Hypertarget{spherical__navier__stokes__elements_8h_source_l00536}00536 \textcolor{comment}{    /// in tecplot format. nplot points in each coordinate direction}}
 \DoxyCodeLine{\Hypertarget{spherical__navier__stokes__elements_8h_source_l00537}00537 \textcolor{comment}{}    \textcolor{keywordtype}{void} \mbox{\hyperlink{classoomph_1_1SphericalNavierStokesEquations_a1d08588d3d9462de04d447506af5cdd5}{output}}(FILE* file\_pt, \textcolor{keyword}{const} \textcolor{keywordtype}{unsigned}\& nplot);}
 \DoxyCodeLine{\Hypertarget{spherical__navier__stokes__elements_8h_source_l00538}00538 \textcolor{comment}{}}
-\DoxyCodeLine{\Hypertarget{spherical__navier__stokes__elements_8h_source_l00539}00539 \textcolor{comment}{    ///  Full output function:}}
+\DoxyCodeLine{\Hypertarget{spherical__navier__stokes__elements_8h_source_l00539}00539 \textcolor{comment}{    /// Full output function:}}
 \DoxyCodeLine{\Hypertarget{spherical__navier__stokes__elements_8h_source_l00540}00540 \textcolor{comment}{    /// x,y,[z],u,v,[w],p,du/dt,dv/dt,[dw/dt],dissipation}}
 \DoxyCodeLine{\Hypertarget{spherical__navier__stokes__elements_8h_source_l00541}00541 \textcolor{comment}{    /// in tecplot format. Default number of plot points}}
 \DoxyCodeLine{\Hypertarget{spherical__navier__stokes__elements_8h_source_l00542}\mbox{\hyperlink{classoomph_1_1SphericalNavierStokesEquations_a2dfa5e66ae9d2e0b2464e18cd9b55beb}{00542}} \textcolor{comment}{}    \textcolor{keywordtype}{void} \mbox{\hyperlink{classoomph_1_1SphericalNavierStokesEquations_a2dfa5e66ae9d2e0b2464e18cd9b55beb}{full\_output}}(std::ostream\& outfile)}
@@ -549,13 +549,13 @@
 \DoxyCodeLine{\Hypertarget{spherical__navier__stokes__elements_8h_source_l00545}00545       \mbox{\hyperlink{classoomph_1_1SphericalNavierStokesEquations_a2dfa5e66ae9d2e0b2464e18cd9b55beb}{full\_output}}(outfile, nplot);}
 \DoxyCodeLine{\Hypertarget{spherical__navier__stokes__elements_8h_source_l00546}00546     \}}
 \DoxyCodeLine{\Hypertarget{spherical__navier__stokes__elements_8h_source_l00547}00547 \textcolor{comment}{}}
-\DoxyCodeLine{\Hypertarget{spherical__navier__stokes__elements_8h_source_l00548}00548 \textcolor{comment}{    ///  Full output function:}}
+\DoxyCodeLine{\Hypertarget{spherical__navier__stokes__elements_8h_source_l00548}00548 \textcolor{comment}{    /// Full output function:}}
 \DoxyCodeLine{\Hypertarget{spherical__navier__stokes__elements_8h_source_l00549}00549 \textcolor{comment}{    /// x,y,[z],u,v,[w],p,du/dt,dv/dt,[dw/dt],dissipation}}
 \DoxyCodeLine{\Hypertarget{spherical__navier__stokes__elements_8h_source_l00550}00550 \textcolor{comment}{    /// in tecplot format. nplot points in each coordinate direction}}
 \DoxyCodeLine{\Hypertarget{spherical__navier__stokes__elements_8h_source_l00551}00551 \textcolor{comment}{}    \textcolor{keywordtype}{void} \mbox{\hyperlink{classoomph_1_1SphericalNavierStokesEquations_a2dfa5e66ae9d2e0b2464e18cd9b55beb}{full\_output}}(std::ostream\& outfile, \textcolor{keyword}{const} \textcolor{keywordtype}{unsigned}\& nplot);}
 \DoxyCodeLine{\Hypertarget{spherical__navier__stokes__elements_8h_source_l00552}00552 }
 \DoxyCodeLine{\Hypertarget{spherical__navier__stokes__elements_8h_source_l00553}00553 \textcolor{comment}{}}
-\DoxyCodeLine{\Hypertarget{spherical__navier__stokes__elements_8h_source_l00554}00554 \textcolor{comment}{    ///  Output function: x,y,[z],u,v,[w] in tecplot format.}}
+\DoxyCodeLine{\Hypertarget{spherical__navier__stokes__elements_8h_source_l00554}00554 \textcolor{comment}{    /// Output function: x,y,[z],u,v,[w] in tecplot format.}}
 \DoxyCodeLine{\Hypertarget{spherical__navier__stokes__elements_8h_source_l00555}00555 \textcolor{comment}{    /// nplot points in each coordinate direction at timestep t}}
 \DoxyCodeLine{\Hypertarget{spherical__navier__stokes__elements_8h_source_l00556}00556 \textcolor{comment}{    /// (t=0: present; t>0: previous timestep)}}
 \DoxyCodeLine{\Hypertarget{spherical__navier__stokes__elements_8h_source_l00557}00557 \textcolor{comment}{}    \textcolor{keywordtype}{void} \mbox{\hyperlink{classoomph_1_1SphericalNavierStokesEquations_ae9b06a27652654ad42dc9882399e9374}{output\_veloc}}(std::ostream\& outfile,}
@@ -563,18 +563,18 @@
 \DoxyCodeLine{\Hypertarget{spherical__navier__stokes__elements_8h_source_l00559}00559                       \textcolor{keyword}{const} \textcolor{keywordtype}{unsigned}\& \mbox{\hyperlink{cfortran_8h_af6f0bd3dc13317f895c91323c25c2b8f}{t}});}
 \DoxyCodeLine{\Hypertarget{spherical__navier__stokes__elements_8h_source_l00560}00560 }
 \DoxyCodeLine{\Hypertarget{spherical__navier__stokes__elements_8h_source_l00561}00561 \textcolor{comment}{}}
-\DoxyCodeLine{\Hypertarget{spherical__navier__stokes__elements_8h_source_l00562}00562 \textcolor{comment}{    ///  Output function: x,y,[z], [omega\_x,omega\_y,[and/or omega\_z]]}}
+\DoxyCodeLine{\Hypertarget{spherical__navier__stokes__elements_8h_source_l00562}00562 \textcolor{comment}{    /// Output function: x,y,[z], [omega\_x,omega\_y,[and/or omega\_z]]}}
 \DoxyCodeLine{\Hypertarget{spherical__navier__stokes__elements_8h_source_l00563}00563 \textcolor{comment}{    /// in tecplot format. nplot points in each coordinate direction}}
 \DoxyCodeLine{\Hypertarget{spherical__navier__stokes__elements_8h_source_l00564}00564 \textcolor{comment}{}    \textcolor{keywordtype}{void} \mbox{\hyperlink{classoomph_1_1SphericalNavierStokesEquations_aa3c32bb2312a5bc8be5b164fb1631dac}{output\_vorticity}}(std::ostream\& outfile, \textcolor{keyword}{const} \textcolor{keywordtype}{unsigned}\& nplot);}
 \DoxyCodeLine{\Hypertarget{spherical__navier__stokes__elements_8h_source_l00565}00565 \textcolor{comment}{}}
-\DoxyCodeLine{\Hypertarget{spherical__navier__stokes__elements_8h_source_l00566}00566 \textcolor{comment}{    ///  Output exact solution specified via function pointer}}
+\DoxyCodeLine{\Hypertarget{spherical__navier__stokes__elements_8h_source_l00566}00566 \textcolor{comment}{    /// Output exact solution specified via function pointer}}
 \DoxyCodeLine{\Hypertarget{spherical__navier__stokes__elements_8h_source_l00567}00567 \textcolor{comment}{    /// at a given number of plot points. Function prints as}}
 \DoxyCodeLine{\Hypertarget{spherical__navier__stokes__elements_8h_source_l00568}00568 \textcolor{comment}{    /// many components as are returned in solution Vector}}
 \DoxyCodeLine{\Hypertarget{spherical__navier__stokes__elements_8h_source_l00569}00569 \textcolor{comment}{}    \textcolor{keywordtype}{void} \mbox{\hyperlink{classoomph_1_1SphericalNavierStokesEquations_aa273df1ad9fe7cebb284bdae8b7e1a21}{output\_fct}}(std::ostream\& outfile,}
 \DoxyCodeLine{\Hypertarget{spherical__navier__stokes__elements_8h_source_l00570}00570                     \textcolor{keyword}{const} \textcolor{keywordtype}{unsigned}\& nplot,}
 \DoxyCodeLine{\Hypertarget{spherical__navier__stokes__elements_8h_source_l00571}00571                     \mbox{\hyperlink{classoomph_1_1FiniteElement_a690fd33af26cc3e84f39bba6d5a85202}{FiniteElement::SteadyExactSolutionFctPt}} exact\_soln\_pt);}
 \DoxyCodeLine{\Hypertarget{spherical__navier__stokes__elements_8h_source_l00572}00572 \textcolor{comment}{}}
-\DoxyCodeLine{\Hypertarget{spherical__navier__stokes__elements_8h_source_l00573}00573 \textcolor{comment}{    ///  Output exact solution specified via function pointer}}
+\DoxyCodeLine{\Hypertarget{spherical__navier__stokes__elements_8h_source_l00573}00573 \textcolor{comment}{    /// Output exact solution specified via function pointer}}
 \DoxyCodeLine{\Hypertarget{spherical__navier__stokes__elements_8h_source_l00574}00574 \textcolor{comment}{    /// at a given time and at a given number of plot points.}}
 \DoxyCodeLine{\Hypertarget{spherical__navier__stokes__elements_8h_source_l00575}00575 \textcolor{comment}{    /// Function prints as many components as are returned in solution Vector.}}
 \DoxyCodeLine{\Hypertarget{spherical__navier__stokes__elements_8h_source_l00576}00576 \textcolor{comment}{}    \textcolor{keywordtype}{void} \mbox{\hyperlink{classoomph_1_1SphericalNavierStokesEquations_aa273df1ad9fe7cebb284bdae8b7e1a21}{output\_fct}}(std::ostream\& outfile,}
@@ -582,7 +582,7 @@
 \DoxyCodeLine{\Hypertarget{spherical__navier__stokes__elements_8h_source_l00578}00578                     \textcolor{keyword}{const} \textcolor{keywordtype}{double}\& time,}
 \DoxyCodeLine{\Hypertarget{spherical__navier__stokes__elements_8h_source_l00579}00579                     \mbox{\hyperlink{classoomph_1_1FiniteElement_ad4ecf2b61b158a4b4d351a60d23c633e}{FiniteElement::UnsteadyExactSolutionFctPt}} exact\_soln\_pt);}
 \DoxyCodeLine{\Hypertarget{spherical__navier__stokes__elements_8h_source_l00580}00580 \textcolor{comment}{}}
-\DoxyCodeLine{\Hypertarget{spherical__navier__stokes__elements_8h_source_l00581}00581 \textcolor{comment}{    ///  Validate against exact solution at given time}}
+\DoxyCodeLine{\Hypertarget{spherical__navier__stokes__elements_8h_source_l00581}00581 \textcolor{comment}{    /// Validate against exact solution at given time}}
 \DoxyCodeLine{\Hypertarget{spherical__navier__stokes__elements_8h_source_l00582}00582 \textcolor{comment}{    /// Solution is provided via function pointer.}}
 \DoxyCodeLine{\Hypertarget{spherical__navier__stokes__elements_8h_source_l00583}00583 \textcolor{comment}{    /// Plot at a given number of plot points and compute L2 error}}
 \DoxyCodeLine{\Hypertarget{spherical__navier__stokes__elements_8h_source_l00584}00584 \textcolor{comment}{    /// and L2 norm of velocity solution over element}}
@@ -592,7 +592,7 @@
 \DoxyCodeLine{\Hypertarget{spherical__navier__stokes__elements_8h_source_l00588}00588                        \textcolor{keywordtype}{double}\& error,}
 \DoxyCodeLine{\Hypertarget{spherical__navier__stokes__elements_8h_source_l00589}00589                        \textcolor{keywordtype}{double}\& norm);}
 \DoxyCodeLine{\Hypertarget{spherical__navier__stokes__elements_8h_source_l00590}00590 \textcolor{comment}{}}
-\DoxyCodeLine{\Hypertarget{spherical__navier__stokes__elements_8h_source_l00591}00591 \textcolor{comment}{    ///  Validate against exact solution.}}
+\DoxyCodeLine{\Hypertarget{spherical__navier__stokes__elements_8h_source_l00591}00591 \textcolor{comment}{    /// Validate against exact solution.}}
 \DoxyCodeLine{\Hypertarget{spherical__navier__stokes__elements_8h_source_l00592}00592 \textcolor{comment}{    /// Solution is provided via function pointer.}}
 \DoxyCodeLine{\Hypertarget{spherical__navier__stokes__elements_8h_source_l00593}00593 \textcolor{comment}{    /// Plot at a given number of plot points and compute L2 error}}
 \DoxyCodeLine{\Hypertarget{spherical__navier__stokes__elements_8h_source_l00594}00594 \textcolor{comment}{    /// and L2 norm of velocity solution over element}}
@@ -827,7 +827,7 @@
 \DoxyCodeLine{\Hypertarget{spherical__navier__stokes__elements_8h_source_l00823}\mbox{\hyperlink{classoomph_1_1QSphericalCrouzeixRaviartElement_afe49582c1bb7d3b8adb0593baf75f228}{00823}} \textcolor{comment}{}    \textcolor{keywordtype}{unsigned} \mbox{\hyperlink{classoomph_1_1QSphericalCrouzeixRaviartElement_afe49582c1bb7d3b8adb0593baf75f228}{P\_spherical\_nst\_internal\_index}};}
 \DoxyCodeLine{\Hypertarget{spherical__navier__stokes__elements_8h_source_l00824}00824 }
 \DoxyCodeLine{\Hypertarget{spherical__navier__stokes__elements_8h_source_l00825}00825 \textcolor{comment}{}}
-\DoxyCodeLine{\Hypertarget{spherical__navier__stokes__elements_8h_source_l00826}00826 \textcolor{comment}{    ///  Velocity shape and test functions and their derivs}}
+\DoxyCodeLine{\Hypertarget{spherical__navier__stokes__elements_8h_source_l00826}00826 \textcolor{comment}{    /// Velocity shape and test functions and their derivs}}
 \DoxyCodeLine{\Hypertarget{spherical__navier__stokes__elements_8h_source_l00827}00827 \textcolor{comment}{    /// w.r.t. to global coords  at local coordinate s (taken from geometry)}}
 \DoxyCodeLine{\Hypertarget{spherical__navier__stokes__elements_8h_source_l00828}00828 \textcolor{comment}{    /// Return Jacobian of mapping between local and global coordinates.}}
 \DoxyCodeLine{\Hypertarget{spherical__navier__stokes__elements_8h_source_l00829}00829 \textcolor{comment}{}    \textcolor{keyword}{inline} \textcolor{keywordtype}{double} \mbox{\hyperlink{classoomph_1_1QSphericalCrouzeixRaviartElement_afee40460a2cfad52d95fc9681c8d6a12}{dshape\_and\_dtest\_eulerian\_spherical\_nst}}(}
@@ -837,7 +837,7 @@
 \DoxyCodeLine{\Hypertarget{spherical__navier__stokes__elements_8h_source_l00833}00833       \mbox{\hyperlink{classoomph_1_1Shape}{Shape}}\& test,}
 \DoxyCodeLine{\Hypertarget{spherical__navier__stokes__elements_8h_source_l00834}00834       \mbox{\hyperlink{classoomph_1_1DShape}{DShape}}\& dtestdx) \textcolor{keyword}{const};}
 \DoxyCodeLine{\Hypertarget{spherical__navier__stokes__elements_8h_source_l00835}00835 \textcolor{comment}{}}
-\DoxyCodeLine{\Hypertarget{spherical__navier__stokes__elements_8h_source_l00836}00836 \textcolor{comment}{    ///  Velocity shape and test functions and their derivs}}
+\DoxyCodeLine{\Hypertarget{spherical__navier__stokes__elements_8h_source_l00836}00836 \textcolor{comment}{    /// Velocity shape and test functions and their derivs}}
 \DoxyCodeLine{\Hypertarget{spherical__navier__stokes__elements_8h_source_l00837}00837 \textcolor{comment}{    /// w.r.t. to global coords at ipt-\/th integation point (taken from geometry)}}
 \DoxyCodeLine{\Hypertarget{spherical__navier__stokes__elements_8h_source_l00838}00838 \textcolor{comment}{    /// Return Jacobian of mapping between local and global coordinates.}}
 \DoxyCodeLine{\Hypertarget{spherical__navier__stokes__elements_8h_source_l00839}00839 \textcolor{comment}{}    \textcolor{keyword}{inline} \textcolor{keywordtype}{double} \mbox{\hyperlink{classoomph_1_1QSphericalCrouzeixRaviartElement_a75cdf25c724edcd05b37f5bc2c29e903}{dshape\_and\_dtest\_eulerian\_at\_knot\_spherical\_nst}}(}
@@ -871,14 +871,14 @@
 \DoxyCodeLine{\Hypertarget{spherical__navier__stokes__elements_8h_source_l00867}00867       \mbox{\hyperlink{classoomph_1_1QSphericalCrouzeixRaviartElement_afe49582c1bb7d3b8adb0593baf75f228}{P\_spherical\_nst\_internal\_index}} = this-\/>\mbox{\hyperlink{classoomph_1_1GeneralisedElement_a36571ae9c4b6d2a26c36004e5be88389}{add\_internal\_data}}(\textcolor{keyword}{new} \mbox{\hyperlink{classoomph_1_1Data}{Data}}(3));}
 \DoxyCodeLine{\Hypertarget{spherical__navier__stokes__elements_8h_source_l00868}00868     \}}
 \DoxyCodeLine{\Hypertarget{spherical__navier__stokes__elements_8h_source_l00869}00869 \textcolor{comment}{}}
-\DoxyCodeLine{\Hypertarget{spherical__navier__stokes__elements_8h_source_l00870}00870 \textcolor{comment}{    ///  Number of values (pinned or dofs) required at local node n.}}
+\DoxyCodeLine{\Hypertarget{spherical__navier__stokes__elements_8h_source_l00870}00870 \textcolor{comment}{    /// Number of values (pinned or dofs) required at local node n.}}
 \DoxyCodeLine{\Hypertarget{spherical__navier__stokes__elements_8h_source_l00871}\mbox{\hyperlink{classoomph_1_1QSphericalCrouzeixRaviartElement_a75ba69f53af20c9f240856d105bc12ea}{00871}} \textcolor{comment}{}    \textcolor{keyword}{inline} \textcolor{keywordtype}{unsigned} \mbox{\hyperlink{classoomph_1_1QSphericalCrouzeixRaviartElement_a75ba69f53af20c9f240856d105bc12ea}{required\_nvalue}}(\textcolor{keyword}{const} \textcolor{keywordtype}{unsigned}\& n)\textcolor{keyword}{ const}}
 \DoxyCodeLine{\Hypertarget{spherical__navier__stokes__elements_8h_source_l00872}00872 \textcolor{keyword}{    }\{}
 \DoxyCodeLine{\Hypertarget{spherical__navier__stokes__elements_8h_source_l00873}00873       \textcolor{keywordflow}{return} 3;}
 \DoxyCodeLine{\Hypertarget{spherical__navier__stokes__elements_8h_source_l00874}00874     \}}
 \DoxyCodeLine{\Hypertarget{spherical__navier__stokes__elements_8h_source_l00875}00875 }
 \DoxyCodeLine{\Hypertarget{spherical__navier__stokes__elements_8h_source_l00876}00876 \textcolor{comment}{}}
-\DoxyCodeLine{\Hypertarget{spherical__navier__stokes__elements_8h_source_l00877}00877 \textcolor{comment}{    ///  Return the i-\/th pressure value}}
+\DoxyCodeLine{\Hypertarget{spherical__navier__stokes__elements_8h_source_l00877}00877 \textcolor{comment}{    /// Return the i-\/th pressure value}}
 \DoxyCodeLine{\Hypertarget{spherical__navier__stokes__elements_8h_source_l00878}00878 \textcolor{comment}{    /// (Discontinous pressure interpolation -\/-\/ no need to cater for hanging}}
 \DoxyCodeLine{\Hypertarget{spherical__navier__stokes__elements_8h_source_l00879}00879 \textcolor{comment}{    /// nodes).}}
 \DoxyCodeLine{\Hypertarget{spherical__navier__stokes__elements_8h_source_l00880}\mbox{\hyperlink{classoomph_1_1QSphericalCrouzeixRaviartElement_a793d90652542ffffade39aaf25f9cc4c}{00880}} \textcolor{comment}{}    \textcolor{keywordtype}{double} \mbox{\hyperlink{classoomph_1_1QSphericalCrouzeixRaviartElement_a793d90652542ffffade39aaf25f9cc4c}{p\_spherical\_nst}}(\textcolor{keyword}{const} \textcolor{keywordtype}{unsigned}\& \mbox{\hyperlink{cfortran_8h_adb50e893b86b3e55e751a42eab3cba82}{i}})\textcolor{keyword}{ const}}
@@ -900,7 +900,7 @@
 \DoxyCodeLine{\Hypertarget{spherical__navier__stokes__elements_8h_source_l00896}00896         -\/>\mbox{\hyperlink{classoomph_1_1Data_a7289ca322725c6fd493970a19474b382}{set\_value}}(p\_dof, p\_value);}
 \DoxyCodeLine{\Hypertarget{spherical__navier__stokes__elements_8h_source_l00897}00897     \}}
 \DoxyCodeLine{\Hypertarget{spherical__navier__stokes__elements_8h_source_l00898}00898 \textcolor{comment}{}}
-\DoxyCodeLine{\Hypertarget{spherical__navier__stokes__elements_8h_source_l00899}00899 \textcolor{comment}{    ///   Add to the set \(\backslash\)c paired\_load\_data pairs containing}}
+\DoxyCodeLine{\Hypertarget{spherical__navier__stokes__elements_8h_source_l00899}00899 \textcolor{comment}{    ///  Add to the set \(\backslash\)c paired\_load\_data pairs containing}}
 \DoxyCodeLine{\Hypertarget{spherical__navier__stokes__elements_8h_source_l00900}00900 \textcolor{comment}{    /// -\/ the pointer to a Data object}}
 \DoxyCodeLine{\Hypertarget{spherical__navier__stokes__elements_8h_source_l00901}00901 \textcolor{comment}{    /// and}}
 \DoxyCodeLine{\Hypertarget{spherical__navier__stokes__elements_8h_source_l00902}00902 \textcolor{comment}{    /// -\/ the index of the value in that Data object}}
@@ -910,7 +910,7 @@
 \DoxyCodeLine{\Hypertarget{spherical__navier__stokes__elements_8h_source_l00906}00906 \textcolor{comment}{}    \textcolor{keywordtype}{void} \mbox{\hyperlink{classoomph_1_1QSphericalCrouzeixRaviartElement_a3ef0fa0d09e3a9e495f348801723d549}{identify\_load\_data}}(}
 \DoxyCodeLine{\Hypertarget{spherical__navier__stokes__elements_8h_source_l00907}00907       std::set<std::pair<Data*, unsigned>>\& paired\_load\_data);}
 \DoxyCodeLine{\Hypertarget{spherical__navier__stokes__elements_8h_source_l00908}00908 \textcolor{comment}{}}
-\DoxyCodeLine{\Hypertarget{spherical__navier__stokes__elements_8h_source_l00909}00909 \textcolor{comment}{    ///   Add to the set \(\backslash\)c paired\_pressure\_data pairs containing}}
+\DoxyCodeLine{\Hypertarget{spherical__navier__stokes__elements_8h_source_l00909}00909 \textcolor{comment}{    ///  Add to the set \(\backslash\)c paired\_pressure\_data pairs containing}}
 \DoxyCodeLine{\Hypertarget{spherical__navier__stokes__elements_8h_source_l00910}00910 \textcolor{comment}{    /// -\/ the pointer to a Data object}}
 \DoxyCodeLine{\Hypertarget{spherical__navier__stokes__elements_8h_source_l00911}00911 \textcolor{comment}{    /// and}}
 \DoxyCodeLine{\Hypertarget{spherical__navier__stokes__elements_8h_source_l00912}00912 \textcolor{comment}{    /// -\/ the index of the value in that Data object}}
@@ -946,7 +946,7 @@
 \DoxyCodeLine{\Hypertarget{spherical__navier__stokes__elements_8h_source_l00942}00942     \}}
 \DoxyCodeLine{\Hypertarget{spherical__navier__stokes__elements_8h_source_l00943}00943 }
 \DoxyCodeLine{\Hypertarget{spherical__navier__stokes__elements_8h_source_l00944}00944 \textcolor{comment}{}}
-\DoxyCodeLine{\Hypertarget{spherical__navier__stokes__elements_8h_source_l00945}00945 \textcolor{comment}{    ///  Full output function:}}
+\DoxyCodeLine{\Hypertarget{spherical__navier__stokes__elements_8h_source_l00945}00945 \textcolor{comment}{    /// Full output function:}}
 \DoxyCodeLine{\Hypertarget{spherical__navier__stokes__elements_8h_source_l00946}00946 \textcolor{comment}{    /// x,y,[z],u,v,[w],p,du/dt,dv/dt,[dw/dt],dissipation}}
 \DoxyCodeLine{\Hypertarget{spherical__navier__stokes__elements_8h_source_l00947}00947 \textcolor{comment}{    /// in tecplot format. Default number of plot points}}
 \DoxyCodeLine{\Hypertarget{spherical__navier__stokes__elements_8h_source_l00948}\mbox{\hyperlink{classoomph_1_1QSphericalCrouzeixRaviartElement_a777870285a6b1534bdeb8075fcad2299}{00948}} \textcolor{comment}{}    \textcolor{keywordtype}{void} \mbox{\hyperlink{classoomph_1_1QSphericalCrouzeixRaviartElement_a777870285a6b1534bdeb8075fcad2299}{full\_output}}(std::ostream\& outfile)}
@@ -954,7 +954,7 @@
 \DoxyCodeLine{\Hypertarget{spherical__navier__stokes__elements_8h_source_l00950}00950       \mbox{\hyperlink{classoomph_1_1SphericalNavierStokesEquations_a2dfa5e66ae9d2e0b2464e18cd9b55beb}{SphericalNavierStokesEquations::full\_output}}(outfile);}
 \DoxyCodeLine{\Hypertarget{spherical__navier__stokes__elements_8h_source_l00951}00951     \}}
 \DoxyCodeLine{\Hypertarget{spherical__navier__stokes__elements_8h_source_l00952}00952 \textcolor{comment}{}}
-\DoxyCodeLine{\Hypertarget{spherical__navier__stokes__elements_8h_source_l00953}00953 \textcolor{comment}{    ///  Full output function:}}
+\DoxyCodeLine{\Hypertarget{spherical__navier__stokes__elements_8h_source_l00953}00953 \textcolor{comment}{    /// Full output function:}}
 \DoxyCodeLine{\Hypertarget{spherical__navier__stokes__elements_8h_source_l00954}00954 \textcolor{comment}{    /// x,y,[z],u,v,[w],p,du/dt,dv/dt,[dw/dt],dissipation}}
 \DoxyCodeLine{\Hypertarget{spherical__navier__stokes__elements_8h_source_l00955}00955 \textcolor{comment}{    /// in tecplot format. nplot points in each coordinate direction}}
 \DoxyCodeLine{\Hypertarget{spherical__navier__stokes__elements_8h_source_l00956}\mbox{\hyperlink{classoomph_1_1QSphericalCrouzeixRaviartElement_a1e6532c250abfc46f2c24d2ccfdcfaaa}{00956}} \textcolor{comment}{}    \textcolor{keywordtype}{void} \mbox{\hyperlink{classoomph_1_1QSphericalCrouzeixRaviartElement_a1e6532c250abfc46f2c24d2ccfdcfaaa}{full\_output}}(std::ostream\& outfile, \textcolor{keyword}{const} \textcolor{keywordtype}{unsigned}\& nplot)}
@@ -963,14 +963,14 @@
 \DoxyCodeLine{\Hypertarget{spherical__navier__stokes__elements_8h_source_l00959}00959     \}}
 \DoxyCodeLine{\Hypertarget{spherical__navier__stokes__elements_8h_source_l00960}00960 }
 \DoxyCodeLine{\Hypertarget{spherical__navier__stokes__elements_8h_source_l00961}00961 \textcolor{comment}{}}
-\DoxyCodeLine{\Hypertarget{spherical__navier__stokes__elements_8h_source_l00962}00962 \textcolor{comment}{    ///  The number of "{}DOF types"{} that degrees of freedom in this element}}
+\DoxyCodeLine{\Hypertarget{spherical__navier__stokes__elements_8h_source_l00962}00962 \textcolor{comment}{    /// The number of "{}DOF types"{} that degrees of freedom in this element}}
 \DoxyCodeLine{\Hypertarget{spherical__navier__stokes__elements_8h_source_l00963}00963 \textcolor{comment}{    /// are sub-\/divided into: Velocity (three comp) and pressure.}}
 \DoxyCodeLine{\Hypertarget{spherical__navier__stokes__elements_8h_source_l00964}\mbox{\hyperlink{classoomph_1_1QSphericalCrouzeixRaviartElement_af9984dcf9685e350ebb1173a511c9594}{00964}} \textcolor{comment}{}    \textcolor{keywordtype}{unsigned} \mbox{\hyperlink{classoomph_1_1QSphericalCrouzeixRaviartElement_af9984dcf9685e350ebb1173a511c9594}{ndof\_types}}()\textcolor{keyword}{ const}}
 \DoxyCodeLine{\Hypertarget{spherical__navier__stokes__elements_8h_source_l00965}00965 \textcolor{keyword}{    }\{}
 \DoxyCodeLine{\Hypertarget{spherical__navier__stokes__elements_8h_source_l00966}00966       \textcolor{keywordflow}{return} 4;}
 \DoxyCodeLine{\Hypertarget{spherical__navier__stokes__elements_8h_source_l00967}00967     \}}
 \DoxyCodeLine{\Hypertarget{spherical__navier__stokes__elements_8h_source_l00968}00968 \textcolor{comment}{}}
-\DoxyCodeLine{\Hypertarget{spherical__navier__stokes__elements_8h_source_l00969}00969 \textcolor{comment}{    ///  Create a list of pairs for all unknowns in this element,}}
+\DoxyCodeLine{\Hypertarget{spherical__navier__stokes__elements_8h_source_l00969}00969 \textcolor{comment}{    /// Create a list of pairs for all unknowns in this element,}}
 \DoxyCodeLine{\Hypertarget{spherical__navier__stokes__elements_8h_source_l00970}00970 \textcolor{comment}{    /// so that the first entry in each pair contains the global equation}}
 \DoxyCodeLine{\Hypertarget{spherical__navier__stokes__elements_8h_source_l00971}00971 \textcolor{comment}{    /// number of the unknown, while the second one contains the number}}
 \DoxyCodeLine{\Hypertarget{spherical__navier__stokes__elements_8h_source_l00972}00972 \textcolor{comment}{    /// of the "{}DOF type"{} that this unknown is associated with.}}
@@ -1099,11 +1099,11 @@
 \DoxyCodeLine{\Hypertarget{spherical__navier__stokes__elements_8h_source_l01095}\mbox{\hyperlink{classoomph_1_1QSphericalTaylorHoodElement_abdb8b06dabe4d4982ba86b83fc8cd4db}{01095}} \textcolor{comment}{}    \textcolor{keyword}{static} \textcolor{keyword}{const} \textcolor{keywordtype}{unsigned} \mbox{\hyperlink{classoomph_1_1QSphericalTaylorHoodElement_abdb8b06dabe4d4982ba86b83fc8cd4db}{Initial\_Nvalue}}[];}
 \DoxyCodeLine{\Hypertarget{spherical__navier__stokes__elements_8h_source_l01096}01096 }
 \DoxyCodeLine{\Hypertarget{spherical__navier__stokes__elements_8h_source_l01097}01097   \textcolor{keyword}{protected}:\textcolor{comment}{}}
-\DoxyCodeLine{\Hypertarget{spherical__navier__stokes__elements_8h_source_l01098}01098 \textcolor{comment}{    ///  Static array of ints to hold conversion from pressure}}
+\DoxyCodeLine{\Hypertarget{spherical__navier__stokes__elements_8h_source_l01098}01098 \textcolor{comment}{    /// Static array of ints to hold conversion from pressure}}
 \DoxyCodeLine{\Hypertarget{spherical__navier__stokes__elements_8h_source_l01099}01099 \textcolor{comment}{    /// node numbers to actual node numbers}}
 \DoxyCodeLine{\Hypertarget{spherical__navier__stokes__elements_8h_source_l01100}\mbox{\hyperlink{classoomph_1_1QSphericalTaylorHoodElement_af1726837de58e680ce2629e4281e4432}{01100}} \textcolor{comment}{}    \textcolor{keyword}{static} \textcolor{keyword}{const} \textcolor{keywordtype}{unsigned} \mbox{\hyperlink{classoomph_1_1QSphericalTaylorHoodElement_af1726837de58e680ce2629e4281e4432}{Pconv}}[];}
 \DoxyCodeLine{\Hypertarget{spherical__navier__stokes__elements_8h_source_l01101}01101 \textcolor{comment}{}}
-\DoxyCodeLine{\Hypertarget{spherical__navier__stokes__elements_8h_source_l01102}01102 \textcolor{comment}{    ///  Velocity shape and test functions and their derivs}}
+\DoxyCodeLine{\Hypertarget{spherical__navier__stokes__elements_8h_source_l01102}01102 \textcolor{comment}{    /// Velocity shape and test functions and their derivs}}
 \DoxyCodeLine{\Hypertarget{spherical__navier__stokes__elements_8h_source_l01103}01103 \textcolor{comment}{    /// w.r.t. to global coords  at local coordinate s (taken from geometry)}}
 \DoxyCodeLine{\Hypertarget{spherical__navier__stokes__elements_8h_source_l01104}01104 \textcolor{comment}{    /// Return Jacobian of mapping between local and global coordinates.}}
 \DoxyCodeLine{\Hypertarget{spherical__navier__stokes__elements_8h_source_l01105}01105 \textcolor{comment}{}    \textcolor{keyword}{inline} \textcolor{keywordtype}{double} \mbox{\hyperlink{classoomph_1_1QSphericalTaylorHoodElement_ad6ac4efe30e2d18801f17f000db47a25}{dshape\_and\_dtest\_eulerian\_spherical\_nst}}(}
@@ -1113,7 +1113,7 @@
 \DoxyCodeLine{\Hypertarget{spherical__navier__stokes__elements_8h_source_l01109}01109       \mbox{\hyperlink{classoomph_1_1Shape}{Shape}}\& test,}
 \DoxyCodeLine{\Hypertarget{spherical__navier__stokes__elements_8h_source_l01110}01110       \mbox{\hyperlink{classoomph_1_1DShape}{DShape}}\& dtestdx) \textcolor{keyword}{const};}
 \DoxyCodeLine{\Hypertarget{spherical__navier__stokes__elements_8h_source_l01111}01111 \textcolor{comment}{}}
-\DoxyCodeLine{\Hypertarget{spherical__navier__stokes__elements_8h_source_l01112}01112 \textcolor{comment}{    ///  Velocity shape and test functions and their derivs}}
+\DoxyCodeLine{\Hypertarget{spherical__navier__stokes__elements_8h_source_l01112}01112 \textcolor{comment}{    /// Velocity shape and test functions and their derivs}}
 \DoxyCodeLine{\Hypertarget{spherical__navier__stokes__elements_8h_source_l01113}01113 \textcolor{comment}{    /// w.r.t. to global coords  at local coordinate s (taken from geometry)}}
 \DoxyCodeLine{\Hypertarget{spherical__navier__stokes__elements_8h_source_l01114}01114 \textcolor{comment}{    /// Return Jacobian of mapping between local and global coordinates.}}
 \DoxyCodeLine{\Hypertarget{spherical__navier__stokes__elements_8h_source_l01115}01115 \textcolor{comment}{}    \textcolor{keyword}{inline} \textcolor{keywordtype}{double} \mbox{\hyperlink{classoomph_1_1QSphericalTaylorHoodElement_accf74eeba4a63dff1ca12048b751fed2}{dshape\_and\_dtest\_eulerian\_at\_knot\_spherical\_nst}}(}
@@ -1144,21 +1144,21 @@
 \DoxyCodeLine{\Hypertarget{spherical__navier__stokes__elements_8h_source_l01140}01140     \{}
 \DoxyCodeLine{\Hypertarget{spherical__navier__stokes__elements_8h_source_l01141}01141     \}}
 \DoxyCodeLine{\Hypertarget{spherical__navier__stokes__elements_8h_source_l01142}01142 \textcolor{comment}{}}
-\DoxyCodeLine{\Hypertarget{spherical__navier__stokes__elements_8h_source_l01143}01143 \textcolor{comment}{    ///  Number of values (pinned or dofs) required at node n. Can}}
+\DoxyCodeLine{\Hypertarget{spherical__navier__stokes__elements_8h_source_l01143}01143 \textcolor{comment}{    /// Number of values (pinned or dofs) required at node n. Can}}
 \DoxyCodeLine{\Hypertarget{spherical__navier__stokes__elements_8h_source_l01144}01144 \textcolor{comment}{    /// be overwritten for hanging node version}}
 \DoxyCodeLine{\Hypertarget{spherical__navier__stokes__elements_8h_source_l01145}\mbox{\hyperlink{classoomph_1_1QSphericalTaylorHoodElement_a900be4fc6f5710905e8f562ca5a76c3d}{01145}} \textcolor{comment}{}    \textcolor{keyword}{inline} \textcolor{keyword}{virtual} \textcolor{keywordtype}{unsigned} \mbox{\hyperlink{classoomph_1_1QSphericalTaylorHoodElement_a900be4fc6f5710905e8f562ca5a76c3d}{required\_nvalue}}(\textcolor{keyword}{const} \textcolor{keywordtype}{unsigned}\& n)\textcolor{keyword}{ const}}
 \DoxyCodeLine{\Hypertarget{spherical__navier__stokes__elements_8h_source_l01146}01146 \textcolor{keyword}{    }\{}
 \DoxyCodeLine{\Hypertarget{spherical__navier__stokes__elements_8h_source_l01147}01147       \textcolor{keywordflow}{return} \mbox{\hyperlink{classoomph_1_1QSphericalTaylorHoodElement_abdb8b06dabe4d4982ba86b83fc8cd4db}{Initial\_Nvalue}}[n];}
 \DoxyCodeLine{\Hypertarget{spherical__navier__stokes__elements_8h_source_l01148}01148     \}}
 \DoxyCodeLine{\Hypertarget{spherical__navier__stokes__elements_8h_source_l01149}01149 \textcolor{comment}{}}
-\DoxyCodeLine{\Hypertarget{spherical__navier__stokes__elements_8h_source_l01150}01150 \textcolor{comment}{    ///  Set the value at which the pressure is stored in the nodes}}
+\DoxyCodeLine{\Hypertarget{spherical__navier__stokes__elements_8h_source_l01150}01150 \textcolor{comment}{    /// Set the value at which the pressure is stored in the nodes}}
 \DoxyCodeLine{\Hypertarget{spherical__navier__stokes__elements_8h_source_l01151}01151 \textcolor{comment}{    /// In this case the third index because there are three velocity components}}
 \DoxyCodeLine{\Hypertarget{spherical__navier__stokes__elements_8h_source_l01152}\mbox{\hyperlink{classoomph_1_1QSphericalTaylorHoodElement_a8d7e127d0989233ad2bcd417536b54c0}{01152}} \textcolor{comment}{}    \textcolor{keywordtype}{int} \mbox{\hyperlink{classoomph_1_1QSphericalTaylorHoodElement_a8d7e127d0989233ad2bcd417536b54c0}{p\_nodal\_index\_spherical\_nst}}()\textcolor{keyword}{ const}}
 \DoxyCodeLine{\Hypertarget{spherical__navier__stokes__elements_8h_source_l01153}01153 \textcolor{keyword}{    }\{}
 \DoxyCodeLine{\Hypertarget{spherical__navier__stokes__elements_8h_source_l01154}01154       \textcolor{keywordflow}{return} 3;}
 \DoxyCodeLine{\Hypertarget{spherical__navier__stokes__elements_8h_source_l01155}01155     \}}
 \DoxyCodeLine{\Hypertarget{spherical__navier__stokes__elements_8h_source_l01156}01156 \textcolor{comment}{}}
-\DoxyCodeLine{\Hypertarget{spherical__navier__stokes__elements_8h_source_l01157}01157 \textcolor{comment}{    ///  Access function for the pressure values at local pressure}}
+\DoxyCodeLine{\Hypertarget{spherical__navier__stokes__elements_8h_source_l01157}01157 \textcolor{comment}{    /// Access function for the pressure values at local pressure}}
 \DoxyCodeLine{\Hypertarget{spherical__navier__stokes__elements_8h_source_l01158}01158 \textcolor{comment}{    /// node n\_p (const version)}}
 \DoxyCodeLine{\Hypertarget{spherical__navier__stokes__elements_8h_source_l01159}\mbox{\hyperlink{classoomph_1_1QSphericalTaylorHoodElement_a0baaa4667b08a35ccb6f655fc55e63ac}{01159}} \textcolor{comment}{}    \textcolor{keywordtype}{double} \mbox{\hyperlink{classoomph_1_1QSphericalTaylorHoodElement_a0baaa4667b08a35ccb6f655fc55e63ac}{p\_spherical\_nst}}(\textcolor{keyword}{const} \textcolor{keywordtype}{unsigned}\& n\_p)\textcolor{keyword}{ const}}
 \DoxyCodeLine{\Hypertarget{spherical__navier__stokes__elements_8h_source_l01160}01160 \textcolor{keyword}{    }\{}
@@ -1180,7 +1180,7 @@
 \DoxyCodeLine{\Hypertarget{spherical__navier__stokes__elements_8h_source_l01176}01176     \}}
 \DoxyCodeLine{\Hypertarget{spherical__navier__stokes__elements_8h_source_l01177}01177 }
 \DoxyCodeLine{\Hypertarget{spherical__navier__stokes__elements_8h_source_l01178}01178 \textcolor{comment}{}}
-\DoxyCodeLine{\Hypertarget{spherical__navier__stokes__elements_8h_source_l01179}01179 \textcolor{comment}{    ///   Add to the set \(\backslash\)c paired\_load\_data pairs containing}}
+\DoxyCodeLine{\Hypertarget{spherical__navier__stokes__elements_8h_source_l01179}01179 \textcolor{comment}{    ///  Add to the set \(\backslash\)c paired\_load\_data pairs containing}}
 \DoxyCodeLine{\Hypertarget{spherical__navier__stokes__elements_8h_source_l01180}01180 \textcolor{comment}{    /// -\/ the pointer to a Data object}}
 \DoxyCodeLine{\Hypertarget{spherical__navier__stokes__elements_8h_source_l01181}01181 \textcolor{comment}{    /// and}}
 \DoxyCodeLine{\Hypertarget{spherical__navier__stokes__elements_8h_source_l01182}01182 \textcolor{comment}{    /// -\/ the index of the value in that Data object}}
@@ -1191,7 +1191,7 @@
 \DoxyCodeLine{\Hypertarget{spherical__navier__stokes__elements_8h_source_l01187}01187       std::set<std::pair<Data*, unsigned>>\& paired\_load\_data);}
 \DoxyCodeLine{\Hypertarget{spherical__navier__stokes__elements_8h_source_l01188}01188 }
 \DoxyCodeLine{\Hypertarget{spherical__navier__stokes__elements_8h_source_l01189}01189 \textcolor{comment}{}}
-\DoxyCodeLine{\Hypertarget{spherical__navier__stokes__elements_8h_source_l01190}01190 \textcolor{comment}{    ///   Add to the set \(\backslash\)c paired\_pressure\_data pairs containing}}
+\DoxyCodeLine{\Hypertarget{spherical__navier__stokes__elements_8h_source_l01190}01190 \textcolor{comment}{    ///  Add to the set \(\backslash\)c paired\_pressure\_data pairs containing}}
 \DoxyCodeLine{\Hypertarget{spherical__navier__stokes__elements_8h_source_l01191}01191 \textcolor{comment}{    /// -\/ the pointer to a Data object}}
 \DoxyCodeLine{\Hypertarget{spherical__navier__stokes__elements_8h_source_l01192}01192 \textcolor{comment}{    /// and}}
 \DoxyCodeLine{\Hypertarget{spherical__navier__stokes__elements_8h_source_l01193}01193 \textcolor{comment}{    /// -\/ the index of the value in that Data object}}
@@ -1226,14 +1226,14 @@
 \DoxyCodeLine{\Hypertarget{spherical__navier__stokes__elements_8h_source_l01222}01222     \}}
 \DoxyCodeLine{\Hypertarget{spherical__navier__stokes__elements_8h_source_l01223}01223 }
 \DoxyCodeLine{\Hypertarget{spherical__navier__stokes__elements_8h_source_l01224}01224 \textcolor{comment}{}}
-\DoxyCodeLine{\Hypertarget{spherical__navier__stokes__elements_8h_source_l01225}01225 \textcolor{comment}{    ///  The number of "{}DOF types"{} that degrees of freedom in this element}}
+\DoxyCodeLine{\Hypertarget{spherical__navier__stokes__elements_8h_source_l01225}01225 \textcolor{comment}{    /// The number of "{}DOF types"{} that degrees of freedom in this element}}
 \DoxyCodeLine{\Hypertarget{spherical__navier__stokes__elements_8h_source_l01226}01226 \textcolor{comment}{    /// are sub-\/divided into: Velocity (3 components) and pressure.}}
 \DoxyCodeLine{\Hypertarget{spherical__navier__stokes__elements_8h_source_l01227}\mbox{\hyperlink{classoomph_1_1QSphericalTaylorHoodElement_a3417f97997b87a5cddc499697e227717}{01227}} \textcolor{comment}{}    \textcolor{keywordtype}{unsigned} \mbox{\hyperlink{classoomph_1_1QSphericalTaylorHoodElement_a3417f97997b87a5cddc499697e227717}{ndof\_types}}()\textcolor{keyword}{ const}}
 \DoxyCodeLine{\Hypertarget{spherical__navier__stokes__elements_8h_source_l01228}01228 \textcolor{keyword}{    }\{}
 \DoxyCodeLine{\Hypertarget{spherical__navier__stokes__elements_8h_source_l01229}01229       \textcolor{keywordflow}{return} 4;}
 \DoxyCodeLine{\Hypertarget{spherical__navier__stokes__elements_8h_source_l01230}01230     \}}
 \DoxyCodeLine{\Hypertarget{spherical__navier__stokes__elements_8h_source_l01231}01231 \textcolor{comment}{}}
-\DoxyCodeLine{\Hypertarget{spherical__navier__stokes__elements_8h_source_l01232}01232 \textcolor{comment}{    ///  Create a list of pairs for all unknowns in this element,}}
+\DoxyCodeLine{\Hypertarget{spherical__navier__stokes__elements_8h_source_l01232}01232 \textcolor{comment}{    /// Create a list of pairs for all unknowns in this element,}}
 \DoxyCodeLine{\Hypertarget{spherical__navier__stokes__elements_8h_source_l01233}01233 \textcolor{comment}{    /// so that the first entry in each pair contains the global equation}}
 \DoxyCodeLine{\Hypertarget{spherical__navier__stokes__elements_8h_source_l01234}01234 \textcolor{comment}{    /// number of the unknown, while the second one contains the number}}
 \DoxyCodeLine{\Hypertarget{spherical__navier__stokes__elements_8h_source_l01235}01235 \textcolor{comment}{    /// of the "{}Dof type"{} that this unknown is associated with.}}

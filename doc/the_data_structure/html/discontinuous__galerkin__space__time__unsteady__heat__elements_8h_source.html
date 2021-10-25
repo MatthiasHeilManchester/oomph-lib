@@ -173,13 +173,13 @@ $(function() {
 <div class="line"><a id="l00044" name="l00044"></a><span class="lineno">   44</span><span class="keyword">namespace </span><a class="code hl_namespace" href="namespaceoomph.html">oomph</a></div>
 <div class="line"><a id="l00045" name="l00045"></a><span class="lineno">   45</span>{</div>
 <div class="line"><a id="l00046" name="l00046"></a><span class="lineno">   46</span>  <span class="comment">//============================================================================</span><span class="comment"></span></div>
-<div class="line"><a id="l00047" name="l00047"></a><span class="lineno">   47</span><span class="comment">  ///  Base class so that we don&#39;t need to know the dimension just to</span></div>
+<div class="line"><a id="l00047" name="l00047"></a><span class="lineno">   47</span><span class="comment">  /// Base class so that we don&#39;t need to know the dimension just to</span></div>
 <div class="line"><a id="l00048" name="l00048"></a><span class="lineno">   48</span><span class="comment">  /// set the source function!</span></div>
 <div class="line"><a id="l00049" name="l00049"></a><span class="lineno">   49</span><span class="comment"></span>  <span class="comment">//============================================================================</span></div>
 <div class="line"><a id="l00050" name="l00050"></a><span class="lineno">   50</span>  <span class="keyword">class </span>SpaceTimeUnsteadyHeatEquationsBase : <span class="keyword">public</span> <span class="keyword">virtual</span> FiniteElement</div>
 <div class="line"><a id="l00051" name="l00051"></a><span class="lineno">   51</span>  {</div>
 <div class="line"><a id="l00052" name="l00052"></a><span class="lineno">   52</span>  <span class="keyword">public</span>:<span class="comment"></span></div>
-<div class="line"><a id="l00053" name="l00053"></a><span class="lineno">   53</span><span class="comment">    ///  Function pointer to source function fct(t,x,f(x,t)) -- x</span></div>
+<div class="line"><a id="l00053" name="l00053"></a><span class="lineno">   53</span><span class="comment">    /// Function pointer to source function fct(t,x,f(x,t)) -- x</span></div>
 <div class="line"><a id="l00054" name="l00054"></a><span class="lineno">   54</span><span class="comment">    /// is a Vector!</span></div>
 <div class="line"><a id="l00055" name="l00055"></a><span class="lineno"><a class="line" href="classoomph_1_1SpaceTimeUnsteadyHeatEquationsBase.html#a47f2992a722a335505bc827ab095d7b5">   55</a></span><span class="comment"></span>    <span class="keyword">typedef</span> void (*<a class="code hl_typedef" href="classoomph_1_1SpaceTimeUnsteadyHeatEquationsBase.html#a47f2992a722a335505bc827ab095d7b5">SpaceTimeUnsteadyHeatSourceFctPt</a>)(<span class="keyword">const</span> <span class="keywordtype">double</span>&amp; time,</div>
 <div class="line"><a id="l00056" name="l00056"></a><span class="lineno">   56</span>                                                     <span class="keyword">const</span> <a class="code hl_class" href="classoomph_1_1Vector.html">Vector&lt;double&gt;</a>&amp; <a class="code hl_variable" href="namespaceoomph.html#a9d1d2da2b8bb8e73af72b5cadb8fe97c">x</a>,</div>
@@ -206,7 +206,7 @@ $(function() {
 <div class="line"><a id="l00077" name="l00077"></a><span class="lineno">   77</span>    : <span class="keyword">public</span> <span class="keyword">virtual</span> <a class="code hl_class" href="classoomph_1_1SpaceTimeUnsteadyHeatEquationsBase.html">SpaceTimeUnsteadyHeatEquationsBase</a></div>
 <div class="line"><a id="l00078" name="l00078"></a><span class="lineno">   78</span>  {</div>
 <div class="line"><a id="l00079" name="l00079"></a><span class="lineno">   79</span>  <span class="keyword">public</span>:<span class="comment"></span></div>
-<div class="line"><a id="l00080" name="l00080"></a><span class="lineno">   80</span><span class="comment">    ///  Function pointer to source function fct(t,x,f(x,t)) -- x</span></div>
+<div class="line"><a id="l00080" name="l00080"></a><span class="lineno">   80</span><span class="comment">    /// Function pointer to source function fct(t,x,f(x,t)) -- x</span></div>
 <div class="line"><a id="l00081" name="l00081"></a><span class="lineno">   81</span><span class="comment">    /// is a Vector!</span></div>
 <div class="line"><a id="l00082" name="l00082"></a><span class="lineno">   82</span><span class="comment">    /// DRAIG: Why is this here? There is already one in the base class!</span></div>
 <div class="line"><a id="l00083" name="l00083"></a><span class="lineno">   83</span><span class="comment"></span>    <span class="keyword">typedef</span> void (*SpaceTimeUnsteadyHeatSourceFctPt)(<span class="keyword">const</span> <span class="keywordtype">double</span>&amp; time,</div>
@@ -214,7 +214,7 @@ $(function() {
 <div class="line"><a id="l00085" name="l00085"></a><span class="lineno">   85</span>                                                     <span class="keywordtype">double</span>&amp; <a class="code hl_variable" href="namespaceoomph.html#ac0ed65f6db53d9ad737e1d2a69767d25">u</a>);</div>
 <div class="line"><a id="l00086" name="l00086"></a><span class="lineno">   86</span> </div>
 <div class="line"><a id="l00087" name="l00087"></a><span class="lineno">   87</span><span class="comment"></span> </div>
-<div class="line"><a id="l00088" name="l00088"></a><span class="lineno">   88</span><span class="comment">    ///  Constructor: Initialises the Source_fct_pt to null and sets</span></div>
+<div class="line"><a id="l00088" name="l00088"></a><span class="lineno">   88</span><span class="comment">    /// Constructor: Initialises the Source_fct_pt to null and sets</span></div>
 <div class="line"><a id="l00089" name="l00089"></a><span class="lineno">   89</span><span class="comment">    /// flag to use ALE formulation of the equations. Also, set Alpha (thermal</span></div>
 <div class="line"><a id="l00090" name="l00090"></a><span class="lineno">   90</span><span class="comment">    /// inertia) and Beta (thermal conductivity) parameters to defaults (both</span></div>
 <div class="line"><a id="l00091" name="l00091"></a><span class="lineno">   91</span><span class="comment">    /// one for natural scaling).</span></div>
@@ -232,7 +232,7 @@ $(function() {
 <div class="line"><a id="l00103" name="l00103"></a><span class="lineno">  103</span><span class="comment"></span>    SpaceTimeUnsteadyHeatEquations(</div>
 <div class="line"><a id="l00104" name="l00104"></a><span class="lineno">  104</span>      <span class="keyword">const</span> SpaceTimeUnsteadyHeatEquations&amp; dummy) = <span class="keyword">delete</span>;</div>
 <div class="line"><a id="l00105" name="l00105"></a><span class="lineno">  105</span><span class="comment"></span> </div>
-<div class="line"><a id="l00106" name="l00106"></a><span class="lineno">  106</span><span class="comment">    ///  Disable ALE, i.e. assert the mesh is not moving -- you do this</span></div>
+<div class="line"><a id="l00106" name="l00106"></a><span class="lineno">  106</span><span class="comment">    /// Disable ALE, i.e. assert the mesh is not moving -- you do this</span></div>
 <div class="line"><a id="l00107" name="l00107"></a><span class="lineno">  107</span><span class="comment">    /// at your own risk!</span></div>
 <div class="line"><a id="l00108" name="l00108"></a><span class="lineno">  108</span><span class="comment"></span>    <span class="keywordtype">void</span> disable_ALE()</div>
 <div class="line"><a id="l00109" name="l00109"></a><span class="lineno">  109</span>    {</div>
@@ -241,7 +241,7 @@ $(function() {
 <div class="line"><a id="l00112" name="l00112"></a><span class="lineno">  112</span>    } <span class="comment">// End of disable_ALE</span></div>
 <div class="line"><a id="l00113" name="l00113"></a><span class="lineno">  113</span> </div>
 <div class="line"><a id="l00114" name="l00114"></a><span class="lineno">  114</span><span class="comment"></span> </div>
-<div class="line"><a id="l00115" name="l00115"></a><span class="lineno">  115</span><span class="comment">    ///  (Re-)enable ALE, i.e. take possible mesh motion into account</span></div>
+<div class="line"><a id="l00115" name="l00115"></a><span class="lineno">  115</span><span class="comment">    /// (Re-)enable ALE, i.e. take possible mesh motion into account</span></div>
 <div class="line"><a id="l00116" name="l00116"></a><span class="lineno">  116</span><span class="comment">    /// when evaluating the time-derivative. Note: By default, ALE is</span></div>
 <div class="line"><a id="l00117" name="l00117"></a><span class="lineno">  117</span><span class="comment">    /// enabled, at the expense of possibly creating unnecessary work</span></div>
 <div class="line"><a id="l00118" name="l00118"></a><span class="lineno">  118</span><span class="comment">    /// in problems where the mesh is, in fact, stationary.</span></div>
@@ -267,7 +267,7 @@ $(function() {
 <div class="line"><a id="l00138" name="l00138"></a><span class="lineno">  138</span>    } <span class="comment">// End of output</span></div>
 <div class="line"><a id="l00139" name="l00139"></a><span class="lineno">  139</span> </div>
 <div class="line"><a id="l00140" name="l00140"></a><span class="lineno">  140</span><span class="comment"></span> </div>
-<div class="line"><a id="l00141" name="l00141"></a><span class="lineno">  141</span><span class="comment">    ///  Output FE representation of soln: x,y,u or x,y,z,u at</span></div>
+<div class="line"><a id="l00141" name="l00141"></a><span class="lineno">  141</span><span class="comment">    /// Output FE representation of soln: x,y,u or x,y,z,u at</span></div>
 <div class="line"><a id="l00142" name="l00142"></a><span class="lineno">  142</span><span class="comment">    /// nplot^SPATIAL_DIM plot points</span></div>
 <div class="line"><a id="l00143" name="l00143"></a><span class="lineno">  143</span><span class="comment"></span>    <span class="keywordtype">void</span> <a class="code hl_function" href="namespaceoomph_1_1CommandLineArgs.html#aca07d359a96b9c7b566142112604ea87">output</a>(std::ostream&amp; outfile, <span class="keyword">const</span> <span class="keywordtype">unsigned</span>&amp; nplot);</div>
 <div class="line"><a id="l00144" name="l00144"></a><span class="lineno">  144</span> </div>
@@ -283,7 +283,7 @@ $(function() {
 <div class="line"><a id="l00154" name="l00154"></a><span class="lineno">  154</span>    } <span class="comment">// End of output</span></div>
 <div class="line"><a id="l00155" name="l00155"></a><span class="lineno">  155</span> </div>
 <div class="line"><a id="l00156" name="l00156"></a><span class="lineno">  156</span><span class="comment"></span> </div>
-<div class="line"><a id="l00157" name="l00157"></a><span class="lineno">  157</span><span class="comment">    ///  C-style output FE representation of soln: x,y,u or x,y,z,u at</span></div>
+<div class="line"><a id="l00157" name="l00157"></a><span class="lineno">  157</span><span class="comment">    /// C-style output FE representation of soln: x,y,u or x,y,z,u at</span></div>
 <div class="line"><a id="l00158" name="l00158"></a><span class="lineno">  158</span><span class="comment">    /// nplot^SPATIAL_DIM plot points</span></div>
 <div class="line"><a id="l00159" name="l00159"></a><span class="lineno">  159</span><span class="comment"></span>    <span class="keywordtype">void</span> <a class="code hl_function" href="namespaceoomph_1_1CommandLineArgs.html#aca07d359a96b9c7b566142112604ea87">output</a>(FILE* file_pt, <span class="keyword">const</span> <span class="keywordtype">unsigned</span>&amp; nplot);</div>
 <div class="line"><a id="l00160" name="l00160"></a><span class="lineno">  160</span> </div>
@@ -295,7 +295,7 @@ $(function() {
 <div class="line"><a id="l00166" name="l00166"></a><span class="lineno">  166</span>                    <a class="code hl_typedef" href="classoomph_1_1FiniteElement.html#a690fd33af26cc3e84f39bba6d5a85202">FiniteElement::SteadyExactSolutionFctPt</a> exact_soln_pt);</div>
 <div class="line"><a id="l00167" name="l00167"></a><span class="lineno">  167</span> </div>
 <div class="line"><a id="l00168" name="l00168"></a><span class="lineno">  168</span><span class="comment"></span> </div>
-<div class="line"><a id="l00169" name="l00169"></a><span class="lineno">  169</span><span class="comment">    ///  Output exact soln: x,y,u_exact or x,y,z,u_exact at</span></div>
+<div class="line"><a id="l00169" name="l00169"></a><span class="lineno">  169</span><span class="comment">    /// Output exact soln: x,y,u_exact or x,y,z,u_exact at</span></div>
 <div class="line"><a id="l00170" name="l00170"></a><span class="lineno">  170</span><span class="comment">    /// nplot^SPATIAL_DIM plot points (time-dependent version)</span></div>
 <div class="line"><a id="l00171" name="l00171"></a><span class="lineno">  171</span><span class="comment"></span>    <span class="keyword">virtual</span> <span class="keywordtype">void</span> output_fct(</div>
 <div class="line"><a id="l00172" name="l00172"></a><span class="lineno">  172</span>      std::ostream&amp; outfile,</div>
@@ -319,12 +319,12 @@ $(function() {
 <div class="line"><a id="l00190" name="l00190"></a><span class="lineno">  190</span>                       <span class="keywordtype">double</span>&amp; norm);</div>
 <div class="line"><a id="l00191" name="l00191"></a><span class="lineno">  191</span> </div>
 <div class="line"><a id="l00192" name="l00192"></a><span class="lineno">  192</span><span class="comment"></span> </div>
-<div class="line"><a id="l00193" name="l00193"></a><span class="lineno">  193</span><span class="comment">    ///  C-style output FE representation of soln: x,y,u or x,y,z,u at</span></div>
+<div class="line"><a id="l00193" name="l00193"></a><span class="lineno">  193</span><span class="comment">    /// C-style output FE representation of soln: x,y,u or x,y,z,u at</span></div>
 <div class="line"><a id="l00194" name="l00194"></a><span class="lineno">  194</span><span class="comment">    /// nplot^SPATIAL_DIM plot points</span></div>
 <div class="line"><a id="l00195" name="l00195"></a><span class="lineno">  195</span><span class="comment"></span>    <span class="keywordtype">void</span> output_element_paraview(std::ofstream&amp; outfile, <span class="keyword">const</span> <span class="keywordtype">unsigned</span>&amp; nplot);</div>
 <div class="line"><a id="l00196" name="l00196"></a><span class="lineno">  196</span> </div>
 <div class="line"><a id="l00197" name="l00197"></a><span class="lineno">  197</span><span class="comment"></span> </div>
-<div class="line"><a id="l00198" name="l00198"></a><span class="lineno">  198</span><span class="comment">    ///  Number of scalars/fields output by this element. Reimplements</span></div>
+<div class="line"><a id="l00198" name="l00198"></a><span class="lineno">  198</span><span class="comment">    /// Number of scalars/fields output by this element. Reimplements</span></div>
 <div class="line"><a id="l00199" name="l00199"></a><span class="lineno">  199</span><span class="comment">    /// broken virtual function in base class.</span></div>
 <div class="line"><a id="l00200" name="l00200"></a><span class="lineno">  200</span><span class="comment"></span>    <span class="keywordtype">unsigned</span> nscalar_paraview()<span class="keyword"> const</span></div>
 <div class="line"><a id="l00201" name="l00201"></a><span class="lineno">  201</span><span class="keyword">    </span>{</div>
@@ -333,7 +333,7 @@ $(function() {
 <div class="line"><a id="l00204" name="l00204"></a><span class="lineno">  204</span>    } <span class="comment">// End of nscalar_paraview</span></div>
 <div class="line"><a id="l00205" name="l00205"></a><span class="lineno">  205</span> </div>
 <div class="line"><a id="l00206" name="l00206"></a><span class="lineno">  206</span><span class="comment"></span> </div>
-<div class="line"><a id="l00207" name="l00207"></a><span class="lineno">  207</span><span class="comment">    ///  Write values of the i-th scalar field at the plot points. Needs</span></div>
+<div class="line"><a id="l00207" name="l00207"></a><span class="lineno">  207</span><span class="comment">    /// Write values of the i-th scalar field at the plot points. Needs</span></div>
 <div class="line"><a id="l00208" name="l00208"></a><span class="lineno">  208</span><span class="comment">    /// to be implemented for each new specific element type.</span></div>
 <div class="line"><a id="l00209" name="l00209"></a><span class="lineno">  209</span><span class="comment"></span>    <span class="keywordtype">void</span> scalar_value_paraview(std::ofstream&amp; file_out,</div>
 <div class="line"><a id="l00210" name="l00210"></a><span class="lineno">  210</span>                               <span class="keyword">const</span> <span class="keywordtype">unsigned</span>&amp; <a class="code hl_variable" href="cfortran_8h.html#adb50e893b86b3e55e751a42eab3cba82">i</a>,</div>
@@ -368,7 +368,7 @@ $(function() {
 <div class="line"><a id="l00239" name="l00239"></a><span class="lineno">  239</span>    } <span class="comment">// End of scalar_value_paraview</span></div>
 <div class="line"><a id="l00240" name="l00240"></a><span class="lineno">  240</span> </div>
 <div class="line"><a id="l00241" name="l00241"></a><span class="lineno">  241</span><span class="comment"></span> </div>
-<div class="line"><a id="l00242" name="l00242"></a><span class="lineno">  242</span><span class="comment">    ///  Write values of the i-th scalar field at the plot points. Needs</span></div>
+<div class="line"><a id="l00242" name="l00242"></a><span class="lineno">  242</span><span class="comment">    /// Write values of the i-th scalar field at the plot points. Needs</span></div>
 <div class="line"><a id="l00243" name="l00243"></a><span class="lineno">  243</span><span class="comment">    /// to be implemented for each new specific element type.</span></div>
 <div class="line"><a id="l00244" name="l00244"></a><span class="lineno">  244</span><span class="comment"></span>    <span class="keywordtype">void</span> scalar_value_fct_paraview(</div>
 <div class="line"><a id="l00245" name="l00245"></a><span class="lineno">  245</span>      std::ofstream&amp; file_out,</div>
@@ -421,7 +421,7 @@ $(function() {
 <div class="line"><a id="l00292" name="l00292"></a><span class="lineno">  292</span>    } <span class="comment">// End of scalar_value_fct_paraview</span></div>
 <div class="line"><a id="l00293" name="l00293"></a><span class="lineno">  293</span> </div>
 <div class="line"><a id="l00294" name="l00294"></a><span class="lineno">  294</span><span class="comment"></span> </div>
-<div class="line"><a id="l00295" name="l00295"></a><span class="lineno">  295</span><span class="comment">    ///  Write values of the i-th scalar field at the plot points. Needs</span></div>
+<div class="line"><a id="l00295" name="l00295"></a><span class="lineno">  295</span><span class="comment">    /// Write values of the i-th scalar field at the plot points. Needs</span></div>
 <div class="line"><a id="l00296" name="l00296"></a><span class="lineno">  296</span><span class="comment">    /// to be implemented for each new specific element type.</span></div>
 <div class="line"><a id="l00297" name="l00297"></a><span class="lineno">  297</span><span class="comment"></span>    <span class="keywordtype">void</span> scalar_value_fct_paraview(</div>
 <div class="line"><a id="l00298" name="l00298"></a><span class="lineno">  298</span>      std::ofstream&amp; file_out,</div>
@@ -481,7 +481,7 @@ $(function() {
 <div class="line"><a id="l00352" name="l00352"></a><span class="lineno">  352</span>    } <span class="comment">// End of scalar_value_fct_paraview</span></div>
 <div class="line"><a id="l00353" name="l00353"></a><span class="lineno">  353</span> </div>
 <div class="line"><a id="l00354" name="l00354"></a><span class="lineno">  354</span><span class="comment"></span> </div>
-<div class="line"><a id="l00355" name="l00355"></a><span class="lineno">  355</span><span class="comment">    ///  Name of the i-th scalar field. Default implementation</span></div>
+<div class="line"><a id="l00355" name="l00355"></a><span class="lineno">  355</span><span class="comment">    /// Name of the i-th scalar field. Default implementation</span></div>
 <div class="line"><a id="l00356" name="l00356"></a><span class="lineno">  356</span><span class="comment">    /// returns V1 for the first one, V2 for the second etc.</span></div>
 <div class="line"><a id="l00357" name="l00357"></a><span class="lineno">  357</span><span class="comment"></span>    <a class="code hl_function" href="namespaceoomph_1_1Global__string__for__annotation.html#ac5379de2fa7fe44f2cb31785fc208135">std::string</a> scalar_name_paraview(<span class="keyword">const</span> <span class="keywordtype">unsigned</span>&amp; <a class="code hl_variable" href="cfortran_8h.html#adb50e893b86b3e55e751a42eab3cba82">i</a>)<span class="keyword"> const</span></div>
 <div class="line"><a id="l00358" name="l00358"></a><span class="lineno">  358</span><span class="keyword">    </span>{</div>
@@ -522,7 +522,7 @@ $(function() {
 <div class="line"><a id="l00393" name="l00393"></a><span class="lineno">  393</span>    }</div>
 <div class="line"><a id="l00394" name="l00394"></a><span class="lineno">  394</span> </div>
 <div class="line"><a id="l00395" name="l00395"></a><span class="lineno">  395</span><span class="comment"></span> </div>
-<div class="line"><a id="l00396" name="l00396"></a><span class="lineno">  396</span><span class="comment">    ///  Get source term at continous time t and (Eulerian) position x.</span></div>
+<div class="line"><a id="l00396" name="l00396"></a><span class="lineno">  396</span><span class="comment">    /// Get source term at continous time t and (Eulerian) position x.</span></div>
 <div class="line"><a id="l00397" name="l00397"></a><span class="lineno">  397</span><span class="comment">    /// Virtual so it can be overloaded in derived multi-physics elements.</span></div>
 <div class="line"><a id="l00398" name="l00398"></a><span class="lineno">  398</span><span class="comment"></span>    <span class="keyword">virtual</span> <span class="keyword">inline</span> <span class="keywordtype">void</span> get_source_ust_heat(<span class="keyword">const</span> <span class="keywordtype">double</span>&amp; <a class="code hl_variable" href="cfortran_8h.html#af6f0bd3dc13317f895c91323c25c2b8f">t</a>,</div>
 <div class="line"><a id="l00399" name="l00399"></a><span class="lineno">  399</span>                                            <span class="keyword">const</span> <span class="keywordtype">unsigned</span>&amp; ipt,</div>
@@ -663,7 +663,7 @@ $(function() {
 <div class="line"><a id="l00534" name="l00534"></a><span class="lineno">  534</span>    } <span class="comment">// End of interpolated_u_ust_heat</span></div>
 <div class="line"><a id="l00535" name="l00535"></a><span class="lineno">  535</span> </div>
 <div class="line"><a id="l00536" name="l00536"></a><span class="lineno">  536</span><span class="comment"></span> </div>
-<div class="line"><a id="l00537" name="l00537"></a><span class="lineno">  537</span><span class="comment">    ///  Return the index at which the unknown value</span></div>
+<div class="line"><a id="l00537" name="l00537"></a><span class="lineno">  537</span><span class="comment">    /// Return the index at which the unknown value</span></div>
 <div class="line"><a id="l00538" name="l00538"></a><span class="lineno">  538</span><span class="comment">    /// is stored. The default value, 0, is appropriate for single-physics</span></div>
 <div class="line"><a id="l00539" name="l00539"></a><span class="lineno">  539</span><span class="comment">    /// problems, when there is only one variable, the value that satisfies the</span></div>
 <div class="line"><a id="l00540" name="l00540"></a><span class="lineno">  540</span><span class="comment">    /// unsteady heat equation.</span></div>
@@ -677,7 +677,7 @@ $(function() {
 <div class="line"><a id="l00548" name="l00548"></a><span class="lineno">  548</span>    } <span class="comment">// End of u_index_ust_heat</span></div>
 <div class="line"><a id="l00549" name="l00549"></a><span class="lineno">  549</span> </div>
 <div class="line"><a id="l00550" name="l00550"></a><span class="lineno">  550</span><span class="comment"></span> </div>
-<div class="line"><a id="l00551" name="l00551"></a><span class="lineno">  551</span><span class="comment">    ///  Return FE representation of function value u(s) at local</span></div>
+<div class="line"><a id="l00551" name="l00551"></a><span class="lineno">  551</span><span class="comment">    /// Return FE representation of function value u(s) at local</span></div>
 <div class="line"><a id="l00552" name="l00552"></a><span class="lineno">  552</span><span class="comment">    /// coordinate s at previous time t (t=0: present)</span></div>
 <div class="line"><a id="l00553" name="l00553"></a><span class="lineno">  553</span><span class="comment">    /// DRAIG: This needs to be broken; doesn&#39;t make sense in space-time</span></div>
 <div class="line"><a id="l00554" name="l00554"></a><span class="lineno">  554</span><span class="comment">    /// elements!</span></div>
@@ -711,7 +711,7 @@ $(function() {
 <div class="line"><a id="l00582" name="l00582"></a><span class="lineno">  582</span>    } <span class="comment">// End of interpolated_u_ust_heat</span></div>
 <div class="line"><a id="l00583" name="l00583"></a><span class="lineno">  583</span> </div>
 <div class="line"><a id="l00584" name="l00584"></a><span class="lineno">  584</span><span class="comment"></span> </div>
-<div class="line"><a id="l00585" name="l00585"></a><span class="lineno">  585</span><span class="comment">    ///  Calculate du/dt at the n-th local node. Uses suitably</span></div>
+<div class="line"><a id="l00585" name="l00585"></a><span class="lineno">  585</span><span class="comment">    /// Calculate du/dt at the n-th local node. Uses suitably</span></div>
 <div class="line"><a id="l00586" name="l00586"></a><span class="lineno">  586</span><span class="comment">    /// interpolated value for hanging nodes.</span></div>
 <div class="line"><a id="l00587" name="l00587"></a><span class="lineno">  587</span><span class="comment"></span>    <span class="keywordtype">double</span> du_dt_ust_heat(<span class="keyword">const</span> <span class="keywordtype">unsigned</span>&amp; n)<span class="keyword"> const</span></div>
 <div class="line"><a id="l00588" name="l00588"></a><span class="lineno">  588</span><span class="keyword">    </span>{</div>
@@ -762,10 +762,10 @@ $(function() {
 <div class="line"><a id="l00633" name="l00633"></a><span class="lineno">  633</span>    } <span class="comment">// End of interpolated_du_dt_ust_heat</span></div>
 <div class="line"><a id="l00634" name="l00634"></a><span class="lineno">  634</span> </div>
 <div class="line"><a id="l00635" name="l00635"></a><span class="lineno">  635</span><span class="comment"></span> </div>
-<div class="line"><a id="l00636" name="l00636"></a><span class="lineno">  636</span><span class="comment">    ///  Self-test: Return 0 for OK</span></div>
+<div class="line"><a id="l00636" name="l00636"></a><span class="lineno">  636</span><span class="comment">    /// Self-test: Return 0 for OK</span></div>
 <div class="line"><a id="l00637" name="l00637"></a><span class="lineno">  637</span><span class="comment"></span>    <span class="keywordtype">unsigned</span> self_test();</div>
 <div class="line"><a id="l00638" name="l00638"></a><span class="lineno">  638</span><span class="comment"></span> </div>
-<div class="line"><a id="l00639" name="l00639"></a><span class="lineno">  639</span><span class="comment">    ///  Shape/test functions and derivs w.r.t. to global coords at</span></div>
+<div class="line"><a id="l00639" name="l00639"></a><span class="lineno">  639</span><span class="comment">    /// Shape/test functions and derivs w.r.t. to global coords at</span></div>
 <div class="line"><a id="l00640" name="l00640"></a><span class="lineno">  640</span><span class="comment">    /// local coordinate s; return Jacobian of mapping</span></div>
 <div class="line"><a id="l00641" name="l00641"></a><span class="lineno">  641</span><span class="comment"></span>    <span class="keyword">virtual</span> <span class="keywordtype">double</span> dshape_and_dtest_eulerian_ust_heat(</div>
 <div class="line"><a id="l00642" name="l00642"></a><span class="lineno">  642</span>      <span class="keyword">const</span> Vector&lt;double&gt;&amp; <a class="code hl_variable" href="cfortran_8h.html#ab7123126e4885ef647dd9c6e3807a21c">s</a>,</div>
@@ -775,7 +775,7 @@ $(function() {
 <div class="line"><a id="l00646" name="l00646"></a><span class="lineno">  646</span>      DShape&amp; dtestdx) <span class="keyword">const</span> = 0;</div>
 <div class="line"><a id="l00647" name="l00647"></a><span class="lineno">  647</span> </div>
 <div class="line"><a id="l00648" name="l00648"></a><span class="lineno">  648</span><span class="comment"></span> </div>
-<div class="line"><a id="l00649" name="l00649"></a><span class="lineno">  649</span><span class="comment">    ///  Shape/test functions and derivs w.r.t. to global coords at</span></div>
+<div class="line"><a id="l00649" name="l00649"></a><span class="lineno">  649</span><span class="comment">    /// Shape/test functions and derivs w.r.t. to global coords at</span></div>
 <div class="line"><a id="l00650" name="l00650"></a><span class="lineno">  650</span><span class="comment">    /// integration point ipt; return  Jacobian of mapping</span></div>
 <div class="line"><a id="l00651" name="l00651"></a><span class="lineno">  651</span><span class="comment"></span>    <span class="keyword">virtual</span> <span class="keywordtype">double</span> dshape_and_dtest_eulerian_at_knot_ust_heat(</div>
 <div class="line"><a id="l00652" name="l00652"></a><span class="lineno">  652</span>      <span class="keyword">const</span> <span class="keywordtype">unsigned</span>&amp; ipt,</div>
@@ -786,7 +786,7 @@ $(function() {
 <div class="line"><a id="l00657" name="l00657"></a><span class="lineno">  657</span> </div>
 <div class="line"><a id="l00658" name="l00658"></a><span class="lineno">  658</span> </div>
 <div class="line"><a id="l00659" name="l00659"></a><span class="lineno">  659</span>  <span class="keyword">protected</span>:<span class="comment"></span></div>
-<div class="line"><a id="l00660" name="l00660"></a><span class="lineno">  660</span><span class="comment">    ///  Compute element residual Vector only (if flag=and/or element</span></div>
+<div class="line"><a id="l00660" name="l00660"></a><span class="lineno">  660</span><span class="comment">    /// Compute element residual Vector only (if flag=and/or element</span></div>
 <div class="line"><a id="l00661" name="l00661"></a><span class="lineno">  661</span><span class="comment">    /// Jacobian matrix</span></div>
 <div class="line"><a id="l00662" name="l00662"></a><span class="lineno">  662</span><span class="comment"></span>    <span class="keyword">virtual</span> <span class="keywordtype">void</span> fill_in_generic_residual_contribution_ust_heat(</div>
 <div class="line"><a id="l00663" name="l00663"></a><span class="lineno">  663</span>      Vector&lt;double&gt;&amp; residuals,</div>
@@ -796,7 +796,7 @@ $(function() {
 <div class="line"><a id="l00667" name="l00667"></a><span class="lineno">  667</span><span class="comment">    /// Pointer to source function:</span></div>
 <div class="line"><a id="l00668" name="l00668"></a><span class="lineno">  668</span><span class="comment"></span>    SpaceTimeUnsteadyHeatSourceFctPt Source_fct_pt;</div>
 <div class="line"><a id="l00669" name="l00669"></a><span class="lineno">  669</span><span class="comment"></span> </div>
-<div class="line"><a id="l00670" name="l00670"></a><span class="lineno">  670</span><span class="comment">    ///  Boolean flag to indicate if ALE formulation is disabled when</span></div>
+<div class="line"><a id="l00670" name="l00670"></a><span class="lineno">  670</span><span class="comment">    /// Boolean flag to indicate if ALE formulation is disabled when</span></div>
 <div class="line"><a id="l00671" name="l00671"></a><span class="lineno">  671</span><span class="comment">    /// time-derivatives are computed. Only set to true if you&#39;re sure that</span></div>
 <div class="line"><a id="l00672" name="l00672"></a><span class="lineno">  672</span><span class="comment">    /// the mesh is stationary.</span></div>
 <div class="line"><a id="l00673" name="l00673"></a><span class="lineno">  673</span><span class="comment"></span>    <span class="keywordtype">bool</span> ALE_is_disabled;</div>
@@ -808,11 +808,11 @@ $(function() {
 <div class="line"><a id="l00679" name="l00679"></a><span class="lineno">  679</span><span class="comment"></span>    <span class="keywordtype">double</span>* Beta_pt;</div>
 <div class="line"><a id="l00680" name="l00680"></a><span class="lineno">  680</span> </div>
 <div class="line"><a id="l00681" name="l00681"></a><span class="lineno">  681</span>  <span class="keyword">private</span>:<span class="comment"></span></div>
-<div class="line"><a id="l00682" name="l00682"></a><span class="lineno">  682</span><span class="comment">    ///  Static default value for the Alpha parameter (thermal inertia):</span></div>
+<div class="line"><a id="l00682" name="l00682"></a><span class="lineno">  682</span><span class="comment">    /// Static default value for the Alpha parameter (thermal inertia):</span></div>
 <div class="line"><a id="l00683" name="l00683"></a><span class="lineno">  683</span><span class="comment">    /// One for natural scaling</span></div>
 <div class="line"><a id="l00684" name="l00684"></a><span class="lineno">  684</span><span class="comment"></span>    <span class="keyword">static</span> <span class="keywordtype">double</span> Default_alpha_parameter;</div>
 <div class="line"><a id="l00685" name="l00685"></a><span class="lineno">  685</span><span class="comment"></span> </div>
-<div class="line"><a id="l00686" name="l00686"></a><span class="lineno">  686</span><span class="comment">    ///  Static default value for the Beta parameter (thermal</span></div>
+<div class="line"><a id="l00686" name="l00686"></a><span class="lineno">  686</span><span class="comment">    /// Static default value for the Beta parameter (thermal</span></div>
 <div class="line"><a id="l00687" name="l00687"></a><span class="lineno">  687</span><span class="comment">    /// conductivity): One for natural scaling</span></div>
 <div class="line"><a id="l00688" name="l00688"></a><span class="lineno">  688</span><span class="comment"></span>    <span class="keyword">static</span> <span class="keywordtype">double</span> Default_beta_parameter;</div>
 <div class="line"><a id="l00689" name="l00689"></a><span class="lineno">  689</span>  };</div>
@@ -834,7 +834,7 @@ $(function() {
 <div class="line"><a id="l00705" name="l00705"></a><span class="lineno">  705</span>      <span class="keyword">public</span> <span class="keyword">virtual</span> SpaceTimeUnsteadyHeatEquations&lt;SPATIAL_DIM&gt;</div>
 <div class="line"><a id="l00706" name="l00706"></a><span class="lineno">  706</span>  {</div>
 <div class="line"><a id="l00707" name="l00707"></a><span class="lineno">  707</span>  <span class="keyword">public</span>:<span class="comment"></span></div>
-<div class="line"><a id="l00708" name="l00708"></a><span class="lineno">  708</span><span class="comment">    ///  Constructor: Call constructors for QElement and</span></div>
+<div class="line"><a id="l00708" name="l00708"></a><span class="lineno">  708</span><span class="comment">    /// Constructor: Call constructors for QElement and</span></div>
 <div class="line"><a id="l00709" name="l00709"></a><span class="lineno">  709</span><span class="comment">    /// SpaceTimeUnsteadyHeat equations</span></div>
 <div class="line"><a id="l00710" name="l00710"></a><span class="lineno"><a class="line" href="classoomph_1_1QUnsteadyHeatSpaceTimeElement.html#abfd5df144eff6ba41aa0f5c183a199ec">  710</a></span><span class="comment"></span>    <a class="code hl_function" href="classoomph_1_1QUnsteadyHeatSpaceTimeElement.html#abfd5df144eff6ba41aa0f5c183a199ec">QUnsteadyHeatSpaceTimeElement</a>()</div>
 <div class="line"><a id="l00711" name="l00711"></a><span class="lineno">  711</span>      : <a class="code hl_class" href="classoomph_1_1QElement.html">QElement</a>&lt;SPATIAL_DIM + 1, NNODE_1D&gt;(),</div>
@@ -847,7 +847,7 @@ $(function() {
 <div class="line"><a id="l00718" name="l00718"></a><span class="lineno">  718</span>      <span class="keyword">const</span> <a class="code hl_class" href="classoomph_1_1QUnsteadyHeatSpaceTimeElement.html">QUnsteadyHeatSpaceTimeElement&lt;SPATIAL_DIM, NNODE_1D&gt;</a>&amp; dummy) =</div>
 <div class="line"><a id="l00719" name="l00719"></a><span class="lineno">  719</span>      <span class="keyword">delete</span>;</div>
 <div class="line"><a id="l00720" name="l00720"></a><span class="lineno">  720</span><span class="comment"></span> </div>
-<div class="line"><a id="l00721" name="l00721"></a><span class="lineno">  721</span><span class="comment">    ///  Required number of &#39;values&#39; (pinned or dofs) at node n</span></div>
+<div class="line"><a id="l00721" name="l00721"></a><span class="lineno">  721</span><span class="comment">    /// Required number of &#39;values&#39; (pinned or dofs) at node n</span></div>
 <div class="line"><a id="l00722" name="l00722"></a><span class="lineno"><a class="line" href="classoomph_1_1QUnsteadyHeatSpaceTimeElement.html#aefe965fdd0fd88e72daa2b14a293761a">  722</a></span><span class="comment"></span>    <span class="keyword">inline</span> <span class="keywordtype">unsigned</span> <a class="code hl_function" href="classoomph_1_1QUnsteadyHeatSpaceTimeElement.html#aefe965fdd0fd88e72daa2b14a293761a">required_nvalue</a>(<span class="keyword">const</span> <span class="keywordtype">unsigned</span>&amp; n)<span class="keyword"> const</span></div>
 <div class="line"><a id="l00723" name="l00723"></a><span class="lineno">  723</span><span class="keyword">    </span>{</div>
 <div class="line"><a id="l00724" name="l00724"></a><span class="lineno">  724</span>      <span class="comment">// Return the appropriate value</span></div>
@@ -855,7 +855,7 @@ $(function() {
 <div class="line"><a id="l00726" name="l00726"></a><span class="lineno">  726</span>    } <span class="comment">// End of required_nvalue</span></div>
 <div class="line"><a id="l00727" name="l00727"></a><span class="lineno">  727</span> </div>
 <div class="line"><a id="l00728" name="l00728"></a><span class="lineno">  728</span><span class="comment"></span> </div>
-<div class="line"><a id="l00729" name="l00729"></a><span class="lineno">  729</span><span class="comment">    ///  Output function:</span></div>
+<div class="line"><a id="l00729" name="l00729"></a><span class="lineno">  729</span><span class="comment">    /// Output function:</span></div>
 <div class="line"><a id="l00730" name="l00730"></a><span class="lineno">  730</span><span class="comment">    /// x,t,u   or   x,y,t,u</span></div>
 <div class="line"><a id="l00731" name="l00731"></a><span class="lineno"><a class="line" href="classoomph_1_1QUnsteadyHeatSpaceTimeElement.html#ac53c69193308ba87b7b69af24cef78e5">  731</a></span><span class="comment"></span>    <span class="keywordtype">void</span> <a class="code hl_function" href="classoomph_1_1QUnsteadyHeatSpaceTimeElement.html#ac53c69193308ba87b7b69af24cef78e5">output</a>(std::ostream&amp; outfile)</div>
 <div class="line"><a id="l00732" name="l00732"></a><span class="lineno">  732</span>    {</div>
@@ -864,7 +864,7 @@ $(function() {
 <div class="line"><a id="l00735" name="l00735"></a><span class="lineno">  735</span>    } <span class="comment">// End of output</span></div>
 <div class="line"><a id="l00736" name="l00736"></a><span class="lineno">  736</span> </div>
 <div class="line"><a id="l00737" name="l00737"></a><span class="lineno">  737</span><span class="comment"></span> </div>
-<div class="line"><a id="l00738" name="l00738"></a><span class="lineno">  738</span><span class="comment">    ///  Output function:</span></div>
+<div class="line"><a id="l00738" name="l00738"></a><span class="lineno">  738</span><span class="comment">    /// Output function:</span></div>
 <div class="line"><a id="l00739" name="l00739"></a><span class="lineno">  739</span><span class="comment">    /// x,t,u   or   x,y,t,u at n_plot^(SPATIAL_DIM+1) plot points</span></div>
 <div class="line"><a id="l00740" name="l00740"></a><span class="lineno"><a class="line" href="classoomph_1_1QUnsteadyHeatSpaceTimeElement.html#acefd8f8383a3a929231391ac74f5dbae">  740</a></span><span class="comment"></span>    <span class="keywordtype">void</span> <a class="code hl_function" href="classoomph_1_1QUnsteadyHeatSpaceTimeElement.html#acefd8f8383a3a929231391ac74f5dbae">output</a>(std::ostream&amp; outfile, <span class="keyword">const</span> <span class="keywordtype">unsigned</span>&amp; n_plot)</div>
 <div class="line"><a id="l00741" name="l00741"></a><span class="lineno">  741</span>    {</div>
@@ -873,7 +873,7 @@ $(function() {
 <div class="line"><a id="l00744" name="l00744"></a><span class="lineno">  744</span>    } <span class="comment">// End of output</span></div>
 <div class="line"><a id="l00745" name="l00745"></a><span class="lineno">  745</span> </div>
 <div class="line"><a id="l00746" name="l00746"></a><span class="lineno">  746</span><span class="comment"></span> </div>
-<div class="line"><a id="l00747" name="l00747"></a><span class="lineno">  747</span><span class="comment">    ///  C-style output function:</span></div>
+<div class="line"><a id="l00747" name="l00747"></a><span class="lineno">  747</span><span class="comment">    /// C-style output function:</span></div>
 <div class="line"><a id="l00748" name="l00748"></a><span class="lineno">  748</span><span class="comment">    /// x,t,u   or   x,y,t,u</span></div>
 <div class="line"><a id="l00749" name="l00749"></a><span class="lineno"><a class="line" href="classoomph_1_1QUnsteadyHeatSpaceTimeElement.html#ac200c2c224b3f8c77a6533d162eb2c7a">  749</a></span><span class="comment"></span>    <span class="keywordtype">void</span> <a class="code hl_function" href="classoomph_1_1QUnsteadyHeatSpaceTimeElement.html#ac200c2c224b3f8c77a6533d162eb2c7a">output</a>(FILE* file_pt)</div>
 <div class="line"><a id="l00750" name="l00750"></a><span class="lineno">  750</span>    {</div>
@@ -882,7 +882,7 @@ $(function() {
 <div class="line"><a id="l00753" name="l00753"></a><span class="lineno">  753</span>    } <span class="comment">// End of output</span></div>
 <div class="line"><a id="l00754" name="l00754"></a><span class="lineno">  754</span> </div>
 <div class="line"><a id="l00755" name="l00755"></a><span class="lineno">  755</span><span class="comment"></span> </div>
-<div class="line"><a id="l00756" name="l00756"></a><span class="lineno">  756</span><span class="comment">    ///  C-style output function:</span></div>
+<div class="line"><a id="l00756" name="l00756"></a><span class="lineno">  756</span><span class="comment">    /// C-style output function:</span></div>
 <div class="line"><a id="l00757" name="l00757"></a><span class="lineno">  757</span><span class="comment">    /// x,t,u   or   x,y,t,u at n_plot^(SPATIAL_DIM+1) plot points</span></div>
 <div class="line"><a id="l00758" name="l00758"></a><span class="lineno"><a class="line" href="classoomph_1_1QUnsteadyHeatSpaceTimeElement.html#aacdb4919b8121082c558e613df0b5363">  758</a></span><span class="comment"></span>    <span class="keywordtype">void</span> <a class="code hl_function" href="classoomph_1_1QUnsteadyHeatSpaceTimeElement.html#aacdb4919b8121082c558e613df0b5363">output</a>(FILE* file_pt, <span class="keyword">const</span> <span class="keywordtype">unsigned</span>&amp; n_plot)</div>
 <div class="line"><a id="l00759" name="l00759"></a><span class="lineno">  759</span>    {</div>
@@ -891,7 +891,7 @@ $(function() {
 <div class="line"><a id="l00762" name="l00762"></a><span class="lineno">  762</span>    } <span class="comment">// End of output</span></div>
 <div class="line"><a id="l00763" name="l00763"></a><span class="lineno">  763</span> </div>
 <div class="line"><a id="l00764" name="l00764"></a><span class="lineno">  764</span><span class="comment"></span> </div>
-<div class="line"><a id="l00765" name="l00765"></a><span class="lineno">  765</span><span class="comment">    ///  Output function for an exact solution:</span></div>
+<div class="line"><a id="l00765" name="l00765"></a><span class="lineno">  765</span><span class="comment">    /// Output function for an exact solution:</span></div>
 <div class="line"><a id="l00766" name="l00766"></a><span class="lineno">  766</span><span class="comment">    /// x,t,u_exact   or   x,y,t,u_exact at n_plot^(SPATIAL_DIM+1) plot points</span></div>
 <div class="line"><a id="l00767" name="l00767"></a><span class="lineno"><a class="line" href="classoomph_1_1QUnsteadyHeatSpaceTimeElement.html#ada0ae572412eade00a0302b665423dbb">  767</a></span><span class="comment"></span>    <span class="keywordtype">void</span> <a class="code hl_function" href="classoomph_1_1QUnsteadyHeatSpaceTimeElement.html#ada0ae572412eade00a0302b665423dbb">output_fct</a>(std::ostream&amp; outfile,</div>
 <div class="line"><a id="l00768" name="l00768"></a><span class="lineno">  768</span>                    <span class="keyword">const</span> <span class="keywordtype">unsigned</span>&amp; n_plot,</div>
@@ -903,7 +903,7 @@ $(function() {
 <div class="line"><a id="l00774" name="l00774"></a><span class="lineno">  774</span>    } <span class="comment">// End of output_fct</span></div>
 <div class="line"><a id="l00775" name="l00775"></a><span class="lineno">  775</span> </div>
 <div class="line"><a id="l00776" name="l00776"></a><span class="lineno">  776</span><span class="comment"></span> </div>
-<div class="line"><a id="l00777" name="l00777"></a><span class="lineno">  777</span><span class="comment">    ///  Output function for a time-dependent exact solution.</span></div>
+<div class="line"><a id="l00777" name="l00777"></a><span class="lineno">  777</span><span class="comment">    /// Output function for a time-dependent exact solution.</span></div>
 <div class="line"><a id="l00778" name="l00778"></a><span class="lineno">  778</span><span class="comment">    ///  x,t,u_exact   or    x,y,t,u_exact at n_plot^(SPATIAL_DIM+1) plot points</span></div>
 <div class="line"><a id="l00779" name="l00779"></a><span class="lineno">  779</span><span class="comment">    /// (Calls the unsteady version)</span></div>
 <div class="line"><a id="l00780" name="l00780"></a><span class="lineno"><a class="line" href="classoomph_1_1QUnsteadyHeatSpaceTimeElement.html#aba4db11ecfb9fbb9dbb53e17446ab4ee">  780</a></span><span class="comment"></span>    <span class="keywordtype">void</span> <a class="code hl_function" href="classoomph_1_1QUnsteadyHeatSpaceTimeElement.html#aba4db11ecfb9fbb9dbb53e17446ab4ee">output_fct</a>(std::ostream&amp; outfile,</div>
@@ -924,7 +924,7 @@ $(function() {
 <div class="line"><a id="l00795" name="l00795"></a><span class="lineno">  795</span>                                                     <a class="code hl_class" href="classoomph_1_1DShape.html">DShape</a>&amp; dtestdx) <span class="keyword">const</span>;</div>
 <div class="line"><a id="l00796" name="l00796"></a><span class="lineno">  796</span> </div>
 <div class="line"><a id="l00797" name="l00797"></a><span class="lineno">  797</span><span class="comment"></span> </div>
-<div class="line"><a id="l00798" name="l00798"></a><span class="lineno">  798</span><span class="comment">    ///  Shape/test functions and derivs w.r.t. to global coords at</span></div>
+<div class="line"><a id="l00798" name="l00798"></a><span class="lineno">  798</span><span class="comment">    /// Shape/test functions and derivs w.r.t. to global coords at</span></div>
 <div class="line"><a id="l00799" name="l00799"></a><span class="lineno">  799</span><span class="comment">    /// integration point ipt; return Jacobian of mapping</span></div>
 <div class="line"><a id="l00800" name="l00800"></a><span class="lineno"><a class="line" href="classoomph_1_1QUnsteadyHeatSpaceTimeElement.html#a7e15bdaa0258db0f3a26703917533c8a">  800</a></span><span class="comment"></span>    <span class="keyword">inline</span> <span class="keywordtype">double</span> <a class="code hl_function" href="classoomph_1_1QUnsteadyHeatSpaceTimeElement.html#a7e15bdaa0258db0f3a26703917533c8a">dshape_and_dtest_eulerian_at_knot_ust_heat</a>(</div>
 <div class="line"><a id="l00801" name="l00801"></a><span class="lineno">  801</span>      <span class="keyword">const</span> <span class="keywordtype">unsigned</span>&amp; ipt,</div>
@@ -935,7 +935,7 @@ $(function() {
 <div class="line"><a id="l00806" name="l00806"></a><span class="lineno">  806</span> </div>
 <div class="line"><a id="l00807" name="l00807"></a><span class="lineno">  807</span>  <span class="keyword">protected</span>:</div>
 <div class="line"><a id="l00808" name="l00808"></a><span class="lineno">  808</span>  <span class="keyword">private</span>:<span class="comment"></span></div>
-<div class="line"><a id="l00809" name="l00809"></a><span class="lineno">  809</span><span class="comment">    ///  Static array of ints to hold number of variables at nodes:</span></div>
+<div class="line"><a id="l00809" name="l00809"></a><span class="lineno">  809</span><span class="comment">    /// Static array of ints to hold number of variables at nodes:</span></div>
 <div class="line"><a id="l00810" name="l00810"></a><span class="lineno">  810</span><span class="comment">    /// Initial_Nvalue[n]</span></div>
 <div class="line"><a id="l00811" name="l00811"></a><span class="lineno">  811</span><span class="comment"></span>    <span class="keyword">static</span> <span class="keyword">const</span> <span class="keywordtype">unsigned</span> <a class="code hl_variable" href="classoomph_1_1QUnsteadyHeatSpaceTimeElement.html#aee56f0067940a3ba61014a08c1d0b207">Initial_Nvalue</a>;</div>
 <div class="line"><a id="l00812" name="l00812"></a><span class="lineno">  812</span>  };</div>
@@ -1100,7 +1100,7 @@ $(function() {
 <div class="line"><a id="l00971" name="l00971"></a><span class="lineno">  971</span>    : <span class="keyword">public</span> <span class="keyword">virtual</span> QElement&lt;SPATIAL_DIM, NNODE_1D&gt;</div>
 <div class="line"><a id="l00972" name="l00972"></a><span class="lineno">  972</span>  {</div>
 <div class="line"><a id="l00973" name="l00973"></a><span class="lineno">  973</span>  <span class="keyword">public</span>:<span class="comment"></span></div>
-<div class="line"><a id="l00974" name="l00974"></a><span class="lineno">  974</span><span class="comment">    ///  Constructor: Call the constructor for the appropriate</span></div>
+<div class="line"><a id="l00974" name="l00974"></a><span class="lineno">  974</span><span class="comment">    /// Constructor: Call the constructor for the appropriate</span></div>
 <div class="line"><a id="l00975" name="l00975"></a><span class="lineno">  975</span><span class="comment">    /// lower-dimensional QElement</span></div>
 <div class="line"><a id="l00976" name="l00976"></a><span class="lineno"><a class="line" href="classoomph_1_1FaceGeometry_3_01QUnsteadyHeatSpaceTimeElement_3_01SPATIAL__DIM_00_01NNODE__1D_01_4_01_4.html#ab0171cd61998f8ddddc3d235a075e093">  976</a></span><span class="comment"></span>    <a class="code hl_function" href="classoomph_1_1FaceGeometry_3_01QUnsteadyHeatSpaceTimeElement_3_01SPATIAL__DIM_00_01NNODE__1D_01_4_01_4.html#ab0171cd61998f8ddddc3d235a075e093">FaceGeometry</a>() : <a class="code hl_class" href="classoomph_1_1QElement.html">QElement</a>&lt;SPATIAL_DIM, NNODE_1D&gt;() {}</div>
 <div class="line"><a id="l00977" name="l00977"></a><span class="lineno">  977</span>  };</div>
@@ -1120,7 +1120,7 @@ $(function() {
 <div class="line"><a id="l00991" name="l00991"></a><span class="lineno">  991</span>    : <span class="keyword">public</span> <span class="keyword">virtual</span> PointElement</div>
 <div class="line"><a id="l00992" name="l00992"></a><span class="lineno">  992</span>  {</div>
 <div class="line"><a id="l00993" name="l00993"></a><span class="lineno">  993</span>  <span class="keyword">public</span>:<span class="comment"></span></div>
-<div class="line"><a id="l00994" name="l00994"></a><span class="lineno">  994</span><span class="comment">    ///  Constructor: Call the constructor for the appropriate</span></div>
+<div class="line"><a id="l00994" name="l00994"></a><span class="lineno">  994</span><span class="comment">    /// Constructor: Call the constructor for the appropriate</span></div>
 <div class="line"><a id="l00995" name="l00995"></a><span class="lineno">  995</span><span class="comment">    /// lower-dimensional QElement</span></div>
 <div class="line"><a id="l00996" name="l00996"></a><span class="lineno"><a class="line" href="classoomph_1_1FaceGeometry_3_01QUnsteadyHeatSpaceTimeElement_3_011_00_01NNODE__1D_01_4_01_4.html#ad639d221e31ef4c25db18211d5c016ad">  996</a></span><span class="comment"></span>    <a class="code hl_function" href="classoomph_1_1FaceGeometry_3_01QUnsteadyHeatSpaceTimeElement_3_011_00_01NNODE__1D_01_4_01_4.html#ad639d221e31ef4c25db18211d5c016ad">FaceGeometry</a>() : <a class="code hl_class" href="classoomph_1_1PointElement.html">PointElement</a>() {}</div>
 <div class="line"><a id="l00997" name="l00997"></a><span class="lineno">  997</span>  };</div>
@@ -1139,12 +1139,12 @@ $(function() {
 <div class="line"><a id="l01010" name="l01010"></a><span class="lineno"> 1010</span>    : <span class="keyword">public</span> <span class="keyword">virtual</span> ProjectableElement&lt;UNSTEADY_HEAT_ELEMENT&gt;</div>
 <div class="line"><a id="l01011" name="l01011"></a><span class="lineno"> 1011</span>  {</div>
 <div class="line"><a id="l01012" name="l01012"></a><span class="lineno"> 1012</span>  <span class="keyword">public</span>:<span class="comment"></span></div>
-<div class="line"><a id="l01013" name="l01013"></a><span class="lineno"> 1013</span><span class="comment">    ///  Constructor [this was only required explicitly</span></div>
+<div class="line"><a id="l01013" name="l01013"></a><span class="lineno"> 1013</span><span class="comment">    /// Constructor [this was only required explicitly</span></div>
 <div class="line"><a id="l01014" name="l01014"></a><span class="lineno"> 1014</span><span class="comment">    /// from gcc 4.5.2 onwards...]</span></div>
 <div class="line"><a id="l01015" name="l01015"></a><span class="lineno"><a class="line" href="classoomph_1_1ProjectableUnsteadyHeatSpaceTimeElement.html#aaa048cb524029e81faee1c9c67efed0c"> 1015</a></span><span class="comment"></span>    <a class="code hl_function" href="classoomph_1_1ProjectableUnsteadyHeatSpaceTimeElement.html#aaa048cb524029e81faee1c9c67efed0c">ProjectableUnsteadyHeatSpaceTimeElement</a>() {}</div>
 <div class="line"><a id="l01016" name="l01016"></a><span class="lineno"> 1016</span> </div>
 <div class="line"><a id="l01017" name="l01017"></a><span class="lineno"> 1017</span><span class="comment"></span> </div>
-<div class="line"><a id="l01018" name="l01018"></a><span class="lineno"> 1018</span><span class="comment">    ///  Specify the values associated with field fld. The information</span></div>
+<div class="line"><a id="l01018" name="l01018"></a><span class="lineno"> 1018</span><span class="comment">    /// Specify the values associated with field fld. The information</span></div>
 <div class="line"><a id="l01019" name="l01019"></a><span class="lineno"> 1019</span><span class="comment">    /// is returned in a vector of pairs which comprise the Data object and</span></div>
 <div class="line"><a id="l01020" name="l01020"></a><span class="lineno"> 1020</span><span class="comment">    /// the value within it, that correspond to field fld.</span></div>
 <div class="line"><a id="l01021" name="l01021"></a><span class="lineno"><a class="line" href="classoomph_1_1ProjectableUnsteadyHeatSpaceTimeElement.html#a4f0b3b7062efeaf66917230ceb472f1f"> 1021</a></span><span class="comment"></span>    <a class="code hl_class" href="classoomph_1_1Vector.html">Vector&lt;std::pair&lt;Data*, unsigned&gt;</a>&gt; <a class="code hl_function" href="classoomph_1_1ProjectableUnsteadyHeatSpaceTimeElement.html#a4f0b3b7062efeaf66917230ceb472f1f">data_values_of_field</a>(<span class="keyword">const</span> <span class="keywordtype">unsigned</span>&amp; fld)</div>
@@ -1185,7 +1185,7 @@ $(function() {
 <div class="line"><a id="l01056" name="l01056"></a><span class="lineno"> 1056</span>    } <span class="comment">// End of data_values_of_field</span></div>
 <div class="line"><a id="l01057" name="l01057"></a><span class="lineno"> 1057</span> </div>
 <div class="line"><a id="l01058" name="l01058"></a><span class="lineno"> 1058</span><span class="comment"></span> </div>
-<div class="line"><a id="l01059" name="l01059"></a><span class="lineno"> 1059</span><span class="comment">    ///  Number of fields to be projected: Just one</span></div>
+<div class="line"><a id="l01059" name="l01059"></a><span class="lineno"> 1059</span><span class="comment">    /// Number of fields to be projected: Just one</span></div>
 <div class="line"><a id="l01060" name="l01060"></a><span class="lineno"><a class="line" href="classoomph_1_1ProjectableUnsteadyHeatSpaceTimeElement.html#a8efa94e5a3145a6be2d903ce3e03d075"> 1060</a></span><span class="comment"></span>    <span class="keywordtype">unsigned</span> <a class="code hl_function" href="classoomph_1_1ProjectableUnsteadyHeatSpaceTimeElement.html#a8efa94e5a3145a6be2d903ce3e03d075">nfields_for_projection</a>()</div>
 <div class="line"><a id="l01061" name="l01061"></a><span class="lineno"> 1061</span>    {</div>
 <div class="line"><a id="l01062" name="l01062"></a><span class="lineno"> 1062</span>      <span class="comment">// Return the appropriate value</span></div>
@@ -1193,7 +1193,7 @@ $(function() {
 <div class="line"><a id="l01064" name="l01064"></a><span class="lineno"> 1064</span>    } <span class="comment">// End of nfields_for_projection</span></div>
 <div class="line"><a id="l01065" name="l01065"></a><span class="lineno"> 1065</span> </div>
 <div class="line"><a id="l01066" name="l01066"></a><span class="lineno"> 1066</span><span class="comment"></span> </div>
-<div class="line"><a id="l01067" name="l01067"></a><span class="lineno"> 1067</span><span class="comment">    ///  Number of history values to be stored for fld-th field.</span></div>
+<div class="line"><a id="l01067" name="l01067"></a><span class="lineno"> 1067</span><span class="comment">    /// Number of history values to be stored for fld-th field.</span></div>
 <div class="line"><a id="l01068" name="l01068"></a><span class="lineno"> 1068</span><span class="comment">    /// (Note: count includes current value!)</span></div>
 <div class="line"><a id="l01069" name="l01069"></a><span class="lineno"><a class="line" href="classoomph_1_1ProjectableUnsteadyHeatSpaceTimeElement.html#a0fc8ec5028f2d7e52036babafb895442"> 1069</a></span><span class="comment"></span>    <span class="keywordtype">unsigned</span> <a class="code hl_function" href="classoomph_1_1ProjectableUnsteadyHeatSpaceTimeElement.html#a0fc8ec5028f2d7e52036babafb895442">nhistory_values_for_projection</a>(<span class="keyword">const</span> <span class="keywordtype">unsigned</span>&amp; fld)</div>
 <div class="line"><a id="l01070" name="l01070"></a><span class="lineno"> 1070</span>    {</div>
@@ -1220,7 +1220,7 @@ $(function() {
 <div class="line"><a id="l01091" name="l01091"></a><span class="lineno"> 1091</span>    } <span class="comment">// End of nhistory_values_for_projection</span></div>
 <div class="line"><a id="l01092" name="l01092"></a><span class="lineno"> 1092</span> </div>
 <div class="line"><a id="l01093" name="l01093"></a><span class="lineno"> 1093</span><span class="comment"></span> </div>
-<div class="line"><a id="l01094" name="l01094"></a><span class="lineno"> 1094</span><span class="comment">    ///  Number of positional history values (Note: count includes</span></div>
+<div class="line"><a id="l01094" name="l01094"></a><span class="lineno"> 1094</span><span class="comment">    /// Number of positional history values (Note: count includes</span></div>
 <div class="line"><a id="l01095" name="l01095"></a><span class="lineno"> 1095</span><span class="comment">    /// current value!)</span></div>
 <div class="line"><a id="l01096" name="l01096"></a><span class="lineno"><a class="line" href="classoomph_1_1ProjectableUnsteadyHeatSpaceTimeElement.html#a6fa0baef8723cd4f6f413a3308622b35"> 1096</a></span><span class="comment"></span>    <span class="keywordtype">unsigned</span> <a class="code hl_function" href="classoomph_1_1ProjectableUnsteadyHeatSpaceTimeElement.html#a6fa0baef8723cd4f6f413a3308622b35">nhistory_values_for_coordinate_projection</a>()</div>
 <div class="line"><a id="l01097" name="l01097"></a><span class="lineno"> 1097</span>    {</div>
@@ -1229,7 +1229,7 @@ $(function() {
 <div class="line"><a id="l01100" name="l01100"></a><span class="lineno"> 1100</span>    } <span class="comment">// End of nhistory_values_for_coordinate_projection</span></div>
 <div class="line"><a id="l01101" name="l01101"></a><span class="lineno"> 1101</span> </div>
 <div class="line"><a id="l01102" name="l01102"></a><span class="lineno"> 1102</span><span class="comment"></span> </div>
-<div class="line"><a id="l01103" name="l01103"></a><span class="lineno"> 1103</span><span class="comment">    ///  Return Jacobian of mapping and shape functions of field fld</span></div>
+<div class="line"><a id="l01103" name="l01103"></a><span class="lineno"> 1103</span><span class="comment">    /// Return Jacobian of mapping and shape functions of field fld</span></div>
 <div class="line"><a id="l01104" name="l01104"></a><span class="lineno"> 1104</span><span class="comment">    /// at local coordinate s</span></div>
 <div class="line"><a id="l01105" name="l01105"></a><span class="lineno"><a class="line" href="classoomph_1_1ProjectableUnsteadyHeatSpaceTimeElement.html#abffad68b686c161f623183f5db539c1e"> 1105</a></span><span class="comment"></span>    <span class="keywordtype">double</span> <a class="code hl_function" href="classoomph_1_1ProjectableUnsteadyHeatSpaceTimeElement.html#abffad68b686c161f623183f5db539c1e">jacobian_and_shape_of_field</a>(<span class="keyword">const</span> <span class="keywordtype">unsigned</span>&amp; fld,</div>
 <div class="line"><a id="l01106" name="l01106"></a><span class="lineno"> 1106</span>                                       <span class="keyword">const</span> <a class="code hl_class" href="classoomph_1_1Vector.html">Vector&lt;double&gt;</a>&amp; <a class="code hl_variable" href="cfortran_8h.html#ab7123126e4885ef647dd9c6e3807a21c">s</a>,</div>
@@ -1279,7 +1279,7 @@ $(function() {
 <div class="line"><a id="l01150" name="l01150"></a><span class="lineno"> 1150</span>    } <span class="comment">// End of jacobian_and_shape_of_field</span></div>
 <div class="line"><a id="l01151" name="l01151"></a><span class="lineno"> 1151</span> </div>
 <div class="line"><a id="l01152" name="l01152"></a><span class="lineno"> 1152</span><span class="comment"></span> </div>
-<div class="line"><a id="l01153" name="l01153"></a><span class="lineno"> 1153</span><span class="comment">    ///  Return interpolated field fld at local coordinate s, at time</span></div>
+<div class="line"><a id="l01153" name="l01153"></a><span class="lineno"> 1153</span><span class="comment">    /// Return interpolated field fld at local coordinate s, at time</span></div>
 <div class="line"><a id="l01154" name="l01154"></a><span class="lineno"> 1154</span><span class="comment">    /// level t (t=0: present; t&gt;0: history values)</span></div>
 <div class="line"><a id="l01155" name="l01155"></a><span class="lineno"><a class="line" href="classoomph_1_1ProjectableUnsteadyHeatSpaceTimeElement.html#a09c12a1c8968d3450f8a826cc7e79277"> 1155</a></span><span class="comment"></span>    <span class="keywordtype">double</span> <a class="code hl_function" href="classoomph_1_1ProjectableUnsteadyHeatSpaceTimeElement.html#a09c12a1c8968d3450f8a826cc7e79277">get_field</a>(<span class="keyword">const</span> <span class="keywordtype">unsigned</span>&amp; <a class="code hl_variable" href="cfortran_8h.html#af6f0bd3dc13317f895c91323c25c2b8f">t</a>,</div>
 <div class="line"><a id="l01156" name="l01156"></a><span class="lineno"> 1156</span>                     <span class="keyword">const</span> <span class="keywordtype">unsigned</span>&amp; fld,</div>
@@ -1385,7 +1385,7 @@ $(function() {
 <div class="line"><a id="l01256" name="l01256"></a><span class="lineno"> 1256</span>    } <span class="comment">// End of local_equation</span></div>
 <div class="line"><a id="l01257" name="l01257"></a><span class="lineno"> 1257</span> </div>
 <div class="line"><a id="l01258" name="l01258"></a><span class="lineno"> 1258</span><span class="comment"></span> </div>
-<div class="line"><a id="l01259" name="l01259"></a><span class="lineno"> 1259</span><span class="comment">    ///  Output FE representation of soln: x,t,u or x,y,t,u</span></div>
+<div class="line"><a id="l01259" name="l01259"></a><span class="lineno"> 1259</span><span class="comment">    /// Output FE representation of soln: x,t,u or x,y,t,u</span></div>
 <div class="line"><a id="l01260" name="l01260"></a><span class="lineno"> 1260</span><span class="comment">    /// at n_plot^(SPATIAL_DIM+1) plot points</span></div>
 <div class="line"><a id="l01261" name="l01261"></a><span class="lineno"><a class="line" href="classoomph_1_1ProjectableUnsteadyHeatSpaceTimeElement.html#a4ce7c79eade9f403c602c34020cf8beb"> 1261</a></span><span class="comment"></span>    <span class="keywordtype">void</span> <a class="code hl_function" href="classoomph_1_1ProjectableUnsteadyHeatSpaceTimeElement.html#a4ce7c79eade9f403c602c34020cf8beb">output</a>(std::ostream&amp; outfile, <span class="keyword">const</span> <span class="keywordtype">unsigned</span>&amp; nplot)</div>
 <div class="line"><a id="l01262" name="l01262"></a><span class="lineno"> 1262</span>    {</div>
@@ -1575,7 +1575,7 @@ $(function() {
     <footer>
       <div class="container">
         <div class="text-muted" style="float:right;">Generated by <a href="http://www.doxygen.org/index.html">
-          <img style="height:18px;" class="footer-img" src="doxygen.png" alt="doxygen"></a> on Fri Oct 22 2021 12:23:27
+          <img style="height:18px;" class="footer-img" src="doxygen.png" alt="doxygen"></a> on Mon Oct 25 2021 14:41:47
         </div>
       </div>
     </footer>

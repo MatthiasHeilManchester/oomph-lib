@@ -180,23 +180,23 @@
 <div class="line"><a id="l00061" name="l00061"></a><span class="lineno">   61</span><span class="comment"> /// Destructor (empty)</span></div>
 <div class="line"><a id="l00062" name="l00062"></a><span class="lineno"><a class="line" href="classYoungLaplaceProblem.html#aa3482606bfd86a3db9d2dec86ba75f14">   62</a></span><span class="comment"></span> <a class="code hl_function" href="classYoungLaplaceProblem.html#aa3482606bfd86a3db9d2dec86ba75f14">~YoungLaplaceProblem</a>(){};</div>
 <div class="line"><a id="l00063" name="l00063"></a><span class="lineno">   63</span><span class="comment"></span> </div>
-<div class="line"><a id="l00064" name="l00064"></a><span class="lineno">   64</span><span class="comment"> ///  Update the problem specs before solve</span></div>
+<div class="line"><a id="l00064" name="l00064"></a><span class="lineno">   64</span><span class="comment"> /// Update the problem specs before solve</span></div>
 <div class="line"><a id="l00065" name="l00065"></a><span class="lineno"><a class="line" href="classYoungLaplaceProblem.html#a93dd45313d28c3b9b0b51e34d14ebd24">   65</a></span><span class="comment"></span> <span class="keywordtype">void</span> <a class="code hl_function" href="classYoungLaplaceProblem.html#a93dd45313d28c3b9b0b51e34d14ebd24">actions_before_newton_solve</a>();</div>
 <div class="line"><a id="l00066" name="l00066"></a><span class="lineno">   66</span><span class="comment"></span> </div>
 <div class="line"><a id="l00067" name="l00067"></a><span class="lineno">   67</span><span class="comment"> /// Update the problem after solve: Empty</span></div>
 <div class="line"><a id="l00068" name="l00068"></a><span class="lineno"><a class="line" href="classYoungLaplaceProblem.html#a8eed49ad1c6247cc293a584ab9262efc">   68</a></span><span class="comment"></span> <span class="keywordtype">void</span> <a class="code hl_function" href="classYoungLaplaceProblem.html#a8eed49ad1c6247cc293a584ab9262efc">actions_after_newton_solve</a>(){};</div>
 <div class="line"><a id="l00069" name="l00069"></a><span class="lineno">   69</span><span class="comment"></span> </div>
-<div class="line"><a id="l00070" name="l00070"></a><span class="lineno">   70</span><span class="comment"> ///  Doc the solution. DocInfo object stores flags/labels for where the</span></div>
+<div class="line"><a id="l00070" name="l00070"></a><span class="lineno">   70</span><span class="comment"> /// Doc the solution. DocInfo object stores flags/labels for where the</span></div>
 <div class="line"><a id="l00071" name="l00071"></a><span class="lineno">   71</span><span class="comment"> /// output gets written to and the trace file</span></div>
 <div class="line"><a id="l00072" name="l00072"></a><span class="lineno"><a class="line" href="classYoungLaplaceProblem.html#a16f10e66457718eca76d1335dbed8f12">   72</a></span><span class="comment"></span> <span class="keywordtype">void</span> <a class="code hl_function" href="classYoungLaplaceProblem.html#a16f10e66457718eca76d1335dbed8f12">doc_solution</a>(DocInfo&amp; doc_info, ofstream&amp; trace_file);</div>
 <div class="line"><a id="l00073" name="l00073"></a><span class="lineno">   73</span> </div>
 <div class="line"><a id="l00074" name="l00074"></a><span class="lineno">   74</span><span class="keyword">private</span>:</div>
 <div class="line"><a id="l00075" name="l00075"></a><span class="lineno">   75</span><span class="comment"></span> </div>
-<div class="line"><a id="l00076" name="l00076"></a><span class="lineno">   76</span><span class="comment"> ///  Create YoungLaplace contact angle elements on the </span></div>
+<div class="line"><a id="l00076" name="l00076"></a><span class="lineno">   76</span><span class="comment"> /// Create YoungLaplace contact angle elements on the </span></div>
 <div class="line"><a id="l00077" name="l00077"></a><span class="lineno">   77</span><span class="comment"> /// b-th boundary of the problem&#39;s mesh and add them to mesh</span></div>
 <div class="line"><a id="l00078" name="l00078"></a><span class="lineno">   78</span><span class="comment"></span> <span class="keywordtype">void</span> <a class="code hl_function" href="classYoungLaplaceProblem.html#a3ebbc17f9f27480e720f0bd87a036a12">create_contact_angle_elements</a>(<span class="keyword">const</span> <span class="keywordtype">unsigned</span>&amp; b);</div>
 <div class="line"><a id="l00079" name="l00079"></a><span class="lineno">   79</span> <span class="comment"></span></div>
-<div class="line"><a id="l00080" name="l00080"></a><span class="lineno">   80</span><span class="comment"> ///  Number of YoungLaplace &quot;bulk&quot; elements (We&#39;re attaching the  </span></div>
+<div class="line"><a id="l00080" name="l00080"></a><span class="lineno">   80</span><span class="comment"> /// Number of YoungLaplace &quot;bulk&quot; elements (We&#39;re attaching the  </span></div>
 <div class="line"><a id="l00081" name="l00081"></a><span class="lineno">   81</span><span class="comment"> /// contact angle elements to the bulk mesh --&gt; only the first </span></div>
 <div class="line"><a id="l00082" name="l00082"></a><span class="lineno">   82</span><span class="comment"> /// N_bulk_elements elements in the mesh are bulk elements!)</span></div>
 <div class="line"><a id="l00083" name="l00083"></a><span class="lineno"><a class="line" href="classYoungLaplaceProblem.html#a4dc49a3807638823ac2157d67e8fed4a">   83</a></span><span class="comment"></span> <span class="keywordtype">unsigned</span> <a class="code hl_variable" href="classYoungLaplaceProblem.html#a4dc49a3807638823ac2157d67e8fed4a">N_bulk_elements</a>;</div>
@@ -842,7 +842,7 @@
     <footer>
       <div class="container">
         <div class="text-muted" style="float:right;">Generated by <a href="http://www.doxygen.org/index.html">
-          <img style="height:18px;" class="footer-img" src="doxygen.png" alt="doxygen"></a> on Fri Oct 22 2021 12:52:33
+          <img style="height:18px;" class="footer-img" src="doxygen.png" alt="doxygen"></a> on Mon Oct 25 2021 15:10:44
         </div>
       </div>
     </footer>

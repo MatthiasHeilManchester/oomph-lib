@@ -188,17 +188,17 @@ $(function() {
 <div class="line"><a id="l00059" name="l00059"></a><span class="lineno">   59</span><span class="comment">    /// Destructor</span></div>
 <div class="line"><a id="l00060" name="l00060"></a><span class="lineno"><a class="line" href="classoomph_1_1PRefineableQElement_3_011_00_01INITIAL__NNODE__1D_01_4.html#a967ca0e1c8c64bb496fb5a0dc5f832ed">   60</a></span><span class="comment"></span>    <span class="keyword">virtual</span> <a class="code hl_function" href="classoomph_1_1PRefineableQElement_3_011_00_01INITIAL__NNODE__1D_01_4.html#a967ca0e1c8c64bb496fb5a0dc5f832ed">~PRefineableQElement</a>() {}</div>
 <div class="line"><a id="l00061" name="l00061"></a><span class="lineno">   61</span><span class="comment"></span> </div>
-<div class="line"><a id="l00062" name="l00062"></a><span class="lineno">   62</span><span class="comment">    ///  Initial setup of element (set the correct p-order and</span></div>
+<div class="line"><a id="l00062" name="l00062"></a><span class="lineno">   62</span><span class="comment">    /// Initial setup of element (set the correct p-order and</span></div>
 <div class="line"><a id="l00063" name="l00063"></a><span class="lineno">   63</span><span class="comment">    /// integration scheme) If an adopted father is specified, information</span></div>
 <div class="line"><a id="l00064" name="l00064"></a><span class="lineno">   64</span><span class="comment">    /// from this is used instead of using the father found from the tree.</span></div>
 <div class="line"><a id="l00065" name="l00065"></a><span class="lineno">   65</span><span class="comment"></span>    <span class="keywordtype">void</span> initial_setup(<a class="code hl_class" href="classoomph_1_1Tree.html">Tree</a>* <span class="keyword">const</span>&amp; adopted_father_pt = 0,</div>
 <div class="line"><a id="l00066" name="l00066"></a><span class="lineno">   66</span>                       <span class="keyword">const</span> <span class="keywordtype">unsigned</span>&amp; initial_p_order = 0);</div>
 <div class="line"><a id="l00067" name="l00067"></a><span class="lineno">   67</span><span class="comment"></span> </div>
-<div class="line"><a id="l00068" name="l00068"></a><span class="lineno">   68</span><span class="comment">    ///  Pre-build (search father for required nodes which may already</span></div>
+<div class="line"><a id="l00068" name="l00068"></a><span class="lineno">   68</span><span class="comment">    /// Pre-build (search father for required nodes which may already</span></div>
 <div class="line"><a id="l00069" name="l00069"></a><span class="lineno">   69</span><span class="comment">    /// exist)</span></div>
 <div class="line"><a id="l00070" name="l00070"></a><span class="lineno">   70</span><span class="comment"></span>    <span class="keywordtype">void</span> pre_build(<a class="code hl_class" href="classoomph_1_1Mesh.html">Mesh</a>*&amp; mesh_pt, <a class="code hl_class" href="classoomph_1_1Vector.html">Vector&lt;Node*&gt;</a>&amp; new_node_pt);</div>
 <div class="line"><a id="l00071" name="l00071"></a><span class="lineno">   71</span><span class="comment"></span> </div>
-<div class="line"><a id="l00072" name="l00072"></a><span class="lineno">   72</span><span class="comment">    ///  p-refine the element (refine if inc&gt;0, unrefine if inc&lt;0).</span></div>
+<div class="line"><a id="l00072" name="l00072"></a><span class="lineno">   72</span><span class="comment">    /// p-refine the element (refine if inc&gt;0, unrefine if inc&lt;0).</span></div>
 <div class="line"><a id="l00073" name="l00073"></a><span class="lineno">   73</span><span class="comment"></span>    <span class="keywordtype">void</span> p_refine(<span class="keyword">const</span> <span class="keywordtype">int</span>&amp; inc,</div>
 <div class="line"><a id="l00074" name="l00074"></a><span class="lineno">   74</span>                  <a class="code hl_class" href="classoomph_1_1Mesh.html">Mesh</a>* <span class="keyword">const</span>&amp; mesh_pt,</div>
 <div class="line"><a id="l00075" name="l00075"></a><span class="lineno">   75</span>                  <a class="code hl_class" href="classoomph_1_1GeneralisedElement.html">GeneralisedElement</a>* <span class="keyword">const</span>&amp; clone_pt);</div>
@@ -213,12 +213,12 @@ $(function() {
 <div class="line"><a id="l00084" name="l00084"></a><span class="lineno">   84</span>                       <a class="code hl_class" href="classoomph_1_1DShape.html">DShape</a>&amp; dpsids,</div>
 <div class="line"><a id="l00085" name="l00085"></a><span class="lineno">   85</span>                       <a class="code hl_class" href="classoomph_1_1DShape.html">DShape</a>&amp; d2psids) <span class="keyword">const</span>;</div>
 <div class="line"><a id="l00086" name="l00086"></a><span class="lineno">   86</span><span class="comment"></span> </div>
-<div class="line"><a id="l00087" name="l00087"></a><span class="lineno">   87</span><span class="comment">    ///  Perform additional hanging node procedures for variables</span></div>
+<div class="line"><a id="l00087" name="l00087"></a><span class="lineno">   87</span><span class="comment">    /// Perform additional hanging node procedures for variables</span></div>
 <div class="line"><a id="l00088" name="l00088"></a><span class="lineno">   88</span><span class="comment">    /// that are not interpolated by all nodes (e.g. lower order interpolations</span></div>
 <div class="line"><a id="l00089" name="l00089"></a><span class="lineno">   89</span><span class="comment">    /// for the pressure in Taylor Hood).</span></div>
 <div class="line"><a id="l00090" name="l00090"></a><span class="lineno"><a class="line" href="classoomph_1_1PRefineableQElement_3_011_00_01INITIAL__NNODE__1D_01_4.html#aa83bd8186928d1e538e59ae7db831944">   90</a></span><span class="comment"></span>    <span class="keywordtype">void</span> <a class="code hl_function" href="classoomph_1_1PRefineableQElement_3_011_00_01INITIAL__NNODE__1D_01_4.html#aa83bd8186928d1e538e59ae7db831944">further_setup_hanging_nodes</a>() {}</div>
 <div class="line"><a id="l00091" name="l00091"></a><span class="lineno">   91</span><span class="comment"></span> </div>
-<div class="line"><a id="l00092" name="l00092"></a><span class="lineno">   92</span><span class="comment">    ///  Returns the number of nodes along each edge of the element.</span></div>
+<div class="line"><a id="l00092" name="l00092"></a><span class="lineno">   92</span><span class="comment">    /// Returns the number of nodes along each edge of the element.</span></div>
 <div class="line"><a id="l00093" name="l00093"></a><span class="lineno">   93</span><span class="comment">    /// Overloaded to return the (variable) p-order rather than the template</span></div>
 <div class="line"><a id="l00094" name="l00094"></a><span class="lineno">   94</span><span class="comment">    /// argument.</span></div>
 <div class="line"><a id="l00095" name="l00095"></a><span class="lineno"><a class="line" href="classoomph_1_1PRefineableQElement_3_011_00_01INITIAL__NNODE__1D_01_4.html#ab6b8cae22708b3db0e29e095f43fad6a">   95</a></span><span class="comment"></span>    <span class="keywordtype">unsigned</span> <a class="code hl_function" href="classoomph_1_1PRefineableQElement_3_011_00_01INITIAL__NNODE__1D_01_4.html#ab6b8cae22708b3db0e29e095f43fad6a">nnode_1d</a>()<span class="keyword"> const</span></div>
@@ -253,12 +253,12 @@ $(function() {
 <div class="line"><a id="l00124" name="l00124"></a><span class="lineno">  124</span><span class="comment">    /// are still required.</span></div>
 <div class="line"><a id="l00125" name="l00125"></a><span class="lineno">  125</span><span class="comment"></span>    <span class="keywordtype">void</span> rebuild_from_sons(<a class="code hl_class" href="classoomph_1_1Mesh.html">Mesh</a>*&amp; mesh_pt);</div>
 <div class="line"><a id="l00126" name="l00126"></a><span class="lineno">  126</span><span class="comment"></span> </div>
-<div class="line"><a id="l00127" name="l00127"></a><span class="lineno">  127</span><span class="comment">    ///  Check the integrity of interpolated values across element</span></div>
+<div class="line"><a id="l00127" name="l00127"></a><span class="lineno">  127</span><span class="comment">    /// Check the integrity of interpolated values across element</span></div>
 <div class="line"><a id="l00128" name="l00128"></a><span class="lineno">  128</span><span class="comment">    /// boundaries.</span></div>
 <div class="line"><a id="l00129" name="l00129"></a><span class="lineno">  129</span><span class="comment"></span>    <span class="keywordtype">void</span> check_integrity(<span class="keywordtype">double</span>&amp; max_error);</div>
 <div class="line"><a id="l00130" name="l00130"></a><span class="lineno">  130</span> </div>
 <div class="line"><a id="l00131" name="l00131"></a><span class="lineno">  131</span>  <span class="keyword">protected</span>:<span class="comment"></span></div>
-<div class="line"><a id="l00132" name="l00132"></a><span class="lineno">  132</span><span class="comment">    ///  Set up hanging node information. Empty for 1D elements.</span></div>
+<div class="line"><a id="l00132" name="l00132"></a><span class="lineno">  132</span><span class="comment">    /// Set up hanging node information. Empty for 1D elements.</span></div>
 <div class="line"><a id="l00133" name="l00133"></a><span class="lineno">  133</span><span class="comment"></span>    <span class="keywordtype">void</span> binary_hang_helper(<span class="keyword">const</span> <span class="keywordtype">int</span>&amp; value_id,</div>
 <div class="line"><a id="l00134" name="l00134"></a><span class="lineno">  134</span>                            <span class="keyword">const</span> <span class="keywordtype">int</span>&amp; my_edge,</div>
 <div class="line"><a id="l00135" name="l00135"></a><span class="lineno">  135</span>                            std::ofstream&amp; output_hangfile);</div>
@@ -280,17 +280,17 @@ $(function() {
 <div class="line"><a id="l00151" name="l00151"></a><span class="lineno">  151</span><span class="comment">    /// Destructor</span></div>
 <div class="line"><a id="l00152" name="l00152"></a><span class="lineno"><a class="line" href="classoomph_1_1PRefineableQElement_3_012_00_01INITIAL__NNODE__1D_01_4.html#a4f90a667998d7826a7be2b089ac76c03">  152</a></span><span class="comment"></span>    <span class="keyword">virtual</span> <a class="code hl_function" href="classoomph_1_1PRefineableQElement_3_012_00_01INITIAL__NNODE__1D_01_4.html#a4f90a667998d7826a7be2b089ac76c03">~PRefineableQElement</a>() {}</div>
 <div class="line"><a id="l00153" name="l00153"></a><span class="lineno">  153</span><span class="comment"></span> </div>
-<div class="line"><a id="l00154" name="l00154"></a><span class="lineno">  154</span><span class="comment">    ///  Initial setup of element (set the correct p-order and</span></div>
+<div class="line"><a id="l00154" name="l00154"></a><span class="lineno">  154</span><span class="comment">    /// Initial setup of element (set the correct p-order and</span></div>
 <div class="line"><a id="l00155" name="l00155"></a><span class="lineno">  155</span><span class="comment">    /// integration scheme) If an adopted father is specified, information</span></div>
 <div class="line"><a id="l00156" name="l00156"></a><span class="lineno">  156</span><span class="comment">    /// from this is used instead of using the father found from the tree.</span></div>
 <div class="line"><a id="l00157" name="l00157"></a><span class="lineno">  157</span><span class="comment"></span>    <span class="keywordtype">void</span> initial_setup(<a class="code hl_class" href="classoomph_1_1Tree.html">Tree</a>* <span class="keyword">const</span>&amp; adopted_father_pt = 0,</div>
 <div class="line"><a id="l00158" name="l00158"></a><span class="lineno">  158</span>                       <span class="keyword">const</span> <span class="keywordtype">unsigned</span>&amp; initial_p_order = 0);</div>
 <div class="line"><a id="l00159" name="l00159"></a><span class="lineno">  159</span><span class="comment"></span> </div>
-<div class="line"><a id="l00160" name="l00160"></a><span class="lineno">  160</span><span class="comment">    ///  Pre-build (search father for required nodes which may already</span></div>
+<div class="line"><a id="l00160" name="l00160"></a><span class="lineno">  160</span><span class="comment">    /// Pre-build (search father for required nodes which may already</span></div>
 <div class="line"><a id="l00161" name="l00161"></a><span class="lineno">  161</span><span class="comment">    /// exist)</span></div>
 <div class="line"><a id="l00162" name="l00162"></a><span class="lineno">  162</span><span class="comment"></span>    <span class="keywordtype">void</span> pre_build(<a class="code hl_class" href="classoomph_1_1Mesh.html">Mesh</a>*&amp; mesh_pt, <a class="code hl_class" href="classoomph_1_1Vector.html">Vector&lt;Node*&gt;</a>&amp; new_node_pt);</div>
 <div class="line"><a id="l00163" name="l00163"></a><span class="lineno">  163</span><span class="comment"></span> </div>
-<div class="line"><a id="l00164" name="l00164"></a><span class="lineno">  164</span><span class="comment">    ///  p-refine the element (refine if inc&gt;0, unrefine if inc&lt;0).</span></div>
+<div class="line"><a id="l00164" name="l00164"></a><span class="lineno">  164</span><span class="comment">    /// p-refine the element (refine if inc&gt;0, unrefine if inc&lt;0).</span></div>
 <div class="line"><a id="l00165" name="l00165"></a><span class="lineno">  165</span><span class="comment"></span>    <span class="keywordtype">void</span> p_refine(<span class="keyword">const</span> <span class="keywordtype">int</span>&amp; inc,</div>
 <div class="line"><a id="l00166" name="l00166"></a><span class="lineno">  166</span>                  <a class="code hl_class" href="classoomph_1_1Mesh.html">Mesh</a>* <span class="keyword">const</span>&amp; mesh_pt,</div>
 <div class="line"><a id="l00167" name="l00167"></a><span class="lineno">  167</span>                  <a class="code hl_class" href="classoomph_1_1GeneralisedElement.html">GeneralisedElement</a>* <span class="keyword">const</span>&amp; clone_pt);</div>
@@ -305,12 +305,12 @@ $(function() {
 <div class="line"><a id="l00176" name="l00176"></a><span class="lineno">  176</span>                       <a class="code hl_class" href="classoomph_1_1DShape.html">DShape</a>&amp; dpsids,</div>
 <div class="line"><a id="l00177" name="l00177"></a><span class="lineno">  177</span>                       <a class="code hl_class" href="classoomph_1_1DShape.html">DShape</a>&amp; d2psids) <span class="keyword">const</span>;</div>
 <div class="line"><a id="l00178" name="l00178"></a><span class="lineno">  178</span><span class="comment"></span> </div>
-<div class="line"><a id="l00179" name="l00179"></a><span class="lineno">  179</span><span class="comment">    ///  Perform additional hanging node procedures for variables</span></div>
+<div class="line"><a id="l00179" name="l00179"></a><span class="lineno">  179</span><span class="comment">    /// Perform additional hanging node procedures for variables</span></div>
 <div class="line"><a id="l00180" name="l00180"></a><span class="lineno">  180</span><span class="comment">    /// that are not interpolated by all nodes (e.g. lower order interpolations</span></div>
 <div class="line"><a id="l00181" name="l00181"></a><span class="lineno">  181</span><span class="comment">    /// for the pressure in Taylor Hood).</span></div>
 <div class="line"><a id="l00182" name="l00182"></a><span class="lineno"><a class="line" href="classoomph_1_1PRefineableQElement_3_012_00_01INITIAL__NNODE__1D_01_4.html#a73d08f7b72685de1d8dd9ac30b8ddfec">  182</a></span><span class="comment"></span>    <span class="keywordtype">void</span> <a class="code hl_function" href="classoomph_1_1PRefineableQElement_3_012_00_01INITIAL__NNODE__1D_01_4.html#a73d08f7b72685de1d8dd9ac30b8ddfec">further_setup_hanging_nodes</a>() {}</div>
 <div class="line"><a id="l00183" name="l00183"></a><span class="lineno">  183</span><span class="comment"></span> </div>
-<div class="line"><a id="l00184" name="l00184"></a><span class="lineno">  184</span><span class="comment">    ///  Returns the number of nodes along each edge of the element.</span></div>
+<div class="line"><a id="l00184" name="l00184"></a><span class="lineno">  184</span><span class="comment">    /// Returns the number of nodes along each edge of the element.</span></div>
 <div class="line"><a id="l00185" name="l00185"></a><span class="lineno">  185</span><span class="comment">    /// Overloaded to return the (variable) p-order rather than the template</span></div>
 <div class="line"><a id="l00186" name="l00186"></a><span class="lineno">  186</span><span class="comment">    /// argument.</span></div>
 <div class="line"><a id="l00187" name="l00187"></a><span class="lineno"><a class="line" href="classoomph_1_1PRefineableQElement_3_012_00_01INITIAL__NNODE__1D_01_4.html#ad272711d69364c090fd332937ac6428c">  187</a></span><span class="comment"></span>    <span class="keywordtype">unsigned</span> <a class="code hl_function" href="classoomph_1_1PRefineableQElement_3_012_00_01INITIAL__NNODE__1D_01_4.html#ad272711d69364c090fd332937ac6428c">nnode_1d</a>()<span class="keyword"> const</span></div>
@@ -348,7 +348,7 @@ $(function() {
 <div class="line"><a id="l00219" name="l00219"></a><span class="lineno">  219</span><span class="comment">    /// are still required.</span></div>
 <div class="line"><a id="l00220" name="l00220"></a><span class="lineno">  220</span><span class="comment"></span>    <span class="keywordtype">void</span> rebuild_from_sons(<a class="code hl_class" href="classoomph_1_1Mesh.html">Mesh</a>*&amp; mesh_pt);</div>
 <div class="line"><a id="l00221" name="l00221"></a><span class="lineno">  221</span><span class="comment"></span> </div>
-<div class="line"><a id="l00222" name="l00222"></a><span class="lineno">  222</span><span class="comment">    ///  Check the integrity of interpolated values across element</span></div>
+<div class="line"><a id="l00222" name="l00222"></a><span class="lineno">  222</span><span class="comment">    /// Check the integrity of interpolated values across element</span></div>
 <div class="line"><a id="l00223" name="l00223"></a><span class="lineno">  223</span><span class="comment">    /// boundaries.</span></div>
 <div class="line"><a id="l00224" name="l00224"></a><span class="lineno">  224</span><span class="comment">    /// Note: with the mortar method, continuity is enforced weakly across non-</span></div>
 <div class="line"><a id="l00225" name="l00225"></a><span class="lineno">  225</span><span class="comment">    /// conforming element boundaries, so it makes no sense to check the</span></div>
@@ -356,7 +356,7 @@ $(function() {
 <div class="line"><a id="l00227" name="l00227"></a><span class="lineno">  227</span><span class="comment"></span>    <span class="keywordtype">void</span> check_integrity(<span class="keywordtype">double</span>&amp; max_error);</div>
 <div class="line"><a id="l00228" name="l00228"></a><span class="lineno">  228</span> </div>
 <div class="line"><a id="l00229" name="l00229"></a><span class="lineno">  229</span>  <span class="keyword">protected</span>:<span class="comment"></span></div>
-<div class="line"><a id="l00230" name="l00230"></a><span class="lineno">  230</span><span class="comment">    ///  Set up hanging node information.</span></div>
+<div class="line"><a id="l00230" name="l00230"></a><span class="lineno">  230</span><span class="comment">    /// Set up hanging node information.</span></div>
 <div class="line"><a id="l00231" name="l00231"></a><span class="lineno">  231</span><span class="comment">    /// Overloaded to implement the mortar method rather than constrained</span></div>
 <div class="line"><a id="l00232" name="l00232"></a><span class="lineno">  232</span><span class="comment">    /// approximation. This enforces continuity weakly via an integral matching</span></div>
 <div class="line"><a id="l00233" name="l00233"></a><span class="lineno">  233</span><span class="comment">    /// condition at non-conforming element boundaries.</span></div>
@@ -381,17 +381,17 @@ $(function() {
 <div class="line"><a id="l00252" name="l00252"></a><span class="lineno">  252</span><span class="comment">    /// Destructor</span></div>
 <div class="line"><a id="l00253" name="l00253"></a><span class="lineno"><a class="line" href="classoomph_1_1PRefineableQElement_3_013_00_01INITIAL__NNODE__1D_01_4.html#a2b93b424c439be2fe8561c6efb7cccdd">  253</a></span><span class="comment"></span>    <span class="keyword">virtual</span> <a class="code hl_function" href="classoomph_1_1PRefineableQElement_3_013_00_01INITIAL__NNODE__1D_01_4.html#a2b93b424c439be2fe8561c6efb7cccdd">~PRefineableQElement</a>() {}</div>
 <div class="line"><a id="l00254" name="l00254"></a><span class="lineno">  254</span><span class="comment"></span> </div>
-<div class="line"><a id="l00255" name="l00255"></a><span class="lineno">  255</span><span class="comment">    ///  Initial setup of element (set the correct p-order and</span></div>
+<div class="line"><a id="l00255" name="l00255"></a><span class="lineno">  255</span><span class="comment">    /// Initial setup of element (set the correct p-order and</span></div>
 <div class="line"><a id="l00256" name="l00256"></a><span class="lineno">  256</span><span class="comment">    /// integration scheme) If an adopted father is specified, information</span></div>
 <div class="line"><a id="l00257" name="l00257"></a><span class="lineno">  257</span><span class="comment">    /// from this is used instead of using the father found from the tree.</span></div>
 <div class="line"><a id="l00258" name="l00258"></a><span class="lineno">  258</span><span class="comment"></span>    <span class="keywordtype">void</span> initial_setup(<a class="code hl_class" href="classoomph_1_1Tree.html">Tree</a>* <span class="keyword">const</span>&amp; adopted_father_pt = 0,</div>
 <div class="line"><a id="l00259" name="l00259"></a><span class="lineno">  259</span>                       <span class="keyword">const</span> <span class="keywordtype">unsigned</span>&amp; initial_p_order = 0);</div>
 <div class="line"><a id="l00260" name="l00260"></a><span class="lineno">  260</span><span class="comment"></span> </div>
-<div class="line"><a id="l00261" name="l00261"></a><span class="lineno">  261</span><span class="comment">    ///  Pre-build (search father for required nodes which may already</span></div>
+<div class="line"><a id="l00261" name="l00261"></a><span class="lineno">  261</span><span class="comment">    /// Pre-build (search father for required nodes which may already</span></div>
 <div class="line"><a id="l00262" name="l00262"></a><span class="lineno">  262</span><span class="comment">    /// exist)</span></div>
 <div class="line"><a id="l00263" name="l00263"></a><span class="lineno">  263</span><span class="comment"></span>    <span class="keywordtype">void</span> pre_build(<a class="code hl_class" href="classoomph_1_1Mesh.html">Mesh</a>*&amp; mesh_pt, <a class="code hl_class" href="classoomph_1_1Vector.html">Vector&lt;Node*&gt;</a>&amp; new_node_pt);</div>
 <div class="line"><a id="l00264" name="l00264"></a><span class="lineno">  264</span><span class="comment"></span> </div>
-<div class="line"><a id="l00265" name="l00265"></a><span class="lineno">  265</span><span class="comment">    ///  p-refine the element (refine if inc&gt;0, unrefine if inc&lt;0).</span></div>
+<div class="line"><a id="l00265" name="l00265"></a><span class="lineno">  265</span><span class="comment">    /// p-refine the element (refine if inc&gt;0, unrefine if inc&lt;0).</span></div>
 <div class="line"><a id="l00266" name="l00266"></a><span class="lineno">  266</span><span class="comment"></span>    <span class="keywordtype">void</span> p_refine(<span class="keyword">const</span> <span class="keywordtype">int</span>&amp; inc,</div>
 <div class="line"><a id="l00267" name="l00267"></a><span class="lineno">  267</span>                  <a class="code hl_class" href="classoomph_1_1Mesh.html">Mesh</a>* <span class="keyword">const</span>&amp; mesh_pt,</div>
 <div class="line"><a id="l00268" name="l00268"></a><span class="lineno">  268</span>                  <a class="code hl_class" href="classoomph_1_1GeneralisedElement.html">GeneralisedElement</a>* <span class="keyword">const</span>&amp; clone_pt);</div>
@@ -406,12 +406,12 @@ $(function() {
 <div class="line"><a id="l00277" name="l00277"></a><span class="lineno">  277</span>                       <a class="code hl_class" href="classoomph_1_1DShape.html">DShape</a>&amp; dpsids,</div>
 <div class="line"><a id="l00278" name="l00278"></a><span class="lineno">  278</span>                       <a class="code hl_class" href="classoomph_1_1DShape.html">DShape</a>&amp; d2psids) <span class="keyword">const</span>;</div>
 <div class="line"><a id="l00279" name="l00279"></a><span class="lineno">  279</span><span class="comment"></span> </div>
-<div class="line"><a id="l00280" name="l00280"></a><span class="lineno">  280</span><span class="comment">    ///  Perform additional hanging node procedures for variables</span></div>
+<div class="line"><a id="l00280" name="l00280"></a><span class="lineno">  280</span><span class="comment">    /// Perform additional hanging node procedures for variables</span></div>
 <div class="line"><a id="l00281" name="l00281"></a><span class="lineno">  281</span><span class="comment">    /// that are not interpolated by all nodes (e.g. lower order interpolations</span></div>
 <div class="line"><a id="l00282" name="l00282"></a><span class="lineno">  282</span><span class="comment">    /// for the pressure in Taylor Hood).</span></div>
 <div class="line"><a id="l00283" name="l00283"></a><span class="lineno"><a class="line" href="classoomph_1_1PRefineableQElement_3_013_00_01INITIAL__NNODE__1D_01_4.html#a502fd0f80738b3e7d185662595fbbb1b">  283</a></span><span class="comment"></span>    <span class="keywordtype">void</span> <a class="code hl_function" href="classoomph_1_1PRefineableQElement_3_013_00_01INITIAL__NNODE__1D_01_4.html#a502fd0f80738b3e7d185662595fbbb1b">further_setup_hanging_nodes</a>() {}</div>
 <div class="line"><a id="l00284" name="l00284"></a><span class="lineno">  284</span><span class="comment"></span> </div>
-<div class="line"><a id="l00285" name="l00285"></a><span class="lineno">  285</span><span class="comment">    ///  Returns the number of nodes along each edge of the element.</span></div>
+<div class="line"><a id="l00285" name="l00285"></a><span class="lineno">  285</span><span class="comment">    /// Returns the number of nodes along each edge of the element.</span></div>
 <div class="line"><a id="l00286" name="l00286"></a><span class="lineno">  286</span><span class="comment">    /// Overloaded to return the (variable) p-order rather than the template</span></div>
 <div class="line"><a id="l00287" name="l00287"></a><span class="lineno">  287</span><span class="comment">    /// argument.</span></div>
 <div class="line"><a id="l00288" name="l00288"></a><span class="lineno"><a class="line" href="classoomph_1_1PRefineableQElement_3_013_00_01INITIAL__NNODE__1D_01_4.html#a873fa2feb15fe522e7f0d3794bbd62c3">  288</a></span><span class="comment"></span>    <span class="keywordtype">unsigned</span> <a class="code hl_function" href="classoomph_1_1PRefineableQElement_3_013_00_01INITIAL__NNODE__1D_01_4.html#a873fa2feb15fe522e7f0d3794bbd62c3">nnode_1d</a>()<span class="keyword"> const</span></div>
@@ -449,7 +449,7 @@ $(function() {
 <div class="line"><a id="l00320" name="l00320"></a><span class="lineno">  320</span><span class="comment">    /// are still required.</span></div>
 <div class="line"><a id="l00321" name="l00321"></a><span class="lineno">  321</span><span class="comment"></span>    <span class="keywordtype">void</span> rebuild_from_sons(<a class="code hl_class" href="classoomph_1_1Mesh.html">Mesh</a>*&amp; mesh_pt);</div>
 <div class="line"><a id="l00322" name="l00322"></a><span class="lineno">  322</span><span class="comment"></span> </div>
-<div class="line"><a id="l00323" name="l00323"></a><span class="lineno">  323</span><span class="comment">    ///  Check the integrity of interpolated values across element</span></div>
+<div class="line"><a id="l00323" name="l00323"></a><span class="lineno">  323</span><span class="comment">    /// Check the integrity of interpolated values across element</span></div>
 <div class="line"><a id="l00324" name="l00324"></a><span class="lineno">  324</span><span class="comment">    /// boundaries.</span></div>
 <div class="line"><a id="l00325" name="l00325"></a><span class="lineno">  325</span><span class="comment">    /// Note: with the mortar method, continuity is enforced weakly across non-</span></div>
 <div class="line"><a id="l00326" name="l00326"></a><span class="lineno">  326</span><span class="comment">    /// conforming element boundaries, so it makes no sense to check the</span></div>
@@ -457,7 +457,7 @@ $(function() {
 <div class="line"><a id="l00328" name="l00328"></a><span class="lineno">  328</span><span class="comment"></span>    <span class="keywordtype">void</span> check_integrity(<span class="keywordtype">double</span>&amp; max_error);</div>
 <div class="line"><a id="l00329" name="l00329"></a><span class="lineno">  329</span> </div>
 <div class="line"><a id="l00330" name="l00330"></a><span class="lineno">  330</span>  <span class="keyword">protected</span>:<span class="comment"></span></div>
-<div class="line"><a id="l00331" name="l00331"></a><span class="lineno">  331</span><span class="comment">    ///  Set up hanging node information.</span></div>
+<div class="line"><a id="l00331" name="l00331"></a><span class="lineno">  331</span><span class="comment">    /// Set up hanging node information.</span></div>
 <div class="line"><a id="l00332" name="l00332"></a><span class="lineno">  332</span><span class="comment">    /// Overloaded to implement the mortar method rather than constrained</span></div>
 <div class="line"><a id="l00333" name="l00333"></a><span class="lineno">  333</span><span class="comment">    /// approximation. This enforces continuity weakly via an integral matching</span></div>
 <div class="line"><a id="l00334" name="l00334"></a><span class="lineno">  334</span><span class="comment">    /// condition at non-conforming element boundaries.</span></div>
@@ -531,7 +531,7 @@ $(function() {
     <footer>
       <div class="container">
         <div class="text-muted" style="float:right;">Generated by <a href="http://www.doxygen.org/index.html">
-          <img style="height:18px;" class="footer-img" src="doxygen.png" alt="doxygen"></a> on Fri Oct 22 2021 12:23:22
+          <img style="height:18px;" class="footer-img" src="doxygen.png" alt="doxygen"></a> on Mon Oct 25 2021 14:41:41
         </div>
       </div>
     </footer>

@@ -45,7 +45,7 @@
 \DoxyCodeLine{\Hypertarget{multi__domain_8cc_source_l00041}00041   \textcolor{comment}{//======================================================================}}
 \DoxyCodeLine{\Hypertarget{multi__domain_8cc_source_l00042}\mbox{\hyperlink{namespaceoomph_1_1Multi__domain__functions}{00042}}   \textcolor{keyword}{namespace }Multi\_domain\_functions}
 \DoxyCodeLine{\Hypertarget{multi__domain_8cc_source_l00043}00043   \{\textcolor{comment}{}}
-\DoxyCodeLine{\Hypertarget{multi__domain_8cc_source_l00044}00044 \textcolor{comment}{    ///  Output file to document the boundary coordinate}}
+\DoxyCodeLine{\Hypertarget{multi__domain_8cc_source_l00044}00044 \textcolor{comment}{    /// Output file to document the boundary coordinate}}
 \DoxyCodeLine{\Hypertarget{multi__domain_8cc_source_l00045}00045 \textcolor{comment}{    /// along the mesh boundary of the bulk mesh during call to}}
 \DoxyCodeLine{\Hypertarget{multi__domain_8cc_source_l00046}00046 \textcolor{comment}{    /// setup\_bulk\_elements\_adjacent\_to\_face\_mesh(...)}}
 \DoxyCodeLine{\Hypertarget{multi__domain_8cc_source_l00047}\mbox{\hyperlink{namespaceoomph_1_1Multi__domain__functions_a87a54c04fcc68b716adf10ca29a1f449}{00047}} \textcolor{comment}{}    std::ofstream \mbox{\hyperlink{namespaceoomph_1_1Multi__domain__functions_a87a54c04fcc68b716adf10ca29a1f449}{Doc\_boundary\_coordinate\_file}};}
@@ -53,17 +53,17 @@
 \DoxyCodeLine{\Hypertarget{multi__domain_8cc_source_l00049}00049     \textcolor{comment}{// Workspace for locate zeta methods}}
 \DoxyCodeLine{\Hypertarget{multi__domain_8cc_source_l00050}00050     \textcolor{comment}{//-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/}}
 \DoxyCodeLine{\Hypertarget{multi__domain_8cc_source_l00051}00051 \textcolor{comment}{}}
-\DoxyCodeLine{\Hypertarget{multi__domain_8cc_source_l00052}00052 \textcolor{comment}{    ///  Boolean to indicate that failure in setup multi domain}}
+\DoxyCodeLine{\Hypertarget{multi__domain_8cc_source_l00052}00052 \textcolor{comment}{    /// Boolean to indicate that failure in setup multi domain}}
 \DoxyCodeLine{\Hypertarget{multi__domain_8cc_source_l00053}00053 \textcolor{comment}{    /// functions is acceptable; defaults to false. If set to true}}
 \DoxyCodeLine{\Hypertarget{multi__domain_8cc_source_l00054}00054 \textcolor{comment}{    /// external element pointers are set to null for those elements}}
 \DoxyCodeLine{\Hypertarget{multi__domain_8cc_source_l00055}00055 \textcolor{comment}{    /// for which external elements couldn't be located.}}
 \DoxyCodeLine{\Hypertarget{multi__domain_8cc_source_l00056}\mbox{\hyperlink{namespaceoomph_1_1Multi__domain__functions_af4e0a3d3191c370209c6a7830a0dc368}{00056}} \textcolor{comment}{}    \textcolor{keywordtype}{bool} \mbox{\hyperlink{namespaceoomph_1_1Multi__domain__functions_af4e0a3d3191c370209c6a7830a0dc368}{Accept\_failed\_locate\_zeta\_in\_setup\_multi\_domain\_interaction}} = \textcolor{keyword}{false};}
 \DoxyCodeLine{\Hypertarget{multi__domain_8cc_source_l00057}00057 \textcolor{comment}{}}
-\DoxyCodeLine{\Hypertarget{multi__domain_8cc_source_l00058}00058 \textcolor{comment}{    ///  Dimension of zeta tuples (set by get\_dim\_helper) -\/-\/ needed}}
+\DoxyCodeLine{\Hypertarget{multi__domain_8cc_source_l00058}00058 \textcolor{comment}{    /// Dimension of zeta tuples (set by get\_dim\_helper) -\/-\/ needed}}
 \DoxyCodeLine{\Hypertarget{multi__domain_8cc_source_l00059}00059 \textcolor{comment}{    /// because we store the scalar coordinates in flat-\/packed form.}}
 \DoxyCodeLine{\Hypertarget{multi__domain_8cc_source_l00060}\mbox{\hyperlink{namespaceoomph_1_1Multi__domain__functions_a27cbb5ec7f6fea2f237c11659ffeef58}{00060}} \textcolor{comment}{}    \textcolor{keywordtype}{unsigned} \mbox{\hyperlink{namespaceoomph_1_1Multi__domain__functions_a27cbb5ec7f6fea2f237c11659ffeef58}{Dim}};}
 \DoxyCodeLine{\Hypertarget{multi__domain_8cc_source_l00061}00061 \textcolor{comment}{}}
-\DoxyCodeLine{\Hypertarget{multi__domain_8cc_source_l00062}00062 \textcolor{comment}{    ///  Lookup scheme for whether a local element's integration point}}
+\DoxyCodeLine{\Hypertarget{multi__domain_8cc_source_l00062}00062 \textcolor{comment}{    /// Lookup scheme for whether a local element's integration point}}
 \DoxyCodeLine{\Hypertarget{multi__domain_8cc_source_l00063}00063 \textcolor{comment}{    /// has had an external element assigned to it -\/-\/ essentially boolean.}}
 \DoxyCodeLine{\Hypertarget{multi__domain_8cc_source_l00064}00064 \textcolor{comment}{    /// External\_element\_located[e][ipt] = \{0,1\} if external element}}
 \DoxyCodeLine{\Hypertarget{multi__domain_8cc_source_l00065}00065 \textcolor{comment}{    /// for ipt-\/th integration in local element e \{has not, has\} been found.}}
@@ -71,13 +71,13 @@
 \DoxyCodeLine{\Hypertarget{multi__domain_8cc_source_l00067}00067 \textcolor{comment}{    /// elements over and over again when we go around the spirals.}}
 \DoxyCodeLine{\Hypertarget{multi__domain_8cc_source_l00068}\mbox{\hyperlink{namespaceoomph_1_1Multi__domain__functions_a2325d66c90ff388dfd6b2649a48e9827}{00068}} \textcolor{comment}{}    \mbox{\hyperlink{classoomph_1_1Vector}{Vector<Vector<unsigned>}}> \mbox{\hyperlink{namespaceoomph_1_1Multi__domain__functions_a2325d66c90ff388dfd6b2649a48e9827}{External\_element\_located}};}
 \DoxyCodeLine{\Hypertarget{multi__domain_8cc_source_l00069}00069 \textcolor{comment}{}}
-\DoxyCodeLine{\Hypertarget{multi__domain_8cc_source_l00070}00070 \textcolor{comment}{    ///  Vector of flat-\/packed zeta coordinates for which the external}}
+\DoxyCodeLine{\Hypertarget{multi__domain_8cc_source_l00070}00070 \textcolor{comment}{    /// Vector of flat-\/packed zeta coordinates for which the external}}
 \DoxyCodeLine{\Hypertarget{multi__domain_8cc_source_l00071}00071 \textcolor{comment}{    /// element could not be found during current local search. These}}
 \DoxyCodeLine{\Hypertarget{multi__domain_8cc_source_l00072}00072 \textcolor{comment}{    /// will be sent to the next processor in the ring-\/like parallel search.}}
 \DoxyCodeLine{\Hypertarget{multi__domain_8cc_source_l00073}00073 \textcolor{comment}{    /// The zeta coordinates come in groups of Dim (scalar) coordinates.}}
 \DoxyCodeLine{\Hypertarget{multi__domain_8cc_source_l00074}\mbox{\hyperlink{namespaceoomph_1_1Multi__domain__functions_a880374b0f685eeddca0c70b5a5d40a85}{00074}} \textcolor{comment}{}    \mbox{\hyperlink{classoomph_1_1Vector}{Vector<double>}} \mbox{\hyperlink{namespaceoomph_1_1Multi__domain__functions_a880374b0f685eeddca0c70b5a5d40a85}{Flat\_packed\_zetas\_not\_found\_locally}};}
 \DoxyCodeLine{\Hypertarget{multi__domain_8cc_source_l00075}00075 \textcolor{comment}{}}
-\DoxyCodeLine{\Hypertarget{multi__domain_8cc_source_l00076}00076 \textcolor{comment}{    ///  Vector of flat-\/packed zeta coordinates for which the external}}
+\DoxyCodeLine{\Hypertarget{multi__domain_8cc_source_l00076}00076 \textcolor{comment}{    /// Vector of flat-\/packed zeta coordinates for which the external}}
 \DoxyCodeLine{\Hypertarget{multi__domain_8cc_source_l00077}00077 \textcolor{comment}{    /// element could not be found on another processor and for which}}
 \DoxyCodeLine{\Hypertarget{multi__domain_8cc_source_l00078}00078 \textcolor{comment}{    /// we're currently searching here. Whatever can't be found here,}}
 \DoxyCodeLine{\Hypertarget{multi__domain_8cc_source_l00079}00079 \textcolor{comment}{    /// gets written into Flat\_packed\_zetas\_not\_found\_locally and then}}
@@ -85,7 +85,7 @@
 \DoxyCodeLine{\Hypertarget{multi__domain_8cc_source_l00081}00081 \textcolor{comment}{    /// The zeta coordinates come in  groups of Dim (scalar) coordinates.}}
 \DoxyCodeLine{\Hypertarget{multi__domain_8cc_source_l00082}\mbox{\hyperlink{namespaceoomph_1_1Multi__domain__functions_aa5bb8d568feb34660caf8f88928f3be7}{00082}} \textcolor{comment}{}    \mbox{\hyperlink{classoomph_1_1Vector}{Vector<double>}} \mbox{\hyperlink{namespaceoomph_1_1Multi__domain__functions_aa5bb8d568feb34660caf8f88928f3be7}{Received\_flat\_packed\_zetas\_to\_be\_found}};}
 \DoxyCodeLine{\Hypertarget{multi__domain_8cc_source_l00083}00083 \textcolor{comment}{}}
-\DoxyCodeLine{\Hypertarget{multi__domain_8cc_source_l00084}00084 \textcolor{comment}{    ///  Proc\_id\_plus\_one\_of\_external\_element[i] contains the}}
+\DoxyCodeLine{\Hypertarget{multi__domain_8cc_source_l00084}00084 \textcolor{comment}{    /// Proc\_id\_plus\_one\_of\_external\_element[i] contains the}}
 \DoxyCodeLine{\Hypertarget{multi__domain_8cc_source_l00085}00085 \textcolor{comment}{    /// processor id (plus one) of the processor}}
 \DoxyCodeLine{\Hypertarget{multi__domain_8cc_source_l00086}00086 \textcolor{comment}{    /// on which the i-\/th zeta coordinate tuple received from elsewhere}}
 \DoxyCodeLine{\Hypertarget{multi__domain_8cc_source_l00087}00087 \textcolor{comment}{    /// (in the order in which these are stored in}}
@@ -94,28 +94,28 @@
 \DoxyCodeLine{\Hypertarget{multi__domain_8cc_source_l00090}00090 \textcolor{comment}{    /// search.}}
 \DoxyCodeLine{\Hypertarget{multi__domain_8cc_source_l00091}\mbox{\hyperlink{namespaceoomph_1_1Multi__domain__functions_a05cf6413be5c69ff7535ebf0b8a153e3}{00091}} \textcolor{comment}{}    \mbox{\hyperlink{classoomph_1_1Vector}{Vector<int>}} \mbox{\hyperlink{namespaceoomph_1_1Multi__domain__functions_a05cf6413be5c69ff7535ebf0b8a153e3}{Proc\_id\_plus\_one\_of\_external\_element}};}
 \DoxyCodeLine{\Hypertarget{multi__domain_8cc_source_l00092}00092 \textcolor{comment}{}}
-\DoxyCodeLine{\Hypertarget{multi__domain_8cc_source_l00093}00093 \textcolor{comment}{    ///  Vector to indicate (to another processor) whether a}}
+\DoxyCodeLine{\Hypertarget{multi__domain_8cc_source_l00093}00093 \textcolor{comment}{    /// Vector to indicate (to another processor) whether a}}
 \DoxyCodeLine{\Hypertarget{multi__domain_8cc_source_l00094}00094 \textcolor{comment}{    /// located element (that will have to represented as an external}}
 \DoxyCodeLine{\Hypertarget{multi__domain_8cc_source_l00095}00095 \textcolor{comment}{    /// halo element on that processor) should be newly created on that}}
 \DoxyCodeLine{\Hypertarget{multi__domain_8cc_source_l00096}00096 \textcolor{comment}{    /// processor (2), already exists on that processor (1), or}}
 \DoxyCodeLine{\Hypertarget{multi__domain_8cc_source_l00097}00097 \textcolor{comment}{    /// is not on the current processor either (0).}}
 \DoxyCodeLine{\Hypertarget{multi__domain_8cc_source_l00098}\mbox{\hyperlink{namespaceoomph_1_1Multi__domain__functions_ae6f22430d0d0df252be95eeda5c03151}{00098}} \textcolor{comment}{}    \mbox{\hyperlink{classoomph_1_1Vector}{Vector<unsigned>}} \mbox{\hyperlink{namespaceoomph_1_1Multi__domain__functions_ae6f22430d0d0df252be95eeda5c03151}{Located\_element\_status}};}
 \DoxyCodeLine{\Hypertarget{multi__domain_8cc_source_l00099}00099 \textcolor{comment}{}}
-\DoxyCodeLine{\Hypertarget{multi__domain_8cc_source_l00100}00100 \textcolor{comment}{    ///  Vector of flat-\/packed local coordinates for zeta tuples}}
+\DoxyCodeLine{\Hypertarget{multi__domain_8cc_source_l00100}00100 \textcolor{comment}{    /// Vector of flat-\/packed local coordinates for zeta tuples}}
 \DoxyCodeLine{\Hypertarget{multi__domain_8cc_source_l00101}00101 \textcolor{comment}{    /// that have been located}}
 \DoxyCodeLine{\Hypertarget{multi__domain_8cc_source_l00102}\mbox{\hyperlink{namespaceoomph_1_1Multi__domain__functions_a095771257db01cdebaaf92facc3057a3}{00102}} \textcolor{comment}{}    \mbox{\hyperlink{classoomph_1_1Vector}{Vector<double>}} \mbox{\hyperlink{namespaceoomph_1_1Multi__domain__functions_a095771257db01cdebaaf92facc3057a3}{Flat\_packed\_located\_coordinates}};}
 \DoxyCodeLine{\Hypertarget{multi__domain_8cc_source_l00103}00103 \textcolor{comment}{}}
-\DoxyCodeLine{\Hypertarget{multi__domain_8cc_source_l00104}00104 \textcolor{comment}{    ///  Vector of flat-\/packed doubles to be communicated with}}
+\DoxyCodeLine{\Hypertarget{multi__domain_8cc_source_l00104}00104 \textcolor{comment}{    /// Vector of flat-\/packed doubles to be communicated with}}
 \DoxyCodeLine{\Hypertarget{multi__domain_8cc_source_l00105}00105 \textcolor{comment}{    /// other processors}}
 \DoxyCodeLine{\Hypertarget{multi__domain_8cc_source_l00106}\mbox{\hyperlink{namespaceoomph_1_1Multi__domain__functions_a2fa0a4a4e31700e161441b19f88c4bf3}{00106}} \textcolor{comment}{}    \mbox{\hyperlink{classoomph_1_1Vector}{Vector<double>}} \mbox{\hyperlink{namespaceoomph_1_1Multi__domain__functions_a2fa0a4a4e31700e161441b19f88c4bf3}{Flat\_packed\_doubles}};}
 \DoxyCodeLine{\Hypertarget{multi__domain_8cc_source_l00107}00107 \textcolor{comment}{}}
-\DoxyCodeLine{\Hypertarget{multi__domain_8cc_source_l00108}00108 \textcolor{comment}{    ///  Counter used when processing vector of flat-\/packed}}
+\DoxyCodeLine{\Hypertarget{multi__domain_8cc_source_l00108}00108 \textcolor{comment}{    /// Counter used when processing vector of flat-\/packed}}
 \DoxyCodeLine{\Hypertarget{multi__domain_8cc_source_l00109}00109 \textcolor{comment}{    /// doubles -\/-\/ this is really "{}private"{} data, declared here}}
 \DoxyCodeLine{\Hypertarget{multi__domain_8cc_source_l00110}00110 \textcolor{comment}{    /// to avoid having to pass it (and the associated array)}}
 \DoxyCodeLine{\Hypertarget{multi__domain_8cc_source_l00111}00111 \textcolor{comment}{    /// between the various helper functions}}
 \DoxyCodeLine{\Hypertarget{multi__domain_8cc_source_l00112}\mbox{\hyperlink{namespaceoomph_1_1Multi__domain__functions_aeb7431547acc61e750fcc456a25ffc13}{00112}} \textcolor{comment}{}    \textcolor{keywordtype}{unsigned} \mbox{\hyperlink{namespaceoomph_1_1Multi__domain__functions_aeb7431547acc61e750fcc456a25ffc13}{Counter\_for\_flat\_packed\_doubles}};}
 \DoxyCodeLine{\Hypertarget{multi__domain_8cc_source_l00113}00113 \textcolor{comment}{}}
-\DoxyCodeLine{\Hypertarget{multi__domain_8cc_source_l00114}00114 \textcolor{comment}{    ///  Vector of flat-\/packed unsigneds to be communicated with}}
+\DoxyCodeLine{\Hypertarget{multi__domain_8cc_source_l00114}00114 \textcolor{comment}{    /// Vector of flat-\/packed unsigneds to be communicated with}}
 \DoxyCodeLine{\Hypertarget{multi__domain_8cc_source_l00115}00115 \textcolor{comment}{    /// other processors -\/-\/ this is really "{}private"{} data, declared here}}
 \DoxyCodeLine{\Hypertarget{multi__domain_8cc_source_l00116}00116 \textcolor{comment}{    /// to avoid having to pass the array between the various helper}}
 \DoxyCodeLine{\Hypertarget{multi__domain_8cc_source_l00117}00117 \textcolor{comment}{    /// functions}}
@@ -131,7 +131,7 @@
 \DoxyCodeLine{\Hypertarget{multi__domain_8cc_source_l00127}00127 }
 \DoxyCodeLine{\Hypertarget{multi__domain_8cc_source_l00128}00128 \textcolor{preprocessor}{\#endif}}
 \DoxyCodeLine{\Hypertarget{multi__domain_8cc_source_l00129}00129 \textcolor{comment}{}}
-\DoxyCodeLine{\Hypertarget{multi__domain_8cc_source_l00130}00130 \textcolor{comment}{    ///  Counter used when processing vector of flat-\/packed}}
+\DoxyCodeLine{\Hypertarget{multi__domain_8cc_source_l00130}00130 \textcolor{comment}{    /// Counter used when processing vector of flat-\/packed}}
 \DoxyCodeLine{\Hypertarget{multi__domain_8cc_source_l00131}00131 \textcolor{comment}{    /// unsigneds -\/-\/ this is really "{}private"{} data, declared here}}
 \DoxyCodeLine{\Hypertarget{multi__domain_8cc_source_l00132}00132 \textcolor{comment}{    /// to avoid having to pass it (and the associated array)}}
 \DoxyCodeLine{\Hypertarget{multi__domain_8cc_source_l00133}00133 \textcolor{comment}{    /// between the various helper functions}}
@@ -140,32 +140,32 @@
 \DoxyCodeLine{\Hypertarget{multi__domain_8cc_source_l00136}00136     \textcolor{comment}{// Other parameters}}
 \DoxyCodeLine{\Hypertarget{multi__domain_8cc_source_l00137}00137     \textcolor{comment}{//-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/}}
 \DoxyCodeLine{\Hypertarget{multi__domain_8cc_source_l00138}00138 \textcolor{comment}{}}
-\DoxyCodeLine{\Hypertarget{multi__domain_8cc_source_l00139}00139 \textcolor{comment}{    ///  Boolean to indicate when to use the bulk element as the}}
+\DoxyCodeLine{\Hypertarget{multi__domain_8cc_source_l00139}00139 \textcolor{comment}{    /// Boolean to indicate when to use the bulk element as the}}
 \DoxyCodeLine{\Hypertarget{multi__domain_8cc_source_l00140}00140 \textcolor{comment}{    /// external element.  Defaults to false, you must have set up FaceElements}}
 \DoxyCodeLine{\Hypertarget{multi__domain_8cc_source_l00141}00141 \textcolor{comment}{    /// properly first in order for it to work}}
 \DoxyCodeLine{\Hypertarget{multi__domain_8cc_source_l00142}\mbox{\hyperlink{namespaceoomph_1_1Multi__domain__functions_abc1119753cf68493ba6ea43c2a8bc378}{00142}} \textcolor{comment}{}    \textcolor{keywordtype}{bool} \mbox{\hyperlink{namespaceoomph_1_1Multi__domain__functions_abc1119753cf68493ba6ea43c2a8bc378}{Use\_bulk\_element\_as\_external}} = \textcolor{keyword}{false};}
 \DoxyCodeLine{\Hypertarget{multi__domain_8cc_source_l00143}00143 \textcolor{comment}{}}
-\DoxyCodeLine{\Hypertarget{multi__domain_8cc_source_l00144}00144 \textcolor{comment}{    ///  Boolean to indicate if we're allowed to use halo elements}}
+\DoxyCodeLine{\Hypertarget{multi__domain_8cc_source_l00144}00144 \textcolor{comment}{    /// Boolean to indicate if we're allowed to use halo elements}}
 \DoxyCodeLine{\Hypertarget{multi__domain_8cc_source_l00145}00145 \textcolor{comment}{    /// as external elements. Can drastically reduce the number of}}
 \DoxyCodeLine{\Hypertarget{multi__domain_8cc_source_l00146}00146 \textcolor{comment}{    /// external halo elements -\/-\/ currently not aware of any problems}}
 \DoxyCodeLine{\Hypertarget{multi__domain_8cc_source_l00147}00147 \textcolor{comment}{    /// therefore set to true by default but retention}}
 \DoxyCodeLine{\Hypertarget{multi__domain_8cc_source_l00148}00148 \textcolor{comment}{    /// of this flag allows easy return to previous implementation.}}
 \DoxyCodeLine{\Hypertarget{multi__domain_8cc_source_l00149}\mbox{\hyperlink{namespaceoomph_1_1Multi__domain__functions_aa3b57b233a416885018e8993db0b291c}{00149}} \textcolor{comment}{}    \textcolor{keywordtype}{bool} \mbox{\hyperlink{namespaceoomph_1_1Multi__domain__functions_aa3b57b233a416885018e8993db0b291c}{Allow\_use\_of\_halo\_elements\_as\_external\_elements}} = \textcolor{keyword}{true};}
 \DoxyCodeLine{\Hypertarget{multi__domain_8cc_source_l00150}00150 \textcolor{comment}{}}
-\DoxyCodeLine{\Hypertarget{multi__domain_8cc_source_l00151}00151 \textcolor{comment}{    ///  Indicate whether we are allowed to use halo elements as}}
+\DoxyCodeLine{\Hypertarget{multi__domain_8cc_source_l00151}00151 \textcolor{comment}{    /// Indicate whether we are allowed to use halo elements as}}
 \DoxyCodeLine{\Hypertarget{multi__domain_8cc_source_l00152}00152 \textcolor{comment}{    /// external elements for projection, possibly only required in}}
 \DoxyCodeLine{\Hypertarget{multi__domain_8cc_source_l00153}00153 \textcolor{comment}{    /// parallel unstructured mesh generation during the projection}}
 \DoxyCodeLine{\Hypertarget{multi__domain_8cc_source_l00154}00154 \textcolor{comment}{    /// stage. Default set to true}}
 \DoxyCodeLine{\Hypertarget{multi__domain_8cc_source_l00155}\mbox{\hyperlink{namespaceoomph_1_1Multi__domain__functions_aa45f040b8ffc6448777fae76190d308c}{00155}} \textcolor{comment}{}    \textcolor{keywordtype}{bool} \mbox{\hyperlink{namespaceoomph_1_1Multi__domain__functions_aa45f040b8ffc6448777fae76190d308c}{Allow\_use\_of\_halo\_elements\_as\_external\_elements\_for\_projection}} = \textcolor{keyword}{true};}
 \DoxyCodeLine{\Hypertarget{multi__domain_8cc_source_l00156}00156 \textcolor{comment}{}}
-\DoxyCodeLine{\Hypertarget{multi__domain_8cc_source_l00157}00157 \textcolor{comment}{    ///  Boolean to indicate whether to doc timings or not.}}
+\DoxyCodeLine{\Hypertarget{multi__domain_8cc_source_l00157}00157 \textcolor{comment}{    /// Boolean to indicate whether to doc timings or not.}}
 \DoxyCodeLine{\Hypertarget{multi__domain_8cc_source_l00158}\mbox{\hyperlink{namespaceoomph_1_1Multi__domain__functions_a64dc4667540a9a2591b00635dea88423}{00158}} \textcolor{comment}{}    \textcolor{keywordtype}{bool} \mbox{\hyperlink{namespaceoomph_1_1Multi__domain__functions_a64dc4667540a9a2591b00635dea88423}{Doc\_timings}} = \textcolor{keyword}{false};}
 \DoxyCodeLine{\Hypertarget{multi__domain_8cc_source_l00159}00159 \textcolor{comment}{}}
-\DoxyCodeLine{\Hypertarget{multi__domain_8cc_source_l00160}00160 \textcolor{comment}{    ///  Boolean to indicate whether to output basic info during}}
+\DoxyCodeLine{\Hypertarget{multi__domain_8cc_source_l00160}00160 \textcolor{comment}{    /// Boolean to indicate whether to output basic info during}}
 \DoxyCodeLine{\Hypertarget{multi__domain_8cc_source_l00161}00161 \textcolor{comment}{    ///        setup\_multi\_domain\_interaction() routines}}
 \DoxyCodeLine{\Hypertarget{multi__domain_8cc_source_l00162}\mbox{\hyperlink{namespaceoomph_1_1Multi__domain__functions_aa490ae6349c68dc3c5b40f6a4a40e718}{00162}} \textcolor{comment}{}    \textcolor{keywordtype}{bool} \mbox{\hyperlink{namespaceoomph_1_1Multi__domain__functions_aa490ae6349c68dc3c5b40f6a4a40e718}{Doc\_stats}} = \textcolor{keyword}{false};}
 \DoxyCodeLine{\Hypertarget{multi__domain_8cc_source_l00163}00163 \textcolor{comment}{}}
-\DoxyCodeLine{\Hypertarget{multi__domain_8cc_source_l00164}00164 \textcolor{comment}{    ///  Boolean to indicate whether to output further info during}}
+\DoxyCodeLine{\Hypertarget{multi__domain_8cc_source_l00164}00164 \textcolor{comment}{    /// Boolean to indicate whether to output further info during}}
 \DoxyCodeLine{\Hypertarget{multi__domain_8cc_source_l00165}00165 \textcolor{comment}{    ///        setup\_multi\_domain\_interaction() routines}}
 \DoxyCodeLine{\Hypertarget{multi__domain_8cc_source_l00166}\mbox{\hyperlink{namespaceoomph_1_1Multi__domain__functions_aa5969c7c730e13e9d5a2c268f3045203}{00166}} \textcolor{comment}{}    \textcolor{keywordtype}{bool} \mbox{\hyperlink{namespaceoomph_1_1Multi__domain__functions_aa5969c7c730e13e9d5a2c268f3045203}{Doc\_full\_stats}} = \textcolor{keyword}{false};}
 \DoxyCodeLine{\Hypertarget{multi__domain_8cc_source_l00167}00167 }

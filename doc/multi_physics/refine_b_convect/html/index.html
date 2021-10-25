@@ -186,13 +186,13 @@ The problem class</h1>
 <div class="line"><span class="comment"> /// Destructor. Empty</span></div>
 <div class="line"><span class="comment"></span> <a class="code hl_function" href="classRefineableConvectionProblem.html#a43fc2693230601928578d5b0c6380943">~RefineableConvectionProblem</a>() {}</div>
 <div class="line"><span class="comment"></span> </div>
-<div class="line"><span class="comment"> ///  Update the problem specs before solve:</span></div>
+<div class="line"><span class="comment"> /// Update the problem specs before solve:</span></div>
 <div class="line"><span class="comment"></span> <span class="keywordtype">void</span> <a class="code hl_function" href="classRefineableConvectionProblem.html#a694f0be87fe09a30d94e92acfce85eee">actions_before_newton_solve</a>();</div>
 <div class="line"><span class="comment"></span> </div>
 <div class="line"><span class="comment"> /// Update the problem after solve (empty)</span></div>
 <div class="line"><span class="comment"></span> <span class="keywordtype">void</span> <a class="code hl_function" href="classRefineableConvectionProblem.html#a13bda5e5e75928efa88433902ccab7ee">actions_after_newton_solve</a>(){}</div>
 <div class="line"><span class="comment"></span> </div>
-<div class="line"><span class="comment"> ///  Overloaded version of the problem&#39;s access function to </span></div>
+<div class="line"><span class="comment"> /// Overloaded version of the problem&#39;s access function to </span></div>
 <div class="line"><span class="comment"> /// the mesh. Recasts the pointer to the base Mesh object to </span></div>
 <div class="line"><span class="comment"> /// the actual mesh type.</span></div>
 <div class="line"><span class="comment"></span> RectangularQuadMesh&lt;ELEMENT&gt;* <a class="code hl_function" href="classRefineableConvectionProblem.html#ab39a08708e152e4f119832dc5e1bc96c">mesh_pt</a>() </div>
@@ -210,7 +210,7 @@ The problem class</h1>
 <div class="line"><span class="comment"> /// Actions before adapt:(empty)</span></div>
 <div class="line"><span class="comment"></span> <span class="keywordtype">void</span> actions_before_adapt() {}</div>
 <div class="line"><span class="comment"></span> </div>
-<div class="line"><span class="comment"> ///  Actions after adaptation,</span></div>
+<div class="line"><span class="comment"> /// Actions after adaptation,</span></div>
 <div class="line"><span class="comment"> /// Re-pin a single pressure degree of freedom</span></div>
 <div class="line"><span class="comment"></span> <span class="keywordtype">void</span> actions_after_adapt()</div>
 <div class="line">  {</div>
@@ -233,16 +233,16 @@ The problem class</h1>
 <div class="line">  } <span class="comment">// end_of_fix_pressure</span></div>
 </div><!-- fragment --><p> The remaining member functions provide access to the boolean flag that controls the application of the imperfection, and document the solution:</p>
 <div class="fragment"><div class="line"><span class="comment"></span> </div>
-<div class="line"><span class="comment"> ///  Set the</span></div>
+<div class="line"><span class="comment"> /// Set the</span></div>
 <div class="line"><span class="comment"> /// boundary condition on the upper wall to be perturbed slightly</span></div>
 <div class="line"><span class="comment"> /// to force the solution into the symmetry broken state.</span></div>
 <div class="line"><span class="comment"></span> <span class="keywordtype">void</span> enable_imperfection() {Imperfect = <span class="keyword">true</span>;}</div>
 <div class="line"><span class="comment"></span> </div>
-<div class="line"><span class="comment"> ///  Set the</span></div>
+<div class="line"><span class="comment"> /// Set the</span></div>
 <div class="line"><span class="comment"> /// boundary condition on the upper wall to be unperturbed.</span></div>
 <div class="line"><span class="comment"></span> <span class="keywordtype">void</span> disable_imperfection() {Imperfect = <span class="keyword">false</span>;}</div>
 <div class="line"> <span class="comment"></span></div>
-<div class="line"><span class="comment"> ///  Doc the solution.</span></div>
+<div class="line"><span class="comment"> /// Doc the solution.</span></div>
 <div class="line"><span class="comment"></span> <span class="keywordtype">void</span> doc_solution();</div>
 <div class="line"> </div>
 <div class="line"><span class="keyword">private</span>:</div>
@@ -501,7 +501,7 @@ Creating the new RefineableBouyantQCrouzeixRaviartElement class</h1>
 <div class="line">      <span class="keywordflow">return</span> RefineableQCrouzeixRaviartElement&lt;DIM&gt;::nrecovery_order();</div>
 <div class="line">    }</div>
 <div class="line"><span class="comment"></span> </div>
-<div class="line"><span class="comment">    ///  The number of Z2 flux terms is the same as that in</span></div>
+<div class="line"><span class="comment">    /// The number of Z2 flux terms is the same as that in</span></div>
 <div class="line"><span class="comment">    /// the fluid element plus that in the advection-diffusion element</span></div>
 <div class="line"><span class="comment"></span>    <span class="keywordtype">unsigned</span> num_Z2_flux_terms()</div>
 <div class="line">    {</div>
@@ -511,7 +511,7 @@ Creating the new RefineableBouyantQCrouzeixRaviartElement class</h1>
 <div class="line">    }</div>
 <div class="line"> </div>
 <div class="line"><span class="comment"></span> </div>
-<div class="line"><span class="comment">    ///  Get the Z2 flux by concatenating the fluxes from the fluid and</span></div>
+<div class="line"><span class="comment">    /// Get the Z2 flux by concatenating the fluxes from the fluid and</span></div>
 <div class="line"><span class="comment">    /// the advection diffusion elements.</span></div>
 <div class="line"><span class="comment"></span>    <span class="keywordtype">void</span> get_Z2_flux(<span class="keyword">const</span> Vector&lt;double&gt;&amp; s, Vector&lt;double&gt;&amp; flux)</div>
 <div class="line">    {</div>
@@ -538,14 +538,14 @@ Creating the new RefineableBouyantQCrouzeixRaviartElement class</h1>
 <div class="line"> </div>
 <div class="line">    } <span class="comment">// end of get_Z2_flux</span></div>
 </div><!-- fragment --><p> The default behaviour of the Z2 error estimator is to combine all components of the flux vector into a single compound flux. In the present multi-physics element, we instead define two compound fluxes: one corresponding to the combined temperature fluxes and the other to the combined velocity field fluxes. The flux components associated with each compound flux must specified by overloading the function <code>get_Z2_compound_flux_indices</code> which returns a vector of the same length as the number of flux components, containing the index of the compound flux to which the flux component contributes.</p>
- <div class="fragment"><div class="line"><span class="comment">    ///  The number of compound fluxes is two (one for the fluid and</span></div>
+ <div class="fragment"><div class="line"><span class="comment">    /// The number of compound fluxes is two (one for the fluid and</span></div>
 <div class="line"><span class="comment">    /// one for the temperature)</span></div>
 <div class="line">    <span class="keywordtype">unsigned</span> ncompound_fluxes()</div>
 <div class="line">    {</div>
 <div class="line">      <span class="keywordflow">return</span> 2;</div>
 <div class="line">    }</div>
 <div class="line"><span class="comment"></span> </div>
-<div class="line"><span class="comment">    ///  Fill in which flux components are associated with the fluid</span></div>
+<div class="line"><span class="comment">    /// Fill in which flux components are associated with the fluid</span></div>
 <div class="line"><span class="comment">    /// measure and which are associated with the temperature measure</span></div>
 <div class="line"><span class="comment"></span>    <span class="keywordtype">void</span> get_Z2_compound_flux_indices(Vector&lt;unsigned&gt;&amp; flux_index)</div>
 <div class="line">    {</div>
@@ -574,13 +574,13 @@ Creating the new RefineableBouyantQCrouzeixRaviartElement class</h1>
 </div><!-- fragment --><p> The <code>Z2ErrorEstimator</code> calculates the error estimates for each compound flux. The individual error estimates are then combined to a single error estimate by the function <code>Z2ErrorEstimator::get_combined_error_estimate()</code>. By default the single error estimate is chosen to be the maximum of all calculated error estimates. Alternative user-defined functions can be specified via the function pointer <code>Z2ErrorEstimator::CombinedErrorEstimateFctPt&amp;</code> <code>combined_error_fct_pt()</code>, see <a class="el" href="index.html#comments">Comments</a> for a more detailed discussion of this aspect. <br  />
 </p>
 <p >The vertex nodes are defined by the underlying geometric element, but require a final overload to prevent ambiguities:</p>
- <div class="fragment"><div class="line"><span class="comment">    ///  Number of vertex nodes in the element is obtained from the</span></div>
+ <div class="fragment"><div class="line"><span class="comment">    /// Number of vertex nodes in the element is obtained from the</span></div>
 <div class="line"><span class="comment">    /// geometric element.</span></div>
 <div class="line">    <span class="keywordtype">unsigned</span> nvertex_node()<span class="keyword"> const</span></div>
 <div class="line"><span class="keyword">    </span>{</div>
 <div class="line">      <span class="keywordflow">return</span> QElement&lt;DIM, 3&gt;::nvertex_node();</div>
 <div class="line">    }</div>
-</div><!-- fragment -->  <div class="fragment"><div class="line"><span class="comment">    ///  Pointer to the j-th vertex node in the element,</span></div>
+</div><!-- fragment -->  <div class="fragment"><div class="line"><span class="comment">    /// Pointer to the j-th vertex node in the element,</span></div>
 <div class="line"><span class="comment">    /// Call the geometric element&#39;s function.</span></div>
 <div class="line">    Node* vertex_node_pt(<span class="keyword">const</span> <span class="keywordtype">unsigned</span>&amp; j)<span class="keyword"> const</span></div>
 <div class="line"><span class="keyword">    </span>{</div>
@@ -591,7 +591,7 @@ Creating the new RefineableBouyantQCrouzeixRaviartElement class</h1>
 <div class="line">      <span class="keywordflow">return</span> DIM + 1;</div>
 <div class="line">    }</div>
 </div><!-- fragment --><p> The two versions of the <code>get_interpolated_values(...)</code> function must return the continuously interpolated variables at a specified position within the element:</p>
- <div class="fragment"><div class="line"><span class="comment">    ///  Get the continuously interpolated values at the local coordinate</span></div>
+ <div class="fragment"><div class="line"><span class="comment">    /// Get the continuously interpolated values at the local coordinate</span></div>
 <div class="line"><span class="comment">    /// s. We choose to put the fluid velocities first, followed by the</span><span class="comment"></span></div>
 <div class="line"><span class="comment">    /// temperature.</span></div>
 <div class="line"><span class="comment"></span>    <span class="keywordtype">void</span> get_interpolated_values(<span class="keyword">const</span> Vector&lt;double&gt;&amp; s,</div>
@@ -622,7 +622,7 @@ Creating the new RefineableBouyantQCrouzeixRaviartElement class</h1>
 <div class="line">    }</div>
 <div class="line"> </div>
 <div class="line"><span class="comment"></span> </div>
-<div class="line"><span class="comment">    ///  Get all continuously interpolated values at the local</span></div>
+<div class="line"><span class="comment">    /// Get all continuously interpolated values at the local</span></div>
 <div class="line"><span class="comment">    /// coordinate s at time level t (t=0: present; t&gt;0: previous).</span></div>
 <div class="line"><span class="comment">    /// We choose to put the fluid velocities first, followed by the</span></div>
 <div class="line"><span class="comment">    /// temperature</span></div>
@@ -655,7 +655,7 @@ Creating the new RefineableBouyantQCrouzeixRaviartElement class</h1>
 <div class="line"> </div>
 <div class="line">    } <span class="comment">// end of get_interpolated_values</span></div>
 </div><!-- fragment --><p> Finally, the setup and build functions must call the build functions of the two constituent elements. In addition, the pointer to the Rayleigh number must be passed to the sons after refinement.</p>
- <div class="fragment"><div class="line"><span class="comment">    ///  The additional hanging node information must be set up</span></div>
+ <div class="fragment"><div class="line"><span class="comment">    /// The additional hanging node information must be set up</span></div>
 <div class="line"><span class="comment">    /// for both single-physics elements.</span></div>
 <div class="line">    <span class="keywordtype">void</span> further_setup_hanging_nodes()</div>
 <div class="line">    {</div>
@@ -665,7 +665,7 @@ Creating the new RefineableBouyantQCrouzeixRaviartElement class</h1>
 <div class="line">    }</div>
 <div class="line"> </div>
 <div class="line"><span class="comment"></span> </div>
-<div class="line"><span class="comment">    ///  Call the rebuild_from_sons functions for each of the</span></div>
+<div class="line"><span class="comment">    /// Call the rebuild_from_sons functions for each of the</span></div>
 <div class="line"><span class="comment">    /// constituent multi-physics elements.</span></div>
 <div class="line"><span class="comment"></span>    <span class="keywordtype">void</span> rebuild_from_sons(Mesh*&amp; mesh_pt)</div>
 <div class="line">    {</div>
@@ -674,7 +674,7 @@ Creating the new RefineableBouyantQCrouzeixRaviartElement class</h1>
 <div class="line">    }</div>
 <div class="line"> </div>
 <div class="line"><span class="comment"></span> </div>
-<div class="line"><span class="comment">    ///  Call the underlying single-physics element&#39;s further_build()</span></div>
+<div class="line"><span class="comment">    /// Call the underlying single-physics element&#39;s further_build()</span></div>
 <div class="line"><span class="comment">    /// functions and make sure that the pointer to the Rayleigh number</span></div>
 <div class="line"><span class="comment">    /// is passed to the sons</span></div>
 <div class="line"><span class="comment"></span>    <span class="keywordtype">void</span> further_build()</div>
@@ -783,7 +783,7 @@ PDF file</h1>
     <footer>
       <div class="container">
         <div class="text-muted" style="float:right;">Generated by <a href="http://www.doxygen.org/index.html">
-          <img style="height:18px;" class="footer-img" src="doxygen.png" alt="doxygen"></a> on Fri Oct 22 2021 12:47:25
+          <img style="height:18px;" class="footer-img" src="doxygen.png" alt="doxygen"></a> on Mon Oct 25 2021 15:05:38
         </div>
       </div>
     </footer>

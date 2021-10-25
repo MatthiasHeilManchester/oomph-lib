@@ -258,7 +258,7 @@ The global namespace</h2>
 <p >As usual, we define the problem parameters in a global namespace. The main physical parameter is the (square of the) wave number, <img class="formulaInl" alt="$ k^2 $" src="form_59.png" width="11" height="11"/>. <code>N_fourier</code> is the number of (Fourier) terms to be used in evaluation of the series in equations (6) and (10). The remaining parameters determine how the Sommerfeld radiation condition is applied.</p>
  <div class="fragment"><div class="line"><span class="comment">//===== start_of_namespace=============================================</span></div>
 </div><!-- fragment --><p >The function <code>get_exact_u</code> returns the exact solution for the scattering problem. We will use this function for the validation of our results.</p>
- <div class="fragment"><div class="line"><span class="comment"> ///  Exact solution for scattered field </span></div>
+ <div class="fragment"><div class="line"><span class="comment"> /// Exact solution for scattered field </span></div>
 <div class="line"><span class="comment"> /// (vector returns real and impaginary parts).</span></div>
 <div class="line"> <span class="keywordtype">void</span> <a class="code hl_function" href="namespaceGlobalParameters.html#ae2320da6053f5527b2af5ebb362a8a07">get_exact_u</a>(<span class="keyword">const</span> Vector&lt;double&gt;&amp; x, Vector&lt;double&gt;&amp; u)</div>
 <div class="line"> {</div>
@@ -330,7 +330,7 @@ The global namespace</h2>
 <div class="ttc" id="anamespaceGlobalParameters_html_ae2320da6053f5527b2af5ebb362a8a07"><div class="ttname"><a href="namespaceGlobalParameters.html#ae2320da6053f5527b2af5ebb362a8a07">GlobalParameters::get_exact_u</a></div><div class="ttdeci">void get_exact_u(const Vector&lt; double &gt; &amp;x, Vector&lt; double &gt; &amp;u)</div><div class="ttdoc">Exact solution for scattered field (vector returns real and impaginary parts).</div><div class="ttdef"><b>Definition:</b> <a href="scattering_8cc_source.html#l00086">scattering.cc:86</a></div></div>
 <div class="ttc" id="anamespaceGlobalParameters_html_ae4df03bf0ffa55b741ac846ca7b6c155"><div class="ttname"><a href="namespaceGlobalParameters.html#ae4df03bf0ffa55b741ac846ca7b6c155">GlobalParameters::N_fourier</a></div><div class="ttdeci">unsigned N_fourier</div><div class="ttdoc">Number of terms used in the computation of the exact solution.</div><div class="ttdef"><b>Definition:</b> <a href="scattering_8cc_source.html#l00068">scattering.cc:68</a></div></div>
 </div><!-- fragment --><p> Next we provide a function that computes the prescribed flux (normal derivative) of the solution, <img class="formulaInl" alt="$ \partial u/\partial n = -\partial \phi_{inc}/\partial n $" src="form_60.png" width="113" height="14"/>, evaluated on the surface of the unit disk.</p>
- <div class="fragment"><div class="line"><span class="comment"> ///  Flux (normal derivative) on the unit disk</span></div>
+ <div class="fragment"><div class="line"><span class="comment"> /// Flux (normal derivative) on the unit disk</span></div>
 <div class="line"><span class="comment"> /// for a planar incoming wave</span></div>
 <div class="line"> <span class="keywordtype">void</span> <a class="code hl_function" href="namespaceGlobalParameters.html#a5183de63b992338ee60bb4da78a45039">prescribed_incoming_flux</a>(<span class="keyword">const</span> Vector&lt;double&gt;&amp; x, </div>
 <div class="line">                               complex&lt;double&gt;&amp; flux)</div>
@@ -509,11 +509,11 @@ The problem class</h2>
 <div class="line"><span class="comment"> /// Destructor (empty)</span></div>
 <div class="line"><span class="comment"></span> <a class="code hl_function" href="classScatteringProblem.html#a0a9838027d0286f22706fe6945bbac0a">~ScatteringProblem</a>(){}</div>
 <div class="line"><span class="comment"></span> </div>
-<div class="line"><span class="comment"> ///  Doc the solution. DocInfo object stores flags/labels for where the</span></div>
+<div class="line"><span class="comment"> /// Doc the solution. DocInfo object stores flags/labels for where the</span></div>
 <div class="line"><span class="comment"> /// output gets written to</span></div>
 <div class="line"><span class="comment"></span> <span class="keywordtype">void</span> <a class="code hl_function" href="classScatteringProblem.html#af83ab14c4f4750ea17c21466f6c6364f">doc_solution</a>(DocInfo&amp; doc_info);</div>
 <div class="line"> <span class="comment"></span></div>
-<div class="line"><span class="comment"> ///  Update the problem specs before solve (empty)</span></div>
+<div class="line"><span class="comment"> /// Update the problem specs before solve (empty)</span></div>
 <div class="line"><span class="comment"></span> <span class="keywordtype">void</span> <a class="code hl_function" href="classScatteringProblem.html#a91ce14b928ec6edbb9d85515a310b1fb">actions_before_newton_solve</a>(){} </div>
 <div class="line"><span class="comment"></span> </div>
 <div class="line"><span class="comment"> /// Update the problem specs after solve (empty)</span></div>
@@ -534,25 +534,25 @@ The problem class</h2>
 <div class="line"><span class="comment"> /// Actions after adapt: Rebuild the mesh of prescribed flux elements</span></div>
 <div class="line"><span class="comment"></span> <span class="keywordtype">void</span> <a class="code hl_function" href="classScatteringProblem.html#a13d8f85e74666c260de7364917359ed5">actions_after_adapt</a>();</div>
 <div class="line"> <span class="comment"></span></div>
-<div class="line"><span class="comment"> ///  Create BC elements on boundary b of the Mesh pointed</span></div>
+<div class="line"><span class="comment"> /// Create BC elements on boundary b of the Mesh pointed</span></div>
 <div class="line"><span class="comment"> /// to by bulk_mesh_pt and add them to the specified survace Mesh </span></div>
 <div class="line"><span class="comment"></span> <span class="keywordtype">void</span> <a class="code hl_function" href="classScatteringProblem.html#a408e05fbe1f1456ab7013a7e8ab29ccc">create_outer_bc_elements</a>(</div>
 <div class="line">  <span class="keyword">const</span> <span class="keywordtype">unsigned</span> &amp;b, Mesh* <span class="keyword">const</span> &amp;bulk_mesh_pt,</div>
 <div class="line">  Mesh* <span class="keyword">const</span> &amp; helmholtz_outer_boundary_mesh_pt);</div>
 <div class="line"> <span class="comment"></span></div>
-<div class="line"><span class="comment"> ///  Create Helmholtz flux elements on boundary b of the Mesh pointed</span></div>
+<div class="line"><span class="comment"> /// Create Helmholtz flux elements on boundary b of the Mesh pointed</span></div>
 <div class="line"><span class="comment"> /// to by bulk_mesh_pt and add them to the specified surface Mesh </span></div>
 <div class="line"><span class="comment"></span> <span class="keywordtype">void</span> <a class="code hl_function" href="classScatteringProblem.html#af06ff518ad3250f914c0c659af3001c8">create_flux_elements</a>(<span class="keyword">const</span> <span class="keywordtype">unsigned</span> &amp;b, Mesh* <span class="keyword">const</span> &amp;bulk_mesh_pt,</div>
 <div class="line">                           Mesh* <span class="keyword">const</span> &amp; helmholtz_inner_boundary_mesh_pt);</div>
 <div class="line"> <span class="comment"></span></div>
-<div class="line"><span class="comment"> ///  Delete boundary face elements and wipe the surface mesh</span></div>
+<div class="line"><span class="comment"> /// Delete boundary face elements and wipe the surface mesh</span></div>
 <div class="line"><span class="comment"></span> <span class="keywordtype">void</span> <a class="code hl_function" href="classScatteringProblem.html#aaef8a78e317333ddadd0be6a500c1134">delete_face_elements</a>( Mesh* <span class="keyword">const</span> &amp; boundary_mesh_pt);</div>
 <div class="line"> <span class="comment"></span></div>
-<div class="line"><span class="comment"> ///  Set pointer to prescribed-flux function for all</span></div>
+<div class="line"><span class="comment"> /// Set pointer to prescribed-flux function for all</span></div>
 <div class="line"><span class="comment"> /// elements in the surface mesh on the surface of the unit disk</span></div>
 <div class="line"><span class="comment"></span> <span class="keywordtype">void</span> <a class="code hl_function" href="classScatteringProblem.html#ae75307dde909513a0f11057c96cdd622">set_prescribed_incoming_flux_pt</a>();</div>
 <div class="line"><span class="comment"></span> </div>
-<div class="line"><span class="comment"> ///  Set up boundary condition elements on outer boundary</span></div>
+<div class="line"><span class="comment"> /// Set up boundary condition elements on outer boundary</span></div>
 <div class="line"><span class="comment"></span> <span class="keywordtype">void</span> <a class="code hl_function" href="classScatteringProblem.html#a76bd8299ea7ed559681b294acfb2aad4">setup_outer_boundary</a>();</div>
 <div class="line"> </div>
 <div class="line"><span class="preprocessor">#ifdef ADAPTIVE</span></div>
@@ -567,11 +567,11 @@ The problem class</h2>
 <div class="line"> </div>
 <div class="line"><span class="preprocessor">#endif</span></div>
 <div class="line"><span class="comment"></span> </div>
-<div class="line"><span class="comment"> ///  Pointer to mesh containing the DtN (or ABC) boundary</span></div>
+<div class="line"><span class="comment"> /// Pointer to mesh containing the DtN (or ABC) boundary</span></div>
 <div class="line"><span class="comment"> /// condition elements</span></div>
 <div class="line"><span class="comment"></span> HelmholtzDtNMesh&lt;ELEMENT&gt;* <a class="code hl_variable" href="classScatteringProblem.html#a9692c8592b57a4363e557e5b012c744b">Helmholtz_outer_boundary_mesh_pt</a>;</div>
 <div class="line"> <span class="comment"></span></div>
-<div class="line"><span class="comment"> ///  Pointer to the mesh containing </span></div>
+<div class="line"><span class="comment"> /// Pointer to the mesh containing </span></div>
 <div class="line"><span class="comment"> /// the Helmholtz inner boundary condition elements </span></div>
 <div class="line"><span class="comment"></span> Mesh* <a class="code hl_variable" href="classScatteringProblem.html#a56b5fc73bbb51b701a43dc38f9815104">Helmholtz_inner_boundary_mesh_pt</a>;</div>
 <div class="line"> </div>
@@ -975,7 +975,7 @@ PDF file</h1>
     <footer>
       <div class="container">
         <div class="text-muted" style="float:right;">Generated by <a href="http://www.doxygen.org/index.html">
-          <img style="height:18px;" class="footer-img" src="doxygen.png" alt="doxygen"></a> on Fri Oct 22 2021 12:30:33
+          <img style="height:18px;" class="footer-img" src="doxygen.png" alt="doxygen"></a> on Mon Oct 25 2021 14:48:51
         </div>
       </div>
     </footer>

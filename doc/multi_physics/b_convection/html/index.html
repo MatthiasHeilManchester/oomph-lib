@@ -182,7 +182,7 @@ Global parameters and functions</h1>
 <div class="line"><span class="comment"> /// 1/Prandtl number</span></div>
 <div class="line"><span class="comment"></span> <span class="keywordtype">double</span> <a class="code hl_variable" href="namespaceGlobal__Physical__Variables.html#a87796c9f402e6f90c07cf5ba0db4367e">Inverse_Prandtl</a>=1.0;</div>
 <div class="line"><span class="comment"></span> </div>
-<div class="line"><span class="comment"> ///  Rayleigh number, set to be greater than </span></div>
+<div class="line"><span class="comment"> /// Rayleigh number, set to be greater than </span></div>
 <div class="line"><span class="comment"> /// the threshold for linear instability</span></div>
 <div class="line"><span class="comment"></span> <span class="keywordtype">double</span> <a class="code hl_variable" href="namespaceGlobal__Physical__Variables.html#a637fd2a6a7c5b34ed3288300d8bf84b7">Rayleigh</a> = 1800.0;</div>
 <div class="line"><span class="comment"></span> </div>
@@ -258,7 +258,7 @@ The problem class</h1>
 The constructor</h2>
 <p >We pass the element type as a template parameter to the problem constructor, which has no arguments. The constructor creates a <code>BFD&lt;2&gt;</code> timestepper and builds a <code>RectangularQuadMesh</code> of <img class="formulaInl" alt="$ 8\times 8 $" src="form_48.png" width="29" height="9"/> elements.</p>
  <div class="fragment"><div class="line"><span class="comment">//===========start_of_constructor=========================================</span></div>
-<div class="line"><span class="comment">///  Constructor for convection problem</span></div>
+<div class="line"><span class="comment">/// Constructor for convection problem</span></div>
 <div class="line"><span class="comment">//========================================================================</span></div>
 <div class="line"><span class="keyword">template</span>&lt;<span class="keyword">class</span> ELEMENT&gt;</div>
 <div class="line"><a class="code hl_function" href="classConvectionProblem.html#a0c68c4c4b67d9fc8c9900fc895eed973">ConvectionProblem&lt;ELEMENT&gt;::ConvectionProblem</a>()</div>
@@ -427,7 +427,7 @@ The function fix_pressure(...)</h2>
  <hr  />
 <h2><a class="anchor" id="actions_bef"></a>
 The function actions_before_implicit_timestep()</h2>
-<p >This function is used to ensure that the time-dependent boundary conditions are set to the correct value before solving the problem at the next time level.  </p><div class="fragment"><div class="line"><span class="comment"> ///  Actions before the timestep (update the the time-dependent </span></div>
+<p >This function is used to ensure that the time-dependent boundary conditions are set to the correct value before solving the problem at the next time level.  </p><div class="fragment"><div class="line"><span class="comment"> /// Actions before the timestep (update the the time-dependent </span></div>
 <div class="line"><span class="comment"> /// boundary conditions)</span></div>
 <div class="line"> <span class="keywordtype">void</span> actions_before_implicit_timestep() </div>
 <div class="line">  {</div>
@@ -534,7 +534,7 @@ Sketch illustrating the construction of the BuoyantQCrouzeixRaviartElement by mu
 <div class="line"><span class="comment">    /// Access function for the pointer to the Rayleigh number</span></div>
 <div class="line"><span class="comment"></span>    <span class="keywordtype">double</span>*&amp; ra_pt()</div>
 </div><!-- fragment --><p> The constructor calls the constructors of the component classes (<code>QCrouzeixRaviartElement</code> and <code>QAdvectionDiffusionElement</code>) and initialises the value of the Rayleigh number to zero, via a static default parameter value.</p>
- <div class="fragment"><div class="line"><span class="comment">    ///  Constructor: call the underlying constructors and</span></div>
+ <div class="fragment"><div class="line"><span class="comment">    /// Constructor: call the underlying constructors and</span></div>
 <div class="line"><span class="comment">    /// initialise the pointer to the Rayleigh number to point</span><span class="comment"></span></div>
 <div class="line"><span class="comment">    /// to the default value of 0.0.</span></div>
 <div class="line"><span class="comment"></span>    BuoyantQCrouzeixRaviartElement()</div>
@@ -560,7 +560,7 @@ Sketch illustrating the construction of the BuoyantQCrouzeixRaviartElement by mu
 <div class="line">    }</div>
 </div><!-- fragment --><p> We need not overload the index function for the fluid velocities because they remain stored in the first <code>DIM</code> positions at the node.</p>
 <p >The coupling between the two sets of single-physics equations is achieved by overloading the two functions <code>get_wind_adv_diff()</code>, used in the advection-diffusion equations and <code>get_body_force_nst()</code>, used in the Navier&ndash;Stokes equations</p>
- <div class="fragment"><div class="line"><span class="comment">    ///  Overload the wind function in the advection-diffusion equations.</span></div>
+ <div class="fragment"><div class="line"><span class="comment">    /// Overload the wind function in the advection-diffusion equations.</span></div>
 <div class="line"><span class="comment">    /// This provides the coupling from the Navier--Stokes equations to the</span><span class="comment"></span></div>
 <div class="line"><span class="comment">    /// advection-diffusion equations because the wind is the fluid velocity.</span></div>
 <div class="line"><span class="comment"></span>    <span class="keywordtype">void</span> get_wind_adv_diff(<span class="keyword">const</span> <span class="keywordtype">unsigned</span>&amp; ipt,</div>
@@ -571,7 +571,7 @@ Sketch illustrating the construction of the BuoyantQCrouzeixRaviartElement by mu
 <div class="line">      <span class="comment">// The wind function is simply the velocity at the points</span></div>
 <div class="line">      this-&gt;interpolated_u_nst(s, wind);</div>
 <div class="line">    }</div>
-</div><!-- fragment -->  <div class="fragment"><div class="line"><span class="comment">    ///  Overload the body force in the Navier-Stokes equations</span></div>
+</div><!-- fragment -->  <div class="fragment"><div class="line"><span class="comment">    /// Overload the body force in the Navier-Stokes equations</span></div>
 <div class="line"><span class="comment">    /// This provides the coupling from the advection-diffusion equations</span><span class="comment"></span></div>
 <div class="line"><span class="comment">    /// to the Navier--Stokes equations, the body force is the</span></div>
 <div class="line"><span class="comment">    /// temperature multiplied by the Rayleigh number acting in the</span></div>
@@ -595,7 +595,7 @@ Sketch illustrating the construction of the BuoyantQCrouzeixRaviartElement by mu
 <div class="line">        result[i] = -gravity[i] * interpolated_t * ra();</div>
 <div class="line">      }</div>
 </div><!-- fragment --><p> The elemental residual vector is composed of the residuals from the two single-physics elements and we simply call the underlying functions for each element in turn.</p>
- <div class="fragment"><div class="line"><span class="comment">    ///  Calculate the element&#39;s contribution to the residual vector.</span></div>
+ <div class="fragment"><div class="line"><span class="comment">    /// Calculate the element&#39;s contribution to the residual vector.</span></div>
 <div class="line"><span class="comment">    /// Recall that fill_in_* functions MUST NOT initialise the entries</span><span class="comment"></span></div>
 <div class="line"><span class="comment">    /// in the vector to zero. This allows us to call the</span></div>
 <div class="line"><span class="comment">    /// fill_in_* functions of the constituent single-physics elements</span></div>
@@ -786,7 +786,7 @@ PDF file</h1>
     <footer>
       <div class="container">
         <div class="text-muted" style="float:right;">Generated by <a href="http://www.doxygen.org/index.html">
-          <img style="height:18px;" class="footer-img" src="doxygen.png" alt="doxygen"></a> on Fri Oct 22 2021 12:47:14
+          <img style="height:18px;" class="footer-img" src="doxygen.png" alt="doxygen"></a> on Mon Oct 25 2021 15:05:26
         </div>
       </div>
     </footer>

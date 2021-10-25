@@ -107,7 +107,7 @@ namespace oomph
       return 1;
     }
 
-    ///  Return coordinate s[j] (j=0) of integration point i --
+    /// Return coordinate s[j] (j=0) of integration point i --
     /// deliberately broken!
     double knot(const unsigned& i, const unsigned& j) const
     {

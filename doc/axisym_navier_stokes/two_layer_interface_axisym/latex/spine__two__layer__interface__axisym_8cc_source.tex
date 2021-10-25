@@ -69,11 +69,11 @@
 \DoxyCodeLine{\Hypertarget{spine__two__layer__interface__axisym_8cc_source_l00065}00065 \textcolor{comment}{ /// Product of Reynolds number and inverse of Froude number}}
 \DoxyCodeLine{\Hypertarget{spine__two__layer__interface__axisym_8cc_source_l00066}00066 \textcolor{comment}{} \textcolor{keywordtype}{double} \mbox{\hyperlink{namespaceGlobal__Physical__Variables_aa6286f02b476912dd7550eced538331a}{ReInvFr}} = 5.0; \textcolor{comment}{// (Fr = 1)}}
 \DoxyCodeLine{\Hypertarget{spine__two__layer__interface__axisym_8cc_source_l00067}00067 \textcolor{comment}{}}
-\DoxyCodeLine{\Hypertarget{spine__two__layer__interface__axisym_8cc_source_l00068}00068 \textcolor{comment}{ ///  Ratio of viscosity in upper fluid to viscosity in lower}}
+\DoxyCodeLine{\Hypertarget{spine__two__layer__interface__axisym_8cc_source_l00068}00068 \textcolor{comment}{ /// Ratio of viscosity in upper fluid to viscosity in lower}}
 \DoxyCodeLine{\Hypertarget{spine__two__layer__interface__axisym_8cc_source_l00069}00069 \textcolor{comment}{ /// fluid. Reynolds number etc. is based on viscosity in lower fluid.}}
 \DoxyCodeLine{\Hypertarget{spine__two__layer__interface__axisym_8cc_source_l00070}00070 \textcolor{comment}{} \textcolor{keywordtype}{double} \mbox{\hyperlink{namespaceGlobal__Physical__Variables_adb51428300a01b19395c43c0d3586d6f}{Viscosity\_Ratio}} = 0.1;}
 \DoxyCodeLine{\Hypertarget{spine__two__layer__interface__axisym_8cc_source_l00071}00071 \textcolor{comment}{}}
-\DoxyCodeLine{\Hypertarget{spine__two__layer__interface__axisym_8cc_source_l00072}00072 \textcolor{comment}{ ///  Ratio of density in upper fluid to density in lower}}
+\DoxyCodeLine{\Hypertarget{spine__two__layer__interface__axisym_8cc_source_l00072}00072 \textcolor{comment}{ /// Ratio of density in upper fluid to density in lower}}
 \DoxyCodeLine{\Hypertarget{spine__two__layer__interface__axisym_8cc_source_l00073}00073 \textcolor{comment}{ /// fluid. Reynolds number etc. is based on density in lower fluid.}}
 \DoxyCodeLine{\Hypertarget{spine__two__layer__interface__axisym_8cc_source_l00074}00074 \textcolor{comment}{} \textcolor{keywordtype}{double} \mbox{\hyperlink{namespaceGlobal__Physical__Variables_a80a34b6dfb7e1501966b8d6c7501e718}{Density\_Ratio}} = 0.5;}
 \DoxyCodeLine{\Hypertarget{spine__two__layer__interface__axisym_8cc_source_l00075}00075 \textcolor{comment}{}}
@@ -125,7 +125,7 @@
 \DoxyCodeLine{\Hypertarget{spine__two__layer__interface__axisym_8cc_source_l00121}00121 }
 \DoxyCodeLine{\Hypertarget{spine__two__layer__interface__axisym_8cc_source_l00122}00122 \textcolor{keyword}{private}:}
 \DoxyCodeLine{\Hypertarget{spine__two__layer__interface__axisym_8cc_source_l00123}00123 \textcolor{comment}{}}
-\DoxyCodeLine{\Hypertarget{spine__two__layer__interface__axisym_8cc_source_l00124}00124 \textcolor{comment}{ ///  Spine heights/lengths are unknowns in the problem so their}}
+\DoxyCodeLine{\Hypertarget{spine__two__layer__interface__axisym_8cc_source_l00124}00124 \textcolor{comment}{ /// Spine heights/lengths are unknowns in the problem so their}}
 \DoxyCodeLine{\Hypertarget{spine__two__layer__interface__axisym_8cc_source_l00125}00125 \textcolor{comment}{ /// values get corrected during each Newton step. However, changing}}
 \DoxyCodeLine{\Hypertarget{spine__two__layer__interface__axisym_8cc_source_l00126}00126 \textcolor{comment}{ /// their value does not automatically change the nodal positions, so}}
 \DoxyCodeLine{\Hypertarget{spine__two__layer__interface__axisym_8cc_source_l00127}00127 \textcolor{comment}{ /// we need to update all of them here.}}
@@ -137,7 +137,7 @@
 \DoxyCodeLine{\Hypertarget{spine__two__layer__interface__axisym_8cc_source_l00133}00133 \textcolor{comment}{ /// No actions required before solve step}}
 \DoxyCodeLine{\Hypertarget{spine__two__layer__interface__axisym_8cc_source_l00134}\mbox{\hyperlink{classInterfaceProblem_ade63c8a74f666edf530460b989968b4f}{00134}} \textcolor{comment}{} \textcolor{keywordtype}{void} \mbox{\hyperlink{classInterfaceProblem_ade63c8a74f666edf530460b989968b4f}{actions\_before\_newton\_solve}}() \{\}}
 \DoxyCodeLine{\Hypertarget{spine__two__layer__interface__axisym_8cc_source_l00135}00135 \textcolor{comment}{}}
-\DoxyCodeLine{\Hypertarget{spine__two__layer__interface__axisym_8cc_source_l00136}00136 \textcolor{comment}{ ///  Update after solve can remain empty, because the update }}
+\DoxyCodeLine{\Hypertarget{spine__two__layer__interface__axisym_8cc_source_l00136}00136 \textcolor{comment}{ /// Update after solve can remain empty, because the update }}
 \DoxyCodeLine{\Hypertarget{spine__two__layer__interface__axisym_8cc_source_l00137}00137 \textcolor{comment}{ /// is performed automatically after every Newton step.}}
 \DoxyCodeLine{\Hypertarget{spine__two__layer__interface__axisym_8cc_source_l00138}\mbox{\hyperlink{classInterfaceProblem_aedc2e58b3d2f5f8c898a21ba2d245cee}{00138}} \textcolor{comment}{} \textcolor{keywordtype}{void} \mbox{\hyperlink{classInterfaceProblem_aedc2e58b3d2f5f8c898a21ba2d245cee}{actions\_after\_newton\_solve}}() \{\}}
 \DoxyCodeLine{\Hypertarget{spine__two__layer__interface__axisym_8cc_source_l00139}00139 \textcolor{comment}{}}
@@ -161,10 +161,10 @@
 \DoxyCodeLine{\Hypertarget{spine__two__layer__interface__axisym_8cc_source_l00157}00157 \textcolor{comment}{} ofstream \mbox{\hyperlink{classInterfaceProblem_a45e3bf3b44bcbeefab21a3598bef6179}{Trace\_file}};}
 \DoxyCodeLine{\Hypertarget{spine__two__layer__interface__axisym_8cc_source_l00158}00158 }
 \DoxyCodeLine{\Hypertarget{spine__two__layer__interface__axisym_8cc_source_l00159}00159 \textcolor{comment}{}}
-\DoxyCodeLine{\Hypertarget{spine__two__layer__interface__axisym_8cc_source_l00160}00160 \textcolor{comment}{ ///  Pointer to the specific bulk mesh}}
+\DoxyCodeLine{\Hypertarget{spine__two__layer__interface__axisym_8cc_source_l00160}00160 \textcolor{comment}{ /// Pointer to the specific bulk mesh}}
 \DoxyCodeLine{\Hypertarget{spine__two__layer__interface__axisym_8cc_source_l00161}\mbox{\hyperlink{classInterfaceProblem_a1e9cf118e6c477ea9a1a49610bb72174}{00161}} \textcolor{comment}{} TwoLayerSpineMesh<ELEMENT>* \mbox{\hyperlink{classInterfaceProblem_a1e9cf118e6c477ea9a1a49610bb72174}{Bulk\_mesh\_pt}}; }
 \DoxyCodeLine{\Hypertarget{spine__two__layer__interface__axisym_8cc_source_l00162}00162 \textcolor{comment}{}}
-\DoxyCodeLine{\Hypertarget{spine__two__layer__interface__axisym_8cc_source_l00163}00163 \textcolor{comment}{ ///  Pointer to the surface mesh}}
+\DoxyCodeLine{\Hypertarget{spine__two__layer__interface__axisym_8cc_source_l00163}00163 \textcolor{comment}{ /// Pointer to the surface mesh}}
 \DoxyCodeLine{\Hypertarget{spine__two__layer__interface__axisym_8cc_source_l00164}00164 \textcolor{comment}{} Mesh* \mbox{\hyperlink{classInterfaceProblem_a011c7b4f2307ff909f64dc158e8fc674}{Surface\_mesh\_pt}};}
 \DoxyCodeLine{\Hypertarget{spine__two__layer__interface__axisym_8cc_source_l00165}00165 }
 \DoxyCodeLine{\Hypertarget{spine__two__layer__interface__axisym_8cc_source_l00166}00166 }
@@ -334,7 +334,7 @@
 \DoxyCodeLine{\Hypertarget{spine__two__layer__interface__axisym_8cc_source_l00330}00330 }
 \DoxyCodeLine{\Hypertarget{spine__two__layer__interface__axisym_8cc_source_l00331}00331 }
 \DoxyCodeLine{\Hypertarget{spine__two__layer__interface__axisym_8cc_source_l00332}00332 \textcolor{comment}{//==start\_of\_set\_initial\_condition========================================}\textcolor{comment}{}}
-\DoxyCodeLine{\Hypertarget{spine__two__layer__interface__axisym_8cc_source_l00333}00333 \textcolor{comment}{///  Set initial conditions: Set all nodal velocities to zero and}}
+\DoxyCodeLine{\Hypertarget{spine__two__layer__interface__axisym_8cc_source_l00333}00333 \textcolor{comment}{/// Set initial conditions: Set all nodal velocities to zero and}}
 \DoxyCodeLine{\Hypertarget{spine__two__layer__interface__axisym_8cc_source_l00334}00334 \textcolor{comment}{/// initialise the previous velocities and nodal positions to correspond}}
 \DoxyCodeLine{\Hypertarget{spine__two__layer__interface__axisym_8cc_source_l00335}00335 \textcolor{comment}{/// to an impulsive start}}
 \DoxyCodeLine{\Hypertarget{spine__two__layer__interface__axisym_8cc_source_l00336}00336 \textcolor{comment}{}\textcolor{comment}{//========================================================================}}
@@ -364,7 +364,7 @@
 \DoxyCodeLine{\Hypertarget{spine__two__layer__interface__axisym_8cc_source_l00360}00360 }
 \DoxyCodeLine{\Hypertarget{spine__two__layer__interface__axisym_8cc_source_l00361}00361 }
 \DoxyCodeLine{\Hypertarget{spine__two__layer__interface__axisym_8cc_source_l00362}00362 \textcolor{comment}{//==start\_of\_set\_boundary\_conditions======================================}\textcolor{comment}{}}
-\DoxyCodeLine{\Hypertarget{spine__two__layer__interface__axisym_8cc_source_l00363}00363 \textcolor{comment}{///  Set boundary conditions: Set all velocity components to zero}}
+\DoxyCodeLine{\Hypertarget{spine__two__layer__interface__axisym_8cc_source_l00363}00363 \textcolor{comment}{/// Set boundary conditions: Set all velocity components to zero}}
 \DoxyCodeLine{\Hypertarget{spine__two__layer__interface__axisym_8cc_source_l00364}00364 \textcolor{comment}{/// on the top and bottom (solid) walls and the radial and azimuthal}}
 \DoxyCodeLine{\Hypertarget{spine__two__layer__interface__axisym_8cc_source_l00365}00365 \textcolor{comment}{/// components only to zero on the side boundaries}}
 \DoxyCodeLine{\Hypertarget{spine__two__layer__interface__axisym_8cc_source_l00366}00366 \textcolor{comment}{}\textcolor{comment}{//========================================================================}}

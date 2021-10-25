@@ -117,7 +117,7 @@ As discussed \href{../../../poisson/fish_poisson2/html/index.html}{\texttt{ else
  
 \begin{DoxyCodeInclude}{0}
 \DoxyCodeLine{\textcolor{comment}{//============start\_of\_MyUnitCircle====================================}}
-\DoxyCodeLine{\textcolor{comment}{///  Unit circle as GeomObject}\textcolor{comment}{}}
+\DoxyCodeLine{\textcolor{comment}{/// Unit circle as GeomObject}\textcolor{comment}{}}
 \DoxyCodeLine{\textcolor{comment}{/// \(\backslash\)f[ x = \(\backslash\)cos(\(\backslash\)xi)  \(\backslash\)f]}}
 \DoxyCodeLine{\textcolor{comment}{/// \(\backslash\)f[ y = \(\backslash\)sin(\(\backslash\)xi)  \(\backslash\)f]}}
 \DoxyCodeLine{\textcolor{comment}{}\textcolor{comment}{//=====================================================================}}
@@ -126,7 +126,7 @@ As discussed \href{../../../poisson/fish_poisson2/html/index.html}{\texttt{ else
 \DoxyCodeLine{}
 \DoxyCodeLine{\textcolor{keyword}{public}:}
 \DoxyCodeLine{\textcolor{comment}{}}
-\DoxyCodeLine{\textcolor{comment}{ ///  Constructor: The circle is a 1D object}}
+\DoxyCodeLine{\textcolor{comment}{ /// Constructor: The circle is a 1D object}}
 \DoxyCodeLine{\textcolor{comment}{ /// (i.e. it's parametrised by one intrinsic coordinate) in 2D space.}}
 \DoxyCodeLine{\textcolor{comment}{ /// Pass these arguments to the constructor of the GeomObject base class.}}
 \DoxyCodeLine{\textcolor{comment}{} \mbox{\hyperlink{classMyUnitCircle_a056add64776e52a8ea2ba2e9d6d0e32d}{MyUnitCircle}}() : GeomObject(1,2) \{\}}
@@ -134,7 +134,7 @@ As discussed \href{../../../poisson/fish_poisson2/html/index.html}{\texttt{ else
 \DoxyCodeLine{\textcolor{comment}{ /// Destructor: Empty}}
 \DoxyCodeLine{\textcolor{comment}{} \textcolor{keyword}{virtual} \mbox{\hyperlink{classMyUnitCircle_ae6b321a25ef6f6b12d7c9a225f91140d}{\string~MyUnitCircle}}() \{\}}
 \DoxyCodeLine{\textcolor{comment}{}}
-\DoxyCodeLine{\textcolor{comment}{ ///  Current position vector to material point at }}
+\DoxyCodeLine{\textcolor{comment}{ /// Current position vector to material point at }}
 \DoxyCodeLine{\textcolor{comment}{ /// Lagrangian coordinate xi }}
 \DoxyCodeLine{\textcolor{comment}{} \textcolor{keywordtype}{void} \mbox{\hyperlink{classMyUnitCircle_ab60b73d1c28b013c40dd2aaa98072261}{position}}(\textcolor{keyword}{const} Vector<double>\& xi, Vector<double>\& r)\textcolor{keyword}{ const}}
 \DoxyCodeLine{\textcolor{keyword}{  }\{}
@@ -144,7 +144,7 @@ As discussed \href{../../../poisson/fish_poisson2/html/index.html}{\texttt{ else
 \DoxyCodeLine{  \} \textcolor{comment}{// end of position(...)}}
 \DoxyCodeLine{}
 \DoxyCodeLine{\textcolor{comment}{}}
-\DoxyCodeLine{\textcolor{comment}{ ///  Parametrised position on object: r(xi). Evaluated at}}
+\DoxyCodeLine{\textcolor{comment}{ /// Parametrised position on object: r(xi). Evaluated at}}
 \DoxyCodeLine{\textcolor{comment}{ /// previous time level. t=0: current time; t>0: previous}}
 \DoxyCodeLine{\textcolor{comment}{ /// time level. Circle is fixed -\/-\/ simply call the steady version.}}
 \DoxyCodeLine{\textcolor{comment}{} \textcolor{keywordtype}{void} \mbox{\hyperlink{classMyUnitCircle_ab60b73d1c28b013c40dd2aaa98072261}{position}}(\textcolor{keyword}{const} \textcolor{keywordtype}{unsigned}\& t, \textcolor{keyword}{const} Vector<double>\& xi,}
@@ -289,13 +289,13 @@ As discussed above, the problem class mainly contains verbatim copies of the mem
 \DoxyCodeLine{\textcolor{comment}{ /// Update the problem specs after solve (empty)}}
 \DoxyCodeLine{\textcolor{comment}{} \textcolor{keywordtype}{void} \mbox{\hyperlink{classRefineableUnsteadyHeatProblem_ada522772b79e92a75edf3724d0a273da}{actions\_after\_newton\_solve}}()\{\}}
 \DoxyCodeLine{\textcolor{comment}{}}
-\DoxyCodeLine{\textcolor{comment}{ ///  Update the problem specs before solve (empty)}}
+\DoxyCodeLine{\textcolor{comment}{ /// Update the problem specs before solve (empty)}}
 \DoxyCodeLine{\textcolor{comment}{} \textcolor{keywordtype}{void} \mbox{\hyperlink{classRefineableUnsteadyHeatProblem_aac1935e15c67b196e6db97dd058511b5}{actions\_before\_newton\_solve}}()\{\}}
 \DoxyCodeLine{\textcolor{comment}{}}
 \DoxyCodeLine{\textcolor{comment}{ /// Update the problem specs after timestep (empty)}}
 \DoxyCodeLine{\textcolor{comment}{} \textcolor{keywordtype}{void} \mbox{\hyperlink{classRefineableUnsteadyHeatProblem_aa740f2eb1b3909100a04709b401c0b41}{actions\_after\_implicit\_timestep}}()\{\}}
 \DoxyCodeLine{\textcolor{comment}{}}
-\DoxyCodeLine{\textcolor{comment}{ ///  Update the problem specs before next timestep: }}
+\DoxyCodeLine{\textcolor{comment}{ /// Update the problem specs before next timestep: }}
 \DoxyCodeLine{\textcolor{comment}{ /// Set Dirchlet boundary conditions from exact solution.}}
 \DoxyCodeLine{\textcolor{comment}{} \textcolor{keywordtype}{void} \mbox{\hyperlink{classRefineableUnsteadyHeatProblem_ac754f1313cd6d684c149443beb5bcf9e}{actions\_before\_implicit\_timestep}}();}
 \DoxyCodeLine{ \textcolor{comment}{}}
@@ -305,29 +305,29 @@ As discussed above, the problem class mainly contains verbatim copies of the mem
 \DoxyCodeLine{\textcolor{comment}{ /// Actions after adapt: Rebuild the mesh of prescribed flux elements}}
 \DoxyCodeLine{\textcolor{comment}{} \textcolor{keywordtype}{void} \mbox{\hyperlink{classRefineableUnsteadyHeatProblem_a1f8a9e91269440c799a2075f989d62b1}{actions\_after\_adapt}}();}
 \DoxyCodeLine{\textcolor{comment}{}}
-\DoxyCodeLine{\textcolor{comment}{ ///  Set initial condition (incl previous timesteps) according}}
+\DoxyCodeLine{\textcolor{comment}{ /// Set initial condition (incl previous timesteps) according}}
 \DoxyCodeLine{\textcolor{comment}{ /// to specified function. Note that his overloads the virtual}}
 \DoxyCodeLine{\textcolor{comment}{ /// function in the Problem base class and is therefore executed }}
 \DoxyCodeLine{\textcolor{comment}{ /// automatically to re-\/assign the initial conditions during the }}
 \DoxyCodeLine{\textcolor{comment}{ /// spatially adaptive solution at the first timestep.}}
 \DoxyCodeLine{\textcolor{comment}{} \textcolor{keywordtype}{void} \mbox{\hyperlink{classRefineableUnsteadyHeatProblem_a30e2e1d62b059982f7014b74f4fe2be9}{set\_initial\_condition}}();}
 \DoxyCodeLine{\textcolor{comment}{}}
-\DoxyCodeLine{\textcolor{comment}{ ///  Create UnsteadyHeat flux elements on boundary b of the Mesh pointed}}
+\DoxyCodeLine{\textcolor{comment}{ /// Create UnsteadyHeat flux elements on boundary b of the Mesh pointed}}
 \DoxyCodeLine{\textcolor{comment}{ /// to by bulk\_mesh\_pt and add them to the Mesh object pointed to by }}
 \DoxyCodeLine{\textcolor{comment}{ /// surface\_mesh\_pt}}
 \DoxyCodeLine{\textcolor{comment}{} \textcolor{keywordtype}{void} \mbox{\hyperlink{classRefineableUnsteadyHeatProblem_a65601ec64c73ac578b43f4af04c46569}{create\_flux\_elements}}(\textcolor{keyword}{const} \textcolor{keywordtype}{unsigned} \&b, Mesh* \textcolor{keyword}{const} \&\mbox{\hyperlink{classRefineableUnsteadyHeatProblem_a49ee185e10fdab1851a67150cbb0710a}{bulk\_mesh\_pt}},}
 \DoxyCodeLine{                           Mesh* \textcolor{keyword}{const} \&surface\_mesh\_pt);}
 \DoxyCodeLine{\textcolor{comment}{}}
-\DoxyCodeLine{\textcolor{comment}{ ///  Delete UnsteadyHeat flux elements and wipe the surface mesh}}
+\DoxyCodeLine{\textcolor{comment}{ /// Delete UnsteadyHeat flux elements and wipe the surface mesh}}
 \DoxyCodeLine{\textcolor{comment}{} \textcolor{keywordtype}{void} \mbox{\hyperlink{classRefineableUnsteadyHeatProblem_ad2e53af5c385e44e33e400b430b610e8}{delete\_flux\_elements}}(Mesh* \textcolor{keyword}{const} \&surface\_mesh\_pt);}
 \DoxyCodeLine{\textcolor{comment}{}}
 \DoxyCodeLine{\textcolor{comment}{ /// Doc the solution}}
 \DoxyCodeLine{\textcolor{comment}{} \textcolor{keywordtype}{void} \mbox{\hyperlink{classRefineableUnsteadyHeatProblem_a77d590171785b6b5f4070af9401c0e37}{doc\_solution}}();}
 \DoxyCodeLine{\textcolor{comment}{}}
-\DoxyCodeLine{\textcolor{comment}{ ///  Dump problem data to allow for later restart}}
+\DoxyCodeLine{\textcolor{comment}{ /// Dump problem data to allow for later restart}}
 \DoxyCodeLine{\textcolor{comment}{} \textcolor{keywordtype}{void} \mbox{\hyperlink{classRefineableUnsteadyHeatProblem_a1fb939c3f9c258fd49328bb1516ced98}{dump\_it}}(ofstream\& dump\_file);}
 \DoxyCodeLine{\textcolor{comment}{}}
-\DoxyCodeLine{\textcolor{comment}{ ///  Read problem data for restart}}
+\DoxyCodeLine{\textcolor{comment}{ /// Read problem data for restart}}
 \DoxyCodeLine{\textcolor{comment}{} \textcolor{keywordtype}{void} \mbox{\hyperlink{classRefineableUnsteadyHeatProblem_af36fa71e72852367411e21b50b179625}{restart}}(ifstream\& restart\_file);}
 \DoxyCodeLine{\textcolor{comment}{}}
 \DoxyCodeLine{\textcolor{comment}{ /// Pointer to bulk mesh}}

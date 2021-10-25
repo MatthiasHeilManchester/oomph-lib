@@ -311,7 +311,7 @@ void \mbox{\hyperlink{classoomph_1_1Problem_a8dd5cb241ce6218fb476931e0879d7c8}{c
 \mbox{\hyperlink{classoomph_1_1Vector}{Vector}}$<$ unsigned $>$ \mbox{\hyperlink{classoomph_1_1Problem_af0365ddbe425b730ece6a575db1cd7dd}{distribute}} (const bool \&report\+\_\+stats=false)
 \begin{DoxyCompactList}\small\item\em Distribute the problem; returns a vector which details the partitioning. \end{DoxyCompactList}\item 
 virtual void \mbox{\hyperlink{classoomph_1_1Problem_ad29fc4bc4d4bead472059765fbbd3b11}{partition\+\_\+global\+\_\+mesh}} (\mbox{\hyperlink{classoomph_1_1Mesh}{Mesh}} $\ast$\&global\+\_\+mesh\+\_\+pt, \mbox{\hyperlink{classoomph_1_1DocInfo}{Doc\+Info}} \&doc\+\_\+info, \mbox{\hyperlink{classoomph_1_1Vector}{Vector}}$<$ unsigned $>$ \&element\+\_\+domain, const bool \&report\+\_\+stats=false)
-\begin{DoxyCompactList}\small\item\em /short Partition the global mesh, return vector specifying the processor number for each element. Virtual so that it can be overloaded by any user; the default is to use \mbox{\hyperlink{namespaceoomph_1_1METIS}{METIS}} to perform the partitioning (with a bit of cleaning up afterwards to sort out \char`\"{}special cases\char`\"{}). \end{DoxyCompactList}\item 
+\begin{DoxyCompactList}\small\item\em Partition the global mesh, return vector specifying the processor number for each element. Virtual so that it can be overloaded by any user; the default is to use \mbox{\hyperlink{namespaceoomph_1_1METIS}{METIS}} to perform the partitioning (with a bit of cleaning up afterwards to sort out \char`\"{}special cases\char`\"{}). \end{DoxyCompactList}\item 
 void \mbox{\hyperlink{classoomph_1_1Problem_a8c5982a9323392e31a166e23a0c7f0a3}{prune\+\_\+halo\+\_\+elements\+\_\+and\+\_\+nodes}} (\mbox{\hyperlink{classoomph_1_1DocInfo}{Doc\+Info}} \&doc\+\_\+info, const bool \&report\+\_\+stats)
 \begin{DoxyCompactList}\small\item\em (Irreversibly) prune halo(ed) elements and nodes, usually after another round of refinement, to get rid of excessively wide halo layers. Note that the current mesh will be now regarded as the base mesh and no unrefinement relative to it will be possible once this function has been called. \end{DoxyCompactList}\item 
 void \mbox{\hyperlink{classoomph_1_1Problem_a977f74f132157959d30e82cfcad41a97}{prune\+\_\+halo\+\_\+elements\+\_\+and\+\_\+nodes}} (const bool \&report\+\_\+stats=false)
@@ -4839,9 +4839,9 @@ Referenced by \mbox{\hyperlink{problem_8cc_source_l08368}{get\+\_\+eigenproblem\
 
 
 
-/short Partition the global mesh, return vector specifying the processor number for each element. Virtual so that it can be overloaded by any user; the default is to use \mbox{\hyperlink{namespaceoomph_1_1METIS}{METIS}} to perform the partitioning (with a bit of cleaning up afterwards to sort out \char`\"{}special cases\char`\"{}). 
-
 Partition the global mesh, return vector specifying the processor number for each element. Virtual so that it can be overloaded by any user; the default is to use \mbox{\hyperlink{namespaceoomph_1_1METIS}{METIS}} to perform the partitioning (with a bit of cleaning up afterwards to sort out \char`\"{}special cases\char`\"{}). 
+
+
 
 Definition at line \mbox{\hyperlink{problem_8cc_source_l00878}{878}} of file \mbox{\hyperlink{problem_8cc_source}{problem.\+cc}}.
 

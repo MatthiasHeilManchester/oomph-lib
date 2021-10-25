@@ -172,12 +172,12 @@
 <div class="line"><a id="l00053" name="l00053"></a><span class="lineno"><a class="line" href="classoomph_1_1FluidInterfaceBoundingElement.html">   53</a></span>  <span class="keyword">class </span><a class="code hl_class" href="classoomph_1_1FluidInterfaceBoundingElement.html">FluidInterfaceBoundingElement</a> : <span class="keyword">public</span> <span class="keyword">virtual</span> FaceElement</div>
 <div class="line"><a id="l00054" name="l00054"></a><span class="lineno">   54</span>  {</div>
 <div class="line"><a id="l00055" name="l00055"></a><span class="lineno">   55</span>  <span class="keyword">private</span>:<span class="comment"></span></div>
-<div class="line"><a id="l00056" name="l00056"></a><span class="lineno">   56</span><span class="comment">    ///  Function pointer to a wall unit normal function. Returns the</span></div>
+<div class="line"><a id="l00056" name="l00056"></a><span class="lineno">   56</span><span class="comment">    /// Function pointer to a wall unit normal function. Returns the</span></div>
 <div class="line"><a id="l00057" name="l00057"></a><span class="lineno">   57</span><span class="comment">    /// unit normal on the wall, at the specified Eulerian coordinate.</span></div>
 <div class="line"><a id="l00058" name="l00058"></a><span class="lineno"><a class="line" href="classoomph_1_1FluidInterfaceBoundingElement.html#a09c0b1df7d653eaf55e94e3951d409dd">   58</a></span><span class="comment"></span>    <span class="keyword">typedef</span> void (*<a class="code hl_typedef" href="classoomph_1_1FluidInterfaceBoundingElement.html#a09c0b1df7d653eaf55e94e3951d409dd">WallUnitNormalFctPt</a>)(<span class="keyword">const</span> Vector&lt;double&gt;&amp; x,</div>
 <div class="line"><a id="l00059" name="l00059"></a><span class="lineno">   59</span>                                        Vector&lt;double&gt;&amp; unit_normal);</div>
 <div class="line"><a id="l00060" name="l00060"></a><span class="lineno">   60</span><span class="comment"></span> </div>
-<div class="line"><a id="l00061" name="l00061"></a><span class="lineno">   61</span><span class="comment">    ///  Pointer to a wall normal function that returns</span></div>
+<div class="line"><a id="l00061" name="l00061"></a><span class="lineno">   61</span><span class="comment">    /// Pointer to a wall normal function that returns</span></div>
 <div class="line"><a id="l00062" name="l00062"></a><span class="lineno">   62</span><span class="comment">    /// the wall unit normal as a function of position in global</span></div>
 <div class="line"><a id="l00063" name="l00063"></a><span class="lineno">   63</span><span class="comment">    /// Eulerian coordinates.</span></div>
 <div class="line"><a id="l00064" name="l00064"></a><span class="lineno"><a class="line" href="classoomph_1_1FluidInterfaceBoundingElement.html#abc765a3b2c4eac762a1a5ba85ac4a7a4">   64</a></span><span class="comment"></span>    <a class="code hl_typedef" href="classoomph_1_1FluidInterfaceBoundingElement.html#a09c0b1df7d653eaf55e94e3951d409dd">WallUnitNormalFctPt</a> <a class="code hl_variable" href="classoomph_1_1FluidInterfaceBoundingElement.html#abc765a3b2c4eac762a1a5ba85ac4a7a4">Wall_unit_normal_fct_pt</a>;</div>
@@ -189,22 +189,22 @@
 <div class="line"><a id="l00070" name="l00070"></a><span class="lineno"><a class="line" href="classoomph_1_1FluidInterfaceBoundingElement.html#abf47719443253c1117705b0a20e9ef70">   70</a></span><span class="comment"></span>    <span class="keywordtype">double</span>* <a class="code hl_variable" href="classoomph_1_1FluidInterfaceBoundingElement.html#abf47719443253c1117705b0a20e9ef70">Ca_pt</a>;</div>
 <div class="line"><a id="l00071" name="l00071"></a><span class="lineno">   71</span> </div>
 <div class="line"><a id="l00072" name="l00072"></a><span class="lineno">   72</span>  <span class="keyword">protected</span>:<span class="comment"></span></div>
-<div class="line"><a id="l00073" name="l00073"></a><span class="lineno">   73</span><span class="comment">    ///  Flag used to determine whether the contact angle is to be</span></div>
+<div class="line"><a id="l00073" name="l00073"></a><span class="lineno">   73</span><span class="comment">    /// Flag used to determine whether the contact angle is to be</span></div>
 <div class="line"><a id="l00074" name="l00074"></a><span class="lineno">   74</span><span class="comment">    /// used (0 if not), and whether it will be applied weakly as a force term</span></div>
 <div class="line"><a id="l00075" name="l00075"></a><span class="lineno">   75</span><span class="comment">    /// in the momentum equations (1) or by hijacking the kinematic</span></div>
 <div class="line"><a id="l00076" name="l00076"></a><span class="lineno">   76</span><span class="comment">    /// condition (2).</span></div>
 <div class="line"><a id="l00077" name="l00077"></a><span class="lineno"><a class="line" href="classoomph_1_1FluidInterfaceBoundingElement.html#affa8d787e58ca23c2e73b4c8a2c30766">   77</a></span><span class="comment"></span>    <span class="keywordtype">unsigned</span> <a class="code hl_variable" href="classoomph_1_1FluidInterfaceBoundingElement.html#affa8d787e58ca23c2e73b4c8a2c30766">Contact_angle_flag</a>;</div>
 <div class="line"><a id="l00078" name="l00078"></a><span class="lineno">   78</span><span class="comment"></span> </div>
-<div class="line"><a id="l00079" name="l00079"></a><span class="lineno">   79</span><span class="comment">    ///  Index at which the i-th velocity component is stored in the</span></div>
+<div class="line"><a id="l00079" name="l00079"></a><span class="lineno">   79</span><span class="comment">    /// Index at which the i-th velocity component is stored in the</span></div>
 <div class="line"><a id="l00080" name="l00080"></a><span class="lineno">   80</span><span class="comment">    /// element&#39;s nodes</span></div>
 <div class="line"><a id="l00081" name="l00081"></a><span class="lineno"><a class="line" href="classoomph_1_1FluidInterfaceBoundingElement.html#a08223fefc36922f4661e30e9de16830f">   81</a></span><span class="comment"></span>    Vector&lt;unsigned&gt; <a class="code hl_variable" href="classoomph_1_1FluidInterfaceBoundingElement.html#a08223fefc36922f4661e30e9de16830f">U_index_interface_boundary</a>;</div>
 <div class="line"><a id="l00082" name="l00082"></a><span class="lineno">   82</span><span class="comment"></span> </div>
-<div class="line"><a id="l00083" name="l00083"></a><span class="lineno">   83</span><span class="comment">    ///  Function that is used to determine the local equation number of</span></div>
+<div class="line"><a id="l00083" name="l00083"></a><span class="lineno">   83</span><span class="comment">    /// Function that is used to determine the local equation number of</span></div>
 <div class="line"><a id="l00084" name="l00084"></a><span class="lineno">   84</span><span class="comment">    /// the kinematic equation associated with the nodes of the element</span></div>
 <div class="line"><a id="l00085" name="l00085"></a><span class="lineno">   85</span><span class="comment">    /// This must be overloaded depending on the node update scheme</span></div>
 <div class="line"><a id="l00086" name="l00086"></a><span class="lineno"><a class="line" href="classoomph_1_1FluidInterfaceBoundingElement.html#a12a0a6d7c3c1c1a5a0f42a57e60eab34">   86</a></span><span class="comment"></span>    <span class="keyword">virtual</span> <span class="keywordtype">int</span> <a class="code hl_function" href="classoomph_1_1FluidInterfaceBoundingElement.html#a12a0a6d7c3c1c1a5a0f42a57e60eab34">kinematic_local_eqn</a>(<span class="keyword">const</span> <span class="keywordtype">unsigned</span>&amp; n) = 0;</div>
 <div class="line"><a id="l00087" name="l00087"></a><span class="lineno">   87</span><span class="comment"></span> </div>
-<div class="line"><a id="l00088" name="l00088"></a><span class="lineno">   88</span><span class="comment">    ///  Function that returns the unit normal of the bounding wall</span></div>
+<div class="line"><a id="l00088" name="l00088"></a><span class="lineno">   88</span><span class="comment">    /// Function that returns the unit normal of the bounding wall</span></div>
 <div class="line"><a id="l00089" name="l00089"></a><span class="lineno">   89</span><span class="comment">    /// directed out of the fluid</span></div>
 <div class="line"><a id="l00090" name="l00090"></a><span class="lineno"><a class="line" href="classoomph_1_1FluidInterfaceBoundingElement.html#a1a715427e2037278891c06afd5d096fb">   90</a></span><span class="comment"></span>    <span class="keywordtype">void</span> <a class="code hl_function" href="classoomph_1_1FluidInterfaceBoundingElement.html#a1a715427e2037278891c06afd5d096fb">wall_unit_normal</a>(<span class="keyword">const</span> Vector&lt;double&gt;&amp; x, Vector&lt;double&gt;&amp; normal)</div>
 <div class="line"><a id="l00091" name="l00091"></a><span class="lineno">   91</span>    {</div>
@@ -238,7 +238,7 @@
 <div class="line"><a id="l00119" name="l00119"></a><span class="lineno">  119</span><span class="comment"></span>    <span class="comment">// function to take care of the remesh)</span></div>
 <div class="line"><a id="l00120" name="l00120"></a><span class="lineno"><a class="line" href="classoomph_1_1FluidInterfaceBoundingElement.html#a7347eb5984a18ffb1cfea1f9240badee">  120</a></span>    <span class="keyword">inline</span> <span class="keywordtype">void</span> <a class="code hl_function" href="classoomph_1_1FluidInterfaceBoundingElement.html#a7347eb5984a18ffb1cfea1f9240badee">reset_in_external_fd</a>(<span class="keyword">const</span> <span class="keywordtype">unsigned</span>&amp; i) {}</div>
 <div class="line"><a id="l00121" name="l00121"></a><span class="lineno">  121</span><span class="comment"></span> </div>
-<div class="line"><a id="l00122" name="l00122"></a><span class="lineno">  122</span><span class="comment">    ///  We require a final node update in the bulk element</span></div>
+<div class="line"><a id="l00122" name="l00122"></a><span class="lineno">  122</span><span class="comment">    /// We require a final node update in the bulk element</span></div>
 <div class="line"><a id="l00123" name="l00123"></a><span class="lineno">  123</span><span class="comment">    /// after all finite differencing</span></div>
 <div class="line"><a id="l00124" name="l00124"></a><span class="lineno"><a class="line" href="classoomph_1_1FluidInterfaceBoundingElement.html#a6b0de0d11dfcfc912e2f56fbd6359ebe">  124</a></span><span class="comment"></span>    <span class="keyword">inline</span> <span class="keywordtype">void</span> <a class="code hl_function" href="classoomph_1_1FluidInterfaceBoundingElement.html#a6b0de0d11dfcfc912e2f56fbd6359ebe">reset_after_external_fd</a>()</div>
 <div class="line"><a id="l00125" name="l00125"></a><span class="lineno">  125</span>    {</div>
@@ -274,7 +274,7 @@
 <div class="line"><a id="l00155" name="l00155"></a><span class="lineno">  155</span>      <span class="keywordflow">return</span> <a class="code hl_variable" href="classoomph_1_1FluidInterfaceBoundingElement.html#a08223fefc36922f4661e30e9de16830f">U_index_interface_boundary</a>;</div>
 <div class="line"><a id="l00156" name="l00156"></a><span class="lineno">  156</span>    }</div>
 <div class="line"><a id="l00157" name="l00157"></a><span class="lineno">  157</span><span class="comment"></span> </div>
-<div class="line"><a id="l00158" name="l00158"></a><span class="lineno">  158</span><span class="comment">    ///  Set a pointer to the desired contact angle. Optional boolean</span></div>
+<div class="line"><a id="l00158" name="l00158"></a><span class="lineno">  158</span><span class="comment">    /// Set a pointer to the desired contact angle. Optional boolean</span></div>
 <div class="line"><a id="l00159" name="l00159"></a><span class="lineno">  159</span><span class="comment">    /// (defaults to true)</span></div>
 <div class="line"><a id="l00160" name="l00160"></a><span class="lineno">  160</span><span class="comment">    /// chooses strong imposition via hijacking (true) or weak imposition</span></div>
 <div class="line"><a id="l00161" name="l00161"></a><span class="lineno">  161</span><span class="comment">    /// via addition to momentum equation (false). The default strong imposition</span></div>
@@ -344,7 +344,7 @@
 <div class="line"><a id="l00225" name="l00225"></a><span class="lineno">  225</span>      <span class="keywordtype">unsigned</span> flag) = 0;</div>
 <div class="line"><a id="l00226" name="l00226"></a><span class="lineno">  226</span> </div>
 <div class="line"><a id="l00227" name="l00227"></a><span class="lineno">  227</span><span class="comment"></span> </div>
-<div class="line"><a id="l00228" name="l00228"></a><span class="lineno">  228</span><span class="comment">    ///  Empty helper function to calculate the additional contributions</span></div>
+<div class="line"><a id="l00228" name="l00228"></a><span class="lineno">  228</span><span class="comment">    /// Empty helper function to calculate the additional contributions</span></div>
 <div class="line"><a id="l00229" name="l00229"></a><span class="lineno">  229</span><span class="comment">    /// arising from the node update strategy to the Jacobian within the</span></div>
 <div class="line"><a id="l00230" name="l00230"></a><span class="lineno">  230</span><span class="comment">    /// integration loop. This will be overloaded by elements that require</span></div>
 <div class="line"><a id="l00231" name="l00231"></a><span class="lineno">  231</span><span class="comment">    /// contributions to their underlying equations from boundary integrals.</span></div>
@@ -395,7 +395,7 @@
 <div class="line"><a id="l00276" name="l00276"></a><span class="lineno">  276</span>    : <span class="keyword">public</span> <a class="code hl_class" href="classoomph_1_1FluidInterfaceBoundingElement.html">FluidInterfaceBoundingElement</a></div>
 <div class="line"><a id="l00277" name="l00277"></a><span class="lineno">  277</span>  {</div>
 <div class="line"><a id="l00278" name="l00278"></a><span class="lineno">  278</span>  <span class="keyword">protected</span>:<span class="comment"></span></div>
-<div class="line"><a id="l00279" name="l00279"></a><span class="lineno">  279</span><span class="comment">    ///  Overload the helper function to calculate the residuals and</span></div>
+<div class="line"><a id="l00279" name="l00279"></a><span class="lineno">  279</span><span class="comment">    /// Overload the helper function to calculate the residuals and</span></div>
 <div class="line"><a id="l00280" name="l00280"></a><span class="lineno">  280</span><span class="comment">    /// (if flag==1) the Jacobian -- this function only deals with</span></div>
 <div class="line"><a id="l00281" name="l00281"></a><span class="lineno">  281</span><span class="comment">    /// the part of the Jacobian that can be handled generically.</span></div>
 <div class="line"><a id="l00282" name="l00282"></a><span class="lineno">  282</span><span class="comment">    /// Specific additional contributions may be provided in</span></div>
@@ -415,7 +415,7 @@
 <div class="line"><a id="l00296" name="l00296"></a><span class="lineno"><a class="line" href="classoomph_1_1LineFluidInterfaceBoundingElement.html">  296</a></span>  <span class="keyword">class </span><a class="code hl_class" href="classoomph_1_1LineFluidInterfaceBoundingElement.html">LineFluidInterfaceBoundingElement</a> : <span class="keyword">public</span> <a class="code hl_class" href="classoomph_1_1FluidInterfaceBoundingElement.html">FluidInterfaceBoundingElement</a></div>
 <div class="line"><a id="l00297" name="l00297"></a><span class="lineno">  297</span>  {</div>
 <div class="line"><a id="l00298" name="l00298"></a><span class="lineno">  298</span>  <span class="keyword">protected</span>:<span class="comment"></span></div>
-<div class="line"><a id="l00299" name="l00299"></a><span class="lineno">  299</span><span class="comment">    ///  Overload the helper function to calculate the residuals and</span></div>
+<div class="line"><a id="l00299" name="l00299"></a><span class="lineno">  299</span><span class="comment">    /// Overload the helper function to calculate the residuals and</span></div>
 <div class="line"><a id="l00300" name="l00300"></a><span class="lineno">  300</span><span class="comment">    /// (if flag==true) the Jacobian -- this function only deals with</span></div>
 <div class="line"><a id="l00301" name="l00301"></a><span class="lineno">  301</span><span class="comment">    /// the part of the Jacobian that can be handled generically.</span></div>
 <div class="line"><a id="l00302" name="l00302"></a><span class="lineno">  302</span><span class="comment">    /// Specific additional contributions may be provided in</span></div>
@@ -456,25 +456,25 @@
 <div class="line"><a id="l00337" name="l00337"></a><span class="lineno">  337</span><span class="comment">    /// Nodal index at which the i-th velocity component is stored.</span></div>
 <div class="line"><a id="l00338" name="l00338"></a><span class="lineno"><a class="line" href="classoomph_1_1FluidInterfaceElement.html#a6a818d9999c68641223edcad217a8c3f">  338</a></span><span class="comment"></span>    Vector&lt;unsigned&gt; <a class="code hl_variable" href="classoomph_1_1FluidInterfaceElement.html#a6a818d9999c68641223edcad217a8c3f">U_index_interface</a>;</div>
 <div class="line"><a id="l00339" name="l00339"></a><span class="lineno">  339</span><span class="comment"></span> </div>
-<div class="line"><a id="l00340" name="l00340"></a><span class="lineno">  340</span><span class="comment">    ///  The Data that contains the external  pressure is stored</span></div>
+<div class="line"><a id="l00340" name="l00340"></a><span class="lineno">  340</span><span class="comment">    /// The Data that contains the external  pressure is stored</span></div>
 <div class="line"><a id="l00341" name="l00341"></a><span class="lineno">  341</span><span class="comment">    /// as external Data for the element. Which external Data item is it?</span></div>
 <div class="line"><a id="l00342" name="l00342"></a><span class="lineno">  342</span><span class="comment">    /// (int so it can be initialised to -1, indicating that external</span></div>
 <div class="line"><a id="l00343" name="l00343"></a><span class="lineno">  343</span><span class="comment">    /// pressure hasn&#39;t been set).</span></div>
 <div class="line"><a id="l00344" name="l00344"></a><span class="lineno"><a class="line" href="classoomph_1_1FluidInterfaceElement.html#a2d4c5b3e08177f5695fa9e76bf08b570">  344</a></span><span class="comment"></span>    <span class="keywordtype">int</span> <a class="code hl_variable" href="classoomph_1_1FluidInterfaceElement.html#a2d4c5b3e08177f5695fa9e76bf08b570">External_data_number_of_external_pressure</a>;</div>
 <div class="line"><a id="l00345" name="l00345"></a><span class="lineno">  345</span><span class="comment"></span> </div>
-<div class="line"><a id="l00346" name="l00346"></a><span class="lineno">  346</span><span class="comment">    ///  Pointer to the Data item that stores the external pressure</span></div>
+<div class="line"><a id="l00346" name="l00346"></a><span class="lineno">  346</span><span class="comment">    /// Pointer to the Data item that stores the external pressure</span></div>
 <div class="line"><a id="l00347" name="l00347"></a><span class="lineno"><a class="line" href="classoomph_1_1FluidInterfaceElement.html#a9177eb6e96e5ac13fe092596bc104910">  347</a></span><span class="comment"></span>    Data* <a class="code hl_variable" href="classoomph_1_1FluidInterfaceElement.html#a9177eb6e96e5ac13fe092596bc104910">Pext_data_pt</a>;</div>
 <div class="line"><a id="l00348" name="l00348"></a><span class="lineno">  348</span><span class="comment"></span> </div>
-<div class="line"><a id="l00349" name="l00349"></a><span class="lineno">  349</span><span class="comment">    ///  Which of the values in Pext_data_pt stores the external pressure</span></div>
+<div class="line"><a id="l00349" name="l00349"></a><span class="lineno">  349</span><span class="comment">    /// Which of the values in Pext_data_pt stores the external pressure</span></div>
 <div class="line"><a id="l00350" name="l00350"></a><span class="lineno"><a class="line" href="classoomph_1_1FluidInterfaceElement.html#a2a49c97d42ce05d1876626e5918bb8eb">  350</a></span><span class="comment"></span>    <span class="keywordtype">unsigned</span> <a class="code hl_variable" href="classoomph_1_1FluidInterfaceElement.html#a2a49c97d42ce05d1876626e5918bb8eb">Index_of_external_pressure_value</a>;</div>
 <div class="line"><a id="l00351" name="l00351"></a><span class="lineno">  351</span><span class="comment"></span> </div>
-<div class="line"><a id="l00352" name="l00352"></a><span class="lineno">  352</span><span class="comment">    ///  Access function that returns the local equation number</span></div>
+<div class="line"><a id="l00352" name="l00352"></a><span class="lineno">  352</span><span class="comment">    /// Access function that returns the local equation number</span></div>
 <div class="line"><a id="l00353" name="l00353"></a><span class="lineno">  353</span><span class="comment">    /// for the (scalar) kinematic equation associated with the j-th local</span></div>
 <div class="line"><a id="l00354" name="l00354"></a><span class="lineno">  354</span><span class="comment">    /// node. This must be overloaded by specific interface elements</span></div>
 <div class="line"><a id="l00355" name="l00355"></a><span class="lineno">  355</span><span class="comment">    /// and depends on the method for handing the free-surface deformation.</span></div>
 <div class="line"><a id="l00356" name="l00356"></a><span class="lineno"><a class="line" href="classoomph_1_1FluidInterfaceElement.html#a58a82e2fd839d4381e43d46a22bf1f25">  356</a></span><span class="comment"></span>    <span class="keyword">virtual</span> <span class="keywordtype">int</span> <a class="code hl_function" href="classoomph_1_1FluidInterfaceElement.html#a58a82e2fd839d4381e43d46a22bf1f25">kinematic_local_eqn</a>(<span class="keyword">const</span> <span class="keywordtype">unsigned</span>&amp; n) = 0;</div>
 <div class="line"><a id="l00357" name="l00357"></a><span class="lineno">  357</span><span class="comment"></span> </div>
-<div class="line"><a id="l00358" name="l00358"></a><span class="lineno">  358</span><span class="comment">    ///  Access function for the local equation number that</span></div>
+<div class="line"><a id="l00358" name="l00358"></a><span class="lineno">  358</span><span class="comment">    /// Access function for the local equation number that</span></div>
 <div class="line"><a id="l00359" name="l00359"></a><span class="lineno">  359</span><span class="comment">    /// corresponds to the external pressure.</span></div>
 <div class="line"><a id="l00360" name="l00360"></a><span class="lineno"><a class="line" href="classoomph_1_1FluidInterfaceElement.html#abd4aece98dee8173c6d796e23ccf1e03">  360</a></span><span class="comment"></span>    <span class="keywordtype">int</span> <a class="code hl_function" href="classoomph_1_1FluidInterfaceElement.html#abd4aece98dee8173c6d796e23ccf1e03">pext_local_eqn</a>()</div>
 <div class="line"><a id="l00361" name="l00361"></a><span class="lineno">  361</span>    {</div>
@@ -490,7 +490,7 @@
 <div class="line"><a id="l00371" name="l00371"></a><span class="lineno">  371</span>                                <a class="code hl_variable" href="classoomph_1_1FluidInterfaceElement.html#a2a49c97d42ce05d1876626e5918bb8eb">Index_of_external_pressure_value</a>);</div>
 <div class="line"><a id="l00372" name="l00372"></a><span class="lineno">  372</span>    }</div>
 <div class="line"><a id="l00373" name="l00373"></a><span class="lineno">  373</span><span class="comment"></span> </div>
-<div class="line"><a id="l00374" name="l00374"></a><span class="lineno">  374</span><span class="comment">    ///  Helper function to calculate the residuals and</span></div>
+<div class="line"><a id="l00374" name="l00374"></a><span class="lineno">  374</span><span class="comment">    /// Helper function to calculate the residuals and</span></div>
 <div class="line"><a id="l00375" name="l00375"></a><span class="lineno">  375</span><span class="comment">    /// (if flag==1) the Jacobian of the equations.</span></div>
 <div class="line"><a id="l00376" name="l00376"></a><span class="lineno">  376</span><span class="comment">    /// This is implemented generically using the surface</span></div>
 <div class="line"><a id="l00377" name="l00377"></a><span class="lineno">  377</span><span class="comment">    /// divergence information that is overloaded in each element</span></div>
@@ -498,7 +498,7 @@
 <div class="line"><a id="l00379" name="l00379"></a><span class="lineno">  379</span><span class="comment"></span>    <span class="keyword">virtual</span> <span class="keywordtype">void</span> <a class="code hl_function" href="classoomph_1_1FluidInterfaceElement.html#ae4ea3a18a513bed3725fdf413cf18874">fill_in_generic_residual_contribution_interface</a>(</div>
 <div class="line"><a id="l00380" name="l00380"></a><span class="lineno">  380</span>      Vector&lt;double&gt;&amp; residuals, DenseMatrix&lt;double&gt;&amp; jacobian, <span class="keywordtype">unsigned</span> flag);</div>
 <div class="line"><a id="l00381" name="l00381"></a><span class="lineno">  381</span><span class="comment"></span> </div>
-<div class="line"><a id="l00382" name="l00382"></a><span class="lineno">  382</span><span class="comment">    ///  Compute the surface gradient and surface divergence</span></div>
+<div class="line"><a id="l00382" name="l00382"></a><span class="lineno">  382</span><span class="comment">    /// Compute the surface gradient and surface divergence</span></div>
 <div class="line"><a id="l00383" name="l00383"></a><span class="lineno">  383</span><span class="comment">    /// operators given the shape functions, derivatives,</span></div>
 <div class="line"><a id="l00384" name="l00384"></a><span class="lineno">  384</span><span class="comment">    /// tangent vectors and position. All derivatives and</span></div>
 <div class="line"><a id="l00385" name="l00385"></a><span class="lineno">  385</span><span class="comment">    /// tangent vectors should be formed</span></div>
@@ -527,7 +527,7 @@
 <div class="line"><a id="l00408" name="l00408"></a><span class="lineno">  408</span>      DShape&amp; dpsidS,</div>
 <div class="line"><a id="l00409" name="l00409"></a><span class="lineno">  409</span>      DShape&amp; dpsidS_div) = 0;</div>
 <div class="line"><a id="l00410" name="l00410"></a><span class="lineno">  410</span><span class="comment"></span> </div>
-<div class="line"><a id="l00411" name="l00411"></a><span class="lineno">  411</span><span class="comment">    ///  Helper function to calculate the additional contributions</span></div>
+<div class="line"><a id="l00411" name="l00411"></a><span class="lineno">  411</span><span class="comment">    /// Helper function to calculate the additional contributions</span></div>
 <div class="line"><a id="l00412" name="l00412"></a><span class="lineno">  412</span><span class="comment">    /// to the resisuals and Jacobian that arise from specific node update</span></div>
 <div class="line"><a id="l00413" name="l00413"></a><span class="lineno">  413</span><span class="comment">    /// strategies. This is called within the integration loop over the</span></div>
 <div class="line"><a id="l00414" name="l00414"></a><span class="lineno">  414</span><span class="comment">    /// element (for efficiency) and therefore requires a fairly large</span></div>
@@ -569,7 +569,7 @@
 <div class="line"><a id="l00450" name="l00450"></a><span class="lineno">  450</span>      <a class="code hl_variable" href="classoomph_1_1FluidInterfaceElement.html#ae32ade5ea1742938f538e5d5f812bb2a">St_pt</a> = &amp;<a class="code hl_variable" href="classoomph_1_1FluidInterfaceElement.html#adbe9dc951b87449522f6d19e4acac538">Default_Physical_Constant_Value</a>;</div>
 <div class="line"><a id="l00451" name="l00451"></a><span class="lineno">  451</span>    }</div>
 <div class="line"><a id="l00452" name="l00452"></a><span class="lineno">  452</span><span class="comment"></span> </div>
-<div class="line"><a id="l00453" name="l00453"></a><span class="lineno">  453</span><span class="comment">    ///  Virtual function that specifies the non-dimensional</span></div>
+<div class="line"><a id="l00453" name="l00453"></a><span class="lineno">  453</span><span class="comment">    /// Virtual function that specifies the non-dimensional</span></div>
 <div class="line"><a id="l00454" name="l00454"></a><span class="lineno">  454</span><span class="comment">    ///  surface tension as a function of local position within the element.</span></div>
 <div class="line"><a id="l00455" name="l00455"></a><span class="lineno">  455</span><span class="comment">    /// The default behaviour is a constant surface tension of value 1.0</span></div>
 <div class="line"><a id="l00456" name="l00456"></a><span class="lineno">  456</span><span class="comment">    /// This function can be overloaded in more specialised elements to</span></div>
@@ -625,13 +625,13 @@
 <div class="line"><a id="l00506" name="l00506"></a><span class="lineno">  506</span>      <span class="keywordflow">return</span> <a class="code hl_variable" href="classoomph_1_1FluidInterfaceElement.html#ae32ade5ea1742938f538e5d5f812bb2a">St_pt</a>;</div>
 <div class="line"><a id="l00507" name="l00507"></a><span class="lineno">  507</span>    }</div>
 <div class="line"><a id="l00508" name="l00508"></a><span class="lineno">  508</span><span class="comment"></span> </div>
-<div class="line"><a id="l00509" name="l00509"></a><span class="lineno">  509</span><span class="comment">    ///  Return the i-th velocity component at local node j.</span></div>
+<div class="line"><a id="l00509" name="l00509"></a><span class="lineno">  509</span><span class="comment">    /// Return the i-th velocity component at local node j.</span></div>
 <div class="line"><a id="l00510" name="l00510"></a><span class="lineno"><a class="line" href="classoomph_1_1FluidInterfaceElement.html#a50a509413ea7f2a481678837846dd476">  510</a></span><span class="comment"></span>    <span class="keywordtype">double</span> <a class="code hl_function" href="classoomph_1_1FluidInterfaceElement.html#a50a509413ea7f2a481678837846dd476">u</a>(<span class="keyword">const</span> <span class="keywordtype">unsigned</span>&amp; j, <span class="keyword">const</span> <span class="keywordtype">unsigned</span>&amp; i)</div>
 <div class="line"><a id="l00511" name="l00511"></a><span class="lineno">  511</span>    {</div>
 <div class="line"><a id="l00512" name="l00512"></a><span class="lineno">  512</span>      <span class="keywordflow">return</span> node_pt(j)-&gt;value(<a class="code hl_variable" href="classoomph_1_1FluidInterfaceElement.html#a6a818d9999c68641223edcad217a8c3f">U_index_interface</a>[i]);</div>
 <div class="line"><a id="l00513" name="l00513"></a><span class="lineno">  513</span>    }</div>
 <div class="line"><a id="l00514" name="l00514"></a><span class="lineno">  514</span><span class="comment"></span> </div>
-<div class="line"><a id="l00515" name="l00515"></a><span class="lineno">  515</span><span class="comment">    ///  Calculate the i-th velocity component at the local coordinate s.</span></div>
+<div class="line"><a id="l00515" name="l00515"></a><span class="lineno">  515</span><span class="comment">    /// Calculate the i-th velocity component at the local coordinate s.</span></div>
 <div class="line"><a id="l00516" name="l00516"></a><span class="lineno">  516</span><span class="comment"></span>    <span class="keywordtype">double</span> <a class="code hl_function" href="classoomph_1_1FluidInterfaceElement.html#a8f807a6456da7785b12e45a4c17fb969">interpolated_u</a>(<span class="keyword">const</span> Vector&lt;double&gt;&amp; s, <span class="keyword">const</span> <span class="keywordtype">unsigned</span>&amp; i);</div>
 <div class="line"><a id="l00517" name="l00517"></a><span class="lineno">  517</span><span class="comment"></span> </div>
 <div class="line"><a id="l00518" name="l00518"></a><span class="lineno">  518</span><span class="comment">    /// Return the value of the external pressure</span></div>
@@ -650,7 +650,7 @@
 <div class="line"><a id="l00531" name="l00531"></a><span class="lineno">  531</span>      }</div>
 <div class="line"><a id="l00532" name="l00532"></a><span class="lineno">  532</span>    }</div>
 <div class="line"><a id="l00533" name="l00533"></a><span class="lineno">  533</span><span class="comment"></span> </div>
-<div class="line"><a id="l00534" name="l00534"></a><span class="lineno">  534</span><span class="comment">    ///  Set the Data that contains the single pressure value</span></div>
+<div class="line"><a id="l00534" name="l00534"></a><span class="lineno">  534</span><span class="comment">    /// Set the Data that contains the single pressure value</span></div>
 <div class="line"><a id="l00535" name="l00535"></a><span class="lineno">  535</span><span class="comment">    /// that specifies the &quot;external pressure&quot; for the</span></div>
 <div class="line"><a id="l00536" name="l00536"></a><span class="lineno">  536</span><span class="comment">    /// interface/free-surface. Setting this only makes sense</span></div>
 <div class="line"><a id="l00537" name="l00537"></a><span class="lineno">  537</span><span class="comment">    /// if the interface is, in fact, a free surface (well,</span></div>
@@ -687,7 +687,7 @@
 <div class="line"><a id="l00568" name="l00568"></a><span class="lineno">  568</span>      <a class="code hl_variable" href="classoomph_1_1FluidInterfaceElement.html#a2a49c97d42ce05d1876626e5918bb8eb">Index_of_external_pressure_value</a> = 0;</div>
 <div class="line"><a id="l00569" name="l00569"></a><span class="lineno">  569</span>    }</div>
 <div class="line"><a id="l00570" name="l00570"></a><span class="lineno">  570</span><span class="comment"></span> </div>
-<div class="line"><a id="l00571" name="l00571"></a><span class="lineno">  571</span><span class="comment">    ///  Set the Data that contains the pressure value</span></div>
+<div class="line"><a id="l00571" name="l00571"></a><span class="lineno">  571</span><span class="comment">    /// Set the Data that contains the pressure value</span></div>
 <div class="line"><a id="l00572" name="l00572"></a><span class="lineno">  572</span><span class="comment">    /// that specifies the &quot;external pressure&quot; for the</span></div>
 <div class="line"><a id="l00573" name="l00573"></a><span class="lineno">  573</span><span class="comment">    /// interface/free-surface. Setting this only makes sense</span></div>
 <div class="line"><a id="l00574" name="l00574"></a><span class="lineno">  574</span><span class="comment">    /// if the interface is, in fact, a free surface (well,</span></div>
@@ -731,7 +731,7 @@
 <div class="line"><a id="l00612" name="l00612"></a><span class="lineno">  612</span>    }</div>
 <div class="line"><a id="l00613" name="l00613"></a><span class="lineno">  613</span> </div>
 <div class="line"><a id="l00614" name="l00614"></a><span class="lineno">  614</span><span class="comment"></span> </div>
-<div class="line"><a id="l00615" name="l00615"></a><span class="lineno">  615</span><span class="comment">    ///  Create a bounding element e.g. to apply a contact angle boundary</span></div>
+<div class="line"><a id="l00615" name="l00615"></a><span class="lineno">  615</span><span class="comment">    /// Create a bounding element e.g. to apply a contact angle boundary</span></div>
 <div class="line"><a id="l00616" name="l00616"></a><span class="lineno">  616</span><span class="comment">    /// condition</span></div>
 <div class="line"><a id="l00617" name="l00617"></a><span class="lineno"><a class="line" href="classoomph_1_1FluidInterfaceElement.html#aa0881cdfbb1b6d5f4ede287ad9ff87c8">  617</a></span><span class="comment"></span>    <span class="keyword">virtual</span> <a class="code hl_class" href="classoomph_1_1FluidInterfaceBoundingElement.html">FluidInterfaceBoundingElement</a>* <a class="code hl_function" href="classoomph_1_1FluidInterfaceElement.html#aa0881cdfbb1b6d5f4ede287ad9ff87c8">make_bounding_element</a>(</div>
 <div class="line"><a id="l00618" name="l00618"></a><span class="lineno">  618</span>      <span class="keyword">const</span> <span class="keywordtype">int</span>&amp; face_index)</div>
@@ -743,7 +743,7 @@
 <div class="line"><a id="l00624" name="l00624"></a><span class="lineno">  624</span>    }</div>
 <div class="line"><a id="l00625" name="l00625"></a><span class="lineno">  625</span> </div>
 <div class="line"><a id="l00626" name="l00626"></a><span class="lineno">  626</span><span class="comment"></span> </div>
-<div class="line"><a id="l00627" name="l00627"></a><span class="lineno">  627</span><span class="comment">    ///  Hijack the kinematic condition at the node numbers passed in</span></div>
+<div class="line"><a id="l00627" name="l00627"></a><span class="lineno">  627</span><span class="comment">    /// Hijack the kinematic condition at the node numbers passed in</span></div>
 <div class="line"><a id="l00628" name="l00628"></a><span class="lineno">  628</span><span class="comment">    /// the vector. The node numbers correspond to the local numbers of</span></div>
 <div class="line"><a id="l00629" name="l00629"></a><span class="lineno">  629</span><span class="comment">    /// nodes in the associated bulk element.</span></div>
 <div class="line"><a id="l00630" name="l00630"></a><span class="lineno">  630</span><span class="comment">    /// This is required so that contact-angle conditions can be applied</span></div>
@@ -946,7 +946,7 @@
     <footer>
       <div class="container">
         <div class="text-muted" style="float:right;">Generated by <a href="http://www.doxygen.org/index.html">
-          <img style="height:18px;" class="footer-img" src="doxygen.png" alt="doxygen"></a> on Fri Oct 22 2021 12:37:19
+          <img style="height:18px;" class="footer-img" src="doxygen.png" alt="doxygen"></a> on Mon Oct 25 2021 14:55:32
         </div>
       </div>
     </footer>

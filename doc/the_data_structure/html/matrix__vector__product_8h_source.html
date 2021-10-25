@@ -171,7 +171,7 @@ $(function() {
 <div class="line"><a id="l00042" name="l00042"></a><span class="lineno">   42</span><span class="keyword">namespace </span><a class="code hl_namespace" href="namespaceoomph.html">oomph</a></div>
 <div class="line"><a id="l00043" name="l00043"></a><span class="lineno">   43</span>{</div>
 <div class="line"><a id="l00044" name="l00044"></a><span class="lineno">   44</span>  <span class="comment">//=============================================================================</span><span class="comment"></span></div>
-<div class="line"><a id="l00045" name="l00045"></a><span class="lineno">   45</span><span class="comment">  ///  Matrix vector product helper class - primarily a wrapper to</span></div>
+<div class="line"><a id="l00045" name="l00045"></a><span class="lineno">   45</span><span class="comment">  /// Matrix vector product helper class - primarily a wrapper to</span></div>
 <div class="line"><a id="l00046" name="l00046"></a><span class="lineno">   46</span><span class="comment">  /// Trilinos&#39;s Epetra matrix vector product methods. This allows the</span></div>
 <div class="line"><a id="l00047" name="l00047"></a><span class="lineno">   47</span><span class="comment">  /// epetra matrix to be assembled once and the matrix vector product to be</span></div>
 <div class="line"><a id="l00048" name="l00048"></a><span class="lineno">   48</span><span class="comment">  /// performed many times.</span></div>
@@ -179,7 +179,7 @@ $(function() {
 <div class="line"><a id="l00050" name="l00050"></a><span class="lineno"><a class="line" href="classoomph_1_1MatrixVectorProduct.html">   50</a></span>  <span class="keyword">class </span><a class="code hl_class" href="classoomph_1_1MatrixVectorProduct.html">MatrixVectorProduct</a> : <span class="keyword">public</span> <a class="code hl_class" href="classoomph_1_1DistributableLinearAlgebraObject.html">DistributableLinearAlgebraObject</a></div>
 <div class="line"><a id="l00051" name="l00051"></a><span class="lineno">   51</span>  {</div>
 <div class="line"><a id="l00052" name="l00052"></a><span class="lineno">   52</span>  <span class="keyword">public</span>:<span class="comment"></span></div>
-<div class="line"><a id="l00053" name="l00053"></a><span class="lineno">   53</span><span class="comment">    ///  Constructor</span></div>
+<div class="line"><a id="l00053" name="l00053"></a><span class="lineno">   53</span><span class="comment">    /// Constructor</span></div>
 <div class="line"><a id="l00054" name="l00054"></a><span class="lineno"><a class="line" href="classoomph_1_1MatrixVectorProduct.html#af0c48ee8ae2ae94b5f3f38a8071c22f9">   54</a></span><span class="comment"></span>    <a class="code hl_function" href="classoomph_1_1MatrixVectorProduct.html#af0c48ee8ae2ae94b5f3f38a8071c22f9">MatrixVectorProduct</a>()</div>
 <div class="line"><a id="l00055" name="l00055"></a><span class="lineno">   55</span>    {</div>
 <div class="line"><a id="l00056" name="l00056"></a><span class="lineno">   56</span>      <span class="comment">// null pointers</span></div>
@@ -196,13 +196,13 @@ $(function() {
 <div class="line"><a id="l00067" name="l00067"></a><span class="lineno">   67</span><span class="comment">    /// Broken assignment operator</span></div>
 <div class="line"><a id="l00068" name="l00068"></a><span class="lineno"><a class="line" href="classoomph_1_1MatrixVectorProduct.html#afc8c0a45a060c3c6a4a5ca40a306a319">   68</a></span><span class="comment"></span>    <span class="keywordtype">void</span> <a class="code hl_function" href="classoomph_1_1MatrixVectorProduct.html#afc8c0a45a060c3c6a4a5ca40a306a319">operator=</a>(<span class="keyword">const</span> <a class="code hl_class" href="classoomph_1_1MatrixVectorProduct.html">MatrixVectorProduct</a>&amp;) = <span class="keyword">delete</span>;</div>
 <div class="line"><a id="l00069" name="l00069"></a><span class="lineno">   69</span><span class="comment"></span> </div>
-<div class="line"><a id="l00070" name="l00070"></a><span class="lineno">   70</span><span class="comment">    ///  Destructor</span></div>
+<div class="line"><a id="l00070" name="l00070"></a><span class="lineno">   70</span><span class="comment">    /// Destructor</span></div>
 <div class="line"><a id="l00071" name="l00071"></a><span class="lineno"><a class="line" href="classoomph_1_1MatrixVectorProduct.html#add19a8ea5d1901423e334587446f55db">   71</a></span><span class="comment"></span>    <a class="code hl_function" href="classoomph_1_1MatrixVectorProduct.html#add19a8ea5d1901423e334587446f55db">~MatrixVectorProduct</a>()</div>
 <div class="line"><a id="l00072" name="l00072"></a><span class="lineno">   72</span>    {</div>
 <div class="line"><a id="l00073" name="l00073"></a><span class="lineno">   73</span>      this-&gt;<a class="code hl_function" href="classoomph_1_1MatrixVectorProduct.html#a2f61122d228e81ccff144b1298ccbd36">clean_up_memory</a>();</div>
 <div class="line"><a id="l00074" name="l00074"></a><span class="lineno">   74</span>    }</div>
 <div class="line"><a id="l00075" name="l00075"></a><span class="lineno">   75</span><span class="comment"></span> </div>
-<div class="line"><a id="l00076" name="l00076"></a><span class="lineno">   76</span><span class="comment">    ///  clear the memory</span></div>
+<div class="line"><a id="l00076" name="l00076"></a><span class="lineno">   76</span><span class="comment">    /// clear the memory</span></div>
 <div class="line"><a id="l00077" name="l00077"></a><span class="lineno"><a class="line" href="classoomph_1_1MatrixVectorProduct.html#a2f61122d228e81ccff144b1298ccbd36">   77</a></span><span class="comment"></span>    <span class="keywordtype">void</span> <a class="code hl_function" href="classoomph_1_1MatrixVectorProduct.html#a2f61122d228e81ccff144b1298ccbd36">clean_up_memory</a>()</div>
 <div class="line"><a id="l00078" name="l00078"></a><span class="lineno">   78</span>    {</div>
 <div class="line"><a id="l00079" name="l00079"></a><span class="lineno">   79</span><span class="preprocessor">#ifdef OOMPH_HAS_TRILINOS</span></div>
@@ -215,7 +215,7 @@ $(function() {
 <div class="line"><a id="l00086" name="l00086"></a><span class="lineno">   86</span>      <a class="code hl_variable" href="classoomph_1_1MatrixVectorProduct.html#a986b1f7596b96329644f082b3303e28a">Column_distribution_pt</a> = 0;</div>
 <div class="line"><a id="l00087" name="l00087"></a><span class="lineno">   87</span>    }</div>
 <div class="line"><a id="l00088" name="l00088"></a><span class="lineno">   88</span><span class="comment"></span> </div>
-<div class="line"><a id="l00089" name="l00089"></a><span class="lineno">   89</span><span class="comment">    ///  Setup the matrix vector product operator.</span></div>
+<div class="line"><a id="l00089" name="l00089"></a><span class="lineno">   89</span><span class="comment">    /// Setup the matrix vector product operator.</span></div>
 <div class="line"><a id="l00090" name="l00090"></a><span class="lineno">   90</span><span class="comment">    /// WARNING: This class is wrapper to Trilinos Epetra matrix vector</span></div>
 <div class="line"><a id="l00091" name="l00091"></a><span class="lineno">   91</span><span class="comment">    /// multiply methods, if Trilinos is not installed then this class will</span></div>
 <div class="line"><a id="l00092" name="l00092"></a><span class="lineno">   92</span><span class="comment">    /// function as expected, but there will be no computational speed gain.</span></div>
@@ -227,11 +227,11 @@ $(function() {
 <div class="line"><a id="l00098" name="l00098"></a><span class="lineno">   98</span><span class="comment"></span>    <span class="keywordtype">void</span> <a class="code hl_function" href="classoomph_1_1MatrixVectorProduct.html#aec74f9bdb65ee7ce86590e26a705f3e9">setup</a>(<a class="code hl_class" href="classoomph_1_1CRDoubleMatrix.html">CRDoubleMatrix</a>* matrix_pt,</div>
 <div class="line"><a id="l00099" name="l00099"></a><span class="lineno">   99</span>               <span class="keyword">const</span> <a class="code hl_class" href="classoomph_1_1LinearAlgebraDistribution.html">LinearAlgebraDistribution</a>* col_dist_pt = 0);</div>
 <div class="line"><a id="l00100" name="l00100"></a><span class="lineno">  100</span><span class="comment"></span> </div>
-<div class="line"><a id="l00101" name="l00101"></a><span class="lineno">  101</span><span class="comment">    ///  Apply the operator to the vector x and return the result in</span></div>
+<div class="line"><a id="l00101" name="l00101"></a><span class="lineno">  101</span><span class="comment">    /// Apply the operator to the vector x and return the result in</span></div>
 <div class="line"><a id="l00102" name="l00102"></a><span class="lineno">  102</span><span class="comment">    /// the vector y</span></div>
 <div class="line"><a id="l00103" name="l00103"></a><span class="lineno">  103</span><span class="comment"></span>    <span class="keywordtype">void</span> <a class="code hl_function" href="classoomph_1_1MatrixVectorProduct.html#ac29ba50f1a77bf0e316c3417bcff71ee">multiply</a>(<span class="keyword">const</span> <a class="code hl_class" href="classoomph_1_1DoubleVector.html">DoubleVector</a>&amp; <a class="code hl_variable" href="namespaceoomph.html#a9d1d2da2b8bb8e73af72b5cadb8fe97c">x</a>, <a class="code hl_class" href="classoomph_1_1DoubleVector.html">DoubleVector</a>&amp; y) <span class="keyword">const</span>;</div>
 <div class="line"><a id="l00104" name="l00104"></a><span class="lineno">  104</span><span class="comment"></span> </div>
-<div class="line"><a id="l00105" name="l00105"></a><span class="lineno">  105</span><span class="comment">    ///  Apply the transpose of the operator to the vector x and return</span></div>
+<div class="line"><a id="l00105" name="l00105"></a><span class="lineno">  105</span><span class="comment">    /// Apply the transpose of the operator to the vector x and return</span></div>
 <div class="line"><a id="l00106" name="l00106"></a><span class="lineno">  106</span><span class="comment">    /// the result in the vector y</span></div>
 <div class="line"><a id="l00107" name="l00107"></a><span class="lineno">  107</span><span class="comment"></span>    <span class="keywordtype">void</span> <a class="code hl_function" href="classoomph_1_1MatrixVectorProduct.html#a2b7670797fe289ea814968f2f9469fd5">multiply_transpose</a>(<span class="keyword">const</span> <a class="code hl_class" href="classoomph_1_1DoubleVector.html">DoubleVector</a>&amp; <a class="code hl_variable" href="namespaceoomph.html#a9d1d2da2b8bb8e73af72b5cadb8fe97c">x</a>, <a class="code hl_class" href="classoomph_1_1DoubleVector.html">DoubleVector</a>&amp; y) <span class="keyword">const</span>;</div>
 <div class="line"><a id="l00108" name="l00108"></a><span class="lineno">  108</span><span class="comment"></span> </div>
@@ -250,18 +250,18 @@ $(function() {
 <div class="line"><a id="l00121" name="l00121"></a><span class="lineno">  121</span><span class="comment"></span>    <span class="keywordtype">void</span> <a class="code hl_function" href="classoomph_1_1MatrixVectorProduct.html#a192d6aba55af4354c22bc44ab9c9b064">trilinos_multiply_transpose_helper</a>(<span class="keyword">const</span> <a class="code hl_class" href="classoomph_1_1DoubleVector.html">DoubleVector</a>&amp; <a class="code hl_variable" href="namespaceoomph.html#a9d1d2da2b8bb8e73af72b5cadb8fe97c">x</a>,</div>
 <div class="line"><a id="l00122" name="l00122"></a><span class="lineno">  122</span>                                            <a class="code hl_class" href="classoomph_1_1DoubleVector.html">DoubleVector</a>&amp; y) <span class="keyword">const</span>;</div>
 <div class="line"><a id="l00123" name="l00123"></a><span class="lineno">  123</span><span class="comment"></span> </div>
-<div class="line"><a id="l00124" name="l00124"></a><span class="lineno">  124</span><span class="comment">    ///  The Epetra version of the matrix</span></div>
+<div class="line"><a id="l00124" name="l00124"></a><span class="lineno">  124</span><span class="comment">    /// The Epetra version of the matrix</span></div>
 <div class="line"><a id="l00125" name="l00125"></a><span class="lineno"><a class="line" href="classoomph_1_1MatrixVectorProduct.html#a14264b497811bc0d959be7f3022cd4d2">  125</a></span><span class="comment"></span>    Epetra_CrsMatrix* <a class="code hl_variable" href="classoomph_1_1MatrixVectorProduct.html#a14264b497811bc0d959be7f3022cd4d2">Epetra_matrix_pt</a>;</div>
 <div class="line"><a id="l00126" name="l00126"></a><span class="lineno">  126</span><span class="preprocessor">#endif</span></div>
 <div class="line"><a id="l00127" name="l00127"></a><span class="lineno">  127</span><span class="comment"></span> </div>
-<div class="line"><a id="l00128" name="l00128"></a><span class="lineno">  128</span><span class="comment">    ///  boolean indicating whether we are using trilinos to perform</span></div>
+<div class="line"><a id="l00128" name="l00128"></a><span class="lineno">  128</span><span class="comment">    /// boolean indicating whether we are using trilinos to perform</span></div>
 <div class="line"><a id="l00129" name="l00129"></a><span class="lineno">  129</span><span class="comment">    /// matvec</span></div>
 <div class="line"><a id="l00130" name="l00130"></a><span class="lineno"><a class="line" href="classoomph_1_1MatrixVectorProduct.html#ad912d5eeef011117feef7af1cabeb631">  130</a></span><span class="comment"></span>    <span class="keywordtype">bool</span> <a class="code hl_variable" href="classoomph_1_1MatrixVectorProduct.html#ad912d5eeef011117feef7af1cabeb631">Using_trilinos</a>;</div>
 <div class="line"><a id="l00131" name="l00131"></a><span class="lineno">  131</span><span class="comment"></span> </div>
-<div class="line"><a id="l00132" name="l00132"></a><span class="lineno">  132</span><span class="comment">    ///  an oomph-lib matrix</span></div>
+<div class="line"><a id="l00132" name="l00132"></a><span class="lineno">  132</span><span class="comment">    /// an oomph-lib matrix</span></div>
 <div class="line"><a id="l00133" name="l00133"></a><span class="lineno"><a class="line" href="classoomph_1_1MatrixVectorProduct.html#a3932cd524581a670528ee807bf28ff1a">  133</a></span><span class="comment"></span>    <a class="code hl_class" href="classoomph_1_1CRDoubleMatrix.html">CRDoubleMatrix</a>* <a class="code hl_variable" href="classoomph_1_1MatrixVectorProduct.html#a3932cd524581a670528ee807bf28ff1a">Oomph_matrix_pt</a>;</div>
 <div class="line"><a id="l00134" name="l00134"></a><span class="lineno">  134</span><span class="comment"></span> </div>
-<div class="line"><a id="l00135" name="l00135"></a><span class="lineno">  135</span><span class="comment">    ///  The distribution of: x if using multiply(...) or y</span></div>
+<div class="line"><a id="l00135" name="l00135"></a><span class="lineno">  135</span><span class="comment">    /// The distribution of: x if using multiply(...) or y</span></div>
 <div class="line"><a id="l00136" name="l00136"></a><span class="lineno">  136</span><span class="comment">    /// if using multiply_transpose(...) where this is A x = y.</span></div>
 <div class="line"><a id="l00137" name="l00137"></a><span class="lineno"><a class="line" href="classoomph_1_1MatrixVectorProduct.html#a986b1f7596b96329644f082b3303e28a">  137</a></span><span class="comment"></span>    <a class="code hl_class" href="classoomph_1_1LinearAlgebraDistribution.html">LinearAlgebraDistribution</a>* <a class="code hl_variable" href="classoomph_1_1MatrixVectorProduct.html#a986b1f7596b96329644f082b3303e28a">Column_distribution_pt</a>;</div>
 <div class="line"><a id="l00138" name="l00138"></a><span class="lineno">  138</span><span class="comment"></span> </div>
@@ -324,7 +324,7 @@ $(function() {
     <footer>
       <div class="container">
         <div class="text-muted" style="float:right;">Generated by <a href="http://www.doxygen.org/index.html">
-          <img style="height:18px;" class="footer-img" src="doxygen.png" alt="doxygen"></a> on Fri Oct 22 2021 12:23:22
+          <img style="height:18px;" class="footer-img" src="doxygen.png" alt="doxygen"></a> on Mon Oct 25 2021 14:41:42
         </div>
       </div>
     </footer>

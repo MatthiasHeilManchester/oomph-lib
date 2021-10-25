@@ -62,7 +62,7 @@ namespace oomph
     unsigned Dim;
 
   protected:
-    ///  Access function that returns the local equation numbers
+    /// Access function that returns the local equation numbers
     /// for velocity components.
     /// u_local_eqn(n,i) = local equation number or < 0 if pinned.
     /// The default is to asssume that n is the local node number
@@ -123,10 +123,10 @@ namespace oomph
     /// Pointer to the angle alpha
     double* Alpha_pt;
 
-    ///  Pointer to the Data item that stores the external pressure
+    /// Pointer to the Data item that stores the external pressure
     Data* Pext_data_pt;
 
-    ///  The Data that contains the traded pressure is stored
+    /// The Data that contains the traded pressure is stored
     /// as external Data for the element. Which external Data item is it?
     unsigned External_data_number_of_Pext;
 

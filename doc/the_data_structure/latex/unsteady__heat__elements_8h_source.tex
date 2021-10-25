@@ -51,7 +51,7 @@
 \DoxyCodeLine{\Hypertarget{unsteady__heat__elements_8h_source_l00047}\mbox{\hyperlink{classoomph_1_1UnsteadyHeatEquationsBase}{00047}} \textcolor{comment}{}  \textcolor{keyword}{class }\mbox{\hyperlink{classoomph_1_1UnsteadyHeatEquationsBase}{UnsteadyHeatEquationsBase}} : \textcolor{keyword}{public} \textcolor{keyword}{virtual} \mbox{\hyperlink{classoomph_1_1FiniteElement}{FiniteElement}}}
 \DoxyCodeLine{\Hypertarget{unsteady__heat__elements_8h_source_l00048}00048   \{}
 \DoxyCodeLine{\Hypertarget{unsteady__heat__elements_8h_source_l00049}00049   \textcolor{keyword}{public}:\textcolor{comment}{}}
-\DoxyCodeLine{\Hypertarget{unsteady__heat__elements_8h_source_l00050}00050 \textcolor{comment}{    ///  Function pointer to source function fct(t,x,f(x,t)) -\/-\/}}
+\DoxyCodeLine{\Hypertarget{unsteady__heat__elements_8h_source_l00050}00050 \textcolor{comment}{    /// Function pointer to source function fct(t,x,f(x,t)) -\/-\/}}
 \DoxyCodeLine{\Hypertarget{unsteady__heat__elements_8h_source_l00051}00051 \textcolor{comment}{    /// x is a Vector!}}
 \DoxyCodeLine{\Hypertarget{unsteady__heat__elements_8h_source_l00052}\mbox{\hyperlink{classoomph_1_1UnsteadyHeatEquationsBase_accf23819639b695221238a0e7b1c8384}{00052}} \textcolor{comment}{}    \textcolor{keyword}{typedef} void (*\mbox{\hyperlink{classoomph_1_1UnsteadyHeatEquationsBase_accf23819639b695221238a0e7b1c8384}{UnsteadyHeatSourceFctPt}})(\textcolor{keyword}{const} \textcolor{keywordtype}{double}\& time,}
 \DoxyCodeLine{\Hypertarget{unsteady__heat__elements_8h_source_l00053}00053                                             \textcolor{keyword}{const} \mbox{\hyperlink{classoomph_1_1Vector}{Vector<double>}}\& \mbox{\hyperlink{namespaceoomph_a9d1d2da2b8bb8e73af72b5cadb8fe97c}{x}},}
@@ -77,14 +77,14 @@
 \DoxyCodeLine{\Hypertarget{unsteady__heat__elements_8h_source_l00073}00073   \textcolor{keyword}{class }UnsteadyHeatEquations : \textcolor{keyword}{public} \textcolor{keyword}{virtual} \mbox{\hyperlink{classoomph_1_1UnsteadyHeatEquationsBase}{UnsteadyHeatEquationsBase}}}
 \DoxyCodeLine{\Hypertarget{unsteady__heat__elements_8h_source_l00074}00074   \{}
 \DoxyCodeLine{\Hypertarget{unsteady__heat__elements_8h_source_l00075}00075   \textcolor{keyword}{public}:\textcolor{comment}{}}
-\DoxyCodeLine{\Hypertarget{unsteady__heat__elements_8h_source_l00076}00076 \textcolor{comment}{    ///  Function pointer to source function fct(t,x,f(x,t)) -\/-\/}}
+\DoxyCodeLine{\Hypertarget{unsteady__heat__elements_8h_source_l00076}00076 \textcolor{comment}{    /// Function pointer to source function fct(t,x,f(x,t)) -\/-\/}}
 \DoxyCodeLine{\Hypertarget{unsteady__heat__elements_8h_source_l00077}00077 \textcolor{comment}{    /// x is a Vector!}}
 \DoxyCodeLine{\Hypertarget{unsteady__heat__elements_8h_source_l00078}00078 \textcolor{comment}{}    \textcolor{keyword}{typedef} void (*UnsteadyHeatSourceFctPt)(\textcolor{keyword}{const} \textcolor{keywordtype}{double}\& time,}
 \DoxyCodeLine{\Hypertarget{unsteady__heat__elements_8h_source_l00079}00079                                             \textcolor{keyword}{const} \mbox{\hyperlink{classoomph_1_1Vector}{Vector<double>}}\& \mbox{\hyperlink{namespaceoomph_a9d1d2da2b8bb8e73af72b5cadb8fe97c}{x}},}
 \DoxyCodeLine{\Hypertarget{unsteady__heat__elements_8h_source_l00080}00080                                             \textcolor{keywordtype}{double}\& \mbox{\hyperlink{namespaceoomph_ac0ed65f6db53d9ad737e1d2a69767d25}{u}});}
 \DoxyCodeLine{\Hypertarget{unsteady__heat__elements_8h_source_l00081}00081 }
 \DoxyCodeLine{\Hypertarget{unsteady__heat__elements_8h_source_l00082}00082 \textcolor{comment}{}}
-\DoxyCodeLine{\Hypertarget{unsteady__heat__elements_8h_source_l00083}00083 \textcolor{comment}{    ///  Constructor: Initialises the Source\_fct\_pt to null and}}
+\DoxyCodeLine{\Hypertarget{unsteady__heat__elements_8h_source_l00083}00083 \textcolor{comment}{    /// Constructor: Initialises the Source\_fct\_pt to null and}}
 \DoxyCodeLine{\Hypertarget{unsteady__heat__elements_8h_source_l00084}00084 \textcolor{comment}{    /// sets flag to use ALE formulation of the equations.}}
 \DoxyCodeLine{\Hypertarget{unsteady__heat__elements_8h_source_l00085}00085 \textcolor{comment}{    /// Also set Alpha (thermal inertia) and Beta (thermal conductivity)}}
 \DoxyCodeLine{\Hypertarget{unsteady__heat__elements_8h_source_l00086}00086 \textcolor{comment}{    /// parameters to defaults (both one for natural scaling)}}
@@ -108,7 +108,7 @@
 \DoxyCodeLine{\Hypertarget{unsteady__heat__elements_8h_source_l00104}00104     \textcolor{comment}{// rightly, it shouts.}}
 \DoxyCodeLine{\Hypertarget{unsteady__heat__elements_8h_source_l00105}00105     \textcolor{comment}{/*void operator=(const UnsteadyHeatEquations\&) = delete;*/}}
 \DoxyCodeLine{\Hypertarget{unsteady__heat__elements_8h_source_l00106}00106 \textcolor{comment}{}}
-\DoxyCodeLine{\Hypertarget{unsteady__heat__elements_8h_source_l00107}00107 \textcolor{comment}{    ///  Return the index at which the unknown value}}
+\DoxyCodeLine{\Hypertarget{unsteady__heat__elements_8h_source_l00107}00107 \textcolor{comment}{    /// Return the index at which the unknown value}}
 \DoxyCodeLine{\Hypertarget{unsteady__heat__elements_8h_source_l00108}00108 \textcolor{comment}{    /// is stored. The default value, 0, is appropriate for single-\/physics}}
 \DoxyCodeLine{\Hypertarget{unsteady__heat__elements_8h_source_l00109}00109 \textcolor{comment}{    /// problems, when there is only one variable, the value that satisfies the}}
 \DoxyCodeLine{\Hypertarget{unsteady__heat__elements_8h_source_l00110}00110 \textcolor{comment}{    /// unsteady heat equation.}}
@@ -120,7 +120,7 @@
 \DoxyCodeLine{\Hypertarget{unsteady__heat__elements_8h_source_l00116}00116       \textcolor{keywordflow}{return} 0;}
 \DoxyCodeLine{\Hypertarget{unsteady__heat__elements_8h_source_l00117}00117     \}}
 \DoxyCodeLine{\Hypertarget{unsteady__heat__elements_8h_source_l00118}00118 \textcolor{comment}{}}
-\DoxyCodeLine{\Hypertarget{unsteady__heat__elements_8h_source_l00119}00119 \textcolor{comment}{    ///  du/dt at local node n.}}
+\DoxyCodeLine{\Hypertarget{unsteady__heat__elements_8h_source_l00119}00119 \textcolor{comment}{    /// du/dt at local node n.}}
 \DoxyCodeLine{\Hypertarget{unsteady__heat__elements_8h_source_l00120}00120 \textcolor{comment}{    /// Uses suitably interpolated value for hanging nodes.}}
 \DoxyCodeLine{\Hypertarget{unsteady__heat__elements_8h_source_l00121}00121 \textcolor{comment}{}    \textcolor{keywordtype}{double} du\_dt\_ust\_heat(\textcolor{keyword}{const} \textcolor{keywordtype}{unsigned}\& n)\textcolor{keyword}{ const}}
 \DoxyCodeLine{\Hypertarget{unsteady__heat__elements_8h_source_l00122}00122 \textcolor{keyword}{    }\{}
@@ -149,7 +149,7 @@
 \DoxyCodeLine{\Hypertarget{unsteady__heat__elements_8h_source_l00145}00145       \textcolor{keywordflow}{return} dudt;}
 \DoxyCodeLine{\Hypertarget{unsteady__heat__elements_8h_source_l00146}00146     \}}
 \DoxyCodeLine{\Hypertarget{unsteady__heat__elements_8h_source_l00147}00147 \textcolor{comment}{}}
-\DoxyCodeLine{\Hypertarget{unsteady__heat__elements_8h_source_l00148}00148 \textcolor{comment}{    ///  Disable ALE, i.e. assert the mesh is not moving -\/-\/ you do this}}
+\DoxyCodeLine{\Hypertarget{unsteady__heat__elements_8h_source_l00148}00148 \textcolor{comment}{    /// Disable ALE, i.e. assert the mesh is not moving -\/-\/ you do this}}
 \DoxyCodeLine{\Hypertarget{unsteady__heat__elements_8h_source_l00149}00149 \textcolor{comment}{    /// at your own risk!}}
 \DoxyCodeLine{\Hypertarget{unsteady__heat__elements_8h_source_l00150}00150 \textcolor{comment}{}    \textcolor{keywordtype}{void} disable\_ALE()}
 \DoxyCodeLine{\Hypertarget{unsteady__heat__elements_8h_source_l00151}00151     \{}
@@ -157,7 +157,7 @@
 \DoxyCodeLine{\Hypertarget{unsteady__heat__elements_8h_source_l00153}00153     \}}
 \DoxyCodeLine{\Hypertarget{unsteady__heat__elements_8h_source_l00154}00154 }
 \DoxyCodeLine{\Hypertarget{unsteady__heat__elements_8h_source_l00155}00155 \textcolor{comment}{}}
-\DoxyCodeLine{\Hypertarget{unsteady__heat__elements_8h_source_l00156}00156 \textcolor{comment}{    ///  (Re-\/)enable ALE, i.e. take possible mesh motion into account}}
+\DoxyCodeLine{\Hypertarget{unsteady__heat__elements_8h_source_l00156}00156 \textcolor{comment}{    /// (Re-\/)enable ALE, i.e. take possible mesh motion into account}}
 \DoxyCodeLine{\Hypertarget{unsteady__heat__elements_8h_source_l00157}00157 \textcolor{comment}{    /// when evaluating the time-\/derivative. Note: By default, ALE is}}
 \DoxyCodeLine{\Hypertarget{unsteady__heat__elements_8h_source_l00158}00158 \textcolor{comment}{    /// enabled, at the expense of possibly creating unnecessary work}}
 \DoxyCodeLine{\Hypertarget{unsteady__heat__elements_8h_source_l00159}00159 \textcolor{comment}{    /// in problems where the mesh is, in fact, stationary.}}
@@ -177,7 +177,7 @@
 \DoxyCodeLine{\Hypertarget{unsteady__heat__elements_8h_source_l00173}00173     \}}
 \DoxyCodeLine{\Hypertarget{unsteady__heat__elements_8h_source_l00174}00174 }
 \DoxyCodeLine{\Hypertarget{unsteady__heat__elements_8h_source_l00175}00175 \textcolor{comment}{}}
-\DoxyCodeLine{\Hypertarget{unsteady__heat__elements_8h_source_l00176}00176 \textcolor{comment}{    ///  Output FE representation of soln: x,y,u or x,y,z,u at}}
+\DoxyCodeLine{\Hypertarget{unsteady__heat__elements_8h_source_l00176}00176 \textcolor{comment}{    /// Output FE representation of soln: x,y,u or x,y,z,u at}}
 \DoxyCodeLine{\Hypertarget{unsteady__heat__elements_8h_source_l00177}00177 \textcolor{comment}{    /// n\_plot\string^DIM plot points}}
 \DoxyCodeLine{\Hypertarget{unsteady__heat__elements_8h_source_l00178}00178 \textcolor{comment}{}    \textcolor{keywordtype}{void} \mbox{\hyperlink{namespaceoomph_1_1CommandLineArgs_aca07d359a96b9c7b566142112604ea87}{output}}(std::ostream\& outfile, \textcolor{keyword}{const} \textcolor{keywordtype}{unsigned}\& nplot);}
 \DoxyCodeLine{\Hypertarget{unsteady__heat__elements_8h_source_l00179}00179 \textcolor{comment}{}}
@@ -189,7 +189,7 @@
 \DoxyCodeLine{\Hypertarget{unsteady__heat__elements_8h_source_l00185}00185     \}}
 \DoxyCodeLine{\Hypertarget{unsteady__heat__elements_8h_source_l00186}00186 }
 \DoxyCodeLine{\Hypertarget{unsteady__heat__elements_8h_source_l00187}00187 \textcolor{comment}{}}
-\DoxyCodeLine{\Hypertarget{unsteady__heat__elements_8h_source_l00188}00188 \textcolor{comment}{    ///  C-\/style output FE representation of soln: x,y,u or x,y,z,u at}}
+\DoxyCodeLine{\Hypertarget{unsteady__heat__elements_8h_source_l00188}00188 \textcolor{comment}{    /// C-\/style output FE representation of soln: x,y,u or x,y,z,u at}}
 \DoxyCodeLine{\Hypertarget{unsteady__heat__elements_8h_source_l00189}00189 \textcolor{comment}{    /// n\_plot\string^DIM plot points}}
 \DoxyCodeLine{\Hypertarget{unsteady__heat__elements_8h_source_l00190}00190 \textcolor{comment}{}    \textcolor{keywordtype}{void} \mbox{\hyperlink{namespaceoomph_1_1CommandLineArgs_aca07d359a96b9c7b566142112604ea87}{output}}(FILE* file\_pt, \textcolor{keyword}{const} \textcolor{keywordtype}{unsigned}\& n\_plot);}
 \DoxyCodeLine{\Hypertarget{unsteady__heat__elements_8h_source_l00191}00191 }
@@ -200,7 +200,7 @@
 \DoxyCodeLine{\Hypertarget{unsteady__heat__elements_8h_source_l00196}00196                     \mbox{\hyperlink{classoomph_1_1FiniteElement_a690fd33af26cc3e84f39bba6d5a85202}{FiniteElement::SteadyExactSolutionFctPt}} exact\_soln\_pt);}
 \DoxyCodeLine{\Hypertarget{unsteady__heat__elements_8h_source_l00197}00197 }
 \DoxyCodeLine{\Hypertarget{unsteady__heat__elements_8h_source_l00198}00198 \textcolor{comment}{}}
-\DoxyCodeLine{\Hypertarget{unsteady__heat__elements_8h_source_l00199}00199 \textcolor{comment}{    ///  Output exact soln: x,y,u\_exact or x,y,z,u\_exact at}}
+\DoxyCodeLine{\Hypertarget{unsteady__heat__elements_8h_source_l00199}00199 \textcolor{comment}{    /// Output exact soln: x,y,u\_exact or x,y,z,u\_exact at}}
 \DoxyCodeLine{\Hypertarget{unsteady__heat__elements_8h_source_l00200}00200 \textcolor{comment}{    /// nplot\string^DIM plot points (time-\/dependent version)}}
 \DoxyCodeLine{\Hypertarget{unsteady__heat__elements_8h_source_l00201}00201 \textcolor{comment}{}    \textcolor{keyword}{virtual} \textcolor{keywordtype}{void} output\_fct(}
 \DoxyCodeLine{\Hypertarget{unsteady__heat__elements_8h_source_l00202}00202       std::ostream\& outfile,}
@@ -238,7 +238,7 @@
 \DoxyCodeLine{\Hypertarget{unsteady__heat__elements_8h_source_l00234}00234     \}}
 \DoxyCodeLine{\Hypertarget{unsteady__heat__elements_8h_source_l00235}00235 }
 \DoxyCodeLine{\Hypertarget{unsteady__heat__elements_8h_source_l00236}00236 \textcolor{comment}{}}
-\DoxyCodeLine{\Hypertarget{unsteady__heat__elements_8h_source_l00237}00237 \textcolor{comment}{    ///  Get source term at continous time t and (Eulerian) position x.}}
+\DoxyCodeLine{\Hypertarget{unsteady__heat__elements_8h_source_l00237}00237 \textcolor{comment}{    /// Get source term at continous time t and (Eulerian) position x.}}
 \DoxyCodeLine{\Hypertarget{unsteady__heat__elements_8h_source_l00238}00238 \textcolor{comment}{    /// Virtual so it can be overloaded in derived multiphysics elements.}}
 \DoxyCodeLine{\Hypertarget{unsteady__heat__elements_8h_source_l00239}00239 \textcolor{comment}{}    \textcolor{keyword}{virtual} \textcolor{keyword}{inline} \textcolor{keywordtype}{void} get\_source\_ust\_heat(\textcolor{keyword}{const} \textcolor{keywordtype}{double}\& \mbox{\hyperlink{cfortran_8h_af6f0bd3dc13317f895c91323c25c2b8f}{t}},}
 \DoxyCodeLine{\Hypertarget{unsteady__heat__elements_8h_source_l00240}00240                                             \textcolor{keyword}{const} \textcolor{keywordtype}{unsigned}\& ipt,}
@@ -363,7 +363,7 @@
 \DoxyCodeLine{\Hypertarget{unsteady__heat__elements_8h_source_l00359}00359     \}}
 \DoxyCodeLine{\Hypertarget{unsteady__heat__elements_8h_source_l00360}00360 }
 \DoxyCodeLine{\Hypertarget{unsteady__heat__elements_8h_source_l00361}00361 \textcolor{comment}{}}
-\DoxyCodeLine{\Hypertarget{unsteady__heat__elements_8h_source_l00362}00362 \textcolor{comment}{    ///  Return FE representation of function value u(s) at local}}
+\DoxyCodeLine{\Hypertarget{unsteady__heat__elements_8h_source_l00362}00362 \textcolor{comment}{    /// Return FE representation of function value u(s) at local}}
 \DoxyCodeLine{\Hypertarget{unsteady__heat__elements_8h_source_l00363}00363 \textcolor{comment}{    /// coordinate s at previous time t (t=0: present)}}
 \DoxyCodeLine{\Hypertarget{unsteady__heat__elements_8h_source_l00364}00364 \textcolor{comment}{}    \textcolor{keyword}{inline} \textcolor{keywordtype}{double} interpolated\_u\_ust\_heat(\textcolor{keyword}{const} \textcolor{keywordtype}{unsigned}\& \mbox{\hyperlink{cfortran_8h_af6f0bd3dc13317f895c91323c25c2b8f}{t}},}
 \DoxyCodeLine{\Hypertarget{unsteady__heat__elements_8h_source_l00365}00365                                           \textcolor{keyword}{const} Vector<double>\& \mbox{\hyperlink{cfortran_8h_ab7123126e4885ef647dd9c6e3807a21c}{s}})\textcolor{keyword}{ const}}
@@ -419,12 +419,12 @@
 \DoxyCodeLine{\Hypertarget{unsteady__heat__elements_8h_source_l00415}00415     \}}
 \DoxyCodeLine{\Hypertarget{unsteady__heat__elements_8h_source_l00416}00416 }
 \DoxyCodeLine{\Hypertarget{unsteady__heat__elements_8h_source_l00417}00417 \textcolor{comment}{}}
-\DoxyCodeLine{\Hypertarget{unsteady__heat__elements_8h_source_l00418}00418 \textcolor{comment}{    ///  Self-\/test: Return 0 for OK}}
+\DoxyCodeLine{\Hypertarget{unsteady__heat__elements_8h_source_l00418}00418 \textcolor{comment}{    /// Self-\/test: Return 0 for OK}}
 \DoxyCodeLine{\Hypertarget{unsteady__heat__elements_8h_source_l00419}00419 \textcolor{comment}{}    \textcolor{keywordtype}{unsigned} self\_test();}
 \DoxyCodeLine{\Hypertarget{unsteady__heat__elements_8h_source_l00420}00420 }
 \DoxyCodeLine{\Hypertarget{unsteady__heat__elements_8h_source_l00421}00421 }
 \DoxyCodeLine{\Hypertarget{unsteady__heat__elements_8h_source_l00422}00422   \textcolor{keyword}{protected}:\textcolor{comment}{}}
-\DoxyCodeLine{\Hypertarget{unsteady__heat__elements_8h_source_l00423}00423 \textcolor{comment}{    ///  Shape/test functions and derivs w.r.t. to global coords at}}
+\DoxyCodeLine{\Hypertarget{unsteady__heat__elements_8h_source_l00423}00423 \textcolor{comment}{    /// Shape/test functions and derivs w.r.t. to global coords at}}
 \DoxyCodeLine{\Hypertarget{unsteady__heat__elements_8h_source_l00424}00424 \textcolor{comment}{    /// local coord. s; return  Jacobian of mapping}}
 \DoxyCodeLine{\Hypertarget{unsteady__heat__elements_8h_source_l00425}00425 \textcolor{comment}{}    \textcolor{keyword}{virtual} \textcolor{keywordtype}{double} dshape\_and\_dtest\_eulerian\_ust\_heat(}
 \DoxyCodeLine{\Hypertarget{unsteady__heat__elements_8h_source_l00426}00426       \textcolor{keyword}{const} Vector<double>\& \mbox{\hyperlink{cfortran_8h_ab7123126e4885ef647dd9c6e3807a21c}{s}},}
@@ -434,7 +434,7 @@
 \DoxyCodeLine{\Hypertarget{unsteady__heat__elements_8h_source_l00430}00430       DShape\& dtestdx) \textcolor{keyword}{const} = 0;}
 \DoxyCodeLine{\Hypertarget{unsteady__heat__elements_8h_source_l00431}00431 }
 \DoxyCodeLine{\Hypertarget{unsteady__heat__elements_8h_source_l00432}00432 \textcolor{comment}{}}
-\DoxyCodeLine{\Hypertarget{unsteady__heat__elements_8h_source_l00433}00433 \textcolor{comment}{    ///  Shape/test functions and derivs w.r.t. to global coords at}}
+\DoxyCodeLine{\Hypertarget{unsteady__heat__elements_8h_source_l00433}00433 \textcolor{comment}{    /// Shape/test functions and derivs w.r.t. to global coords at}}
 \DoxyCodeLine{\Hypertarget{unsteady__heat__elements_8h_source_l00434}00434 \textcolor{comment}{    /// integration point ipt; return  Jacobian of mapping}}
 \DoxyCodeLine{\Hypertarget{unsteady__heat__elements_8h_source_l00435}00435 \textcolor{comment}{}    \textcolor{keyword}{virtual} \textcolor{keywordtype}{double} dshape\_and\_dtest\_eulerian\_at\_knot\_ust\_heat(}
 \DoxyCodeLine{\Hypertarget{unsteady__heat__elements_8h_source_l00436}00436       \textcolor{keyword}{const} \textcolor{keywordtype}{unsigned}\& ipt,}
@@ -443,7 +443,7 @@
 \DoxyCodeLine{\Hypertarget{unsteady__heat__elements_8h_source_l00439}00439       Shape\& test,}
 \DoxyCodeLine{\Hypertarget{unsteady__heat__elements_8h_source_l00440}00440       DShape\& dtestdx) \textcolor{keyword}{const} = 0;}
 \DoxyCodeLine{\Hypertarget{unsteady__heat__elements_8h_source_l00441}00441 \textcolor{comment}{}}
-\DoxyCodeLine{\Hypertarget{unsteady__heat__elements_8h_source_l00442}00442 \textcolor{comment}{    ///  Compute element residual Vector only (if flag=and/or element}}
+\DoxyCodeLine{\Hypertarget{unsteady__heat__elements_8h_source_l00442}00442 \textcolor{comment}{    /// Compute element residual Vector only (if flag=and/or element}}
 \DoxyCodeLine{\Hypertarget{unsteady__heat__elements_8h_source_l00443}00443 \textcolor{comment}{    /// Jacobian matrix}}
 \DoxyCodeLine{\Hypertarget{unsteady__heat__elements_8h_source_l00444}00444 \textcolor{comment}{}    \textcolor{keyword}{virtual} \textcolor{keywordtype}{void} fill\_in\_generic\_residual\_contribution\_ust\_heat(}
 \DoxyCodeLine{\Hypertarget{unsteady__heat__elements_8h_source_l00445}00445       Vector<double>\& residuals, DenseMatrix<double>\& jacobian, \textcolor{keywordtype}{unsigned} flag);}
@@ -451,7 +451,7 @@
 \DoxyCodeLine{\Hypertarget{unsteady__heat__elements_8h_source_l00447}00447 \textcolor{comment}{    /// Pointer to source function:}}
 \DoxyCodeLine{\Hypertarget{unsteady__heat__elements_8h_source_l00448}00448 \textcolor{comment}{}    UnsteadyHeatSourceFctPt Source\_fct\_pt;}
 \DoxyCodeLine{\Hypertarget{unsteady__heat__elements_8h_source_l00449}00449 \textcolor{comment}{}}
-\DoxyCodeLine{\Hypertarget{unsteady__heat__elements_8h_source_l00450}00450 \textcolor{comment}{    ///  Boolean flag to indicate if ALE formulation is disabled when}}
+\DoxyCodeLine{\Hypertarget{unsteady__heat__elements_8h_source_l00450}00450 \textcolor{comment}{    /// Boolean flag to indicate if ALE formulation is disabled when}}
 \DoxyCodeLine{\Hypertarget{unsteady__heat__elements_8h_source_l00451}00451 \textcolor{comment}{    /// time-\/derivatives are computed. Only set to true if you're sure}}
 \DoxyCodeLine{\Hypertarget{unsteady__heat__elements_8h_source_l00452}00452 \textcolor{comment}{    /// that the mesh is stationary.}}
 \DoxyCodeLine{\Hypertarget{unsteady__heat__elements_8h_source_l00453}00453 \textcolor{comment}{}    \textcolor{keywordtype}{bool} ALE\_is\_disabled;}
@@ -463,11 +463,11 @@
 \DoxyCodeLine{\Hypertarget{unsteady__heat__elements_8h_source_l00459}00459 \textcolor{comment}{}    \textcolor{keywordtype}{double}* Beta\_pt;}
 \DoxyCodeLine{\Hypertarget{unsteady__heat__elements_8h_source_l00460}00460 }
 \DoxyCodeLine{\Hypertarget{unsteady__heat__elements_8h_source_l00461}00461   \textcolor{keyword}{private}:\textcolor{comment}{}}
-\DoxyCodeLine{\Hypertarget{unsteady__heat__elements_8h_source_l00462}00462 \textcolor{comment}{    ///  Static default value for the Alpha parameter:}}
+\DoxyCodeLine{\Hypertarget{unsteady__heat__elements_8h_source_l00462}00462 \textcolor{comment}{    /// Static default value for the Alpha parameter:}}
 \DoxyCodeLine{\Hypertarget{unsteady__heat__elements_8h_source_l00463}00463 \textcolor{comment}{    /// (thermal inertia): One for natural scaling}}
 \DoxyCodeLine{\Hypertarget{unsteady__heat__elements_8h_source_l00464}00464 \textcolor{comment}{}    \textcolor{keyword}{static} \textcolor{keywordtype}{double} Default\_alpha\_parameter;}
 \DoxyCodeLine{\Hypertarget{unsteady__heat__elements_8h_source_l00465}00465 \textcolor{comment}{}}
-\DoxyCodeLine{\Hypertarget{unsteady__heat__elements_8h_source_l00466}00466 \textcolor{comment}{    ///  Static default value for the Beta parameter (thermal}}
+\DoxyCodeLine{\Hypertarget{unsteady__heat__elements_8h_source_l00466}00466 \textcolor{comment}{    /// Static default value for the Beta parameter (thermal}}
 \DoxyCodeLine{\Hypertarget{unsteady__heat__elements_8h_source_l00467}00467 \textcolor{comment}{    /// conductivity): One for natural scaling}}
 \DoxyCodeLine{\Hypertarget{unsteady__heat__elements_8h_source_l00468}00468 \textcolor{comment}{}    \textcolor{keyword}{static} \textcolor{keywordtype}{double} Default\_beta\_parameter;}
 \DoxyCodeLine{\Hypertarget{unsteady__heat__elements_8h_source_l00469}00469   \};}
@@ -487,12 +487,12 @@
 \DoxyCodeLine{\Hypertarget{unsteady__heat__elements_8h_source_l00483}00483                                \textcolor{keyword}{public} \textcolor{keyword}{virtual} UnsteadyHeatEquations<DIM>}
 \DoxyCodeLine{\Hypertarget{unsteady__heat__elements_8h_source_l00484}00484   \{}
 \DoxyCodeLine{\Hypertarget{unsteady__heat__elements_8h_source_l00485}00485   \textcolor{keyword}{private}:\textcolor{comment}{}}
-\DoxyCodeLine{\Hypertarget{unsteady__heat__elements_8h_source_l00486}00486 \textcolor{comment}{    ///  Static array of ints to hold number of variables at}}
+\DoxyCodeLine{\Hypertarget{unsteady__heat__elements_8h_source_l00486}00486 \textcolor{comment}{    /// Static array of ints to hold number of variables at}}
 \DoxyCodeLine{\Hypertarget{unsteady__heat__elements_8h_source_l00487}00487 \textcolor{comment}{    /// nodes: Initial\_Nvalue[n]}}
 \DoxyCodeLine{\Hypertarget{unsteady__heat__elements_8h_source_l00488}\mbox{\hyperlink{classoomph_1_1QUnsteadyHeatElement_ad6279983f8f8301b1c3d9ec1160a53a0}{00488}} \textcolor{comment}{}    \textcolor{keyword}{static} \textcolor{keyword}{const} \textcolor{keywordtype}{unsigned} \mbox{\hyperlink{classoomph_1_1QUnsteadyHeatElement_ad6279983f8f8301b1c3d9ec1160a53a0}{Initial\_Nvalue}};}
 \DoxyCodeLine{\Hypertarget{unsteady__heat__elements_8h_source_l00489}00489 }
 \DoxyCodeLine{\Hypertarget{unsteady__heat__elements_8h_source_l00490}00490   \textcolor{keyword}{public}:\textcolor{comment}{}}
-\DoxyCodeLine{\Hypertarget{unsteady__heat__elements_8h_source_l00491}00491 \textcolor{comment}{    ///  Constructor: Call constructors for QElement and}}
+\DoxyCodeLine{\Hypertarget{unsteady__heat__elements_8h_source_l00491}00491 \textcolor{comment}{    /// Constructor: Call constructors for QElement and}}
 \DoxyCodeLine{\Hypertarget{unsteady__heat__elements_8h_source_l00492}00492 \textcolor{comment}{    /// UnsteadyHeat equations}}
 \DoxyCodeLine{\Hypertarget{unsteady__heat__elements_8h_source_l00493}\mbox{\hyperlink{classoomph_1_1QUnsteadyHeatElement_a369f5e16f4937d14d459933e181b6b4f}{00493}} \textcolor{comment}{}    \mbox{\hyperlink{classoomph_1_1QUnsteadyHeatElement_a369f5e16f4937d14d459933e181b6b4f}{QUnsteadyHeatElement}}()}
 \DoxyCodeLine{\Hypertarget{unsteady__heat__elements_8h_source_l00494}00494       : \mbox{\hyperlink{classoomph_1_1QElement}{QElement}}<DIM, NNODE\_1D>(), UnsteadyHeatEquations<DIM>()}
@@ -506,14 +506,14 @@
 \DoxyCodeLine{\Hypertarget{unsteady__heat__elements_8h_source_l00502}00502 \textcolor{comment}{    /// Broken assignment operator}}
 \DoxyCodeLine{\Hypertarget{unsteady__heat__elements_8h_source_l00503}00503 \textcolor{comment}{}    \textcolor{comment}{/*void operator=(const QUnsteadyHeatElement<DIM,NNODE\_1D>\&) = delete;*/}}
 \DoxyCodeLine{\Hypertarget{unsteady__heat__elements_8h_source_l00504}00504 \textcolor{comment}{}}
-\DoxyCodeLine{\Hypertarget{unsteady__heat__elements_8h_source_l00505}00505 \textcolor{comment}{    ///   Required  \# of `values' (pinned or dofs)}}
+\DoxyCodeLine{\Hypertarget{unsteady__heat__elements_8h_source_l00505}00505 \textcolor{comment}{    ///  Required  \# of `values' (pinned or dofs)}}
 \DoxyCodeLine{\Hypertarget{unsteady__heat__elements_8h_source_l00506}00506 \textcolor{comment}{    /// at node n}}
 \DoxyCodeLine{\Hypertarget{unsteady__heat__elements_8h_source_l00507}\mbox{\hyperlink{classoomph_1_1QUnsteadyHeatElement_abd2a8d2835bd9bd57119811d4c765e02}{00507}} \textcolor{comment}{}    \textcolor{keyword}{inline} \textcolor{keywordtype}{unsigned} \mbox{\hyperlink{classoomph_1_1QUnsteadyHeatElement_abd2a8d2835bd9bd57119811d4c765e02}{required\_nvalue}}(\textcolor{keyword}{const} \textcolor{keywordtype}{unsigned}\& n)\textcolor{keyword}{ const}}
 \DoxyCodeLine{\Hypertarget{unsteady__heat__elements_8h_source_l00508}00508 \textcolor{keyword}{    }\{}
 \DoxyCodeLine{\Hypertarget{unsteady__heat__elements_8h_source_l00509}00509       \textcolor{keywordflow}{return} \mbox{\hyperlink{classoomph_1_1QUnsteadyHeatElement_ad6279983f8f8301b1c3d9ec1160a53a0}{Initial\_Nvalue}};}
 \DoxyCodeLine{\Hypertarget{unsteady__heat__elements_8h_source_l00510}00510     \}}
 \DoxyCodeLine{\Hypertarget{unsteady__heat__elements_8h_source_l00511}00511 \textcolor{comment}{}}
-\DoxyCodeLine{\Hypertarget{unsteady__heat__elements_8h_source_l00512}00512 \textcolor{comment}{    ///  Output function:}}
+\DoxyCodeLine{\Hypertarget{unsteady__heat__elements_8h_source_l00512}00512 \textcolor{comment}{    /// Output function:}}
 \DoxyCodeLine{\Hypertarget{unsteady__heat__elements_8h_source_l00513}00513 \textcolor{comment}{    ///  x,y,u   or    x,y,z,u}}
 \DoxyCodeLine{\Hypertarget{unsteady__heat__elements_8h_source_l00514}\mbox{\hyperlink{classoomph_1_1QUnsteadyHeatElement_a50c15ed85f1200ac8e81192cc4b5584f}{00514}} \textcolor{comment}{}    \textcolor{keywordtype}{void} \mbox{\hyperlink{classoomph_1_1QUnsteadyHeatElement_a50c15ed85f1200ac8e81192cc4b5584f}{output}}(std::ostream\& outfile)}
 \DoxyCodeLine{\Hypertarget{unsteady__heat__elements_8h_source_l00515}00515     \{}
@@ -521,7 +521,7 @@
 \DoxyCodeLine{\Hypertarget{unsteady__heat__elements_8h_source_l00517}00517     \}}
 \DoxyCodeLine{\Hypertarget{unsteady__heat__elements_8h_source_l00518}00518 }
 \DoxyCodeLine{\Hypertarget{unsteady__heat__elements_8h_source_l00519}00519 \textcolor{comment}{}}
-\DoxyCodeLine{\Hypertarget{unsteady__heat__elements_8h_source_l00520}00520 \textcolor{comment}{    ///   Output function:}}
+\DoxyCodeLine{\Hypertarget{unsteady__heat__elements_8h_source_l00520}00520 \textcolor{comment}{    ///  Output function:}}
 \DoxyCodeLine{\Hypertarget{unsteady__heat__elements_8h_source_l00521}00521 \textcolor{comment}{    ///   x,y,u   or    x,y,z,u at n\_plot\string^DIM plot points}}
 \DoxyCodeLine{\Hypertarget{unsteady__heat__elements_8h_source_l00522}\mbox{\hyperlink{classoomph_1_1QUnsteadyHeatElement_ae54ed4ee8b36659f7498a4bef75f35c2}{00522}} \textcolor{comment}{}    \textcolor{keywordtype}{void} \mbox{\hyperlink{classoomph_1_1QUnsteadyHeatElement_ae54ed4ee8b36659f7498a4bef75f35c2}{output}}(std::ostream\& outfile, \textcolor{keyword}{const} \textcolor{keywordtype}{unsigned}\& n\_plot)}
 \DoxyCodeLine{\Hypertarget{unsteady__heat__elements_8h_source_l00523}00523     \{}
@@ -529,7 +529,7 @@
 \DoxyCodeLine{\Hypertarget{unsteady__heat__elements_8h_source_l00525}00525     \}}
 \DoxyCodeLine{\Hypertarget{unsteady__heat__elements_8h_source_l00526}00526 }
 \DoxyCodeLine{\Hypertarget{unsteady__heat__elements_8h_source_l00527}00527 \textcolor{comment}{}}
-\DoxyCodeLine{\Hypertarget{unsteady__heat__elements_8h_source_l00528}00528 \textcolor{comment}{    ///  C-\/style output function:}}
+\DoxyCodeLine{\Hypertarget{unsteady__heat__elements_8h_source_l00528}00528 \textcolor{comment}{    /// C-\/style output function:}}
 \DoxyCodeLine{\Hypertarget{unsteady__heat__elements_8h_source_l00529}00529 \textcolor{comment}{    ///  x,y,u   or    x,y,z,u}}
 \DoxyCodeLine{\Hypertarget{unsteady__heat__elements_8h_source_l00530}\mbox{\hyperlink{classoomph_1_1QUnsteadyHeatElement_a8fc87ff8818027bbbb9aa48b4ab5cd91}{00530}} \textcolor{comment}{}    \textcolor{keywordtype}{void} \mbox{\hyperlink{classoomph_1_1QUnsteadyHeatElement_a8fc87ff8818027bbbb9aa48b4ab5cd91}{output}}(FILE* file\_pt)}
 \DoxyCodeLine{\Hypertarget{unsteady__heat__elements_8h_source_l00531}00531     \{}
@@ -537,7 +537,7 @@
 \DoxyCodeLine{\Hypertarget{unsteady__heat__elements_8h_source_l00533}00533     \}}
 \DoxyCodeLine{\Hypertarget{unsteady__heat__elements_8h_source_l00534}00534 }
 \DoxyCodeLine{\Hypertarget{unsteady__heat__elements_8h_source_l00535}00535 \textcolor{comment}{}}
-\DoxyCodeLine{\Hypertarget{unsteady__heat__elements_8h_source_l00536}00536 \textcolor{comment}{    ///   C-\/style output function:}}
+\DoxyCodeLine{\Hypertarget{unsteady__heat__elements_8h_source_l00536}00536 \textcolor{comment}{    ///  C-\/style output function:}}
 \DoxyCodeLine{\Hypertarget{unsteady__heat__elements_8h_source_l00537}00537 \textcolor{comment}{    ///   x,y,u   or    x,y,z,u at n\_plot\string^DIM plot points}}
 \DoxyCodeLine{\Hypertarget{unsteady__heat__elements_8h_source_l00538}\mbox{\hyperlink{classoomph_1_1QUnsteadyHeatElement_af582182bc9c4df2fb77e4410b0579503}{00538}} \textcolor{comment}{}    \textcolor{keywordtype}{void} \mbox{\hyperlink{classoomph_1_1QUnsteadyHeatElement_af582182bc9c4df2fb77e4410b0579503}{output}}(FILE* file\_pt, \textcolor{keyword}{const} \textcolor{keywordtype}{unsigned}\& n\_plot)}
 \DoxyCodeLine{\Hypertarget{unsteady__heat__elements_8h_source_l00539}00539     \{}
@@ -545,7 +545,7 @@
 \DoxyCodeLine{\Hypertarget{unsteady__heat__elements_8h_source_l00541}00541     \}}
 \DoxyCodeLine{\Hypertarget{unsteady__heat__elements_8h_source_l00542}00542 }
 \DoxyCodeLine{\Hypertarget{unsteady__heat__elements_8h_source_l00543}00543 \textcolor{comment}{}}
-\DoxyCodeLine{\Hypertarget{unsteady__heat__elements_8h_source_l00544}00544 \textcolor{comment}{    ///  Output function for an exact solution:}}
+\DoxyCodeLine{\Hypertarget{unsteady__heat__elements_8h_source_l00544}00544 \textcolor{comment}{    /// Output function for an exact solution:}}
 \DoxyCodeLine{\Hypertarget{unsteady__heat__elements_8h_source_l00545}00545 \textcolor{comment}{    ///  x,y,u\_exact   or    x,y,z,u\_exact at n\_plot\string^DIM plot points}}
 \DoxyCodeLine{\Hypertarget{unsteady__heat__elements_8h_source_l00546}\mbox{\hyperlink{classoomph_1_1QUnsteadyHeatElement_a4a9b9735828f0e11fd439944e2332781}{00546}} \textcolor{comment}{}    \textcolor{keywordtype}{void} \mbox{\hyperlink{classoomph_1_1QUnsteadyHeatElement_a4a9b9735828f0e11fd439944e2332781}{output\_fct}}(std::ostream\& outfile,}
 \DoxyCodeLine{\Hypertarget{unsteady__heat__elements_8h_source_l00547}00547                     \textcolor{keyword}{const} \textcolor{keywordtype}{unsigned}\& n\_plot,}
@@ -555,7 +555,7 @@
 \DoxyCodeLine{\Hypertarget{unsteady__heat__elements_8h_source_l00551}00551     \}}
 \DoxyCodeLine{\Hypertarget{unsteady__heat__elements_8h_source_l00552}00552 }
 \DoxyCodeLine{\Hypertarget{unsteady__heat__elements_8h_source_l00553}00553 \textcolor{comment}{}}
-\DoxyCodeLine{\Hypertarget{unsteady__heat__elements_8h_source_l00554}00554 \textcolor{comment}{    ///  Output function for a time-\/dependent exact solution.}}
+\DoxyCodeLine{\Hypertarget{unsteady__heat__elements_8h_source_l00554}00554 \textcolor{comment}{    /// Output function for a time-\/dependent exact solution.}}
 \DoxyCodeLine{\Hypertarget{unsteady__heat__elements_8h_source_l00555}00555 \textcolor{comment}{    ///  x,y,u\_exact   or    x,y,z,u\_exact at n\_plot\string^DIM plot points}}
 \DoxyCodeLine{\Hypertarget{unsteady__heat__elements_8h_source_l00556}00556 \textcolor{comment}{    /// (Calls the steady version)}}
 \DoxyCodeLine{\Hypertarget{unsteady__heat__elements_8h_source_l00557}\mbox{\hyperlink{classoomph_1_1QUnsteadyHeatElement_acf12936a99c1b43eb9459035e0c2648d}{00557}} \textcolor{comment}{}    \textcolor{keywordtype}{void} \mbox{\hyperlink{classoomph_1_1QUnsteadyHeatElement_acf12936a99c1b43eb9459035e0c2648d}{output\_fct}}(std::ostream\& outfile,}
@@ -578,7 +578,7 @@
 \DoxyCodeLine{\Hypertarget{unsteady__heat__elements_8h_source_l00574}00574                                                      \mbox{\hyperlink{classoomph_1_1DShape}{DShape}}\& dtestdx) \textcolor{keyword}{const};}
 \DoxyCodeLine{\Hypertarget{unsteady__heat__elements_8h_source_l00575}00575 }
 \DoxyCodeLine{\Hypertarget{unsteady__heat__elements_8h_source_l00576}00576 \textcolor{comment}{}}
-\DoxyCodeLine{\Hypertarget{unsteady__heat__elements_8h_source_l00577}00577 \textcolor{comment}{    ///  Shape/test functions and derivs w.r.t. to global coords at}}
+\DoxyCodeLine{\Hypertarget{unsteady__heat__elements_8h_source_l00577}00577 \textcolor{comment}{    /// Shape/test functions and derivs w.r.t. to global coords at}}
 \DoxyCodeLine{\Hypertarget{unsteady__heat__elements_8h_source_l00578}00578 \textcolor{comment}{    /// integration point ipt; return  Jacobian of mapping}}
 \DoxyCodeLine{\Hypertarget{unsteady__heat__elements_8h_source_l00579}00579 \textcolor{comment}{}    \textcolor{keyword}{inline} \textcolor{keywordtype}{double} \mbox{\hyperlink{classoomph_1_1QUnsteadyHeatElement_ab9d47c020336e2c5accdca2014a5218e}{dshape\_and\_dtest\_eulerian\_at\_knot\_ust\_heat}}(}
 \DoxyCodeLine{\Hypertarget{unsteady__heat__elements_8h_source_l00580}00580       \textcolor{keyword}{const} \textcolor{keywordtype}{unsigned}\& ipt,}
@@ -667,7 +667,7 @@
 \DoxyCodeLine{\Hypertarget{unsteady__heat__elements_8h_source_l00663}00663     : \textcolor{keyword}{public} \textcolor{keyword}{virtual} \mbox{\hyperlink{classoomph_1_1QElement}{QElement}}<DIM -\/ 1, NNODE\_1D>}
 \DoxyCodeLine{\Hypertarget{unsteady__heat__elements_8h_source_l00664}00664   \{}
 \DoxyCodeLine{\Hypertarget{unsteady__heat__elements_8h_source_l00665}00665   \textcolor{keyword}{public}:\textcolor{comment}{}}
-\DoxyCodeLine{\Hypertarget{unsteady__heat__elements_8h_source_l00666}00666 \textcolor{comment}{    ///  Constructor: Call the constructor for the}}
+\DoxyCodeLine{\Hypertarget{unsteady__heat__elements_8h_source_l00666}00666 \textcolor{comment}{    /// Constructor: Call the constructor for the}}
 \DoxyCodeLine{\Hypertarget{unsteady__heat__elements_8h_source_l00667}00667 \textcolor{comment}{    /// appropriate lower-\/dimensional QElement}}
 \DoxyCodeLine{\Hypertarget{unsteady__heat__elements_8h_source_l00668}\mbox{\hyperlink{classoomph_1_1FaceGeometry_3_01QUnsteadyHeatElement_3_01DIM_00_01NNODE__1D_01_4_01_4_a529e4a591d38ef1f613cf65159257ccc}{00668}} \textcolor{comment}{}    \mbox{\hyperlink{classoomph_1_1FaceGeometry_3_01QUnsteadyHeatElement_3_01DIM_00_01NNODE__1D_01_4_01_4_a529e4a591d38ef1f613cf65159257ccc}{FaceGeometry}}() : \mbox{\hyperlink{classoomph_1_1QElement}{QElement}}<DIM -\/ 1, NNODE\_1D>() \{\}}
 \DoxyCodeLine{\Hypertarget{unsteady__heat__elements_8h_source_l00669}00669   \};}
@@ -685,7 +685,7 @@
 \DoxyCodeLine{\Hypertarget{unsteady__heat__elements_8h_source_l00681}00681     : \textcolor{keyword}{public} \textcolor{keyword}{virtual} \mbox{\hyperlink{classoomph_1_1PointElement}{PointElement}}}
 \DoxyCodeLine{\Hypertarget{unsteady__heat__elements_8h_source_l00682}00682   \{}
 \DoxyCodeLine{\Hypertarget{unsteady__heat__elements_8h_source_l00683}00683   \textcolor{keyword}{public}:\textcolor{comment}{}}
-\DoxyCodeLine{\Hypertarget{unsteady__heat__elements_8h_source_l00684}00684 \textcolor{comment}{    ///  Constructor: Call the constructor for the}}
+\DoxyCodeLine{\Hypertarget{unsteady__heat__elements_8h_source_l00684}00684 \textcolor{comment}{    /// Constructor: Call the constructor for the}}
 \DoxyCodeLine{\Hypertarget{unsteady__heat__elements_8h_source_l00685}00685 \textcolor{comment}{    /// appropriate lower-\/dimensional QElement}}
 \DoxyCodeLine{\Hypertarget{unsteady__heat__elements_8h_source_l00686}\mbox{\hyperlink{classoomph_1_1FaceGeometry_3_01QUnsteadyHeatElement_3_011_00_01NNODE__1D_01_4_01_4_a8289eb012fff70c662ee87d1576451b6}{00686}} \textcolor{comment}{}    \mbox{\hyperlink{classoomph_1_1FaceGeometry_3_01QUnsteadyHeatElement_3_011_00_01NNODE__1D_01_4_01_4_a8289eb012fff70c662ee87d1576451b6}{FaceGeometry}}() : \mbox{\hyperlink{classoomph_1_1PointElement}{PointElement}}() \{\}}
 \DoxyCodeLine{\Hypertarget{unsteady__heat__elements_8h_source_l00687}00687   \};}
@@ -704,11 +704,11 @@
 \DoxyCodeLine{\Hypertarget{unsteady__heat__elements_8h_source_l00700}00700     : \textcolor{keyword}{public} \textcolor{keyword}{virtual} \mbox{\hyperlink{classoomph_1_1ProjectableElement}{ProjectableElement}}<UNSTEADY\_HEAT\_ELEMENT>}
 \DoxyCodeLine{\Hypertarget{unsteady__heat__elements_8h_source_l00701}00701   \{}
 \DoxyCodeLine{\Hypertarget{unsteady__heat__elements_8h_source_l00702}00702   \textcolor{keyword}{public}:\textcolor{comment}{}}
-\DoxyCodeLine{\Hypertarget{unsteady__heat__elements_8h_source_l00703}00703 \textcolor{comment}{    ///  Constructor [this was only required explicitly}}
+\DoxyCodeLine{\Hypertarget{unsteady__heat__elements_8h_source_l00703}00703 \textcolor{comment}{    /// Constructor [this was only required explicitly}}
 \DoxyCodeLine{\Hypertarget{unsteady__heat__elements_8h_source_l00704}00704 \textcolor{comment}{    /// from gcc 4.5.2 onwards...]}}
 \DoxyCodeLine{\Hypertarget{unsteady__heat__elements_8h_source_l00705}\mbox{\hyperlink{classoomph_1_1ProjectableUnsteadyHeatElement_a0c06505ffcefcceaddf84905b5a8c1ce}{00705}} \textcolor{comment}{}    \mbox{\hyperlink{classoomph_1_1ProjectableUnsteadyHeatElement_a0c06505ffcefcceaddf84905b5a8c1ce}{ProjectableUnsteadyHeatElement}}() \{\}}
 \DoxyCodeLine{\Hypertarget{unsteady__heat__elements_8h_source_l00706}00706 \textcolor{comment}{}}
-\DoxyCodeLine{\Hypertarget{unsteady__heat__elements_8h_source_l00707}00707 \textcolor{comment}{    ///  Specify the values associated with field fld.}}
+\DoxyCodeLine{\Hypertarget{unsteady__heat__elements_8h_source_l00707}00707 \textcolor{comment}{    /// Specify the values associated with field fld.}}
 \DoxyCodeLine{\Hypertarget{unsteady__heat__elements_8h_source_l00708}00708 \textcolor{comment}{    /// The information is returned in a vector of pairs which comprise}}
 \DoxyCodeLine{\Hypertarget{unsteady__heat__elements_8h_source_l00709}00709 \textcolor{comment}{    /// the Data object and the value within it, that correspond to field fld.}}
 \DoxyCodeLine{\Hypertarget{unsteady__heat__elements_8h_source_l00710}\mbox{\hyperlink{classoomph_1_1ProjectableUnsteadyHeatElement_ab0b711801870e4ba02c434d548514f4a}{00710}} \textcolor{comment}{}    \mbox{\hyperlink{classoomph_1_1Vector}{Vector<std::pair<Data*, unsigned>}}> \mbox{\hyperlink{classoomph_1_1ProjectableUnsteadyHeatElement_ab0b711801870e4ba02c434d548514f4a}{data\_values\_of\_field}}(\textcolor{keyword}{const} \textcolor{keywordtype}{unsigned}\& fld)}
@@ -740,13 +740,13 @@
 \DoxyCodeLine{\Hypertarget{unsteady__heat__elements_8h_source_l00736}00736       \textcolor{keywordflow}{return} data\_values;}
 \DoxyCodeLine{\Hypertarget{unsteady__heat__elements_8h_source_l00737}00737     \}}
 \DoxyCodeLine{\Hypertarget{unsteady__heat__elements_8h_source_l00738}00738 \textcolor{comment}{}}
-\DoxyCodeLine{\Hypertarget{unsteady__heat__elements_8h_source_l00739}00739 \textcolor{comment}{    ///  Number of fields to be projected: Just one}}
+\DoxyCodeLine{\Hypertarget{unsteady__heat__elements_8h_source_l00739}00739 \textcolor{comment}{    /// Number of fields to be projected: Just one}}
 \DoxyCodeLine{\Hypertarget{unsteady__heat__elements_8h_source_l00740}\mbox{\hyperlink{classoomph_1_1ProjectableUnsteadyHeatElement_a8966da6a379eb20fcf86efe03c681a86}{00740}} \textcolor{comment}{}    \textcolor{keywordtype}{unsigned} \mbox{\hyperlink{classoomph_1_1ProjectableUnsteadyHeatElement_a8966da6a379eb20fcf86efe03c681a86}{nfields\_for\_projection}}()}
 \DoxyCodeLine{\Hypertarget{unsteady__heat__elements_8h_source_l00741}00741     \{}
 \DoxyCodeLine{\Hypertarget{unsteady__heat__elements_8h_source_l00742}00742       \textcolor{keywordflow}{return} 1;}
 \DoxyCodeLine{\Hypertarget{unsteady__heat__elements_8h_source_l00743}00743     \}}
 \DoxyCodeLine{\Hypertarget{unsteady__heat__elements_8h_source_l00744}00744 \textcolor{comment}{}}
-\DoxyCodeLine{\Hypertarget{unsteady__heat__elements_8h_source_l00745}00745 \textcolor{comment}{    ///  Number of history values to be stored for fld-\/th field.}}
+\DoxyCodeLine{\Hypertarget{unsteady__heat__elements_8h_source_l00745}00745 \textcolor{comment}{    /// Number of history values to be stored for fld-\/th field.}}
 \DoxyCodeLine{\Hypertarget{unsteady__heat__elements_8h_source_l00746}00746 \textcolor{comment}{    /// (Note: count includes current value!)}}
 \DoxyCodeLine{\Hypertarget{unsteady__heat__elements_8h_source_l00747}\mbox{\hyperlink{classoomph_1_1ProjectableUnsteadyHeatElement_ac26bb5fe73e07db80e7e4e7a2070074c}{00747}} \textcolor{comment}{}    \textcolor{keywordtype}{unsigned} \mbox{\hyperlink{classoomph_1_1ProjectableUnsteadyHeatElement_ac26bb5fe73e07db80e7e4e7a2070074c}{nhistory\_values\_for\_projection}}(\textcolor{keyword}{const} \textcolor{keywordtype}{unsigned}\& fld)}
 \DoxyCodeLine{\Hypertarget{unsteady__heat__elements_8h_source_l00748}00748     \{}
@@ -771,7 +771,7 @@
 \DoxyCodeLine{\Hypertarget{unsteady__heat__elements_8h_source_l00767}00767       \textcolor{keywordflow}{return} this-\/>\mbox{\hyperlink{classoomph_1_1FiniteElement_a9addfe893ab8205619963aa96204cdc4}{node\_pt}}(0)-\/>position\_time\_stepper\_pt()-\/>ntstorage();}
 \DoxyCodeLine{\Hypertarget{unsteady__heat__elements_8h_source_l00768}00768     \}}
 \DoxyCodeLine{\Hypertarget{unsteady__heat__elements_8h_source_l00769}00769 \textcolor{comment}{}}
-\DoxyCodeLine{\Hypertarget{unsteady__heat__elements_8h_source_l00770}00770 \textcolor{comment}{    ///  Return Jacobian of mapping and shape functions of field fld}}
+\DoxyCodeLine{\Hypertarget{unsteady__heat__elements_8h_source_l00770}00770 \textcolor{comment}{    /// Return Jacobian of mapping and shape functions of field fld}}
 \DoxyCodeLine{\Hypertarget{unsteady__heat__elements_8h_source_l00771}00771 \textcolor{comment}{    /// at local coordinate s}}
 \DoxyCodeLine{\Hypertarget{unsteady__heat__elements_8h_source_l00772}\mbox{\hyperlink{classoomph_1_1ProjectableUnsteadyHeatElement_a49318b95add2b1ac8c6f0f0cfac195f6}{00772}} \textcolor{comment}{}    \textcolor{keywordtype}{double} \mbox{\hyperlink{classoomph_1_1ProjectableUnsteadyHeatElement_a49318b95add2b1ac8c6f0f0cfac195f6}{jacobian\_and\_shape\_of\_field}}(\textcolor{keyword}{const} \textcolor{keywordtype}{unsigned}\& fld,}
 \DoxyCodeLine{\Hypertarget{unsteady__heat__elements_8h_source_l00773}00773                                        \textcolor{keyword}{const} \mbox{\hyperlink{classoomph_1_1Vector}{Vector<double>}}\& \mbox{\hyperlink{cfortran_8h_ab7123126e4885ef647dd9c6e3807a21c}{s}},}
@@ -798,7 +798,7 @@
 \DoxyCodeLine{\Hypertarget{unsteady__heat__elements_8h_source_l00794}00794     \}}
 \DoxyCodeLine{\Hypertarget{unsteady__heat__elements_8h_source_l00795}00795 }
 \DoxyCodeLine{\Hypertarget{unsteady__heat__elements_8h_source_l00796}00796 \textcolor{comment}{}}
-\DoxyCodeLine{\Hypertarget{unsteady__heat__elements_8h_source_l00797}00797 \textcolor{comment}{    ///  Return interpolated field fld at local coordinate s, at time}}
+\DoxyCodeLine{\Hypertarget{unsteady__heat__elements_8h_source_l00797}00797 \textcolor{comment}{    /// Return interpolated field fld at local coordinate s, at time}}
 \DoxyCodeLine{\Hypertarget{unsteady__heat__elements_8h_source_l00798}00798 \textcolor{comment}{    /// level t (t=0: present; t>0: history values)}}
 \DoxyCodeLine{\Hypertarget{unsteady__heat__elements_8h_source_l00799}\mbox{\hyperlink{classoomph_1_1ProjectableUnsteadyHeatElement_ae4b0cb13a1849f7e950252164884eeba}{00799}} \textcolor{comment}{}    \textcolor{keywordtype}{double} \mbox{\hyperlink{classoomph_1_1ProjectableUnsteadyHeatElement_ae4b0cb13a1849f7e950252164884eeba}{get\_field}}(\textcolor{keyword}{const} \textcolor{keywordtype}{unsigned}\& \mbox{\hyperlink{cfortran_8h_af6f0bd3dc13317f895c91323c25c2b8f}{t}},}
 \DoxyCodeLine{\Hypertarget{unsteady__heat__elements_8h_source_l00800}00800                      \textcolor{keyword}{const} \textcolor{keywordtype}{unsigned}\& fld,}
@@ -874,7 +874,7 @@
 \DoxyCodeLine{\Hypertarget{unsteady__heat__elements_8h_source_l00870}00870     \}}
 \DoxyCodeLine{\Hypertarget{unsteady__heat__elements_8h_source_l00871}00871 }
 \DoxyCodeLine{\Hypertarget{unsteady__heat__elements_8h_source_l00872}00872 \textcolor{comment}{}}
-\DoxyCodeLine{\Hypertarget{unsteady__heat__elements_8h_source_l00873}00873 \textcolor{comment}{    ///  Output FE representation of soln: x,y,u or x,y,z,u at}}
+\DoxyCodeLine{\Hypertarget{unsteady__heat__elements_8h_source_l00873}00873 \textcolor{comment}{    /// Output FE representation of soln: x,y,u or x,y,z,u at}}
 \DoxyCodeLine{\Hypertarget{unsteady__heat__elements_8h_source_l00874}00874 \textcolor{comment}{    /// and history values at n\_plot\string^DIM plot points}}
 \DoxyCodeLine{\Hypertarget{unsteady__heat__elements_8h_source_l00875}\mbox{\hyperlink{classoomph_1_1ProjectableUnsteadyHeatElement_a2509779b894af697108d2fa8f2cf1ea8}{00875}} \textcolor{comment}{}    \textcolor{keywordtype}{void} \mbox{\hyperlink{classoomph_1_1ProjectableUnsteadyHeatElement_a2509779b894af697108d2fa8f2cf1ea8}{output}}(std::ostream\& outfile, \textcolor{keyword}{const} \textcolor{keywordtype}{unsigned}\& nplot)}
 \DoxyCodeLine{\Hypertarget{unsteady__heat__elements_8h_source_l00876}00876     \{}

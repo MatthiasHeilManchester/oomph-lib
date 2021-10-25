@@ -24,7 +24,7 @@ typedef void($\ast$ \mbox{\hyperlink{classBrethertonElement_a313d868ce6fbd8df07b
 void \mbox{\hyperlink{classBrethertonElement_a5a8333b92b4b732e62798c172d7e9d52}{activate\+\_\+inflow\+\_\+dependency\+\_\+on\+\_\+external\+\_\+data}} (const Vector$<$ Data $\ast$ $>$ \&inflow\+\_\+ext\+\_\+data, const unsigned \&inflow\+\_\+boundary, \mbox{\hyperlink{classBrethertonElement_a313d868ce6fbd8df07b0360db25133ce}{Inflow\+Fct\+Pt}} inflow\+\_\+fct\+\_\+pt)
 \begin{DoxyCompactList}\small\item\em Activate the dependency of the \char`\"{}inflow\char`\"{} on the external data. Pass the vector of pointers to the external Data that affects the inflow, the id of the boundary on which the inflow condition is to be applied and the function pointer to to the global function that defines the inflow. \end{DoxyCompactList}\item 
 void \mbox{\hyperlink{classBrethertonElement_a40f35d9e03eae08954b6b32badadcf61}{assign\+\_\+local\+\_\+eqn\+\_\+numbers}} (const bool \&store\+\_\+local\+\_\+dof\+\_\+pt)
-\begin{DoxyCompactList}\small\item\em short Overload assign local equation numbers\+: Add the dependency on the external Data that affects the inflow profile \end{DoxyCompactList}\item 
+\begin{DoxyCompactList}\small\item\em Overload assign local equation numbers\+: Add the dependency on the external Data that affects the inflow profile. \end{DoxyCompactList}\item 
 void \mbox{\hyperlink{classBrethertonElement_ab0bc00d862b2c888703ed38c74f18b77}{get\+\_\+jacobian}} (Vector$<$ double $>$ \&residuals, Dense\+Matrix$<$ double $>$ \&jacobian)
 \begin{DoxyCompactList}\small\item\em Overloaded Jacobian computation\+: Computes the Jacobian of the underlying element and then adds the FD operations to evaluate the derivatives w.\+r.\+t. the Data values that affect the inflow. \end{DoxyCompactList}\end{DoxyCompactItemize}
 \doxysubsection*{Private Member Functions}
@@ -121,7 +121,7 @@ void \mbox{\hyperlink{classBrethertonElement}{Bretherton\+Element}}$<$ ELEMENT $
 
 
 
-short Overload assign local equation numbers\+: Add the dependency on the external Data that affects the inflow profile 
+Overload assign local equation numbers\+: Add the dependency on the external Data that affects the inflow profile. 
 
 
 

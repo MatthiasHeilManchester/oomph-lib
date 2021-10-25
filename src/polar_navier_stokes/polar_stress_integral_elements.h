@@ -61,7 +61,7 @@ namespace oomph
     unsigned Dim;
 
   protected:
-    ///  Access function that returns the local equation numbers
+    /// Access function that returns the local equation numbers
     /// for velocity components.
     /// u_local_eqn(n,i) = local equation number or < 0 if pinned.
     /// The default is to asssume that n is the local node number

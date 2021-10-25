@@ -48,21 +48,21 @@
 \DoxyCodeLine{\Hypertarget{tetgen__mesh_8template_8h_source_l00044}00044 \textcolor{keyword}{namespace }\mbox{\hyperlink{namespaceoomph}{oomph}}}
 \DoxyCodeLine{\Hypertarget{tetgen__mesh_8template_8h_source_l00045}00045 \{}
 \DoxyCodeLine{\Hypertarget{tetgen__mesh_8template_8h_source_l00046}00046   \textcolor{comment}{//=========start of TetgenMesh class======================================}\textcolor{comment}{}}
-\DoxyCodeLine{\Hypertarget{tetgen__mesh_8template_8h_source_l00047}00047 \textcolor{comment}{  ///   Unstructured tet mesh based on output from Tetgen:}}
+\DoxyCodeLine{\Hypertarget{tetgen__mesh_8template_8h_source_l00047}00047 \textcolor{comment}{  ///  Unstructured tet mesh based on output from Tetgen:}}
 \DoxyCodeLine{\Hypertarget{tetgen__mesh_8template_8h_source_l00048}00048 \textcolor{comment}{  /// http://wias-\/berlin.de/software/tetgen/}}
 \DoxyCodeLine{\Hypertarget{tetgen__mesh_8template_8h_source_l00049}00049 \textcolor{comment}{}  \textcolor{comment}{//========================================================================}}
 \DoxyCodeLine{\Hypertarget{tetgen__mesh_8template_8h_source_l00050}00050   \textcolor{keyword}{template}<\textcolor{keyword}{class} ELEMENT>}
 \DoxyCodeLine{\Hypertarget{tetgen__mesh_8template_8h_source_l00051}\mbox{\hyperlink{classoomph_1_1TetgenMesh}{00051}}   \textcolor{keyword}{class }\mbox{\hyperlink{classoomph_1_1TetgenMesh}{TetgenMesh}} : \textcolor{keyword}{public} \textcolor{keyword}{virtual} \mbox{\hyperlink{classoomph_1_1TetMeshBase}{TetMeshBase}}}
 \DoxyCodeLine{\Hypertarget{tetgen__mesh_8template_8h_source_l00052}00052   \{}
 \DoxyCodeLine{\Hypertarget{tetgen__mesh_8template_8h_source_l00053}00053   \textcolor{keyword}{public}:\textcolor{comment}{}}
-\DoxyCodeLine{\Hypertarget{tetgen__mesh_8template_8h_source_l00054}00054 \textcolor{comment}{    ///  Empty constructor}}
+\DoxyCodeLine{\Hypertarget{tetgen__mesh_8template_8h_source_l00054}00054 \textcolor{comment}{    /// Empty constructor}}
 \DoxyCodeLine{\Hypertarget{tetgen__mesh_8template_8h_source_l00055}\mbox{\hyperlink{classoomph_1_1TetgenMesh_a2d2c7796e578f9fed1faf17569893531}{00055}} \textcolor{comment}{}    \mbox{\hyperlink{classoomph_1_1TetgenMesh_a2d2c7796e578f9fed1faf17569893531}{TetgenMesh}}()}
 \DoxyCodeLine{\Hypertarget{tetgen__mesh_8template_8h_source_l00056}00056     \{}
 \DoxyCodeLine{\Hypertarget{tetgen__mesh_8template_8h_source_l00057}00057       \textcolor{comment}{// Mesh can only be built with 3D Telements.}}
 \DoxyCodeLine{\Hypertarget{tetgen__mesh_8template_8h_source_l00058}00058       MeshChecker::assert\_geometric\_element<TElementGeometricBase, ELEMENT>(3);}
 \DoxyCodeLine{\Hypertarget{tetgen__mesh_8template_8h_source_l00059}00059     \}}
 \DoxyCodeLine{\Hypertarget{tetgen__mesh_8template_8h_source_l00060}00060 \textcolor{comment}{}}
-\DoxyCodeLine{\Hypertarget{tetgen__mesh_8template_8h_source_l00061}00061 \textcolor{comment}{    ///  Constructor with the input files}}
+\DoxyCodeLine{\Hypertarget{tetgen__mesh_8template_8h_source_l00061}00061 \textcolor{comment}{    /// Constructor with the input files}}
 \DoxyCodeLine{\Hypertarget{tetgen__mesh_8template_8h_source_l00062}\mbox{\hyperlink{classoomph_1_1TetgenMesh_a10976b817c361f04da4ce996bd019c02}{00062}} \textcolor{comment}{}    \mbox{\hyperlink{classoomph_1_1TetgenMesh_a10976b817c361f04da4ce996bd019c02}{TetgenMesh}}(\textcolor{keyword}{const} \mbox{\hyperlink{namespaceoomph_1_1Global__string__for__annotation_ac5379de2fa7fe44f2cb31785fc208135}{std::string}}\& node\_file\_name,}
 \DoxyCodeLine{\Hypertarget{tetgen__mesh_8template_8h_source_l00063}00063                \textcolor{keyword}{const} \mbox{\hyperlink{namespaceoomph_1_1Global__string__for__annotation_ac5379de2fa7fe44f2cb31785fc208135}{std::string}}\& element\_file\_name,}
 \DoxyCodeLine{\Hypertarget{tetgen__mesh_8template_8h_source_l00064}00064                \textcolor{keyword}{const} \mbox{\hyperlink{namespaceoomph_1_1Global__string__for__annotation_ac5379de2fa7fe44f2cb31785fc208135}{std::string}}\& face\_file\_name,}
@@ -100,7 +100,7 @@
 \DoxyCodeLine{\Hypertarget{tetgen__mesh_8template_8h_source_l00096}00096     \}}
 \DoxyCodeLine{\Hypertarget{tetgen__mesh_8template_8h_source_l00097}00097 }
 \DoxyCodeLine{\Hypertarget{tetgen__mesh_8template_8h_source_l00098}00098 \textcolor{comment}{}}
-\DoxyCodeLine{\Hypertarget{tetgen__mesh_8template_8h_source_l00099}00099 \textcolor{comment}{    ///  Constructor with tetgenio data structure}}
+\DoxyCodeLine{\Hypertarget{tetgen__mesh_8template_8h_source_l00099}00099 \textcolor{comment}{    /// Constructor with tetgenio data structure}}
 \DoxyCodeLine{\Hypertarget{tetgen__mesh_8template_8h_source_l00100}\mbox{\hyperlink{classoomph_1_1TetgenMesh_ace863f736d0dfa0a059b28959fced51d}{00100}} \textcolor{comment}{}    \mbox{\hyperlink{classoomph_1_1TetgenMesh_ace863f736d0dfa0a059b28959fced51d}{TetgenMesh}}(tetgenio\& tetgen\_data,}
 \DoxyCodeLine{\Hypertarget{tetgen__mesh_8template_8h_source_l00101}00101                \mbox{\hyperlink{classoomph_1_1TimeStepper}{TimeStepper}}* time\_stepper\_pt = \&\mbox{\hyperlink{classoomph_1_1Mesh_a12243d0fee2b1fcee729ee5a4777ea10}{Mesh::Default\_TimeStepper}},}
 \DoxyCodeLine{\Hypertarget{tetgen__mesh_8template_8h_source_l00102}00102                \textcolor{keyword}{const} \textcolor{keywordtype}{bool}\& use\_attributes = \textcolor{keyword}{false})}
@@ -139,7 +139,7 @@
 \DoxyCodeLine{\Hypertarget{tetgen__mesh_8template_8h_source_l00135}00135     \}}
 \DoxyCodeLine{\Hypertarget{tetgen__mesh_8template_8h_source_l00136}00136 }
 \DoxyCodeLine{\Hypertarget{tetgen__mesh_8template_8h_source_l00137}00137 \textcolor{comment}{}}
-\DoxyCodeLine{\Hypertarget{tetgen__mesh_8template_8h_source_l00138}00138 \textcolor{comment}{    ///  Constructor with the input files. Setting the boolean}}
+\DoxyCodeLine{\Hypertarget{tetgen__mesh_8template_8h_source_l00138}00138 \textcolor{comment}{    /// Constructor with the input files. Setting the boolean}}
 \DoxyCodeLine{\Hypertarget{tetgen__mesh_8template_8h_source_l00139}00139 \textcolor{comment}{    /// flag to true splits "{}corner"{} elements, i.e. elements that}}
 \DoxyCodeLine{\Hypertarget{tetgen__mesh_8template_8h_source_l00140}00140 \textcolor{comment}{    /// that have at least three faces on a domain boundary. The}}
 \DoxyCodeLine{\Hypertarget{tetgen__mesh_8template_8h_source_l00141}00141 \textcolor{comment}{    /// relevant elements are split without introducing hanging}}
@@ -195,7 +195,7 @@
 \DoxyCodeLine{\Hypertarget{tetgen__mesh_8template_8h_source_l00191}00191       \}}
 \DoxyCodeLine{\Hypertarget{tetgen__mesh_8template_8h_source_l00192}00192     \}}
 \DoxyCodeLine{\Hypertarget{tetgen__mesh_8template_8h_source_l00193}00193 \textcolor{comment}{}}
-\DoxyCodeLine{\Hypertarget{tetgen__mesh_8template_8h_source_l00194}00194 \textcolor{comment}{    ///  Constructor with tetgen data structure Setting the boolean}}
+\DoxyCodeLine{\Hypertarget{tetgen__mesh_8template_8h_source_l00194}00194 \textcolor{comment}{    /// Constructor with tetgen data structure Setting the boolean}}
 \DoxyCodeLine{\Hypertarget{tetgen__mesh_8template_8h_source_l00195}00195 \textcolor{comment}{    /// flag to true splits "{}corner"{} elements, i.e. elements that}}
 \DoxyCodeLine{\Hypertarget{tetgen__mesh_8template_8h_source_l00196}00196 \textcolor{comment}{    /// that have at least three faces on a domain boundary. The}}
 \DoxyCodeLine{\Hypertarget{tetgen__mesh_8template_8h_source_l00197}00197 \textcolor{comment}{    /// relevant elements are split without introducing hanging}}
@@ -249,7 +249,7 @@
 \DoxyCodeLine{\Hypertarget{tetgen__mesh_8template_8h_source_l00245}00245     \}}
 \DoxyCodeLine{\Hypertarget{tetgen__mesh_8template_8h_source_l00246}00246 }
 \DoxyCodeLine{\Hypertarget{tetgen__mesh_8template_8h_source_l00247}00247 \textcolor{comment}{}}
-\DoxyCodeLine{\Hypertarget{tetgen__mesh_8template_8h_source_l00248}00248 \textcolor{comment}{    ///  Build mesh, based on a TetgenMeshFactedClosedSurface that}}
+\DoxyCodeLine{\Hypertarget{tetgen__mesh_8template_8h_source_l00248}00248 \textcolor{comment}{    /// Build mesh, based on a TetgenMeshFactedClosedSurface that}}
 \DoxyCodeLine{\Hypertarget{tetgen__mesh_8template_8h_source_l00249}00249 \textcolor{comment}{    /// specifies the outer boundary of the domain and any number of internal}}
 \DoxyCodeLine{\Hypertarget{tetgen__mesh_8template_8h_source_l00250}00250 \textcolor{comment}{    /// boundaries, specified by TetMeshFacetedSurfaces.}}
 \DoxyCodeLine{\Hypertarget{tetgen__mesh_8template_8h_source_l00251}00251 \textcolor{comment}{    /// Also specify target size for uniform element size.}}
@@ -663,7 +663,7 @@
 \DoxyCodeLine{\Hypertarget{tetgen__mesh_8template_8h_source_l00659}00659     \}}
 \DoxyCodeLine{\Hypertarget{tetgen__mesh_8template_8h_source_l00660}00660 }
 \DoxyCodeLine{\Hypertarget{tetgen__mesh_8template_8h_source_l00661}00661 \textcolor{comment}{}}
-\DoxyCodeLine{\Hypertarget{tetgen__mesh_8template_8h_source_l00662}00662 \textcolor{comment}{    ///  Overload set\_mesh\_level\_time\_stepper so that the stored}}
+\DoxyCodeLine{\Hypertarget{tetgen__mesh_8template_8h_source_l00662}00662 \textcolor{comment}{    /// Overload set\_mesh\_level\_time\_stepper so that the stored}}
 \DoxyCodeLine{\Hypertarget{tetgen__mesh_8template_8h_source_l00663}00663 \textcolor{comment}{    /// time stepper now corresponds to the new timestepper}}
 \DoxyCodeLine{\Hypertarget{tetgen__mesh_8template_8h_source_l00664}\mbox{\hyperlink{classoomph_1_1TetgenMesh_a9c0441ea7404e7ea404979955ffbb5dd}{00664}} \textcolor{comment}{}    \textcolor{keywordtype}{void} \mbox{\hyperlink{classoomph_1_1TetgenMesh_a9c0441ea7404e7ea404979955ffbb5dd}{set\_mesh\_level\_time\_stepper}}(\mbox{\hyperlink{classoomph_1_1TimeStepper}{TimeStepper}}* \textcolor{keyword}{const}\& time\_stepper\_pt,}
 \DoxyCodeLine{\Hypertarget{tetgen__mesh_8template_8h_source_l00665}00665                                      \textcolor{keyword}{const} \textcolor{keywordtype}{bool}\& preserve\_existing\_data)}
@@ -709,21 +709,21 @@
 \DoxyCodeLine{\Hypertarget{tetgen__mesh_8template_8h_source_l00705}00705 \textcolor{comment}{}    \textcolor{keywordtype}{void} \mbox{\hyperlink{classoomph_1_1TetgenMesh_a3b0d214cb14243f7ecc2c82e6641930b}{build\_from\_scaffold}}(\mbox{\hyperlink{classoomph_1_1TimeStepper}{TimeStepper}}* time\_stepper\_pt,}
 \DoxyCodeLine{\Hypertarget{tetgen__mesh_8template_8h_source_l00706}00706                              \textcolor{keyword}{const} \textcolor{keywordtype}{bool}\& use\_attributes);}
 \DoxyCodeLine{\Hypertarget{tetgen__mesh_8template_8h_source_l00707}00707 \textcolor{comment}{}}
-\DoxyCodeLine{\Hypertarget{tetgen__mesh_8template_8h_source_l00708}00708 \textcolor{comment}{    ///  Function to setup the reverse look-\/up schemes}}
+\DoxyCodeLine{\Hypertarget{tetgen__mesh_8template_8h_source_l00708}00708 \textcolor{comment}{    /// Function to setup the reverse look-\/up schemes}}
 \DoxyCodeLine{\Hypertarget{tetgen__mesh_8template_8h_source_l00709}00709 \textcolor{comment}{}    \textcolor{keywordtype}{void} \mbox{\hyperlink{classoomph_1_1TetgenMesh_a685e57d2adeb2a378ffc7e244e38c910}{setup\_reverse\_lookup\_schemes\_for\_faceted\_surface}}(}
 \DoxyCodeLine{\Hypertarget{tetgen__mesh_8template_8h_source_l00710}00710       \mbox{\hyperlink{classoomph_1_1TetMeshFacetedSurface}{TetMeshFacetedSurface}}* \textcolor{keyword}{const}\& faceted\_surface\_pt);}
 \DoxyCodeLine{\Hypertarget{tetgen__mesh_8template_8h_source_l00711}00711 \textcolor{comment}{}}
 \DoxyCodeLine{\Hypertarget{tetgen__mesh_8template_8h_source_l00712}00712 \textcolor{comment}{    /// Temporary scaffold mesh}}
 \DoxyCodeLine{\Hypertarget{tetgen__mesh_8template_8h_source_l00713}\mbox{\hyperlink{classoomph_1_1TetgenMesh_ac11e90fcf927bbf8317800db7723bad2}{00713}} \textcolor{comment}{}    \mbox{\hyperlink{classoomph_1_1TetgenScaffoldMesh}{TetgenScaffoldMesh}}* \mbox{\hyperlink{classoomph_1_1TetgenMesh_ac11e90fcf927bbf8317800db7723bad2}{Tmp\_mesh\_pt}};}
 \DoxyCodeLine{\Hypertarget{tetgen__mesh_8template_8h_source_l00714}00714 \textcolor{comment}{}}
-\DoxyCodeLine{\Hypertarget{tetgen__mesh_8template_8h_source_l00715}00715 \textcolor{comment}{    ///  Boolean to indicate whether a tetgenio representation of the}}
+\DoxyCodeLine{\Hypertarget{tetgen__mesh_8template_8h_source_l00715}00715 \textcolor{comment}{    /// Boolean to indicate whether a tetgenio representation of the}}
 \DoxyCodeLine{\Hypertarget{tetgen__mesh_8template_8h_source_l00716}00716 \textcolor{comment}{    /// mesh exists}}
 \DoxyCodeLine{\Hypertarget{tetgen__mesh_8template_8h_source_l00717}\mbox{\hyperlink{classoomph_1_1TetgenMesh_ab9aa31216620790d084d133b8781be37}{00717}} \textcolor{comment}{}    \textcolor{keywordtype}{bool} \mbox{\hyperlink{classoomph_1_1TetgenMesh_ab9aa31216620790d084d133b8781be37}{Tetgenio\_exists}};}
 \DoxyCodeLine{\Hypertarget{tetgen__mesh_8template_8h_source_l00718}00718 \textcolor{comment}{}}
-\DoxyCodeLine{\Hypertarget{tetgen__mesh_8template_8h_source_l00719}00719 \textcolor{comment}{    ///  Tetgen representation of mesh}}
+\DoxyCodeLine{\Hypertarget{tetgen__mesh_8template_8h_source_l00719}00719 \textcolor{comment}{    /// Tetgen representation of mesh}}
 \DoxyCodeLine{\Hypertarget{tetgen__mesh_8template_8h_source_l00720}\mbox{\hyperlink{classoomph_1_1TetgenMesh_a508672e33aa773da58c834a526cb5c59}{00720}} \textcolor{comment}{}    tetgenio* \mbox{\hyperlink{classoomph_1_1TetgenMesh_a508672e33aa773da58c834a526cb5c59}{Tetgenio\_pt}};}
 \DoxyCodeLine{\Hypertarget{tetgen__mesh_8template_8h_source_l00721}00721 \textcolor{comment}{}}
-\DoxyCodeLine{\Hypertarget{tetgen__mesh_8template_8h_source_l00722}00722 \textcolor{comment}{    ///  Boolean flag to indicate whether to use attributes or not}}
+\DoxyCodeLine{\Hypertarget{tetgen__mesh_8template_8h_source_l00722}00722 \textcolor{comment}{    /// Boolean flag to indicate whether to use attributes or not}}
 \DoxyCodeLine{\Hypertarget{tetgen__mesh_8template_8h_source_l00723}00723 \textcolor{comment}{    /// (required for multidomain meshes)}}
 \DoxyCodeLine{\Hypertarget{tetgen__mesh_8template_8h_source_l00724}\mbox{\hyperlink{classoomph_1_1TetgenMesh_a94c4ac3940ecfdd87679167d300ce75d}{00724}} \textcolor{comment}{}    \textcolor{keywordtype}{bool} \mbox{\hyperlink{classoomph_1_1TetgenMesh_a94c4ac3940ecfdd87679167d300ce75d}{Use\_attributes}};}
 \DoxyCodeLine{\Hypertarget{tetgen__mesh_8template_8h_source_l00725}00725 }
@@ -744,7 +744,7 @@
 \DoxyCodeLine{\Hypertarget{tetgen__mesh_8template_8h_source_l00740}00740                           \textcolor{keyword}{public} \textcolor{keyword}{virtual} \mbox{\hyperlink{classoomph_1_1SolidMesh}{SolidMesh}}}
 \DoxyCodeLine{\Hypertarget{tetgen__mesh_8template_8h_source_l00741}00741   \{}
 \DoxyCodeLine{\Hypertarget{tetgen__mesh_8template_8h_source_l00742}00742   \textcolor{keyword}{public}:\textcolor{comment}{}}
-\DoxyCodeLine{\Hypertarget{tetgen__mesh_8template_8h_source_l00743}00743 \textcolor{comment}{    ///  Constructor. Boundary coordinates are setup}}
+\DoxyCodeLine{\Hypertarget{tetgen__mesh_8template_8h_source_l00743}00743 \textcolor{comment}{    /// Constructor. Boundary coordinates are setup}}
 \DoxyCodeLine{\Hypertarget{tetgen__mesh_8template_8h_source_l00744}00744 \textcolor{comment}{    /// automatically.}}
 \DoxyCodeLine{\Hypertarget{tetgen__mesh_8template_8h_source_l00745}\mbox{\hyperlink{classoomph_1_1SolidTetgenMesh_a0672182524354abfccbbd85007753bbe}{00745}} \textcolor{comment}{}    \mbox{\hyperlink{classoomph_1_1SolidTetgenMesh_a0672182524354abfccbbd85007753bbe}{SolidTetgenMesh}}(\textcolor{keyword}{const} \mbox{\hyperlink{namespaceoomph_1_1Global__string__for__annotation_ac5379de2fa7fe44f2cb31785fc208135}{std::string}}\& node\_file\_name,}
 \DoxyCodeLine{\Hypertarget{tetgen__mesh_8template_8h_source_l00746}00746                     \textcolor{keyword}{const} \mbox{\hyperlink{namespaceoomph_1_1Global__string__for__annotation_ac5379de2fa7fe44f2cb31785fc208135}{std::string}}\& element\_file\_name,}
@@ -763,7 +763,7 @@
 \DoxyCodeLine{\Hypertarget{tetgen__mesh_8template_8h_source_l00759}00759       \mbox{\hyperlink{classoomph_1_1SolidMesh_a3eb52bbb81875244774cfc305c3ab21d}{set\_lagrangian\_nodal\_coordinates}}();}
 \DoxyCodeLine{\Hypertarget{tetgen__mesh_8template_8h_source_l00760}00760     \}}
 \DoxyCodeLine{\Hypertarget{tetgen__mesh_8template_8h_source_l00761}00761 \textcolor{comment}{}}
-\DoxyCodeLine{\Hypertarget{tetgen__mesh_8template_8h_source_l00762}00762 \textcolor{comment}{    ///  Constructor. Boundary coordinates are re-\/setup}}
+\DoxyCodeLine{\Hypertarget{tetgen__mesh_8template_8h_source_l00762}00762 \textcolor{comment}{    /// Constructor. Boundary coordinates are re-\/setup}}
 \DoxyCodeLine{\Hypertarget{tetgen__mesh_8template_8h_source_l00763}00763 \textcolor{comment}{    /// automatically, with the orientation of the outer unit}}
 \DoxyCodeLine{\Hypertarget{tetgen__mesh_8template_8h_source_l00764}00764 \textcolor{comment}{    /// normal determined by switch\_normal.}}
 \DoxyCodeLine{\Hypertarget{tetgen__mesh_8template_8h_source_l00765}\mbox{\hyperlink{classoomph_1_1SolidTetgenMesh_a465c659e5bac66790a81f013bef23157}{00765}} \textcolor{comment}{}    \mbox{\hyperlink{classoomph_1_1SolidTetgenMesh_a465c659e5bac66790a81f013bef23157}{SolidTetgenMesh}}(\textcolor{keyword}{const} \mbox{\hyperlink{namespaceoomph_1_1Global__string__for__annotation_ac5379de2fa7fe44f2cb31785fc208135}{std::string}}\& node\_file\_name,}

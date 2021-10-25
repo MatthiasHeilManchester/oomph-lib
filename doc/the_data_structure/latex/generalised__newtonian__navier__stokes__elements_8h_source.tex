@@ -68,22 +68,22 @@
 \DoxyCodeLine{\Hypertarget{generalised__newtonian__navier__stokes__elements_8h_source_l00064}\mbox{\hyperlink{classoomph_1_1GeneralisedNewtonianTemplateFreeNavierStokesEquationsBase_af6bb8d2f9a6e2b1d70ec38b5779fd6f6}{00064}} \textcolor{comment}{}    \textcolor{keyword}{virtual} \mbox{\hyperlink{classoomph_1_1GeneralisedNewtonianTemplateFreeNavierStokesEquationsBase_af6bb8d2f9a6e2b1d70ec38b5779fd6f6}{\string~GeneralisedNewtonianTemplateFreeNavierStokesEquationsBase}}()\{\};}
 \DoxyCodeLine{\Hypertarget{generalised__newtonian__navier__stokes__elements_8h_source_l00065}00065 }
 \DoxyCodeLine{\Hypertarget{generalised__newtonian__navier__stokes__elements_8h_source_l00066}00066 \textcolor{comment}{}}
-\DoxyCodeLine{\Hypertarget{generalised__newtonian__navier__stokes__elements_8h_source_l00067}00067 \textcolor{comment}{    ///  Return the index at which the pressure is stored if it is}}
+\DoxyCodeLine{\Hypertarget{generalised__newtonian__navier__stokes__elements_8h_source_l00067}00067 \textcolor{comment}{    /// Return the index at which the pressure is stored if it is}}
 \DoxyCodeLine{\Hypertarget{generalised__newtonian__navier__stokes__elements_8h_source_l00068}00068 \textcolor{comment}{    /// stored at the nodes. If not stored at the nodes this will return}}
 \DoxyCodeLine{\Hypertarget{generalised__newtonian__navier__stokes__elements_8h_source_l00069}00069 \textcolor{comment}{    /// a negative number.}}
 \DoxyCodeLine{\Hypertarget{generalised__newtonian__navier__stokes__elements_8h_source_l00070}\mbox{\hyperlink{classoomph_1_1GeneralisedNewtonianTemplateFreeNavierStokesEquationsBase_a649186f26fbe7e3725a50c777a68008b}{00070}} \textcolor{comment}{}    \textcolor{keyword}{virtual} \textcolor{keywordtype}{int} \mbox{\hyperlink{classoomph_1_1GeneralisedNewtonianTemplateFreeNavierStokesEquationsBase_a649186f26fbe7e3725a50c777a68008b}{p\_nodal\_index\_nst}}() \textcolor{keyword}{const} = 0;}
 \DoxyCodeLine{\Hypertarget{generalised__newtonian__navier__stokes__elements_8h_source_l00071}00071 \textcolor{comment}{}}
-\DoxyCodeLine{\Hypertarget{generalised__newtonian__navier__stokes__elements_8h_source_l00072}00072 \textcolor{comment}{    ///  Access function for the local equation number information for}}
+\DoxyCodeLine{\Hypertarget{generalised__newtonian__navier__stokes__elements_8h_source_l00072}00072 \textcolor{comment}{    /// Access function for the local equation number information for}}
 \DoxyCodeLine{\Hypertarget{generalised__newtonian__navier__stokes__elements_8h_source_l00073}00073 \textcolor{comment}{    /// the pressure.}}
 \DoxyCodeLine{\Hypertarget{generalised__newtonian__navier__stokes__elements_8h_source_l00074}00074 \textcolor{comment}{    /// p\_local\_eqn[n] = local equation number or < 0 if pinned}}
 \DoxyCodeLine{\Hypertarget{generalised__newtonian__navier__stokes__elements_8h_source_l00075}\mbox{\hyperlink{classoomph_1_1GeneralisedNewtonianTemplateFreeNavierStokesEquationsBase_abacdc7add36a8da0b68b9f991e7973d9}{00075}} \textcolor{comment}{}    \textcolor{keyword}{virtual} \textcolor{keywordtype}{int} \mbox{\hyperlink{classoomph_1_1GeneralisedNewtonianTemplateFreeNavierStokesEquationsBase_abacdc7add36a8da0b68b9f991e7973d9}{p\_local\_eqn}}(\textcolor{keyword}{const} \textcolor{keywordtype}{unsigned}\& n) \textcolor{keyword}{const} = 0;}
 \DoxyCodeLine{\Hypertarget{generalised__newtonian__navier__stokes__elements_8h_source_l00076}00076 \textcolor{comment}{}}
-\DoxyCodeLine{\Hypertarget{generalised__newtonian__navier__stokes__elements_8h_source_l00077}00077 \textcolor{comment}{    ///  Pin all non-\/pressure dofs and backup eqn numbers of all Data}}
+\DoxyCodeLine{\Hypertarget{generalised__newtonian__navier__stokes__elements_8h_source_l00077}00077 \textcolor{comment}{    /// Pin all non-\/pressure dofs and backup eqn numbers of all Data}}
 \DoxyCodeLine{\Hypertarget{generalised__newtonian__navier__stokes__elements_8h_source_l00078}\mbox{\hyperlink{classoomph_1_1GeneralisedNewtonianTemplateFreeNavierStokesEquationsBase_ae5b2fd78047630a2be4d66c541184a46}{00078}} \textcolor{comment}{}    \textcolor{keyword}{virtual} \textcolor{keywordtype}{void} \mbox{\hyperlink{classoomph_1_1GeneralisedNewtonianTemplateFreeNavierStokesEquationsBase_ae5b2fd78047630a2be4d66c541184a46}{pin\_all\_non\_pressure\_dofs}}(}
 \DoxyCodeLine{\Hypertarget{generalised__newtonian__navier__stokes__elements_8h_source_l00079}00079       std::map<\mbox{\hyperlink{classoomph_1_1Data}{Data}}*, std::vector<int>>\& eqn\_number\_backup) = 0;}
 \DoxyCodeLine{\Hypertarget{generalised__newtonian__navier__stokes__elements_8h_source_l00080}00080 }
 \DoxyCodeLine{\Hypertarget{generalised__newtonian__navier__stokes__elements_8h_source_l00081}00081 \textcolor{comment}{}}
-\DoxyCodeLine{\Hypertarget{generalised__newtonian__navier__stokes__elements_8h_source_l00082}00082 \textcolor{comment}{    ///  Compute the diagonal of the velocity/pressure mass matrices.}}
+\DoxyCodeLine{\Hypertarget{generalised__newtonian__navier__stokes__elements_8h_source_l00082}00082 \textcolor{comment}{    /// Compute the diagonal of the velocity/pressure mass matrices.}}
 \DoxyCodeLine{\Hypertarget{generalised__newtonian__navier__stokes__elements_8h_source_l00083}00083 \textcolor{comment}{    /// If which one=0, both are computed, otherwise only the pressure}}
 \DoxyCodeLine{\Hypertarget{generalised__newtonian__navier__stokes__elements_8h_source_l00084}00084 \textcolor{comment}{    /// (which\_one=1) or the velocity mass matrix (which\_one=2 -\/-\/ the}}
 \DoxyCodeLine{\Hypertarget{generalised__newtonian__navier__stokes__elements_8h_source_l00085}00085 \textcolor{comment}{    /// LSC version of the preconditioner only needs that one)}}
@@ -129,26 +129,26 @@
 \DoxyCodeLine{\Hypertarget{generalised__newtonian__navier__stokes__elements_8h_source_l00125}00125       \textcolor{keyword}{public} \textcolor{keyword}{virtual} GeneralisedNewtonianTemplateFreeNavierStokesEquationsBase}
 \DoxyCodeLine{\Hypertarget{generalised__newtonian__navier__stokes__elements_8h_source_l00126}00126   \{}
 \DoxyCodeLine{\Hypertarget{generalised__newtonian__navier__stokes__elements_8h_source_l00127}00127   \textcolor{keyword}{public}:\textcolor{comment}{}}
-\DoxyCodeLine{\Hypertarget{generalised__newtonian__navier__stokes__elements_8h_source_l00128}00128 \textcolor{comment}{    ///  Function pointer to body force function fct(t,x,f(x))}}
+\DoxyCodeLine{\Hypertarget{generalised__newtonian__navier__stokes__elements_8h_source_l00128}00128 \textcolor{comment}{    /// Function pointer to body force function fct(t,x,f(x))}}
 \DoxyCodeLine{\Hypertarget{generalised__newtonian__navier__stokes__elements_8h_source_l00129}00129 \textcolor{comment}{    /// x is a Vector!}}
 \DoxyCodeLine{\Hypertarget{generalised__newtonian__navier__stokes__elements_8h_source_l00130}\mbox{\hyperlink{classGeneralisedNewtonianNavierStokesEquations_acc3501837c1d975e9d59917fa5c94fbc}{00130}} \textcolor{comment}{}    \textcolor{keyword}{typedef} void (*NavierStokesBodyForceFctPt)(\textcolor{keyword}{const} \textcolor{keywordtype}{double}\& time,}
 \DoxyCodeLine{\Hypertarget{generalised__newtonian__navier__stokes__elements_8h_source_l00131}00131                                                \textcolor{keyword}{const} Vector<double>\& \mbox{\hyperlink{namespaceoomph_a9d1d2da2b8bb8e73af72b5cadb8fe97c}{x}},}
 \DoxyCodeLine{\Hypertarget{generalised__newtonian__navier__stokes__elements_8h_source_l00132}00132                                                Vector<double>\& body\_force);}
 \DoxyCodeLine{\Hypertarget{generalised__newtonian__navier__stokes__elements_8h_source_l00133}00133 \textcolor{comment}{}}
-\DoxyCodeLine{\Hypertarget{generalised__newtonian__navier__stokes__elements_8h_source_l00134}00134 \textcolor{comment}{    ///  Function pointer to source function fct(t,x)}}
+\DoxyCodeLine{\Hypertarget{generalised__newtonian__navier__stokes__elements_8h_source_l00134}00134 \textcolor{comment}{    /// Function pointer to source function fct(t,x)}}
 \DoxyCodeLine{\Hypertarget{generalised__newtonian__navier__stokes__elements_8h_source_l00135}00135 \textcolor{comment}{    /// x is a Vector!}}
 \DoxyCodeLine{\Hypertarget{generalised__newtonian__navier__stokes__elements_8h_source_l00136}\mbox{\hyperlink{classGeneralisedNewtonianNavierStokesEquations_a529760afce26d9b27f20a86c6e3e229d}{00136}} \textcolor{comment}{}    \textcolor{keyword}{typedef} double (*NavierStokesSourceFctPt)(\textcolor{keyword}{const} \textcolor{keywordtype}{double}\& time,}
 \DoxyCodeLine{\Hypertarget{generalised__newtonian__navier__stokes__elements_8h_source_l00137}00137                                               \textcolor{keyword}{const} Vector<double>\& \mbox{\hyperlink{namespaceoomph_a9d1d2da2b8bb8e73af72b5cadb8fe97c}{x}});}
 \DoxyCodeLine{\Hypertarget{generalised__newtonian__navier__stokes__elements_8h_source_l00138}00138 }
 \DoxyCodeLine{\Hypertarget{generalised__newtonian__navier__stokes__elements_8h_source_l00139}00139 \textcolor{comment}{}}
-\DoxyCodeLine{\Hypertarget{generalised__newtonian__navier__stokes__elements_8h_source_l00140}00140 \textcolor{comment}{    ///  Function pointer to source function fct(x) for the}}
+\DoxyCodeLine{\Hypertarget{generalised__newtonian__navier__stokes__elements_8h_source_l00140}00140 \textcolor{comment}{    /// Function pointer to source function fct(x) for the}}
 \DoxyCodeLine{\Hypertarget{generalised__newtonian__navier__stokes__elements_8h_source_l00141}00141 \textcolor{comment}{    /// pressure advection diffusion equation (only used during}}
 \DoxyCodeLine{\Hypertarget{generalised__newtonian__navier__stokes__elements_8h_source_l00142}00142 \textcolor{comment}{    /// validation!). x is a Vector!}}
 \DoxyCodeLine{\Hypertarget{generalised__newtonian__navier__stokes__elements_8h_source_l00143}\mbox{\hyperlink{classGeneralisedNewtonianNavierStokesEquations_a30a9e698f28e3ba3d55c40a9fde959c0}{00143}} \textcolor{comment}{}    \textcolor{keyword}{typedef} double (*NavierStokesPressureAdvDiffSourceFctPt)(}
 \DoxyCodeLine{\Hypertarget{generalised__newtonian__navier__stokes__elements_8h_source_l00144}00144       \textcolor{keyword}{const} Vector<double>\& \mbox{\hyperlink{namespaceoomph_a9d1d2da2b8bb8e73af72b5cadb8fe97c}{x}});}
 \DoxyCodeLine{\Hypertarget{generalised__newtonian__navier__stokes__elements_8h_source_l00145}00145 }
 \DoxyCodeLine{\Hypertarget{generalised__newtonian__navier__stokes__elements_8h_source_l00146}00146   \textcolor{keyword}{private}:\textcolor{comment}{}}
-\DoxyCodeLine{\Hypertarget{generalised__newtonian__navier__stokes__elements_8h_source_l00147}00147 \textcolor{comment}{    ///  Static "{}magic"{} number that indicates that the pressure is}}
+\DoxyCodeLine{\Hypertarget{generalised__newtonian__navier__stokes__elements_8h_source_l00147}00147 \textcolor{comment}{    /// Static "{}magic"{} number that indicates that the pressure is}}
 \DoxyCodeLine{\Hypertarget{generalised__newtonian__navier__stokes__elements_8h_source_l00148}00148 \textcolor{comment}{    /// not stored at a node}}
 \DoxyCodeLine{\Hypertarget{generalised__newtonian__navier__stokes__elements_8h_source_l00149}\mbox{\hyperlink{classGeneralisedNewtonianNavierStokesEquations_ae218d5d24e32a2cd5271bb0bc7c5cd93}{00149}} \textcolor{comment}{}    \textcolor{keyword}{static} \textcolor{keywordtype}{int} \mbox{\hyperlink{classGeneralisedNewtonianNavierStokesEquations_ae218d5d24e32a2cd5271bb0bc7c5cd93}{Pressure\_not\_stored\_at\_node}};}
 \DoxyCodeLine{\Hypertarget{generalised__newtonian__navier__stokes__elements_8h_source_l00150}00150 \textcolor{comment}{}}
@@ -170,11 +170,11 @@
 \DoxyCodeLine{\Hypertarget{generalised__newtonian__navier__stokes__elements_8h_source_l00166}00166 }
 \DoxyCodeLine{\Hypertarget{generalised__newtonian__navier__stokes__elements_8h_source_l00167}00167     \textcolor{comment}{// Physical constants}}
 \DoxyCodeLine{\Hypertarget{generalised__newtonian__navier__stokes__elements_8h_source_l00168}00168 \textcolor{comment}{}}
-\DoxyCodeLine{\Hypertarget{generalised__newtonian__navier__stokes__elements_8h_source_l00169}00169 \textcolor{comment}{    ///  Pointer to the viscosity ratio (relative to the}}
+\DoxyCodeLine{\Hypertarget{generalised__newtonian__navier__stokes__elements_8h_source_l00169}00169 \textcolor{comment}{    /// Pointer to the viscosity ratio (relative to the}}
 \DoxyCodeLine{\Hypertarget{generalised__newtonian__navier__stokes__elements_8h_source_l00170}00170 \textcolor{comment}{    /// viscosity used in the definition of the Reynolds number)}}
 \DoxyCodeLine{\Hypertarget{generalised__newtonian__navier__stokes__elements_8h_source_l00171}\mbox{\hyperlink{classGeneralisedNewtonianNavierStokesEquations_aab3e04648aaf35bdfd52b1836f34d142}{00171}} \textcolor{comment}{}    \textcolor{keywordtype}{double}* \mbox{\hyperlink{classGeneralisedNewtonianNavierStokesEquations_aab3e04648aaf35bdfd52b1836f34d142}{Viscosity\_Ratio\_pt}};}
 \DoxyCodeLine{\Hypertarget{generalised__newtonian__navier__stokes__elements_8h_source_l00172}00172 \textcolor{comment}{}}
-\DoxyCodeLine{\Hypertarget{generalised__newtonian__navier__stokes__elements_8h_source_l00173}00173 \textcolor{comment}{    ///  Pointer to the density ratio (relative to the density used in the}}
+\DoxyCodeLine{\Hypertarget{generalised__newtonian__navier__stokes__elements_8h_source_l00173}00173 \textcolor{comment}{    /// Pointer to the density ratio (relative to the density used in the}}
 \DoxyCodeLine{\Hypertarget{generalised__newtonian__navier__stokes__elements_8h_source_l00174}00174 \textcolor{comment}{    /// definition of the Reynolds number)}}
 \DoxyCodeLine{\Hypertarget{generalised__newtonian__navier__stokes__elements_8h_source_l00175}\mbox{\hyperlink{classGeneralisedNewtonianNavierStokesEquations_a64d7f230c07566f8723670250126a271}{00175}} \textcolor{comment}{}    \textcolor{keywordtype}{double}* \mbox{\hyperlink{classGeneralisedNewtonianNavierStokesEquations_a64d7f230c07566f8723670250126a271}{Density\_Ratio\_pt}};}
 \DoxyCodeLine{\Hypertarget{generalised__newtonian__navier__stokes__elements_8h_source_l00176}00176 }
@@ -186,7 +186,7 @@
 \DoxyCodeLine{\Hypertarget{generalised__newtonian__navier__stokes__elements_8h_source_l00182}00182 \textcolor{comment}{    /// Pointer to global Reynolds number x Strouhal number (=Womersley)}}
 \DoxyCodeLine{\Hypertarget{generalised__newtonian__navier__stokes__elements_8h_source_l00183}\mbox{\hyperlink{classGeneralisedNewtonianNavierStokesEquations_a468f66da686d3715faba8ab5bf5ae907}{00183}} \textcolor{comment}{}    \textcolor{keywordtype}{double}* \mbox{\hyperlink{classGeneralisedNewtonianNavierStokesEquations_a468f66da686d3715faba8ab5bf5ae907}{ReSt\_pt}};}
 \DoxyCodeLine{\Hypertarget{generalised__newtonian__navier__stokes__elements_8h_source_l00184}00184 \textcolor{comment}{}}
-\DoxyCodeLine{\Hypertarget{generalised__newtonian__navier__stokes__elements_8h_source_l00185}00185 \textcolor{comment}{    ///  Pointer to global Reynolds number x inverse Froude number}}
+\DoxyCodeLine{\Hypertarget{generalised__newtonian__navier__stokes__elements_8h_source_l00185}00185 \textcolor{comment}{    /// Pointer to global Reynolds number x inverse Froude number}}
 \DoxyCodeLine{\Hypertarget{generalised__newtonian__navier__stokes__elements_8h_source_l00186}00186 \textcolor{comment}{    /// (= Bond number / Capillary number)}}
 \DoxyCodeLine{\Hypertarget{generalised__newtonian__navier__stokes__elements_8h_source_l00187}\mbox{\hyperlink{classGeneralisedNewtonianNavierStokesEquations_aeaaa35b96d2ccad5db06aac8b3006d8c}{00187}} \textcolor{comment}{}    \textcolor{keywordtype}{double}* \mbox{\hyperlink{classGeneralisedNewtonianNavierStokesEquations_aeaaa35b96d2ccad5db06aac8b3006d8c}{ReInvFr\_pt}};}
 \DoxyCodeLine{\Hypertarget{generalised__newtonian__navier__stokes__elements_8h_source_l00188}00188 \textcolor{comment}{}}
@@ -206,12 +206,12 @@
 \DoxyCodeLine{\Hypertarget{generalised__newtonian__navier__stokes__elements_8h_source_l00202}00202     \textcolor{comment}{// for calculation of viscosity or not}}
 \DoxyCodeLine{\Hypertarget{generalised__newtonian__navier__stokes__elements_8h_source_l00203}\mbox{\hyperlink{classGeneralisedNewtonianNavierStokesEquations_af39dc616d32973ce668e27635704110b}{00203}}     \textcolor{keywordtype}{bool} \mbox{\hyperlink{classGeneralisedNewtonianNavierStokesEquations_af39dc616d32973ce668e27635704110b}{Use\_extrapolated\_strainrate\_to\_compute\_second\_invariant}};}
 \DoxyCodeLine{\Hypertarget{generalised__newtonian__navier__stokes__elements_8h_source_l00204}00204 \textcolor{comment}{}}
-\DoxyCodeLine{\Hypertarget{generalised__newtonian__navier__stokes__elements_8h_source_l00205}00205 \textcolor{comment}{    ///  Boolean flag to indicate if ALE formulation is disabled when}}
+\DoxyCodeLine{\Hypertarget{generalised__newtonian__navier__stokes__elements_8h_source_l00205}00205 \textcolor{comment}{    /// Boolean flag to indicate if ALE formulation is disabled when}}
 \DoxyCodeLine{\Hypertarget{generalised__newtonian__navier__stokes__elements_8h_source_l00206}00206 \textcolor{comment}{    /// time-\/derivatives are computed. Only set to true if you're sure}}
 \DoxyCodeLine{\Hypertarget{generalised__newtonian__navier__stokes__elements_8h_source_l00207}00207 \textcolor{comment}{    /// that the mesh is stationary.}}
 \DoxyCodeLine{\Hypertarget{generalised__newtonian__navier__stokes__elements_8h_source_l00208}\mbox{\hyperlink{classGeneralisedNewtonianNavierStokesEquations_a28e489ee93cffabb0827b449cd6ef3ac}{00208}} \textcolor{comment}{}    \textcolor{keywordtype}{bool} \mbox{\hyperlink{classGeneralisedNewtonianNavierStokesEquations_a28e489ee93cffabb0827b449cd6ef3ac}{ALE\_is\_disabled}};}
 \DoxyCodeLine{\Hypertarget{generalised__newtonian__navier__stokes__elements_8h_source_l00209}00209 \textcolor{comment}{}}
-\DoxyCodeLine{\Hypertarget{generalised__newtonian__navier__stokes__elements_8h_source_l00210}00210 \textcolor{comment}{    ///  Compute the shape functions and derivatives}}
+\DoxyCodeLine{\Hypertarget{generalised__newtonian__navier__stokes__elements_8h_source_l00210}00210 \textcolor{comment}{    /// Compute the shape functions and derivatives}}
 \DoxyCodeLine{\Hypertarget{generalised__newtonian__navier__stokes__elements_8h_source_l00211}00211 \textcolor{comment}{    /// w.r.t. global coords at local coordinate s.}}
 \DoxyCodeLine{\Hypertarget{generalised__newtonian__navier__stokes__elements_8h_source_l00212}00212 \textcolor{comment}{    /// Return Jacobian of mapping between local and global coordinates.}}
 \DoxyCodeLine{\Hypertarget{generalised__newtonian__navier__stokes__elements_8h_source_l00213}\mbox{\hyperlink{classGeneralisedNewtonianNavierStokesEquations_a7c6cb120adb82961e7f02be0df83c2ba}{00213}} \textcolor{comment}{}    \textcolor{keyword}{virtual} \textcolor{keywordtype}{double} \mbox{\hyperlink{classGeneralisedNewtonianNavierStokesEquations_a7c6cb120adb82961e7f02be0df83c2ba}{dshape\_and\_dtest\_eulerian\_nst}}(\textcolor{keyword}{const} Vector<double>\& \mbox{\hyperlink{cfortran_8h_ab7123126e4885ef647dd9c6e3807a21c}{s}},}
@@ -220,7 +220,7 @@
 \DoxyCodeLine{\Hypertarget{generalised__newtonian__navier__stokes__elements_8h_source_l00216}00216                                                  Shape\& test,}
 \DoxyCodeLine{\Hypertarget{generalised__newtonian__navier__stokes__elements_8h_source_l00217}00217                                                  DShape\& dtestdx) \textcolor{keyword}{const} = 0;}
 \DoxyCodeLine{\Hypertarget{generalised__newtonian__navier__stokes__elements_8h_source_l00218}00218 \textcolor{comment}{}}
-\DoxyCodeLine{\Hypertarget{generalised__newtonian__navier__stokes__elements_8h_source_l00219}00219 \textcolor{comment}{    ///  Compute the shape functions and derivatives}}
+\DoxyCodeLine{\Hypertarget{generalised__newtonian__navier__stokes__elements_8h_source_l00219}00219 \textcolor{comment}{    /// Compute the shape functions and derivatives}}
 \DoxyCodeLine{\Hypertarget{generalised__newtonian__navier__stokes__elements_8h_source_l00220}00220 \textcolor{comment}{    /// w.r.t. global coords at ipt-\/th integration point}}
 \DoxyCodeLine{\Hypertarget{generalised__newtonian__navier__stokes__elements_8h_source_l00221}00221 \textcolor{comment}{    /// Return Jacobian of mapping between local and global coordinates.}}
 \DoxyCodeLine{\Hypertarget{generalised__newtonian__navier__stokes__elements_8h_source_l00222}\mbox{\hyperlink{classGeneralisedNewtonianNavierStokesEquations_ac2ec30d59846029414cef5de20d9b2a2}{00222}} \textcolor{comment}{}    \textcolor{keyword}{virtual} \textcolor{keywordtype}{double} \mbox{\hyperlink{classGeneralisedNewtonianNavierStokesEquations_ac2ec30d59846029414cef5de20d9b2a2}{dshape\_and\_dtest\_eulerian\_at\_knot\_nst}}(}
@@ -230,7 +230,7 @@
 \DoxyCodeLine{\Hypertarget{generalised__newtonian__navier__stokes__elements_8h_source_l00226}00226       Shape\& test,}
 \DoxyCodeLine{\Hypertarget{generalised__newtonian__navier__stokes__elements_8h_source_l00227}00227       DShape\& dtestdx) \textcolor{keyword}{const} = 0;}
 \DoxyCodeLine{\Hypertarget{generalised__newtonian__navier__stokes__elements_8h_source_l00228}00228 \textcolor{comment}{}}
-\DoxyCodeLine{\Hypertarget{generalised__newtonian__navier__stokes__elements_8h_source_l00229}00229 \textcolor{comment}{    ///  Shape/test functions and derivs w.r.t. to global coords at}}
+\DoxyCodeLine{\Hypertarget{generalised__newtonian__navier__stokes__elements_8h_source_l00229}00229 \textcolor{comment}{    /// Shape/test functions and derivs w.r.t. to global coords at}}
 \DoxyCodeLine{\Hypertarget{generalised__newtonian__navier__stokes__elements_8h_source_l00230}00230 \textcolor{comment}{    /// integration point ipt; return Jacobian of mapping (J). Also compute}}
 \DoxyCodeLine{\Hypertarget{generalised__newtonian__navier__stokes__elements_8h_source_l00231}00231 \textcolor{comment}{    /// derivatives of dpsidx, dtestdx and J w.r.t. nodal coordinates.}}
 \DoxyCodeLine{\Hypertarget{generalised__newtonian__navier__stokes__elements_8h_source_l00232}\mbox{\hyperlink{classGeneralisedNewtonianNavierStokesEquations_a88120b5f1a32a49ce6bae61930f4d724}{00232}} \textcolor{comment}{}    \textcolor{keyword}{virtual} \textcolor{keywordtype}{double} \mbox{\hyperlink{classGeneralisedNewtonianNavierStokesEquations_a88120b5f1a32a49ce6bae61930f4d724}{dshape\_and\_dtest\_eulerian\_at\_knot\_nst}}(}
@@ -243,7 +243,7 @@
 \DoxyCodeLine{\Hypertarget{generalised__newtonian__navier__stokes__elements_8h_source_l00239}00239       RankFourTensor<double>\& d\_dtestdx\_dX,}
 \DoxyCodeLine{\Hypertarget{generalised__newtonian__navier__stokes__elements_8h_source_l00240}00240       DenseMatrix<double>\& djacobian\_dX) \textcolor{keyword}{const} = 0;}
 \DoxyCodeLine{\Hypertarget{generalised__newtonian__navier__stokes__elements_8h_source_l00241}00241 \textcolor{comment}{}}
-\DoxyCodeLine{\Hypertarget{generalised__newtonian__navier__stokes__elements_8h_source_l00242}00242 \textcolor{comment}{    ///  Compute the pressure shape and test functions and derivatives}}
+\DoxyCodeLine{\Hypertarget{generalised__newtonian__navier__stokes__elements_8h_source_l00242}00242 \textcolor{comment}{    /// Compute the pressure shape and test functions and derivatives}}
 \DoxyCodeLine{\Hypertarget{generalised__newtonian__navier__stokes__elements_8h_source_l00243}00243 \textcolor{comment}{    /// w.r.t. global coords at local coordinate s.}}
 \DoxyCodeLine{\Hypertarget{generalised__newtonian__navier__stokes__elements_8h_source_l00244}00244 \textcolor{comment}{    /// Return Jacobian of mapping between local and global coordinates.}}
 \DoxyCodeLine{\Hypertarget{generalised__newtonian__navier__stokes__elements_8h_source_l00245}\mbox{\hyperlink{classGeneralisedNewtonianNavierStokesEquations_aa4ee028b38bb90e9921af2ba83f59363}{00245}} \textcolor{comment}{}    \textcolor{keyword}{virtual} \textcolor{keywordtype}{double} \mbox{\hyperlink{classGeneralisedNewtonianNavierStokesEquations_aa4ee028b38bb90e9921af2ba83f59363}{dpshape\_and\_dptest\_eulerian\_nst}}(\textcolor{keyword}{const} Vector<double>\& \mbox{\hyperlink{cfortran_8h_ab7123126e4885ef647dd9c6e3807a21c}{s}},}
@@ -253,7 +253,7 @@
 \DoxyCodeLine{\Hypertarget{generalised__newtonian__navier__stokes__elements_8h_source_l00249}00249                                                    DShape\& dptestdx) \textcolor{keyword}{const} = 0;}
 \DoxyCodeLine{\Hypertarget{generalised__newtonian__navier__stokes__elements_8h_source_l00250}00250 }
 \DoxyCodeLine{\Hypertarget{generalised__newtonian__navier__stokes__elements_8h_source_l00251}00251 \textcolor{comment}{}}
-\DoxyCodeLine{\Hypertarget{generalised__newtonian__navier__stokes__elements_8h_source_l00252}00252 \textcolor{comment}{    ///  Calculate the body force at a given time and local and/or}}
+\DoxyCodeLine{\Hypertarget{generalised__newtonian__navier__stokes__elements_8h_source_l00252}00252 \textcolor{comment}{    /// Calculate the body force at a given time and local and/or}}
 \DoxyCodeLine{\Hypertarget{generalised__newtonian__navier__stokes__elements_8h_source_l00253}00253 \textcolor{comment}{    /// Eulerian position. This function is virtual so that it can be}}
 \DoxyCodeLine{\Hypertarget{generalised__newtonian__navier__stokes__elements_8h_source_l00254}00254 \textcolor{comment}{    /// overloaded in multi-\/physics elements where the body force might}}
 \DoxyCodeLine{\Hypertarget{generalised__newtonian__navier__stokes__elements_8h_source_l00255}00255 \textcolor{comment}{    /// depend on another variable.}}
@@ -323,7 +323,7 @@
 \DoxyCodeLine{\Hypertarget{generalised__newtonian__navier__stokes__elements_8h_source_l00319}00319     \}}
 \DoxyCodeLine{\Hypertarget{generalised__newtonian__navier__stokes__elements_8h_source_l00320}00320 }
 \DoxyCodeLine{\Hypertarget{generalised__newtonian__navier__stokes__elements_8h_source_l00321}00321 \textcolor{comment}{}}
-\DoxyCodeLine{\Hypertarget{generalised__newtonian__navier__stokes__elements_8h_source_l00322}00322 \textcolor{comment}{    ///  Calculate the source fct at given time and}}
+\DoxyCodeLine{\Hypertarget{generalised__newtonian__navier__stokes__elements_8h_source_l00322}00322 \textcolor{comment}{    /// Calculate the source fct at given time and}}
 \DoxyCodeLine{\Hypertarget{generalised__newtonian__navier__stokes__elements_8h_source_l00323}00323 \textcolor{comment}{    /// Eulerian position}}
 \DoxyCodeLine{\Hypertarget{generalised__newtonian__navier__stokes__elements_8h_source_l00324}\mbox{\hyperlink{classGeneralisedNewtonianNavierStokesEquations_a72a8115e56c9999cd549d3329877ebe4}{00324}} \textcolor{comment}{}    \textcolor{keyword}{virtual} \textcolor{keywordtype}{double} \mbox{\hyperlink{classGeneralisedNewtonianNavierStokesEquations_a72a8115e56c9999cd549d3329877ebe4}{get\_source\_nst}}(\textcolor{keyword}{const} \textcolor{keywordtype}{double}\& time,}
 \DoxyCodeLine{\Hypertarget{generalised__newtonian__navier__stokes__elements_8h_source_l00325}00325                                   \textcolor{keyword}{const} \textcolor{keywordtype}{unsigned}\& ipt,}
@@ -399,7 +399,7 @@
 \DoxyCodeLine{\Hypertarget{generalised__newtonian__navier__stokes__elements_8h_source_l00395}00395       DenseMatrix<double>\& dmass\_matrix\_dparam,}
 \DoxyCodeLine{\Hypertarget{generalised__newtonian__navier__stokes__elements_8h_source_l00396}00396       \textcolor{keywordtype}{unsigned} flag);}
 \DoxyCodeLine{\Hypertarget{generalised__newtonian__navier__stokes__elements_8h_source_l00397}00397 \textcolor{comment}{}}
-\DoxyCodeLine{\Hypertarget{generalised__newtonian__navier__stokes__elements_8h_source_l00398}00398 \textcolor{comment}{    ///  Compute the hessian tensor vector products required to}}
+\DoxyCodeLine{\Hypertarget{generalised__newtonian__navier__stokes__elements_8h_source_l00398}00398 \textcolor{comment}{    /// Compute the hessian tensor vector products required to}}
 \DoxyCodeLine{\Hypertarget{generalised__newtonian__navier__stokes__elements_8h_source_l00399}00399 \textcolor{comment}{    /// perform continuation of bifurcations analytically}}
 \DoxyCodeLine{\Hypertarget{generalised__newtonian__navier__stokes__elements_8h_source_l00400}00400 \textcolor{comment}{}    \textcolor{keywordtype}{void} fill\_in\_contribution\_to\_hessian\_vector\_products(}
 \DoxyCodeLine{\Hypertarget{generalised__newtonian__navier__stokes__elements_8h_source_l00401}00401       Vector<double> \textcolor{keyword}{const}\& Y,}
@@ -408,7 +408,7 @@
 \DoxyCodeLine{\Hypertarget{generalised__newtonian__navier__stokes__elements_8h_source_l00404}00404 }
 \DoxyCodeLine{\Hypertarget{generalised__newtonian__navier__stokes__elements_8h_source_l00405}00405 }
 \DoxyCodeLine{\Hypertarget{generalised__newtonian__navier__stokes__elements_8h_source_l00406}00406   \textcolor{keyword}{public}:\textcolor{comment}{}}
-\DoxyCodeLine{\Hypertarget{generalised__newtonian__navier__stokes__elements_8h_source_l00407}00407 \textcolor{comment}{    ///  Constructor: NULL the body force and source function}}
+\DoxyCodeLine{\Hypertarget{generalised__newtonian__navier__stokes__elements_8h_source_l00407}00407 \textcolor{comment}{    /// Constructor: NULL the body force and source function}}
 \DoxyCodeLine{\Hypertarget{generalised__newtonian__navier__stokes__elements_8h_source_l00408}00408 \textcolor{comment}{    /// and make sure the ALE terms are included by default.}}
 \DoxyCodeLine{\Hypertarget{generalised__newtonian__navier__stokes__elements_8h_source_l00409}\mbox{\hyperlink{classGeneralisedNewtonianNavierStokesEquations_acd43e313701e96a6ba11f1238e73ae08}{00409}} \textcolor{comment}{}    \mbox{\hyperlink{classGeneralisedNewtonianNavierStokesEquations_acd43e313701e96a6ba11f1238e73ae08}{GeneralisedNewtonianNavierStokesEquations}}()}
 \DoxyCodeLine{\Hypertarget{generalised__newtonian__navier__stokes__elements_8h_source_l00410}00410       : Body\_force\_fct\_pt(0),}
@@ -460,7 +460,7 @@
 \DoxyCodeLine{\Hypertarget{generalised__newtonian__navier__stokes__elements_8h_source_l00456}00456       \textcolor{keywordflow}{return} ReSt\_pt;}
 \DoxyCodeLine{\Hypertarget{generalised__newtonian__navier__stokes__elements_8h_source_l00457}00457     \}}
 \DoxyCodeLine{\Hypertarget{generalised__newtonian__navier__stokes__elements_8h_source_l00458}00458 \textcolor{comment}{}}
-\DoxyCodeLine{\Hypertarget{generalised__newtonian__navier__stokes__elements_8h_source_l00459}00459 \textcolor{comment}{    ///  Viscosity ratio for element: Element's viscosity relative to the}}
+\DoxyCodeLine{\Hypertarget{generalised__newtonian__navier__stokes__elements_8h_source_l00459}00459 \textcolor{comment}{    /// Viscosity ratio for element: Element's viscosity relative to the}}
 \DoxyCodeLine{\Hypertarget{generalised__newtonian__navier__stokes__elements_8h_source_l00460}00460 \textcolor{comment}{    /// viscosity used in the definition of the Reynolds number}}
 \DoxyCodeLine{\Hypertarget{generalised__newtonian__navier__stokes__elements_8h_source_l00461}\mbox{\hyperlink{classGeneralisedNewtonianNavierStokesEquations_af7f32a3ce5c5b8df8ea7a6223b148cd6}{00461}} \textcolor{comment}{}    \textcolor{keyword}{const} \textcolor{keywordtype}{double}\& \mbox{\hyperlink{classGeneralisedNewtonianNavierStokesEquations_af7f32a3ce5c5b8df8ea7a6223b148cd6}{viscosity\_ratio}}()\textcolor{keyword}{ const}}
 \DoxyCodeLine{\Hypertarget{generalised__newtonian__navier__stokes__elements_8h_source_l00462}00462 \textcolor{keyword}{    }\{}
@@ -473,7 +473,7 @@
 \DoxyCodeLine{\Hypertarget{generalised__newtonian__navier__stokes__elements_8h_source_l00469}00469       \textcolor{keywordflow}{return} Viscosity\_Ratio\_pt;}
 \DoxyCodeLine{\Hypertarget{generalised__newtonian__navier__stokes__elements_8h_source_l00470}00470     \}}
 \DoxyCodeLine{\Hypertarget{generalised__newtonian__navier__stokes__elements_8h_source_l00471}00471 \textcolor{comment}{}}
-\DoxyCodeLine{\Hypertarget{generalised__newtonian__navier__stokes__elements_8h_source_l00472}00472 \textcolor{comment}{    ///  Density ratio for element: Element's density relative to the}}
+\DoxyCodeLine{\Hypertarget{generalised__newtonian__navier__stokes__elements_8h_source_l00472}00472 \textcolor{comment}{    /// Density ratio for element: Element's density relative to the}}
 \DoxyCodeLine{\Hypertarget{generalised__newtonian__navier__stokes__elements_8h_source_l00473}00473 \textcolor{comment}{    ///  viscosity used in the definition of the Reynolds number}}
 \DoxyCodeLine{\Hypertarget{generalised__newtonian__navier__stokes__elements_8h_source_l00474}\mbox{\hyperlink{classGeneralisedNewtonianNavierStokesEquations_ac654057ab7590f7fce17c4ce742e6f48}{00474}} \textcolor{comment}{}    \textcolor{keyword}{const} \textcolor{keywordtype}{double}\& \mbox{\hyperlink{classGeneralisedNewtonianNavierStokesEquations_ac654057ab7590f7fce17c4ce742e6f48}{density\_ratio}}()\textcolor{keyword}{ const}}
 \DoxyCodeLine{\Hypertarget{generalised__newtonian__navier__stokes__elements_8h_source_l00475}00475 \textcolor{keyword}{    }\{}
@@ -558,13 +558,13 @@
 \DoxyCodeLine{\Hypertarget{generalised__newtonian__navier__stokes__elements_8h_source_l00554}00554 \textcolor{comment}{    /// Compute the pressure shape functions at local coordinate s}}
 \DoxyCodeLine{\Hypertarget{generalised__newtonian__navier__stokes__elements_8h_source_l00555}\mbox{\hyperlink{classGeneralisedNewtonianNavierStokesEquations_ac3247fb1c8bfe4e229d5bb166df1e2c8}{00555}} \textcolor{comment}{}    \textcolor{keyword}{virtual} \textcolor{keywordtype}{void} \mbox{\hyperlink{classGeneralisedNewtonianNavierStokesEquations_ac3247fb1c8bfe4e229d5bb166df1e2c8}{pshape\_nst}}(\textcolor{keyword}{const} Vector<double>\& \mbox{\hyperlink{cfortran_8h_ab7123126e4885ef647dd9c6e3807a21c}{s}}, Shape\& psi) \textcolor{keyword}{const} = 0;}
 \DoxyCodeLine{\Hypertarget{generalised__newtonian__navier__stokes__elements_8h_source_l00556}00556 \textcolor{comment}{}}
-\DoxyCodeLine{\Hypertarget{generalised__newtonian__navier__stokes__elements_8h_source_l00557}00557 \textcolor{comment}{    ///  Compute the pressure shape and test functions}}
+\DoxyCodeLine{\Hypertarget{generalised__newtonian__navier__stokes__elements_8h_source_l00557}00557 \textcolor{comment}{    /// Compute the pressure shape and test functions}}
 \DoxyCodeLine{\Hypertarget{generalised__newtonian__navier__stokes__elements_8h_source_l00558}00558 \textcolor{comment}{    /// at local coordinate s}}
 \DoxyCodeLine{\Hypertarget{generalised__newtonian__navier__stokes__elements_8h_source_l00559}\mbox{\hyperlink{classGeneralisedNewtonianNavierStokesEquations_a855a7d1add4391bdab05471fbe3cf8a7}{00559}} \textcolor{comment}{}    \textcolor{keyword}{virtual} \textcolor{keywordtype}{void} \mbox{\hyperlink{classGeneralisedNewtonianNavierStokesEquations_a855a7d1add4391bdab05471fbe3cf8a7}{pshape\_nst}}(\textcolor{keyword}{const} Vector<double>\& \mbox{\hyperlink{cfortran_8h_ab7123126e4885ef647dd9c6e3807a21c}{s}},}
 \DoxyCodeLine{\Hypertarget{generalised__newtonian__navier__stokes__elements_8h_source_l00560}00560                             Shape\& psi,}
 \DoxyCodeLine{\Hypertarget{generalised__newtonian__navier__stokes__elements_8h_source_l00561}00561                             Shape\& test) \textcolor{keyword}{const} = 0;}
 \DoxyCodeLine{\Hypertarget{generalised__newtonian__navier__stokes__elements_8h_source_l00562}00562 \textcolor{comment}{}}
-\DoxyCodeLine{\Hypertarget{generalised__newtonian__navier__stokes__elements_8h_source_l00563}00563 \textcolor{comment}{    ///  Velocity i at local node n. Uses suitably interpolated value}}
+\DoxyCodeLine{\Hypertarget{generalised__newtonian__navier__stokes__elements_8h_source_l00563}00563 \textcolor{comment}{    /// Velocity i at local node n. Uses suitably interpolated value}}
 \DoxyCodeLine{\Hypertarget{generalised__newtonian__navier__stokes__elements_8h_source_l00564}00564 \textcolor{comment}{    /// for hanging nodes. The use of u\_index\_nst() permits the use of this}}
 \DoxyCodeLine{\Hypertarget{generalised__newtonian__navier__stokes__elements_8h_source_l00565}00565 \textcolor{comment}{    /// element as the basis for multi-\/physics elements. The default}}
 \DoxyCodeLine{\Hypertarget{generalised__newtonian__navier__stokes__elements_8h_source_l00566}00566 \textcolor{comment}{    /// is to assume that the i-\/th velocity component is stored at the}}
@@ -574,14 +574,14 @@
 \DoxyCodeLine{\Hypertarget{generalised__newtonian__navier__stokes__elements_8h_source_l00570}00570       \textcolor{keywordflow}{return} nodal\_value(n, u\_index\_nst(\mbox{\hyperlink{cfortran_8h_adb50e893b86b3e55e751a42eab3cba82}{i}}));}
 \DoxyCodeLine{\Hypertarget{generalised__newtonian__navier__stokes__elements_8h_source_l00571}00571     \}}
 \DoxyCodeLine{\Hypertarget{generalised__newtonian__navier__stokes__elements_8h_source_l00572}00572 \textcolor{comment}{}}
-\DoxyCodeLine{\Hypertarget{generalised__newtonian__navier__stokes__elements_8h_source_l00573}00573 \textcolor{comment}{    ///  Velocity i at local node n at timestep t (t=0: present;}}
+\DoxyCodeLine{\Hypertarget{generalised__newtonian__navier__stokes__elements_8h_source_l00573}00573 \textcolor{comment}{    /// Velocity i at local node n at timestep t (t=0: present;}}
 \DoxyCodeLine{\Hypertarget{generalised__newtonian__navier__stokes__elements_8h_source_l00574}00574 \textcolor{comment}{    /// t>0: previous). Uses suitably interpolated value for hanging nodes.}}
 \DoxyCodeLine{\Hypertarget{generalised__newtonian__navier__stokes__elements_8h_source_l00575}\mbox{\hyperlink{classGeneralisedNewtonianNavierStokesEquations_a3943f8eab15715c78216d4a533cb34a9}{00575}} \textcolor{comment}{}    \textcolor{keywordtype}{double} \mbox{\hyperlink{classGeneralisedNewtonianNavierStokesEquations_a3943f8eab15715c78216d4a533cb34a9}{u\_nst}}(\textcolor{keyword}{const} \textcolor{keywordtype}{unsigned}\& \mbox{\hyperlink{cfortran_8h_af6f0bd3dc13317f895c91323c25c2b8f}{t}}, \textcolor{keyword}{const} \textcolor{keywordtype}{unsigned}\& n, \textcolor{keyword}{const} \textcolor{keywordtype}{unsigned}\& \mbox{\hyperlink{cfortran_8h_adb50e893b86b3e55e751a42eab3cba82}{i}})\textcolor{keyword}{ const}}
 \DoxyCodeLine{\Hypertarget{generalised__newtonian__navier__stokes__elements_8h_source_l00576}00576 \textcolor{keyword}{    }\{}
 \DoxyCodeLine{\Hypertarget{generalised__newtonian__navier__stokes__elements_8h_source_l00577}00577       \textcolor{keywordflow}{return} nodal\_value(\mbox{\hyperlink{cfortran_8h_af6f0bd3dc13317f895c91323c25c2b8f}{t}}, n, u\_index\_nst(\mbox{\hyperlink{cfortran_8h_adb50e893b86b3e55e751a42eab3cba82}{i}}));}
 \DoxyCodeLine{\Hypertarget{generalised__newtonian__navier__stokes__elements_8h_source_l00578}00578     \}}
 \DoxyCodeLine{\Hypertarget{generalised__newtonian__navier__stokes__elements_8h_source_l00579}00579 \textcolor{comment}{}}
-\DoxyCodeLine{\Hypertarget{generalised__newtonian__navier__stokes__elements_8h_source_l00580}00580 \textcolor{comment}{    ///  Return the index at which the i-\/th unknown velocity component}}
+\DoxyCodeLine{\Hypertarget{generalised__newtonian__navier__stokes__elements_8h_source_l00580}00580 \textcolor{comment}{    /// Return the index at which the i-\/th unknown velocity component}}
 \DoxyCodeLine{\Hypertarget{generalised__newtonian__navier__stokes__elements_8h_source_l00581}00581 \textcolor{comment}{    /// is stored. The default value, i, is appropriate for single-\/physics}}
 \DoxyCodeLine{\Hypertarget{generalised__newtonian__navier__stokes__elements_8h_source_l00582}00582 \textcolor{comment}{    /// problems.}}
 \DoxyCodeLine{\Hypertarget{generalised__newtonian__navier__stokes__elements_8h_source_l00583}00583 \textcolor{comment}{    /// In derived multi-\/physics elements, this function should be overloaded}}
@@ -592,14 +592,14 @@
 \DoxyCodeLine{\Hypertarget{generalised__newtonian__navier__stokes__elements_8h_source_l00588}00588       \textcolor{keywordflow}{return} \mbox{\hyperlink{cfortran_8h_adb50e893b86b3e55e751a42eab3cba82}{i}};}
 \DoxyCodeLine{\Hypertarget{generalised__newtonian__navier__stokes__elements_8h_source_l00589}00589     \}}
 \DoxyCodeLine{\Hypertarget{generalised__newtonian__navier__stokes__elements_8h_source_l00590}00590 \textcolor{comment}{}}
-\DoxyCodeLine{\Hypertarget{generalised__newtonian__navier__stokes__elements_8h_source_l00591}00591 \textcolor{comment}{    ///  Return the number of velocity components}}
+\DoxyCodeLine{\Hypertarget{generalised__newtonian__navier__stokes__elements_8h_source_l00591}00591 \textcolor{comment}{    /// Return the number of velocity components}}
 \DoxyCodeLine{\Hypertarget{generalised__newtonian__navier__stokes__elements_8h_source_l00592}00592 \textcolor{comment}{    /// Used in FluidInterfaceElements}}
 \DoxyCodeLine{\Hypertarget{generalised__newtonian__navier__stokes__elements_8h_source_l00593}\mbox{\hyperlink{classGeneralisedNewtonianNavierStokesEquations_a6de6e7c2e8229643fa507fcbb30d1434}{00593}} \textcolor{comment}{}    \textcolor{keyword}{inline} \textcolor{keywordtype}{unsigned} \mbox{\hyperlink{classGeneralisedNewtonianNavierStokesEquations_a6de6e7c2e8229643fa507fcbb30d1434}{n\_u\_nst}}()\textcolor{keyword}{ const}}
 \DoxyCodeLine{\Hypertarget{generalised__newtonian__navier__stokes__elements_8h_source_l00594}00594 \textcolor{keyword}{    }\{}
 \DoxyCodeLine{\Hypertarget{generalised__newtonian__navier__stokes__elements_8h_source_l00595}00595       \textcolor{keywordflow}{return} DIM;}
 \DoxyCodeLine{\Hypertarget{generalised__newtonian__navier__stokes__elements_8h_source_l00596}00596     \}}
 \DoxyCodeLine{\Hypertarget{generalised__newtonian__navier__stokes__elements_8h_source_l00597}00597 \textcolor{comment}{}}
-\DoxyCodeLine{\Hypertarget{generalised__newtonian__navier__stokes__elements_8h_source_l00598}00598 \textcolor{comment}{    ///  i-\/th component of du/dt at local node n.}}
+\DoxyCodeLine{\Hypertarget{generalised__newtonian__navier__stokes__elements_8h_source_l00598}00598 \textcolor{comment}{    /// i-\/th component of du/dt at local node n.}}
 \DoxyCodeLine{\Hypertarget{generalised__newtonian__navier__stokes__elements_8h_source_l00599}00599 \textcolor{comment}{    /// Uses suitably interpolated value for hanging nodes.}}
 \DoxyCodeLine{\Hypertarget{generalised__newtonian__navier__stokes__elements_8h_source_l00600}\mbox{\hyperlink{classGeneralisedNewtonianNavierStokesEquations_ac6677a4229349b2bdf9d62b5615eb916}{00600}} \textcolor{comment}{}    \textcolor{keywordtype}{double} \mbox{\hyperlink{classGeneralisedNewtonianNavierStokesEquations_ac6677a4229349b2bdf9d62b5615eb916}{du\_dt\_nst}}(\textcolor{keyword}{const} \textcolor{keywordtype}{unsigned}\& n, \textcolor{keyword}{const} \textcolor{keywordtype}{unsigned}\& \mbox{\hyperlink{cfortran_8h_adb50e893b86b3e55e751a42eab3cba82}{i}})\textcolor{keyword}{ const}}
 \DoxyCodeLine{\Hypertarget{generalised__newtonian__navier__stokes__elements_8h_source_l00601}00601 \textcolor{keyword}{    }\{}
@@ -628,14 +628,14 @@
 \DoxyCodeLine{\Hypertarget{generalised__newtonian__navier__stokes__elements_8h_source_l00624}00624       \textcolor{keywordflow}{return} dudt;}
 \DoxyCodeLine{\Hypertarget{generalised__newtonian__navier__stokes__elements_8h_source_l00625}00625     \}}
 \DoxyCodeLine{\Hypertarget{generalised__newtonian__navier__stokes__elements_8h_source_l00626}00626 \textcolor{comment}{}}
-\DoxyCodeLine{\Hypertarget{generalised__newtonian__navier__stokes__elements_8h_source_l00627}00627 \textcolor{comment}{    ///  Disable ALE, i.e. assert the mesh is not moving -\/-\/ you do this}}
+\DoxyCodeLine{\Hypertarget{generalised__newtonian__navier__stokes__elements_8h_source_l00627}00627 \textcolor{comment}{    /// Disable ALE, i.e. assert the mesh is not moving -\/-\/ you do this}}
 \DoxyCodeLine{\Hypertarget{generalised__newtonian__navier__stokes__elements_8h_source_l00628}00628 \textcolor{comment}{    /// at your own risk!}}
 \DoxyCodeLine{\Hypertarget{generalised__newtonian__navier__stokes__elements_8h_source_l00629}\mbox{\hyperlink{classGeneralisedNewtonianNavierStokesEquations_a2338f16ee170849be349b04589bfd8b8}{00629}} \textcolor{comment}{}    \textcolor{keywordtype}{void} \mbox{\hyperlink{classGeneralisedNewtonianNavierStokesEquations_a2338f16ee170849be349b04589bfd8b8}{disable\_ALE}}()}
 \DoxyCodeLine{\Hypertarget{generalised__newtonian__navier__stokes__elements_8h_source_l00630}00630     \{}
 \DoxyCodeLine{\Hypertarget{generalised__newtonian__navier__stokes__elements_8h_source_l00631}00631       ALE\_is\_disabled = \textcolor{keyword}{true};}
 \DoxyCodeLine{\Hypertarget{generalised__newtonian__navier__stokes__elements_8h_source_l00632}00632     \}}
 \DoxyCodeLine{\Hypertarget{generalised__newtonian__navier__stokes__elements_8h_source_l00633}00633 \textcolor{comment}{}}
-\DoxyCodeLine{\Hypertarget{generalised__newtonian__navier__stokes__elements_8h_source_l00634}00634 \textcolor{comment}{    ///  (Re-\/)enable ALE, i.e. take possible mesh motion into account}}
+\DoxyCodeLine{\Hypertarget{generalised__newtonian__navier__stokes__elements_8h_source_l00634}00634 \textcolor{comment}{    /// (Re-\/)enable ALE, i.e. take possible mesh motion into account}}
 \DoxyCodeLine{\Hypertarget{generalised__newtonian__navier__stokes__elements_8h_source_l00635}00635 \textcolor{comment}{    /// when evaluating the time-\/derivative. Note: By default, ALE is}}
 \DoxyCodeLine{\Hypertarget{generalised__newtonian__navier__stokes__elements_8h_source_l00636}00636 \textcolor{comment}{    /// enabled, at the expense of possibly creating unnecessary work}}
 \DoxyCodeLine{\Hypertarget{generalised__newtonian__navier__stokes__elements_8h_source_l00637}00637 \textcolor{comment}{    /// in problems where the mesh is, in fact, stationary.}}
@@ -644,17 +644,17 @@
 \DoxyCodeLine{\Hypertarget{generalised__newtonian__navier__stokes__elements_8h_source_l00640}00640       ALE\_is\_disabled = \textcolor{keyword}{false};}
 \DoxyCodeLine{\Hypertarget{generalised__newtonian__navier__stokes__elements_8h_source_l00641}00641     \}}
 \DoxyCodeLine{\Hypertarget{generalised__newtonian__navier__stokes__elements_8h_source_l00642}00642 \textcolor{comment}{}}
-\DoxyCodeLine{\Hypertarget{generalised__newtonian__navier__stokes__elements_8h_source_l00643}00643 \textcolor{comment}{    ///  Pressure at local pressure "{}node"{} n\_p}}
+\DoxyCodeLine{\Hypertarget{generalised__newtonian__navier__stokes__elements_8h_source_l00643}00643 \textcolor{comment}{    /// Pressure at local pressure "{}node"{} n\_p}}
 \DoxyCodeLine{\Hypertarget{generalised__newtonian__navier__stokes__elements_8h_source_l00644}00644 \textcolor{comment}{    /// Uses suitably interpolated value for hanging nodes.}}
 \DoxyCodeLine{\Hypertarget{generalised__newtonian__navier__stokes__elements_8h_source_l00645}\mbox{\hyperlink{classGeneralisedNewtonianNavierStokesEquations_a0abbd4836d67b9e0d5572e29276bb0e0}{00645}} \textcolor{comment}{}    \textcolor{keyword}{virtual} \textcolor{keywordtype}{double} \mbox{\hyperlink{classGeneralisedNewtonianNavierStokesEquations_a0abbd4836d67b9e0d5572e29276bb0e0}{p\_nst}}(\textcolor{keyword}{const} \textcolor{keywordtype}{unsigned}\& n\_p) \textcolor{keyword}{const} = 0;}
 \DoxyCodeLine{\Hypertarget{generalised__newtonian__navier__stokes__elements_8h_source_l00646}00646 \textcolor{comment}{}}
-\DoxyCodeLine{\Hypertarget{generalised__newtonian__navier__stokes__elements_8h_source_l00647}00647 \textcolor{comment}{    ///  Pressure at local pressure "{}node"{} n\_p at time level t}}
+\DoxyCodeLine{\Hypertarget{generalised__newtonian__navier__stokes__elements_8h_source_l00647}00647 \textcolor{comment}{    /// Pressure at local pressure "{}node"{} n\_p at time level t}}
 \DoxyCodeLine{\Hypertarget{generalised__newtonian__navier__stokes__elements_8h_source_l00648}\mbox{\hyperlink{classGeneralisedNewtonianNavierStokesEquations_a56b610c093b8893233b95bdc3aa61f7e}{00648}} \textcolor{comment}{}    \textcolor{keyword}{virtual} \textcolor{keywordtype}{double} \mbox{\hyperlink{classGeneralisedNewtonianNavierStokesEquations_a56b610c093b8893233b95bdc3aa61f7e}{p\_nst}}(\textcolor{keyword}{const} \textcolor{keywordtype}{unsigned}\& \mbox{\hyperlink{cfortran_8h_af6f0bd3dc13317f895c91323c25c2b8f}{t}}, \textcolor{keyword}{const} \textcolor{keywordtype}{unsigned}\& n\_p) \textcolor{keyword}{const} = 0;}
 \DoxyCodeLine{\Hypertarget{generalised__newtonian__navier__stokes__elements_8h_source_l00649}00649 \textcolor{comment}{}}
 \DoxyCodeLine{\Hypertarget{generalised__newtonian__navier__stokes__elements_8h_source_l00650}00650 \textcolor{comment}{    /// Pin p\_dof-\/th pressure dof and set it to value specified by p\_value.}}
 \DoxyCodeLine{\Hypertarget{generalised__newtonian__navier__stokes__elements_8h_source_l00651}\mbox{\hyperlink{classGeneralisedNewtonianNavierStokesEquations_a4b5c062413d62703d07fe1e92ef55331}{00651}} \textcolor{comment}{}    \textcolor{keyword}{virtual} \textcolor{keywordtype}{void} \mbox{\hyperlink{classGeneralisedNewtonianNavierStokesEquations_a4b5c062413d62703d07fe1e92ef55331}{fix\_pressure}}(\textcolor{keyword}{const} \textcolor{keywordtype}{unsigned}\& p\_dof, \textcolor{keyword}{const} \textcolor{keywordtype}{double}\& p\_value) = 0;}
 \DoxyCodeLine{\Hypertarget{generalised__newtonian__navier__stokes__elements_8h_source_l00652}00652 \textcolor{comment}{}}
-\DoxyCodeLine{\Hypertarget{generalised__newtonian__navier__stokes__elements_8h_source_l00653}00653 \textcolor{comment}{    ///  Return the index at which the pressure is stored if it is}}
+\DoxyCodeLine{\Hypertarget{generalised__newtonian__navier__stokes__elements_8h_source_l00653}00653 \textcolor{comment}{    /// Return the index at which the pressure is stored if it is}}
 \DoxyCodeLine{\Hypertarget{generalised__newtonian__navier__stokes__elements_8h_source_l00654}00654 \textcolor{comment}{    /// stored at the nodes. If not stored at the nodes this will return}}
 \DoxyCodeLine{\Hypertarget{generalised__newtonian__navier__stokes__elements_8h_source_l00655}00655 \textcolor{comment}{    /// a negative number.}}
 \DoxyCodeLine{\Hypertarget{generalised__newtonian__navier__stokes__elements_8h_source_l00656}\mbox{\hyperlink{classGeneralisedNewtonianNavierStokesEquations_a0437e8ff6df273ba33285c058efdbaf7}{00656}} \textcolor{comment}{}    \textcolor{keyword}{virtual} \textcolor{keywordtype}{int} \mbox{\hyperlink{classGeneralisedNewtonianNavierStokesEquations_a0437e8ff6df273ba33285c058efdbaf7}{p\_nodal\_index\_nst}}()\textcolor{keyword}{ const}}
@@ -665,46 +665,46 @@
 \DoxyCodeLine{\Hypertarget{generalised__newtonian__navier__stokes__elements_8h_source_l00661}00661 \textcolor{comment}{    /// Integral of pressure over element}}
 \DoxyCodeLine{\Hypertarget{generalised__newtonian__navier__stokes__elements_8h_source_l00662}00662 \textcolor{comment}{}    \textcolor{keywordtype}{double} pressure\_integral() \textcolor{keyword}{const};}
 \DoxyCodeLine{\Hypertarget{generalised__newtonian__navier__stokes__elements_8h_source_l00663}00663 \textcolor{comment}{}}
-\DoxyCodeLine{\Hypertarget{generalised__newtonian__navier__stokes__elements_8h_source_l00664}00664 \textcolor{comment}{    ///  Get max. and min. strain rate invariant and visocosity}}
+\DoxyCodeLine{\Hypertarget{generalised__newtonian__navier__stokes__elements_8h_source_l00664}00664 \textcolor{comment}{    /// Get max. and min. strain rate invariant and visocosity}}
 \DoxyCodeLine{\Hypertarget{generalised__newtonian__navier__stokes__elements_8h_source_l00665}00665 \textcolor{comment}{    /// over all integration points in element}}
 \DoxyCodeLine{\Hypertarget{generalised__newtonian__navier__stokes__elements_8h_source_l00666}00666 \textcolor{comment}{}    \textcolor{keywordtype}{void} max\_and\_min\_invariant\_and\_viscosity(\textcolor{keywordtype}{double}\& min\_invariant,}
 \DoxyCodeLine{\Hypertarget{generalised__newtonian__navier__stokes__elements_8h_source_l00667}00667                                              \textcolor{keywordtype}{double}\& max\_invariant,}
 \DoxyCodeLine{\Hypertarget{generalised__newtonian__navier__stokes__elements_8h_source_l00668}00668                                              \textcolor{keywordtype}{double}\& min\_viscosity,}
 \DoxyCodeLine{\Hypertarget{generalised__newtonian__navier__stokes__elements_8h_source_l00669}00669                                              \textcolor{keywordtype}{double}\& max\_viscosity) \textcolor{keyword}{const};}
 \DoxyCodeLine{\Hypertarget{generalised__newtonian__navier__stokes__elements_8h_source_l00670}00670 \textcolor{comment}{}}
-\DoxyCodeLine{\Hypertarget{generalised__newtonian__navier__stokes__elements_8h_source_l00671}00671 \textcolor{comment}{    ///  Return integral of dissipation over element}}
+\DoxyCodeLine{\Hypertarget{generalised__newtonian__navier__stokes__elements_8h_source_l00671}00671 \textcolor{comment}{    /// Return integral of dissipation over element}}
 \DoxyCodeLine{\Hypertarget{generalised__newtonian__navier__stokes__elements_8h_source_l00672}00672 \textcolor{comment}{}    \textcolor{keywordtype}{double} dissipation() \textcolor{keyword}{const};}
 \DoxyCodeLine{\Hypertarget{generalised__newtonian__navier__stokes__elements_8h_source_l00673}00673 \textcolor{comment}{}}
-\DoxyCodeLine{\Hypertarget{generalised__newtonian__navier__stokes__elements_8h_source_l00674}00674 \textcolor{comment}{    ///  Return dissipation at local coordinate s}}
+\DoxyCodeLine{\Hypertarget{generalised__newtonian__navier__stokes__elements_8h_source_l00674}00674 \textcolor{comment}{    /// Return dissipation at local coordinate s}}
 \DoxyCodeLine{\Hypertarget{generalised__newtonian__navier__stokes__elements_8h_source_l00675}00675 \textcolor{comment}{}    \textcolor{keywordtype}{double} dissipation(\textcolor{keyword}{const} Vector<double>\& \mbox{\hyperlink{cfortran_8h_ab7123126e4885ef647dd9c6e3807a21c}{s}}) \textcolor{keyword}{const};}
 \DoxyCodeLine{\Hypertarget{generalised__newtonian__navier__stokes__elements_8h_source_l00676}00676 \textcolor{comment}{}}
-\DoxyCodeLine{\Hypertarget{generalised__newtonian__navier__stokes__elements_8h_source_l00677}00677 \textcolor{comment}{    ///  Compute the vorticity vector at local coordinate s}}
+\DoxyCodeLine{\Hypertarget{generalised__newtonian__navier__stokes__elements_8h_source_l00677}00677 \textcolor{comment}{    /// Compute the vorticity vector at local coordinate s}}
 \DoxyCodeLine{\Hypertarget{generalised__newtonian__navier__stokes__elements_8h_source_l00678}\mbox{\hyperlink{classGeneralisedNewtonianNavierStokesEquations_ada0f7332bd215f55ddf6f64bc1335e23}{00678}} \textcolor{comment}{}    \textcolor{keywordtype}{void} \mbox{\hyperlink{classGeneralisedNewtonianNavierStokesEquations_ada0f7332bd215f55ddf6f64bc1335e23}{get\_vorticity}}(\textcolor{keyword}{const} Vector<double>\& \mbox{\hyperlink{cfortran_8h_ab7123126e4885ef647dd9c6e3807a21c}{s}},}
 \DoxyCodeLine{\Hypertarget{generalised__newtonian__navier__stokes__elements_8h_source_l00679}00679                        Vector<double>\& vorticity) \textcolor{keyword}{const};}
 \DoxyCodeLine{\Hypertarget{generalised__newtonian__navier__stokes__elements_8h_source_l00680}00680 \textcolor{comment}{}}
-\DoxyCodeLine{\Hypertarget{generalised__newtonian__navier__stokes__elements_8h_source_l00681}00681 \textcolor{comment}{    ///  Get integral of kinetic energy over element}}
+\DoxyCodeLine{\Hypertarget{generalised__newtonian__navier__stokes__elements_8h_source_l00681}00681 \textcolor{comment}{    /// Get integral of kinetic energy over element}}
 \DoxyCodeLine{\Hypertarget{generalised__newtonian__navier__stokes__elements_8h_source_l00682}00682 \textcolor{comment}{}    \textcolor{keywordtype}{double} kin\_energy() \textcolor{keyword}{const};}
 \DoxyCodeLine{\Hypertarget{generalised__newtonian__navier__stokes__elements_8h_source_l00683}00683 \textcolor{comment}{}}
-\DoxyCodeLine{\Hypertarget{generalised__newtonian__navier__stokes__elements_8h_source_l00684}00684 \textcolor{comment}{    ///  Get integral of time derivative of kinetic energy over element}}
+\DoxyCodeLine{\Hypertarget{generalised__newtonian__navier__stokes__elements_8h_source_l00684}00684 \textcolor{comment}{    /// Get integral of time derivative of kinetic energy over element}}
 \DoxyCodeLine{\Hypertarget{generalised__newtonian__navier__stokes__elements_8h_source_l00685}00685 \textcolor{comment}{}    \textcolor{keywordtype}{double} d\_kin\_energy\_dt() \textcolor{keyword}{const};}
 \DoxyCodeLine{\Hypertarget{generalised__newtonian__navier__stokes__elements_8h_source_l00686}00686 \textcolor{comment}{}}
 \DoxyCodeLine{\Hypertarget{generalised__newtonian__navier__stokes__elements_8h_source_l00687}00687 \textcolor{comment}{    /// Strain-\/rate tensor: 1/2 (du\_i/dx\_j + du\_j/dx\_i)}}
 \DoxyCodeLine{\Hypertarget{generalised__newtonian__navier__stokes__elements_8h_source_l00688}00688 \textcolor{comment}{}    \textcolor{keywordtype}{void} strain\_rate(\textcolor{keyword}{const} Vector<double>\& \mbox{\hyperlink{cfortran_8h_ab7123126e4885ef647dd9c6e3807a21c}{s}},}
 \DoxyCodeLine{\Hypertarget{generalised__newtonian__navier__stokes__elements_8h_source_l00689}00689                      DenseMatrix<double>\& strain\_rate) \textcolor{keyword}{const};}
 \DoxyCodeLine{\Hypertarget{generalised__newtonian__navier__stokes__elements_8h_source_l00690}00690 \textcolor{comment}{}}
-\DoxyCodeLine{\Hypertarget{generalised__newtonian__navier__stokes__elements_8h_source_l00691}00691 \textcolor{comment}{    ///  Strain-\/rate tensor: 1/2 (du\_i/dx\_j + du\_j/dx\_i)}}
+\DoxyCodeLine{\Hypertarget{generalised__newtonian__navier__stokes__elements_8h_source_l00691}00691 \textcolor{comment}{    /// Strain-\/rate tensor: 1/2 (du\_i/dx\_j + du\_j/dx\_i)}}
 \DoxyCodeLine{\Hypertarget{generalised__newtonian__navier__stokes__elements_8h_source_l00692}00692 \textcolor{comment}{    /// at a specific time history value}}
 \DoxyCodeLine{\Hypertarget{generalised__newtonian__navier__stokes__elements_8h_source_l00693}00693 \textcolor{comment}{}    \textcolor{keywordtype}{void} strain\_rate(\textcolor{keyword}{const} \textcolor{keywordtype}{unsigned}\& \mbox{\hyperlink{cfortran_8h_af6f0bd3dc13317f895c91323c25c2b8f}{t}},}
 \DoxyCodeLine{\Hypertarget{generalised__newtonian__navier__stokes__elements_8h_source_l00694}00694                      \textcolor{keyword}{const} Vector<double>\& \mbox{\hyperlink{cfortran_8h_ab7123126e4885ef647dd9c6e3807a21c}{s}},}
 \DoxyCodeLine{\Hypertarget{generalised__newtonian__navier__stokes__elements_8h_source_l00695}00695                      DenseMatrix<double>\& strain\_rate) \textcolor{keyword}{const};}
 \DoxyCodeLine{\Hypertarget{generalised__newtonian__navier__stokes__elements_8h_source_l00696}00696 \textcolor{comment}{}}
-\DoxyCodeLine{\Hypertarget{generalised__newtonian__navier__stokes__elements_8h_source_l00697}00697 \textcolor{comment}{    ///  Extrapolated strain-\/rate tensor: 1/2 (du\_i/dx\_j + du\_j/dx\_i)}}
+\DoxyCodeLine{\Hypertarget{generalised__newtonian__navier__stokes__elements_8h_source_l00697}00697 \textcolor{comment}{    /// Extrapolated strain-\/rate tensor: 1/2 (du\_i/dx\_j + du\_j/dx\_i)}}
 \DoxyCodeLine{\Hypertarget{generalised__newtonian__navier__stokes__elements_8h_source_l00698}00698 \textcolor{comment}{    /// based on the previous time steps evaluated}}
 \DoxyCodeLine{\Hypertarget{generalised__newtonian__navier__stokes__elements_8h_source_l00699}00699 \textcolor{comment}{    /// at local coordinate s}}
 \DoxyCodeLine{\Hypertarget{generalised__newtonian__navier__stokes__elements_8h_source_l00700}00700 \textcolor{comment}{}    \textcolor{keyword}{virtual} \textcolor{keywordtype}{void} extrapolated\_strain\_rate(}
 \DoxyCodeLine{\Hypertarget{generalised__newtonian__navier__stokes__elements_8h_source_l00701}00701       \textcolor{keyword}{const} Vector<double>\& \mbox{\hyperlink{cfortran_8h_ab7123126e4885ef647dd9c6e3807a21c}{s}}, DenseMatrix<double>\& strain\_rate) \textcolor{keyword}{const};}
 \DoxyCodeLine{\Hypertarget{generalised__newtonian__navier__stokes__elements_8h_source_l00702}00702 \textcolor{comment}{}}
-\DoxyCodeLine{\Hypertarget{generalised__newtonian__navier__stokes__elements_8h_source_l00703}00703 \textcolor{comment}{    ///  Extrapolated strain-\/rate tensor: 1/2 (du\_i/dx\_j + du\_j/dx\_i)}}
+\DoxyCodeLine{\Hypertarget{generalised__newtonian__navier__stokes__elements_8h_source_l00703}00703 \textcolor{comment}{    /// Extrapolated strain-\/rate tensor: 1/2 (du\_i/dx\_j + du\_j/dx\_i)}}
 \DoxyCodeLine{\Hypertarget{generalised__newtonian__navier__stokes__elements_8h_source_l00704}00704 \textcolor{comment}{    /// based on the previous time steps evaluated at}}
 \DoxyCodeLine{\Hypertarget{generalised__newtonian__navier__stokes__elements_8h_source_l00705}00705 \textcolor{comment}{    /// ipt-\/th integration point}}
 \DoxyCodeLine{\Hypertarget{generalised__newtonian__navier__stokes__elements_8h_source_l00706}\mbox{\hyperlink{classGeneralisedNewtonianNavierStokesEquations_a9bc5b82f67722916448dbb2e603ad0a9}{00706}} \textcolor{comment}{}    \textcolor{keyword}{virtual} \textcolor{keywordtype}{void} \mbox{\hyperlink{classGeneralisedNewtonianNavierStokesEquations_a9bc5b82f67722916448dbb2e603ad0a9}{extrapolated\_strain\_rate}}(}
@@ -716,14 +716,14 @@
 \DoxyCodeLine{\Hypertarget{generalised__newtonian__navier__stokes__elements_8h_source_l00712}00712       extrapolated\_strain\_rate(\mbox{\hyperlink{cfortran_8h_ab7123126e4885ef647dd9c6e3807a21c}{s}}, strain\_rate);}
 \DoxyCodeLine{\Hypertarget{generalised__newtonian__navier__stokes__elements_8h_source_l00713}00713     \}}
 \DoxyCodeLine{\Hypertarget{generalised__newtonian__navier__stokes__elements_8h_source_l00714}00714 \textcolor{comment}{}}
-\DoxyCodeLine{\Hypertarget{generalised__newtonian__navier__stokes__elements_8h_source_l00715}00715 \textcolor{comment}{    ///  Compute traction (on the viscous scale) exerted onto}}
+\DoxyCodeLine{\Hypertarget{generalised__newtonian__navier__stokes__elements_8h_source_l00715}00715 \textcolor{comment}{    /// Compute traction (on the viscous scale) exerted onto}}
 \DoxyCodeLine{\Hypertarget{generalised__newtonian__navier__stokes__elements_8h_source_l00716}00716 \textcolor{comment}{    /// the fluid at local coordinate s. N has to be outer unit normal}}
 \DoxyCodeLine{\Hypertarget{generalised__newtonian__navier__stokes__elements_8h_source_l00717}00717 \textcolor{comment}{    /// to the fluid.}}
 \DoxyCodeLine{\Hypertarget{generalised__newtonian__navier__stokes__elements_8h_source_l00718}00718 \textcolor{comment}{}    \textcolor{keywordtype}{void} get\_traction(\textcolor{keyword}{const} Vector<double>\& \mbox{\hyperlink{cfortran_8h_ab7123126e4885ef647dd9c6e3807a21c}{s}},}
 \DoxyCodeLine{\Hypertarget{generalised__newtonian__navier__stokes__elements_8h_source_l00719}00719                       \textcolor{keyword}{const} Vector<double>\& \mbox{\hyperlink{namespaceoomph_1_1QuadTreeNames_a8954a5947b19986b8c4b755bc7639f7dabc60bec4cc294aa2adf92726c6d6823a}{N}},}
 \DoxyCodeLine{\Hypertarget{generalised__newtonian__navier__stokes__elements_8h_source_l00720}00720                       Vector<double>\& traction);}
 \DoxyCodeLine{\Hypertarget{generalised__newtonian__navier__stokes__elements_8h_source_l00721}00721 \textcolor{comment}{}}
-\DoxyCodeLine{\Hypertarget{generalised__newtonian__navier__stokes__elements_8h_source_l00722}00722 \textcolor{comment}{    ///  Compute traction (on the viscous scale) exerted onto}}
+\DoxyCodeLine{\Hypertarget{generalised__newtonian__navier__stokes__elements_8h_source_l00722}00722 \textcolor{comment}{    /// Compute traction (on the viscous scale) exerted onto}}
 \DoxyCodeLine{\Hypertarget{generalised__newtonian__navier__stokes__elements_8h_source_l00723}00723 \textcolor{comment}{    /// the fluid at local coordinate s, decomposed into pressure and}}
 \DoxyCodeLine{\Hypertarget{generalised__newtonian__navier__stokes__elements_8h_source_l00724}00724 \textcolor{comment}{    /// normal and tangential viscous components.}}
 \DoxyCodeLine{\Hypertarget{generalised__newtonian__navier__stokes__elements_8h_source_l00725}00725 \textcolor{comment}{    /// N has to be outer unit normal to the fluid.}}
@@ -733,7 +733,7 @@
 \DoxyCodeLine{\Hypertarget{generalised__newtonian__navier__stokes__elements_8h_source_l00729}00729                       Vector<double>\& traction\_visc\_n,}
 \DoxyCodeLine{\Hypertarget{generalised__newtonian__navier__stokes__elements_8h_source_l00730}00730                       Vector<double>\& traction\_visc\_t);}
 \DoxyCodeLine{\Hypertarget{generalised__newtonian__navier__stokes__elements_8h_source_l00731}00731 \textcolor{comment}{}}
-\DoxyCodeLine{\Hypertarget{generalised__newtonian__navier__stokes__elements_8h_source_l00732}00732 \textcolor{comment}{    ///  This implements a pure virtual function defined}}
+\DoxyCodeLine{\Hypertarget{generalised__newtonian__navier__stokes__elements_8h_source_l00732}00732 \textcolor{comment}{    /// This implements a pure virtual function defined}}
 \DoxyCodeLine{\Hypertarget{generalised__newtonian__navier__stokes__elements_8h_source_l00733}00733 \textcolor{comment}{    /// in the FSIFluidElement class. The function computes}}
 \DoxyCodeLine{\Hypertarget{generalised__newtonian__navier__stokes__elements_8h_source_l00734}00734 \textcolor{comment}{    /// the traction (on the viscous scale), at the element's local}}
 \DoxyCodeLine{\Hypertarget{generalised__newtonian__navier__stokes__elements_8h_source_l00735}00735 \textcolor{comment}{    /// coordinate s, that the fluid element exerts onto an adjacent}}
@@ -752,7 +752,7 @@
 \DoxyCodeLine{\Hypertarget{generalised__newtonian__navier__stokes__elements_8h_source_l00748}00748       get\_traction(\mbox{\hyperlink{cfortran_8h_ab7123126e4885ef647dd9c6e3807a21c}{s}}, \mbox{\hyperlink{namespaceoomph_1_1QuadTreeNames_a8954a5947b19986b8c4b755bc7639f7dabc60bec4cc294aa2adf92726c6d6823a}{N}}, load);}
 \DoxyCodeLine{\Hypertarget{generalised__newtonian__navier__stokes__elements_8h_source_l00749}00749     \}}
 \DoxyCodeLine{\Hypertarget{generalised__newtonian__navier__stokes__elements_8h_source_l00750}00750 \textcolor{comment}{}}
-\DoxyCodeLine{\Hypertarget{generalised__newtonian__navier__stokes__elements_8h_source_l00751}00751 \textcolor{comment}{    ///  Compute the diagonal of the velocity/pressure mass matrices.}}
+\DoxyCodeLine{\Hypertarget{generalised__newtonian__navier__stokes__elements_8h_source_l00751}00751 \textcolor{comment}{    /// Compute the diagonal of the velocity/pressure mass matrices.}}
 \DoxyCodeLine{\Hypertarget{generalised__newtonian__navier__stokes__elements_8h_source_l00752}00752 \textcolor{comment}{    /// If which one=0, both are computed, otherwise only the pressure}}
 \DoxyCodeLine{\Hypertarget{generalised__newtonian__navier__stokes__elements_8h_source_l00753}00753 \textcolor{comment}{    /// (which\_one=1) or the velocity mass matrix (which\_one=2 -\/-\/ the}}
 \DoxyCodeLine{\Hypertarget{generalised__newtonian__navier__stokes__elements_8h_source_l00754}00754 \textcolor{comment}{    /// LSC version of the preconditioner only needs that one)}}
@@ -761,14 +761,14 @@
 \DoxyCodeLine{\Hypertarget{generalised__newtonian__navier__stokes__elements_8h_source_l00757}00757       Vector<double>\& veloc\_mass\_diag,}
 \DoxyCodeLine{\Hypertarget{generalised__newtonian__navier__stokes__elements_8h_source_l00758}00758       \textcolor{keyword}{const} \textcolor{keywordtype}{unsigned}\& which\_one = 0);}
 \DoxyCodeLine{\Hypertarget{generalised__newtonian__navier__stokes__elements_8h_source_l00759}00759 \textcolor{comment}{}}
-\DoxyCodeLine{\Hypertarget{generalised__newtonian__navier__stokes__elements_8h_source_l00760}00760 \textcolor{comment}{    ///  Number of scalars/fields output by this element. Reimplements}}
+\DoxyCodeLine{\Hypertarget{generalised__newtonian__navier__stokes__elements_8h_source_l00760}00760 \textcolor{comment}{    /// Number of scalars/fields output by this element. Reimplements}}
 \DoxyCodeLine{\Hypertarget{generalised__newtonian__navier__stokes__elements_8h_source_l00761}00761 \textcolor{comment}{    /// broken virtual function in base class.}}
 \DoxyCodeLine{\Hypertarget{generalised__newtonian__navier__stokes__elements_8h_source_l00762}\mbox{\hyperlink{classGeneralisedNewtonianNavierStokesEquations_a18f28883524e3157e07ea2bdad32df77}{00762}} \textcolor{comment}{}    \textcolor{keywordtype}{unsigned} \mbox{\hyperlink{classGeneralisedNewtonianNavierStokesEquations_a18f28883524e3157e07ea2bdad32df77}{nscalar\_paraview}}()\textcolor{keyword}{ const}}
 \DoxyCodeLine{\Hypertarget{generalised__newtonian__navier__stokes__elements_8h_source_l00763}00763 \textcolor{keyword}{    }\{}
 \DoxyCodeLine{\Hypertarget{generalised__newtonian__navier__stokes__elements_8h_source_l00764}00764       \textcolor{keywordflow}{return} DIM + 1;}
 \DoxyCodeLine{\Hypertarget{generalised__newtonian__navier__stokes__elements_8h_source_l00765}00765     \}}
 \DoxyCodeLine{\Hypertarget{generalised__newtonian__navier__stokes__elements_8h_source_l00766}00766 \textcolor{comment}{}}
-\DoxyCodeLine{\Hypertarget{generalised__newtonian__navier__stokes__elements_8h_source_l00767}00767 \textcolor{comment}{    ///  Write values of the i-\/th scalar field at the plot points. Needs}}
+\DoxyCodeLine{\Hypertarget{generalised__newtonian__navier__stokes__elements_8h_source_l00767}00767 \textcolor{comment}{    /// Write values of the i-\/th scalar field at the plot points. Needs}}
 \DoxyCodeLine{\Hypertarget{generalised__newtonian__navier__stokes__elements_8h_source_l00768}00768 \textcolor{comment}{    /// to be implemented for each new specific element type.}}
 \DoxyCodeLine{\Hypertarget{generalised__newtonian__navier__stokes__elements_8h_source_l00769}\mbox{\hyperlink{classGeneralisedNewtonianNavierStokesEquations_aaf61052145ef6a64ea9f706e7904cfea}{00769}} \textcolor{comment}{}    \textcolor{keywordtype}{void} \mbox{\hyperlink{classGeneralisedNewtonianNavierStokesEquations_aaf61052145ef6a64ea9f706e7904cfea}{scalar\_value\_paraview}}(std::ofstream\& file\_out,}
 \DoxyCodeLine{\Hypertarget{generalised__newtonian__navier__stokes__elements_8h_source_l00770}00770                                \textcolor{keyword}{const} \textcolor{keywordtype}{unsigned}\& \mbox{\hyperlink{cfortran_8h_adb50e893b86b3e55e751a42eab3cba82}{i}},}
@@ -813,7 +813,7 @@
 \DoxyCodeLine{\Hypertarget{generalised__newtonian__navier__stokes__elements_8h_source_l00809}00809       \}}
 \DoxyCodeLine{\Hypertarget{generalised__newtonian__navier__stokes__elements_8h_source_l00810}00810     \}}
 \DoxyCodeLine{\Hypertarget{generalised__newtonian__navier__stokes__elements_8h_source_l00811}00811 \textcolor{comment}{}}
-\DoxyCodeLine{\Hypertarget{generalised__newtonian__navier__stokes__elements_8h_source_l00812}00812 \textcolor{comment}{    ///  Name of the i-\/th scalar field. Default implementation}}
+\DoxyCodeLine{\Hypertarget{generalised__newtonian__navier__stokes__elements_8h_source_l00812}00812 \textcolor{comment}{    /// Name of the i-\/th scalar field. Default implementation}}
 \DoxyCodeLine{\Hypertarget{generalised__newtonian__navier__stokes__elements_8h_source_l00813}00813 \textcolor{comment}{    /// returns V1 for the first one, V2 for the second etc. Can (should!) be}}
 \DoxyCodeLine{\Hypertarget{generalised__newtonian__navier__stokes__elements_8h_source_l00814}00814 \textcolor{comment}{    /// overloaded with more meaningful names in specific elements.}}
 \DoxyCodeLine{\Hypertarget{generalised__newtonian__navier__stokes__elements_8h_source_l00815}\mbox{\hyperlink{classGeneralisedNewtonianNavierStokesEquations_a01377851ae2d5072b82932b68675f5ad}{00815}} \textcolor{comment}{}    \mbox{\hyperlink{namespaceoomph_1_1Global__string__for__annotation_ac5379de2fa7fe44f2cb31785fc208135}{std::string}} \mbox{\hyperlink{classGeneralisedNewtonianNavierStokesEquations_a01377851ae2d5072b82932b68675f5ad}{scalar\_name\_paraview}}(\textcolor{keyword}{const} \textcolor{keywordtype}{unsigned}\& \mbox{\hyperlink{cfortran_8h_adb50e893b86b3e55e751a42eab3cba82}{i}})\textcolor{keyword}{ const}}
@@ -842,7 +842,7 @@
 \DoxyCodeLine{\Hypertarget{generalised__newtonian__navier__stokes__elements_8h_source_l00838}00838       \}}
 \DoxyCodeLine{\Hypertarget{generalised__newtonian__navier__stokes__elements_8h_source_l00839}00839     \}}
 \DoxyCodeLine{\Hypertarget{generalised__newtonian__navier__stokes__elements_8h_source_l00840}00840 \textcolor{comment}{}}
-\DoxyCodeLine{\Hypertarget{generalised__newtonian__navier__stokes__elements_8h_source_l00841}00841 \textcolor{comment}{    ///  Output function: x,y,[z],u,v,[w],p}}
+\DoxyCodeLine{\Hypertarget{generalised__newtonian__navier__stokes__elements_8h_source_l00841}00841 \textcolor{comment}{    /// Output function: x,y,[z],u,v,[w],p}}
 \DoxyCodeLine{\Hypertarget{generalised__newtonian__navier__stokes__elements_8h_source_l00842}00842 \textcolor{comment}{    /// in tecplot format. Default number of plot points}}
 \DoxyCodeLine{\Hypertarget{generalised__newtonian__navier__stokes__elements_8h_source_l00843}\mbox{\hyperlink{classGeneralisedNewtonianNavierStokesEquations_a708dc7426d17bafd8e6bcac35f61e689}{00843}} \textcolor{comment}{}    \textcolor{keywordtype}{void} \mbox{\hyperlink{classGeneralisedNewtonianNavierStokesEquations_a708dc7426d17bafd8e6bcac35f61e689}{output}}(std::ostream\& outfile)}
 \DoxyCodeLine{\Hypertarget{generalised__newtonian__navier__stokes__elements_8h_source_l00844}00844     \{}
@@ -850,11 +850,11 @@
 \DoxyCodeLine{\Hypertarget{generalised__newtonian__navier__stokes__elements_8h_source_l00846}00846       \mbox{\hyperlink{namespaceoomph_1_1CommandLineArgs_aca07d359a96b9c7b566142112604ea87}{output}}(outfile, nplot);}
 \DoxyCodeLine{\Hypertarget{generalised__newtonian__navier__stokes__elements_8h_source_l00847}00847     \}}
 \DoxyCodeLine{\Hypertarget{generalised__newtonian__navier__stokes__elements_8h_source_l00848}00848 \textcolor{comment}{}}
-\DoxyCodeLine{\Hypertarget{generalised__newtonian__navier__stokes__elements_8h_source_l00849}00849 \textcolor{comment}{    ///  Output function: x,y,[z],u,v,[w],p}}
+\DoxyCodeLine{\Hypertarget{generalised__newtonian__navier__stokes__elements_8h_source_l00849}00849 \textcolor{comment}{    /// Output function: x,y,[z],u,v,[w],p}}
 \DoxyCodeLine{\Hypertarget{generalised__newtonian__navier__stokes__elements_8h_source_l00850}00850 \textcolor{comment}{    /// in tecplot format. nplot points in each coordinate direction}}
 \DoxyCodeLine{\Hypertarget{generalised__newtonian__navier__stokes__elements_8h_source_l00851}00851 \textcolor{comment}{}    \textcolor{keywordtype}{void} \mbox{\hyperlink{namespaceoomph_1_1CommandLineArgs_aca07d359a96b9c7b566142112604ea87}{output}}(std::ostream\& outfile, \textcolor{keyword}{const} \textcolor{keywordtype}{unsigned}\& nplot);}
 \DoxyCodeLine{\Hypertarget{generalised__newtonian__navier__stokes__elements_8h_source_l00852}00852 \textcolor{comment}{}}
-\DoxyCodeLine{\Hypertarget{generalised__newtonian__navier__stokes__elements_8h_source_l00853}00853 \textcolor{comment}{    ///  C-\/style output function: x,y,[z],u,v,[w],p}}
+\DoxyCodeLine{\Hypertarget{generalised__newtonian__navier__stokes__elements_8h_source_l00853}00853 \textcolor{comment}{    /// C-\/style output function: x,y,[z],u,v,[w],p}}
 \DoxyCodeLine{\Hypertarget{generalised__newtonian__navier__stokes__elements_8h_source_l00854}00854 \textcolor{comment}{    /// in tecplot format. Default number of plot points}}
 \DoxyCodeLine{\Hypertarget{generalised__newtonian__navier__stokes__elements_8h_source_l00855}\mbox{\hyperlink{classGeneralisedNewtonianNavierStokesEquations_acacbe862e1f0032cd29c7b66c5e87bb8}{00855}} \textcolor{comment}{}    \textcolor{keywordtype}{void} \mbox{\hyperlink{classGeneralisedNewtonianNavierStokesEquations_acacbe862e1f0032cd29c7b66c5e87bb8}{output}}(FILE* file\_pt)}
 \DoxyCodeLine{\Hypertarget{generalised__newtonian__navier__stokes__elements_8h_source_l00856}00856     \{}
@@ -862,11 +862,11 @@
 \DoxyCodeLine{\Hypertarget{generalised__newtonian__navier__stokes__elements_8h_source_l00858}00858       \mbox{\hyperlink{namespaceoomph_1_1CommandLineArgs_aca07d359a96b9c7b566142112604ea87}{output}}(file\_pt, nplot);}
 \DoxyCodeLine{\Hypertarget{generalised__newtonian__navier__stokes__elements_8h_source_l00859}00859     \}}
 \DoxyCodeLine{\Hypertarget{generalised__newtonian__navier__stokes__elements_8h_source_l00860}00860 \textcolor{comment}{}}
-\DoxyCodeLine{\Hypertarget{generalised__newtonian__navier__stokes__elements_8h_source_l00861}00861 \textcolor{comment}{    ///  C-\/style output function: x,y,[z],u,v,[w],p}}
+\DoxyCodeLine{\Hypertarget{generalised__newtonian__navier__stokes__elements_8h_source_l00861}00861 \textcolor{comment}{    /// C-\/style output function: x,y,[z],u,v,[w],p}}
 \DoxyCodeLine{\Hypertarget{generalised__newtonian__navier__stokes__elements_8h_source_l00862}00862 \textcolor{comment}{    /// in tecplot format. nplot points in each coordinate direction}}
 \DoxyCodeLine{\Hypertarget{generalised__newtonian__navier__stokes__elements_8h_source_l00863}00863 \textcolor{comment}{}    \textcolor{keywordtype}{void} \mbox{\hyperlink{namespaceoomph_1_1CommandLineArgs_aca07d359a96b9c7b566142112604ea87}{output}}(FILE* file\_pt, \textcolor{keyword}{const} \textcolor{keywordtype}{unsigned}\& nplot);}
 \DoxyCodeLine{\Hypertarget{generalised__newtonian__navier__stokes__elements_8h_source_l00864}00864 \textcolor{comment}{}}
-\DoxyCodeLine{\Hypertarget{generalised__newtonian__navier__stokes__elements_8h_source_l00865}00865 \textcolor{comment}{    ///  Full output function:}}
+\DoxyCodeLine{\Hypertarget{generalised__newtonian__navier__stokes__elements_8h_source_l00865}00865 \textcolor{comment}{    /// Full output function:}}
 \DoxyCodeLine{\Hypertarget{generalised__newtonian__navier__stokes__elements_8h_source_l00866}00866 \textcolor{comment}{    /// x,y,[z],u,v,[w],p,du/dt,dv/dt,[dw/dt],dissipation}}
 \DoxyCodeLine{\Hypertarget{generalised__newtonian__navier__stokes__elements_8h_source_l00867}00867 \textcolor{comment}{    /// in tecplot format. Default number of plot points}}
 \DoxyCodeLine{\Hypertarget{generalised__newtonian__navier__stokes__elements_8h_source_l00868}\mbox{\hyperlink{classGeneralisedNewtonianNavierStokesEquations_a4d3a7679f543cb91283329135e7b9675}{00868}} \textcolor{comment}{}    \textcolor{keywordtype}{void} \mbox{\hyperlink{classGeneralisedNewtonianNavierStokesEquations_a4d3a7679f543cb91283329135e7b9675}{full\_output}}(std::ostream\& outfile)}
@@ -875,13 +875,13 @@
 \DoxyCodeLine{\Hypertarget{generalised__newtonian__navier__stokes__elements_8h_source_l00871}00871       full\_output(outfile, nplot);}
 \DoxyCodeLine{\Hypertarget{generalised__newtonian__navier__stokes__elements_8h_source_l00872}00872     \}}
 \DoxyCodeLine{\Hypertarget{generalised__newtonian__navier__stokes__elements_8h_source_l00873}00873 \textcolor{comment}{}}
-\DoxyCodeLine{\Hypertarget{generalised__newtonian__navier__stokes__elements_8h_source_l00874}00874 \textcolor{comment}{    ///  Full output function:}}
+\DoxyCodeLine{\Hypertarget{generalised__newtonian__navier__stokes__elements_8h_source_l00874}00874 \textcolor{comment}{    /// Full output function:}}
 \DoxyCodeLine{\Hypertarget{generalised__newtonian__navier__stokes__elements_8h_source_l00875}00875 \textcolor{comment}{    /// x,y,[z],u,v,[w],p,du/dt,dv/dt,[dw/dt],dissipation}}
 \DoxyCodeLine{\Hypertarget{generalised__newtonian__navier__stokes__elements_8h_source_l00876}00876 \textcolor{comment}{    /// in tecplot format. nplot points in each coordinate direction}}
 \DoxyCodeLine{\Hypertarget{generalised__newtonian__navier__stokes__elements_8h_source_l00877}00877 \textcolor{comment}{}    \textcolor{keywordtype}{void} full\_output(std::ostream\& outfile, \textcolor{keyword}{const} \textcolor{keywordtype}{unsigned}\& nplot);}
 \DoxyCodeLine{\Hypertarget{generalised__newtonian__navier__stokes__elements_8h_source_l00878}00878 }
 \DoxyCodeLine{\Hypertarget{generalised__newtonian__navier__stokes__elements_8h_source_l00879}00879 \textcolor{comment}{}}
-\DoxyCodeLine{\Hypertarget{generalised__newtonian__navier__stokes__elements_8h_source_l00880}00880 \textcolor{comment}{    ///  Output function: x,y,[z],u,v,[w] in tecplot format.}}
+\DoxyCodeLine{\Hypertarget{generalised__newtonian__navier__stokes__elements_8h_source_l00880}00880 \textcolor{comment}{    /// Output function: x,y,[z],u,v,[w] in tecplot format.}}
 \DoxyCodeLine{\Hypertarget{generalised__newtonian__navier__stokes__elements_8h_source_l00881}00881 \textcolor{comment}{    /// nplot points in each coordinate direction at timestep t}}
 \DoxyCodeLine{\Hypertarget{generalised__newtonian__navier__stokes__elements_8h_source_l00882}00882 \textcolor{comment}{    /// (t=0: present; t>0: previous timestep)}}
 \DoxyCodeLine{\Hypertarget{generalised__newtonian__navier__stokes__elements_8h_source_l00883}00883 \textcolor{comment}{}    \textcolor{keywordtype}{void} output\_veloc(std::ostream\& outfile,}
@@ -889,18 +889,18 @@
 \DoxyCodeLine{\Hypertarget{generalised__newtonian__navier__stokes__elements_8h_source_l00885}00885                       \textcolor{keyword}{const} \textcolor{keywordtype}{unsigned}\& \mbox{\hyperlink{cfortran_8h_af6f0bd3dc13317f895c91323c25c2b8f}{t}});}
 \DoxyCodeLine{\Hypertarget{generalised__newtonian__navier__stokes__elements_8h_source_l00886}00886 }
 \DoxyCodeLine{\Hypertarget{generalised__newtonian__navier__stokes__elements_8h_source_l00887}00887 \textcolor{comment}{}}
-\DoxyCodeLine{\Hypertarget{generalised__newtonian__navier__stokes__elements_8h_source_l00888}00888 \textcolor{comment}{    ///  Output function: x,y,[z], [omega\_x,omega\_y,[and/or omega\_z]]}}
+\DoxyCodeLine{\Hypertarget{generalised__newtonian__navier__stokes__elements_8h_source_l00888}00888 \textcolor{comment}{    /// Output function: x,y,[z], [omega\_x,omega\_y,[and/or omega\_z]]}}
 \DoxyCodeLine{\Hypertarget{generalised__newtonian__navier__stokes__elements_8h_source_l00889}00889 \textcolor{comment}{    /// in tecplot format. nplot points in each coordinate direction}}
 \DoxyCodeLine{\Hypertarget{generalised__newtonian__navier__stokes__elements_8h_source_l00890}00890 \textcolor{comment}{}    \textcolor{keywordtype}{void} output\_vorticity(std::ostream\& outfile, \textcolor{keyword}{const} \textcolor{keywordtype}{unsigned}\& nplot);}
 \DoxyCodeLine{\Hypertarget{generalised__newtonian__navier__stokes__elements_8h_source_l00891}00891 \textcolor{comment}{}}
-\DoxyCodeLine{\Hypertarget{generalised__newtonian__navier__stokes__elements_8h_source_l00892}00892 \textcolor{comment}{    ///  Output exact solution specified via function pointer}}
+\DoxyCodeLine{\Hypertarget{generalised__newtonian__navier__stokes__elements_8h_source_l00892}00892 \textcolor{comment}{    /// Output exact solution specified via function pointer}}
 \DoxyCodeLine{\Hypertarget{generalised__newtonian__navier__stokes__elements_8h_source_l00893}00893 \textcolor{comment}{    /// at a given number of plot points. Function prints as}}
 \DoxyCodeLine{\Hypertarget{generalised__newtonian__navier__stokes__elements_8h_source_l00894}00894 \textcolor{comment}{    /// many components as are returned in solution Vector}}
 \DoxyCodeLine{\Hypertarget{generalised__newtonian__navier__stokes__elements_8h_source_l00895}00895 \textcolor{comment}{}    \textcolor{keywordtype}{void} output\_fct(std::ostream\& outfile,}
 \DoxyCodeLine{\Hypertarget{generalised__newtonian__navier__stokes__elements_8h_source_l00896}00896                     \textcolor{keyword}{const} \textcolor{keywordtype}{unsigned}\& nplot,}
 \DoxyCodeLine{\Hypertarget{generalised__newtonian__navier__stokes__elements_8h_source_l00897}00897                     \mbox{\hyperlink{classoomph_1_1FiniteElement_a690fd33af26cc3e84f39bba6d5a85202}{FiniteElement::SteadyExactSolutionFctPt}} exact\_soln\_pt);}
 \DoxyCodeLine{\Hypertarget{generalised__newtonian__navier__stokes__elements_8h_source_l00898}00898 \textcolor{comment}{}}
-\DoxyCodeLine{\Hypertarget{generalised__newtonian__navier__stokes__elements_8h_source_l00899}00899 \textcolor{comment}{    ///  Output exact solution specified via function pointer}}
+\DoxyCodeLine{\Hypertarget{generalised__newtonian__navier__stokes__elements_8h_source_l00899}00899 \textcolor{comment}{    /// Output exact solution specified via function pointer}}
 \DoxyCodeLine{\Hypertarget{generalised__newtonian__navier__stokes__elements_8h_source_l00900}00900 \textcolor{comment}{    /// at a given time and at a given number of plot points.}}
 \DoxyCodeLine{\Hypertarget{generalised__newtonian__navier__stokes__elements_8h_source_l00901}00901 \textcolor{comment}{    /// Function prints as many components as are returned in solution Vector.}}
 \DoxyCodeLine{\Hypertarget{generalised__newtonian__navier__stokes__elements_8h_source_l00902}00902 \textcolor{comment}{}    \textcolor{keywordtype}{void} output\_fct(std::ostream\& outfile,}
@@ -908,7 +908,7 @@
 \DoxyCodeLine{\Hypertarget{generalised__newtonian__navier__stokes__elements_8h_source_l00904}00904                     \textcolor{keyword}{const} \textcolor{keywordtype}{double}\& time,}
 \DoxyCodeLine{\Hypertarget{generalised__newtonian__navier__stokes__elements_8h_source_l00905}00905                     \mbox{\hyperlink{classoomph_1_1FiniteElement_ad4ecf2b61b158a4b4d351a60d23c633e}{FiniteElement::UnsteadyExactSolutionFctPt}} exact\_soln\_pt);}
 \DoxyCodeLine{\Hypertarget{generalised__newtonian__navier__stokes__elements_8h_source_l00906}00906 \textcolor{comment}{}}
-\DoxyCodeLine{\Hypertarget{generalised__newtonian__navier__stokes__elements_8h_source_l00907}00907 \textcolor{comment}{    ///  Validate against exact solution at given time}}
+\DoxyCodeLine{\Hypertarget{generalised__newtonian__navier__stokes__elements_8h_source_l00907}00907 \textcolor{comment}{    /// Validate against exact solution at given time}}
 \DoxyCodeLine{\Hypertarget{generalised__newtonian__navier__stokes__elements_8h_source_l00908}00908 \textcolor{comment}{    /// Solution is provided via function pointer.}}
 \DoxyCodeLine{\Hypertarget{generalised__newtonian__navier__stokes__elements_8h_source_l00909}00909 \textcolor{comment}{    /// Plot at a given number of plot points and compute L2 error}}
 \DoxyCodeLine{\Hypertarget{generalised__newtonian__navier__stokes__elements_8h_source_l00910}00910 \textcolor{comment}{    /// and L2 norm of velocity solution over element}}
@@ -918,7 +918,7 @@
 \DoxyCodeLine{\Hypertarget{generalised__newtonian__navier__stokes__elements_8h_source_l00914}00914                        \textcolor{keywordtype}{double}\& error,}
 \DoxyCodeLine{\Hypertarget{generalised__newtonian__navier__stokes__elements_8h_source_l00915}00915                        \textcolor{keywordtype}{double}\& norm);}
 \DoxyCodeLine{\Hypertarget{generalised__newtonian__navier__stokes__elements_8h_source_l00916}00916 \textcolor{comment}{}}
-\DoxyCodeLine{\Hypertarget{generalised__newtonian__navier__stokes__elements_8h_source_l00917}00917 \textcolor{comment}{    ///  Validate against exact solution.}}
+\DoxyCodeLine{\Hypertarget{generalised__newtonian__navier__stokes__elements_8h_source_l00917}00917 \textcolor{comment}{    /// Validate against exact solution.}}
 \DoxyCodeLine{\Hypertarget{generalised__newtonian__navier__stokes__elements_8h_source_l00918}00918 \textcolor{comment}{    /// Solution is provided via function pointer.}}
 \DoxyCodeLine{\Hypertarget{generalised__newtonian__navier__stokes__elements_8h_source_l00919}00919 \textcolor{comment}{    /// Plot at a given number of plot points and compute L2 error}}
 \DoxyCodeLine{\Hypertarget{generalised__newtonian__navier__stokes__elements_8h_source_l00920}00920 \textcolor{comment}{    /// and L2 norm of velocity solution over element}}
@@ -951,7 +951,7 @@
 \DoxyCodeLine{\Hypertarget{generalised__newtonian__navier__stokes__elements_8h_source_l00947}00947       \textcolor{comment}{// FiniteElement::fill\_in\_contribution\_to\_jacobian(residuals,jacobian);}}
 \DoxyCodeLine{\Hypertarget{generalised__newtonian__navier__stokes__elements_8h_source_l00948}00948     \}}
 \DoxyCodeLine{\Hypertarget{generalised__newtonian__navier__stokes__elements_8h_source_l00949}00949 \textcolor{comment}{}}
-\DoxyCodeLine{\Hypertarget{generalised__newtonian__navier__stokes__elements_8h_source_l00950}00950 \textcolor{comment}{    ///  Add the element's contribution to its residuals vector,}}
+\DoxyCodeLine{\Hypertarget{generalised__newtonian__navier__stokes__elements_8h_source_l00950}00950 \textcolor{comment}{    /// Add the element's contribution to its residuals vector,}}
 \DoxyCodeLine{\Hypertarget{generalised__newtonian__navier__stokes__elements_8h_source_l00951}00951 \textcolor{comment}{    /// jacobian matrix and mass matrix}}
 \DoxyCodeLine{\Hypertarget{generalised__newtonian__navier__stokes__elements_8h_source_l00952}\mbox{\hyperlink{classGeneralisedNewtonianNavierStokesEquations_a09ec7ec52b7c5113277b1b3ee81bbc1f}{00952}} \textcolor{comment}{}    \textcolor{keywordtype}{void} \mbox{\hyperlink{classGeneralisedNewtonianNavierStokesEquations_a09ec7ec52b7c5113277b1b3ee81bbc1f}{fill\_in\_contribution\_to\_jacobian\_and\_mass\_matrix}}(}
 \DoxyCodeLine{\Hypertarget{generalised__newtonian__navier__stokes__elements_8h_source_l00953}00953       Vector<double>\& residuals,}
@@ -1007,7 +1007,7 @@
 \DoxyCodeLine{\Hypertarget{generalised__newtonian__navier__stokes__elements_8h_source_l01003}01003     \}}
 \DoxyCodeLine{\Hypertarget{generalised__newtonian__navier__stokes__elements_8h_source_l01004}01004 }
 \DoxyCodeLine{\Hypertarget{generalised__newtonian__navier__stokes__elements_8h_source_l01005}01005 \textcolor{comment}{}}
-\DoxyCodeLine{\Hypertarget{generalised__newtonian__navier__stokes__elements_8h_source_l01006}01006 \textcolor{comment}{    ///  Pin all non-\/pressure dofs and backup eqn numbers}}
+\DoxyCodeLine{\Hypertarget{generalised__newtonian__navier__stokes__elements_8h_source_l01006}01006 \textcolor{comment}{    /// Pin all non-\/pressure dofs and backup eqn numbers}}
 \DoxyCodeLine{\Hypertarget{generalised__newtonian__navier__stokes__elements_8h_source_l01007}\mbox{\hyperlink{classGeneralisedNewtonianNavierStokesEquations_a8ac225737bf8818f07d09726bce9da65}{01007}} \textcolor{comment}{}    \textcolor{keywordtype}{void} \mbox{\hyperlink{classGeneralisedNewtonianNavierStokesEquations_a8ac225737bf8818f07d09726bce9da65}{pin\_all\_non\_pressure\_dofs}}(}
 \DoxyCodeLine{\Hypertarget{generalised__newtonian__navier__stokes__elements_8h_source_l01008}01008       std::map<Data*, std::vector<int>>\& eqn\_number\_backup)}
 \DoxyCodeLine{\Hypertarget{generalised__newtonian__navier__stokes__elements_8h_source_l01009}01009     \{}
@@ -1091,7 +1091,7 @@
 \DoxyCodeLine{\Hypertarget{generalised__newtonian__navier__stokes__elements_8h_source_l01087}01087     \}}
 \DoxyCodeLine{\Hypertarget{generalised__newtonian__navier__stokes__elements_8h_source_l01088}01088 }
 \DoxyCodeLine{\Hypertarget{generalised__newtonian__navier__stokes__elements_8h_source_l01089}01089 \textcolor{comment}{}}
-\DoxyCodeLine{\Hypertarget{generalised__newtonian__navier__stokes__elements_8h_source_l01090}01090 \textcolor{comment}{    ///  Compute derivatives of elemental residual vector with respect}}
+\DoxyCodeLine{\Hypertarget{generalised__newtonian__navier__stokes__elements_8h_source_l01090}01090 \textcolor{comment}{    /// Compute derivatives of elemental residual vector with respect}}
 \DoxyCodeLine{\Hypertarget{generalised__newtonian__navier__stokes__elements_8h_source_l01091}01091 \textcolor{comment}{    /// to nodal coordinates. Overwrites default implementation in}}
 \DoxyCodeLine{\Hypertarget{generalised__newtonian__navier__stokes__elements_8h_source_l01092}01092 \textcolor{comment}{    /// FiniteElement base class.}}
 \DoxyCodeLine{\Hypertarget{generalised__newtonian__navier__stokes__elements_8h_source_l01093}01093 \textcolor{comment}{    /// dresidual\_dnodal\_coordinates(l,i,j) = d res(l) / dX\_\{ij\}}}
@@ -1148,7 +1148,7 @@
 \DoxyCodeLine{\Hypertarget{generalised__newtonian__navier__stokes__elements_8h_source_l01144}01144       \textcolor{keywordflow}{return} (interpolated\_u);}
 \DoxyCodeLine{\Hypertarget{generalised__newtonian__navier__stokes__elements_8h_source_l01145}01145     \}}
 \DoxyCodeLine{\Hypertarget{generalised__newtonian__navier__stokes__elements_8h_source_l01146}01146 \textcolor{comment}{}}
-\DoxyCodeLine{\Hypertarget{generalised__newtonian__navier__stokes__elements_8h_source_l01147}01147 \textcolor{comment}{    ///  Return FE interpolated velocity u[i] at local coordinate s}}
+\DoxyCodeLine{\Hypertarget{generalised__newtonian__navier__stokes__elements_8h_source_l01147}01147 \textcolor{comment}{    /// Return FE interpolated velocity u[i] at local coordinate s}}
 \DoxyCodeLine{\Hypertarget{generalised__newtonian__navier__stokes__elements_8h_source_l01148}01148 \textcolor{comment}{    /// at time level t (t=0: present; t>0: history)}}
 \DoxyCodeLine{\Hypertarget{generalised__newtonian__navier__stokes__elements_8h_source_l01149}\mbox{\hyperlink{classGeneralisedNewtonianNavierStokesEquations_a96ef6a7138fd75061793647a45b7811a}{01149}} \textcolor{comment}{}    \textcolor{keywordtype}{double} \mbox{\hyperlink{classGeneralisedNewtonianNavierStokesEquations_a96ef6a7138fd75061793647a45b7811a}{interpolated\_u\_nst}}(\textcolor{keyword}{const} \textcolor{keywordtype}{unsigned}\& \mbox{\hyperlink{cfortran_8h_af6f0bd3dc13317f895c91323c25c2b8f}{t}},}
 \DoxyCodeLine{\Hypertarget{generalised__newtonian__navier__stokes__elements_8h_source_l01150}01150                               \textcolor{keyword}{const} Vector<double>\& \mbox{\hyperlink{cfortran_8h_ab7123126e4885ef647dd9c6e3807a21c}{s}},}
@@ -1177,7 +1177,7 @@
 \DoxyCodeLine{\Hypertarget{generalised__newtonian__navier__stokes__elements_8h_source_l01173}01173       \textcolor{keywordflow}{return} (interpolated\_u);}
 \DoxyCodeLine{\Hypertarget{generalised__newtonian__navier__stokes__elements_8h_source_l01174}01174     \}}
 \DoxyCodeLine{\Hypertarget{generalised__newtonian__navier__stokes__elements_8h_source_l01175}01175 \textcolor{comment}{}}
-\DoxyCodeLine{\Hypertarget{generalised__newtonian__navier__stokes__elements_8h_source_l01176}01176 \textcolor{comment}{    ///  Compute the derivatives of the i-\/th component of}}
+\DoxyCodeLine{\Hypertarget{generalised__newtonian__navier__stokes__elements_8h_source_l01176}01176 \textcolor{comment}{    /// Compute the derivatives of the i-\/th component of}}
 \DoxyCodeLine{\Hypertarget{generalised__newtonian__navier__stokes__elements_8h_source_l01177}01177 \textcolor{comment}{    /// velocity at point s with respect}}
 \DoxyCodeLine{\Hypertarget{generalised__newtonian__navier__stokes__elements_8h_source_l01178}01178 \textcolor{comment}{    /// to all data that can affect its value. In addition, return the global}}
 \DoxyCodeLine{\Hypertarget{generalised__newtonian__navier__stokes__elements_8h_source_l01179}01179 \textcolor{comment}{    /// equation numbers corresponding to the data. The function is virtual}}
@@ -1277,7 +1277,7 @@
 \DoxyCodeLine{\Hypertarget{generalised__newtonian__navier__stokes__elements_8h_source_l01273}01273     \}}
 \DoxyCodeLine{\Hypertarget{generalised__newtonian__navier__stokes__elements_8h_source_l01274}01274 }
 \DoxyCodeLine{\Hypertarget{generalised__newtonian__navier__stokes__elements_8h_source_l01275}01275 \textcolor{comment}{}}
-\DoxyCodeLine{\Hypertarget{generalised__newtonian__navier__stokes__elements_8h_source_l01276}01276 \textcolor{comment}{    ///  Output solution in data vector at local cordinates s:}}
+\DoxyCodeLine{\Hypertarget{generalised__newtonian__navier__stokes__elements_8h_source_l01276}01276 \textcolor{comment}{    /// Output solution in data vector at local cordinates s:}}
 \DoxyCodeLine{\Hypertarget{generalised__newtonian__navier__stokes__elements_8h_source_l01277}01277 \textcolor{comment}{    /// x,y [,z], u,v,[w], p}}
 \DoxyCodeLine{\Hypertarget{generalised__newtonian__navier__stokes__elements_8h_source_l01278}\mbox{\hyperlink{classGeneralisedNewtonianNavierStokesEquations_a1a33ac78d5effbc240facb57b57a915b}{01278}} \textcolor{comment}{}    \textcolor{keywordtype}{void} \mbox{\hyperlink{classGeneralisedNewtonianNavierStokesEquations_a1a33ac78d5effbc240facb57b57a915b}{point\_output\_data}}(\textcolor{keyword}{const} Vector<double>\& \mbox{\hyperlink{cfortran_8h_ab7123126e4885ef647dd9c6e3807a21c}{s}}, Vector<double>\& data)}
 \DoxyCodeLine{\Hypertarget{generalised__newtonian__navier__stokes__elements_8h_source_l01279}01279     \{}
@@ -1323,7 +1323,7 @@
 \DoxyCodeLine{\Hypertarget{generalised__newtonian__navier__stokes__elements_8h_source_l01319}\mbox{\hyperlink{classGeneralisedNewtonianQCrouzeixRaviartElement_a42b857c33ad5df9c9f5e935986a069b9}{01319}} \textcolor{comment}{}    \textcolor{keywordtype}{unsigned} \mbox{\hyperlink{classGeneralisedNewtonianQCrouzeixRaviartElement_a42b857c33ad5df9c9f5e935986a069b9}{P\_nst\_internal\_index}};}
 \DoxyCodeLine{\Hypertarget{generalised__newtonian__navier__stokes__elements_8h_source_l01320}01320 }
 \DoxyCodeLine{\Hypertarget{generalised__newtonian__navier__stokes__elements_8h_source_l01321}01321 \textcolor{comment}{}}
-\DoxyCodeLine{\Hypertarget{generalised__newtonian__navier__stokes__elements_8h_source_l01322}01322 \textcolor{comment}{    ///  Velocity shape and test functions and their derivs}}
+\DoxyCodeLine{\Hypertarget{generalised__newtonian__navier__stokes__elements_8h_source_l01322}01322 \textcolor{comment}{    /// Velocity shape and test functions and their derivs}}
 \DoxyCodeLine{\Hypertarget{generalised__newtonian__navier__stokes__elements_8h_source_l01323}01323 \textcolor{comment}{    /// w.r.t. to global coords  at local coordinate s (taken from geometry)}}
 \DoxyCodeLine{\Hypertarget{generalised__newtonian__navier__stokes__elements_8h_source_l01324}01324 \textcolor{comment}{    /// Return Jacobian of mapping between local and global coordinates.}}
 \DoxyCodeLine{\Hypertarget{generalised__newtonian__navier__stokes__elements_8h_source_l01325}01325 \textcolor{comment}{}    \textcolor{keyword}{inline} \textcolor{keywordtype}{double} dshape\_and\_dtest\_eulerian\_nst(\textcolor{keyword}{const} Vector<double>\& \mbox{\hyperlink{cfortran_8h_ab7123126e4885ef647dd9c6e3807a21c}{s}},}
@@ -1332,7 +1332,7 @@
 \DoxyCodeLine{\Hypertarget{generalised__newtonian__navier__stokes__elements_8h_source_l01328}01328                                                 Shape\& test,}
 \DoxyCodeLine{\Hypertarget{generalised__newtonian__navier__stokes__elements_8h_source_l01329}01329                                                 DShape\& dtestdx) \textcolor{keyword}{const};}
 \DoxyCodeLine{\Hypertarget{generalised__newtonian__navier__stokes__elements_8h_source_l01330}01330 \textcolor{comment}{}}
-\DoxyCodeLine{\Hypertarget{generalised__newtonian__navier__stokes__elements_8h_source_l01331}01331 \textcolor{comment}{    ///  Velocity shape and test functions and their derivs}}
+\DoxyCodeLine{\Hypertarget{generalised__newtonian__navier__stokes__elements_8h_source_l01331}01331 \textcolor{comment}{    /// Velocity shape and test functions and their derivs}}
 \DoxyCodeLine{\Hypertarget{generalised__newtonian__navier__stokes__elements_8h_source_l01332}01332 \textcolor{comment}{    /// w.r.t. to global coords at ipt-\/th integation point (taken from geometry)}}
 \DoxyCodeLine{\Hypertarget{generalised__newtonian__navier__stokes__elements_8h_source_l01333}01333 \textcolor{comment}{    /// Return Jacobian of mapping between local and global coordinates.}}
 \DoxyCodeLine{\Hypertarget{generalised__newtonian__navier__stokes__elements_8h_source_l01334}01334 \textcolor{comment}{}    \textcolor{keyword}{inline} \textcolor{keywordtype}{double} dshape\_and\_dtest\_eulerian\_at\_knot\_nst(\textcolor{keyword}{const} \textcolor{keywordtype}{unsigned}\& ipt,}
@@ -1341,7 +1341,7 @@
 \DoxyCodeLine{\Hypertarget{generalised__newtonian__navier__stokes__elements_8h_source_l01337}01337                                                         Shape\& test,}
 \DoxyCodeLine{\Hypertarget{generalised__newtonian__navier__stokes__elements_8h_source_l01338}01338                                                         DShape\& dtestdx) \textcolor{keyword}{const};}
 \DoxyCodeLine{\Hypertarget{generalised__newtonian__navier__stokes__elements_8h_source_l01339}01339 \textcolor{comment}{}}
-\DoxyCodeLine{\Hypertarget{generalised__newtonian__navier__stokes__elements_8h_source_l01340}01340 \textcolor{comment}{    ///  Shape/test functions and derivs w.r.t. to global coords at}}
+\DoxyCodeLine{\Hypertarget{generalised__newtonian__navier__stokes__elements_8h_source_l01340}01340 \textcolor{comment}{    /// Shape/test functions and derivs w.r.t. to global coords at}}
 \DoxyCodeLine{\Hypertarget{generalised__newtonian__navier__stokes__elements_8h_source_l01341}01341 \textcolor{comment}{    /// integration point ipt; return Jacobian of mapping (J). Also compute}}
 \DoxyCodeLine{\Hypertarget{generalised__newtonian__navier__stokes__elements_8h_source_l01342}01342 \textcolor{comment}{    /// derivatives of dpsidx, dtestdx and J w.r.t. nodal coordinates.}}
 \DoxyCodeLine{\Hypertarget{generalised__newtonian__navier__stokes__elements_8h_source_l01343}\mbox{\hyperlink{classGeneralisedNewtonianQCrouzeixRaviartElement_a87d3d9cf13bb58365cb0c1cbd39adc63}{01343}} \textcolor{comment}{}    \textcolor{keyword}{inline} \textcolor{keywordtype}{double} \mbox{\hyperlink{classGeneralisedNewtonianQCrouzeixRaviartElement_a87d3d9cf13bb58365cb0c1cbd39adc63}{dshape\_and\_dtest\_eulerian\_at\_knot\_nst}}(}
@@ -1354,7 +1354,7 @@
 \DoxyCodeLine{\Hypertarget{generalised__newtonian__navier__stokes__elements_8h_source_l01350}01350       RankFourTensor<double>\& d\_dtestdx\_dX,}
 \DoxyCodeLine{\Hypertarget{generalised__newtonian__navier__stokes__elements_8h_source_l01351}01351       DenseMatrix<double>\& djacobian\_dX) \textcolor{keyword}{const};}
 \DoxyCodeLine{\Hypertarget{generalised__newtonian__navier__stokes__elements_8h_source_l01352}01352 \textcolor{comment}{}}
-\DoxyCodeLine{\Hypertarget{generalised__newtonian__navier__stokes__elements_8h_source_l01353}01353 \textcolor{comment}{    ///  Pressure shape and test functions and their derivs}}
+\DoxyCodeLine{\Hypertarget{generalised__newtonian__navier__stokes__elements_8h_source_l01353}01353 \textcolor{comment}{    /// Pressure shape and test functions and their derivs}}
 \DoxyCodeLine{\Hypertarget{generalised__newtonian__navier__stokes__elements_8h_source_l01354}01354 \textcolor{comment}{    /// w.r.t. to global coords  at local coordinate s (taken from geometry)}}
 \DoxyCodeLine{\Hypertarget{generalised__newtonian__navier__stokes__elements_8h_source_l01355}01355 \textcolor{comment}{    /// Return Jacobian of mapping between local and global coordinates.}}
 \DoxyCodeLine{\Hypertarget{generalised__newtonian__navier__stokes__elements_8h_source_l01356}\mbox{\hyperlink{classGeneralisedNewtonianQCrouzeixRaviartElement_af2f6339e745b797506327bb142bcab8d}{01356}} \textcolor{comment}{}    \textcolor{keyword}{inline} \textcolor{keywordtype}{double} \mbox{\hyperlink{classGeneralisedNewtonianQCrouzeixRaviartElement_af2f6339e745b797506327bb142bcab8d}{dpshape\_and\_dptest\_eulerian\_nst}}(\textcolor{keyword}{const} Vector<double>\& \mbox{\hyperlink{cfortran_8h_ab7123126e4885ef647dd9c6e3807a21c}{s}},}
@@ -1373,7 +1373,7 @@
 \DoxyCodeLine{\Hypertarget{generalised__newtonian__navier__stokes__elements_8h_source_l01369}01369       P\_nst\_internal\_index = this-\/>add\_internal\_data(\textcolor{keyword}{new} Data(DIM + 1));}
 \DoxyCodeLine{\Hypertarget{generalised__newtonian__navier__stokes__elements_8h_source_l01370}01370     \}}
 \DoxyCodeLine{\Hypertarget{generalised__newtonian__navier__stokes__elements_8h_source_l01371}01371 \textcolor{comment}{}}
-\DoxyCodeLine{\Hypertarget{generalised__newtonian__navier__stokes__elements_8h_source_l01372}01372 \textcolor{comment}{    ///  Number of values (pinned or dofs) required at local node n.}}
+\DoxyCodeLine{\Hypertarget{generalised__newtonian__navier__stokes__elements_8h_source_l01372}01372 \textcolor{comment}{    /// Number of values (pinned or dofs) required at local node n.}}
 \DoxyCodeLine{\Hypertarget{generalised__newtonian__navier__stokes__elements_8h_source_l01373}01373 \textcolor{comment}{}    \textcolor{keyword}{virtual} \textcolor{keywordtype}{unsigned} required\_nvalue(\textcolor{keyword}{const} \textcolor{keywordtype}{unsigned}\& n) \textcolor{keyword}{const};}
 \DoxyCodeLine{\Hypertarget{generalised__newtonian__navier__stokes__elements_8h_source_l01374}01374 }
 \DoxyCodeLine{\Hypertarget{generalised__newtonian__navier__stokes__elements_8h_source_l01375}01375 \textcolor{comment}{}}
@@ -1385,7 +1385,7 @@
 \DoxyCodeLine{\Hypertarget{generalised__newtonian__navier__stokes__elements_8h_source_l01381}01381                            Shape\& psi,}
 \DoxyCodeLine{\Hypertarget{generalised__newtonian__navier__stokes__elements_8h_source_l01382}01382                            Shape\& test) \textcolor{keyword}{const};}
 \DoxyCodeLine{\Hypertarget{generalised__newtonian__navier__stokes__elements_8h_source_l01383}01383 \textcolor{comment}{}}
-\DoxyCodeLine{\Hypertarget{generalised__newtonian__navier__stokes__elements_8h_source_l01384}01384 \textcolor{comment}{    ///  Return the i-\/th pressure value}}
+\DoxyCodeLine{\Hypertarget{generalised__newtonian__navier__stokes__elements_8h_source_l01384}01384 \textcolor{comment}{    /// Return the i-\/th pressure value}}
 \DoxyCodeLine{\Hypertarget{generalised__newtonian__navier__stokes__elements_8h_source_l01385}01385 \textcolor{comment}{    /// (Discontinous pressure interpolation -\/-\/ no need to cater for hanging}}
 \DoxyCodeLine{\Hypertarget{generalised__newtonian__navier__stokes__elements_8h_source_l01386}01386 \textcolor{comment}{    /// nodes).}}
 \DoxyCodeLine{\Hypertarget{generalised__newtonian__navier__stokes__elements_8h_source_l01387}\mbox{\hyperlink{classGeneralisedNewtonianQCrouzeixRaviartElement_a2c652b79d23c87a8174700f16c61b365}{01387}} \textcolor{comment}{}    \textcolor{keywordtype}{double} \mbox{\hyperlink{classGeneralisedNewtonianQCrouzeixRaviartElement_a2c652b79d23c87a8174700f16c61b365}{p\_nst}}(\textcolor{keyword}{const} \textcolor{keywordtype}{unsigned}\& \mbox{\hyperlink{cfortran_8h_adb50e893b86b3e55e751a42eab3cba82}{i}})\textcolor{keyword}{ const}}
@@ -1393,7 +1393,7 @@
 \DoxyCodeLine{\Hypertarget{generalised__newtonian__navier__stokes__elements_8h_source_l01389}01389       \textcolor{keywordflow}{return} this-\/>internal\_data\_pt(P\_nst\_internal\_index)-\/>value(\mbox{\hyperlink{cfortran_8h_adb50e893b86b3e55e751a42eab3cba82}{i}});}
 \DoxyCodeLine{\Hypertarget{generalised__newtonian__navier__stokes__elements_8h_source_l01390}01390     \}}
 \DoxyCodeLine{\Hypertarget{generalised__newtonian__navier__stokes__elements_8h_source_l01391}01391 \textcolor{comment}{}}
-\DoxyCodeLine{\Hypertarget{generalised__newtonian__navier__stokes__elements_8h_source_l01392}01392 \textcolor{comment}{    ///  Return the i-\/th pressure value}}
+\DoxyCodeLine{\Hypertarget{generalised__newtonian__navier__stokes__elements_8h_source_l01392}01392 \textcolor{comment}{    /// Return the i-\/th pressure value}}
 \DoxyCodeLine{\Hypertarget{generalised__newtonian__navier__stokes__elements_8h_source_l01393}01393 \textcolor{comment}{    /// (Discontinous pressure interpolation -\/-\/ no need to cater for hanging}}
 \DoxyCodeLine{\Hypertarget{generalised__newtonian__navier__stokes__elements_8h_source_l01394}01394 \textcolor{comment}{    /// nodes).}}
 \DoxyCodeLine{\Hypertarget{generalised__newtonian__navier__stokes__elements_8h_source_l01395}\mbox{\hyperlink{classGeneralisedNewtonianQCrouzeixRaviartElement_a833addc26f76c72d2fd6bad794c666ad}{01395}} \textcolor{comment}{}    \textcolor{keywordtype}{double} \mbox{\hyperlink{classGeneralisedNewtonianQCrouzeixRaviartElement_a833addc26f76c72d2fd6bad794c666ad}{p\_nst}}(\textcolor{keyword}{const} \textcolor{keywordtype}{unsigned}\& \mbox{\hyperlink{cfortran_8h_af6f0bd3dc13317f895c91323c25c2b8f}{t}}, \textcolor{keyword}{const} \textcolor{keywordtype}{unsigned}\& \mbox{\hyperlink{cfortran_8h_adb50e893b86b3e55e751a42eab3cba82}{i}})\textcolor{keyword}{ const}}
@@ -1422,7 +1422,7 @@
 \DoxyCodeLine{\Hypertarget{generalised__newtonian__navier__stokes__elements_8h_source_l01418}01418     \}}
 \DoxyCodeLine{\Hypertarget{generalised__newtonian__navier__stokes__elements_8h_source_l01419}01419 }
 \DoxyCodeLine{\Hypertarget{generalised__newtonian__navier__stokes__elements_8h_source_l01420}01420 \textcolor{comment}{}}
-\DoxyCodeLine{\Hypertarget{generalised__newtonian__navier__stokes__elements_8h_source_l01421}01421 \textcolor{comment}{    ///   Add to the set \(\backslash\)c paired\_load\_data pairs containing}}
+\DoxyCodeLine{\Hypertarget{generalised__newtonian__navier__stokes__elements_8h_source_l01421}01421 \textcolor{comment}{    ///  Add to the set \(\backslash\)c paired\_load\_data pairs containing}}
 \DoxyCodeLine{\Hypertarget{generalised__newtonian__navier__stokes__elements_8h_source_l01422}01422 \textcolor{comment}{    /// -\/ the pointer to a Data object}}
 \DoxyCodeLine{\Hypertarget{generalised__newtonian__navier__stokes__elements_8h_source_l01423}01423 \textcolor{comment}{    /// and}}
 \DoxyCodeLine{\Hypertarget{generalised__newtonian__navier__stokes__elements_8h_source_l01424}01424 \textcolor{comment}{    /// -\/ the index of the value in that Data object}}
@@ -1432,7 +1432,7 @@
 \DoxyCodeLine{\Hypertarget{generalised__newtonian__navier__stokes__elements_8h_source_l01428}01428 \textcolor{comment}{}    \textcolor{keywordtype}{void} identify\_load\_data(}
 \DoxyCodeLine{\Hypertarget{generalised__newtonian__navier__stokes__elements_8h_source_l01429}01429       std::set<std::pair<Data*, unsigned>>\& paired\_load\_data);}
 \DoxyCodeLine{\Hypertarget{generalised__newtonian__navier__stokes__elements_8h_source_l01430}01430 \textcolor{comment}{}}
-\DoxyCodeLine{\Hypertarget{generalised__newtonian__navier__stokes__elements_8h_source_l01431}01431 \textcolor{comment}{    ///   Add to the set \(\backslash\)c paired\_pressure\_data pairs}}
+\DoxyCodeLine{\Hypertarget{generalised__newtonian__navier__stokes__elements_8h_source_l01431}01431 \textcolor{comment}{    ///  Add to the set \(\backslash\)c paired\_pressure\_data pairs}}
 \DoxyCodeLine{\Hypertarget{generalised__newtonian__navier__stokes__elements_8h_source_l01432}01432 \textcolor{comment}{    /// containing}}
 \DoxyCodeLine{\Hypertarget{generalised__newtonian__navier__stokes__elements_8h_source_l01433}01433 \textcolor{comment}{    /// -\/ the pointer to a Data object}}
 \DoxyCodeLine{\Hypertarget{generalised__newtonian__navier__stokes__elements_8h_source_l01434}01434 \textcolor{comment}{    /// and}}
@@ -1470,7 +1470,7 @@
 \DoxyCodeLine{\Hypertarget{generalised__newtonian__navier__stokes__elements_8h_source_l01466}01466     \}}
 \DoxyCodeLine{\Hypertarget{generalised__newtonian__navier__stokes__elements_8h_source_l01467}01467 }
 \DoxyCodeLine{\Hypertarget{generalised__newtonian__navier__stokes__elements_8h_source_l01468}01468 \textcolor{comment}{}}
-\DoxyCodeLine{\Hypertarget{generalised__newtonian__navier__stokes__elements_8h_source_l01469}01469 \textcolor{comment}{    ///  Full output function:}}
+\DoxyCodeLine{\Hypertarget{generalised__newtonian__navier__stokes__elements_8h_source_l01469}01469 \textcolor{comment}{    /// Full output function:}}
 \DoxyCodeLine{\Hypertarget{generalised__newtonian__navier__stokes__elements_8h_source_l01470}01470 \textcolor{comment}{    /// x,y,[z],u,v,[w],p,du/dt,dv/dt,[dw/dt],dissipation}}
 \DoxyCodeLine{\Hypertarget{generalised__newtonian__navier__stokes__elements_8h_source_l01471}01471 \textcolor{comment}{    /// in tecplot format. Default number of plot points}}
 \DoxyCodeLine{\Hypertarget{generalised__newtonian__navier__stokes__elements_8h_source_l01472}\mbox{\hyperlink{classGeneralisedNewtonianQCrouzeixRaviartElement_af5b7ef32863ba83e5264048614ca6b2c}{01472}} \textcolor{comment}{}    \textcolor{keywordtype}{void} \mbox{\hyperlink{classGeneralisedNewtonianQCrouzeixRaviartElement_af5b7ef32863ba83e5264048614ca6b2c}{full\_output}}(std::ostream\& outfile)}
@@ -1478,7 +1478,7 @@
 \DoxyCodeLine{\Hypertarget{generalised__newtonian__navier__stokes__elements_8h_source_l01474}01474       \mbox{\hyperlink{classGeneralisedNewtonianNavierStokesEquations_a4d3a7679f543cb91283329135e7b9675}{GeneralisedNewtonianNavierStokesEquations<DIM>::full\_output}}(outfile);}
 \DoxyCodeLine{\Hypertarget{generalised__newtonian__navier__stokes__elements_8h_source_l01475}01475     \}}
 \DoxyCodeLine{\Hypertarget{generalised__newtonian__navier__stokes__elements_8h_source_l01476}01476 \textcolor{comment}{}}
-\DoxyCodeLine{\Hypertarget{generalised__newtonian__navier__stokes__elements_8h_source_l01477}01477 \textcolor{comment}{    ///  Full output function:}}
+\DoxyCodeLine{\Hypertarget{generalised__newtonian__navier__stokes__elements_8h_source_l01477}01477 \textcolor{comment}{    /// Full output function:}}
 \DoxyCodeLine{\Hypertarget{generalised__newtonian__navier__stokes__elements_8h_source_l01478}01478 \textcolor{comment}{    /// x,y,[z],u,v,[w],p,du/dt,dv/dt,[dw/dt],dissipation}}
 \DoxyCodeLine{\Hypertarget{generalised__newtonian__navier__stokes__elements_8h_source_l01479}01479 \textcolor{comment}{    /// in tecplot format. nplot points in each coordinate direction}}
 \DoxyCodeLine{\Hypertarget{generalised__newtonian__navier__stokes__elements_8h_source_l01480}\mbox{\hyperlink{classGeneralisedNewtonianQCrouzeixRaviartElement_a2235de9dfb12073c2f23f44febe145fa}{01480}} \textcolor{comment}{}    \textcolor{keywordtype}{void} \mbox{\hyperlink{classGeneralisedNewtonianQCrouzeixRaviartElement_a2235de9dfb12073c2f23f44febe145fa}{full\_output}}(std::ostream\& outfile, \textcolor{keyword}{const} \textcolor{keywordtype}{unsigned}\& nplot)}
@@ -1488,14 +1488,14 @@
 \DoxyCodeLine{\Hypertarget{generalised__newtonian__navier__stokes__elements_8h_source_l01484}01484     \}}
 \DoxyCodeLine{\Hypertarget{generalised__newtonian__navier__stokes__elements_8h_source_l01485}01485 }
 \DoxyCodeLine{\Hypertarget{generalised__newtonian__navier__stokes__elements_8h_source_l01486}01486 \textcolor{comment}{}}
-\DoxyCodeLine{\Hypertarget{generalised__newtonian__navier__stokes__elements_8h_source_l01487}01487 \textcolor{comment}{    ///  The number of "{}DOF types"{} that degrees of freedom in this element}}
+\DoxyCodeLine{\Hypertarget{generalised__newtonian__navier__stokes__elements_8h_source_l01487}01487 \textcolor{comment}{    /// The number of "{}DOF types"{} that degrees of freedom in this element}}
 \DoxyCodeLine{\Hypertarget{generalised__newtonian__navier__stokes__elements_8h_source_l01488}01488 \textcolor{comment}{    /// are sub-\/divided into: Velocity and pressure.}}
 \DoxyCodeLine{\Hypertarget{generalised__newtonian__navier__stokes__elements_8h_source_l01489}\mbox{\hyperlink{classGeneralisedNewtonianQCrouzeixRaviartElement_a8a881dc6d15835fd7ff8f6a02b95446f}{01489}} \textcolor{comment}{}    \textcolor{keywordtype}{unsigned} \mbox{\hyperlink{classGeneralisedNewtonianQCrouzeixRaviartElement_a8a881dc6d15835fd7ff8f6a02b95446f}{ndof\_types}}()\textcolor{keyword}{ const}}
 \DoxyCodeLine{\Hypertarget{generalised__newtonian__navier__stokes__elements_8h_source_l01490}01490 \textcolor{keyword}{    }\{}
 \DoxyCodeLine{\Hypertarget{generalised__newtonian__navier__stokes__elements_8h_source_l01491}01491       \textcolor{keywordflow}{return} DIM + 1;}
 \DoxyCodeLine{\Hypertarget{generalised__newtonian__navier__stokes__elements_8h_source_l01492}01492     \}}
 \DoxyCodeLine{\Hypertarget{generalised__newtonian__navier__stokes__elements_8h_source_l01493}01493 \textcolor{comment}{}}
-\DoxyCodeLine{\Hypertarget{generalised__newtonian__navier__stokes__elements_8h_source_l01494}01494 \textcolor{comment}{    ///  Create a list of pairs for all unknowns in this element,}}
+\DoxyCodeLine{\Hypertarget{generalised__newtonian__navier__stokes__elements_8h_source_l01494}01494 \textcolor{comment}{    /// Create a list of pairs for all unknowns in this element,}}
 \DoxyCodeLine{\Hypertarget{generalised__newtonian__navier__stokes__elements_8h_source_l01495}01495 \textcolor{comment}{    /// so that the first entry in each pair contains the global equation}}
 \DoxyCodeLine{\Hypertarget{generalised__newtonian__navier__stokes__elements_8h_source_l01496}01496 \textcolor{comment}{    /// number of the unknown, while the second one contains the number}}
 \DoxyCodeLine{\Hypertarget{generalised__newtonian__navier__stokes__elements_8h_source_l01497}01497 \textcolor{comment}{    /// of the "{}DOF type"{} that this unknown is associated with.}}
@@ -1873,11 +1873,11 @@
 \DoxyCodeLine{\Hypertarget{generalised__newtonian__navier__stokes__elements_8h_source_l01869}\mbox{\hyperlink{classGeneralisedNewtonianQTaylorHoodElement_a2560fde7a8c687e9657a5c0476757145}{01869}} \textcolor{comment}{}    \textcolor{keyword}{static} \textcolor{keyword}{const} \textcolor{keywordtype}{unsigned} Initial\_Nvalue[];}
 \DoxyCodeLine{\Hypertarget{generalised__newtonian__navier__stokes__elements_8h_source_l01870}01870 }
 \DoxyCodeLine{\Hypertarget{generalised__newtonian__navier__stokes__elements_8h_source_l01871}01871   \textcolor{keyword}{protected}:\textcolor{comment}{}}
-\DoxyCodeLine{\Hypertarget{generalised__newtonian__navier__stokes__elements_8h_source_l01872}01872 \textcolor{comment}{    ///  Static array of ints to hold conversion from pressure}}
+\DoxyCodeLine{\Hypertarget{generalised__newtonian__navier__stokes__elements_8h_source_l01872}01872 \textcolor{comment}{    /// Static array of ints to hold conversion from pressure}}
 \DoxyCodeLine{\Hypertarget{generalised__newtonian__navier__stokes__elements_8h_source_l01873}01873 \textcolor{comment}{    /// node numbers to actual node numbers}}
 \DoxyCodeLine{\Hypertarget{generalised__newtonian__navier__stokes__elements_8h_source_l01874}\mbox{\hyperlink{classGeneralisedNewtonianQTaylorHoodElement_a042db9877710486bca0f14e94f3d1509}{01874}} \textcolor{comment}{}    \textcolor{keyword}{static} \textcolor{keyword}{const} \textcolor{keywordtype}{unsigned} Pconv[];}
 \DoxyCodeLine{\Hypertarget{generalised__newtonian__navier__stokes__elements_8h_source_l01875}01875 \textcolor{comment}{}}
-\DoxyCodeLine{\Hypertarget{generalised__newtonian__navier__stokes__elements_8h_source_l01876}01876 \textcolor{comment}{    ///  Velocity shape and test functions and their derivs}}
+\DoxyCodeLine{\Hypertarget{generalised__newtonian__navier__stokes__elements_8h_source_l01876}01876 \textcolor{comment}{    /// Velocity shape and test functions and their derivs}}
 \DoxyCodeLine{\Hypertarget{generalised__newtonian__navier__stokes__elements_8h_source_l01877}01877 \textcolor{comment}{    /// w.r.t. to global coords  at local coordinate s (taken from geometry)}}
 \DoxyCodeLine{\Hypertarget{generalised__newtonian__navier__stokes__elements_8h_source_l01878}01878 \textcolor{comment}{    /// Return Jacobian of mapping between local and global coordinates.}}
 \DoxyCodeLine{\Hypertarget{generalised__newtonian__navier__stokes__elements_8h_source_l01879}01879 \textcolor{comment}{}    \textcolor{keyword}{inline} \textcolor{keywordtype}{double} dshape\_and\_dtest\_eulerian\_nst(\textcolor{keyword}{const} Vector<double>\& \mbox{\hyperlink{cfortran_8h_ab7123126e4885ef647dd9c6e3807a21c}{s}},}
@@ -1886,7 +1886,7 @@
 \DoxyCodeLine{\Hypertarget{generalised__newtonian__navier__stokes__elements_8h_source_l01882}01882                                                 Shape\& test,}
 \DoxyCodeLine{\Hypertarget{generalised__newtonian__navier__stokes__elements_8h_source_l01883}01883                                                 DShape\& dtestdx) \textcolor{keyword}{const};}
 \DoxyCodeLine{\Hypertarget{generalised__newtonian__navier__stokes__elements_8h_source_l01884}01884 \textcolor{comment}{}}
-\DoxyCodeLine{\Hypertarget{generalised__newtonian__navier__stokes__elements_8h_source_l01885}01885 \textcolor{comment}{    ///  Velocity shape and test functions and their derivs}}
+\DoxyCodeLine{\Hypertarget{generalised__newtonian__navier__stokes__elements_8h_source_l01885}01885 \textcolor{comment}{    /// Velocity shape and test functions and their derivs}}
 \DoxyCodeLine{\Hypertarget{generalised__newtonian__navier__stokes__elements_8h_source_l01886}01886 \textcolor{comment}{    /// w.r.t. to global coords  at local coordinate s (taken from geometry)}}
 \DoxyCodeLine{\Hypertarget{generalised__newtonian__navier__stokes__elements_8h_source_l01887}01887 \textcolor{comment}{    /// Return Jacobian of mapping between local and global coordinates.}}
 \DoxyCodeLine{\Hypertarget{generalised__newtonian__navier__stokes__elements_8h_source_l01888}01888 \textcolor{comment}{}    \textcolor{keyword}{inline} \textcolor{keywordtype}{double} dshape\_and\_dtest\_eulerian\_at\_knot\_nst(\textcolor{keyword}{const} \textcolor{keywordtype}{unsigned}\& ipt,}
@@ -1895,7 +1895,7 @@
 \DoxyCodeLine{\Hypertarget{generalised__newtonian__navier__stokes__elements_8h_source_l01891}01891                                                         Shape\& test,}
 \DoxyCodeLine{\Hypertarget{generalised__newtonian__navier__stokes__elements_8h_source_l01892}01892                                                         DShape\& dtestdx) \textcolor{keyword}{const};}
 \DoxyCodeLine{\Hypertarget{generalised__newtonian__navier__stokes__elements_8h_source_l01893}01893 \textcolor{comment}{}}
-\DoxyCodeLine{\Hypertarget{generalised__newtonian__navier__stokes__elements_8h_source_l01894}01894 \textcolor{comment}{    ///  Shape/test functions and derivs w.r.t. to global coords at}}
+\DoxyCodeLine{\Hypertarget{generalised__newtonian__navier__stokes__elements_8h_source_l01894}01894 \textcolor{comment}{    /// Shape/test functions and derivs w.r.t. to global coords at}}
 \DoxyCodeLine{\Hypertarget{generalised__newtonian__navier__stokes__elements_8h_source_l01895}01895 \textcolor{comment}{    /// integration point ipt; return Jacobian of mapping (J). Also compute}}
 \DoxyCodeLine{\Hypertarget{generalised__newtonian__navier__stokes__elements_8h_source_l01896}01896 \textcolor{comment}{    /// derivatives of dpsidx, dtestdx and J w.r.t. nodal coordinates.}}
 \DoxyCodeLine{\Hypertarget{generalised__newtonian__navier__stokes__elements_8h_source_l01897}\mbox{\hyperlink{classGeneralisedNewtonianQTaylorHoodElement_aeafcbd01bb6a1656a97126558bf8af54}{01897}} \textcolor{comment}{}    \textcolor{keyword}{inline} \textcolor{keywordtype}{double} \mbox{\hyperlink{classGeneralisedNewtonianQTaylorHoodElement_aeafcbd01bb6a1656a97126558bf8af54}{dshape\_and\_dtest\_eulerian\_at\_knot\_nst}}(}
@@ -1909,7 +1909,7 @@
 \DoxyCodeLine{\Hypertarget{generalised__newtonian__navier__stokes__elements_8h_source_l01905}01905       DenseMatrix<double>\& djacobian\_dX) \textcolor{keyword}{const};}
 \DoxyCodeLine{\Hypertarget{generalised__newtonian__navier__stokes__elements_8h_source_l01906}01906 }
 \DoxyCodeLine{\Hypertarget{generalised__newtonian__navier__stokes__elements_8h_source_l01907}01907 \textcolor{comment}{}}
-\DoxyCodeLine{\Hypertarget{generalised__newtonian__navier__stokes__elements_8h_source_l01908}01908 \textcolor{comment}{    ///  Pressure shape and test functions and their derivs}}
+\DoxyCodeLine{\Hypertarget{generalised__newtonian__navier__stokes__elements_8h_source_l01908}01908 \textcolor{comment}{    /// Pressure shape and test functions and their derivs}}
 \DoxyCodeLine{\Hypertarget{generalised__newtonian__navier__stokes__elements_8h_source_l01909}01909 \textcolor{comment}{    /// w.r.t. to global coords  at local coordinate s (taken from geometry).}}
 \DoxyCodeLine{\Hypertarget{generalised__newtonian__navier__stokes__elements_8h_source_l01910}01910 \textcolor{comment}{    /// Return Jacobian of mapping between local and global coordinates.}}
 \DoxyCodeLine{\Hypertarget{generalised__newtonian__navier__stokes__elements_8h_source_l01911}\mbox{\hyperlink{classGeneralisedNewtonianQTaylorHoodElement_a6db1a910a77bf9a49ca705cabcd44458}{01911}} \textcolor{comment}{}    \textcolor{keyword}{inline} \textcolor{keywordtype}{double} \mbox{\hyperlink{classGeneralisedNewtonianQTaylorHoodElement_a6db1a910a77bf9a49ca705cabcd44458}{dpshape\_and\_dptest\_eulerian\_nst}}(\textcolor{keyword}{const} Vector<double>\& \mbox{\hyperlink{cfortran_8h_ab7123126e4885ef647dd9c6e3807a21c}{s}},}
@@ -1925,7 +1925,7 @@
 \DoxyCodeLine{\Hypertarget{generalised__newtonian__navier__stokes__elements_8h_source_l01921}01921     \{}
 \DoxyCodeLine{\Hypertarget{generalised__newtonian__navier__stokes__elements_8h_source_l01922}01922     \}}
 \DoxyCodeLine{\Hypertarget{generalised__newtonian__navier__stokes__elements_8h_source_l01923}01923 \textcolor{comment}{}}
-\DoxyCodeLine{\Hypertarget{generalised__newtonian__navier__stokes__elements_8h_source_l01924}01924 \textcolor{comment}{    ///  Number of values (pinned or dofs) required at node n. Can}}
+\DoxyCodeLine{\Hypertarget{generalised__newtonian__navier__stokes__elements_8h_source_l01924}01924 \textcolor{comment}{    /// Number of values (pinned or dofs) required at node n. Can}}
 \DoxyCodeLine{\Hypertarget{generalised__newtonian__navier__stokes__elements_8h_source_l01925}01925 \textcolor{comment}{    /// be overwritten for hanging node version}}
 \DoxyCodeLine{\Hypertarget{generalised__newtonian__navier__stokes__elements_8h_source_l01926}\mbox{\hyperlink{classGeneralisedNewtonianQTaylorHoodElement_ad2a7b033d2f09891de731b27c2da1da9}{01926}} \textcolor{comment}{}    \textcolor{keyword}{inline} \textcolor{keyword}{virtual} \textcolor{keywordtype}{unsigned} \mbox{\hyperlink{classGeneralisedNewtonianQTaylorHoodElement_ad2a7b033d2f09891de731b27c2da1da9}{required\_nvalue}}(\textcolor{keyword}{const} \textcolor{keywordtype}{unsigned}\& n)\textcolor{keyword}{ const}}
 \DoxyCodeLine{\Hypertarget{generalised__newtonian__navier__stokes__elements_8h_source_l01927}01927 \textcolor{keyword}{    }\{}
@@ -1941,7 +1941,7 @@
 \DoxyCodeLine{\Hypertarget{generalised__newtonian__navier__stokes__elements_8h_source_l01937}01937                            Shape\& psi,}
 \DoxyCodeLine{\Hypertarget{generalised__newtonian__navier__stokes__elements_8h_source_l01938}01938                            Shape\& test) \textcolor{keyword}{const};}
 \DoxyCodeLine{\Hypertarget{generalised__newtonian__navier__stokes__elements_8h_source_l01939}01939 \textcolor{comment}{}}
-\DoxyCodeLine{\Hypertarget{generalised__newtonian__navier__stokes__elements_8h_source_l01940}01940 \textcolor{comment}{    ///  Set the value at which the pressure is stored in the nodes}}
+\DoxyCodeLine{\Hypertarget{generalised__newtonian__navier__stokes__elements_8h_source_l01940}01940 \textcolor{comment}{    /// Set the value at which the pressure is stored in the nodes}}
 \DoxyCodeLine{\Hypertarget{generalised__newtonian__navier__stokes__elements_8h_source_l01941}\mbox{\hyperlink{classGeneralisedNewtonianQTaylorHoodElement_a2d712af88f816868dbf48046a1a2dfae}{01941}} \textcolor{comment}{}    \textcolor{keyword}{virtual} \textcolor{keywordtype}{int} \mbox{\hyperlink{classGeneralisedNewtonianQTaylorHoodElement_a2d712af88f816868dbf48046a1a2dfae}{p\_nodal\_index\_nst}}()\textcolor{keyword}{ const}}
 \DoxyCodeLine{\Hypertarget{generalised__newtonian__navier__stokes__elements_8h_source_l01942}01942 \textcolor{keyword}{    }\{}
 \DoxyCodeLine{\Hypertarget{generalised__newtonian__navier__stokes__elements_8h_source_l01943}01943       \textcolor{keywordflow}{return} \textcolor{keyword}{static\_cast<}\textcolor{keywordtype}{int}\textcolor{keyword}{>}(DIM);}
@@ -1953,14 +1953,14 @@
 \DoxyCodeLine{\Hypertarget{generalised__newtonian__navier__stokes__elements_8h_source_l01949}01949       \textcolor{keywordflow}{return} this-\/>nodal\_local\_eqn(Pconv[n], p\_nodal\_index\_nst());}
 \DoxyCodeLine{\Hypertarget{generalised__newtonian__navier__stokes__elements_8h_source_l01950}01950     \}}
 \DoxyCodeLine{\Hypertarget{generalised__newtonian__navier__stokes__elements_8h_source_l01951}01951 \textcolor{comment}{}}
-\DoxyCodeLine{\Hypertarget{generalised__newtonian__navier__stokes__elements_8h_source_l01952}01952 \textcolor{comment}{    ///  Access function for the pressure values at local pressure}}
+\DoxyCodeLine{\Hypertarget{generalised__newtonian__navier__stokes__elements_8h_source_l01952}01952 \textcolor{comment}{    /// Access function for the pressure values at local pressure}}
 \DoxyCodeLine{\Hypertarget{generalised__newtonian__navier__stokes__elements_8h_source_l01953}01953 \textcolor{comment}{    /// node n\_p (const version)}}
 \DoxyCodeLine{\Hypertarget{generalised__newtonian__navier__stokes__elements_8h_source_l01954}\mbox{\hyperlink{classGeneralisedNewtonianQTaylorHoodElement_acdf3f841a4ee431f93ad263a4541fc30}{01954}} \textcolor{comment}{}    \textcolor{keywordtype}{double} \mbox{\hyperlink{classGeneralisedNewtonianQTaylorHoodElement_acdf3f841a4ee431f93ad263a4541fc30}{p\_nst}}(\textcolor{keyword}{const} \textcolor{keywordtype}{unsigned}\& n\_p)\textcolor{keyword}{ const}}
 \DoxyCodeLine{\Hypertarget{generalised__newtonian__navier__stokes__elements_8h_source_l01955}01955 \textcolor{keyword}{    }\{}
 \DoxyCodeLine{\Hypertarget{generalised__newtonian__navier__stokes__elements_8h_source_l01956}01956       \textcolor{keywordflow}{return} this-\/>nodal\_value(Pconv[n\_p], this-\/>p\_nodal\_index\_nst());}
 \DoxyCodeLine{\Hypertarget{generalised__newtonian__navier__stokes__elements_8h_source_l01957}01957     \}}
 \DoxyCodeLine{\Hypertarget{generalised__newtonian__navier__stokes__elements_8h_source_l01958}01958 \textcolor{comment}{}}
-\DoxyCodeLine{\Hypertarget{generalised__newtonian__navier__stokes__elements_8h_source_l01959}01959 \textcolor{comment}{    ///  Access function for the pressure values at local pressure}}
+\DoxyCodeLine{\Hypertarget{generalised__newtonian__navier__stokes__elements_8h_source_l01959}01959 \textcolor{comment}{    /// Access function for the pressure values at local pressure}}
 \DoxyCodeLine{\Hypertarget{generalised__newtonian__navier__stokes__elements_8h_source_l01960}01960 \textcolor{comment}{    /// node n\_p (const version)}}
 \DoxyCodeLine{\Hypertarget{generalised__newtonian__navier__stokes__elements_8h_source_l01961}\mbox{\hyperlink{classGeneralisedNewtonianQTaylorHoodElement_a3f1915c448ff48d1adcc80c673b43c0b}{01961}} \textcolor{comment}{}    \textcolor{keywordtype}{double} \mbox{\hyperlink{classGeneralisedNewtonianQTaylorHoodElement_a3f1915c448ff48d1adcc80c673b43c0b}{p\_nst}}(\textcolor{keyword}{const} \textcolor{keywordtype}{unsigned}\& \mbox{\hyperlink{cfortran_8h_af6f0bd3dc13317f895c91323c25c2b8f}{t}}, \textcolor{keyword}{const} \textcolor{keywordtype}{unsigned}\& n\_p)\textcolor{keyword}{ const}}
 \DoxyCodeLine{\Hypertarget{generalised__newtonian__navier__stokes__elements_8h_source_l01962}01962 \textcolor{keyword}{    }\{}
@@ -1982,7 +1982,7 @@
 \DoxyCodeLine{\Hypertarget{generalised__newtonian__navier__stokes__elements_8h_source_l01978}01978     \}}
 \DoxyCodeLine{\Hypertarget{generalised__newtonian__navier__stokes__elements_8h_source_l01979}01979 }
 \DoxyCodeLine{\Hypertarget{generalised__newtonian__navier__stokes__elements_8h_source_l01980}01980 \textcolor{comment}{}}
-\DoxyCodeLine{\Hypertarget{generalised__newtonian__navier__stokes__elements_8h_source_l01981}01981 \textcolor{comment}{    ///   Add to the set \(\backslash\)c paired\_load\_data pairs containing}}
+\DoxyCodeLine{\Hypertarget{generalised__newtonian__navier__stokes__elements_8h_source_l01981}01981 \textcolor{comment}{    ///  Add to the set \(\backslash\)c paired\_load\_data pairs containing}}
 \DoxyCodeLine{\Hypertarget{generalised__newtonian__navier__stokes__elements_8h_source_l01982}01982 \textcolor{comment}{    /// -\/ the pointer to a Data object}}
 \DoxyCodeLine{\Hypertarget{generalised__newtonian__navier__stokes__elements_8h_source_l01983}01983 \textcolor{comment}{    /// and}}
 \DoxyCodeLine{\Hypertarget{generalised__newtonian__navier__stokes__elements_8h_source_l01984}01984 \textcolor{comment}{    /// -\/ the index of the value in that Data object}}
@@ -1993,7 +1993,7 @@
 \DoxyCodeLine{\Hypertarget{generalised__newtonian__navier__stokes__elements_8h_source_l01989}01989       std::set<std::pair<Data*, unsigned>>\& paired\_load\_data);}
 \DoxyCodeLine{\Hypertarget{generalised__newtonian__navier__stokes__elements_8h_source_l01990}01990 }
 \DoxyCodeLine{\Hypertarget{generalised__newtonian__navier__stokes__elements_8h_source_l01991}01991 \textcolor{comment}{}}
-\DoxyCodeLine{\Hypertarget{generalised__newtonian__navier__stokes__elements_8h_source_l01992}01992 \textcolor{comment}{    ///   Add to the set \(\backslash\)c paired\_pressure\_data pairs}}
+\DoxyCodeLine{\Hypertarget{generalised__newtonian__navier__stokes__elements_8h_source_l01992}01992 \textcolor{comment}{    ///  Add to the set \(\backslash\)c paired\_pressure\_data pairs}}
 \DoxyCodeLine{\Hypertarget{generalised__newtonian__navier__stokes__elements_8h_source_l01993}01993 \textcolor{comment}{    /// containing}}
 \DoxyCodeLine{\Hypertarget{generalised__newtonian__navier__stokes__elements_8h_source_l01994}01994 \textcolor{comment}{    /// -\/ the pointer to a Data object}}
 \DoxyCodeLine{\Hypertarget{generalised__newtonian__navier__stokes__elements_8h_source_l01995}01995 \textcolor{comment}{    /// and}}
@@ -2030,14 +2030,14 @@
 \DoxyCodeLine{\Hypertarget{generalised__newtonian__navier__stokes__elements_8h_source_l02026}02026     \}}
 \DoxyCodeLine{\Hypertarget{generalised__newtonian__navier__stokes__elements_8h_source_l02027}02027 }
 \DoxyCodeLine{\Hypertarget{generalised__newtonian__navier__stokes__elements_8h_source_l02028}02028 \textcolor{comment}{}}
-\DoxyCodeLine{\Hypertarget{generalised__newtonian__navier__stokes__elements_8h_source_l02029}02029 \textcolor{comment}{    ///  Returns the number of "{}DOF types"{} that degrees of freedom}}
+\DoxyCodeLine{\Hypertarget{generalised__newtonian__navier__stokes__elements_8h_source_l02029}02029 \textcolor{comment}{    /// Returns the number of "{}DOF types"{} that degrees of freedom}}
 \DoxyCodeLine{\Hypertarget{generalised__newtonian__navier__stokes__elements_8h_source_l02030}02030 \textcolor{comment}{    /// in this element are sub-\/divided into: Velocity and pressure.}}
 \DoxyCodeLine{\Hypertarget{generalised__newtonian__navier__stokes__elements_8h_source_l02031}\mbox{\hyperlink{classGeneralisedNewtonianQTaylorHoodElement_a8bce819af1616e9c765cb4a2cacecc51}{02031}} \textcolor{comment}{}    \textcolor{keywordtype}{unsigned} \mbox{\hyperlink{classGeneralisedNewtonianQTaylorHoodElement_a8bce819af1616e9c765cb4a2cacecc51}{ndof\_types}}()\textcolor{keyword}{ const}}
 \DoxyCodeLine{\Hypertarget{generalised__newtonian__navier__stokes__elements_8h_source_l02032}02032 \textcolor{keyword}{    }\{}
 \DoxyCodeLine{\Hypertarget{generalised__newtonian__navier__stokes__elements_8h_source_l02033}02033       \textcolor{keywordflow}{return} DIM + 1;}
 \DoxyCodeLine{\Hypertarget{generalised__newtonian__navier__stokes__elements_8h_source_l02034}02034     \}}
 \DoxyCodeLine{\Hypertarget{generalised__newtonian__navier__stokes__elements_8h_source_l02035}02035 \textcolor{comment}{}}
-\DoxyCodeLine{\Hypertarget{generalised__newtonian__navier__stokes__elements_8h_source_l02036}02036 \textcolor{comment}{    ///  Create a list of pairs for all unknowns in this element,}}
+\DoxyCodeLine{\Hypertarget{generalised__newtonian__navier__stokes__elements_8h_source_l02036}02036 \textcolor{comment}{    /// Create a list of pairs for all unknowns in this element,}}
 \DoxyCodeLine{\Hypertarget{generalised__newtonian__navier__stokes__elements_8h_source_l02037}02037 \textcolor{comment}{    /// so that the first entry in each pair contains the global equation}}
 \DoxyCodeLine{\Hypertarget{generalised__newtonian__navier__stokes__elements_8h_source_l02038}02038 \textcolor{comment}{    /// number of the unknown, while the second one contains the number}}
 \DoxyCodeLine{\Hypertarget{generalised__newtonian__navier__stokes__elements_8h_source_l02039}02039 \textcolor{comment}{    /// of the "{}DOF type"{} that this unknown is associated with.}}
@@ -2459,12 +2459,12 @@
 \DoxyCodeLine{\Hypertarget{generalised__newtonian__navier__stokes__elements_8h_source_l02455}02455     : \textcolor{keyword}{public} \textcolor{keyword}{virtual} \mbox{\hyperlink{classoomph_1_1ProjectableElement_a1892a2e757d35952be803d56078a3320}{ProjectableElement}}<TAYLOR\_HOOD\_ELEMENT>}
 \DoxyCodeLine{\Hypertarget{generalised__newtonian__navier__stokes__elements_8h_source_l02456}02456   \{}
 \DoxyCodeLine{\Hypertarget{generalised__newtonian__navier__stokes__elements_8h_source_l02457}02457   \textcolor{keyword}{public}:\textcolor{comment}{}}
-\DoxyCodeLine{\Hypertarget{generalised__newtonian__navier__stokes__elements_8h_source_l02458}02458 \textcolor{comment}{    ///  Constructor [this was only required explicitly}}
+\DoxyCodeLine{\Hypertarget{generalised__newtonian__navier__stokes__elements_8h_source_l02458}02458 \textcolor{comment}{    /// Constructor [this was only required explicitly}}
 \DoxyCodeLine{\Hypertarget{generalised__newtonian__navier__stokes__elements_8h_source_l02459}02459 \textcolor{comment}{    /// from gcc 4.5.2 onwards...]}}
 \DoxyCodeLine{\Hypertarget{generalised__newtonian__navier__stokes__elements_8h_source_l02460}\mbox{\hyperlink{classProjectableGeneralisedNewtonianTaylorHoodElement_adce945592a57c7c78e5ffd8208bf4fd5}{02460}} \textcolor{comment}{}    \mbox{\hyperlink{classProjectableGeneralisedNewtonianTaylorHoodElement_adce945592a57c7c78e5ffd8208bf4fd5}{ProjectableGeneralisedNewtonianTaylorHoodElement}}() \{\}}
 \DoxyCodeLine{\Hypertarget{generalised__newtonian__navier__stokes__elements_8h_source_l02461}02461 }
 \DoxyCodeLine{\Hypertarget{generalised__newtonian__navier__stokes__elements_8h_source_l02462}02462 \textcolor{comment}{}}
-\DoxyCodeLine{\Hypertarget{generalised__newtonian__navier__stokes__elements_8h_source_l02463}02463 \textcolor{comment}{    ///  Specify the values associated with field fld.}}
+\DoxyCodeLine{\Hypertarget{generalised__newtonian__navier__stokes__elements_8h_source_l02463}02463 \textcolor{comment}{    /// Specify the values associated with field fld.}}
 \DoxyCodeLine{\Hypertarget{generalised__newtonian__navier__stokes__elements_8h_source_l02464}02464 \textcolor{comment}{    /// The information is returned in a vector of pairs which comprise}}
 \DoxyCodeLine{\Hypertarget{generalised__newtonian__navier__stokes__elements_8h_source_l02465}02465 \textcolor{comment}{    /// the Data object and the value within it, that correspond to field fld.}}
 \DoxyCodeLine{\Hypertarget{generalised__newtonian__navier__stokes__elements_8h_source_l02466}02466 \textcolor{comment}{    /// In the underlying Taylor Hood elements the fld-\/th velocities are stored}}
@@ -2504,14 +2504,14 @@
 \DoxyCodeLine{\Hypertarget{generalised__newtonian__navier__stokes__elements_8h_source_l02500}02500       \textcolor{keywordflow}{return} data\_values;}
 \DoxyCodeLine{\Hypertarget{generalised__newtonian__navier__stokes__elements_8h_source_l02501}02501     \}}
 \DoxyCodeLine{\Hypertarget{generalised__newtonian__navier__stokes__elements_8h_source_l02502}02502 \textcolor{comment}{}}
-\DoxyCodeLine{\Hypertarget{generalised__newtonian__navier__stokes__elements_8h_source_l02503}02503 \textcolor{comment}{    ///  Number of fields to be projected: dim+1, corresponding to}}
+\DoxyCodeLine{\Hypertarget{generalised__newtonian__navier__stokes__elements_8h_source_l02503}02503 \textcolor{comment}{    /// Number of fields to be projected: dim+1, corresponding to}}
 \DoxyCodeLine{\Hypertarget{generalised__newtonian__navier__stokes__elements_8h_source_l02504}02504 \textcolor{comment}{    /// velocity components and  pressure}}
 \DoxyCodeLine{\Hypertarget{generalised__newtonian__navier__stokes__elements_8h_source_l02505}\mbox{\hyperlink{classProjectableGeneralisedNewtonianTaylorHoodElement_a623737edf402303e5dc94cc1bc763e96}{02505}} \textcolor{comment}{}    \textcolor{keywordtype}{unsigned} \mbox{\hyperlink{classProjectableGeneralisedNewtonianTaylorHoodElement_a623737edf402303e5dc94cc1bc763e96}{nfields\_for\_projection}}()}
 \DoxyCodeLine{\Hypertarget{generalised__newtonian__navier__stokes__elements_8h_source_l02506}02506     \{}
 \DoxyCodeLine{\Hypertarget{generalised__newtonian__navier__stokes__elements_8h_source_l02507}02507       \textcolor{keywordflow}{return} this-\/>dim() + 1;}
 \DoxyCodeLine{\Hypertarget{generalised__newtonian__navier__stokes__elements_8h_source_l02508}02508     \}}
 \DoxyCodeLine{\Hypertarget{generalised__newtonian__navier__stokes__elements_8h_source_l02509}02509 \textcolor{comment}{}}
-\DoxyCodeLine{\Hypertarget{generalised__newtonian__navier__stokes__elements_8h_source_l02510}02510 \textcolor{comment}{    ///  Number of history values to be stored for fld-\/th field. Whatever}}
+\DoxyCodeLine{\Hypertarget{generalised__newtonian__navier__stokes__elements_8h_source_l02510}02510 \textcolor{comment}{    /// Number of history values to be stored for fld-\/th field. Whatever}}
 \DoxyCodeLine{\Hypertarget{generalised__newtonian__navier__stokes__elements_8h_source_l02511}02511 \textcolor{comment}{    /// the timestepper has set up for the velocity components and}}
 \DoxyCodeLine{\Hypertarget{generalised__newtonian__navier__stokes__elements_8h_source_l02512}02512 \textcolor{comment}{    /// none for the pressure field.}}
 \DoxyCodeLine{\Hypertarget{generalised__newtonian__navier__stokes__elements_8h_source_l02513}02513 \textcolor{comment}{    /// (Note: count includes current value!)}}
@@ -2528,14 +2528,14 @@
 \DoxyCodeLine{\Hypertarget{generalised__newtonian__navier__stokes__elements_8h_source_l02524}02524       \}}
 \DoxyCodeLine{\Hypertarget{generalised__newtonian__navier__stokes__elements_8h_source_l02525}02525     \}}
 \DoxyCodeLine{\Hypertarget{generalised__newtonian__navier__stokes__elements_8h_source_l02526}02526 \textcolor{comment}{}}
-\DoxyCodeLine{\Hypertarget{generalised__newtonian__navier__stokes__elements_8h_source_l02527}02527 \textcolor{comment}{    ///  Number of positional history values}}
+\DoxyCodeLine{\Hypertarget{generalised__newtonian__navier__stokes__elements_8h_source_l02527}02527 \textcolor{comment}{    /// Number of positional history values}}
 \DoxyCodeLine{\Hypertarget{generalised__newtonian__navier__stokes__elements_8h_source_l02528}02528 \textcolor{comment}{    /// (Note: count includes current value!)}}
 \DoxyCodeLine{\Hypertarget{generalised__newtonian__navier__stokes__elements_8h_source_l02529}\mbox{\hyperlink{classProjectableGeneralisedNewtonianTaylorHoodElement_afe045610f31da3e99e189ea3d76c613b}{02529}} \textcolor{comment}{}    \textcolor{keywordtype}{unsigned} \mbox{\hyperlink{classProjectableGeneralisedNewtonianTaylorHoodElement_afe045610f31da3e99e189ea3d76c613b}{nhistory\_values\_for\_coordinate\_projection}}()}
 \DoxyCodeLine{\Hypertarget{generalised__newtonian__navier__stokes__elements_8h_source_l02530}02530     \{}
 \DoxyCodeLine{\Hypertarget{generalised__newtonian__navier__stokes__elements_8h_source_l02531}02531       \textcolor{keywordflow}{return} this-\/>node\_pt(0)-\/>position\_time\_stepper\_pt()-\/>ntstorage();}
 \DoxyCodeLine{\Hypertarget{generalised__newtonian__navier__stokes__elements_8h_source_l02532}02532     \}}
 \DoxyCodeLine{\Hypertarget{generalised__newtonian__navier__stokes__elements_8h_source_l02533}02533 \textcolor{comment}{}}
-\DoxyCodeLine{\Hypertarget{generalised__newtonian__navier__stokes__elements_8h_source_l02534}02534 \textcolor{comment}{    ///  Return Jacobian of mapping and shape functions of field fld}}
+\DoxyCodeLine{\Hypertarget{generalised__newtonian__navier__stokes__elements_8h_source_l02534}02534 \textcolor{comment}{    /// Return Jacobian of mapping and shape functions of field fld}}
 \DoxyCodeLine{\Hypertarget{generalised__newtonian__navier__stokes__elements_8h_source_l02535}02535 \textcolor{comment}{    /// at local coordinate s}}
 \DoxyCodeLine{\Hypertarget{generalised__newtonian__navier__stokes__elements_8h_source_l02536}\mbox{\hyperlink{classProjectableGeneralisedNewtonianTaylorHoodElement_a72695b83bf61c077f875df8368cd1728}{02536}} \textcolor{comment}{}    \textcolor{keywordtype}{double} \mbox{\hyperlink{classProjectableGeneralisedNewtonianTaylorHoodElement_a72695b83bf61c077f875df8368cd1728}{jacobian\_and\_shape\_of\_field}}(\textcolor{keyword}{const} \textcolor{keywordtype}{unsigned}\& fld,}
 \DoxyCodeLine{\Hypertarget{generalised__newtonian__navier__stokes__elements_8h_source_l02537}02537                                        \textcolor{keyword}{const} Vector<double>\& \mbox{\hyperlink{cfortran_8h_ab7123126e4885ef647dd9c6e3807a21c}{s}},}
@@ -2570,7 +2570,7 @@
 \DoxyCodeLine{\Hypertarget{generalised__newtonian__navier__stokes__elements_8h_source_l02566}02566     \}}
 \DoxyCodeLine{\Hypertarget{generalised__newtonian__navier__stokes__elements_8h_source_l02567}02567 }
 \DoxyCodeLine{\Hypertarget{generalised__newtonian__navier__stokes__elements_8h_source_l02568}02568 \textcolor{comment}{}}
-\DoxyCodeLine{\Hypertarget{generalised__newtonian__navier__stokes__elements_8h_source_l02569}02569 \textcolor{comment}{    ///  Return interpolated field fld at local coordinate s, at time}}
+\DoxyCodeLine{\Hypertarget{generalised__newtonian__navier__stokes__elements_8h_source_l02569}02569 \textcolor{comment}{    /// Return interpolated field fld at local coordinate s, at time}}
 \DoxyCodeLine{\Hypertarget{generalised__newtonian__navier__stokes__elements_8h_source_l02570}02570 \textcolor{comment}{    /// level t (t=0: present; t>0: history values)}}
 \DoxyCodeLine{\Hypertarget{generalised__newtonian__navier__stokes__elements_8h_source_l02571}\mbox{\hyperlink{classProjectableGeneralisedNewtonianTaylorHoodElement_ac187c050204274dc43692438e6011e8a}{02571}} \textcolor{comment}{}    \textcolor{keywordtype}{double} \mbox{\hyperlink{classProjectableGeneralisedNewtonianTaylorHoodElement_ac187c050204274dc43692438e6011e8a}{get\_field}}(\textcolor{keyword}{const} \textcolor{keywordtype}{unsigned}\& \mbox{\hyperlink{cfortran_8h_af6f0bd3dc13317f895c91323c25c2b8f}{t}},}
 \DoxyCodeLine{\Hypertarget{generalised__newtonian__navier__stokes__elements_8h_source_l02572}02572                      \textcolor{keyword}{const} \textcolor{keywordtype}{unsigned}\& fld,}
@@ -2674,11 +2674,11 @@
 \DoxyCodeLine{\Hypertarget{generalised__newtonian__navier__stokes__elements_8h_source_l02670}02670     : \textcolor{keyword}{public} \textcolor{keyword}{virtual} \mbox{\hyperlink{classoomph_1_1ProjectableElement_a1892a2e757d35952be803d56078a3320}{ProjectableElement}}<CROUZEIX\_RAVIART\_ELEMENT>}
 \DoxyCodeLine{\Hypertarget{generalised__newtonian__navier__stokes__elements_8h_source_l02671}02671   \{}
 \DoxyCodeLine{\Hypertarget{generalised__newtonian__navier__stokes__elements_8h_source_l02672}02672   \textcolor{keyword}{public}:\textcolor{comment}{}}
-\DoxyCodeLine{\Hypertarget{generalised__newtonian__navier__stokes__elements_8h_source_l02673}02673 \textcolor{comment}{    ///  Constructor [this was only required explicitly}}
+\DoxyCodeLine{\Hypertarget{generalised__newtonian__navier__stokes__elements_8h_source_l02673}02673 \textcolor{comment}{    /// Constructor [this was only required explicitly}}
 \DoxyCodeLine{\Hypertarget{generalised__newtonian__navier__stokes__elements_8h_source_l02674}02674 \textcolor{comment}{    /// from gcc 4.5.2 onwards...]}}
 \DoxyCodeLine{\Hypertarget{generalised__newtonian__navier__stokes__elements_8h_source_l02675}\mbox{\hyperlink{classProjectableGeneralisedNewtonianCrouzeixRaviartElement_a260eafedf3992aea69a4df8e97d784ba}{02675}} \textcolor{comment}{}    \mbox{\hyperlink{classProjectableGeneralisedNewtonianCrouzeixRaviartElement_a260eafedf3992aea69a4df8e97d784ba}{ProjectableGeneralisedNewtonianCrouzeixRaviartElement}}() \{\}}
 \DoxyCodeLine{\Hypertarget{generalised__newtonian__navier__stokes__elements_8h_source_l02676}02676 \textcolor{comment}{}}
-\DoxyCodeLine{\Hypertarget{generalised__newtonian__navier__stokes__elements_8h_source_l02677}02677 \textcolor{comment}{    ///  Specify the values associated with field fld.}}
+\DoxyCodeLine{\Hypertarget{generalised__newtonian__navier__stokes__elements_8h_source_l02677}02677 \textcolor{comment}{    /// Specify the values associated with field fld.}}
 \DoxyCodeLine{\Hypertarget{generalised__newtonian__navier__stokes__elements_8h_source_l02678}02678 \textcolor{comment}{    /// The information is returned in a vector of pairs which comprise}}
 \DoxyCodeLine{\Hypertarget{generalised__newtonian__navier__stokes__elements_8h_source_l02679}02679 \textcolor{comment}{    /// the Data object and the value within it, that correspond to field fld.}}
 \DoxyCodeLine{\Hypertarget{generalised__newtonian__navier__stokes__elements_8h_source_l02680}02680 \textcolor{comment}{    /// In the underlying Crouzeix Raviart elements the}}
@@ -2717,14 +2717,14 @@
 \DoxyCodeLine{\Hypertarget{generalised__newtonian__navier__stokes__elements_8h_source_l02713}02713       \textcolor{keywordflow}{return} data\_values;}
 \DoxyCodeLine{\Hypertarget{generalised__newtonian__navier__stokes__elements_8h_source_l02714}02714     \}}
 \DoxyCodeLine{\Hypertarget{generalised__newtonian__navier__stokes__elements_8h_source_l02715}02715 \textcolor{comment}{}}
-\DoxyCodeLine{\Hypertarget{generalised__newtonian__navier__stokes__elements_8h_source_l02716}02716 \textcolor{comment}{    ///  Number of fields to be projected: dim+1, corresponding to}}
+\DoxyCodeLine{\Hypertarget{generalised__newtonian__navier__stokes__elements_8h_source_l02716}02716 \textcolor{comment}{    /// Number of fields to be projected: dim+1, corresponding to}}
 \DoxyCodeLine{\Hypertarget{generalised__newtonian__navier__stokes__elements_8h_source_l02717}02717 \textcolor{comment}{    /// velocity components and  pressure}}
 \DoxyCodeLine{\Hypertarget{generalised__newtonian__navier__stokes__elements_8h_source_l02718}\mbox{\hyperlink{classProjectableGeneralisedNewtonianCrouzeixRaviartElement_ad55336634d38cb738bbb8c3f30073094}{02718}} \textcolor{comment}{}    \textcolor{keywordtype}{unsigned} \mbox{\hyperlink{classProjectableGeneralisedNewtonianCrouzeixRaviartElement_ad55336634d38cb738bbb8c3f30073094}{nfields\_for\_projection}}()}
 \DoxyCodeLine{\Hypertarget{generalised__newtonian__navier__stokes__elements_8h_source_l02719}02719     \{}
 \DoxyCodeLine{\Hypertarget{generalised__newtonian__navier__stokes__elements_8h_source_l02720}02720       \textcolor{keywordflow}{return} this-\/>dim() + 1;}
 \DoxyCodeLine{\Hypertarget{generalised__newtonian__navier__stokes__elements_8h_source_l02721}02721     \}}
 \DoxyCodeLine{\Hypertarget{generalised__newtonian__navier__stokes__elements_8h_source_l02722}02722 \textcolor{comment}{}}
-\DoxyCodeLine{\Hypertarget{generalised__newtonian__navier__stokes__elements_8h_source_l02723}02723 \textcolor{comment}{    ///  Number of history values to be stored for fld-\/th field. Whatever}}
+\DoxyCodeLine{\Hypertarget{generalised__newtonian__navier__stokes__elements_8h_source_l02723}02723 \textcolor{comment}{    /// Number of history values to be stored for fld-\/th field. Whatever}}
 \DoxyCodeLine{\Hypertarget{generalised__newtonian__navier__stokes__elements_8h_source_l02724}02724 \textcolor{comment}{    /// the timestepper has set up for the velocity components and}}
 \DoxyCodeLine{\Hypertarget{generalised__newtonian__navier__stokes__elements_8h_source_l02725}02725 \textcolor{comment}{    /// none for the pressure field.}}
 \DoxyCodeLine{\Hypertarget{generalised__newtonian__navier__stokes__elements_8h_source_l02726}02726 \textcolor{comment}{    /// (Note: count includes current value!)}}
@@ -2748,7 +2748,7 @@
 \DoxyCodeLine{\Hypertarget{generalised__newtonian__navier__stokes__elements_8h_source_l02744}02744       \textcolor{keywordflow}{return} this-\/>node\_pt(0)-\/>position\_time\_stepper\_pt()-\/>ntstorage();}
 \DoxyCodeLine{\Hypertarget{generalised__newtonian__navier__stokes__elements_8h_source_l02745}02745     \}}
 \DoxyCodeLine{\Hypertarget{generalised__newtonian__navier__stokes__elements_8h_source_l02746}02746 \textcolor{comment}{}}
-\DoxyCodeLine{\Hypertarget{generalised__newtonian__navier__stokes__elements_8h_source_l02747}02747 \textcolor{comment}{    ///  Return Jacobian of mapping and shape functions of field fld}}
+\DoxyCodeLine{\Hypertarget{generalised__newtonian__navier__stokes__elements_8h_source_l02747}02747 \textcolor{comment}{    /// Return Jacobian of mapping and shape functions of field fld}}
 \DoxyCodeLine{\Hypertarget{generalised__newtonian__navier__stokes__elements_8h_source_l02748}02748 \textcolor{comment}{    /// at local coordinate s}}
 \DoxyCodeLine{\Hypertarget{generalised__newtonian__navier__stokes__elements_8h_source_l02749}\mbox{\hyperlink{classProjectableGeneralisedNewtonianCrouzeixRaviartElement_ae52e2ed5c0975ff9fe437ed929b26cd4}{02749}} \textcolor{comment}{}    \textcolor{keywordtype}{double} \mbox{\hyperlink{classProjectableGeneralisedNewtonianCrouzeixRaviartElement_ae52e2ed5c0975ff9fe437ed929b26cd4}{jacobian\_and\_shape\_of\_field}}(\textcolor{keyword}{const} \textcolor{keywordtype}{unsigned}\& fld,}
 \DoxyCodeLine{\Hypertarget{generalised__newtonian__navier__stokes__elements_8h_source_l02750}02750                                        \textcolor{keyword}{const} Vector<double>\& \mbox{\hyperlink{cfortran_8h_ab7123126e4885ef647dd9c6e3807a21c}{s}},}
@@ -2783,7 +2783,7 @@
 \DoxyCodeLine{\Hypertarget{generalised__newtonian__navier__stokes__elements_8h_source_l02779}02779     \}}
 \DoxyCodeLine{\Hypertarget{generalised__newtonian__navier__stokes__elements_8h_source_l02780}02780 }
 \DoxyCodeLine{\Hypertarget{generalised__newtonian__navier__stokes__elements_8h_source_l02781}02781 \textcolor{comment}{}}
-\DoxyCodeLine{\Hypertarget{generalised__newtonian__navier__stokes__elements_8h_source_l02782}02782 \textcolor{comment}{    ///  Return interpolated field fld at local coordinate s, at time}}
+\DoxyCodeLine{\Hypertarget{generalised__newtonian__navier__stokes__elements_8h_source_l02782}02782 \textcolor{comment}{    /// Return interpolated field fld at local coordinate s, at time}}
 \DoxyCodeLine{\Hypertarget{generalised__newtonian__navier__stokes__elements_8h_source_l02783}02783 \textcolor{comment}{    /// level t (t=0: present; t>0: history values)}}
 \DoxyCodeLine{\Hypertarget{generalised__newtonian__navier__stokes__elements_8h_source_l02784}\mbox{\hyperlink{classProjectableGeneralisedNewtonianCrouzeixRaviartElement_aa434050bcb5d2958b92f93027f30bc7a}{02784}} \textcolor{comment}{}    \textcolor{keywordtype}{double} \mbox{\hyperlink{classProjectableGeneralisedNewtonianCrouzeixRaviartElement_aa434050bcb5d2958b92f93027f30bc7a}{get\_field}}(\textcolor{keyword}{const} \textcolor{keywordtype}{unsigned}\& \mbox{\hyperlink{cfortran_8h_af6f0bd3dc13317f895c91323c25c2b8f}{t}},}
 \DoxyCodeLine{\Hypertarget{generalised__newtonian__navier__stokes__elements_8h_source_l02785}02785                      \textcolor{keyword}{const} \textcolor{keywordtype}{unsigned}\& fld,}

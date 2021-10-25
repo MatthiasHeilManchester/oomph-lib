@@ -86,7 +86,7 @@ Our first \char`\"{}real\char`\"{} fluid-\/structure interaction problem\+: We s
 \DoxyCodeLine{\textcolor{comment}{ /// Stress ratio}}
 \DoxyCodeLine{\textcolor{comment}{} \textcolor{keywordtype}{double} \mbox{\hyperlink{namespaceGlobal__Physical__Variables_a66cb7ecda9ba0cd72367dd697f154545}{Q}};}
 \DoxyCodeLine{\textcolor{comment}{}}
-\DoxyCodeLine{\textcolor{comment}{ ///  Set the parameters that are used in the code as a function}}
+\DoxyCodeLine{\textcolor{comment}{ /// Set the parameters that are used in the code as a function}}
 \DoxyCodeLine{\textcolor{comment}{ /// of the Womersley number, the density ratio and H}}
 \DoxyCodeLine{\textcolor{comment}{} \textcolor{keywordtype}{void} \mbox{\hyperlink{namespaceGlobal__Physical__Variables_a5928252d8e7440b329065c223926d4d2}{set\_params}}()}
 \DoxyCodeLine{ \{}
@@ -143,13 +143,13 @@ Our first \char`\"{}real\char`\"{} fluid-\/structure interaction problem\+: We s
 \DoxyCodeLine{\textcolor{comment}{}\textcolor{comment}{//======================================================================}}
 \DoxyCodeLine{\textcolor{keyword}{class }\mbox{\hyperlink{classFSIRingProblem}{FSIRingProblem}} : \textcolor{keyword}{public} Problem}
 \DoxyCodeLine{\{\textcolor{comment}{}}
-\DoxyCodeLine{\textcolor{comment}{ ///  There are very few element types that will work for this problem.}}
+\DoxyCodeLine{\textcolor{comment}{ /// There are very few element types that will work for this problem.}}
 \DoxyCodeLine{\textcolor{comment}{ /// Rather than passing the element type as a template parameter to the}}
 \DoxyCodeLine{\textcolor{comment}{ /// problem, we choose instead to use a typedef to specify the}}
 \DoxyCodeLine{\textcolor{comment}{ /// particular element fluid used.}}
 \DoxyCodeLine{\textcolor{comment}{} \textcolor{keyword}{typedef} AlgebraicElement<RefineableQCrouzeixRaviartElement<2> > \mbox{\hyperlink{classFSIRingProblem_a2ce9ba3122272853bfa6ec3fcf39b78a}{FLUID\_ELEMENT}};}
 \DoxyCodeLine{\textcolor{comment}{}}
-\DoxyCodeLine{\textcolor{comment}{ ///  Typedef to specify the solid element used}}
+\DoxyCodeLine{\textcolor{comment}{ /// Typedef to specify the solid element used}}
 \DoxyCodeLine{\textcolor{comment}{} \textcolor{keyword}{typedef} FSIHermiteBeamElement \mbox{\hyperlink{classFSIRingProblem_a96528378f3baf6100aeb6b4fe83bc870}{SOLID\_ELEMENT}};}
 \DoxyCodeLine{}
 \DoxyCodeLine{\textcolor{keyword}{public}:}
@@ -163,10 +163,10 @@ Our first \char`\"{}real\char`\"{} fluid-\/structure interaction problem\+: We s
 \DoxyCodeLine{\textcolor{comment}{ /// Update after solve (empty)}}
 \DoxyCodeLine{\textcolor{comment}{} \textcolor{keywordtype}{void} \mbox{\hyperlink{classFSIRingProblem_a63a3da079b167ccdc288372bee6bdbc3}{actions\_after\_newton\_solve}}() \{\}}
 \DoxyCodeLine{\textcolor{comment}{}}
-\DoxyCodeLine{\textcolor{comment}{ ///  Update before solve (empty)}}
+\DoxyCodeLine{\textcolor{comment}{ /// Update before solve (empty)}}
 \DoxyCodeLine{\textcolor{comment}{} \textcolor{keywordtype}{void} \mbox{\hyperlink{classFSIRingProblem_a9fd26120e4e078bca685a5c94482ee12}{actions\_before\_newton\_solve}}() \{\}}
 \DoxyCodeLine{\textcolor{comment}{}}
-\DoxyCodeLine{\textcolor{comment}{ ///  Update the problem specs before checking Newton}}
+\DoxyCodeLine{\textcolor{comment}{ /// Update the problem specs before checking Newton}}
 \DoxyCodeLine{\textcolor{comment}{ /// convergence}}
 \DoxyCodeLine{\textcolor{comment}{} \textcolor{keywordtype}{void} \mbox{\hyperlink{classFSIRingProblem_afaf315a9b0feb319cf66b21f959e465e}{actions\_before\_newton\_convergence\_check}}() }
 \DoxyCodeLine{ \{}
@@ -175,7 +175,7 @@ Our first \char`\"{}real\char`\"{} fluid-\/structure interaction problem\+: We s
 \DoxyCodeLine{  \mbox{\hyperlink{classFSIRingProblem_a33eec722bed7a0b02444c64d3e6c66fe}{Fluid\_mesh\_pt}}-\/>node\_update(); }
 \DoxyCodeLine{ \}}
 \DoxyCodeLine{\textcolor{comment}{}}
-\DoxyCodeLine{\textcolor{comment}{ ///  Update the problem specs after adaptation:}}
+\DoxyCodeLine{\textcolor{comment}{ /// Update the problem specs after adaptation:}}
 \DoxyCodeLine{\textcolor{comment}{} \textcolor{keywordtype}{void} \mbox{\hyperlink{classFSIRingProblem_af4ffa3d628230ef064a84b7c6e6a5fb8}{actions\_after\_adapt}}() }
 \DoxyCodeLine{  \{}
 \DoxyCodeLine{   \textcolor{comment}{// The functions used to update the no slip boundary conditions }}
@@ -209,7 +209,7 @@ Our first \char`\"{}real\char`\"{} fluid-\/structure interaction problem\+: We s
 \DoxyCodeLine{    (\textcolor{keyword}{this},1,\mbox{\hyperlink{classFSIRingProblem_a33eec722bed7a0b02444c64d3e6c66fe}{Fluid\_mesh\_pt}},\mbox{\hyperlink{classFSIRingProblem_a112c5285b6ea49d0e003fc3bdd817332}{Wall\_mesh\_pt}});}
 \DoxyCodeLine{  \}}
 \DoxyCodeLine{\textcolor{comment}{}}
-\DoxyCodeLine{\textcolor{comment}{ ///  Doc solution: Pass number of timestep, i (we append to tracefile}}
+\DoxyCodeLine{\textcolor{comment}{ /// Doc solution: Pass number of timestep, i (we append to tracefile}}
 \DoxyCodeLine{\textcolor{comment}{ /// after every timestep but do a full doc only at certain intervals),}}
 \DoxyCodeLine{\textcolor{comment}{ /// DocInfo object and tracefile}}
 \DoxyCodeLine{\textcolor{comment}{} \textcolor{keywordtype}{void} \mbox{\hyperlink{classFSIRingProblem_a686782b9af582b68e55c288e1fe4660e}{doc\_solution}}(\textcolor{keyword}{const} \textcolor{keywordtype}{unsigned}\& i, DocInfo\& doc\_info, ofstream\& trace\_file);}
@@ -228,7 +228,7 @@ Our first \char`\"{}real\char`\"{} fluid-\/structure interaction problem\+: We s
 \DoxyCodeLine{\textcolor{comment}{ /// Setup initial condition for fluid}}
 \DoxyCodeLine{\textcolor{comment}{} \textcolor{keywordtype}{void} \mbox{\hyperlink{classFSIRingProblem_ad397e4e3b92845240dd6a996856f33e7}{set\_fluid\_initial\_condition}}();}
 \DoxyCodeLine{\textcolor{comment}{}}
-\DoxyCodeLine{\textcolor{comment}{ ///  Element used for documenting displacement}}
+\DoxyCodeLine{\textcolor{comment}{ /// Element used for documenting displacement}}
 \DoxyCodeLine{\textcolor{comment}{} \mbox{\hyperlink{classFSIRingProblem_a96528378f3baf6100aeb6b4fe83bc870}{SOLID\_ELEMENT}}* \mbox{\hyperlink{classFSIRingProblem_a85d9441c676456c71dffc27500bd0fec}{Doc\_displacement\_elem\_pt}};}
 \DoxyCodeLine{\textcolor{comment}{}}
 \DoxyCodeLine{\textcolor{comment}{ /// Pointer to wall mesh}}

@@ -321,7 +321,7 @@ The driver code</h1>
 <div class="line"> </div>
 <div class="line"><span class="keyword">public</span>:</div>
 <div class="line"><span class="comment"></span> </div>
-<div class="line"><span class="comment"> ///  Typedef for pointer (global) function that specifies the</span></div>
+<div class="line"><span class="comment"> /// Typedef for pointer (global) function that specifies the</span></div>
 <div class="line"><span class="comment"> /// the inflow</span></div>
 <div class="line"><span class="comment"></span> <span class="keyword">typedef</span> void (*<a class="code hl_typedef" href="classBrethertonElement.html#a313d868ce6fbd8df07b0360db25133ce">InflowFctPt</a>)(<span class="keyword">const</span> Vector&lt;double&gt;&amp; x, Vector&lt;double&gt;&amp; veloc);</div>
 <div class="line"><span class="comment"></span> </div>
@@ -329,7 +329,7 @@ The driver code</h1>
 <div class="line"><span class="comment"></span> <a class="code hl_function" href="classBrethertonElement.html#acbc668eed3ea683a67b6b822d6e59974">BrethertonElement</a>() : ELEMENT() {}</div>
 <div class="line"> </div>
 <div class="line"><span class="comment"></span> </div>
-<div class="line"><span class="comment"> ///  Activate the dependency of the &quot;inflow&quot; on the external</span></div>
+<div class="line"><span class="comment"> /// Activate the dependency of the &quot;inflow&quot; on the external</span></div>
 <div class="line"><span class="comment"> /// data. Pass the vector of pointers to the external Data that affects</span></div>
 <div class="line"><span class="comment"> /// the inflow, the id of the boundary on which the inflow</span></div>
 <div class="line"><span class="comment"> /// condition is to be applied and the function pointer to </span></div>
@@ -353,7 +353,7 @@ The driver code</h1>
 <div class="line">  }</div>
 <div class="line"> </div>
 <div class="line"><span class="comment"></span> </div>
-<div class="line"><span class="comment"> /// short Overload assign local equation numbers: Add the dependency </span></div>
+<div class="line"><span class="comment"> /// Overload assign local equation numbers: Add the dependency </span></div>
 <div class="line"><span class="comment"> /// on the external Data that affects the inflow profile</span></div>
 <div class="line"><span class="comment"></span> <span class="keywordtype">void</span> <a class="code hl_function" href="classBrethertonElement.html#a40f35d9e03eae08954b6b32badadcf61">assign_local_eqn_numbers</a>(<span class="keyword">const</span> <span class="keywordtype">bool</span>  &amp;store_local_dof_pt)</div>
 <div class="line">  {</div>
@@ -499,7 +499,7 @@ The driver code</h1>
 <div class="line"> </div>
 <div class="line"> </div>
 <div class="line"><span class="comment"></span> </div>
-<div class="line"><span class="comment"> ///  For all nodes that are located on specified boundary</span></div>
+<div class="line"><span class="comment"> /// For all nodes that are located on specified boundary</span></div>
 <div class="line"><span class="comment"> /// re-assign the inflow velocity, using the function pointed to</span></div>
 <div class="line"><span class="comment"> /// by the function pointer</span></div>
 <div class="line"><span class="comment"></span> <span class="keywordtype">void</span> <a class="code hl_function" href="classBrethertonElement.html#a7e655df2ed6104862cc70c2408daf93c">reassign_inflow</a>()</div>
@@ -548,14 +548,14 @@ The driver code</h1>
 <div class="line"><span class="comment"> /// Storage for the external Data that affects the inflow</span></div>
 <div class="line"><span class="comment"></span> Vector&lt;Data*&gt; <a class="code hl_variable" href="classBrethertonElement.html#a84c7822cf2a97fe45e936429faa16788">Inflow_ext_data</a>;</div>
 <div class="line"><span class="comment"></span> </div>
-<div class="line"><span class="comment"> ///  Storage for the local equation numbers associated the Data</span></div>
+<div class="line"><span class="comment"> /// Storage for the local equation numbers associated the Data</span></div>
 <div class="line"><span class="comment"> /// values that affect the inflow</span></div>
 <div class="line"><span class="comment"></span> DenseMatrix&lt;int&gt; <a class="code hl_variable" href="classBrethertonElement.html#ad1ddf8c7a6fd590bf7156d13640303d1">Inflow_ext_data_eqn</a>;</div>
 <div class="line"><span class="comment"></span> </div>
 <div class="line"><span class="comment"> /// Number of the inflow boundary in the global mesh</span></div>
 <div class="line"><span class="comment"></span> <span class="keywordtype">unsigned</span> <a class="code hl_variable" href="classBrethertonElement.html#a2d3a3d4837d41865d5f62271c98715c5">Inflow_boundary</a>;</div>
 <div class="line"><span class="comment"></span> </div>
-<div class="line"><span class="comment"> ///  Function pointer to the global function that specifies the</span></div>
+<div class="line"><span class="comment"> /// Function pointer to the global function that specifies the</span></div>
 <div class="line"><span class="comment"> /// inflow velocity profile on the global mesh boundary Inflow_boundary</span></div>
 <div class="line"><span class="comment"></span> <a class="code hl_typedef" href="classBrethertonElement.html#a313d868ce6fbd8df07b0360db25133ce">InflowFctPt</a> <a class="code hl_variable" href="classBrethertonElement.html#a6ded0faba9d7fcfe96834c56af461977">Inflow_fct_pt</a>;</div>
 <div class="line"> </div>
@@ -636,7 +636,7 @@ The driver code</h1>
 <div class="line"><span class="comment"> /// Constructor: </span></div>
 <div class="line"><span class="comment"></span> <a class="code hl_function" href="classBrethertonProblem.html#a207cdfe4cf60e83257e759b1ac15e5eb">BrethertonProblem</a>();</div>
 <div class="line"><span class="comment"></span> </div>
-<div class="line"><span class="comment"> ///  Spine heights/lengths are unknowns in the problem so their</span></div>
+<div class="line"><span class="comment"> /// Spine heights/lengths are unknowns in the problem so their</span></div>
 <div class="line"><span class="comment"> /// values get corrected during each Newton step. However,</span></div>
 <div class="line"><span class="comment"> /// changing their value does not automatically change the</span></div>
 <div class="line"><span class="comment"> /// nodal positions, so we need to update all of them</span></div>
@@ -667,10 +667,10 @@ The driver code</h1>
 <div class="line">    }</div>
 <div class="line">  }</div>
 <div class="line"><span class="comment"></span> </div>
-<div class="line"><span class="comment"> ///  Update before solve: empty</span></div>
+<div class="line"><span class="comment"> /// Update before solve: empty</span></div>
 <div class="line"><span class="comment"></span> <span class="keywordtype">void</span> <a class="code hl_function" href="classBrethertonProblem.html#a7112e0efe4c0cd0269cf47f02df4fe22">actions_before_newton_solve</a>() {}</div>
 <div class="line"><span class="comment"></span> </div>
-<div class="line"><span class="comment"> ///  Update after solve can remain empty, because the update </span></div>
+<div class="line"><span class="comment"> /// Update after solve can remain empty, because the update </span></div>
 <div class="line"><span class="comment"> /// is performed automatically after every Newton step.</span></div>
 <div class="line"><span class="comment"></span> <span class="keywordtype">void</span> <a class="code hl_function" href="classBrethertonProblem.html#a2e84e3ce784b0f0de5eeefe1175d48ff">actions_after_newton_solve</a>() {}</div>
 <div class="line"><span class="comment"></span> </div>
@@ -684,7 +684,7 @@ The driver code</h1>
 <div class="line">  }</div>
 <div class="line"> </div>
 <div class="line"> <span class="comment"></span></div>
-<div class="line"><span class="comment"> ///  Activate the dependency of the inflow velocity on the </span></div>
+<div class="line"><span class="comment"> /// Activate the dependency of the inflow velocity on the </span></div>
 <div class="line"><span class="comment"> /// spine heights at the outflow</span></div>
 <div class="line"><span class="comment"></span> <span class="keywordtype">void</span> <a class="code hl_function" href="classBrethertonProblem.html#a04257edfb80f2ff3bf865442d9eb01fb">activate_inflow_dependency</a>();</div>
 <div class="line"><span class="comment"></span> </div>
@@ -1130,7 +1130,7 @@ The driver code</h1>
 <div class="ttc" id="aclassBrethertonElement_html"><div class="ttname"><a href="classBrethertonElement.html">BrethertonElement</a></div><div class="ttdoc">&quot;Bretherton element&quot; is a fluid element (of type ELEMENT) for which the (inflow) velocity at those no...</div><div class="ttdef"><b>Definition:</b> <a href="bretherton_8cc_source.html#l00153">bretherton.cc:154</a></div></div>
 <div class="ttc" id="aclassBrethertonElement_html_a2d3a3d4837d41865d5f62271c98715c5"><div class="ttname"><a href="classBrethertonElement.html#a2d3a3d4837d41865d5f62271c98715c5">BrethertonElement::Inflow_boundary</a></div><div class="ttdeci">unsigned Inflow_boundary</div><div class="ttdoc">Number of the inflow boundary in the global mesh.</div><div class="ttdef"><b>Definition:</b> <a href="bretherton_8cc_source.html#l00390">bretherton.cc:390</a></div></div>
 <div class="ttc" id="aclassBrethertonElement_html_a313d868ce6fbd8df07b0360db25133ce"><div class="ttname"><a href="classBrethertonElement.html#a313d868ce6fbd8df07b0360db25133ce">BrethertonElement::InflowFctPt</a></div><div class="ttdeci">void(* InflowFctPt)(const Vector&lt; double &gt; &amp;x, Vector&lt; double &gt; &amp;veloc)</div><div class="ttdoc">Typedef for pointer (global) function that specifies the the inflow.</div><div class="ttdef"><b>Definition:</b> <a href="bretherton_8cc_source.html#l00160">bretherton.cc:160</a></div></div>
-<div class="ttc" id="aclassBrethertonElement_html_a40f35d9e03eae08954b6b32badadcf61"><div class="ttname"><a href="classBrethertonElement.html#a40f35d9e03eae08954b6b32badadcf61">BrethertonElement::assign_local_eqn_numbers</a></div><div class="ttdeci">void assign_local_eqn_numbers(const bool &amp;store_local_dof_pt)</div><div class="ttdoc">short Overload assign local equation numbers: Add the dependency on the external Data that affects th...</div><div class="ttdef"><b>Definition:</b> <a href="bretherton_8cc_source.html#l00192">bretherton.cc:192</a></div></div>
+<div class="ttc" id="aclassBrethertonElement_html_a40f35d9e03eae08954b6b32badadcf61"><div class="ttname"><a href="classBrethertonElement.html#a40f35d9e03eae08954b6b32badadcf61">BrethertonElement::assign_local_eqn_numbers</a></div><div class="ttdeci">void assign_local_eqn_numbers(const bool &amp;store_local_dof_pt)</div><div class="ttdoc">Overload assign local equation numbers: Add the dependency on the external Data that affects the infl...</div><div class="ttdef"><b>Definition:</b> <a href="bretherton_8cc_source.html#l00192">bretherton.cc:192</a></div></div>
 <div class="ttc" id="aclassBrethertonElement_html_a5a8333b92b4b732e62798c172d7e9d52"><div class="ttname"><a href="classBrethertonElement.html#a5a8333b92b4b732e62798c172d7e9d52">BrethertonElement::activate_inflow_dependency_on_external_data</a></div><div class="ttdeci">void activate_inflow_dependency_on_external_data(const Vector&lt; Data * &gt; &amp;inflow_ext_data, const unsigned &amp;inflow_boundary, InflowFctPt inflow_fct_pt)</div><div class="ttdoc">Activate the dependency of the &quot;inflow&quot; on the external data. Pass the vector of pointers to the exte...</div><div class="ttdef"><b>Definition:</b> <a href="bretherton_8cc_source.html#l00171">bretherton.cc:171</a></div></div>
 <div class="ttc" id="aclassBrethertonElement_html_a6ded0faba9d7fcfe96834c56af461977"><div class="ttname"><a href="classBrethertonElement.html#a6ded0faba9d7fcfe96834c56af461977">BrethertonElement::Inflow_fct_pt</a></div><div class="ttdeci">InflowFctPt Inflow_fct_pt</div><div class="ttdoc">Function pointer to the global function that specifies the inflow velocity profile on the global mesh...</div><div class="ttdef"><b>Definition:</b> <a href="bretherton_8cc_source.html#l00394">bretherton.cc:394</a></div></div>
 <div class="ttc" id="aclassBrethertonElement_html_a7e655df2ed6104862cc70c2408daf93c"><div class="ttname"><a href="classBrethertonElement.html#a7e655df2ed6104862cc70c2408daf93c">BrethertonElement::reassign_inflow</a></div><div class="ttdeci">void reassign_inflow()</div><div class="ttdoc">For all nodes that are located on specified boundary re-assign the inflow velocity,...</div><div class="ttdef"><b>Definition:</b> <a href="bretherton_8cc_source.html#l00339">bretherton.cc:339</a></div></div>
@@ -1207,7 +1207,7 @@ PDF file</h1>
     <footer>
       <div class="container">
         <div class="text-muted" style="float:right;">Generated by <a href="http://www.doxygen.org/index.html">
-          <img style="height:18px;" class="footer-img" src="doxygen.png" alt="doxygen"></a> on Fri Oct 22 2021 12:32:39
+          <img style="height:18px;" class="footer-img" src="doxygen.png" alt="doxygen"></a> on Mon Oct 25 2021 14:50:55
         </div>
       </div>
     </footer>

@@ -233,7 +233,7 @@ The geometric object, GeomObject</h2>
 <div class="line"> </div>
 <div class="line"> <span class="keyword">public</span>:</div>
 <div class="line"><span class="comment"></span> </div>
-<div class="line"><span class="comment">  ///  Constructor: Pass the number of Lagrangian</span></div>
+<div class="line"><span class="comment">  /// Constructor: Pass the number of Lagrangian</span></div>
 <div class="line"><span class="comment">  /// and Eulerian coordinates to the constructor of the</span></div>
 <div class="line"><span class="comment">  ///  GeomObject base class.</span></div>
 <div class="line"><span class="comment"></span>  <a class="code hl_function" href="classUnitCircle.html#a494ddf1cb37b659c6f8c44ddde2b9b33">UnitCircle</a>() : GeomObject(1,2) {}</div>
@@ -241,7 +241,7 @@ The geometric object, GeomObject</h2>
 <div class="line"><span class="comment">  /// Destructor -- emtpy</span></div>
 <div class="line"><span class="comment"></span>  <span class="keyword">virtual</span> <a class="code hl_function" href="classUnitCircle.html#a9eb314d8152f5de298e1e155737a69b9">~UnitCircle</a>(){}</div>
 <div class="line"><span class="comment"></span> </div>
-<div class="line"><span class="comment">  ///  Position vector, r, to the point on the circle identified by  </span></div>
+<div class="line"><span class="comment">  /// Position vector, r, to the point on the circle identified by  </span></div>
 <div class="line"><span class="comment">  /// its 1D Lagrangian coordinate, xi (passed as a 1D Vector):</span></div>
 <div class="line"><span class="comment"></span>  <span class="keywordtype">void</span> <a class="code hl_function" href="classUnitCircle.html#adc7fc660ba1d2ecc5bcbe2312e2fb87b">position</a>(<span class="keyword">const</span> Vector&lt;double&gt;&amp; xi, Vector&lt;double&gt;&amp; r)<span class="keyword"> const</span></div>
 <div class="line"><span class="keyword">  </span>{</div>
@@ -251,7 +251,7 @@ The geometric object, GeomObject</h2>
 <div class="line">  }</div>
 <div class="line"> </div>
 <div class="line"><span class="comment"></span> </div>
-<div class="line"><span class="comment">  ///  Position vector, r, to the point on the circle identified by  </span></div>
+<div class="line"><span class="comment">  /// Position vector, r, to the point on the circle identified by  </span></div>
 <div class="line"><span class="comment">  /// its 1D Lagrangian coordinate, xi (passed as a 1D Vector) at discrete time</span></div>
 <div class="line"><span class="comment">  /// level t (t=0: present; t&gt;0: previous). The shape of the object </span></div>
 <div class="line"><span class="comment">  /// is not time-dependent, therefore we forward this call to the </span></div>
@@ -287,7 +287,7 @@ The fish-shaped domain and its MacroElement-based representation by the FishDoma
 <div class="line"><span class="keywordtype">double</span> xi_tail=0.4; </div>
 <div class="line">Domain* domain_pt=<span class="keyword">new</span> FishDomain(back_pt,xi_nose,xi_tail);</div>
 </div><!-- fragment --><p >To see how this works internally, let us have a look at the <code>FishDomain</code> constructor. The constructor stores the pointer to the fish's "back", and the start and end values of the Lagrangian coordinates in the private data members <code>Back_pt</code>, <code>Xi_nose</code> and <code>Xi_tail</code>. Next we set some additional parameters, that define the geometry (the mouth is located at the origin; the fin is a vertical line at <img class="formulaInl" alt="$ x=1.7$" src="form_22.png" width="41" height="9"/>, ranging from <img class="formulaInl" alt="$ y=-0.9$" src="form_23.png" width="50" height="11"/> to <img class="formulaInl" alt="$ y=+0.9$" src="form_24.png" width="50" height="11"/>). Finally, we allocate storage for the four <code>MacroElements</code> and build them. Note that the constructor of the <code>MacroElement</code> takes a pointer to the Domain, and the <code>MacroElement's</code> number within that <code>Domain:</code> </p>
- <div class="fragment"><div class="line"><span class="comment">    ///  Constructor: Pass pointer to GeomObject that represents the</span></div>
+ <div class="fragment"><div class="line"><span class="comment">    /// Constructor: Pass pointer to GeomObject that represents the</span></div>
 <div class="line"><span class="comment">    /// (upper) curved boundary of the fish&#39;s body, and the start and end values</span><span class="comment"></span></div>
 <div class="line"><span class="comment">    /// of the Lagrangian coordinates along the GeomObject.</span></div>
 <div class="line"><span class="comment"></span>    FishDomain(GeomObject* back_pt,</div>
@@ -322,7 +322,7 @@ The fish-shaped domain and its MacroElement-based representation by the FishDoma
 <div class="caption">
 Sketch illustrating the parametrisation of the MacroElement's four boundaries. </div></div>
  <p >Since the shape of the domain can evolve in time, the full interface for the function includes an additional parameter, <code>t</code>, which indicates the (discrete) time level at which the domain shape is to be evaluated. If <code>t=0</code> the function computes the domain shape at the current time; if <code>t&gt;0</code> it computes the shape at the <code>t</code> -th previous timestep. (<a href="../../../unsteady_heat/two_d_unsteady_heat_ALE/html/index.html">Another example</a> in which we solve the unsteady heat equation in a moving domain, provides a a more detailed discussion of this aspect.) Here is the full interface for the <code>FishDomain::macro_element_boundary(...)</code> function:</p>
-<div class="fragment"><div class="line"><span class="comment">    ///  Vector representation of the  i_macro-th macro element</span></div>
+<div class="fragment"><div class="line"><span class="comment">    /// Vector representation of the  i_macro-th macro element</span></div>
 <div class="line"><span class="comment">    /// boundary i_direct (N/S/W/E) at the discrete time level t</span><span class="comment"></span></div>
 <div class="line"><span class="comment">    /// (t=0: present; t&gt;0: previous): \f$ {\bf r}({\bf zeta}) \f$</span></div>
 <div class="line"><span class="comment">    /// Note that the local coordinate \b zeta is a 1D</span></div>
@@ -337,7 +337,7 @@ Sketch illustrating the parametrisation of the MacroElement's four boundaries. <
 </div><!-- fragment --><p> The implementation of this function is the only tedious task that needs to be performed by the "mesh writer". Once <code>Domain::macro_element_boundary(...)</code> is implemented, the <code>Domain's</code> constituent <code>MacroElements</code> can refer to this function to establish the positions of their boundaries (recall that we passed the pointer to the <code>Domain</code> and the <code>MacroElement's</code> number in the <code>Domain</code> to the <code>MacroElement</code> constructor). The <code>MacroElement::macro_map(...)</code> functions interpolate the position of the <code>MacroElement's</code> boundaries into their interior.</p>
 <p >To illustrate the general procedure, here is the complete listing of the <code>FishDomain::macro_element_boundary(...)</code> function. The function employs switch statements to identify the private member functions that provide the parametrisation of individual <code>MacroElement</code> boundaries. Some of these functions are listed below.</p>
  <div class="fragment"><div class="line">  <span class="comment">//==========start_of_macro_element_boundary========================</span></div>
-<div class="line"><span class="comment">  ///  Vector representation of the  imacro-th macro element</span><span class="comment"></span></div>
+<div class="line"><span class="comment">  /// Vector representation of the  imacro-th macro element</span><span class="comment"></span></div>
 <div class="line"><span class="comment">  /// boundary idirect (N/S/W/E) at time level t</span></div>
 <div class="line"><span class="comment">  /// (t=0: present; t&gt;0: previous): \f$ {\bf r}({\bf zeta}) \f$</span></div>
 <div class="line"><span class="comment">  /// Note that the local coordinate \b zeta is a 1D</span></div>
@@ -733,7 +733,7 @@ PDF file</h1>
     <footer>
       <div class="container">
         <div class="text-muted" style="float:right;">Generated by <a href="http://www.doxygen.org/index.html">
-          <img style="height:18px;" class="footer-img" src="doxygen.png" alt="doxygen"></a> on Fri Oct 22 2021 12:28:28
+          <img style="height:18px;" class="footer-img" src="doxygen.png" alt="doxygen"></a> on Mon Oct 25 2021 14:46:46
         </div>
       </div>
     </footer>

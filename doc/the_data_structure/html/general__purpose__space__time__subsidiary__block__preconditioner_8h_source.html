@@ -173,7 +173,7 @@ $(function() {
 <div class="line"><a id="l00044" name="l00044"></a><span class="lineno">   44</span><span class="keyword">namespace </span><a class="code hl_namespace" href="namespaceoomph.html">oomph</a></div>
 <div class="line"><a id="l00045" name="l00045"></a><span class="lineno">   45</span>{</div>
 <div class="line"><a id="l00046" name="l00046"></a><span class="lineno">   46</span>  <span class="comment">//=============================================================================</span><span class="comment"></span></div>
-<div class="line"><a id="l00047" name="l00047"></a><span class="lineno">   47</span><span class="comment">  ///  General purpose block triangular preconditioner. By default this is</span></div>
+<div class="line"><a id="l00047" name="l00047"></a><span class="lineno">   47</span><span class="comment">  /// General purpose block triangular preconditioner. By default this is</span></div>
 <div class="line"><a id="l00048" name="l00048"></a><span class="lineno">   48</span><span class="comment">  /// Upper triangular. Also, by default SuperLUPreconditioner (or</span></div>
 <div class="line"><a id="l00049" name="l00049"></a><span class="lineno">   49</span><span class="comment">  /// SuperLUDistPreconditioner) is used to solve the subsidiary systems, but</span></div>
 <div class="line"><a id="l00050" name="l00050"></a><span class="lineno">   50</span><span class="comment">  /// other preconditioners can be used by setting them using passing a pointer</span></div>
@@ -253,11 +253,11 @@ $(function() {
 <div class="line"><a id="l00124" name="l00124"></a><span class="lineno"><a class="line" href="classoomph_1_1SpaceTimeNavierStokesSubsidiaryPreconditioner.html#a66e143786c49141efd2cbd4f766def4f">  124</a></span><span class="comment"></span>    <span class="keywordtype">void</span> <a class="code hl_function" href="classoomph_1_1SpaceTimeNavierStokesSubsidiaryPreconditioner.html#a66e143786c49141efd2cbd4f766def4f">operator=</a>(<span class="keyword">const</span> <a class="code hl_class" href="classoomph_1_1SpaceTimeNavierStokesSubsidiaryPreconditioner.html">SpaceTimeNavierStokesSubsidiaryPreconditioner</a>&amp;) =</div>
 <div class="line"><a id="l00125" name="l00125"></a><span class="lineno">  125</span>      <span class="keyword">delete</span>;</div>
 <div class="line"><a id="l00126" name="l00126"></a><span class="lineno">  126</span><span class="comment"></span> </div>
-<div class="line"><a id="l00127" name="l00127"></a><span class="lineno">  127</span><span class="comment">    ///  For some reason we need to remind the compiler that there is</span></div>
+<div class="line"><a id="l00127" name="l00127"></a><span class="lineno">  127</span><span class="comment">    /// For some reason we need to remind the compiler that there is</span></div>
 <div class="line"><a id="l00128" name="l00128"></a><span class="lineno">  128</span><span class="comment">    /// also a function named setup in the base class.</span></div>
 <div class="line"><a id="l00129" name="l00129"></a><span class="lineno">  129</span><span class="comment"></span>    <span class="keyword">using</span> <a class="code hl_function" href="classoomph_1_1Preconditioner.html#af4886f4efe510e5c9b0eb19422943588">Preconditioner::setup</a>;</div>
 <div class="line"><a id="l00130" name="l00130"></a><span class="lineno">  130</span><span class="comment"></span> </div>
-<div class="line"><a id="l00131" name="l00131"></a><span class="lineno">  131</span><span class="comment">    ///  Setup the preconditioner</span></div>
+<div class="line"><a id="l00131" name="l00131"></a><span class="lineno">  131</span><span class="comment">    /// Setup the preconditioner</span></div>
 <div class="line"><a id="l00132" name="l00132"></a><span class="lineno">  132</span><span class="comment"></span>    <span class="keywordtype">void</span> <a class="code hl_function" href="classoomph_1_1SpaceTimeNavierStokesSubsidiaryPreconditioner.html#a416c107b8095d5083b7a84775bae9881">setup</a>();</div>
 <div class="line"><a id="l00133" name="l00133"></a><span class="lineno">  133</span><span class="comment"></span> </div>
 <div class="line"><a id="l00134" name="l00134"></a><span class="lineno">  134</span><span class="comment">    /// Apply preconditioner to r</span></div>
@@ -345,15 +345,15 @@ $(function() {
 <div class="line"><a id="l00216" name="l00216"></a><span class="lineno">  216</span><span class="comment">    /// Flag indicating whether the default P preconditioner is used</span></div>
 <div class="line"><a id="l00217" name="l00217"></a><span class="lineno"><a class="line" href="classoomph_1_1SpaceTimeNavierStokesSubsidiaryPreconditioner.html#abe00c433a21ec13f2b2f8053048da97d">  217</a></span><span class="comment"></span>    <span class="keywordtype">bool</span> <a class="code hl_variable" href="classoomph_1_1SpaceTimeNavierStokesSubsidiaryPreconditioner.html#abe00c433a21ec13f2b2f8053048da97d">Using_default_p_preconditioner</a>;</div>
 <div class="line"><a id="l00218" name="l00218"></a><span class="lineno">  218</span><span class="comment"></span> </div>
-<div class="line"><a id="l00219" name="l00219"></a><span class="lineno">  219</span><span class="comment">    ///  Control flag is true if the preconditioner has been setup</span></div>
+<div class="line"><a id="l00219" name="l00219"></a><span class="lineno">  219</span><span class="comment">    /// Control flag is true if the preconditioner has been setup</span></div>
 <div class="line"><a id="l00220" name="l00220"></a><span class="lineno">  220</span><span class="comment">    /// (used so we can wipe the data when the preconditioner is called again)</span></div>
 <div class="line"><a id="l00221" name="l00221"></a><span class="lineno"><a class="line" href="classoomph_1_1SpaceTimeNavierStokesSubsidiaryPreconditioner.html#a504de942a571ff4e82a22a663acb8618">  221</a></span><span class="comment"></span>    <span class="keywordtype">bool</span> <a class="code hl_variable" href="classoomph_1_1SpaceTimeNavierStokesSubsidiaryPreconditioner.html#a504de942a571ff4e82a22a663acb8618">Preconditioner_has_been_setup</a>;</div>
 <div class="line"><a id="l00222" name="l00222"></a><span class="lineno">  222</span><span class="comment"></span> </div>
-<div class="line"><a id="l00223" name="l00223"></a><span class="lineno">  223</span><span class="comment">    ///  Flag to indicate whether or not to record the memory statistics</span></div>
+<div class="line"><a id="l00223" name="l00223"></a><span class="lineno">  223</span><span class="comment">    /// Flag to indicate whether or not to record the memory statistics</span></div>
 <div class="line"><a id="l00224" name="l00224"></a><span class="lineno">  224</span><span class="comment">    /// this preconditioner</span></div>
 <div class="line"><a id="l00225" name="l00225"></a><span class="lineno"><a class="line" href="classoomph_1_1SpaceTimeNavierStokesSubsidiaryPreconditioner.html#a5c2743918d0ff403efd90e703cda2784">  225</a></span><span class="comment"></span>    <span class="keywordtype">bool</span> <a class="code hl_variable" href="classoomph_1_1SpaceTimeNavierStokesSubsidiaryPreconditioner.html#a5c2743918d0ff403efd90e703cda2784">Compute_memory_statistics</a>;</div>
 <div class="line"><a id="l00226" name="l00226"></a><span class="lineno">  226</span><span class="comment"></span> </div>
-<div class="line"><a id="l00227" name="l00227"></a><span class="lineno">  227</span><span class="comment">    ///  Storage for the memory usage of the solver if the flag above</span></div>
+<div class="line"><a id="l00227" name="l00227"></a><span class="lineno">  227</span><span class="comment">    /// Storage for the memory usage of the solver if the flag above</span></div>
 <div class="line"><a id="l00228" name="l00228"></a><span class="lineno">  228</span><span class="comment">    /// is set to true (in bytes)</span></div>
 <div class="line"><a id="l00229" name="l00229"></a><span class="lineno"><a class="line" href="classoomph_1_1SpaceTimeNavierStokesSubsidiaryPreconditioner.html#a0934ebec95e816941f7022d191ecde50">  229</a></span><span class="comment"></span>    <span class="keywordtype">double</span> <a class="code hl_variable" href="classoomph_1_1SpaceTimeNavierStokesSubsidiaryPreconditioner.html#a0934ebec95e816941f7022d191ecde50">Memory_usage_in_bytes</a>;</div>
 <div class="line"><a id="l00230" name="l00230"></a><span class="lineno">  230</span><span class="comment"></span> </div>
@@ -366,7 +366,7 @@ $(function() {
 <div class="line"><a id="l00237" name="l00237"></a><span class="lineno">  237</span> </div>
 <div class="line"><a id="l00238" name="l00238"></a><span class="lineno">  238</span> </div>
 <div class="line"><a id="l00239" name="l00239"></a><span class="lineno">  239</span>  <span class="comment">//=============================================================================</span><span class="comment"></span></div>
-<div class="line"><a id="l00240" name="l00240"></a><span class="lineno">  240</span><span class="comment">  ///  The block preconditioner form of GMRES. This version extracts</span></div>
+<div class="line"><a id="l00240" name="l00240"></a><span class="lineno">  240</span><span class="comment">  /// The block preconditioner form of GMRES. This version extracts</span></div>
 <div class="line"><a id="l00241" name="l00241"></a><span class="lineno">  241</span><span class="comment">  /// the blocks from the global systems and assembles the system by</span></div>
 <div class="line"><a id="l00242" name="l00242"></a><span class="lineno">  242</span><span class="comment">  /// concatenating all the matrices together</span></div>
 <div class="line"><a id="l00243" name="l00243"></a><span class="lineno">  243</span><span class="comment"></span>  <span class="comment">//=============================================================================</span></div>
@@ -424,17 +424,17 @@ $(function() {
 <div class="line"><a id="l00295" name="l00295"></a><span class="lineno">  295</span><span class="comment">    /// Broken assignment operator</span></div>
 <div class="line"><a id="l00296" name="l00296"></a><span class="lineno"><a class="line" href="classoomph_1_1GMRESBlockPreconditioner.html#a05c6d079c89252723c700fb62aa0cee5">  296</a></span><span class="comment"></span>    <span class="keywordtype">void</span> <a class="code hl_function" href="classoomph_1_1GMRESBlockPreconditioner.html#a05c6d079c89252723c700fb62aa0cee5">operator=</a>(<span class="keyword">const</span> <a class="code hl_class" href="classoomph_1_1GMRESBlockPreconditioner.html">GMRESBlockPreconditioner</a>&amp;) = <span class="keyword">delete</span>;</div>
 <div class="line"><a id="l00297" name="l00297"></a><span class="lineno">  297</span><span class="comment"></span> </div>
-<div class="line"><a id="l00298" name="l00298"></a><span class="lineno">  298</span><span class="comment">    ///  For some reason we need to remind the compiler that there is</span></div>
+<div class="line"><a id="l00298" name="l00298"></a><span class="lineno">  298</span><span class="comment">    /// For some reason we need to remind the compiler that there is</span></div>
 <div class="line"><a id="l00299" name="l00299"></a><span class="lineno">  299</span><span class="comment">    /// also a function named setup in the base class.</span></div>
 <div class="line"><a id="l00300" name="l00300"></a><span class="lineno">  300</span><span class="comment"></span>    <span class="keyword">using</span> <a class="code hl_function" href="classoomph_1_1Preconditioner.html#af4886f4efe510e5c9b0eb19422943588">Preconditioner::setup</a>;</div>
 <div class="line"><a id="l00301" name="l00301"></a><span class="lineno">  301</span><span class="comment"></span> </div>
-<div class="line"><a id="l00302" name="l00302"></a><span class="lineno">  302</span><span class="comment">    ///  Setup the preconditioner</span></div>
+<div class="line"><a id="l00302" name="l00302"></a><span class="lineno">  302</span><span class="comment">    /// Setup the preconditioner</span></div>
 <div class="line"><a id="l00303" name="l00303"></a><span class="lineno">  303</span><span class="comment"></span>    <span class="keywordtype">void</span> <a class="code hl_function" href="classoomph_1_1GMRESBlockPreconditioner.html#ae517d83cf8eddba9f9e2ed709f503da2">setup</a>();</div>
 <div class="line"><a id="l00304" name="l00304"></a><span class="lineno">  304</span><span class="comment"></span> </div>
 <div class="line"><a id="l00305" name="l00305"></a><span class="lineno">  305</span><span class="comment">    /// Apply preconditioner to r</span></div>
 <div class="line"><a id="l00306" name="l00306"></a><span class="lineno">  306</span><span class="comment"></span>    <span class="keywordtype">void</span> <a class="code hl_function" href="classoomph_1_1GMRESBlockPreconditioner.html#a73f8298ef0dee62de0eabd28ac78a53b">preconditioner_solve</a>(<span class="keyword">const</span> <a class="code hl_class" href="classoomph_1_1DoubleVector.html">DoubleVector</a>&amp; r, <a class="code hl_class" href="classoomph_1_1DoubleVector.html">DoubleVector</a>&amp; z);</div>
 <div class="line"><a id="l00307" name="l00307"></a><span class="lineno">  307</span><span class="comment"></span> </div>
-<div class="line"><a id="l00308" name="l00308"></a><span class="lineno">  308</span><span class="comment">    ///  Solver: Takes pointer to problem and returns the results vector</span></div>
+<div class="line"><a id="l00308" name="l00308"></a><span class="lineno">  308</span><span class="comment">    /// Solver: Takes pointer to problem and returns the results vector</span></div>
 <div class="line"><a id="l00309" name="l00309"></a><span class="lineno">  309</span><span class="comment">    /// which contains the solution of the linear system defined by</span></div>
 <div class="line"><a id="l00310" name="l00310"></a><span class="lineno">  310</span><span class="comment">    /// the problem&#39;s fully assembled Jacobian and residual vector.</span></div>
 <div class="line"><a id="l00311" name="l00311"></a><span class="lineno"><a class="line" href="classoomph_1_1GMRESBlockPreconditioner.html#aa78c872858c5cf7242ac21a4987da62a">  311</a></span><span class="comment"></span>    <span class="keywordtype">void</span> <a class="code hl_function" href="classoomph_1_1GMRESBlockPreconditioner.html#aa78c872858c5cf7242ac21a4987da62a">solve</a>(<a class="code hl_class" href="classoomph_1_1Problem.html">Problem</a>* <span class="keyword">const</span>&amp; problem_pt, <a class="code hl_class" href="classoomph_1_1DoubleVector.html">DoubleVector</a>&amp; result)</div>
@@ -452,13 +452,13 @@ $(function() {
 <div class="line"><a id="l00323" name="l00323"></a><span class="lineno">  323</span>      <span class="keywordflow">return</span> <a class="code hl_variable" href="classoomph_1_1GMRESBlockPreconditioner.html#a86f6eb1dbc5b96eab510bda26e3e579b">Iterations</a>;</div>
 <div class="line"><a id="l00324" name="l00324"></a><span class="lineno">  324</span>    } <span class="comment">// End of iterations</span></div>
 <div class="line"><a id="l00325" name="l00325"></a><span class="lineno">  325</span><span class="comment"></span> </div>
-<div class="line"><a id="l00326" name="l00326"></a><span class="lineno">  326</span><span class="comment">    ///  Set left preconditioning (the default)</span></div>
+<div class="line"><a id="l00326" name="l00326"></a><span class="lineno">  326</span><span class="comment">    /// Set left preconditioning (the default)</span></div>
 <div class="line"><a id="l00327" name="l00327"></a><span class="lineno"><a class="line" href="classoomph_1_1GMRESBlockPreconditioner.html#abb48a9b05565e396e648fe80511f6e39">  327</a></span><span class="comment"></span>    <span class="keywordtype">void</span> <a class="code hl_function" href="classoomph_1_1GMRESBlockPreconditioner.html#abb48a9b05565e396e648fe80511f6e39">set_preconditioner_LHS</a>()</div>
 <div class="line"><a id="l00328" name="l00328"></a><span class="lineno">  328</span>    {</div>
 <div class="line"><a id="l00329" name="l00329"></a><span class="lineno">  329</span>      <a class="code hl_variable" href="classoomph_1_1GMRESBlockPreconditioner.html#a9cd47798800f479265b762b8ce48dfdb">Preconditioner_LHS</a> = <span class="keyword">true</span>;</div>
 <div class="line"><a id="l00330" name="l00330"></a><span class="lineno">  330</span>    }</div>
 <div class="line"><a id="l00331" name="l00331"></a><span class="lineno">  331</span><span class="comment"></span> </div>
-<div class="line"><a id="l00332" name="l00332"></a><span class="lineno">  332</span><span class="comment">    ///  Enable right preconditioning</span></div>
+<div class="line"><a id="l00332" name="l00332"></a><span class="lineno">  332</span><span class="comment">    /// Enable right preconditioning</span></div>
 <div class="line"><a id="l00333" name="l00333"></a><span class="lineno"><a class="line" href="classoomph_1_1GMRESBlockPreconditioner.html#a8dd8043bbb27b1ca1e0d652fd723d681">  333</a></span><span class="comment"></span>    <span class="keywordtype">void</span> <a class="code hl_function" href="classoomph_1_1GMRESBlockPreconditioner.html#a8dd8043bbb27b1ca1e0d652fd723d681">set_preconditioner_RHS</a>()</div>
 <div class="line"><a id="l00334" name="l00334"></a><span class="lineno">  334</span>    {</div>
 <div class="line"><a id="l00335" name="l00335"></a><span class="lineno">  335</span>      <a class="code hl_variable" href="classoomph_1_1GMRESBlockPreconditioner.html#a9cd47798800f479265b762b8ce48dfdb">Preconditioner_LHS</a> = <span class="keyword">false</span>;</div>
@@ -633,7 +633,7 @@ $(function() {
 <div class="line"><a id="l00504" name="l00504"></a><span class="lineno">  504</span>      }</div>
 <div class="line"><a id="l00505" name="l00505"></a><span class="lineno">  505</span>    } <span class="comment">// End of update</span></div>
 <div class="line"><a id="l00506" name="l00506"></a><span class="lineno">  506</span><span class="comment"></span> </div>
-<div class="line"><a id="l00507" name="l00507"></a><span class="lineno">  507</span><span class="comment">    ///  Helper function: Generate a plane rotation. This is done by</span></div>
+<div class="line"><a id="l00507" name="l00507"></a><span class="lineno">  507</span><span class="comment">    /// Helper function: Generate a plane rotation. This is done by</span></div>
 <div class="line"><a id="l00508" name="l00508"></a><span class="lineno">  508</span><span class="comment">    /// finding the values of \f$ \cos(\theta) \f$ (i.e. cs) and \sin(\theta)</span></div>
 <div class="line"><a id="l00509" name="l00509"></a><span class="lineno">  509</span><span class="comment">    /// (i.e. sn) such that:</span></div>
 <div class="line"><a id="l00510" name="l00510"></a><span class="lineno">  510</span><span class="comment">    /// \f[</span></div>
@@ -703,7 +703,7 @@ $(function() {
 <div class="line"><a id="l00574" name="l00574"></a><span class="lineno">  574</span>      }</div>
 <div class="line"><a id="l00575" name="l00575"></a><span class="lineno">  575</span>    } <span class="comment">// End of generate_plane_rotation</span></div>
 <div class="line"><a id="l00576" name="l00576"></a><span class="lineno">  576</span><span class="comment"></span> </div>
-<div class="line"><a id="l00577" name="l00577"></a><span class="lineno">  577</span><span class="comment">    ///  Helper function: Apply plane rotation. This is done using the</span></div>
+<div class="line"><a id="l00577" name="l00577"></a><span class="lineno">  577</span><span class="comment">    /// Helper function: Apply plane rotation. This is done using the</span></div>
 <div class="line"><a id="l00578" name="l00578"></a><span class="lineno">  578</span><span class="comment">    /// update:</span></div>
 <div class="line"><a id="l00579" name="l00579"></a><span class="lineno">  579</span><span class="comment">    /// \f[</span></div>
 <div class="line"><a id="l00580" name="l00580"></a><span class="lineno">  580</span><span class="comment">    ///\begin{bmatrix}</span></div>
@@ -742,19 +742,19 @@ $(function() {
 <div class="line"><a id="l00613" name="l00613"></a><span class="lineno">  613</span><span class="comment">    /// Number of iterations taken</span></div>
 <div class="line"><a id="l00614" name="l00614"></a><span class="lineno"><a class="line" href="classoomph_1_1GMRESBlockPreconditioner.html#a86f6eb1dbc5b96eab510bda26e3e579b">  614</a></span><span class="comment"></span>    <span class="keywordtype">unsigned</span> <a class="code hl_variable" href="classoomph_1_1GMRESBlockPreconditioner.html#a86f6eb1dbc5b96eab510bda26e3e579b">Iterations</a>;</div>
 <div class="line"><a id="l00615" name="l00615"></a><span class="lineno">  615</span><span class="comment"></span> </div>
-<div class="line"><a id="l00616" name="l00616"></a><span class="lineno">  616</span><span class="comment">    ///  Flag to indicate whether or not to record the memory statistics</span></div>
+<div class="line"><a id="l00616" name="l00616"></a><span class="lineno">  616</span><span class="comment">    /// Flag to indicate whether or not to record the memory statistics</span></div>
 <div class="line"><a id="l00617" name="l00617"></a><span class="lineno">  617</span><span class="comment">    /// this preconditioner</span></div>
 <div class="line"><a id="l00618" name="l00618"></a><span class="lineno"><a class="line" href="classoomph_1_1GMRESBlockPreconditioner.html#a727af6ccb23868b93a074e07f885b5e8">  618</a></span><span class="comment"></span>    <span class="keywordtype">bool</span> <a class="code hl_variable" href="classoomph_1_1GMRESBlockPreconditioner.html#a727af6ccb23868b93a074e07f885b5e8">Compute_memory_statistics</a>;</div>
 <div class="line"><a id="l00619" name="l00619"></a><span class="lineno">  619</span><span class="comment"></span> </div>
-<div class="line"><a id="l00620" name="l00620"></a><span class="lineno">  620</span><span class="comment">    ///  Storage for the memory usage of the solver if the flag above</span></div>
+<div class="line"><a id="l00620" name="l00620"></a><span class="lineno">  620</span><span class="comment">    /// Storage for the memory usage of the solver if the flag above</span></div>
 <div class="line"><a id="l00621" name="l00621"></a><span class="lineno">  621</span><span class="comment">    /// is set to true (in bytes)</span></div>
 <div class="line"><a id="l00622" name="l00622"></a><span class="lineno"><a class="line" href="classoomph_1_1GMRESBlockPreconditioner.html#a06aa85a7eb7a1787179386eb514ca77a">  622</a></span><span class="comment"></span>    <span class="keywordtype">double</span> <a class="code hl_variable" href="classoomph_1_1GMRESBlockPreconditioner.html#a06aa85a7eb7a1787179386eb514ca77a">Memory_usage_in_bytes</a>;</div>
 <div class="line"><a id="l00623" name="l00623"></a><span class="lineno">  623</span><span class="comment"></span> </div>
-<div class="line"><a id="l00624" name="l00624"></a><span class="lineno">  624</span><span class="comment">    ///  Control flag is true if the preconditioner has been setup (used</span></div>
+<div class="line"><a id="l00624" name="l00624"></a><span class="lineno">  624</span><span class="comment">    /// Control flag is true if the preconditioner has been setup (used</span></div>
 <div class="line"><a id="l00625" name="l00625"></a><span class="lineno">  625</span><span class="comment">    /// so we can wipe the data when the preconditioner is called again)</span></div>
 <div class="line"><a id="l00626" name="l00626"></a><span class="lineno"><a class="line" href="classoomph_1_1GMRESBlockPreconditioner.html#a7662244571d832c4dece39100bc0a118">  626</a></span><span class="comment"></span>    <span class="keywordtype">bool</span> <a class="code hl_variable" href="classoomph_1_1GMRESBlockPreconditioner.html#a7662244571d832c4dece39100bc0a118">Preconditioner_has_been_setup</a>;</div>
 <div class="line"><a id="l00627" name="l00627"></a><span class="lineno">  627</span><span class="comment"></span> </div>
-<div class="line"><a id="l00628" name="l00628"></a><span class="lineno">  628</span><span class="comment">    ///  boolean indicating use of left hand preconditioning (if true)</span></div>
+<div class="line"><a id="l00628" name="l00628"></a><span class="lineno">  628</span><span class="comment">    /// boolean indicating use of left hand preconditioning (if true)</span></div>
 <div class="line"><a id="l00629" name="l00629"></a><span class="lineno">  629</span><span class="comment">    /// or right hand preconditioning (if false)</span></div>
 <div class="line"><a id="l00630" name="l00630"></a><span class="lineno"><a class="line" href="classoomph_1_1GMRESBlockPreconditioner.html#a9cd47798800f479265b762b8ce48dfdb">  630</a></span><span class="comment"></span>    <span class="keywordtype">bool</span> <a class="code hl_variable" href="classoomph_1_1GMRESBlockPreconditioner.html#a9cd47798800f479265b762b8ce48dfdb">Preconditioner_LHS</a>;</div>
 <div class="line"><a id="l00631" name="l00631"></a><span class="lineno">  631</span>  };</div>
@@ -854,7 +854,7 @@ $(function() {
     <footer>
       <div class="container">
         <div class="text-muted" style="float:right;">Generated by <a href="http://www.doxygen.org/index.html">
-          <img style="height:18px;" class="footer-img" src="doxygen.png" alt="doxygen"></a> on Fri Oct 22 2021 12:23:26
+          <img style="height:18px;" class="footer-img" src="doxygen.png" alt="doxygen"></a> on Mon Oct 25 2021 14:41:46
         </div>
       </div>
     </footer>
