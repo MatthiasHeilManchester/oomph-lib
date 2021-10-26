@@ -140,7 +140,7 @@ Comparison of the computed distribution of the `horizontal' stress (in green) ag
  </p><hr  />
 <h1><a class="anchor" id="global"></a>
 Global parameters and functions</h1>
-<p >As usual, we define a namespace, <code><a class="el" href="namespaceGlobal__Physical__Variables.html" title="Global variables.">Global_Physical_Variables</a></code>, to define the problem parameters: the dimensions of the cantilever beam, (a pointer to) a constitutive equation, and its parameters <img class="formulaInl" alt="$ E $" src="form_5.png" width="10" height="9"/> and <img class="formulaInl" alt="$ \nu $" src="form_1.png" width="6" height="6"/>.</p>
+<p >As usual, we define a namespace, <code><a class="el" href="namespaceGlobal__Physical__Variables.html" title="//////////////////////////////////////////////////////////////////// ////////////////////////////////...">Global_Physical_Variables</a></code>, to define the problem parameters: the dimensions of the cantilever beam, (a pointer to) a constitutive equation, and its parameters <img class="formulaInl" alt="$ E $" src="form_5.png" width="10" height="9"/> and <img class="formulaInl" alt="$ \nu $" src="form_1.png" width="6" height="6"/>.</p>
  <div class="fragment"><div class="line"><span class="comment">//=======start_namespace==========================================</span></div>
 <div class="line"><span class="comment">/// Global variables</span></div>
 <div class="line"><span class="comment">//================================================================</span></div>
@@ -161,7 +161,7 @@ Global parameters and functions</h1>
 <div class="line"><span class="comment"></span> </div>
 <div class="line"><span class="comment"> /// Poisson&#39;s ratio</span></div>
 <div class="line"><span class="comment"></span> <span class="keywordtype">double</span> <a class="code hl_variable" href="namespaceGlobal__Physical__Variables.html#a3962c36313826b19f216f6bbbdd6a477">Nu</a>=0.3;</div>
-<div class="ttc" id="anamespaceGlobal__Physical__Variables_html"><div class="ttname"><a href="namespaceGlobal__Physical__Variables.html">Global_Physical_Variables</a></div><div class="ttdoc">Global variables.</div><div class="ttdef"><b>Definition:</b> <a href="airy__cantilever_8cc_source.html#l00148">airy_cantilever.cc:149</a></div></div>
+<div class="ttc" id="anamespaceGlobal__Physical__Variables_html"><div class="ttname"><a href="namespaceGlobal__Physical__Variables.html">Global_Physical_Variables</a></div><div class="ttdoc">//////////////////////////////////////////////////////////////////// ////////////////////////////////...</div><div class="ttdef"><b>Definition:</b> <a href="airy__cantilever_8cc_source.html#l00148">airy_cantilever.cc:149</a></div></div>
 <div class="ttc" id="anamespaceGlobal__Physical__Variables_html_a09a019474b7405b35da2437f7779bc7e"><div class="ttname"><a href="namespaceGlobal__Physical__Variables.html#a09a019474b7405b35da2437f7779bc7e">Global_Physical_Variables::E</a></div><div class="ttdeci">double E</div><div class="ttdoc">Elastic modulus.</div><div class="ttdef"><b>Definition:</b> <a href="airy__cantilever_8cc_source.html#l00161">airy_cantilever.cc:161</a></div></div>
 <div class="ttc" id="anamespaceGlobal__Physical__Variables_html_a1b8bfc451f6b7ac89eca18f04338f47f"><div class="ttname"><a href="namespaceGlobal__Physical__Variables.html#a1b8bfc451f6b7ac89eca18f04338f47f">Global_Physical_Variables::L</a></div><div class="ttdeci">double L</div><div class="ttdoc">Length of beam.</div><div class="ttdef"><b>Definition:</b> <a href="airy__cantilever_8cc_source.html#l00155">airy_cantilever.cc:155</a></div></div>
 <div class="ttc" id="anamespaceGlobal__Physical__Variables_html_a3962c36313826b19f216f6bbbdd6a477"><div class="ttname"><a href="namespaceGlobal__Physical__Variables.html#a3962c36313826b19f216f6bbbdd6a477">Global_Physical_Variables::Nu</a></div><div class="ttdeci">double Nu</div><div class="ttdoc">Poisson's ratio.</div><div class="ttdef"><b>Definition:</b> <a href="airy__cantilever_8cc_source.html#l00164">airy_cantilever.cc:164</a></div></div>
@@ -208,7 +208,7 @@ Global parameters and functions</h1>
  <hr  />
 <h1><a class="anchor" id="main"></a>
 The driver code</h1>
-<p >The driver code is very short. We start by building a <code>GeneralisedHookean</code> constitutive equation object and store a pointer to it in the namespace <code><a class="el" href="namespaceGlobal__Physical__Variables.html" title="Global variables.">Global_Physical_Variables</a></code>. Next we construct the problem object, using (a wrapped version of) <code>oomph-lib's</code> <code>RefineableQPVDElement&lt;2,3&gt;</code> &ndash; a nine-node quadrilateral displacement-based solid mechanics element. (The wrapper is used to change the element's output function; see <a class="el" href="index.html#com">Comment: Customising an element's output function</a> for details).</p>
+<p >The driver code is very short. We start by building a <code>GeneralisedHookean</code> constitutive equation object and store a pointer to it in the namespace <code><a class="el" href="namespaceGlobal__Physical__Variables.html" title="//////////////////////////////////////////////////////////////////// ////////////////////////////////...">Global_Physical_Variables</a></code>. Next we construct the problem object, using (a wrapped version of) <code>oomph-lib's</code> <code>RefineableQPVDElement&lt;2,3&gt;</code> &ndash; a nine-node quadrilateral displacement-based solid mechanics element. (The wrapper is used to change the element's output function; see <a class="el" href="index.html#com">Comment: Customising an element's output function</a> for details).</p>
  <div class="fragment"><div class="line"><span class="comment">//=======start_of_main==================================================</span></div>
 <div class="line"><span class="comment">/// Driver for cantilever beam loaded by surface traction and/or</span><span class="comment"></span></div>
 <div class="line"><span class="comment">/// gravity</span></div>
@@ -344,7 +344,7 @@ The problem class</h1>
  <hr  />
 <h1><a class="anchor" id="constructor"></a>
 The problem constructor</h1>
-<p >The constructor builds the bulk mesh (the standard <code>RefineableRectangularQuadMesh</code> that we already used in many previous examples, upgraded to a <code>SolidMesh</code>, via the procedure discussed in the document <a href="../../solid_theory/html/index.html#solid_mesh">Solid mechanics: Theory and implementation</a>), using the element type specified by the template parameter and the dimensions specified in the namespace <code><a class="el" href="namespaceGlobal__Physical__Variables.html" title="Global variables.">Global_Physical_Variables</a></code>.</p>
+<p >The constructor builds the bulk mesh (the standard <code>RefineableRectangularQuadMesh</code> that we already used in many previous examples, upgraded to a <code>SolidMesh</code>, via the procedure discussed in the document <a href="../../solid_theory/html/index.html#solid_mesh">Solid mechanics: Theory and implementation</a>), using the element type specified by the template parameter and the dimensions specified in the namespace <code><a class="el" href="namespaceGlobal__Physical__Variables.html" title="//////////////////////////////////////////////////////////////////// ////////////////////////////////...">Global_Physical_Variables</a></code>.</p>
  <div class="fragment"><div class="line"><span class="comment">//===========start_of_constructor======================================= </span></div>
 <div class="line"><span class="comment">/// Constructor: </span></div>
 <div class="line"><span class="comment">//====================================================================== </span></div>
@@ -858,7 +858,7 @@ PDF file</h1>
     <footer>
       <div class="container">
         <div class="text-muted" style="float:right;">Generated by <a href="http://www.doxygen.org/index.html">
-          <img style="height:18px;" class="footer-img" src="doxygen.png" alt="doxygen"></a> on Mon Oct 25 2021 18:04:28
+          <img style="height:18px;" class="footer-img" src="doxygen.png" alt="doxygen"></a> on Tue Oct 26 2021 17:31:06
         </div>
       </div>
     </footer>

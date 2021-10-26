@@ -2,7 +2,7 @@
 \label{classoomph_1_1FSIWallElement}\index{oomph::FSIWallElement@{oomph::FSIWallElement}}
 
 
-This is a base class for all Solid\+Finite\+Elements that participate in FSI computations. These elements provide interfaces and generic funcionality for the two additional roles that Solid\+Finite\+Elements play in FSI problems\+:  
+////////////////////////////////////////////////////////////////////////// //////////////////////////////////////////////////////////////////////////  
 
 
 
@@ -121,9 +121,9 @@ static double \mbox{\hyperlink{classoomph_1_1FSIWallElement_ac55ce8829f73fe16f42
 
 
 \doxysubsection{Detailed Description}
-This is a base class for all Solid\+Finite\+Elements that participate in FSI computations. These elements provide interfaces and generic funcionality for the two additional roles that Solid\+Finite\+Elements play in FSI problems\+: 
+////////////////////////////////////////////////////////////////////////// ////////////////////////////////////////////////////////////////////////// 
 
-
+This is a base class for all Solid\+Finite\+Elements that participate in FSI computations. These elements provide interfaces and generic funcionality for the two additional roles that Solid\+Finite\+Elements play in FSI problems\+:
 \begin{DoxyEnumerate}
 \item They parameterise the domain boundary for the fluid domain. To allow them to play this role, FSIWall\+Elements are derived from the \mbox{\hyperlink{classoomph_1_1SolidFiniteElement}{Solid\+Finite\+Element}} and the \mbox{\hyperlink{classoomph_1_1GeomObject}{Geom\+Object}} class, indicating that the every specific \mbox{\hyperlink{classoomph_1_1FSIWallElement}{FSIWall\+Element}} must implement the pure virtual function Geom\+Object\+::position(...) which should compute the position vector to a point in the \mbox{\hyperlink{classoomph_1_1SolidFiniteElement}{Solid\+Finite\+Element}}, parametrised by its local coordinates.
 \item In FSI problems fluid exerts a traction onto the wall and this traction must be added to any other load terms (such as an external pressure acting on an elastic pipe) that are already applied to the Solid\+Finite\+Elements by other means.

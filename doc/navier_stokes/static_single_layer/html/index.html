@@ -168,7 +168,7 @@ Problem Parameters</h1>
 <div class="line"><span class="comment"> /// Pseudo-solid Poisson ratio</span></div>
 <div class="line"><span class="comment"></span> <span class="keywordtype">double</span> <a class="code hl_variable" href="namespaceGlobal__Physical__Variables.html#a3962c36313826b19f216f6bbbdd6a477">Nu</a>=0.1;</div>
 <div class="line"><span class="comment"></span> </div>
-<div class="line"><span class="comment"> ///Direction of the wall normal vector</span></div>
+<div class="line"><span class="comment"> /// Direction of the wall normal vector</span></div>
 <div class="line"><span class="comment"></span> Vector&lt;double&gt; <a class="code hl_variable" href="namespaceGlobal__Physical__Variables.html#af3a3b98f9f5b354d01228884e49c5bf0">Wall_normal</a>;</div>
 <div class="line"><span class="comment"></span> </div>
 <div class="line"><span class="comment"> /// Function that specifies the wall unit normal</span></div>
@@ -187,7 +187,7 @@ Problem Parameters</h1>
 The driver code</h1>
 <p >We shall solve the problem twice, once using the external pressure as the degree of freedom associated with the volume constraint and once using an internal fluid pressure degree of freedom instead. The choice of which degree of freedom to use is determined by the boolean flag passed to the problem constructor. The driver consists of a simple loop to cover both possibilities, construction of the problem and then a call to run the parameter study with different output directories in each case.</p>
 <div class="fragment"><div class="line"><span class="comment">//===start_of_main=======================================================</span></div>
-<div class="line"><span class="comment">///Main driver: Build problem and initiate parameter study</span></div>
+<div class="line"><span class="comment">/// Main driver: Build problem and initiate parameter study</span></div>
 <div class="line"><span class="comment">//======================================================================</span></div>
 <div class="line"><span class="keywordtype">int</span> <a class="code hl_function" href="static__single__layer_8cc.html#ae66f6b31b5ad750f1fe042a706a4e3d4">main</a>()</div>
 <div class="line">{</div>
@@ -217,17 +217,17 @@ The driver code</h1>
 The problem class</h1>
 <p >The problem class consists of a constructor that takes the aforementioned boolean flag to determine which pressure degree of freedom to use for the volume constraint; a destructor to clean up all memory allocated during the problem construction; a function that performs a parameter study, decreasing the contact angle from <img class="formulaInl" alt="$ \theta_{c} = 90^{\circ} $" src="form_31.png" width="45" height="13"/> in steps of <img class="formulaInl" alt="$ 5^{\circ} $" src="form_32.png" width="11" height="10"/>; and a function that documents the solution.</p>
  <div class="fragment"><div class="line"><span class="comment">//===========start_of_pseudo_elastic_class====================================</span></div>
-<div class="line"><span class="comment">///A class that solves the Navier--Stokes equations</span><span class="comment"></span></div>
-<div class="line"><span class="comment">///to compute the shape of a static interface in a rectangular container</span></div>
-<div class="line"><span class="comment">///with imposed contact angle at the boundary.</span></div>
+<div class="line"><span class="comment">/// A class that solves the Navier--Stokes equations</span><span class="comment"></span></div>
+<div class="line"><span class="comment">/// to compute the shape of a static interface in a rectangular container</span></div>
+<div class="line"><span class="comment">/// with imposed contact angle at the boundary.</span></div>
 <div class="line"><span class="comment"></span><span class="comment">//============================================================================</span></div>
 <div class="line"><span class="keyword">template</span>&lt;<span class="keyword">class</span> ELEMENT&gt;</div>
 <div class="line"><span class="keyword">class </span><a class="code hl_class" href="classPseudoSolidCapProblem.html">PseudoSolidCapProblem</a> : <span class="keyword">public</span> Problem</div>
 <div class="line">{</div>
 <div class="line"><span class="keyword">public</span>:</div>
 <div class="line"><span class="comment"></span> </div>
-<div class="line"><span class="comment"> ///Constructor: Boolean flag indicates if volume constraint is</span></div>
-<div class="line"><span class="comment"> ///applied by hijacking internal or external pressure</span></div>
+<div class="line"><span class="comment"> /// Constructor: Boolean flag indicates if volume constraint is</span></div>
+<div class="line"><span class="comment"> /// applied by hijacking internal or external pressure</span></div>
 <div class="line"><span class="comment"></span> <a class="code hl_function" href="classPseudoSolidCapProblem.html#a4ac05a07dd55950bb67f7f79cb9fbb77">PseudoSolidCapProblem</a>(<span class="keyword">const</span> <span class="keywordtype">bool</span>&amp; hijack_internal);</div>
 <div class="line"><span class="comment"></span> </div>
 <div class="line"><span class="comment"> /// Destructor: clean up memory allocated by the object</span></div>
@@ -283,7 +283,7 @@ The problem class</h1>
 <div class="line"><span class="comment"> /// Trace file</span></div>
 <div class="line"><span class="comment"></span> ofstream Trace_file;</div>
 <div class="line"><span class="comment"></span> </div>
-<div class="line"><span class="comment"> ///Storage for the bulk mesh</span></div>
+<div class="line"><span class="comment"> /// Storage for the bulk mesh</span></div>
 <div class="line"><span class="comment"></span> Mesh* Bulk_mesh_pt;</div>
 <div class="line"><span class="comment"></span> </div>
 <div class="line"><span class="comment"> /// Storage for the free surface mesh</span></div>
@@ -730,7 +730,7 @@ PDF file</h1>
     <footer>
       <div class="container">
         <div class="text-muted" style="float:right;">Generated by <a href="http://www.doxygen.org/index.html">
-          <img style="height:18px;" class="footer-img" src="doxygen.png" alt="doxygen"></a> on Mon Oct 25 2021 17:58:00
+          <img style="height:18px;" class="footer-img" src="doxygen.png" alt="doxygen"></a> on Tue Oct 26 2021 17:24:42
         </div>
       </div>
     </footer>

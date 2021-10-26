@@ -58,7 +58,7 @@
 \DoxyCodeLine{\Hypertarget{static__two__layer_8cc_source_l00054}00054 \textcolor{comment}{ /// Pseudo-\/solid Poisson ratio}}
 \DoxyCodeLine{\Hypertarget{static__two__layer_8cc_source_l00055}00055 \textcolor{comment}{} \textcolor{keywordtype}{double} \mbox{\hyperlink{namespaceGlobal__Physical__Variables_a3962c36313826b19f216f6bbbdd6a477}{Nu}}=0.1;}
 \DoxyCodeLine{\Hypertarget{static__two__layer_8cc_source_l00056}00056 \textcolor{comment}{}}
-\DoxyCodeLine{\Hypertarget{static__two__layer_8cc_source_l00057}00057 \textcolor{comment}{ ///Direction of the wall normal vector}}
+\DoxyCodeLine{\Hypertarget{static__two__layer_8cc_source_l00057}00057 \textcolor{comment}{ /// Direction of the wall normal vector}}
 \DoxyCodeLine{\Hypertarget{static__two__layer_8cc_source_l00058}00058 \textcolor{comment}{} Vector<double> \mbox{\hyperlink{namespaceGlobal__Physical__Variables_af3a3b98f9f5b354d01228884e49c5bf0}{Wall\_normal}};}
 \DoxyCodeLine{\Hypertarget{static__two__layer_8cc_source_l00059}00059 \textcolor{comment}{}}
 \DoxyCodeLine{\Hypertarget{static__two__layer_8cc_source_l00060}00060 \textcolor{comment}{ /// Function that specifies the wall unit normal}}
@@ -71,8 +71,8 @@
 \DoxyCodeLine{\Hypertarget{static__two__layer_8cc_source_l00067}00067 \}}
 \DoxyCodeLine{\Hypertarget{static__two__layer_8cc_source_l00068}00068 }
 \DoxyCodeLine{\Hypertarget{static__two__layer_8cc_source_l00069}00069 \textcolor{comment}{//============================================================================}\textcolor{comment}{}}
-\DoxyCodeLine{\Hypertarget{static__two__layer_8cc_source_l00070}00070 \textcolor{comment}{///A Problem class that solves the Navier-\/-\/Stokes equations + free surface}}
-\DoxyCodeLine{\Hypertarget{static__two__layer_8cc_source_l00071}00071 \textcolor{comment}{///in a 2D geometry using a spine-\/based node update}}
+\DoxyCodeLine{\Hypertarget{static__two__layer_8cc_source_l00070}00070 \textcolor{comment}{/// A Problem class that solves the Navier-\/-\/Stokes equations + free surface}}
+\DoxyCodeLine{\Hypertarget{static__two__layer_8cc_source_l00071}00071 \textcolor{comment}{/// in a 2D geometry using a spine-\/based node update}}
 \DoxyCodeLine{\Hypertarget{static__two__layer_8cc_source_l00072}00072 \textcolor{comment}{}\textcolor{comment}{//============================================================================}}
 \DoxyCodeLine{\Hypertarget{static__two__layer_8cc_source_l00073}00073 \textcolor{keyword}{template}<\textcolor{keyword}{class} ELEMENT>}
 \DoxyCodeLine{\Hypertarget{static__two__layer_8cc_source_l00074}00074 \textcolor{keyword}{class }\mbox{\hyperlink{classCapProblem}{CapProblem}} : \textcolor{keyword}{public} Problem}
@@ -683,42 +683,42 @@
 \DoxyCodeLine{\Hypertarget{static__two__layer_8cc_source_l00679}00679    this-\/>setup\_boundary\_element\_info();}
 \DoxyCodeLine{\Hypertarget{static__two__layer_8cc_source_l00680}00680   \}}
 \DoxyCodeLine{\Hypertarget{static__two__layer_8cc_source_l00681}00681 \textcolor{comment}{}}
-\DoxyCodeLine{\Hypertarget{static__two__layer_8cc_source_l00682}00682 \textcolor{comment}{ ///Access functions for pointers to elements in upper layer}}
+\DoxyCodeLine{\Hypertarget{static__two__layer_8cc_source_l00682}00682 \textcolor{comment}{ /// Access functions for pointers to elements in upper layer}}
 \DoxyCodeLine{\Hypertarget{static__two__layer_8cc_source_l00683}\mbox{\hyperlink{classElasticTwoLayerMesh_a1eda03440a219d06a5c002048715687c}{00683}} \textcolor{comment}{} FiniteElement* \&\mbox{\hyperlink{classElasticTwoLayerMesh_a1eda03440a219d06a5c002048715687c}{upper\_layer\_element\_pt}}(\textcolor{keyword}{const} \textcolor{keywordtype}{unsigned} \textcolor{keywordtype}{long} \&i) }
 \DoxyCodeLine{\Hypertarget{static__two__layer_8cc_source_l00684}00684   \{\textcolor{keywordflow}{return} \mbox{\hyperlink{classElasticTwoLayerMesh_ae46d4ef2bb95a6c023bd0dc1e367ccfb}{Upper\_layer\_element\_pt}}[i];\}}
 \DoxyCodeLine{\Hypertarget{static__two__layer_8cc_source_l00685}00685 \textcolor{comment}{}}
-\DoxyCodeLine{\Hypertarget{static__two__layer_8cc_source_l00686}00686 \textcolor{comment}{ ///Access functions for pointers to elements in bottom layer}}
+\DoxyCodeLine{\Hypertarget{static__two__layer_8cc_source_l00686}00686 \textcolor{comment}{ /// Access functions for pointers to elements in bottom layer}}
 \DoxyCodeLine{\Hypertarget{static__two__layer_8cc_source_l00687}\mbox{\hyperlink{classElasticTwoLayerMesh_a55cb8f219643531b55d0072e32c2a1e8}{00687}} \textcolor{comment}{} FiniteElement* \&\mbox{\hyperlink{classElasticTwoLayerMesh_a55cb8f219643531b55d0072e32c2a1e8}{lower\_layer\_element\_pt}}(\textcolor{keyword}{const} \textcolor{keywordtype}{unsigned} \textcolor{keywordtype}{long} \&i) }
 \DoxyCodeLine{\Hypertarget{static__two__layer_8cc_source_l00688}00688   \{\textcolor{keywordflow}{return} \mbox{\hyperlink{classElasticTwoLayerMesh_a4f8c33eaaa185e8c8710883ee9b5811f}{Lower\_layer\_element\_pt}}[i];\}}
 \DoxyCodeLine{\Hypertarget{static__two__layer_8cc_source_l00689}00689 \textcolor{comment}{}}
-\DoxyCodeLine{\Hypertarget{static__two__layer_8cc_source_l00690}00690 \textcolor{comment}{ ///Number of elements in upper layer}}
+\DoxyCodeLine{\Hypertarget{static__two__layer_8cc_source_l00690}00690 \textcolor{comment}{ /// Number of elements in upper layer}}
 \DoxyCodeLine{\Hypertarget{static__two__layer_8cc_source_l00691}\mbox{\hyperlink{classElasticTwoLayerMesh_ae5c586ecab2ac275174427a94ccfc0c7}{00691}} \textcolor{comment}{} \textcolor{keywordtype}{unsigned} \textcolor{keywordtype}{long} \mbox{\hyperlink{classElasticTwoLayerMesh_ae5c586ecab2ac275174427a94ccfc0c7}{nupper}}()\textcolor{keyword}{ const }\{\textcolor{keywordflow}{return} \mbox{\hyperlink{classElasticTwoLayerMesh_ae46d4ef2bb95a6c023bd0dc1e367ccfb}{Upper\_layer\_element\_pt}}.size();\}}
 \DoxyCodeLine{\Hypertarget{static__two__layer_8cc_source_l00692}00692 \textcolor{comment}{}}
-\DoxyCodeLine{\Hypertarget{static__two__layer_8cc_source_l00693}00693 \textcolor{comment}{ ///Number of elements in top layer}}
+\DoxyCodeLine{\Hypertarget{static__two__layer_8cc_source_l00693}00693 \textcolor{comment}{ /// Number of elements in top layer}}
 \DoxyCodeLine{\Hypertarget{static__two__layer_8cc_source_l00694}\mbox{\hyperlink{classElasticTwoLayerMesh_a144f4d44005a25bb301955625a79c9ef}{00694}} \textcolor{comment}{} \textcolor{keywordtype}{unsigned} \textcolor{keywordtype}{long} \mbox{\hyperlink{classElasticTwoLayerMesh_a144f4d44005a25bb301955625a79c9ef}{nlower}}()\textcolor{keyword}{ const }\{\textcolor{keywordflow}{return} \mbox{\hyperlink{classElasticTwoLayerMesh_a4f8c33eaaa185e8c8710883ee9b5811f}{Lower\_layer\_element\_pt}}.size();\}}
 \DoxyCodeLine{\Hypertarget{static__two__layer_8cc_source_l00695}00695 \textcolor{comment}{}}
-\DoxyCodeLine{\Hypertarget{static__two__layer_8cc_source_l00696}00696 \textcolor{comment}{ ///Access functions for pointers to elements in upper layer}}
+\DoxyCodeLine{\Hypertarget{static__two__layer_8cc_source_l00696}00696 \textcolor{comment}{ /// Access functions for pointers to elements in upper layer}}
 \DoxyCodeLine{\Hypertarget{static__two__layer_8cc_source_l00697}\mbox{\hyperlink{classElasticTwoLayerMesh_ada3d4bfb572ad71bace28702777ca077}{00697}} \textcolor{comment}{} FiniteElement* \&\mbox{\hyperlink{classElasticTwoLayerMesh_ada3d4bfb572ad71bace28702777ca077}{interface\_upper\_boundary\_element\_pt}}(\textcolor{keyword}{const} \textcolor{keywordtype}{unsigned} \textcolor{keywordtype}{long} \&i) }
 \DoxyCodeLine{\Hypertarget{static__two__layer_8cc_source_l00698}00698   \{\textcolor{keywordflow}{return} \mbox{\hyperlink{classElasticTwoLayerMesh_af8218bd023535d3dbf4af3cf7bc1c12d}{Interface\_upper\_boundary\_element\_pt}}[i];\}}
 \DoxyCodeLine{\Hypertarget{static__two__layer_8cc_source_l00699}00699 \textcolor{comment}{}}
-\DoxyCodeLine{\Hypertarget{static__two__layer_8cc_source_l00700}00700 \textcolor{comment}{ ///Access functions for pointers to elements in bottom layer}}
+\DoxyCodeLine{\Hypertarget{static__two__layer_8cc_source_l00700}00700 \textcolor{comment}{ /// Access functions for pointers to elements in bottom layer}}
 \DoxyCodeLine{\Hypertarget{static__two__layer_8cc_source_l00701}\mbox{\hyperlink{classElasticTwoLayerMesh_abdfd1f3141ca5e0e65561195119b735b}{00701}} \textcolor{comment}{} FiniteElement* \&\mbox{\hyperlink{classElasticTwoLayerMesh_abdfd1f3141ca5e0e65561195119b735b}{interface\_lower\_boundary\_element\_pt}}(\textcolor{keyword}{const} \textcolor{keywordtype}{unsigned} \textcolor{keywordtype}{long} \&i) }
 \DoxyCodeLine{\Hypertarget{static__two__layer_8cc_source_l00702}00702   \{\textcolor{keywordflow}{return} \mbox{\hyperlink{classElasticTwoLayerMesh_abc8751d632399afe56df6c32e1001582}{Interface\_lower\_boundary\_element\_pt}}[i];\}}
 \DoxyCodeLine{\Hypertarget{static__two__layer_8cc_source_l00703}00703 \textcolor{comment}{}}
-\DoxyCodeLine{\Hypertarget{static__two__layer_8cc_source_l00704}00704 \textcolor{comment}{ ///Number of elements in upper layer}}
+\DoxyCodeLine{\Hypertarget{static__two__layer_8cc_source_l00704}00704 \textcolor{comment}{ /// Number of elements in upper layer}}
 \DoxyCodeLine{\Hypertarget{static__two__layer_8cc_source_l00705}\mbox{\hyperlink{classElasticTwoLayerMesh_a6e813329601844d3d900d78a60892134}{00705}} \textcolor{comment}{} \textcolor{keywordtype}{unsigned} \textcolor{keywordtype}{long} \mbox{\hyperlink{classElasticTwoLayerMesh_a6e813329601844d3d900d78a60892134}{ninterface\_upper}}()\textcolor{keyword}{ const }}
 \DoxyCodeLine{\Hypertarget{static__two__layer_8cc_source_l00706}00706 \textcolor{keyword}{ }\{\textcolor{keywordflow}{return} \mbox{\hyperlink{classElasticTwoLayerMesh_af8218bd023535d3dbf4af3cf7bc1c12d}{Interface\_upper\_boundary\_element\_pt}}.size();\}}
 \DoxyCodeLine{\Hypertarget{static__two__layer_8cc_source_l00707}00707 \textcolor{comment}{}}
-\DoxyCodeLine{\Hypertarget{static__two__layer_8cc_source_l00708}00708 \textcolor{comment}{ ///Number of elements in top layer}}
+\DoxyCodeLine{\Hypertarget{static__two__layer_8cc_source_l00708}00708 \textcolor{comment}{ /// Number of elements in top layer}}
 \DoxyCodeLine{\Hypertarget{static__two__layer_8cc_source_l00709}\mbox{\hyperlink{classElasticTwoLayerMesh_ae5db5553497593905fd227bfc5b34b50}{00709}} \textcolor{comment}{} \textcolor{keywordtype}{unsigned} \textcolor{keywordtype}{long} \mbox{\hyperlink{classElasticTwoLayerMesh_ae5db5553497593905fd227bfc5b34b50}{ninterface\_lower}}()\textcolor{keyword}{ const }}
 \DoxyCodeLine{\Hypertarget{static__two__layer_8cc_source_l00710}00710 \textcolor{keyword}{ }\{\textcolor{keywordflow}{return} \mbox{\hyperlink{classElasticTwoLayerMesh_abc8751d632399afe56df6c32e1001582}{Interface\_lower\_boundary\_element\_pt}}.size();\}}
 \DoxyCodeLine{\Hypertarget{static__two__layer_8cc_source_l00711}00711 \textcolor{comment}{}}
-\DoxyCodeLine{\Hypertarget{static__two__layer_8cc_source_l00712}00712 \textcolor{comment}{ ///Index of the face of the elements next to the interface}}
-\DoxyCodeLine{\Hypertarget{static__two__layer_8cc_source_l00713}00713 \textcolor{comment}{ ///in the upper region (always -\/2)}}
+\DoxyCodeLine{\Hypertarget{static__two__layer_8cc_source_l00712}00712 \textcolor{comment}{ /// Index of the face of the elements next to the interface}}
+\DoxyCodeLine{\Hypertarget{static__two__layer_8cc_source_l00713}00713 \textcolor{comment}{ /// in the upper region (always -\/2)}}
 \DoxyCodeLine{\Hypertarget{static__two__layer_8cc_source_l00714}\mbox{\hyperlink{classElasticTwoLayerMesh_a074aafe34f7dd56566c1a9ff934505d5}{00714}} \textcolor{comment}{} \textcolor{keywordtype}{int} \mbox{\hyperlink{classElasticTwoLayerMesh_a074aafe34f7dd56566c1a9ff934505d5}{interface\_upper\_face\_index\_at\_boundary}}(\textcolor{keyword}{const} \textcolor{keywordtype}{unsigned} \&e)}
 \DoxyCodeLine{\Hypertarget{static__two__layer_8cc_source_l00715}00715  \{\textcolor{keywordflow}{return} -\/2;\}}
 \DoxyCodeLine{\Hypertarget{static__two__layer_8cc_source_l00716}00716 \textcolor{comment}{}}
-\DoxyCodeLine{\Hypertarget{static__two__layer_8cc_source_l00717}00717 \textcolor{comment}{ ///Index of the face of the elements next to the interface in}}
+\DoxyCodeLine{\Hypertarget{static__two__layer_8cc_source_l00717}00717 \textcolor{comment}{ /// Index of the face of the elements next to the interface in}}
 \DoxyCodeLine{\Hypertarget{static__two__layer_8cc_source_l00718}00718 \textcolor{comment}{ /// the lower region (always 2)}}
 \DoxyCodeLine{\Hypertarget{static__two__layer_8cc_source_l00719}\mbox{\hyperlink{classElasticTwoLayerMesh_a100b3b26d4a2b97f67b0bef4e4b42e64}{00719}} \textcolor{comment}{} \textcolor{keywordtype}{int} \mbox{\hyperlink{classElasticTwoLayerMesh_a100b3b26d4a2b97f67b0bef4e4b42e64}{interface\_lower\_face\_index\_at\_boundary}}(\textcolor{keyword}{const} \textcolor{keywordtype}{unsigned} \&e)}
 \DoxyCodeLine{\Hypertarget{static__two__layer_8cc_source_l00720}00720  \{\textcolor{keywordflow}{return} 2;\}}
@@ -745,9 +745,9 @@
 \DoxyCodeLine{\Hypertarget{static__two__layer_8cc_source_l00741}00741 }
 \DoxyCodeLine{\Hypertarget{static__two__layer_8cc_source_l00742}00742 }
 \DoxyCodeLine{\Hypertarget{static__two__layer_8cc_source_l00743}00743 \textcolor{comment}{//===========start\_of\_pseudo\_elastic\_class====================================}\textcolor{comment}{}}
-\DoxyCodeLine{\Hypertarget{static__two__layer_8cc_source_l00744}00744 \textcolor{comment}{///A class that solves the Navier-\/-\/Stokes equations}}
-\DoxyCodeLine{\Hypertarget{static__two__layer_8cc_source_l00745}00745 \textcolor{comment}{///to compute the shape of a static interface between two fluids in a }}
-\DoxyCodeLine{\Hypertarget{static__two__layer_8cc_source_l00746}00746 \textcolor{comment}{///rectangular container with an imposed contact angle at the boundary.}}
+\DoxyCodeLine{\Hypertarget{static__two__layer_8cc_source_l00744}00744 \textcolor{comment}{/// A class that solves the Navier-\/-\/Stokes equations}}
+\DoxyCodeLine{\Hypertarget{static__two__layer_8cc_source_l00745}00745 \textcolor{comment}{/// to compute the shape of a static interface between two fluids in a }}
+\DoxyCodeLine{\Hypertarget{static__two__layer_8cc_source_l00746}00746 \textcolor{comment}{/// rectangular container with an imposed contact angle at the boundary.}}
 \DoxyCodeLine{\Hypertarget{static__two__layer_8cc_source_l00747}00747 \textcolor{comment}{}\textcolor{comment}{//============================================================================}}
 \DoxyCodeLine{\Hypertarget{static__two__layer_8cc_source_l00748}00748 \textcolor{keyword}{template}<\textcolor{keyword}{class} ELEMENT>}
 \DoxyCodeLine{\Hypertarget{static__two__layer_8cc_source_l00749}00749 \textcolor{keyword}{class }\mbox{\hyperlink{classPseudoSolidCapProblem}{PseudoSolidCapProblem}} : \textcolor{keyword}{public} Problem}
@@ -804,7 +804,7 @@
 \DoxyCodeLine{\Hypertarget{static__two__layer_8cc_source_l00800}00800 \textcolor{comment}{ /// Trace file}}
 \DoxyCodeLine{\Hypertarget{static__two__layer_8cc_source_l00801}00801 \textcolor{comment}{} ofstream \mbox{\hyperlink{classPseudoSolidCapProblem_a81d2d9915ba7d9a9a691ca2f2080b6b4}{Trace\_file}};}
 \DoxyCodeLine{\Hypertarget{static__two__layer_8cc_source_l00802}00802 \textcolor{comment}{}}
-\DoxyCodeLine{\Hypertarget{static__two__layer_8cc_source_l00803}00803 \textcolor{comment}{ ///Storage for the bulk mesh}}
+\DoxyCodeLine{\Hypertarget{static__two__layer_8cc_source_l00803}00803 \textcolor{comment}{ /// Storage for the bulk mesh}}
 \DoxyCodeLine{\Hypertarget{static__two__layer_8cc_source_l00804}\mbox{\hyperlink{classPseudoSolidCapProblem_a24ee2e5afd19ab0febf85306d45c8385}{00804}} \textcolor{comment}{} \mbox{\hyperlink{classElasticTwoLayerMesh}{ElasticTwoLayerMesh<ELEMENT>}}* \mbox{\hyperlink{classPseudoSolidCapProblem_a24ee2e5afd19ab0febf85306d45c8385}{Bulk\_mesh\_pt}};}
 \DoxyCodeLine{\Hypertarget{static__two__layer_8cc_source_l00805}00805 \textcolor{comment}{}}
 \DoxyCodeLine{\Hypertarget{static__two__layer_8cc_source_l00806}00806 \textcolor{comment}{ /// Storage for the free surface mesh}}
@@ -1228,7 +1228,7 @@
 \DoxyCodeLine{\Hypertarget{static__two__layer_8cc_source_l01224}01224 }
 \DoxyCodeLine{\Hypertarget{static__two__layer_8cc_source_l01225}01225 }
 \DoxyCodeLine{\Hypertarget{static__two__layer_8cc_source_l01226}01226 \textcolor{comment}{//======================================================================}\textcolor{comment}{}}
-\DoxyCodeLine{\Hypertarget{static__two__layer_8cc_source_l01227}01227 \textcolor{comment}{///Main driver: Build problem and initiate parameter study}}
+\DoxyCodeLine{\Hypertarget{static__two__layer_8cc_source_l01227}01227 \textcolor{comment}{/// Main driver: Build problem and initiate parameter study}}
 \DoxyCodeLine{\Hypertarget{static__two__layer_8cc_source_l01228}01228 \textcolor{comment}{}\textcolor{comment}{//======================================================================}}
 \DoxyCodeLine{\Hypertarget{static__two__layer_8cc_source_l01229}\mbox{\hyperlink{static__two__layer_8cc_ae66f6b31b5ad750f1fe042a706a4e3d4}{01229}} \textcolor{keywordtype}{int} \mbox{\hyperlink{static__two__layer_8cc_ae66f6b31b5ad750f1fe042a706a4e3d4}{main}}()}
 \DoxyCodeLine{\Hypertarget{static__two__layer_8cc_source_l01230}01230 \{}

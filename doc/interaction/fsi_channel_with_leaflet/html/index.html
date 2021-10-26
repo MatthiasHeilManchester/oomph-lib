@@ -227,7 +227,7 @@ The global parameters</h1>
 The undeformed leaflet</h1>
 <p >We use a <code>GeomObject</code> to describe the initial, stress-free shape of the elastic leaflet: a vertical straight line. The member function <code>d2position(...)</code> provides the first and second derivatives of the position vector, as required by the variational principle that governs the beam's deformation; see <a href="../../../beam/tensioned_string/html/index.html">the beam theory tutorial for details. </a></p>
 <div class="fragment"><div class="line"><span class="comment">//=====start_of_undeformed_leaflet=================================</span></div>
-<div class="line"><span class="comment">///GeomObject: Undeformed straight, vertical leaflet</span></div>
+<div class="line"><span class="comment">/// GeomObject: Undeformed straight, vertical leaflet</span></div>
 <div class="line"><span class="comment">//=================================================================</span></div>
 <div class="line"><span class="keyword">class </span><a class="code hl_class" href="classUndeformedLeaflet.html">UndeformedLeaflet</a> : <span class="keyword">public</span> GeomObject</div>
 <div class="line">{</div>
@@ -292,7 +292,7 @@ The undeformed leaflet</h1>
 <div class="line"><span class="comment"></span> <span class="keywordtype">double</span> <a class="code hl_variable" href="classUndeformedLeaflet.html#aa89fc695af9e53aa38894c9d875afd36">X0</a>;</div>
 <div class="line"> </div>
 <div class="line">}; <span class="comment">//end_of_undeformed_wall</span></div>
-<div class="ttc" id="aclassUndeformedLeaflet_html"><div class="ttname"><a href="classUndeformedLeaflet.html">UndeformedLeaflet</a></div><div class="ttdoc">GeomObject: Undeformed straight, vertical leaflet.</div><div class="ttdef"><b>Definition:</b> <a href="fsi__channel__with__leaflet_8cc_source.html#l00090">fsi_channel_with_leaflet.cc:91</a></div></div>
+<div class="ttc" id="aclassUndeformedLeaflet_html"><div class="ttname"><a href="classUndeformedLeaflet.html">UndeformedLeaflet</a></div><div class="ttdoc">//////////////////////////////////////////////////////////////////// ////////////////////////////////...</div><div class="ttdef"><b>Definition:</b> <a href="fsi__channel__with__leaflet_8cc_source.html#l00090">fsi_channel_with_leaflet.cc:91</a></div></div>
 <div class="ttc" id="aclassUndeformedLeaflet_html_a47d674756ce22e00a44ca0bd030a99da"><div class="ttname"><a href="classUndeformedLeaflet.html#a47d674756ce22e00a44ca0bd030a99da">UndeformedLeaflet::d2position</a></div><div class="ttdeci">void d2position(const Vector&lt; double &gt; &amp;zeta, Vector&lt; double &gt; &amp;r, DenseMatrix&lt; double &gt; &amp;drdzeta, RankThreeTensor&lt; double &gt; &amp;ddrdzeta) const</div><div class="ttdoc">Posn vector and its 1st &amp; 2nd derivatives w.r.t. to coordinates:  = drdzeta(alpha,...</div><div class="ttdef"><b>Definition:</b> <a href="fsi__channel__with__leaflet_8cc_source.html#l00126">fsi_channel_with_leaflet.cc:126</a></div></div>
 <div class="ttc" id="aclassUndeformedLeaflet_html_a56153a1d117dd41657183655de094d3e"><div class="ttname"><a href="classUndeformedLeaflet.html#a56153a1d117dd41657183655de094d3e">UndeformedLeaflet::ngeom_data</a></div><div class="ttdeci">unsigned ngeom_data() const</div><div class="ttdoc">Number of geometric Data in GeomObject: None.</div><div class="ttdef"><b>Definition:</b> <a href="fsi__channel__with__leaflet_8cc_source.html#l00145">fsi_channel_with_leaflet.cc:145</a></div></div>
 <div class="ttc" id="aclassUndeformedLeaflet_html_a8e9b79702eb9a38e19886b84aeb47918"><div class="ttname"><a href="classUndeformedLeaflet.html#a8e9b79702eb9a38e19886b84aeb47918">UndeformedLeaflet::position</a></div><div class="ttdeci">void position(const Vector&lt; double &gt; &amp;zeta, Vector&lt; double &gt; &amp;r) const</div><div class="ttdoc">Position vector at Lagrangian coordinate zeta.</div><div class="ttdef"><b>Definition:</b> <a href="fsi__channel__with__leaflet_8cc_source.html#l00102">fsi_channel_with_leaflet.cc:102</a></div></div>
@@ -335,7 +335,7 @@ The driver code</h1>
 <div class="line">  AlgebraicElement&lt;RefineableQTaylorHoodElement&lt;2&gt; &gt; &gt;</div>
 <div class="line">  problem(lleft,lright,hleaflet,</div>
 <div class="line">          htot,nleft,nright,ny1,ny2,x_0); </div>
-<div class="ttc" id="aclassFSIChannelWithLeafletProblem_html"><div class="ttname"><a href="classFSIChannelWithLeafletProblem.html">FSIChannelWithLeafletProblem</a></div><div class="ttdoc">FSI leaflet in channel.</div><div class="ttdef"><b>Definition:</b> <a href="fsi__channel__with__leaflet_8cc_source.html#l00164">fsi_channel_with_leaflet.cc:165</a></div></div>
+<div class="ttc" id="aclassFSIChannelWithLeafletProblem_html"><div class="ttname"><a href="classFSIChannelWithLeafletProblem.html">FSIChannelWithLeafletProblem</a></div><div class="ttdoc">//////////////////////////////////////////////////////////////////// ////////////////////////////////...</div><div class="ttdef"><b>Definition:</b> <a href="fsi__channel__with__leaflet_8cc_source.html#l00164">fsi_channel_with_leaflet.cc:165</a></div></div>
 </div><!-- fragment --><p> We prepare a <code>DocInfo</code> object and open a trace file to document the system's evolution.</p>
 <div class="fragment"><div class="line"> </div>
 <div class="line"> <span class="comment">// Set up doc info</span></div>
@@ -567,7 +567,7 @@ The problem constructor</h1>
 <div class="line"> <span class="comment">// Allocate the wall timestepper</span></div>
 <div class="line"> Steady&lt;2&gt;* wall_time_stepper_pt=<span class="keyword">new</span> Steady&lt;2&gt;;</div>
 <div class="line"> add_time_stepper_pt(wall_time_stepper_pt);</div>
-</div><!-- fragment --><p> Next we create the mesh of 1D Hermite beam elements that represents the leaflet, passing a pointer to an instance of the <code><a class="el" href="classUndeformedLeaflet.html" title="GeomObject: Undeformed straight, vertical leaflet.">UndeformedLeaflet</a></code> to its constructor.</p>
+</div><!-- fragment --><p> Next we create the mesh of 1D Hermite beam elements that represents the leaflet, passing a pointer to an instance of the <code><a class="el" href="classUndeformedLeaflet.html" title="//////////////////////////////////////////////////////////////////// ////////////////////////////////...">UndeformedLeaflet</a></code> to its constructor.</p>
 <div class="fragment"><div class="line"> </div>
 <div class="line"> </div>
 <div class="line"> <span class="comment">// Discretise leaflet</span></div>
@@ -1093,7 +1093,7 @@ PDF file</h1>
     <footer>
       <div class="container">
         <div class="text-muted" style="float:right;">Generated by <a href="http://www.doxygen.org/index.html">
-          <img style="height:18px;" class="footer-img" src="doxygen.png" alt="doxygen"></a> on Mon Oct 25 2021 18:09:20
+          <img style="height:18px;" class="footer-img" src="doxygen.png" alt="doxygen"></a> on Tue Oct 26 2021 17:35:56
         </div>
       </div>
     </footer>

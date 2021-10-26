@@ -2,7 +2,7 @@
 \label{classoomph_1_1ElementWithMovingNodes}\index{oomph::ElementWithMovingNodes@{oomph::ElementWithMovingNodes}}
 
 
-A policy class that serves to establish the common interfaces for elements that contain moving nodes. This class provides storage for the geometric data that affect the update of all the nodes of the element, i.\+e. USUALLY all data that are using during a call to the Element\textquotesingle{}s \mbox{\hyperlink{classoomph_1_1FiniteElement_a7ae3f437c142fbdef17db914698ffb10}{node\+\_\+update()}} function. In some cases (e.\+g. Fluid\+Interface\+Edge elements), \mbox{\hyperlink{classoomph_1_1FiniteElement_a7ae3f437c142fbdef17db914698ffb10}{node\+\_\+update()}} is overloaded to perform an update of the bulk element, in which case the additional bulk geometric data become external data of the element and the function Generalised\+Element\+::update\+\_\+in\+\_\+external\+\_\+fd(i) is overloaded to also perform the bulk node update. The storage is populated during the assignment of the equation numbers via the \mbox{\hyperlink{classoomph_1_1ElementWithMovingNodes_a6d2fa178f36d4b8413a9ce4f24e9c87e}{complete\+\_\+setup\+\_\+of\+\_\+dependencies()}} function and then local equations numbers are assigned to these data, accessible via geometric\+\_\+data\+\_\+local\+\_\+eqn(n,i). Finally, a function is provided that calculates the terms in the jacobian matrix by due to these geometric data by finite differences.  
+/////////////////////////////////////////////////////////////////////// ///////////////////////////////////////////////////////////////////////  
 
 
 
@@ -101,6 +101,8 @@ int \mbox{\hyperlink{classoomph_1_1ElementWithMovingNodes_a7b02491715adf7a315631
 
 
 \doxysubsection{Detailed Description}
+/////////////////////////////////////////////////////////////////////// /////////////////////////////////////////////////////////////////////// 
+
 A policy class that serves to establish the common interfaces for elements that contain moving nodes. This class provides storage for the geometric data that affect the update of all the nodes of the element, i.\+e. USUALLY all data that are using during a call to the Element\textquotesingle{}s \mbox{\hyperlink{classoomph_1_1FiniteElement_a7ae3f437c142fbdef17db914698ffb10}{node\+\_\+update()}} function. In some cases (e.\+g. Fluid\+Interface\+Edge elements), \mbox{\hyperlink{classoomph_1_1FiniteElement_a7ae3f437c142fbdef17db914698ffb10}{node\+\_\+update()}} is overloaded to perform an update of the bulk element, in which case the additional bulk geometric data become external data of the element and the function Generalised\+Element\+::update\+\_\+in\+\_\+external\+\_\+fd(i) is overloaded to also perform the bulk node update. The storage is populated during the assignment of the equation numbers via the \mbox{\hyperlink{classoomph_1_1ElementWithMovingNodes_a6d2fa178f36d4b8413a9ce4f24e9c87e}{complete\+\_\+setup\+\_\+of\+\_\+dependencies()}} function and then local equations numbers are assigned to these data, accessible via geometric\+\_\+data\+\_\+local\+\_\+eqn(n,i). Finally, a function is provided that calculates the terms in the jacobian matrix by due to these geometric data by finite differences. 
 
 Definition at line \mbox{\hyperlink{element__with__moving__nodes_8h_source_l00064}{64}} of file \mbox{\hyperlink{element__with__moving__nodes_8h_source}{element\+\_\+with\+\_\+moving\+\_\+nodes.\+h}}.
@@ -210,7 +212,9 @@ References \mbox{\hyperlink{element__with__moving__nodes_8h_source_l00367}{Evalu
 
 Return a set of all geometric data associated with the element. 
 
-Return a set of all geometric data associated with the element\textquotesingle{}s node update function. 
+//////////////////////////////////////////////////////////////////
+
+//////////////////////////////////////////////////////////////// Return a set of all geometric data associated with the element\textquotesingle{}s node update function 
 
 Definition at line \mbox{\hyperlink{element__with__moving__nodes_8cc_source_l00043}{43}} of file \mbox{\hyperlink{element__with__moving__nodes_8cc_source}{element\+\_\+with\+\_\+moving\+\_\+nodes.\+cc}}.
 

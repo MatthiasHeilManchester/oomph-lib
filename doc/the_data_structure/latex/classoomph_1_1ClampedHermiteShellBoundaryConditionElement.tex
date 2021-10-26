@@ -2,9 +2,7 @@
 \label{classoomph_1_1ClampedHermiteShellBoundaryConditionElement}\index{oomph::ClampedHermiteShellBoundaryConditionElement@{oomph::ClampedHermiteShellBoundaryConditionElement}}
 
 
-Element that allows the imposition of boundary conditions for a shell that is clamped to a 2D plane that is specified by its normal. Constraint is applied by a Lagrange multiplier. ~\newline
-{\bfseries{Note}} {\bfseries{1}}\+: Note that the introduction of the Lagrange multiplier adds two additional values (relative to the number of values before the addition of the \mbox{\hyperlink{classoomph_1_1FaceElement}{Face\+Element}}) to the nodes. This ensures that nodes that are shared by adjacent Face\+Elements are not resized repeatedly but also means that this won\textquotesingle{}t work if two \char`\"{}edges\char`\"{} of the shell (that share a node) are subject to different constraints, each applied with its own independent Lagrange multiplier. In such cases a modified version of this class must be written. ~\newline
- {\bfseries{Note}} {\bfseries{2}}\+: The \mbox{\hyperlink{classoomph_1_1FaceGeometry}{Face\+Geometry}} for a \mbox{\hyperlink{classoomph_1_1HermiteShellElement}{Hermite\+Shell\+Element}} is the 1D two-\/node element \mbox{\hyperlink{classoomph_1_1SolidQHermiteElement}{Solid\+QHermite\+Element$<$1$>$}} which has four shape functions (two nodes, two types -- representing the shape functions that interpolate the value and the derivative). These are the \char`\"{}correct\char`\"{} shape functions for the interpolation of the Lagrange multiplier and the isoparametric representation of the geometry. However, when applying the contribution from the constraint equation to the bulk equations, we have to take all four types of dof into account so the element has to reset the number of positional dofs to four. To avoid any clashes we overload (the relevant subset of) the access functions to the shape functions and their derivatives and set the shape functions associated with the spurious positional dofs to zero. This is a bit hacky but the only way (?) this can be done...  
+///////////////////////////////////////////////////////////////////// /////////////////////////////////////////////////////////////////////  
 
 
 
@@ -57,6 +55,8 @@ void \mbox{\hyperlink{classoomph_1_1ClampedHermiteShellBoundaryConditionElement_
 
 
 \doxysubsection{Detailed Description}
+///////////////////////////////////////////////////////////////////// ///////////////////////////////////////////////////////////////////// 
+
 Element that allows the imposition of boundary conditions for a shell that is clamped to a 2D plane that is specified by its normal. Constraint is applied by a Lagrange multiplier. ~\newline
 {\bfseries{Note}} {\bfseries{1}}\+: Note that the introduction of the Lagrange multiplier adds two additional values (relative to the number of values before the addition of the \mbox{\hyperlink{classoomph_1_1FaceElement}{Face\+Element}}) to the nodes. This ensures that nodes that are shared by adjacent Face\+Elements are not resized repeatedly but also means that this won\textquotesingle{}t work if two \char`\"{}edges\char`\"{} of the shell (that share a node) are subject to different constraints, each applied with its own independent Lagrange multiplier. In such cases a modified version of this class must be written. ~\newline
  {\bfseries{Note}} {\bfseries{2}}\+: The \mbox{\hyperlink{classoomph_1_1FaceGeometry}{Face\+Geometry}} for a \mbox{\hyperlink{classoomph_1_1HermiteShellElement}{Hermite\+Shell\+Element}} is the 1D two-\/node element \mbox{\hyperlink{classoomph_1_1SolidQHermiteElement}{Solid\+QHermite\+Element$<$1$>$}} which has four shape functions (two nodes, two types -- representing the shape functions that interpolate the value and the derivative). These are the \char`\"{}correct\char`\"{} shape functions for the interpolation of the Lagrange multiplier and the isoparametric representation of the geometry. However, when applying the contribution from the constraint equation to the bulk equations, we have to take all four types of dof into account so the element has to reset the number of positional dofs to four. To avoid any clashes we overload (the relevant subset of) the access functions to the shape functions and their derivatives and set the shape functions associated with the spurious positional dofs to zero. This is a bit hacky but the only way (?) this can be done... 
@@ -75,6 +75,8 @@ Definition at line \mbox{\hyperlink{shell__elements_8h_source_l00629}{629}} of f
 
 
 Constructor, takes the pointer to the \char`\"{}bulk\char`\"{} element and the face index. 
+
+///////////////////////////////////////////////////////////////////// /////////////////////////////////////////////////////////////////////
 
 Constructor, takes the pointer to the \char`\"{}bulk\char`\"{} element, the index of the fixed local coordinate and its value represented by an integer (+/-\/ 1), indicating that the face is located at the max. or min. value of the \char`\"{}fixed\char`\"{} local coordinate in the bulk element. 
 

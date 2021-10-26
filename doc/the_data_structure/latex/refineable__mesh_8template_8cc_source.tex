@@ -732,15 +732,15 @@
 \DoxyCodeLine{\Hypertarget{refineable__mesh_8template_8cc_source_l00728}00728       \textcolor{comment}{// This problem should now be avoided because we are using existing}}
 \DoxyCodeLine{\Hypertarget{refineable__mesh_8template_8cc_source_l00729}00729       \textcolor{comment}{// communication methods to locate nodes in this case. The error used}}
 \DoxyCodeLine{\Hypertarget{refineable__mesh_8template_8cc_source_l00730}00730       \textcolor{comment}{// to arise as follows:}\textcolor{comment}{}}
-\DoxyCodeLine{\Hypertarget{refineable__mesh_8template_8cc_source_l00731}00731 \textcolor{comment}{      //// Let my\_rank==A. If this has happened then it means that}}
-\DoxyCodeLine{\Hypertarget{refineable__mesh_8template_8cc_source_l00732}00732 \textcolor{comment}{      //// duplicate haloed nodes exist on another processor (B). This}}
-\DoxyCodeLine{\Hypertarget{refineable__mesh_8template_8cc_source_l00733}00733 \textcolor{comment}{      //// problem arises if a master of a haloed node with a discrepancy}}
-\DoxyCodeLine{\Hypertarget{refineable__mesh_8template_8cc_source_l00734}00734 \textcolor{comment}{      //// is haloed with a different processor (C). A copy is constructed}}
-\DoxyCodeLine{\Hypertarget{refineable__mesh_8template_8cc_source_l00735}00735 \textcolor{comment}{      //// in the external halo storage on processor (B) because that node}}
-\DoxyCodeLine{\Hypertarget{refineable__mesh_8template_8cc_source_l00736}00736 \textcolor{comment}{      //// is not found in the (internal) haloed storage on (A) with (B)}}
-\DoxyCodeLine{\Hypertarget{refineable__mesh_8template_8cc_source_l00737}00737 \textcolor{comment}{      //// but that node already exists on processor (B) in the (internal)}}
-\DoxyCodeLine{\Hypertarget{refineable__mesh_8template_8cc_source_l00738}00738 \textcolor{comment}{      //// halo storage with processor (C). Thus two copies of this master}}
-\DoxyCodeLine{\Hypertarget{refineable__mesh_8template_8cc_source_l00739}00739 \textcolor{comment}{      //// node now exist on processor (B).}}
+\DoxyCodeLine{\Hypertarget{refineable__mesh_8template_8cc_source_l00731}00731 \textcolor{comment}{      /// / Let my\_rank==A. If this has happened then it means that}}
+\DoxyCodeLine{\Hypertarget{refineable__mesh_8template_8cc_source_l00732}00732 \textcolor{comment}{      /// / duplicate haloed nodes exist on another processor (B). This}}
+\DoxyCodeLine{\Hypertarget{refineable__mesh_8template_8cc_source_l00733}00733 \textcolor{comment}{      /// / problem arises if a master of a haloed node with a discrepancy}}
+\DoxyCodeLine{\Hypertarget{refineable__mesh_8template_8cc_source_l00734}00734 \textcolor{comment}{      /// / is haloed with a different processor (C). A copy is constructed}}
+\DoxyCodeLine{\Hypertarget{refineable__mesh_8template_8cc_source_l00735}00735 \textcolor{comment}{      /// / in the external halo storage on processor (B) because that node}}
+\DoxyCodeLine{\Hypertarget{refineable__mesh_8template_8cc_source_l00736}00736 \textcolor{comment}{      /// / is not found in the (internal) haloed storage on (A) with (B)}}
+\DoxyCodeLine{\Hypertarget{refineable__mesh_8template_8cc_source_l00737}00737 \textcolor{comment}{      /// / but that node already exists on processor (B) in the (internal)}}
+\DoxyCodeLine{\Hypertarget{refineable__mesh_8template_8cc_source_l00738}00738 \textcolor{comment}{      /// / halo storage with processor (C). Thus two copies of this master}}
+\DoxyCodeLine{\Hypertarget{refineable__mesh_8template_8cc_source_l00739}00739 \textcolor{comment}{      /// / node now exist on processor (B).}}
 \DoxyCodeLine{\Hypertarget{refineable__mesh_8template_8cc_source_l00740}00740 \textcolor{comment}{}}
 \DoxyCodeLine{\Hypertarget{refineable__mesh_8template_8cc_source_l00741}00741       std::ostringstream err\_stream;}
 \DoxyCodeLine{\Hypertarget{refineable__mesh_8template_8cc_source_l00742}00742       err\_stream << \textcolor{stringliteral}{"{}Duplicate halo nodes exist on another processor!"{}}}

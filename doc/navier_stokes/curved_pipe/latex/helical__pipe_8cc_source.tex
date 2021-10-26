@@ -27,8 +27,8 @@
 \DoxyCodeLine{\Hypertarget{helical__pipe_8cc_source_l00023}00023 \textcolor{comment}{//LIC// The authors may be contacted at oomph-\/lib@maths.man.ac.uk.}}
 \DoxyCodeLine{\Hypertarget{helical__pipe_8cc_source_l00024}00024 \textcolor{comment}{//LIC// }}
 \DoxyCodeLine{\Hypertarget{helical__pipe_8cc_source_l00025}00025 \textcolor{comment}{//LIC//====================================================================}\textcolor{comment}{}}
-\DoxyCodeLine{\Hypertarget{helical__pipe_8cc_source_l00026}00026 \textcolor{comment}{///Driver for a 3D navier stokes steady entry flow problem in a helical}}
-\DoxyCodeLine{\Hypertarget{helical__pipe_8cc_source_l00027}00027 \textcolor{comment}{///tube}}
+\DoxyCodeLine{\Hypertarget{helical__pipe_8cc_source_l00026}00026 \textcolor{comment}{/// Driver for a 3D navier stokes steady entry flow problem in a helical}}
+\DoxyCodeLine{\Hypertarget{helical__pipe_8cc_source_l00027}00027 \textcolor{comment}{/// tube}}
 \DoxyCodeLine{\Hypertarget{helical__pipe_8cc_source_l00028}00028 \textcolor{comment}{}}
 \DoxyCodeLine{\Hypertarget{helical__pipe_8cc_source_l00029}00029 \textcolor{comment}{//Generic routines}}
 \DoxyCodeLine{\Hypertarget{helical__pipe_8cc_source_l00030}00030 \textcolor{preprocessor}{\#include "{}generic.h"{}}}
@@ -43,8 +43,8 @@
 \DoxyCodeLine{\Hypertarget{helical__pipe_8cc_source_l00039}00039 }
 \DoxyCodeLine{\Hypertarget{helical__pipe_8cc_source_l00040}00040 }
 \DoxyCodeLine{\Hypertarget{helical__pipe_8cc_source_l00041}00041 \textcolor{comment}{//=start\_of\_MyHelicalCylinder==============================================}\textcolor{comment}{}}
-\DoxyCodeLine{\Hypertarget{helical__pipe_8cc_source_l00042}00042 \textcolor{comment}{///The arguemts are the radius of the tube, its curvature in the x,y plane}}
-\DoxyCodeLine{\Hypertarget{helical__pipe_8cc_source_l00043}00043 \textcolor{comment}{///and the pitch of the helix}}
+\DoxyCodeLine{\Hypertarget{helical__pipe_8cc_source_l00042}00042 \textcolor{comment}{/// The arguemts are the radius of the tube, its curvature in the x,y plane}}
+\DoxyCodeLine{\Hypertarget{helical__pipe_8cc_source_l00043}00043 \textcolor{comment}{/// and the pitch of the helix}}
 \DoxyCodeLine{\Hypertarget{helical__pipe_8cc_source_l00044}00044 \textcolor{comment}{}\textcolor{comment}{//=========================================================================}}
 \DoxyCodeLine{\Hypertarget{helical__pipe_8cc_source_l00045}\mbox{\hyperlink{classMyHelicalCylinder}{00045}} \textcolor{keyword}{class }\mbox{\hyperlink{classMyHelicalCylinder}{MyHelicalCylinder}} : \textcolor{keyword}{public} GeomObject}
 \DoxyCodeLine{\Hypertarget{helical__pipe_8cc_source_l00046}00046 \{}
@@ -62,7 +62,7 @@
 \DoxyCodeLine{\Hypertarget{helical__pipe_8cc_source_l00058}00058 \textcolor{comment}{/// Destructor}}
 \DoxyCodeLine{\Hypertarget{helical__pipe_8cc_source_l00059}\mbox{\hyperlink{classMyHelicalCylinder_aa93f7a69d2fabd3fedb804ab4ba65946}{00059}} \textcolor{comment}{}\textcolor{keyword}{virtual}\mbox{\hyperlink{classMyHelicalCylinder_aa93f7a69d2fabd3fedb804ab4ba65946}{\string~MyHelicalCylinder}}()\{\}}
 \DoxyCodeLine{\Hypertarget{helical__pipe_8cc_source_l00060}00060 \textcolor{comment}{}}
-\DoxyCodeLine{\Hypertarget{helical__pipe_8cc_source_l00061}00061 \textcolor{comment}{///Lagrangian coordinate xi}}
+\DoxyCodeLine{\Hypertarget{helical__pipe_8cc_source_l00061}00061 \textcolor{comment}{/// Lagrangian coordinate xi}}
 \DoxyCodeLine{\Hypertarget{helical__pipe_8cc_source_l00062}\mbox{\hyperlink{classMyHelicalCylinder_aaf3a0e41ba30cd66d049a3fcb8eb1213}{00062}} \textcolor{comment}{}\textcolor{keywordtype}{void} \mbox{\hyperlink{classMyHelicalCylinder_aaf3a0e41ba30cd66d049a3fcb8eb1213}{position}} (\textcolor{keyword}{const} Vector<double>\& xi, Vector<double>\& r)\textcolor{keyword}{ const}}
 \DoxyCodeLine{\Hypertarget{helical__pipe_8cc_source_l00063}00063 \textcolor{keyword}{}\{}
 \DoxyCodeLine{\Hypertarget{helical__pipe_8cc_source_l00064}00064  r[0] = (1.0/\mbox{\hyperlink{classMyHelicalCylinder_a104c0949848d76adefb15d050853c5f0}{Delta}})*cos(xi[0]) + xi[2]*\mbox{\hyperlink{classMyHelicalCylinder_af199ebf44d8ebb0dfbad5c0dadfff2a6}{Radius}}*cos(xi[0])*cos(xi[1]);}
@@ -144,7 +144,7 @@
 \DoxyCodeLine{\Hypertarget{helical__pipe_8cc_source_l00140}00140 \textcolor{comment}{ /// Doc info object}}
 \DoxyCodeLine{\Hypertarget{helical__pipe_8cc_source_l00141}\mbox{\hyperlink{classSteadyHelicalProblem_a2b9bd1b93bad29a341e1718599a8a445}{00141}} \textcolor{comment}{} DocInfo \mbox{\hyperlink{classSteadyHelicalProblem_a2b9bd1b93bad29a341e1718599a8a445}{Doc\_info}};}
 \DoxyCodeLine{\Hypertarget{helical__pipe_8cc_source_l00142}00142  \textcolor{comment}{}}
-\DoxyCodeLine{\Hypertarget{helical__pipe_8cc_source_l00143}00143 \textcolor{comment}{ ///Pointer to GeomObject that specifies the domain boundary}}
+\DoxyCodeLine{\Hypertarget{helical__pipe_8cc_source_l00143}00143 \textcolor{comment}{ /// Pointer to GeomObject that specifies the domain boundary}}
 \DoxyCodeLine{\Hypertarget{helical__pipe_8cc_source_l00144}\mbox{\hyperlink{classSteadyHelicalProblem_a3ac6dc4f62f8ecadd4d6016b55af249a}{00144}} \textcolor{comment}{} GeomObject*\mbox{\hyperlink{classSteadyHelicalProblem_a3ac6dc4f62f8ecadd4d6016b55af249a}{Wall\_pt}};}
 \DoxyCodeLine{\Hypertarget{helical__pipe_8cc_source_l00145}00145 }
 \DoxyCodeLine{\Hypertarget{helical__pipe_8cc_source_l00146}00146 \}; \textcolor{comment}{// end\_of\_problem\_class}}
@@ -324,9 +324,9 @@
 \DoxyCodeLine{\Hypertarget{helical__pipe_8cc_source_l00320}00320  }
 \DoxyCodeLine{\Hypertarget{helical__pipe_8cc_source_l00321}00321 }
 \DoxyCodeLine{\Hypertarget{helical__pipe_8cc_source_l00322}00322 \textcolor{comment}{}}
-\DoxyCodeLine{\Hypertarget{helical__pipe_8cc_source_l00323}00323 \textcolor{comment}{////////////////////////////////////////////////////////////////////////}}
-\DoxyCodeLine{\Hypertarget{helical__pipe_8cc_source_l00324}00324 \textcolor{comment}{////////////////////////////////////////////////////////////////////////}}
-\DoxyCodeLine{\Hypertarget{helical__pipe_8cc_source_l00325}00325 \textcolor{comment}{////////////////////////////////////////////////////////////////////////}}
+\DoxyCodeLine{\Hypertarget{helical__pipe_8cc_source_l00323}00323 \textcolor{comment}{/// /////////////////////////////////////////////////////////////////////}}
+\DoxyCodeLine{\Hypertarget{helical__pipe_8cc_source_l00324}00324 \textcolor{comment}{/// /////////////////////////////////////////////////////////////////////}}
+\DoxyCodeLine{\Hypertarget{helical__pipe_8cc_source_l00325}00325 \textcolor{comment}{/// /////////////////////////////////////////////////////////////////////}}
 \DoxyCodeLine{\Hypertarget{helical__pipe_8cc_source_l00326}00326 \textcolor{comment}{}}
 \DoxyCodeLine{\Hypertarget{helical__pipe_8cc_source_l00327}00327 }
 \DoxyCodeLine{\Hypertarget{helical__pipe_8cc_source_l00328}00328 \textcolor{comment}{//=start\_of\_main=======================================================}\textcolor{comment}{}}

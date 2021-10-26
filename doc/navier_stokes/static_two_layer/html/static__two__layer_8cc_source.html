@@ -173,7 +173,7 @@
 <div class="line"><a id="l00054" name="l00054"></a><span class="lineno">   54</span><span class="comment"> /// Pseudo-solid Poisson ratio</span></div>
 <div class="line"><a id="l00055" name="l00055"></a><span class="lineno">   55</span><span class="comment"></span> <span class="keywordtype">double</span> <a class="code hl_variable" href="namespaceGlobal__Physical__Variables.html#a3962c36313826b19f216f6bbbdd6a477">Nu</a>=0.1;</div>
 <div class="line"><a id="l00056" name="l00056"></a><span class="lineno">   56</span><span class="comment"></span> </div>
-<div class="line"><a id="l00057" name="l00057"></a><span class="lineno">   57</span><span class="comment"> ///Direction of the wall normal vector</span></div>
+<div class="line"><a id="l00057" name="l00057"></a><span class="lineno">   57</span><span class="comment"> /// Direction of the wall normal vector</span></div>
 <div class="line"><a id="l00058" name="l00058"></a><span class="lineno">   58</span><span class="comment"></span> Vector&lt;double&gt; <a class="code hl_variable" href="namespaceGlobal__Physical__Variables.html#af3a3b98f9f5b354d01228884e49c5bf0">Wall_normal</a>;</div>
 <div class="line"><a id="l00059" name="l00059"></a><span class="lineno">   59</span><span class="comment"></span> </div>
 <div class="line"><a id="l00060" name="l00060"></a><span class="lineno">   60</span><span class="comment"> /// Function that specifies the wall unit normal</span></div>
@@ -186,8 +186,8 @@
 <div class="line"><a id="l00067" name="l00067"></a><span class="lineno">   67</span>}</div>
 <div class="line"><a id="l00068" name="l00068"></a><span class="lineno">   68</span> </div>
 <div class="line"><a id="l00069" name="l00069"></a><span class="lineno">   69</span><span class="comment">//============================================================================</span><span class="comment"></span></div>
-<div class="line"><a id="l00070" name="l00070"></a><span class="lineno">   70</span><span class="comment">///A Problem class that solves the Navier--Stokes equations + free surface</span></div>
-<div class="line"><a id="l00071" name="l00071"></a><span class="lineno">   71</span><span class="comment">///in a 2D geometry using a spine-based node update</span></div>
+<div class="line"><a id="l00070" name="l00070"></a><span class="lineno">   70</span><span class="comment">/// A Problem class that solves the Navier--Stokes equations + free surface</span></div>
+<div class="line"><a id="l00071" name="l00071"></a><span class="lineno">   71</span><span class="comment">/// in a 2D geometry using a spine-based node update</span></div>
 <div class="line"><a id="l00072" name="l00072"></a><span class="lineno">   72</span><span class="comment"></span><span class="comment">//============================================================================</span></div>
 <div class="line"><a id="l00073" name="l00073"></a><span class="lineno">   73</span><span class="keyword">template</span>&lt;<span class="keyword">class</span> ELEMENT&gt;</div>
 <div class="line"><a id="l00074" name="l00074"></a><span class="lineno">   74</span><span class="keyword">class </span><a class="code hl_class" href="classCapProblem.html">CapProblem</a> : <span class="keyword">public</span> Problem</div>
@@ -798,42 +798,42 @@
 <div class="line"><a id="l00679" name="l00679"></a><span class="lineno">  679</span>   this-&gt;setup_boundary_element_info();</div>
 <div class="line"><a id="l00680" name="l00680"></a><span class="lineno">  680</span>  }</div>
 <div class="line"><a id="l00681" name="l00681"></a><span class="lineno">  681</span><span class="comment"></span> </div>
-<div class="line"><a id="l00682" name="l00682"></a><span class="lineno">  682</span><span class="comment"> ///Access functions for pointers to elements in upper layer</span></div>
+<div class="line"><a id="l00682" name="l00682"></a><span class="lineno">  682</span><span class="comment"> /// Access functions for pointers to elements in upper layer</span></div>
 <div class="line"><a id="l00683" name="l00683"></a><span class="lineno"><a class="line" href="classElasticTwoLayerMesh.html#a1eda03440a219d06a5c002048715687c">  683</a></span><span class="comment"></span> FiniteElement* &amp;<a class="code hl_function" href="classElasticTwoLayerMesh.html#a1eda03440a219d06a5c002048715687c">upper_layer_element_pt</a>(<span class="keyword">const</span> <span class="keywordtype">unsigned</span> <span class="keywordtype">long</span> &amp;i) </div>
 <div class="line"><a id="l00684" name="l00684"></a><span class="lineno">  684</span>  {<span class="keywordflow">return</span> <a class="code hl_variable" href="classElasticTwoLayerMesh.html#ae46d4ef2bb95a6c023bd0dc1e367ccfb">Upper_layer_element_pt</a>[i];}</div>
 <div class="line"><a id="l00685" name="l00685"></a><span class="lineno">  685</span><span class="comment"></span> </div>
-<div class="line"><a id="l00686" name="l00686"></a><span class="lineno">  686</span><span class="comment"> ///Access functions for pointers to elements in bottom layer</span></div>
+<div class="line"><a id="l00686" name="l00686"></a><span class="lineno">  686</span><span class="comment"> /// Access functions for pointers to elements in bottom layer</span></div>
 <div class="line"><a id="l00687" name="l00687"></a><span class="lineno"><a class="line" href="classElasticTwoLayerMesh.html#a55cb8f219643531b55d0072e32c2a1e8">  687</a></span><span class="comment"></span> FiniteElement* &amp;<a class="code hl_function" href="classElasticTwoLayerMesh.html#a55cb8f219643531b55d0072e32c2a1e8">lower_layer_element_pt</a>(<span class="keyword">const</span> <span class="keywordtype">unsigned</span> <span class="keywordtype">long</span> &amp;i) </div>
 <div class="line"><a id="l00688" name="l00688"></a><span class="lineno">  688</span>  {<span class="keywordflow">return</span> <a class="code hl_variable" href="classElasticTwoLayerMesh.html#a4f8c33eaaa185e8c8710883ee9b5811f">Lower_layer_element_pt</a>[i];}</div>
 <div class="line"><a id="l00689" name="l00689"></a><span class="lineno">  689</span><span class="comment"></span> </div>
-<div class="line"><a id="l00690" name="l00690"></a><span class="lineno">  690</span><span class="comment"> ///Number of elements in upper layer</span></div>
+<div class="line"><a id="l00690" name="l00690"></a><span class="lineno">  690</span><span class="comment"> /// Number of elements in upper layer</span></div>
 <div class="line"><a id="l00691" name="l00691"></a><span class="lineno"><a class="line" href="classElasticTwoLayerMesh.html#ae5c586ecab2ac275174427a94ccfc0c7">  691</a></span><span class="comment"></span> <span class="keywordtype">unsigned</span> <span class="keywordtype">long</span> <a class="code hl_function" href="classElasticTwoLayerMesh.html#ae5c586ecab2ac275174427a94ccfc0c7">nupper</a>()<span class="keyword"> const </span>{<span class="keywordflow">return</span> <a class="code hl_variable" href="classElasticTwoLayerMesh.html#ae46d4ef2bb95a6c023bd0dc1e367ccfb">Upper_layer_element_pt</a>.size();}</div>
 <div class="line"><a id="l00692" name="l00692"></a><span class="lineno">  692</span><span class="comment"></span> </div>
-<div class="line"><a id="l00693" name="l00693"></a><span class="lineno">  693</span><span class="comment"> ///Number of elements in top layer</span></div>
+<div class="line"><a id="l00693" name="l00693"></a><span class="lineno">  693</span><span class="comment"> /// Number of elements in top layer</span></div>
 <div class="line"><a id="l00694" name="l00694"></a><span class="lineno"><a class="line" href="classElasticTwoLayerMesh.html#a144f4d44005a25bb301955625a79c9ef">  694</a></span><span class="comment"></span> <span class="keywordtype">unsigned</span> <span class="keywordtype">long</span> <a class="code hl_function" href="classElasticTwoLayerMesh.html#a144f4d44005a25bb301955625a79c9ef">nlower</a>()<span class="keyword"> const </span>{<span class="keywordflow">return</span> <a class="code hl_variable" href="classElasticTwoLayerMesh.html#a4f8c33eaaa185e8c8710883ee9b5811f">Lower_layer_element_pt</a>.size();}</div>
 <div class="line"><a id="l00695" name="l00695"></a><span class="lineno">  695</span><span class="comment"></span> </div>
-<div class="line"><a id="l00696" name="l00696"></a><span class="lineno">  696</span><span class="comment"> ///Access functions for pointers to elements in upper layer</span></div>
+<div class="line"><a id="l00696" name="l00696"></a><span class="lineno">  696</span><span class="comment"> /// Access functions for pointers to elements in upper layer</span></div>
 <div class="line"><a id="l00697" name="l00697"></a><span class="lineno"><a class="line" href="classElasticTwoLayerMesh.html#ada3d4bfb572ad71bace28702777ca077">  697</a></span><span class="comment"></span> FiniteElement* &amp;<a class="code hl_function" href="classElasticTwoLayerMesh.html#ada3d4bfb572ad71bace28702777ca077">interface_upper_boundary_element_pt</a>(<span class="keyword">const</span> <span class="keywordtype">unsigned</span> <span class="keywordtype">long</span> &amp;i) </div>
 <div class="line"><a id="l00698" name="l00698"></a><span class="lineno">  698</span>  {<span class="keywordflow">return</span> <a class="code hl_variable" href="classElasticTwoLayerMesh.html#af8218bd023535d3dbf4af3cf7bc1c12d">Interface_upper_boundary_element_pt</a>[i];}</div>
 <div class="line"><a id="l00699" name="l00699"></a><span class="lineno">  699</span><span class="comment"></span> </div>
-<div class="line"><a id="l00700" name="l00700"></a><span class="lineno">  700</span><span class="comment"> ///Access functions for pointers to elements in bottom layer</span></div>
+<div class="line"><a id="l00700" name="l00700"></a><span class="lineno">  700</span><span class="comment"> /// Access functions for pointers to elements in bottom layer</span></div>
 <div class="line"><a id="l00701" name="l00701"></a><span class="lineno"><a class="line" href="classElasticTwoLayerMesh.html#abdfd1f3141ca5e0e65561195119b735b">  701</a></span><span class="comment"></span> FiniteElement* &amp;<a class="code hl_function" href="classElasticTwoLayerMesh.html#abdfd1f3141ca5e0e65561195119b735b">interface_lower_boundary_element_pt</a>(<span class="keyword">const</span> <span class="keywordtype">unsigned</span> <span class="keywordtype">long</span> &amp;i) </div>
 <div class="line"><a id="l00702" name="l00702"></a><span class="lineno">  702</span>  {<span class="keywordflow">return</span> <a class="code hl_variable" href="classElasticTwoLayerMesh.html#abc8751d632399afe56df6c32e1001582">Interface_lower_boundary_element_pt</a>[i];}</div>
 <div class="line"><a id="l00703" name="l00703"></a><span class="lineno">  703</span><span class="comment"></span> </div>
-<div class="line"><a id="l00704" name="l00704"></a><span class="lineno">  704</span><span class="comment"> ///Number of elements in upper layer</span></div>
+<div class="line"><a id="l00704" name="l00704"></a><span class="lineno">  704</span><span class="comment"> /// Number of elements in upper layer</span></div>
 <div class="line"><a id="l00705" name="l00705"></a><span class="lineno"><a class="line" href="classElasticTwoLayerMesh.html#a6e813329601844d3d900d78a60892134">  705</a></span><span class="comment"></span> <span class="keywordtype">unsigned</span> <span class="keywordtype">long</span> <a class="code hl_function" href="classElasticTwoLayerMesh.html#a6e813329601844d3d900d78a60892134">ninterface_upper</a>()<span class="keyword"> const </span></div>
 <div class="line"><a id="l00706" name="l00706"></a><span class="lineno">  706</span><span class="keyword"> </span>{<span class="keywordflow">return</span> <a class="code hl_variable" href="classElasticTwoLayerMesh.html#af8218bd023535d3dbf4af3cf7bc1c12d">Interface_upper_boundary_element_pt</a>.size();}</div>
 <div class="line"><a id="l00707" name="l00707"></a><span class="lineno">  707</span><span class="comment"></span> </div>
-<div class="line"><a id="l00708" name="l00708"></a><span class="lineno">  708</span><span class="comment"> ///Number of elements in top layer</span></div>
+<div class="line"><a id="l00708" name="l00708"></a><span class="lineno">  708</span><span class="comment"> /// Number of elements in top layer</span></div>
 <div class="line"><a id="l00709" name="l00709"></a><span class="lineno"><a class="line" href="classElasticTwoLayerMesh.html#ae5db5553497593905fd227bfc5b34b50">  709</a></span><span class="comment"></span> <span class="keywordtype">unsigned</span> <span class="keywordtype">long</span> <a class="code hl_function" href="classElasticTwoLayerMesh.html#ae5db5553497593905fd227bfc5b34b50">ninterface_lower</a>()<span class="keyword"> const </span></div>
 <div class="line"><a id="l00710" name="l00710"></a><span class="lineno">  710</span><span class="keyword"> </span>{<span class="keywordflow">return</span> <a class="code hl_variable" href="classElasticTwoLayerMesh.html#abc8751d632399afe56df6c32e1001582">Interface_lower_boundary_element_pt</a>.size();}</div>
 <div class="line"><a id="l00711" name="l00711"></a><span class="lineno">  711</span><span class="comment"></span> </div>
-<div class="line"><a id="l00712" name="l00712"></a><span class="lineno">  712</span><span class="comment"> ///Index of the face of the elements next to the interface</span></div>
-<div class="line"><a id="l00713" name="l00713"></a><span class="lineno">  713</span><span class="comment"> ///in the upper region (always -2)</span></div>
+<div class="line"><a id="l00712" name="l00712"></a><span class="lineno">  712</span><span class="comment"> /// Index of the face of the elements next to the interface</span></div>
+<div class="line"><a id="l00713" name="l00713"></a><span class="lineno">  713</span><span class="comment"> /// in the upper region (always -2)</span></div>
 <div class="line"><a id="l00714" name="l00714"></a><span class="lineno"><a class="line" href="classElasticTwoLayerMesh.html#a074aafe34f7dd56566c1a9ff934505d5">  714</a></span><span class="comment"></span> <span class="keywordtype">int</span> <a class="code hl_function" href="classElasticTwoLayerMesh.html#a074aafe34f7dd56566c1a9ff934505d5">interface_upper_face_index_at_boundary</a>(<span class="keyword">const</span> <span class="keywordtype">unsigned</span> &amp;e)</div>
 <div class="line"><a id="l00715" name="l00715"></a><span class="lineno">  715</span> {<span class="keywordflow">return</span> -2;}</div>
 <div class="line"><a id="l00716" name="l00716"></a><span class="lineno">  716</span><span class="comment"></span> </div>
-<div class="line"><a id="l00717" name="l00717"></a><span class="lineno">  717</span><span class="comment"> ///Index of the face of the elements next to the interface in</span></div>
+<div class="line"><a id="l00717" name="l00717"></a><span class="lineno">  717</span><span class="comment"> /// Index of the face of the elements next to the interface in</span></div>
 <div class="line"><a id="l00718" name="l00718"></a><span class="lineno">  718</span><span class="comment"> /// the lower region (always 2)</span></div>
 <div class="line"><a id="l00719" name="l00719"></a><span class="lineno"><a class="line" href="classElasticTwoLayerMesh.html#a100b3b26d4a2b97f67b0bef4e4b42e64">  719</a></span><span class="comment"></span> <span class="keywordtype">int</span> <a class="code hl_function" href="classElasticTwoLayerMesh.html#a100b3b26d4a2b97f67b0bef4e4b42e64">interface_lower_face_index_at_boundary</a>(<span class="keyword">const</span> <span class="keywordtype">unsigned</span> &amp;e)</div>
 <div class="line"><a id="l00720" name="l00720"></a><span class="lineno">  720</span> {<span class="keywordflow">return</span> 2;}</div>
@@ -860,9 +860,9 @@
 <div class="line"><a id="l00741" name="l00741"></a><span class="lineno">  741</span> </div>
 <div class="line"><a id="l00742" name="l00742"></a><span class="lineno">  742</span> </div>
 <div class="line"><a id="l00743" name="l00743"></a><span class="lineno">  743</span><span class="comment">//===========start_of_pseudo_elastic_class====================================</span><span class="comment"></span></div>
-<div class="line"><a id="l00744" name="l00744"></a><span class="lineno">  744</span><span class="comment">///A class that solves the Navier--Stokes equations</span></div>
-<div class="line"><a id="l00745" name="l00745"></a><span class="lineno">  745</span><span class="comment">///to compute the shape of a static interface between two fluids in a </span></div>
-<div class="line"><a id="l00746" name="l00746"></a><span class="lineno">  746</span><span class="comment">///rectangular container with an imposed contact angle at the boundary.</span></div>
+<div class="line"><a id="l00744" name="l00744"></a><span class="lineno">  744</span><span class="comment">/// A class that solves the Navier--Stokes equations</span></div>
+<div class="line"><a id="l00745" name="l00745"></a><span class="lineno">  745</span><span class="comment">/// to compute the shape of a static interface between two fluids in a </span></div>
+<div class="line"><a id="l00746" name="l00746"></a><span class="lineno">  746</span><span class="comment">/// rectangular container with an imposed contact angle at the boundary.</span></div>
 <div class="line"><a id="l00747" name="l00747"></a><span class="lineno">  747</span><span class="comment"></span><span class="comment">//============================================================================</span></div>
 <div class="line"><a id="l00748" name="l00748"></a><span class="lineno">  748</span><span class="keyword">template</span>&lt;<span class="keyword">class</span> ELEMENT&gt;</div>
 <div class="line"><a id="l00749" name="l00749"></a><span class="lineno">  749</span><span class="keyword">class </span><a class="code hl_class" href="classPseudoSolidCapProblem.html">PseudoSolidCapProblem</a> : <span class="keyword">public</span> Problem</div>
@@ -919,7 +919,7 @@
 <div class="line"><a id="l00800" name="l00800"></a><span class="lineno">  800</span><span class="comment"> /// Trace file</span></div>
 <div class="line"><a id="l00801" name="l00801"></a><span class="lineno">  801</span><span class="comment"></span> ofstream <a class="code hl_variable" href="classPseudoSolidCapProblem.html#a81d2d9915ba7d9a9a691ca2f2080b6b4">Trace_file</a>;</div>
 <div class="line"><a id="l00802" name="l00802"></a><span class="lineno">  802</span><span class="comment"></span> </div>
-<div class="line"><a id="l00803" name="l00803"></a><span class="lineno">  803</span><span class="comment"> ///Storage for the bulk mesh</span></div>
+<div class="line"><a id="l00803" name="l00803"></a><span class="lineno">  803</span><span class="comment"> /// Storage for the bulk mesh</span></div>
 <div class="line"><a id="l00804" name="l00804"></a><span class="lineno"><a class="line" href="classPseudoSolidCapProblem.html#a24ee2e5afd19ab0febf85306d45c8385">  804</a></span><span class="comment"></span> <a class="code hl_class" href="classElasticTwoLayerMesh.html">ElasticTwoLayerMesh&lt;ELEMENT&gt;</a>* <a class="code hl_variable" href="classPseudoSolidCapProblem.html#a24ee2e5afd19ab0febf85306d45c8385">Bulk_mesh_pt</a>;</div>
 <div class="line"><a id="l00805" name="l00805"></a><span class="lineno">  805</span><span class="comment"></span> </div>
 <div class="line"><a id="l00806" name="l00806"></a><span class="lineno">  806</span><span class="comment"> /// Storage for the free surface mesh</span></div>
@@ -1343,7 +1343,7 @@
 <div class="line"><a id="l01224" name="l01224"></a><span class="lineno"> 1224</span> </div>
 <div class="line"><a id="l01225" name="l01225"></a><span class="lineno"> 1225</span> </div>
 <div class="line"><a id="l01226" name="l01226"></a><span class="lineno"> 1226</span><span class="comment">//======================================================================</span><span class="comment"></span></div>
-<div class="line"><a id="l01227" name="l01227"></a><span class="lineno"> 1227</span><span class="comment">///Main driver: Build problem and initiate parameter study</span></div>
+<div class="line"><a id="l01227" name="l01227"></a><span class="lineno"> 1227</span><span class="comment">/// Main driver: Build problem and initiate parameter study</span></div>
 <div class="line"><a id="l01228" name="l01228"></a><span class="lineno"> 1228</span><span class="comment"></span><span class="comment">//======================================================================</span></div>
 <div class="line"><a id="l01229" name="l01229"></a><span class="lineno"><a class="line" href="static__two__layer_8cc.html#ae66f6b31b5ad750f1fe042a706a4e3d4"> 1229</a></span><span class="keywordtype">int</span> <a class="code hl_function" href="static__two__layer_8cc.html#ae66f6b31b5ad750f1fe042a706a4e3d4">main</a>()</div>
 <div class="line"><a id="l01230" name="l01230"></a><span class="lineno"> 1230</span>{</div>
@@ -1455,7 +1455,7 @@
     <footer>
       <div class="container">
         <div class="text-muted" style="float:right;">Generated by <a href="http://www.doxygen.org/index.html">
-          <img style="height:18px;" class="footer-img" src="doxygen.png" alt="doxygen"></a> on Mon Oct 25 2021 17:58:02
+          <img style="height:18px;" class="footer-img" src="doxygen.png" alt="doxygen"></a> on Tue Oct 26 2021 17:24:43
         </div>
       </div>
     </footer>

@@ -93,17 +93,17 @@ The driver code for this example is given below\+:
 \DoxyCodeLine{   \mbox{\hyperlink{classQThermalPVDElement_a97267a52ceec2a2153b23e18e2a2c631}{Alpha\_pt}} = \&\mbox{\hyperlink{classQThermalPVDElement_ad0722326e8c25746f63b35a46cac5886}{Default\_Physical\_Constant\_Value}};}
 \DoxyCodeLine{  \}}
 \DoxyCodeLine{\textcolor{comment}{}}
-\DoxyCodeLine{\textcolor{comment}{ ///The required number of values stored at the nodes is the sum of the}}
-\DoxyCodeLine{\textcolor{comment}{ ///required values of the two single-\/physics elements. Note that this step is}}
-\DoxyCodeLine{\textcolor{comment}{ ///generic for any multi-\/physics element of this type.}}
+\DoxyCodeLine{\textcolor{comment}{ /// The required number of values stored at the nodes is the sum of the}}
+\DoxyCodeLine{\textcolor{comment}{ /// required values of the two single-\/physics elements. Note that this step is}}
+\DoxyCodeLine{\textcolor{comment}{ /// generic for any multi-\/physics element of this type.}}
 \DoxyCodeLine{\textcolor{comment}{} \textcolor{keywordtype}{unsigned} \mbox{\hyperlink{classQThermalPVDElement_a55025994fc3d2799fde6f9c1142340af}{required\_nvalue}}(\textcolor{keyword}{const} \textcolor{keywordtype}{unsigned} \&n)\textcolor{keyword}{ const}}
 \DoxyCodeLine{\textcolor{keyword}{  }\{\textcolor{keywordflow}{return} (QUnsteadyHeatElement<DIM,3>::required\_nvalue(n) +}
 \DoxyCodeLine{           QPVDElement<DIM,3>::required\_nvalue(n));\}}
 \DoxyCodeLine{\textcolor{comment}{}}
-\DoxyCodeLine{\textcolor{comment}{ ///Access function for the thermal expansion coefficient (const version)}}
+\DoxyCodeLine{\textcolor{comment}{ /// Access function for the thermal expansion coefficient (const version)}}
 \DoxyCodeLine{\textcolor{comment}{} \textcolor{keyword}{const} \textcolor{keywordtype}{double} \&\mbox{\hyperlink{classQThermalPVDElement_a0f7eb960519ec1bf7263da9a90f1f29a}{alpha}}()\textcolor{keyword}{ const }\{\textcolor{keywordflow}{return} *\mbox{\hyperlink{classQThermalPVDElement_a97267a52ceec2a2153b23e18e2a2c631}{Alpha\_pt}};\}}
 \DoxyCodeLine{\textcolor{comment}{}}
-\DoxyCodeLine{\textcolor{comment}{ ///Access function for the pointer to the thermal expansion coefficientr}}
+\DoxyCodeLine{\textcolor{comment}{ /// Access function for the pointer to the thermal expansion coefficientr}}
 \DoxyCodeLine{\textcolor{comment}{} \textcolor{keywordtype}{double}* \&\mbox{\hyperlink{classQThermalPVDElement_af4cf775ecf7d0f26c30b1e522fb89a0f}{alpha\_pt}}() \{\textcolor{keywordflow}{return} \mbox{\hyperlink{classQThermalPVDElement_a97267a52ceec2a2153b23e18e2a2c631}{Alpha\_pt}};\}}
 \DoxyCodeLine{  \textcolor{comment}{}}
 \DoxyCodeLine{\textcolor{comment}{ ///  Overload the standard output function with the broken default}}
@@ -222,7 +222,7 @@ The driver code for this example is given below\+:
 \DoxyCodeLine{    fill\_in\_contribution\_to\_residuals(residuals);}
 \DoxyCodeLine{  \}}
 \DoxyCodeLine{\textcolor{comment}{}}
-\DoxyCodeLine{\textcolor{comment}{ ///Compute the element's residual Vector and the jacobian matrix}}
+\DoxyCodeLine{\textcolor{comment}{ /// Compute the element's residual Vector and the jacobian matrix}}
 \DoxyCodeLine{\textcolor{comment}{ /// We assume that the residuals vector and jacobian matrix have been}}
 \DoxyCodeLine{\textcolor{comment}{ /// initialised to zero before calling this function}}
 \DoxyCodeLine{\textcolor{comment}{} \textcolor{keywordtype}{void} \mbox{\hyperlink{classQThermalPVDElement_a6fe89466bee5ebcf16a14a68550ff447}{fill\_in\_contribution\_to\_jacobian}}(Vector<double> \&residuals,}
@@ -260,9 +260,9 @@ The driver code for this example is given below\+:
 \DoxyCodeLine{}
 \DoxyCodeLine{\} \textcolor{comment}{// end\_of\_namespace}}
 \DoxyCodeLine{\textcolor{comment}{}}
-\DoxyCodeLine{\textcolor{comment}{//////////////////////////////////////////////////////////////////////}}
-\DoxyCodeLine{\textcolor{comment}{//////////////////////////////////////////////////////////////////////}}
-\DoxyCodeLine{\textcolor{comment}{//////////////////////////////////////////////////////////////////////}}
+\DoxyCodeLine{\textcolor{comment}{/// ///////////////////////////////////////////////////////////////////}}
+\DoxyCodeLine{\textcolor{comment}{/// ///////////////////////////////////////////////////////////////////}}
+\DoxyCodeLine{\textcolor{comment}{/// ///////////////////////////////////////////////////////////////////}}
 \DoxyCodeLine{\textcolor{comment}{}}
 \DoxyCodeLine{\textcolor{comment}{//====== start\_of\_problem\_class=======================================}\textcolor{comment}{}}
 \DoxyCodeLine{\textcolor{comment}{/// 2D Thermoelasticity problem on rectangular domain, discretised }}
@@ -275,7 +275,7 @@ The driver code for this example is given below\+:
 \DoxyCodeLine{}
 \DoxyCodeLine{\textcolor{keyword}{public}:}
 \DoxyCodeLine{\textcolor{comment}{}}
-\DoxyCodeLine{\textcolor{comment}{ ///Constructor}}
+\DoxyCodeLine{\textcolor{comment}{ /// Constructor}}
 \DoxyCodeLine{\textcolor{comment}{} \mbox{\hyperlink{classThermalProblem_a12ad5d383929b1ef4ed29503c5a271b0}{ThermalProblem}}();}
 \DoxyCodeLine{\textcolor{comment}{}}
 \DoxyCodeLine{\textcolor{comment}{ /// Destructor. Empty}}

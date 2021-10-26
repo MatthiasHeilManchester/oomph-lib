@@ -155,23 +155,23 @@
 <div class="line"><a id="l00036" name="l00036"></a><span class="lineno">   36</span>{</div>
 <div class="line"><a id="l00037" name="l00037"></a><span class="lineno">   37</span> </div>
 <div class="line"><a id="l00038" name="l00038"></a><span class="lineno">   38</span><span class="comment">//======================class definition==============================</span><span class="comment"></span></div>
-<div class="line"><a id="l00039" name="l00039"></a><span class="lineno">   39</span><span class="comment">///A class that solves the Boussinesq approximation of the Navier--Stokes</span></div>
-<div class="line"><a id="l00040" name="l00040"></a><span class="lineno">   40</span><span class="comment">///and energy equations by coupling two pre-existing classes. </span></div>
-<div class="line"><a id="l00041" name="l00041"></a><span class="lineno">   41</span><span class="comment">///The QAdvectionDiffusionReactionElement with </span></div>
-<div class="line"><a id="l00042" name="l00042"></a><span class="lineno">   42</span><span class="comment">///bi-quadratic interpolation for the</span></div>
-<div class="line"><a id="l00043" name="l00043"></a><span class="lineno">   43</span><span class="comment">///scalar variables (temperature and concentration) and</span></div>
-<div class="line"><a id="l00044" name="l00044"></a><span class="lineno">   44</span><span class="comment">///QCrouzeixRaviartElement which solves the Navier--Stokes equations</span></div>
-<div class="line"><a id="l00045" name="l00045"></a><span class="lineno">   45</span><span class="comment">///using bi-quadratic interpolation for the velocities and a discontinuous</span></div>
-<div class="line"><a id="l00046" name="l00046"></a><span class="lineno">   46</span><span class="comment">///bi-linear interpolation for the pressure. Note that we are free to </span></div>
-<div class="line"><a id="l00047" name="l00047"></a><span class="lineno">   47</span><span class="comment">///choose the order in which we store the variables at the nodes. In this</span></div>
-<div class="line"><a id="l00048" name="l00048"></a><span class="lineno">   48</span><span class="comment">///case we choose to store the variables in the order fluid velocities</span></div>
-<div class="line"><a id="l00049" name="l00049"></a><span class="lineno">   49</span><span class="comment">///followed by temperature. We must, therefore, overload the function</span></div>
-<div class="line"><a id="l00050" name="l00050"></a><span class="lineno">   50</span><span class="comment">///AdvectionDiffusionReactionEquations&lt;2,DIM&gt;::u_index_adv_diff_react() </span></div>
-<div class="line"><a id="l00051" name="l00051"></a><span class="lineno">   51</span><span class="comment">///to indicate that</span></div>
-<div class="line"><a id="l00052" name="l00052"></a><span class="lineno">   52</span><span class="comment">///the temperature is stored at the DIM-th position not the 0-th. We do not</span></div>
-<div class="line"><a id="l00053" name="l00053"></a><span class="lineno">   53</span><span class="comment">///need to overload the corresponding function in the </span></div>
-<div class="line"><a id="l00054" name="l00054"></a><span class="lineno">   54</span><span class="comment">///NavierStokesEquations&lt;DIM&gt; class because the velocities are stored</span></div>
-<div class="line"><a id="l00055" name="l00055"></a><span class="lineno">   55</span><span class="comment">///first.</span></div>
+<div class="line"><a id="l00039" name="l00039"></a><span class="lineno">   39</span><span class="comment">/// A class that solves the Boussinesq approximation of the Navier--Stokes</span></div>
+<div class="line"><a id="l00040" name="l00040"></a><span class="lineno">   40</span><span class="comment">/// and energy equations by coupling two pre-existing classes. </span></div>
+<div class="line"><a id="l00041" name="l00041"></a><span class="lineno">   41</span><span class="comment">/// The QAdvectionDiffusionReactionElement with </span></div>
+<div class="line"><a id="l00042" name="l00042"></a><span class="lineno">   42</span><span class="comment">/// bi-quadratic interpolation for the</span></div>
+<div class="line"><a id="l00043" name="l00043"></a><span class="lineno">   43</span><span class="comment">/// scalar variables (temperature and concentration) and</span></div>
+<div class="line"><a id="l00044" name="l00044"></a><span class="lineno">   44</span><span class="comment">/// QCrouzeixRaviartElement which solves the Navier--Stokes equations</span></div>
+<div class="line"><a id="l00045" name="l00045"></a><span class="lineno">   45</span><span class="comment">/// using bi-quadratic interpolation for the velocities and a discontinuous</span></div>
+<div class="line"><a id="l00046" name="l00046"></a><span class="lineno">   46</span><span class="comment">/// bi-linear interpolation for the pressure. Note that we are free to </span></div>
+<div class="line"><a id="l00047" name="l00047"></a><span class="lineno">   47</span><span class="comment">/// choose the order in which we store the variables at the nodes. In this</span></div>
+<div class="line"><a id="l00048" name="l00048"></a><span class="lineno">   48</span><span class="comment">/// case we choose to store the variables in the order fluid velocities</span></div>
+<div class="line"><a id="l00049" name="l00049"></a><span class="lineno">   49</span><span class="comment">/// followed by temperature. We must, therefore, overload the function</span></div>
+<div class="line"><a id="l00050" name="l00050"></a><span class="lineno">   50</span><span class="comment">/// AdvectionDiffusionReactionEquations&lt;2,DIM&gt;::u_index_adv_diff_react() </span></div>
+<div class="line"><a id="l00051" name="l00051"></a><span class="lineno">   51</span><span class="comment">/// to indicate that</span></div>
+<div class="line"><a id="l00052" name="l00052"></a><span class="lineno">   52</span><span class="comment">/// the temperature is stored at the DIM-th position not the 0-th. We do not</span></div>
+<div class="line"><a id="l00053" name="l00053"></a><span class="lineno">   53</span><span class="comment">/// need to overload the corresponding function in the </span></div>
+<div class="line"><a id="l00054" name="l00054"></a><span class="lineno">   54</span><span class="comment">/// NavierStokesEquations&lt;DIM&gt; class because the velocities are stored</span></div>
+<div class="line"><a id="l00055" name="l00055"></a><span class="lineno">   55</span><span class="comment">/// first.</span></div>
 <div class="line"><a id="l00056" name="l00056"></a><span class="lineno">   56</span><span class="comment"></span><span class="comment">//=========================================================================</span></div>
 <div class="line"><a id="l00057" name="l00057"></a><span class="lineno"><a class="line" href="classoomph_1_1AxisymmetricQAdvectionCrouzeixRaviartElement.html">   57</a></span><span class="keyword">class </span><a class="code hl_class" href="classoomph_1_1AxisymmetricQAdvectionCrouzeixRaviartElement.html">AxisymmetricQAdvectionCrouzeixRaviartElement</a> :</div>
 <div class="line"><a id="l00058" name="l00058"></a><span class="lineno">   58</span> <span class="keyword">public</span> <span class="keyword">virtual</span> QAxisymAdvectionDiffusionElement&lt;3&gt;,</div>
@@ -188,9 +188,9 @@
 <div class="line"><a id="l00069" name="l00069"></a><span class="lineno">   69</span>  AxisymmetricQCrouzeixRaviartElement() {}</div>
 <div class="line"><a id="l00070" name="l00070"></a><span class="lineno">   70</span> </div>
 <div class="line"><a id="l00071" name="l00071"></a><span class="lineno">   71</span><span class="comment"></span> </div>
-<div class="line"><a id="l00072" name="l00072"></a><span class="lineno">   72</span><span class="comment"> ///The required number of values stored at the nodes is the sum of the</span></div>
-<div class="line"><a id="l00073" name="l00073"></a><span class="lineno">   73</span><span class="comment"> ///required values of the two single-physics  elements. Note that this step is</span></div>
-<div class="line"><a id="l00074" name="l00074"></a><span class="lineno">   74</span><span class="comment"> ///generic for any multi-physics element of this type.</span></div>
+<div class="line"><a id="l00072" name="l00072"></a><span class="lineno">   72</span><span class="comment"> /// The required number of values stored at the nodes is the sum of the</span></div>
+<div class="line"><a id="l00073" name="l00073"></a><span class="lineno">   73</span><span class="comment"> /// required values of the two single-physics  elements. Note that this step is</span></div>
+<div class="line"><a id="l00074" name="l00074"></a><span class="lineno">   74</span><span class="comment"> /// generic for any multi-physics element of this type.</span></div>
 <div class="line"><a id="l00075" name="l00075"></a><span class="lineno"><a class="line" href="classoomph_1_1AxisymmetricQAdvectionCrouzeixRaviartElement.html#a3f287fb65ae8fa74e83d664585473a6f">   75</a></span><span class="comment"></span> <span class="keywordtype">unsigned</span> <a class="code hl_function" href="classoomph_1_1AxisymmetricQAdvectionCrouzeixRaviartElement.html#a3f287fb65ae8fa74e83d664585473a6f">required_nvalue</a>(<span class="keyword">const</span> <span class="keywordtype">unsigned</span> &amp;n)<span class="keyword"> const</span></div>
 <div class="line"><a id="l00076" name="l00076"></a><span class="lineno">   76</span><span class="keyword">  </span>{<span class="keywordflow">return</span> (QAxisymAdvectionDiffusionElement&lt;3&gt;::required_nvalue(n) +</div>
 <div class="line"><a id="l00077" name="l00077"></a><span class="lineno">   77</span>           AxisymmetricQCrouzeixRaviartElement::required_nvalue(n));}</div>
@@ -309,8 +309,8 @@
 <div class="line"><a id="l00190" name="l00190"></a><span class="lineno">  190</span>    output_fct(outfile,Nplot,time,exact_soln_pt);</div>
 <div class="line"><a id="l00191" name="l00191"></a><span class="lineno">  191</span>  }</div>
 <div class="line"><a id="l00192" name="l00192"></a><span class="lineno">  192</span><span class="comment"></span> </div>
-<div class="line"><a id="l00193" name="l00193"></a><span class="lineno">  193</span><span class="comment"> ///Overload the index at which the temperature and solute</span></div>
-<div class="line"><a id="l00194" name="l00194"></a><span class="lineno">  194</span><span class="comment"> ///concentration variables are stored. </span></div>
+<div class="line"><a id="l00193" name="l00193"></a><span class="lineno">  193</span><span class="comment"> /// Overload the index at which the temperature and solute</span></div>
+<div class="line"><a id="l00194" name="l00194"></a><span class="lineno">  194</span><span class="comment"> /// concentration variables are stored. </span></div>
 <div class="line"><a id="l00195" name="l00195"></a><span class="lineno">  195</span><span class="comment"></span> <span class="comment">// We choose to store them after the fluid velocities.</span></div>
 <div class="line"><a id="l00196" name="l00196"></a><span class="lineno"><a class="line" href="classoomph_1_1AxisymmetricQAdvectionCrouzeixRaviartElement.html#a7a78a6fac9d174eef5c29328f1a212c8">  196</a></span> <span class="keyword">inline</span> <span class="keywordtype">unsigned</span> <a class="code hl_function" href="classoomph_1_1AxisymmetricQAdvectionCrouzeixRaviartElement.html#a7a78a6fac9d174eef5c29328f1a212c8">u_index_axi_adv_diff</a>()<span class="keyword"> const </span>{<span class="keywordflow">return</span> 3;}</div>
 <div class="line"><a id="l00197" name="l00197"></a><span class="lineno">  197</span> </div>
@@ -371,7 +371,7 @@
 <div class="line"><a id="l00252" name="l00252"></a><span class="lineno">  252</span><span class="preprocessor">#ifdef USE_FD_JACOBIAN_FOR_ADVECTION_DIFFUSION_NAVIER_STOKES_ELEMENT</span></div>
 <div class="line"><a id="l00253" name="l00253"></a><span class="lineno">  253</span> </div>
 <div class="line"><a id="l00254" name="l00254"></a><span class="lineno">  254</span><span class="comment"></span> </div>
-<div class="line"><a id="l00255" name="l00255"></a><span class="lineno">  255</span><span class="comment"> ///Compute the element&#39;s residual vector and the Jacobian matrix.</span></div>
+<div class="line"><a id="l00255" name="l00255"></a><span class="lineno">  255</span><span class="comment"> /// Compute the element&#39;s residual vector and the Jacobian matrix.</span></div>
 <div class="line"><a id="l00256" name="l00256"></a><span class="lineno">  256</span><span class="comment"> /// Jacobian is computed by finite-differencing.</span></div>
 <div class="line"><a id="l00257" name="l00257"></a><span class="lineno"><a class="line" href="classoomph_1_1AxisymmetricQAdvectionCrouzeixRaviartElement.html#a89c5d3e012d9a8ca36e4e54fd26197b8">  257</a></span><span class="comment"></span> <span class="keywordtype">void</span> <a class="code hl_function" href="classoomph_1_1AxisymmetricQAdvectionCrouzeixRaviartElement.html#a89c5d3e012d9a8ca36e4e54fd26197b8">fill_in_contribution_to_jacobian</a>(Vector&lt;double&gt; &amp;residuals,</div>
 <div class="line"><a id="l00258" name="l00258"></a><span class="lineno">  258</span>                                   DenseMatrix&lt;double&gt; &amp;jacobian)</div>
@@ -382,8 +382,8 @@
 <div class="line"><a id="l00263" name="l00263"></a><span class="lineno">  263</span> </div>
 <div class="line"><a id="l00264" name="l00264"></a><span class="lineno">  264</span><span class="preprocessor">#else</span></div>
 <div class="line"><a id="l00265" name="l00265"></a><span class="lineno">  265</span><span class="comment"></span> </div>
-<div class="line"><a id="l00266" name="l00266"></a><span class="lineno">  266</span><span class="comment"> ///Helper function to get the off-diagonal blocks of the Jacobian</span></div>
-<div class="line"><a id="l00267" name="l00267"></a><span class="lineno">  267</span><span class="comment"> ///matrix by finite differences</span></div>
+<div class="line"><a id="l00266" name="l00266"></a><span class="lineno">  266</span><span class="comment"> /// Helper function to get the off-diagonal blocks of the Jacobian</span></div>
+<div class="line"><a id="l00267" name="l00267"></a><span class="lineno">  267</span><span class="comment"> /// matrix by finite differences</span></div>
 <div class="line"><a id="l00268" name="l00268"></a><span class="lineno"><a class="line" href="classoomph_1_1AxisymmetricQAdvectionCrouzeixRaviartElement.html#aad2c85645b11da350f13cf1087f5b46a">  268</a></span><span class="comment"></span> <span class="keywordtype">void</span> <a class="code hl_function" href="classoomph_1_1AxisymmetricQAdvectionCrouzeixRaviartElement.html#aad2c85645b11da350f13cf1087f5b46a">fill_in_off_diagonal_jacobian_blocks_by_fd</a>(Vector&lt;double&gt; &amp;residuals,</div>
 <div class="line"><a id="l00269" name="l00269"></a><span class="lineno">  269</span>                                                 DenseMatrix&lt;double&gt; &amp;jacobian)</div>
 <div class="line"><a id="l00270" name="l00270"></a><span class="lineno">  270</span>  {</div>
@@ -469,7 +469,7 @@
 <div class="line"><a id="l00350" name="l00350"></a><span class="lineno">  350</span> </div>
 <div class="line"><a id="l00351" name="l00351"></a><span class="lineno">  351</span>}</div>
 <div class="line"><a id="l00352" name="l00352"></a><span class="lineno">  352</span> <span class="comment"></span></div>
-<div class="line"><a id="l00353" name="l00353"></a><span class="lineno">  353</span><span class="comment"> ///Compute the element&#39;s residual Vector and the Jacobian matrix.</span></div>
+<div class="line"><a id="l00353" name="l00353"></a><span class="lineno">  353</span><span class="comment"> /// Compute the element&#39;s residual Vector and the Jacobian matrix.</span></div>
 <div class="line"><a id="l00354" name="l00354"></a><span class="lineno">  354</span><span class="comment"> /// Use finite-differencing only for the off-diagonal blocks.</span></div>
 <div class="line"><a id="l00355" name="l00355"></a><span class="lineno"><a class="line" href="classoomph_1_1AxisymmetricQAdvectionCrouzeixRaviartElement.html#a89c5d3e012d9a8ca36e4e54fd26197b8">  355</a></span><span class="comment"></span> <span class="keywordtype">void</span> <a class="code hl_function" href="classoomph_1_1AxisymmetricQAdvectionCrouzeixRaviartElement.html#a89c5d3e012d9a8ca36e4e54fd26197b8">fill_in_contribution_to_jacobian</a>(Vector&lt;double&gt; &amp;residuals,</div>
 <div class="line"><a id="l00356" name="l00356"></a><span class="lineno">  356</span>                                       DenseMatrix&lt;double&gt; &amp;jacobian)</div>
@@ -591,7 +591,7 @@
     <footer>
       <div class="container">
         <div class="text-muted" style="float:right;">Generated by <a href="http://www.doxygen.org/index.html">
-          <img style="height:18px;" class="footer-img" src="doxygen.png" alt="doxygen"></a> on Mon Oct 25 2021 18:11:38
+          <img style="height:18px;" class="footer-img" src="doxygen.png" alt="doxygen"></a> on Tue Oct 26 2021 17:38:10
         </div>
       </div>
     </footer>

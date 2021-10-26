@@ -2,7 +2,7 @@
 \label{classoomph_1_1LinearElasticitySmoothMesh}\index{oomph::LinearElasticitySmoothMesh$<$ LINEAR\_ELASTICITY\_ELEMENT $>$@{oomph::LinearElasticitySmoothMesh$<$ LINEAR\_ELASTICITY\_ELEMENT $>$}}
 
 
-Auxiliary \mbox{\hyperlink{classoomph_1_1Problem}{Problem}} to smooth a \mbox{\hyperlink{classoomph_1_1SolidMesh}{Solid\+Mesh}} by adjusting the internal nodal positions by solving a LINEAR solid mechanics problem for the nodal displacements between the specified displacements of certain pinned nodes (usually located on boundaries). The template parameter specifies the linear elasticity element that must have the same shape (geometric element type) as the elements contained in the mesh that\textquotesingle{}s to be smoothed. So, e.\+g. for the ten-\/noded three-\/dimensional tetrahedral TTaylor\+Hood\+Element$<$3$>$, it would be a TLinear\+Elasticity\+Element$<$3,3$>$, etc. {\bfseries{Important}} {\bfseries{assumptions\+:}}  
+/////////////////////////////////////////////////////////////// ///////////////////////////////////////////////////////////////  
 
 
 
@@ -28,9 +28,9 @@ void \mbox{\hyperlink{classoomph_1_1LinearElasticitySmoothMesh_a7546b06ebbc89a34
 \doxysubsection{Detailed Description}
 \subsubsection*{template$<$class LINEAR\+\_\+\+ELASTICITY\+\_\+\+ELEMENT$>$\newline
 class oomph\+::\+Linear\+Elasticity\+Smooth\+Mesh$<$ LINEAR\+\_\+\+ELASTICITY\+\_\+\+ELEMENT $>$}
+/////////////////////////////////////////////////////////////// /////////////////////////////////////////////////////////////// 
+
 Auxiliary \mbox{\hyperlink{classoomph_1_1Problem}{Problem}} to smooth a \mbox{\hyperlink{classoomph_1_1SolidMesh}{Solid\+Mesh}} by adjusting the internal nodal positions by solving a LINEAR solid mechanics problem for the nodal displacements between the specified displacements of certain pinned nodes (usually located on boundaries). The template parameter specifies the linear elasticity element that must have the same shape (geometric element type) as the elements contained in the mesh that\textquotesingle{}s to be smoothed. So, e.\+g. for the ten-\/noded three-\/dimensional tetrahedral TTaylor\+Hood\+Element$<$3$>$, it would be a TLinear\+Elasticity\+Element$<$3,3$>$, etc. {\bfseries{Important}} {\bfseries{assumptions\+:}} 
-
-
 \begin{DoxyItemize}
 \item It is important that the Lagrangian coordinates of all nodes still indicate their original position, i.\+e. their position before (some of) them were moved to their new position.
 \item It is assumed that in its original state, the mesh does not contain any inverted elements.

@@ -133,7 +133,7 @@ $(function() {
 </div><!--header-->
 <div class="contents">
 
-<p>Templated class for BDF-type time-steppers with fixed or variable timestep. 1st time derivative recovered directly from the previous function values. Template parameter represents the number of previous timesteps stored, so that BDF&lt;1&gt; is the classical first order backward <a class="el" href="classoomph_1_1Euler.html" title="=========================================================== Simple first-order Euler Timestepping">Euler</a> scheme. Need to reset weights after every change in timestep.  
+<p>////////////////////////////////////////////////////////////////////// //////////////////////////////////////////////////////////////////////  
  <a href="classoomph_1_1BDF.html#details">More...</a></p>
 
 <p><code>#include &lt;<a class="el" href="timesteppers_8h_source.html">timesteppers.h</a>&gt;</code></p>
@@ -145,7 +145,7 @@ $(function() {
  <div class="center">
   <img src="classoomph_1_1BDF.png" usemap="#oomph::BDF_3C_20NSTEPS_20_3E_map" alt=""/>
   <map id="oomph::BDF_3C_20NSTEPS_20_3E_map" name="oomph::BDF_3C_20NSTEPS_20_3E_map">
-<area href="classoomph_1_1TimeStepper.html" title="Base class for time-stepping schemes. Timestepper provides an approximation of the temporal derivativ..." alt="oomph::TimeStepper" shape="rect" coords="0,0,152,24"/>
+<area href="classoomph_1_1TimeStepper.html" title="////////////////////////////////////////////////////////////////////// //////////////////////////////..." alt="oomph::TimeStepper" shape="rect" coords="0,0,152,24"/>
   </map>
 </div></div>
 <table class="memberdecls">
@@ -179,7 +179,7 @@ Public Member Functions</h2></td></tr>
 <tr class="memdesc:ae40c166092d039798704a8969c0acc0e"><td class="mdescLeft">&#160;</td><td class="mdescRight">Initialise the time-history for the <a class="el" href="classoomph_1_1Data.html" title="A class that represents a collection of data; each Data object may contain many different individual ...">Data</a> values, corresponding to given time history, specified by <a class="el" href="classoomph_1_1Vector.html" title="A slight extension to the standard template vector class so that we can include &quot;graceful&quot; array rang...">Vector</a> of function pointers.  <a href="classoomph_1_1BDF.html#ae40c166092d039798704a8969c0acc0e">More...</a><br /></td></tr>
 <tr class="separator:ae40c166092d039798704a8969c0acc0e"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a037ce83f202e4ba2e61666bfdb1ce4b9"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classoomph_1_1BDF.html#a037ce83f202e4ba2e61666bfdb1ce4b9">shift_time_values</a> (<a class="el" href="classoomph_1_1Data.html">Data</a> *const &amp;data_pt)</td></tr>
-<tr class="memdesc:a037ce83f202e4ba2e61666bfdb1ce4b9"><td class="mdescLeft">&#160;</td><td class="mdescRight">This function updates the <a class="el" href="classoomph_1_1Data.html" title="A class that represents a collection of data; each Data object may contain many different individual ...">Data</a>'s time history so that we can advance to the next timestep. For <a class="el" href="classoomph_1_1BDF.html" title="Templated class for BDF-type time-steppers with fixed or variable timestep. 1st time derivative recov...">BDF</a> schemes, we simply push the values backwards...  <a href="classoomph_1_1BDF.html#a037ce83f202e4ba2e61666bfdb1ce4b9">More...</a><br /></td></tr>
+<tr class="memdesc:a037ce83f202e4ba2e61666bfdb1ce4b9"><td class="mdescLeft">&#160;</td><td class="mdescRight">This function updates the <a class="el" href="classoomph_1_1Data.html" title="A class that represents a collection of data; each Data object may contain many different individual ...">Data</a>'s time history so that we can advance to the next timestep. For <a class="el" href="classoomph_1_1BDF.html" title="////////////////////////////////////////////////////////////////////// //////////////////////////////...">BDF</a> schemes, we simply push the values backwards...  <a href="classoomph_1_1BDF.html#a037ce83f202e4ba2e61666bfdb1ce4b9">More...</a><br /></td></tr>
 <tr class="separator:a037ce83f202e4ba2e61666bfdb1ce4b9"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:aad5191a5605337d43458d42f67460dbd"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classoomph_1_1BDF.html#aad5191a5605337d43458d42f67460dbd">shift_time_positions</a> (Node *const &amp;node_pt)</td></tr>
 <tr class="memdesc:aad5191a5605337d43458d42f67460dbd"><td class="mdescLeft">&#160;</td><td class="mdescRight">This function advances the time history of the positions at a node.  <a href="classoomph_1_1BDF.html#aad5191a5605337d43458d42f67460dbd">More...</a><br /></td></tr>
@@ -212,7 +212,7 @@ Public Member Functions</h2></td></tr>
 <tr class="memdesc:aab34e35252db11052c72ae7692825149"><td class="mdescLeft">&#160;</td><td class="mdescRight">Compute the error in the value i in a <a class="el" href="classoomph_1_1Data.html" title="A class that represents a collection of data; each Data object may contain many different individual ...">Data</a> structure.  <a href="classoomph_1_1BDF.html#aab34e35252db11052c72ae7692825149">More...</a><br /></td></tr>
 <tr class="separator:aab34e35252db11052c72ae7692825149"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a9d247ea52d1cddbf74d4fa054110b2ca"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classoomph_1_1BDF.html#a9d247ea52d1cddbf74d4fa054110b2ca">set_weights</a> ()</td></tr>
-<tr class="memdesc:a9d247ea52d1cddbf74d4fa054110b2ca"><td class="mdescLeft">&#160;</td><td class="mdescRight">Assign the values of the weights.  <a href="classoomph_1_1BDF.html#a9d247ea52d1cddbf74d4fa054110b2ca">More...</a><br /></td></tr>
+<tr class="memdesc:a9d247ea52d1cddbf74d4fa054110b2ca"><td class="mdescLeft">&#160;</td><td class="mdescRight">/////////////////////////////////////////////////////////////////////  <a href="classoomph_1_1BDF.html#a9d247ea52d1cddbf74d4fa054110b2ca">More...</a><br /></td></tr>
 <tr class="separator:a9d247ea52d1cddbf74d4fa054110b2ca"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a108f0a3b2228efe92763135f4603c925"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classoomph_1_1BDF.html#a108f0a3b2228efe92763135f4603c925">set_predictor_weights</a> ()</td></tr>
 <tr class="memdesc:a108f0a3b2228efe92763135f4603c925"><td class="mdescLeft">&#160;</td><td class="mdescRight">Set the predictor weights (Gresho and Sani pg. 270)  <a href="classoomph_1_1BDF.html#a108f0a3b2228efe92763135f4603c925">More...</a><br /></td></tr>
@@ -336,7 +336,7 @@ Public Member Functions</h2></td></tr>
 <tr class="memdesc:ac59f0fb50e6ca3622c03cd9b4d29ee8c inherit pub_methods_classoomph_1_1TimeStepper"><td class="mdescLeft">&#160;</td><td class="mdescRight">Get a (const) pointer to the weights.  <a href="classoomph_1_1TimeStepper.html#ac59f0fb50e6ca3622c03cd9b4d29ee8c">More...</a><br /></td></tr>
 <tr class="separator:ac59f0fb50e6ca3622c03cd9b4d29ee8c inherit pub_methods_classoomph_1_1TimeStepper"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:aada05f89e86aae352bd5b32bfb173b18 inherit pub_methods_classoomph_1_1TimeStepper"><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classoomph_1_1TimeStepper.html#aada05f89e86aae352bd5b32bfb173b18">undo_make_steady</a> ()</td></tr>
-<tr class="memdesc:aada05f89e86aae352bd5b32bfb173b18 inherit pub_methods_classoomph_1_1TimeStepper"><td class="mdescLeft">&#160;</td><td class="mdescRight">Reset the is_steady status of a specific <a class="el" href="classoomph_1_1TimeStepper.html" title="Base class for time-stepping schemes. Timestepper provides an approximation of the temporal derivativ...">TimeStepper</a> to its default and re-assign the weights.  <a href="classoomph_1_1TimeStepper.html#aada05f89e86aae352bd5b32bfb173b18">More...</a><br /></td></tr>
+<tr class="memdesc:aada05f89e86aae352bd5b32bfb173b18 inherit pub_methods_classoomph_1_1TimeStepper"><td class="mdescLeft">&#160;</td><td class="mdescRight">Reset the is_steady status of a specific <a class="el" href="classoomph_1_1TimeStepper.html" title="////////////////////////////////////////////////////////////////////// //////////////////////////////...">TimeStepper</a> to its default and re-assign the weights.  <a href="classoomph_1_1TimeStepper.html#aada05f89e86aae352bd5b32bfb173b18">More...</a><br /></td></tr>
 <tr class="separator:aada05f89e86aae352bd5b32bfb173b18 inherit pub_methods_classoomph_1_1TimeStepper"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:acbd69b35e54efa29b219bbb56ba49260 inherit pub_methods_classoomph_1_1TimeStepper"><td class="memItemLeft" align="right" valign="top">std::string&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classoomph_1_1TimeStepper.html#acbd69b35e54efa29b219bbb56ba49260">type</a> () const</td></tr>
 <tr class="memdesc:acbd69b35e54efa29b219bbb56ba49260 inherit pub_methods_classoomph_1_1TimeStepper"><td class="mdescLeft">&#160;</td><td class="mdescRight">Return string that indicates the type of the timestepper (e.g. "BDF", "Newmark", etc.)  <a href="classoomph_1_1TimeStepper.html#acbd69b35e54efa29b219bbb56ba49260">More...</a><br /></td></tr>
@@ -420,7 +420,8 @@ Additional Inherited Members</h2></td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock"><div class="compoundTemplParams">template&lt;unsigned NSTEPS&gt;<br />
-class oomph::BDF&lt; NSTEPS &gt;</div><p >Templated class for BDF-type time-steppers with fixed or variable timestep. 1st time derivative recovered directly from the previous function values. Template parameter represents the number of previous timesteps stored, so that BDF&lt;1&gt; is the classical first order backward <a class="el" href="classoomph_1_1Euler.html" title="=========================================================== Simple first-order Euler Timestepping">Euler</a> scheme. Need to reset weights after every change in timestep. </p>
+class oomph::BDF&lt; NSTEPS &gt;</div><p >////////////////////////////////////////////////////////////////////// ////////////////////////////////////////////////////////////////////// </p>
+<p >Templated class for BDF-type time-steppers with fixed or variable timestep. 1st time derivative recovered directly from the previous function values. Template parameter represents the number of previous timesteps stored, so that BDF&lt;1&gt; is the classical first order backward <a class="el" href="classoomph_1_1Euler.html" title="=========================================================== Simple first-order Euler Timestepping">Euler</a> scheme. Need to reset weights after every change in timestep. </p>
 
 <p class="definition">Definition at line <a class="el" href="timesteppers_8h_source.html#l01164">1164</a> of file <a class="el" href="timesteppers_8h_source.html">timesteppers.h</a>.</p>
 </div><h2 class="groupheader">Member Typedef Documentation</h2>
@@ -1292,7 +1293,8 @@ template&lt;unsigned NSTEPS&gt; </div>
 </table>
 </div><div class="memdoc">
 
-<p>Assign the values of the weights. </p>
+<p>///////////////////////////////////////////////////////////////////// </p>
+<p >///////////////////////////////////////////////////////////////////// Assign the values of the weights </p>
 
 <p>Implements <a class="el" href="classoomph_1_1TimeStepper.html#a028fa3a8d3c6db6b0ddf580cb0468d55">oomph::TimeStepper</a>.</p>
 
@@ -1457,7 +1459,7 @@ template&lt;unsigned NSTEPS&gt; </div>
 </table>
 </div><div class="memdoc">
 
-<p>This function updates the <a class="el" href="classoomph_1_1Data.html" title="A class that represents a collection of data; each Data object may contain many different individual ...">Data</a>'s time history so that we can advance to the next timestep. For <a class="el" href="classoomph_1_1BDF.html" title="Templated class for BDF-type time-steppers with fixed or variable timestep. 1st time derivative recov...">BDF</a> schemes, we simply push the values backwards... </p>
+<p>This function updates the <a class="el" href="classoomph_1_1Data.html" title="A class that represents a collection of data; each Data object may contain many different individual ...">Data</a>'s time history so that we can advance to the next timestep. For <a class="el" href="classoomph_1_1BDF.html" title="////////////////////////////////////////////////////////////////////// //////////////////////////////...">BDF</a> schemes, we simply push the values backwards... </p>
 
 <p>Implements <a class="el" href="classoomph_1_1TimeStepper.html#a010a3b03a23a1c48dd8ca10641427255">oomph::TimeStepper</a>.</p>
 
@@ -1901,7 +1903,7 @@ template&lt;unsigned NSTEPS&gt; </div>
     <footer>
       <div class="container">
         <div class="text-muted" style="float:right;">Generated by <a href="http://www.doxygen.org/index.html">
-          <img style="height:18px;" class="footer-img" src="doxygen.png" alt="doxygen"></a> on Mon Oct 25 2021 17:48:00
+          <img style="height:18px;" class="footer-img" src="doxygen.png" alt="doxygen"></a> on Tue Oct 26 2021 17:14:34
         </div>
       </div>
     </footer>

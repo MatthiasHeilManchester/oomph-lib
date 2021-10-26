@@ -407,7 +407,11 @@ void \mbox{\hyperlink{classoomph_1_1PRefineableQElement}{oomph\+::\+PRefineable\
 
 p-\/refine the element (refine if inc\texorpdfstring{$>$}{>}0, unrefine if inc\texorpdfstring{$<$}{<}0). 
 
-p-\/refine the element inc times. (If inc\texorpdfstring{$<$}{<}0 then p-\/unrefinement is performed.) 
+p-\/refine the element inc times. (If inc\texorpdfstring{$<$}{<}0 then p-\/unrefinement is performed.) / Now loop over nodes in element
+
+/\+BENFLAG\+:
+
+/std\+::cout \texorpdfstring{$<$}{<}\texorpdfstring{$<$}{<} \char`\"{}this = \char`\"{} \texorpdfstring{$<$}{<}\texorpdfstring{$<$}{<} this \texorpdfstring{$<$}{<}\texorpdfstring{$<$}{<} std\+::endl;
 
 Implements \mbox{\hyperlink{classoomph_1_1PRefineableElement_a706db9352965197a215405f620b3cedc}{oomph\+::\+PRefineable\+Element}}.
 
@@ -430,7 +434,7 @@ void \mbox{\hyperlink{classoomph_1_1PRefineableQElement}{oomph\+::\+PRefineable\
 
 Pre-\/build (search father for required nodes which may already exist) 
 
-Check the father element for any required nodes which already exist. 
+Check the father element for any required nodes which already exist. / Build update info by passing vector of geometric objects\+: / This sets the current element to be the update element / for all of the element\textquotesingle{}s nodes -- this is reversed / if the element is ever un-\/refined in the father element\textquotesingle{}s / \mbox{\hyperlink{classoomph_1_1PRefineableQElement_3_012_00_01INITIAL__NNODE__1D_01_4_a53d48e7e3310a02a315562ed628bd4b5}{rebuild\+\_\+from\+\_\+sons()}} function which overwrites this / assignment to avoid nasty segmentation faults that occur / when a node tries to update itself via an element that no / longer exists...
 
 Reimplemented from \mbox{\hyperlink{classoomph_1_1RefineableElement_a3968e7b77a0374cebe3be35281828676}{oomph\+::\+Refineable\+Element}}.
 

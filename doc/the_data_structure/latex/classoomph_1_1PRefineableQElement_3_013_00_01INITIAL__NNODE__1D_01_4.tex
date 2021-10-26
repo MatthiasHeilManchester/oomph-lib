@@ -403,7 +403,35 @@ void \mbox{\hyperlink{classoomph_1_1PRefineableQElement}{oomph\+::\+PRefineable\
 
 Set up hanging node information. Overloaded to implement the mortar method rather than constrained approximation. This enforces continuity weakly via an integral matching condition at non-\/conforming element boundaries. 
 
-Internal function to set up the hanging nodes on a particular edge of the element. Implements the mortar method. 
+Internal function to set up the hanging nodes on a particular edge of the element. Implements the mortar method. / Set up hanging scheme for this node
+
+/ Print out hanging scheme
+
+/ Print out local projection matrix
+
+/ Print out global projection matrix
+
+/ Print out solved global projection matrix
+
+/ Create structures to hold the hanging info /-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/---
+
+/ Copy information to hanging nodes /-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/---
+
+/ Print out hanging scheme
+
+/ Print out dependent and master node coords
+
+/ Print out diag(\+M)
+
+/ Print out diag(\+M)
+
+/ Print out local projection matrix
+
+/ Print out global projection matrix
+
+/ Print out solved matrix
+
+/ Throw error
 
 Reimplemented from \mbox{\hyperlink{classoomph_1_1RefineableQElement_3_013_01_4_abde04c6b8616bd2551b24ac1abade563}{oomph\+::\+Refineable\+QElement$<$ 3 $>$}}.
 
@@ -449,7 +477,9 @@ void \mbox{\hyperlink{classoomph_1_1PRefineableQElement}{oomph\+::\+PRefineable\
 
 Pre-\/build (search father for required nodes which may already exist) 
 
-Check the father element for any required nodes which already exist. 
+Check the father element for any required nodes which already exist. / Pass pointer to time object\+:
+
+/ Pass macro element pointer on to sons and / set coordinates in macro element / hierher why can I see this?
 
 Reimplemented from \mbox{\hyperlink{classoomph_1_1RefineableElement_a3968e7b77a0374cebe3be35281828676}{oomph\+::\+Refineable\+Element}}.
 

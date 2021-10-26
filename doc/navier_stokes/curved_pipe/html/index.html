@@ -149,8 +149,8 @@ Contours of axial velocity and secondary streamlines. </div></div>
 <div class="line"><span class="comment">//LIC// The authors may be contacted at oomph-lib@maths.man.ac.uk.</span></div>
 <div class="line"><span class="comment">//LIC// </span></div>
 <div class="line"><span class="comment">//LIC//====================================================================</span><span class="comment"></span></div>
-<div class="line"><span class="comment">///Driver for a 3D navier stokes steady entry flow problem in a </span></div>
-<div class="line"><span class="comment">///uniformly curved tube</span></div>
+<div class="line"><span class="comment">/// Driver for a 3D navier stokes steady entry flow problem in a </span></div>
+<div class="line"><span class="comment">/// uniformly curved tube</span></div>
 <div class="line"><span class="comment"></span> </div>
 <div class="line"><span class="comment">//Generic routines</span></div>
 <div class="line"><span class="preprocessor">#include &quot;generic.h&quot;</span></div>
@@ -179,7 +179,7 @@ Contours of axial velocity and secondary streamlines. </div></div>
 <div class="line"><span class="comment">/// Destructor</span></div>
 <div class="line"><span class="comment"></span><span class="keyword">virtual</span><a class="code hl_function" href="classMyCurvedCylinder.html#af474ed1dc8e4a1d433d4f1e77712b0a3">~MyCurvedCylinder</a>(){}</div>
 <div class="line"><span class="comment"></span> </div>
-<div class="line"><span class="comment">///Lagrangian coordinate xi</span></div>
+<div class="line"><span class="comment">/// Lagrangian coordinate xi</span></div>
 <div class="line"><span class="comment"></span><span class="keywordtype">void</span> <a class="code hl_function" href="classMyCurvedCylinder.html#a6b0a9178fef82a1279efded76a611692">position</a> (<span class="keyword">const</span> Vector&lt;double&gt;&amp; xi, Vector&lt;double&gt;&amp; r)<span class="keyword"> const</span></div>
 <div class="line"><span class="keyword"></span>{</div>
 <div class="line"> r[0] = (1.0/<a class="code hl_variable" href="classMyCurvedCylinder.html#abacb5dddfb1971d098b2c07608fdaf50">Delta</a>)*cos(xi[0]) + xi[2]*<a class="code hl_variable" href="classMyCurvedCylinder.html#aaf7aa0ded93fced8b112d61e634a9df2">Radius</a>*cos(xi[0])*cos(xi[1]);</div>
@@ -198,7 +198,7 @@ Contours of axial velocity and secondary streamlines. </div></div>
 <div class="line"> </div>
 <div class="line"><span class="keyword">private</span>:</div>
 <div class="line"><span class="comment"></span> </div>
-<div class="line"><span class="comment"> ///Storage for the radius of the tube</span></div>
+<div class="line"><span class="comment"> /// Storage for the radius of the tube</span></div>
 <div class="line"><span class="comment"></span> <span class="keywordtype">double</span> <a class="code hl_variable" href="classMyCurvedCylinder.html#aaf7aa0ded93fced8b112d61e634a9df2">Radius</a>;</div>
 <div class="line"> </div>
 <div class="line"> <span class="comment">//Storage for the curvature of the tube</span></div>
@@ -260,7 +260,7 @@ Contours of axial velocity and secondary streamlines. </div></div>
 <div class="line"><span class="comment"> /// Doc info object</span></div>
 <div class="line"><span class="comment"></span> DocInfo <a class="code hl_variable" href="classSteadyCurvedTubeProblem.html#a1a48437e34e38bf6d96aef540fda70b6">Doc_info</a>;</div>
 <div class="line"> <span class="comment"></span></div>
-<div class="line"><span class="comment"> ///Pointer to GeomObject that specifies the domain volume</span></div>
+<div class="line"><span class="comment"> /// Pointer to GeomObject that specifies the domain volume</span></div>
 <div class="line"><span class="comment"></span> GeomObject *<a class="code hl_variable" href="classSteadyCurvedTubeProblem.html#a06fa168a75e0ce3b0cd0eccacf226a6c">Volume_pt</a>;</div>
 <div class="line"> </div>
 <div class="line">}; <span class="comment">// end_of_problem_class</span></div>
@@ -431,9 +431,9 @@ Contours of axial velocity and secondary streamlines. </div></div>
 <div class="line"> </div>
 <div class="line"> </div>
 <div class="line"><span class="comment"></span> </div>
-<div class="line"><span class="comment">////////////////////////////////////////////////////////////////////////</span></div>
-<div class="line"><span class="comment">////////////////////////////////////////////////////////////////////////</span></div>
-<div class="line"><span class="comment">////////////////////////////////////////////////////////////////////////</span></div>
+<div class="line"><span class="comment">/// /////////////////////////////////////////////////////////////////////</span></div>
+<div class="line"><span class="comment">/// /////////////////////////////////////////////////////////////////////</span></div>
+<div class="line"><span class="comment">/// /////////////////////////////////////////////////////////////////////</span></div>
 <div class="line"><span class="comment"></span> </div>
 <div class="line"> </div>
 <div class="line"><span class="comment">//=start_of_main=======================================================</span><span class="comment"></span></div>
@@ -542,7 +542,7 @@ Contours of axial velocity and secondary streamlines. </div></div>
 <div class="ttc" id="aclassSteadyCurvedTubeProblem_html_a79b8c2c0e3945aa6a9b69dfd55e456e1"><div class="ttname"><a href="classSteadyCurvedTubeProblem.html#a79b8c2c0e3945aa6a9b69dfd55e456e1">SteadyCurvedTubeProblem::mesh_pt</a></div><div class="ttdeci">RefineableTubeMesh&lt; ELEMENT &gt; * mesh_pt()</div><div class="ttdoc">Overload generic access function by one that returns a pointer to the specific mesh.</div><div class="ttdef"><b>Definition:</b> <a href="curved__pipe_8cc_source.html#l00127">curved_pipe.cc:127</a></div></div>
 <div class="ttc" id="aclassSteadyCurvedTubeProblem_html_a90f3197b2cd58a6d24d7064018db3bac"><div class="ttname"><a href="classSteadyCurvedTubeProblem.html#a90f3197b2cd58a6d24d7064018db3bac">SteadyCurvedTubeProblem::actions_before_newton_solve</a></div><div class="ttdeci">void actions_before_newton_solve()</div><div class="ttdoc">Update the problem specs before solve.</div><div class="ttdef"><b>Definition:</b> <a href="curved__pipe_8cc_source.html#l00256">curved_pipe.cc:256</a></div></div>
 <div class="ttc" id="aclassSteadyCurvedTubeProblem_html_ac276276fa87e57ff486e3af24b72e38b"><div class="ttname"><a href="classSteadyCurvedTubeProblem.html#ac276276fa87e57ff486e3af24b72e38b">SteadyCurvedTubeProblem::SteadyCurvedTubeProblem</a></div><div class="ttdeci">SteadyCurvedTubeProblem(DocInfo &amp;doc_info, const double &amp;min_error_target, const double &amp;max_error_target)</div><div class="ttdoc">Constructor: Pass DocInfo object and target errors.</div><div class="ttdef"><b>Definition:</b> <a href="curved__pipe_8cc_source.html#l00149">curved_pipe.cc:149</a></div></div>
-<div class="ttc" id="acurved__pipe_8cc_html_a0ddf1224851353fc92bfbff6f499fa97"><div class="ttname"><a href="curved__pipe_8cc.html#a0ddf1224851353fc92bfbff6f499fa97">main</a></div><div class="ttdeci">int main(int argc, char *argv[])</div><div class="ttdoc">Driver for 3D entry flow into a curved tube. If there are any command line arguments,...</div><div class="ttdef"><b>Definition:</b> <a href="curved__pipe_8cc_source.html#l00318">curved_pipe.cc:318</a></div></div>
+<div class="ttc" id="acurved__pipe_8cc_html_a0ddf1224851353fc92bfbff6f499fa97"><div class="ttname"><a href="curved__pipe_8cc.html#a0ddf1224851353fc92bfbff6f499fa97">main</a></div><div class="ttdeci">int main(int argc, char *argv[])</div><div class="ttdoc">///////////////////////////////////////////////////////////////////// ///////////////////////////////...</div><div class="ttdef"><b>Definition:</b> <a href="curved__pipe_8cc_source.html#l00318">curved_pipe.cc:318</a></div></div>
 <div class="ttc" id="anamespaceGlobal__Physical__Variables_html"><div class="ttname"><a href="namespaceGlobal__Physical__Variables.html">Global_Physical_Variables</a></div><div class="ttdoc">Namespace for physical parameters.</div><div class="ttdef"><b>Definition:</b> <a href="curved__pipe_8cc_source.html#l00085">curved_pipe.cc:86</a></div></div>
 <div class="ttc" id="anamespaceGlobal__Physical__Variables_html_ab814e627d2eb5bc50318879d19ab16b9"><div class="ttname"><a href="namespaceGlobal__Physical__Variables.html#ab814e627d2eb5bc50318879d19ab16b9">Global_Physical_Variables::Re</a></div><div class="ttdeci">double Re</div><div class="ttdoc">Reynolds number.</div><div class="ttdef"><b>Definition:</b> <a href="curved__pipe_8cc_source.html#l00088">curved_pipe.cc:88</a></div></div>
 <div class="ttc" id="anamespaceGlobal__Physical__Variables_html_add290b9e4a9c0e4c18a13faa7e29d857"><div class="ttname"><a href="namespaceGlobal__Physical__Variables.html#add290b9e4a9c0e4c18a13faa7e29d857">Global_Physical_Variables::Delta</a></div><div class="ttdeci">double Delta</div><div class="ttdoc">The desired curvature of the pipe.</div><div class="ttdef"><b>Definition:</b> <a href="curved__pipe_8cc_source.html#l00091">curved_pipe.cc:91</a></div></div>
@@ -580,7 +580,7 @@ PDF file</h1>
     <footer>
       <div class="container">
         <div class="text-muted" style="float:right;">Generated by <a href="http://www.doxygen.org/index.html">
-          <img style="height:18px;" class="footer-img" src="doxygen.png" alt="doxygen"></a> on Mon Oct 25 2021 17:56:16
+          <img style="height:18px;" class="footer-img" src="doxygen.png" alt="doxygen"></a> on Tue Oct 26 2021 17:22:55
         </div>
       </div>
     </footer>

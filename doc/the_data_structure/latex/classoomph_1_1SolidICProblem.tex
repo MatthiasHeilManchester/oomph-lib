@@ -2,7 +2,7 @@
 \label{classoomph_1_1SolidICProblem}\index{oomph::SolidICProblem@{oomph::SolidICProblem}}
 
 
-IC problem for an elastic body discretised on a given (sub)-\/mesh. We switch the elements\textquotesingle{} residuals and Jacobians to the system of equations that forces the wall shape to become that of a specified \char`\"{}initial condition object\char`\"{}.  
+///////////////////////////////////////////////////////////////////// /////////////////////////////////////////////////////////////////////  
 
 
 
@@ -62,7 +62,9 @@ double \mbox{\hyperlink{classoomph_1_1SolidICProblem_a8351e8422adab7110c7a2a4149
 
 
 \doxysubsection{Detailed Description}
-IC problem for an elastic body discretised on a given (sub)-\/mesh. We switch the elements\textquotesingle{} residuals and Jacobians to the system of equations that forces the wall shape to become that of a specified \char`\"{}initial condition object\char`\"{}. 
+///////////////////////////////////////////////////////////////////// ///////////////////////////////////////////////////////////////////// 
+
+IC problem for an elastic body discretised on a given (sub)-\/mesh. We switch the elements\textquotesingle{} residuals and Jacobians to the system of equations that forces the wall shape to become that of a specified \char`\"{}initial condition object\char`\"{}.
 
 Boundary conditions for all data items associated with the mesh\textquotesingle{}s elements\textquotesingle{} are temporarily overwritten so that all positional dofs (and only those!) become free while all other data (nodal data and the element\textquotesingle{}s internal and external data) are either pinned (for nodal and internal data) or completely removed (for pointers to external data). The complete removal of the (pointers to the) external data is necessary because in FSI problems, positional data of certain elements can feature as external data of others. Hence pinning them in their incarnation as external data would also pin them in their incarnation as positional data.
 
@@ -300,9 +302,9 @@ Referenced by \mbox{\hyperlink{elastic__problems_8h_source_l00126}{set\+\_\+stat
 
 Change pinned status of all data associated with mesh so that the IC problem can be solved. 
 
+/////////////////////////////////////////////////////////////////////// ///////////////////////////////////////////////////////////////////////
+
 Setup IC problem by\+:
-
-
 \begin{DoxyItemize}
 \item Pinning all nodal values in the mesh
 \item Pinning the internal data of all elements.

@@ -54,34 +54,34 @@
 \DoxyCodeLine{\Hypertarget{inclined__plane_8cc_source_l00050}00050 \textcolor{comment}{//The global physical variables}}
 \DoxyCodeLine{\Hypertarget{inclined__plane_8cc_source_l00051}\mbox{\hyperlink{namespaceGlobal__Physical__Variables}{00051}} \textcolor{keyword}{namespace }\mbox{\hyperlink{namespaceGlobal__Physical__Variables}{Global\_Physical\_Variables}}}
 \DoxyCodeLine{\Hypertarget{inclined__plane_8cc_source_l00052}00052 \{\textcolor{comment}{}}
-\DoxyCodeLine{\Hypertarget{inclined__plane_8cc_source_l00053}00053 \textcolor{comment}{ ///Reynolds number, based on the average velocity within the fluid film}}
+\DoxyCodeLine{\Hypertarget{inclined__plane_8cc_source_l00053}00053 \textcolor{comment}{ /// Reynolds number, based on the average velocity within the fluid film}}
 \DoxyCodeLine{\Hypertarget{inclined__plane_8cc_source_l00054}\mbox{\hyperlink{namespaceGlobal__Physical__Variables_ab814e627d2eb5bc50318879d19ab16b9}{00054}} \textcolor{comment}{} \textcolor{keywordtype}{double} \mbox{\hyperlink{namespaceGlobal__Physical__Variables_ab814e627d2eb5bc50318879d19ab16b9}{Re}}=0.0;}
 \DoxyCodeLine{\Hypertarget{inclined__plane_8cc_source_l00055}00055 \textcolor{comment}{}}
-\DoxyCodeLine{\Hypertarget{inclined__plane_8cc_source_l00056}00056 \textcolor{comment}{ ///The product of Reynolds number and inverse Froude number }}
-\DoxyCodeLine{\Hypertarget{inclined__plane_8cc_source_l00057}00057 \textcolor{comment}{ ///is set to two in this problem, which gives the free surface velocity}}
-\DoxyCodeLine{\Hypertarget{inclined__plane_8cc_source_l00058}00058 \textcolor{comment}{ ///to be sin(alpha). [Set to three in order to get the same scale as }}
-\DoxyCodeLine{\Hypertarget{inclined__plane_8cc_source_l00059}00059 \textcolor{comment}{ ///used by Yih, Benjamin, etc]}}
+\DoxyCodeLine{\Hypertarget{inclined__plane_8cc_source_l00056}00056 \textcolor{comment}{ /// The product of Reynolds number and inverse Froude number }}
+\DoxyCodeLine{\Hypertarget{inclined__plane_8cc_source_l00057}00057 \textcolor{comment}{ /// is set to two in this problem, which gives the free surface velocity}}
+\DoxyCodeLine{\Hypertarget{inclined__plane_8cc_source_l00058}00058 \textcolor{comment}{ /// to be sin(alpha). [Set to three in order to get the same scale as }}
+\DoxyCodeLine{\Hypertarget{inclined__plane_8cc_source_l00059}00059 \textcolor{comment}{ /// used by Yih, Benjamin, etc]}}
 \DoxyCodeLine{\Hypertarget{inclined__plane_8cc_source_l00060}\mbox{\hyperlink{namespaceGlobal__Physical__Variables_aa6286f02b476912dd7550eced538331a}{00060}} \textcolor{comment}{} \textcolor{keywordtype}{double} \mbox{\hyperlink{namespaceGlobal__Physical__Variables_aa6286f02b476912dd7550eced538331a}{ReInvFr}}=2.0;}
 \DoxyCodeLine{\Hypertarget{inclined__plane_8cc_source_l00061}00061 \textcolor{comment}{}}
-\DoxyCodeLine{\Hypertarget{inclined__plane_8cc_source_l00062}00062 \textcolor{comment}{ ///Angle of incline of the slope (45 degrees)}}
+\DoxyCodeLine{\Hypertarget{inclined__plane_8cc_source_l00062}00062 \textcolor{comment}{ /// Angle of incline of the slope (45 degrees)}}
 \DoxyCodeLine{\Hypertarget{inclined__plane_8cc_source_l00063}\mbox{\hyperlink{namespaceGlobal__Physical__Variables_aa2e802ee7cc8e1ac900ba94c3ce86eb7}{00063}} \textcolor{comment}{} \textcolor{keywordtype}{double} \mbox{\hyperlink{namespaceGlobal__Physical__Variables_aa2e802ee7cc8e1ac900ba94c3ce86eb7}{Alpha}} = 1.0*atan(1.0);}
 \DoxyCodeLine{\Hypertarget{inclined__plane_8cc_source_l00064}00064 \textcolor{comment}{}}
-\DoxyCodeLine{\Hypertarget{inclined__plane_8cc_source_l00065}00065 \textcolor{comment}{ ///The Vector direction of gravity, set in main()}}
+\DoxyCodeLine{\Hypertarget{inclined__plane_8cc_source_l00065}00065 \textcolor{comment}{ /// The Vector direction of gravity, set in main()}}
 \DoxyCodeLine{\Hypertarget{inclined__plane_8cc_source_l00066}\mbox{\hyperlink{namespaceGlobal__Physical__Variables_ad40b4c9ef4cf48648fee0914736e7341}{00066}} \textcolor{comment}{} Vector<double> \mbox{\hyperlink{namespaceGlobal__Physical__Variables_ad40b4c9ef4cf48648fee0914736e7341}{G}}(2,0.0);}
 \DoxyCodeLine{\Hypertarget{inclined__plane_8cc_source_l00067}00067 \textcolor{comment}{}}
-\DoxyCodeLine{\Hypertarget{inclined__plane_8cc_source_l00068}00068 \textcolor{comment}{ ///The Capillary number}}
+\DoxyCodeLine{\Hypertarget{inclined__plane_8cc_source_l00068}00068 \textcolor{comment}{ /// The Capillary number}}
 \DoxyCodeLine{\Hypertarget{inclined__plane_8cc_source_l00069}\mbox{\hyperlink{namespaceGlobal__Physical__Variables_a8b32b93d2e546f9375ec418474107838}{00069}} \textcolor{comment}{} \textcolor{keywordtype}{double} \mbox{\hyperlink{namespaceGlobal__Physical__Variables_a8b32b93d2e546f9375ec418474107838}{Ca}}= 1.0;}
 \DoxyCodeLine{\Hypertarget{inclined__plane_8cc_source_l00070}00070 \textcolor{comment}{}}
-\DoxyCodeLine{\Hypertarget{inclined__plane_8cc_source_l00071}00071 \textcolor{comment}{ ///Set the wavenumber}}
+\DoxyCodeLine{\Hypertarget{inclined__plane_8cc_source_l00071}00071 \textcolor{comment}{ /// Set the wavenumber}}
 \DoxyCodeLine{\Hypertarget{inclined__plane_8cc_source_l00072}\mbox{\hyperlink{namespaceGlobal__Physical__Variables_a9da8be10d9e20eb0329af7fd8d6e0e98}{00072}} \textcolor{comment}{} \textcolor{keywordtype}{double} \mbox{\hyperlink{namespaceGlobal__Physical__Variables_a9da8be10d9e20eb0329af7fd8d6e0e98}{K}} = 0.1;}
 \DoxyCodeLine{\Hypertarget{inclined__plane_8cc_source_l00073}00073 \textcolor{comment}{}}
-\DoxyCodeLine{\Hypertarget{inclined__plane_8cc_source_l00074}00074 \textcolor{comment}{ ///Set the number of waves desired in the domain}}
+\DoxyCodeLine{\Hypertarget{inclined__plane_8cc_source_l00074}00074 \textcolor{comment}{ /// Set the number of waves desired in the domain}}
 \DoxyCodeLine{\Hypertarget{inclined__plane_8cc_source_l00075}\mbox{\hyperlink{namespaceGlobal__Physical__Variables_adf0e913323310713bf58ec469fb586e6}{00075}} \textcolor{comment}{} \textcolor{keywordtype}{double} \mbox{\hyperlink{namespaceGlobal__Physical__Variables_adf0e913323310713bf58ec469fb586e6}{N\_wave}} = 3;}
 \DoxyCodeLine{\Hypertarget{inclined__plane_8cc_source_l00076}00076 \textcolor{comment}{}}
-\DoxyCodeLine{\Hypertarget{inclined__plane_8cc_source_l00077}00077 \textcolor{comment}{ ///The length of the domain to fit the desired number of waves}}
+\DoxyCodeLine{\Hypertarget{inclined__plane_8cc_source_l00077}00077 \textcolor{comment}{ /// The length of the domain to fit the desired number of waves}}
 \DoxyCodeLine{\Hypertarget{inclined__plane_8cc_source_l00078}\mbox{\hyperlink{namespaceGlobal__Physical__Variables_a987847160c3cfad8977836291fb9d0e0}{00078}} \textcolor{comment}{} \textcolor{keywordtype}{double} \mbox{\hyperlink{namespaceGlobal__Physical__Variables_a987847160c3cfad8977836291fb9d0e0}{Length}} = 2*\mbox{\hyperlink{namespaceGlobal__Physical__Variables_adf0e913323310713bf58ec469fb586e6}{N\_wave}}*4.0*atan(1.0)/\mbox{\hyperlink{namespaceGlobal__Physical__Variables_a9da8be10d9e20eb0329af7fd8d6e0e98}{K}};}
 \DoxyCodeLine{\Hypertarget{inclined__plane_8cc_source_l00079}00079 \textcolor{comment}{}}
-\DoxyCodeLine{\Hypertarget{inclined__plane_8cc_source_l00080}00080 \textcolor{comment}{ ///Direction of the wall normal vector (at the inlet)}}
+\DoxyCodeLine{\Hypertarget{inclined__plane_8cc_source_l00080}00080 \textcolor{comment}{ /// Direction of the wall normal vector (at the inlet)}}
 \DoxyCodeLine{\Hypertarget{inclined__plane_8cc_source_l00081}\mbox{\hyperlink{namespaceGlobal__Physical__Variables_a5feb3df21fc4a0adefadecb8a8ed98d7}{00081}} \textcolor{comment}{} Vector<double> \mbox{\hyperlink{namespaceGlobal__Physical__Variables_a5feb3df21fc4a0adefadecb8a8ed98d7}{Wall\_normal}};}
 \DoxyCodeLine{\Hypertarget{inclined__plane_8cc_source_l00082}00082 \textcolor{comment}{}}
 \DoxyCodeLine{\Hypertarget{inclined__plane_8cc_source_l00083}00083 \textcolor{comment}{ /// Function that specifies the wall unit normal at the inlet}}
@@ -102,7 +102,7 @@
 \DoxyCodeLine{\Hypertarget{inclined__plane_8cc_source_l00098}00098   \textcolor{keywordflow}{for}(\textcolor{keywordtype}{unsigned} i=0;i<n\_dim;++i) \{normal[i] *= -\/1.0;\}}
 \DoxyCodeLine{\Hypertarget{inclined__plane_8cc_source_l00099}00099  \}}
 \DoxyCodeLine{\Hypertarget{inclined__plane_8cc_source_l00100}00100 \textcolor{comment}{}}
-\DoxyCodeLine{\Hypertarget{inclined__plane_8cc_source_l00101}00101 \textcolor{comment}{ ///The contact angle that is imposed at the inlet (pi)}}
+\DoxyCodeLine{\Hypertarget{inclined__plane_8cc_source_l00101}00101 \textcolor{comment}{ /// The contact angle that is imposed at the inlet (pi)}}
 \DoxyCodeLine{\Hypertarget{inclined__plane_8cc_source_l00102}\mbox{\hyperlink{namespaceGlobal__Physical__Variables_a1c3587461447262715bd444ac91a29c9}{00102}} \textcolor{comment}{} \textcolor{keywordtype}{double} \mbox{\hyperlink{namespaceGlobal__Physical__Variables_a1c3587461447262715bd444ac91a29c9}{Inlet\_Angle}} = 2.0*atan(1.0);}
 \DoxyCodeLine{\Hypertarget{inclined__plane_8cc_source_l00103}00103 }
 \DoxyCodeLine{\Hypertarget{inclined__plane_8cc_source_l00104}00104 \textcolor{comment}{}}
@@ -125,7 +125,7 @@
 \DoxyCodeLine{\Hypertarget{inclined__plane_8cc_source_l00121}00121  \}}
 \DoxyCodeLine{\Hypertarget{inclined__plane_8cc_source_l00122}00122  \textcolor{comment}{//end of traction functions}}
 \DoxyCodeLine{\Hypertarget{inclined__plane_8cc_source_l00123}00123 \textcolor{comment}{}}
-\DoxyCodeLine{\Hypertarget{inclined__plane_8cc_source_l00124}00124 \textcolor{comment}{ ///Constitutive law used to determine the mesh deformation}}
+\DoxyCodeLine{\Hypertarget{inclined__plane_8cc_source_l00124}00124 \textcolor{comment}{ /// Constitutive law used to determine the mesh deformation}}
 \DoxyCodeLine{\Hypertarget{inclined__plane_8cc_source_l00125}\mbox{\hyperlink{namespaceGlobal__Physical__Variables_a2a37fb040c832ee7a086bb13bb02a100}{00125}} \textcolor{comment}{} ConstitutiveLaw *\mbox{\hyperlink{namespaceGlobal__Physical__Variables_a2a37fb040c832ee7a086bb13bb02a100}{Constitutive\_law\_pt}};}
 \DoxyCodeLine{\Hypertarget{inclined__plane_8cc_source_l00126}00126 \textcolor{comment}{}}
 \DoxyCodeLine{\Hypertarget{inclined__plane_8cc_source_l00127}00127 \textcolor{comment}{ /// Pseudo-\/solid Poisson ratio}}
@@ -134,9 +134,9 @@
 \DoxyCodeLine{\Hypertarget{inclined__plane_8cc_source_l00130}00130 \}}
 \DoxyCodeLine{\Hypertarget{inclined__plane_8cc_source_l00131}00131 }
 \DoxyCodeLine{\Hypertarget{inclined__plane_8cc_source_l00132}00132 \textcolor{comment}{//=====================================================================}\textcolor{comment}{}}
-\DoxyCodeLine{\Hypertarget{inclined__plane_8cc_source_l00133}00133 \textcolor{comment}{///Generic problem class that will form the base class for both }}
-\DoxyCodeLine{\Hypertarget{inclined__plane_8cc_source_l00134}00134 \textcolor{comment}{///spine and elastic mesh-\/updates of the problem.}}
-\DoxyCodeLine{\Hypertarget{inclined__plane_8cc_source_l00135}00135 \textcolor{comment}{///Templated by the bulk element and interface element types}}
+\DoxyCodeLine{\Hypertarget{inclined__plane_8cc_source_l00133}00133 \textcolor{comment}{/// Generic problem class that will form the base class for both }}
+\DoxyCodeLine{\Hypertarget{inclined__plane_8cc_source_l00134}00134 \textcolor{comment}{/// spine and elastic mesh-\/updates of the problem.}}
+\DoxyCodeLine{\Hypertarget{inclined__plane_8cc_source_l00135}00135 \textcolor{comment}{/// Templated by the bulk element and interface element types}}
 \DoxyCodeLine{\Hypertarget{inclined__plane_8cc_source_l00136}00136 \textcolor{comment}{}\textcolor{comment}{//====================================================================}}
 \DoxyCodeLine{\Hypertarget{inclined__plane_8cc_source_l00137}00137 \textcolor{keyword}{template}<\textcolor{keyword}{class} ELEMENT, \textcolor{keyword}{class} INTERFACE\_ELEMENT>}
 \DoxyCodeLine{\Hypertarget{inclined__plane_8cc_source_l00138}\mbox{\hyperlink{classInclinedPlaneProblem}{00138}} \textcolor{keyword}{class }\mbox{\hyperlink{classInclinedPlaneProblem}{InclinedPlaneProblem}} : \textcolor{keyword}{public} Problem}
@@ -144,32 +144,32 @@
 \DoxyCodeLine{\Hypertarget{inclined__plane_8cc_source_l00140}00140 }
 \DoxyCodeLine{\Hypertarget{inclined__plane_8cc_source_l00141}00141 \textcolor{keyword}{protected}:}
 \DoxyCodeLine{\Hypertarget{inclined__plane_8cc_source_l00142}00142 \textcolor{comment}{}}
-\DoxyCodeLine{\Hypertarget{inclined__plane_8cc_source_l00143}00143 \textcolor{comment}{ ///Bulk fluid mesh}}
+\DoxyCodeLine{\Hypertarget{inclined__plane_8cc_source_l00143}00143 \textcolor{comment}{ /// Bulk fluid mesh}}
 \DoxyCodeLine{\Hypertarget{inclined__plane_8cc_source_l00144}\mbox{\hyperlink{classInclinedPlaneProblem_a20c506fe684dc146424b8ec019239783}{00144}} \textcolor{comment}{} Mesh* \mbox{\hyperlink{classInclinedPlaneProblem_a20c506fe684dc146424b8ec019239783}{Bulk\_mesh\_pt}};}
 \DoxyCodeLine{\Hypertarget{inclined__plane_8cc_source_l00145}00145 \textcolor{comment}{}}
-\DoxyCodeLine{\Hypertarget{inclined__plane_8cc_source_l00146}00146 \textcolor{comment}{ ///Mesh for the traction elements that are added at inlet and outlet}}
+\DoxyCodeLine{\Hypertarget{inclined__plane_8cc_source_l00146}00146 \textcolor{comment}{ /// Mesh for the traction elements that are added at inlet and outlet}}
 \DoxyCodeLine{\Hypertarget{inclined__plane_8cc_source_l00147}\mbox{\hyperlink{classInclinedPlaneProblem_a85bcc36a8ad4ad7aa3595585e73a3197}{00147}} \textcolor{comment}{} Mesh* \mbox{\hyperlink{classInclinedPlaneProblem_a85bcc36a8ad4ad7aa3595585e73a3197}{Traction\_mesh\_pt}};}
 \DoxyCodeLine{\Hypertarget{inclined__plane_8cc_source_l00148}00148 \textcolor{comment}{}}
-\DoxyCodeLine{\Hypertarget{inclined__plane_8cc_source_l00149}00149 \textcolor{comment}{ ///Mesh for the free surface elements}}
+\DoxyCodeLine{\Hypertarget{inclined__plane_8cc_source_l00149}00149 \textcolor{comment}{ /// Mesh for the free surface elements}}
 \DoxyCodeLine{\Hypertarget{inclined__plane_8cc_source_l00150}\mbox{\hyperlink{classInclinedPlaneProblem_aba36d367278218bf00356c3bee0733a0}{00150}} \textcolor{comment}{} Mesh* \mbox{\hyperlink{classInclinedPlaneProblem_aba36d367278218bf00356c3bee0733a0}{Surface\_mesh\_pt}};}
 \DoxyCodeLine{\Hypertarget{inclined__plane_8cc_source_l00151}00151 \textcolor{comment}{}}
-\DoxyCodeLine{\Hypertarget{inclined__plane_8cc_source_l00152}00152 \textcolor{comment}{ ///Mesh for the point elements at each end of the free surface}}
+\DoxyCodeLine{\Hypertarget{inclined__plane_8cc_source_l00152}00152 \textcolor{comment}{ /// Mesh for the point elements at each end of the free surface}}
 \DoxyCodeLine{\Hypertarget{inclined__plane_8cc_source_l00153}\mbox{\hyperlink{classInclinedPlaneProblem_adefbac5880323d7de622e2ba0c526746}{00153}} \textcolor{comment}{} Mesh* \mbox{\hyperlink{classInclinedPlaneProblem_adefbac5880323d7de622e2ba0c526746}{Point\_mesh\_pt}};}
 \DoxyCodeLine{\Hypertarget{inclined__plane_8cc_source_l00154}00154 \textcolor{comment}{}}
-\DoxyCodeLine{\Hypertarget{inclined__plane_8cc_source_l00155}00155 \textcolor{comment}{ ///Prefix for output files}}
+\DoxyCodeLine{\Hypertarget{inclined__plane_8cc_source_l00155}00155 \textcolor{comment}{ /// Prefix for output files}}
 \DoxyCodeLine{\Hypertarget{inclined__plane_8cc_source_l00156}\mbox{\hyperlink{classInclinedPlaneProblem_a6ad45c76bd24f63c0162313042ce2e7d}{00156}} \textcolor{comment}{} std::string \mbox{\hyperlink{classInclinedPlaneProblem_a6ad45c76bd24f63c0162313042ce2e7d}{Output\_prefix}};}
 \DoxyCodeLine{\Hypertarget{inclined__plane_8cc_source_l00157}00157 }
 \DoxyCodeLine{\Hypertarget{inclined__plane_8cc_source_l00158}00158 \textcolor{keyword}{public}:}
 \DoxyCodeLine{\Hypertarget{inclined__plane_8cc_source_l00159}00159 \textcolor{comment}{}}
-\DoxyCodeLine{\Hypertarget{inclined__plane_8cc_source_l00160}00160 \textcolor{comment}{ ///Generic Constructor (empty)}}
+\DoxyCodeLine{\Hypertarget{inclined__plane_8cc_source_l00160}00160 \textcolor{comment}{ /// Generic Constructor (empty)}}
 \DoxyCodeLine{\Hypertarget{inclined__plane_8cc_source_l00161}\mbox{\hyperlink{classInclinedPlaneProblem_a52d15d242c8f17a340914996b49a32a3}{00161}} \textcolor{comment}{} \mbox{\hyperlink{classInclinedPlaneProblem_a52d15d242c8f17a340914996b49a32a3}{InclinedPlaneProblem}}(\textcolor{keyword}{const} \textcolor{keywordtype}{unsigned} \&nx, \textcolor{keyword}{const} \textcolor{keywordtype}{unsigned} \&ny,}
 \DoxyCodeLine{\Hypertarget{inclined__plane_8cc_source_l00162}00162                       \textcolor{keyword}{const} \textcolor{keywordtype}{double} \&length) :}
 \DoxyCodeLine{\Hypertarget{inclined__plane_8cc_source_l00163}00163   \mbox{\hyperlink{classInclinedPlaneProblem_a6ad45c76bd24f63c0162313042ce2e7d}{Output\_prefix}}(\textcolor{stringliteral}{"{}Unset"{}}) \{ \}}
 \DoxyCodeLine{\Hypertarget{inclined__plane_8cc_source_l00164}00164  \textcolor{comment}{}}
-\DoxyCodeLine{\Hypertarget{inclined__plane_8cc_source_l00165}00165 \textcolor{comment}{ ///Solve the steady problem}}
+\DoxyCodeLine{\Hypertarget{inclined__plane_8cc_source_l00165}00165 \textcolor{comment}{ /// Solve the steady problem}}
 \DoxyCodeLine{\Hypertarget{inclined__plane_8cc_source_l00166}\mbox{\hyperlink{classInclinedPlaneProblem_a0e2fcfdb8230df82729ba7d728e58040}{00166}} \textcolor{comment}{} \textcolor{keywordtype}{void} \mbox{\hyperlink{classInclinedPlaneProblem_a0e2fcfdb8230df82729ba7d728e58040}{solve\_steady}}();}
 \DoxyCodeLine{\Hypertarget{inclined__plane_8cc_source_l00167}00167  \textcolor{comment}{}}
-\DoxyCodeLine{\Hypertarget{inclined__plane_8cc_source_l00168}00168 \textcolor{comment}{ ///Take n\_tsteps timesteps of size dt}}
+\DoxyCodeLine{\Hypertarget{inclined__plane_8cc_source_l00168}00168 \textcolor{comment}{ /// Take n\_tsteps timesteps of size dt}}
 \DoxyCodeLine{\Hypertarget{inclined__plane_8cc_source_l00169}\mbox{\hyperlink{classInclinedPlaneProblem_a74bbd1ccfd3dd82c999a16924c230f51}{00169}} \textcolor{comment}{} \textcolor{keywordtype}{void} \mbox{\hyperlink{classInclinedPlaneProblem_a74bbd1ccfd3dd82c999a16924c230f51}{timestep}}(\textcolor{keyword}{const} \textcolor{keywordtype}{double} \&dt, \textcolor{keyword}{const} \textcolor{keywordtype}{unsigned} \&n\_tsteps);}
 \DoxyCodeLine{\Hypertarget{inclined__plane_8cc_source_l00170}00170 \textcolor{comment}{}}
 \DoxyCodeLine{\Hypertarget{inclined__plane_8cc_source_l00171}00171 \textcolor{comment}{ /// Actions before the timestep }}
@@ -192,7 +192,7 @@
 \DoxyCodeLine{\Hypertarget{inclined__plane_8cc_source_l00188}00188     \}}
 \DoxyCodeLine{\Hypertarget{inclined__plane_8cc_source_l00189}00189   \} \textcolor{comment}{//end\_of\_actions\_before\_implicit\_timestep}}
 \DoxyCodeLine{\Hypertarget{inclined__plane_8cc_source_l00190}00190 \textcolor{comment}{}}
-\DoxyCodeLine{\Hypertarget{inclined__plane_8cc_source_l00191}00191 \textcolor{comment}{ ///Function to add the traction boundary elements to boundaries}}
+\DoxyCodeLine{\Hypertarget{inclined__plane_8cc_source_l00191}00191 \textcolor{comment}{ /// Function to add the traction boundary elements to boundaries}}
 \DoxyCodeLine{\Hypertarget{inclined__plane_8cc_source_l00192}00192 \textcolor{comment}{ /// 3(inlet) and 1(outlet) of the mesh}}
 \DoxyCodeLine{\Hypertarget{inclined__plane_8cc_source_l00193}\mbox{\hyperlink{classInclinedPlaneProblem_a39ab8005f7603bd1f06f13d6e7a3ae64}{00193}} \textcolor{comment}{} \textcolor{keywordtype}{void} \mbox{\hyperlink{classInclinedPlaneProblem_a39ab8005f7603bd1f06f13d6e7a3ae64}{make\_traction\_elements}}()}
 \DoxyCodeLine{\Hypertarget{inclined__plane_8cc_source_l00194}00194   \{}
@@ -299,8 +299,8 @@
 \DoxyCodeLine{\Hypertarget{inclined__plane_8cc_source_l00295}00295     \}}
 \DoxyCodeLine{\Hypertarget{inclined__plane_8cc_source_l00296}00296   \} \textcolor{comment}{//end of make\_free\_surface\_elements}}
 \DoxyCodeLine{\Hypertarget{inclined__plane_8cc_source_l00297}00297 \textcolor{comment}{}}
-\DoxyCodeLine{\Hypertarget{inclined__plane_8cc_source_l00298}00298 \textcolor{comment}{ ///Complete the build of the problem setting all standard}}
-\DoxyCodeLine{\Hypertarget{inclined__plane_8cc_source_l00299}00299 \textcolor{comment}{ ///parameters and boundary conditions}}
+\DoxyCodeLine{\Hypertarget{inclined__plane_8cc_source_l00298}00298 \textcolor{comment}{ /// Complete the build of the problem setting all standard}}
+\DoxyCodeLine{\Hypertarget{inclined__plane_8cc_source_l00299}00299 \textcolor{comment}{ /// parameters and boundary conditions}}
 \DoxyCodeLine{\Hypertarget{inclined__plane_8cc_source_l00300}\mbox{\hyperlink{classInclinedPlaneProblem_ae44e360be4a46e1343c3960c3a43380f}{00300}} \textcolor{comment}{} \textcolor{keywordtype}{void} \mbox{\hyperlink{classInclinedPlaneProblem_ae44e360be4a46e1343c3960c3a43380f}{complete\_build}}()}
 \DoxyCodeLine{\Hypertarget{inclined__plane_8cc_source_l00301}00301   \{}
 \DoxyCodeLine{\Hypertarget{inclined__plane_8cc_source_l00302}00302    \textcolor{keyword}{using namespace }\mbox{\hyperlink{namespaceGlobal__Physical__Variables}{Global\_Physical\_Variables}};}
@@ -385,7 +385,7 @@
 \DoxyCodeLine{\Hypertarget{inclined__plane_8cc_source_l00381}00381    std::cout << assign\_eqn\_numbers() << \textcolor{stringliteral}{"{} in the main problem"{}} << std::endl; }
 \DoxyCodeLine{\Hypertarget{inclined__plane_8cc_source_l00382}00382   \} \textcolor{comment}{//end of complete\_build}}
 \DoxyCodeLine{\Hypertarget{inclined__plane_8cc_source_l00383}00383 \textcolor{comment}{}}
-\DoxyCodeLine{\Hypertarget{inclined__plane_8cc_source_l00384}00384 \textcolor{comment}{ ///Generic desructor to clean up the memory allocated in the problem}}
+\DoxyCodeLine{\Hypertarget{inclined__plane_8cc_source_l00384}00384 \textcolor{comment}{ /// Generic desructor to clean up the memory allocated in the problem}}
 \DoxyCodeLine{\Hypertarget{inclined__plane_8cc_source_l00385}\mbox{\hyperlink{classInclinedPlaneProblem_ad89c7dc7975bf128a7c249496fabc97f}{00385}} \textcolor{comment}{} \mbox{\hyperlink{classInclinedPlaneProblem_ad89c7dc7975bf128a7c249496fabc97f}{\string~InclinedPlaneProblem}}()}
 \DoxyCodeLine{\Hypertarget{inclined__plane_8cc_source_l00386}00386   \{}
 \DoxyCodeLine{\Hypertarget{inclined__plane_8cc_source_l00387}00387    \textcolor{comment}{//Clear node storage before the mesh can be deleted, }}
@@ -409,7 +409,7 @@
 \DoxyCodeLine{\Hypertarget{inclined__plane_8cc_source_l00405}00405 }
 \DoxyCodeLine{\Hypertarget{inclined__plane_8cc_source_l00406}00406 }
 \DoxyCodeLine{\Hypertarget{inclined__plane_8cc_source_l00407}00407 \textcolor{comment}{//-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/}\textcolor{comment}{}}
-\DoxyCodeLine{\Hypertarget{inclined__plane_8cc_source_l00408}00408 \textcolor{comment}{///Solve the steady problem}}
+\DoxyCodeLine{\Hypertarget{inclined__plane_8cc_source_l00408}00408 \textcolor{comment}{/// Solve the steady problem}}
 \DoxyCodeLine{\Hypertarget{inclined__plane_8cc_source_l00409}00409 \textcolor{comment}{}\textcolor{comment}{//-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/}}
 \DoxyCodeLine{\Hypertarget{inclined__plane_8cc_source_l00410}00410 \textcolor{keyword}{template}<\textcolor{keyword}{class} ELEMENT,\textcolor{keyword}{class} INTERFACE\_ELEMENT>}
 \DoxyCodeLine{\Hypertarget{inclined__plane_8cc_source_l00411}\mbox{\hyperlink{classInclinedPlaneProblem_a0e2fcfdb8230df82729ba7d728e58040}{00411}} \textcolor{keywordtype}{void} \mbox{\hyperlink{classInclinedPlaneProblem_a0e2fcfdb8230df82729ba7d728e58040}{InclinedPlaneProblem<ELEMENT,INTERFACE\_ELEMENT>::solve\_steady}}()}
@@ -738,8 +738,8 @@
 \DoxyCodeLine{\Hypertarget{inclined__plane_8cc_source_l00734}00734    this-\/>\mbox{\hyperlink{classInclinedPlaneProblem_ae44e360be4a46e1343c3960c3a43380f}{complete\_build}}();}
 \DoxyCodeLine{\Hypertarget{inclined__plane_8cc_source_l00735}00735   \} \textcolor{comment}{//end of constructor}}
 \DoxyCodeLine{\Hypertarget{inclined__plane_8cc_source_l00736}00736 \textcolor{comment}{}}
-\DoxyCodeLine{\Hypertarget{inclined__plane_8cc_source_l00737}00737 \textcolor{comment}{ ///Update Lagrangian positions after each timestep }}
-\DoxyCodeLine{\Hypertarget{inclined__plane_8cc_source_l00738}00738 \textcolor{comment}{ ///(updated-\/lagrangian approach)}}
+\DoxyCodeLine{\Hypertarget{inclined__plane_8cc_source_l00737}00737 \textcolor{comment}{ /// Update Lagrangian positions after each timestep }}
+\DoxyCodeLine{\Hypertarget{inclined__plane_8cc_source_l00738}00738 \textcolor{comment}{ /// (updated-\/lagrangian approach)}}
 \DoxyCodeLine{\Hypertarget{inclined__plane_8cc_source_l00739}\mbox{\hyperlink{classElasticInclinedPlaneProblem_a7e61d0cb5e10b7e98f949a43749477a6}{00739}} \textcolor{comment}{} \textcolor{keywordtype}{void} \mbox{\hyperlink{classElasticInclinedPlaneProblem_a7e61d0cb5e10b7e98f949a43749477a6}{actions\_after\_implicit\_timestep}}()}
 \DoxyCodeLine{\Hypertarget{inclined__plane_8cc_source_l00740}00740   \{}
 \DoxyCodeLine{\Hypertarget{inclined__plane_8cc_source_l00741}00741    \textcolor{comment}{//Now loop over all the nodes and reset their Lagrangian coordinates}}

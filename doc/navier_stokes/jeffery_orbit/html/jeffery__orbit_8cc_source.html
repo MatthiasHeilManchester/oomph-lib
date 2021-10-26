@@ -205,15 +205,15 @@
 <div class="line"><a id="l00086" name="l00086"></a><span class="lineno">   86</span> </div>
 <div class="line"><a id="l00087" name="l00087"></a><span class="lineno">   87</span> </div>
 <div class="line"><a id="l00088" name="l00088"></a><span class="lineno">   88</span><span class="comment">//=======================================================================</span><span class="comment"></span></div>
-<div class="line"><a id="l00089" name="l00089"></a><span class="lineno">   89</span><span class="comment">///Exact solution for the rotation of an ellipse in unbounded shear flow</span></div>
-<div class="line"><a id="l00090" name="l00090"></a><span class="lineno">   90</span><span class="comment">///as computed by Jeffery (1922)</span></div>
+<div class="line"><a id="l00089" name="l00089"></a><span class="lineno">   89</span><span class="comment">/// Exact solution for the rotation of an ellipse in unbounded shear flow</span></div>
+<div class="line"><a id="l00090" name="l00090"></a><span class="lineno">   90</span><span class="comment">/// as computed by Jeffery (1922)</span></div>
 <div class="line"><a id="l00091" name="l00091"></a><span class="lineno">   91</span><span class="comment"></span><span class="comment">//=======================================================================</span></div>
 <div class="line"><a id="l00092" name="l00092"></a><span class="lineno"><a class="line" href="namespaceJeffery__Solution.html">   92</a></span><span class="keyword">namespace </span><a class="code hl_namespace" href="namespaceJeffery__Solution.html">Jeffery_Solution</a></div>
 <div class="line"><a id="l00093" name="l00093"></a><span class="lineno">   93</span>{<span class="comment"></span></div>
-<div class="line"><a id="l00094" name="l00094"></a><span class="lineno">   94</span><span class="comment"> ///Null function</span></div>
+<div class="line"><a id="l00094" name="l00094"></a><span class="lineno">   94</span><span class="comment"> /// Null function</span></div>
 <div class="line"><a id="l00095" name="l00095"></a><span class="lineno"><a class="line" href="namespaceJeffery__Solution.html#a6a47b12e9a89f545c7467fae2e6a4350">   95</a></span><span class="comment"></span> <span class="keywordtype">double</span> <span class="keyword">null</span>(<span class="keyword">const</span> <span class="keywordtype">double</span> &amp;t) {<span class="keywordflow">return</span> 0.0;}</div>
 <div class="line"><a id="l00096" name="l00096"></a><span class="lineno">   96</span><span class="comment"></span> </div>
-<div class="line"><a id="l00097" name="l00097"></a><span class="lineno">   97</span><span class="comment"> ///Angular position as a function of time t</span></div>
+<div class="line"><a id="l00097" name="l00097"></a><span class="lineno">   97</span><span class="comment"> /// Angular position as a function of time t</span></div>
 <div class="line"><a id="l00098" name="l00098"></a><span class="lineno"><a class="line" href="namespaceJeffery__Solution.html#ad3bd18834ecba370674e34242f8125c1">   98</a></span><span class="comment"></span> <span class="keywordtype">double</span> <a class="code hl_function" href="namespaceJeffery__Solution.html#ad3bd18834ecba370674e34242f8125c1">angle</a>(<span class="keyword">const</span> <span class="keywordtype">double</span> &amp;t)</div>
 <div class="line"><a id="l00099" name="l00099"></a><span class="lineno">   99</span> {</div>
 <div class="line"><a id="l00100" name="l00100"></a><span class="lineno">  100</span>  <span class="keyword">const</span> <span class="keywordtype">double</span> a = <a class="code hl_variable" href="namespaceProblem__Parameter.html#a23071148de0fea3597c2a7eb848320b6">Problem_Parameter::A</a>;</div>
@@ -222,7 +222,7 @@
 <div class="line"><a id="l00103" name="l00103"></a><span class="lineno">  103</span>  <span class="keywordflow">return</span> atan((b/a)*tan((a*b*t)/(b*b + a*a)));</div>
 <div class="line"><a id="l00104" name="l00104"></a><span class="lineno">  104</span> }</div>
 <div class="line"><a id="l00105" name="l00105"></a><span class="lineno">  105</span><span class="comment"></span> </div>
-<div class="line"><a id="l00106" name="l00106"></a><span class="lineno">  106</span><span class="comment"> ///Angular velocity as function of time t</span></div>
+<div class="line"><a id="l00106" name="l00106"></a><span class="lineno">  106</span><span class="comment"> /// Angular velocity as function of time t</span></div>
 <div class="line"><a id="l00107" name="l00107"></a><span class="lineno"><a class="line" href="namespaceJeffery__Solution.html#acf35d547e7d28609a17c66c9a191090b">  107</a></span><span class="comment"></span> <span class="keywordtype">double</span> <a class="code hl_function" href="namespaceJeffery__Solution.html#acf35d547e7d28609a17c66c9a191090b">velocity</a>(<span class="keyword">const</span> <span class="keywordtype">double</span> &amp;t)</div>
 <div class="line"><a id="l00108" name="l00108"></a><span class="lineno">  108</span> {</div>
 <div class="line"><a id="l00109" name="l00109"></a><span class="lineno">  109</span>  <span class="keyword">const</span> <span class="keywordtype">double</span> a = <a class="code hl_variable" href="namespaceProblem__Parameter.html#a23071148de0fea3597c2a7eb848320b6">Problem_Parameter::A</a>;</div>
@@ -235,7 +235,7 @@
 <div class="line"><a id="l00116" name="l00116"></a><span class="lineno">  116</span>  <span class="keywordflow">return</span> (a*a*sin(chi)*sin(chi) + b*b*cos(chi)*cos(chi))/(a*a + b*b);</div>
 <div class="line"><a id="l00117" name="l00117"></a><span class="lineno">  117</span> }</div>
 <div class="line"><a id="l00118" name="l00118"></a><span class="lineno">  118</span><span class="comment"></span> </div>
-<div class="line"><a id="l00119" name="l00119"></a><span class="lineno">  119</span><span class="comment"> ///Angular acceleration as a function of time t (should always be zero)</span></div>
+<div class="line"><a id="l00119" name="l00119"></a><span class="lineno">  119</span><span class="comment"> /// Angular acceleration as a function of time t (should always be zero)</span></div>
 <div class="line"><a id="l00120" name="l00120"></a><span class="lineno"><a class="line" href="namespaceJeffery__Solution.html#afe09bdca1fe833f94f510e206d5df08c">  120</a></span><span class="comment"></span> <span class="keywordtype">double</span> <a class="code hl_function" href="namespaceJeffery__Solution.html#afe09bdca1fe833f94f510e206d5df08c">acceleration</a>(<span class="keyword">const</span> <span class="keywordtype">double</span> &amp;t)</div>
 <div class="line"><a id="l00121" name="l00121"></a><span class="lineno">  121</span> {</div>
 <div class="line"><a id="l00122" name="l00122"></a><span class="lineno">  122</span>  <span class="keyword">const</span> <span class="keywordtype">double</span> a = <a class="code hl_variable" href="namespaceProblem__Parameter.html#a23071148de0fea3597c2a7eb848320b6">Problem_Parameter::A</a>;</div>
@@ -250,9 +250,9 @@
 <div class="line"><a id="l00131" name="l00131"></a><span class="lineno">  131</span> }</div>
 <div class="line"><a id="l00132" name="l00132"></a><span class="lineno">  132</span>}</div>
 <div class="line"><a id="l00133" name="l00133"></a><span class="lineno">  133</span><span class="comment"></span> </div>
-<div class="line"><a id="l00134" name="l00134"></a><span class="lineno">  134</span><span class="comment">///////////////////////////////////////////////////////////</span></div>
-<div class="line"><a id="l00135" name="l00135"></a><span class="lineno">  135</span><span class="comment">///////////////////////////////////////////////////////////</span></div>
-<div class="line"><a id="l00136" name="l00136"></a><span class="lineno">  136</span><span class="comment">///////////////////////////////////////////////////////////</span></div>
+<div class="line"><a id="l00134" name="l00134"></a><span class="lineno">  134</span><span class="comment">/// ////////////////////////////////////////////////////////</span></div>
+<div class="line"><a id="l00135" name="l00135"></a><span class="lineno">  135</span><span class="comment">/// ////////////////////////////////////////////////////////</span></div>
+<div class="line"><a id="l00136" name="l00136"></a><span class="lineno">  136</span><span class="comment">/// ////////////////////////////////////////////////////////</span></div>
 <div class="line"><a id="l00137" name="l00137"></a><span class="lineno">  137</span><span class="comment"></span> </div>
 <div class="line"><a id="l00138" name="l00138"></a><span class="lineno">  138</span> </div>
 <div class="line"><a id="l00139" name="l00139"></a><span class="lineno">  139</span><span class="comment">//===================start_of_general_ellipse=================================</span><span class="comment"></span></div>
@@ -280,8 +280,8 @@
 <div class="line"><a id="l00161" name="l00161"></a><span class="lineno">  161</span><span class="comment"> /// Empty Destructor</span></div>
 <div class="line"><a id="l00162" name="l00162"></a><span class="lineno"><a class="line" href="classGeneralEllipse.html#a3ac5c17cf8c4998f1b74913860cb3bb9">  162</a></span><span class="comment"></span> <a class="code hl_function" href="classGeneralEllipse.html#a3ac5c17cf8c4998f1b74913860cb3bb9">~GeneralEllipse</a>() {}</div>
 <div class="line"><a id="l00163" name="l00163"></a><span class="lineno">  163</span><span class="comment"></span> </div>
-<div class="line"><a id="l00164" name="l00164"></a><span class="lineno">  164</span><span class="comment"> ///Return the position of the ellipse boundary as a function of </span></div>
-<div class="line"><a id="l00165" name="l00165"></a><span class="lineno">  165</span><span class="comment"> ///the angle xi[0]</span></div>
+<div class="line"><a id="l00164" name="l00164"></a><span class="lineno">  164</span><span class="comment"> /// Return the position of the ellipse boundary as a function of </span></div>
+<div class="line"><a id="l00165" name="l00165"></a><span class="lineno">  165</span><span class="comment"> /// the angle xi[0]</span></div>
 <div class="line"><a id="l00166" name="l00166"></a><span class="lineno"><a class="line" href="classGeneralEllipse.html#a85e975c70441a9c9c711b5e27d124bff">  166</a></span><span class="comment"></span> <span class="keywordtype">void</span> <a class="code hl_function" href="classGeneralEllipse.html#a85e975c70441a9c9c711b5e27d124bff">position</a>(<span class="keyword">const</span> Vector&lt;double&gt; &amp;xi, Vector&lt;double&gt; &amp;r)<span class="keyword"> const</span></div>
 <div class="line"><a id="l00167" name="l00167"></a><span class="lineno">  167</span><span class="keyword">  </span>{</div>
 <div class="line"><a id="l00168" name="l00168"></a><span class="lineno">  168</span>   r[0] = <a class="code hl_variable" href="classGeneralEllipse.html#aeb974769f58d136a12ac1532506304cc">Centre_x</a> + <a class="code hl_variable" href="classGeneralEllipse.html#ae583e1437da6ad4eb228dda60b61808a">A</a>*cos(xi[0]);</div>
@@ -299,9 +299,9 @@
 <div class="line"><a id="l00180" name="l00180"></a><span class="lineno">  180</span><span class="comment">//end_of_general_ellipse</span></div>
 <div class="line"><a id="l00181" name="l00181"></a><span class="lineno">  181</span> </div>
 <div class="line"><a id="l00182" name="l00182"></a><span class="lineno">  182</span><span class="comment"></span> </div>
-<div class="line"><a id="l00183" name="l00183"></a><span class="lineno">  183</span><span class="comment">///////////////////////////////////////////////////////////</span></div>
-<div class="line"><a id="l00184" name="l00184"></a><span class="lineno">  184</span><span class="comment">///////////////////////////////////////////////////////////</span></div>
-<div class="line"><a id="l00185" name="l00185"></a><span class="lineno">  185</span><span class="comment">///////////////////////////////////////////////////////////</span></div>
+<div class="line"><a id="l00183" name="l00183"></a><span class="lineno">  183</span><span class="comment">/// ////////////////////////////////////////////////////////</span></div>
+<div class="line"><a id="l00184" name="l00184"></a><span class="lineno">  184</span><span class="comment">/// ////////////////////////////////////////////////////////</span></div>
+<div class="line"><a id="l00185" name="l00185"></a><span class="lineno">  185</span><span class="comment">/// ////////////////////////////////////////////////////////</span></div>
 <div class="line"><a id="l00186" name="l00186"></a><span class="lineno">  186</span><span class="comment"></span> </div>
 <div class="line"><a id="l00187" name="l00187"></a><span class="lineno">  187</span> </div>
 <div class="line"><a id="l00188" name="l00188"></a><span class="lineno">  188</span><span class="comment">//==start_of_problem_class============================================</span><span class="comment"></span></div>
@@ -345,12 +345,12 @@
 <div class="line"><a id="l00226" name="l00226"></a><span class="lineno">  226</span><span class="comment"> /// computation of drag vector</span></div>
 <div class="line"><a id="l00227" name="l00227"></a><span class="lineno">  227</span><span class="comment"></span> <span class="keywordtype">void</span> <a class="code hl_function" href="classUnstructuredImmersedEllipseProblem.html#a42b13e3306ff2a94053907644ba17c8d">complete_problem_setup</a>();</div>
 <div class="line"><a id="l00228" name="l00228"></a><span class="lineno">  228</span><span class="comment"></span> </div>
-<div class="line"><a id="l00229" name="l00229"></a><span class="lineno">  229</span><span class="comment"> ///Set the boundary velocity</span></div>
+<div class="line"><a id="l00229" name="l00229"></a><span class="lineno">  229</span><span class="comment"> /// Set the boundary velocity</span></div>
 <div class="line"><a id="l00230" name="l00230"></a><span class="lineno">  230</span><span class="comment"></span> <span class="keywordtype">void</span> <a class="code hl_function" href="classUnstructuredImmersedEllipseProblem.html#ab201b187b240105fd8d444d943f6dada">set_boundary_velocity</a>();</div>
 <div class="line"><a id="l00231" name="l00231"></a><span class="lineno">  231</span><span class="comment"></span> </div>
-<div class="line"><a id="l00232" name="l00232"></a><span class="lineno">  232</span><span class="comment"> ///Function that solves a simplified problem to ensure that </span></div>
-<div class="line"><a id="l00233" name="l00233"></a><span class="lineno">  233</span><span class="comment"> ///the positions of the boundary nodes are initially consistent with</span></div>
-<div class="line"><a id="l00234" name="l00234"></a><span class="lineno">  234</span><span class="comment"> ///the lagrange multiplier formulation</span></div>
+<div class="line"><a id="l00232" name="l00232"></a><span class="lineno">  232</span><span class="comment"> /// Function that solves a simplified problem to ensure that </span></div>
+<div class="line"><a id="l00233" name="l00233"></a><span class="lineno">  233</span><span class="comment"> /// the positions of the boundary nodes are initially consistent with</span></div>
+<div class="line"><a id="l00234" name="l00234"></a><span class="lineno">  234</span><span class="comment"> /// the lagrange multiplier formulation</span></div>
 <div class="line"><a id="l00235" name="l00235"></a><span class="lineno">  235</span><span class="comment"></span> <span class="keywordtype">void</span> <a class="code hl_function" href="classUnstructuredImmersedEllipseProblem.html#a2a88b40ff1988de0fc696f1eb755ea54">solve_for_consistent_nodal_positions</a>();</div>
 <div class="line"><a id="l00236" name="l00236"></a><span class="lineno">  236</span><span class="comment"></span> </div>
 <div class="line"><a id="l00237" name="l00237"></a><span class="lineno">  237</span><span class="comment"> /// Doc the solution</span></div>
@@ -377,10 +377,10 @@
 <div class="line"><a id="l00258" name="l00258"></a><span class="lineno">  258</span><span class="comment"> /// boundaries</span></div>
 <div class="line"><a id="l00259" name="l00259"></a><span class="lineno">  259</span><span class="comment"></span> <span class="keywordtype">void</span> <a class="code hl_function" href="classUnstructuredImmersedEllipseProblem.html#a7d7b84968988d37091b29957b0af5bfa">delete_drag_elements</a>();</div>
 <div class="line"><a id="l00260" name="l00260"></a><span class="lineno">  260</span><span class="comment"></span> </div>
-<div class="line"><a id="l00261" name="l00261"></a><span class="lineno">  261</span><span class="comment"> ///Pin the degrees of freedom associated with the solid bodies</span></div>
+<div class="line"><a id="l00261" name="l00261"></a><span class="lineno">  261</span><span class="comment"> /// Pin the degrees of freedom associated with the solid bodies</span></div>
 <div class="line"><a id="l00262" name="l00262"></a><span class="lineno">  262</span><span class="comment"></span> <span class="keywordtype">void</span> <a class="code hl_function" href="classUnstructuredImmersedEllipseProblem.html#a07dc16909c0223fe4b656fd270f27c11">pin_rigid_body</a>();</div>
 <div class="line"><a id="l00263" name="l00263"></a><span class="lineno">  263</span><span class="comment"></span> </div>
-<div class="line"><a id="l00264" name="l00264"></a><span class="lineno">  264</span><span class="comment"> ///Unpin the degrees of freedom associated with the solid bodies</span></div>
+<div class="line"><a id="l00264" name="l00264"></a><span class="lineno">  264</span><span class="comment"> /// Unpin the degrees of freedom associated with the solid bodies</span></div>
 <div class="line"><a id="l00265" name="l00265"></a><span class="lineno">  265</span><span class="comment"></span> <span class="keywordtype">void</span> <a class="code hl_function" href="classUnstructuredImmersedEllipseProblem.html#a4f8c7e7e4d626084f6515a152b165567">unpin_rigid_body</a>();</div>
 <div class="line"><a id="l00266" name="l00266"></a><span class="lineno">  266</span> <span class="comment"></span></div>
 <div class="line"><a id="l00267" name="l00267"></a><span class="lineno">  267</span><span class="comment"> /// Pointers to mesh of Lagrange multiplier elements</span></div>
@@ -849,7 +849,7 @@
 <div class="line"><a id="l00730" name="l00730"></a><span class="lineno">  730</span> </div>
 <div class="line"><a id="l00731" name="l00731"></a><span class="lineno">  731</span> </div>
 <div class="line"><a id="l00732" name="l00732"></a><span class="lineno">  732</span><span class="comment">//=================start_set_boundary_velocity===========================</span><span class="comment"></span></div>
-<div class="line"><a id="l00733" name="l00733"></a><span class="lineno">  733</span><span class="comment">///Set the boundary velocity for current and history values</span></div>
+<div class="line"><a id="l00733" name="l00733"></a><span class="lineno">  733</span><span class="comment">/// Set the boundary velocity for current and history values</span></div>
 <div class="line"><a id="l00734" name="l00734"></a><span class="lineno">  734</span><span class="comment"></span><span class="comment">//=======================================================================</span></div>
 <div class="line"><a id="l00735" name="l00735"></a><span class="lineno">  735</span><span class="keyword">template</span>&lt;<span class="keyword">class</span> ELEMENT&gt;</div>
 <div class="line"><a id="l00736" name="l00736"></a><span class="lineno"><a class="line" href="classUnstructuredImmersedEllipseProblem.html#ab201b187b240105fd8d444d943f6dada">  736</a></span><span class="keywordtype">void</span> <a class="code hl_function" href="classUnstructuredImmersedEllipseProblem.html#ab201b187b240105fd8d444d943f6dada">UnstructuredImmersedEllipseProblem&lt;ELEMENT&gt;::</a></div>
@@ -937,7 +937,7 @@
 <div class="line"><a id="l00818" name="l00818"></a><span class="lineno">  818</span> </div>
 <div class="line"><a id="l00819" name="l00819"></a><span class="lineno">  819</span> </div>
 <div class="line"><a id="l00820" name="l00820"></a><span class="lineno">  820</span><span class="comment">//====================start_of_pin_rigid_body=====================</span><span class="comment"></span></div>
-<div class="line"><a id="l00821" name="l00821"></a><span class="lineno">  821</span><span class="comment">///Pin the degrees of freedom associated with the solid bodies</span></div>
+<div class="line"><a id="l00821" name="l00821"></a><span class="lineno">  821</span><span class="comment">/// Pin the degrees of freedom associated with the solid bodies</span></div>
 <div class="line"><a id="l00822" name="l00822"></a><span class="lineno">  822</span><span class="comment"></span><span class="comment">//================================================================</span></div>
 <div class="line"><a id="l00823" name="l00823"></a><span class="lineno">  823</span><span class="keyword">template</span>&lt;<span class="keyword">class</span> ELEMENT&gt;</div>
 <div class="line"><a id="l00824" name="l00824"></a><span class="lineno"><a class="line" href="classUnstructuredImmersedEllipseProblem.html#a07dc16909c0223fe4b656fd270f27c11">  824</a></span><span class="keywordtype">void</span> <a class="code hl_function" href="classUnstructuredImmersedEllipseProblem.html#a07dc16909c0223fe4b656fd270f27c11">UnstructuredImmersedEllipseProblem&lt;ELEMENT&gt;::pin_rigid_body</a>()</div>
@@ -955,7 +955,7 @@
 <div class="line"><a id="l00836" name="l00836"></a><span class="lineno">  836</span> </div>
 <div class="line"><a id="l00837" name="l00837"></a><span class="lineno">  837</span> </div>
 <div class="line"><a id="l00838" name="l00838"></a><span class="lineno">  838</span><span class="comment">//=================start_unpin_rigid_body==========================</span><span class="comment"></span></div>
-<div class="line"><a id="l00839" name="l00839"></a><span class="lineno">  839</span><span class="comment">///Unpin the degrees of freedom associated with the solid bodies</span></div>
+<div class="line"><a id="l00839" name="l00839"></a><span class="lineno">  839</span><span class="comment">/// Unpin the degrees of freedom associated with the solid bodies</span></div>
 <div class="line"><a id="l00840" name="l00840"></a><span class="lineno">  840</span><span class="comment"></span><span class="comment">//=================================================================</span></div>
 <div class="line"><a id="l00841" name="l00841"></a><span class="lineno">  841</span><span class="keyword">template</span>&lt;<span class="keyword">class</span> ELEMENT&gt;</div>
 <div class="line"><a id="l00842" name="l00842"></a><span class="lineno"><a class="line" href="classUnstructuredImmersedEllipseProblem.html#a4f8c7e7e4d626084f6515a152b165567">  842</a></span><span class="keywordtype">void</span> <a class="code hl_function" href="classUnstructuredImmersedEllipseProblem.html#a4f8c7e7e4d626084f6515a152b165567">UnstructuredImmersedEllipseProblem&lt;ELEMENT&gt;::unpin_rigid_body</a>()</div>
@@ -973,10 +973,10 @@
 <div class="line"><a id="l00854" name="l00854"></a><span class="lineno">  854</span> </div>
 <div class="line"><a id="l00855" name="l00855"></a><span class="lineno">  855</span> </div>
 <div class="line"><a id="l00856" name="l00856"></a><span class="lineno">  856</span><span class="comment">//==========start_solve_for_consistent_nodal_positions================</span><span class="comment"></span></div>
-<div class="line"><a id="l00857" name="l00857"></a><span class="lineno">  857</span><span class="comment">///Assemble and solve a simplified problem that ensures that the </span></div>
-<div class="line"><a id="l00858" name="l00858"></a><span class="lineno">  858</span><span class="comment">///positions of the boundary nodes are consistent with the weak </span></div>
-<div class="line"><a id="l00859" name="l00859"></a><span class="lineno">  859</span><span class="comment">///imposition of the displacement boundary conditions on the surface</span></div>
-<div class="line"><a id="l00860" name="l00860"></a><span class="lineno">  860</span><span class="comment">///of the ellipse.</span></div>
+<div class="line"><a id="l00857" name="l00857"></a><span class="lineno">  857</span><span class="comment">/// Assemble and solve a simplified problem that ensures that the </span></div>
+<div class="line"><a id="l00858" name="l00858"></a><span class="lineno">  858</span><span class="comment">/// positions of the boundary nodes are consistent with the weak </span></div>
+<div class="line"><a id="l00859" name="l00859"></a><span class="lineno">  859</span><span class="comment">/// imposition of the displacement boundary conditions on the surface</span></div>
+<div class="line"><a id="l00860" name="l00860"></a><span class="lineno">  860</span><span class="comment">/// of the ellipse.</span></div>
 <div class="line"><a id="l00861" name="l00861"></a><span class="lineno">  861</span><span class="comment"></span><span class="comment">//===================================================================</span></div>
 <div class="line"><a id="l00862" name="l00862"></a><span class="lineno">  862</span><span class="keyword">template</span>&lt;<span class="keyword">class</span> ELEMENT&gt;</div>
 <div class="line"><a id="l00863" name="l00863"></a><span class="lineno"><a class="line" href="classUnstructuredImmersedEllipseProblem.html#a2a88b40ff1988de0fc696f1eb755ea54">  863</a></span><span class="keywordtype">void</span> <a class="code hl_function" href="classUnstructuredImmersedEllipseProblem.html#a2a88b40ff1988de0fc696f1eb755ea54">UnstructuredImmersedEllipseProblem&lt;ELEMENT&gt;::</a></div>
@@ -1381,7 +1381,7 @@
 <div class="line"><a id="l01262" name="l01262"></a><span class="lineno"> 1262</span>  }</div>
 <div class="line"><a id="l01263" name="l01263"></a><span class="lineno"> 1263</span> </div>
 <div class="line"><a id="l01264" name="l01264"></a><span class="lineno"> 1264</span>} <span class="comment">//end of main</span></div>
-<div class="ttc" id="aclassGeneralEllipse_html"><div class="ttname"><a href="classGeneralEllipse.html">GeneralEllipse</a></div><div class="ttdoc">A geometric object for an ellipse with initial centre of mass at (centre_x, centre_y) with axis in th...</div><div class="ttdef"><b>Definition:</b> <a href="jeffery__orbit_8cc_source.html#l00145">jeffery_orbit.cc:146</a></div></div>
+<div class="ttc" id="aclassGeneralEllipse_html"><div class="ttname"><a href="classGeneralEllipse.html">GeneralEllipse</a></div><div class="ttdoc">//////////////////////////////////////////////////////// ////////////////////////////////////////////...</div><div class="ttdef"><b>Definition:</b> <a href="jeffery__orbit_8cc_source.html#l00145">jeffery_orbit.cc:146</a></div></div>
 <div class="ttc" id="aclassGeneralEllipse_html_a185ae9786d5c6c82eef61e163e9310c6"><div class="ttname"><a href="classGeneralEllipse.html#a185ae9786d5c6c82eef61e163e9310c6">GeneralEllipse::B</a></div><div class="ttdeci">double B</div><div class="ttdef"><b>Definition:</b> <a href="jeffery__orbit_8cc_source.html#l00150">jeffery_orbit.cc:150</a></div></div>
 <div class="ttc" id="aclassGeneralEllipse_html_a2bdcc69fcb1f1725124d625c032d171a"><div class="ttname"><a href="classGeneralEllipse.html#a2bdcc69fcb1f1725124d625c032d171a">GeneralEllipse::position</a></div><div class="ttdeci">void position(const unsigned &amp;t, const Vector&lt; double &gt; &amp;xi, Vector&lt; double &gt; &amp;r) const</div><div class="ttdef"><b>Definition:</b> <a href="jeffery__orbit_8cc_source.html#l00173">jeffery_orbit.cc:173</a></div></div>
 <div class="ttc" id="aclassGeneralEllipse_html_a3ac5c17cf8c4998f1b74913860cb3bb9"><div class="ttname"><a href="classGeneralEllipse.html#a3ac5c17cf8c4998f1b74913860cb3bb9">GeneralEllipse::~GeneralEllipse</a></div><div class="ttdeci">~GeneralEllipse()</div><div class="ttdoc">Empty Destructor.</div><div class="ttdef"><b>Definition:</b> <a href="jeffery__orbit_8cc_source.html#l00162">jeffery_orbit.cc:162</a></div></div>
@@ -1390,7 +1390,7 @@
 <div class="ttc" id="aclassGeneralEllipse_html_abf2def5a5140bb35e381b800c4b91dc9"><div class="ttname"><a href="classGeneralEllipse.html#abf2def5a5140bb35e381b800c4b91dc9">GeneralEllipse::Centre_y</a></div><div class="ttdeci">double Centre_y</div><div class="ttdef"><b>Definition:</b> <a href="jeffery__orbit_8cc_source.html#l00150">jeffery_orbit.cc:150</a></div></div>
 <div class="ttc" id="aclassGeneralEllipse_html_ae583e1437da6ad4eb228dda60b61808a"><div class="ttname"><a href="classGeneralEllipse.html#ae583e1437da6ad4eb228dda60b61808a">GeneralEllipse::A</a></div><div class="ttdeci">double A</div><div class="ttdef"><b>Definition:</b> <a href="jeffery__orbit_8cc_source.html#l00150">jeffery_orbit.cc:150</a></div></div>
 <div class="ttc" id="aclassGeneralEllipse_html_aeb974769f58d136a12ac1532506304cc"><div class="ttname"><a href="classGeneralEllipse.html#aeb974769f58d136a12ac1532506304cc">GeneralEllipse::Centre_x</a></div><div class="ttdeci">double Centre_x</div><div class="ttdef"><b>Definition:</b> <a href="jeffery__orbit_8cc_source.html#l00150">jeffery_orbit.cc:150</a></div></div>
-<div class="ttc" id="aclassUnstructuredImmersedEllipseProblem_html"><div class="ttname"><a href="classUnstructuredImmersedEllipseProblem.html">UnstructuredImmersedEllipseProblem</a></div><div class="ttdoc">Unstructured Navier-Stokes ALE Problem for a rigid ellipse immersed within a viscous fluid.</div><div class="ttdef"><b>Definition:</b> <a href="jeffery__orbit_8cc_source.html#l00193">jeffery_orbit.cc:194</a></div></div>
+<div class="ttc" id="aclassUnstructuredImmersedEllipseProblem_html"><div class="ttname"><a href="classUnstructuredImmersedEllipseProblem.html">UnstructuredImmersedEllipseProblem</a></div><div class="ttdoc">//////////////////////////////////////////////////////// ////////////////////////////////////////////...</div><div class="ttdef"><b>Definition:</b> <a href="jeffery__orbit_8cc_source.html#l00193">jeffery_orbit.cc:194</a></div></div>
 <div class="ttc" id="aclassUnstructuredImmersedEllipseProblem_html_a07dc16909c0223fe4b656fd270f27c11"><div class="ttname"><a href="classUnstructuredImmersedEllipseProblem.html#a07dc16909c0223fe4b656fd270f27c11">UnstructuredImmersedEllipseProblem::pin_rigid_body</a></div><div class="ttdeci">void pin_rigid_body()</div><div class="ttdoc">Pin the degrees of freedom associated with the solid bodies.</div><div class="ttdef"><b>Definition:</b> <a href="jeffery__orbit_8cc_source.html#l00824">jeffery_orbit.cc:824</a></div></div>
 <div class="ttc" id="aclassUnstructuredImmersedEllipseProblem_html_a08e12dd83c98f96e14e8152cc758d398"><div class="ttname"><a href="classUnstructuredImmersedEllipseProblem.html#a08e12dd83c98f96e14e8152cc758d398">UnstructuredImmersedEllipseProblem::doc_solution</a></div><div class="ttdeci">void doc_solution(const bool &amp;project=false)</div><div class="ttdoc">Doc the solution.</div><div class="ttdef"><b>Definition:</b> <a href="jeffery__orbit_8cc_source.html#l01106">jeffery_orbit.cc:1106</a></div></div>
 <div class="ttc" id="aclassUnstructuredImmersedEllipseProblem_html_a0ba79ccde26b781b66d9839460f08bd3"><div class="ttname"><a href="classUnstructuredImmersedEllipseProblem.html#a0ba79ccde26b781b66d9839460f08bd3">UnstructuredImmersedEllipseProblem::Fluid_mesh_pt</a></div><div class="ttdeci">RefineableSolidTriangleMesh&lt; ELEMENT &gt; * Fluid_mesh_pt</div><div class="ttdoc">Pointer to Fluid_mesh.</div><div class="ttdef"><b>Definition:</b> <a href="jeffery__orbit_8cc_source.html#l00271">jeffery_orbit.cc:271</a></div></div>
@@ -1462,7 +1462,7 @@
     <footer>
       <div class="container">
         <div class="text-muted" style="float:right;">Generated by <a href="http://www.doxygen.org/index.html">
-          <img style="height:18px;" class="footer-img" src="doxygen.png" alt="doxygen"></a> on Mon Oct 25 2021 18:00:49
+          <img style="height:18px;" class="footer-img" src="doxygen.png" alt="doxygen"></a> on Tue Oct 26 2021 17:27:24
         </div>
       </div>
     </footer>

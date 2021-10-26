@@ -115,8 +115,8 @@ We create a basic {\ttfamily Geom\+Object} to represent the ellipse whose bounda
 \DoxyCodeLine{\textcolor{comment}{ /// Empty Destructor}}
 \DoxyCodeLine{\textcolor{comment}{} \mbox{\hyperlink{classGeneralEllipse_a3ac5c17cf8c4998f1b74913860cb3bb9}{\string~GeneralEllipse}}() \{\}}
 \DoxyCodeLine{\textcolor{comment}{}}
-\DoxyCodeLine{\textcolor{comment}{ ///Return the position of the ellipse boundary as a function of }}
-\DoxyCodeLine{\textcolor{comment}{ ///the angle xi[0]}}
+\DoxyCodeLine{\textcolor{comment}{ /// Return the position of the ellipse boundary as a function of }}
+\DoxyCodeLine{\textcolor{comment}{ /// the angle xi[0]}}
 \DoxyCodeLine{\textcolor{comment}{} \textcolor{keywordtype}{void} \mbox{\hyperlink{classGeneralEllipse_a85e975c70441a9c9c711b5e27d124bff}{position}}(\textcolor{keyword}{const} Vector<double> \&xi, Vector<double> \&r)\textcolor{keyword}{ const}}
 \DoxyCodeLine{\textcolor{keyword}{  }\{}
 \DoxyCodeLine{   r[0] = \mbox{\hyperlink{classGeneralEllipse_aeb974769f58d136a12ac1532506304cc}{Centre\_x}} + \mbox{\hyperlink{classGeneralEllipse_ae583e1437da6ad4eb228dda60b61808a}{A}}*cos(xi[0]);}
@@ -280,12 +280,12 @@ The class also provides storage for the meshes, the rigid body and file handles 
 \DoxyCodeLine{\textcolor{comment}{ /// computation of drag vector}}
 \DoxyCodeLine{\textcolor{comment}{} \textcolor{keywordtype}{void} \mbox{\hyperlink{classUnstructuredImmersedEllipseProblem_a42b13e3306ff2a94053907644ba17c8d}{complete\_problem\_setup}}();}
 \DoxyCodeLine{\textcolor{comment}{}}
-\DoxyCodeLine{\textcolor{comment}{ ///Set the boundary velocity}}
+\DoxyCodeLine{\textcolor{comment}{ /// Set the boundary velocity}}
 \DoxyCodeLine{\textcolor{comment}{} \textcolor{keywordtype}{void} \mbox{\hyperlink{classUnstructuredImmersedEllipseProblem_ab201b187b240105fd8d444d943f6dada}{set\_boundary\_velocity}}();}
 \DoxyCodeLine{\textcolor{comment}{}}
-\DoxyCodeLine{\textcolor{comment}{ ///Function that solves a simplified problem to ensure that }}
-\DoxyCodeLine{\textcolor{comment}{ ///the positions of the boundary nodes are initially consistent with}}
-\DoxyCodeLine{\textcolor{comment}{ ///the lagrange multiplier formulation}}
+\DoxyCodeLine{\textcolor{comment}{ /// Function that solves a simplified problem to ensure that }}
+\DoxyCodeLine{\textcolor{comment}{ /// the positions of the boundary nodes are initially consistent with}}
+\DoxyCodeLine{\textcolor{comment}{ /// the lagrange multiplier formulation}}
 \DoxyCodeLine{\textcolor{comment}{} \textcolor{keywordtype}{void} \mbox{\hyperlink{classUnstructuredImmersedEllipseProblem_a2a88b40ff1988de0fc696f1eb755ea54}{solve\_for\_consistent\_nodal\_positions}}();}
 \DoxyCodeLine{\textcolor{comment}{}}
 \DoxyCodeLine{\textcolor{comment}{ /// Doc the solution}}
@@ -312,10 +312,10 @@ The class also provides storage for the meshes, the rigid body and file handles 
 \DoxyCodeLine{\textcolor{comment}{ /// boundaries}}
 \DoxyCodeLine{\textcolor{comment}{} \textcolor{keywordtype}{void} \mbox{\hyperlink{classUnstructuredImmersedEllipseProblem_a7d7b84968988d37091b29957b0af5bfa}{delete\_drag\_elements}}();}
 \DoxyCodeLine{\textcolor{comment}{}}
-\DoxyCodeLine{\textcolor{comment}{ ///Pin the degrees of freedom associated with the solid bodies}}
+\DoxyCodeLine{\textcolor{comment}{ /// Pin the degrees of freedom associated with the solid bodies}}
 \DoxyCodeLine{\textcolor{comment}{} \textcolor{keywordtype}{void} \mbox{\hyperlink{classUnstructuredImmersedEllipseProblem_a07dc16909c0223fe4b656fd270f27c11}{pin\_rigid\_body}}();}
 \DoxyCodeLine{\textcolor{comment}{}}
-\DoxyCodeLine{\textcolor{comment}{ ///Unpin the degrees of freedom associated with the solid bodies}}
+\DoxyCodeLine{\textcolor{comment}{ /// Unpin the degrees of freedom associated with the solid bodies}}
 \DoxyCodeLine{\textcolor{comment}{} \textcolor{keywordtype}{void} \mbox{\hyperlink{classUnstructuredImmersedEllipseProblem_a4f8c7e7e4d626084f6515a152b165567}{unpin\_rigid\_body}}();}
 \DoxyCodeLine{ \textcolor{comment}{}}
 \DoxyCodeLine{\textcolor{comment}{ /// Pointers to mesh of Lagrange multiplier elements}}
@@ -791,10 +791,10 @@ The initial nodal positions are made consistent with the weakly-\/imposed displa
 
 \begin{DoxyCodeInclude}{0}
 \DoxyCodeLine{\textcolor{comment}{//==========start\_solve\_for\_consistent\_nodal\_positions================}}
-\DoxyCodeLine{\textcolor{comment}{///Assemble and solve a simplified problem that ensures that the }\textcolor{comment}{}}
-\DoxyCodeLine{\textcolor{comment}{///positions of the boundary nodes are consistent with the weak }}
-\DoxyCodeLine{\textcolor{comment}{///imposition of the displacement boundary conditions on the surface}}
-\DoxyCodeLine{\textcolor{comment}{///of the ellipse.}}
+\DoxyCodeLine{\textcolor{comment}{/// Assemble and solve a simplified problem that ensures that the }\textcolor{comment}{}}
+\DoxyCodeLine{\textcolor{comment}{/// positions of the boundary nodes are consistent with the weak }}
+\DoxyCodeLine{\textcolor{comment}{/// imposition of the displacement boundary conditions on the surface}}
+\DoxyCodeLine{\textcolor{comment}{/// of the ellipse.}}
 \DoxyCodeLine{\textcolor{comment}{}\textcolor{comment}{//===================================================================}}
 \DoxyCodeLine{\textcolor{keyword}{template}<\textcolor{keyword}{class} ELEMENT>}
 \DoxyCodeLine{\textcolor{keywordtype}{void} \mbox{\hyperlink{classUnstructuredImmersedEllipseProblem_a2a88b40ff1988de0fc696f1eb755ea54}{UnstructuredImmersedEllipseProblem<ELEMENT>::}}}

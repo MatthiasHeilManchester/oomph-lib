@@ -2,7 +2,7 @@
 \label{classoomph_1_1TreeBasedRefineableMesh}\index{oomph::TreeBasedRefineableMesh$<$ ELEMENT $>$@{oomph::TreeBasedRefineableMesh$<$ ELEMENT $>$}}
 
 
-Templated base class for refineable meshes. The use of the template parameter is required only for creating new elements during mesh adaptation. This class overloaded the template-\/free inteface to the function \mbox{\hyperlink{classoomph_1_1TreeBasedRefineableMesh_a43f134cb974f25f25d5ddfa88d56ef95}{split\+\_\+elements\+\_\+if\+\_\+required()}} to make use of the template parameter. All refineable meshes should inherit directly from Tree\+Based\+Refineable\+Mesh$<$\+ELEMENT$>$  
+///////////////////////////////////////////////////////////////// /////////////////////////////////////////////////////////////////  
 
 
 
@@ -42,6 +42,8 @@ void \mbox{\hyperlink{classoomph_1_1TreeBasedRefineableMesh_aa47363e7700089d4b87
 \doxysubsection{Detailed Description}
 \subsubsection*{template$<$class ELEMENT$>$\newline
 class oomph\+::\+Tree\+Based\+Refineable\+Mesh$<$ ELEMENT $>$}
+///////////////////////////////////////////////////////////////// ///////////////////////////////////////////////////////////////// 
+
 Templated base class for refineable meshes. The use of the template parameter is required only for creating new elements during mesh adaptation. This class overloaded the template-\/free inteface to the function \mbox{\hyperlink{classoomph_1_1TreeBasedRefineableMesh_a43f134cb974f25f25d5ddfa88d56ef95}{split\+\_\+elements\+\_\+if\+\_\+required()}} to make use of the template parameter. All refineable meshes should inherit directly from Tree\+Based\+Refineable\+Mesh$<$\+ELEMENT$>$ 
 
 Definition at line \mbox{\hyperlink{refineable__mesh_8h_source_l00808}{808}} of file \mbox{\hyperlink{refineable__mesh_8h_source}{refineable\+\_\+mesh.\+h}}.
@@ -104,7 +106,7 @@ void \mbox{\hyperlink{classoomph_1_1TreeBasedRefineableMesh}{oomph\+::\+Tree\+Ba
 
 Additional setup of shared node scheme This is Required for reconcilliation of hanging nodes acrross processor boundaries when using elements with nonuniformly spaced nodes. ELEMENT template parameter is required so that Macro\+Element\+Node\+Update\+Nodes which are added as external halo master nodes can be made fully functional. 
 
-Additional actions required to synchronise halo nodes where master nodes could not be found during \mbox{\hyperlink{classoomph_1_1TreeBasedRefineableMeshBase_a0ba902eb4b63aaa8c4da1aadcf25709a}{synchronise\+\_\+hanging\+\_\+nodes()}}. Overloaded from \mbox{\hyperlink{classoomph_1_1Mesh}{Mesh}} class to take care of master nodes on the outer edge of the halo layer which do not exist on that processor. This fixes problems with the synchronisation of hanging nodes for elements with non-\/uniformly spaced nodes. 
+Additional actions required to synchronise halo nodes where master nodes could not be found during \mbox{\hyperlink{classoomph_1_1TreeBasedRefineableMeshBase_a0ba902eb4b63aaa8c4da1aadcf25709a}{synchronise\+\_\+hanging\+\_\+nodes()}}. Overloaded from \mbox{\hyperlink{classoomph_1_1Mesh}{Mesh}} class to take care of master nodes on the outer edge of the halo layer which do not exist on that processor. This fixes problems with the synchronisation of hanging nodes for elements with non-\/uniformly spaced nodes. / Let my\+\_\+rank==A. If this has happened then it means that / duplicate haloed nodes exist on another processor (B). This / problem arises if a master of a haloed node with a discrepancy / is haloed with a different processor (C). A copy is constructed / in the external halo storage on processor (B) because that node / is not found in the (internal) haloed storage on (A) with (B) / but that node already exists on processor (B) in the (internal) / halo storage with processor (C). Thus two copies of this master / node now exist on processor (B).
 
 Implements \mbox{\hyperlink{classoomph_1_1TreeBasedRefineableMeshBase_a59d0404f8e5ebd7199f25c794c5c715c}{oomph\+::\+Tree\+Based\+Refineable\+Mesh\+Base}}.
 

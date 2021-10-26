@@ -2,7 +2,7 @@
 \label{classoomph_1_1TreeBasedRefineableMeshBase}\index{oomph::TreeBasedRefineableMeshBase@{oomph::TreeBasedRefineableMeshBase}}
 
 
-Base class for tree-\/based refineable meshes.  
+///////////////////////////////////////////////////////////////// /////////////////////////////////////////////////////////////////  
 
 
 
@@ -141,6 +141,8 @@ unsigned \mbox{\hyperlink{classoomph_1_1TreeBasedRefineableMeshBase_abd9b33d333c
 
 
 \doxysubsection{Detailed Description}
+///////////////////////////////////////////////////////////////// ///////////////////////////////////////////////////////////////// 
+
 Base class for tree-\/based refineable meshes. 
 
 Definition at line \mbox{\hyperlink{refineable__mesh_8h_source_l00375}{375}} of file \mbox{\hyperlink{refineable__mesh_8h_source}{refineable\+\_\+mesh.\+h}}.
@@ -304,9 +306,7 @@ If refinement process is being documented, the following information is document
 \item \char`\"{}new\+\_\+nodes.\+dat\char`\"{}
 \item \char`\"{}hang\+\_\+nodes\+\_\+$\ast$.\+dat\char`\"{} where the $\ast$ denotes a direction (n,s,e,w) in 2D or (r,l,u,d,f,b) in 3D
 \end{DoxyItemize}
-\end{DoxyItemize}
-
-can be viewed with
+\end{DoxyItemize}can be viewed with
 \begin{DoxyItemize}
 \item QHanging\+Nodes.\+mcr
 \end{DoxyItemize}
@@ -675,14 +675,14 @@ Broken assignment operator.
 
 p-\/adapt mesh\+: Refine elements whose error is lager than err\+\_\+max and (try to) unrefine those whose error is smaller than err\+\_\+min 
 
+///////////////////////////////////////////////////////////////// /////////////////////////////////////////////////////////////////
+
 Do adaptive p-\/refinement for mesh.
-
-
 \begin{DoxyItemize}
 \item Pass \mbox{\hyperlink{classoomph_1_1Vector}{Vector}} of error estimates for all elements.
 \item p-\/refine those whose errors exceeds the threshold
 \item p-\/unrefine those whose errors is less than threshold. 
-\end{DoxyItemize}
+\end{DoxyItemize}/ ... otherwise mark it as having been over-\/ruled
 
 Reimplemented from \mbox{\hyperlink{classoomph_1_1RefineableMeshBase_a03222065e7dfe9eac96fbd58faf0e4ab}{oomph\+::\+Refineable\+Mesh\+Base}}.
 
@@ -757,9 +757,7 @@ If refinement process is being documented, the following information is document
 \item \char`\"{}new\+\_\+nodes.\+dat\char`\"{}
 \item \char`\"{}hang\+\_\+nodes\+\_\+$\ast$.\+dat\char`\"{} where the $\ast$ denotes a direction (n,s,e,w) in 2D or (r,l,u,d,f,b) in 3D
 \end{DoxyItemize}
-\end{DoxyItemize}
-
-can be viewed with
+\end{DoxyItemize}can be viewed with
 \begin{DoxyItemize}
 \item QHanging\+Nodes.\+mcr
 \end{DoxyItemize}
@@ -779,6 +777,8 @@ can be viewed with
 \item Quad\+Tree\+Neighbours.\+mcr
 \end{DoxyItemize}
 \end{DoxyItemize}Update the boundary element info -- this can be a costly procedure and for this reason the mesh writer might have decided not to set up this scheme. If so, we won\textquotesingle{}t change this and suppress its creation...
+
+/\+BENFLAG\+: Check that all the nodes belong to their update elements
 
 Definition at line \mbox{\hyperlink{refineable__mesh_8cc_source_l04433}{4433}} of file \mbox{\hyperlink{refineable__mesh_8cc_source}{refineable\+\_\+mesh.\+cc}}.
 

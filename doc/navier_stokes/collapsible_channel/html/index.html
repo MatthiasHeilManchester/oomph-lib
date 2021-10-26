@@ -249,10 +249,10 @@ The moving wall</h1>
 <div class="line"><span class="comment"> /// Destructor:  Empty</span></div>
 <div class="line"><span class="comment"></span> ~OscillatingWall(){}</div>
 <div class="line"><span class="comment"></span> </div>
-<div class="line"><span class="comment">///Access function to the amplitude</span></div>
+<div class="line"><span class="comment">/// Access function to the amplitude</span></div>
 <div class="line"><span class="comment"></span> <span class="keywordtype">double</span>&amp; amplitude(){<span class="keywordflow">return</span> A;}</div>
 <div class="line"><span class="comment"></span> </div>
-<div class="line"><span class="comment">///Access function to the period</span></div>
+<div class="line"><span class="comment">/// Access function to the period</span></div>
 <div class="line"><span class="comment"></span> <span class="keywordtype">double</span>&amp; period(){<span class="keywordflow">return</span> T;}</div>
 </div><!-- fragment --><p> Since the <code>GeomObject</code> represents a moving (i.e. time-dependent) boundary, we implement both versions of the <code>GeomObject::position(...)</code> function: The "unsteady" version computes the position vector at the <code>t</code> -th previous timestep.</p>
 <div class="fragment"><div class="line"><span class="comment"></span> </div>
@@ -309,10 +309,10 @@ The moving wall</h1>
 <div class="line"><span class="comment"> /// Relative amplitude of horizontal wall motion</span></div>
 <div class="line"><span class="comment"></span> <span class="keywordtype">double</span> B;</div>
 <div class="line"><span class="comment"></span> </div>
-<div class="line"><span class="comment"> ///Period of the oscillations</span></div>
+<div class="line"><span class="comment"> /// Period of the oscillations</span></div>
 <div class="line"><span class="comment"></span> <span class="keywordtype">double</span> T;</div>
 <div class="line"><span class="comment"></span> </div>
-<div class="line"><span class="comment"> ///Pointer to the global time object</span></div>
+<div class="line"><span class="comment"> /// Pointer to the global time object</span></div>
 <div class="line"><span class="comment"></span> Time* Time_pt;</div>
 <div class="line"> </div>
 <div class="line">}; <span class="comment">// end of oscillating wall</span></div>
@@ -499,7 +499,7 @@ The driver code</h1>
 The problem class</h1>
 <p >As usual, we template the problem class by the element type and provide an access functions to the "bulk" Navier-Stokes mesh.</p>
  <div class="fragment"><div class="line"><span class="comment">//=======start_of_problem_class=======================================</span></div>
-<div class="line"><span class="comment">///Problem class</span></div>
+<div class="line"><span class="comment">/// Problem class</span></div>
 <div class="line"><span class="comment">//====================================================================</span></div>
 <div class="line"><span class="keyword">template</span> &lt;<span class="keyword">class</span> ELEMENT&gt;</div>
 <div class="line"><span class="keyword">class </span>CollapsibleChannelProblem : <span class="keyword">public</span> Problem</div>
@@ -509,7 +509,7 @@ The problem class</h1>
 <div class="line"><span class="comment"></span> </div>
 <div class="line"><span class="comment"> /// Constructor : the arguments are the number of elements,</span></div>
 <div class="line"><span class="comment"> /// the length of the domain and the amplitude and period of </span></div>
-<div class="line"><span class="comment"> ///the oscillations</span></div>
+<div class="line"><span class="comment"> /// the oscillations</span></div>
 <div class="line"><span class="comment"></span> CollapsibleChannelProblem(<span class="keyword">const</span> <span class="keywordtype">unsigned</span>&amp; nup, </div>
 <div class="line">                           <span class="keyword">const</span> <span class="keywordtype">unsigned</span>&amp; ncollapsible,</div>
 <div class="line">                           <span class="keyword">const</span> <span class="keywordtype">unsigned</span>&amp; ndown,</div>
@@ -570,32 +570,32 @@ The problem class</h1>
 <div class="line"><span class="comment"></span> <span class="keywordtype">void</span> delete_traction_elements(Mesh* <span class="keyword">const</span> &amp;surface_mesh_pt);</div>
 </div><!-- fragment --><p> The private member data contains the geometric parameters as well as the pointer to the <code>GeomObject</code> that describes the moving wall.</p>
 <div class="fragment"><div class="line"><span class="comment"></span> </div>
-<div class="line"><span class="comment"> ///Number of elements in the x direction in the upstream part of the channel</span></div>
+<div class="line"><span class="comment"> /// Number of elements in the x direction in the upstream part of the channel</span></div>
 <div class="line"><span class="comment"></span> <span class="keywordtype">unsigned</span> Nup;</div>
 <div class="line"><span class="comment"></span> </div>
 <div class="line"><span class="comment"> /// Number of elements in the x direction in the &quot;collapsible&quot; </span></div>
 <div class="line"><span class="comment"> /// part of the channel</span></div>
 <div class="line"><span class="comment"></span> <span class="keywordtype">unsigned</span> Ncollapsible;</div>
 <div class="line"><span class="comment"></span> </div>
-<div class="line"><span class="comment"> ///Number of elements in the x direction in the downstream part of the channel</span></div>
+<div class="line"><span class="comment"> /// Number of elements in the x direction in the downstream part of the channel</span></div>
 <div class="line"><span class="comment"></span> <span class="keywordtype">unsigned</span> Ndown;</div>
 <div class="line"><span class="comment"></span> </div>
-<div class="line"><span class="comment"> ///Number of elements across the channel</span></div>
+<div class="line"><span class="comment"> /// Number of elements across the channel</span></div>
 <div class="line"><span class="comment"></span> <span class="keywordtype">unsigned</span> Ny;</div>
 <div class="line"><span class="comment"></span> </div>
-<div class="line"><span class="comment"> ///x-length in the upstream part of the channel</span></div>
+<div class="line"><span class="comment"> /// x-length in the upstream part of the channel</span></div>
 <div class="line"><span class="comment"></span> <span class="keywordtype">double</span> Lup;</div>
 <div class="line"><span class="comment"></span> </div>
-<div class="line"><span class="comment"> ///x-length in the &quot;collapsible&quot; part of the channel</span></div>
+<div class="line"><span class="comment"> /// x-length in the &quot;collapsible&quot; part of the channel</span></div>
 <div class="line"><span class="comment"></span> <span class="keywordtype">double</span> Lcollapsible;</div>
 <div class="line"><span class="comment"></span> </div>
-<div class="line"><span class="comment"> ///x-length in the downstream part of the channel</span></div>
+<div class="line"><span class="comment"> /// x-length in the downstream part of the channel</span></div>
 <div class="line"><span class="comment"></span> <span class="keywordtype">double</span> Ldown;</div>
 <div class="line"><span class="comment"></span> </div>
-<div class="line"><span class="comment"> ///Transverse length</span></div>
+<div class="line"><span class="comment"> /// Transverse length</span></div>
 <div class="line"><span class="comment"></span> <span class="keywordtype">double</span> Ly;</div>
 <div class="line"><span class="comment"></span> </div>
-<div class="line"><span class="comment"> ///Pointer to the geometric object that parametrises the &quot;collapsible&quot; wall</span></div>
+<div class="line"><span class="comment"> /// Pointer to the geometric object that parametrises the &quot;collapsible&quot; wall</span></div>
 <div class="line"><span class="comment"></span> OscillatingWall* Wall_pt;</div>
 </div><!-- fragment --><p> Further private member data includes pointers to the "bulk" mesh and the surface mesh that contains the traction elements, and pointers to control nodes in the in- and outflow cross-sections.</p>
 <div class="fragment"><div class="line"> <span class="comment"></span></div>
@@ -1157,7 +1157,7 @@ PDF file</h1>
     <footer>
       <div class="container">
         <div class="text-muted" style="float:right;">Generated by <a href="http://www.doxygen.org/index.html">
-          <img style="height:18px;" class="footer-img" src="doxygen.png" alt="doxygen"></a> on Mon Oct 25 2021 17:59:15
+          <img style="height:18px;" class="footer-img" src="doxygen.png" alt="doxygen"></a> on Tue Oct 26 2021 17:25:54
         </div>
       </div>
     </footer>

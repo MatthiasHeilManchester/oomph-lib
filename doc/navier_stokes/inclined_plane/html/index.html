@@ -178,22 +178,22 @@ Global parameters and functions</h1>
  <div class="fragment"><div class="line"><span class="keyword">namespace </span><a class="code hl_namespace" href="namespaceGlobal__Physical__Variables.html">Global_Physical_Variables</a></div>
 <div class="ttc" id="anamespaceGlobal__Physical__Variables_html"><div class="ttname"><a href="namespaceGlobal__Physical__Variables.html">Global_Physical_Variables</a></div><div class="ttdef"><b>Definition:</b> <a href="inclined__plane_8cc_source.html#l00051">inclined_plane.cc:52</a></div></div>
 <div class="line">{<span class="comment"></span></div>
-<div class="line"><span class="comment"> ///Reynolds number, based on the average velocity within the fluid film</span></div>
+<div class="line"><span class="comment"> /// Reynolds number, based on the average velocity within the fluid film</span></div>
 <div class="line"><span class="comment"></span> <span class="keywordtype">double</span> <a class="code hl_variable" href="namespaceGlobal__Physical__Variables.html#ab814e627d2eb5bc50318879d19ab16b9">Re</a>=0.0;</div>
 <div class="line"><span class="comment"></span> </div>
-<div class="line"><span class="comment"> ///The product of Reynolds number and inverse Froude number </span></div>
-<div class="line"><span class="comment"> ///is set to two in this problem, which gives the free surface velocity</span></div>
-<div class="line"><span class="comment"> ///to be sin(alpha). [Set to three in order to get the same scale as </span></div>
-<div class="line"><span class="comment"> ///used by Yih, Benjamin, etc]</span></div>
+<div class="line"><span class="comment"> /// The product of Reynolds number and inverse Froude number </span></div>
+<div class="line"><span class="comment"> /// is set to two in this problem, which gives the free surface velocity</span></div>
+<div class="line"><span class="comment"> /// to be sin(alpha). [Set to three in order to get the same scale as </span></div>
+<div class="line"><span class="comment"> /// used by Yih, Benjamin, etc]</span></div>
 <div class="line"><span class="comment"></span> <span class="keywordtype">double</span> <a class="code hl_variable" href="namespaceGlobal__Physical__Variables.html#aa6286f02b476912dd7550eced538331a">ReInvFr</a>=2.0;</div>
 <div class="line"><span class="comment"></span> </div>
-<div class="line"><span class="comment"> ///Angle of incline of the slope (45 degrees)</span></div>
+<div class="line"><span class="comment"> /// Angle of incline of the slope (45 degrees)</span></div>
 <div class="line"><span class="comment"></span> <span class="keywordtype">double</span> <a class="code hl_variable" href="namespaceGlobal__Physical__Variables.html#aa2e802ee7cc8e1ac900ba94c3ce86eb7">Alpha</a> = 1.0*atan(1.0);</div>
 <div class="line"><span class="comment"></span> </div>
-<div class="line"><span class="comment"> ///The Vector direction of gravity, set in main()</span></div>
+<div class="line"><span class="comment"> /// The Vector direction of gravity, set in main()</span></div>
 <div class="line"><span class="comment"></span> Vector&lt;double&gt; <a class="code hl_function" href="namespaceGlobal__Physical__Variables.html#ad40b4c9ef4cf48648fee0914736e7341">G</a>(2,0.0);</div>
 <div class="line"><span class="comment"></span> </div>
-<div class="line"><span class="comment"> ///The Capillary number</span></div>
+<div class="line"><span class="comment"> /// The Capillary number</span></div>
 <div class="line"><span class="comment"></span> <span class="keywordtype">double</span> <a class="code hl_variable" href="namespaceGlobal__Physical__Variables.html#a8b32b93d2e546f9375ec418474107838">Ca</a>= 1.0;</div>
 <div class="ttc" id="anamespaceGlobal__Physical__Variables_html_a8b32b93d2e546f9375ec418474107838"><div class="ttname"><a href="namespaceGlobal__Physical__Variables.html#a8b32b93d2e546f9375ec418474107838">Global_Physical_Variables::Ca</a></div><div class="ttdeci">double Ca</div><div class="ttdoc">The Capillary number.</div><div class="ttdef"><b>Definition:</b> <a href="inclined__plane_8cc_source.html#l00069">inclined_plane.cc:69</a></div></div>
 <div class="ttc" id="anamespaceGlobal__Physical__Variables_html_aa2e802ee7cc8e1ac900ba94c3ce86eb7"><div class="ttname"><a href="namespaceGlobal__Physical__Variables.html#aa2e802ee7cc8e1ac900ba94c3ce86eb7">Global_Physical_Variables::Alpha</a></div><div class="ttdeci">double Alpha</div><div class="ttdoc">Angle of incline of the slope (45 degrees)</div><div class="ttdef"><b>Definition:</b> <a href="inclined__plane_8cc_source.html#l00063">inclined_plane.cc:63</a></div></div>
@@ -226,7 +226,7 @@ Global parameters and functions</h1>
 </div><!-- fragment --><p> Note that <code>G</code> [ <code>1</code> ] is the component of the gravitational body force in the vertical direction, so <img class="formulaInl" alt="$ G[1] = - \cos\alpha$" src="form_34.png" width="78" height="14"/>. <br  />
 </p>
 <p >We must also specify the direction of the normals (directed out of the fluid) to the notional walls that form the inlet and outlet and a contact angle of <img class="formulaInl" alt="$ \pi /2 $" src="form_35.png" width="21" height="14"/> that will be used as a boundary condition on the free surface at the upstream end of the domain. In this case the normal to the inlet is in the negative x-direction and the normal to the outlet is in the positive x-direction. The actual value of the <code>Wall_normal</code> vector is set in <code><a class="el" href="inclined__plane_8cc.html#a3c04138a5bfe5d72780bb7e82a18e627">main()</a></code> </p>
- <div class="fragment"><div class="line"><span class="comment"> ///Direction of the wall normal vector (at the inlet)</span></div>
+ <div class="fragment"><div class="line"><span class="comment"> /// Direction of the wall normal vector (at the inlet)</span></div>
 <div class="line"> Vector&lt;double&gt; <a class="code hl_variable" href="namespaceGlobal__Physical__Variables.html#a5feb3df21fc4a0adefadecb8a8ed98d7">Wall_normal</a>;</div>
 <div class="line"><span class="comment"></span> </div>
 <div class="line"><span class="comment"> /// Function that specifies the wall unit normal at the inlet</span></div>
@@ -247,7 +247,7 @@ Global parameters and functions</h1>
 <div class="line">  <span class="keywordflow">for</span>(<span class="keywordtype">unsigned</span> i=0;i&lt;n_dim;++i) {normal[i] *= -1.0;}</div>
 <div class="line"> }</div>
 <div class="line"><span class="comment"></span> </div>
-<div class="line"><span class="comment"> ///The contact angle that is imposed at the inlet (pi)</span></div>
+<div class="line"><span class="comment"> /// The contact angle that is imposed at the inlet (pi)</span></div>
 <div class="line"><span class="comment"></span> <span class="keywordtype">double</span> <a class="code hl_variable" href="namespaceGlobal__Physical__Variables.html#a1c3587461447262715bd444ac91a29c9">Inlet_Angle</a> = 2.0*atan(1.0);</div>
 <div class="ttc" id="anamespaceGlobal__Physical__Variables_html_a1c3587461447262715bd444ac91a29c9"><div class="ttname"><a href="namespaceGlobal__Physical__Variables.html#a1c3587461447262715bd444ac91a29c9">Global_Physical_Variables::Inlet_Angle</a></div><div class="ttdeci">double Inlet_Angle</div><div class="ttdoc">The contact angle that is imposed at the inlet (pi)</div><div class="ttdef"><b>Definition:</b> <a href="inclined__plane_8cc_source.html#l00102">inclined_plane.cc:102</a></div></div>
 <div class="ttc" id="anamespaceGlobal__Physical__Variables_html_a5feb3df21fc4a0adefadecb8a8ed98d7"><div class="ttname"><a href="namespaceGlobal__Physical__Variables.html#a5feb3df21fc4a0adefadecb8a8ed98d7">Global_Physical_Variables::Wall_normal</a></div><div class="ttdeci">Vector&lt; double &gt; Wall_normal</div><div class="ttdoc">Direction of the wall normal vector (at the inlet)</div><div class="ttdef"><b>Definition:</b> <a href="inclined__plane_8cc_source.html#l00081">inclined_plane.cc:81</a></div></div>
@@ -440,9 +440,9 @@ Creating the ElasticMesh</h2>
 The problem classes</h1>
 <h2><a class="anchor" id="generic_prob"></a>
 The generic problem</h2>
-<p >For ease of exposition, all generic functionality is included in the <code><a class="el" href="classInclinedPlaneProblem.html" title="Generic problem class that will form the base class for both spine and elastic mesh-updates of the pr...">InclinedPlaneProblem</a></code> class, which is templated by the bulk <code>ELEMENT</code> and the <code>INTERFACE_ELEMENT</code>. The class includes storage for the different sub-meshes: Bulk, the Traction elements associated with the inlet and outlet, the (free) Surface elements and the point elements associated with the ends of the interface. In addition, a string <code>Output_prefix</code> is used to distinguish between the output files from different formulations.  </p><div class="fragment"><div class="line"><span class="comment">///Generic problem class that will form the base class for both </span></div>
-<div class="line"><span class="comment">///spine and elastic mesh-updates of the problem.</span><span class="comment"></span></div>
-<div class="line"><span class="comment">///Templated by the bulk element and interface element types</span></div>
+<p >For ease of exposition, all generic functionality is included in the <code><a class="el" href="classInclinedPlaneProblem.html" title="Generic problem class that will form the base class for both spine and elastic mesh-updates of the pr...">InclinedPlaneProblem</a></code> class, which is templated by the bulk <code>ELEMENT</code> and the <code>INTERFACE_ELEMENT</code>. The class includes storage for the different sub-meshes: Bulk, the Traction elements associated with the inlet and outlet, the (free) Surface elements and the point elements associated with the ends of the interface. In addition, a string <code>Output_prefix</code> is used to distinguish between the output files from different formulations.  </p><div class="fragment"><div class="line"><span class="comment">/// Generic problem class that will form the base class for both </span></div>
+<div class="line"><span class="comment">/// spine and elastic mesh-updates of the problem.</span><span class="comment"></span></div>
+<div class="line"><span class="comment">/// Templated by the bulk element and interface element types</span></div>
 <div class="line"><span class="comment"></span><span class="comment">//====================================================================</span></div>
 <div class="line"><span class="keyword">template</span>&lt;<span class="keyword">class</span> ELEMENT, <span class="keyword">class</span> INTERFACE_ELEMENT&gt;</div>
 <div class="line"><span class="keyword">class </span><a class="code hl_class" href="classInclinedPlaneProblem.html">InclinedPlaneProblem</a> : <span class="keyword">public</span> Problem</div>
@@ -450,19 +450,19 @@ The generic problem</h2>
 <div class="line"> </div>
 <div class="line"><span class="keyword">protected</span>:</div>
 <div class="line"><span class="comment"></span> </div>
-<div class="line"><span class="comment"> ///Bulk fluid mesh</span></div>
+<div class="line"><span class="comment"> /// Bulk fluid mesh</span></div>
 <div class="line"><span class="comment"></span> Mesh* <a class="code hl_variable" href="classInclinedPlaneProblem.html#a20c506fe684dc146424b8ec019239783">Bulk_mesh_pt</a>;</div>
 <div class="line"><span class="comment"></span> </div>
-<div class="line"><span class="comment"> ///Mesh for the traction elements that are added at inlet and outlet</span></div>
+<div class="line"><span class="comment"> /// Mesh for the traction elements that are added at inlet and outlet</span></div>
 <div class="line"><span class="comment"></span> Mesh* <a class="code hl_variable" href="classInclinedPlaneProblem.html#a85bcc36a8ad4ad7aa3595585e73a3197">Traction_mesh_pt</a>;</div>
 <div class="line"><span class="comment"></span> </div>
-<div class="line"><span class="comment"> ///Mesh for the free surface elements</span></div>
+<div class="line"><span class="comment"> /// Mesh for the free surface elements</span></div>
 <div class="line"><span class="comment"></span> Mesh* <a class="code hl_variable" href="classInclinedPlaneProblem.html#aba36d367278218bf00356c3bee0733a0">Surface_mesh_pt</a>;</div>
 <div class="line"><span class="comment"></span> </div>
-<div class="line"><span class="comment"> ///Mesh for the point elements at each end of the free surface</span></div>
+<div class="line"><span class="comment"> /// Mesh for the point elements at each end of the free surface</span></div>
 <div class="line"><span class="comment"></span> Mesh* <a class="code hl_variable" href="classInclinedPlaneProblem.html#adefbac5880323d7de622e2ba0c526746">Point_mesh_pt</a>;</div>
 <div class="line"><span class="comment"></span> </div>
-<div class="line"><span class="comment"> ///Prefix for output files</span></div>
+<div class="line"><span class="comment"> /// Prefix for output files</span></div>
 <div class="line"><span class="comment"></span> std::string <a class="code hl_variable" href="classInclinedPlaneProblem.html#a6ad45c76bd24f63c0162313042ce2e7d">Output_prefix</a>;</div>
 <div class="ttc" id="aclassInclinedPlaneProblem_html"><div class="ttname"><a href="classInclinedPlaneProblem.html">InclinedPlaneProblem</a></div><div class="ttdoc">Generic problem class that will form the base class for both spine and elastic mesh-updates of the pr...</div><div class="ttdef"><b>Definition:</b> <a href="inclined__plane_8cc_source.html#l00138">inclined_plane.cc:139</a></div></div>
 <div class="ttc" id="aclassInclinedPlaneProblem_html_a20c506fe684dc146424b8ec019239783"><div class="ttname"><a href="classInclinedPlaneProblem.html#a20c506fe684dc146424b8ec019239783">InclinedPlaneProblem::Bulk_mesh_pt</a></div><div class="ttdeci">Mesh * Bulk_mesh_pt</div><div class="ttdoc">Bulk fluid mesh.</div><div class="ttdef"><b>Definition:</b> <a href="inclined__plane_8cc_source.html#l00144">inclined_plane.cc:144</a></div></div>
@@ -491,7 +491,7 @@ The generic problem</h2>
 <div class="line">    }</div>
 <div class="line">  } <span class="comment">//end_of_actions_before_implicit_timestep</span></div>
 <div class="ttc" id="anamespaceGlobal__Physical__Variables_html_a9da8be10d9e20eb0329af7fd8d6e0e98"><div class="ttname"><a href="namespaceGlobal__Physical__Variables.html#a9da8be10d9e20eb0329af7fd8d6e0e98">Global_Physical_Variables::K</a></div><div class="ttdeci">double K</div><div class="ttdoc">Set the wavenumber.</div><div class="ttdef"><b>Definition:</b> <a href="inclined__plane_8cc_source.html#l00072">inclined_plane.cc:72</a></div></div>
-</div><!-- fragment --><p> The function <code>make_traction_elements()</code> creates <code>NavierStokesTractionElement</code> s adjacent to the mesh boundaries 3 (the inlet) and 1 (the inlet). These elements are added to the <code>Mesh</code> <code>Traction_mesh_pt</code>, which is itself constructed in the function and pointers to the appropriate traction functions are assigned. </p><div class="fragment"><div class="line"><span class="comment"> ///Function to add the traction boundary elements to boundaries</span></div>
+</div><!-- fragment --><p> The function <code>make_traction_elements()</code> creates <code>NavierStokesTractionElement</code> s adjacent to the mesh boundaries 3 (the inlet) and 1 (the inlet). These elements are added to the <code>Mesh</code> <code>Traction_mesh_pt</code>, which is itself constructed in the function and pointers to the appropriate traction functions are assigned. </p><div class="fragment"><div class="line"><span class="comment"> /// Function to add the traction boundary elements to boundaries</span></div>
 <div class="line"><span class="comment"> /// 3(inlet) and 1(outlet) of the mesh</span></div>
 <div class="line"> <span class="keywordtype">void</span> make_traction_elements()</div>
 <div class="line">  {</div>
@@ -932,7 +932,7 @@ PDF file</h1>
     <footer>
       <div class="container">
         <div class="text-muted" style="float:right;">Generated by <a href="http://www.doxygen.org/index.html">
-          <img style="height:18px;" class="footer-img" src="doxygen.png" alt="doxygen"></a> on Mon Oct 25 2021 17:57:26
+          <img style="height:18px;" class="footer-img" src="doxygen.png" alt="doxygen"></a> on Tue Oct 26 2021 17:24:06
         </div>
       </div>
     </footer>

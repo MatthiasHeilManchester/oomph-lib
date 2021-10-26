@@ -269,7 +269,7 @@ The solid mesh</h2>
 <div class="line"><span class="keyword">class </span><a class="code hl_class" href="classMySolidTriangleMesh.html">MySolidTriangleMesh</a> : <span class="keyword">public</span> <span class="keyword">virtual</span> TriangleMesh&lt;ELEMENT&gt;, </div>
 <div class="line">                          <span class="keyword">public</span> <span class="keyword">virtual</span> SolidMesh </div>
 <div class="line">{</div>
-<div class="ttc" id="aclassMySolidTriangleMesh_html"><div class="ttname"><a href="classMySolidTriangleMesh.html">MySolidTriangleMesh</a></div><div class="ttdoc">Triangle-based mesh upgraded to become a solid mesh.</div><div class="ttdef"><b>Definition:</b> <a href="unstructured__two__d__fsi_8cc_source.html#l00112">unstructured_two_d_fsi.cc:114</a></div></div>
+<div class="ttc" id="aclassMySolidTriangleMesh_html"><div class="ttname"><a href="classMySolidTriangleMesh.html">MySolidTriangleMesh</a></div><div class="ttdoc">///////////////////////////////////////////////////////////////////// ///////////////////////////////...</div><div class="ttdef"><b>Definition:</b> <a href="unstructured__two__d__fsi_8cc_source.html#l00112">unstructured_two_d_fsi.cc:114</a></div></div>
 </div><!-- fragment --><p> As before, we set the Lagrangian coordinates to the current nodal positions to make the initial configuration stress-free. Initially all boundary nodes are located on the same boundary, corresponding to the single xfig polyline that defines the surface of the elastic obstacle. In the current problem we have to identify two additional boundaries: The "bottom boundary" (boundary 1) where the positions of the solid nodes will be pinned; and the nodes that are located on the FSI boundary (boundary 2).</p>
 <div class="fragment"><div class="line"> </div>
 <div class="line"><span class="keyword">public</span>:</div>
@@ -348,7 +348,7 @@ The fluid mesh</h2>
 <div class="line">  {</div>
 <div class="line">   <span class="comment">//Assign the Lagrangian coordinates</span></div>
 <div class="line">   set_lagrangian_nodal_coordinates();</div>
-<div class="ttc" id="aclassFluidTriangleMesh_html"><div class="ttname"><a href="classFluidTriangleMesh.html">FluidTriangleMesh</a></div><div class="ttdoc">Triangle-based mesh upgraded to become a pseudo-solid mesh.</div><div class="ttdef"><b>Definition:</b> <a href="unstructured__two__d__fsi_8cc_source.html#l00178">unstructured_two_d_fsi.cc:180</a></div></div>
+<div class="ttc" id="aclassFluidTriangleMesh_html"><div class="ttname"><a href="classFluidTriangleMesh.html">FluidTriangleMesh</a></div><div class="ttdoc">//////////////////////////////////////////////////////////////////////// ////////////////////////////...</div><div class="ttdef"><b>Definition:</b> <a href="unstructured__two__d__fsi_8cc_source.html#l00178">unstructured_two_d_fsi.cc:180</a></div></div>
 <div class="ttc" id="aclassFluidTriangleMesh_html_ab86c8fd8ee699923f5a4b199981d8c76"><div class="ttname"><a href="classFluidTriangleMesh.html#ab86c8fd8ee699923f5a4b199981d8c76">FluidTriangleMesh::FluidTriangleMesh</a></div><div class="ttdeci">FluidTriangleMesh(const std::string &amp;node_file_name, const std::string &amp;element_file_name, const std::string &amp;poly_file_name, TimeStepper *time_stepper_pt=&amp;Mesh::Default_TimeStepper)</div><div class="ttdoc">Constructor.</div><div class="ttdef"><b>Definition:</b> <a href="unstructured__two__d__fsi_8cc_source.html#l00185">unstructured_two_d_fsi.cc:185</a></div></div>
 </div><!-- fragment --><p> The fluid problem requires the identification of three additional boundaries: The inflow boundary (boundary 1), the outflow boundary (boundary 2) and the FSI boundary (boundary 3).</p>
 <div class="fragment"><div class="line"> </div>
@@ -438,7 +438,7 @@ The driver code</h1>
 <div class="line"> <span class="comment">//Create the constitutive law</span></div>
 <div class="line"> <a class="code hl_variable" href="namespaceGlobal__Parameters.html#adbd1f040f375c96fe56b3f475f7dbec2">Global_Parameters::Constitutive_law_pt</a> = <span class="keyword">new</span> GeneralisedHookean(</div>
 <div class="line">  &amp;<a class="code hl_variable" href="namespaceGlobal__Parameters.html#a20fccdcfa2c15ad8b951b9ada3bb1661">Global_Parameters::Nu</a>);</div>
-<div class="ttc" id="aunstructured__two__d__fsi_8cc_html_ae66f6b31b5ad750f1fe042a706a4e3d4"><div class="ttname"><a href="unstructured__two__d__fsi_8cc.html#ae66f6b31b5ad750f1fe042a706a4e3d4">main</a></div><div class="ttdeci">int main()</div><div class="ttdoc">Driver for unstructured fsi problem.</div><div class="ttdef"><b>Definition:</b> <a href="unstructured__two__d__fsi_8cc_source.html#l00786">unstructured_two_d_fsi.cc:786</a></div></div>
+<div class="ttc" id="aunstructured__two__d__fsi_8cc_html_ae66f6b31b5ad750f1fe042a706a4e3d4"><div class="ttname"><a href="unstructured__two__d__fsi_8cc.html#ae66f6b31b5ad750f1fe042a706a4e3d4">main</a></div><div class="ttdeci">int main()</div><div class="ttdoc">///////////////////////////////////////////////////////////////////// ///////////////////////////////...</div><div class="ttdef"><b>Definition:</b> <a href="unstructured__two__d__fsi_8cc_source.html#l00786">unstructured_two_d_fsi.cc:786</a></div></div>
 </div><!-- fragment --><p> We create the <code>Problem</code> object and output the domain boundaries and the initial guess for the solution.</p>
 <div class="fragment"><div class="line"> </div>
 <div class="line"> <span class="comment">// Build the problem with triangular Taylor Hood for fluid and solid</span></div>
@@ -453,7 +453,7 @@ The driver code</h1>
 <div class="line"> <span class="comment">// Output the initial guess for the solution</span></div>
 <div class="line"> problem.doc_solution(doc_info);</div>
 <div class="line"> doc_info.number()++;</div>
-<div class="ttc" id="aclassUnstructuredFSIProblem_html"><div class="ttname"><a href="classUnstructuredFSIProblem.html">UnstructuredFSIProblem</a></div><div class="ttdoc">Unstructured FSI Problem.</div><div class="ttdef"><b>Definition:</b> <a href="unstructured__two__d__fsi_8cc_source.html#l00273">unstructured_two_d_fsi.cc:274</a></div></div>
+<div class="ttc" id="aclassUnstructuredFSIProblem_html"><div class="ttname"><a href="classUnstructuredFSIProblem.html">UnstructuredFSIProblem</a></div><div class="ttdoc">//////////////////////////////////////////////////////////////////////// ////////////////////////////...</div><div class="ttdef"><b>Definition:</b> <a href="unstructured__two__d__fsi_8cc_source.html#l00273">unstructured_two_d_fsi.cc:274</a></div></div>
 <div class="ttc" id="aclassUnstructuredFSIProblem_html_a920c8629e5516bf916edd340d445100f"><div class="ttname"><a href="classUnstructuredFSIProblem.html#a920c8629e5516bf916edd340d445100f">UnstructuredFSIProblem::fluid_mesh_pt</a></div><div class="ttdeci">FluidTriangleMesh&lt; FLUID_ELEMENT &gt; *&amp; fluid_mesh_pt()</div><div class="ttdoc">Access function for the fluid mesh.</div><div class="ttdef"><b>Definition:</b> <a href="unstructured__two__d__fsi_8cc_source.html#l00285">unstructured_two_d_fsi.cc:285</a></div></div>
 </div><!-- fragment --><p> Finally, we perform a two-stage parameter study. We start by solving the problem at zero Reynolds number with the FSI parameter <img class="formulaInl" alt="$ Q $" src="form_7.png" width="10" height="13"/> set to zero.</p>
 <div class="fragment"><div class="line"> </div>
@@ -1108,7 +1108,7 @@ PDF file</h1>
     <footer>
       <div class="container">
         <div class="text-muted" style="float:right;">Generated by <a href="http://www.doxygen.org/index.html">
-          <img style="height:18px;" class="footer-img" src="doxygen.png" alt="doxygen"></a> on Mon Oct 25 2021 18:09:49
+          <img style="height:18px;" class="footer-img" src="doxygen.png" alt="doxygen"></a> on Tue Oct 26 2021 17:36:23
         </div>
       </div>
     </footer>
