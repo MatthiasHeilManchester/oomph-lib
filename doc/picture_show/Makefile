@@ -312,7 +312,7 @@ EXTRA_DIST = turn_into_rotation_instructions.sh index.html
 
 # Additional files to clean (there's already a clean-local target in
 # the generic makefile included above).
-CLEANFILES = rotate_gifs.js
+CLEANFILES = rotate_gifs.php
 all: all-am
 
 .SUFFIXES:
@@ -509,10 +509,10 @@ uninstall-am:
 .PRECIOUS: Makefile
 
 
-all: rotate_gifs.js
+all: rotate_gifs.php
 
-# How to create the js file:
-rotate_gifs.js:
+# How to create the php file:
+rotate_gifs.php:
 	./turn_into_rotation_instructions.sh
 
 # Tell versions [3.59,3.63) of GNU make to not export all variables.
