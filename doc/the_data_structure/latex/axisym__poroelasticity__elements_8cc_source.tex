@@ -591,7 +591,7 @@
 \DoxyCodeLine{\Hypertarget{axisym__poroelasticity__elements_8cc_source_l00587}00587       \mbox{\hyperlink{classoomph_1_1AxisymmetricPoroelasticityEquations_ae4ca2ded02d41eefbb24548b435d7086}{density\_ratio}} / (1.0 + \mbox{\hyperlink{classoomph_1_1AxisymmetricPoroelasticityEquations_a0fd9b2e4241d6cba7e33989df5a3ac16}{porosity}} * (\mbox{\hyperlink{classoomph_1_1AxisymmetricPoroelasticityEquations_ae4ca2ded02d41eefbb24548b435d7086}{density\_ratio}} -\/ 1.0));}
 \DoxyCodeLine{\Hypertarget{axisym__poroelasticity__elements_8cc_source_l00588}00588 }
 \DoxyCodeLine{\Hypertarget{axisym__poroelasticity__elements_8cc_source_l00589}00589     \textcolor{comment}{// Get continuous time from timestepper of first node}}
-\DoxyCodeLine{\Hypertarget{axisym__poroelasticity__elements_8cc_source_l00590}00590     \textcolor{keywordtype}{double} time = \mbox{\hyperlink{classoomph_1_1FiniteElement_a9addfe893ab8205619963aa96204cdc4}{node\_pt}}(0)-\/>time\_stepper\_pt()-\/>time\_pt()-\/>time();}
+\DoxyCodeLine{\Hypertarget{axisym__poroelasticity__elements_8cc_source_l00590}00590     \textcolor{keywordtype}{double} time = \mbox{\hyperlink{classoomph_1_1FiniteElement_a9addfe893ab8205619963aa96204cdc4}{node\_pt}}(0)-\/>\mbox{\hyperlink{classoomph_1_1Data_a065d7bffcec82bf4d4bd7b41f9aa80b3}{time\_stepper\_pt}}()-\/>\mbox{\hyperlink{classoomph_1_1TimeStepper_ac73981d5a68161d7b317bebb4ee04adb}{time\_pt}}()-\/>\mbox{\hyperlink{classoomph_1_1Time_a43461269b799134f4b7a9aca3e79a7c8}{time}}();}
 \DoxyCodeLine{\Hypertarget{axisym__poroelasticity__elements_8cc_source_l00591}00591 }
 \DoxyCodeLine{\Hypertarget{axisym__poroelasticity__elements_8cc_source_l00592}00592     \textcolor{comment}{// Local equation and unknown numbers}}
 \DoxyCodeLine{\Hypertarget{axisym__poroelasticity__elements_8cc_source_l00593}00593     \textcolor{keywordtype}{int} local\_eqn = 0, local\_unknown = 0;}
@@ -784,7 +784,7 @@
 \DoxyCodeLine{\Hypertarget{axisym__poroelasticity__elements_8cc_source_l00780}00780                            2 * u\_test(l) / pow(r, 2) * u\_basis(l2)) +}
 \DoxyCodeLine{\Hypertarget{axisym__poroelasticity__elements_8cc_source_l00781}00781                      (lambda * (du\_basis\_dx(l2, 0) + u\_basis(l2) / r)) *}
 \DoxyCodeLine{\Hypertarget{axisym__poroelasticity__elements_8cc_source_l00782}00782                        (du\_test\_dx(l, 0) + u\_test(l) / r) +}
-\DoxyCodeLine{\Hypertarget{axisym__poroelasticity__elements_8cc_source_l00783}00783                      \mbox{\hyperlink{classoomph_1_1AxisymmetricPoroelasticityEquations_ac70247f27b1df989b67278a6f5ac6734}{lambda\_sq}} * \mbox{\hyperlink{classoomph_1_1FiniteElement_a9addfe893ab8205619963aa96204cdc4}{node\_pt}}(l2)-\/>time\_stepper\_pt()-\/>weight(2, 0) *}
+\DoxyCodeLine{\Hypertarget{axisym__poroelasticity__elements_8cc_source_l00783}00783                      \mbox{\hyperlink{classoomph_1_1AxisymmetricPoroelasticityEquations_ac70247f27b1df989b67278a6f5ac6734}{lambda\_sq}} * \mbox{\hyperlink{classoomph_1_1FiniteElement_a9addfe893ab8205619963aa96204cdc4}{node\_pt}}(l2)-\/>\mbox{\hyperlink{classoomph_1_1Data_a065d7bffcec82bf4d4bd7b41f9aa80b3}{time\_stepper\_pt}}()-\/>\mbox{\hyperlink{classoomph_1_1TimeStepper_a4cb0aecb044b77ba0553cdd54b586d8a}{weight}}(2, 0) *}
 \DoxyCodeLine{\Hypertarget{axisym__poroelasticity__elements_8cc_source_l00784}00784                        u\_basis(l2) * u\_test(l)) *}
 \DoxyCodeLine{\Hypertarget{axisym__poroelasticity__elements_8cc_source_l00785}00785                     r * w * J;}
 \DoxyCodeLine{\Hypertarget{axisym__poroelasticity__elements_8cc_source_l00786}00786 }
@@ -803,7 +803,7 @@
 \DoxyCodeLine{\Hypertarget{axisym__poroelasticity__elements_8cc_source_l00799}00799                     (mu * (du\_test\_dx(l, 0) * du\_basis\_dx(l2, 0) +}
 \DoxyCodeLine{\Hypertarget{axisym__poroelasticity__elements_8cc_source_l00800}00800                            2.0 * du\_basis\_dx(l2, 1) * du\_test\_dx(l, 1)) +}
 \DoxyCodeLine{\Hypertarget{axisym__poroelasticity__elements_8cc_source_l00801}00801                      lambda * du\_basis\_dx(l2, 1) * du\_test\_dx(l, 1) +}
-\DoxyCodeLine{\Hypertarget{axisym__poroelasticity__elements_8cc_source_l00802}00802                      \mbox{\hyperlink{classoomph_1_1AxisymmetricPoroelasticityEquations_ac70247f27b1df989b67278a6f5ac6734}{lambda\_sq}} * \mbox{\hyperlink{classoomph_1_1FiniteElement_a9addfe893ab8205619963aa96204cdc4}{node\_pt}}(l2)-\/>time\_stepper\_pt()-\/>weight(2, 0) *}
+\DoxyCodeLine{\Hypertarget{axisym__poroelasticity__elements_8cc_source_l00802}00802                      \mbox{\hyperlink{classoomph_1_1AxisymmetricPoroelasticityEquations_ac70247f27b1df989b67278a6f5ac6734}{lambda\_sq}} * \mbox{\hyperlink{classoomph_1_1FiniteElement_a9addfe893ab8205619963aa96204cdc4}{node\_pt}}(l2)-\/>\mbox{\hyperlink{classoomph_1_1Data_a065d7bffcec82bf4d4bd7b41f9aa80b3}{time\_stepper\_pt}}()-\/>\mbox{\hyperlink{classoomph_1_1TimeStepper_a4cb0aecb044b77ba0553cdd54b586d8a}{weight}}(2, 0) *}
 \DoxyCodeLine{\Hypertarget{axisym__poroelasticity__elements_8cc_source_l00803}00803                        u\_basis(l2) * u\_test(l)) *}
 \DoxyCodeLine{\Hypertarget{axisym__poroelasticity__elements_8cc_source_l00804}00804                     r * w * J;}
 \DoxyCodeLine{\Hypertarget{axisym__poroelasticity__elements_8cc_source_l00805}00805                 \}}
@@ -835,7 +835,7 @@
 \DoxyCodeLine{\Hypertarget{axisym__poroelasticity__elements_8cc_source_l00831}00831                 \{}
 \DoxyCodeLine{\Hypertarget{axisym__poroelasticity__elements_8cc_source_l00832}00832                   local\_unknown = \mbox{\hyperlink{classoomph_1_1AxisymmetricPoroelasticityEquations_a2cc9733c35e65c880246b3b072abb263}{q\_edge\_local\_eqn}}(l2);}
 \DoxyCodeLine{\Hypertarget{axisym__poroelasticity__elements_8cc_source_l00833}00833                   timestepper\_pt =}
-\DoxyCodeLine{\Hypertarget{axisym__poroelasticity__elements_8cc_source_l00834}00834                     this-\/>\mbox{\hyperlink{classoomph_1_1FiniteElement_a9addfe893ab8205619963aa96204cdc4}{node\_pt}}(\mbox{\hyperlink{classoomph_1_1AxisymmetricPoroelasticityEquations_a3067ec7af1ffb4656b63f5921a9a6467}{q\_edge\_node\_number}}(l2))-\/>time\_stepper\_pt();}
+\DoxyCodeLine{\Hypertarget{axisym__poroelasticity__elements_8cc_source_l00834}00834                     this-\/>\mbox{\hyperlink{classoomph_1_1FiniteElement_a9addfe893ab8205619963aa96204cdc4}{node\_pt}}(\mbox{\hyperlink{classoomph_1_1AxisymmetricPoroelasticityEquations_a3067ec7af1ffb4656b63f5921a9a6467}{q\_edge\_node\_number}}(l2))-\/>\mbox{\hyperlink{classoomph_1_1Data_a065d7bffcec82bf4d4bd7b41f9aa80b3}{time\_stepper\_pt}}();}
 \DoxyCodeLine{\Hypertarget{axisym__poroelasticity__elements_8cc_source_l00835}00835                 \}}
 \DoxyCodeLine{\Hypertarget{axisym__poroelasticity__elements_8cc_source_l00836}00836                 \textcolor{keywordflow}{else} \textcolor{comment}{// n\_q\_basis\_edge <= l < n\_basis}}
 \DoxyCodeLine{\Hypertarget{axisym__poroelasticity__elements_8cc_source_l00837}00837                 \{}
@@ -927,7 +927,7 @@
 \DoxyCodeLine{\Hypertarget{axisym__poroelasticity__elements_8cc_source_l00923}00923                 \{}
 \DoxyCodeLine{\Hypertarget{axisym__poroelasticity__elements_8cc_source_l00924}00924                   \mbox{\hyperlink{classoomph_1_1FiniteElement_aa6c806dab803b82ba4f02cf806971af8}{jacobian}}(local\_eqn, local\_unknown) +=}
 \DoxyCodeLine{\Hypertarget{axisym__poroelasticity__elements_8cc_source_l00925}00925                     rho\_f\_over\_rho * \mbox{\hyperlink{classoomph_1_1AxisymmetricPoroelasticityEquations_ac70247f27b1df989b67278a6f5ac6734}{lambda\_sq}} *}
-\DoxyCodeLine{\Hypertarget{axisym__poroelasticity__elements_8cc_source_l00926}00926                     this-\/>\mbox{\hyperlink{classoomph_1_1FiniteElement_a9addfe893ab8205619963aa96204cdc4}{node\_pt}}(l2)-\/>time\_stepper\_pt()-\/>weight(2, 0) *}
+\DoxyCodeLine{\Hypertarget{axisym__poroelasticity__elements_8cc_source_l00926}00926                     this-\/>\mbox{\hyperlink{classoomph_1_1FiniteElement_a9addfe893ab8205619963aa96204cdc4}{node\_pt}}(l2)-\/>\mbox{\hyperlink{classoomph_1_1Data_a065d7bffcec82bf4d4bd7b41f9aa80b3}{time\_stepper\_pt}}()-\/>\mbox{\hyperlink{classoomph_1_1TimeStepper_a4cb0aecb044b77ba0553cdd54b586d8a}{weight}}(2, 0) *}
 \DoxyCodeLine{\Hypertarget{axisym__poroelasticity__elements_8cc_source_l00927}00927                     u\_basis(l2) * q\_test(l, c) * r * w * J;}
 \DoxyCodeLine{\Hypertarget{axisym__poroelasticity__elements_8cc_source_l00928}00928                 \}}
 \DoxyCodeLine{\Hypertarget{axisym__poroelasticity__elements_8cc_source_l00929}00929               \}}
@@ -942,7 +942,7 @@
 \DoxyCodeLine{\Hypertarget{axisym__poroelasticity__elements_8cc_source_l00938}00938               \{}
 \DoxyCodeLine{\Hypertarget{axisym__poroelasticity__elements_8cc_source_l00939}00939                 local\_unknown = \mbox{\hyperlink{classoomph_1_1AxisymmetricPoroelasticityEquations_a2cc9733c35e65c880246b3b072abb263}{q\_edge\_local\_eqn}}(l2);}
 \DoxyCodeLine{\Hypertarget{axisym__poroelasticity__elements_8cc_source_l00940}00940                 timestepper\_pt =}
-\DoxyCodeLine{\Hypertarget{axisym__poroelasticity__elements_8cc_source_l00941}00941                   this-\/>\mbox{\hyperlink{classoomph_1_1FiniteElement_a9addfe893ab8205619963aa96204cdc4}{node\_pt}}(\mbox{\hyperlink{classoomph_1_1AxisymmetricPoroelasticityEquations_a3067ec7af1ffb4656b63f5921a9a6467}{q\_edge\_node\_number}}(l2))-\/>time\_stepper\_pt();}
+\DoxyCodeLine{\Hypertarget{axisym__poroelasticity__elements_8cc_source_l00941}00941                   this-\/>\mbox{\hyperlink{classoomph_1_1FiniteElement_a9addfe893ab8205619963aa96204cdc4}{node\_pt}}(\mbox{\hyperlink{classoomph_1_1AxisymmetricPoroelasticityEquations_a3067ec7af1ffb4656b63f5921a9a6467}{q\_edge\_node\_number}}(l2))-\/>\mbox{\hyperlink{classoomph_1_1Data_a065d7bffcec82bf4d4bd7b41f9aa80b3}{time\_stepper\_pt}}();}
 \DoxyCodeLine{\Hypertarget{axisym__poroelasticity__elements_8cc_source_l00942}00942               \}}
 \DoxyCodeLine{\Hypertarget{axisym__poroelasticity__elements_8cc_source_l00943}00943               \textcolor{keywordflow}{else} \textcolor{comment}{// n\_q\_basis\_edge <= l < n\_basis}}
 \DoxyCodeLine{\Hypertarget{axisym__poroelasticity__elements_8cc_source_l00944}00944               \{}
@@ -1016,7 +1016,7 @@
 \DoxyCodeLine{\Hypertarget{axisym__poroelasticity__elements_8cc_source_l01012}01012                 \textcolor{keywordflow}{if} (local\_unknown >= 0)}
 \DoxyCodeLine{\Hypertarget{axisym__poroelasticity__elements_8cc_source_l01013}01013                 \{}
 \DoxyCodeLine{\Hypertarget{axisym__poroelasticity__elements_8cc_source_l01014}01014                   \mbox{\hyperlink{classoomph_1_1FiniteElement_aa6c806dab803b82ba4f02cf806971af8}{jacobian}}(local\_eqn, local\_unknown) +=}
-\DoxyCodeLine{\Hypertarget{axisym__poroelasticity__elements_8cc_source_l01015}01015                     \mbox{\hyperlink{classoomph_1_1AxisymmetricPoroelasticityEquations_a34f94e3d08040896b71722877cc91908}{alpha}} * this-\/>\mbox{\hyperlink{classoomph_1_1FiniteElement_a9addfe893ab8205619963aa96204cdc4}{node\_pt}}(l2)-\/>time\_stepper\_pt()-\/>weight(1, 0) *}
+\DoxyCodeLine{\Hypertarget{axisym__poroelasticity__elements_8cc_source_l01015}01015                     \mbox{\hyperlink{classoomph_1_1AxisymmetricPoroelasticityEquations_a34f94e3d08040896b71722877cc91908}{alpha}} * this-\/>\mbox{\hyperlink{classoomph_1_1FiniteElement_a9addfe893ab8205619963aa96204cdc4}{node\_pt}}(l2)-\/>\mbox{\hyperlink{classoomph_1_1Data_a065d7bffcec82bf4d4bd7b41f9aa80b3}{time\_stepper\_pt}}()-\/>\mbox{\hyperlink{classoomph_1_1TimeStepper_a4cb0aecb044b77ba0553cdd54b586d8a}{weight}}(1, 0) *}
 \DoxyCodeLine{\Hypertarget{axisym__poroelasticity__elements_8cc_source_l01016}01016                     du\_basis\_dx(l2, c) * p\_test(l) * r * w * J;}
 \DoxyCodeLine{\Hypertarget{axisym__poroelasticity__elements_8cc_source_l01017}01017 }
 \DoxyCodeLine{\Hypertarget{axisym__poroelasticity__elements_8cc_source_l01018}01018                   \textcolor{comment}{// Extra term due to cylindrical coordinate system}}
@@ -1024,7 +1024,7 @@
 \DoxyCodeLine{\Hypertarget{axisym__poroelasticity__elements_8cc_source_l01020}01020                   \{}
 \DoxyCodeLine{\Hypertarget{axisym__poroelasticity__elements_8cc_source_l01021}01021                     \mbox{\hyperlink{classoomph_1_1FiniteElement_aa6c806dab803b82ba4f02cf806971af8}{jacobian}}(local\_eqn, local\_unknown) +=}
 \DoxyCodeLine{\Hypertarget{axisym__poroelasticity__elements_8cc_source_l01022}01022                       \mbox{\hyperlink{classoomph_1_1AxisymmetricPoroelasticityEquations_a34f94e3d08040896b71722877cc91908}{alpha}} *}
-\DoxyCodeLine{\Hypertarget{axisym__poroelasticity__elements_8cc_source_l01023}01023                       this-\/>\mbox{\hyperlink{classoomph_1_1FiniteElement_a9addfe893ab8205619963aa96204cdc4}{node\_pt}}(l2)-\/>time\_stepper\_pt()-\/>weight(1, 0) *}
+\DoxyCodeLine{\Hypertarget{axisym__poroelasticity__elements_8cc_source_l01023}01023                       this-\/>\mbox{\hyperlink{classoomph_1_1FiniteElement_a9addfe893ab8205619963aa96204cdc4}{node\_pt}}(l2)-\/>\mbox{\hyperlink{classoomph_1_1Data_a065d7bffcec82bf4d4bd7b41f9aa80b3}{time\_stepper\_pt}}()-\/>\mbox{\hyperlink{classoomph_1_1TimeStepper_a4cb0aecb044b77ba0553cdd54b586d8a}{weight}}(1, 0) *}
 \DoxyCodeLine{\Hypertarget{axisym__poroelasticity__elements_8cc_source_l01024}01024                       u\_basis(l2) * p\_test(l) * w * J;}
 \DoxyCodeLine{\Hypertarget{axisym__poroelasticity__elements_8cc_source_l01025}01025                   \}}
 \DoxyCodeLine{\Hypertarget{axisym__poroelasticity__elements_8cc_source_l01026}01026                 \}}

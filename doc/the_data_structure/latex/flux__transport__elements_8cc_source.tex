@@ -136,12 +136,12 @@
 \DoxyCodeLine{\Hypertarget{flux__transport__elements_8cc_source_l00132}00132       \textcolor{keywordflow}{for} (\textcolor{keywordtype}{unsigned} l = 0; l < n\_node; l++)}
 \DoxyCodeLine{\Hypertarget{flux__transport__elements_8cc_source_l00133}00133       \{}
 \DoxyCodeLine{\Hypertarget{flux__transport__elements_8cc_source_l00134}00134         \textcolor{comment}{// Locally cache the shape function}}
-\DoxyCodeLine{\Hypertarget{flux__transport__elements_8cc_source_l00135}00135         \textcolor{keyword}{const} \textcolor{keywordtype}{double} \mbox{\hyperlink{namespaceoomph_aff0c55ce31f12df52b2fe5ae647ffebe}{psi\_}} = psi(l);}
+\DoxyCodeLine{\Hypertarget{flux__transport__elements_8cc_source_l00135}00135         \textcolor{keyword}{const} \textcolor{keywordtype}{double} psi\_ = psi(l);}
 \DoxyCodeLine{\Hypertarget{flux__transport__elements_8cc_source_l00136}00136         \textcolor{keywordflow}{for} (\textcolor{keywordtype}{unsigned} \mbox{\hyperlink{cfortran_8h_adb50e893b86b3e55e751a42eab3cba82}{i}} = 0; \mbox{\hyperlink{cfortran_8h_adb50e893b86b3e55e751a42eab3cba82}{i}} < n\_flux; \mbox{\hyperlink{cfortran_8h_adb50e893b86b3e55e751a42eab3cba82}{i}}++)}
 \DoxyCodeLine{\Hypertarget{flux__transport__elements_8cc_source_l00137}00137         \{}
 \DoxyCodeLine{\Hypertarget{flux__transport__elements_8cc_source_l00138}00138           \textcolor{comment}{// Calculate the velocity and tangent vector}}
-\DoxyCodeLine{\Hypertarget{flux__transport__elements_8cc_source_l00139}00139           interpolated\_u[\mbox{\hyperlink{cfortran_8h_adb50e893b86b3e55e751a42eab3cba82}{i}}] += this-\/>nodal\_value(l, u\_nodal\_index[\mbox{\hyperlink{cfortran_8h_adb50e893b86b3e55e751a42eab3cba82}{i}}]) * \mbox{\hyperlink{namespaceoomph_aff0c55ce31f12df52b2fe5ae647ffebe}{psi\_}};}
-\DoxyCodeLine{\Hypertarget{flux__transport__elements_8cc_source_l00140}00140           interpolated\_dudt[\mbox{\hyperlink{cfortran_8h_adb50e893b86b3e55e751a42eab3cba82}{i}}] += this-\/>du\_dt\_flux\_transport(l, \mbox{\hyperlink{cfortran_8h_adb50e893b86b3e55e751a42eab3cba82}{i}}) * \mbox{\hyperlink{namespaceoomph_aff0c55ce31f12df52b2fe5ae647ffebe}{psi\_}};}
+\DoxyCodeLine{\Hypertarget{flux__transport__elements_8cc_source_l00139}00139           interpolated\_u[\mbox{\hyperlink{cfortran_8h_adb50e893b86b3e55e751a42eab3cba82}{i}}] += this-\/>nodal\_value(l, u\_nodal\_index[\mbox{\hyperlink{cfortran_8h_adb50e893b86b3e55e751a42eab3cba82}{i}}]) * psi\_;}
+\DoxyCodeLine{\Hypertarget{flux__transport__elements_8cc_source_l00140}00140           interpolated\_dudt[\mbox{\hyperlink{cfortran_8h_adb50e893b86b3e55e751a42eab3cba82}{i}}] += this-\/>du\_dt\_flux\_transport(l, \mbox{\hyperlink{cfortran_8h_adb50e893b86b3e55e751a42eab3cba82}{i}}) * psi\_;}
 \DoxyCodeLine{\Hypertarget{flux__transport__elements_8cc_source_l00141}00141         \}}
 \DoxyCodeLine{\Hypertarget{flux__transport__elements_8cc_source_l00142}00142       \}}
 \DoxyCodeLine{\Hypertarget{flux__transport__elements_8cc_source_l00143}00143 }
@@ -266,8 +266,8 @@
 \DoxyCodeLine{\Hypertarget{flux__transport__elements_8cc_source_l00262}00262     \textcolor{comment}{// Loop over the nodes}}
 \DoxyCodeLine{\Hypertarget{flux__transport__elements_8cc_source_l00263}00263     \textcolor{keywordflow}{for} (\textcolor{keywordtype}{unsigned} n = 0; n < n\_node; n++)}
 \DoxyCodeLine{\Hypertarget{flux__transport__elements_8cc_source_l00264}00264     \{}
-\DoxyCodeLine{\Hypertarget{flux__transport__elements_8cc_source_l00265}00265       \textcolor{keyword}{const} \textcolor{keywordtype}{double} \mbox{\hyperlink{namespaceoomph_aff0c55ce31f12df52b2fe5ae647ffebe}{psi\_}} = psi[n];}
-\DoxyCodeLine{\Hypertarget{flux__transport__elements_8cc_source_l00266}00266       \mbox{\hyperlink{namespaceoomph_ac0ed65f6db53d9ad737e1d2a69767d25}{u}} += this-\/>nodal\_value(n, u\_index\_flux\_transport(\mbox{\hyperlink{cfortran_8h_adb50e893b86b3e55e751a42eab3cba82}{i}})) * \mbox{\hyperlink{namespaceoomph_aff0c55ce31f12df52b2fe5ae647ffebe}{psi\_}};}
+\DoxyCodeLine{\Hypertarget{flux__transport__elements_8cc_source_l00265}00265       \textcolor{keyword}{const} \textcolor{keywordtype}{double} psi\_ = psi[n];}
+\DoxyCodeLine{\Hypertarget{flux__transport__elements_8cc_source_l00266}00266       \mbox{\hyperlink{namespaceoomph_ac0ed65f6db53d9ad737e1d2a69767d25}{u}} += this-\/>nodal\_value(n, u\_index\_flux\_transport(\mbox{\hyperlink{cfortran_8h_adb50e893b86b3e55e751a42eab3cba82}{i}})) * psi\_;}
 \DoxyCodeLine{\Hypertarget{flux__transport__elements_8cc_source_l00267}00267     \}}
 \DoxyCodeLine{\Hypertarget{flux__transport__elements_8cc_source_l00268}00268     \textcolor{keywordflow}{return} \mbox{\hyperlink{namespaceoomph_ac0ed65f6db53d9ad737e1d2a69767d25}{u}};}
 \DoxyCodeLine{\Hypertarget{flux__transport__elements_8cc_source_l00269}00269   \}}
@@ -358,11 +358,11 @@
 \DoxyCodeLine{\Hypertarget{flux__transport__elements_8cc_source_l00354}00354       \textcolor{keywordflow}{for} (\textcolor{keywordtype}{unsigned} l = 0; l < n\_node; l++)}
 \DoxyCodeLine{\Hypertarget{flux__transport__elements_8cc_source_l00355}00355       \{}
 \DoxyCodeLine{\Hypertarget{flux__transport__elements_8cc_source_l00356}00356         \textcolor{comment}{// Locally cache the shape function}}
-\DoxyCodeLine{\Hypertarget{flux__transport__elements_8cc_source_l00357}00357         \textcolor{keyword}{const} \textcolor{keywordtype}{double} \mbox{\hyperlink{namespaceoomph_aff0c55ce31f12df52b2fe5ae647ffebe}{psi\_}} = psi(l);}
+\DoxyCodeLine{\Hypertarget{flux__transport__elements_8cc_source_l00357}00357         \textcolor{keyword}{const} \textcolor{keywordtype}{double} psi\_ = psi(l);}
 \DoxyCodeLine{\Hypertarget{flux__transport__elements_8cc_source_l00358}00358         \textcolor{keywordflow}{for} (\textcolor{keywordtype}{unsigned} \mbox{\hyperlink{cfortran_8h_adb50e893b86b3e55e751a42eab3cba82}{i}} = 0; \mbox{\hyperlink{cfortran_8h_adb50e893b86b3e55e751a42eab3cba82}{i}} < n\_flux; \mbox{\hyperlink{cfortran_8h_adb50e893b86b3e55e751a42eab3cba82}{i}}++)}
 \DoxyCodeLine{\Hypertarget{flux__transport__elements_8cc_source_l00359}00359         \{}
 \DoxyCodeLine{\Hypertarget{flux__transport__elements_8cc_source_l00360}00360           \textcolor{comment}{// Calculate the velocity and tangent vector}}
-\DoxyCodeLine{\Hypertarget{flux__transport__elements_8cc_source_l00361}00361           interpolated\_u[\mbox{\hyperlink{cfortran_8h_adb50e893b86b3e55e751a42eab3cba82}{i}}] += this-\/>nodal\_value(l, u\_nodal\_index[\mbox{\hyperlink{cfortran_8h_adb50e893b86b3e55e751a42eab3cba82}{i}}]) * \mbox{\hyperlink{namespaceoomph_aff0c55ce31f12df52b2fe5ae647ffebe}{psi\_}};}
+\DoxyCodeLine{\Hypertarget{flux__transport__elements_8cc_source_l00361}00361           interpolated\_u[\mbox{\hyperlink{cfortran_8h_adb50e893b86b3e55e751a42eab3cba82}{i}}] += this-\/>nodal\_value(l, u\_nodal\_index[\mbox{\hyperlink{cfortran_8h_adb50e893b86b3e55e751a42eab3cba82}{i}}]) * psi\_;}
 \DoxyCodeLine{\Hypertarget{flux__transport__elements_8cc_source_l00362}00362         \}}
 \DoxyCodeLine{\Hypertarget{flux__transport__elements_8cc_source_l00363}00363       \}}
 \DoxyCodeLine{\Hypertarget{flux__transport__elements_8cc_source_l00364}00364 }

@@ -806,7 +806,7 @@
 \DoxyCodeLine{\Hypertarget{beam__elements_8cc_source_l00802}00802     outfile << \textcolor{stringliteral}{"{}ZONE I="{}} << n\_plot << std::endl;}
 \DoxyCodeLine{\Hypertarget{beam__elements_8cc_source_l00803}00803 }
 \DoxyCodeLine{\Hypertarget{beam__elements_8cc_source_l00804}00804     \textcolor{comment}{// Find the dimension of the first node}}
-\DoxyCodeLine{\Hypertarget{beam__elements_8cc_source_l00805}00805     \textcolor{keywordtype}{unsigned} n\_dim = this-\/>\mbox{\hyperlink{classoomph_1_1FiniteElement_a9addfe893ab8205619963aa96204cdc4}{node\_pt}}(0)-\/>ndim();}
+\DoxyCodeLine{\Hypertarget{beam__elements_8cc_source_l00805}00805     \textcolor{keywordtype}{unsigned} n\_dim = this-\/>\mbox{\hyperlink{classoomph_1_1FiniteElement_a9addfe893ab8205619963aa96204cdc4}{node\_pt}}(0)-\/>\mbox{\hyperlink{classoomph_1_1Node_a786c96a8e46eb27a03b2b31f629d41b3}{ndim}}();}
 \DoxyCodeLine{\Hypertarget{beam__elements_8cc_source_l00806}00806 }
 \DoxyCodeLine{\Hypertarget{beam__elements_8cc_source_l00807}00807     \textcolor{comment}{// Loop over plot points}}
 \DoxyCodeLine{\Hypertarget{beam__elements_8cc_source_l00808}00808     \textcolor{keywordflow}{for} (\textcolor{keywordtype}{unsigned} l = 0; l < n\_plot; l++)}
@@ -961,7 +961,7 @@
 \DoxyCodeLine{\Hypertarget{beam__elements_8cc_source_l00957}00957     fprintf(file\_pt, \textcolor{stringliteral}{"{}ZONE I=\%i \(\backslash\)n"{}}, n\_plot);}
 \DoxyCodeLine{\Hypertarget{beam__elements_8cc_source_l00958}00958 }
 \DoxyCodeLine{\Hypertarget{beam__elements_8cc_source_l00959}00959     \textcolor{comment}{// Find the dimension of the first node}}
-\DoxyCodeLine{\Hypertarget{beam__elements_8cc_source_l00960}00960     \textcolor{keywordtype}{unsigned} n\_dim = this-\/>\mbox{\hyperlink{classoomph_1_1FiniteElement_a9addfe893ab8205619963aa96204cdc4}{node\_pt}}(0)-\/>ndim();}
+\DoxyCodeLine{\Hypertarget{beam__elements_8cc_source_l00960}00960     \textcolor{keywordtype}{unsigned} n\_dim = this-\/>\mbox{\hyperlink{classoomph_1_1FiniteElement_a9addfe893ab8205619963aa96204cdc4}{node\_pt}}(0)-\/>\mbox{\hyperlink{classoomph_1_1Node_a786c96a8e46eb27a03b2b31f629d41b3}{ndim}}();}
 \DoxyCodeLine{\Hypertarget{beam__elements_8cc_source_l00961}00961 }
 \DoxyCodeLine{\Hypertarget{beam__elements_8cc_source_l00962}00962     \textcolor{comment}{// Loop over plot points}}
 \DoxyCodeLine{\Hypertarget{beam__elements_8cc_source_l00963}00963     \textcolor{keywordflow}{for} (\textcolor{keywordtype}{unsigned} l = 0; l < n\_plot; l++)}
@@ -1406,8 +1406,8 @@
 \DoxyCodeLine{\Hypertarget{beam__elements_8cc_source_l01402}01402     \textcolor{comment}{// Add Lagrange multiplier contribution to the bulk equations}}
 \DoxyCodeLine{\Hypertarget{beam__elements_8cc_source_l01403}01403 }
 \DoxyCodeLine{\Hypertarget{beam__elements_8cc_source_l01404}01404     \textcolor{comment}{// Lagrange multipliers}}
-\DoxyCodeLine{\Hypertarget{beam__elements_8cc_source_l01405}01405     \textcolor{keywordtype}{double} lambda0 = \mbox{\hyperlink{classoomph_1_1FiniteElement_a9addfe893ab8205619963aa96204cdc4}{node\_pt}}(0)-\/>value(\mbox{\hyperlink{classoomph_1_1FaceElement_abd04b85066da626341294b5f0b97516e}{Nbulk\_value}}[0]);}
-\DoxyCodeLine{\Hypertarget{beam__elements_8cc_source_l01406}01406     \textcolor{keywordtype}{double} lambda1 = \mbox{\hyperlink{classoomph_1_1FiniteElement_a9addfe893ab8205619963aa96204cdc4}{node\_pt}}(0)-\/>value(\mbox{\hyperlink{classoomph_1_1FaceElement_abd04b85066da626341294b5f0b97516e}{Nbulk\_value}}[0] + 1);}
+\DoxyCodeLine{\Hypertarget{beam__elements_8cc_source_l01405}01405     \textcolor{keywordtype}{double} lambda0 = \mbox{\hyperlink{classoomph_1_1FiniteElement_a9addfe893ab8205619963aa96204cdc4}{node\_pt}}(0)-\/>\mbox{\hyperlink{classoomph_1_1Node_afcc5cdba40bca251826ae5bee5ca15b4}{value}}(\mbox{\hyperlink{classoomph_1_1FaceElement_abd04b85066da626341294b5f0b97516e}{Nbulk\_value}}[0]);}
+\DoxyCodeLine{\Hypertarget{beam__elements_8cc_source_l01406}01406     \textcolor{keywordtype}{double} lambda1 = \mbox{\hyperlink{classoomph_1_1FiniteElement_a9addfe893ab8205619963aa96204cdc4}{node\_pt}}(0)-\/>\mbox{\hyperlink{classoomph_1_1Node_afcc5cdba40bca251826ae5bee5ca15b4}{value}}(\mbox{\hyperlink{classoomph_1_1FaceElement_abd04b85066da626341294b5f0b97516e}{Nbulk\_value}}[0] + 1);}
 \DoxyCodeLine{\Hypertarget{beam__elements_8cc_source_l01407}01407 }
 \DoxyCodeLine{\Hypertarget{beam__elements_8cc_source_l01408}01408     \textcolor{comment}{// Loop over the solid dofs}}
 \DoxyCodeLine{\Hypertarget{beam__elements_8cc_source_l01409}01409 }

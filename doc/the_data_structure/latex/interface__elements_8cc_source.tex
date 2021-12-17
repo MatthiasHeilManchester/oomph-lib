@@ -542,15 +542,15 @@
 \DoxyCodeLine{\Hypertarget{interface__elements_8cc_source_l00538}00538       \textcolor{comment}{// Loop over the shape functions}}
 \DoxyCodeLine{\Hypertarget{interface__elements_8cc_source_l00539}00539       \textcolor{keywordflow}{for} (\textcolor{keywordtype}{unsigned} l = 0; l < n\_node; l++)}
 \DoxyCodeLine{\Hypertarget{interface__elements_8cc_source_l00540}00540       \{}
-\DoxyCodeLine{\Hypertarget{interface__elements_8cc_source_l00541}00541         \textcolor{keyword}{const} \textcolor{keywordtype}{double} \mbox{\hyperlink{namespaceoomph_aff0c55ce31f12df52b2fe5ae647ffebe}{psi\_}} = psif(l);}
+\DoxyCodeLine{\Hypertarget{interface__elements_8cc_source_l00541}00541         \textcolor{keyword}{const} \textcolor{keywordtype}{double} psi\_ = psif(l);}
 \DoxyCodeLine{\Hypertarget{interface__elements_8cc_source_l00542}00542         \textcolor{comment}{// Loop over directional components}}
 \DoxyCodeLine{\Hypertarget{interface__elements_8cc_source_l00543}00543         \textcolor{keywordflow}{for} (\textcolor{keywordtype}{unsigned} \mbox{\hyperlink{cfortran_8h_adb50e893b86b3e55e751a42eab3cba82}{i}} = 0; \mbox{\hyperlink{cfortran_8h_adb50e893b86b3e55e751a42eab3cba82}{i}} < n\_dim; \mbox{\hyperlink{cfortran_8h_adb50e893b86b3e55e751a42eab3cba82}{i}}++)}
 \DoxyCodeLine{\Hypertarget{interface__elements_8cc_source_l00544}00544         \{}
 \DoxyCodeLine{\Hypertarget{interface__elements_8cc_source_l00545}00545           \textcolor{comment}{// Coordinate}}
-\DoxyCodeLine{\Hypertarget{interface__elements_8cc_source_l00546}00546           \mbox{\hyperlink{classoomph_1_1FaceElement_a7aa612fec3604e08344503fbcdc357c8}{interpolated\_x}}[\mbox{\hyperlink{cfortran_8h_adb50e893b86b3e55e751a42eab3cba82}{i}}] += this-\/>\mbox{\hyperlink{classoomph_1_1FiniteElement_a9152c16ae9899168bcdaac7c2f977444}{nodal\_position}}(l, \mbox{\hyperlink{cfortran_8h_adb50e893b86b3e55e751a42eab3cba82}{i}}) * \mbox{\hyperlink{namespaceoomph_aff0c55ce31f12df52b2fe5ae647ffebe}{psi\_}};}
+\DoxyCodeLine{\Hypertarget{interface__elements_8cc_source_l00546}00546           \mbox{\hyperlink{classoomph_1_1FaceElement_a7aa612fec3604e08344503fbcdc357c8}{interpolated\_x}}[\mbox{\hyperlink{cfortran_8h_adb50e893b86b3e55e751a42eab3cba82}{i}}] += this-\/>\mbox{\hyperlink{classoomph_1_1FiniteElement_a9152c16ae9899168bcdaac7c2f977444}{nodal\_position}}(l, \mbox{\hyperlink{cfortran_8h_adb50e893b86b3e55e751a42eab3cba82}{i}}) * psi\_;}
 \DoxyCodeLine{\Hypertarget{interface__elements_8cc_source_l00547}00547 }
 \DoxyCodeLine{\Hypertarget{interface__elements_8cc_source_l00548}00548           \textcolor{comment}{// Calculate velocity of mesh}}
-\DoxyCodeLine{\Hypertarget{interface__elements_8cc_source_l00549}00549           interpolated\_dx\_dt[\mbox{\hyperlink{cfortran_8h_adb50e893b86b3e55e751a42eab3cba82}{i}}] += this-\/>\mbox{\hyperlink{classoomph_1_1FiniteElement_adcd3fe593044db9afae4c15f85ebb175}{dnodal\_position\_dt}}(l, \mbox{\hyperlink{cfortran_8h_adb50e893b86b3e55e751a42eab3cba82}{i}}) * \mbox{\hyperlink{namespaceoomph_aff0c55ce31f12df52b2fe5ae647ffebe}{psi\_}};}
+\DoxyCodeLine{\Hypertarget{interface__elements_8cc_source_l00549}00549           interpolated\_dx\_dt[\mbox{\hyperlink{cfortran_8h_adb50e893b86b3e55e751a42eab3cba82}{i}}] += this-\/>\mbox{\hyperlink{classoomph_1_1FiniteElement_adcd3fe593044db9afae4c15f85ebb175}{dnodal\_position\_dt}}(l, \mbox{\hyperlink{cfortran_8h_adb50e893b86b3e55e751a42eab3cba82}{i}}) * psi\_;}
 \DoxyCodeLine{\Hypertarget{interface__elements_8cc_source_l00550}00550 }
 \DoxyCodeLine{\Hypertarget{interface__elements_8cc_source_l00551}00551           \textcolor{comment}{// Calculate the tangent vectors}}
 \DoxyCodeLine{\Hypertarget{interface__elements_8cc_source_l00552}00552           \textcolor{keywordflow}{for} (\textcolor{keywordtype}{unsigned} j = 0; j < el\_dim; j++)}
@@ -559,7 +559,7 @@
 \DoxyCodeLine{\Hypertarget{interface__elements_8cc_source_l00555}00555           \}}
 \DoxyCodeLine{\Hypertarget{interface__elements_8cc_source_l00556}00556 }
 \DoxyCodeLine{\Hypertarget{interface__elements_8cc_source_l00557}00557           \textcolor{comment}{// Calculate velocity and tangent vector}}
-\DoxyCodeLine{\Hypertarget{interface__elements_8cc_source_l00558}00558           \mbox{\hyperlink{classoomph_1_1FluidInterfaceElement_a8f807a6456da7785b12e45a4c17fb969}{interpolated\_u}}[\mbox{\hyperlink{cfortran_8h_adb50e893b86b3e55e751a42eab3cba82}{i}}] += \mbox{\hyperlink{classoomph_1_1FluidInterfaceElement_a50a509413ea7f2a481678837846dd476}{u}}(l, \mbox{\hyperlink{cfortran_8h_adb50e893b86b3e55e751a42eab3cba82}{i}}) * \mbox{\hyperlink{namespaceoomph_aff0c55ce31f12df52b2fe5ae647ffebe}{psi\_}};}
+\DoxyCodeLine{\Hypertarget{interface__elements_8cc_source_l00558}00558           \mbox{\hyperlink{classoomph_1_1FluidInterfaceElement_a8f807a6456da7785b12e45a4c17fb969}{interpolated\_u}}[\mbox{\hyperlink{cfortran_8h_adb50e893b86b3e55e751a42eab3cba82}{i}}] += \mbox{\hyperlink{classoomph_1_1FluidInterfaceElement_a50a509413ea7f2a481678837846dd476}{u}}(l, \mbox{\hyperlink{cfortran_8h_adb50e893b86b3e55e751a42eab3cba82}{i}}) * psi\_;}
 \DoxyCodeLine{\Hypertarget{interface__elements_8cc_source_l00559}00559         \}}
 \DoxyCodeLine{\Hypertarget{interface__elements_8cc_source_l00560}00560       \}}
 \DoxyCodeLine{\Hypertarget{interface__elements_8cc_source_l00561}00561 }

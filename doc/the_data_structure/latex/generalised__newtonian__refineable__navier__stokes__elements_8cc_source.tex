@@ -1136,13 +1136,13 @@
 \DoxyCodeLine{\Hypertarget{generalised__newtonian__refineable__navier__stokes__elements_8cc_source_l01132}01132          it++)}
 \DoxyCodeLine{\Hypertarget{generalised__newtonian__refineable__navier__stokes__elements_8cc_source_l01133}01133     \{}
 \DoxyCodeLine{\Hypertarget{generalised__newtonian__refineable__navier__stokes__elements_8cc_source_l01134}01134       \textcolor{comment}{// Get node}}
-\DoxyCodeLine{\Hypertarget{generalised__newtonian__refineable__navier__stokes__elements_8cc_source_l01135}01135       Node* nod\_pt = it-\/>first;}
+\DoxyCodeLine{\Hypertarget{generalised__newtonian__refineable__navier__stokes__elements_8cc_source_l01135}01135       \mbox{\hyperlink{classoomph_1_1Node}{Node}}* nod\_pt = it-\/>first;}
 \DoxyCodeLine{\Hypertarget{generalised__newtonian__refineable__navier__stokes__elements_8cc_source_l01136}01136 }
 \DoxyCodeLine{\Hypertarget{generalised__newtonian__refineable__navier__stokes__elements_8cc_source_l01137}01137       \textcolor{comment}{// Get its number}}
 \DoxyCodeLine{\Hypertarget{generalised__newtonian__refineable__navier__stokes__elements_8cc_source_l01138}01138       \textcolor{keywordtype}{unsigned} q = it-\/>second;}
 \DoxyCodeLine{\Hypertarget{generalised__newtonian__refineable__navier__stokes__elements_8cc_source_l01139}01139 }
 \DoxyCodeLine{\Hypertarget{generalised__newtonian__refineable__navier__stokes__elements_8cc_source_l01140}01140       \textcolor{comment}{// Only compute if there's a node-\/update fct involved}}
-\DoxyCodeLine{\Hypertarget{generalised__newtonian__refineable__navier__stokes__elements_8cc_source_l01141}01141       \textcolor{keywordflow}{if} (nod\_pt-\/>has\_auxiliary\_node\_update\_fct\_pt())}
+\DoxyCodeLine{\Hypertarget{generalised__newtonian__refineable__navier__stokes__elements_8cc_source_l01141}01141       \textcolor{keywordflow}{if} (nod\_pt-\/>\mbox{\hyperlink{classoomph_1_1Node_ad5fe8ac9dcb705612903bc6945926375}{has\_auxiliary\_node\_update\_fct\_pt}}())}
 \DoxyCodeLine{\Hypertarget{generalised__newtonian__refineable__navier__stokes__elements_8cc_source_l01142}01142       \{}
 \DoxyCodeLine{\Hypertarget{generalised__newtonian__refineable__navier__stokes__elements_8cc_source_l01143}01143         element\_has\_node\_with\_aux\_node\_update\_fct = \textcolor{keyword}{true};}
 \DoxyCodeLine{\Hypertarget{generalised__newtonian__refineable__navier__stokes__elements_8cc_source_l01144}01144 }
@@ -1150,31 +1150,31 @@
 \DoxyCodeLine{\Hypertarget{generalised__newtonian__refineable__navier__stokes__elements_8cc_source_l01146}01146         \mbox{\hyperlink{classoomph_1_1Vector}{Vector<double>}} u\_ref(DIM);}
 \DoxyCodeLine{\Hypertarget{generalised__newtonian__refineable__navier__stokes__elements_8cc_source_l01147}01147         \textcolor{keywordflow}{for} (\textcolor{keywordtype}{unsigned} \mbox{\hyperlink{cfortran_8h_adb50e893b86b3e55e751a42eab3cba82}{i}} = 0; \mbox{\hyperlink{cfortran_8h_adb50e893b86b3e55e751a42eab3cba82}{i}} < DIM; \mbox{\hyperlink{cfortran_8h_adb50e893b86b3e55e751a42eab3cba82}{i}}++)}
 \DoxyCodeLine{\Hypertarget{generalised__newtonian__refineable__navier__stokes__elements_8cc_source_l01148}01148         \{}
-\DoxyCodeLine{\Hypertarget{generalised__newtonian__refineable__navier__stokes__elements_8cc_source_l01149}01149           u\_ref[\mbox{\hyperlink{cfortran_8h_adb50e893b86b3e55e751a42eab3cba82}{i}}] = *(nod\_pt-\/>value\_pt(u\_nodal\_index[\mbox{\hyperlink{cfortran_8h_adb50e893b86b3e55e751a42eab3cba82}{i}}]));}
+\DoxyCodeLine{\Hypertarget{generalised__newtonian__refineable__navier__stokes__elements_8cc_source_l01149}01149           u\_ref[\mbox{\hyperlink{cfortran_8h_adb50e893b86b3e55e751a42eab3cba82}{i}}] = *(nod\_pt-\/>\mbox{\hyperlink{classoomph_1_1Data_af545f88ca20583f0c1b66e4da6076aa3}{value\_pt}}(u\_nodal\_index[\mbox{\hyperlink{cfortran_8h_adb50e893b86b3e55e751a42eab3cba82}{i}}]));}
 \DoxyCodeLine{\Hypertarget{generalised__newtonian__refineable__navier__stokes__elements_8cc_source_l01150}01150         \}}
 \DoxyCodeLine{\Hypertarget{generalised__newtonian__refineable__navier__stokes__elements_8cc_source_l01151}01151 }
 \DoxyCodeLine{\Hypertarget{generalised__newtonian__refineable__navier__stokes__elements_8cc_source_l01152}01152         \textcolor{comment}{// FD}}
 \DoxyCodeLine{\Hypertarget{generalised__newtonian__refineable__navier__stokes__elements_8cc_source_l01153}01153         \textcolor{keywordflow}{for} (\textcolor{keywordtype}{unsigned} p = 0; p < DIM; p++)}
 \DoxyCodeLine{\Hypertarget{generalised__newtonian__refineable__navier__stokes__elements_8cc_source_l01154}01154         \{}
 \DoxyCodeLine{\Hypertarget{generalised__newtonian__refineable__navier__stokes__elements_8cc_source_l01155}01155           \textcolor{comment}{// Make backup}}
-\DoxyCodeLine{\Hypertarget{generalised__newtonian__refineable__navier__stokes__elements_8cc_source_l01156}01156           \textcolor{keywordtype}{double} backup = nod\_pt-\/>x(p);}
+\DoxyCodeLine{\Hypertarget{generalised__newtonian__refineable__navier__stokes__elements_8cc_source_l01156}01156           \textcolor{keywordtype}{double} backup = nod\_pt-\/>\mbox{\hyperlink{classoomph_1_1Node_ab76b4773a65b349f143539e07b6e15e2}{x}}(p);}
 \DoxyCodeLine{\Hypertarget{generalised__newtonian__refineable__navier__stokes__elements_8cc_source_l01157}01157 }
 \DoxyCodeLine{\Hypertarget{generalised__newtonian__refineable__navier__stokes__elements_8cc_source_l01158}01158           \textcolor{comment}{// Do FD step. No node update required as we're}}
 \DoxyCodeLine{\Hypertarget{generalised__newtonian__refineable__navier__stokes__elements_8cc_source_l01159}01159           \textcolor{comment}{// attacking the coordinate directly...}}
-\DoxyCodeLine{\Hypertarget{generalised__newtonian__refineable__navier__stokes__elements_8cc_source_l01160}01160           nod\_pt-\/>x(p) += eps\_fd;}
+\DoxyCodeLine{\Hypertarget{generalised__newtonian__refineable__navier__stokes__elements_8cc_source_l01160}01160           nod\_pt-\/>\mbox{\hyperlink{classoomph_1_1Node_ab76b4773a65b349f143539e07b6e15e2}{x}}(p) += eps\_fd;}
 \DoxyCodeLine{\Hypertarget{generalised__newtonian__refineable__navier__stokes__elements_8cc_source_l01161}01161 }
 \DoxyCodeLine{\Hypertarget{generalised__newtonian__refineable__navier__stokes__elements_8cc_source_l01162}01162           \textcolor{comment}{// Do auxiliary node update (to apply no slip)}}
-\DoxyCodeLine{\Hypertarget{generalised__newtonian__refineable__navier__stokes__elements_8cc_source_l01163}01163           nod\_pt-\/>perform\_auxiliary\_node\_update\_fct();}
+\DoxyCodeLine{\Hypertarget{generalised__newtonian__refineable__navier__stokes__elements_8cc_source_l01163}01163           nod\_pt-\/>\mbox{\hyperlink{classoomph_1_1Node_a6c287aa85c19f2d37ed7952ece5c76dd}{perform\_auxiliary\_node\_update\_fct}}();}
 \DoxyCodeLine{\Hypertarget{generalised__newtonian__refineable__navier__stokes__elements_8cc_source_l01164}01164 }
 \DoxyCodeLine{\Hypertarget{generalised__newtonian__refineable__navier__stokes__elements_8cc_source_l01165}01165           \textcolor{comment}{// Evaluate}}
 \DoxyCodeLine{\Hypertarget{generalised__newtonian__refineable__navier__stokes__elements_8cc_source_l01166}01166           d\_U\_dX(p, q) =}
-\DoxyCodeLine{\Hypertarget{generalised__newtonian__refineable__navier__stokes__elements_8cc_source_l01167}01167             (*(nod\_pt-\/>value\_pt(u\_nodal\_index[p])) -\/ u\_ref[p]) / eps\_fd;}
+\DoxyCodeLine{\Hypertarget{generalised__newtonian__refineable__navier__stokes__elements_8cc_source_l01167}01167             (*(nod\_pt-\/>\mbox{\hyperlink{classoomph_1_1Data_af545f88ca20583f0c1b66e4da6076aa3}{value\_pt}}(u\_nodal\_index[p])) -\/ u\_ref[p]) / eps\_fd;}
 \DoxyCodeLine{\Hypertarget{generalised__newtonian__refineable__navier__stokes__elements_8cc_source_l01168}01168 }
 \DoxyCodeLine{\Hypertarget{generalised__newtonian__refineable__navier__stokes__elements_8cc_source_l01169}01169           \textcolor{comment}{// Reset}}
-\DoxyCodeLine{\Hypertarget{generalised__newtonian__refineable__navier__stokes__elements_8cc_source_l01170}01170           nod\_pt-\/>x(p) = backup;}
+\DoxyCodeLine{\Hypertarget{generalised__newtonian__refineable__navier__stokes__elements_8cc_source_l01170}01170           nod\_pt-\/>\mbox{\hyperlink{classoomph_1_1Node_ab76b4773a65b349f143539e07b6e15e2}{x}}(p) = backup;}
 \DoxyCodeLine{\Hypertarget{generalised__newtonian__refineable__navier__stokes__elements_8cc_source_l01171}01171 }
 \DoxyCodeLine{\Hypertarget{generalised__newtonian__refineable__navier__stokes__elements_8cc_source_l01172}01172           \textcolor{comment}{// Do auxiliary node update (to apply no slip)}}
-\DoxyCodeLine{\Hypertarget{generalised__newtonian__refineable__navier__stokes__elements_8cc_source_l01173}01173           nod\_pt-\/>perform\_auxiliary\_node\_update\_fct();}
+\DoxyCodeLine{\Hypertarget{generalised__newtonian__refineable__navier__stokes__elements_8cc_source_l01173}01173           nod\_pt-\/>\mbox{\hyperlink{classoomph_1_1Node_a6c287aa85c19f2d37ed7952ece5c76dd}{perform\_auxiliary\_node\_update\_fct}}();}
 \DoxyCodeLine{\Hypertarget{generalised__newtonian__refineable__navier__stokes__elements_8cc_source_l01174}01174         \}}
 \DoxyCodeLine{\Hypertarget{generalised__newtonian__refineable__navier__stokes__elements_8cc_source_l01175}01175       \}}
 \DoxyCodeLine{\Hypertarget{generalised__newtonian__refineable__navier__stokes__elements_8cc_source_l01176}01176     \}}
@@ -1480,7 +1480,7 @@
 \DoxyCodeLine{\Hypertarget{generalised__newtonian__refineable__navier__stokes__elements_8cc_source_l01476}01476                   \textcolor{comment}{// Local boolean to indicate whether the node is hanging}}
 \DoxyCodeLine{\Hypertarget{generalised__newtonian__refineable__navier__stokes__elements_8cc_source_l01477}01477                   \textcolor{keywordtype}{bool} is\_node\_hanging2 = node\_pt(q\_local)-\/>is\_hanging();}
 \DoxyCodeLine{\Hypertarget{generalised__newtonian__refineable__navier__stokes__elements_8cc_source_l01478}01478 }
-\DoxyCodeLine{\Hypertarget{generalised__newtonian__refineable__navier__stokes__elements_8cc_source_l01479}01479                   Node* actual\_shape\_controlling\_node\_pt = node\_pt(q\_local);}
+\DoxyCodeLine{\Hypertarget{generalised__newtonian__refineable__navier__stokes__elements_8cc_source_l01479}01479                   \mbox{\hyperlink{classoomph_1_1Node}{Node}}* actual\_shape\_controlling\_node\_pt = node\_pt(q\_local);}
 \DoxyCodeLine{\Hypertarget{generalised__newtonian__refineable__navier__stokes__elements_8cc_source_l01480}01480 }
 \DoxyCodeLine{\Hypertarget{generalised__newtonian__refineable__navier__stokes__elements_8cc_source_l01481}01481                   \textcolor{comment}{// If the node is hanging}}
 \DoxyCodeLine{\Hypertarget{generalised__newtonian__refineable__navier__stokes__elements_8cc_source_l01482}01482                   \textcolor{keywordflow}{if} (is\_node\_hanging2)}
@@ -1647,7 +1647,7 @@
 \DoxyCodeLine{\Hypertarget{generalised__newtonian__refineable__navier__stokes__elements_8cc_source_l01643}01643                 \textcolor{comment}{// Local boolean to indicate whether the node is hanging}}
 \DoxyCodeLine{\Hypertarget{generalised__newtonian__refineable__navier__stokes__elements_8cc_source_l01644}01644                 \textcolor{keywordtype}{bool} is\_node\_hanging2 = node\_pt(q\_local)-\/>is\_hanging();}
 \DoxyCodeLine{\Hypertarget{generalised__newtonian__refineable__navier__stokes__elements_8cc_source_l01645}01645 }
-\DoxyCodeLine{\Hypertarget{generalised__newtonian__refineable__navier__stokes__elements_8cc_source_l01646}01646                 Node* actual\_shape\_controlling\_node\_pt = node\_pt(q\_local);}
+\DoxyCodeLine{\Hypertarget{generalised__newtonian__refineable__navier__stokes__elements_8cc_source_l01646}01646                 \mbox{\hyperlink{classoomph_1_1Node}{Node}}* actual\_shape\_controlling\_node\_pt = node\_pt(q\_local);}
 \DoxyCodeLine{\Hypertarget{generalised__newtonian__refineable__navier__stokes__elements_8cc_source_l01647}01647 }
 \DoxyCodeLine{\Hypertarget{generalised__newtonian__refineable__navier__stokes__elements_8cc_source_l01648}01648                 \textcolor{comment}{// If the node is hanging}}
 \DoxyCodeLine{\Hypertarget{generalised__newtonian__refineable__navier__stokes__elements_8cc_source_l01649}01649                 \textcolor{keywordflow}{if} (is\_node\_hanging2)}

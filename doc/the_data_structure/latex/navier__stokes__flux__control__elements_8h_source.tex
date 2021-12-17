@@ -390,7 +390,7 @@
 \DoxyCodeLine{\Hypertarget{navier__stokes__flux__control__elements_8h_source_l00386}00386 }
 \DoxyCodeLine{\Hypertarget{navier__stokes__flux__control__elements_8h_source_l00387}00387       \textcolor{comment}{// Set the dimension from the dimension of the first node (since Dim is}}
 \DoxyCodeLine{\Hypertarget{navier__stokes__flux__control__elements_8h_source_l00388}00388       \textcolor{comment}{// private in the parent class)}}
-\DoxyCodeLine{\Hypertarget{navier__stokes__flux__control__elements_8h_source_l00389}00389       \mbox{\hyperlink{classoomph_1_1NavierStokesFluxControlElement_a6ae17dbe81d09caf9e65e729254474b6}{Dim}} = this-\/>\mbox{\hyperlink{classoomph_1_1FiniteElement_a9addfe893ab8205619963aa96204cdc4}{node\_pt}}(0)-\/>ndim();}
+\DoxyCodeLine{\Hypertarget{navier__stokes__flux__control__elements_8h_source_l00389}00389       \mbox{\hyperlink{classoomph_1_1NavierStokesFluxControlElement_a6ae17dbe81d09caf9e65e729254474b6}{Dim}} = this-\/>\mbox{\hyperlink{classoomph_1_1FiniteElement_a9addfe893ab8205619963aa96204cdc4}{node\_pt}}(0)-\/>\mbox{\hyperlink{classoomph_1_1Node_a786c96a8e46eb27a03b2b31f629d41b3}{ndim}}();}
 \DoxyCodeLine{\Hypertarget{navier__stokes__flux__control__elements_8h_source_l00390}00390     \}}
 \DoxyCodeLine{\Hypertarget{navier__stokes__flux__control__elements_8h_source_l00391}00391 \textcolor{comment}{}}
 \DoxyCodeLine{\Hypertarget{navier__stokes__flux__control__elements_8h_source_l00392}00392 \textcolor{comment}{    /// Destructor should not delete anything}}
@@ -680,12 +680,12 @@
 \DoxyCodeLine{\Hypertarget{navier__stokes__flux__control__elements_8h_source_l00676}00676         \textcolor{keywordflow}{for} (\textcolor{keywordtype}{unsigned} l = 0; l < n\_node; l++)}
 \DoxyCodeLine{\Hypertarget{navier__stokes__flux__control__elements_8h_source_l00677}00677         \{}
 \DoxyCodeLine{\Hypertarget{navier__stokes__flux__control__elements_8h_source_l00678}00678           \textcolor{comment}{// Local boolean to indicate whether the node is hanging}}
-\DoxyCodeLine{\Hypertarget{navier__stokes__flux__control__elements_8h_source_l00679}00679           \textcolor{keywordtype}{bool} is\_node\_hanging = this-\/>\mbox{\hyperlink{classoomph_1_1FiniteElement_a9addfe893ab8205619963aa96204cdc4}{node\_pt}}(l)-\/>is\_hanging();}
+\DoxyCodeLine{\Hypertarget{navier__stokes__flux__control__elements_8h_source_l00679}00679           \textcolor{keywordtype}{bool} is\_node\_hanging = this-\/>\mbox{\hyperlink{classoomph_1_1FiniteElement_a9addfe893ab8205619963aa96204cdc4}{node\_pt}}(l)-\/>\mbox{\hyperlink{classoomph_1_1Node_af0e6237dfafad62cf427ff5013ddcfef}{is\_hanging}}();}
 \DoxyCodeLine{\Hypertarget{navier__stokes__flux__control__elements_8h_source_l00680}00680 }
 \DoxyCodeLine{\Hypertarget{navier__stokes__flux__control__elements_8h_source_l00681}00681           \textcolor{comment}{// If the node is hanging}}
 \DoxyCodeLine{\Hypertarget{navier__stokes__flux__control__elements_8h_source_l00682}00682           \textcolor{keywordflow}{if} (is\_node\_hanging)}
 \DoxyCodeLine{\Hypertarget{navier__stokes__flux__control__elements_8h_source_l00683}00683           \{}
-\DoxyCodeLine{\Hypertarget{navier__stokes__flux__control__elements_8h_source_l00684}00684             hang\_info\_pt = this-\/>\mbox{\hyperlink{classoomph_1_1FiniteElement_a9addfe893ab8205619963aa96204cdc4}{node\_pt}}(l)-\/>hanging\_pt();}
+\DoxyCodeLine{\Hypertarget{navier__stokes__flux__control__elements_8h_source_l00684}00684             hang\_info\_pt = this-\/>\mbox{\hyperlink{classoomph_1_1FiniteElement_a9addfe893ab8205619963aa96204cdc4}{node\_pt}}(l)-\/>\mbox{\hyperlink{classoomph_1_1Node_afefa22db8b28e783b8647e3577ee01d9}{hanging\_pt}}();}
 \DoxyCodeLine{\Hypertarget{navier__stokes__flux__control__elements_8h_source_l00685}00685 }
 \DoxyCodeLine{\Hypertarget{navier__stokes__flux__control__elements_8h_source_l00686}00686             \textcolor{comment}{// Read out number of master nodes from hanging data}}
 \DoxyCodeLine{\Hypertarget{navier__stokes__flux__control__elements_8h_source_l00687}00687             n\_master = hang\_info\_pt-\/>\mbox{\hyperlink{classoomph_1_1HangInfo_aa9c1130b58db2ff6d5eee4f923ba365c}{nmaster}}();}

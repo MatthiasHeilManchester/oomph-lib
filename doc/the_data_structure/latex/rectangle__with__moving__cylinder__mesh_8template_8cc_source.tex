@@ -1326,7 +1326,7 @@
 \DoxyCodeLine{\Hypertarget{rectangle__with__moving__cylinder__mesh_8template_8cc_source_l01322}01322     \textcolor{keywordflow}{for} (\textcolor{keywordtype}{unsigned} n = 0; n < np; n++)}
 \DoxyCodeLine{\Hypertarget{rectangle__with__moving__cylinder__mesh_8template_8cc_source_l01323}01323     \{}
 \DoxyCodeLine{\Hypertarget{rectangle__with__moving__cylinder__mesh_8template_8cc_source_l01324}01324       \textcolor{comment}{// West face}}
-\DoxyCodeLine{\Hypertarget{rectangle__with__moving__cylinder__mesh_8template_8cc_source_l01325}01325       Node* nod\_pt = finite\_element\_pt(0)-\/>node\_pt(n * np);}
+\DoxyCodeLine{\Hypertarget{rectangle__with__moving__cylinder__mesh_8template_8cc_source_l01325}01325       \mbox{\hyperlink{classoomph_1_1Node}{Node}}* nod\_pt = finite\_element\_pt(0)-\/>node\_pt(n * np);}
 \DoxyCodeLine{\Hypertarget{rectangle__with__moving__cylinder__mesh_8template_8cc_source_l01326}01326       convert\_to\_boundary\_node(nod\_pt);}
 \DoxyCodeLine{\Hypertarget{rectangle__with__moving__cylinder__mesh_8template_8cc_source_l01327}01327       add\_boundary\_node(3, nod\_pt);}
 \DoxyCodeLine{\Hypertarget{rectangle__with__moving__cylinder__mesh_8template_8cc_source_l01328}01328 }
@@ -1350,7 +1350,7 @@
 \DoxyCodeLine{\Hypertarget{rectangle__with__moving__cylinder__mesh_8template_8cc_source_l01346}01346     \textcolor{keywordflow}{for} (\textcolor{keywordtype}{unsigned} n = 0; n < np -\/ 1; n++)}
 \DoxyCodeLine{\Hypertarget{rectangle__with__moving__cylinder__mesh_8template_8cc_source_l01347}01347     \{}
 \DoxyCodeLine{\Hypertarget{rectangle__with__moving__cylinder__mesh_8template_8cc_source_l01348}01348       \textcolor{comment}{// First part of hole}}
-\DoxyCodeLine{\Hypertarget{rectangle__with__moving__cylinder__mesh_8template_8cc_source_l01349}01349       Node* nod\_pt = finite\_element\_pt(4)-\/>node\_pt((np -\/ 1) + n * np);}
+\DoxyCodeLine{\Hypertarget{rectangle__with__moving__cylinder__mesh_8template_8cc_source_l01349}01349       \mbox{\hyperlink{classoomph_1_1Node}{Node}}* nod\_pt = finite\_element\_pt(4)-\/>node\_pt((np -\/ 1) + n * np);}
 \DoxyCodeLine{\Hypertarget{rectangle__with__moving__cylinder__mesh_8template_8cc_source_l01350}01350       convert\_to\_boundary\_node(nod\_pt);}
 \DoxyCodeLine{\Hypertarget{rectangle__with__moving__cylinder__mesh_8template_8cc_source_l01351}01351       add\_boundary\_node(4, nod\_pt);}
 \DoxyCodeLine{\Hypertarget{rectangle__with__moving__cylinder__mesh_8template_8cc_source_l01352}01352 }
@@ -1457,11 +1457,11 @@
 \DoxyCodeLine{\Hypertarget{rectangle__with__moving__cylinder__mesh_8template_8cc_source_l01453}01453       \textcolor{keywordtype}{unsigned} num\_nod = surrounding\_right\_mesh\_pt-\/>\mbox{\hyperlink{classoomph_1_1Mesh_a034677ceb48c67769acb83f304c84f7d}{nboundary\_node}}(ibound\_rm);}
 \DoxyCodeLine{\Hypertarget{rectangle__with__moving__cylinder__mesh_8template_8cc_source_l01454}01454       \textcolor{keywordflow}{for} (\textcolor{keywordtype}{unsigned} inod = 0; inod < num\_nod; inod++)}
 \DoxyCodeLine{\Hypertarget{rectangle__with__moving__cylinder__mesh_8template_8cc_source_l01455}01455       \{}
-\DoxyCodeLine{\Hypertarget{rectangle__with__moving__cylinder__mesh_8template_8cc_source_l01456}01456         Node* nod\_pt =}
+\DoxyCodeLine{\Hypertarget{rectangle__with__moving__cylinder__mesh_8template_8cc_source_l01456}01456         \mbox{\hyperlink{classoomph_1_1Node}{Node}}* nod\_pt =}
 \DoxyCodeLine{\Hypertarget{rectangle__with__moving__cylinder__mesh_8template_8cc_source_l01457}01457           surrounding\_right\_mesh\_pt-\/>\mbox{\hyperlink{classoomph_1_1Mesh_afc4d1204afc31b9ec88fe82d8fc01625}{boundary\_node\_pt}}(ibound\_rm, inod);}
-\DoxyCodeLine{\Hypertarget{rectangle__with__moving__cylinder__mesh_8template_8cc_source_l01458}01458         \textcolor{keywordflow}{if} (nod\_pt-\/>is\_on\_boundary(ibound\_rm))}
+\DoxyCodeLine{\Hypertarget{rectangle__with__moving__cylinder__mesh_8template_8cc_source_l01458}01458         \textcolor{keywordflow}{if} (nod\_pt-\/>\mbox{\hyperlink{classoomph_1_1Node_a2ca215e42116ee8a2acc7d6a35e37788}{is\_on\_boundary}}(ibound\_rm))}
 \DoxyCodeLine{\Hypertarget{rectangle__with__moving__cylinder__mesh_8template_8cc_source_l01459}01459         \{}
-\DoxyCodeLine{\Hypertarget{rectangle__with__moving__cylinder__mesh_8template_8cc_source_l01460}01460           nod\_pt-\/>remove\_from\_boundary(ibound\_rm);}
+\DoxyCodeLine{\Hypertarget{rectangle__with__moving__cylinder__mesh_8template_8cc_source_l01460}01460           nod\_pt-\/>\mbox{\hyperlink{classoomph_1_1Node_a68d4703f8c8aa9f504ec2111dc1908f4}{remove\_from\_boundary}}(ibound\_rm);}
 \DoxyCodeLine{\Hypertarget{rectangle__with__moving__cylinder__mesh_8template_8cc_source_l01461}01461         \}}
 \DoxyCodeLine{\Hypertarget{rectangle__with__moving__cylinder__mesh_8template_8cc_source_l01462}01462       \}}
 \DoxyCodeLine{\Hypertarget{rectangle__with__moving__cylinder__mesh_8template_8cc_source_l01463}01463     \}}
@@ -1485,11 +1485,11 @@
 \DoxyCodeLine{\Hypertarget{rectangle__with__moving__cylinder__mesh_8template_8cc_source_l01481}01481       \textcolor{keywordtype}{unsigned} num\_nod = surrounding\_top\_mesh\_pt-\/>\mbox{\hyperlink{classoomph_1_1Mesh_a034677ceb48c67769acb83f304c84f7d}{nboundary\_node}}(ibound\_rm);}
 \DoxyCodeLine{\Hypertarget{rectangle__with__moving__cylinder__mesh_8template_8cc_source_l01482}01482       \textcolor{keywordflow}{for} (\textcolor{keywordtype}{unsigned} inod = 0; inod < num\_nod; inod++)}
 \DoxyCodeLine{\Hypertarget{rectangle__with__moving__cylinder__mesh_8template_8cc_source_l01483}01483       \{}
-\DoxyCodeLine{\Hypertarget{rectangle__with__moving__cylinder__mesh_8template_8cc_source_l01484}01484         Node* nod\_pt =}
+\DoxyCodeLine{\Hypertarget{rectangle__with__moving__cylinder__mesh_8template_8cc_source_l01484}01484         \mbox{\hyperlink{classoomph_1_1Node}{Node}}* nod\_pt =}
 \DoxyCodeLine{\Hypertarget{rectangle__with__moving__cylinder__mesh_8template_8cc_source_l01485}01485           surrounding\_top\_mesh\_pt-\/>\mbox{\hyperlink{classoomph_1_1Mesh_afc4d1204afc31b9ec88fe82d8fc01625}{boundary\_node\_pt}}(ibound\_rm, inod);}
-\DoxyCodeLine{\Hypertarget{rectangle__with__moving__cylinder__mesh_8template_8cc_source_l01486}01486         \textcolor{keywordflow}{if} (nod\_pt-\/>is\_on\_boundary(ibound\_rm))}
+\DoxyCodeLine{\Hypertarget{rectangle__with__moving__cylinder__mesh_8template_8cc_source_l01486}01486         \textcolor{keywordflow}{if} (nod\_pt-\/>\mbox{\hyperlink{classoomph_1_1Node_a2ca215e42116ee8a2acc7d6a35e37788}{is\_on\_boundary}}(ibound\_rm))}
 \DoxyCodeLine{\Hypertarget{rectangle__with__moving__cylinder__mesh_8template_8cc_source_l01487}01487         \{}
-\DoxyCodeLine{\Hypertarget{rectangle__with__moving__cylinder__mesh_8template_8cc_source_l01488}01488           nod\_pt-\/>remove\_from\_boundary(ibound\_rm);}
+\DoxyCodeLine{\Hypertarget{rectangle__with__moving__cylinder__mesh_8template_8cc_source_l01488}01488           nod\_pt-\/>\mbox{\hyperlink{classoomph_1_1Node_a68d4703f8c8aa9f504ec2111dc1908f4}{remove\_from\_boundary}}(ibound\_rm);}
 \DoxyCodeLine{\Hypertarget{rectangle__with__moving__cylinder__mesh_8template_8cc_source_l01489}01489         \}}
 \DoxyCodeLine{\Hypertarget{rectangle__with__moving__cylinder__mesh_8template_8cc_source_l01490}01490       \}}
 \DoxyCodeLine{\Hypertarget{rectangle__with__moving__cylinder__mesh_8template_8cc_source_l01491}01491     \}}
@@ -1514,11 +1514,11 @@
 \DoxyCodeLine{\Hypertarget{rectangle__with__moving__cylinder__mesh_8template_8cc_source_l01510}01510       \textcolor{keywordtype}{unsigned} num\_nod = surrounding\_left\_mesh\_pt-\/>\mbox{\hyperlink{classoomph_1_1Mesh_a034677ceb48c67769acb83f304c84f7d}{nboundary\_node}}(ibound\_rm);}
 \DoxyCodeLine{\Hypertarget{rectangle__with__moving__cylinder__mesh_8template_8cc_source_l01511}01511       \textcolor{keywordflow}{for} (\textcolor{keywordtype}{unsigned} inod = 0; inod < num\_nod; inod++)}
 \DoxyCodeLine{\Hypertarget{rectangle__with__moving__cylinder__mesh_8template_8cc_source_l01512}01512       \{}
-\DoxyCodeLine{\Hypertarget{rectangle__with__moving__cylinder__mesh_8template_8cc_source_l01513}01513         Node* nod\_pt =}
+\DoxyCodeLine{\Hypertarget{rectangle__with__moving__cylinder__mesh_8template_8cc_source_l01513}01513         \mbox{\hyperlink{classoomph_1_1Node}{Node}}* nod\_pt =}
 \DoxyCodeLine{\Hypertarget{rectangle__with__moving__cylinder__mesh_8template_8cc_source_l01514}01514           surrounding\_left\_mesh\_pt-\/>\mbox{\hyperlink{classoomph_1_1Mesh_afc4d1204afc31b9ec88fe82d8fc01625}{boundary\_node\_pt}}(ibound\_rm, inod);}
-\DoxyCodeLine{\Hypertarget{rectangle__with__moving__cylinder__mesh_8template_8cc_source_l01515}01515         \textcolor{keywordflow}{if} (nod\_pt-\/>is\_on\_boundary(ibound\_rm))}
+\DoxyCodeLine{\Hypertarget{rectangle__with__moving__cylinder__mesh_8template_8cc_source_l01515}01515         \textcolor{keywordflow}{if} (nod\_pt-\/>\mbox{\hyperlink{classoomph_1_1Node_a2ca215e42116ee8a2acc7d6a35e37788}{is\_on\_boundary}}(ibound\_rm))}
 \DoxyCodeLine{\Hypertarget{rectangle__with__moving__cylinder__mesh_8template_8cc_source_l01516}01516         \{}
-\DoxyCodeLine{\Hypertarget{rectangle__with__moving__cylinder__mesh_8template_8cc_source_l01517}01517           nod\_pt-\/>remove\_from\_boundary(ibound\_rm);}
+\DoxyCodeLine{\Hypertarget{rectangle__with__moving__cylinder__mesh_8template_8cc_source_l01517}01517           nod\_pt-\/>\mbox{\hyperlink{classoomph_1_1Node_a68d4703f8c8aa9f504ec2111dc1908f4}{remove\_from\_boundary}}(ibound\_rm);}
 \DoxyCodeLine{\Hypertarget{rectangle__with__moving__cylinder__mesh_8template_8cc_source_l01518}01518         \}}
 \DoxyCodeLine{\Hypertarget{rectangle__with__moving__cylinder__mesh_8template_8cc_source_l01519}01519       \}}
 \DoxyCodeLine{\Hypertarget{rectangle__with__moving__cylinder__mesh_8template_8cc_source_l01520}01520     \}}
@@ -1547,11 +1547,11 @@
 \DoxyCodeLine{\Hypertarget{rectangle__with__moving__cylinder__mesh_8template_8cc_source_l01543}01543       \textcolor{keywordtype}{unsigned} num\_nod = surrounding\_bottom\_mesh\_pt-\/>\mbox{\hyperlink{classoomph_1_1Mesh_a034677ceb48c67769acb83f304c84f7d}{nboundary\_node}}(ibound\_rm);}
 \DoxyCodeLine{\Hypertarget{rectangle__with__moving__cylinder__mesh_8template_8cc_source_l01544}01544       \textcolor{keywordflow}{for} (\textcolor{keywordtype}{unsigned} inod = 0; inod < num\_nod; inod++)}
 \DoxyCodeLine{\Hypertarget{rectangle__with__moving__cylinder__mesh_8template_8cc_source_l01545}01545       \{}
-\DoxyCodeLine{\Hypertarget{rectangle__with__moving__cylinder__mesh_8template_8cc_source_l01546}01546         Node* nod\_pt =}
+\DoxyCodeLine{\Hypertarget{rectangle__with__moving__cylinder__mesh_8template_8cc_source_l01546}01546         \mbox{\hyperlink{classoomph_1_1Node}{Node}}* nod\_pt =}
 \DoxyCodeLine{\Hypertarget{rectangle__with__moving__cylinder__mesh_8template_8cc_source_l01547}01547           surrounding\_bottom\_mesh\_pt-\/>\mbox{\hyperlink{classoomph_1_1Mesh_afc4d1204afc31b9ec88fe82d8fc01625}{boundary\_node\_pt}}(ibound\_rm, inod);}
-\DoxyCodeLine{\Hypertarget{rectangle__with__moving__cylinder__mesh_8template_8cc_source_l01548}01548         \textcolor{keywordflow}{if} (nod\_pt-\/>is\_on\_boundary(ibound\_rm))}
+\DoxyCodeLine{\Hypertarget{rectangle__with__moving__cylinder__mesh_8template_8cc_source_l01548}01548         \textcolor{keywordflow}{if} (nod\_pt-\/>\mbox{\hyperlink{classoomph_1_1Node_a2ca215e42116ee8a2acc7d6a35e37788}{is\_on\_boundary}}(ibound\_rm))}
 \DoxyCodeLine{\Hypertarget{rectangle__with__moving__cylinder__mesh_8template_8cc_source_l01549}01549         \{}
-\DoxyCodeLine{\Hypertarget{rectangle__with__moving__cylinder__mesh_8template_8cc_source_l01550}01550           nod\_pt-\/>remove\_from\_boundary(ibound\_rm);}
+\DoxyCodeLine{\Hypertarget{rectangle__with__moving__cylinder__mesh_8template_8cc_source_l01550}01550           nod\_pt-\/>\mbox{\hyperlink{classoomph_1_1Node_a68d4703f8c8aa9f504ec2111dc1908f4}{remove\_from\_boundary}}(ibound\_rm);}
 \DoxyCodeLine{\Hypertarget{rectangle__with__moving__cylinder__mesh_8template_8cc_source_l01551}01551         \}}
 \DoxyCodeLine{\Hypertarget{rectangle__with__moving__cylinder__mesh_8template_8cc_source_l01552}01552       \}}
 \DoxyCodeLine{\Hypertarget{rectangle__with__moving__cylinder__mesh_8template_8cc_source_l01553}01553     \}}
@@ -1632,8 +1632,8 @@
 \DoxyCodeLine{\Hypertarget{rectangle__with__moving__cylinder__mesh_8template_8cc_source_l01628}01628       \textcolor{keywordtype}{unsigned} nnod = Central\_mesh\_pt-\/>nboundary\_node(b);}
 \DoxyCodeLine{\Hypertarget{rectangle__with__moving__cylinder__mesh_8template_8cc_source_l01629}01629       \textcolor{keywordflow}{for} (\textcolor{keywordtype}{unsigned} j = 0; j < nnod; j++)}
 \DoxyCodeLine{\Hypertarget{rectangle__with__moving__cylinder__mesh_8template_8cc_source_l01630}01630       \{}
-\DoxyCodeLine{\Hypertarget{rectangle__with__moving__cylinder__mesh_8template_8cc_source_l01631}01631         Node* nod\_pt = Central\_mesh\_pt-\/>boundary\_node\_pt(b, j);}
-\DoxyCodeLine{\Hypertarget{rectangle__with__moving__cylinder__mesh_8template_8cc_source_l01632}01632         nod\_pt-\/>remove\_from\_boundary(b);}
+\DoxyCodeLine{\Hypertarget{rectangle__with__moving__cylinder__mesh_8template_8cc_source_l01631}01631         \mbox{\hyperlink{classoomph_1_1Node}{Node}}* nod\_pt = Central\_mesh\_pt-\/>boundary\_node\_pt(b, j);}
+\DoxyCodeLine{\Hypertarget{rectangle__with__moving__cylinder__mesh_8template_8cc_source_l01632}01632         nod\_pt-\/>\mbox{\hyperlink{classoomph_1_1Node_a68d4703f8c8aa9f504ec2111dc1908f4}{remove\_from\_boundary}}(b);}
 \DoxyCodeLine{\Hypertarget{rectangle__with__moving__cylinder__mesh_8template_8cc_source_l01633}01633       \}}
 \DoxyCodeLine{\Hypertarget{rectangle__with__moving__cylinder__mesh_8template_8cc_source_l01634}01634     \}}
 \DoxyCodeLine{\Hypertarget{rectangle__with__moving__cylinder__mesh_8template_8cc_source_l01635}01635 }
@@ -1662,7 +1662,7 @@
 \DoxyCodeLine{\Hypertarget{rectangle__with__moving__cylinder__mesh_8template_8cc_source_l01658}01658         \textcolor{keywordtype}{unsigned} num\_nod = all\_mesh\_pt[m]-\/>nboundary\_node(ibound);}
 \DoxyCodeLine{\Hypertarget{rectangle__with__moving__cylinder__mesh_8template_8cc_source_l01659}01659         \textcolor{keywordflow}{for} (\textcolor{keywordtype}{unsigned} inod = 0; inod < num\_nod; inod++)}
 \DoxyCodeLine{\Hypertarget{rectangle__with__moving__cylinder__mesh_8template_8cc_source_l01660}01660         \{}
-\DoxyCodeLine{\Hypertarget{rectangle__with__moving__cylinder__mesh_8template_8cc_source_l01661}01661           Node* nod\_pt = all\_mesh\_pt[m]-\/>boundary\_node\_pt(ibound, inod);}
+\DoxyCodeLine{\Hypertarget{rectangle__with__moving__cylinder__mesh_8template_8cc_source_l01661}01661           \mbox{\hyperlink{classoomph_1_1Node}{Node}}* nod\_pt = all\_mesh\_pt[m]-\/>boundary\_node\_pt(ibound, inod);}
 \DoxyCodeLine{\Hypertarget{rectangle__with__moving__cylinder__mesh_8template_8cc_source_l01662}01662           this-\/>add\_boundary\_node(ibound, nod\_pt);}
 \DoxyCodeLine{\Hypertarget{rectangle__with__moving__cylinder__mesh_8template_8cc_source_l01663}01663         \}}
 \DoxyCodeLine{\Hypertarget{rectangle__with__moving__cylinder__mesh_8template_8cc_source_l01664}01664       \}}
@@ -1687,7 +1687,7 @@
 \DoxyCodeLine{\Hypertarget{rectangle__with__moving__cylinder__mesh_8template_8cc_source_l01683}01683         \textcolor{keywordtype}{unsigned} num\_nod = all\_mesh\_pt[m]-\/>nboundary\_node(ibound);}
 \DoxyCodeLine{\Hypertarget{rectangle__with__moving__cylinder__mesh_8template_8cc_source_l01684}01684         \textcolor{keywordflow}{for} (\textcolor{keywordtype}{unsigned} inod = 0; inod < num\_nod; inod++)}
 \DoxyCodeLine{\Hypertarget{rectangle__with__moving__cylinder__mesh_8template_8cc_source_l01685}01685         \{}
-\DoxyCodeLine{\Hypertarget{rectangle__with__moving__cylinder__mesh_8template_8cc_source_l01686}01686           Node* nod\_pt = all\_mesh\_pt[m]-\/>boundary\_node\_pt(ibound, inod);}
+\DoxyCodeLine{\Hypertarget{rectangle__with__moving__cylinder__mesh_8template_8cc_source_l01686}01686           \mbox{\hyperlink{classoomph_1_1Node}{Node}}* nod\_pt = all\_mesh\_pt[m]-\/>boundary\_node\_pt(ibound, inod);}
 \DoxyCodeLine{\Hypertarget{rectangle__with__moving__cylinder__mesh_8template_8cc_source_l01687}01687           this-\/>add\_boundary\_node(ibound, nod\_pt);}
 \DoxyCodeLine{\Hypertarget{rectangle__with__moving__cylinder__mesh_8template_8cc_source_l01688}01688         \}}
 \DoxyCodeLine{\Hypertarget{rectangle__with__moving__cylinder__mesh_8template_8cc_source_l01689}01689       \}}
@@ -1711,7 +1711,7 @@
 \DoxyCodeLine{\Hypertarget{rectangle__with__moving__cylinder__mesh_8template_8cc_source_l01707}01707         \textcolor{keywordtype}{unsigned} num\_nod = all\_mesh\_pt[m]-\/>nboundary\_node(ibound);}
 \DoxyCodeLine{\Hypertarget{rectangle__with__moving__cylinder__mesh_8template_8cc_source_l01708}01708         \textcolor{keywordflow}{for} (\textcolor{keywordtype}{unsigned} inod = 0; inod < num\_nod; inod++)}
 \DoxyCodeLine{\Hypertarget{rectangle__with__moving__cylinder__mesh_8template_8cc_source_l01709}01709         \{}
-\DoxyCodeLine{\Hypertarget{rectangle__with__moving__cylinder__mesh_8template_8cc_source_l01710}01710           Node* nod\_pt = all\_mesh\_pt[m]-\/>boundary\_node\_pt(ibound, inod);}
+\DoxyCodeLine{\Hypertarget{rectangle__with__moving__cylinder__mesh_8template_8cc_source_l01710}01710           \mbox{\hyperlink{classoomph_1_1Node}{Node}}* nod\_pt = all\_mesh\_pt[m]-\/>boundary\_node\_pt(ibound, inod);}
 \DoxyCodeLine{\Hypertarget{rectangle__with__moving__cylinder__mesh_8template_8cc_source_l01711}01711           this-\/>add\_boundary\_node(ibound, nod\_pt);}
 \DoxyCodeLine{\Hypertarget{rectangle__with__moving__cylinder__mesh_8template_8cc_source_l01712}01712         \}}
 \DoxyCodeLine{\Hypertarget{rectangle__with__moving__cylinder__mesh_8template_8cc_source_l01713}01713       \}}
@@ -1736,7 +1736,7 @@
 \DoxyCodeLine{\Hypertarget{rectangle__with__moving__cylinder__mesh_8template_8cc_source_l01732}01732         \textcolor{keywordtype}{unsigned} num\_nod = all\_mesh\_pt[m]-\/>nboundary\_node(ibound);}
 \DoxyCodeLine{\Hypertarget{rectangle__with__moving__cylinder__mesh_8template_8cc_source_l01733}01733         \textcolor{keywordflow}{for} (\textcolor{keywordtype}{unsigned} inod = 0; inod < num\_nod; inod++)}
 \DoxyCodeLine{\Hypertarget{rectangle__with__moving__cylinder__mesh_8template_8cc_source_l01734}01734         \{}
-\DoxyCodeLine{\Hypertarget{rectangle__with__moving__cylinder__mesh_8template_8cc_source_l01735}01735           Node* nod\_pt = all\_mesh\_pt[m]-\/>boundary\_node\_pt(ibound, inod);}
+\DoxyCodeLine{\Hypertarget{rectangle__with__moving__cylinder__mesh_8template_8cc_source_l01735}01735           \mbox{\hyperlink{classoomph_1_1Node}{Node}}* nod\_pt = all\_mesh\_pt[m]-\/>boundary\_node\_pt(ibound, inod);}
 \DoxyCodeLine{\Hypertarget{rectangle__with__moving__cylinder__mesh_8template_8cc_source_l01736}01736           this-\/>add\_boundary\_node(ibound, nod\_pt);}
 \DoxyCodeLine{\Hypertarget{rectangle__with__moving__cylinder__mesh_8template_8cc_source_l01737}01737         \}}
 \DoxyCodeLine{\Hypertarget{rectangle__with__moving__cylinder__mesh_8template_8cc_source_l01738}01738       \}}
@@ -1752,7 +1752,7 @@
 \DoxyCodeLine{\Hypertarget{rectangle__with__moving__cylinder__mesh_8template_8cc_source_l01748}01748       \textcolor{keywordtype}{unsigned} num\_nod = Central\_mesh\_pt-\/>nboundary\_node(ibound);}
 \DoxyCodeLine{\Hypertarget{rectangle__with__moving__cylinder__mesh_8template_8cc_source_l01749}01749       \textcolor{keywordflow}{for} (\textcolor{keywordtype}{unsigned} inod = 0; inod < num\_nod; inod++)}
 \DoxyCodeLine{\Hypertarget{rectangle__with__moving__cylinder__mesh_8template_8cc_source_l01750}01750       \{}
-\DoxyCodeLine{\Hypertarget{rectangle__with__moving__cylinder__mesh_8template_8cc_source_l01751}01751         Node* nod\_pt = Central\_mesh\_pt-\/>boundary\_node\_pt(ibound, inod);}
+\DoxyCodeLine{\Hypertarget{rectangle__with__moving__cylinder__mesh_8template_8cc_source_l01751}01751         \mbox{\hyperlink{classoomph_1_1Node}{Node}}* nod\_pt = Central\_mesh\_pt-\/>boundary\_node\_pt(ibound, inod);}
 \DoxyCodeLine{\Hypertarget{rectangle__with__moving__cylinder__mesh_8template_8cc_source_l01752}01752         this-\/>add\_boundary\_node(ibound, nod\_pt);}
 \DoxyCodeLine{\Hypertarget{rectangle__with__moving__cylinder__mesh_8template_8cc_source_l01753}01753       \}}
 \DoxyCodeLine{\Hypertarget{rectangle__with__moving__cylinder__mesh_8template_8cc_source_l01754}01754     \}}

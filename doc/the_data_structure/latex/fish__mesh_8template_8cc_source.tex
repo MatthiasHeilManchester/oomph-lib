@@ -166,7 +166,7 @@
 \DoxyCodeLine{\Hypertarget{fish__mesh_8template_8cc_source_l00162}00162           \textcolor{keywordtype}{unsigned} j\_local = i0 + i1 * n\_node\_1d;}
 \DoxyCodeLine{\Hypertarget{fish__mesh_8template_8cc_source_l00163}00163 }
 \DoxyCodeLine{\Hypertarget{fish__mesh_8template_8cc_source_l00164}00164           \textcolor{comment}{// Create the node and store pointer to it}}
-\DoxyCodeLine{\Hypertarget{fish__mesh_8template_8cc_source_l00165}00165           Node* node\_pt =}
+\DoxyCodeLine{\Hypertarget{fish__mesh_8template_8cc_source_l00165}00165           \mbox{\hyperlink{classoomph_1_1Node}{Node}}* node\_pt =}
 \DoxyCodeLine{\Hypertarget{fish__mesh_8template_8cc_source_l00166}00166             finite\_element\_pt(\mbox{\hyperlink{cfortran_8h_a37cd013acc76697829c324bdd8562d82}{e}})-\/>construct\_node(j\_local, time\_stepper\_pt);}
 \DoxyCodeLine{\Hypertarget{fish__mesh_8template_8cc_source_l00167}00167 }
 \DoxyCodeLine{\Hypertarget{fish__mesh_8template_8cc_source_l00168}00168           \textcolor{comment}{// Work out the node's coordinates in the finite element's local}}
@@ -180,8 +180,8 @@
 \DoxyCodeLine{\Hypertarget{fish__mesh_8template_8cc_source_l00176}00176           Domain\_pt-\/>macro\_element\_pt(\mbox{\hyperlink{cfortran_8h_a37cd013acc76697829c324bdd8562d82}{e}})-\/>macro\_map(\mbox{\hyperlink{cfortran_8h_ab7123126e4885ef647dd9c6e3807a21c}{s}}, r);}
 \DoxyCodeLine{\Hypertarget{fish__mesh_8template_8cc_source_l00177}00177 }
 \DoxyCodeLine{\Hypertarget{fish__mesh_8template_8cc_source_l00178}00178           \textcolor{comment}{// Set the nodal position}}
-\DoxyCodeLine{\Hypertarget{fish__mesh_8template_8cc_source_l00179}00179           node\_pt-\/>x(0) = r[0];}
-\DoxyCodeLine{\Hypertarget{fish__mesh_8template_8cc_source_l00180}00180           node\_pt-\/>x(1) = r[1];}
+\DoxyCodeLine{\Hypertarget{fish__mesh_8template_8cc_source_l00179}00179           node\_pt-\/>\mbox{\hyperlink{classoomph_1_1Node_ab76b4773a65b349f143539e07b6e15e2}{x}}(0) = r[0];}
+\DoxyCodeLine{\Hypertarget{fish__mesh_8template_8cc_source_l00180}00180           node\_pt-\/>\mbox{\hyperlink{classoomph_1_1Node_ab76b4773a65b349f143539e07b6e15e2}{x}}(1) = r[1];}
 \DoxyCodeLine{\Hypertarget{fish__mesh_8template_8cc_source_l00181}00181         \}}
 \DoxyCodeLine{\Hypertarget{fish__mesh_8template_8cc_source_l00182}00182       \}}
 \DoxyCodeLine{\Hypertarget{fish__mesh_8template_8cc_source_l00183}00183     \} \textcolor{comment}{// end of loop over elements}}
@@ -940,8 +940,8 @@
 \DoxyCodeLine{\Hypertarget{fish__mesh_8template_8cc_source_l00936}00936     r\_sym[1] = 0.0;}
 \DoxyCodeLine{\Hypertarget{fish__mesh_8template_8cc_source_l00937}00937 }
 \DoxyCodeLine{\Hypertarget{fish__mesh_8template_8cc_source_l00938}00938     \textcolor{comment}{// Assign new nodal coordinate}}
-\DoxyCodeLine{\Hypertarget{fish__mesh_8template_8cc_source_l00939}00939     node\_pt-\/>x(\mbox{\hyperlink{cfortran_8h_af6f0bd3dc13317f895c91323c25c2b8f}{t}}, 0) = r\_sym[0] + fract\_y * (r\_back[0] -\/ r\_sym[0]);}
-\DoxyCodeLine{\Hypertarget{fish__mesh_8template_8cc_source_l00940}00940     node\_pt-\/>x(\mbox{\hyperlink{cfortran_8h_af6f0bd3dc13317f895c91323c25c2b8f}{t}}, 1) = sign * (r\_sym[1] + fract\_y * (r\_back[1] -\/ r\_sym[1]));}
+\DoxyCodeLine{\Hypertarget{fish__mesh_8template_8cc_source_l00939}00939     node\_pt-\/>\mbox{\hyperlink{classoomph_1_1Node_ab76b4773a65b349f143539e07b6e15e2}{x}}(\mbox{\hyperlink{cfortran_8h_af6f0bd3dc13317f895c91323c25c2b8f}{t}}, 0) = r\_sym[0] + fract\_y * (r\_back[0] -\/ r\_sym[0]);}
+\DoxyCodeLine{\Hypertarget{fish__mesh_8template_8cc_source_l00940}00940     node\_pt-\/>\mbox{\hyperlink{classoomph_1_1Node_ab76b4773a65b349f143539e07b6e15e2}{x}}(\mbox{\hyperlink{cfortran_8h_af6f0bd3dc13317f895c91323c25c2b8f}{t}}, 1) = sign * (r\_sym[1] + fract\_y * (r\_back[1] -\/ r\_sym[1]));}
 \DoxyCodeLine{\Hypertarget{fish__mesh_8template_8cc_source_l00941}00941   \}}
 \DoxyCodeLine{\Hypertarget{fish__mesh_8template_8cc_source_l00942}00942 }
 \DoxyCodeLine{\Hypertarget{fish__mesh_8template_8cc_source_l00943}00943 }
@@ -987,8 +987,8 @@
 \DoxyCodeLine{\Hypertarget{fish__mesh_8template_8cc_source_l00983}00983     \textcolor{keywordtype}{double} y\_fin\_edge = r\_back[1] + fract\_x * (y\_tail -\/ r\_back[1]);}
 \DoxyCodeLine{\Hypertarget{fish__mesh_8template_8cc_source_l00984}00984 }
 \DoxyCodeLine{\Hypertarget{fish__mesh_8template_8cc_source_l00985}00985     \textcolor{comment}{// Assign new nodal coordinate}}
-\DoxyCodeLine{\Hypertarget{fish__mesh_8template_8cc_source_l00986}00986     node\_pt-\/>x(\mbox{\hyperlink{cfortran_8h_af6f0bd3dc13317f895c91323c25c2b8f}{t}}, 0) = r\_back[0] + fract\_x * (x\_tail -\/ r\_back[0]);}
-\DoxyCodeLine{\Hypertarget{fish__mesh_8template_8cc_source_l00987}00987     node\_pt-\/>x(\mbox{\hyperlink{cfortran_8h_af6f0bd3dc13317f895c91323c25c2b8f}{t}}, 1) = sign * fract\_y * y\_fin\_edge;}
+\DoxyCodeLine{\Hypertarget{fish__mesh_8template_8cc_source_l00986}00986     node\_pt-\/>\mbox{\hyperlink{classoomph_1_1Node_ab76b4773a65b349f143539e07b6e15e2}{x}}(\mbox{\hyperlink{cfortran_8h_af6f0bd3dc13317f895c91323c25c2b8f}{t}}, 0) = r\_back[0] + fract\_x * (x\_tail -\/ r\_back[0]);}
+\DoxyCodeLine{\Hypertarget{fish__mesh_8template_8cc_source_l00987}00987     node\_pt-\/>\mbox{\hyperlink{classoomph_1_1Node_ab76b4773a65b349f143539e07b6e15e2}{x}}(\mbox{\hyperlink{cfortran_8h_af6f0bd3dc13317f895c91323c25c2b8f}{t}}, 1) = sign * fract\_y * y\_fin\_edge;}
 \DoxyCodeLine{\Hypertarget{fish__mesh_8template_8cc_source_l00988}00988   \}}
 \DoxyCodeLine{\Hypertarget{fish__mesh_8template_8cc_source_l00989}00989 }
 \DoxyCodeLine{\Hypertarget{fish__mesh_8template_8cc_source_l00990}00990 \} \textcolor{comment}{// namespace oomph}}

@@ -677,15 +677,15 @@
 \DoxyCodeLine{\Hypertarget{solid__traction__elements_8h_source_l00673}00673       \textcolor{keywordflow}{for} (\textcolor{keywordtype}{unsigned} l = 0; l < n\_node; l++)}
 \DoxyCodeLine{\Hypertarget{solid__traction__elements_8h_source_l00674}00674       \{}
 \DoxyCodeLine{\Hypertarget{solid__traction__elements_8h_source_l00675}00675         \textcolor{comment}{// Get pointer to local node l}}
-\DoxyCodeLine{\Hypertarget{solid__traction__elements_8h_source_l00676}00676         Node* local\_node\_pt = node\_pt(l);}
+\DoxyCodeLine{\Hypertarget{solid__traction__elements_8h_source_l00676}00676         \mbox{\hyperlink{classoomph_1_1Node}{Node}}* local\_node\_pt = node\_pt(l);}
 \DoxyCodeLine{\Hypertarget{solid__traction__elements_8h_source_l00677}00677 }
 \DoxyCodeLine{\Hypertarget{solid__traction__elements_8h_source_l00678}00678         \textcolor{comment}{// Cache hang status}}
-\DoxyCodeLine{\Hypertarget{solid__traction__elements_8h_source_l00679}00679         \textcolor{keywordtype}{bool} is\_hanging = local\_node\_pt-\/>is\_hanging();}
+\DoxyCodeLine{\Hypertarget{solid__traction__elements_8h_source_l00679}00679         \textcolor{keywordtype}{bool} is\_hanging = local\_node\_pt-\/>\mbox{\hyperlink{classoomph_1_1Node_af0e6237dfafad62cf427ff5013ddcfef}{is\_hanging}}();}
 \DoxyCodeLine{\Hypertarget{solid__traction__elements_8h_source_l00680}00680 }
 \DoxyCodeLine{\Hypertarget{solid__traction__elements_8h_source_l00681}00681         \textcolor{comment}{// If the node is a hanging node}}
 \DoxyCodeLine{\Hypertarget{solid__traction__elements_8h_source_l00682}00682         \textcolor{keywordflow}{if} (is\_hanging)}
 \DoxyCodeLine{\Hypertarget{solid__traction__elements_8h_source_l00683}00683         \{}
-\DoxyCodeLine{\Hypertarget{solid__traction__elements_8h_source_l00684}00684           n\_master = local\_node\_pt-\/>hanging\_pt()-\/>nmaster();}
+\DoxyCodeLine{\Hypertarget{solid__traction__elements_8h_source_l00684}00684           n\_master = local\_node\_pt-\/>\mbox{\hyperlink{classoomph_1_1Node_afefa22db8b28e783b8647e3577ee01d9}{hanging\_pt}}()-\/>\mbox{\hyperlink{classoomph_1_1HangInfo_aa9c1130b58db2ff6d5eee4f923ba365c}{nmaster}}();}
 \DoxyCodeLine{\Hypertarget{solid__traction__elements_8h_source_l00685}00685         \}}
 \DoxyCodeLine{\Hypertarget{solid__traction__elements_8h_source_l00686}00686         \textcolor{comment}{// Otherwise the node is its own master}}
 \DoxyCodeLine{\Hypertarget{solid__traction__elements_8h_source_l00687}00687         \textcolor{keywordflow}{else}}
@@ -705,10 +705,10 @@
 \DoxyCodeLine{\Hypertarget{solid__traction__elements_8h_source_l00701}00701           \{}
 \DoxyCodeLine{\Hypertarget{solid__traction__elements_8h_source_l00702}00702             \textcolor{comment}{// Find the equation numbers}}
 \DoxyCodeLine{\Hypertarget{solid__traction__elements_8h_source_l00703}00703             position\_local\_eqn\_at\_node = local\_position\_hang\_eqn(}
-\DoxyCodeLine{\Hypertarget{solid__traction__elements_8h_source_l00704}00704               local\_node\_pt-\/>hanging\_pt()-\/>master\_node\_pt(m));}
+\DoxyCodeLine{\Hypertarget{solid__traction__elements_8h_source_l00704}00704               local\_node\_pt-\/>\mbox{\hyperlink{classoomph_1_1Node_afefa22db8b28e783b8647e3577ee01d9}{hanging\_pt}}()-\/>\mbox{\hyperlink{classoomph_1_1HangInfo_a7a935ae7eeca594a648ca1800444827c}{master\_node\_pt}}(m));}
 \DoxyCodeLine{\Hypertarget{solid__traction__elements_8h_source_l00705}00705 }
 \DoxyCodeLine{\Hypertarget{solid__traction__elements_8h_source_l00706}00706             \textcolor{comment}{// Find the hanging node weight}}
-\DoxyCodeLine{\Hypertarget{solid__traction__elements_8h_source_l00707}00707             hang\_weight = local\_node\_pt-\/>hanging\_pt()-\/>master\_weight(m);}
+\DoxyCodeLine{\Hypertarget{solid__traction__elements_8h_source_l00707}00707             hang\_weight = local\_node\_pt-\/>\mbox{\hyperlink{classoomph_1_1Node_afefa22db8b28e783b8647e3577ee01d9}{hanging\_pt}}()-\/>\mbox{\hyperlink{classoomph_1_1HangInfo_ac49ebdd8957a658fe4a2420108d2dcee}{master\_weight}}(m);}
 \DoxyCodeLine{\Hypertarget{solid__traction__elements_8h_source_l00708}00708           \}}
 \DoxyCodeLine{\Hypertarget{solid__traction__elements_8h_source_l00709}00709           \textcolor{keywordflow}{else}}
 \DoxyCodeLine{\Hypertarget{solid__traction__elements_8h_source_l00710}00710           \{}
@@ -1456,7 +1456,7 @@
 \DoxyCodeLine{\Hypertarget{solid__traction__elements_8h_source_l01452}01452             \textcolor{keyword}{dynamic\_cast<}\mbox{\hyperlink{classoomph_1_1BoundaryNodeBase}{BoundaryNodeBase}}*\textcolor{keyword}{>}(\mbox{\hyperlink{classoomph_1_1FiniteElement_a9addfe893ab8205619963aa96204cdc4}{node\_pt}}(j));}
 \DoxyCodeLine{\Hypertarget{solid__traction__elements_8h_source_l01453}01453 }
 \DoxyCodeLine{\Hypertarget{solid__traction__elements_8h_source_l01454}01454           \textcolor{comment}{// get the node pt}}
-\DoxyCodeLine{\Hypertarget{solid__traction__elements_8h_source_l01455}01455           Node* nod\_pt = \mbox{\hyperlink{classoomph_1_1FiniteElement_a9addfe893ab8205619963aa96204cdc4}{node\_pt}}(j);}
+\DoxyCodeLine{\Hypertarget{solid__traction__elements_8h_source_l01455}01455           \mbox{\hyperlink{classoomph_1_1Node}{Node}}* nod\_pt = \mbox{\hyperlink{classoomph_1_1FiniteElement_a9addfe893ab8205619963aa96204cdc4}{node\_pt}}(j);}
 \DoxyCodeLine{\Hypertarget{solid__traction__elements_8h_source_l01456}01456 }
 \DoxyCodeLine{\Hypertarget{solid__traction__elements_8h_source_l01457}01457           \textcolor{comment}{// Get the index of the first nodal value associated with}}
 \DoxyCodeLine{\Hypertarget{solid__traction__elements_8h_source_l01458}01458           \textcolor{comment}{// this FaceElement}}
@@ -1469,7 +1469,7 @@
 \DoxyCodeLine{\Hypertarget{solid__traction__elements_8h_source_l01465}01465             \mbox{\hyperlink{namespaceoomph_a9d1d2da2b8bb8e73af72b5cadb8fe97c}{x}}[\mbox{\hyperlink{cfortran_8h_adb50e893b86b3e55e751a42eab3cba82}{i}}] += \mbox{\hyperlink{classoomph_1_1FiniteElement_a9152c16ae9899168bcdaac7c2f977444}{nodal\_position}}(j, \mbox{\hyperlink{cfortran_8h_adb50e893b86b3e55e751a42eab3cba82}{i}}) * psi(j, 0); \textcolor{comment}{// need to sort}}
 \DoxyCodeLine{\Hypertarget{solid__traction__elements_8h_source_l01466}01466                                                       \textcolor{comment}{// this out properly}}
 \DoxyCodeLine{\Hypertarget{solid__traction__elements_8h_source_l01467}01467                                                       \textcolor{comment}{// for generalised dofs}}
-\DoxyCodeLine{\Hypertarget{solid__traction__elements_8h_source_l01468}01468             lambda[\mbox{\hyperlink{cfortran_8h_adb50e893b86b3e55e751a42eab3cba82}{i}}] += nod\_pt-\/>value(first\_index + \mbox{\hyperlink{cfortran_8h_adb50e893b86b3e55e751a42eab3cba82}{i}}) * psi(j, 0);}
+\DoxyCodeLine{\Hypertarget{solid__traction__elements_8h_source_l01468}01468             lambda[\mbox{\hyperlink{cfortran_8h_adb50e893b86b3e55e751a42eab3cba82}{i}}] += nod\_pt-\/>\mbox{\hyperlink{classoomph_1_1Node_afcc5cdba40bca251826ae5bee5ca15b4}{value}}(first\_index + \mbox{\hyperlink{cfortran_8h_adb50e893b86b3e55e751a42eab3cba82}{i}}) * psi(j, 0);}
 \DoxyCodeLine{\Hypertarget{solid__traction__elements_8h_source_l01469}01469           \}}
 \DoxyCodeLine{\Hypertarget{solid__traction__elements_8h_source_l01470}01470           \textcolor{comment}{// In-\/element quantities}}
 \DoxyCodeLine{\Hypertarget{solid__traction__elements_8h_source_l01471}01471           \textcolor{keywordflow}{for} (\textcolor{keywordtype}{unsigned} \mbox{\hyperlink{cfortran_8h_adb50e893b86b3e55e751a42eab3cba82}{i}} = 0; \mbox{\hyperlink{cfortran_8h_adb50e893b86b3e55e751a42eab3cba82}{i}} < dim\_el; \mbox{\hyperlink{cfortran_8h_adb50e893b86b3e55e751a42eab3cba82}{i}}++)}
@@ -1569,7 +1569,7 @@
 \DoxyCodeLine{\Hypertarget{solid__traction__elements_8h_source_l01565}01565         \textcolor{comment}{// Loop over nodes}}
 \DoxyCodeLine{\Hypertarget{solid__traction__elements_8h_source_l01566}01566         \textcolor{keywordflow}{for} (\textcolor{keywordtype}{unsigned} j = 0; j < n\_node; j++)}
 \DoxyCodeLine{\Hypertarget{solid__traction__elements_8h_source_l01567}01567         \{}
-\DoxyCodeLine{\Hypertarget{solid__traction__elements_8h_source_l01568}01568           Node* nod\_pt = \mbox{\hyperlink{classoomph_1_1FiniteElement_a9addfe893ab8205619963aa96204cdc4}{node\_pt}}(j);}
+\DoxyCodeLine{\Hypertarget{solid__traction__elements_8h_source_l01568}01568           \mbox{\hyperlink{classoomph_1_1Node}{Node}}* nod\_pt = \mbox{\hyperlink{classoomph_1_1FiniteElement_a9addfe893ab8205619963aa96204cdc4}{node\_pt}}(j);}
 \DoxyCodeLine{\Hypertarget{solid__traction__elements_8h_source_l01569}01569 }
 \DoxyCodeLine{\Hypertarget{solid__traction__elements_8h_source_l01570}01570           \textcolor{comment}{// Cast to a boundary node}}
 \DoxyCodeLine{\Hypertarget{solid__traction__elements_8h_source_l01571}01571           \mbox{\hyperlink{classoomph_1_1BoundaryNodeBase}{BoundaryNodeBase}}* bnod\_pt =}
@@ -1584,7 +1584,7 @@
 \DoxyCodeLine{\Hypertarget{solid__traction__elements_8h_source_l01580}01580           \textcolor{keywordflow}{for} (\textcolor{keywordtype}{unsigned} \mbox{\hyperlink{cfortran_8h_adb50e893b86b3e55e751a42eab3cba82}{i}} = 0; \mbox{\hyperlink{cfortran_8h_adb50e893b86b3e55e751a42eab3cba82}{i}} < dim\_el + 1; \mbox{\hyperlink{cfortran_8h_adb50e893b86b3e55e751a42eab3cba82}{i}}++)}
 \DoxyCodeLine{\Hypertarget{solid__traction__elements_8h_source_l01581}01581           \{}
 \DoxyCodeLine{\Hypertarget{solid__traction__elements_8h_source_l01582}01582             \mbox{\hyperlink{namespaceoomph_a9d1d2da2b8bb8e73af72b5cadb8fe97c}{x}}[\mbox{\hyperlink{cfortran_8h_adb50e893b86b3e55e751a42eab3cba82}{i}}] += \mbox{\hyperlink{classoomph_1_1FiniteElement_a9152c16ae9899168bcdaac7c2f977444}{nodal\_position}}(j, \mbox{\hyperlink{cfortran_8h_adb50e893b86b3e55e751a42eab3cba82}{i}}) * psi(j);}
-\DoxyCodeLine{\Hypertarget{solid__traction__elements_8h_source_l01583}01583             lambda[\mbox{\hyperlink{cfortran_8h_adb50e893b86b3e55e751a42eab3cba82}{i}}] += nod\_pt-\/>value(first\_index + \mbox{\hyperlink{cfortran_8h_adb50e893b86b3e55e751a42eab3cba82}{i}}) * psi(j);}
+\DoxyCodeLine{\Hypertarget{solid__traction__elements_8h_source_l01583}01583             lambda[\mbox{\hyperlink{cfortran_8h_adb50e893b86b3e55e751a42eab3cba82}{i}}] += nod\_pt-\/>\mbox{\hyperlink{classoomph_1_1Node_afcc5cdba40bca251826ae5bee5ca15b4}{value}}(first\_index + \mbox{\hyperlink{cfortran_8h_adb50e893b86b3e55e751a42eab3cba82}{i}}) * psi(j);}
 \DoxyCodeLine{\Hypertarget{solid__traction__elements_8h_source_l01584}01584             \textcolor{keywordflow}{for} (\textcolor{keywordtype}{unsigned} ii = 0; ii < dim\_el; ii++)}
 \DoxyCodeLine{\Hypertarget{solid__traction__elements_8h_source_l01585}01585             \{}
 \DoxyCodeLine{\Hypertarget{solid__traction__elements_8h_source_l01586}01586               interpolated\_a(ii, \mbox{\hyperlink{cfortran_8h_adb50e893b86b3e55e751a42eab3cba82}{i}}) +=}
@@ -1727,7 +1727,7 @@
 \DoxyCodeLine{\Hypertarget{solid__traction__elements_8h_source_l01723}01723         \textcolor{comment}{// Loop over nodes}}
 \DoxyCodeLine{\Hypertarget{solid__traction__elements_8h_source_l01724}01724         \textcolor{keywordflow}{for} (\textcolor{keywordtype}{unsigned} j = 0; j < n\_node; j++)}
 \DoxyCodeLine{\Hypertarget{solid__traction__elements_8h_source_l01725}01725         \{}
-\DoxyCodeLine{\Hypertarget{solid__traction__elements_8h_source_l01726}01726           Node* nod\_pt = \mbox{\hyperlink{classoomph_1_1FiniteElement_a9addfe893ab8205619963aa96204cdc4}{node\_pt}}(j);}
+\DoxyCodeLine{\Hypertarget{solid__traction__elements_8h_source_l01726}01726           \mbox{\hyperlink{classoomph_1_1Node}{Node}}* nod\_pt = \mbox{\hyperlink{classoomph_1_1FiniteElement_a9addfe893ab8205619963aa96204cdc4}{node\_pt}}(j);}
 \DoxyCodeLine{\Hypertarget{solid__traction__elements_8h_source_l01727}01727 }
 \DoxyCodeLine{\Hypertarget{solid__traction__elements_8h_source_l01728}01728           \textcolor{comment}{// Cast to a boundary node}}
 \DoxyCodeLine{\Hypertarget{solid__traction__elements_8h_source_l01729}01729           \mbox{\hyperlink{classoomph_1_1BoundaryNodeBase}{BoundaryNodeBase}}* bnod\_pt =}
@@ -1742,7 +1742,7 @@
 \DoxyCodeLine{\Hypertarget{solid__traction__elements_8h_source_l01738}01738           \textcolor{keywordflow}{for} (\textcolor{keywordtype}{unsigned} \mbox{\hyperlink{cfortran_8h_adb50e893b86b3e55e751a42eab3cba82}{i}} = 0; \mbox{\hyperlink{cfortran_8h_adb50e893b86b3e55e751a42eab3cba82}{i}} < dim\_el + 1; \mbox{\hyperlink{cfortran_8h_adb50e893b86b3e55e751a42eab3cba82}{i}}++)}
 \DoxyCodeLine{\Hypertarget{solid__traction__elements_8h_source_l01739}01739           \{}
 \DoxyCodeLine{\Hypertarget{solid__traction__elements_8h_source_l01740}01740             \mbox{\hyperlink{namespaceoomph_a9d1d2da2b8bb8e73af72b5cadb8fe97c}{x}}[\mbox{\hyperlink{cfortran_8h_adb50e893b86b3e55e751a42eab3cba82}{i}}] += \mbox{\hyperlink{classoomph_1_1FiniteElement_a9152c16ae9899168bcdaac7c2f977444}{nodal\_position}}(j, \mbox{\hyperlink{cfortran_8h_adb50e893b86b3e55e751a42eab3cba82}{i}}) * psi(j);}
-\DoxyCodeLine{\Hypertarget{solid__traction__elements_8h_source_l01741}01741             lambda[\mbox{\hyperlink{cfortran_8h_adb50e893b86b3e55e751a42eab3cba82}{i}}] += nod\_pt-\/>value(first\_index + \mbox{\hyperlink{cfortran_8h_adb50e893b86b3e55e751a42eab3cba82}{i}}) * psi(j);}
+\DoxyCodeLine{\Hypertarget{solid__traction__elements_8h_source_l01741}01741             lambda[\mbox{\hyperlink{cfortran_8h_adb50e893b86b3e55e751a42eab3cba82}{i}}] += nod\_pt-\/>\mbox{\hyperlink{classoomph_1_1Node_afcc5cdba40bca251826ae5bee5ca15b4}{value}}(first\_index + \mbox{\hyperlink{cfortran_8h_adb50e893b86b3e55e751a42eab3cba82}{i}}) * psi(j);}
 \DoxyCodeLine{\Hypertarget{solid__traction__elements_8h_source_l01742}01742             \textcolor{keywordflow}{for} (\textcolor{keywordtype}{unsigned} ii = 0; ii < dim\_el; ii++)}
 \DoxyCodeLine{\Hypertarget{solid__traction__elements_8h_source_l01743}01743             \{}
 \DoxyCodeLine{\Hypertarget{solid__traction__elements_8h_source_l01744}01744               interpolated\_a(ii, \mbox{\hyperlink{cfortran_8h_adb50e893b86b3e55e751a42eab3cba82}{i}}) +=}
@@ -2035,7 +2035,7 @@
 \DoxyCodeLine{\Hypertarget{solid__traction__elements_8h_source_l02031}02031 \textcolor{comment}{    /// all nodes since it's a refineable element}}
 \DoxyCodeLine{\Hypertarget{solid__traction__elements_8h_source_l02032}\mbox{\hyperlink{classoomph_1_1RefineableImposeDisplacementByLagrangeMultiplierElement_ab6d8d2ed5da8e699c290e085625d2f45}{02032}} \textcolor{comment}{}    \textcolor{keywordtype}{unsigned} \mbox{\hyperlink{classoomph_1_1RefineableImposeDisplacementByLagrangeMultiplierElement_ab6d8d2ed5da8e699c290e085625d2f45}{ncont\_interpolated\_values}}()\textcolor{keyword}{ const}}
 \DoxyCodeLine{\Hypertarget{solid__traction__elements_8h_source_l02033}02033 \textcolor{keyword}{    }\{}
-\DoxyCodeLine{\Hypertarget{solid__traction__elements_8h_source_l02034}02034       \textcolor{keywordflow}{return} \mbox{\hyperlink{classoomph_1_1FiniteElement_a9addfe893ab8205619963aa96204cdc4}{node\_pt}}(0)-\/>nvalue();}
+\DoxyCodeLine{\Hypertarget{solid__traction__elements_8h_source_l02034}02034       \textcolor{keywordflow}{return} \mbox{\hyperlink{classoomph_1_1FiniteElement_a9addfe893ab8205619963aa96204cdc4}{node\_pt}}(0)-\/>\mbox{\hyperlink{classoomph_1_1Data_a7e67fc78a2e8a2fd6eb75bd292d42ff8}{nvalue}}();}
 \DoxyCodeLine{\Hypertarget{solid__traction__elements_8h_source_l02035}02035     \}}
 \DoxyCodeLine{\Hypertarget{solid__traction__elements_8h_source_l02036}02036 \textcolor{comment}{}}
 \DoxyCodeLine{\Hypertarget{solid__traction__elements_8h_source_l02037}02037 \textcolor{comment}{    /// Fill in the residuals}}
@@ -2125,7 +2125,7 @@
 \DoxyCodeLine{\Hypertarget{solid__traction__elements_8h_source_l02121}02121         \textcolor{comment}{// etc}}
 \DoxyCodeLine{\Hypertarget{solid__traction__elements_8h_source_l02122}02122         \textcolor{keywordflow}{for} (\textcolor{keywordtype}{unsigned} j = 0; j < n\_node; j++)}
 \DoxyCodeLine{\Hypertarget{solid__traction__elements_8h_source_l02123}02123         \{}
-\DoxyCodeLine{\Hypertarget{solid__traction__elements_8h_source_l02124}02124           Node* nod\_pt = this-\/>\mbox{\hyperlink{classoomph_1_1FiniteElement_a9addfe893ab8205619963aa96204cdc4}{node\_pt}}(j);}
+\DoxyCodeLine{\Hypertarget{solid__traction__elements_8h_source_l02124}02124           \mbox{\hyperlink{classoomph_1_1Node}{Node}}* nod\_pt = this-\/>\mbox{\hyperlink{classoomph_1_1FiniteElement_a9addfe893ab8205619963aa96204cdc4}{node\_pt}}(j);}
 \DoxyCodeLine{\Hypertarget{solid__traction__elements_8h_source_l02125}02125 }
 \DoxyCodeLine{\Hypertarget{solid__traction__elements_8h_source_l02126}02126           \textcolor{comment}{// Cast to a boundary node}}
 \DoxyCodeLine{\Hypertarget{solid__traction__elements_8h_source_l02127}02127           \mbox{\hyperlink{classoomph_1_1BoundaryNodeBase}{BoundaryNodeBase}}* bnod\_pt = \textcolor{keyword}{dynamic\_cast<}\mbox{\hyperlink{classoomph_1_1BoundaryNodeBase}{BoundaryNodeBase}}*\textcolor{keyword}{>}(nod\_pt);}
@@ -2139,7 +2139,7 @@
 \DoxyCodeLine{\Hypertarget{solid__traction__elements_8h_source_l02135}02135           \textcolor{keywordflow}{for} (\textcolor{keywordtype}{unsigned} \mbox{\hyperlink{cfortran_8h_adb50e893b86b3e55e751a42eab3cba82}{i}} = 0; \mbox{\hyperlink{cfortran_8h_adb50e893b86b3e55e751a42eab3cba82}{i}} < dim\_el + 1; \mbox{\hyperlink{cfortran_8h_adb50e893b86b3e55e751a42eab3cba82}{i}}++)}
 \DoxyCodeLine{\Hypertarget{solid__traction__elements_8h_source_l02136}02136           \{}
 \DoxyCodeLine{\Hypertarget{solid__traction__elements_8h_source_l02137}02137             \mbox{\hyperlink{namespaceoomph_a9d1d2da2b8bb8e73af72b5cadb8fe97c}{x}}[\mbox{\hyperlink{cfortran_8h_adb50e893b86b3e55e751a42eab3cba82}{i}}] += this-\/>\mbox{\hyperlink{classoomph_1_1FiniteElement_a9152c16ae9899168bcdaac7c2f977444}{nodal\_position}}(j, \mbox{\hyperlink{cfortran_8h_adb50e893b86b3e55e751a42eab3cba82}{i}}) * psi(j);}
-\DoxyCodeLine{\Hypertarget{solid__traction__elements_8h_source_l02138}02138             lambda[\mbox{\hyperlink{cfortran_8h_adb50e893b86b3e55e751a42eab3cba82}{i}}] += nod\_pt-\/>value(first\_index + \mbox{\hyperlink{cfortran_8h_adb50e893b86b3e55e751a42eab3cba82}{i}}) * psi(j);}
+\DoxyCodeLine{\Hypertarget{solid__traction__elements_8h_source_l02138}02138             lambda[\mbox{\hyperlink{cfortran_8h_adb50e893b86b3e55e751a42eab3cba82}{i}}] += nod\_pt-\/>\mbox{\hyperlink{classoomph_1_1Node_afcc5cdba40bca251826ae5bee5ca15b4}{value}}(first\_index + \mbox{\hyperlink{cfortran_8h_adb50e893b86b3e55e751a42eab3cba82}{i}}) * psi(j);}
 \DoxyCodeLine{\Hypertarget{solid__traction__elements_8h_source_l02139}02139             \textcolor{keywordflow}{for} (\textcolor{keywordtype}{unsigned} ii = 0; ii < dim\_el; ii++)}
 \DoxyCodeLine{\Hypertarget{solid__traction__elements_8h_source_l02140}02140             \{}
 \DoxyCodeLine{\Hypertarget{solid__traction__elements_8h_source_l02141}02141               interpolated\_a(ii, \mbox{\hyperlink{cfortran_8h_adb50e893b86b3e55e751a42eab3cba82}{i}}) +=}
@@ -2236,15 +2236,15 @@
 \DoxyCodeLine{\Hypertarget{solid__traction__elements_8h_source_l02232}02232         \textcolor{keywordflow}{for} (\textcolor{keywordtype}{unsigned} j = 0; j < n\_node; j++)}
 \DoxyCodeLine{\Hypertarget{solid__traction__elements_8h_source_l02233}02233         \{}
 \DoxyCodeLine{\Hypertarget{solid__traction__elements_8h_source_l02234}02234           \textcolor{comment}{// Local node itself (hanging or not)}}
-\DoxyCodeLine{\Hypertarget{solid__traction__elements_8h_source_l02235}02235           Node* local\_node\_pt = this-\/>\mbox{\hyperlink{classoomph_1_1FiniteElement_a9addfe893ab8205619963aa96204cdc4}{node\_pt}}(j);}
+\DoxyCodeLine{\Hypertarget{solid__traction__elements_8h_source_l02235}02235           \mbox{\hyperlink{classoomph_1_1Node}{Node}}* local\_node\_pt = this-\/>\mbox{\hyperlink{classoomph_1_1FiniteElement_a9addfe893ab8205619963aa96204cdc4}{node\_pt}}(j);}
 \DoxyCodeLine{\Hypertarget{solid__traction__elements_8h_source_l02236}02236 }
 \DoxyCodeLine{\Hypertarget{solid__traction__elements_8h_source_l02237}02237           \textcolor{comment}{// Local boolean to indicate whether the node is hanging}}
-\DoxyCodeLine{\Hypertarget{solid__traction__elements_8h_source_l02238}02238           \textcolor{keywordtype}{bool} is\_node\_hanging = local\_node\_pt-\/>is\_hanging();}
+\DoxyCodeLine{\Hypertarget{solid__traction__elements_8h_source_l02238}02238           \textcolor{keywordtype}{bool} is\_node\_hanging = local\_node\_pt-\/>\mbox{\hyperlink{classoomph_1_1Node_af0e6237dfafad62cf427ff5013ddcfef}{is\_hanging}}();}
 \DoxyCodeLine{\Hypertarget{solid__traction__elements_8h_source_l02239}02239 }
 \DoxyCodeLine{\Hypertarget{solid__traction__elements_8h_source_l02240}02240           \textcolor{comment}{// If the node is hanging}}
 \DoxyCodeLine{\Hypertarget{solid__traction__elements_8h_source_l02241}02241           \textcolor{keywordflow}{if} (is\_node\_hanging)}
 \DoxyCodeLine{\Hypertarget{solid__traction__elements_8h_source_l02242}02242           \{}
-\DoxyCodeLine{\Hypertarget{solid__traction__elements_8h_source_l02243}02243             hang\_info\_pt = local\_node\_pt-\/>hanging\_pt();}
+\DoxyCodeLine{\Hypertarget{solid__traction__elements_8h_source_l02243}02243             hang\_info\_pt = local\_node\_pt-\/>\mbox{\hyperlink{classoomph_1_1Node_afefa22db8b28e783b8647e3577ee01d9}{hanging\_pt}}();}
 \DoxyCodeLine{\Hypertarget{solid__traction__elements_8h_source_l02244}02244 }
 \DoxyCodeLine{\Hypertarget{solid__traction__elements_8h_source_l02245}02245             \textcolor{comment}{// Read out number of master nodes from hanging data}}
 \DoxyCodeLine{\Hypertarget{solid__traction__elements_8h_source_l02246}02246             n\_master = hang\_info\_pt-\/>\mbox{\hyperlink{classoomph_1_1HangInfo_aa9c1130b58db2ff6d5eee4f923ba365c}{nmaster}}();}
@@ -2312,15 +2312,15 @@
 \DoxyCodeLine{\Hypertarget{solid__traction__elements_8h_source_l02308}02308                   \textcolor{keywordflow}{for} (\textcolor{keywordtype}{unsigned} jj = 0; jj < n\_node; jj++)}
 \DoxyCodeLine{\Hypertarget{solid__traction__elements_8h_source_l02309}02309                   \{}
 \DoxyCodeLine{\Hypertarget{solid__traction__elements_8h_source_l02310}02310                     \textcolor{comment}{// Local node itself (hanging or not)}}
-\DoxyCodeLine{\Hypertarget{solid__traction__elements_8h_source_l02311}02311                     Node* local\_node2\_pt = this-\/>\mbox{\hyperlink{classoomph_1_1FiniteElement_a9addfe893ab8205619963aa96204cdc4}{node\_pt}}(jj);}
+\DoxyCodeLine{\Hypertarget{solid__traction__elements_8h_source_l02311}02311                     \mbox{\hyperlink{classoomph_1_1Node}{Node}}* local\_node2\_pt = this-\/>\mbox{\hyperlink{classoomph_1_1FiniteElement_a9addfe893ab8205619963aa96204cdc4}{node\_pt}}(jj);}
 \DoxyCodeLine{\Hypertarget{solid__traction__elements_8h_source_l02312}02312 }
 \DoxyCodeLine{\Hypertarget{solid__traction__elements_8h_source_l02313}02313                     \textcolor{comment}{// Local boolean to indicate whether the node is hanging}}
-\DoxyCodeLine{\Hypertarget{solid__traction__elements_8h_source_l02314}02314                     \textcolor{keywordtype}{bool} is\_node\_hanging2 = local\_node2\_pt-\/>is\_hanging();}
+\DoxyCodeLine{\Hypertarget{solid__traction__elements_8h_source_l02314}02314                     \textcolor{keywordtype}{bool} is\_node\_hanging2 = local\_node2\_pt-\/>\mbox{\hyperlink{classoomph_1_1Node_af0e6237dfafad62cf427ff5013ddcfef}{is\_hanging}}();}
 \DoxyCodeLine{\Hypertarget{solid__traction__elements_8h_source_l02315}02315 }
 \DoxyCodeLine{\Hypertarget{solid__traction__elements_8h_source_l02316}02316                     \textcolor{comment}{// If the node is hanging}}
 \DoxyCodeLine{\Hypertarget{solid__traction__elements_8h_source_l02317}02317                     \textcolor{keywordflow}{if} (is\_node\_hanging2)}
 \DoxyCodeLine{\Hypertarget{solid__traction__elements_8h_source_l02318}02318                     \{}
-\DoxyCodeLine{\Hypertarget{solid__traction__elements_8h_source_l02319}02319                       hang\_info2\_pt = local\_node2\_pt-\/>hanging\_pt();}
+\DoxyCodeLine{\Hypertarget{solid__traction__elements_8h_source_l02319}02319                       hang\_info2\_pt = local\_node2\_pt-\/>\mbox{\hyperlink{classoomph_1_1Node_afefa22db8b28e783b8647e3577ee01d9}{hanging\_pt}}();}
 \DoxyCodeLine{\Hypertarget{solid__traction__elements_8h_source_l02320}02320 }
 \DoxyCodeLine{\Hypertarget{solid__traction__elements_8h_source_l02321}02321                       \textcolor{comment}{// Read out number of master nodes from hanging data}}
 \DoxyCodeLine{\Hypertarget{solid__traction__elements_8h_source_l02322}02322                       n\_master2 = hang\_info2\_pt-\/>\mbox{\hyperlink{classoomph_1_1HangInfo_aa9c1130b58db2ff6d5eee4f923ba365c}{nmaster}}();}
@@ -2343,11 +2343,11 @@
 \DoxyCodeLine{\Hypertarget{solid__traction__elements_8h_source_l02339}02339                       \{}
 \DoxyCodeLine{\Hypertarget{solid__traction__elements_8h_source_l02340}02340                         \textcolor{comment}{// Find the equation numbers}}
 \DoxyCodeLine{\Hypertarget{solid__traction__elements_8h_source_l02341}02341                         position\_local\_eqn\_at\_node2 = \mbox{\hyperlink{classoomph_1_1RefineableSolidElement_a547e50bc2c13c6e4852c543cd7d38f74}{local\_position\_hang\_eqn}}(}
-\DoxyCodeLine{\Hypertarget{solid__traction__elements_8h_source_l02342}02342                           local\_node2\_pt-\/>hanging\_pt()-\/>master\_node\_pt(m2));}
+\DoxyCodeLine{\Hypertarget{solid__traction__elements_8h_source_l02342}02342                           local\_node2\_pt-\/>\mbox{\hyperlink{classoomph_1_1Node_afefa22db8b28e783b8647e3577ee01d9}{hanging\_pt}}()-\/>\mbox{\hyperlink{classoomph_1_1HangInfo_a7a935ae7eeca594a648ca1800444827c}{master\_node\_pt}}(m2));}
 \DoxyCodeLine{\Hypertarget{solid__traction__elements_8h_source_l02343}02343 }
 \DoxyCodeLine{\Hypertarget{solid__traction__elements_8h_source_l02344}02344                         \textcolor{comment}{// Find the hanging node weight}}
 \DoxyCodeLine{\Hypertarget{solid__traction__elements_8h_source_l02345}02345                         hang\_weight2 =}
-\DoxyCodeLine{\Hypertarget{solid__traction__elements_8h_source_l02346}02346                           local\_node2\_pt-\/>hanging\_pt()-\/>master\_weight(m2);}
+\DoxyCodeLine{\Hypertarget{solid__traction__elements_8h_source_l02346}02346                           local\_node2\_pt-\/>\mbox{\hyperlink{classoomph_1_1Node_afefa22db8b28e783b8647e3577ee01d9}{hanging\_pt}}()-\/>\mbox{\hyperlink{classoomph_1_1HangInfo_ac49ebdd8957a658fe4a2420108d2dcee}{master\_weight}}(m2);}
 \DoxyCodeLine{\Hypertarget{solid__traction__elements_8h_source_l02347}02347                       \}}
 \DoxyCodeLine{\Hypertarget{solid__traction__elements_8h_source_l02348}02348                       \textcolor{keywordflow}{else}}
 \DoxyCodeLine{\Hypertarget{solid__traction__elements_8h_source_l02349}02349                       \{}
@@ -2395,7 +2395,7 @@
 \DoxyCodeLine{\Hypertarget{solid__traction__elements_8h_source_l02391}02391                 \{}
 \DoxyCodeLine{\Hypertarget{solid__traction__elements_8h_source_l02392}02392                   \textcolor{comment}{// Find the equation numbers}}
 \DoxyCodeLine{\Hypertarget{solid__traction__elements_8h_source_l02393}02393                   position\_local\_eqn\_at\_node = \mbox{\hyperlink{classoomph_1_1RefineableSolidElement_a547e50bc2c13c6e4852c543cd7d38f74}{local\_position\_hang\_eqn}}(}
-\DoxyCodeLine{\Hypertarget{solid__traction__elements_8h_source_l02394}02394                     local\_node\_pt-\/>hanging\_pt()-\/>master\_node\_pt(m));}
+\DoxyCodeLine{\Hypertarget{solid__traction__elements_8h_source_l02394}02394                     local\_node\_pt-\/>\mbox{\hyperlink{classoomph_1_1Node_afefa22db8b28e783b8647e3577ee01d9}{hanging\_pt}}()-\/>\mbox{\hyperlink{classoomph_1_1HangInfo_a7a935ae7eeca594a648ca1800444827c}{master\_node\_pt}}(m));}
 \DoxyCodeLine{\Hypertarget{solid__traction__elements_8h_source_l02395}02395                 \}}
 \DoxyCodeLine{\Hypertarget{solid__traction__elements_8h_source_l02396}02396                 \textcolor{keywordflow}{else}}
 \DoxyCodeLine{\Hypertarget{solid__traction__elements_8h_source_l02397}02397                 \{}
@@ -2431,15 +2431,15 @@
 \DoxyCodeLine{\Hypertarget{solid__traction__elements_8h_source_l02427}02427                     \textcolor{keywordflow}{for} (\textcolor{keywordtype}{unsigned} jj = 0; jj < n\_node; jj++)}
 \DoxyCodeLine{\Hypertarget{solid__traction__elements_8h_source_l02428}02428                     \{}
 \DoxyCodeLine{\Hypertarget{solid__traction__elements_8h_source_l02429}02429                       \textcolor{comment}{// Local node itself (hanging or not)}}
-\DoxyCodeLine{\Hypertarget{solid__traction__elements_8h_source_l02430}02430                       Node* local\_node2\_pt = this-\/>\mbox{\hyperlink{classoomph_1_1FiniteElement_a9addfe893ab8205619963aa96204cdc4}{node\_pt}}(jj);}
+\DoxyCodeLine{\Hypertarget{solid__traction__elements_8h_source_l02430}02430                       \mbox{\hyperlink{classoomph_1_1Node}{Node}}* local\_node2\_pt = this-\/>\mbox{\hyperlink{classoomph_1_1FiniteElement_a9addfe893ab8205619963aa96204cdc4}{node\_pt}}(jj);}
 \DoxyCodeLine{\Hypertarget{solid__traction__elements_8h_source_l02431}02431 }
 \DoxyCodeLine{\Hypertarget{solid__traction__elements_8h_source_l02432}02432                       \textcolor{comment}{// Local boolean to indicate whether the node is hanging}}
-\DoxyCodeLine{\Hypertarget{solid__traction__elements_8h_source_l02433}02433                       \textcolor{keywordtype}{bool} is\_node\_hanging2 = local\_node2\_pt-\/>is\_hanging();}
+\DoxyCodeLine{\Hypertarget{solid__traction__elements_8h_source_l02433}02433                       \textcolor{keywordtype}{bool} is\_node\_hanging2 = local\_node2\_pt-\/>\mbox{\hyperlink{classoomph_1_1Node_af0e6237dfafad62cf427ff5013ddcfef}{is\_hanging}}();}
 \DoxyCodeLine{\Hypertarget{solid__traction__elements_8h_source_l02434}02434 }
 \DoxyCodeLine{\Hypertarget{solid__traction__elements_8h_source_l02435}02435                       \textcolor{comment}{// If the node is hanging}}
 \DoxyCodeLine{\Hypertarget{solid__traction__elements_8h_source_l02436}02436                       \textcolor{keywordflow}{if} (is\_node\_hanging2)}
 \DoxyCodeLine{\Hypertarget{solid__traction__elements_8h_source_l02437}02437                       \{}
-\DoxyCodeLine{\Hypertarget{solid__traction__elements_8h_source_l02438}02438                         hang\_info2\_pt = local\_node2\_pt-\/>hanging\_pt();}
+\DoxyCodeLine{\Hypertarget{solid__traction__elements_8h_source_l02438}02438                         hang\_info2\_pt = local\_node2\_pt-\/>\mbox{\hyperlink{classoomph_1_1Node_afefa22db8b28e783b8647e3577ee01d9}{hanging\_pt}}();}
 \DoxyCodeLine{\Hypertarget{solid__traction__elements_8h_source_l02439}02439 }
 \DoxyCodeLine{\Hypertarget{solid__traction__elements_8h_source_l02440}02440                         \textcolor{comment}{// Read out number of master nodes from hanging data}}
 \DoxyCodeLine{\Hypertarget{solid__traction__elements_8h_source_l02441}02441                         n\_master2 = hang\_info2\_pt-\/>\mbox{\hyperlink{classoomph_1_1HangInfo_aa9c1130b58db2ff6d5eee4f923ba365c}{nmaster}}();}
@@ -2730,7 +2730,7 @@
 \DoxyCodeLine{\Hypertarget{solid__traction__elements_8h_source_l02726}02726             \textcolor{keyword}{dynamic\_cast<}\mbox{\hyperlink{classoomph_1_1BoundaryNodeBase}{BoundaryNodeBase}}*\textcolor{keyword}{>}(\mbox{\hyperlink{classoomph_1_1FiniteElement_a9addfe893ab8205619963aa96204cdc4}{node\_pt}}(j));}
 \DoxyCodeLine{\Hypertarget{solid__traction__elements_8h_source_l02727}02727 }
 \DoxyCodeLine{\Hypertarget{solid__traction__elements_8h_source_l02728}02728           \textcolor{comment}{// get the node pt}}
-\DoxyCodeLine{\Hypertarget{solid__traction__elements_8h_source_l02729}02729           Node* nod\_pt = \mbox{\hyperlink{classoomph_1_1FiniteElement_a9addfe893ab8205619963aa96204cdc4}{node\_pt}}(j);}
+\DoxyCodeLine{\Hypertarget{solid__traction__elements_8h_source_l02729}02729           \mbox{\hyperlink{classoomph_1_1Node}{Node}}* nod\_pt = \mbox{\hyperlink{classoomph_1_1FiniteElement_a9addfe893ab8205619963aa96204cdc4}{node\_pt}}(j);}
 \DoxyCodeLine{\Hypertarget{solid__traction__elements_8h_source_l02730}02730 }
 \DoxyCodeLine{\Hypertarget{solid__traction__elements_8h_source_l02731}02731           \textcolor{comment}{// Get the index of the first nodal value associated with}}
 \DoxyCodeLine{\Hypertarget{solid__traction__elements_8h_source_l02732}02732           \textcolor{comment}{// this FaceElement}}
@@ -2743,7 +2743,7 @@
 \DoxyCodeLine{\Hypertarget{solid__traction__elements_8h_source_l02739}02739             \mbox{\hyperlink{namespaceoomph_a9d1d2da2b8bb8e73af72b5cadb8fe97c}{x}}[\mbox{\hyperlink{cfortran_8h_adb50e893b86b3e55e751a42eab3cba82}{i}}] += \mbox{\hyperlink{classoomph_1_1FiniteElement_a9152c16ae9899168bcdaac7c2f977444}{nodal\_position}}(j, \mbox{\hyperlink{cfortran_8h_adb50e893b86b3e55e751a42eab3cba82}{i}}) * psi(j, 0); \textcolor{comment}{// need to sort}}
 \DoxyCodeLine{\Hypertarget{solid__traction__elements_8h_source_l02740}02740                                                       \textcolor{comment}{// this out properly}}
 \DoxyCodeLine{\Hypertarget{solid__traction__elements_8h_source_l02741}02741                                                       \textcolor{comment}{// for generalised dofs}}
-\DoxyCodeLine{\Hypertarget{solid__traction__elements_8h_source_l02742}02742             lambda[\mbox{\hyperlink{cfortran_8h_adb50e893b86b3e55e751a42eab3cba82}{i}}] += nod\_pt-\/>value(first\_index + \mbox{\hyperlink{cfortran_8h_adb50e893b86b3e55e751a42eab3cba82}{i}}) * psi(j, 0);}
+\DoxyCodeLine{\Hypertarget{solid__traction__elements_8h_source_l02742}02742             lambda[\mbox{\hyperlink{cfortran_8h_adb50e893b86b3e55e751a42eab3cba82}{i}}] += nod\_pt-\/>\mbox{\hyperlink{classoomph_1_1Node_afcc5cdba40bca251826ae5bee5ca15b4}{value}}(first\_index + \mbox{\hyperlink{cfortran_8h_adb50e893b86b3e55e751a42eab3cba82}{i}}) * psi(j, 0);}
 \DoxyCodeLine{\Hypertarget{solid__traction__elements_8h_source_l02743}02743           \}}
 \DoxyCodeLine{\Hypertarget{solid__traction__elements_8h_source_l02744}02744           \textcolor{comment}{// In-\/element quantities}}
 \DoxyCodeLine{\Hypertarget{solid__traction__elements_8h_source_l02745}02745           \textcolor{keywordflow}{for} (\textcolor{keywordtype}{unsigned} \mbox{\hyperlink{cfortran_8h_adb50e893b86b3e55e751a42eab3cba82}{i}} = 0; \mbox{\hyperlink{cfortran_8h_adb50e893b86b3e55e751a42eab3cba82}{i}} < dim\_el; \mbox{\hyperlink{cfortran_8h_adb50e893b86b3e55e751a42eab3cba82}{i}}++)}
@@ -2831,7 +2831,7 @@
 \DoxyCodeLine{\Hypertarget{solid__traction__elements_8h_source_l02827}02827         \textcolor{comment}{// Loop over nodes}}
 \DoxyCodeLine{\Hypertarget{solid__traction__elements_8h_source_l02828}02828         \textcolor{keywordflow}{for} (\textcolor{keywordtype}{unsigned} j = 0; j < n\_node; j++)}
 \DoxyCodeLine{\Hypertarget{solid__traction__elements_8h_source_l02829}02829         \{}
-\DoxyCodeLine{\Hypertarget{solid__traction__elements_8h_source_l02830}02830           Node* nod\_pt = \mbox{\hyperlink{classoomph_1_1FiniteElement_a9addfe893ab8205619963aa96204cdc4}{node\_pt}}(j);}
+\DoxyCodeLine{\Hypertarget{solid__traction__elements_8h_source_l02830}02830           \mbox{\hyperlink{classoomph_1_1Node}{Node}}* nod\_pt = \mbox{\hyperlink{classoomph_1_1FiniteElement_a9addfe893ab8205619963aa96204cdc4}{node\_pt}}(j);}
 \DoxyCodeLine{\Hypertarget{solid__traction__elements_8h_source_l02831}02831 }
 \DoxyCodeLine{\Hypertarget{solid__traction__elements_8h_source_l02832}02832           \textcolor{comment}{// Cast to a boundary node}}
 \DoxyCodeLine{\Hypertarget{solid__traction__elements_8h_source_l02833}02833           \mbox{\hyperlink{classoomph_1_1BoundaryNodeBase}{BoundaryNodeBase}}* bnod\_pt =}
@@ -2846,7 +2846,7 @@
 \DoxyCodeLine{\Hypertarget{solid__traction__elements_8h_source_l02842}02842           \textcolor{keywordflow}{for} (\textcolor{keywordtype}{unsigned} \mbox{\hyperlink{cfortran_8h_adb50e893b86b3e55e751a42eab3cba82}{i}} = 0; \mbox{\hyperlink{cfortran_8h_adb50e893b86b3e55e751a42eab3cba82}{i}} < dim\_el + 1; \mbox{\hyperlink{cfortran_8h_adb50e893b86b3e55e751a42eab3cba82}{i}}++)}
 \DoxyCodeLine{\Hypertarget{solid__traction__elements_8h_source_l02843}02843           \{}
 \DoxyCodeLine{\Hypertarget{solid__traction__elements_8h_source_l02844}02844             \mbox{\hyperlink{namespaceoomph_a9d1d2da2b8bb8e73af72b5cadb8fe97c}{x}}[\mbox{\hyperlink{cfortran_8h_adb50e893b86b3e55e751a42eab3cba82}{i}}] += \mbox{\hyperlink{classoomph_1_1FiniteElement_a9152c16ae9899168bcdaac7c2f977444}{nodal\_position}}(j, \mbox{\hyperlink{cfortran_8h_adb50e893b86b3e55e751a42eab3cba82}{i}}) * psi(j);}
-\DoxyCodeLine{\Hypertarget{solid__traction__elements_8h_source_l02845}02845             lambda[\mbox{\hyperlink{cfortran_8h_adb50e893b86b3e55e751a42eab3cba82}{i}}] += nod\_pt-\/>value(first\_index + \mbox{\hyperlink{cfortran_8h_adb50e893b86b3e55e751a42eab3cba82}{i}}) * psi(j);}
+\DoxyCodeLine{\Hypertarget{solid__traction__elements_8h_source_l02845}02845             lambda[\mbox{\hyperlink{cfortran_8h_adb50e893b86b3e55e751a42eab3cba82}{i}}] += nod\_pt-\/>\mbox{\hyperlink{classoomph_1_1Node_afcc5cdba40bca251826ae5bee5ca15b4}{value}}(first\_index + \mbox{\hyperlink{cfortran_8h_adb50e893b86b3e55e751a42eab3cba82}{i}}) * psi(j);}
 \DoxyCodeLine{\Hypertarget{solid__traction__elements_8h_source_l02846}02846             \textcolor{keywordflow}{for} (\textcolor{keywordtype}{unsigned} ii = 0; ii < dim\_el; ii++)}
 \DoxyCodeLine{\Hypertarget{solid__traction__elements_8h_source_l02847}02847             \{}
 \DoxyCodeLine{\Hypertarget{solid__traction__elements_8h_source_l02848}02848               interpolated\_a(ii, \mbox{\hyperlink{cfortran_8h_adb50e893b86b3e55e751a42eab3cba82}{i}}) +=}
@@ -3106,7 +3106,7 @@
 \DoxyCodeLine{\Hypertarget{solid__traction__elements_8h_source_l03102}03102 \textcolor{comment}{    /// all nodes since it's a refineable element}}
 \DoxyCodeLine{\Hypertarget{solid__traction__elements_8h_source_l03103}\mbox{\hyperlink{classoomph_1_1RefineableFSIImposeDisplacementByLagrangeMultiplierElement_af0e6193a9a1744d19efd4dfb48234bb0}{03103}} \textcolor{comment}{}    \textcolor{keywordtype}{unsigned} \mbox{\hyperlink{classoomph_1_1RefineableFSIImposeDisplacementByLagrangeMultiplierElement_af0e6193a9a1744d19efd4dfb48234bb0}{ncont\_interpolated\_values}}()\textcolor{keyword}{ const}}
 \DoxyCodeLine{\Hypertarget{solid__traction__elements_8h_source_l03104}03104 \textcolor{keyword}{    }\{}
-\DoxyCodeLine{\Hypertarget{solid__traction__elements_8h_source_l03105}03105       \textcolor{keywordflow}{return} \mbox{\hyperlink{classoomph_1_1FiniteElement_a9addfe893ab8205619963aa96204cdc4}{node\_pt}}(0)-\/>nvalue();}
+\DoxyCodeLine{\Hypertarget{solid__traction__elements_8h_source_l03105}03105       \textcolor{keywordflow}{return} \mbox{\hyperlink{classoomph_1_1FiniteElement_a9addfe893ab8205619963aa96204cdc4}{node\_pt}}(0)-\/>\mbox{\hyperlink{classoomph_1_1Data_a7e67fc78a2e8a2fd6eb75bd292d42ff8}{nvalue}}();}
 \DoxyCodeLine{\Hypertarget{solid__traction__elements_8h_source_l03106}03106     \}}
 \DoxyCodeLine{\Hypertarget{solid__traction__elements_8h_source_l03107}03107 \textcolor{comment}{}}
 \DoxyCodeLine{\Hypertarget{solid__traction__elements_8h_source_l03108}03108 \textcolor{comment}{    /// Fill in the residuals}}
@@ -3195,7 +3195,7 @@
 \DoxyCodeLine{\Hypertarget{solid__traction__elements_8h_source_l03191}03191         \textcolor{comment}{// etc}}
 \DoxyCodeLine{\Hypertarget{solid__traction__elements_8h_source_l03192}03192         \textcolor{keywordflow}{for} (\textcolor{keywordtype}{unsigned} j = 0; j < n\_node; j++)}
 \DoxyCodeLine{\Hypertarget{solid__traction__elements_8h_source_l03193}03193         \{}
-\DoxyCodeLine{\Hypertarget{solid__traction__elements_8h_source_l03194}03194           Node* nod\_pt = this-\/>\mbox{\hyperlink{classoomph_1_1FiniteElement_a9addfe893ab8205619963aa96204cdc4}{node\_pt}}(j);}
+\DoxyCodeLine{\Hypertarget{solid__traction__elements_8h_source_l03194}03194           \mbox{\hyperlink{classoomph_1_1Node}{Node}}* nod\_pt = this-\/>\mbox{\hyperlink{classoomph_1_1FiniteElement_a9addfe893ab8205619963aa96204cdc4}{node\_pt}}(j);}
 \DoxyCodeLine{\Hypertarget{solid__traction__elements_8h_source_l03195}03195 }
 \DoxyCodeLine{\Hypertarget{solid__traction__elements_8h_source_l03196}03196           \textcolor{comment}{// Cast to a boundary node}}
 \DoxyCodeLine{\Hypertarget{solid__traction__elements_8h_source_l03197}03197           \mbox{\hyperlink{classoomph_1_1BoundaryNodeBase}{BoundaryNodeBase}}* bnod\_pt = \textcolor{keyword}{dynamic\_cast<}\mbox{\hyperlink{classoomph_1_1BoundaryNodeBase}{BoundaryNodeBase}}*\textcolor{keyword}{>}(nod\_pt);}
@@ -3209,7 +3209,7 @@
 \DoxyCodeLine{\Hypertarget{solid__traction__elements_8h_source_l03205}03205           \textcolor{keywordflow}{for} (\textcolor{keywordtype}{unsigned} \mbox{\hyperlink{cfortran_8h_adb50e893b86b3e55e751a42eab3cba82}{i}} = 0; \mbox{\hyperlink{cfortran_8h_adb50e893b86b3e55e751a42eab3cba82}{i}} < dim\_el + 1; \mbox{\hyperlink{cfortran_8h_adb50e893b86b3e55e751a42eab3cba82}{i}}++)}
 \DoxyCodeLine{\Hypertarget{solid__traction__elements_8h_source_l03206}03206           \{}
 \DoxyCodeLine{\Hypertarget{solid__traction__elements_8h_source_l03207}03207             \mbox{\hyperlink{namespaceoomph_a9d1d2da2b8bb8e73af72b5cadb8fe97c}{x}}[\mbox{\hyperlink{cfortran_8h_adb50e893b86b3e55e751a42eab3cba82}{i}}] += this-\/>\mbox{\hyperlink{classoomph_1_1FiniteElement_a9152c16ae9899168bcdaac7c2f977444}{nodal\_position}}(j, \mbox{\hyperlink{cfortran_8h_adb50e893b86b3e55e751a42eab3cba82}{i}}) * psi(j);}
-\DoxyCodeLine{\Hypertarget{solid__traction__elements_8h_source_l03208}03208             lambda[\mbox{\hyperlink{cfortran_8h_adb50e893b86b3e55e751a42eab3cba82}{i}}] += nod\_pt-\/>value(first\_index + \mbox{\hyperlink{cfortran_8h_adb50e893b86b3e55e751a42eab3cba82}{i}}) * psi(j);}
+\DoxyCodeLine{\Hypertarget{solid__traction__elements_8h_source_l03208}03208             lambda[\mbox{\hyperlink{cfortran_8h_adb50e893b86b3e55e751a42eab3cba82}{i}}] += nod\_pt-\/>\mbox{\hyperlink{classoomph_1_1Node_afcc5cdba40bca251826ae5bee5ca15b4}{value}}(first\_index + \mbox{\hyperlink{cfortran_8h_adb50e893b86b3e55e751a42eab3cba82}{i}}) * psi(j);}
 \DoxyCodeLine{\Hypertarget{solid__traction__elements_8h_source_l03209}03209             \textcolor{keywordflow}{for} (\textcolor{keywordtype}{unsigned} ii = 0; ii < dim\_el; ii++)}
 \DoxyCodeLine{\Hypertarget{solid__traction__elements_8h_source_l03210}03210             \{}
 \DoxyCodeLine{\Hypertarget{solid__traction__elements_8h_source_l03211}03211               interpolated\_a(ii, \mbox{\hyperlink{cfortran_8h_adb50e893b86b3e55e751a42eab3cba82}{i}}) +=}
@@ -3294,15 +3294,15 @@
 \DoxyCodeLine{\Hypertarget{solid__traction__elements_8h_source_l03290}03290         \textcolor{keywordflow}{for} (\textcolor{keywordtype}{unsigned} j = 0; j < n\_node; j++)}
 \DoxyCodeLine{\Hypertarget{solid__traction__elements_8h_source_l03291}03291         \{}
 \DoxyCodeLine{\Hypertarget{solid__traction__elements_8h_source_l03292}03292           \textcolor{comment}{// Local node itself (hanging or not)}}
-\DoxyCodeLine{\Hypertarget{solid__traction__elements_8h_source_l03293}03293           Node* local\_node\_pt = this-\/>\mbox{\hyperlink{classoomph_1_1FiniteElement_a9addfe893ab8205619963aa96204cdc4}{node\_pt}}(j);}
+\DoxyCodeLine{\Hypertarget{solid__traction__elements_8h_source_l03293}03293           \mbox{\hyperlink{classoomph_1_1Node}{Node}}* local\_node\_pt = this-\/>\mbox{\hyperlink{classoomph_1_1FiniteElement_a9addfe893ab8205619963aa96204cdc4}{node\_pt}}(j);}
 \DoxyCodeLine{\Hypertarget{solid__traction__elements_8h_source_l03294}03294 }
 \DoxyCodeLine{\Hypertarget{solid__traction__elements_8h_source_l03295}03295           \textcolor{comment}{// Local boolean to indicate whether the node is hanging}}
-\DoxyCodeLine{\Hypertarget{solid__traction__elements_8h_source_l03296}03296           \textcolor{keywordtype}{bool} is\_node\_hanging = local\_node\_pt-\/>is\_hanging();}
+\DoxyCodeLine{\Hypertarget{solid__traction__elements_8h_source_l03296}03296           \textcolor{keywordtype}{bool} is\_node\_hanging = local\_node\_pt-\/>\mbox{\hyperlink{classoomph_1_1Node_af0e6237dfafad62cf427ff5013ddcfef}{is\_hanging}}();}
 \DoxyCodeLine{\Hypertarget{solid__traction__elements_8h_source_l03297}03297 }
 \DoxyCodeLine{\Hypertarget{solid__traction__elements_8h_source_l03298}03298           \textcolor{comment}{// If the node is hanging}}
 \DoxyCodeLine{\Hypertarget{solid__traction__elements_8h_source_l03299}03299           \textcolor{keywordflow}{if} (is\_node\_hanging)}
 \DoxyCodeLine{\Hypertarget{solid__traction__elements_8h_source_l03300}03300           \{}
-\DoxyCodeLine{\Hypertarget{solid__traction__elements_8h_source_l03301}03301             hang\_info\_pt = local\_node\_pt-\/>hanging\_pt();}
+\DoxyCodeLine{\Hypertarget{solid__traction__elements_8h_source_l03301}03301             hang\_info\_pt = local\_node\_pt-\/>\mbox{\hyperlink{classoomph_1_1Node_afefa22db8b28e783b8647e3577ee01d9}{hanging\_pt}}();}
 \DoxyCodeLine{\Hypertarget{solid__traction__elements_8h_source_l03302}03302 }
 \DoxyCodeLine{\Hypertarget{solid__traction__elements_8h_source_l03303}03303             \textcolor{comment}{// Read out number of master nodes from hanging data}}
 \DoxyCodeLine{\Hypertarget{solid__traction__elements_8h_source_l03304}03304             n\_master = hang\_info\_pt-\/>\mbox{\hyperlink{classoomph_1_1HangInfo_aa9c1130b58db2ff6d5eee4f923ba365c}{nmaster}}();}
@@ -3370,15 +3370,15 @@
 \DoxyCodeLine{\Hypertarget{solid__traction__elements_8h_source_l03366}03366                   \textcolor{keywordflow}{for} (\textcolor{keywordtype}{unsigned} jj = 0; jj < n\_node; jj++)}
 \DoxyCodeLine{\Hypertarget{solid__traction__elements_8h_source_l03367}03367                   \{}
 \DoxyCodeLine{\Hypertarget{solid__traction__elements_8h_source_l03368}03368                     \textcolor{comment}{// Local node itself (hanging or not)}}
-\DoxyCodeLine{\Hypertarget{solid__traction__elements_8h_source_l03369}03369                     Node* local\_node2\_pt = this-\/>\mbox{\hyperlink{classoomph_1_1FiniteElement_a9addfe893ab8205619963aa96204cdc4}{node\_pt}}(jj);}
+\DoxyCodeLine{\Hypertarget{solid__traction__elements_8h_source_l03369}03369                     \mbox{\hyperlink{classoomph_1_1Node}{Node}}* local\_node2\_pt = this-\/>\mbox{\hyperlink{classoomph_1_1FiniteElement_a9addfe893ab8205619963aa96204cdc4}{node\_pt}}(jj);}
 \DoxyCodeLine{\Hypertarget{solid__traction__elements_8h_source_l03370}03370 }
 \DoxyCodeLine{\Hypertarget{solid__traction__elements_8h_source_l03371}03371                     \textcolor{comment}{// Local boolean to indicate whether the node is hanging}}
-\DoxyCodeLine{\Hypertarget{solid__traction__elements_8h_source_l03372}03372                     \textcolor{keywordtype}{bool} is\_node\_hanging2 = local\_node2\_pt-\/>is\_hanging();}
+\DoxyCodeLine{\Hypertarget{solid__traction__elements_8h_source_l03372}03372                     \textcolor{keywordtype}{bool} is\_node\_hanging2 = local\_node2\_pt-\/>\mbox{\hyperlink{classoomph_1_1Node_af0e6237dfafad62cf427ff5013ddcfef}{is\_hanging}}();}
 \DoxyCodeLine{\Hypertarget{solid__traction__elements_8h_source_l03373}03373 }
 \DoxyCodeLine{\Hypertarget{solid__traction__elements_8h_source_l03374}03374                     \textcolor{comment}{// If the node is hanging}}
 \DoxyCodeLine{\Hypertarget{solid__traction__elements_8h_source_l03375}03375                     \textcolor{keywordflow}{if} (is\_node\_hanging2)}
 \DoxyCodeLine{\Hypertarget{solid__traction__elements_8h_source_l03376}03376                     \{}
-\DoxyCodeLine{\Hypertarget{solid__traction__elements_8h_source_l03377}03377                       hang\_info2\_pt = local\_node2\_pt-\/>hanging\_pt();}
+\DoxyCodeLine{\Hypertarget{solid__traction__elements_8h_source_l03377}03377                       hang\_info2\_pt = local\_node2\_pt-\/>\mbox{\hyperlink{classoomph_1_1Node_afefa22db8b28e783b8647e3577ee01d9}{hanging\_pt}}();}
 \DoxyCodeLine{\Hypertarget{solid__traction__elements_8h_source_l03378}03378 }
 \DoxyCodeLine{\Hypertarget{solid__traction__elements_8h_source_l03379}03379                       \textcolor{comment}{// Read out number of master nodes from hanging data}}
 \DoxyCodeLine{\Hypertarget{solid__traction__elements_8h_source_l03380}03380                       n\_master2 = hang\_info2\_pt-\/>\mbox{\hyperlink{classoomph_1_1HangInfo_aa9c1130b58db2ff6d5eee4f923ba365c}{nmaster}}();}
@@ -3401,11 +3401,11 @@
 \DoxyCodeLine{\Hypertarget{solid__traction__elements_8h_source_l03397}03397                       \{}
 \DoxyCodeLine{\Hypertarget{solid__traction__elements_8h_source_l03398}03398                         \textcolor{comment}{// Find the equation numbers}}
 \DoxyCodeLine{\Hypertarget{solid__traction__elements_8h_source_l03399}03399                         position\_local\_eqn\_at\_node2 = \mbox{\hyperlink{classoomph_1_1RefineableSolidElement_a547e50bc2c13c6e4852c543cd7d38f74}{local\_position\_hang\_eqn}}(}
-\DoxyCodeLine{\Hypertarget{solid__traction__elements_8h_source_l03400}03400                           local\_node2\_pt-\/>hanging\_pt()-\/>master\_node\_pt(m2));}
+\DoxyCodeLine{\Hypertarget{solid__traction__elements_8h_source_l03400}03400                           local\_node2\_pt-\/>\mbox{\hyperlink{classoomph_1_1Node_afefa22db8b28e783b8647e3577ee01d9}{hanging\_pt}}()-\/>\mbox{\hyperlink{classoomph_1_1HangInfo_a7a935ae7eeca594a648ca1800444827c}{master\_node\_pt}}(m2));}
 \DoxyCodeLine{\Hypertarget{solid__traction__elements_8h_source_l03401}03401 }
 \DoxyCodeLine{\Hypertarget{solid__traction__elements_8h_source_l03402}03402                         \textcolor{comment}{// Find the hanging node weight}}
 \DoxyCodeLine{\Hypertarget{solid__traction__elements_8h_source_l03403}03403                         hang\_weight2 =}
-\DoxyCodeLine{\Hypertarget{solid__traction__elements_8h_source_l03404}03404                           local\_node2\_pt-\/>hanging\_pt()-\/>master\_weight(m2);}
+\DoxyCodeLine{\Hypertarget{solid__traction__elements_8h_source_l03404}03404                           local\_node2\_pt-\/>\mbox{\hyperlink{classoomph_1_1Node_afefa22db8b28e783b8647e3577ee01d9}{hanging\_pt}}()-\/>\mbox{\hyperlink{classoomph_1_1HangInfo_ac49ebdd8957a658fe4a2420108d2dcee}{master\_weight}}(m2);}
 \DoxyCodeLine{\Hypertarget{solid__traction__elements_8h_source_l03405}03405                       \}}
 \DoxyCodeLine{\Hypertarget{solid__traction__elements_8h_source_l03406}03406                       \textcolor{keywordflow}{else}}
 \DoxyCodeLine{\Hypertarget{solid__traction__elements_8h_source_l03407}03407                       \{}
@@ -3453,7 +3453,7 @@
 \DoxyCodeLine{\Hypertarget{solid__traction__elements_8h_source_l03449}03449                 \{}
 \DoxyCodeLine{\Hypertarget{solid__traction__elements_8h_source_l03450}03450                   \textcolor{comment}{// Find the equation numbers}}
 \DoxyCodeLine{\Hypertarget{solid__traction__elements_8h_source_l03451}03451                   position\_local\_eqn\_at\_node = \mbox{\hyperlink{classoomph_1_1RefineableSolidElement_a547e50bc2c13c6e4852c543cd7d38f74}{local\_position\_hang\_eqn}}(}
-\DoxyCodeLine{\Hypertarget{solid__traction__elements_8h_source_l03452}03452                     local\_node\_pt-\/>hanging\_pt()-\/>master\_node\_pt(m));}
+\DoxyCodeLine{\Hypertarget{solid__traction__elements_8h_source_l03452}03452                     local\_node\_pt-\/>\mbox{\hyperlink{classoomph_1_1Node_afefa22db8b28e783b8647e3577ee01d9}{hanging\_pt}}()-\/>\mbox{\hyperlink{classoomph_1_1HangInfo_a7a935ae7eeca594a648ca1800444827c}{master\_node\_pt}}(m));}
 \DoxyCodeLine{\Hypertarget{solid__traction__elements_8h_source_l03453}03453                 \}}
 \DoxyCodeLine{\Hypertarget{solid__traction__elements_8h_source_l03454}03454                 \textcolor{keywordflow}{else}}
 \DoxyCodeLine{\Hypertarget{solid__traction__elements_8h_source_l03455}03455                 \{}
@@ -3489,15 +3489,15 @@
 \DoxyCodeLine{\Hypertarget{solid__traction__elements_8h_source_l03485}03485                     \textcolor{keywordflow}{for} (\textcolor{keywordtype}{unsigned} jj = 0; jj < n\_node; jj++)}
 \DoxyCodeLine{\Hypertarget{solid__traction__elements_8h_source_l03486}03486                     \{}
 \DoxyCodeLine{\Hypertarget{solid__traction__elements_8h_source_l03487}03487                       \textcolor{comment}{// Local node itself (hanging or not)}}
-\DoxyCodeLine{\Hypertarget{solid__traction__elements_8h_source_l03488}03488                       Node* local\_node2\_pt = this-\/>\mbox{\hyperlink{classoomph_1_1FiniteElement_a9addfe893ab8205619963aa96204cdc4}{node\_pt}}(jj);}
+\DoxyCodeLine{\Hypertarget{solid__traction__elements_8h_source_l03488}03488                       \mbox{\hyperlink{classoomph_1_1Node}{Node}}* local\_node2\_pt = this-\/>\mbox{\hyperlink{classoomph_1_1FiniteElement_a9addfe893ab8205619963aa96204cdc4}{node\_pt}}(jj);}
 \DoxyCodeLine{\Hypertarget{solid__traction__elements_8h_source_l03489}03489 }
 \DoxyCodeLine{\Hypertarget{solid__traction__elements_8h_source_l03490}03490                       \textcolor{comment}{// Local boolean to indicate whether the node is hanging}}
-\DoxyCodeLine{\Hypertarget{solid__traction__elements_8h_source_l03491}03491                       \textcolor{keywordtype}{bool} is\_node\_hanging2 = local\_node2\_pt-\/>is\_hanging();}
+\DoxyCodeLine{\Hypertarget{solid__traction__elements_8h_source_l03491}03491                       \textcolor{keywordtype}{bool} is\_node\_hanging2 = local\_node2\_pt-\/>\mbox{\hyperlink{classoomph_1_1Node_af0e6237dfafad62cf427ff5013ddcfef}{is\_hanging}}();}
 \DoxyCodeLine{\Hypertarget{solid__traction__elements_8h_source_l03492}03492 }
 \DoxyCodeLine{\Hypertarget{solid__traction__elements_8h_source_l03493}03493                       \textcolor{comment}{// If the node is hanging}}
 \DoxyCodeLine{\Hypertarget{solid__traction__elements_8h_source_l03494}03494                       \textcolor{keywordflow}{if} (is\_node\_hanging2)}
 \DoxyCodeLine{\Hypertarget{solid__traction__elements_8h_source_l03495}03495                       \{}
-\DoxyCodeLine{\Hypertarget{solid__traction__elements_8h_source_l03496}03496                         hang\_info2\_pt = local\_node2\_pt-\/>hanging\_pt();}
+\DoxyCodeLine{\Hypertarget{solid__traction__elements_8h_source_l03496}03496                         hang\_info2\_pt = local\_node2\_pt-\/>\mbox{\hyperlink{classoomph_1_1Node_afefa22db8b28e783b8647e3577ee01d9}{hanging\_pt}}();}
 \DoxyCodeLine{\Hypertarget{solid__traction__elements_8h_source_l03497}03497 }
 \DoxyCodeLine{\Hypertarget{solid__traction__elements_8h_source_l03498}03498                         \textcolor{comment}{// Read out number of master nodes from hanging data}}
 \DoxyCodeLine{\Hypertarget{solid__traction__elements_8h_source_l03499}03499                         n\_master2 = hang\_info2\_pt-\/>\mbox{\hyperlink{classoomph_1_1HangInfo_aa9c1130b58db2ff6d5eee4f923ba365c}{nmaster}}();}

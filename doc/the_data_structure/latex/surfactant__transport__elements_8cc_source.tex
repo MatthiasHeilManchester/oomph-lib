@@ -72,7 +72,7 @@
 \DoxyCodeLine{\Hypertarget{surfactant__transport__elements_8cc_source_l00068}00068     \textcolor{keyword}{const} \textcolor{keywordtype}{unsigned}\& l)\textcolor{keyword}{ const}}
 \DoxyCodeLine{\Hypertarget{surfactant__transport__elements_8cc_source_l00069}00069 \textcolor{keyword}{  }\{}
 \DoxyCodeLine{\Hypertarget{surfactant__transport__elements_8cc_source_l00070}00070     \textcolor{comment}{// Get the data's timestepper}}
-\DoxyCodeLine{\Hypertarget{surfactant__transport__elements_8cc_source_l00071}00071     \mbox{\hyperlink{classoomph_1_1TimeStepper}{TimeStepper}}* \mbox{\hyperlink{classoomph_1_1GeomObject_a0fc851a3b50103b6c9f68efe86e709de}{time\_stepper\_pt}} = this-\/>\mbox{\hyperlink{classoomph_1_1FiniteElement_a9addfe893ab8205619963aa96204cdc4}{node\_pt}}(l)-\/>time\_stepper\_pt();}
+\DoxyCodeLine{\Hypertarget{surfactant__transport__elements_8cc_source_l00071}00071     \mbox{\hyperlink{classoomph_1_1TimeStepper}{TimeStepper}}* \mbox{\hyperlink{classoomph_1_1GeomObject_a0fc851a3b50103b6c9f68efe86e709de}{time\_stepper\_pt}} = this-\/>\mbox{\hyperlink{classoomph_1_1FiniteElement_a9addfe893ab8205619963aa96204cdc4}{node\_pt}}(l)-\/>\mbox{\hyperlink{classoomph_1_1Data_a065d7bffcec82bf4d4bd7b41f9aa80b3}{time\_stepper\_pt}}();}
 \DoxyCodeLine{\Hypertarget{surfactant__transport__elements_8cc_source_l00072}00072 }
 \DoxyCodeLine{\Hypertarget{surfactant__transport__elements_8cc_source_l00073}00073     \textcolor{comment}{// Initialise dudt}}
 \DoxyCodeLine{\Hypertarget{surfactant__transport__elements_8cc_source_l00074}00074     \textcolor{keywordtype}{double} dcdt = 0.0;}
@@ -156,7 +156,7 @@
 \DoxyCodeLine{\Hypertarget{surfactant__transport__elements_8cc_source_l00152}00152     \textcolor{keywordtype}{double} \mbox{\hyperlink{classoomph_1_1SurfactantTransportInterfaceElement_a9da12df06b20e5f1ce0736acfc7e8d83}{interpolated\_C}} = 0.0;}
 \DoxyCodeLine{\Hypertarget{surfactant__transport__elements_8cc_source_l00153}00153     \textcolor{keywordtype}{double} dCdt = 0.0;}
 \DoxyCodeLine{\Hypertarget{surfactant__transport__elements_8cc_source_l00154}00154     \textcolor{comment}{// The tangent vectors and velocity}}
-\DoxyCodeLine{\Hypertarget{surfactant__transport__elements_8cc_source_l00155}00155     \textcolor{keyword}{const} \textcolor{keywordtype}{unsigned} n\_dim = this-\/>\mbox{\hyperlink{classoomph_1_1FiniteElement_a9addfe893ab8205619963aa96204cdc4}{node\_pt}}(0)-\/>ndim();}
+\DoxyCodeLine{\Hypertarget{surfactant__transport__elements_8cc_source_l00155}00155     \textcolor{keyword}{const} \textcolor{keywordtype}{unsigned} n\_dim = this-\/>\mbox{\hyperlink{classoomph_1_1FiniteElement_a9addfe893ab8205619963aa96204cdc4}{node\_pt}}(0)-\/>\mbox{\hyperlink{classoomph_1_1Node_a786c96a8e46eb27a03b2b31f629d41b3}{ndim}}();}
 \DoxyCodeLine{\Hypertarget{surfactant__transport__elements_8cc_source_l00156}00156     \mbox{\hyperlink{classoomph_1_1Vector}{Vector<double>}} \mbox{\hyperlink{classoomph_1_1FluidInterfaceElement_a8f807a6456da7785b12e45a4c17fb969}{interpolated\_u}}(n\_dim, 0.0);}
 \DoxyCodeLine{\Hypertarget{surfactant__transport__elements_8cc_source_l00157}00157     \mbox{\hyperlink{classoomph_1_1Vector}{Vector<double>}} mesh\_velocity(n\_dim, 0.0);}
 \DoxyCodeLine{\Hypertarget{surfactant__transport__elements_8cc_source_l00158}00158     \mbox{\hyperlink{classoomph_1_1Vector}{Vector<double>}} interpolated\_grad\_C(n\_dim, 0.0);}
@@ -220,7 +220,7 @@
 \DoxyCodeLine{\Hypertarget{surfactant__transport__elements_8cc_source_l00216}00216           \textcolor{keywordflow}{for} (\textcolor{keywordtype}{unsigned} l2 = 0; l2 < n\_node; l2++)}
 \DoxyCodeLine{\Hypertarget{surfactant__transport__elements_8cc_source_l00217}00217           \{}
 \DoxyCodeLine{\Hypertarget{surfactant__transport__elements_8cc_source_l00218}00218             \textcolor{comment}{// Get the time stepper}}
-\DoxyCodeLine{\Hypertarget{surfactant__transport__elements_8cc_source_l00219}00219             \mbox{\hyperlink{classoomph_1_1TimeStepper}{TimeStepper}}* \mbox{\hyperlink{classoomph_1_1GeomObject_a0fc851a3b50103b6c9f68efe86e709de}{time\_stepper\_pt}} = this-\/>\mbox{\hyperlink{classoomph_1_1FiniteElement_a9addfe893ab8205619963aa96204cdc4}{node\_pt}}(l2)-\/>time\_stepper\_pt();}
+\DoxyCodeLine{\Hypertarget{surfactant__transport__elements_8cc_source_l00219}00219             \mbox{\hyperlink{classoomph_1_1TimeStepper}{TimeStepper}}* \mbox{\hyperlink{classoomph_1_1GeomObject_a0fc851a3b50103b6c9f68efe86e709de}{time\_stepper\_pt}} = this-\/>\mbox{\hyperlink{classoomph_1_1FiniteElement_a9addfe893ab8205619963aa96204cdc4}{node\_pt}}(l2)-\/>\mbox{\hyperlink{classoomph_1_1Data_a065d7bffcec82bf4d4bd7b41f9aa80b3}{time\_stepper\_pt}}();}
 \DoxyCodeLine{\Hypertarget{surfactant__transport__elements_8cc_source_l00220}00220 }
 \DoxyCodeLine{\Hypertarget{surfactant__transport__elements_8cc_source_l00221}00221             \textcolor{comment}{// Get the unknown c\_index}}
 \DoxyCodeLine{\Hypertarget{surfactant__transport__elements_8cc_source_l00222}00222             local\_unknown = this-\/>\mbox{\hyperlink{classoomph_1_1FiniteElement_a5da80bbed97543e586f698251d67941d}{nodal\_local\_eqn}}(l2, this-\/>\mbox{\hyperlink{classoomph_1_1SurfactantTransportInterfaceElement_a26727fb7b57f88d3e1bdf4f2dd9f3b02}{C\_index}}[l2]);}
@@ -278,7 +278,7 @@
 \DoxyCodeLine{\Hypertarget{surfactant__transport__elements_8cc_source_l00274}00274           local\_unknown = this-\/>\mbox{\hyperlink{classoomph_1_1FiniteElement_a5da80bbed97543e586f698251d67941d}{nodal\_local\_eqn}}(l2, this-\/>\mbox{\hyperlink{classoomph_1_1SurfactantTransportInterfaceElement_a26727fb7b57f88d3e1bdf4f2dd9f3b02}{C\_index}}[l2]);}
 \DoxyCodeLine{\Hypertarget{surfactant__transport__elements_8cc_source_l00275}00275           \textcolor{keywordflow}{if} (local\_unknown >= 0)}
 \DoxyCodeLine{\Hypertarget{surfactant__transport__elements_8cc_source_l00276}00276           \{}
-\DoxyCodeLine{\Hypertarget{surfactant__transport__elements_8cc_source_l00277}00277             \textcolor{keyword}{const} \textcolor{keywordtype}{double} \mbox{\hyperlink{namespaceoomph_aff0c55ce31f12df52b2fe5ae647ffebe}{psi\_}} = psif(l2);}
+\DoxyCodeLine{\Hypertarget{surfactant__transport__elements_8cc_source_l00277}00277             \textcolor{keyword}{const} \textcolor{keywordtype}{double} psi\_ = psif(l2);}
 \DoxyCodeLine{\Hypertarget{surfactant__transport__elements_8cc_source_l00278}00278             \textcolor{keywordflow}{for} (\textcolor{keywordtype}{unsigned} \mbox{\hyperlink{cfortran_8h_adb50e893b86b3e55e751a42eab3cba82}{i}} = 0; \mbox{\hyperlink{cfortran_8h_adb50e893b86b3e55e751a42eab3cba82}{i}} < n\_dim; \mbox{\hyperlink{cfortran_8h_adb50e893b86b3e55e751a42eab3cba82}{i}}++)}
 \DoxyCodeLine{\Hypertarget{surfactant__transport__elements_8cc_source_l00279}00279             \{}
 \DoxyCodeLine{\Hypertarget{surfactant__transport__elements_8cc_source_l00280}00280               \textcolor{comment}{// Add the Jacobian contribution from the surface tension}}
@@ -286,7 +286,7 @@
 \DoxyCodeLine{\Hypertarget{surfactant__transport__elements_8cc_source_l00282}00282               \textcolor{keywordflow}{if} (local\_eqn >= 0)}
 \DoxyCodeLine{\Hypertarget{surfactant__transport__elements_8cc_source_l00283}00283               \{}
 \DoxyCodeLine{\Hypertarget{surfactant__transport__elements_8cc_source_l00284}00284                 \mbox{\hyperlink{classoomph_1_1FiniteElement_aa6c806dab803b82ba4f02cf806971af8}{jacobian}}(local\_eqn, local\_unknown) -\/=}
-\DoxyCodeLine{\Hypertarget{surfactant__transport__elements_8cc_source_l00285}00285                   (dsigma / Ca) * \mbox{\hyperlink{namespaceoomph_aff0c55ce31f12df52b2fe5ae647ffebe}{psi\_}} * dpsifdS\_div(l, \mbox{\hyperlink{cfortran_8h_adb50e893b86b3e55e751a42eab3cba82}{i}}) * J * \mbox{\hyperlink{namespaceoomph_ab40f6d5233caa62dd428818b4cba72d5}{W}};}
+\DoxyCodeLine{\Hypertarget{surfactant__transport__elements_8cc_source_l00285}00285                   (dsigma / Ca) * psi\_ * dpsifdS\_div(l, \mbox{\hyperlink{cfortran_8h_adb50e893b86b3e55e751a42eab3cba82}{i}}) * J * \mbox{\hyperlink{namespaceoomph_ab40f6d5233caa62dd428818b4cba72d5}{W}};}
 \DoxyCodeLine{\Hypertarget{surfactant__transport__elements_8cc_source_l00286}00286               \}}
 \DoxyCodeLine{\Hypertarget{surfactant__transport__elements_8cc_source_l00287}00287             \}}
 \DoxyCodeLine{\Hypertarget{surfactant__transport__elements_8cc_source_l00288}00288           \}}
@@ -404,13 +404,13 @@
 \DoxyCodeLine{\Hypertarget{surfactant__transport__elements_8cc_source_l00400}00400       \textcolor{comment}{// Loop over the shape functions}}
 \DoxyCodeLine{\Hypertarget{surfactant__transport__elements_8cc_source_l00401}00401       \textcolor{keywordflow}{for} (\textcolor{keywordtype}{unsigned} l = 0; l < n\_node; l++)}
 \DoxyCodeLine{\Hypertarget{surfactant__transport__elements_8cc_source_l00402}00402       \{}
-\DoxyCodeLine{\Hypertarget{surfactant__transport__elements_8cc_source_l00403}00403         \textcolor{keyword}{const} \textcolor{keywordtype}{double} \mbox{\hyperlink{namespaceoomph_aff0c55ce31f12df52b2fe5ae647ffebe}{psi\_}} = psif(l);}
-\DoxyCodeLine{\Hypertarget{surfactant__transport__elements_8cc_source_l00404}00404         interpolated\_c += this-\/>\mbox{\hyperlink{classoomph_1_1FiniteElement_a28fd5c2d4aeba5ef65bee0e0d72569f5}{nodal\_value}}(l, this-\/>\mbox{\hyperlink{classoomph_1_1SurfactantTransportInterfaceElement_a26727fb7b57f88d3e1bdf4f2dd9f3b02}{C\_index}}[l]) * \mbox{\hyperlink{namespaceoomph_aff0c55ce31f12df52b2fe5ae647ffebe}{psi\_}};}
+\DoxyCodeLine{\Hypertarget{surfactant__transport__elements_8cc_source_l00403}00403         \textcolor{keyword}{const} \textcolor{keywordtype}{double} psi\_ = psif(l);}
+\DoxyCodeLine{\Hypertarget{surfactant__transport__elements_8cc_source_l00404}00404         interpolated\_c += this-\/>\mbox{\hyperlink{classoomph_1_1FiniteElement_a28fd5c2d4aeba5ef65bee0e0d72569f5}{nodal\_value}}(l, this-\/>\mbox{\hyperlink{classoomph_1_1SurfactantTransportInterfaceElement_a26727fb7b57f88d3e1bdf4f2dd9f3b02}{C\_index}}[l]) * psi\_;}
 \DoxyCodeLine{\Hypertarget{surfactant__transport__elements_8cc_source_l00405}00405         \textcolor{comment}{// Loop over directional components}}
 \DoxyCodeLine{\Hypertarget{surfactant__transport__elements_8cc_source_l00406}00406         \textcolor{keywordflow}{for} (\textcolor{keywordtype}{unsigned} \mbox{\hyperlink{cfortran_8h_adb50e893b86b3e55e751a42eab3cba82}{i}} = 0; \mbox{\hyperlink{cfortran_8h_adb50e893b86b3e55e751a42eab3cba82}{i}} < n\_dim; \mbox{\hyperlink{cfortran_8h_adb50e893b86b3e55e751a42eab3cba82}{i}}++)}
 \DoxyCodeLine{\Hypertarget{surfactant__transport__elements_8cc_source_l00407}00407         \{}
 \DoxyCodeLine{\Hypertarget{surfactant__transport__elements_8cc_source_l00408}00408           \textcolor{comment}{// Coordinate}}
-\DoxyCodeLine{\Hypertarget{surfactant__transport__elements_8cc_source_l00409}00409           \mbox{\hyperlink{classoomph_1_1FaceElement_a7aa612fec3604e08344503fbcdc357c8}{interpolated\_x}}[\mbox{\hyperlink{cfortran_8h_adb50e893b86b3e55e751a42eab3cba82}{i}}] += this-\/>\mbox{\hyperlink{classoomph_1_1FiniteElement_a9152c16ae9899168bcdaac7c2f977444}{nodal\_position}}(l, \mbox{\hyperlink{cfortran_8h_adb50e893b86b3e55e751a42eab3cba82}{i}}) * \mbox{\hyperlink{namespaceoomph_aff0c55ce31f12df52b2fe5ae647ffebe}{psi\_}};}
+\DoxyCodeLine{\Hypertarget{surfactant__transport__elements_8cc_source_l00409}00409           \mbox{\hyperlink{classoomph_1_1FaceElement_a7aa612fec3604e08344503fbcdc357c8}{interpolated\_x}}[\mbox{\hyperlink{cfortran_8h_adb50e893b86b3e55e751a42eab3cba82}{i}}] += this-\/>\mbox{\hyperlink{classoomph_1_1FiniteElement_a9152c16ae9899168bcdaac7c2f977444}{nodal\_position}}(l, \mbox{\hyperlink{cfortran_8h_adb50e893b86b3e55e751a42eab3cba82}{i}}) * psi\_;}
 \DoxyCodeLine{\Hypertarget{surfactant__transport__elements_8cc_source_l00410}00410 }
 \DoxyCodeLine{\Hypertarget{surfactant__transport__elements_8cc_source_l00411}00411           \textcolor{comment}{// Calculate the tangent vectors}}
 \DoxyCodeLine{\Hypertarget{surfactant__transport__elements_8cc_source_l00412}00412           \textcolor{keywordflow}{for} (\textcolor{keywordtype}{unsigned} j = 0; j < el\_dim; j++)}

@@ -1190,10 +1190,10 @@
 \DoxyCodeLine{\Hypertarget{helmholtz__bc__elements_8h_source_l01186}01186         \textcolor{keywordtype}{unsigned} nnod = el\_pt-\/>\mbox{\hyperlink{classoomph_1_1FiniteElement_a6219ed269a6d89b5aa14659cce48905a}{nnode}}();}
 \DoxyCodeLine{\Hypertarget{helmholtz__bc__elements_8h_source_l01187}01187         \textcolor{keywordflow}{for} (\textcolor{keywordtype}{unsigned} j = 0; j < nnod; j++)}
 \DoxyCodeLine{\Hypertarget{helmholtz__bc__elements_8h_source_l01188}01188         \{}
-\DoxyCodeLine{\Hypertarget{helmholtz__bc__elements_8h_source_l01189}01189           Node* nod\_pt = el\_pt-\/>\mbox{\hyperlink{classoomph_1_1FiniteElement_a9addfe893ab8205619963aa96204cdc4}{node\_pt}}(j);}
+\DoxyCodeLine{\Hypertarget{helmholtz__bc__elements_8h_source_l01189}01189           \mbox{\hyperlink{classoomph_1_1Node}{Node}}* nod\_pt = el\_pt-\/>\mbox{\hyperlink{classoomph_1_1FiniteElement_a9addfe893ab8205619963aa96204cdc4}{node\_pt}}(j);}
 \DoxyCodeLine{\Hypertarget{helmholtz__bc__elements_8h_source_l01190}01190 }
 \DoxyCodeLine{\Hypertarget{helmholtz__bc__elements_8h_source_l01191}01191           \textcolor{comment}{// Don't add copied nodes}}
-\DoxyCodeLine{\Hypertarget{helmholtz__bc__elements_8h_source_l01192}01192           \textcolor{keywordflow}{if} (!(nod\_pt-\/>is\_a\_copy()))}
+\DoxyCodeLine{\Hypertarget{helmholtz__bc__elements_8h_source_l01192}01192           \textcolor{keywordflow}{if} (!(nod\_pt-\/>\mbox{\hyperlink{classoomph_1_1Data_a736feee0f95ab3d542c70db6ca7ab233}{is\_a\_copy}}()))}
 \DoxyCodeLine{\Hypertarget{helmholtz__bc__elements_8h_source_l01193}01193           \{}
 \DoxyCodeLine{\Hypertarget{helmholtz__bc__elements_8h_source_l01194}01194             node\_set.insert(nod\_pt);}
 \DoxyCodeLine{\Hypertarget{helmholtz__bc__elements_8h_source_l01195}01195           \}}
@@ -1203,15 +1203,15 @@
 \DoxyCodeLine{\Hypertarget{helmholtz__bc__elements_8h_source_l01199}01199       \textcolor{keywordtype}{unsigned} nnod = this-\/>\mbox{\hyperlink{classoomph_1_1FiniteElement_a6219ed269a6d89b5aa14659cce48905a}{nnode}}();}
 \DoxyCodeLine{\Hypertarget{helmholtz__bc__elements_8h_source_l01200}01200       \textcolor{keywordflow}{for} (\textcolor{keywordtype}{unsigned} j = 0; j < nnod; j++)}
 \DoxyCodeLine{\Hypertarget{helmholtz__bc__elements_8h_source_l01201}01201       \{}
-\DoxyCodeLine{\Hypertarget{helmholtz__bc__elements_8h_source_l01202}01202         Node* nod\_pt = this-\/>\mbox{\hyperlink{classoomph_1_1FiniteElement_a9addfe893ab8205619963aa96204cdc4}{node\_pt}}(j);}
+\DoxyCodeLine{\Hypertarget{helmholtz__bc__elements_8h_source_l01202}01202         \mbox{\hyperlink{classoomph_1_1Node}{Node}}* nod\_pt = this-\/>\mbox{\hyperlink{classoomph_1_1FiniteElement_a9addfe893ab8205619963aa96204cdc4}{node\_pt}}(j);}
 \DoxyCodeLine{\Hypertarget{helmholtz__bc__elements_8h_source_l01203}01203         node\_set.erase(nod\_pt);}
 \DoxyCodeLine{\Hypertarget{helmholtz__bc__elements_8h_source_l01204}01204 }
 \DoxyCodeLine{\Hypertarget{helmholtz__bc__elements_8h_source_l01205}01205         \textcolor{comment}{// If the element's node is a copy then its "{}master"{} will}}
 \DoxyCodeLine{\Hypertarget{helmholtz__bc__elements_8h_source_l01206}01206         \textcolor{comment}{// already have been added in the set above -\/-\/ remove the}}
 \DoxyCodeLine{\Hypertarget{helmholtz__bc__elements_8h_source_l01207}01207         \textcolor{comment}{// master to avoid double counting eqn numbers}}
-\DoxyCodeLine{\Hypertarget{helmholtz__bc__elements_8h_source_l01208}01208         \textcolor{keywordflow}{if} (nod\_pt-\/>is\_a\_copy())}
+\DoxyCodeLine{\Hypertarget{helmholtz__bc__elements_8h_source_l01208}01208         \textcolor{keywordflow}{if} (nod\_pt-\/>\mbox{\hyperlink{classoomph_1_1Data_a736feee0f95ab3d542c70db6ca7ab233}{is\_a\_copy}}())}
 \DoxyCodeLine{\Hypertarget{helmholtz__bc__elements_8h_source_l01209}01209         \{}
-\DoxyCodeLine{\Hypertarget{helmholtz__bc__elements_8h_source_l01210}01210           node\_set.erase(nod\_pt-\/>copied\_node\_pt());}
+\DoxyCodeLine{\Hypertarget{helmholtz__bc__elements_8h_source_l01210}01210           node\_set.erase(nod\_pt-\/>\mbox{\hyperlink{classoomph_1_1Node_a5de5f4fa9259b44f527d90e474471563}{copied\_node\_pt}}());}
 \DoxyCodeLine{\Hypertarget{helmholtz__bc__elements_8h_source_l01211}01211         \}}
 \DoxyCodeLine{\Hypertarget{helmholtz__bc__elements_8h_source_l01212}01212       \}}
 \DoxyCodeLine{\Hypertarget{helmholtz__bc__elements_8h_source_l01213}01213 }
@@ -1687,12 +1687,12 @@
 \DoxyCodeLine{\Hypertarget{helmholtz__bc__elements_8h_source_l01683}01683         \textcolor{keywordtype}{unsigned} nnod = fe\_pt-\/>\mbox{\hyperlink{classoomph_1_1FiniteElement_a6219ed269a6d89b5aa14659cce48905a}{nnode}}();}
 \DoxyCodeLine{\Hypertarget{helmholtz__bc__elements_8h_source_l01684}01684         \textcolor{keywordflow}{for} (\textcolor{keywordtype}{unsigned} j = 0; j < nnod; j++)}
 \DoxyCodeLine{\Hypertarget{helmholtz__bc__elements_8h_source_l01685}01685         \{}
-\DoxyCodeLine{\Hypertarget{helmholtz__bc__elements_8h_source_l01686}01686           Node* nod\_pt = fe\_pt-\/>\mbox{\hyperlink{classoomph_1_1FiniteElement_a9addfe893ab8205619963aa96204cdc4}{node\_pt}}(j);}
+\DoxyCodeLine{\Hypertarget{helmholtz__bc__elements_8h_source_l01686}01686           \mbox{\hyperlink{classoomph_1_1Node}{Node}}* nod\_pt = fe\_pt-\/>\mbox{\hyperlink{classoomph_1_1FiniteElement_a9addfe893ab8205619963aa96204cdc4}{node\_pt}}(j);}
 \DoxyCodeLine{\Hypertarget{helmholtz__bc__elements_8h_source_l01687}01687 }
 \DoxyCodeLine{\Hypertarget{helmholtz__bc__elements_8h_source_l01688}01688           \textcolor{comment}{// Extract nodal coordinates from node:}}
 \DoxyCodeLine{\Hypertarget{helmholtz__bc__elements_8h_source_l01689}01689           \mbox{\hyperlink{classoomph_1_1Vector}{Vector<double>}} \mbox{\hyperlink{namespaceoomph_a9d1d2da2b8bb8e73af72b5cadb8fe97c}{x}}(2);}
-\DoxyCodeLine{\Hypertarget{helmholtz__bc__elements_8h_source_l01690}01690           \mbox{\hyperlink{namespaceoomph_a9d1d2da2b8bb8e73af72b5cadb8fe97c}{x}}[0] = nod\_pt-\/>x(0);}
-\DoxyCodeLine{\Hypertarget{helmholtz__bc__elements_8h_source_l01691}01691           \mbox{\hyperlink{namespaceoomph_a9d1d2da2b8bb8e73af72b5cadb8fe97c}{x}}[1] = nod\_pt-\/>x(1);}
+\DoxyCodeLine{\Hypertarget{helmholtz__bc__elements_8h_source_l01690}01690           \mbox{\hyperlink{namespaceoomph_a9d1d2da2b8bb8e73af72b5cadb8fe97c}{x}}[0] = nod\_pt-\/>\mbox{\hyperlink{classoomph_1_1Node_ab76b4773a65b349f143539e07b6e15e2}{x}}(0);}
+\DoxyCodeLine{\Hypertarget{helmholtz__bc__elements_8h_source_l01691}01691           \mbox{\hyperlink{namespaceoomph_a9d1d2da2b8bb8e73af72b5cadb8fe97c}{x}}[1] = nod\_pt-\/>\mbox{\hyperlink{classoomph_1_1Node_ab76b4773a65b349f143539e07b6e15e2}{x}}(1);}
 \DoxyCodeLine{\Hypertarget{helmholtz__bc__elements_8h_source_l01692}01692 }
 \DoxyCodeLine{\Hypertarget{helmholtz__bc__elements_8h_source_l01693}01693           \textcolor{comment}{// Evaluate the radial distance}}
 \DoxyCodeLine{\Hypertarget{helmholtz__bc__elements_8h_source_l01694}01694           \textcolor{keywordtype}{double} r = sqrt(\mbox{\hyperlink{namespaceoomph_a9d1d2da2b8bb8e73af72b5cadb8fe97c}{x}}[0] * \mbox{\hyperlink{namespaceoomph_a9d1d2da2b8bb8e73af72b5cadb8fe97c}{x}}[0] + \mbox{\hyperlink{namespaceoomph_a9d1d2da2b8bb8e73af72b5cadb8fe97c}{x}}[1] * \mbox{\hyperlink{namespaceoomph_a9d1d2da2b8bb8e73af72b5cadb8fe97c}{x}}[1]);}
@@ -1909,7 +1909,7 @@
 \DoxyCodeLine{\Hypertarget{helmholtz__bc__elements_8h_source_l01905}01905 }
 \DoxyCodeLine{\Hypertarget{helmholtz__bc__elements_8h_source_l01906}01906     \textcolor{comment}{// Extract the dimension of the problem from the dimension of}}
 \DoxyCodeLine{\Hypertarget{helmholtz__bc__elements_8h_source_l01907}01907     \textcolor{comment}{// the first node}}
-\DoxyCodeLine{\Hypertarget{helmholtz__bc__elements_8h_source_l01908}01908     \mbox{\hyperlink{classoomph_1_1HelmholtzBCElementBase_ad01f0d13e7319e28f28286abb6d0b7cc}{Dim}} = this-\/>\mbox{\hyperlink{classoomph_1_1FiniteElement_a9addfe893ab8205619963aa96204cdc4}{node\_pt}}(0)-\/>ndim();}
+\DoxyCodeLine{\Hypertarget{helmholtz__bc__elements_8h_source_l01908}01908     \mbox{\hyperlink{classoomph_1_1HelmholtzBCElementBase_ad01f0d13e7319e28f28286abb6d0b7cc}{Dim}} = this-\/>\mbox{\hyperlink{classoomph_1_1FiniteElement_a9addfe893ab8205619963aa96204cdc4}{node\_pt}}(0)-\/>\mbox{\hyperlink{classoomph_1_1Node_a786c96a8e46eb27a03b2b31f629d41b3}{ndim}}();}
 \DoxyCodeLine{\Hypertarget{helmholtz__bc__elements_8h_source_l01909}01909 }
 \DoxyCodeLine{\Hypertarget{helmholtz__bc__elements_8h_source_l01910}01910     \textcolor{comment}{// Set up U\_index\_helmholtz. Initialise to zero, which probably won't change}}
 \DoxyCodeLine{\Hypertarget{helmholtz__bc__elements_8h_source_l01911}01911     \textcolor{comment}{// in most cases, oh well, the price we pay for generality}}

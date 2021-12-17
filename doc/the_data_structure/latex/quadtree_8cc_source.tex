@@ -923,7 +923,7 @@
 \DoxyCodeLine{\Hypertarget{quadtree_8cc_source_l00919}00919       \textcolor{comment}{// Loop over the vertex nodes of the associated element}}
 \DoxyCodeLine{\Hypertarget{quadtree_8cc_source_l00920}00920       \textcolor{keywordflow}{for} (\textcolor{keywordtype}{unsigned} j = 0; j < n\_vertex\_node; j++)}
 \DoxyCodeLine{\Hypertarget{quadtree_8cc_source_l00921}00921       \{}
-\DoxyCodeLine{\Hypertarget{quadtree_8cc_source_l00922}00922         Node* nod\_pt = \textcolor{keyword}{dynamic\_cast<}\mbox{\hyperlink{classoomph_1_1QuadElementBase}{QuadElementBase}}*\textcolor{keyword}{>}(\mbox{\hyperlink{classoomph_1_1TreeForest_a94d44c85e121758945f04aa28aa8df2a}{Trees\_pt}}[\mbox{\hyperlink{cfortran_8h_adb50e893b86b3e55e751a42eab3cba82}{i}}]-\/>object\_pt())}
+\DoxyCodeLine{\Hypertarget{quadtree_8cc_source_l00922}00922         \mbox{\hyperlink{classoomph_1_1Node}{Node}}* nod\_pt = \textcolor{keyword}{dynamic\_cast<}\mbox{\hyperlink{classoomph_1_1QuadElementBase}{QuadElementBase}}*\textcolor{keyword}{>}(\mbox{\hyperlink{classoomph_1_1TreeForest_a94d44c85e121758945f04aa28aa8df2a}{Trees\_pt}}[\mbox{\hyperlink{cfortran_8h_adb50e893b86b3e55e751a42eab3cba82}{i}}]-\/>object\_pt())}
 \DoxyCodeLine{\Hypertarget{quadtree_8cc_source_l00923}00923                          -\/>vertex\_node\_pt(j);}
 \DoxyCodeLine{\Hypertarget{quadtree_8cc_source_l00924}00924         tree\_assoc\_with\_vertex\_node[nod\_pt].insert(\mbox{\hyperlink{cfortran_8h_adb50e893b86b3e55e751a42eab3cba82}{i}});}
 \DoxyCodeLine{\Hypertarget{quadtree_8cc_source_l00925}00925       \}}
@@ -935,7 +935,7 @@
 \DoxyCodeLine{\Hypertarget{quadtree_8cc_source_l00931}00931     \mbox{\hyperlink{classoomph_1_1Vector}{Vector<std::set<unsigned>}}> potentially\_neighb\_tree(numtrees);}
 \DoxyCodeLine{\Hypertarget{quadtree_8cc_source_l00932}00932 }
 \DoxyCodeLine{\Hypertarget{quadtree_8cc_source_l00933}00933     \textcolor{comment}{// Loop over vertex nodes}}
-\DoxyCodeLine{\Hypertarget{quadtree_8cc_source_l00934}00934     \textcolor{keywordflow}{for} (std::map<Node*, std::set<unsigned>>::iterator it =}
+\DoxyCodeLine{\Hypertarget{quadtree_8cc_source_l00934}00934     \textcolor{keywordflow}{for} (std::map<\mbox{\hyperlink{classoomph_1_1Node}{Node}}*, std::set<unsigned>>::iterator it =}
 \DoxyCodeLine{\Hypertarget{quadtree_8cc_source_l00935}00935            tree\_assoc\_with\_vertex\_node.begin();}
 \DoxyCodeLine{\Hypertarget{quadtree_8cc_source_l00936}00936          it != tree\_assoc\_with\_vertex\_node.end();}
 \DoxyCodeLine{\Hypertarget{quadtree_8cc_source_l00937}00937          it++)}

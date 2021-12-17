@@ -851,6 +851,7 @@ namespace oomph
 
 
   //=====================================================================
+  // clang-format off
   /// Nodes are derived from Data, but, in addition, have a
   /// definite (Eulerian) position in a space of a given dimension.
   ///
@@ -887,8 +888,7 @@ namespace oomph
   /// is based on an independent interpolation for the global coordinates
   /// and their derivative w.r.t. to the local coordinates. In such
   /// elements, the mapping becomes
-  /// \f[  x_i = \sum_{j=1}^{N_{node}} \sum_{k=1}^{N_{type}} X_{ijk}
-  ///    \psi_{jk}(s_k) \f]
+  /// \f[  x_i = \sum_{j=1}^{N_{node}} \sum_{k=1}^{N_{type}} X_{ijk} \psi_{jk}(s_k) \f]
   /// where \f$ N_{type} \f$ is the number of the different types of generalised
   /// coordinates involved in the mapping. For instance, in 1D Hermite elements
   /// \f$ N_{type}=2 \f$ and k=0 corresponds to the global coordinates while
@@ -902,6 +902,7 @@ namespace oomph
   /// \code Node::x_gen(t,k,i) \endcode
   /// While this is all pretty straightforward, it does make the
   /// argument list of the Node constructors rather lengthy.
+  // clang-format off
   //=====================================================================
   class Node : public Data
   {

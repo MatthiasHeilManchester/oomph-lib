@@ -160,7 +160,7 @@ Public Member Functions</h2></td></tr>
 <tr class="memitem:a73c7b5151b46a82cf08b0b24783a9253"><td class="memItemLeft" align="right" valign="top">Integral *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classoomph_1_1VorticitySmoother.html#a73c7b5151b46a82cf08b0b24783a9253">integral_rec</a> (const bool &amp;is_q_mesh)</td></tr>
 <tr class="memdesc:a73c7b5151b46a82cf08b0b24783a9253"><td class="mdescLeft">&#160;</td><td class="mdescRight">Integation scheme associated with the recovery shape functions must be of sufficiently high order to integrate the mass matrix associated with the recovery shape functions. The argument is the dimension of the elements. The integration is performed locally over the elements, so the integration scheme does depend on the geometry of the element. The type of element is specified by the boolean which is true if elements in the patch are QElements and false if they are TElements (will need change if we ever have other element types)  <a href="classoomph_1_1VorticitySmoother.html#a73c7b5151b46a82cf08b0b24783a9253">More...</a><br /></td></tr>
 <tr class="separator:a73c7b5151b46a82cf08b0b24783a9253"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ae8e49f99dfb35e6ee5eebbce87131d44"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classoomph_1_1VorticitySmoother.html#ae8e49f99dfb35e6ee5eebbce87131d44">setup_patches</a> (<a class="el" href="classoomph_1_1Mesh.html">Mesh</a> *&amp;mesh_pt, std::map&lt; Node *, <a class="el" href="classoomph_1_1Vector.html">Vector</a>&lt; ELEMENT * &gt; * &gt; &amp;adjacent_elements_pt, <a class="el" href="classoomph_1_1Vector.html">Vector</a>&lt; Node * &gt; &amp;vertex_node_pt)</td></tr>
+<tr class="memitem:ae8e49f99dfb35e6ee5eebbce87131d44"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classoomph_1_1VorticitySmoother.html#ae8e49f99dfb35e6ee5eebbce87131d44">setup_patches</a> (<a class="el" href="classoomph_1_1Mesh.html">Mesh</a> *&amp;mesh_pt, std::map&lt; <a class="el" href="classoomph_1_1Node.html">Node</a> *, <a class="el" href="classoomph_1_1Vector.html">Vector</a>&lt; ELEMENT * &gt; * &gt; &amp;adjacent_elements_pt, <a class="el" href="classoomph_1_1Vector.html">Vector</a>&lt; <a class="el" href="classoomph_1_1Node.html">Node</a> * &gt; &amp;vertex_node_pt)</td></tr>
 <tr class="memdesc:ae8e49f99dfb35e6ee5eebbce87131d44"><td class="mdescLeft">&#160;</td><td class="mdescRight">Setup patches: For each vertex node pointed to by nod_pt, adjacent_elements_pt[nod_pt] contains the pointer to the vector that contains the pointers to the elements that the node is part of. Also returns a <a class="el" href="classoomph_1_1Vector.html" title="A slight extension to the standard template vector class so that we can include &quot;graceful&quot; array rang...">Vector</a> of vertex nodes for use in get_element_errors.  <a href="classoomph_1_1VorticitySmoother.html#ae8e49f99dfb35e6ee5eebbce87131d44">More...</a><br /></td></tr>
 <tr class="separator:ae8e49f99dfb35e6ee5eebbce87131d44"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:adc724f10b642aa3edc2d02fa8e35787d"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classoomph_1_1VorticitySmoother.html#adc724f10b642aa3edc2d02fa8e35787d">get_recovered_vorticity_in_patch</a> (const <a class="el" href="classoomph_1_1Vector.html">Vector</a>&lt; ELEMENT * &gt; &amp;patch_el_pt, const unsigned &amp;num_recovery_terms, <a class="el" href="classoomph_1_1Vector.html">Vector</a>&lt; double &gt; *&amp;recovered_vorticity_coefficient_pt, unsigned &amp;n_deriv)</td></tr>
@@ -519,7 +519,7 @@ template&lt;class ELEMENT &gt; </div>
 
 <p class="definition">Definition at line <a class="el" href="vorticity__smoother_8h_source.html#l02448">2448</a> of file <a class="el" href="vorticity__smoother_8h_source.html">vorticity_smoother.h</a>.</p>
 
-<p class="reference">References <a class="el" href="cfortran_8h_source.html#l00571">e</a>, <a class="el" href="mesh_8h_source.html#l00448">oomph::Mesh::element_pt()</a>, <a class="el" href="vorticity__smoother_8h_source.html#l02115">oomph::VorticitySmoother&lt; ELEMENT &gt;::get_recovered_vorticity_in_patch()</a>, <a class="el" href="cfortran_8h_source.html#l00603">i</a>, <a class="el" href="mesh_8h_source.html#l00596">oomph::Mesh::nnode()</a>, <a class="el" href="mesh_8h_source.html#l00436">oomph::Mesh::node_pt()</a>, <a class="el" href="vorticity__smoother_8h_source.html#l02393">oomph::VorticitySmoother&lt; ELEMENT &gt;::nrecovery_order()</a>, <a class="el" href="oomph__definitions_8cc_source.html#l00319">oomph::oomph_info</a>, <a class="el" href="cfortran_8h_source.html#l00568">s</a>, <a class="el" href="vorticity__smoother_8h_source.html#l01999">oomph::VorticitySmoother&lt; ELEMENT &gt;::setup_patches()</a>, <a class="el" href="vorticity__smoother_8h_source.html#l01864">oomph::VorticitySmoother&lt; ELEMENT &gt;::shape_rec()</a>, <a class="el" href="oomph__utilities_8cc_source.html#l01295">oomph::TimingHelpers::timer()</a>, and <a class="el" href="pseudo__buckling__ring_8h_source.html#l00049">oomph::x</a>.</p>
+<p class="reference">References <a class="el" href="cfortran_8h_source.html#l00571">e</a>, <a class="el" href="mesh_8h_source.html#l00448">oomph::Mesh::element_pt()</a>, <a class="el" href="vorticity__smoother_8h_source.html#l02115">oomph::VorticitySmoother&lt; ELEMENT &gt;::get_recovered_vorticity_in_patch()</a>, <a class="el" href="cfortran_8h_source.html#l00603">i</a>, <a class="el" href="mesh_8h_source.html#l00596">oomph::Mesh::nnode()</a>, <a class="el" href="mesh_8h_source.html#l00436">oomph::Mesh::node_pt()</a>, <a class="el" href="vorticity__smoother_8h_source.html#l02393">oomph::VorticitySmoother&lt; ELEMENT &gt;::nrecovery_order()</a>, <a class="el" href="oomph__definitions_8cc_source.html#l00319">oomph::oomph_info</a>, <a class="el" href="cfortran_8h_source.html#l00568">s</a>, <a class="el" href="nodes_8h_source.html#l00271">oomph::Data::set_value()</a>, <a class="el" href="vorticity__smoother_8h_source.html#l01999">oomph::VorticitySmoother&lt; ELEMENT &gt;::setup_patches()</a>, <a class="el" href="vorticity__smoother_8h_source.html#l01864">oomph::VorticitySmoother&lt; ELEMENT &gt;::shape_rec()</a>, <a class="el" href="oomph__utilities_8cc_source.html#l01295">oomph::TimingHelpers::timer()</a>, and <a class="el" href="pseudo__buckling__ring_8h_source.html#l00049">oomph::x</a>.</p>
 
 </div>
 </div>
@@ -578,13 +578,13 @@ template&lt;class ELEMENT &gt; </div>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype">std::map&lt; Node *, <a class="el" href="classoomph_1_1Vector.html">Vector</a>&lt; ELEMENT * &gt; * &gt; &amp;&#160;</td>
+          <td class="paramtype">std::map&lt; <a class="el" href="classoomph_1_1Node.html">Node</a> *, <a class="el" href="classoomph_1_1Vector.html">Vector</a>&lt; ELEMENT * &gt; * &gt; &amp;&#160;</td>
           <td class="paramname"><em>adjacent_elements_pt</em>, </td>
         </tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype"><a class="el" href="classoomph_1_1Vector.html">Vector</a>&lt; Node * &gt; &amp;&#160;</td>
+          <td class="paramtype"><a class="el" href="classoomph_1_1Vector.html">Vector</a>&lt; <a class="el" href="classoomph_1_1Node.html">Node</a> * &gt; &amp;&#160;</td>
           <td class="paramname"><em>vertex_node_pt</em>&#160;</td>
         </tr>
         <tr>
@@ -718,7 +718,7 @@ template&lt;class ELEMENT &gt; </div>
     <footer>
       <div class="container">
         <div class="text-muted" style="float:right;">Generated by <a href="http://www.doxygen.org/index.html">
-          <img style="height:18px;" class="footer-img" src="doxygen.png" alt="doxygen"></a> on Fri Dec 10 2021 08:11:43
+          <img style="height:18px;" class="footer-img" src="doxygen.png" alt="doxygen"></a> on Fri Dec 17 2021 19:45:38
         </div>
       </div>
     </footer>

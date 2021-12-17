@@ -311,22 +311,22 @@ $(function() {
 <div class="line"><a id="l00182" name="l00182"></a><span class="lineno">  182</span>  int_t *perm_r; <span class="comment">/* row permutations from partial pivoting */</span></div>
 <div class="line"><a id="l00183" name="l00183"></a><span class="lineno">  183</span>  int_t *perm_c; <span class="comment">/* column permutation vector */</span></div>
 <div class="line"><a id="l00184" name="l00184"></a><span class="lineno">  184</span>  int_t *etree;  <span class="comment">/* elimination tree */</span></div>
-<div class="line"><a id="l00185" name="l00185"></a><span class="lineno">  185</span>  int_t *rowptr=0; int_t *colind;  <span class="comment">/* Local A in NR*/</span></div>
+<div class="line"><a id="l00185" name="l00185"></a><span class="lineno">  185</span>  int_t *rowptr=NULL; int_t *colind;  <span class="comment">/* Local A in NR*/</span></div>
 <div class="line"><a id="l00186" name="l00186"></a><span class="lineno">  186</span>  int_t job, rowequ, colequ, iinfo, need_value, <a class="code hl_variable" href="cfortran_8h.html#adb50e893b86b3e55e751a42eab3cba82">i</a>, j, irow, icol;</div>
 <div class="line"><a id="l00187" name="l00187"></a><span class="lineno">  187</span>  int_t m_loc, fst_row, nnz, nnz_loc; <span class="comment">/* dist_mem_use; */</span></div>
 <div class="line"><a id="l00188" name="l00188"></a><span class="lineno">  188</span>  int_t *colptr, *rowind;</div>
 <div class="line"><a id="l00189" name="l00189"></a><span class="lineno">  189</span>  NRformat_loc *Astore;</div>
 <div class="line"><a id="l00190" name="l00190"></a><span class="lineno">  190</span>  SuperMatrix GA;      <span class="comment">/* Global A in NC format */</span></div>
 <div class="line"><a id="l00191" name="l00191"></a><span class="lineno">  191</span>  NCformat *GAstore;</div>
-<div class="line"><a id="l00192" name="l00192"></a><span class="lineno">  192</span>  <span class="keywordtype">double</span> *a_GA=0;</div>
+<div class="line"><a id="l00192" name="l00192"></a><span class="lineno">  192</span>  <span class="keywordtype">double</span> *a_GA=NULL;</div>
 <div class="line"><a id="l00193" name="l00193"></a><span class="lineno">  193</span>  SuperMatrix GAC;      <span class="comment">/* Global A in NCP format (add n end pointers) */</span></div>
 <div class="line"><a id="l00194" name="l00194"></a><span class="lineno">  194</span>  NCPformat *GACstore;</div>
 <div class="line"><a id="l00195" name="l00195"></a><span class="lineno">  195</span>  Glu_persist_t *Glu_persist;</div>
-<div class="line"><a id="l00196" name="l00196"></a><span class="lineno">  196</span>  Glu_freeable_t *Glu_freeable=0;</div>
+<div class="line"><a id="l00196" name="l00196"></a><span class="lineno">  196</span>  Glu_freeable_t *Glu_freeable=NULL;</div>
 <div class="line"><a id="l00197" name="l00197"></a><span class="lineno">  197</span> </div>
 <div class="line"><a id="l00198" name="l00198"></a><span class="lineno">  198</span>  <span class="comment">/* Other stuff needed by SuperLU */</span></div>
-<div class="line"><a id="l00199" name="l00199"></a><span class="lineno">  199</span>  <span class="keywordtype">double</span>  *berr=0;</div>
-<div class="line"><a id="l00200" name="l00200"></a><span class="lineno">  200</span>  <span class="keywordtype">double</span> *a=0; <span class="keywordtype">double</span> *X, *b_col;</div>
+<div class="line"><a id="l00199" name="l00199"></a><span class="lineno">  199</span>  <span class="keywordtype">double</span>  *berr=NULL;</div>
+<div class="line"><a id="l00200" name="l00200"></a><span class="lineno">  200</span>  <span class="keywordtype">double</span> *a=NULL; <span class="keywordtype">double</span> *X, *b_col;</div>
 <div class="line"><a id="l00201" name="l00201"></a><span class="lineno">  201</span>  <span class="keywordtype">double</span> *<a class="code hl_enumvalue" href="namespaceoomph_1_1OcTreeNames.html#ae7e7e58298b85825061eeff362656c40a43c804e2bcf9862a4bf629d5f01761e8">B</a>=b;</div>
 <div class="line"><a id="l00202" name="l00202"></a><span class="lineno">  202</span>  <span class="keywordtype">double</span> *C, *<a class="code hl_enumvalue" href="namespaceoomph_1_1BinaryTreeNames.html#a7ff5e7e46beae31bf81579531b1f9895a1bf47d3f36e6272d94344ae84aca2498">R</a>, *C1, *R1, *x_col; <span class="comment">/* *bcol, */</span></div>
 <div class="line"><a id="l00203" name="l00203"></a><span class="lineno">  203</span>  <span class="keywordtype">double</span> amax, <a class="code hl_variable" href="cfortran_8h.html#af6f0bd3dc13317f895c91323c25c2b8f">t</a>, colcnd, rowcnd; <span class="keywordtype">double</span> anorm=0.0;</div>
@@ -1402,10 +1402,10 @@ $(function() {
 <div class="line"><a id="l01273" name="l01273"></a><span class="lineno"> 1273</span>  NCformat *Astore;</div>
 <div class="line"><a id="l01274" name="l01274"></a><span class="lineno"> 1274</span>  NCPformat *ACstore;</div>
 <div class="line"><a id="l01275" name="l01275"></a><span class="lineno"> 1275</span>  Glu_persist_t *Glu_persist;</div>
-<div class="line"><a id="l01276" name="l01276"></a><span class="lineno"> 1276</span>  Glu_freeable_t *Glu_freeable=0;</div>
+<div class="line"><a id="l01276" name="l01276"></a><span class="lineno"> 1276</span>  Glu_freeable_t *Glu_freeable=NULL;</div>
 <div class="line"><a id="l01277" name="l01277"></a><span class="lineno"> 1277</span> </div>
 <div class="line"><a id="l01278" name="l01278"></a><span class="lineno"> 1278</span>  <span class="comment">/* Other stuff needed by SuperLU */</span></div>
-<div class="line"><a id="l01279" name="l01279"></a><span class="lineno"> 1279</span>  <span class="keywordtype">double</span>  *berr=0;</div>
+<div class="line"><a id="l01279" name="l01279"></a><span class="lineno"> 1279</span>  <span class="keywordtype">double</span>  *berr=NULL;</div>
 <div class="line"><a id="l01280" name="l01280"></a><span class="lineno"> 1280</span>  <span class="keywordtype">double</span> *a, *X, *b_col;</div>
 <div class="line"><a id="l01281" name="l01281"></a><span class="lineno"> 1281</span>  <span class="keywordtype">double</span> *<a class="code hl_enumvalue" href="namespaceoomph_1_1OcTreeNames.html#ae7e7e58298b85825061eeff362656c40a43c804e2bcf9862a4bf629d5f01761e8">B</a>=b;</div>
 <div class="line"><a id="l01282" name="l01282"></a><span class="lineno"> 1282</span>  <span class="keywordtype">double</span> *C, *<a class="code hl_enumvalue" href="namespaceoomph_1_1BinaryTreeNames.html#a7ff5e7e46beae31bf81579531b1f9895a1bf47d3f36e6272d94344ae84aca2498">R</a>, *C1, *R1, *b_work, *x_col; <span class="comment">/* *bcol, */</span></div>
@@ -2450,7 +2450,7 @@ $(function() {
     <footer>
       <div class="container">
         <div class="text-muted" style="float:right;">Generated by <a href="http://www.doxygen.org/index.html">
-          <img style="height:18px;" class="footer-img" src="doxygen.png" alt="doxygen"></a> on Fri Dec 10 2021 08:08:03
+          <img style="height:18px;" class="footer-img" src="doxygen.png" alt="doxygen"></a> on Fri Dec 17 2021 19:42:00
         </div>
       </div>
     </footer>

@@ -391,7 +391,7 @@
 \DoxyCodeLine{\Hypertarget{linearised__navier__stokes__elements_8h_source_l00387}\mbox{\hyperlink{classoomph_1_1LinearisedNavierStokesEquations_a66bb2c6c61f3922d8aa05cce128d1bd1}{00387}} \textcolor{comment}{}    \textcolor{keywordtype}{double} \mbox{\hyperlink{classoomph_1_1LinearisedNavierStokesEquations_a66bb2c6c61f3922d8aa05cce128d1bd1}{du\_dt\_linearised\_nst}}(\textcolor{keyword}{const} \textcolor{keywordtype}{unsigned}\& n, \textcolor{keyword}{const} \textcolor{keywordtype}{unsigned}\& \mbox{\hyperlink{cfortran_8h_adb50e893b86b3e55e751a42eab3cba82}{i}})\textcolor{keyword}{ const}}
 \DoxyCodeLine{\Hypertarget{linearised__navier__stokes__elements_8h_source_l00388}00388 \textcolor{keyword}{    }\{}
 \DoxyCodeLine{\Hypertarget{linearised__navier__stokes__elements_8h_source_l00389}00389       \textcolor{comment}{// Get the data's timestepper}}
-\DoxyCodeLine{\Hypertarget{linearised__navier__stokes__elements_8h_source_l00390}00390       \mbox{\hyperlink{classoomph_1_1TimeStepper}{TimeStepper}}* \mbox{\hyperlink{classoomph_1_1GeomObject_a0fc851a3b50103b6c9f68efe86e709de}{time\_stepper\_pt}} = this-\/>\mbox{\hyperlink{classoomph_1_1FiniteElement_a9addfe893ab8205619963aa96204cdc4}{node\_pt}}(n)-\/>time\_stepper\_pt();}
+\DoxyCodeLine{\Hypertarget{linearised__navier__stokes__elements_8h_source_l00390}00390       \mbox{\hyperlink{classoomph_1_1TimeStepper}{TimeStepper}}* \mbox{\hyperlink{classoomph_1_1GeomObject_a0fc851a3b50103b6c9f68efe86e709de}{time\_stepper\_pt}} = this-\/>\mbox{\hyperlink{classoomph_1_1FiniteElement_a9addfe893ab8205619963aa96204cdc4}{node\_pt}}(n)-\/>\mbox{\hyperlink{classoomph_1_1Data_a065d7bffcec82bf4d4bd7b41f9aa80b3}{time\_stepper\_pt}}();}
 \DoxyCodeLine{\Hypertarget{linearised__navier__stokes__elements_8h_source_l00391}00391 }
 \DoxyCodeLine{\Hypertarget{linearised__navier__stokes__elements_8h_source_l00392}00392       \textcolor{comment}{// Initialise dudt}}
 \DoxyCodeLine{\Hypertarget{linearised__navier__stokes__elements_8h_source_l00393}00393       \textcolor{keywordtype}{double} dudt = 0.0;}
@@ -685,14 +685,14 @@
 \DoxyCodeLine{\Hypertarget{linearised__navier__stokes__elements_8h_source_l00681}00681       \textcolor{keywordtype}{unsigned} n\_node = this-\/>\mbox{\hyperlink{classoomph_1_1FiniteElement_a6219ed269a6d89b5aa14659cce48905a}{nnode}}();}
 \DoxyCodeLine{\Hypertarget{linearised__navier__stokes__elements_8h_source_l00682}00682       \textcolor{keywordflow}{for} (\textcolor{keywordtype}{unsigned} n = 0; n < n\_node; n++)}
 \DoxyCodeLine{\Hypertarget{linearised__navier__stokes__elements_8h_source_l00683}00683       \{}
-\DoxyCodeLine{\Hypertarget{linearised__navier__stokes__elements_8h_source_l00684}00684         Node* nod\_pt = this-\/>\mbox{\hyperlink{classoomph_1_1FiniteElement_a9addfe893ab8205619963aa96204cdc4}{node\_pt}}(n);}
+\DoxyCodeLine{\Hypertarget{linearised__navier__stokes__elements_8h_source_l00684}00684         \mbox{\hyperlink{classoomph_1_1Node}{Node}}* nod\_pt = this-\/>\mbox{\hyperlink{classoomph_1_1FiniteElement_a9addfe893ab8205619963aa96204cdc4}{node\_pt}}(n);}
 \DoxyCodeLine{\Hypertarget{linearised__navier__stokes__elements_8h_source_l00685}00685 }
 \DoxyCodeLine{\Hypertarget{linearised__navier__stokes__elements_8h_source_l00686}00686         \textcolor{keywordflow}{for} (\textcolor{keywordtype}{unsigned} \mbox{\hyperlink{cfortran_8h_adb50e893b86b3e55e751a42eab3cba82}{i}} = 0; \mbox{\hyperlink{cfortran_8h_adb50e893b86b3e55e751a42eab3cba82}{i}} < DIM; ++\mbox{\hyperlink{cfortran_8h_adb50e893b86b3e55e751a42eab3cba82}{i}})}
 \DoxyCodeLine{\Hypertarget{linearised__navier__stokes__elements_8h_source_l00687}00687         \{}
 \DoxyCodeLine{\Hypertarget{linearised__navier__stokes__elements_8h_source_l00688}00688           \textcolor{comment}{// Provided it's not constrained then pin it}}
-\DoxyCodeLine{\Hypertarget{linearised__navier__stokes__elements_8h_source_l00689}00689           \textcolor{keywordflow}{if} (!nod\_pt-\/>is\_constrained(\mbox{\hyperlink{cfortran_8h_adb50e893b86b3e55e751a42eab3cba82}{i}}))}
+\DoxyCodeLine{\Hypertarget{linearised__navier__stokes__elements_8h_source_l00689}00689           \textcolor{keywordflow}{if} (!nod\_pt-\/>\mbox{\hyperlink{classoomph_1_1Data_ac3169455e25c1dc8fd2d3de458c5e101}{is\_constrained}}(\mbox{\hyperlink{cfortran_8h_adb50e893b86b3e55e751a42eab3cba82}{i}}))}
 \DoxyCodeLine{\Hypertarget{linearised__navier__stokes__elements_8h_source_l00690}00690           \{}
-\DoxyCodeLine{\Hypertarget{linearised__navier__stokes__elements_8h_source_l00691}00691             this-\/>\mbox{\hyperlink{classoomph_1_1FiniteElement_a9addfe893ab8205619963aa96204cdc4}{node\_pt}}(n)-\/>pin(2 * \mbox{\hyperlink{cfortran_8h_adb50e893b86b3e55e751a42eab3cba82}{i}} + real\_index);}
+\DoxyCodeLine{\Hypertarget{linearised__navier__stokes__elements_8h_source_l00691}00691             this-\/>\mbox{\hyperlink{classoomph_1_1FiniteElement_a9addfe893ab8205619963aa96204cdc4}{node\_pt}}(n)-\/>\mbox{\hyperlink{classoomph_1_1Data_a422231c58e423f0b43822827aa334d79}{pin}}(2 * \mbox{\hyperlink{cfortran_8h_adb50e893b86b3e55e751a42eab3cba82}{i}} + real\_index);}
 \DoxyCodeLine{\Hypertarget{linearised__navier__stokes__elements_8h_source_l00692}00692           \}}
 \DoxyCodeLine{\Hypertarget{linearised__navier__stokes__elements_8h_source_l00693}00693         \}}
 \DoxyCodeLine{\Hypertarget{linearised__navier__stokes__elements_8h_source_l00694}00694       \}}
@@ -707,14 +707,14 @@
 \DoxyCodeLine{\Hypertarget{linearised__navier__stokes__elements_8h_source_l00703}00703       \textcolor{keywordtype}{unsigned} n\_node = this-\/>\mbox{\hyperlink{classoomph_1_1FiniteElement_a6219ed269a6d89b5aa14659cce48905a}{nnode}}();}
 \DoxyCodeLine{\Hypertarget{linearised__navier__stokes__elements_8h_source_l00704}00704       \textcolor{keywordflow}{for} (\textcolor{keywordtype}{unsigned} n = 0; n < n\_node; n++)}
 \DoxyCodeLine{\Hypertarget{linearised__navier__stokes__elements_8h_source_l00705}00705       \{}
-\DoxyCodeLine{\Hypertarget{linearised__navier__stokes__elements_8h_source_l00706}00706         Node* nod\_pt = this-\/>\mbox{\hyperlink{classoomph_1_1FiniteElement_a9addfe893ab8205619963aa96204cdc4}{node\_pt}}(n);}
+\DoxyCodeLine{\Hypertarget{linearised__navier__stokes__elements_8h_source_l00706}00706         \mbox{\hyperlink{classoomph_1_1Node}{Node}}* nod\_pt = this-\/>\mbox{\hyperlink{classoomph_1_1FiniteElement_a9addfe893ab8205619963aa96204cdc4}{node\_pt}}(n);}
 \DoxyCodeLine{\Hypertarget{linearised__navier__stokes__elements_8h_source_l00707}00707 }
 \DoxyCodeLine{\Hypertarget{linearised__navier__stokes__elements_8h_source_l00708}00708         \textcolor{keywordflow}{for} (\textcolor{keywordtype}{unsigned} \mbox{\hyperlink{cfortran_8h_adb50e893b86b3e55e751a42eab3cba82}{i}} = 0; \mbox{\hyperlink{cfortran_8h_adb50e893b86b3e55e751a42eab3cba82}{i}} < DIM; ++\mbox{\hyperlink{cfortran_8h_adb50e893b86b3e55e751a42eab3cba82}{i}})}
 \DoxyCodeLine{\Hypertarget{linearised__navier__stokes__elements_8h_source_l00709}00709         \{}
 \DoxyCodeLine{\Hypertarget{linearised__navier__stokes__elements_8h_source_l00710}00710           \textcolor{comment}{// Provided it's not constrained then unpin it}}
-\DoxyCodeLine{\Hypertarget{linearised__navier__stokes__elements_8h_source_l00711}00711           \textcolor{keywordflow}{if} (!nod\_pt-\/>is\_constrained(\mbox{\hyperlink{cfortran_8h_adb50e893b86b3e55e751a42eab3cba82}{i}}))}
+\DoxyCodeLine{\Hypertarget{linearised__navier__stokes__elements_8h_source_l00711}00711           \textcolor{keywordflow}{if} (!nod\_pt-\/>\mbox{\hyperlink{classoomph_1_1Data_ac3169455e25c1dc8fd2d3de458c5e101}{is\_constrained}}(\mbox{\hyperlink{cfortran_8h_adb50e893b86b3e55e751a42eab3cba82}{i}}))}
 \DoxyCodeLine{\Hypertarget{linearised__navier__stokes__elements_8h_source_l00712}00712           \{}
-\DoxyCodeLine{\Hypertarget{linearised__navier__stokes__elements_8h_source_l00713}00713             nod\_pt-\/>unpin(2 * \mbox{\hyperlink{cfortran_8h_adb50e893b86b3e55e751a42eab3cba82}{i}} + real\_index);}
+\DoxyCodeLine{\Hypertarget{linearised__navier__stokes__elements_8h_source_l00713}00713             nod\_pt-\/>\mbox{\hyperlink{classoomph_1_1Data_a4e5cb031bf8eceb8f97c2c4fbd74cb05}{unpin}}(2 * \mbox{\hyperlink{cfortran_8h_adb50e893b86b3e55e751a42eab3cba82}{i}} + real\_index);}
 \DoxyCodeLine{\Hypertarget{linearised__navier__stokes__elements_8h_source_l00714}00714           \}}
 \DoxyCodeLine{\Hypertarget{linearised__navier__stokes__elements_8h_source_l00715}00715         \}}
 \DoxyCodeLine{\Hypertarget{linearised__navier__stokes__elements_8h_source_l00716}00716       \}}
@@ -729,14 +729,14 @@
 \DoxyCodeLine{\Hypertarget{linearised__navier__stokes__elements_8h_source_l00725}00725       \textcolor{keywordtype}{unsigned} n\_node = this-\/>\mbox{\hyperlink{classoomph_1_1FiniteElement_a6219ed269a6d89b5aa14659cce48905a}{nnode}}();}
 \DoxyCodeLine{\Hypertarget{linearised__navier__stokes__elements_8h_source_l00726}00726       \textcolor{keywordflow}{for} (\textcolor{keywordtype}{unsigned} n = 0; n < n\_node; n++)}
 \DoxyCodeLine{\Hypertarget{linearised__navier__stokes__elements_8h_source_l00727}00727       \{}
-\DoxyCodeLine{\Hypertarget{linearised__navier__stokes__elements_8h_source_l00728}00728         Node* nod\_pt = this-\/>\mbox{\hyperlink{classoomph_1_1FiniteElement_a9addfe893ab8205619963aa96204cdc4}{node\_pt}}(n);}
+\DoxyCodeLine{\Hypertarget{linearised__navier__stokes__elements_8h_source_l00728}00728         \mbox{\hyperlink{classoomph_1_1Node}{Node}}* nod\_pt = this-\/>\mbox{\hyperlink{classoomph_1_1FiniteElement_a9addfe893ab8205619963aa96204cdc4}{node\_pt}}(n);}
 \DoxyCodeLine{\Hypertarget{linearised__navier__stokes__elements_8h_source_l00729}00729 }
 \DoxyCodeLine{\Hypertarget{linearised__navier__stokes__elements_8h_source_l00730}00730         \textcolor{comment}{// Transfer the eigenfunctions to the normalisation constraints}}
 \DoxyCodeLine{\Hypertarget{linearised__navier__stokes__elements_8h_source_l00731}00731         \textcolor{keywordflow}{for} (\textcolor{keywordtype}{unsigned} \mbox{\hyperlink{cfortran_8h_adb50e893b86b3e55e751a42eab3cba82}{i}} = 0; \mbox{\hyperlink{cfortran_8h_adb50e893b86b3e55e751a42eab3cba82}{i}} < DIM; ++\mbox{\hyperlink{cfortran_8h_adb50e893b86b3e55e751a42eab3cba82}{i}})}
 \DoxyCodeLine{\Hypertarget{linearised__navier__stokes__elements_8h_source_l00732}00732         \{}
 \DoxyCodeLine{\Hypertarget{linearised__navier__stokes__elements_8h_source_l00733}00733           \textcolor{keywordflow}{for} (\textcolor{keywordtype}{unsigned} j = 0; j < 2; ++j)}
 \DoxyCodeLine{\Hypertarget{linearised__navier__stokes__elements_8h_source_l00734}00734           \{}
-\DoxyCodeLine{\Hypertarget{linearised__navier__stokes__elements_8h_source_l00735}00735             nod\_pt-\/>set\_value(2 * (DIM + \mbox{\hyperlink{cfortran_8h_adb50e893b86b3e55e751a42eab3cba82}{i}}) + j, nod\_pt-\/>value(2 * \mbox{\hyperlink{cfortran_8h_adb50e893b86b3e55e751a42eab3cba82}{i}} + j));}
+\DoxyCodeLine{\Hypertarget{linearised__navier__stokes__elements_8h_source_l00735}00735             nod\_pt-\/>\mbox{\hyperlink{classoomph_1_1Data_a7289ca322725c6fd493970a19474b382}{set\_value}}(2 * (DIM + \mbox{\hyperlink{cfortran_8h_adb50e893b86b3e55e751a42eab3cba82}{i}}) + j, nod\_pt-\/>\mbox{\hyperlink{classoomph_1_1Node_afcc5cdba40bca251826ae5bee5ca15b4}{value}}(2 * \mbox{\hyperlink{cfortran_8h_adb50e893b86b3e55e751a42eab3cba82}{i}} + j));}
 \DoxyCodeLine{\Hypertarget{linearised__navier__stokes__elements_8h_source_l00736}00736           \}}
 \DoxyCodeLine{\Hypertarget{linearised__navier__stokes__elements_8h_source_l00737}00737         \}}
 \DoxyCodeLine{\Hypertarget{linearised__navier__stokes__elements_8h_source_l00738}00738       \}}
@@ -1034,8 +1034,8 @@
 \DoxyCodeLine{\Hypertarget{linearised__navier__stokes__elements_8h_source_l01030}01030       \textcolor{comment}{// Loop over the two pressure components}}
 \DoxyCodeLine{\Hypertarget{linearised__navier__stokes__elements_8h_source_l01031}01031       \textcolor{keywordflow}{for} (\textcolor{keywordtype}{unsigned} \mbox{\hyperlink{cfortran_8h_adb50e893b86b3e55e751a42eab3cba82}{i}} = 0; \mbox{\hyperlink{cfortran_8h_adb50e893b86b3e55e751a42eab3cba82}{i}} < 2; \mbox{\hyperlink{cfortran_8h_adb50e893b86b3e55e751a42eab3cba82}{i}}++)}
 \DoxyCodeLine{\Hypertarget{linearised__navier__stokes__elements_8h_source_l01032}01032       \{}
-\DoxyCodeLine{\Hypertarget{linearised__navier__stokes__elements_8h_source_l01033}01033         this-\/>\mbox{\hyperlink{classoomph_1_1FiniteElement_a9addfe893ab8205619963aa96204cdc4}{node\_pt}}(Pconv[n\_p])-\/>pin(\mbox{\hyperlink{classoomph_1_1LinearisedQTaylorHoodElement_a9b411b9d761bbefa1ff7133fd053433f}{p\_index\_linearised\_nst}}(\mbox{\hyperlink{cfortran_8h_adb50e893b86b3e55e751a42eab3cba82}{i}}));}
-\DoxyCodeLine{\Hypertarget{linearised__navier__stokes__elements_8h_source_l01034}01034         this-\/>\mbox{\hyperlink{classoomph_1_1FiniteElement_a9addfe893ab8205619963aa96204cdc4}{node\_pt}}(Pconv[n\_p])-\/>set\_value(\mbox{\hyperlink{classoomph_1_1LinearisedQTaylorHoodElement_a9b411b9d761bbefa1ff7133fd053433f}{p\_index\_linearised\_nst}}(\mbox{\hyperlink{cfortran_8h_adb50e893b86b3e55e751a42eab3cba82}{i}}), pvalue);}
+\DoxyCodeLine{\Hypertarget{linearised__navier__stokes__elements_8h_source_l01033}01033         this-\/>\mbox{\hyperlink{classoomph_1_1FiniteElement_a9addfe893ab8205619963aa96204cdc4}{node\_pt}}(Pconv[n\_p])-\/>\mbox{\hyperlink{classoomph_1_1Data_a422231c58e423f0b43822827aa334d79}{pin}}(\mbox{\hyperlink{classoomph_1_1LinearisedQTaylorHoodElement_a9b411b9d761bbefa1ff7133fd053433f}{p\_index\_linearised\_nst}}(\mbox{\hyperlink{cfortran_8h_adb50e893b86b3e55e751a42eab3cba82}{i}}));}
+\DoxyCodeLine{\Hypertarget{linearised__navier__stokes__elements_8h_source_l01034}01034         this-\/>\mbox{\hyperlink{classoomph_1_1FiniteElement_a9addfe893ab8205619963aa96204cdc4}{node\_pt}}(Pconv[n\_p])-\/>\mbox{\hyperlink{classoomph_1_1Data_a7289ca322725c6fd493970a19474b382}{set\_value}}(\mbox{\hyperlink{classoomph_1_1LinearisedQTaylorHoodElement_a9b411b9d761bbefa1ff7133fd053433f}{p\_index\_linearised\_nst}}(\mbox{\hyperlink{cfortran_8h_adb50e893b86b3e55e751a42eab3cba82}{i}}), pvalue);}
 \DoxyCodeLine{\Hypertarget{linearised__navier__stokes__elements_8h_source_l01035}01035       \}}
 \DoxyCodeLine{\Hypertarget{linearised__navier__stokes__elements_8h_source_l01036}01036     \}}
 \DoxyCodeLine{\Hypertarget{linearised__navier__stokes__elements_8h_source_l01037}01037 \textcolor{comment}{}}

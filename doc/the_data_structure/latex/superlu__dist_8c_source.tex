@@ -186,22 +186,22 @@
 \DoxyCodeLine{\Hypertarget{superlu__dist_8c_source_l00182}00182   int\_t *perm\_r; \textcolor{comment}{/* row permutations from partial pivoting */}}
 \DoxyCodeLine{\Hypertarget{superlu__dist_8c_source_l00183}00183   int\_t *perm\_c; \textcolor{comment}{/* column permutation vector */}}
 \DoxyCodeLine{\Hypertarget{superlu__dist_8c_source_l00184}00184   int\_t *etree;  \textcolor{comment}{/* elimination tree */}}
-\DoxyCodeLine{\Hypertarget{superlu__dist_8c_source_l00185}00185   int\_t *rowptr=0; int\_t *colind;  \textcolor{comment}{/* Local A in NR*/}}
+\DoxyCodeLine{\Hypertarget{superlu__dist_8c_source_l00185}00185   int\_t *rowptr=NULL; int\_t *colind;  \textcolor{comment}{/* Local A in NR*/}}
 \DoxyCodeLine{\Hypertarget{superlu__dist_8c_source_l00186}00186   int\_t job, rowequ, colequ, iinfo, need\_value, \mbox{\hyperlink{cfortran_8h_adb50e893b86b3e55e751a42eab3cba82}{i}}, j, irow, icol;}
 \DoxyCodeLine{\Hypertarget{superlu__dist_8c_source_l00187}00187   int\_t m\_loc, fst\_row, nnz, nnz\_loc; \textcolor{comment}{/* dist\_mem\_use; */}}
 \DoxyCodeLine{\Hypertarget{superlu__dist_8c_source_l00188}00188   int\_t *colptr, *rowind;}
 \DoxyCodeLine{\Hypertarget{superlu__dist_8c_source_l00189}00189   NRformat\_loc *Astore;}
 \DoxyCodeLine{\Hypertarget{superlu__dist_8c_source_l00190}00190   SuperMatrix GA;      \textcolor{comment}{/* Global A in NC format */}}
 \DoxyCodeLine{\Hypertarget{superlu__dist_8c_source_l00191}00191   NCformat *GAstore;}
-\DoxyCodeLine{\Hypertarget{superlu__dist_8c_source_l00192}00192   \textcolor{keywordtype}{double} *a\_GA=0;}
+\DoxyCodeLine{\Hypertarget{superlu__dist_8c_source_l00192}00192   \textcolor{keywordtype}{double} *a\_GA=NULL;}
 \DoxyCodeLine{\Hypertarget{superlu__dist_8c_source_l00193}00193   SuperMatrix GAC;      \textcolor{comment}{/* Global A in NCP format (add n end pointers) */}}
 \DoxyCodeLine{\Hypertarget{superlu__dist_8c_source_l00194}00194   NCPformat *GACstore;}
 \DoxyCodeLine{\Hypertarget{superlu__dist_8c_source_l00195}00195   Glu\_persist\_t *Glu\_persist;}
-\DoxyCodeLine{\Hypertarget{superlu__dist_8c_source_l00196}00196   Glu\_freeable\_t *Glu\_freeable=0;}
+\DoxyCodeLine{\Hypertarget{superlu__dist_8c_source_l00196}00196   Glu\_freeable\_t *Glu\_freeable=NULL;}
 \DoxyCodeLine{\Hypertarget{superlu__dist_8c_source_l00197}00197 }
 \DoxyCodeLine{\Hypertarget{superlu__dist_8c_source_l00198}00198   \textcolor{comment}{/* Other stuff needed by SuperLU */}}
-\DoxyCodeLine{\Hypertarget{superlu__dist_8c_source_l00199}00199   \textcolor{keywordtype}{double}  *berr=0;}
-\DoxyCodeLine{\Hypertarget{superlu__dist_8c_source_l00200}00200   \textcolor{keywordtype}{double} *a=0; \textcolor{keywordtype}{double} *X, *b\_col;}
+\DoxyCodeLine{\Hypertarget{superlu__dist_8c_source_l00199}00199   \textcolor{keywordtype}{double}  *berr=NULL;}
+\DoxyCodeLine{\Hypertarget{superlu__dist_8c_source_l00200}00200   \textcolor{keywordtype}{double} *a=NULL; \textcolor{keywordtype}{double} *X, *b\_col;}
 \DoxyCodeLine{\Hypertarget{superlu__dist_8c_source_l00201}00201   \textcolor{keywordtype}{double} *\mbox{\hyperlink{namespaceoomph_1_1OcTreeNames_ae7e7e58298b85825061eeff362656c40a43c804e2bcf9862a4bf629d5f01761e8}{B}}=b;}
 \DoxyCodeLine{\Hypertarget{superlu__dist_8c_source_l00202}00202   \textcolor{keywordtype}{double} *C, *\mbox{\hyperlink{namespaceoomph_1_1BinaryTreeNames_a7ff5e7e46beae31bf81579531b1f9895a1bf47d3f36e6272d94344ae84aca2498}{R}}, *C1, *R1, *x\_col; \textcolor{comment}{/* *bcol, */}}
 \DoxyCodeLine{\Hypertarget{superlu__dist_8c_source_l00203}00203   \textcolor{keywordtype}{double} amax, \mbox{\hyperlink{cfortran_8h_af6f0bd3dc13317f895c91323c25c2b8f}{t}}, colcnd, rowcnd; \textcolor{keywordtype}{double} anorm=0.0;}
@@ -1277,10 +1277,10 @@
 \DoxyCodeLine{\Hypertarget{superlu__dist_8c_source_l01273}01273   NCformat *Astore;}
 \DoxyCodeLine{\Hypertarget{superlu__dist_8c_source_l01274}01274   NCPformat *ACstore;}
 \DoxyCodeLine{\Hypertarget{superlu__dist_8c_source_l01275}01275   Glu\_persist\_t *Glu\_persist;}
-\DoxyCodeLine{\Hypertarget{superlu__dist_8c_source_l01276}01276   Glu\_freeable\_t *Glu\_freeable=0;}
+\DoxyCodeLine{\Hypertarget{superlu__dist_8c_source_l01276}01276   Glu\_freeable\_t *Glu\_freeable=NULL;}
 \DoxyCodeLine{\Hypertarget{superlu__dist_8c_source_l01277}01277 }
 \DoxyCodeLine{\Hypertarget{superlu__dist_8c_source_l01278}01278   \textcolor{comment}{/* Other stuff needed by SuperLU */}}
-\DoxyCodeLine{\Hypertarget{superlu__dist_8c_source_l01279}01279   \textcolor{keywordtype}{double}  *berr=0;}
+\DoxyCodeLine{\Hypertarget{superlu__dist_8c_source_l01279}01279   \textcolor{keywordtype}{double}  *berr=NULL;}
 \DoxyCodeLine{\Hypertarget{superlu__dist_8c_source_l01280}01280   \textcolor{keywordtype}{double} *a, *X, *b\_col;}
 \DoxyCodeLine{\Hypertarget{superlu__dist_8c_source_l01281}01281   \textcolor{keywordtype}{double} *\mbox{\hyperlink{namespaceoomph_1_1OcTreeNames_ae7e7e58298b85825061eeff362656c40a43c804e2bcf9862a4bf629d5f01761e8}{B}}=b;}
 \DoxyCodeLine{\Hypertarget{superlu__dist_8c_source_l01282}01282   \textcolor{keywordtype}{double} *C, *\mbox{\hyperlink{namespaceoomph_1_1BinaryTreeNames_a7ff5e7e46beae31bf81579531b1f9895a1bf47d3f36e6272d94344ae84aca2498}{R}}, *C1, *R1, *b\_work, *x\_col; \textcolor{comment}{/* *bcol, */}}

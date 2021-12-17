@@ -1320,7 +1320,7 @@
 \DoxyCodeLine{\Hypertarget{elements_8h_source_l01316}\mbox{\hyperlink{classoomph_1_1FiniteElement_a23d6c08aa30c36f55ac0eb017139965f}{01316}} \textcolor{comment}{}    Integral* \mbox{\hyperlink{classoomph_1_1FiniteElement_a23d6c08aa30c36f55ac0eb017139965f}{Integral\_pt}};}
 \DoxyCodeLine{\Hypertarget{elements_8h_source_l01317}01317 \textcolor{comment}{}}
 \DoxyCodeLine{\Hypertarget{elements_8h_source_l01318}01318 \textcolor{comment}{    /// Storage for pointers to the nodes in the element}}
-\DoxyCodeLine{\Hypertarget{elements_8h_source_l01319}\mbox{\hyperlink{classoomph_1_1FiniteElement_a8714cf8113528d76a7ca7fa6004df734}{01319}} \textcolor{comment}{}    Node** \mbox{\hyperlink{classoomph_1_1FiniteElement_a8714cf8113528d76a7ca7fa6004df734}{Node\_pt}};}
+\DoxyCodeLine{\Hypertarget{elements_8h_source_l01319}\mbox{\hyperlink{classoomph_1_1FiniteElement_a8714cf8113528d76a7ca7fa6004df734}{01319}} \textcolor{comment}{}    \mbox{\hyperlink{classoomph_1_1Node}{Node}}** \mbox{\hyperlink{classoomph_1_1FiniteElement_a8714cf8113528d76a7ca7fa6004df734}{Node\_pt}};}
 \DoxyCodeLine{\Hypertarget{elements_8h_source_l01320}01320 \textcolor{comment}{}}
 \DoxyCodeLine{\Hypertarget{elements_8h_source_l01321}01321 \textcolor{comment}{    /// Storage for the local equation numbers associated with}}
 \DoxyCodeLine{\Hypertarget{elements_8h_source_l01322}01322 \textcolor{comment}{    /// the values stored at the nodes}}
@@ -1423,7 +1423,7 @@
 \DoxyCodeLine{\Hypertarget{elements_8h_source_l01419}01419       \textcolor{comment}{// Set the number of nodes}}
 \DoxyCodeLine{\Hypertarget{elements_8h_source_l01420}01420       \mbox{\hyperlink{classoomph_1_1FiniteElement_ac774e40aa69ffa0c895ce5519ef450d7}{Nnode}} = n;}
 \DoxyCodeLine{\Hypertarget{elements_8h_source_l01421}01421       \textcolor{comment}{// Allocate the storage}}
-\DoxyCodeLine{\Hypertarget{elements_8h_source_l01422}01422       \mbox{\hyperlink{classoomph_1_1FiniteElement_a8714cf8113528d76a7ca7fa6004df734}{Node\_pt}} = \textcolor{keyword}{new} Node*[n];}
+\DoxyCodeLine{\Hypertarget{elements_8h_source_l01422}01422       \mbox{\hyperlink{classoomph_1_1FiniteElement_a8714cf8113528d76a7ca7fa6004df734}{Node\_pt}} = \textcolor{keyword}{new} \mbox{\hyperlink{classoomph_1_1Node}{Node}}*[n];}
 \DoxyCodeLine{\Hypertarget{elements_8h_source_l01423}01423       \textcolor{comment}{// Initialise all the pointers to NULL}}
 \DoxyCodeLine{\Hypertarget{elements_8h_source_l01424}01424       \textcolor{keywordflow}{for} (\textcolor{keywordtype}{unsigned} \mbox{\hyperlink{cfortran_8h_adb50e893b86b3e55e751a42eab3cba82}{i}} = 0; \mbox{\hyperlink{cfortran_8h_adb50e893b86b3e55e751a42eab3cba82}{i}} < n; \mbox{\hyperlink{cfortran_8h_adb50e893b86b3e55e751a42eab3cba82}{i}}++)}
 \DoxyCodeLine{\Hypertarget{elements_8h_source_l01425}01425       \{}
@@ -1447,7 +1447,7 @@
 \DoxyCodeLine{\Hypertarget{elements_8h_source_l01443}01443       \}}
 \DoxyCodeLine{\Hypertarget{elements_8h_source_l01444}01444       \textcolor{keywordflow}{else}}
 \DoxyCodeLine{\Hypertarget{elements_8h_source_l01445}01445       \{}
-\DoxyCodeLine{\Hypertarget{elements_8h_source_l01446}01446         \textcolor{keywordtype}{unsigned} n\_value = \mbox{\hyperlink{classoomph_1_1FiniteElement_a9addfe893ab8205619963aa96204cdc4}{node\_pt}}(n)-\/>nvalue();}
+\DoxyCodeLine{\Hypertarget{elements_8h_source_l01446}01446         \textcolor{keywordtype}{unsigned} n\_value = \mbox{\hyperlink{classoomph_1_1FiniteElement_a9addfe893ab8205619963aa96204cdc4}{node\_pt}}(n)-\/>\mbox{\hyperlink{classoomph_1_1Data_a7e67fc78a2e8a2fd6eb75bd292d42ff8}{nvalue}}();}
 \DoxyCodeLine{\Hypertarget{elements_8h_source_l01447}01447         \textcolor{keywordflow}{if} (\mbox{\hyperlink{cfortran_8h_adb50e893b86b3e55e751a42eab3cba82}{i}} >= n\_value)}
 \DoxyCodeLine{\Hypertarget{elements_8h_source_l01448}01448         \{}
 \DoxyCodeLine{\Hypertarget{elements_8h_source_l01449}01449           std::ostringstream error\_message;}
@@ -1913,7 +1913,7 @@
 \DoxyCodeLine{\Hypertarget{elements_8h_source_l01909}\mbox{\hyperlink{classoomph_1_1FiniteElement_a0f21d7dd68cb077c67126eb75fe6374b}{01909}} \textcolor{comment}{}    \textcolor{keywordtype}{void} \mbox{\hyperlink{classoomph_1_1FiniteElement_a0f21d7dd68cb077c67126eb75fe6374b}{get\_x}}(\textcolor{keyword}{const} \textcolor{keywordtype}{unsigned}\& \mbox{\hyperlink{cfortran_8h_af6f0bd3dc13317f895c91323c25c2b8f}{t}}, \textcolor{keyword}{const} \mbox{\hyperlink{classoomph_1_1Vector}{Vector<double>}}\& \mbox{\hyperlink{cfortran_8h_ab7123126e4885ef647dd9c6e3807a21c}{s}}, \mbox{\hyperlink{classoomph_1_1Vector}{Vector<double>}}\& \mbox{\hyperlink{namespaceoomph_a9d1d2da2b8bb8e73af72b5cadb8fe97c}{x}})}
 \DoxyCodeLine{\Hypertarget{elements_8h_source_l01910}01910     \{}
 \DoxyCodeLine{\Hypertarget{elements_8h_source_l01911}01911       \textcolor{comment}{// Get timestepper from first node}}
-\DoxyCodeLine{\Hypertarget{elements_8h_source_l01912}01912       \mbox{\hyperlink{classoomph_1_1TimeStepper}{TimeStepper}}* \mbox{\hyperlink{classoomph_1_1GeomObject_a0fc851a3b50103b6c9f68efe86e709de}{time\_stepper\_pt}} = \mbox{\hyperlink{classoomph_1_1FiniteElement_a9addfe893ab8205619963aa96204cdc4}{node\_pt}}(0)-\/>time\_stepper\_pt();}
+\DoxyCodeLine{\Hypertarget{elements_8h_source_l01912}01912       \mbox{\hyperlink{classoomph_1_1TimeStepper}{TimeStepper}}* \mbox{\hyperlink{classoomph_1_1GeomObject_a0fc851a3b50103b6c9f68efe86e709de}{time\_stepper\_pt}} = \mbox{\hyperlink{classoomph_1_1FiniteElement_a9addfe893ab8205619963aa96204cdc4}{node\_pt}}(0)-\/>\mbox{\hyperlink{classoomph_1_1Data_a065d7bffcec82bf4d4bd7b41f9aa80b3}{time\_stepper\_pt}}();}
 \DoxyCodeLine{\Hypertarget{elements_8h_source_l01913}01913 }
 \DoxyCodeLine{\Hypertarget{elements_8h_source_l01914}01914       \textcolor{comment}{// Number of previous values}}
 \DoxyCodeLine{\Hypertarget{elements_8h_source_l01915}01915       \textcolor{keyword}{const} \textcolor{keywordtype}{unsigned} nprev = \mbox{\hyperlink{classoomph_1_1GeomObject_a0fc851a3b50103b6c9f68efe86e709de}{time\_stepper\_pt}}-\/>\mbox{\hyperlink{classoomph_1_1TimeStepper_a0f38713ed304c18d9f7b5cf8131664c1}{nprev\_values}}();}
@@ -2181,7 +2181,7 @@
 \DoxyCodeLine{\Hypertarget{elements_8h_source_l02177}02177     \}}
 \DoxyCodeLine{\Hypertarget{elements_8h_source_l02178}02178 \textcolor{comment}{}}
 \DoxyCodeLine{\Hypertarget{elements_8h_source_l02179}02179 \textcolor{comment}{    /// Return a pointer to the local node n}}
-\DoxyCodeLine{\Hypertarget{elements_8h_source_l02180}\mbox{\hyperlink{classoomph_1_1FiniteElement_a9addfe893ab8205619963aa96204cdc4}{02180}} \textcolor{comment}{}    Node*\& \mbox{\hyperlink{classoomph_1_1FiniteElement_a9addfe893ab8205619963aa96204cdc4}{node\_pt}}(\textcolor{keyword}{const} \textcolor{keywordtype}{unsigned}\& n)}
+\DoxyCodeLine{\Hypertarget{elements_8h_source_l02180}\mbox{\hyperlink{classoomph_1_1FiniteElement_a9addfe893ab8205619963aa96204cdc4}{02180}} \textcolor{comment}{}    \mbox{\hyperlink{classoomph_1_1Node}{Node}}*\& \mbox{\hyperlink{classoomph_1_1FiniteElement_a9addfe893ab8205619963aa96204cdc4}{node\_pt}}(\textcolor{keyword}{const} \textcolor{keywordtype}{unsigned}\& n)}
 \DoxyCodeLine{\Hypertarget{elements_8h_source_l02181}02181     \{}
 \DoxyCodeLine{\Hypertarget{elements_8h_source_l02182}02182 \textcolor{preprocessor}{\#ifdef RANGE\_CHECKING}}
 \DoxyCodeLine{\Hypertarget{elements_8h_source_l02183}02183       \textcolor{keywordflow}{if} (n >= \mbox{\hyperlink{classoomph_1_1FiniteElement_ac774e40aa69ffa0c895ce5519ef450d7}{Nnode}})}
@@ -2198,7 +2198,7 @@
 \DoxyCodeLine{\Hypertarget{elements_8h_source_l02194}02194     \}}
 \DoxyCodeLine{\Hypertarget{elements_8h_source_l02195}02195 \textcolor{comment}{}}
 \DoxyCodeLine{\Hypertarget{elements_8h_source_l02196}02196 \textcolor{comment}{    /// Return a pointer to the local node n (const version)}}
-\DoxyCodeLine{\Hypertarget{elements_8h_source_l02197}\mbox{\hyperlink{classoomph_1_1FiniteElement_a1660db75e3326064fead6a7711b914d9}{02197}} \textcolor{comment}{}    Node* \textcolor{keyword}{const}\& \mbox{\hyperlink{classoomph_1_1FiniteElement_a1660db75e3326064fead6a7711b914d9}{node\_pt}}(\textcolor{keyword}{const} \textcolor{keywordtype}{unsigned}\& n)\textcolor{keyword}{ const}}
+\DoxyCodeLine{\Hypertarget{elements_8h_source_l02197}\mbox{\hyperlink{classoomph_1_1FiniteElement_a1660db75e3326064fead6a7711b914d9}{02197}} \textcolor{comment}{}    \mbox{\hyperlink{classoomph_1_1Node}{Node}}* \textcolor{keyword}{const}\& \mbox{\hyperlink{classoomph_1_1FiniteElement_a1660db75e3326064fead6a7711b914d9}{node\_pt}}(\textcolor{keyword}{const} \textcolor{keywordtype}{unsigned}\& n)\textcolor{keyword}{ const}}
 \DoxyCodeLine{\Hypertarget{elements_8h_source_l02198}02198 \textcolor{keyword}{    }\{}
 \DoxyCodeLine{\Hypertarget{elements_8h_source_l02199}02199 \textcolor{preprocessor}{\#ifdef RANGE\_CHECKING}}
 \DoxyCodeLine{\Hypertarget{elements_8h_source_l02200}02200       \textcolor{keywordflow}{if} (n >= \mbox{\hyperlink{classoomph_1_1FiniteElement_ac774e40aa69ffa0c895ce5519ef450d7}{Nnode}})}
@@ -2257,14 +2257,14 @@
 \DoxyCodeLine{\Hypertarget{elements_8h_source_l02253}02253                               \textcolor{keyword}{const} \textcolor{keywordtype}{unsigned}\& n,}
 \DoxyCodeLine{\Hypertarget{elements_8h_source_l02254}02254                               \textcolor{keyword}{const} \textcolor{keywordtype}{unsigned}\& \mbox{\hyperlink{cfortran_8h_adb50e893b86b3e55e751a42eab3cba82}{i}})\textcolor{keyword}{ const}}
 \DoxyCodeLine{\Hypertarget{elements_8h_source_l02255}02255 \textcolor{keyword}{    }\{}
-\DoxyCodeLine{\Hypertarget{elements_8h_source_l02256}02256       \textcolor{keywordflow}{return} \mbox{\hyperlink{classoomph_1_1FiniteElement_a9addfe893ab8205619963aa96204cdc4}{node\_pt}}(n)-\/>x(\mbox{\hyperlink{cfortran_8h_af6f0bd3dc13317f895c91323c25c2b8f}{t}}, \mbox{\hyperlink{cfortran_8h_adb50e893b86b3e55e751a42eab3cba82}{i}});}
+\DoxyCodeLine{\Hypertarget{elements_8h_source_l02256}02256       \textcolor{keywordflow}{return} \mbox{\hyperlink{classoomph_1_1FiniteElement_a9addfe893ab8205619963aa96204cdc4}{node\_pt}}(n)-\/>\mbox{\hyperlink{classoomph_1_1Node_ab76b4773a65b349f143539e07b6e15e2}{x}}(\mbox{\hyperlink{cfortran_8h_af6f0bd3dc13317f895c91323c25c2b8f}{t}}, \mbox{\hyperlink{cfortran_8h_adb50e893b86b3e55e751a42eab3cba82}{i}});}
 \DoxyCodeLine{\Hypertarget{elements_8h_source_l02257}02257     \}}
 \DoxyCodeLine{\Hypertarget{elements_8h_source_l02258}02258 \textcolor{comment}{}}
 \DoxyCodeLine{\Hypertarget{elements_8h_source_l02259}02259 \textcolor{comment}{    /// Return the i-\/th component of nodal velocity: dx/dt at local node}}
 \DoxyCodeLine{\Hypertarget{elements_8h_source_l02260}02260 \textcolor{comment}{    /// n. Do not use the hanging node representation.}}
 \DoxyCodeLine{\Hypertarget{elements_8h_source_l02261}\mbox{\hyperlink{classoomph_1_1FiniteElement_aaaa11f3783ab48d882ac1858d74adba4}{02261}} \textcolor{comment}{}    \textcolor{keywordtype}{double} \mbox{\hyperlink{classoomph_1_1FiniteElement_aaaa11f3783ab48d882ac1858d74adba4}{raw\_dnodal\_position\_dt}}(\textcolor{keyword}{const} \textcolor{keywordtype}{unsigned}\& n, \textcolor{keyword}{const} \textcolor{keywordtype}{unsigned}\& \mbox{\hyperlink{cfortran_8h_adb50e893b86b3e55e751a42eab3cba82}{i}})\textcolor{keyword}{ const}}
 \DoxyCodeLine{\Hypertarget{elements_8h_source_l02262}02262 \textcolor{keyword}{    }\{}
-\DoxyCodeLine{\Hypertarget{elements_8h_source_l02263}02263       \textcolor{keywordflow}{return} \mbox{\hyperlink{classoomph_1_1FiniteElement_a9addfe893ab8205619963aa96204cdc4}{node\_pt}}(n)-\/>dx\_dt(\mbox{\hyperlink{cfortran_8h_adb50e893b86b3e55e751a42eab3cba82}{i}});}
+\DoxyCodeLine{\Hypertarget{elements_8h_source_l02263}02263       \textcolor{keywordflow}{return} \mbox{\hyperlink{classoomph_1_1FiniteElement_a9addfe893ab8205619963aa96204cdc4}{node\_pt}}(n)-\/>\mbox{\hyperlink{classoomph_1_1Node_adecc64794ab05dfd0f1d53459fa42a93}{dx\_dt}}(\mbox{\hyperlink{cfortran_8h_adb50e893b86b3e55e751a42eab3cba82}{i}});}
 \DoxyCodeLine{\Hypertarget{elements_8h_source_l02264}02264     \}}
 \DoxyCodeLine{\Hypertarget{elements_8h_source_l02265}02265 \textcolor{comment}{}}
 \DoxyCodeLine{\Hypertarget{elements_8h_source_l02266}02266 \textcolor{comment}{    /// Return the i-\/th component of j-\/th derivative of nodal position:}}
@@ -2273,7 +2273,7 @@
 \DoxyCodeLine{\Hypertarget{elements_8h_source_l02269}02269                                   \textcolor{keyword}{const} \textcolor{keywordtype}{unsigned}\& j,}
 \DoxyCodeLine{\Hypertarget{elements_8h_source_l02270}02270                                   \textcolor{keyword}{const} \textcolor{keywordtype}{unsigned}\& \mbox{\hyperlink{cfortran_8h_adb50e893b86b3e55e751a42eab3cba82}{i}})\textcolor{keyword}{ const}}
 \DoxyCodeLine{\Hypertarget{elements_8h_source_l02271}02271 \textcolor{keyword}{    }\{}
-\DoxyCodeLine{\Hypertarget{elements_8h_source_l02272}02272       \textcolor{keywordflow}{return} \mbox{\hyperlink{classoomph_1_1FiniteElement_a9addfe893ab8205619963aa96204cdc4}{node\_pt}}(n)-\/>dx\_dt(j, \mbox{\hyperlink{cfortran_8h_adb50e893b86b3e55e751a42eab3cba82}{i}});}
+\DoxyCodeLine{\Hypertarget{elements_8h_source_l02272}02272       \textcolor{keywordflow}{return} \mbox{\hyperlink{classoomph_1_1FiniteElement_a9addfe893ab8205619963aa96204cdc4}{node\_pt}}(n)-\/>\mbox{\hyperlink{classoomph_1_1Node_adecc64794ab05dfd0f1d53459fa42a93}{dx\_dt}}(j, \mbox{\hyperlink{cfortran_8h_adb50e893b86b3e55e751a42eab3cba82}{i}});}
 \DoxyCodeLine{\Hypertarget{elements_8h_source_l02273}02273     \}}
 \DoxyCodeLine{\Hypertarget{elements_8h_source_l02274}02274 \textcolor{comment}{}}
 \DoxyCodeLine{\Hypertarget{elements_8h_source_l02275}02275 \textcolor{comment}{    /// Return the value of the k-\/th type of the i-\/th positional variable}}
@@ -2282,7 +2282,7 @@
 \DoxyCodeLine{\Hypertarget{elements_8h_source_l02278}02278                                   \textcolor{keyword}{const} \textcolor{keywordtype}{unsigned}\& k,}
 \DoxyCodeLine{\Hypertarget{elements_8h_source_l02279}02279                                   \textcolor{keyword}{const} \textcolor{keywordtype}{unsigned}\& \mbox{\hyperlink{cfortran_8h_adb50e893b86b3e55e751a42eab3cba82}{i}})\textcolor{keyword}{ const}}
 \DoxyCodeLine{\Hypertarget{elements_8h_source_l02280}02280 \textcolor{keyword}{    }\{}
-\DoxyCodeLine{\Hypertarget{elements_8h_source_l02281}02281       \textcolor{keywordflow}{return} \mbox{\hyperlink{classoomph_1_1FiniteElement_a9addfe893ab8205619963aa96204cdc4}{node\_pt}}(n)-\/>x\_gen(k, \mbox{\hyperlink{cfortran_8h_adb50e893b86b3e55e751a42eab3cba82}{i}});}
+\DoxyCodeLine{\Hypertarget{elements_8h_source_l02281}02281       \textcolor{keywordflow}{return} \mbox{\hyperlink{classoomph_1_1FiniteElement_a9addfe893ab8205619963aa96204cdc4}{node\_pt}}(n)-\/>\mbox{\hyperlink{classoomph_1_1Node_af7fdc0dfda495d69bd31c790ee77da73}{x\_gen}}(k, \mbox{\hyperlink{cfortran_8h_adb50e893b86b3e55e751a42eab3cba82}{i}});}
 \DoxyCodeLine{\Hypertarget{elements_8h_source_l02282}02282     \}}
 \DoxyCodeLine{\Hypertarget{elements_8h_source_l02283}02283 \textcolor{comment}{}}
 \DoxyCodeLine{\Hypertarget{elements_8h_source_l02284}02284 \textcolor{comment}{    /// Return the generalised nodal position (type k, i-\/th variable)}}
@@ -2293,7 +2293,7 @@
 \DoxyCodeLine{\Hypertarget{elements_8h_source_l02289}02289                                   \textcolor{keyword}{const} \textcolor{keywordtype}{unsigned}\& k,}
 \DoxyCodeLine{\Hypertarget{elements_8h_source_l02290}02290                                   \textcolor{keyword}{const} \textcolor{keywordtype}{unsigned}\& \mbox{\hyperlink{cfortran_8h_adb50e893b86b3e55e751a42eab3cba82}{i}})\textcolor{keyword}{ const}}
 \DoxyCodeLine{\Hypertarget{elements_8h_source_l02291}02291 \textcolor{keyword}{    }\{}
-\DoxyCodeLine{\Hypertarget{elements_8h_source_l02292}02292       \textcolor{keywordflow}{return} \mbox{\hyperlink{classoomph_1_1FiniteElement_a9addfe893ab8205619963aa96204cdc4}{node\_pt}}(n)-\/>x\_gen(\mbox{\hyperlink{cfortran_8h_af6f0bd3dc13317f895c91323c25c2b8f}{t}}, k, \mbox{\hyperlink{cfortran_8h_adb50e893b86b3e55e751a42eab3cba82}{i}});}
+\DoxyCodeLine{\Hypertarget{elements_8h_source_l02292}02292       \textcolor{keywordflow}{return} \mbox{\hyperlink{classoomph_1_1FiniteElement_a9addfe893ab8205619963aa96204cdc4}{node\_pt}}(n)-\/>\mbox{\hyperlink{classoomph_1_1Node_af7fdc0dfda495d69bd31c790ee77da73}{x\_gen}}(\mbox{\hyperlink{cfortran_8h_af6f0bd3dc13317f895c91323c25c2b8f}{t}}, k, \mbox{\hyperlink{cfortran_8h_adb50e893b86b3e55e751a42eab3cba82}{i}});}
 \DoxyCodeLine{\Hypertarget{elements_8h_source_l02293}02293     \}}
 \DoxyCodeLine{\Hypertarget{elements_8h_source_l02294}02294 \textcolor{comment}{}}
 \DoxyCodeLine{\Hypertarget{elements_8h_source_l02295}02295 \textcolor{comment}{    /// i-\/th component of time derivative (velocity) of the}}
@@ -2304,7 +2304,7 @@
 \DoxyCodeLine{\Hypertarget{elements_8h_source_l02300}02300                                       \textcolor{keyword}{const} \textcolor{keywordtype}{unsigned}\& k,}
 \DoxyCodeLine{\Hypertarget{elements_8h_source_l02301}02301                                       \textcolor{keyword}{const} \textcolor{keywordtype}{unsigned}\& \mbox{\hyperlink{cfortran_8h_adb50e893b86b3e55e751a42eab3cba82}{i}})\textcolor{keyword}{ const}}
 \DoxyCodeLine{\Hypertarget{elements_8h_source_l02302}02302 \textcolor{keyword}{    }\{}
-\DoxyCodeLine{\Hypertarget{elements_8h_source_l02303}02303       \textcolor{keywordflow}{return} \mbox{\hyperlink{classoomph_1_1FiniteElement_a9addfe893ab8205619963aa96204cdc4}{node\_pt}}(n)-\/>dx\_gen\_dt(k, \mbox{\hyperlink{cfortran_8h_adb50e893b86b3e55e751a42eab3cba82}{i}});}
+\DoxyCodeLine{\Hypertarget{elements_8h_source_l02303}02303       \textcolor{keywordflow}{return} \mbox{\hyperlink{classoomph_1_1FiniteElement_a9addfe893ab8205619963aa96204cdc4}{node\_pt}}(n)-\/>\mbox{\hyperlink{classoomph_1_1Node_a03ddcfc8146b7b54f2a3ee5fdf00fa3b}{dx\_gen\_dt}}(k, \mbox{\hyperlink{cfortran_8h_adb50e893b86b3e55e751a42eab3cba82}{i}});}
 \DoxyCodeLine{\Hypertarget{elements_8h_source_l02304}02304     \}}
 \DoxyCodeLine{\Hypertarget{elements_8h_source_l02305}02305 \textcolor{comment}{}}
 \DoxyCodeLine{\Hypertarget{elements_8h_source_l02306}02306 \textcolor{comment}{    /// i-\/th component of j-\/th time derivative  of the}}
@@ -2316,7 +2316,7 @@
 \DoxyCodeLine{\Hypertarget{elements_8h_source_l02312}02312                                       \textcolor{keyword}{const} \textcolor{keywordtype}{unsigned}\& k,}
 \DoxyCodeLine{\Hypertarget{elements_8h_source_l02313}02313                                       \textcolor{keyword}{const} \textcolor{keywordtype}{unsigned}\& \mbox{\hyperlink{cfortran_8h_adb50e893b86b3e55e751a42eab3cba82}{i}})\textcolor{keyword}{ const}}
 \DoxyCodeLine{\Hypertarget{elements_8h_source_l02314}02314 \textcolor{keyword}{    }\{}
-\DoxyCodeLine{\Hypertarget{elements_8h_source_l02315}02315       \textcolor{keywordflow}{return} \mbox{\hyperlink{classoomph_1_1FiniteElement_a9addfe893ab8205619963aa96204cdc4}{node\_pt}}(n)-\/>dx\_gen\_dt(j, k, \mbox{\hyperlink{cfortran_8h_adb50e893b86b3e55e751a42eab3cba82}{i}});}
+\DoxyCodeLine{\Hypertarget{elements_8h_source_l02315}02315       \textcolor{keywordflow}{return} \mbox{\hyperlink{classoomph_1_1FiniteElement_a9addfe893ab8205619963aa96204cdc4}{node\_pt}}(n)-\/>\mbox{\hyperlink{classoomph_1_1Node_a03ddcfc8146b7b54f2a3ee5fdf00fa3b}{dx\_gen\_dt}}(j, k, \mbox{\hyperlink{cfortran_8h_adb50e893b86b3e55e751a42eab3cba82}{i}});}
 \DoxyCodeLine{\Hypertarget{elements_8h_source_l02316}02316     \}}
 \DoxyCodeLine{\Hypertarget{elements_8h_source_l02317}02317 }
 \DoxyCodeLine{\Hypertarget{elements_8h_source_l02318}02318 \textcolor{comment}{}}
@@ -2325,7 +2325,7 @@
 \DoxyCodeLine{\Hypertarget{elements_8h_source_l02321}02321 \textcolor{comment}{    /// position function in the Node class.}}
 \DoxyCodeLine{\Hypertarget{elements_8h_source_l02322}\mbox{\hyperlink{classoomph_1_1FiniteElement_a9152c16ae9899168bcdaac7c2f977444}{02322}} \textcolor{comment}{}    \textcolor{keywordtype}{double} \mbox{\hyperlink{classoomph_1_1FiniteElement_a9152c16ae9899168bcdaac7c2f977444}{nodal\_position}}(\textcolor{keyword}{const} \textcolor{keywordtype}{unsigned}\& n, \textcolor{keyword}{const} \textcolor{keywordtype}{unsigned}\& \mbox{\hyperlink{cfortran_8h_adb50e893b86b3e55e751a42eab3cba82}{i}})\textcolor{keyword}{ const}}
 \DoxyCodeLine{\Hypertarget{elements_8h_source_l02323}02323 \textcolor{keyword}{    }\{}
-\DoxyCodeLine{\Hypertarget{elements_8h_source_l02324}02324       \textcolor{keywordflow}{return} \mbox{\hyperlink{classoomph_1_1FiniteElement_a9addfe893ab8205619963aa96204cdc4}{node\_pt}}(n)-\/>position(\mbox{\hyperlink{cfortran_8h_adb50e893b86b3e55e751a42eab3cba82}{i}});}
+\DoxyCodeLine{\Hypertarget{elements_8h_source_l02324}02324       \textcolor{keywordflow}{return} \mbox{\hyperlink{classoomph_1_1FiniteElement_a9addfe893ab8205619963aa96204cdc4}{node\_pt}}(n)-\/>\mbox{\hyperlink{classoomph_1_1Node_a61c3ad6b319e4d2cce38dc8faae1bfae}{position}}(\mbox{\hyperlink{cfortran_8h_adb50e893b86b3e55e751a42eab3cba82}{i}});}
 \DoxyCodeLine{\Hypertarget{elements_8h_source_l02325}02325     \}}
 \DoxyCodeLine{\Hypertarget{elements_8h_source_l02326}02326 \textcolor{comment}{}}
 \DoxyCodeLine{\Hypertarget{elements_8h_source_l02327}02327 \textcolor{comment}{    /// Return the i-\/th coordinate at local node n, at time level t}}
@@ -2335,13 +2335,13 @@
 \DoxyCodeLine{\Hypertarget{elements_8h_source_l02331}02331                           \textcolor{keyword}{const} \textcolor{keywordtype}{unsigned}\& n,}
 \DoxyCodeLine{\Hypertarget{elements_8h_source_l02332}02332                           \textcolor{keyword}{const} \textcolor{keywordtype}{unsigned}\& \mbox{\hyperlink{cfortran_8h_adb50e893b86b3e55e751a42eab3cba82}{i}})\textcolor{keyword}{ const}}
 \DoxyCodeLine{\Hypertarget{elements_8h_source_l02333}02333 \textcolor{keyword}{    }\{}
-\DoxyCodeLine{\Hypertarget{elements_8h_source_l02334}02334       \textcolor{keywordflow}{return} \mbox{\hyperlink{classoomph_1_1FiniteElement_a9addfe893ab8205619963aa96204cdc4}{node\_pt}}(n)-\/>position(\mbox{\hyperlink{cfortran_8h_af6f0bd3dc13317f895c91323c25c2b8f}{t}}, \mbox{\hyperlink{cfortran_8h_adb50e893b86b3e55e751a42eab3cba82}{i}});}
+\DoxyCodeLine{\Hypertarget{elements_8h_source_l02334}02334       \textcolor{keywordflow}{return} \mbox{\hyperlink{classoomph_1_1FiniteElement_a9addfe893ab8205619963aa96204cdc4}{node\_pt}}(n)-\/>\mbox{\hyperlink{classoomph_1_1Node_a61c3ad6b319e4d2cce38dc8faae1bfae}{position}}(\mbox{\hyperlink{cfortran_8h_af6f0bd3dc13317f895c91323c25c2b8f}{t}}, \mbox{\hyperlink{cfortran_8h_adb50e893b86b3e55e751a42eab3cba82}{i}});}
 \DoxyCodeLine{\Hypertarget{elements_8h_source_l02335}02335     \}}
 \DoxyCodeLine{\Hypertarget{elements_8h_source_l02336}02336 \textcolor{comment}{}}
 \DoxyCodeLine{\Hypertarget{elements_8h_source_l02337}02337 \textcolor{comment}{    /// Return the i-\/th component of nodal velocity: dx/dt at local node n.}}
 \DoxyCodeLine{\Hypertarget{elements_8h_source_l02338}\mbox{\hyperlink{classoomph_1_1FiniteElement_adcd3fe593044db9afae4c15f85ebb175}{02338}} \textcolor{comment}{}    \textcolor{keywordtype}{double} \mbox{\hyperlink{classoomph_1_1FiniteElement_adcd3fe593044db9afae4c15f85ebb175}{dnodal\_position\_dt}}(\textcolor{keyword}{const} \textcolor{keywordtype}{unsigned}\& n, \textcolor{keyword}{const} \textcolor{keywordtype}{unsigned}\& \mbox{\hyperlink{cfortran_8h_adb50e893b86b3e55e751a42eab3cba82}{i}})\textcolor{keyword}{ const}}
 \DoxyCodeLine{\Hypertarget{elements_8h_source_l02339}02339 \textcolor{keyword}{    }\{}
-\DoxyCodeLine{\Hypertarget{elements_8h_source_l02340}02340       \textcolor{keywordflow}{return} \mbox{\hyperlink{classoomph_1_1FiniteElement_a9addfe893ab8205619963aa96204cdc4}{node\_pt}}(n)-\/>dposition\_dt(\mbox{\hyperlink{cfortran_8h_adb50e893b86b3e55e751a42eab3cba82}{i}});}
+\DoxyCodeLine{\Hypertarget{elements_8h_source_l02340}02340       \textcolor{keywordflow}{return} \mbox{\hyperlink{classoomph_1_1FiniteElement_a9addfe893ab8205619963aa96204cdc4}{node\_pt}}(n)-\/>\mbox{\hyperlink{classoomph_1_1Node_ad3d37ea1c80500645fa32cc43f1f29ce}{dposition\_dt}}(\mbox{\hyperlink{cfortran_8h_adb50e893b86b3e55e751a42eab3cba82}{i}});}
 \DoxyCodeLine{\Hypertarget{elements_8h_source_l02341}02341     \}}
 \DoxyCodeLine{\Hypertarget{elements_8h_source_l02342}02342 \textcolor{comment}{}}
 \DoxyCodeLine{\Hypertarget{elements_8h_source_l02343}02343 \textcolor{comment}{    /// Return the i-\/th component of j-\/th derivative of nodal position:}}
@@ -2350,7 +2350,7 @@
 \DoxyCodeLine{\Hypertarget{elements_8h_source_l02346}02346                               \textcolor{keyword}{const} \textcolor{keywordtype}{unsigned}\& j,}
 \DoxyCodeLine{\Hypertarget{elements_8h_source_l02347}02347                               \textcolor{keyword}{const} \textcolor{keywordtype}{unsigned}\& \mbox{\hyperlink{cfortran_8h_adb50e893b86b3e55e751a42eab3cba82}{i}})\textcolor{keyword}{ const}}
 \DoxyCodeLine{\Hypertarget{elements_8h_source_l02348}02348 \textcolor{keyword}{    }\{}
-\DoxyCodeLine{\Hypertarget{elements_8h_source_l02349}02349       \textcolor{keywordflow}{return} \mbox{\hyperlink{classoomph_1_1FiniteElement_a9addfe893ab8205619963aa96204cdc4}{node\_pt}}(n)-\/>dposition\_dt(j, \mbox{\hyperlink{cfortran_8h_adb50e893b86b3e55e751a42eab3cba82}{i}});}
+\DoxyCodeLine{\Hypertarget{elements_8h_source_l02349}02349       \textcolor{keywordflow}{return} \mbox{\hyperlink{classoomph_1_1FiniteElement_a9addfe893ab8205619963aa96204cdc4}{node\_pt}}(n)-\/>\mbox{\hyperlink{classoomph_1_1Node_ad3d37ea1c80500645fa32cc43f1f29ce}{dposition\_dt}}(j, \mbox{\hyperlink{cfortran_8h_adb50e893b86b3e55e751a42eab3cba82}{i}});}
 \DoxyCodeLine{\Hypertarget{elements_8h_source_l02350}02350     \}}
 \DoxyCodeLine{\Hypertarget{elements_8h_source_l02351}02351 \textcolor{comment}{}}
 \DoxyCodeLine{\Hypertarget{elements_8h_source_l02352}02352 \textcolor{comment}{    /// Return the value of the k-\/th type of the i-\/th positional variable}}
@@ -2359,7 +2359,7 @@
 \DoxyCodeLine{\Hypertarget{elements_8h_source_l02355}02355                               \textcolor{keyword}{const} \textcolor{keywordtype}{unsigned}\& k,}
 \DoxyCodeLine{\Hypertarget{elements_8h_source_l02356}02356                               \textcolor{keyword}{const} \textcolor{keywordtype}{unsigned}\& \mbox{\hyperlink{cfortran_8h_adb50e893b86b3e55e751a42eab3cba82}{i}})\textcolor{keyword}{ const}}
 \DoxyCodeLine{\Hypertarget{elements_8h_source_l02357}02357 \textcolor{keyword}{    }\{}
-\DoxyCodeLine{\Hypertarget{elements_8h_source_l02358}02358       \textcolor{keywordflow}{return} \mbox{\hyperlink{classoomph_1_1FiniteElement_a9addfe893ab8205619963aa96204cdc4}{node\_pt}}(n)-\/>position\_gen(k, \mbox{\hyperlink{cfortran_8h_adb50e893b86b3e55e751a42eab3cba82}{i}});}
+\DoxyCodeLine{\Hypertarget{elements_8h_source_l02358}02358       \textcolor{keywordflow}{return} \mbox{\hyperlink{classoomph_1_1FiniteElement_a9addfe893ab8205619963aa96204cdc4}{node\_pt}}(n)-\/>\mbox{\hyperlink{classoomph_1_1Node_aa8974c69837b6909158054ecb70a64e2}{position\_gen}}(k, \mbox{\hyperlink{cfortran_8h_adb50e893b86b3e55e751a42eab3cba82}{i}});}
 \DoxyCodeLine{\Hypertarget{elements_8h_source_l02359}02359     \}}
 \DoxyCodeLine{\Hypertarget{elements_8h_source_l02360}02360 \textcolor{comment}{}}
 \DoxyCodeLine{\Hypertarget{elements_8h_source_l02361}02361 \textcolor{comment}{    /// Return the generalised nodal position (type k, i-\/th variable)}}
@@ -2369,7 +2369,7 @@
 \DoxyCodeLine{\Hypertarget{elements_8h_source_l02365}02365                               \textcolor{keyword}{const} \textcolor{keywordtype}{unsigned}\& k,}
 \DoxyCodeLine{\Hypertarget{elements_8h_source_l02366}02366                               \textcolor{keyword}{const} \textcolor{keywordtype}{unsigned}\& \mbox{\hyperlink{cfortran_8h_adb50e893b86b3e55e751a42eab3cba82}{i}})\textcolor{keyword}{ const}}
 \DoxyCodeLine{\Hypertarget{elements_8h_source_l02367}02367 \textcolor{keyword}{    }\{}
-\DoxyCodeLine{\Hypertarget{elements_8h_source_l02368}02368       \textcolor{keywordflow}{return} \mbox{\hyperlink{classoomph_1_1FiniteElement_a9addfe893ab8205619963aa96204cdc4}{node\_pt}}(n)-\/>position\_gen(\mbox{\hyperlink{cfortran_8h_af6f0bd3dc13317f895c91323c25c2b8f}{t}}, k, \mbox{\hyperlink{cfortran_8h_adb50e893b86b3e55e751a42eab3cba82}{i}});}
+\DoxyCodeLine{\Hypertarget{elements_8h_source_l02368}02368       \textcolor{keywordflow}{return} \mbox{\hyperlink{classoomph_1_1FiniteElement_a9addfe893ab8205619963aa96204cdc4}{node\_pt}}(n)-\/>\mbox{\hyperlink{classoomph_1_1Node_aa8974c69837b6909158054ecb70a64e2}{position\_gen}}(\mbox{\hyperlink{cfortran_8h_af6f0bd3dc13317f895c91323c25c2b8f}{t}}, k, \mbox{\hyperlink{cfortran_8h_adb50e893b86b3e55e751a42eab3cba82}{i}});}
 \DoxyCodeLine{\Hypertarget{elements_8h_source_l02369}02369     \}}
 \DoxyCodeLine{\Hypertarget{elements_8h_source_l02370}02370 \textcolor{comment}{}}
 \DoxyCodeLine{\Hypertarget{elements_8h_source_l02371}02371 \textcolor{comment}{    /// i-\/th component of time derivative (velocity) of the}}
@@ -2379,7 +2379,7 @@
 \DoxyCodeLine{\Hypertarget{elements_8h_source_l02375}02375                                   \textcolor{keyword}{const} \textcolor{keywordtype}{unsigned}\& k,}
 \DoxyCodeLine{\Hypertarget{elements_8h_source_l02376}02376                                   \textcolor{keyword}{const} \textcolor{keywordtype}{unsigned}\& \mbox{\hyperlink{cfortran_8h_adb50e893b86b3e55e751a42eab3cba82}{i}})\textcolor{keyword}{ const}}
 \DoxyCodeLine{\Hypertarget{elements_8h_source_l02377}02377 \textcolor{keyword}{    }\{}
-\DoxyCodeLine{\Hypertarget{elements_8h_source_l02378}02378       \textcolor{keywordflow}{return} \mbox{\hyperlink{classoomph_1_1FiniteElement_a9addfe893ab8205619963aa96204cdc4}{node\_pt}}(n)-\/>dposition\_gen\_dt(k, \mbox{\hyperlink{cfortran_8h_adb50e893b86b3e55e751a42eab3cba82}{i}});}
+\DoxyCodeLine{\Hypertarget{elements_8h_source_l02378}02378       \textcolor{keywordflow}{return} \mbox{\hyperlink{classoomph_1_1FiniteElement_a9addfe893ab8205619963aa96204cdc4}{node\_pt}}(n)-\/>\mbox{\hyperlink{classoomph_1_1Node_af99eb195bbe21b6e380681f2167fbfb5}{dposition\_gen\_dt}}(k, \mbox{\hyperlink{cfortran_8h_adb50e893b86b3e55e751a42eab3cba82}{i}});}
 \DoxyCodeLine{\Hypertarget{elements_8h_source_l02379}02379     \}}
 \DoxyCodeLine{\Hypertarget{elements_8h_source_l02380}02380 \textcolor{comment}{}}
 \DoxyCodeLine{\Hypertarget{elements_8h_source_l02381}02381 \textcolor{comment}{    /// i-\/th component of j-\/th time derivative  of the}}
@@ -2390,7 +2390,7 @@
 \DoxyCodeLine{\Hypertarget{elements_8h_source_l02386}02386                                   \textcolor{keyword}{const} \textcolor{keywordtype}{unsigned}\& k,}
 \DoxyCodeLine{\Hypertarget{elements_8h_source_l02387}02387                                   \textcolor{keyword}{const} \textcolor{keywordtype}{unsigned}\& \mbox{\hyperlink{cfortran_8h_adb50e893b86b3e55e751a42eab3cba82}{i}})\textcolor{keyword}{ const}}
 \DoxyCodeLine{\Hypertarget{elements_8h_source_l02388}02388 \textcolor{keyword}{    }\{}
-\DoxyCodeLine{\Hypertarget{elements_8h_source_l02389}02389       \textcolor{keywordflow}{return} \mbox{\hyperlink{classoomph_1_1FiniteElement_a9addfe893ab8205619963aa96204cdc4}{node\_pt}}(n)-\/>dposition\_gen\_dt(j, k, \mbox{\hyperlink{cfortran_8h_adb50e893b86b3e55e751a42eab3cba82}{i}});}
+\DoxyCodeLine{\Hypertarget{elements_8h_source_l02389}02389       \textcolor{keywordflow}{return} \mbox{\hyperlink{classoomph_1_1FiniteElement_a9addfe893ab8205619963aa96204cdc4}{node\_pt}}(n)-\/>\mbox{\hyperlink{classoomph_1_1Node_af99eb195bbe21b6e380681f2167fbfb5}{dposition\_gen\_dt}}(j, k, \mbox{\hyperlink{cfortran_8h_adb50e893b86b3e55e751a42eab3cba82}{i}});}
 \DoxyCodeLine{\Hypertarget{elements_8h_source_l02390}02390     \}}
 \DoxyCodeLine{\Hypertarget{elements_8h_source_l02391}02391 }
 \DoxyCodeLine{\Hypertarget{elements_8h_source_l02392}02392 \textcolor{comment}{}}
@@ -2506,7 +2506,7 @@
 \DoxyCodeLine{\Hypertarget{elements_8h_source_l02502}02502 \textcolor{comment}{}}
 \DoxyCodeLine{\Hypertarget{elements_8h_source_l02503}02503 \textcolor{comment}{    /// Pointer to the j-\/th vertex node in the element. Broken virtual}}
 \DoxyCodeLine{\Hypertarget{elements_8h_source_l02504}02504 \textcolor{comment}{    /// function in "{}pure"{} finite elements.}}
-\DoxyCodeLine{\Hypertarget{elements_8h_source_l02505}\mbox{\hyperlink{classoomph_1_1FiniteElement_ac8b551c9d6f1f8e30e8b18fe2f9ae072}{02505}} \textcolor{comment}{}    \textcolor{keyword}{virtual} Node* \mbox{\hyperlink{classoomph_1_1FiniteElement_ac8b551c9d6f1f8e30e8b18fe2f9ae072}{vertex\_node\_pt}}(\textcolor{keyword}{const} \textcolor{keywordtype}{unsigned}\& j)\textcolor{keyword}{ const}}
+\DoxyCodeLine{\Hypertarget{elements_8h_source_l02505}\mbox{\hyperlink{classoomph_1_1FiniteElement_ac8b551c9d6f1f8e30e8b18fe2f9ae072}{02505}} \textcolor{comment}{}    \textcolor{keyword}{virtual} \mbox{\hyperlink{classoomph_1_1Node}{Node}}* \mbox{\hyperlink{classoomph_1_1FiniteElement_ac8b551c9d6f1f8e30e8b18fe2f9ae072}{vertex\_node\_pt}}(\textcolor{keyword}{const} \textcolor{keywordtype}{unsigned}\& j)\textcolor{keyword}{ const}}
 \DoxyCodeLine{\Hypertarget{elements_8h_source_l02506}02506 \textcolor{keyword}{    }\{}
 \DoxyCodeLine{\Hypertarget{elements_8h_source_l02507}02507       \mbox{\hyperlink{namespaceoomph_1_1Global__string__for__annotation_ac5379de2fa7fe44f2cb31785fc208135}{std::string}} error\_msg = \textcolor{stringliteral}{"{}Not implemented for FiniteElement."{}};}
 \DoxyCodeLine{\Hypertarget{elements_8h_source_l02508}02508       \textcolor{keywordflow}{throw} \mbox{\hyperlink{classoomph_1_1OomphLibError}{OomphLibError}}(}
@@ -2515,12 +2515,12 @@
 \DoxyCodeLine{\Hypertarget{elements_8h_source_l02511}02511 \textcolor{comment}{}}
 \DoxyCodeLine{\Hypertarget{elements_8h_source_l02512}02512 \textcolor{comment}{    /// Construct the local node n and return a pointer to the newly}}
 \DoxyCodeLine{\Hypertarget{elements_8h_source_l02513}02513 \textcolor{comment}{    /// created node object.}}
-\DoxyCodeLine{\Hypertarget{elements_8h_source_l02514}\mbox{\hyperlink{classoomph_1_1FiniteElement_a54676a4e37813f207d53ef9a7d16fd41}{02514}} \textcolor{comment}{}    \textcolor{keyword}{virtual} Node* \mbox{\hyperlink{classoomph_1_1FiniteElement_a54676a4e37813f207d53ef9a7d16fd41}{construct\_node}}(\textcolor{keyword}{const} \textcolor{keywordtype}{unsigned}\& n)}
+\DoxyCodeLine{\Hypertarget{elements_8h_source_l02514}\mbox{\hyperlink{classoomph_1_1FiniteElement_a54676a4e37813f207d53ef9a7d16fd41}{02514}} \textcolor{comment}{}    \textcolor{keyword}{virtual} \mbox{\hyperlink{classoomph_1_1Node}{Node}}* \mbox{\hyperlink{classoomph_1_1FiniteElement_a54676a4e37813f207d53ef9a7d16fd41}{construct\_node}}(\textcolor{keyword}{const} \textcolor{keywordtype}{unsigned}\& n)}
 \DoxyCodeLine{\Hypertarget{elements_8h_source_l02515}02515     \{}
 \DoxyCodeLine{\Hypertarget{elements_8h_source_l02516}02516       \textcolor{comment}{// Create a node and assign it to the local node pointer}}
 \DoxyCodeLine{\Hypertarget{elements_8h_source_l02517}02517       \textcolor{comment}{// The dimension and number of values are taken from internal element data}}
 \DoxyCodeLine{\Hypertarget{elements_8h_source_l02518}02518       \mbox{\hyperlink{classoomph_1_1FiniteElement_a9addfe893ab8205619963aa96204cdc4}{node\_pt}}(n) =}
-\DoxyCodeLine{\Hypertarget{elements_8h_source_l02519}02519         \textcolor{keyword}{new} Node(\mbox{\hyperlink{classoomph_1_1FiniteElement_a68c650c708d83bb66967dd0d127835c1}{Nodal\_dimension}}, \mbox{\hyperlink{classoomph_1_1FiniteElement_a8d7f2875e0aefb0b9433b4691383b3d8}{Nnodal\_position\_type}}, \mbox{\hyperlink{classoomph_1_1FiniteElement_a56610c60d5bc2d7c27407a1455471b1a}{required\_nvalue}}(n));}
+\DoxyCodeLine{\Hypertarget{elements_8h_source_l02519}02519         \textcolor{keyword}{new} \mbox{\hyperlink{classoomph_1_1Node}{Node}}(\mbox{\hyperlink{classoomph_1_1FiniteElement_a68c650c708d83bb66967dd0d127835c1}{Nodal\_dimension}}, \mbox{\hyperlink{classoomph_1_1FiniteElement_a8d7f2875e0aefb0b9433b4691383b3d8}{Nnodal\_position\_type}}, \mbox{\hyperlink{classoomph_1_1FiniteElement_a56610c60d5bc2d7c27407a1455471b1a}{required\_nvalue}}(n));}
 \DoxyCodeLine{\Hypertarget{elements_8h_source_l02520}02520       \textcolor{comment}{// Now return a pointer to the node, so that the mesh can use it}}
 \DoxyCodeLine{\Hypertarget{elements_8h_source_l02521}02521       \textcolor{keywordflow}{return} \mbox{\hyperlink{classoomph_1_1FiniteElement_a9addfe893ab8205619963aa96204cdc4}{node\_pt}}(n);}
 \DoxyCodeLine{\Hypertarget{elements_8h_source_l02522}02522     \}}
@@ -2528,12 +2528,12 @@
 \DoxyCodeLine{\Hypertarget{elements_8h_source_l02524}02524 \textcolor{comment}{    /// Construct the local node n, including}}
 \DoxyCodeLine{\Hypertarget{elements_8h_source_l02525}02525 \textcolor{comment}{    /// storage for history values required by timestepper, and return a pointer}}
 \DoxyCodeLine{\Hypertarget{elements_8h_source_l02526}02526 \textcolor{comment}{    /// to the newly created node object.}}
-\DoxyCodeLine{\Hypertarget{elements_8h_source_l02527}\mbox{\hyperlink{classoomph_1_1FiniteElement_a72de3a5861712cb1b33649c302f4acd1}{02527}} \textcolor{comment}{}    \textcolor{keyword}{virtual} Node* \mbox{\hyperlink{classoomph_1_1FiniteElement_a72de3a5861712cb1b33649c302f4acd1}{construct\_node}}(\textcolor{keyword}{const} \textcolor{keywordtype}{unsigned}\& n,}
+\DoxyCodeLine{\Hypertarget{elements_8h_source_l02527}\mbox{\hyperlink{classoomph_1_1FiniteElement_a72de3a5861712cb1b33649c302f4acd1}{02527}} \textcolor{comment}{}    \textcolor{keyword}{virtual} \mbox{\hyperlink{classoomph_1_1Node}{Node}}* \mbox{\hyperlink{classoomph_1_1FiniteElement_a72de3a5861712cb1b33649c302f4acd1}{construct\_node}}(\textcolor{keyword}{const} \textcolor{keywordtype}{unsigned}\& n,}
 \DoxyCodeLine{\Hypertarget{elements_8h_source_l02528}02528                                  \mbox{\hyperlink{classoomph_1_1TimeStepper}{TimeStepper}}* \textcolor{keyword}{const}\& \mbox{\hyperlink{classoomph_1_1GeomObject_a0fc851a3b50103b6c9f68efe86e709de}{time\_stepper\_pt}})}
 \DoxyCodeLine{\Hypertarget{elements_8h_source_l02529}02529     \{}
 \DoxyCodeLine{\Hypertarget{elements_8h_source_l02530}02530       \textcolor{comment}{// Create a node and assign it to the local node pointer.}}
 \DoxyCodeLine{\Hypertarget{elements_8h_source_l02531}02531       \textcolor{comment}{// The dimension and number of values are taken from internal element data}}
-\DoxyCodeLine{\Hypertarget{elements_8h_source_l02532}02532       \mbox{\hyperlink{classoomph_1_1FiniteElement_a9addfe893ab8205619963aa96204cdc4}{node\_pt}}(n) = \textcolor{keyword}{new} Node(\mbox{\hyperlink{classoomph_1_1GeomObject_a0fc851a3b50103b6c9f68efe86e709de}{time\_stepper\_pt}},}
+\DoxyCodeLine{\Hypertarget{elements_8h_source_l02532}02532       \mbox{\hyperlink{classoomph_1_1FiniteElement_a9addfe893ab8205619963aa96204cdc4}{node\_pt}}(n) = \textcolor{keyword}{new} \mbox{\hyperlink{classoomph_1_1Node}{Node}}(\mbox{\hyperlink{classoomph_1_1GeomObject_a0fc851a3b50103b6c9f68efe86e709de}{time\_stepper\_pt}},}
 \DoxyCodeLine{\Hypertarget{elements_8h_source_l02533}02533                             \mbox{\hyperlink{classoomph_1_1FiniteElement_a68c650c708d83bb66967dd0d127835c1}{Nodal\_dimension}},}
 \DoxyCodeLine{\Hypertarget{elements_8h_source_l02534}02534                             \mbox{\hyperlink{classoomph_1_1FiniteElement_a8d7f2875e0aefb0b9433b4691383b3d8}{Nnodal\_position\_type}},}
 \DoxyCodeLine{\Hypertarget{elements_8h_source_l02535}02535                             \mbox{\hyperlink{classoomph_1_1FiniteElement_a56610c60d5bc2d7c27407a1455471b1a}{required\_nvalue}}(n));}
@@ -2544,7 +2544,7 @@
 \DoxyCodeLine{\Hypertarget{elements_8h_source_l02540}02540 \textcolor{comment}{    /// Construct the local node n as a boundary node;}}
 \DoxyCodeLine{\Hypertarget{elements_8h_source_l02541}02541 \textcolor{comment}{    /// that is a node that MAY be placed on a mesh boundary}}
 \DoxyCodeLine{\Hypertarget{elements_8h_source_l02542}02542 \textcolor{comment}{    /// and return a pointer to the newly created node object.}}
-\DoxyCodeLine{\Hypertarget{elements_8h_source_l02543}\mbox{\hyperlink{classoomph_1_1FiniteElement_a88a427f24deee1be92d6e63eac0fb36f}{02543}} \textcolor{comment}{}    \textcolor{keyword}{virtual} Node* \mbox{\hyperlink{classoomph_1_1FiniteElement_a88a427f24deee1be92d6e63eac0fb36f}{construct\_boundary\_node}}(\textcolor{keyword}{const} \textcolor{keywordtype}{unsigned}\& n)}
+\DoxyCodeLine{\Hypertarget{elements_8h_source_l02543}\mbox{\hyperlink{classoomph_1_1FiniteElement_a88a427f24deee1be92d6e63eac0fb36f}{02543}} \textcolor{comment}{}    \textcolor{keyword}{virtual} \mbox{\hyperlink{classoomph_1_1Node}{Node}}* \mbox{\hyperlink{classoomph_1_1FiniteElement_a88a427f24deee1be92d6e63eac0fb36f}{construct\_boundary\_node}}(\textcolor{keyword}{const} \textcolor{keywordtype}{unsigned}\& n)}
 \DoxyCodeLine{\Hypertarget{elements_8h_source_l02544}02544     \{}
 \DoxyCodeLine{\Hypertarget{elements_8h_source_l02545}02545       \textcolor{comment}{// Create a node and assign it to the local node pointer}}
 \DoxyCodeLine{\Hypertarget{elements_8h_source_l02546}02546       \textcolor{comment}{// The dimension and number of values are taken from internal element data}}
@@ -2558,7 +2558,7 @@
 \DoxyCodeLine{\Hypertarget{elements_8h_source_l02554}02554 \textcolor{comment}{    /// storage for history values required by timestepper,}}
 \DoxyCodeLine{\Hypertarget{elements_8h_source_l02555}02555 \textcolor{comment}{    /// as a boundary node; that is a node that MAY be placed on a mesh}}
 \DoxyCodeLine{\Hypertarget{elements_8h_source_l02556}02556 \textcolor{comment}{    /// boundary and return a pointer to the newly created node object.}}
-\DoxyCodeLine{\Hypertarget{elements_8h_source_l02557}\mbox{\hyperlink{classoomph_1_1FiniteElement_ae0db2a5958648a3bc338fb05b0ec0add}{02557}} \textcolor{comment}{}    \textcolor{keyword}{virtual} Node* \mbox{\hyperlink{classoomph_1_1FiniteElement_ae0db2a5958648a3bc338fb05b0ec0add}{construct\_boundary\_node}}(\textcolor{keyword}{const} \textcolor{keywordtype}{unsigned}\& n,}
+\DoxyCodeLine{\Hypertarget{elements_8h_source_l02557}\mbox{\hyperlink{classoomph_1_1FiniteElement_ae0db2a5958648a3bc338fb05b0ec0add}{02557}} \textcolor{comment}{}    \textcolor{keyword}{virtual} \mbox{\hyperlink{classoomph_1_1Node}{Node}}* \mbox{\hyperlink{classoomph_1_1FiniteElement_ae0db2a5958648a3bc338fb05b0ec0add}{construct\_boundary\_node}}(\textcolor{keyword}{const} \textcolor{keywordtype}{unsigned}\& n,}
 \DoxyCodeLine{\Hypertarget{elements_8h_source_l02558}02558                                           \mbox{\hyperlink{classoomph_1_1TimeStepper}{TimeStepper}}* \textcolor{keyword}{const}\& \mbox{\hyperlink{classoomph_1_1GeomObject_a0fc851a3b50103b6c9f68efe86e709de}{time\_stepper\_pt}})}
 \DoxyCodeLine{\Hypertarget{elements_8h_source_l02559}02559     \{}
 \DoxyCodeLine{\Hypertarget{elements_8h_source_l02560}02560       \textcolor{comment}{// Create a node and assign it to the local node pointer.}}
@@ -2573,18 +2573,18 @@
 \DoxyCodeLine{\Hypertarget{elements_8h_source_l02569}02569 \textcolor{comment}{}}
 \DoxyCodeLine{\Hypertarget{elements_8h_source_l02570}02570 \textcolor{comment}{    /// Return the number of the node *node\_pt if this node}}
 \DoxyCodeLine{\Hypertarget{elements_8h_source_l02571}02571 \textcolor{comment}{    /// is in the element, else return -\/1;}}
-\DoxyCodeLine{\Hypertarget{elements_8h_source_l02572}\mbox{\hyperlink{classoomph_1_1FiniteElement_aeb40d7a104d99e6f7d8123e801e53b5b}{02572}} \textcolor{comment}{}    \textcolor{keywordtype}{int} \mbox{\hyperlink{classoomph_1_1FiniteElement_aeb40d7a104d99e6f7d8123e801e53b5b}{get\_node\_number}}(Node* \textcolor{keyword}{const}\& \mbox{\hyperlink{classoomph_1_1FiniteElement_a9addfe893ab8205619963aa96204cdc4}{node\_pt}}) \textcolor{keyword}{const};}
+\DoxyCodeLine{\Hypertarget{elements_8h_source_l02572}\mbox{\hyperlink{classoomph_1_1FiniteElement_aeb40d7a104d99e6f7d8123e801e53b5b}{02572}} \textcolor{comment}{}    \textcolor{keywordtype}{int} \mbox{\hyperlink{classoomph_1_1FiniteElement_aeb40d7a104d99e6f7d8123e801e53b5b}{get\_node\_number}}(\mbox{\hyperlink{classoomph_1_1Node}{Node}}* \textcolor{keyword}{const}\& \mbox{\hyperlink{classoomph_1_1FiniteElement_a9addfe893ab8205619963aa96204cdc4}{node\_pt}}) \textcolor{keyword}{const};}
 \DoxyCodeLine{\Hypertarget{elements_8h_source_l02573}02573 }
 \DoxyCodeLine{\Hypertarget{elements_8h_source_l02574}02574 \textcolor{comment}{}}
 \DoxyCodeLine{\Hypertarget{elements_8h_source_l02575}02575 \textcolor{comment}{    /// If there is a node at this local coordinate, return the pointer}}
 \DoxyCodeLine{\Hypertarget{elements_8h_source_l02576}02576 \textcolor{comment}{    /// to the node}}
-\DoxyCodeLine{\Hypertarget{elements_8h_source_l02577}\mbox{\hyperlink{classoomph_1_1FiniteElement_adf4424f1040fb5c4b6abfbd1c2bf65fc}{02577}} \textcolor{comment}{}    \textcolor{keyword}{virtual} Node* \mbox{\hyperlink{classoomph_1_1FiniteElement_adf4424f1040fb5c4b6abfbd1c2bf65fc}{get\_node\_at\_local\_coordinate}}(\textcolor{keyword}{const} \mbox{\hyperlink{classoomph_1_1Vector}{Vector<double>}}\& \mbox{\hyperlink{cfortran_8h_ab7123126e4885ef647dd9c6e3807a21c}{s}}) \textcolor{keyword}{const};}
+\DoxyCodeLine{\Hypertarget{elements_8h_source_l02577}\mbox{\hyperlink{classoomph_1_1FiniteElement_adf4424f1040fb5c4b6abfbd1c2bf65fc}{02577}} \textcolor{comment}{}    \textcolor{keyword}{virtual} \mbox{\hyperlink{classoomph_1_1Node}{Node}}* \mbox{\hyperlink{classoomph_1_1FiniteElement_adf4424f1040fb5c4b6abfbd1c2bf65fc}{get\_node\_at\_local\_coordinate}}(\textcolor{keyword}{const} \mbox{\hyperlink{classoomph_1_1Vector}{Vector<double>}}\& \mbox{\hyperlink{cfortran_8h_ab7123126e4885ef647dd9c6e3807a21c}{s}}) \textcolor{keyword}{const};}
 \DoxyCodeLine{\Hypertarget{elements_8h_source_l02578}02578 \textcolor{comment}{}}
 \DoxyCodeLine{\Hypertarget{elements_8h_source_l02579}02579 \textcolor{comment}{    /// Return the i-\/th value stored at local node n}}
 \DoxyCodeLine{\Hypertarget{elements_8h_source_l02580}02580 \textcolor{comment}{    /// but do NOT take hanging nodes into account}}
 \DoxyCodeLine{\Hypertarget{elements_8h_source_l02581}\mbox{\hyperlink{classoomph_1_1FiniteElement_abdc430bef622e0257397407416e6aac8}{02581}} \textcolor{comment}{}    \textcolor{keywordtype}{double} \mbox{\hyperlink{classoomph_1_1FiniteElement_abdc430bef622e0257397407416e6aac8}{raw\_nodal\_value}}(\textcolor{keyword}{const} \textcolor{keywordtype}{unsigned}\& n, \textcolor{keyword}{const} \textcolor{keywordtype}{unsigned}\& \mbox{\hyperlink{cfortran_8h_adb50e893b86b3e55e751a42eab3cba82}{i}})\textcolor{keyword}{ const}}
 \DoxyCodeLine{\Hypertarget{elements_8h_source_l02582}02582 \textcolor{keyword}{    }\{}
-\DoxyCodeLine{\Hypertarget{elements_8h_source_l02583}02583       \textcolor{keywordflow}{return} \mbox{\hyperlink{classoomph_1_1FiniteElement_a9addfe893ab8205619963aa96204cdc4}{node\_pt}}(n)-\/>raw\_value(\mbox{\hyperlink{cfortran_8h_adb50e893b86b3e55e751a42eab3cba82}{i}});}
+\DoxyCodeLine{\Hypertarget{elements_8h_source_l02583}02583       \textcolor{keywordflow}{return} \mbox{\hyperlink{classoomph_1_1FiniteElement_a9addfe893ab8205619963aa96204cdc4}{node\_pt}}(n)-\/>\mbox{\hyperlink{classoomph_1_1Node_abc9f54df56cbe8eedc6f1595c7d7f11e}{raw\_value}}(\mbox{\hyperlink{cfortran_8h_adb50e893b86b3e55e751a42eab3cba82}{i}});}
 \DoxyCodeLine{\Hypertarget{elements_8h_source_l02584}02584     \}}
 \DoxyCodeLine{\Hypertarget{elements_8h_source_l02585}02585 \textcolor{comment}{}}
 \DoxyCodeLine{\Hypertarget{elements_8h_source_l02586}02586 \textcolor{comment}{    /// Return the i-\/th value stored at local node n, at time level t}}
@@ -2594,14 +2594,14 @@
 \DoxyCodeLine{\Hypertarget{elements_8h_source_l02590}02590                            \textcolor{keyword}{const} \textcolor{keywordtype}{unsigned}\& n,}
 \DoxyCodeLine{\Hypertarget{elements_8h_source_l02591}02591                            \textcolor{keyword}{const} \textcolor{keywordtype}{unsigned}\& \mbox{\hyperlink{cfortran_8h_adb50e893b86b3e55e751a42eab3cba82}{i}})\textcolor{keyword}{ const}}
 \DoxyCodeLine{\Hypertarget{elements_8h_source_l02592}02592 \textcolor{keyword}{    }\{}
-\DoxyCodeLine{\Hypertarget{elements_8h_source_l02593}02593       \textcolor{keywordflow}{return} \mbox{\hyperlink{classoomph_1_1FiniteElement_a9addfe893ab8205619963aa96204cdc4}{node\_pt}}(n)-\/>raw\_value(\mbox{\hyperlink{cfortran_8h_af6f0bd3dc13317f895c91323c25c2b8f}{t}}, \mbox{\hyperlink{cfortran_8h_adb50e893b86b3e55e751a42eab3cba82}{i}});}
+\DoxyCodeLine{\Hypertarget{elements_8h_source_l02593}02593       \textcolor{keywordflow}{return} \mbox{\hyperlink{classoomph_1_1FiniteElement_a9addfe893ab8205619963aa96204cdc4}{node\_pt}}(n)-\/>\mbox{\hyperlink{classoomph_1_1Node_abc9f54df56cbe8eedc6f1595c7d7f11e}{raw\_value}}(\mbox{\hyperlink{cfortran_8h_af6f0bd3dc13317f895c91323c25c2b8f}{t}}, \mbox{\hyperlink{cfortran_8h_adb50e893b86b3e55e751a42eab3cba82}{i}});}
 \DoxyCodeLine{\Hypertarget{elements_8h_source_l02594}02594     \}}
 \DoxyCodeLine{\Hypertarget{elements_8h_source_l02595}02595 \textcolor{comment}{}}
 \DoxyCodeLine{\Hypertarget{elements_8h_source_l02596}02596 \textcolor{comment}{    /// Return the i-\/th value stored at local node n.}}
 \DoxyCodeLine{\Hypertarget{elements_8h_source_l02597}02597 \textcolor{comment}{    /// Produces suitably interpolated values for hanging nodes.}}
 \DoxyCodeLine{\Hypertarget{elements_8h_source_l02598}\mbox{\hyperlink{classoomph_1_1FiniteElement_a28fd5c2d4aeba5ef65bee0e0d72569f5}{02598}} \textcolor{comment}{}    \textcolor{keywordtype}{double} \mbox{\hyperlink{classoomph_1_1FiniteElement_a28fd5c2d4aeba5ef65bee0e0d72569f5}{nodal\_value}}(\textcolor{keyword}{const} \textcolor{keywordtype}{unsigned}\& n, \textcolor{keyword}{const} \textcolor{keywordtype}{unsigned}\& \mbox{\hyperlink{cfortran_8h_adb50e893b86b3e55e751a42eab3cba82}{i}})\textcolor{keyword}{ const}}
 \DoxyCodeLine{\Hypertarget{elements_8h_source_l02599}02599 \textcolor{keyword}{    }\{}
-\DoxyCodeLine{\Hypertarget{elements_8h_source_l02600}02600       \textcolor{keywordflow}{return} \mbox{\hyperlink{classoomph_1_1FiniteElement_a9addfe893ab8205619963aa96204cdc4}{node\_pt}}(n)-\/>value(\mbox{\hyperlink{cfortran_8h_adb50e893b86b3e55e751a42eab3cba82}{i}});}
+\DoxyCodeLine{\Hypertarget{elements_8h_source_l02600}02600       \textcolor{keywordflow}{return} \mbox{\hyperlink{classoomph_1_1FiniteElement_a9addfe893ab8205619963aa96204cdc4}{node\_pt}}(n)-\/>\mbox{\hyperlink{classoomph_1_1Node_afcc5cdba40bca251826ae5bee5ca15b4}{value}}(\mbox{\hyperlink{cfortran_8h_adb50e893b86b3e55e751a42eab3cba82}{i}});}
 \DoxyCodeLine{\Hypertarget{elements_8h_source_l02601}02601     \}}
 \DoxyCodeLine{\Hypertarget{elements_8h_source_l02602}02602 \textcolor{comment}{}}
 \DoxyCodeLine{\Hypertarget{elements_8h_source_l02603}02603 \textcolor{comment}{    /// Return the i-\/th value stored at local node n, at time level t}}
@@ -2611,7 +2611,7 @@
 \DoxyCodeLine{\Hypertarget{elements_8h_source_l02607}02607                        \textcolor{keyword}{const} \textcolor{keywordtype}{unsigned}\& n,}
 \DoxyCodeLine{\Hypertarget{elements_8h_source_l02608}02608                        \textcolor{keyword}{const} \textcolor{keywordtype}{unsigned}\& \mbox{\hyperlink{cfortran_8h_adb50e893b86b3e55e751a42eab3cba82}{i}})\textcolor{keyword}{ const}}
 \DoxyCodeLine{\Hypertarget{elements_8h_source_l02609}02609 \textcolor{keyword}{    }\{}
-\DoxyCodeLine{\Hypertarget{elements_8h_source_l02610}02610       \textcolor{keywordflow}{return} \mbox{\hyperlink{classoomph_1_1FiniteElement_a9addfe893ab8205619963aa96204cdc4}{node\_pt}}(n)-\/>value(\mbox{\hyperlink{cfortran_8h_af6f0bd3dc13317f895c91323c25c2b8f}{t}}, \mbox{\hyperlink{cfortran_8h_adb50e893b86b3e55e751a42eab3cba82}{i}});}
+\DoxyCodeLine{\Hypertarget{elements_8h_source_l02610}02610       \textcolor{keywordflow}{return} \mbox{\hyperlink{classoomph_1_1FiniteElement_a9addfe893ab8205619963aa96204cdc4}{node\_pt}}(n)-\/>\mbox{\hyperlink{classoomph_1_1Node_afcc5cdba40bca251826ae5bee5ca15b4}{value}}(\mbox{\hyperlink{cfortran_8h_af6f0bd3dc13317f895c91323c25c2b8f}{t}}, \mbox{\hyperlink{cfortran_8h_adb50e893b86b3e55e751a42eab3cba82}{i}});}
 \DoxyCodeLine{\Hypertarget{elements_8h_source_l02611}02611     \}}
 \DoxyCodeLine{\Hypertarget{elements_8h_source_l02612}02612 \textcolor{comment}{}}
 \DoxyCodeLine{\Hypertarget{elements_8h_source_l02613}02613 \textcolor{comment}{    /// Return the spatial dimension of the element, i.e.}}
@@ -2900,7 +2900,7 @@
 \DoxyCodeLine{\Hypertarget{elements_8h_source_l02896}02896       \textcolor{comment}{// Decide the dimensions of the nodes}}
 \DoxyCodeLine{\Hypertarget{elements_8h_source_l02897}02897       \textcolor{keywordtype}{unsigned} nnod = \mbox{\hyperlink{classoomph_1_1FiniteElement_a6219ed269a6d89b5aa14659cce48905a}{nnode}}();}
 \DoxyCodeLine{\Hypertarget{elements_8h_source_l02898}02898       \textcolor{keywordflow}{if} (nnod == 0) \textcolor{keywordflow}{return};}
-\DoxyCodeLine{\Hypertarget{elements_8h_source_l02899}02899       \textcolor{keywordtype}{unsigned} n = \mbox{\hyperlink{classoomph_1_1FiniteElement_a9addfe893ab8205619963aa96204cdc4}{node\_pt}}(0)-\/>ndim();}
+\DoxyCodeLine{\Hypertarget{elements_8h_source_l02899}02899       \textcolor{keywordtype}{unsigned} n = \mbox{\hyperlink{classoomph_1_1FiniteElement_a9addfe893ab8205619963aa96204cdc4}{node\_pt}}(0)-\/>\mbox{\hyperlink{classoomph_1_1Node_a786c96a8e46eb27a03b2b31f629d41b3}{ndim}}();}
 \DoxyCodeLine{\Hypertarget{elements_8h_source_l02900}02900 }
 \DoxyCodeLine{\Hypertarget{elements_8h_source_l02901}02901       \textcolor{comment}{// Vector for local coordinates}}
 \DoxyCodeLine{\Hypertarget{elements_8h_source_l02902}02902       \mbox{\hyperlink{classoomph_1_1Vector}{Vector<double>}} \mbox{\hyperlink{cfortran_8h_ab7123126e4885ef647dd9c6e3807a21c}{s}}(n, 0.0);}
@@ -3801,7 +3801,7 @@
 \DoxyCodeLine{\Hypertarget{elements_8h_source_l03797}03797     \}}
 \DoxyCodeLine{\Hypertarget{elements_8h_source_l03798}03798 \textcolor{comment}{}}
 \DoxyCodeLine{\Hypertarget{elements_8h_source_l03799}03799 \textcolor{comment}{    /// Construct the local node n and return a pointer to it.}}
-\DoxyCodeLine{\Hypertarget{elements_8h_source_l03800}\mbox{\hyperlink{classoomph_1_1SolidFiniteElement_aa30151fe24a9e3bbdb35b5f873219fd8}{03800}} \textcolor{comment}{}    Node* \mbox{\hyperlink{classoomph_1_1SolidFiniteElement_aa30151fe24a9e3bbdb35b5f873219fd8}{construct\_node}}(\textcolor{keyword}{const} \textcolor{keywordtype}{unsigned}\& n)}
+\DoxyCodeLine{\Hypertarget{elements_8h_source_l03800}\mbox{\hyperlink{classoomph_1_1SolidFiniteElement_aa30151fe24a9e3bbdb35b5f873219fd8}{03800}} \textcolor{comment}{}    \mbox{\hyperlink{classoomph_1_1Node}{Node}}* \mbox{\hyperlink{classoomph_1_1SolidFiniteElement_aa30151fe24a9e3bbdb35b5f873219fd8}{construct\_node}}(\textcolor{keyword}{const} \textcolor{keywordtype}{unsigned}\& n)}
 \DoxyCodeLine{\Hypertarget{elements_8h_source_l03801}03801     \{}
 \DoxyCodeLine{\Hypertarget{elements_8h_source_l03802}03802       \textcolor{comment}{// Construct a solid node and assign it to the local node pointer vector.}}
 \DoxyCodeLine{\Hypertarget{elements_8h_source_l03803}03803       \textcolor{comment}{// The dimension and number of values are taken from internal element data}}
@@ -3819,7 +3819,7 @@
 \DoxyCodeLine{\Hypertarget{elements_8h_source_l03815}03815 \textcolor{comment}{    /// Construct the local node n and return}}
 \DoxyCodeLine{\Hypertarget{elements_8h_source_l03816}03816 \textcolor{comment}{    /// a pointer to it. Additionally, create storage for `history'}}
 \DoxyCodeLine{\Hypertarget{elements_8h_source_l03817}03817 \textcolor{comment}{    /// values as required by timestepper}}
-\DoxyCodeLine{\Hypertarget{elements_8h_source_l03818}\mbox{\hyperlink{classoomph_1_1SolidFiniteElement_aa39b6457104075d53c287c55324174b0}{03818}} \textcolor{comment}{}    Node* \mbox{\hyperlink{classoomph_1_1SolidFiniteElement_aa39b6457104075d53c287c55324174b0}{construct\_node}}(\textcolor{keyword}{const} \textcolor{keywordtype}{unsigned}\& n, \mbox{\hyperlink{classoomph_1_1TimeStepper}{TimeStepper}}* \textcolor{keyword}{const}\& \mbox{\hyperlink{classoomph_1_1GeomObject_a0fc851a3b50103b6c9f68efe86e709de}{time\_stepper\_pt}})}
+\DoxyCodeLine{\Hypertarget{elements_8h_source_l03818}\mbox{\hyperlink{classoomph_1_1SolidFiniteElement_aa39b6457104075d53c287c55324174b0}{03818}} \textcolor{comment}{}    \mbox{\hyperlink{classoomph_1_1Node}{Node}}* \mbox{\hyperlink{classoomph_1_1SolidFiniteElement_aa39b6457104075d53c287c55324174b0}{construct\_node}}(\textcolor{keyword}{const} \textcolor{keywordtype}{unsigned}\& n, \mbox{\hyperlink{classoomph_1_1TimeStepper}{TimeStepper}}* \textcolor{keyword}{const}\& \mbox{\hyperlink{classoomph_1_1GeomObject_a0fc851a3b50103b6c9f68efe86e709de}{time\_stepper\_pt}})}
 \DoxyCodeLine{\Hypertarget{elements_8h_source_l03819}03819     \{}
 \DoxyCodeLine{\Hypertarget{elements_8h_source_l03820}03820       \textcolor{comment}{// Construct a solid node and assign it to the local node pointer vector}}
 \DoxyCodeLine{\Hypertarget{elements_8h_source_l03821}03821       \textcolor{comment}{// The dimension and number of values are taken from internal element data}}
@@ -3837,7 +3837,7 @@
 \DoxyCodeLine{\Hypertarget{elements_8h_source_l03833}03833 \textcolor{comment}{    /// Construct the local node n and return a pointer to it.}}
 \DoxyCodeLine{\Hypertarget{elements_8h_source_l03834}03834 \textcolor{comment}{    /// in the case when it is a boundary node; that is it MAY be}}
 \DoxyCodeLine{\Hypertarget{elements_8h_source_l03835}03835 \textcolor{comment}{    /// located on a Mesh boundary}}
-\DoxyCodeLine{\Hypertarget{elements_8h_source_l03836}\mbox{\hyperlink{classoomph_1_1SolidFiniteElement_a262ee54542524b5794b3f383fcbfcde4}{03836}} \textcolor{comment}{}    Node* \mbox{\hyperlink{classoomph_1_1SolidFiniteElement_a262ee54542524b5794b3f383fcbfcde4}{construct\_boundary\_node}}(\textcolor{keyword}{const} \textcolor{keywordtype}{unsigned}\& n)}
+\DoxyCodeLine{\Hypertarget{elements_8h_source_l03836}\mbox{\hyperlink{classoomph_1_1SolidFiniteElement_a262ee54542524b5794b3f383fcbfcde4}{03836}} \textcolor{comment}{}    \mbox{\hyperlink{classoomph_1_1Node}{Node}}* \mbox{\hyperlink{classoomph_1_1SolidFiniteElement_a262ee54542524b5794b3f383fcbfcde4}{construct\_boundary\_node}}(\textcolor{keyword}{const} \textcolor{keywordtype}{unsigned}\& n)}
 \DoxyCodeLine{\Hypertarget{elements_8h_source_l03837}03837     \{}
 \DoxyCodeLine{\Hypertarget{elements_8h_source_l03838}03838       \textcolor{comment}{// Construct a solid node and assign it to the local node pointer vector.}}
 \DoxyCodeLine{\Hypertarget{elements_8h_source_l03839}03839       \textcolor{comment}{// The dimension and number of values are taken from internal element data}}
@@ -3856,7 +3856,7 @@
 \DoxyCodeLine{\Hypertarget{elements_8h_source_l03852}03852 \textcolor{comment}{    /// a pointer to it, in the case when the node MAY be located}}
 \DoxyCodeLine{\Hypertarget{elements_8h_source_l03853}03853 \textcolor{comment}{    /// on a boundary. Additionally, create storage for `history'}}
 \DoxyCodeLine{\Hypertarget{elements_8h_source_l03854}03854 \textcolor{comment}{    /// values as required by timestepper}}
-\DoxyCodeLine{\Hypertarget{elements_8h_source_l03855}\mbox{\hyperlink{classoomph_1_1SolidFiniteElement_ace6d7096d5a295e6f6adeed1caa34fa4}{03855}} \textcolor{comment}{}    Node* \mbox{\hyperlink{classoomph_1_1SolidFiniteElement_ace6d7096d5a295e6f6adeed1caa34fa4}{construct\_boundary\_node}}(\textcolor{keyword}{const} \textcolor{keywordtype}{unsigned}\& n,}
+\DoxyCodeLine{\Hypertarget{elements_8h_source_l03855}\mbox{\hyperlink{classoomph_1_1SolidFiniteElement_ace6d7096d5a295e6f6adeed1caa34fa4}{03855}} \textcolor{comment}{}    \mbox{\hyperlink{classoomph_1_1Node}{Node}}* \mbox{\hyperlink{classoomph_1_1SolidFiniteElement_ace6d7096d5a295e6f6adeed1caa34fa4}{construct\_boundary\_node}}(\textcolor{keyword}{const} \textcolor{keywordtype}{unsigned}\& n,}
 \DoxyCodeLine{\Hypertarget{elements_8h_source_l03856}03856                                   \mbox{\hyperlink{classoomph_1_1TimeStepper}{TimeStepper}}* \textcolor{keyword}{const}\& \mbox{\hyperlink{classoomph_1_1GeomObject_a0fc851a3b50103b6c9f68efe86e709de}{time\_stepper\_pt}})}
 \DoxyCodeLine{\Hypertarget{elements_8h_source_l03857}03857     \{}
 \DoxyCodeLine{\Hypertarget{elements_8h_source_l03858}03858       \textcolor{comment}{// Construct a solid node and assign it to the local node pointer vector}}
@@ -4534,7 +4534,7 @@
 \DoxyCodeLine{\Hypertarget{elements_8h_source_l04530}04530       \mbox{\hyperlink{classoomph_1_1Vector}{Vector<double>}} zeta(this-\/>\mbox{\hyperlink{classoomph_1_1FiniteElement_a5f8fe59f06da1da9f6b7bbcbdb90ef93}{dim}}());}
 \DoxyCodeLine{\Hypertarget{elements_8h_source_l04531}04531 }
 \DoxyCodeLine{\Hypertarget{elements_8h_source_l04532}04532       \textcolor{comment}{// Get the k-\/th generalised boundary coordinate at node n}}
-\DoxyCodeLine{\Hypertarget{elements_8h_source_l04533}04533       this-\/>\mbox{\hyperlink{classoomph_1_1FiniteElement_a9addfe893ab8205619963aa96204cdc4}{node\_pt}}(n)-\/>get\_coordinates\_on\_boundary(}
+\DoxyCodeLine{\Hypertarget{elements_8h_source_l04533}04533       this-\/>\mbox{\hyperlink{classoomph_1_1FiniteElement_a9addfe893ab8205619963aa96204cdc4}{node\_pt}}(n)-\/>\mbox{\hyperlink{classoomph_1_1Node_abc8b7dc78cc1d0aab34eeaf856e21ea8}{get\_coordinates\_on\_boundary}}(}
 \DoxyCodeLine{\Hypertarget{elements_8h_source_l04534}04534         \mbox{\hyperlink{classoomph_1_1FaceElement_a12768f6229f232be88da7dfa10fd87be}{Boundary\_number\_in\_bulk\_mesh}}, k, zeta);}
 \DoxyCodeLine{\Hypertarget{elements_8h_source_l04535}04535 }
 \DoxyCodeLine{\Hypertarget{elements_8h_source_l04536}04536       \textcolor{comment}{// Return the individual coordinate}}
@@ -4919,14 +4919,14 @@
 \DoxyCodeLine{\Hypertarget{elements_8h_source_l04915}04915       \textcolor{keywordflow}{for} (\textcolor{keywordtype}{unsigned} l = 0; l < n\_node; l++)}
 \DoxyCodeLine{\Hypertarget{elements_8h_source_l04916}04916       \{}
 \DoxyCodeLine{\Hypertarget{elements_8h_source_l04917}04917         \textcolor{comment}{// Find number of values stored at the node}}
-\DoxyCodeLine{\Hypertarget{elements_8h_source_l04918}04918         \textcolor{keywordtype}{unsigned} Initial\_Nvalue = \mbox{\hyperlink{classoomph_1_1FiniteElement_a9addfe893ab8205619963aa96204cdc4}{node\_pt}}(l)-\/>nvalue();}
+\DoxyCodeLine{\Hypertarget{elements_8h_source_l04918}04918         \textcolor{keywordtype}{unsigned} Initial\_Nvalue = \mbox{\hyperlink{classoomph_1_1FiniteElement_a9addfe893ab8205619963aa96204cdc4}{node\_pt}}(l)-\/>\mbox{\hyperlink{classoomph_1_1Data_a7e67fc78a2e8a2fd6eb75bd292d42ff8}{nvalue}}();}
 \DoxyCodeLine{\Hypertarget{elements_8h_source_l04919}04919         \textcolor{comment}{// Read out the number of additional values}}
 \DoxyCodeLine{\Hypertarget{elements_8h_source_l04920}04920         \textcolor{keywordtype}{unsigned} Nadditional = nadditional\_data\_values[l];}
 \DoxyCodeLine{\Hypertarget{elements_8h_source_l04921}04921         \textcolor{comment}{// If the node has not already been resized, resize it}}
 \DoxyCodeLine{\Hypertarget{elements_8h_source_l04922}04922         \textcolor{keywordflow}{if} ((Initial\_Nvalue == \mbox{\hyperlink{classoomph_1_1FaceElement_abd04b85066da626341294b5f0b97516e}{Nbulk\_value}}[l]) \&\& (Nadditional > 0))}
 \DoxyCodeLine{\Hypertarget{elements_8h_source_l04923}04923         \{}
 \DoxyCodeLine{\Hypertarget{elements_8h_source_l04924}04924           \textcolor{comment}{// Resize the node according to the number of additional values}}
-\DoxyCodeLine{\Hypertarget{elements_8h_source_l04925}04925           \mbox{\hyperlink{classoomph_1_1FiniteElement_a9addfe893ab8205619963aa96204cdc4}{node\_pt}}(l)-\/>resize(\mbox{\hyperlink{classoomph_1_1FaceElement_abd04b85066da626341294b5f0b97516e}{Nbulk\_value}}[l] + Nadditional);}
+\DoxyCodeLine{\Hypertarget{elements_8h_source_l04925}04925           \mbox{\hyperlink{classoomph_1_1FiniteElement_a9addfe893ab8205619963aa96204cdc4}{node\_pt}}(l)-\/>\mbox{\hyperlink{classoomph_1_1Node_ae6598da29d403889020ccd47a2c07cc4}{resize}}(\mbox{\hyperlink{classoomph_1_1FaceElement_abd04b85066da626341294b5f0b97516e}{Nbulk\_value}}[l] + Nadditional);}
 \DoxyCodeLine{\Hypertarget{elements_8h_source_l04926}04926         \}}
 \DoxyCodeLine{\Hypertarget{elements_8h_source_l04927}04927       \} \textcolor{comment}{// End of loop over nodes}}
 \DoxyCodeLine{\Hypertarget{elements_8h_source_l04928}04928     \}}
@@ -5077,11 +5077,11 @@
 \DoxyCodeLine{\Hypertarget{elements_8h_source_l05073}05073       \textcolor{keywordtype}{unsigned} nnod = \mbox{\hyperlink{classoomph_1_1FiniteElement_a6219ed269a6d89b5aa14659cce48905a}{nnode}}();}
 \DoxyCodeLine{\Hypertarget{elements_8h_source_l05074}05074       \textcolor{keywordflow}{for} (\textcolor{keywordtype}{unsigned} j = 0; j < nnod; j++)}
 \DoxyCodeLine{\Hypertarget{elements_8h_source_l05075}05075       \{}
-\DoxyCodeLine{\Hypertarget{elements_8h_source_l05076}05076         Node* nod\_pt = \mbox{\hyperlink{classoomph_1_1FiniteElement_a9addfe893ab8205619963aa96204cdc4}{node\_pt}}(j);}
-\DoxyCodeLine{\Hypertarget{elements_8h_source_l05077}05077         \textcolor{keywordtype}{unsigned} \mbox{\hyperlink{classoomph_1_1FiniteElement_a5f8fe59f06da1da9f6b7bbcbdb90ef93}{dim}} = nod\_pt-\/>ndim();}
+\DoxyCodeLine{\Hypertarget{elements_8h_source_l05076}05076         \mbox{\hyperlink{classoomph_1_1Node}{Node}}* nod\_pt = \mbox{\hyperlink{classoomph_1_1FiniteElement_a9addfe893ab8205619963aa96204cdc4}{node\_pt}}(j);}
+\DoxyCodeLine{\Hypertarget{elements_8h_source_l05077}05077         \textcolor{keywordtype}{unsigned} \mbox{\hyperlink{classoomph_1_1FiniteElement_a5f8fe59f06da1da9f6b7bbcbdb90ef93}{dim}} = nod\_pt-\/>\mbox{\hyperlink{classoomph_1_1Node_a786c96a8e46eb27a03b2b31f629d41b3}{ndim}}();}
 \DoxyCodeLine{\Hypertarget{elements_8h_source_l05078}05078         \textcolor{keywordflow}{for} (\textcolor{keywordtype}{unsigned} \mbox{\hyperlink{cfortran_8h_adb50e893b86b3e55e751a42eab3cba82}{i}} = 0; \mbox{\hyperlink{cfortran_8h_adb50e893b86b3e55e751a42eab3cba82}{i}} < \mbox{\hyperlink{classoomph_1_1FiniteElement_a5f8fe59f06da1da9f6b7bbcbdb90ef93}{dim}}; \mbox{\hyperlink{cfortran_8h_adb50e893b86b3e55e751a42eab3cba82}{i}}++)}
 \DoxyCodeLine{\Hypertarget{elements_8h_source_l05079}05079         \{}
-\DoxyCodeLine{\Hypertarget{elements_8h_source_l05080}05080           outfile << nod\_pt-\/>x(\mbox{\hyperlink{cfortran_8h_adb50e893b86b3e55e751a42eab3cba82}{i}}) << \textcolor{stringliteral}{"{} "{}};}
+\DoxyCodeLine{\Hypertarget{elements_8h_source_l05080}05080           outfile << nod\_pt-\/>\mbox{\hyperlink{classoomph_1_1Node_ab76b4773a65b349f143539e07b6e15e2}{x}}(\mbox{\hyperlink{cfortran_8h_adb50e893b86b3e55e751a42eab3cba82}{i}}) << \textcolor{stringliteral}{"{} "{}};}
 \DoxyCodeLine{\Hypertarget{elements_8h_source_l05081}05081         \}}
 \DoxyCodeLine{\Hypertarget{elements_8h_source_l05082}05082         outfile << std::endl;}
 \DoxyCodeLine{\Hypertarget{elements_8h_source_l05083}05083       \}}

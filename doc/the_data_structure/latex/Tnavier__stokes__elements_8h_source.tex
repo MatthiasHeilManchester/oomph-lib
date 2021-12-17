@@ -254,7 +254,7 @@
 \DoxyCodeLine{\Hypertarget{Tnavier__stokes__elements_8h_source_l00250}00250     \}}
 \DoxyCodeLine{\Hypertarget{Tnavier__stokes__elements_8h_source_l00251}00251 \textcolor{comment}{}}
 \DoxyCodeLine{\Hypertarget{Tnavier__stokes__elements_8h_source_l00252}00252 \textcolor{comment}{    /// Pointer to the j-\/th vertex node in the element}}
-\DoxyCodeLine{\Hypertarget{Tnavier__stokes__elements_8h_source_l00253}\mbox{\hyperlink{classoomph_1_1TCrouzeixRaviartElement_a471c22235687be8fb0d5e3b0b571440d}{00253}} \textcolor{comment}{}    Node* \mbox{\hyperlink{classoomph_1_1TCrouzeixRaviartElement_a471c22235687be8fb0d5e3b0b571440d}{vertex\_node\_pt}}(\textcolor{keyword}{const} \textcolor{keywordtype}{unsigned}\& j)\textcolor{keyword}{ const}}
+\DoxyCodeLine{\Hypertarget{Tnavier__stokes__elements_8h_source_l00253}\mbox{\hyperlink{classoomph_1_1TCrouzeixRaviartElement_a471c22235687be8fb0d5e3b0b571440d}{00253}} \textcolor{comment}{}    \mbox{\hyperlink{classoomph_1_1Node}{Node}}* \mbox{\hyperlink{classoomph_1_1TCrouzeixRaviartElement_a471c22235687be8fb0d5e3b0b571440d}{vertex\_node\_pt}}(\textcolor{keyword}{const} \textcolor{keywordtype}{unsigned}\& j)\textcolor{keyword}{ const}}
 \DoxyCodeLine{\Hypertarget{Tnavier__stokes__elements_8h_source_l00254}00254 \textcolor{keyword}{    }\{}
 \DoxyCodeLine{\Hypertarget{Tnavier__stokes__elements_8h_source_l00255}00255       \textcolor{keywordflow}{return} \mbox{\hyperlink{classoomph_1_1FiniteElement_a9addfe893ab8205619963aa96204cdc4}{node\_pt}}(j);}
 \DoxyCodeLine{\Hypertarget{Tnavier__stokes__elements_8h_source_l00256}00256     \}}
@@ -882,8 +882,8 @@
 \DoxyCodeLine{\Hypertarget{Tnavier__stokes__elements_8h_source_l00878}00878 \textcolor{comment}{    /// Pin p\_dof-\/th pressure dof and set it to value specified by p\_value.}}
 \DoxyCodeLine{\Hypertarget{Tnavier__stokes__elements_8h_source_l00879}\mbox{\hyperlink{classoomph_1_1TTaylorHoodElement_af20b4527dcb0206523f22d0dd4825727}{00879}} \textcolor{comment}{}    \textcolor{keywordtype}{void} \mbox{\hyperlink{classoomph_1_1TTaylorHoodElement_af20b4527dcb0206523f22d0dd4825727}{fix\_pressure}}(\textcolor{keyword}{const} \textcolor{keywordtype}{unsigned}\& p\_dof, \textcolor{keyword}{const} \textcolor{keywordtype}{double}\& p\_value)}
 \DoxyCodeLine{\Hypertarget{Tnavier__stokes__elements_8h_source_l00880}00880     \{}
-\DoxyCodeLine{\Hypertarget{Tnavier__stokes__elements_8h_source_l00881}00881       this-\/>\mbox{\hyperlink{classoomph_1_1FiniteElement_a9addfe893ab8205619963aa96204cdc4}{node\_pt}}(Pconv[p\_dof])-\/>pin(DIM);}
-\DoxyCodeLine{\Hypertarget{Tnavier__stokes__elements_8h_source_l00882}00882       this-\/>\mbox{\hyperlink{classoomph_1_1FiniteElement_a9addfe893ab8205619963aa96204cdc4}{node\_pt}}(Pconv[p\_dof])-\/>set\_value(DIM, p\_value);}
+\DoxyCodeLine{\Hypertarget{Tnavier__stokes__elements_8h_source_l00881}00881       this-\/>\mbox{\hyperlink{classoomph_1_1FiniteElement_a9addfe893ab8205619963aa96204cdc4}{node\_pt}}(Pconv[p\_dof])-\/>\mbox{\hyperlink{classoomph_1_1Data_a422231c58e423f0b43822827aa334d79}{pin}}(DIM);}
+\DoxyCodeLine{\Hypertarget{Tnavier__stokes__elements_8h_source_l00882}00882       this-\/>\mbox{\hyperlink{classoomph_1_1FiniteElement_a9addfe893ab8205619963aa96204cdc4}{node\_pt}}(Pconv[p\_dof])-\/>\mbox{\hyperlink{classoomph_1_1Data_a7289ca322725c6fd493970a19474b382}{set\_value}}(DIM, p\_value);}
 \DoxyCodeLine{\Hypertarget{Tnavier__stokes__elements_8h_source_l00883}00883     \}}
 \DoxyCodeLine{\Hypertarget{Tnavier__stokes__elements_8h_source_l00884}00884 }
 \DoxyCodeLine{\Hypertarget{Tnavier__stokes__elements_8h_source_l00885}00885 \textcolor{comment}{}}
@@ -956,7 +956,7 @@
 \DoxyCodeLine{\Hypertarget{Tnavier__stokes__elements_8h_source_l00952}00952     \}}
 \DoxyCodeLine{\Hypertarget{Tnavier__stokes__elements_8h_source_l00953}00953 \textcolor{comment}{}}
 \DoxyCodeLine{\Hypertarget{Tnavier__stokes__elements_8h_source_l00954}00954 \textcolor{comment}{    /// Pointer to the j-\/th vertex node in the element}}
-\DoxyCodeLine{\Hypertarget{Tnavier__stokes__elements_8h_source_l00955}\mbox{\hyperlink{classoomph_1_1TTaylorHoodElement_a501eeeb12a95115078ba08cd17c34d2a}{00955}} \textcolor{comment}{}    Node* \mbox{\hyperlink{classoomph_1_1TTaylorHoodElement_a501eeeb12a95115078ba08cd17c34d2a}{vertex\_node\_pt}}(\textcolor{keyword}{const} \textcolor{keywordtype}{unsigned}\& j)\textcolor{keyword}{ const}}
+\DoxyCodeLine{\Hypertarget{Tnavier__stokes__elements_8h_source_l00955}\mbox{\hyperlink{classoomph_1_1TTaylorHoodElement_a501eeeb12a95115078ba08cd17c34d2a}{00955}} \textcolor{comment}{}    \mbox{\hyperlink{classoomph_1_1Node}{Node}}* \mbox{\hyperlink{classoomph_1_1TTaylorHoodElement_a501eeeb12a95115078ba08cd17c34d2a}{vertex\_node\_pt}}(\textcolor{keyword}{const} \textcolor{keywordtype}{unsigned}\& j)\textcolor{keyword}{ const}}
 \DoxyCodeLine{\Hypertarget{Tnavier__stokes__elements_8h_source_l00956}00956 \textcolor{keyword}{    }\{}
 \DoxyCodeLine{\Hypertarget{Tnavier__stokes__elements_8h_source_l00957}00957       \textcolor{keywordflow}{return} \mbox{\hyperlink{classoomph_1_1FiniteElement_a9addfe893ab8205619963aa96204cdc4}{node\_pt}}(j);}
 \DoxyCodeLine{\Hypertarget{Tnavier__stokes__elements_8h_source_l00958}00958     \}}

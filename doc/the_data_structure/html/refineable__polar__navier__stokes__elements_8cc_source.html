@@ -205,7 +205,7 @@ $(function() {
 <div class="line"><a id="l00076" name="l00076"></a><span class="lineno">   76</span>      <span class="comment">// Read out whether the pressure is hanging</span></div>
 <div class="line"><a id="l00077" name="l00077"></a><span class="lineno">   77</span>      <span class="keywordflow">for</span> (<span class="keywordtype">unsigned</span> l = 0; l &lt; n_pres; ++l)</div>
 <div class="line"><a id="l00078" name="l00078"></a><span class="lineno">   78</span>      {</div>
-<div class="line"><a id="l00079" name="l00079"></a><span class="lineno">   79</span>        pressure_dof_is_hanging[l] = <a class="code hl_function" href="classoomph_1_1RefineablePolarNavierStokesEquations.html#ac0dbc7d0d05f52e8242a1612c5247504">pressure_node_pt</a>(l)-&gt;is_hanging(p_index);</div>
+<div class="line"><a id="l00079" name="l00079"></a><span class="lineno">   79</span>        pressure_dof_is_hanging[l] = <a class="code hl_function" href="classoomph_1_1RefineablePolarNavierStokesEquations.html#ac0dbc7d0d05f52e8242a1612c5247504">pressure_node_pt</a>(l)-&gt;<a class="code hl_function" href="classoomph_1_1Node.html#af0e6237dfafad62cf427ff5013ddcfef">is_hanging</a>(p_index);</div>
 <div class="line"><a id="l00080" name="l00080"></a><span class="lineno">   80</span>      }</div>
 <div class="line"><a id="l00081" name="l00081"></a><span class="lineno">   81</span>    }</div>
 <div class="line"><a id="l00082" name="l00082"></a><span class="lineno">   82</span>    <span class="comment">// Otherwise the pressure is not stored at a node and so cannot hang</span></div>
@@ -314,12 +314,12 @@ $(function() {
 <div class="line"><a id="l00185" name="l00185"></a><span class="lineno">  185</span>      <span class="keywordflow">for</span> (<span class="keywordtype">unsigned</span> l = 0; l &lt; n_node; l++)</div>
 <div class="line"><a id="l00186" name="l00186"></a><span class="lineno">  186</span>      {</div>
 <div class="line"><a id="l00187" name="l00187"></a><span class="lineno">  187</span>        <span class="comment">// Local boolean to indicate whether the node is hanging</span></div>
-<div class="line"><a id="l00188" name="l00188"></a><span class="lineno">  188</span>        <span class="keywordtype">bool</span> is_node_hanging = <a class="code hl_function" href="classoomph_1_1FiniteElement.html#a9addfe893ab8205619963aa96204cdc4">node_pt</a>(l)-&gt;is_hanging();</div>
+<div class="line"><a id="l00188" name="l00188"></a><span class="lineno">  188</span>        <span class="keywordtype">bool</span> is_node_hanging = <a class="code hl_function" href="classoomph_1_1FiniteElement.html#a9addfe893ab8205619963aa96204cdc4">node_pt</a>(l)-&gt;<a class="code hl_function" href="classoomph_1_1Node.html#af0e6237dfafad62cf427ff5013ddcfef">is_hanging</a>();</div>
 <div class="line"><a id="l00189" name="l00189"></a><span class="lineno">  189</span> </div>
 <div class="line"><a id="l00190" name="l00190"></a><span class="lineno">  190</span>        <span class="comment">// If the node is hanging</span></div>
 <div class="line"><a id="l00191" name="l00191"></a><span class="lineno">  191</span>        <span class="keywordflow">if</span> (is_node_hanging)</div>
 <div class="line"><a id="l00192" name="l00192"></a><span class="lineno">  192</span>        {</div>
-<div class="line"><a id="l00193" name="l00193"></a><span class="lineno">  193</span>          hang_info_pt = <a class="code hl_function" href="classoomph_1_1FiniteElement.html#a9addfe893ab8205619963aa96204cdc4">node_pt</a>(l)-&gt;hanging_pt();</div>
+<div class="line"><a id="l00193" name="l00193"></a><span class="lineno">  193</span>          hang_info_pt = <a class="code hl_function" href="classoomph_1_1FiniteElement.html#a9addfe893ab8205619963aa96204cdc4">node_pt</a>(l)-&gt;<a class="code hl_function" href="classoomph_1_1Node.html#afefa22db8b28e783b8647e3577ee01d9">hanging_pt</a>();</div>
 <div class="line"><a id="l00194" name="l00194"></a><span class="lineno">  194</span>          <span class="comment">// Read out number of master nodes from hanging data</span></div>
 <div class="line"><a id="l00195" name="l00195"></a><span class="lineno">  195</span>          n_master = hang_info_pt-&gt;<a class="code hl_function" href="classoomph_1_1HangInfo.html#aa9c1130b58db2ff6d5eee4f923ba365c">nmaster</a>();</div>
 <div class="line"><a id="l00196" name="l00196"></a><span class="lineno">  196</span>        }</div>
@@ -399,14 +399,14 @@ $(function() {
 <div class="line"><a id="l00270" name="l00270"></a><span class="lineno">  270</span>                <span class="keywordflow">for</span> (<span class="keywordtype">unsigned</span> l2 = 0; l2 &lt; n_node; l2++)</div>
 <div class="line"><a id="l00271" name="l00271"></a><span class="lineno">  271</span>                {</div>
 <div class="line"><a id="l00272" name="l00272"></a><span class="lineno">  272</span>                  <span class="comment">// Local boolean to indicate whether the node is hanging</span></div>
-<div class="line"><a id="l00273" name="l00273"></a><span class="lineno">  273</span>                  <span class="keywordtype">bool</span> is_node2_hanging = <a class="code hl_function" href="classoomph_1_1FiniteElement.html#a9addfe893ab8205619963aa96204cdc4">node_pt</a>(l2)-&gt;is_hanging();</div>
+<div class="line"><a id="l00273" name="l00273"></a><span class="lineno">  273</span>                  <span class="keywordtype">bool</span> is_node2_hanging = <a class="code hl_function" href="classoomph_1_1FiniteElement.html#a9addfe893ab8205619963aa96204cdc4">node_pt</a>(l2)-&gt;<a class="code hl_function" href="classoomph_1_1Node.html#af0e6237dfafad62cf427ff5013ddcfef">is_hanging</a>();</div>
 <div class="line"><a id="l00274" name="l00274"></a><span class="lineno">  274</span> </div>
 <div class="line"><a id="l00275" name="l00275"></a><span class="lineno">  275</span>                  <span class="comment">// If the node is hanging</span></div>
 <div class="line"><a id="l00276" name="l00276"></a><span class="lineno">  276</span>                  <span class="keywordflow">if</span> (is_node2_hanging)</div>
 <div class="line"><a id="l00277" name="l00277"></a><span class="lineno">  277</span>                  {</div>
-<div class="line"><a id="l00278" name="l00278"></a><span class="lineno">  278</span>                    hang_info2_pt = <a class="code hl_function" href="classoomph_1_1FiniteElement.html#a9addfe893ab8205619963aa96204cdc4">node_pt</a>(l2)-&gt;hanging_pt();</div>
+<div class="line"><a id="l00278" name="l00278"></a><span class="lineno">  278</span>                    hang_info2_pt = <a class="code hl_function" href="classoomph_1_1FiniteElement.html#a9addfe893ab8205619963aa96204cdc4">node_pt</a>(l2)-&gt;<a class="code hl_function" href="classoomph_1_1Node.html#afefa22db8b28e783b8647e3577ee01d9">hanging_pt</a>();</div>
 <div class="line"><a id="l00279" name="l00279"></a><span class="lineno">  279</span>                    <span class="comment">// Read out number of master nodes from hanging data</span></div>
-<div class="line"><a id="l00280" name="l00280"></a><span class="lineno">  280</span>                    n_master2 = hang_info2_pt-&gt;nmaster();</div>
+<div class="line"><a id="l00280" name="l00280"></a><span class="lineno">  280</span>                    n_master2 = hang_info2_pt-&gt;<a class="code hl_function" href="classoomph_1_1HangInfo.html#aa9c1130b58db2ff6d5eee4f923ba365c">nmaster</a>();</div>
 <div class="line"><a id="l00281" name="l00281"></a><span class="lineno">  281</span>                  }</div>
 <div class="line"><a id="l00282" name="l00282"></a><span class="lineno">  282</span>                  <span class="comment">// Otherwise the node is its own master</span></div>
 <div class="line"><a id="l00283" name="l00283"></a><span class="lineno">  283</span>                  <span class="keywordflow">else</span></div>
@@ -542,10 +542,10 @@ $(function() {
 <div class="line"><a id="l00413" name="l00413"></a><span class="lineno">  413</span>                  <span class="keywordflow">if</span> (pressure_dof_is_hanging[l2])</div>
 <div class="line"><a id="l00414" name="l00414"></a><span class="lineno">  414</span>                  {</div>
 <div class="line"><a id="l00415" name="l00415"></a><span class="lineno">  415</span>                    hang_info2_pt =</div>
-<div class="line"><a id="l00416" name="l00416"></a><span class="lineno">  416</span>                      this-&gt;<a class="code hl_function" href="classoomph_1_1RefineablePolarNavierStokesEquations.html#ac0dbc7d0d05f52e8242a1612c5247504">pressure_node_pt</a>(l2)-&gt;hanging_pt(p_index);</div>
+<div class="line"><a id="l00416" name="l00416"></a><span class="lineno">  416</span>                      this-&gt;<a class="code hl_function" href="classoomph_1_1RefineablePolarNavierStokesEquations.html#ac0dbc7d0d05f52e8242a1612c5247504">pressure_node_pt</a>(l2)-&gt;<a class="code hl_function" href="classoomph_1_1Node.html#afefa22db8b28e783b8647e3577ee01d9">hanging_pt</a>(p_index);</div>
 <div class="line"><a id="l00417" name="l00417"></a><span class="lineno">  417</span>                    <span class="comment">// Pressure dof is hanging so it must be nodal-based</span></div>
 <div class="line"><a id="l00418" name="l00418"></a><span class="lineno">  418</span>                    <span class="comment">// Get the number of master nodes from the pressure node</span></div>
-<div class="line"><a id="l00419" name="l00419"></a><span class="lineno">  419</span>                    n_master2 = hang_info2_pt-&gt;nmaster();</div>
+<div class="line"><a id="l00419" name="l00419"></a><span class="lineno">  419</span>                    n_master2 = hang_info2_pt-&gt;<a class="code hl_function" href="classoomph_1_1HangInfo.html#aa9c1130b58db2ff6d5eee4f923ba365c">nmaster</a>();</div>
 <div class="line"><a id="l00420" name="l00420"></a><span class="lineno">  420</span>                  }</div>
 <div class="line"><a id="l00421" name="l00421"></a><span class="lineno">  421</span>                  <span class="comment">// Otherwise the node is its own master</span></div>
 <div class="line"><a id="l00422" name="l00422"></a><span class="lineno">  422</span>                  <span class="keywordflow">else</span></div>
@@ -666,14 +666,14 @@ $(function() {
 <div class="line"><a id="l00537" name="l00537"></a><span class="lineno">  537</span>                <span class="keywordflow">for</span> (<span class="keywordtype">unsigned</span> l2 = 0; l2 &lt; n_node; l2++)</div>
 <div class="line"><a id="l00538" name="l00538"></a><span class="lineno">  538</span>                {</div>
 <div class="line"><a id="l00539" name="l00539"></a><span class="lineno">  539</span>                  <span class="comment">// Local boolean to indicate whether the node is hanging</span></div>
-<div class="line"><a id="l00540" name="l00540"></a><span class="lineno">  540</span>                  <span class="keywordtype">bool</span> is_node2_hanging = <a class="code hl_function" href="classoomph_1_1FiniteElement.html#a9addfe893ab8205619963aa96204cdc4">node_pt</a>(l2)-&gt;is_hanging();</div>
+<div class="line"><a id="l00540" name="l00540"></a><span class="lineno">  540</span>                  <span class="keywordtype">bool</span> is_node2_hanging = <a class="code hl_function" href="classoomph_1_1FiniteElement.html#a9addfe893ab8205619963aa96204cdc4">node_pt</a>(l2)-&gt;<a class="code hl_function" href="classoomph_1_1Node.html#af0e6237dfafad62cf427ff5013ddcfef">is_hanging</a>();</div>
 <div class="line"><a id="l00541" name="l00541"></a><span class="lineno">  541</span> </div>
 <div class="line"><a id="l00542" name="l00542"></a><span class="lineno">  542</span>                  <span class="comment">// If the node is hanging</span></div>
 <div class="line"><a id="l00543" name="l00543"></a><span class="lineno">  543</span>                  <span class="keywordflow">if</span> (is_node2_hanging)</div>
 <div class="line"><a id="l00544" name="l00544"></a><span class="lineno">  544</span>                  {</div>
-<div class="line"><a id="l00545" name="l00545"></a><span class="lineno">  545</span>                    hang_info2_pt = <a class="code hl_function" href="classoomph_1_1FiniteElement.html#a9addfe893ab8205619963aa96204cdc4">node_pt</a>(l2)-&gt;hanging_pt();</div>
+<div class="line"><a id="l00545" name="l00545"></a><span class="lineno">  545</span>                    hang_info2_pt = <a class="code hl_function" href="classoomph_1_1FiniteElement.html#a9addfe893ab8205619963aa96204cdc4">node_pt</a>(l2)-&gt;<a class="code hl_function" href="classoomph_1_1Node.html#afefa22db8b28e783b8647e3577ee01d9">hanging_pt</a>();</div>
 <div class="line"><a id="l00546" name="l00546"></a><span class="lineno">  546</span>                    <span class="comment">// Read out number of master nodes from hanging data</span></div>
-<div class="line"><a id="l00547" name="l00547"></a><span class="lineno">  547</span>                    n_master2 = hang_info2_pt-&gt;nmaster();</div>
+<div class="line"><a id="l00547" name="l00547"></a><span class="lineno">  547</span>                    n_master2 = hang_info2_pt-&gt;<a class="code hl_function" href="classoomph_1_1HangInfo.html#aa9c1130b58db2ff6d5eee4f923ba365c">nmaster</a>();</div>
 <div class="line"><a id="l00548" name="l00548"></a><span class="lineno">  548</span>                  }</div>
 <div class="line"><a id="l00549" name="l00549"></a><span class="lineno">  549</span>                  <span class="comment">// Otherwise the node is its own master</span></div>
 <div class="line"><a id="l00550" name="l00550"></a><span class="lineno">  550</span>                  <span class="keywordflow">else</span></div>
@@ -814,10 +814,10 @@ $(function() {
 <div class="line"><a id="l00685" name="l00685"></a><span class="lineno">  685</span>                  <span class="keywordflow">if</span> (pressure_dof_is_hanging[l2])</div>
 <div class="line"><a id="l00686" name="l00686"></a><span class="lineno">  686</span>                  {</div>
 <div class="line"><a id="l00687" name="l00687"></a><span class="lineno">  687</span>                    hang_info2_pt =</div>
-<div class="line"><a id="l00688" name="l00688"></a><span class="lineno">  688</span>                      this-&gt;<a class="code hl_function" href="classoomph_1_1RefineablePolarNavierStokesEquations.html#ac0dbc7d0d05f52e8242a1612c5247504">pressure_node_pt</a>(l2)-&gt;hanging_pt(p_index);</div>
+<div class="line"><a id="l00688" name="l00688"></a><span class="lineno">  688</span>                      this-&gt;<a class="code hl_function" href="classoomph_1_1RefineablePolarNavierStokesEquations.html#ac0dbc7d0d05f52e8242a1612c5247504">pressure_node_pt</a>(l2)-&gt;<a class="code hl_function" href="classoomph_1_1Node.html#afefa22db8b28e783b8647e3577ee01d9">hanging_pt</a>(p_index);</div>
 <div class="line"><a id="l00689" name="l00689"></a><span class="lineno">  689</span>                    <span class="comment">// Pressure dof is hanging so it must be nodal-based</span></div>
 <div class="line"><a id="l00690" name="l00690"></a><span class="lineno">  690</span>                    <span class="comment">// Get the number of master nodes from the pressure node</span></div>
-<div class="line"><a id="l00691" name="l00691"></a><span class="lineno">  691</span>                    n_master2 = hang_info2_pt-&gt;nmaster();</div>
+<div class="line"><a id="l00691" name="l00691"></a><span class="lineno">  691</span>                    n_master2 = hang_info2_pt-&gt;<a class="code hl_function" href="classoomph_1_1HangInfo.html#aa9c1130b58db2ff6d5eee4f923ba365c">nmaster</a>();</div>
 <div class="line"><a id="l00692" name="l00692"></a><span class="lineno">  692</span>                  }</div>
 <div class="line"><a id="l00693" name="l00693"></a><span class="lineno">  693</span>                  <span class="comment">// Otherwise the node is its own master</span></div>
 <div class="line"><a id="l00694" name="l00694"></a><span class="lineno">  694</span>                  <span class="keywordflow">else</span></div>
@@ -879,7 +879,7 @@ $(function() {
 <div class="line"><a id="l00750" name="l00750"></a><span class="lineno">  750</span>        {</div>
 <div class="line"><a id="l00751" name="l00751"></a><span class="lineno">  751</span>          <span class="comment">// Pressure dof is hanging so it must be nodal-based</span></div>
 <div class="line"><a id="l00752" name="l00752"></a><span class="lineno">  752</span>          <span class="comment">// Get the hang info object</span></div>
-<div class="line"><a id="l00753" name="l00753"></a><span class="lineno">  753</span>          hang_info_pt = this-&gt;<a class="code hl_function" href="classoomph_1_1RefineablePolarNavierStokesEquations.html#ac0dbc7d0d05f52e8242a1612c5247504">pressure_node_pt</a>(l)-&gt;hanging_pt(p_index);</div>
+<div class="line"><a id="l00753" name="l00753"></a><span class="lineno">  753</span>          hang_info_pt = this-&gt;<a class="code hl_function" href="classoomph_1_1RefineablePolarNavierStokesEquations.html#ac0dbc7d0d05f52e8242a1612c5247504">pressure_node_pt</a>(l)-&gt;<a class="code hl_function" href="classoomph_1_1Node.html#afefa22db8b28e783b8647e3577ee01d9">hanging_pt</a>(p_index);</div>
 <div class="line"><a id="l00754" name="l00754"></a><span class="lineno">  754</span>          <span class="comment">// Get the number of master nodes from the pressure node</span></div>
 <div class="line"><a id="l00755" name="l00755"></a><span class="lineno">  755</span>          n_master = hang_info_pt-&gt;<a class="code hl_function" href="classoomph_1_1HangInfo.html#aa9c1130b58db2ff6d5eee4f923ba365c">nmaster</a>();</div>
 <div class="line"><a id="l00756" name="l00756"></a><span class="lineno">  756</span>        }</div>
@@ -926,14 +926,14 @@ $(function() {
 <div class="line"><a id="l00797" name="l00797"></a><span class="lineno">  797</span>              <span class="keywordflow">for</span> (<span class="keywordtype">unsigned</span> l2 = 0; l2 &lt; n_node; l2++)</div>
 <div class="line"><a id="l00798" name="l00798"></a><span class="lineno">  798</span>              {</div>
 <div class="line"><a id="l00799" name="l00799"></a><span class="lineno">  799</span>                <span class="comment">// Local boolean to indicate whether the node is hanging</span></div>
-<div class="line"><a id="l00800" name="l00800"></a><span class="lineno">  800</span>                <span class="keywordtype">bool</span> is_node2_hanging = <a class="code hl_function" href="classoomph_1_1FiniteElement.html#a9addfe893ab8205619963aa96204cdc4">node_pt</a>(l2)-&gt;is_hanging();</div>
+<div class="line"><a id="l00800" name="l00800"></a><span class="lineno">  800</span>                <span class="keywordtype">bool</span> is_node2_hanging = <a class="code hl_function" href="classoomph_1_1FiniteElement.html#a9addfe893ab8205619963aa96204cdc4">node_pt</a>(l2)-&gt;<a class="code hl_function" href="classoomph_1_1Node.html#af0e6237dfafad62cf427ff5013ddcfef">is_hanging</a>();</div>
 <div class="line"><a id="l00801" name="l00801"></a><span class="lineno">  801</span> </div>
 <div class="line"><a id="l00802" name="l00802"></a><span class="lineno">  802</span>                <span class="comment">// If the node is hanging</span></div>
 <div class="line"><a id="l00803" name="l00803"></a><span class="lineno">  803</span>                <span class="keywordflow">if</span> (is_node2_hanging)</div>
 <div class="line"><a id="l00804" name="l00804"></a><span class="lineno">  804</span>                {</div>
-<div class="line"><a id="l00805" name="l00805"></a><span class="lineno">  805</span>                  hang_info2_pt = <a class="code hl_function" href="classoomph_1_1FiniteElement.html#a9addfe893ab8205619963aa96204cdc4">node_pt</a>(l2)-&gt;hanging_pt();</div>
+<div class="line"><a id="l00805" name="l00805"></a><span class="lineno">  805</span>                  hang_info2_pt = <a class="code hl_function" href="classoomph_1_1FiniteElement.html#a9addfe893ab8205619963aa96204cdc4">node_pt</a>(l2)-&gt;<a class="code hl_function" href="classoomph_1_1Node.html#afefa22db8b28e783b8647e3577ee01d9">hanging_pt</a>();</div>
 <div class="line"><a id="l00806" name="l00806"></a><span class="lineno">  806</span>                  <span class="comment">// Read out number of master nodes from hanging data</span></div>
-<div class="line"><a id="l00807" name="l00807"></a><span class="lineno">  807</span>                  n_master2 = hang_info2_pt-&gt;nmaster();</div>
+<div class="line"><a id="l00807" name="l00807"></a><span class="lineno">  807</span>                  n_master2 = hang_info2_pt-&gt;<a class="code hl_function" href="classoomph_1_1HangInfo.html#aa9c1130b58db2ff6d5eee4f923ba365c">nmaster</a>();</div>
 <div class="line"><a id="l00808" name="l00808"></a><span class="lineno">  808</span>                }</div>
 <div class="line"><a id="l00809" name="l00809"></a><span class="lineno">  809</span>                <span class="comment">// Otherwise the node is its own master</span></div>
 <div class="line"><a id="l00810" name="l00810"></a><span class="lineno">  810</span>                <span class="keywordflow">else</span></div>
@@ -1029,6 +1029,8 @@ $(function() {
 <div class="ttc" id="aclassoomph_1_1HangInfo_html_a7a935ae7eeca594a648ca1800444827c"><div class="ttname"><a href="classoomph_1_1HangInfo.html#a7a935ae7eeca594a648ca1800444827c">oomph::HangInfo::master_node_pt</a></div><div class="ttdeci">Node *const &amp; master_node_pt(const unsigned &amp;i) const</div><div class="ttdoc">Return a pointer to the i-th master node.</div><div class="ttdef"><b>Definition:</b> <a href="nodes_8h_source.html#l00791">nodes.h:791</a></div></div>
 <div class="ttc" id="aclassoomph_1_1HangInfo_html_aa9c1130b58db2ff6d5eee4f923ba365c"><div class="ttname"><a href="classoomph_1_1HangInfo.html#aa9c1130b58db2ff6d5eee4f923ba365c">oomph::HangInfo::nmaster</a></div><div class="ttdeci">unsigned nmaster() const</div><div class="ttdoc">Return the number of master nodes.</div><div class="ttdef"><b>Definition:</b> <a href="nodes_8h_source.html#l00785">nodes.h:785</a></div></div>
 <div class="ttc" id="aclassoomph_1_1HangInfo_html_ac49ebdd8957a658fe4a2420108d2dcee"><div class="ttname"><a href="classoomph_1_1HangInfo.html#ac49ebdd8957a658fe4a2420108d2dcee">oomph::HangInfo::master_weight</a></div><div class="ttdeci">double const &amp; master_weight(const unsigned &amp;i) const</div><div class="ttdoc">Return weight for dofs on i-th master node.</div><div class="ttdef"><b>Definition:</b> <a href="nodes_8h_source.html#l00808">nodes.h:808</a></div></div>
+<div class="ttc" id="aclassoomph_1_1Node_html_af0e6237dfafad62cf427ff5013ddcfef"><div class="ttname"><a href="classoomph_1_1Node.html#af0e6237dfafad62cf427ff5013ddcfef">oomph::Node::is_hanging</a></div><div class="ttdeci">bool is_hanging() const</div><div class="ttdoc">Test whether the node is geometrically hanging.</div><div class="ttdef"><b>Definition:</b> <a href="nodes_8h_source.html#l01287">nodes.h:1287</a></div></div>
+<div class="ttc" id="aclassoomph_1_1Node_html_afefa22db8b28e783b8647e3577ee01d9"><div class="ttname"><a href="classoomph_1_1Node.html#afefa22db8b28e783b8647e3577ee01d9">oomph::Node::hanging_pt</a></div><div class="ttdeci">HangInfo *const &amp; hanging_pt() const</div><div class="ttdoc">Return pointer to hanging node data (this refers to the geometric hanging node status) (const version...</div><div class="ttdef"><b>Definition:</b> <a href="nodes_8h_source.html#l01230">nodes.h:1230</a></div></div>
 <div class="ttc" id="aclassoomph_1_1PolarNavierStokesEquations_html_a1b382bf38d7b7041417bbc91ad85b38f"><div class="ttname"><a href="classoomph_1_1PolarNavierStokesEquations.html#a1b382bf38d7b7041417bbc91ad85b38f">oomph::PolarNavierStokesEquations::pshape_pnst</a></div><div class="ttdeci">virtual void pshape_pnst(const Vector&lt; double &gt; &amp;s, Shape &amp;psi) const =0</div><div class="ttdoc">Compute the pressure shape functions at local coordinate s.</div></div>
 <div class="ttc" id="aclassoomph_1_1PolarNavierStokesEquations_html_a1dc37882197d0a2c1f82ee2dc588c7e4"><div class="ttname"><a href="classoomph_1_1PolarNavierStokesEquations.html#a1dc37882197d0a2c1f82ee2dc588c7e4">oomph::PolarNavierStokesEquations::re</a></div><div class="ttdeci">const double &amp; re() const</div><div class="ttdoc">Reynolds number.</div><div class="ttdef"><b>Definition:</b> <a href="polar__navier__stokes__elements_8h_source.html#l00266">polar_navier_stokes_elements.h:266</a></div></div>
 <div class="ttc" id="aclassoomph_1_1PolarNavierStokesEquations_html_a2f7b7838a5c60718712f6af273db8942"><div class="ttname"><a href="classoomph_1_1PolarNavierStokesEquations.html#a2f7b7838a5c60718712f6af273db8942">oomph::PolarNavierStokesEquations::re_st</a></div><div class="ttdeci">const double &amp; re_st() const</div><div class="ttdoc">Product of Reynolds and Strouhal number (=Womersley number)</div><div class="ttdef"><b>Definition:</b> <a href="polar__navier__stokes__elements_8h_source.html#l00278">polar_navier_stokes_elements.h:278</a></div></div>
@@ -1076,7 +1078,7 @@ $(function() {
     <footer>
       <div class="container">
         <div class="text-muted" style="float:right;">Generated by <a href="http://www.doxygen.org/index.html">
-          <img style="height:18px;" class="footer-img" src="doxygen.png" alt="doxygen"></a> on Fri Dec 10 2021 08:08:05
+          <img style="height:18px;" class="footer-img" src="doxygen.png" alt="doxygen"></a> on Fri Dec 17 2021 19:42:03
         </div>
       </div>
     </footer>

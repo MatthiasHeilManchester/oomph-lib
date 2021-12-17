@@ -166,12 +166,12 @@
 \DoxyCodeLine{\Hypertarget{refineable__gen__axisym__advection__diffusion__elements_8cc_source_l00162}00162         \textcolor{keywordtype}{unsigned} n\_master = 1;}
 \DoxyCodeLine{\Hypertarget{refineable__gen__axisym__advection__diffusion__elements_8cc_source_l00163}00163         \textcolor{keywordtype}{double} hang\_weight = 1.0;}
 \DoxyCodeLine{\Hypertarget{refineable__gen__axisym__advection__diffusion__elements_8cc_source_l00164}00164         \textcolor{comment}{// Local bool (is the node hanging)}}
-\DoxyCodeLine{\Hypertarget{refineable__gen__axisym__advection__diffusion__elements_8cc_source_l00165}00165         \textcolor{keywordtype}{bool} is\_node\_hanging = this-\/>\mbox{\hyperlink{classoomph_1_1FiniteElement_a9addfe893ab8205619963aa96204cdc4}{node\_pt}}(l)-\/>is\_hanging();}
+\DoxyCodeLine{\Hypertarget{refineable__gen__axisym__advection__diffusion__elements_8cc_source_l00165}00165         \textcolor{keywordtype}{bool} is\_node\_hanging = this-\/>\mbox{\hyperlink{classoomph_1_1FiniteElement_a9addfe893ab8205619963aa96204cdc4}{node\_pt}}(l)-\/>\mbox{\hyperlink{classoomph_1_1Node_af0e6237dfafad62cf427ff5013ddcfef}{is\_hanging}}();}
 \DoxyCodeLine{\Hypertarget{refineable__gen__axisym__advection__diffusion__elements_8cc_source_l00166}00166 }
 \DoxyCodeLine{\Hypertarget{refineable__gen__axisym__advection__diffusion__elements_8cc_source_l00167}00167         \textcolor{comment}{// If the node is hanging, get the number of master nodes}}
 \DoxyCodeLine{\Hypertarget{refineable__gen__axisym__advection__diffusion__elements_8cc_source_l00168}00168         \textcolor{keywordflow}{if} (is\_node\_hanging)}
 \DoxyCodeLine{\Hypertarget{refineable__gen__axisym__advection__diffusion__elements_8cc_source_l00169}00169         \{}
-\DoxyCodeLine{\Hypertarget{refineable__gen__axisym__advection__diffusion__elements_8cc_source_l00170}00170           hang\_info\_pt = this-\/>\mbox{\hyperlink{classoomph_1_1FiniteElement_a9addfe893ab8205619963aa96204cdc4}{node\_pt}}(l)-\/>hanging\_pt();}
+\DoxyCodeLine{\Hypertarget{refineable__gen__axisym__advection__diffusion__elements_8cc_source_l00170}00170           hang\_info\_pt = this-\/>\mbox{\hyperlink{classoomph_1_1FiniteElement_a9addfe893ab8205619963aa96204cdc4}{node\_pt}}(l)-\/>\mbox{\hyperlink{classoomph_1_1Node_afefa22db8b28e783b8647e3577ee01d9}{hanging\_pt}}();}
 \DoxyCodeLine{\Hypertarget{refineable__gen__axisym__advection__diffusion__elements_8cc_source_l00171}00171           n\_master = hang\_info\_pt-\/>\mbox{\hyperlink{classoomph_1_1HangInfo_aa9c1130b58db2ff6d5eee4f923ba365c}{nmaster}}();}
 \DoxyCodeLine{\Hypertarget{refineable__gen__axisym__advection__diffusion__elements_8cc_source_l00172}00172         \}}
 \DoxyCodeLine{\Hypertarget{refineable__gen__axisym__advection__diffusion__elements_8cc_source_l00173}00173         \textcolor{comment}{// Otherwise there is just one master node, the node itself}}
@@ -245,12 +245,12 @@
 \DoxyCodeLine{\Hypertarget{refineable__gen__axisym__advection__diffusion__elements_8cc_source_l00241}00241               \textcolor{keywordflow}{for} (\textcolor{keywordtype}{unsigned} l2 = 0; l2 < n\_node; l2++)}
 \DoxyCodeLine{\Hypertarget{refineable__gen__axisym__advection__diffusion__elements_8cc_source_l00242}00242               \{}
 \DoxyCodeLine{\Hypertarget{refineable__gen__axisym__advection__diffusion__elements_8cc_source_l00243}00243                 \textcolor{comment}{// Local bool (is the node hanging)}}
-\DoxyCodeLine{\Hypertarget{refineable__gen__axisym__advection__diffusion__elements_8cc_source_l00244}00244                 \textcolor{keywordtype}{bool} is\_node2\_hanging = this-\/>\mbox{\hyperlink{classoomph_1_1FiniteElement_a9addfe893ab8205619963aa96204cdc4}{node\_pt}}(l2)-\/>is\_hanging();}
+\DoxyCodeLine{\Hypertarget{refineable__gen__axisym__advection__diffusion__elements_8cc_source_l00244}00244                 \textcolor{keywordtype}{bool} is\_node2\_hanging = this-\/>\mbox{\hyperlink{classoomph_1_1FiniteElement_a9addfe893ab8205619963aa96204cdc4}{node\_pt}}(l2)-\/>\mbox{\hyperlink{classoomph_1_1Node_af0e6237dfafad62cf427ff5013ddcfef}{is\_hanging}}();}
 \DoxyCodeLine{\Hypertarget{refineable__gen__axisym__advection__diffusion__elements_8cc_source_l00245}00245                 \textcolor{comment}{// If the node is hanging, get the number of master nodes}}
 \DoxyCodeLine{\Hypertarget{refineable__gen__axisym__advection__diffusion__elements_8cc_source_l00246}00246                 \textcolor{keywordflow}{if} (is\_node2\_hanging)}
 \DoxyCodeLine{\Hypertarget{refineable__gen__axisym__advection__diffusion__elements_8cc_source_l00247}00247                 \{}
-\DoxyCodeLine{\Hypertarget{refineable__gen__axisym__advection__diffusion__elements_8cc_source_l00248}00248                   hang\_info2\_pt = this-\/>\mbox{\hyperlink{classoomph_1_1FiniteElement_a9addfe893ab8205619963aa96204cdc4}{node\_pt}}(l2)-\/>hanging\_pt();}
-\DoxyCodeLine{\Hypertarget{refineable__gen__axisym__advection__diffusion__elements_8cc_source_l00249}00249                   n\_master2 = hang\_info2\_pt-\/>nmaster();}
+\DoxyCodeLine{\Hypertarget{refineable__gen__axisym__advection__diffusion__elements_8cc_source_l00248}00248                   hang\_info2\_pt = this-\/>\mbox{\hyperlink{classoomph_1_1FiniteElement_a9addfe893ab8205619963aa96204cdc4}{node\_pt}}(l2)-\/>\mbox{\hyperlink{classoomph_1_1Node_afefa22db8b28e783b8647e3577ee01d9}{hanging\_pt}}();}
+\DoxyCodeLine{\Hypertarget{refineable__gen__axisym__advection__diffusion__elements_8cc_source_l00249}00249                   n\_master2 = hang\_info2\_pt-\/>\mbox{\hyperlink{classoomph_1_1HangInfo_aa9c1130b58db2ff6d5eee4f923ba365c}{nmaster}}();}
 \DoxyCodeLine{\Hypertarget{refineable__gen__axisym__advection__diffusion__elements_8cc_source_l00250}00250                 \}}
 \DoxyCodeLine{\Hypertarget{refineable__gen__axisym__advection__diffusion__elements_8cc_source_l00251}00251                 \textcolor{comment}{// Otherwise there is one master node, the node itself}}
 \DoxyCodeLine{\Hypertarget{refineable__gen__axisym__advection__diffusion__elements_8cc_source_l00252}00252                 \textcolor{keywordflow}{else}}
@@ -287,7 +287,7 @@
 \DoxyCodeLine{\Hypertarget{refineable__gen__axisym__advection__diffusion__elements_8cc_source_l00283}00283                     \textcolor{comment}{// Mass matrix du/dt term}}
 \DoxyCodeLine{\Hypertarget{refineable__gen__axisym__advection__diffusion__elements_8cc_source_l00284}00284                     \mbox{\hyperlink{classoomph_1_1FiniteElement_aa6c806dab803b82ba4f02cf806971af8}{jacobian}}(local\_eqn, local\_unknown) -\/=}
 \DoxyCodeLine{\Hypertarget{refineable__gen__axisym__advection__diffusion__elements_8cc_source_l00285}00285                       peclet\_st * test(l) * psi(l2) *}
-\DoxyCodeLine{\Hypertarget{refineable__gen__axisym__advection__diffusion__elements_8cc_source_l00286}00286                       this-\/>\mbox{\hyperlink{classoomph_1_1FiniteElement_a9addfe893ab8205619963aa96204cdc4}{node\_pt}}(l2)-\/>time\_stepper\_pt()-\/>weight(1, 0) * r *}
+\DoxyCodeLine{\Hypertarget{refineable__gen__axisym__advection__diffusion__elements_8cc_source_l00286}00286                       this-\/>\mbox{\hyperlink{classoomph_1_1FiniteElement_a9addfe893ab8205619963aa96204cdc4}{node\_pt}}(l2)-\/>\mbox{\hyperlink{classoomph_1_1Data_a065d7bffcec82bf4d4bd7b41f9aa80b3}{time\_stepper\_pt}}()-\/>\mbox{\hyperlink{classoomph_1_1TimeStepper_a4cb0aecb044b77ba0553cdd54b586d8a}{weight}}(1, 0) * r *}
 \DoxyCodeLine{\Hypertarget{refineable__gen__axisym__advection__diffusion__elements_8cc_source_l00287}00287                       \mbox{\hyperlink{namespaceoomph_ab40f6d5233caa62dd428818b4cba72d5}{W}} * hang\_weight * hang\_weight2;}
 \DoxyCodeLine{\Hypertarget{refineable__gen__axisym__advection__diffusion__elements_8cc_source_l00288}00288 }
 \DoxyCodeLine{\Hypertarget{refineable__gen__axisym__advection__diffusion__elements_8cc_source_l00289}00289                     \textcolor{comment}{// Add contribution to mass matrix}}

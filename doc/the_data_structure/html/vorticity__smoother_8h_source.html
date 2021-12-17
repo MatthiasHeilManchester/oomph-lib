@@ -936,7 +936,7 @@ $(function() {
 <div class="line"><a id="l00807" name="l00807"></a><span class="lineno">  807</span>      <span class="keywordflow">for</span> (<span class="keywordtype">unsigned</span> j = 0; j &lt; nnod; j++)</div>
 <div class="line"><a id="l00808" name="l00808"></a><span class="lineno">  808</span>      {</div>
 <div class="line"><a id="l00809" name="l00809"></a><span class="lineno">  809</span>        <span class="comment">// Make a pointer to the j-th node in the element</span></div>
-<div class="line"><a id="l00810" name="l00810"></a><span class="lineno">  810</span>        Node* nod_pt = this-&gt;node_pt(j);</div>
+<div class="line"><a id="l00810" name="l00810"></a><span class="lineno">  810</span>        <a class="code hl_class" href="classoomph_1_1Node.html">Node</a>* nod_pt = this-&gt;node_pt(j);</div>
 <div class="line"><a id="l00811" name="l00811"></a><span class="lineno">  811</span> </div>
 <div class="line"><a id="l00812" name="l00812"></a><span class="lineno">  812</span>        <span class="comment">// Loop over the fields</span></div>
 <div class="line"><a id="l00813" name="l00813"></a><span class="lineno">  813</span>        <span class="keywordflow">for</span> (<span class="keywordtype">unsigned</span> <a class="code hl_variable" href="cfortran_8h.html#adb50e893b86b3e55e751a42eab3cba82">i</a> = <a class="code hl_variable" href="classoomph_1_1VorticitySmootherElement.html#a15a33ab6804cbd945f67db0cf81ff6bc">Smoothed_vorticity_index</a>;</div>
@@ -944,7 +944,7 @@ $(function() {
 <div class="line"><a id="l00815" name="l00815"></a><span class="lineno">  815</span>             <a class="code hl_variable" href="cfortran_8h.html#adb50e893b86b3e55e751a42eab3cba82">i</a>++)</div>
 <div class="line"><a id="l00816" name="l00816"></a><span class="lineno">  816</span>        {</div>
 <div class="line"><a id="l00817" name="l00817"></a><span class="lineno">  817</span>          <span class="comment">// Pin the i-th field at this node</span></div>
-<div class="line"><a id="l00818" name="l00818"></a><span class="lineno">  818</span>          nod_pt-&gt;pin(<a class="code hl_variable" href="cfortran_8h.html#adb50e893b86b3e55e751a42eab3cba82">i</a>);</div>
+<div class="line"><a id="l00818" name="l00818"></a><span class="lineno">  818</span>          nod_pt-&gt;<a class="code hl_function" href="classoomph_1_1Data.html#a422231c58e423f0b43822827aa334d79">pin</a>(<a class="code hl_variable" href="cfortran_8h.html#adb50e893b86b3e55e751a42eab3cba82">i</a>);</div>
 <div class="line"><a id="l00819" name="l00819"></a><span class="lineno">  819</span>        }</div>
 <div class="line"><a id="l00820" name="l00820"></a><span class="lineno">  820</span>      } <span class="comment">// for (unsigned j=0;j&lt;nnod;j++)</span></div>
 <div class="line"><a id="l00821" name="l00821"></a><span class="lineno">  821</span>    } <span class="comment">// End of pin_smoothed_vorticity</span></div>
@@ -2126,7 +2126,7 @@ $(function() {
 <div class="line"><a id="l01997" name="l01997"></a><span class="lineno"> 1997</span><span class="comment">    /// contains the pointers to the elements that the node is part of.</span></div>
 <div class="line"><a id="l01998" name="l01998"></a><span class="lineno"> 1998</span><span class="comment">    /// Also returns a Vector of vertex nodes for use in get_element_errors.</span></div>
 <div class="line"><a id="l01999" name="l01999"></a><span class="lineno"><a class="line" href="classoomph_1_1VorticitySmoother.html#ae8e49f99dfb35e6ee5eebbce87131d44"> 1999</a></span><span class="comment"></span>    <span class="keywordtype">void</span> <a class="code hl_function" href="classoomph_1_1VorticitySmoother.html#ae8e49f99dfb35e6ee5eebbce87131d44">setup_patches</a>(<a class="code hl_class" href="classoomph_1_1Mesh.html">Mesh</a>*&amp; mesh_pt,</div>
-<div class="line"><a id="l02000" name="l02000"></a><span class="lineno"> 2000</span>                       std::map&lt;Node*, <a class="code hl_class" href="classoomph_1_1Vector.html">Vector&lt;ELEMENT*&gt;</a>*&gt;&amp; adjacent_elements_pt,</div>
+<div class="line"><a id="l02000" name="l02000"></a><span class="lineno"> 2000</span>                       std::map&lt;<a class="code hl_class" href="classoomph_1_1Node.html">Node</a>*, <a class="code hl_class" href="classoomph_1_1Vector.html">Vector&lt;ELEMENT*&gt;</a>*&gt;&amp; adjacent_elements_pt,</div>
 <div class="line"><a id="l02001" name="l02001"></a><span class="lineno"> 2001</span>                       <a class="code hl_class" href="classoomph_1_1Vector.html">Vector&lt;Node*&gt;</a>&amp; vertex_node_pt)</div>
 <div class="line"><a id="l02002" name="l02002"></a><span class="lineno"> 2002</span>    {</div>
 <div class="line"><a id="l02003" name="l02003"></a><span class="lineno"> 2003</span>      <span class="comment">// Clear: hierher should we do this in Z2 as well?</span></div>
@@ -2162,7 +2162,7 @@ $(function() {
 <div class="line"><a id="l02033" name="l02033"></a><span class="lineno"> 2033</span>        <span class="keywordflow">for</span> (<span class="keywordtype">unsigned</span> n = 0; n &lt; nnod; n++)</div>
 <div class="line"><a id="l02034" name="l02034"></a><span class="lineno"> 2034</span>        {</div>
 <div class="line"><a id="l02035" name="l02035"></a><span class="lineno"> 2035</span>          <span class="comment">// Make a pointer to the n-th node</span></div>
-<div class="line"><a id="l02036" name="l02036"></a><span class="lineno"> 2036</span>          Node* nod_pt = el_pt-&gt;node_pt(n);</div>
+<div class="line"><a id="l02036" name="l02036"></a><span class="lineno"> 2036</span>          <a class="code hl_class" href="classoomph_1_1Node.html">Node</a>* nod_pt = el_pt-&gt;node_pt(n);</div>
 <div class="line"><a id="l02037" name="l02037"></a><span class="lineno"> 2037</span> </div>
 <div class="line"><a id="l02038" name="l02038"></a><span class="lineno"> 2038</span>          <span class="comment">// Has this node been considered before?</span></div>
 <div class="line"><a id="l02039" name="l02039"></a><span class="lineno"> 2039</span>          <span class="keywordflow">if</span> (aux_adjacent_elements_pt[nod_pt] == 0)</div>
@@ -2202,7 +2202,7 @@ $(function() {
 <div class="line"><a id="l02073" name="l02073"></a><span class="lineno"> 2073</span>        <span class="keywordtype">unsigned</span> n_node = el_pt-&gt;nvertex_node();</div>
 <div class="line"><a id="l02074" name="l02074"></a><span class="lineno"> 2074</span>        <span class="keywordflow">for</span> (<span class="keywordtype">unsigned</span> n = 0; n &lt; n_node; n++)</div>
 <div class="line"><a id="l02075" name="l02075"></a><span class="lineno"> 2075</span>        {</div>
-<div class="line"><a id="l02076" name="l02076"></a><span class="lineno"> 2076</span>          Node* nod_pt = el_pt-&gt;vertex_node_pt(n);</div>
+<div class="line"><a id="l02076" name="l02076"></a><span class="lineno"> 2076</span>          <a class="code hl_class" href="classoomph_1_1Node.html">Node</a>* nod_pt = el_pt-&gt;vertex_node_pt(n);</div>
 <div class="line"><a id="l02077" name="l02077"></a><span class="lineno"> 2077</span> </div>
 <div class="line"><a id="l02078" name="l02078"></a><span class="lineno"> 2078</span>          <span class="comment">// Has this node been considered before?</span></div>
 <div class="line"><a id="l02079" name="l02079"></a><span class="lineno"> 2079</span>          <span class="keywordflow">if</span> (adjacent_elements_pt[nod_pt] == 0)</div>
@@ -2225,7 +2225,7 @@ $(function() {
 <div class="line"><a id="l02096" name="l02096"></a><span class="lineno"> 2096</span>      } <span class="comment">// End of loop over elements</span></div>
 <div class="line"><a id="l02097" name="l02097"></a><span class="lineno"> 2097</span> </div>
 <div class="line"><a id="l02098" name="l02098"></a><span class="lineno"> 2098</span>      <span class="comment">// Cleanup</span></div>
-<div class="line"><a id="l02099" name="l02099"></a><span class="lineno"> 2099</span>      <span class="keywordflow">for</span> (<span class="keyword">typename</span> std::map&lt;Node*, <a class="code hl_class" href="classoomph_1_1Vector.html">Vector&lt;ELEMENT*&gt;</a>*&gt;::iterator it =</div>
+<div class="line"><a id="l02099" name="l02099"></a><span class="lineno"> 2099</span>      <span class="keywordflow">for</span> (<span class="keyword">typename</span> std::map&lt;<a class="code hl_class" href="classoomph_1_1Node.html">Node</a>*, <a class="code hl_class" href="classoomph_1_1Vector.html">Vector&lt;ELEMENT*&gt;</a>*&gt;::iterator it =</div>
 <div class="line"><a id="l02100" name="l02100"></a><span class="lineno"> 2100</span>             aux_adjacent_elements_pt.begin();</div>
 <div class="line"><a id="l02101" name="l02101"></a><span class="lineno"> 2101</span>           it != aux_adjacent_elements_pt.end();</div>
 <div class="line"><a id="l02102" name="l02102"></a><span class="lineno"> 2102</span>           it++)</div>
@@ -2677,7 +2677,7 @@ $(function() {
 <div class="line"><a id="l02548" name="l02548"></a><span class="lineno"> 2548</span>        <span class="comment">//-------------------------</span></div>
 <div class="line"><a id="l02549" name="l02549"></a><span class="lineno"> 2549</span>        <span class="comment">// Do patch recovery</span></div>
 <div class="line"><a id="l02550" name="l02550"></a><span class="lineno"> 2550</span>        <span class="comment">// unsigned counter=0;</span></div>
-<div class="line"><a id="l02551" name="l02551"></a><span class="lineno"> 2551</span>        <span class="keywordflow">for</span> (<span class="keyword">typename</span> std::map&lt;Node*, <a class="code hl_class" href="classoomph_1_1Vector.html">Vector&lt;ELEMENT*&gt;</a>*&gt;::iterator it =</div>
+<div class="line"><a id="l02551" name="l02551"></a><span class="lineno"> 2551</span>        <span class="keywordflow">for</span> (<span class="keyword">typename</span> std::map&lt;<a class="code hl_class" href="classoomph_1_1Node.html">Node</a>*, <a class="code hl_class" href="classoomph_1_1Vector.html">Vector&lt;ELEMENT*&gt;</a>*&gt;::iterator it =</div>
 <div class="line"><a id="l02552" name="l02552"></a><span class="lineno"> 2552</span>               adjacent_elements_pt.begin();</div>
 <div class="line"><a id="l02553" name="l02553"></a><span class="lineno"> 2553</span>             it != adjacent_elements_pt.end();</div>
 <div class="line"><a id="l02554" name="l02554"></a><span class="lineno"> 2554</span>             it++)</div>
@@ -2710,7 +2710,7 @@ $(function() {
 <div class="line"><a id="l02581" name="l02581"></a><span class="lineno"> 2581</span>            <span class="keywordflow">for</span> (<span class="keywordtype">unsigned</span> j = 0; j &lt; nnode_el; j++)</div>
 <div class="line"><a id="l02582" name="l02582"></a><span class="lineno"> 2582</span>            {</div>
 <div class="line"><a id="l02583" name="l02583"></a><span class="lineno"> 2583</span>              <span class="comment">// Get a pointer to the j-th node in this element</span></div>
-<div class="line"><a id="l02584" name="l02584"></a><span class="lineno"> 2584</span>              Node* nod_pt = el_pt-&gt;node_pt(j);</div>
+<div class="line"><a id="l02584" name="l02584"></a><span class="lineno"> 2584</span>              <a class="code hl_class" href="classoomph_1_1Node.html">Node</a>* nod_pt = el_pt-&gt;node_pt(j);</div>
 <div class="line"><a id="l02585" name="l02585"></a><span class="lineno"> 2585</span> </div>
 <div class="line"><a id="l02586" name="l02586"></a><span class="lineno"> 2586</span>              <span class="comment">// Get the local coordinates of the node</span></div>
 <div class="line"><a id="l02587" name="l02587"></a><span class="lineno"> 2587</span>              el_pt-&gt;local_coordinate_of_node(j, <a class="code hl_variable" href="cfortran_8h.html#ab7123126e4885ef647dd9c6e3807a21c">s</a>);</div>
@@ -2757,13 +2757,13 @@ $(function() {
 <div class="line"><a id="l02628" name="l02628"></a><span class="lineno"> 2628</span>        <span class="keywordflow">for</span> (<span class="keywordtype">unsigned</span> j = 0; j &lt; nnod; j++)</div>
 <div class="line"><a id="l02629" name="l02629"></a><span class="lineno"> 2629</span>        {</div>
 <div class="line"><a id="l02630" name="l02630"></a><span class="lineno"> 2630</span>          <span class="comment">// Make a pointer to the j-th node</span></div>
-<div class="line"><a id="l02631" name="l02631"></a><span class="lineno"> 2631</span>          Node* nod_pt = mesh_pt-&gt;<a class="code hl_function" href="classoomph_1_1Mesh.html#a69d22c2070f1649c4cb2607f26070d7c">node_pt</a>(j);</div>
+<div class="line"><a id="l02631" name="l02631"></a><span class="lineno"> 2631</span>          <a class="code hl_class" href="classoomph_1_1Node.html">Node</a>* nod_pt = mesh_pt-&gt;<a class="code hl_function" href="classoomph_1_1Mesh.html#a69d22c2070f1649c4cb2607f26070d7c">node_pt</a>(j);</div>
 <div class="line"><a id="l02632" name="l02632"></a><span class="lineno"> 2632</span> </div>
 <div class="line"><a id="l02633" name="l02633"></a><span class="lineno"> 2633</span>          <span class="comment">// Calculate the values of the smoothed vorticity</span></div>
 <div class="line"><a id="l02634" name="l02634"></a><span class="lineno"> 2634</span>          averaged_recovered_vort[nod_pt] /= count[nod_pt];</div>
 <div class="line"><a id="l02635" name="l02635"></a><span class="lineno"> 2635</span> </div>
 <div class="line"><a id="l02636" name="l02636"></a><span class="lineno"> 2636</span>          <span class="comment">// Assign smoothed vorticity to nodal values</span></div>
-<div class="line"><a id="l02637" name="l02637"></a><span class="lineno"> 2637</span>          nod_pt-&gt;set_value(smoothed_vorticity_index + nodal_dof,</div>
+<div class="line"><a id="l02637" name="l02637"></a><span class="lineno"> 2637</span>          nod_pt-&gt;<a class="code hl_function" href="classoomph_1_1Data.html#a7289ca322725c6fd493970a19474b382">set_value</a>(smoothed_vorticity_index + nodal_dof,</div>
 <div class="line"><a id="l02638" name="l02638"></a><span class="lineno"> 2638</span>                            averaged_recovered_vort[nod_pt]);</div>
 <div class="line"><a id="l02639" name="l02639"></a><span class="lineno"> 2639</span>        }</div>
 <div class="line"><a id="l02640" name="l02640"></a><span class="lineno"> 2640</span> </div>
@@ -2775,7 +2775,7 @@ $(function() {
 <div class="line"><a id="l02646" name="l02646"></a><span class="lineno"> 2646</span>      } <span class="comment">// for (unsigned deriv=0;deriv&lt;max_vort_recov+max_veloc_recov;deriv++)</span></div>
 <div class="line"><a id="l02647" name="l02647"></a><span class="lineno"> 2647</span> </div>
 <div class="line"><a id="l02648" name="l02648"></a><span class="lineno"> 2648</span>      <span class="comment">// Cleanup</span></div>
-<div class="line"><a id="l02649" name="l02649"></a><span class="lineno"> 2649</span>      <span class="keywordflow">for</span> (<span class="keyword">typename</span> std::map&lt;Node*, <a class="code hl_class" href="classoomph_1_1Vector.html">Vector&lt;ELEMENT*&gt;</a>*&gt;::iterator it =</div>
+<div class="line"><a id="l02649" name="l02649"></a><span class="lineno"> 2649</span>      <span class="keywordflow">for</span> (<span class="keyword">typename</span> std::map&lt;<a class="code hl_class" href="classoomph_1_1Node.html">Node</a>*, <a class="code hl_class" href="classoomph_1_1Vector.html">Vector&lt;ELEMENT*&gt;</a>*&gt;::iterator it =</div>
 <div class="line"><a id="l02650" name="l02650"></a><span class="lineno"> 2650</span>             adjacent_elements_pt.begin();</div>
 <div class="line"><a id="l02651" name="l02651"></a><span class="lineno"> 2651</span>           it != adjacent_elements_pt.end();</div>
 <div class="line"><a id="l02652" name="l02652"></a><span class="lineno"> 2652</span>           it++)</div>
@@ -2802,6 +2802,8 @@ $(function() {
 <div class="ttc" id="acfortran_8h_html_adb50e893b86b3e55e751a42eab3cba82"><div class="ttname"><a href="cfortran_8h.html#adb50e893b86b3e55e751a42eab3cba82">i</a></div><div class="ttdeci">cstr elem_len * i</div><div class="ttdef"><b>Definition:</b> <a href="cfortran_8h_source.html#l00603">cfortran.h:603</a></div></div>
 <div class="ttc" id="acfortran_8h_html_af6f0bd3dc13317f895c91323c25c2b8f"><div class="ttname"><a href="cfortran_8h.html#af6f0bd3dc13317f895c91323c25c2b8f">t</a></div><div class="ttdeci">char t</div><div class="ttdef"><b>Definition:</b> <a href="cfortran_8h_source.html#l00568">cfortran.h:568</a></div></div>
 <div class="ttc" id="aclassoomph_1_1DShape_html"><div class="ttname"><a href="classoomph_1_1DShape.html">oomph::DShape</a></div><div class="ttdoc">A Class for the derivatives of shape functions The class design is essentially the same as Shape,...</div><div class="ttdef"><b>Definition:</b> <a href="shape_8h_source.html#l00277">shape.h:278</a></div></div>
+<div class="ttc" id="aclassoomph_1_1Data_html_a422231c58e423f0b43822827aa334d79"><div class="ttname"><a href="classoomph_1_1Data.html#a422231c58e423f0b43822827aa334d79">oomph::Data::pin</a></div><div class="ttdeci">void pin(const unsigned &amp;i)</div><div class="ttdoc">Pin the i-th stored variable.</div><div class="ttdef"><b>Definition:</b> <a href="nodes_8h_source.html#l00385">nodes.h:385</a></div></div>
+<div class="ttc" id="aclassoomph_1_1Data_html_a7289ca322725c6fd493970a19474b382"><div class="ttname"><a href="classoomph_1_1Data.html#a7289ca322725c6fd493970a19474b382">oomph::Data::set_value</a></div><div class="ttdeci">void set_value(const unsigned &amp;i, const double &amp;value_)</div><div class="ttdoc">Set the i-th stored data value to specified value. The only reason that we require an explicit set fu...</div><div class="ttdef"><b>Definition:</b> <a href="nodes_8h_source.html#l00271">nodes.h:271</a></div></div>
 <div class="ttc" id="aclassoomph_1_1DenseDoubleMatrix_html"><div class="ttname"><a href="classoomph_1_1DenseDoubleMatrix.html">oomph::DenseDoubleMatrix</a></div><div class="ttdoc">Class of matrices containing doubles, and stored as a DenseMatrix&lt;double&gt;, but with solving functiona...</div><div class="ttdef"><b>Definition:</b> <a href="matrices_8h_source.html#l01270">matrices.h:1271</a></div></div>
 <div class="ttc" id="aclassoomph_1_1DenseDoubleMatrix_html_a52515653ab5b792388258ca04e9dcbcc"><div class="ttname"><a href="classoomph_1_1DenseDoubleMatrix.html#a52515653ab5b792388258ca04e9dcbcc">oomph::DenseDoubleMatrix::lubksub</a></div><div class="ttdeci">virtual void lubksub(DoubleVector &amp;rhs)</div><div class="ttdoc">LU backsubstitution.</div><div class="ttdef"><b>Definition:</b> <a href="matrices_8cc_source.html#l00202">matrices.cc:202</a></div></div>
 <div class="ttc" id="aclassoomph_1_1DenseDoubleMatrix_html_a741d54dbea2a16e6e3f10bbd2d9d726e"><div class="ttname"><a href="classoomph_1_1DenseDoubleMatrix.html#a741d54dbea2a16e6e3f10bbd2d9d726e">oomph::DenseDoubleMatrix::ludecompose</a></div><div class="ttdeci">virtual void ludecompose()</div><div class="ttdoc">LU decomposition using DenseLU (default linea solver)</div><div class="ttdef"><b>Definition:</b> <a href="matrices_8cc_source.html#l00192">matrices.cc:192</a></div></div>
@@ -2815,6 +2817,7 @@ $(function() {
 <div class="ttc" id="aclassoomph_1_1Mesh_html_a945e7823d1a2af243b5b7f7866aaff5e"><div class="ttname"><a href="classoomph_1_1Mesh.html#a945e7823d1a2af243b5b7f7866aaff5e">oomph::Mesh::nnode</a></div><div class="ttdeci">unsigned long nnode() const</div><div class="ttdoc">Return number of nodes in the mesh.</div><div class="ttdef"><b>Definition:</b> <a href="mesh_8h_source.html#l00596">mesh.h:596</a></div></div>
 <div class="ttc" id="aclassoomph_1_1Mesh_html_a9a5d03afb8730e9459ecbc67c6439143"><div class="ttname"><a href="classoomph_1_1Mesh.html#a9a5d03afb8730e9459ecbc67c6439143">oomph::Mesh::element_pt</a></div><div class="ttdeci">GeneralisedElement *&amp; element_pt(const unsigned long &amp;e)</div><div class="ttdoc">Return pointer to element e.</div><div class="ttdef"><b>Definition:</b> <a href="mesh_8h_source.html#l00448">mesh.h:448</a></div></div>
 <div class="ttc" id="aclassoomph_1_1Mesh_html_af01dfefb66c15579b540be62999d93ee"><div class="ttname"><a href="classoomph_1_1Mesh.html#af01dfefb66c15579b540be62999d93ee">oomph::Mesh::nelement</a></div><div class="ttdeci">unsigned long nelement() const</div><div class="ttdoc">Return number of elements in the mesh.</div><div class="ttdef"><b>Definition:</b> <a href="mesh_8h_source.html#l00590">mesh.h:590</a></div></div>
+<div class="ttc" id="aclassoomph_1_1Node_html"><div class="ttname"><a href="classoomph_1_1Node.html">oomph::Node</a></div><div class="ttdoc">Nodes are derived from Data, but, in addition, have a definite (Eulerian) position in a space of a gi...</div><div class="ttdef"><b>Definition:</b> <a href="nodes_8h_source.html#l00907">nodes.h:908</a></div></div>
 <div class="ttc" id="aclassoomph_1_1OomphLibError_html"><div class="ttname"><a href="classoomph_1_1OomphLibError.html">oomph::OomphLibError</a></div><div class="ttdoc">An OomphLibError object which should be thrown when an run-time error is encountered....</div><div class="ttdef"><b>Definition:</b> <a href="oomph__definitions_8h_source.html#l00221">oomph_definitions.h:222</a></div></div>
 <div class="ttc" id="aclassoomph_1_1Shape_html"><div class="ttname"><a href="classoomph_1_1Shape.html">oomph::Shape</a></div><div class="ttdoc">A Class for shape functions. In simple cases, the shape functions have only one index that can be tho...</div><div class="ttdef"><b>Definition:</b> <a href="shape_8h_source.html#l00075">shape.h:76</a></div></div>
 <div class="ttc" id="aclassoomph_1_1TElementBase_html"><div class="ttname"><a href="classoomph_1_1TElementBase.html">oomph::TElementBase</a></div><div class="ttdoc">/////////////////////////////////////////////////////////////////// /////////////////////////////////...</div><div class="ttdef"><b>Definition:</b> <a href="Telements_8h_source.html#l01129">Telements.h:1130</a></div></div>
@@ -2932,7 +2935,7 @@ $(function() {
     <footer>
       <div class="container">
         <div class="text-muted" style="float:right;">Generated by <a href="http://www.doxygen.org/index.html">
-          <img style="height:18px;" class="footer-img" src="doxygen.png" alt="doxygen"></a> on Fri Dec 10 2021 08:08:05
+          <img style="height:18px;" class="footer-img" src="doxygen.png" alt="doxygen"></a> on Fri Dec 17 2021 19:42:02
         </div>
       </div>
     </footer>

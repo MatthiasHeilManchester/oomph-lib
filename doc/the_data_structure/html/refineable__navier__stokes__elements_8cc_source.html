@@ -1366,13 +1366,13 @@ $(function() {
 <div class="line"><a id="l01237" name="l01237"></a><span class="lineno"> 1237</span>         it++)</div>
 <div class="line"><a id="l01238" name="l01238"></a><span class="lineno"> 1238</span>    {</div>
 <div class="line"><a id="l01239" name="l01239"></a><span class="lineno"> 1239</span>      <span class="comment">// Get node</span></div>
-<div class="line"><a id="l01240" name="l01240"></a><span class="lineno"> 1240</span>      Node* nod_pt = it-&gt;first;</div>
+<div class="line"><a id="l01240" name="l01240"></a><span class="lineno"> 1240</span>      <a class="code hl_class" href="classoomph_1_1Node.html">Node</a>* nod_pt = it-&gt;first;</div>
 <div class="line"><a id="l01241" name="l01241"></a><span class="lineno"> 1241</span> </div>
 <div class="line"><a id="l01242" name="l01242"></a><span class="lineno"> 1242</span>      <span class="comment">// Get its number</span></div>
 <div class="line"><a id="l01243" name="l01243"></a><span class="lineno"> 1243</span>      <span class="keywordtype">unsigned</span> q = it-&gt;second;</div>
 <div class="line"><a id="l01244" name="l01244"></a><span class="lineno"> 1244</span> </div>
 <div class="line"><a id="l01245" name="l01245"></a><span class="lineno"> 1245</span>      <span class="comment">// Only compute if there&#39;s a node-update fct involved</span></div>
-<div class="line"><a id="l01246" name="l01246"></a><span class="lineno"> 1246</span>      <span class="keywordflow">if</span> (nod_pt-&gt;has_auxiliary_node_update_fct_pt())</div>
+<div class="line"><a id="l01246" name="l01246"></a><span class="lineno"> 1246</span>      <span class="keywordflow">if</span> (nod_pt-&gt;<a class="code hl_function" href="classoomph_1_1Node.html#ad5fe8ac9dcb705612903bc6945926375">has_auxiliary_node_update_fct_pt</a>())</div>
 <div class="line"><a id="l01247" name="l01247"></a><span class="lineno"> 1247</span>      {</div>
 <div class="line"><a id="l01248" name="l01248"></a><span class="lineno"> 1248</span>        element_has_node_with_aux_node_update_fct = <span class="keyword">true</span>;</div>
 <div class="line"><a id="l01249" name="l01249"></a><span class="lineno"> 1249</span> </div>
@@ -1380,31 +1380,31 @@ $(function() {
 <div class="line"><a id="l01251" name="l01251"></a><span class="lineno"> 1251</span>        <a class="code hl_class" href="classoomph_1_1Vector.html">Vector&lt;double&gt;</a> u_ref(DIM);</div>
 <div class="line"><a id="l01252" name="l01252"></a><span class="lineno"> 1252</span>        <span class="keywordflow">for</span> (<span class="keywordtype">unsigned</span> <a class="code hl_variable" href="cfortran_8h.html#adb50e893b86b3e55e751a42eab3cba82">i</a> = 0; <a class="code hl_variable" href="cfortran_8h.html#adb50e893b86b3e55e751a42eab3cba82">i</a> &lt; DIM; <a class="code hl_variable" href="cfortran_8h.html#adb50e893b86b3e55e751a42eab3cba82">i</a>++)</div>
 <div class="line"><a id="l01253" name="l01253"></a><span class="lineno"> 1253</span>        {</div>
-<div class="line"><a id="l01254" name="l01254"></a><span class="lineno"> 1254</span>          u_ref[<a class="code hl_variable" href="cfortran_8h.html#adb50e893b86b3e55e751a42eab3cba82">i</a>] = *(nod_pt-&gt;value_pt(u_nodal_index[<a class="code hl_variable" href="cfortran_8h.html#adb50e893b86b3e55e751a42eab3cba82">i</a>]));</div>
+<div class="line"><a id="l01254" name="l01254"></a><span class="lineno"> 1254</span>          u_ref[<a class="code hl_variable" href="cfortran_8h.html#adb50e893b86b3e55e751a42eab3cba82">i</a>] = *(nod_pt-&gt;<a class="code hl_function" href="classoomph_1_1Data.html#af545f88ca20583f0c1b66e4da6076aa3">value_pt</a>(u_nodal_index[<a class="code hl_variable" href="cfortran_8h.html#adb50e893b86b3e55e751a42eab3cba82">i</a>]));</div>
 <div class="line"><a id="l01255" name="l01255"></a><span class="lineno"> 1255</span>        }</div>
 <div class="line"><a id="l01256" name="l01256"></a><span class="lineno"> 1256</span> </div>
 <div class="line"><a id="l01257" name="l01257"></a><span class="lineno"> 1257</span>        <span class="comment">// FD</span></div>
 <div class="line"><a id="l01258" name="l01258"></a><span class="lineno"> 1258</span>        <span class="keywordflow">for</span> (<span class="keywordtype">unsigned</span> p = 0; p &lt; DIM; p++)</div>
 <div class="line"><a id="l01259" name="l01259"></a><span class="lineno"> 1259</span>        {</div>
 <div class="line"><a id="l01260" name="l01260"></a><span class="lineno"> 1260</span>          <span class="comment">// Make backup</span></div>
-<div class="line"><a id="l01261" name="l01261"></a><span class="lineno"> 1261</span>          <span class="keywordtype">double</span> backup = nod_pt-&gt;x(p);</div>
+<div class="line"><a id="l01261" name="l01261"></a><span class="lineno"> 1261</span>          <span class="keywordtype">double</span> backup = nod_pt-&gt;<a class="code hl_function" href="classoomph_1_1Node.html#ab76b4773a65b349f143539e07b6e15e2">x</a>(p);</div>
 <div class="line"><a id="l01262" name="l01262"></a><span class="lineno"> 1262</span> </div>
 <div class="line"><a id="l01263" name="l01263"></a><span class="lineno"> 1263</span>          <span class="comment">// Do FD step. No node update required as we&#39;re</span></div>
 <div class="line"><a id="l01264" name="l01264"></a><span class="lineno"> 1264</span>          <span class="comment">// attacking the coordinate directly...</span></div>
-<div class="line"><a id="l01265" name="l01265"></a><span class="lineno"> 1265</span>          nod_pt-&gt;x(p) += eps_fd;</div>
+<div class="line"><a id="l01265" name="l01265"></a><span class="lineno"> 1265</span>          nod_pt-&gt;<a class="code hl_function" href="classoomph_1_1Node.html#ab76b4773a65b349f143539e07b6e15e2">x</a>(p) += eps_fd;</div>
 <div class="line"><a id="l01266" name="l01266"></a><span class="lineno"> 1266</span> </div>
 <div class="line"><a id="l01267" name="l01267"></a><span class="lineno"> 1267</span>          <span class="comment">// Do auxiliary node update (to apply no slip)</span></div>
-<div class="line"><a id="l01268" name="l01268"></a><span class="lineno"> 1268</span>          nod_pt-&gt;perform_auxiliary_node_update_fct();</div>
+<div class="line"><a id="l01268" name="l01268"></a><span class="lineno"> 1268</span>          nod_pt-&gt;<a class="code hl_function" href="classoomph_1_1Node.html#a6c287aa85c19f2d37ed7952ece5c76dd">perform_auxiliary_node_update_fct</a>();</div>
 <div class="line"><a id="l01269" name="l01269"></a><span class="lineno"> 1269</span> </div>
 <div class="line"><a id="l01270" name="l01270"></a><span class="lineno"> 1270</span>          <span class="comment">// Evaluate</span></div>
 <div class="line"><a id="l01271" name="l01271"></a><span class="lineno"> 1271</span>          d_U_dX(p, q) =</div>
-<div class="line"><a id="l01272" name="l01272"></a><span class="lineno"> 1272</span>            (*(nod_pt-&gt;value_pt(u_nodal_index[p])) - u_ref[p]) / eps_fd;</div>
+<div class="line"><a id="l01272" name="l01272"></a><span class="lineno"> 1272</span>            (*(nod_pt-&gt;<a class="code hl_function" href="classoomph_1_1Data.html#af545f88ca20583f0c1b66e4da6076aa3">value_pt</a>(u_nodal_index[p])) - u_ref[p]) / eps_fd;</div>
 <div class="line"><a id="l01273" name="l01273"></a><span class="lineno"> 1273</span> </div>
 <div class="line"><a id="l01274" name="l01274"></a><span class="lineno"> 1274</span>          <span class="comment">// Reset</span></div>
-<div class="line"><a id="l01275" name="l01275"></a><span class="lineno"> 1275</span>          nod_pt-&gt;x(p) = backup;</div>
+<div class="line"><a id="l01275" name="l01275"></a><span class="lineno"> 1275</span>          nod_pt-&gt;<a class="code hl_function" href="classoomph_1_1Node.html#ab76b4773a65b349f143539e07b6e15e2">x</a>(p) = backup;</div>
 <div class="line"><a id="l01276" name="l01276"></a><span class="lineno"> 1276</span> </div>
 <div class="line"><a id="l01277" name="l01277"></a><span class="lineno"> 1277</span>          <span class="comment">// Do auxiliary node update (to apply no slip)</span></div>
-<div class="line"><a id="l01278" name="l01278"></a><span class="lineno"> 1278</span>          nod_pt-&gt;perform_auxiliary_node_update_fct();</div>
+<div class="line"><a id="l01278" name="l01278"></a><span class="lineno"> 1278</span>          nod_pt-&gt;<a class="code hl_function" href="classoomph_1_1Node.html#a6c287aa85c19f2d37ed7952ece5c76dd">perform_auxiliary_node_update_fct</a>();</div>
 <div class="line"><a id="l01279" name="l01279"></a><span class="lineno"> 1279</span>        }</div>
 <div class="line"><a id="l01280" name="l01280"></a><span class="lineno"> 1280</span>      }</div>
 <div class="line"><a id="l01281" name="l01281"></a><span class="lineno"> 1281</span>    }</div>
@@ -1710,7 +1710,7 @@ $(function() {
 <div class="line"><a id="l01581" name="l01581"></a><span class="lineno"> 1581</span>                  <span class="comment">// Local boolean to indicate whether the node is hanging</span></div>
 <div class="line"><a id="l01582" name="l01582"></a><span class="lineno"> 1582</span>                  <span class="keywordtype">bool</span> is_node_hanging2 = node_pt(q_local)-&gt;is_hanging();</div>
 <div class="line"><a id="l01583" name="l01583"></a><span class="lineno"> 1583</span> </div>
-<div class="line"><a id="l01584" name="l01584"></a><span class="lineno"> 1584</span>                  Node* actual_shape_controlling_node_pt = node_pt(q_local);</div>
+<div class="line"><a id="l01584" name="l01584"></a><span class="lineno"> 1584</span>                  <a class="code hl_class" href="classoomph_1_1Node.html">Node</a>* actual_shape_controlling_node_pt = node_pt(q_local);</div>
 <div class="line"><a id="l01585" name="l01585"></a><span class="lineno"> 1585</span> </div>
 <div class="line"><a id="l01586" name="l01586"></a><span class="lineno"> 1586</span>                  <span class="comment">// If the node is hanging</span></div>
 <div class="line"><a id="l01587" name="l01587"></a><span class="lineno"> 1587</span>                  <span class="keywordflow">if</span> (is_node_hanging2)</div>
@@ -1877,7 +1877,7 @@ $(function() {
 <div class="line"><a id="l01748" name="l01748"></a><span class="lineno"> 1748</span>                <span class="comment">// Local boolean to indicate whether the node is hanging</span></div>
 <div class="line"><a id="l01749" name="l01749"></a><span class="lineno"> 1749</span>                <span class="keywordtype">bool</span> is_node_hanging2 = node_pt(q_local)-&gt;is_hanging();</div>
 <div class="line"><a id="l01750" name="l01750"></a><span class="lineno"> 1750</span> </div>
-<div class="line"><a id="l01751" name="l01751"></a><span class="lineno"> 1751</span>                Node* actual_shape_controlling_node_pt = node_pt(q_local);</div>
+<div class="line"><a id="l01751" name="l01751"></a><span class="lineno"> 1751</span>                <a class="code hl_class" href="classoomph_1_1Node.html">Node</a>* actual_shape_controlling_node_pt = node_pt(q_local);</div>
 <div class="line"><a id="l01752" name="l01752"></a><span class="lineno"> 1752</span> </div>
 <div class="line"><a id="l01753" name="l01753"></a><span class="lineno"> 1753</span>                <span class="comment">// If the node is hanging</span></div>
 <div class="line"><a id="l01754" name="l01754"></a><span class="lineno"> 1754</span>                <span class="keywordflow">if</span> (is_node_hanging2)</div>
@@ -2140,12 +2140,17 @@ $(function() {
 <div class="ttc" id="aclassNavierStokesEquations_html_a813cd7aeb3ec76361d53c63c79e5b534"><div class="ttname"><a href="classNavierStokesEquations.html#a813cd7aeb3ec76361d53c63c79e5b534">NavierStokesEquations::interpolated_p_nst</a></div><div class="ttdeci">virtual double interpolated_p_nst(const Vector&lt; double &gt; &amp;s) const</div><div class="ttdoc">Return FE interpolated pressure at local coordinate s.</div><div class="ttdef"><b>Definition:</b> <a href="navier__stokes__elements_8h_source.html#l01645">navier_stokes_elements.h:1645</a></div></div>
 <div class="ttc" id="aclassoomph_1_1DShape_html"><div class="ttname"><a href="classoomph_1_1DShape.html">oomph::DShape</a></div><div class="ttdoc">A Class for the derivatives of shape functions The class design is essentially the same as Shape,...</div><div class="ttdef"><b>Definition:</b> <a href="shape_8h_source.html#l00277">shape.h:278</a></div></div>
 <div class="ttc" id="aclassoomph_1_1Data_html"><div class="ttname"><a href="classoomph_1_1Data.html">oomph::Data</a></div><div class="ttdoc">A class that represents a collection of data; each Data object may contain many different individual ...</div><div class="ttdef"><b>Definition:</b> <a href="nodes_8h_source.html#l00085">nodes.h:86</a></div></div>
+<div class="ttc" id="aclassoomph_1_1Data_html_af545f88ca20583f0c1b66e4da6076aa3"><div class="ttname"><a href="classoomph_1_1Data.html#af545f88ca20583f0c1b66e4da6076aa3">oomph::Data::value_pt</a></div><div class="ttdeci">double * value_pt(const unsigned &amp;i) const</div><div class="ttdoc">Return the pointer to the i-the stored value. Typically this is required when direct access to the st...</div><div class="ttdef"><b>Definition:</b> <a href="nodes_8h_source.html#l00324">nodes.h:324</a></div></div>
 <div class="ttc" id="aclassoomph_1_1DenseMatrix_html"><div class="ttname"><a href="classoomph_1_1DenseMatrix.html">oomph::DenseMatrix&lt; double &gt;</a></div></div>
 <div class="ttc" id="aclassoomph_1_1GeneralisedElement_html_a156163c9f6fbd17548a9fa836616d19b"><div class="ttname"><a href="classoomph_1_1GeneralisedElement.html#a156163c9f6fbd17548a9fa836616d19b">oomph::GeneralisedElement::Default_fd_jacobian_step</a></div><div class="ttdeci">static double Default_fd_jacobian_step</div><div class="ttdoc">Double used for the default finite difference step in elemental jacobian calculations.</div><div class="ttdef"><b>Definition:</b> <a href="elements_8h_source.html#l01198">elements.h:1198</a></div></div>
 <div class="ttc" id="aclassoomph_1_1HangInfo_html"><div class="ttname"><a href="classoomph_1_1HangInfo.html">oomph::HangInfo</a></div><div class="ttdoc">Class that contains data for hanging nodes.</div><div class="ttdef"><b>Definition:</b> <a href="nodes_8h_source.html#l00741">nodes.h:742</a></div></div>
 <div class="ttc" id="aclassoomph_1_1HangInfo_html_a7a935ae7eeca594a648ca1800444827c"><div class="ttname"><a href="classoomph_1_1HangInfo.html#a7a935ae7eeca594a648ca1800444827c">oomph::HangInfo::master_node_pt</a></div><div class="ttdeci">Node *const &amp; master_node_pt(const unsigned &amp;i) const</div><div class="ttdoc">Return a pointer to the i-th master node.</div><div class="ttdef"><b>Definition:</b> <a href="nodes_8h_source.html#l00791">nodes.h:791</a></div></div>
 <div class="ttc" id="aclassoomph_1_1HangInfo_html_aa9c1130b58db2ff6d5eee4f923ba365c"><div class="ttname"><a href="classoomph_1_1HangInfo.html#aa9c1130b58db2ff6d5eee4f923ba365c">oomph::HangInfo::nmaster</a></div><div class="ttdeci">unsigned nmaster() const</div><div class="ttdoc">Return the number of master nodes.</div><div class="ttdef"><b>Definition:</b> <a href="nodes_8h_source.html#l00785">nodes.h:785</a></div></div>
 <div class="ttc" id="aclassoomph_1_1HangInfo_html_ac49ebdd8957a658fe4a2420108d2dcee"><div class="ttname"><a href="classoomph_1_1HangInfo.html#ac49ebdd8957a658fe4a2420108d2dcee">oomph::HangInfo::master_weight</a></div><div class="ttdeci">double const &amp; master_weight(const unsigned &amp;i) const</div><div class="ttdoc">Return weight for dofs on i-th master node.</div><div class="ttdef"><b>Definition:</b> <a href="nodes_8h_source.html#l00808">nodes.h:808</a></div></div>
+<div class="ttc" id="aclassoomph_1_1Node_html"><div class="ttname"><a href="classoomph_1_1Node.html">oomph::Node</a></div><div class="ttdoc">Nodes are derived from Data, but, in addition, have a definite (Eulerian) position in a space of a gi...</div><div class="ttdef"><b>Definition:</b> <a href="nodes_8h_source.html#l00907">nodes.h:908</a></div></div>
+<div class="ttc" id="aclassoomph_1_1Node_html_a6c287aa85c19f2d37ed7952ece5c76dd"><div class="ttname"><a href="classoomph_1_1Node.html#a6c287aa85c19f2d37ed7952ece5c76dd">oomph::Node::perform_auxiliary_node_update_fct</a></div><div class="ttdeci">void perform_auxiliary_node_update_fct()</div><div class="ttdoc">Execute auxiliary update function (if any) – this can be used to update any nodal values following th...</div><div class="ttdef"><b>Definition:</b> <a href="nodes_8h_source.html#l01617">nodes.h:1617</a></div></div>
+<div class="ttc" id="aclassoomph_1_1Node_html_ab76b4773a65b349f143539e07b6e15e2"><div class="ttname"><a href="classoomph_1_1Node.html#ab76b4773a65b349f143539e07b6e15e2">oomph::Node::x</a></div><div class="ttdeci">double &amp; x(const unsigned &amp;i)</div><div class="ttdoc">Return the i-th nodal coordinate.</div><div class="ttdef"><b>Definition:</b> <a href="nodes_8h_source.html#l01062">nodes.h:1062</a></div></div>
+<div class="ttc" id="aclassoomph_1_1Node_html_ad5fe8ac9dcb705612903bc6945926375"><div class="ttname"><a href="classoomph_1_1Node.html#ad5fe8ac9dcb705612903bc6945926375">oomph::Node::has_auxiliary_node_update_fct_pt</a></div><div class="ttdeci">bool has_auxiliary_node_update_fct_pt()</div><div class="ttdoc">Boolean to indicate if node has a pointer to and auxiliary update function.</div><div class="ttdef"><b>Definition:</b> <a href="nodes_8h_source.html#l01608">nodes.h:1608</a></div></div>
 <div class="ttc" id="aclassoomph_1_1OcTree_html_adf813fbb9cffe89fb51f3c8ccd3083ca"><div class="ttname"><a href="classoomph_1_1OcTree.html#adf813fbb9cffe89fb51f3c8ccd3083ca">oomph::OcTree::Direction_to_vector</a></div><div class="ttdeci">static Vector&lt; Vector&lt; int &gt; &gt; Direction_to_vector</div><div class="ttdoc">For each direction, i.e. a son_type (vertex), a face or an edge, this defines a vector that indicates...</div><div class="ttdef"><b>Definition:</b> <a href="octree_8h_source.html#l00353">octree.h:353</a></div></div>
 <div class="ttc" id="aclassoomph_1_1OomphLibError_html"><div class="ttname"><a href="classoomph_1_1OomphLibError.html">oomph::OomphLibError</a></div><div class="ttdoc">An OomphLibError object which should be thrown when an run-time error is encountered....</div><div class="ttdef"><b>Definition:</b> <a href="oomph__definitions_8h_source.html#l00221">oomph_definitions.h:222</a></div></div>
 <div class="ttc" id="aclassoomph_1_1PRefineableQCrouzeixRaviartElement_html"><div class="ttname"><a href="classoomph_1_1PRefineableQCrouzeixRaviartElement.html">oomph::PRefineableQCrouzeixRaviartElement</a></div><div class="ttdoc">p-refineable version of Crouzeix Raviart elements. Generic class definitions</div><div class="ttdef"><b>Definition:</b> <a href="refineable__navier__stokes__elements_8h_source.html#l01332">refineable_navier_stokes_elements.h:1336</a></div></div>
@@ -2198,7 +2203,7 @@ $(function() {
     <footer>
       <div class="container">
         <div class="text-muted" style="float:right;">Generated by <a href="http://www.doxygen.org/index.html">
-          <img style="height:18px;" class="footer-img" src="doxygen.png" alt="doxygen"></a> on Fri Dec 10 2021 08:08:05
+          <img style="height:18px;" class="footer-img" src="doxygen.png" alt="doxygen"></a> on Fri Dec 17 2021 19:42:02
         </div>
       </div>
     </footer>

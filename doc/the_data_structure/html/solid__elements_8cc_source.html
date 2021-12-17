@@ -400,17 +400,17 @@ $(function() {
 <div class="line"><a id="l00271" name="l00271"></a><span class="lineno">  271</span>        <span class="comment">// Loop over positional dofs</span></div>
 <div class="line"><a id="l00272" name="l00272"></a><span class="lineno">  272</span>        <span class="keywordflow">for</span> (<span class="keywordtype">unsigned</span> k = 0; k &lt; n_position_type; k++)</div>
 <div class="line"><a id="l00273" name="l00273"></a><span class="lineno">  273</span>        {</div>
-<div class="line"><a id="l00274" name="l00274"></a><span class="lineno">  274</span>          <span class="keywordtype">double</span> <a class="code hl_variable" href="namespaceoomph.html#aff0c55ce31f12df52b2fe5ae647ffebe">psi_</a> = psi(l, k);</div>
+<div class="line"><a id="l00274" name="l00274"></a><span class="lineno">  274</span>          <span class="keywordtype">double</span> psi_ = psi(l, k);</div>
 <div class="line"><a id="l00275" name="l00275"></a><span class="lineno">  275</span>          <span class="comment">// Loop over displacement components (deformed position)</span></div>
 <div class="line"><a id="l00276" name="l00276"></a><span class="lineno">  276</span>          <span class="keywordflow">for</span> (<span class="keywordtype">unsigned</span> <a class="code hl_variable" href="cfortran_8h.html#adb50e893b86b3e55e751a42eab3cba82">i</a> = 0; <a class="code hl_variable" href="cfortran_8h.html#adb50e893b86b3e55e751a42eab3cba82">i</a> &lt; DIM; <a class="code hl_variable" href="cfortran_8h.html#adb50e893b86b3e55e751a42eab3cba82">i</a>++)</div>
 <div class="line"><a id="l00277" name="l00277"></a><span class="lineno">  277</span>          {</div>
 <div class="line"><a id="l00278" name="l00278"></a><span class="lineno">  278</span>            <span class="comment">// Calculate the Lagrangian coordinates and the accelerations</span></div>
-<div class="line"><a id="l00279" name="l00279"></a><span class="lineno">  279</span>            interpolated_xi[<a class="code hl_variable" href="cfortran_8h.html#adb50e893b86b3e55e751a42eab3cba82">i</a>] += this-&gt;lagrangian_position_gen(l, k, <a class="code hl_variable" href="cfortran_8h.html#adb50e893b86b3e55e751a42eab3cba82">i</a>) * <a class="code hl_variable" href="namespaceoomph.html#aff0c55ce31f12df52b2fe5ae647ffebe">psi_</a>;</div>
+<div class="line"><a id="l00279" name="l00279"></a><span class="lineno">  279</span>            interpolated_xi[<a class="code hl_variable" href="cfortran_8h.html#adb50e893b86b3e55e751a42eab3cba82">i</a>] += this-&gt;lagrangian_position_gen(l, k, <a class="code hl_variable" href="cfortran_8h.html#adb50e893b86b3e55e751a42eab3cba82">i</a>) * psi_;</div>
 <div class="line"><a id="l00280" name="l00280"></a><span class="lineno">  280</span> </div>
 <div class="line"><a id="l00281" name="l00281"></a><span class="lineno">  281</span>            <span class="comment">// Only compute accelerations if inertia is switched on</span></div>
 <div class="line"><a id="l00282" name="l00282"></a><span class="lineno">  282</span>            <span class="keywordflow">if</span> ((lambda_sq &gt; 0.0) &amp;&amp; (this-&gt;Unsteady))</div>
 <div class="line"><a id="l00283" name="l00283"></a><span class="lineno">  283</span>            {</div>
-<div class="line"><a id="l00284" name="l00284"></a><span class="lineno">  284</span>              accel[<a class="code hl_variable" href="cfortran_8h.html#adb50e893b86b3e55e751a42eab3cba82">i</a>] += this-&gt;dnodal_position_gen_dt(2, l, k, <a class="code hl_variable" href="cfortran_8h.html#adb50e893b86b3e55e751a42eab3cba82">i</a>) * <a class="code hl_variable" href="namespaceoomph.html#aff0c55ce31f12df52b2fe5ae647ffebe">psi_</a>;</div>
+<div class="line"><a id="l00284" name="l00284"></a><span class="lineno">  284</span>              accel[<a class="code hl_variable" href="cfortran_8h.html#adb50e893b86b3e55e751a42eab3cba82">i</a>] += this-&gt;dnodal_position_gen_dt(2, l, k, <a class="code hl_variable" href="cfortran_8h.html#adb50e893b86b3e55e751a42eab3cba82">i</a>) * psi_;</div>
 <div class="line"><a id="l00285" name="l00285"></a><span class="lineno">  285</span>            }</div>
 <div class="line"><a id="l00286" name="l00286"></a><span class="lineno">  286</span> </div>
 <div class="line"><a id="l00287" name="l00287"></a><span class="lineno">  287</span>            <span class="comment">// Loop over derivative directions</span></div>
@@ -2675,7 +2675,6 @@ $(function() {
 <div class="ttc" id="anamespaceoomph_html_a9d1d2da2b8bb8e73af72b5cadb8fe97c"><div class="ttname"><a href="namespaceoomph.html#a9d1d2da2b8bb8e73af72b5cadb8fe97c">oomph::x</a></div><div class="ttdeci">x</div><div class="ttdoc">Pseudo buckling ring: Circular ring deformed by the N-th buckling mode of a thin-wall elastic ring.</div><div class="ttdef"><b>Definition:</b> <a href="pseudo__buckling__ring_8h_source.html#l00049">pseudo_buckling_ring.h:49</a></div></div>
 <div class="ttc" id="anamespaceoomph_html_ab40f6d5233caa62dd428818b4cba72d5"><div class="ttname"><a href="namespaceoomph.html#ab40f6d5233caa62dd428818b4cba72d5">oomph::W</a></div><div class="ttdeci">W</div><div class="ttdoc">///////////////////////////////////////////////////////////////// ///////////////////////////////////...</div><div class="ttdef"><b>Definition:</b> <a href="constitutive__laws_8h_source.html#l00142">constitutive_laws.h:142</a></div></div>
 <div class="ttc" id="anamespaceoomph_html_afa000da090f53047b0e04943d98206f7"><div class="ttname"><a href="namespaceoomph.html#afa000da090f53047b0e04943d98206f7">oomph::sigma</a></div><div class="ttdeci">sigma</div><div class="ttdoc">///////////////////////////////////////////////////////////////// ///////////////////////////////////...</div><div class="ttdef"><b>Definition:</b> <a href="constitutive__laws_8h_source.html#l00318">constitutive_laws.h:318</a></div></div>
-<div class="ttc" id="anamespaceoomph_html_aff0c55ce31f12df52b2fe5ae647ffebe"><div class="ttname"><a href="namespaceoomph.html#aff0c55ce31f12df52b2fe5ae647ffebe">oomph::psi_</a></div><div class="ttdeci">psi_</div><div class="ttdoc">Nodes are derived from Data, but, in addition, have a definite (Eulerian) position in a space of a gi...</div><div class="ttdef"><b>Definition:</b> <a href="nodes_8h_source.html#l00891">nodes.h:891</a></div></div>
 <div class="ttc" id="asolid__elements_8h_html"><div class="ttname"><a href="solid__elements_8h.html">solid_elements.h</a></div></div>
 </div><!-- fragment --></div><!-- contents -->
 
@@ -2705,7 +2704,7 @@ $(function() {
     <footer>
       <div class="container">
         <div class="text-muted" style="float:right;">Generated by <a href="http://www.doxygen.org/index.html">
-          <img style="height:18px;" class="footer-img" src="doxygen.png" alt="doxygen"></a> on Fri Dec 10 2021 08:08:06
+          <img style="height:18px;" class="footer-img" src="doxygen.png" alt="doxygen"></a> on Fri Dec 17 2021 19:42:03
         </div>
       </div>
     </footer>

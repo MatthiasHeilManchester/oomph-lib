@@ -1048,7 +1048,7 @@ $(function() {
 <div class="line"><a id="l00919" name="l00919"></a><span class="lineno">  919</span>      <span class="comment">// Loop over the vertex nodes of the associated element</span></div>
 <div class="line"><a id="l00920" name="l00920"></a><span class="lineno">  920</span>      <span class="keywordflow">for</span> (<span class="keywordtype">unsigned</span> j = 0; j &lt; n_vertex_node; j++)</div>
 <div class="line"><a id="l00921" name="l00921"></a><span class="lineno">  921</span>      {</div>
-<div class="line"><a id="l00922" name="l00922"></a><span class="lineno">  922</span>        Node* nod_pt = <span class="keyword">dynamic_cast&lt;</span><a class="code hl_class" href="classoomph_1_1QuadElementBase.html">QuadElementBase</a>*<span class="keyword">&gt;</span>(<a class="code hl_variable" href="classoomph_1_1TreeForest.html#a94d44c85e121758945f04aa28aa8df2a">Trees_pt</a>[<a class="code hl_variable" href="cfortran_8h.html#adb50e893b86b3e55e751a42eab3cba82">i</a>]-&gt;object_pt())</div>
+<div class="line"><a id="l00922" name="l00922"></a><span class="lineno">  922</span>        <a class="code hl_class" href="classoomph_1_1Node.html">Node</a>* nod_pt = <span class="keyword">dynamic_cast&lt;</span><a class="code hl_class" href="classoomph_1_1QuadElementBase.html">QuadElementBase</a>*<span class="keyword">&gt;</span>(<a class="code hl_variable" href="classoomph_1_1TreeForest.html#a94d44c85e121758945f04aa28aa8df2a">Trees_pt</a>[<a class="code hl_variable" href="cfortran_8h.html#adb50e893b86b3e55e751a42eab3cba82">i</a>]-&gt;object_pt())</div>
 <div class="line"><a id="l00923" name="l00923"></a><span class="lineno">  923</span>                         -&gt;vertex_node_pt(j);</div>
 <div class="line"><a id="l00924" name="l00924"></a><span class="lineno">  924</span>        tree_assoc_with_vertex_node[nod_pt].insert(<a class="code hl_variable" href="cfortran_8h.html#adb50e893b86b3e55e751a42eab3cba82">i</a>);</div>
 <div class="line"><a id="l00925" name="l00925"></a><span class="lineno">  925</span>      }</div>
@@ -1060,7 +1060,7 @@ $(function() {
 <div class="line"><a id="l00931" name="l00931"></a><span class="lineno">  931</span>    <a class="code hl_class" href="classoomph_1_1Vector.html">Vector&lt;std::set&lt;unsigned&gt;</a>&gt; potentially_neighb_tree(numtrees);</div>
 <div class="line"><a id="l00932" name="l00932"></a><span class="lineno">  932</span> </div>
 <div class="line"><a id="l00933" name="l00933"></a><span class="lineno">  933</span>    <span class="comment">// Loop over vertex nodes</span></div>
-<div class="line"><a id="l00934" name="l00934"></a><span class="lineno">  934</span>    <span class="keywordflow">for</span> (std::map&lt;Node*, std::set&lt;unsigned&gt;&gt;::iterator it =</div>
+<div class="line"><a id="l00934" name="l00934"></a><span class="lineno">  934</span>    <span class="keywordflow">for</span> (std::map&lt;<a class="code hl_class" href="classoomph_1_1Node.html">Node</a>*, std::set&lt;unsigned&gt;&gt;::iterator it =</div>
 <div class="line"><a id="l00935" name="l00935"></a><span class="lineno">  935</span>           tree_assoc_with_vertex_node.begin();</div>
 <div class="line"><a id="l00936" name="l00936"></a><span class="lineno">  936</span>         it != tree_assoc_with_vertex_node.end();</div>
 <div class="line"><a id="l00937" name="l00937"></a><span class="lineno">  937</span>         it++)</div>
@@ -1766,6 +1766,7 @@ $(function() {
 <div class="ttc" id="aclassoomph_1_1DocInfo_html_a85d58bcfce0a7b7cae461624e6fcd08a"><div class="ttname"><a href="classoomph_1_1DocInfo.html#a85d58bcfce0a7b7cae461624e6fcd08a">oomph::DocInfo::directory</a></div><div class="ttdeci">std::string directory() const</div><div class="ttdoc">Output directory.</div><div class="ttdef"><b>Definition:</b> <a href="oomph__utilities_8h_source.html#l00524">oomph_utilities.h:524</a></div></div>
 <div class="ttc" id="aclassoomph_1_1DocInfo_html_a9d9ce638a7834bbd4961779af426bf13"><div class="ttname"><a href="classoomph_1_1DocInfo.html#a9d9ce638a7834bbd4961779af426bf13">oomph::DocInfo::number</a></div><div class="ttdeci">unsigned &amp; number()</div><div class="ttdoc">Number used (e.g.) for labeling output files.</div><div class="ttdef"><b>Definition:</b> <a href="oomph__utilities_8h_source.html#l00554">oomph_utilities.h:554</a></div></div>
 <div class="ttc" id="aclassoomph_1_1FiniteElement_html_a6fc14cbf4e1d031acbc59b415cefa1ca"><div class="ttname"><a href="classoomph_1_1FiniteElement.html#a6fc14cbf4e1d031acbc59b415cefa1ca">oomph::FiniteElement::get_x</a></div><div class="ttdeci">void get_x(const Vector&lt; double &gt; &amp;s, Vector&lt; double &gt; &amp;x) const</div><div class="ttdoc">Global coordinates as function of local coordinates. Either via FE representation or via macro-elemen...</div><div class="ttdef"><b>Definition:</b> <a href="elements_8h_source.html#l01890">elements.h:1890</a></div></div>
+<div class="ttc" id="aclassoomph_1_1Node_html"><div class="ttname"><a href="classoomph_1_1Node.html">oomph::Node</a></div><div class="ttdoc">Nodes are derived from Data, but, in addition, have a definite (Eulerian) position in a space of a gi...</div><div class="ttdef"><b>Definition:</b> <a href="nodes_8h_source.html#l00907">nodes.h:908</a></div></div>
 <div class="ttc" id="aclassoomph_1_1OomphLibError_html"><div class="ttname"><a href="classoomph_1_1OomphLibError.html">oomph::OomphLibError</a></div><div class="ttdoc">An OomphLibError object which should be thrown when an run-time error is encountered....</div><div class="ttdef"><b>Definition:</b> <a href="oomph__definitions_8h_source.html#l00221">oomph_definitions.h:222</a></div></div>
 <div class="ttc" id="aclassoomph_1_1QuadElementBase_html"><div class="ttname"><a href="classoomph_1_1QuadElementBase.html">oomph::QuadElementBase</a></div><div class="ttdoc">Base class for all quad elements.</div><div class="ttdef"><b>Definition:</b> <a href="Qelements_8h_source.html#l00820">Qelements.h:821</a></div></div>
 <div class="ttc" id="aclassoomph_1_1QuadTreeForest_html_a34304627e767f82740b37a44e6154e0d"><div class="ttname"><a href="classoomph_1_1QuadTreeForest.html#a34304627e767f82740b37a44e6154e0d">oomph::QuadTreeForest::QuadTreeForest</a></div><div class="ttdeci">QuadTreeForest()</div><div class="ttdoc">Default constructor (empty and broken)</div><div class="ttdef"><b>Definition:</b> <a href="quadtree_8h_source.html#l00412">quadtree.h:412</a></div></div>
@@ -1859,7 +1860,7 @@ $(function() {
     <footer>
       <div class="container">
         <div class="text-muted" style="float:right;">Generated by <a href="http://www.doxygen.org/index.html">
-          <img style="height:18px;" class="footer-img" src="doxygen.png" alt="doxygen"></a> on Fri Dec 10 2021 08:08:03
+          <img style="height:18px;" class="footer-img" src="doxygen.png" alt="doxygen"></a> on Fri Dec 17 2021 19:42:00
         </div>
       </div>
     </footer>

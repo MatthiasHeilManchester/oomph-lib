@@ -306,7 +306,7 @@
 \DoxyCodeLine{\Hypertarget{solid__elements_8h_source_l00302}00302         \textcolor{comment}{// work -\/-\/ body force only makes sense for elements that can be}}
 \DoxyCodeLine{\Hypertarget{solid__elements_8h_source_l00303}00303         \textcolor{comment}{// deformed and given that the deformation of solid finite elements}}
 \DoxyCodeLine{\Hypertarget{solid__elements_8h_source_l00304}00304         \textcolor{comment}{// is controlled by their nodes, nodes must exist!)}}
-\DoxyCodeLine{\Hypertarget{solid__elements_8h_source_l00305}00305         \textcolor{keywordtype}{double} time = \mbox{\hyperlink{classoomph_1_1FiniteElement_a9addfe893ab8205619963aa96204cdc4}{node\_pt}}(0)-\/>time\_stepper\_pt()-\/>time\_pt()-\/>time();}
+\DoxyCodeLine{\Hypertarget{solid__elements_8h_source_l00305}00305         \textcolor{keywordtype}{double} time = \mbox{\hyperlink{classoomph_1_1FiniteElement_a9addfe893ab8205619963aa96204cdc4}{node\_pt}}(0)-\/>\mbox{\hyperlink{classoomph_1_1Data_a065d7bffcec82bf4d4bd7b41f9aa80b3}{time\_stepper\_pt}}()-\/>\mbox{\hyperlink{classoomph_1_1TimeStepper_ac73981d5a68161d7b317bebb4ee04adb}{time\_pt}}()-\/>\mbox{\hyperlink{classoomph_1_1Time_a43461269b799134f4b7a9aca3e79a7c8}{time}}();}
 \DoxyCodeLine{\Hypertarget{solid__elements_8h_source_l00306}00306 }
 \DoxyCodeLine{\Hypertarget{solid__elements_8h_source_l00307}00307         \textcolor{comment}{// Now evaluate the body force}}
 \DoxyCodeLine{\Hypertarget{solid__elements_8h_source_l00308}00308         (*Body\_force\_fct\_pt)(time, xi, b);}
@@ -780,7 +780,7 @@
 \DoxyCodeLine{\Hypertarget{solid__elements_8h_source_l00776}00776 \textcolor{comment}{    /// Number of positional history values (Includes the current value!)}}
 \DoxyCodeLine{\Hypertarget{solid__elements_8h_source_l00777}\mbox{\hyperlink{classoomph_1_1ProjectablePVDElement_a82923f600601aa9f0c9e1b168f0d8fa5}{00777}} \textcolor{comment}{}    \textcolor{keywordtype}{unsigned} \mbox{\hyperlink{classoomph_1_1ProjectablePVDElement_a82923f600601aa9f0c9e1b168f0d8fa5}{nhistory\_values\_for\_coordinate\_projection}}()}
 \DoxyCodeLine{\Hypertarget{solid__elements_8h_source_l00778}00778     \{}
-\DoxyCodeLine{\Hypertarget{solid__elements_8h_source_l00779}00779       \textcolor{keywordflow}{return} this-\/>\mbox{\hyperlink{classoomph_1_1FiniteElement_a9addfe893ab8205619963aa96204cdc4}{node\_pt}}(0)-\/>position\_time\_stepper\_pt()-\/>ntstorage();}
+\DoxyCodeLine{\Hypertarget{solid__elements_8h_source_l00779}00779       \textcolor{keywordflow}{return} this-\/>\mbox{\hyperlink{classoomph_1_1FiniteElement_a9addfe893ab8205619963aa96204cdc4}{node\_pt}}(0)-\/>\mbox{\hyperlink{classoomph_1_1Node_a32b32940186f9d1e2abc5d4bedb6ff0d}{position\_time\_stepper\_pt}}()-\/>\mbox{\hyperlink{classoomph_1_1TimeStepper_a3939b77ec3578e4bd5b453c85649d631}{ntstorage}}();}
 \DoxyCodeLine{\Hypertarget{solid__elements_8h_source_l00780}00780     \}}
 \DoxyCodeLine{\Hypertarget{solid__elements_8h_source_l00781}00781 \textcolor{comment}{}}
 \DoxyCodeLine{\Hypertarget{solid__elements_8h_source_l00782}00782 \textcolor{comment}{    /// Return Jacobian of mapping and shape functions of field fld}}
@@ -1539,7 +1539,7 @@
 \DoxyCodeLine{\Hypertarget{solid__elements_8h_source_l01535}01535       \textcolor{comment}{// loop over nodes}}
 \DoxyCodeLine{\Hypertarget{solid__elements_8h_source_l01536}01536       \textcolor{keywordflow}{for} (\textcolor{keywordtype}{unsigned} n = 0; n < n\_node; n++)}
 \DoxyCodeLine{\Hypertarget{solid__elements_8h_source_l01537}01537       \{}
-\DoxyCodeLine{\Hypertarget{solid__elements_8h_source_l01538}01538         this-\/>\mbox{\hyperlink{classoomph_1_1FiniteElement_a9addfe893ab8205619963aa96204cdc4}{node\_pt}}(n)-\/>unpin(p\_index);}
+\DoxyCodeLine{\Hypertarget{solid__elements_8h_source_l01538}01538         this-\/>\mbox{\hyperlink{classoomph_1_1FiniteElement_a9addfe893ab8205619963aa96204cdc4}{node\_pt}}(n)-\/>\mbox{\hyperlink{classoomph_1_1Data_a4e5cb031bf8eceb8f97c2c4fbd74cb05}{unpin}}(p\_index);}
 \DoxyCodeLine{\Hypertarget{solid__elements_8h_source_l01539}01539       \}}
 \DoxyCodeLine{\Hypertarget{solid__elements_8h_source_l01540}01540     \}}
 \DoxyCodeLine{\Hypertarget{solid__elements_8h_source_l01541}01541 }
@@ -1589,7 +1589,7 @@
 \DoxyCodeLine{\Hypertarget{solid__elements_8h_source_l01585}01585 \textcolor{comment}{    /// Set the l-\/th solid pressure value to p\_value}}
 \DoxyCodeLine{\Hypertarget{solid__elements_8h_source_l01586}\mbox{\hyperlink{classoomph_1_1QPVDElementWithContinuousPressure_a796553fe8e806158167c598e4c85596f}{01586}} \textcolor{comment}{}    \textcolor{keywordtype}{void} \mbox{\hyperlink{classoomph_1_1QPVDElementWithContinuousPressure_a796553fe8e806158167c598e4c85596f}{set\_solid\_p}}(\textcolor{keyword}{const} \textcolor{keywordtype}{unsigned}\& l, \textcolor{keyword}{const} \textcolor{keywordtype}{double}\& p\_value)}
 \DoxyCodeLine{\Hypertarget{solid__elements_8h_source_l01587}01587     \{}
-\DoxyCodeLine{\Hypertarget{solid__elements_8h_source_l01588}01588       this-\/>\mbox{\hyperlink{classoomph_1_1FiniteElement_a9addfe893ab8205619963aa96204cdc4}{node\_pt}}(Pconv[l])-\/>set\_value(this-\/>\mbox{\hyperlink{classoomph_1_1QPVDElementWithContinuousPressure_aa21b5dbde38a2cfc7fa7786052267b50}{solid\_p\_nodal\_index}}(), p\_value);}
+\DoxyCodeLine{\Hypertarget{solid__elements_8h_source_l01588}01588       this-\/>\mbox{\hyperlink{classoomph_1_1FiniteElement_a9addfe893ab8205619963aa96204cdc4}{node\_pt}}(Pconv[l])-\/>\mbox{\hyperlink{classoomph_1_1Data_a7289ca322725c6fd493970a19474b382}{set\_value}}(this-\/>\mbox{\hyperlink{classoomph_1_1QPVDElementWithContinuousPressure_aa21b5dbde38a2cfc7fa7786052267b50}{solid\_p\_nodal\_index}}(), p\_value);}
 \DoxyCodeLine{\Hypertarget{solid__elements_8h_source_l01589}01589     \}}
 \DoxyCodeLine{\Hypertarget{solid__elements_8h_source_l01590}01590 \textcolor{comment}{}}
 \DoxyCodeLine{\Hypertarget{solid__elements_8h_source_l01591}01591 \textcolor{comment}{    /// Return number of pressure values}}
@@ -1601,8 +1601,8 @@
 \DoxyCodeLine{\Hypertarget{solid__elements_8h_source_l01597}01597 \textcolor{comment}{    /// Fix the pressure dof l to be the value pvalue}}
 \DoxyCodeLine{\Hypertarget{solid__elements_8h_source_l01598}\mbox{\hyperlink{classoomph_1_1QPVDElementWithContinuousPressure_ac86b448b58ca42cab0561cce11bdbd7d}{01598}} \textcolor{comment}{}    \textcolor{keywordtype}{void} \mbox{\hyperlink{classoomph_1_1QPVDElementWithContinuousPressure_ac86b448b58ca42cab0561cce11bdbd7d}{fix\_solid\_pressure}}(\textcolor{keyword}{const} \textcolor{keywordtype}{unsigned}\& l, \textcolor{keyword}{const} \textcolor{keywordtype}{double}\& pvalue)}
 \DoxyCodeLine{\Hypertarget{solid__elements_8h_source_l01599}01599     \{}
-\DoxyCodeLine{\Hypertarget{solid__elements_8h_source_l01600}01600       this-\/>\mbox{\hyperlink{classoomph_1_1FiniteElement_a9addfe893ab8205619963aa96204cdc4}{node\_pt}}(Pconv[l])-\/>pin(this-\/>\mbox{\hyperlink{classoomph_1_1QPVDElementWithContinuousPressure_aa21b5dbde38a2cfc7fa7786052267b50}{solid\_p\_nodal\_index}}());}
-\DoxyCodeLine{\Hypertarget{solid__elements_8h_source_l01601}01601       this-\/>\mbox{\hyperlink{classoomph_1_1FiniteElement_a9addfe893ab8205619963aa96204cdc4}{node\_pt}}(Pconv[l])-\/>set\_value(this-\/>\mbox{\hyperlink{classoomph_1_1QPVDElementWithContinuousPressure_aa21b5dbde38a2cfc7fa7786052267b50}{solid\_p\_nodal\_index}}(), pvalue);}
+\DoxyCodeLine{\Hypertarget{solid__elements_8h_source_l01600}01600       this-\/>\mbox{\hyperlink{classoomph_1_1FiniteElement_a9addfe893ab8205619963aa96204cdc4}{node\_pt}}(Pconv[l])-\/>\mbox{\hyperlink{classoomph_1_1Data_a422231c58e423f0b43822827aa334d79}{pin}}(this-\/>\mbox{\hyperlink{classoomph_1_1QPVDElementWithContinuousPressure_aa21b5dbde38a2cfc7fa7786052267b50}{solid\_p\_nodal\_index}}());}
+\DoxyCodeLine{\Hypertarget{solid__elements_8h_source_l01601}01601       this-\/>\mbox{\hyperlink{classoomph_1_1FiniteElement_a9addfe893ab8205619963aa96204cdc4}{node\_pt}}(Pconv[l])-\/>\mbox{\hyperlink{classoomph_1_1Data_a7289ca322725c6fd493970a19474b382}{set\_value}}(this-\/>\mbox{\hyperlink{classoomph_1_1QPVDElementWithContinuousPressure_aa21b5dbde38a2cfc7fa7786052267b50}{solid\_p\_nodal\_index}}(), pvalue);}
 \DoxyCodeLine{\Hypertarget{solid__elements_8h_source_l01602}01602     \}}
 \DoxyCodeLine{\Hypertarget{solid__elements_8h_source_l01603}01603 \textcolor{comment}{}}
 \DoxyCodeLine{\Hypertarget{solid__elements_8h_source_l01604}01604 \textcolor{comment}{    /// Generic FiniteElement output function}}
@@ -1801,7 +1801,7 @@
 \DoxyCodeLine{\Hypertarget{solid__elements_8h_source_l01797}01797     \}}
 \DoxyCodeLine{\Hypertarget{solid__elements_8h_source_l01798}01798 \textcolor{comment}{}}
 \DoxyCodeLine{\Hypertarget{solid__elements_8h_source_l01799}01799 \textcolor{comment}{    /// Pointer to the j-\/th vertex node in the element}}
-\DoxyCodeLine{\Hypertarget{solid__elements_8h_source_l01800}\mbox{\hyperlink{classoomph_1_1TPVDElement_ad9db81b93ae86bcdd6d1ff151e03ecaa}{01800}} \textcolor{comment}{}    Node* \mbox{\hyperlink{classoomph_1_1TPVDElement_ad9db81b93ae86bcdd6d1ff151e03ecaa}{vertex\_node\_pt}}(\textcolor{keyword}{const} \textcolor{keywordtype}{unsigned}\& j)\textcolor{keyword}{ const}}
+\DoxyCodeLine{\Hypertarget{solid__elements_8h_source_l01800}\mbox{\hyperlink{classoomph_1_1TPVDElement_ad9db81b93ae86bcdd6d1ff151e03ecaa}{01800}} \textcolor{comment}{}    \mbox{\hyperlink{classoomph_1_1Node}{Node}}* \mbox{\hyperlink{classoomph_1_1TPVDElement_ad9db81b93ae86bcdd6d1ff151e03ecaa}{vertex\_node\_pt}}(\textcolor{keyword}{const} \textcolor{keywordtype}{unsigned}\& j)\textcolor{keyword}{ const}}
 \DoxyCodeLine{\Hypertarget{solid__elements_8h_source_l01801}01801 \textcolor{keyword}{    }\{}
 \DoxyCodeLine{\Hypertarget{solid__elements_8h_source_l01802}01802       \textcolor{keywordflow}{return} \mbox{\hyperlink{classoomph_1_1TElement}{TElement<DIM, NNODE\_1D>::vertex\_node\_pt}}(j);}
 \DoxyCodeLine{\Hypertarget{solid__elements_8h_source_l01803}01803     \}}
@@ -1984,7 +1984,7 @@
 \DoxyCodeLine{\Hypertarget{solid__elements_8h_source_l01980}01980     \}}
 \DoxyCodeLine{\Hypertarget{solid__elements_8h_source_l01981}01981 \textcolor{comment}{}}
 \DoxyCodeLine{\Hypertarget{solid__elements_8h_source_l01982}01982 \textcolor{comment}{    /// Pointer to the j-\/th vertex node in the element}}
-\DoxyCodeLine{\Hypertarget{solid__elements_8h_source_l01983}\mbox{\hyperlink{classoomph_1_1TPVDBubbleEnrichedElement_abdb9aeb656955ae102646431e9204b56}{01983}} \textcolor{comment}{}    Node* \mbox{\hyperlink{classoomph_1_1TPVDBubbleEnrichedElement_abdb9aeb656955ae102646431e9204b56}{vertex\_node\_pt}}(\textcolor{keyword}{const} \textcolor{keywordtype}{unsigned}\& j)\textcolor{keyword}{ const}}
+\DoxyCodeLine{\Hypertarget{solid__elements_8h_source_l01983}\mbox{\hyperlink{classoomph_1_1TPVDBubbleEnrichedElement_abdb9aeb656955ae102646431e9204b56}{01983}} \textcolor{comment}{}    \mbox{\hyperlink{classoomph_1_1Node}{Node}}* \mbox{\hyperlink{classoomph_1_1TPVDBubbleEnrichedElement_abdb9aeb656955ae102646431e9204b56}{vertex\_node\_pt}}(\textcolor{keyword}{const} \textcolor{keywordtype}{unsigned}\& j)\textcolor{keyword}{ const}}
 \DoxyCodeLine{\Hypertarget{solid__elements_8h_source_l01984}01984 \textcolor{keyword}{    }\{}
 \DoxyCodeLine{\Hypertarget{solid__elements_8h_source_l01985}01985       \textcolor{keywordflow}{return} \mbox{\hyperlink{classoomph_1_1TElement}{TElement<DIM, NNODE\_1D>::vertex\_node\_pt}}(j);}
 \DoxyCodeLine{\Hypertarget{solid__elements_8h_source_l01986}01986     \}}
@@ -2118,7 +2118,7 @@
 \DoxyCodeLine{\Hypertarget{solid__elements_8h_source_l02114}02114       \textcolor{comment}{// loop over nodes}}
 \DoxyCodeLine{\Hypertarget{solid__elements_8h_source_l02115}02115       \textcolor{keywordflow}{for} (\textcolor{keywordtype}{unsigned} n = 0; n < n\_node; n++)}
 \DoxyCodeLine{\Hypertarget{solid__elements_8h_source_l02116}02116       \{}
-\DoxyCodeLine{\Hypertarget{solid__elements_8h_source_l02117}02117         this-\/>\mbox{\hyperlink{classoomph_1_1FiniteElement_a9addfe893ab8205619963aa96204cdc4}{node\_pt}}(n)-\/>unpin(p\_index);}
+\DoxyCodeLine{\Hypertarget{solid__elements_8h_source_l02117}02117         this-\/>\mbox{\hyperlink{classoomph_1_1FiniteElement_a9addfe893ab8205619963aa96204cdc4}{node\_pt}}(n)-\/>\mbox{\hyperlink{classoomph_1_1Data_a4e5cb031bf8eceb8f97c2c4fbd74cb05}{unpin}}(p\_index);}
 \DoxyCodeLine{\Hypertarget{solid__elements_8h_source_l02118}02118       \}}
 \DoxyCodeLine{\Hypertarget{solid__elements_8h_source_l02119}02119     \}}
 \DoxyCodeLine{\Hypertarget{solid__elements_8h_source_l02120}02120 }
@@ -2181,7 +2181,7 @@
 \DoxyCodeLine{\Hypertarget{solid__elements_8h_source_l02177}02177 \textcolor{comment}{    /// Set the l-\/th solid pressure value to p\_value}}
 \DoxyCodeLine{\Hypertarget{solid__elements_8h_source_l02178}\mbox{\hyperlink{classoomph_1_1TPVDElementWithContinuousPressure_a3dd6618975cc1eb47cb4a4da4c3f9274}{02178}} \textcolor{comment}{}    \textcolor{keywordtype}{void} \mbox{\hyperlink{classoomph_1_1TPVDElementWithContinuousPressure_a3dd6618975cc1eb47cb4a4da4c3f9274}{set\_solid\_p}}(\textcolor{keyword}{const} \textcolor{keywordtype}{unsigned}\& l, \textcolor{keyword}{const} \textcolor{keywordtype}{double}\& p\_value)}
 \DoxyCodeLine{\Hypertarget{solid__elements_8h_source_l02179}02179     \{}
-\DoxyCodeLine{\Hypertarget{solid__elements_8h_source_l02180}02180       this-\/>\mbox{\hyperlink{classoomph_1_1FiniteElement_a9addfe893ab8205619963aa96204cdc4}{node\_pt}}(Pconv[l])-\/>set\_value(this-\/>\mbox{\hyperlink{classoomph_1_1TPVDElementWithContinuousPressure_aa39375a80e84e370d1633122e87ad86d}{solid\_p\_nodal\_index}}(), p\_value);}
+\DoxyCodeLine{\Hypertarget{solid__elements_8h_source_l02180}02180       this-\/>\mbox{\hyperlink{classoomph_1_1FiniteElement_a9addfe893ab8205619963aa96204cdc4}{node\_pt}}(Pconv[l])-\/>\mbox{\hyperlink{classoomph_1_1Data_a7289ca322725c6fd493970a19474b382}{set\_value}}(this-\/>\mbox{\hyperlink{classoomph_1_1TPVDElementWithContinuousPressure_aa39375a80e84e370d1633122e87ad86d}{solid\_p\_nodal\_index}}(), p\_value);}
 \DoxyCodeLine{\Hypertarget{solid__elements_8h_source_l02181}02181     \}}
 \DoxyCodeLine{\Hypertarget{solid__elements_8h_source_l02182}02182 \textcolor{comment}{}}
 \DoxyCodeLine{\Hypertarget{solid__elements_8h_source_l02183}02183 \textcolor{comment}{    /// Return number of pressure values}}
@@ -2190,8 +2190,8 @@
 \DoxyCodeLine{\Hypertarget{solid__elements_8h_source_l02186}02186 \textcolor{comment}{    /// Fix the pressure dof l to be the value pvalue}}
 \DoxyCodeLine{\Hypertarget{solid__elements_8h_source_l02187}\mbox{\hyperlink{classoomph_1_1TPVDElementWithContinuousPressure_a6f45a094fc941c13ad8e0fc448eea782}{02187}} \textcolor{comment}{}    \textcolor{keywordtype}{void} \mbox{\hyperlink{classoomph_1_1TPVDElementWithContinuousPressure_a6f45a094fc941c13ad8e0fc448eea782}{fix\_solid\_pressure}}(\textcolor{keyword}{const} \textcolor{keywordtype}{unsigned}\& l, \textcolor{keyword}{const} \textcolor{keywordtype}{double}\& pvalue)}
 \DoxyCodeLine{\Hypertarget{solid__elements_8h_source_l02188}02188     \{}
-\DoxyCodeLine{\Hypertarget{solid__elements_8h_source_l02189}02189       this-\/>\mbox{\hyperlink{classoomph_1_1FiniteElement_a9addfe893ab8205619963aa96204cdc4}{node\_pt}}(Pconv[l])-\/>pin(this-\/>\mbox{\hyperlink{classoomph_1_1TPVDElementWithContinuousPressure_aa39375a80e84e370d1633122e87ad86d}{solid\_p\_nodal\_index}}());}
-\DoxyCodeLine{\Hypertarget{solid__elements_8h_source_l02190}02190       this-\/>\mbox{\hyperlink{classoomph_1_1FiniteElement_a9addfe893ab8205619963aa96204cdc4}{node\_pt}}(Pconv[l])-\/>set\_value(this-\/>\mbox{\hyperlink{classoomph_1_1TPVDElementWithContinuousPressure_aa39375a80e84e370d1633122e87ad86d}{solid\_p\_nodal\_index}}(), pvalue);}
+\DoxyCodeLine{\Hypertarget{solid__elements_8h_source_l02189}02189       this-\/>\mbox{\hyperlink{classoomph_1_1FiniteElement_a9addfe893ab8205619963aa96204cdc4}{node\_pt}}(Pconv[l])-\/>\mbox{\hyperlink{classoomph_1_1Data_a422231c58e423f0b43822827aa334d79}{pin}}(this-\/>\mbox{\hyperlink{classoomph_1_1TPVDElementWithContinuousPressure_aa39375a80e84e370d1633122e87ad86d}{solid\_p\_nodal\_index}}());}
+\DoxyCodeLine{\Hypertarget{solid__elements_8h_source_l02190}02190       this-\/>\mbox{\hyperlink{classoomph_1_1FiniteElement_a9addfe893ab8205619963aa96204cdc4}{node\_pt}}(Pconv[l])-\/>\mbox{\hyperlink{classoomph_1_1Data_a7289ca322725c6fd493970a19474b382}{set\_value}}(this-\/>\mbox{\hyperlink{classoomph_1_1TPVDElementWithContinuousPressure_aa39375a80e84e370d1633122e87ad86d}{solid\_p\_nodal\_index}}(), pvalue);}
 \DoxyCodeLine{\Hypertarget{solid__elements_8h_source_l02191}02191     \}}
 \DoxyCodeLine{\Hypertarget{solid__elements_8h_source_l02192}02192 \textcolor{comment}{}}
 \DoxyCodeLine{\Hypertarget{solid__elements_8h_source_l02193}02193 \textcolor{comment}{    /// Generic FiniteElement output function}}
@@ -2233,7 +2233,7 @@
 \DoxyCodeLine{\Hypertarget{solid__elements_8h_source_l02229}02229     \}}
 \DoxyCodeLine{\Hypertarget{solid__elements_8h_source_l02230}02230 \textcolor{comment}{}}
 \DoxyCodeLine{\Hypertarget{solid__elements_8h_source_l02231}02231 \textcolor{comment}{    /// Pointer to the j-\/th vertex node in the element}}
-\DoxyCodeLine{\Hypertarget{solid__elements_8h_source_l02232}\mbox{\hyperlink{classoomph_1_1TPVDElementWithContinuousPressure_a7bc97ecdb4c23624f0b9e8985f7572a6}{02232}} \textcolor{comment}{}    Node* \mbox{\hyperlink{classoomph_1_1TPVDElementWithContinuousPressure_a7bc97ecdb4c23624f0b9e8985f7572a6}{vertex\_node\_pt}}(\textcolor{keyword}{const} \textcolor{keywordtype}{unsigned}\& j)\textcolor{keyword}{ const}}
+\DoxyCodeLine{\Hypertarget{solid__elements_8h_source_l02232}\mbox{\hyperlink{classoomph_1_1TPVDElementWithContinuousPressure_a7bc97ecdb4c23624f0b9e8985f7572a6}{02232}} \textcolor{comment}{}    \mbox{\hyperlink{classoomph_1_1Node}{Node}}* \mbox{\hyperlink{classoomph_1_1TPVDElementWithContinuousPressure_a7bc97ecdb4c23624f0b9e8985f7572a6}{vertex\_node\_pt}}(\textcolor{keyword}{const} \textcolor{keywordtype}{unsigned}\& j)\textcolor{keyword}{ const}}
 \DoxyCodeLine{\Hypertarget{solid__elements_8h_source_l02233}02233 \textcolor{keyword}{    }\{}
 \DoxyCodeLine{\Hypertarget{solid__elements_8h_source_l02234}02234       \textcolor{keywordflow}{return} \mbox{\hyperlink{classoomph_1_1TElement}{TElement<DIM, 3>::vertex\_node\_pt}}(j);}
 \DoxyCodeLine{\Hypertarget{solid__elements_8h_source_l02235}02235     \}}
@@ -2546,7 +2546,7 @@
 \DoxyCodeLine{\Hypertarget{solid__elements_8h_source_l02542}02542 \textcolor{comment}{    /// Number of positional history values (Includes the current value!)}}
 \DoxyCodeLine{\Hypertarget{solid__elements_8h_source_l02543}\mbox{\hyperlink{classoomph_1_1ProjectablePVDElementWithContinuousPressure_a67bdc9b19979dc1b77330fb1ab5f9493}{02543}} \textcolor{comment}{}    \textcolor{keywordtype}{unsigned} \mbox{\hyperlink{classoomph_1_1ProjectablePVDElementWithContinuousPressure_a67bdc9b19979dc1b77330fb1ab5f9493}{nhistory\_values\_for\_coordinate\_projection}}()}
 \DoxyCodeLine{\Hypertarget{solid__elements_8h_source_l02544}02544     \{}
-\DoxyCodeLine{\Hypertarget{solid__elements_8h_source_l02545}02545       \textcolor{keywordflow}{return} this-\/>\mbox{\hyperlink{classoomph_1_1FiniteElement_a9addfe893ab8205619963aa96204cdc4}{node\_pt}}(0)-\/>position\_time\_stepper\_pt()-\/>ntstorage();}
+\DoxyCodeLine{\Hypertarget{solid__elements_8h_source_l02545}02545       \textcolor{keywordflow}{return} this-\/>\mbox{\hyperlink{classoomph_1_1FiniteElement_a9addfe893ab8205619963aa96204cdc4}{node\_pt}}(0)-\/>\mbox{\hyperlink{classoomph_1_1Node_a32b32940186f9d1e2abc5d4bedb6ff0d}{position\_time\_stepper\_pt}}()-\/>\mbox{\hyperlink{classoomph_1_1TimeStepper_a3939b77ec3578e4bd5b453c85649d631}{ntstorage}}();}
 \DoxyCodeLine{\Hypertarget{solid__elements_8h_source_l02546}02546     \}}
 \DoxyCodeLine{\Hypertarget{solid__elements_8h_source_l02547}02547 \textcolor{comment}{}}
 \DoxyCodeLine{\Hypertarget{solid__elements_8h_source_l02548}02548 \textcolor{comment}{    /// Return Jacobian of mapping and shape functions of field fld}}
