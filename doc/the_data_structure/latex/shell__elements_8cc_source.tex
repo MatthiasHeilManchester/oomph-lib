@@ -1578,7 +1578,7 @@
 \DoxyCodeLine{\Hypertarget{shell__elements_8cc_source_l01574}01574         \{}
 \DoxyCodeLine{\Hypertarget{shell__elements_8cc_source_l01575}01575           \textcolor{comment}{// The (additional) Lagrange multiplier values are stored}}
 \DoxyCodeLine{\Hypertarget{shell__elements_8cc_source_l01576}01576           \textcolor{comment}{// after those that were created by the bulk elements:}}
-\DoxyCodeLine{\Hypertarget{shell__elements_8cc_source_l01577}01577           lambda += \mbox{\hyperlink{classoomph_1_1FiniteElement_a9addfe893ab8205619963aa96204cdc4}{node\_pt}}(j)-\/>\mbox{\hyperlink{classoomph_1_1Node_afcc5cdba40bca251826ae5bee5ca15b4}{value}}(\mbox{\hyperlink{classoomph_1_1FaceElement_abd04b85066da626341294b5f0b97516e}{Nbulk\_value}}[j] + k) * psi(j, k);}
+\DoxyCodeLine{\Hypertarget{shell__elements_8cc_source_l01577}01577           lambda += \mbox{\hyperlink{classoomph_1_1FiniteElement_a9addfe893ab8205619963aa96204cdc4}{node\_pt}}(j)-\/>value(\mbox{\hyperlink{classoomph_1_1FaceElement_abd04b85066da626341294b5f0b97516e}{Nbulk\_value}}[j] + k) * psi(j, k);}
 \DoxyCodeLine{\Hypertarget{shell__elements_8cc_source_l01578}01578         \}}
 \DoxyCodeLine{\Hypertarget{shell__elements_8cc_source_l01579}01579       \}}
 \DoxyCodeLine{\Hypertarget{shell__elements_8cc_source_l01580}01580 }
@@ -1629,7 +1629,7 @@
 \DoxyCodeLine{\Hypertarget{shell__elements_8cc_source_l01625}01625       \textcolor{comment}{// Loop over the number of nodes}}
 \DoxyCodeLine{\Hypertarget{shell__elements_8cc_source_l01626}01626       \textcolor{keywordflow}{for} (\textcolor{keywordtype}{unsigned} j = 0; j < n\_node; j++)}
 \DoxyCodeLine{\Hypertarget{shell__elements_8cc_source_l01627}01627       \{}
-\DoxyCodeLine{\Hypertarget{shell__elements_8cc_source_l01628}01628         \mbox{\hyperlink{classoomph_1_1Node}{Node}}* nod\_pt = \mbox{\hyperlink{classoomph_1_1FiniteElement_a9addfe893ab8205619963aa96204cdc4}{node\_pt}}(j);}
+\DoxyCodeLine{\Hypertarget{shell__elements_8cc_source_l01628}01628         Node* nod\_pt = \mbox{\hyperlink{classoomph_1_1FiniteElement_a9addfe893ab8205619963aa96204cdc4}{node\_pt}}(j);}
 \DoxyCodeLine{\Hypertarget{shell__elements_8cc_source_l01629}01629 }
 \DoxyCodeLine{\Hypertarget{shell__elements_8cc_source_l01630}01630         \textcolor{comment}{// Loop over directions}}
 \DoxyCodeLine{\Hypertarget{shell__elements_8cc_source_l01631}01631         \textcolor{keywordflow}{for} (\textcolor{keywordtype}{unsigned} \mbox{\hyperlink{cfortran_8h_adb50e893b86b3e55e751a42eab3cba82}{i}} = 0; \mbox{\hyperlink{cfortran_8h_adb50e893b86b3e55e751a42eab3cba82}{i}} < 3; \mbox{\hyperlink{cfortran_8h_adb50e893b86b3e55e751a42eab3cba82}{i}}++)}
@@ -1642,10 +1642,10 @@
 \DoxyCodeLine{\Hypertarget{shell__elements_8cc_source_l01638}01638             \textcolor{keywordflow}{if} (local\_eqn >= 0)}
 \DoxyCodeLine{\Hypertarget{shell__elements_8cc_source_l01639}01639             \{}
 \DoxyCodeLine{\Hypertarget{shell__elements_8cc_source_l01640}01640               \textcolor{comment}{// Backup}}
-\DoxyCodeLine{\Hypertarget{shell__elements_8cc_source_l01641}01641               \textcolor{keywordtype}{double} backup = nod\_pt-\/>\mbox{\hyperlink{classoomph_1_1Node_af7fdc0dfda495d69bd31c790ee77da73}{x\_gen}}(k, \mbox{\hyperlink{cfortran_8h_adb50e893b86b3e55e751a42eab3cba82}{i}});}
+\DoxyCodeLine{\Hypertarget{shell__elements_8cc_source_l01641}01641               \textcolor{keywordtype}{double} backup = nod\_pt-\/>x\_gen(k, \mbox{\hyperlink{cfortran_8h_adb50e893b86b3e55e751a42eab3cba82}{i}});}
 \DoxyCodeLine{\Hypertarget{shell__elements_8cc_source_l01642}01642 }
 \DoxyCodeLine{\Hypertarget{shell__elements_8cc_source_l01643}01643               \textcolor{comment}{// Increment}}
-\DoxyCodeLine{\Hypertarget{shell__elements_8cc_source_l01644}01644               nod\_pt-\/>\mbox{\hyperlink{classoomph_1_1Node_af7fdc0dfda495d69bd31c790ee77da73}{x\_gen}}(k, \mbox{\hyperlink{cfortran_8h_adb50e893b86b3e55e751a42eab3cba82}{i}}) += fd\_step;}
+\DoxyCodeLine{\Hypertarget{shell__elements_8cc_source_l01644}01644               nod\_pt-\/>x\_gen(k, \mbox{\hyperlink{cfortran_8h_adb50e893b86b3e55e751a42eab3cba82}{i}}) += fd\_step;}
 \DoxyCodeLine{\Hypertarget{shell__elements_8cc_source_l01645}01645 }
 \DoxyCodeLine{\Hypertarget{shell__elements_8cc_source_l01646}01646               \textcolor{comment}{// Re-\/evaluate unit normal on bulk shell element}}
 \DoxyCodeLine{\Hypertarget{shell__elements_8cc_source_l01647}01647               bulk\_el\_pt-\/>\mbox{\hyperlink{classoomph_1_1KirchhoffLoveShellEquations_a797e455634ac8b8e8669c4adff84e644}{get\_normal}}(s\_bulk, shell\_normal\_plus);}
@@ -1665,7 +1665,7 @@
 \DoxyCodeLine{\Hypertarget{shell__elements_8cc_source_l01661}01661               residuals[local\_eqn] += lambda * dres\_dx * \mbox{\hyperlink{namespaceoomph_ab40f6d5233caa62dd428818b4cba72d5}{W}};}
 \DoxyCodeLine{\Hypertarget{shell__elements_8cc_source_l01662}01662 }
 \DoxyCodeLine{\Hypertarget{shell__elements_8cc_source_l01663}01663               \textcolor{comment}{// Reset}}
-\DoxyCodeLine{\Hypertarget{shell__elements_8cc_source_l01664}01664               nod\_pt-\/>\mbox{\hyperlink{classoomph_1_1Node_af7fdc0dfda495d69bd31c790ee77da73}{x\_gen}}(k, \mbox{\hyperlink{cfortran_8h_adb50e893b86b3e55e751a42eab3cba82}{i}}) = backup;}
+\DoxyCodeLine{\Hypertarget{shell__elements_8cc_source_l01664}01664               nod\_pt-\/>x\_gen(k, \mbox{\hyperlink{cfortran_8h_adb50e893b86b3e55e751a42eab3cba82}{i}}) = backup;}
 \DoxyCodeLine{\Hypertarget{shell__elements_8cc_source_l01665}01665             \}}
 \DoxyCodeLine{\Hypertarget{shell__elements_8cc_source_l01666}01666           \}}
 \DoxyCodeLine{\Hypertarget{shell__elements_8cc_source_l01667}01667         \}}
@@ -1723,7 +1723,7 @@
 \DoxyCodeLine{\Hypertarget{shell__elements_8cc_source_l01719}01719         \{}
 \DoxyCodeLine{\Hypertarget{shell__elements_8cc_source_l01720}01720           \textcolor{comment}{// The (additional) Lagrange multiplier values are stored}}
 \DoxyCodeLine{\Hypertarget{shell__elements_8cc_source_l01721}01721           \textcolor{comment}{// after those that were created by the bulk elements:}}
-\DoxyCodeLine{\Hypertarget{shell__elements_8cc_source_l01722}01722           lambda += \mbox{\hyperlink{classoomph_1_1FiniteElement_a9addfe893ab8205619963aa96204cdc4}{node\_pt}}(j)-\/>\mbox{\hyperlink{classoomph_1_1Node_afcc5cdba40bca251826ae5bee5ca15b4}{value}}(\mbox{\hyperlink{classoomph_1_1FaceElement_abd04b85066da626341294b5f0b97516e}{Nbulk\_value}}[j] + k) * psi(j, k);}
+\DoxyCodeLine{\Hypertarget{shell__elements_8cc_source_l01722}01722           lambda += \mbox{\hyperlink{classoomph_1_1FiniteElement_a9addfe893ab8205619963aa96204cdc4}{node\_pt}}(j)-\/>value(\mbox{\hyperlink{classoomph_1_1FaceElement_abd04b85066da626341294b5f0b97516e}{Nbulk\_value}}[j] + k) * psi(j, k);}
 \DoxyCodeLine{\Hypertarget{shell__elements_8cc_source_l01723}01723         \}}
 \DoxyCodeLine{\Hypertarget{shell__elements_8cc_source_l01724}01724       \}}
 \DoxyCodeLine{\Hypertarget{shell__elements_8cc_source_l01725}01725 }
@@ -1809,7 +1809,7 @@
 \DoxyCodeLine{\Hypertarget{shell__elements_8cc_source_l01805}01805     \textcolor{comment}{// Loop over the nodes}}
 \DoxyCodeLine{\Hypertarget{shell__elements_8cc_source_l01806}01806     \textcolor{keywordflow}{for} (\textcolor{keywordtype}{unsigned} n = 0; n < n\_node; n++)}
 \DoxyCodeLine{\Hypertarget{shell__elements_8cc_source_l01807}01807     \{}
-\DoxyCodeLine{\Hypertarget{shell__elements_8cc_source_l01808}01808       \mbox{\hyperlink{classoomph_1_1Node}{Node}}* nod\_pt = this-\/>\mbox{\hyperlink{classoomph_1_1FiniteElement_a9addfe893ab8205619963aa96204cdc4}{node\_pt}}(n);}
+\DoxyCodeLine{\Hypertarget{shell__elements_8cc_source_l01808}01808       Node* nod\_pt = this-\/>\mbox{\hyperlink{classoomph_1_1FiniteElement_a9addfe893ab8205619963aa96204cdc4}{node\_pt}}(n);}
 \DoxyCodeLine{\Hypertarget{shell__elements_8cc_source_l01809}01809 }
 \DoxyCodeLine{\Hypertarget{shell__elements_8cc_source_l01810}01810       \textcolor{comment}{// Loop over position dofs}}
 \DoxyCodeLine{\Hypertarget{shell__elements_8cc_source_l01811}01811       \textcolor{keywordflow}{for} (\textcolor{keywordtype}{unsigned} k = 0; k < n\_position\_type; k++)}
@@ -1835,7 +1835,7 @@
 \DoxyCodeLine{\Hypertarget{shell__elements_8cc_source_l01831}01831       \}}
 \DoxyCodeLine{\Hypertarget{shell__elements_8cc_source_l01832}01832 }
 \DoxyCodeLine{\Hypertarget{shell__elements_8cc_source_l01833}01833       \textcolor{comment}{// Loop over values}}
-\DoxyCodeLine{\Hypertarget{shell__elements_8cc_source_l01834}01834       \textcolor{keywordtype}{unsigned} n\_val = nod\_pt-\/>\mbox{\hyperlink{classoomph_1_1Data_a7e67fc78a2e8a2fd6eb75bd292d42ff8}{nvalue}}();}
+\DoxyCodeLine{\Hypertarget{shell__elements_8cc_source_l01834}01834       \textcolor{keywordtype}{unsigned} n\_val = nod\_pt-\/>nvalue();}
 \DoxyCodeLine{\Hypertarget{shell__elements_8cc_source_l01835}01835       \textcolor{keywordflow}{for} (\textcolor{keywordtype}{unsigned} j = 0; j < n\_val; j++)}
 \DoxyCodeLine{\Hypertarget{shell__elements_8cc_source_l01836}01836       \{}
 \DoxyCodeLine{\Hypertarget{shell__elements_8cc_source_l01837}01837         \textcolor{comment}{// If the variable is free}}

@@ -300,16 +300,16 @@ $(function() {
 <div class="line"><a id="l00171" name="l00171"></a><span class="lineno">  171</span>        <span class="keywordflow">for</span> (<span class="keywordtype">unsigned</span> l = 0; l &lt; n_node; l++)</div>
 <div class="line"><a id="l00172" name="l00172"></a><span class="lineno">  172</span>        {</div>
 <div class="line"><a id="l00173" name="l00173"></a><span class="lineno">  173</span>          <span class="comment">// Locally cache the shape function</span></div>
-<div class="line"><a id="l00174" name="l00174"></a><span class="lineno">  174</span>          <span class="keyword">const</span> <span class="keywordtype">double</span> psi_ = psi(l);</div>
+<div class="line"><a id="l00174" name="l00174"></a><span class="lineno">  174</span>          <span class="keyword">const</span> <span class="keywordtype">double</span> <a class="code hl_variable" href="namespaceoomph.html#aff0c55ce31f12df52b2fe5ae647ffebe">psi_</a> = psi(l);</div>
 <div class="line"><a id="l00175" name="l00175"></a><span class="lineno">  175</span>          <span class="keywordflow">for</span> (<span class="keywordtype">unsigned</span> <a class="code hl_variable" href="cfortran_8h.html#adb50e893b86b3e55e751a42eab3cba82">i</a> = 0; <a class="code hl_variable" href="cfortran_8h.html#adb50e893b86b3e55e751a42eab3cba82">i</a> &lt; DIM; <a class="code hl_variable" href="cfortran_8h.html#adb50e893b86b3e55e751a42eab3cba82">i</a>++)</div>
 <div class="line"><a id="l00176" name="l00176"></a><span class="lineno">  176</span>          {</div>
-<div class="line"><a id="l00177" name="l00177"></a><span class="lineno">  177</span>            <a class="code hl_function" href="classoomph_1_1FiniteElement.html#a40b7ab54112a2c6100da99ac801f7a06">interpolated_x</a>[<a class="code hl_variable" href="cfortran_8h.html#adb50e893b86b3e55e751a42eab3cba82">i</a>] += this-&gt;<a class="code hl_function" href="classoomph_1_1FiniteElement.html#a9152c16ae9899168bcdaac7c2f977444">nodal_position</a>(l, <a class="code hl_variable" href="cfortran_8h.html#adb50e893b86b3e55e751a42eab3cba82">i</a>) * psi_;</div>
+<div class="line"><a id="l00177" name="l00177"></a><span class="lineno">  177</span>            <a class="code hl_function" href="classoomph_1_1FiniteElement.html#a40b7ab54112a2c6100da99ac801f7a06">interpolated_x</a>[<a class="code hl_variable" href="cfortran_8h.html#adb50e893b86b3e55e751a42eab3cba82">i</a>] += this-&gt;<a class="code hl_function" href="classoomph_1_1FiniteElement.html#a9152c16ae9899168bcdaac7c2f977444">nodal_position</a>(l, <a class="code hl_variable" href="cfortran_8h.html#adb50e893b86b3e55e751a42eab3cba82">i</a>) * <a class="code hl_variable" href="namespaceoomph.html#aff0c55ce31f12df52b2fe5ae647ffebe">psi_</a>;</div>
 <div class="line"><a id="l00178" name="l00178"></a><span class="lineno">  178</span>          }</div>
 <div class="line"><a id="l00179" name="l00179"></a><span class="lineno">  179</span> </div>
 <div class="line"><a id="l00180" name="l00180"></a><span class="lineno">  180</span>          <span class="keywordflow">for</span> (<span class="keywordtype">unsigned</span> <a class="code hl_variable" href="cfortran_8h.html#adb50e893b86b3e55e751a42eab3cba82">i</a> = 0; <a class="code hl_variable" href="cfortran_8h.html#adb50e893b86b3e55e751a42eab3cba82">i</a> &lt; n_flux; <a class="code hl_variable" href="cfortran_8h.html#adb50e893b86b3e55e751a42eab3cba82">i</a>++)</div>
 <div class="line"><a id="l00181" name="l00181"></a><span class="lineno">  181</span>          {</div>
 <div class="line"><a id="l00182" name="l00182"></a><span class="lineno">  182</span>            <span class="comment">// Calculate the velocity and tangent vector</span></div>
-<div class="line"><a id="l00183" name="l00183"></a><span class="lineno">  183</span>            interpolated_u[<a class="code hl_variable" href="cfortran_8h.html#adb50e893b86b3e55e751a42eab3cba82">i</a>] += this-&gt;<a class="code hl_function" href="classoomph_1_1FiniteElement.html#a28fd5c2d4aeba5ef65bee0e0d72569f5">nodal_value</a>(l, <a class="code hl_variable" href="cfortran_8h.html#adb50e893b86b3e55e751a42eab3cba82">i</a>) * psi_;</div>
+<div class="line"><a id="l00183" name="l00183"></a><span class="lineno">  183</span>            interpolated_u[<a class="code hl_variable" href="cfortran_8h.html#adb50e893b86b3e55e751a42eab3cba82">i</a>] += this-&gt;<a class="code hl_function" href="classoomph_1_1FiniteElement.html#a28fd5c2d4aeba5ef65bee0e0d72569f5">nodal_value</a>(l, <a class="code hl_variable" href="cfortran_8h.html#adb50e893b86b3e55e751a42eab3cba82">i</a>) * <a class="code hl_variable" href="namespaceoomph.html#aff0c55ce31f12df52b2fe5ae647ffebe">psi_</a>;</div>
 <div class="line"><a id="l00184" name="l00184"></a><span class="lineno">  184</span>          }</div>
 <div class="line"><a id="l00185" name="l00185"></a><span class="lineno">  185</span>        }</div>
 <div class="line"><a id="l00186" name="l00186"></a><span class="lineno">  186</span> </div>
@@ -1212,6 +1212,7 @@ $(function() {
 <div class="ttc" id="anamespaceoomph_html_ac0ed65f6db53d9ad737e1d2a69767d25"><div class="ttname"><a href="namespaceoomph.html#ac0ed65f6db53d9ad737e1d2a69767d25">oomph::u</a></div><div class="ttdeci">u</div><div class="ttdoc">Z2-error-estimator: Elements that can be used with Z2 error estimation should be derived from the bas...</div><div class="ttdef"><b>Definition:</b> <a href="error__estimator_8h_source.html#l00165">error_estimator.h:165</a></div></div>
 <div class="ttc" id="anamespaceoomph_html_ad835af913df4cbdc5648440f91b794ab"><div class="ttname"><a href="namespaceoomph.html#ad835af913df4cbdc5648440f91b794ab">oomph::f</a></div><div class="ttdeci">int f(x_0, x_1...)\ dx_0 \ dx_1...</div><div class="ttdoc">Generic class for numerical integration schemes:</div></div>
 <div class="ttc" id="anamespaceoomph_html_aec474227917784dc0a255faf289cfc16"><div class="ttname"><a href="namespaceoomph.html#aec474227917784dc0a255faf289cfc16">oomph::oomph_info</a></div><div class="ttdeci">OomphInfo oomph_info</div><div class="ttdoc">Single (global) instantiation of the OomphInfo object – this is used throughout the library as a &quot;rep...</div><div class="ttdef"><b>Definition:</b> <a href="oomph__definitions_8cc_source.html#l00319">oomph_definitions.cc:319</a></div></div>
+<div class="ttc" id="anamespaceoomph_html_aff0c55ce31f12df52b2fe5ae647ffebe"><div class="ttname"><a href="namespaceoomph.html#aff0c55ce31f12df52b2fe5ae647ffebe">oomph::psi_</a></div><div class="ttdeci">psi_</div><div class="ttdoc">Nodes are derived from Data, but, in addition, have a definite (Eulerian) position in a space of a gi...</div><div class="ttdef"><b>Definition:</b> <a href="nodes_8h_source.html#l00891">nodes.h:891</a></div></div>
 </div><!-- fragment --></div><!-- contents -->
 
     <!-- jQuery for Bootstrap and Doxygen -->
@@ -1240,7 +1241,7 @@ $(function() {
     <footer>
       <div class="container">
         <div class="text-muted" style="float:right;">Generated by <a href="http://www.doxygen.org/index.html">
-          <img style="height:18px;" class="footer-img" src="doxygen.png" alt="doxygen"></a> on Fri Dec 17 2021 19:41:57
+          <img style="height:18px;" class="footer-img" src="doxygen.png" alt="doxygen"></a> on Mon Dec 20 2021 10:39:10
         </div>
       </div>
     </footer>

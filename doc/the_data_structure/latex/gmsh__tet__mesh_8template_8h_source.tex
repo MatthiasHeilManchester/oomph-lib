@@ -822,7 +822,7 @@
 \DoxyCodeLine{\Hypertarget{gmsh__tet__mesh_8template_8h_source_l00818}00818             \textcolor{comment}{// Make new node}}
 \DoxyCodeLine{\Hypertarget{gmsh__tet__mesh_8template_8h_source_l00819}00819             \textcolor{keywordflow}{else}}
 \DoxyCodeLine{\Hypertarget{gmsh__tet__mesh_8template_8h_source_l00820}00820             \{}
-\DoxyCodeLine{\Hypertarget{gmsh__tet__mesh_8template_8h_source_l00821}00821               \mbox{\hyperlink{classoomph_1_1Node}{Node}}* nod\_pt = 0;}
+\DoxyCodeLine{\Hypertarget{gmsh__tet__mesh_8template_8h_source_l00821}00821               Node* nod\_pt = 0;}
 \DoxyCodeLine{\Hypertarget{gmsh__tet__mesh_8template_8h_source_l00822}00822 }
 \DoxyCodeLine{\Hypertarget{gmsh__tet__mesh_8template_8h_source_l00823}00823               \textcolor{comment}{// Is it on the boundary?}}
 \DoxyCodeLine{\Hypertarget{gmsh__tet__mesh_8template_8h_source_l00824}00824               \textcolor{keywordflow}{if} (one\_based\_boundaries\_of\_node[node\_number].size() == 0)}
@@ -854,7 +854,7 @@
 \DoxyCodeLine{\Hypertarget{gmsh__tet__mesh_8template_8h_source_l00850}00850               \mbox{\hyperlink{classoomph_1_1Vector}{Vector<double>}} \mbox{\hyperlink{namespaceoomph_a9d1d2da2b8bb8e73af72b5cadb8fe97c}{x}}(node\_coordinate[node\_number]);}
 \DoxyCodeLine{\Hypertarget{gmsh__tet__mesh_8template_8h_source_l00851}00851               \textcolor{keywordflow}{for} (\textcolor{keywordtype}{unsigned} \mbox{\hyperlink{cfortran_8h_adb50e893b86b3e55e751a42eab3cba82}{i}} = 0; \mbox{\hyperlink{cfortran_8h_adb50e893b86b3e55e751a42eab3cba82}{i}} < 3; \mbox{\hyperlink{cfortran_8h_adb50e893b86b3e55e751a42eab3cba82}{i}}++)}
 \DoxyCodeLine{\Hypertarget{gmsh__tet__mesh_8template_8h_source_l00852}00852               \{}
-\DoxyCodeLine{\Hypertarget{gmsh__tet__mesh_8template_8h_source_l00853}00853                 nod\_pt-\/>\mbox{\hyperlink{classoomph_1_1Node_ab76b4773a65b349f143539e07b6e15e2}{x}}(\mbox{\hyperlink{cfortran_8h_adb50e893b86b3e55e751a42eab3cba82}{i}}) = \mbox{\hyperlink{namespaceoomph_a9d1d2da2b8bb8e73af72b5cadb8fe97c}{x}}[\mbox{\hyperlink{cfortran_8h_adb50e893b86b3e55e751a42eab3cba82}{i}}];}
+\DoxyCodeLine{\Hypertarget{gmsh__tet__mesh_8template_8h_source_l00853}00853                 nod\_pt-\/>x(\mbox{\hyperlink{cfortran_8h_adb50e893b86b3e55e751a42eab3cba82}{i}}) = \mbox{\hyperlink{namespaceoomph_a9d1d2da2b8bb8e73af72b5cadb8fe97c}{x}}[\mbox{\hyperlink{cfortran_8h_adb50e893b86b3e55e751a42eab3cba82}{i}}];}
 \DoxyCodeLine{\Hypertarget{gmsh__tet__mesh_8template_8h_source_l00854}00854               \}}
 \DoxyCodeLine{\Hypertarget{gmsh__tet__mesh_8template_8h_source_l00855}00855             \}}
 \DoxyCodeLine{\Hypertarget{gmsh__tet__mesh_8template_8h_source_l00856}00856           \}}
@@ -1847,7 +1847,7 @@
 \DoxyCodeLine{\Hypertarget{gmsh__tet__mesh_8template_8h_source_l01843}01843         \textcolor{keywordflow}{for} (\textcolor{keywordtype}{unsigned} j = 0; j < nnod\_el; j++)}
 \DoxyCodeLine{\Hypertarget{gmsh__tet__mesh_8template_8h_source_l01844}01844         \{}
 \DoxyCodeLine{\Hypertarget{gmsh__tet__mesh_8template_8h_source_l01845}01845           \textcolor{comment}{// Pointer to node in the scaffold mesh}}
-\DoxyCodeLine{\Hypertarget{gmsh__tet__mesh_8template_8h_source_l01846}01846           \mbox{\hyperlink{classoomph_1_1Node}{Node}}* scaffold\_node\_pt =}
+\DoxyCodeLine{\Hypertarget{gmsh__tet__mesh_8template_8h_source_l01846}01846           Node* scaffold\_node\_pt =}
 \DoxyCodeLine{\Hypertarget{gmsh__tet__mesh_8template_8h_source_l01847}01847             tmp\_scaffold\_mesh\_pt-\/>\mbox{\hyperlink{classoomph_1_1Mesh_a479059b0964826a8cee6eb506b57268a}{finite\_element\_pt}}(\mbox{\hyperlink{cfortran_8h_a37cd013acc76697829c324bdd8562d82}{e}})-\/>\mbox{\hyperlink{classoomph_1_1FiniteElement_a9addfe893ab8205619963aa96204cdc4}{node\_pt}}(j);}
 \DoxyCodeLine{\Hypertarget{gmsh__tet__mesh_8template_8h_source_l01848}01848 }
 \DoxyCodeLine{\Hypertarget{gmsh__tet__mesh_8template_8h_source_l01849}01849           \textcolor{comment}{// Get the (pseudo-\/)global node number in scaffold mesh}}
@@ -1860,13 +1860,13 @@
 \DoxyCodeLine{\Hypertarget{gmsh__tet__mesh_8template_8h_source_l01856}01856             \textcolor{comment}{// Get pointer to set of mesh boundaries that this}}
 \DoxyCodeLine{\Hypertarget{gmsh__tet__mesh_8template_8h_source_l01857}01857             \textcolor{comment}{// scaffold node occupies; NULL if the node is not on any boundary}}
 \DoxyCodeLine{\Hypertarget{gmsh__tet__mesh_8template_8h_source_l01858}01858             std::set<unsigned>* boundaries\_pt;}
-\DoxyCodeLine{\Hypertarget{gmsh__tet__mesh_8template_8h_source_l01859}01859             scaffold\_node\_pt-\/>\mbox{\hyperlink{classoomph_1_1Node_a33092a3d51285282ae8ec8e702d1cbf5}{get\_boundaries\_pt}}(boundaries\_pt);}
+\DoxyCodeLine{\Hypertarget{gmsh__tet__mesh_8template_8h_source_l01859}01859             scaffold\_node\_pt-\/>get\_boundaries\_pt(boundaries\_pt);}
 \DoxyCodeLine{\Hypertarget{gmsh__tet__mesh_8template_8h_source_l01860}01860 }
 \DoxyCodeLine{\Hypertarget{gmsh__tet__mesh_8template_8h_source_l01861}01861             \textcolor{comment}{// Is it on boundaries?}}
 \DoxyCodeLine{\Hypertarget{gmsh__tet__mesh_8template_8h_source_l01862}01862             \textcolor{keywordflow}{if} (boundaries\_pt != 0)}
 \DoxyCodeLine{\Hypertarget{gmsh__tet__mesh_8template_8h_source_l01863}01863             \{}
 \DoxyCodeLine{\Hypertarget{gmsh__tet__mesh_8template_8h_source_l01864}01864               \textcolor{comment}{// Create new boundary node}}
-\DoxyCodeLine{\Hypertarget{gmsh__tet__mesh_8template_8h_source_l01865}01865               \mbox{\hyperlink{classoomph_1_1Node}{Node}}* new\_node\_pt = \mbox{\hyperlink{classoomph_1_1Mesh_a479059b0964826a8cee6eb506b57268a}{finite\_element\_pt}}(\mbox{\hyperlink{cfortran_8h_a37cd013acc76697829c324bdd8562d82}{e}})-\/>\mbox{\hyperlink{classoomph_1_1FiniteElement_a88a427f24deee1be92d6e63eac0fb36f}{construct\_boundary\_node}}(}
+\DoxyCodeLine{\Hypertarget{gmsh__tet__mesh_8template_8h_source_l01865}01865               Node* new\_node\_pt = \mbox{\hyperlink{classoomph_1_1Mesh_a479059b0964826a8cee6eb506b57268a}{finite\_element\_pt}}(\mbox{\hyperlink{cfortran_8h_a37cd013acc76697829c324bdd8562d82}{e}})-\/>\mbox{\hyperlink{classoomph_1_1FiniteElement_a88a427f24deee1be92d6e63eac0fb36f}{construct\_boundary\_node}}(}
 \DoxyCodeLine{\Hypertarget{gmsh__tet__mesh_8template_8h_source_l01866}01866                 j, time\_stepper\_pt);}
 \DoxyCodeLine{\Hypertarget{gmsh__tet__mesh_8template_8h_source_l01867}01867 }
 \DoxyCodeLine{\Hypertarget{gmsh__tet__mesh_8template_8h_source_l01868}01868               \textcolor{comment}{// Give it a number (not necessarily the global node}}
@@ -1903,9 +1903,9 @@
 \DoxyCodeLine{\Hypertarget{gmsh__tet__mesh_8template_8h_source_l01899}01899             \mbox{\hyperlink{classoomph_1_1Mesh_a0a42111e7eb200e5831f8b73c018b7dc}{Node\_pt}}[global\_count -\/ 1] = \mbox{\hyperlink{classoomph_1_1Mesh_a479059b0964826a8cee6eb506b57268a}{finite\_element\_pt}}(\mbox{\hyperlink{cfortran_8h_a37cd013acc76697829c324bdd8562d82}{e}})-\/>\mbox{\hyperlink{classoomph_1_1FiniteElement_a9addfe893ab8205619963aa96204cdc4}{node\_pt}}(j);}
 \DoxyCodeLine{\Hypertarget{gmsh__tet__mesh_8template_8h_source_l01900}01900 }
 \DoxyCodeLine{\Hypertarget{gmsh__tet__mesh_8template_8h_source_l01901}01901             \textcolor{comment}{// Assign coordinates}}
-\DoxyCodeLine{\Hypertarget{gmsh__tet__mesh_8template_8h_source_l01902}01902             \mbox{\hyperlink{classoomph_1_1Mesh_a0a42111e7eb200e5831f8b73c018b7dc}{Node\_pt}}[global\_count -\/ 1]-\/>x(0) = scaffold\_node\_pt-\/>\mbox{\hyperlink{classoomph_1_1Node_ab76b4773a65b349f143539e07b6e15e2}{x}}(0);}
-\DoxyCodeLine{\Hypertarget{gmsh__tet__mesh_8template_8h_source_l01903}01903             \mbox{\hyperlink{classoomph_1_1Mesh_a0a42111e7eb200e5831f8b73c018b7dc}{Node\_pt}}[global\_count -\/ 1]-\/>x(1) = scaffold\_node\_pt-\/>\mbox{\hyperlink{classoomph_1_1Node_ab76b4773a65b349f143539e07b6e15e2}{x}}(1);}
-\DoxyCodeLine{\Hypertarget{gmsh__tet__mesh_8template_8h_source_l01904}01904             \mbox{\hyperlink{classoomph_1_1Mesh_a0a42111e7eb200e5831f8b73c018b7dc}{Node\_pt}}[global\_count -\/ 1]-\/>x(2) = scaffold\_node\_pt-\/>\mbox{\hyperlink{classoomph_1_1Node_ab76b4773a65b349f143539e07b6e15e2}{x}}(2);}
+\DoxyCodeLine{\Hypertarget{gmsh__tet__mesh_8template_8h_source_l01902}01902             \mbox{\hyperlink{classoomph_1_1Mesh_a0a42111e7eb200e5831f8b73c018b7dc}{Node\_pt}}[global\_count -\/ 1]-\/>x(0) = scaffold\_node\_pt-\/>x(0);}
+\DoxyCodeLine{\Hypertarget{gmsh__tet__mesh_8template_8h_source_l01903}01903             \mbox{\hyperlink{classoomph_1_1Mesh_a0a42111e7eb200e5831f8b73c018b7dc}{Node\_pt}}[global\_count -\/ 1]-\/>x(1) = scaffold\_node\_pt-\/>x(1);}
+\DoxyCodeLine{\Hypertarget{gmsh__tet__mesh_8template_8h_source_l01904}01904             \mbox{\hyperlink{classoomph_1_1Mesh_a0a42111e7eb200e5831f8b73c018b7dc}{Node\_pt}}[global\_count -\/ 1]-\/>x(2) = scaffold\_node\_pt-\/>x(2);}
 \DoxyCodeLine{\Hypertarget{gmsh__tet__mesh_8template_8h_source_l01905}01905           \}}
 \DoxyCodeLine{\Hypertarget{gmsh__tet__mesh_8template_8h_source_l01906}01906           \textcolor{comment}{// This one has already been done: Copy across}}
 \DoxyCodeLine{\Hypertarget{gmsh__tet__mesh_8template_8h_source_l01907}01907           \textcolor{keywordflow}{else}}
@@ -1919,9 +1919,9 @@
 \DoxyCodeLine{\Hypertarget{gmsh__tet__mesh_8template_8h_source_l01915}01915         \mbox{\hyperlink{classoomph_1_1FiniteElement}{FiniteElement}}* fe\_pt = \mbox{\hyperlink{classoomph_1_1Mesh_a479059b0964826a8cee6eb506b57268a}{finite\_element\_pt}}(\mbox{\hyperlink{cfortran_8h_a37cd013acc76697829c324bdd8562d82}{e}});}
 \DoxyCodeLine{\Hypertarget{gmsh__tet__mesh_8template_8h_source_l01916}01916         \textcolor{keywordflow}{for} (\textcolor{keywordtype}{unsigned} \mbox{\hyperlink{namespaceoomph_ad835af913df4cbdc5648440f91b794ab}{f}} = 0; \mbox{\hyperlink{namespaceoomph_ad835af913df4cbdc5648440f91b794ab}{f}} < 4; \mbox{\hyperlink{namespaceoomph_ad835af913df4cbdc5648440f91b794ab}{f}}++)}
 \DoxyCodeLine{\Hypertarget{gmsh__tet__mesh_8template_8h_source_l01917}01917         \{}
-\DoxyCodeLine{\Hypertarget{gmsh__tet__mesh_8template_8h_source_l01918}01918           \mbox{\hyperlink{classoomph_1_1Node}{Node}}* face\_node0\_pt = 0;}
-\DoxyCodeLine{\Hypertarget{gmsh__tet__mesh_8template_8h_source_l01919}01919           \mbox{\hyperlink{classoomph_1_1Node}{Node}}* face\_node1\_pt = 0;}
-\DoxyCodeLine{\Hypertarget{gmsh__tet__mesh_8template_8h_source_l01920}01920           \mbox{\hyperlink{classoomph_1_1Node}{Node}}* face\_node2\_pt = 0;}
+\DoxyCodeLine{\Hypertarget{gmsh__tet__mesh_8template_8h_source_l01918}01918           Node* face\_node0\_pt = 0;}
+\DoxyCodeLine{\Hypertarget{gmsh__tet__mesh_8template_8h_source_l01919}01919           Node* face\_node1\_pt = 0;}
+\DoxyCodeLine{\Hypertarget{gmsh__tet__mesh_8template_8h_source_l01920}01920           Node* face\_node2\_pt = 0;}
 \DoxyCodeLine{\Hypertarget{gmsh__tet__mesh_8template_8h_source_l01921}01921 }
 \DoxyCodeLine{\Hypertarget{gmsh__tet__mesh_8template_8h_source_l01922}01922           \textcolor{keywordflow}{switch} (\mbox{\hyperlink{namespaceoomph_ad835af913df4cbdc5648440f91b794ab}{f}})}
 \DoxyCodeLine{\Hypertarget{gmsh__tet__mesh_8template_8h_source_l01923}01923           \{}
@@ -1961,15 +1961,15 @@
 \DoxyCodeLine{\Hypertarget{gmsh__tet__mesh_8template_8h_source_l01957}01957           \textcolor{comment}{// If any of the boundary sets are empty we don't have}}
 \DoxyCodeLine{\Hypertarget{gmsh__tet__mesh_8template_8h_source_l01958}01958           \textcolor{comment}{// three nodes on the boundary...}}
 \DoxyCodeLine{\Hypertarget{gmsh__tet__mesh_8template_8h_source_l01959}01959           std::set<unsigned>* bc0\_pt;}
-\DoxyCodeLine{\Hypertarget{gmsh__tet__mesh_8template_8h_source_l01960}01960           face\_node0\_pt-\/>\mbox{\hyperlink{classoomph_1_1Node_a33092a3d51285282ae8ec8e702d1cbf5}{get\_boundaries\_pt}}(bc0\_pt);}
+\DoxyCodeLine{\Hypertarget{gmsh__tet__mesh_8template_8h_source_l01960}01960           face\_node0\_pt-\/>get\_boundaries\_pt(bc0\_pt);}
 \DoxyCodeLine{\Hypertarget{gmsh__tet__mesh_8template_8h_source_l01961}01961           \textcolor{keywordflow}{if} (bc0\_pt != 0)}
 \DoxyCodeLine{\Hypertarget{gmsh__tet__mesh_8template_8h_source_l01962}01962           \{}
 \DoxyCodeLine{\Hypertarget{gmsh__tet__mesh_8template_8h_source_l01963}01963             std::set<unsigned>* bc1\_pt;}
-\DoxyCodeLine{\Hypertarget{gmsh__tet__mesh_8template_8h_source_l01964}01964             face\_node1\_pt-\/>\mbox{\hyperlink{classoomph_1_1Node_a33092a3d51285282ae8ec8e702d1cbf5}{get\_boundaries\_pt}}(bc1\_pt);}
+\DoxyCodeLine{\Hypertarget{gmsh__tet__mesh_8template_8h_source_l01964}01964             face\_node1\_pt-\/>get\_boundaries\_pt(bc1\_pt);}
 \DoxyCodeLine{\Hypertarget{gmsh__tet__mesh_8template_8h_source_l01965}01965             \textcolor{keywordflow}{if} (bc1\_pt != 0)}
 \DoxyCodeLine{\Hypertarget{gmsh__tet__mesh_8template_8h_source_l01966}01966             \{}
 \DoxyCodeLine{\Hypertarget{gmsh__tet__mesh_8template_8h_source_l01967}01967               std::set<unsigned>* bc2\_pt;}
-\DoxyCodeLine{\Hypertarget{gmsh__tet__mesh_8template_8h_source_l01968}01968               face\_node2\_pt-\/>\mbox{\hyperlink{classoomph_1_1Node_a33092a3d51285282ae8ec8e702d1cbf5}{get\_boundaries\_pt}}(bc2\_pt);}
+\DoxyCodeLine{\Hypertarget{gmsh__tet__mesh_8template_8h_source_l01968}01968               face\_node2\_pt-\/>get\_boundaries\_pt(bc2\_pt);}
 \DoxyCodeLine{\Hypertarget{gmsh__tet__mesh_8template_8h_source_l01969}01969               \textcolor{keywordflow}{if} (bc2\_pt != 0)}
 \DoxyCodeLine{\Hypertarget{gmsh__tet__mesh_8template_8h_source_l01970}01970               \{}
 \DoxyCodeLine{\Hypertarget{gmsh__tet__mesh_8template_8h_source_l01971}01971                 std::set<unsigned> common\_bound\_0\_and\_1;}
@@ -2024,9 +2024,9 @@
 \DoxyCodeLine{\Hypertarget{gmsh__tet__mesh_8template_8h_source_l02020}02020           \mbox{\hyperlink{classoomph_1_1FiniteElement}{FiniteElement}}* fe\_pt = \mbox{\hyperlink{classoomph_1_1TetMeshBase_ad6f68657b2b392f77853af7e147cb23f}{Region\_element\_pt}}[\mbox{\hyperlink{cfortran_8h_adb50e893b86b3e55e751a42eab3cba82}{i}}][\mbox{\hyperlink{cfortran_8h_a37cd013acc76697829c324bdd8562d82}{e}}];}
 \DoxyCodeLine{\Hypertarget{gmsh__tet__mesh_8template_8h_source_l02021}02021           \textcolor{keywordflow}{for} (\textcolor{keywordtype}{unsigned} \mbox{\hyperlink{namespaceoomph_ad835af913df4cbdc5648440f91b794ab}{f}} = 0; \mbox{\hyperlink{namespaceoomph_ad835af913df4cbdc5648440f91b794ab}{f}} < 4; \mbox{\hyperlink{namespaceoomph_ad835af913df4cbdc5648440f91b794ab}{f}}++)}
 \DoxyCodeLine{\Hypertarget{gmsh__tet__mesh_8template_8h_source_l02022}02022           \{}
-\DoxyCodeLine{\Hypertarget{gmsh__tet__mesh_8template_8h_source_l02023}02023             \mbox{\hyperlink{classoomph_1_1Node}{Node}}* face\_node0\_pt = 0;}
-\DoxyCodeLine{\Hypertarget{gmsh__tet__mesh_8template_8h_source_l02024}02024             \mbox{\hyperlink{classoomph_1_1Node}{Node}}* face\_node1\_pt = 0;}
-\DoxyCodeLine{\Hypertarget{gmsh__tet__mesh_8template_8h_source_l02025}02025             \mbox{\hyperlink{classoomph_1_1Node}{Node}}* face\_node2\_pt = 0;}
+\DoxyCodeLine{\Hypertarget{gmsh__tet__mesh_8template_8h_source_l02023}02023             Node* face\_node0\_pt = 0;}
+\DoxyCodeLine{\Hypertarget{gmsh__tet__mesh_8template_8h_source_l02024}02024             Node* face\_node1\_pt = 0;}
+\DoxyCodeLine{\Hypertarget{gmsh__tet__mesh_8template_8h_source_l02025}02025             Node* face\_node2\_pt = 0;}
 \DoxyCodeLine{\Hypertarget{gmsh__tet__mesh_8template_8h_source_l02026}02026 }
 \DoxyCodeLine{\Hypertarget{gmsh__tet__mesh_8template_8h_source_l02027}02027             \textcolor{keywordflow}{switch} (\mbox{\hyperlink{namespaceoomph_ad835af913df4cbdc5648440f91b794ab}{f}})}
 \DoxyCodeLine{\Hypertarget{gmsh__tet__mesh_8template_8h_source_l02028}02028             \{}
@@ -2065,15 +2065,15 @@
 \DoxyCodeLine{\Hypertarget{gmsh__tet__mesh_8template_8h_source_l02061}02061             \textcolor{comment}{// If any of the boundary sets are empty we don't have}}
 \DoxyCodeLine{\Hypertarget{gmsh__tet__mesh_8template_8h_source_l02062}02062             \textcolor{comment}{// three nodes on the boundary...}}
 \DoxyCodeLine{\Hypertarget{gmsh__tet__mesh_8template_8h_source_l02063}02063             std::set<unsigned>* bc0\_pt;}
-\DoxyCodeLine{\Hypertarget{gmsh__tet__mesh_8template_8h_source_l02064}02064             face\_node0\_pt-\/>\mbox{\hyperlink{classoomph_1_1Node_a33092a3d51285282ae8ec8e702d1cbf5}{get\_boundaries\_pt}}(bc0\_pt);}
+\DoxyCodeLine{\Hypertarget{gmsh__tet__mesh_8template_8h_source_l02064}02064             face\_node0\_pt-\/>get\_boundaries\_pt(bc0\_pt);}
 \DoxyCodeLine{\Hypertarget{gmsh__tet__mesh_8template_8h_source_l02065}02065             \textcolor{keywordflow}{if} (bc0\_pt != 0)}
 \DoxyCodeLine{\Hypertarget{gmsh__tet__mesh_8template_8h_source_l02066}02066             \{}
 \DoxyCodeLine{\Hypertarget{gmsh__tet__mesh_8template_8h_source_l02067}02067               std::set<unsigned>* bc1\_pt;}
-\DoxyCodeLine{\Hypertarget{gmsh__tet__mesh_8template_8h_source_l02068}02068               face\_node1\_pt-\/>\mbox{\hyperlink{classoomph_1_1Node_a33092a3d51285282ae8ec8e702d1cbf5}{get\_boundaries\_pt}}(bc1\_pt);}
+\DoxyCodeLine{\Hypertarget{gmsh__tet__mesh_8template_8h_source_l02068}02068               face\_node1\_pt-\/>get\_boundaries\_pt(bc1\_pt);}
 \DoxyCodeLine{\Hypertarget{gmsh__tet__mesh_8template_8h_source_l02069}02069               \textcolor{keywordflow}{if} (bc1\_pt != 0)}
 \DoxyCodeLine{\Hypertarget{gmsh__tet__mesh_8template_8h_source_l02070}02070               \{}
 \DoxyCodeLine{\Hypertarget{gmsh__tet__mesh_8template_8h_source_l02071}02071                 std::set<unsigned>* bc2\_pt;}
-\DoxyCodeLine{\Hypertarget{gmsh__tet__mesh_8template_8h_source_l02072}02072                 face\_node2\_pt-\/>\mbox{\hyperlink{classoomph_1_1Node_a33092a3d51285282ae8ec8e702d1cbf5}{get\_boundaries\_pt}}(bc2\_pt);}
+\DoxyCodeLine{\Hypertarget{gmsh__tet__mesh_8template_8h_source_l02072}02072                 face\_node2\_pt-\/>get\_boundaries\_pt(bc2\_pt);}
 \DoxyCodeLine{\Hypertarget{gmsh__tet__mesh_8template_8h_source_l02073}02073                 \textcolor{keywordflow}{if} (bc2\_pt != 0)}
 \DoxyCodeLine{\Hypertarget{gmsh__tet__mesh_8template_8h_source_l02074}02074                 \{}
 \DoxyCodeLine{\Hypertarget{gmsh__tet__mesh_8template_8h_source_l02075}02075                   std::set<unsigned> common\_bound\_0\_and\_1;}
@@ -2136,7 +2136,7 @@
 \DoxyCodeLine{\Hypertarget{gmsh__tet__mesh_8template_8h_source_l02132}02132       \mbox{\hyperlink{classoomph_1_1Vector}{Vector<double>}} \mbox{\hyperlink{cfortran_8h_ab7123126e4885ef647dd9c6e3807a21c}{s}}(3);}
 \DoxyCodeLine{\Hypertarget{gmsh__tet__mesh_8template_8h_source_l02133}02133 }
 \DoxyCodeLine{\Hypertarget{gmsh__tet__mesh_8template_8h_source_l02134}02134       \textcolor{comment}{// Map associating edge with midside node}}
-\DoxyCodeLine{\Hypertarget{gmsh__tet__mesh_8template_8h_source_l02135}02135       std::map<std::pair<Node*, Node*>, \mbox{\hyperlink{classoomph_1_1Node}{Node}}*> midside\_node\_pt;}
+\DoxyCodeLine{\Hypertarget{gmsh__tet__mesh_8template_8h_source_l02135}02135       std::map<std::pair<Node*, Node*>, Node*> midside\_node\_pt;}
 \DoxyCodeLine{\Hypertarget{gmsh__tet__mesh_8template_8h_source_l02136}02136 }
 \DoxyCodeLine{\Hypertarget{gmsh__tet__mesh_8template_8h_source_l02137}02137       \textcolor{comment}{// Loop over all elements}}
 \DoxyCodeLine{\Hypertarget{gmsh__tet__mesh_8template_8h_source_l02138}02138       \textcolor{keywordflow}{for} (\textcolor{keywordtype}{unsigned} \mbox{\hyperlink{cfortran_8h_a37cd013acc76697829c324bdd8562d82}{e}} = 0; \mbox{\hyperlink{cfortran_8h_a37cd013acc76697829c324bdd8562d82}{e}} < nelem; \mbox{\hyperlink{cfortran_8h_a37cd013acc76697829c324bdd8562d82}{e}}++)}
@@ -2149,8 +2149,8 @@
 \DoxyCodeLine{\Hypertarget{gmsh__tet__mesh_8template_8h_source_l02145}02145         \textcolor{comment}{// Loop over the edges}}
 \DoxyCodeLine{\Hypertarget{gmsh__tet__mesh_8template_8h_source_l02146}02146         \textcolor{keywordflow}{for} (\textcolor{keywordtype}{unsigned} j = 0; j < 6; ++j)}
 \DoxyCodeLine{\Hypertarget{gmsh__tet__mesh_8template_8h_source_l02147}02147         \{}
-\DoxyCodeLine{\Hypertarget{gmsh__tet__mesh_8template_8h_source_l02148}02148           \mbox{\hyperlink{classoomph_1_1Node}{Node}}* nod0\_pt = 0;}
-\DoxyCodeLine{\Hypertarget{gmsh__tet__mesh_8template_8h_source_l02149}02149           \mbox{\hyperlink{classoomph_1_1Node}{Node}}* nod1\_pt = 0;}
+\DoxyCodeLine{\Hypertarget{gmsh__tet__mesh_8template_8h_source_l02148}02148           Node* nod0\_pt = 0;}
+\DoxyCodeLine{\Hypertarget{gmsh__tet__mesh_8template_8h_source_l02149}02149           Node* nod1\_pt = 0;}
 \DoxyCodeLine{\Hypertarget{gmsh__tet__mesh_8template_8h_source_l02150}02150           \textcolor{keywordtype}{unsigned} new\_node\_number = 0;}
 \DoxyCodeLine{\Hypertarget{gmsh__tet__mesh_8template_8h_source_l02151}02151           std::pair<Node*, Node*> edge;}
 \DoxyCodeLine{\Hypertarget{gmsh__tet__mesh_8template_8h_source_l02152}02152           \textcolor{keywordflow}{switch} (j)}
@@ -2202,18 +2202,18 @@
 \DoxyCodeLine{\Hypertarget{gmsh__tet__mesh_8template_8h_source_l02198}02198           \textcolor{comment}{// Identify existence of node via edge}}
 \DoxyCodeLine{\Hypertarget{gmsh__tet__mesh_8template_8h_source_l02199}02199           edge = std::make\_pair(std::min(nod0\_pt, nod1\_pt),}
 \DoxyCodeLine{\Hypertarget{gmsh__tet__mesh_8template_8h_source_l02200}02200                                 std::max(nod0\_pt, nod1\_pt));}
-\DoxyCodeLine{\Hypertarget{gmsh__tet__mesh_8template_8h_source_l02201}02201           \mbox{\hyperlink{classoomph_1_1Node}{Node}}* existing\_node\_pt = midside\_node\_pt[edge];}
+\DoxyCodeLine{\Hypertarget{gmsh__tet__mesh_8template_8h_source_l02201}02201           Node* existing\_node\_pt = midside\_node\_pt[edge];}
 \DoxyCodeLine{\Hypertarget{gmsh__tet__mesh_8template_8h_source_l02202}02202           \textcolor{keywordflow}{if} (existing\_node\_pt == 0)}
 \DoxyCodeLine{\Hypertarget{gmsh__tet__mesh_8template_8h_source_l02203}02203           \{}
 \DoxyCodeLine{\Hypertarget{gmsh__tet__mesh_8template_8h_source_l02204}02204             \textcolor{comment}{// If any of the boundary sets are empty we don't have}}
 \DoxyCodeLine{\Hypertarget{gmsh__tet__mesh_8template_8h_source_l02205}02205             \textcolor{comment}{// two edge nodes on the boundary...}}
 \DoxyCodeLine{\Hypertarget{gmsh__tet__mesh_8template_8h_source_l02206}02206             std::set<unsigned> common\_bound\_0\_and\_1;}
 \DoxyCodeLine{\Hypertarget{gmsh__tet__mesh_8template_8h_source_l02207}02207             std::set<unsigned>* bc0\_pt;}
-\DoxyCodeLine{\Hypertarget{gmsh__tet__mesh_8template_8h_source_l02208}02208             nod0\_pt-\/>\mbox{\hyperlink{classoomph_1_1Node_a33092a3d51285282ae8ec8e702d1cbf5}{get\_boundaries\_pt}}(bc0\_pt);}
+\DoxyCodeLine{\Hypertarget{gmsh__tet__mesh_8template_8h_source_l02208}02208             nod0\_pt-\/>get\_boundaries\_pt(bc0\_pt);}
 \DoxyCodeLine{\Hypertarget{gmsh__tet__mesh_8template_8h_source_l02209}02209             \textcolor{keywordflow}{if} (bc0\_pt != 0)}
 \DoxyCodeLine{\Hypertarget{gmsh__tet__mesh_8template_8h_source_l02210}02210             \{}
 \DoxyCodeLine{\Hypertarget{gmsh__tet__mesh_8template_8h_source_l02211}02211               std::set<unsigned>* bc1\_pt;}
-\DoxyCodeLine{\Hypertarget{gmsh__tet__mesh_8template_8h_source_l02212}02212               nod1\_pt-\/>\mbox{\hyperlink{classoomph_1_1Node_a33092a3d51285282ae8ec8e702d1cbf5}{get\_boundaries\_pt}}(bc1\_pt);}
+\DoxyCodeLine{\Hypertarget{gmsh__tet__mesh_8template_8h_source_l02212}02212               nod1\_pt-\/>get\_boundaries\_pt(bc1\_pt);}
 \DoxyCodeLine{\Hypertarget{gmsh__tet__mesh_8template_8h_source_l02213}02213               \textcolor{keywordflow}{if} (bc1\_pt != 0)}
 \DoxyCodeLine{\Hypertarget{gmsh__tet__mesh_8template_8h_source_l02214}02214               \{}
 \DoxyCodeLine{\Hypertarget{gmsh__tet__mesh_8template_8h_source_l02215}02215                 std::set\_intersection(}
@@ -2226,7 +2226,7 @@
 \DoxyCodeLine{\Hypertarget{gmsh__tet__mesh_8template_8h_source_l02222}02222               \}}
 \DoxyCodeLine{\Hypertarget{gmsh__tet__mesh_8template_8h_source_l02223}02223             \}}
 \DoxyCodeLine{\Hypertarget{gmsh__tet__mesh_8template_8h_source_l02224}02224             \textcolor{comment}{// Storage for the new node}}
-\DoxyCodeLine{\Hypertarget{gmsh__tet__mesh_8template_8h_source_l02225}02225             \mbox{\hyperlink{classoomph_1_1Node}{Node}}* new\_node\_pt = 0;}
+\DoxyCodeLine{\Hypertarget{gmsh__tet__mesh_8template_8h_source_l02225}02225             Node* new\_node\_pt = 0;}
 \DoxyCodeLine{\Hypertarget{gmsh__tet__mesh_8template_8h_source_l02226}02226 }
 \DoxyCodeLine{\Hypertarget{gmsh__tet__mesh_8template_8h_source_l02227}02227             \textcolor{comment}{// New non-\/boundary node:}}
 \DoxyCodeLine{\Hypertarget{gmsh__tet__mesh_8template_8h_source_l02228}02228             \textcolor{keywordflow}{if} (common\_bound\_0\_and\_1.size() == 0)}
@@ -2255,7 +2255,7 @@
 \DoxyCodeLine{\Hypertarget{gmsh__tet__mesh_8template_8h_source_l02251}02251             \textcolor{comment}{// and fully-\/functional element in the scaffold mesh}}
 \DoxyCodeLine{\Hypertarget{gmsh__tet__mesh_8template_8h_source_l02252}02252             \textcolor{keywordflow}{for} (\textcolor{keywordtype}{unsigned} \mbox{\hyperlink{cfortran_8h_adb50e893b86b3e55e751a42eab3cba82}{i}} = 0; \mbox{\hyperlink{cfortran_8h_adb50e893b86b3e55e751a42eab3cba82}{i}} < 3; \mbox{\hyperlink{cfortran_8h_adb50e893b86b3e55e751a42eab3cba82}{i}}++)}
 \DoxyCodeLine{\Hypertarget{gmsh__tet__mesh_8template_8h_source_l02253}02253             \{}
-\DoxyCodeLine{\Hypertarget{gmsh__tet__mesh_8template_8h_source_l02254}02254               new\_node\_pt-\/>\mbox{\hyperlink{classoomph_1_1Node_ab76b4773a65b349f143539e07b6e15e2}{x}}(\mbox{\hyperlink{cfortran_8h_adb50e893b86b3e55e751a42eab3cba82}{i}}) = simplex\_el\_pt-\/>\mbox{\hyperlink{classoomph_1_1FiniteElement_a40b7ab54112a2c6100da99ac801f7a06}{interpolated\_x}}(\mbox{\hyperlink{cfortran_8h_ab7123126e4885ef647dd9c6e3807a21c}{s}}, \mbox{\hyperlink{cfortran_8h_adb50e893b86b3e55e751a42eab3cba82}{i}});}
+\DoxyCodeLine{\Hypertarget{gmsh__tet__mesh_8template_8h_source_l02254}02254               new\_node\_pt-\/>x(\mbox{\hyperlink{cfortran_8h_adb50e893b86b3e55e751a42eab3cba82}{i}}) = simplex\_el\_pt-\/>\mbox{\hyperlink{classoomph_1_1FiniteElement_a40b7ab54112a2c6100da99ac801f7a06}{interpolated\_x}}(\mbox{\hyperlink{cfortran_8h_ab7123126e4885ef647dd9c6e3807a21c}{s}}, \mbox{\hyperlink{cfortran_8h_adb50e893b86b3e55e751a42eab3cba82}{i}});}
 \DoxyCodeLine{\Hypertarget{gmsh__tet__mesh_8template_8h_source_l02255}02255             \}}
 \DoxyCodeLine{\Hypertarget{gmsh__tet__mesh_8template_8h_source_l02256}02256 }
 \DoxyCodeLine{\Hypertarget{gmsh__tet__mesh_8template_8h_source_l02257}02257             \textcolor{comment}{// Associate node with edge}}

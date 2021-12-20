@@ -765,7 +765,7 @@
 \DoxyCodeLine{\Hypertarget{axisym__poroelastic__fsi__face__elements_8h_source_l00761}00761 }
 \DoxyCodeLine{\Hypertarget{axisym__poroelastic__fsi__face__elements_8h_source_l00762}00762     \textcolor{comment}{// Extract the dimension of the problem from the dimension of}}
 \DoxyCodeLine{\Hypertarget{axisym__poroelastic__fsi__face__elements_8h_source_l00763}00763     \textcolor{comment}{// the first node}}
-\DoxyCodeLine{\Hypertarget{axisym__poroelastic__fsi__face__elements_8h_source_l00764}00764     \mbox{\hyperlink{classoomph_1_1LinearisedAxisymPoroelasticBJS__FSIElement_aedc72faae236c037c4bf80efb8899a78}{Dim}} = this-\/>\mbox{\hyperlink{classoomph_1_1FiniteElement_a9addfe893ab8205619963aa96204cdc4}{node\_pt}}(0)-\/>\mbox{\hyperlink{classoomph_1_1Node_a786c96a8e46eb27a03b2b31f629d41b3}{ndim}}();}
+\DoxyCodeLine{\Hypertarget{axisym__poroelastic__fsi__face__elements_8h_source_l00764}00764     \mbox{\hyperlink{classoomph_1_1LinearisedAxisymPoroelasticBJS__FSIElement_aedc72faae236c037c4bf80efb8899a78}{Dim}} = this-\/>\mbox{\hyperlink{classoomph_1_1FiniteElement_a9addfe893ab8205619963aa96204cdc4}{node\_pt}}(0)-\/>ndim();}
 \DoxyCodeLine{\Hypertarget{axisym__poroelastic__fsi__face__elements_8h_source_l00765}00765 }
 \DoxyCodeLine{\Hypertarget{axisym__poroelastic__fsi__face__elements_8h_source_l00766}00766     \textcolor{comment}{// Upcast pointer to bulk element}}
 \DoxyCodeLine{\Hypertarget{axisym__poroelastic__fsi__face__elements_8h_source_l00767}00767     FLUID\_BULK\_ELEMENT* cast\_bulk\_el\_pt =}
@@ -783,7 +783,7 @@
 \DoxyCodeLine{\Hypertarget{axisym__poroelastic__fsi__face__elements_8h_source_l00779}00779     \textcolor{keywordtype}{unsigned} n = cast\_bulk\_el\_pt-\/>nnode();}
 \DoxyCodeLine{\Hypertarget{axisym__poroelastic__fsi__face__elements_8h_source_l00780}00780     \textcolor{keywordflow}{for} (\textcolor{keywordtype}{unsigned} j = 0; j < n; j++)}
 \DoxyCodeLine{\Hypertarget{axisym__poroelastic__fsi__face__elements_8h_source_l00781}00781     \{}
-\DoxyCodeLine{\Hypertarget{axisym__poroelastic__fsi__face__elements_8h_source_l00782}00782       \mbox{\hyperlink{classoomph_1_1Node}{Node}}* nod\_pt = cast\_bulk\_el\_pt-\/>node\_pt(j);}
+\DoxyCodeLine{\Hypertarget{axisym__poroelastic__fsi__face__elements_8h_source_l00782}00782       Node* nod\_pt = cast\_bulk\_el\_pt-\/>node\_pt(j);}
 \DoxyCodeLine{\Hypertarget{axisym__poroelastic__fsi__face__elements_8h_source_l00783}00783       \textcolor{keywordtype}{bool} do\_it = \textcolor{keyword}{true};}
 \DoxyCodeLine{\Hypertarget{axisym__poroelastic__fsi__face__elements_8h_source_l00784}00784       \textcolor{keywordtype}{unsigned} nn = \mbox{\hyperlink{classoomph_1_1FiniteElement_a6219ed269a6d89b5aa14659cce48905a}{nnode}}();}
 \DoxyCodeLine{\Hypertarget{axisym__poroelastic__fsi__face__elements_8h_source_l00785}00785       \textcolor{keywordflow}{for} (\textcolor{keywordtype}{unsigned} jj = 0; jj < nn; jj++)}
@@ -870,7 +870,7 @@
 \DoxyCodeLine{\Hypertarget{axisym__poroelastic__fsi__face__elements_8h_source_l00866}00866       \textcolor{comment}{// Loop over nodes}}
 \DoxyCodeLine{\Hypertarget{axisym__poroelastic__fsi__face__elements_8h_source_l00867}00867       \textcolor{keywordflow}{for} (\textcolor{keywordtype}{unsigned} j = 0; j < n\_node; j++)}
 \DoxyCodeLine{\Hypertarget{axisym__poroelastic__fsi__face__elements_8h_source_l00868}00868       \{}
-\DoxyCodeLine{\Hypertarget{axisym__poroelastic__fsi__face__elements_8h_source_l00869}00869         \mbox{\hyperlink{classoomph_1_1Node}{Node}}* nod\_pt = node\_pt(j);}
+\DoxyCodeLine{\Hypertarget{axisym__poroelastic__fsi__face__elements_8h_source_l00869}00869         Node* nod\_pt = node\_pt(j);}
 \DoxyCodeLine{\Hypertarget{axisym__poroelastic__fsi__face__elements_8h_source_l00870}00870 }
 \DoxyCodeLine{\Hypertarget{axisym__poroelastic__fsi__face__elements_8h_source_l00871}00871         \textcolor{comment}{// Cast to a boundary node}}
 \DoxyCodeLine{\Hypertarget{axisym__poroelastic__fsi__face__elements_8h_source_l00872}00872         \mbox{\hyperlink{classoomph_1_1BoundaryNodeBase}{BoundaryNodeBase}}* bnod\_pt = \textcolor{keyword}{dynamic\_cast<}\mbox{\hyperlink{classoomph_1_1BoundaryNodeBase}{BoundaryNodeBase}}*\textcolor{keyword}{>}(node\_pt(j));}
@@ -886,9 +886,9 @@
 \DoxyCodeLine{\Hypertarget{axisym__poroelastic__fsi__face__elements_8h_source_l00882}00882         \textcolor{comment}{// Assemble}}
 \DoxyCodeLine{\Hypertarget{axisym__poroelastic__fsi__face__elements_8h_source_l00883}00883         \textcolor{keywordflow}{for} (\textcolor{keywordtype}{unsigned} \mbox{\hyperlink{cfortran_8h_adb50e893b86b3e55e751a42eab3cba82}{i}} = 0; \mbox{\hyperlink{cfortran_8h_adb50e893b86b3e55e751a42eab3cba82}{i}} < \mbox{\hyperlink{namespaceoomph_1_1Multi__domain__functions_a27cbb5ec7f6fea2f237c11659ffeef58}{Dim}} + 1; \mbox{\hyperlink{cfortran_8h_adb50e893b86b3e55e751a42eab3cba82}{i}}++)}
 \DoxyCodeLine{\Hypertarget{axisym__poroelastic__fsi__face__elements_8h_source_l00884}00884         \{}
-\DoxyCodeLine{\Hypertarget{axisym__poroelastic__fsi__face__elements_8h_source_l00885}00885           lambda[\mbox{\hyperlink{cfortran_8h_adb50e893b86b3e55e751a42eab3cba82}{i}}] += nod\_pt-\/>\mbox{\hyperlink{classoomph_1_1Node_afcc5cdba40bca251826ae5bee5ca15b4}{value}}(first\_index + \mbox{\hyperlink{cfortran_8h_adb50e893b86b3e55e751a42eab3cba82}{i}}) * psif(j);}
+\DoxyCodeLine{\Hypertarget{axisym__poroelastic__fsi__face__elements_8h_source_l00885}00885           lambda[\mbox{\hyperlink{cfortran_8h_adb50e893b86b3e55e751a42eab3cba82}{i}}] += nod\_pt-\/>value(first\_index + \mbox{\hyperlink{cfortran_8h_adb50e893b86b3e55e751a42eab3cba82}{i}}) * psif(j);}
 \DoxyCodeLine{\Hypertarget{axisym__poroelastic__fsi__face__elements_8h_source_l00886}00886           fluid\_veloc[\mbox{\hyperlink{cfortran_8h_adb50e893b86b3e55e751a42eab3cba82}{i}}] +=}
-\DoxyCodeLine{\Hypertarget{axisym__poroelastic__fsi__face__elements_8h_source_l00887}00887             nod\_pt-\/>\mbox{\hyperlink{classoomph_1_1Node_afcc5cdba40bca251826ae5bee5ca15b4}{value}}(U\_index\_axisym\_poroelastic\_fsi[\mbox{\hyperlink{cfortran_8h_adb50e893b86b3e55e751a42eab3cba82}{i}}]) * psif(j);}
+\DoxyCodeLine{\Hypertarget{axisym__poroelastic__fsi__face__elements_8h_source_l00887}00887             nod\_pt-\/>value(U\_index\_axisym\_poroelastic\_fsi[\mbox{\hyperlink{cfortran_8h_adb50e893b86b3e55e751a42eab3cba82}{i}}]) * psif(j);}
 \DoxyCodeLine{\Hypertarget{axisym__poroelastic__fsi__face__elements_8h_source_l00888}00888         \}}
 \DoxyCodeLine{\Hypertarget{axisym__poroelastic__fsi__face__elements_8h_source_l00889}00889       \}}
 \DoxyCodeLine{\Hypertarget{axisym__poroelastic__fsi__face__elements_8h_source_l00890}00890 }

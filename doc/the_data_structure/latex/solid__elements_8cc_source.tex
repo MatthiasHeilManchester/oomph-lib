@@ -275,17 +275,17 @@
 \DoxyCodeLine{\Hypertarget{solid__elements_8cc_source_l00271}00271         \textcolor{comment}{// Loop over positional dofs}}
 \DoxyCodeLine{\Hypertarget{solid__elements_8cc_source_l00272}00272         \textcolor{keywordflow}{for} (\textcolor{keywordtype}{unsigned} k = 0; k < n\_position\_type; k++)}
 \DoxyCodeLine{\Hypertarget{solid__elements_8cc_source_l00273}00273         \{}
-\DoxyCodeLine{\Hypertarget{solid__elements_8cc_source_l00274}00274           \textcolor{keywordtype}{double} psi\_ = psi(l, k);}
+\DoxyCodeLine{\Hypertarget{solid__elements_8cc_source_l00274}00274           \textcolor{keywordtype}{double} \mbox{\hyperlink{namespaceoomph_aff0c55ce31f12df52b2fe5ae647ffebe}{psi\_}} = psi(l, k);}
 \DoxyCodeLine{\Hypertarget{solid__elements_8cc_source_l00275}00275           \textcolor{comment}{// Loop over displacement components (deformed position)}}
 \DoxyCodeLine{\Hypertarget{solid__elements_8cc_source_l00276}00276           \textcolor{keywordflow}{for} (\textcolor{keywordtype}{unsigned} \mbox{\hyperlink{cfortran_8h_adb50e893b86b3e55e751a42eab3cba82}{i}} = 0; \mbox{\hyperlink{cfortran_8h_adb50e893b86b3e55e751a42eab3cba82}{i}} < DIM; \mbox{\hyperlink{cfortran_8h_adb50e893b86b3e55e751a42eab3cba82}{i}}++)}
 \DoxyCodeLine{\Hypertarget{solid__elements_8cc_source_l00277}00277           \{}
 \DoxyCodeLine{\Hypertarget{solid__elements_8cc_source_l00278}00278             \textcolor{comment}{// Calculate the Lagrangian coordinates and the accelerations}}
-\DoxyCodeLine{\Hypertarget{solid__elements_8cc_source_l00279}00279             interpolated\_xi[\mbox{\hyperlink{cfortran_8h_adb50e893b86b3e55e751a42eab3cba82}{i}}] += this-\/>lagrangian\_position\_gen(l, k, \mbox{\hyperlink{cfortran_8h_adb50e893b86b3e55e751a42eab3cba82}{i}}) * psi\_;}
+\DoxyCodeLine{\Hypertarget{solid__elements_8cc_source_l00279}00279             interpolated\_xi[\mbox{\hyperlink{cfortran_8h_adb50e893b86b3e55e751a42eab3cba82}{i}}] += this-\/>lagrangian\_position\_gen(l, k, \mbox{\hyperlink{cfortran_8h_adb50e893b86b3e55e751a42eab3cba82}{i}}) * \mbox{\hyperlink{namespaceoomph_aff0c55ce31f12df52b2fe5ae647ffebe}{psi\_}};}
 \DoxyCodeLine{\Hypertarget{solid__elements_8cc_source_l00280}00280 }
 \DoxyCodeLine{\Hypertarget{solid__elements_8cc_source_l00281}00281             \textcolor{comment}{// Only compute accelerations if inertia is switched on}}
 \DoxyCodeLine{\Hypertarget{solid__elements_8cc_source_l00282}00282             \textcolor{keywordflow}{if} ((lambda\_sq > 0.0) \&\& (this-\/>Unsteady))}
 \DoxyCodeLine{\Hypertarget{solid__elements_8cc_source_l00283}00283             \{}
-\DoxyCodeLine{\Hypertarget{solid__elements_8cc_source_l00284}00284               accel[\mbox{\hyperlink{cfortran_8h_adb50e893b86b3e55e751a42eab3cba82}{i}}] += this-\/>dnodal\_position\_gen\_dt(2, l, k, \mbox{\hyperlink{cfortran_8h_adb50e893b86b3e55e751a42eab3cba82}{i}}) * psi\_;}
+\DoxyCodeLine{\Hypertarget{solid__elements_8cc_source_l00284}00284               accel[\mbox{\hyperlink{cfortran_8h_adb50e893b86b3e55e751a42eab3cba82}{i}}] += this-\/>dnodal\_position\_gen\_dt(2, l, k, \mbox{\hyperlink{cfortran_8h_adb50e893b86b3e55e751a42eab3cba82}{i}}) * \mbox{\hyperlink{namespaceoomph_aff0c55ce31f12df52b2fe5ae647ffebe}{psi\_}};}
 \DoxyCodeLine{\Hypertarget{solid__elements_8cc_source_l00285}00285             \}}
 \DoxyCodeLine{\Hypertarget{solid__elements_8cc_source_l00286}00286 }
 \DoxyCodeLine{\Hypertarget{solid__elements_8cc_source_l00287}00287             \textcolor{comment}{// Loop over derivative directions}}

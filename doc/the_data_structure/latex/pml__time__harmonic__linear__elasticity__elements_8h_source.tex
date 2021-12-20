@@ -766,7 +766,7 @@
 \DoxyCodeLine{\Hypertarget{pml__time__harmonic__linear__elasticity__elements_8h_source_l00762}00762           error\_stream.str(), OOMPH\_CURRENT\_FUNCTION, OOMPH\_EXCEPTION\_LOCATION);}
 \DoxyCodeLine{\Hypertarget{pml__time__harmonic__linear__elasticity__elements_8h_source_l00763}00763       \}}
 \DoxyCodeLine{\Hypertarget{pml__time__harmonic__linear__elasticity__elements_8h_source_l00764}00764 \textcolor{preprocessor}{\#endif}}
-\DoxyCodeLine{\Hypertarget{pml__time__harmonic__linear__elasticity__elements_8h_source_l00765}00765       \textcolor{keywordflow}{return} this-\/>\mbox{\hyperlink{classoomph_1_1FiniteElement_a9addfe893ab8205619963aa96204cdc4}{node\_pt}}(0)-\/>\mbox{\hyperlink{classoomph_1_1Data_a9752205c5fb3bb886200b3fae9181e94}{ntstorage}}();}
+\DoxyCodeLine{\Hypertarget{pml__time__harmonic__linear__elasticity__elements_8h_source_l00765}00765       \textcolor{keywordflow}{return} this-\/>\mbox{\hyperlink{classoomph_1_1FiniteElement_a9addfe893ab8205619963aa96204cdc4}{node\_pt}}(0)-\/>ntstorage();}
 \DoxyCodeLine{\Hypertarget{pml__time__harmonic__linear__elasticity__elements_8h_source_l00766}00766     \}}
 \DoxyCodeLine{\Hypertarget{pml__time__harmonic__linear__elasticity__elements_8h_source_l00767}00767 \textcolor{comment}{}}
 \DoxyCodeLine{\Hypertarget{pml__time__harmonic__linear__elasticity__elements_8h_source_l00768}00768 \textcolor{comment}{    /// Number of positional history values: Read out from}}
@@ -774,7 +774,7 @@
 \DoxyCodeLine{\Hypertarget{pml__time__harmonic__linear__elasticity__elements_8h_source_l00770}00770 \textcolor{comment}{    /// (Note: count includes current value!)}}
 \DoxyCodeLine{\Hypertarget{pml__time__harmonic__linear__elasticity__elements_8h_source_l00771}\mbox{\hyperlink{classoomph_1_1ProjectablePMLTimeHarmonicLinearElasticityElement_abd0c7d21ef3ba99745851db30d2d1a99}{00771}} \textcolor{comment}{}    \textcolor{keywordtype}{unsigned} \mbox{\hyperlink{classoomph_1_1ProjectablePMLTimeHarmonicLinearElasticityElement_abd0c7d21ef3ba99745851db30d2d1a99}{nhistory\_values\_for\_coordinate\_projection}}()}
 \DoxyCodeLine{\Hypertarget{pml__time__harmonic__linear__elasticity__elements_8h_source_l00772}00772     \{}
-\DoxyCodeLine{\Hypertarget{pml__time__harmonic__linear__elasticity__elements_8h_source_l00773}00773       \textcolor{keywordflow}{return} this-\/>\mbox{\hyperlink{classoomph_1_1FiniteElement_a9addfe893ab8205619963aa96204cdc4}{node\_pt}}(0)-\/>\mbox{\hyperlink{classoomph_1_1Node_a32b32940186f9d1e2abc5d4bedb6ff0d}{position\_time\_stepper\_pt}}()-\/>\mbox{\hyperlink{classoomph_1_1TimeStepper_a3939b77ec3578e4bd5b453c85649d631}{ntstorage}}();}
+\DoxyCodeLine{\Hypertarget{pml__time__harmonic__linear__elasticity__elements_8h_source_l00773}00773       \textcolor{keywordflow}{return} this-\/>\mbox{\hyperlink{classoomph_1_1FiniteElement_a9addfe893ab8205619963aa96204cdc4}{node\_pt}}(0)-\/>position\_time\_stepper\_pt()-\/>ntstorage();}
 \DoxyCodeLine{\Hypertarget{pml__time__harmonic__linear__elasticity__elements_8h_source_l00774}00774     \}}
 \DoxyCodeLine{\Hypertarget{pml__time__harmonic__linear__elasticity__elements_8h_source_l00775}00775 \textcolor{comment}{}}
 \DoxyCodeLine{\Hypertarget{pml__time__harmonic__linear__elasticity__elements_8h_source_l00776}00776 \textcolor{comment}{    /// Return Jacobian of mapping and shape functions of field fld}}
@@ -802,7 +802,7 @@
 \DoxyCodeLine{\Hypertarget{pml__time__harmonic__linear__elasticity__elements_8h_source_l00798}00798       \textcolor{keywordtype}{unsigned} n\_node = this-\/>\mbox{\hyperlink{classoomph_1_1FiniteElement_a6219ed269a6d89b5aa14659cce48905a}{nnode}}();}
 \DoxyCodeLine{\Hypertarget{pml__time__harmonic__linear__elasticity__elements_8h_source_l00799}00799 }
 \DoxyCodeLine{\Hypertarget{pml__time__harmonic__linear__elasticity__elements_8h_source_l00800}00800 \textcolor{preprocessor}{\#ifdef PARANOID}}
-\DoxyCodeLine{\Hypertarget{pml__time__harmonic__linear__elasticity__elements_8h_source_l00801}00801       \textcolor{keywordtype}{unsigned} n\_dim = this-\/>\mbox{\hyperlink{classoomph_1_1FiniteElement_a9addfe893ab8205619963aa96204cdc4}{node\_pt}}(0)-\/>\mbox{\hyperlink{classoomph_1_1Node_a786c96a8e46eb27a03b2b31f629d41b3}{ndim}}();}
+\DoxyCodeLine{\Hypertarget{pml__time__harmonic__linear__elasticity__elements_8h_source_l00801}00801       \textcolor{keywordtype}{unsigned} n\_dim = this-\/>\mbox{\hyperlink{classoomph_1_1FiniteElement_a9addfe893ab8205619963aa96204cdc4}{node\_pt}}(0)-\/>ndim();}
 \DoxyCodeLine{\Hypertarget{pml__time__harmonic__linear__elasticity__elements_8h_source_l00802}00802 \textcolor{preprocessor}{\#endif}}
 \DoxyCodeLine{\Hypertarget{pml__time__harmonic__linear__elasticity__elements_8h_source_l00803}00803 }
 \DoxyCodeLine{\Hypertarget{pml__time__harmonic__linear__elasticity__elements_8h_source_l00804}00804       \textcolor{comment}{// Local shape function}}
@@ -818,7 +818,7 @@
 \DoxyCodeLine{\Hypertarget{pml__time__harmonic__linear__elasticity__elements_8h_source_l00814}00814       \textcolor{keywordflow}{for} (\textcolor{keywordtype}{unsigned} l = 0; l < n\_node; l++)}
 \DoxyCodeLine{\Hypertarget{pml__time__harmonic__linear__elasticity__elements_8h_source_l00815}00815       \{}
 \DoxyCodeLine{\Hypertarget{pml__time__harmonic__linear__elasticity__elements_8h_source_l00816}00816 \textcolor{preprocessor}{\#ifdef PARANOID}}
-\DoxyCodeLine{\Hypertarget{pml__time__harmonic__linear__elasticity__elements_8h_source_l00817}00817         \textcolor{keywordtype}{unsigned} nvalue = this-\/>\mbox{\hyperlink{classoomph_1_1FiniteElement_a9addfe893ab8205619963aa96204cdc4}{node\_pt}}(l)-\/>\mbox{\hyperlink{classoomph_1_1Data_a7e67fc78a2e8a2fd6eb75bd292d42ff8}{nvalue}}();}
+\DoxyCodeLine{\Hypertarget{pml__time__harmonic__linear__elasticity__elements_8h_source_l00817}00817         \textcolor{keywordtype}{unsigned} nvalue = this-\/>\mbox{\hyperlink{classoomph_1_1FiniteElement_a9addfe893ab8205619963aa96204cdc4}{node\_pt}}(l)-\/>nvalue();}
 \DoxyCodeLine{\Hypertarget{pml__time__harmonic__linear__elasticity__elements_8h_source_l00818}00818         \textcolor{keywordflow}{if} (nvalue != 2 * n\_dim)}
 \DoxyCodeLine{\Hypertarget{pml__time__harmonic__linear__elasticity__elements_8h_source_l00819}00819         \{}
 \DoxyCodeLine{\Hypertarget{pml__time__harmonic__linear__elasticity__elements_8h_source_l00820}00820           std::stringstream error\_stream;}
@@ -848,8 +848,8 @@
 \DoxyCodeLine{\Hypertarget{pml__time__harmonic__linear__elasticity__elements_8h_source_l00844}\mbox{\hyperlink{classoomph_1_1ProjectablePMLTimeHarmonicLinearElasticityElement_a7459a06e5c3dd6a91286408e8d407bf8}{00844}} \textcolor{comment}{}    \textcolor{keywordtype}{int} \mbox{\hyperlink{classoomph_1_1ProjectablePMLTimeHarmonicLinearElasticityElement_a7459a06e5c3dd6a91286408e8d407bf8}{local\_equation}}(\textcolor{keyword}{const} \textcolor{keywordtype}{unsigned}\& fld, \textcolor{keyword}{const} \textcolor{keywordtype}{unsigned}\& j)}
 \DoxyCodeLine{\Hypertarget{pml__time__harmonic__linear__elasticity__elements_8h_source_l00845}00845     \{}
 \DoxyCodeLine{\Hypertarget{pml__time__harmonic__linear__elasticity__elements_8h_source_l00846}00846 \textcolor{preprocessor}{\#ifdef PARANOID}}
-\DoxyCodeLine{\Hypertarget{pml__time__harmonic__linear__elasticity__elements_8h_source_l00847}00847       \textcolor{keywordtype}{unsigned} n\_dim = this-\/>\mbox{\hyperlink{classoomph_1_1FiniteElement_a9addfe893ab8205619963aa96204cdc4}{node\_pt}}(0)-\/>\mbox{\hyperlink{classoomph_1_1Node_a786c96a8e46eb27a03b2b31f629d41b3}{ndim}}();}
-\DoxyCodeLine{\Hypertarget{pml__time__harmonic__linear__elasticity__elements_8h_source_l00848}00848       \textcolor{keywordtype}{unsigned} nvalue = this-\/>\mbox{\hyperlink{classoomph_1_1FiniteElement_a9addfe893ab8205619963aa96204cdc4}{node\_pt}}(j)-\/>\mbox{\hyperlink{classoomph_1_1Data_a7e67fc78a2e8a2fd6eb75bd292d42ff8}{nvalue}}();}
+\DoxyCodeLine{\Hypertarget{pml__time__harmonic__linear__elasticity__elements_8h_source_l00847}00847       \textcolor{keywordtype}{unsigned} n\_dim = this-\/>\mbox{\hyperlink{classoomph_1_1FiniteElement_a9addfe893ab8205619963aa96204cdc4}{node\_pt}}(0)-\/>ndim();}
+\DoxyCodeLine{\Hypertarget{pml__time__harmonic__linear__elasticity__elements_8h_source_l00848}00848       \textcolor{keywordtype}{unsigned} nvalue = this-\/>\mbox{\hyperlink{classoomph_1_1FiniteElement_a9addfe893ab8205619963aa96204cdc4}{node\_pt}}(j)-\/>nvalue();}
 \DoxyCodeLine{\Hypertarget{pml__time__harmonic__linear__elasticity__elements_8h_source_l00849}00849       \textcolor{keywordflow}{if} (nvalue != 2 * n\_dim)}
 \DoxyCodeLine{\Hypertarget{pml__time__harmonic__linear__elasticity__elements_8h_source_l00850}00850       \{}
 \DoxyCodeLine{\Hypertarget{pml__time__harmonic__linear__elasticity__elements_8h_source_l00851}00851         std::stringstream error\_stream;}

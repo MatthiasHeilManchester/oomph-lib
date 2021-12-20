@@ -884,8 +884,8 @@ $(function() {
 <div class="line"><a id="l00755" name="l00755"></a><span class="lineno">  755</span>      <span class="keywordtype">unsigned</span> n_boundary_node = this-&gt;<a class="code hl_function" href="classoomph_1_1Mesh.html#a034677ceb48c67769acb83f304c84f7d">nboundary_node</a>(4);</div>
 <div class="line"><a id="l00756" name="l00756"></a><span class="lineno">  756</span>      <span class="keywordflow">for</span> (<span class="keywordtype">unsigned</span> n = 0; n &lt; n_boundary_node; ++n)</div>
 <div class="line"><a id="l00757" name="l00757"></a><span class="lineno">  757</span>      {</div>
-<div class="line"><a id="l00758" name="l00758"></a><span class="lineno">  758</span>        zeta[0] = this-&gt;<a class="code hl_function" href="classoomph_1_1Mesh.html#afc4d1204afc31b9ec88fe82d8fc01625">boundary_node_pt</a>(4, n)-&gt;<a class="code hl_function" href="classoomph_1_1Node.html#ab76b4773a65b349f143539e07b6e15e2">x</a>(0);</div>
-<div class="line"><a id="l00759" name="l00759"></a><span class="lineno">  759</span>        this-&gt;<a class="code hl_function" href="classoomph_1_1Mesh.html#afc4d1204afc31b9ec88fe82d8fc01625">boundary_node_pt</a>(4, n)-&gt;<a class="code hl_function" href="classoomph_1_1Node.html#a94c19e165ab4e88aabbfa27443c530b7">set_coordinates_on_boundary</a>(4, zeta);</div>
+<div class="line"><a id="l00758" name="l00758"></a><span class="lineno">  758</span>        zeta[0] = this-&gt;<a class="code hl_function" href="classoomph_1_1Mesh.html#afc4d1204afc31b9ec88fe82d8fc01625">boundary_node_pt</a>(4, n)-&gt;x(0);</div>
+<div class="line"><a id="l00759" name="l00759"></a><span class="lineno">  759</span>        this-&gt;<a class="code hl_function" href="classoomph_1_1Mesh.html#afc4d1204afc31b9ec88fe82d8fc01625">boundary_node_pt</a>(4, n)-&gt;set_coordinates_on_boundary(4, zeta);</div>
 <div class="line"><a id="l00760" name="l00760"></a><span class="lineno">  760</span>      }</div>
 <div class="line"><a id="l00761" name="l00761"></a><span class="lineno">  761</span>    }</div>
 <div class="line"><a id="l00762" name="l00762"></a><span class="lineno">  762</span> </div>
@@ -1397,7 +1397,7 @@ $(function() {
 <div class="line"><a id="l01268" name="l01268"></a><span class="lineno"> 1268</span>          <span class="comment">// Get the Lagrangian coordinate in the Lower Wall</span></div>
 <div class="line"><a id="l01269" name="l01269"></a><span class="lineno"> 1269</span>          zeta[0] = zeta_lo + double(i1) * dzeta_node;</div>
 <div class="line"><a id="l01270" name="l01270"></a><span class="lineno"> 1270</span>          <span class="comment">// Reset the boundary coordinate</span></div>
-<div class="line"><a id="l01271" name="l01271"></a><span class="lineno"> 1271</span>          nod_pt-&gt;<a class="code hl_function" href="classoomph_1_1Node.html#a94c19e165ab4e88aabbfa27443c530b7">set_coordinates_on_boundary</a>(0, zeta);</div>
+<div class="line"><a id="l01271" name="l01271"></a><span class="lineno"> 1271</span>          nod_pt-&gt;set_coordinates_on_boundary(0, zeta);</div>
 <div class="line"><a id="l01272" name="l01272"></a><span class="lineno"> 1272</span>          <span class="comment">// Get the geometric object and local coordinate</span></div>
 <div class="line"><a id="l01273" name="l01273"></a><span class="lineno"> 1273</span>          Lower_wall_pt-&gt;locate_zeta(zeta, lower_sub_geom_object_pt, s_lo);</div>
 <div class="line"><a id="l01274" name="l01274"></a><span class="lineno"> 1274</span> </div>
@@ -1459,7 +1459,7 @@ $(function() {
 <div class="line"><a id="l01330" name="l01330"></a><span class="lineno"> 1330</span>          <span class="comment">// Get the Lagrangian coordinate in the Lower Wall</span></div>
 <div class="line"><a id="l01331" name="l01331"></a><span class="lineno"> 1331</span>          zeta[0] = zeta_lo + double(i1) * dzeta_node;</div>
 <div class="line"><a id="l01332" name="l01332"></a><span class="lineno"> 1332</span>          <span class="comment">// Reset the boundary coordinate</span></div>
-<div class="line"><a id="l01333" name="l01333"></a><span class="lineno"> 1333</span>          nod_pt-&gt;<a class="code hl_function" href="classoomph_1_1Node.html#a94c19e165ab4e88aabbfa27443c530b7">set_coordinates_on_boundary</a>(0, zeta);</div>
+<div class="line"><a id="l01333" name="l01333"></a><span class="lineno"> 1333</span>          nod_pt-&gt;set_coordinates_on_boundary(0, zeta);</div>
 <div class="line"><a id="l01334" name="l01334"></a><span class="lineno"> 1334</span>          <span class="comment">// Get the sub geometric object and local coordinate</span></div>
 <div class="line"><a id="l01335" name="l01335"></a><span class="lineno"> 1335</span>          Lower_wall_pt-&gt;locate_zeta(zeta, lower_sub_geom_object_pt, s_lo);</div>
 <div class="line"><a id="l01336" name="l01336"></a><span class="lineno"> 1336</span> </div>
@@ -1667,7 +1667,7 @@ $(function() {
 <div class="line"><a id="l01538" name="l01538"></a><span class="lineno"> 1538</span>          <span class="comment">// Get the Lagrangian coordinate in the Lower Wall</span></div>
 <div class="line"><a id="l01539" name="l01539"></a><span class="lineno"> 1539</span>          zeta[0] = zeta_lo - double(i1) * dzeta_node;</div>
 <div class="line"><a id="l01540" name="l01540"></a><span class="lineno"> 1540</span>          <span class="comment">// Reset the boundary coordinate</span></div>
-<div class="line"><a id="l01541" name="l01541"></a><span class="lineno"> 1541</span>          el_pt-&gt;node_pt(i1)-&gt;<a class="code hl_function" href="classoomph_1_1Node.html#a94c19e165ab4e88aabbfa27443c530b7">set_coordinates_on_boundary</a>(2, zeta);</div>
+<div class="line"><a id="l01541" name="l01541"></a><span class="lineno"> 1541</span>          el_pt-&gt;node_pt(i1)-&gt;set_coordinates_on_boundary(2, zeta);</div>
 <div class="line"><a id="l01542" name="l01542"></a><span class="lineno"> 1542</span>          <span class="comment">// Get the sub geometric object and local coordinate</span></div>
 <div class="line"><a id="l01543" name="l01543"></a><span class="lineno"> 1543</span>          Upper_wall_pt-&gt;locate_zeta(zeta, upper_sub_geom_object_pt, s_up);</div>
 <div class="line"><a id="l01544" name="l01544"></a><span class="lineno"> 1544</span> </div>
@@ -1731,7 +1731,7 @@ $(function() {
 <div class="line"><a id="l01602" name="l01602"></a><span class="lineno"> 1602</span>          <span class="comment">// Get the Lagrangian coordinate in the Upper wall</span></div>
 <div class="line"><a id="l01603" name="l01603"></a><span class="lineno"> 1603</span>          zeta[0] = zeta_lo - double(i1) * dzeta_node;</div>
 <div class="line"><a id="l01604" name="l01604"></a><span class="lineno"> 1604</span>          <span class="comment">// Reset coordinate on boundary</span></div>
-<div class="line"><a id="l01605" name="l01605"></a><span class="lineno"> 1605</span>          nod_pt-&gt;<a class="code hl_function" href="classoomph_1_1Node.html#a94c19e165ab4e88aabbfa27443c530b7">set_coordinates_on_boundary</a>(2, zeta);</div>
+<div class="line"><a id="l01605" name="l01605"></a><span class="lineno"> 1605</span>          nod_pt-&gt;set_coordinates_on_boundary(2, zeta);</div>
 <div class="line"><a id="l01606" name="l01606"></a><span class="lineno"> 1606</span>          <span class="comment">// Get the geometric object and local coordinate</span></div>
 <div class="line"><a id="l01607" name="l01607"></a><span class="lineno"> 1607</span>          Upper_wall_pt-&gt;locate_zeta(zeta, upper_sub_geom_object_pt, s_up);</div>
 <div class="line"><a id="l01608" name="l01608"></a><span class="lineno"> 1608</span> </div>
@@ -1823,7 +1823,7 @@ $(function() {
 <div class="line"><a id="l01694" name="l01694"></a><span class="lineno"> 1694</span>          zeta[0] =</div>
 <div class="line"><a id="l01695" name="l01695"></a><span class="lineno"> 1695</span>            zeta_lo_transition_end + j * dzeta_el_lower + l2 * dzeta_nod_lower;</div>
 <div class="line"><a id="l01696" name="l01696"></a><span class="lineno"> 1696</span>          <span class="comment">// Reset the boundary coordinate</span></div>
-<div class="line"><a id="l01697" name="l01697"></a><span class="lineno"> 1697</span>          nod_pt-&gt;<a class="code hl_function" href="classoomph_1_1Node.html#a94c19e165ab4e88aabbfa27443c530b7">set_coordinates_on_boundary</a>(0, zeta);</div>
+<div class="line"><a id="l01697" name="l01697"></a><span class="lineno"> 1697</span>          nod_pt-&gt;set_coordinates_on_boundary(0, zeta);</div>
 <div class="line"><a id="l01698" name="l01698"></a><span class="lineno"> 1698</span> </div>
 <div class="line"><a id="l01699" name="l01699"></a><span class="lineno"> 1699</span>          <span class="comment">// Get the sub geometric objects</span></div>
 <div class="line"><a id="l01700" name="l01700"></a><span class="lineno"> 1700</span>          Lower_wall_pt-&gt;locate_zeta(zeta, lower_sub_geom_object_pt, s_lo);</div>
@@ -1924,8 +1924,6 @@ $(function() {
 <div class="ttc" id="aclassoomph_1_1Mesh_html_aca12acfe655a4d5c4a4eab4a7b970812"><div class="ttname"><a href="classoomph_1_1Mesh.html#aca12acfe655a4d5c4a4eab4a7b970812">oomph::Mesh::Element_pt</a></div><div class="ttdeci">Vector&lt; GeneralisedElement * &gt; Element_pt</div><div class="ttdoc">Vector of pointers to generalised elements.</div><div class="ttdef"><b>Definition:</b> <a href="mesh_8h_source.html#l00186">mesh.h:186</a></div></div>
 <div class="ttc" id="aclassoomph_1_1Mesh_html_af01dfefb66c15579b540be62999d93ee"><div class="ttname"><a href="classoomph_1_1Mesh.html#af01dfefb66c15579b540be62999d93ee">oomph::Mesh::nelement</a></div><div class="ttdeci">unsigned long nelement() const</div><div class="ttdoc">Return number of elements in the mesh.</div><div class="ttdef"><b>Definition:</b> <a href="mesh_8h_source.html#l00590">mesh.h:590</a></div></div>
 <div class="ttc" id="aclassoomph_1_1Mesh_html_afc4d1204afc31b9ec88fe82d8fc01625"><div class="ttname"><a href="classoomph_1_1Mesh.html#afc4d1204afc31b9ec88fe82d8fc01625">oomph::Mesh::boundary_node_pt</a></div><div class="ttdeci">Node *&amp; boundary_node_pt(const unsigned &amp;b, const unsigned &amp;n)</div><div class="ttdoc">Return pointer to node n on boundary b.</div><div class="ttdef"><b>Definition:</b> <a href="mesh_8h_source.html#l00493">mesh.h:493</a></div></div>
-<div class="ttc" id="aclassoomph_1_1Node_html_a94c19e165ab4e88aabbfa27443c530b7"><div class="ttname"><a href="classoomph_1_1Node.html#a94c19e165ab4e88aabbfa27443c530b7">oomph::Node::set_coordinates_on_boundary</a></div><div class="ttdeci">virtual void set_coordinates_on_boundary(const unsigned &amp;b, const unsigned &amp;k, const Vector&lt; double &gt; &amp;boundary_zeta)</div><div class="ttdoc">Set the vector of the k-th generalised boundary coordinates on mesh boundary b. Broken virtual interf...</div><div class="ttdef"><b>Definition:</b> <a href="nodes_8cc_source.html#l02394">nodes.cc:2394</a></div></div>
-<div class="ttc" id="aclassoomph_1_1Node_html_ab76b4773a65b349f143539e07b6e15e2"><div class="ttname"><a href="classoomph_1_1Node.html#ab76b4773a65b349f143539e07b6e15e2">oomph::Node::x</a></div><div class="ttdeci">double &amp; x(const unsigned &amp;i)</div><div class="ttdoc">Return the i-th nodal coordinate.</div><div class="ttdef"><b>Definition:</b> <a href="nodes_8h_source.html#l01062">nodes.h:1062</a></div></div>
 <div class="ttc" id="aclassoomph_1_1OomphLibError_html"><div class="ttname"><a href="classoomph_1_1OomphLibError.html">oomph::OomphLibError</a></div><div class="ttdoc">An OomphLibError object which should be thrown when an run-time error is encountered....</div><div class="ttdef"><b>Definition:</b> <a href="oomph__definitions_8h_source.html#l00221">oomph_definitions.h:222</a></div></div>
 <div class="ttc" id="aclassoomph_1_1SimpleRectangularQuadMesh_html"><div class="ttname"><a href="classoomph_1_1SimpleRectangularQuadMesh.html">oomph::SimpleRectangularQuadMesh</a></div><div class="ttdoc">Simple rectangular 2D Quad mesh class. Nx : number of elements in the x direction.</div><div class="ttdef"><b>Definition:</b> <a href="simple__rectangular__quadmesh_8template_8h_source.html#l00057">simple_rectangular_quadmesh.template.h:58</a></div></div>
 <div class="ttc" id="aclassoomph_1_1SingleLayerSpineMesh_html"><div class="ttname"><a href="classoomph_1_1SingleLayerSpineMesh.html">oomph::SingleLayerSpineMesh</a></div><div class="ttdoc">Single-layer spine mesh class derived from standard 2D mesh. The mesh contains a layer of spinified f...</div><div class="ttdef"><b>Definition:</b> <a href="single__layer__spine__mesh_8template_8h_source.html#l00045">single_layer_spine_mesh.template.h:47</a></div></div>
@@ -1976,7 +1974,7 @@ $(function() {
     <footer>
       <div class="container">
         <div class="text-muted" style="float:right;">Generated by <a href="http://www.doxygen.org/index.html">
-          <img style="height:18px;" class="footer-img" src="doxygen.png" alt="doxygen"></a> on Fri Dec 17 2021 19:42:01
+          <img style="height:18px;" class="footer-img" src="doxygen.png" alt="doxygen"></a> on Mon Dec 20 2021 10:39:14
         </div>
       </div>
     </footer>

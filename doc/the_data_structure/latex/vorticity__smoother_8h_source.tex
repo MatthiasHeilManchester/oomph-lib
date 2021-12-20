@@ -811,7 +811,7 @@
 \DoxyCodeLine{\Hypertarget{vorticity__smoother_8h_source_l00807}00807       \textcolor{keywordflow}{for} (\textcolor{keywordtype}{unsigned} j = 0; j < nnod; j++)}
 \DoxyCodeLine{\Hypertarget{vorticity__smoother_8h_source_l00808}00808       \{}
 \DoxyCodeLine{\Hypertarget{vorticity__smoother_8h_source_l00809}00809         \textcolor{comment}{// Make a pointer to the j-\/th node in the element}}
-\DoxyCodeLine{\Hypertarget{vorticity__smoother_8h_source_l00810}00810         \mbox{\hyperlink{classoomph_1_1Node}{Node}}* nod\_pt = this-\/>node\_pt(j);}
+\DoxyCodeLine{\Hypertarget{vorticity__smoother_8h_source_l00810}00810         Node* nod\_pt = this-\/>node\_pt(j);}
 \DoxyCodeLine{\Hypertarget{vorticity__smoother_8h_source_l00811}00811 }
 \DoxyCodeLine{\Hypertarget{vorticity__smoother_8h_source_l00812}00812         \textcolor{comment}{// Loop over the fields}}
 \DoxyCodeLine{\Hypertarget{vorticity__smoother_8h_source_l00813}00813         \textcolor{keywordflow}{for} (\textcolor{keywordtype}{unsigned} \mbox{\hyperlink{cfortran_8h_adb50e893b86b3e55e751a42eab3cba82}{i}} = \mbox{\hyperlink{classoomph_1_1VorticitySmootherElement_a15a33ab6804cbd945f67db0cf81ff6bc}{Smoothed\_vorticity\_index}};}
@@ -819,7 +819,7 @@
 \DoxyCodeLine{\Hypertarget{vorticity__smoother_8h_source_l00815}00815              \mbox{\hyperlink{cfortran_8h_adb50e893b86b3e55e751a42eab3cba82}{i}}++)}
 \DoxyCodeLine{\Hypertarget{vorticity__smoother_8h_source_l00816}00816         \{}
 \DoxyCodeLine{\Hypertarget{vorticity__smoother_8h_source_l00817}00817           \textcolor{comment}{// Pin the i-\/th field at this node}}
-\DoxyCodeLine{\Hypertarget{vorticity__smoother_8h_source_l00818}00818           nod\_pt-\/>\mbox{\hyperlink{classoomph_1_1Data_a422231c58e423f0b43822827aa334d79}{pin}}(\mbox{\hyperlink{cfortran_8h_adb50e893b86b3e55e751a42eab3cba82}{i}});}
+\DoxyCodeLine{\Hypertarget{vorticity__smoother_8h_source_l00818}00818           nod\_pt-\/>pin(\mbox{\hyperlink{cfortran_8h_adb50e893b86b3e55e751a42eab3cba82}{i}});}
 \DoxyCodeLine{\Hypertarget{vorticity__smoother_8h_source_l00819}00819         \}}
 \DoxyCodeLine{\Hypertarget{vorticity__smoother_8h_source_l00820}00820       \} \textcolor{comment}{// for (unsigned j=0;j<nnod;j++)}}
 \DoxyCodeLine{\Hypertarget{vorticity__smoother_8h_source_l00821}00821     \} \textcolor{comment}{// End of pin\_smoothed\_vorticity}}
@@ -2001,7 +2001,7 @@
 \DoxyCodeLine{\Hypertarget{vorticity__smoother_8h_source_l01997}01997 \textcolor{comment}{    /// contains the pointers to the elements that the node is part of.}}
 \DoxyCodeLine{\Hypertarget{vorticity__smoother_8h_source_l01998}01998 \textcolor{comment}{    /// Also returns a Vector of vertex nodes for use in get\_element\_errors.}}
 \DoxyCodeLine{\Hypertarget{vorticity__smoother_8h_source_l01999}\mbox{\hyperlink{classoomph_1_1VorticitySmoother_ae8e49f99dfb35e6ee5eebbce87131d44}{01999}} \textcolor{comment}{}    \textcolor{keywordtype}{void} \mbox{\hyperlink{classoomph_1_1VorticitySmoother_ae8e49f99dfb35e6ee5eebbce87131d44}{setup\_patches}}(\mbox{\hyperlink{classoomph_1_1Mesh}{Mesh}}*\& mesh\_pt,}
-\DoxyCodeLine{\Hypertarget{vorticity__smoother_8h_source_l02000}02000                        std::map<\mbox{\hyperlink{classoomph_1_1Node}{Node}}*, \mbox{\hyperlink{classoomph_1_1Vector}{Vector<ELEMENT*>}}*>\& adjacent\_elements\_pt,}
+\DoxyCodeLine{\Hypertarget{vorticity__smoother_8h_source_l02000}02000                        std::map<Node*, \mbox{\hyperlink{classoomph_1_1Vector}{Vector<ELEMENT*>}}*>\& adjacent\_elements\_pt,}
 \DoxyCodeLine{\Hypertarget{vorticity__smoother_8h_source_l02001}02001                        \mbox{\hyperlink{classoomph_1_1Vector}{Vector<Node*>}}\& vertex\_node\_pt)}
 \DoxyCodeLine{\Hypertarget{vorticity__smoother_8h_source_l02002}02002     \{}
 \DoxyCodeLine{\Hypertarget{vorticity__smoother_8h_source_l02003}02003       \textcolor{comment}{// Clear: hierher should we do this in Z2 as well?}}
@@ -2037,7 +2037,7 @@
 \DoxyCodeLine{\Hypertarget{vorticity__smoother_8h_source_l02033}02033         \textcolor{keywordflow}{for} (\textcolor{keywordtype}{unsigned} n = 0; n < nnod; n++)}
 \DoxyCodeLine{\Hypertarget{vorticity__smoother_8h_source_l02034}02034         \{}
 \DoxyCodeLine{\Hypertarget{vorticity__smoother_8h_source_l02035}02035           \textcolor{comment}{// Make a pointer to the n-\/th node}}
-\DoxyCodeLine{\Hypertarget{vorticity__smoother_8h_source_l02036}02036           \mbox{\hyperlink{classoomph_1_1Node}{Node}}* nod\_pt = el\_pt-\/>node\_pt(n);}
+\DoxyCodeLine{\Hypertarget{vorticity__smoother_8h_source_l02036}02036           Node* nod\_pt = el\_pt-\/>node\_pt(n);}
 \DoxyCodeLine{\Hypertarget{vorticity__smoother_8h_source_l02037}02037 }
 \DoxyCodeLine{\Hypertarget{vorticity__smoother_8h_source_l02038}02038           \textcolor{comment}{// Has this node been considered before?}}
 \DoxyCodeLine{\Hypertarget{vorticity__smoother_8h_source_l02039}02039           \textcolor{keywordflow}{if} (aux\_adjacent\_elements\_pt[nod\_pt] == 0)}
@@ -2077,7 +2077,7 @@
 \DoxyCodeLine{\Hypertarget{vorticity__smoother_8h_source_l02073}02073         \textcolor{keywordtype}{unsigned} n\_node = el\_pt-\/>nvertex\_node();}
 \DoxyCodeLine{\Hypertarget{vorticity__smoother_8h_source_l02074}02074         \textcolor{keywordflow}{for} (\textcolor{keywordtype}{unsigned} n = 0; n < n\_node; n++)}
 \DoxyCodeLine{\Hypertarget{vorticity__smoother_8h_source_l02075}02075         \{}
-\DoxyCodeLine{\Hypertarget{vorticity__smoother_8h_source_l02076}02076           \mbox{\hyperlink{classoomph_1_1Node}{Node}}* nod\_pt = el\_pt-\/>vertex\_node\_pt(n);}
+\DoxyCodeLine{\Hypertarget{vorticity__smoother_8h_source_l02076}02076           Node* nod\_pt = el\_pt-\/>vertex\_node\_pt(n);}
 \DoxyCodeLine{\Hypertarget{vorticity__smoother_8h_source_l02077}02077 }
 \DoxyCodeLine{\Hypertarget{vorticity__smoother_8h_source_l02078}02078           \textcolor{comment}{// Has this node been considered before?}}
 \DoxyCodeLine{\Hypertarget{vorticity__smoother_8h_source_l02079}02079           \textcolor{keywordflow}{if} (adjacent\_elements\_pt[nod\_pt] == 0)}
@@ -2100,7 +2100,7 @@
 \DoxyCodeLine{\Hypertarget{vorticity__smoother_8h_source_l02096}02096       \} \textcolor{comment}{// End of loop over elements}}
 \DoxyCodeLine{\Hypertarget{vorticity__smoother_8h_source_l02097}02097 }
 \DoxyCodeLine{\Hypertarget{vorticity__smoother_8h_source_l02098}02098       \textcolor{comment}{// Cleanup}}
-\DoxyCodeLine{\Hypertarget{vorticity__smoother_8h_source_l02099}02099       \textcolor{keywordflow}{for} (\textcolor{keyword}{typename} std::map<\mbox{\hyperlink{classoomph_1_1Node}{Node}}*, \mbox{\hyperlink{classoomph_1_1Vector}{Vector<ELEMENT*>}}*>::iterator it =}
+\DoxyCodeLine{\Hypertarget{vorticity__smoother_8h_source_l02099}02099       \textcolor{keywordflow}{for} (\textcolor{keyword}{typename} std::map<Node*, \mbox{\hyperlink{classoomph_1_1Vector}{Vector<ELEMENT*>}}*>::iterator it =}
 \DoxyCodeLine{\Hypertarget{vorticity__smoother_8h_source_l02100}02100              aux\_adjacent\_elements\_pt.begin();}
 \DoxyCodeLine{\Hypertarget{vorticity__smoother_8h_source_l02101}02101            it != aux\_adjacent\_elements\_pt.end();}
 \DoxyCodeLine{\Hypertarget{vorticity__smoother_8h_source_l02102}02102            it++)}
@@ -2552,7 +2552,7 @@
 \DoxyCodeLine{\Hypertarget{vorticity__smoother_8h_source_l02548}02548         \textcolor{comment}{//-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/}}
 \DoxyCodeLine{\Hypertarget{vorticity__smoother_8h_source_l02549}02549         \textcolor{comment}{// Do patch recovery}}
 \DoxyCodeLine{\Hypertarget{vorticity__smoother_8h_source_l02550}02550         \textcolor{comment}{// unsigned counter=0;}}
-\DoxyCodeLine{\Hypertarget{vorticity__smoother_8h_source_l02551}02551         \textcolor{keywordflow}{for} (\textcolor{keyword}{typename} std::map<\mbox{\hyperlink{classoomph_1_1Node}{Node}}*, \mbox{\hyperlink{classoomph_1_1Vector}{Vector<ELEMENT*>}}*>::iterator it =}
+\DoxyCodeLine{\Hypertarget{vorticity__smoother_8h_source_l02551}02551         \textcolor{keywordflow}{for} (\textcolor{keyword}{typename} std::map<Node*, \mbox{\hyperlink{classoomph_1_1Vector}{Vector<ELEMENT*>}}*>::iterator it =}
 \DoxyCodeLine{\Hypertarget{vorticity__smoother_8h_source_l02552}02552                adjacent\_elements\_pt.begin();}
 \DoxyCodeLine{\Hypertarget{vorticity__smoother_8h_source_l02553}02553              it != adjacent\_elements\_pt.end();}
 \DoxyCodeLine{\Hypertarget{vorticity__smoother_8h_source_l02554}02554              it++)}
@@ -2585,7 +2585,7 @@
 \DoxyCodeLine{\Hypertarget{vorticity__smoother_8h_source_l02581}02581             \textcolor{keywordflow}{for} (\textcolor{keywordtype}{unsigned} j = 0; j < nnode\_el; j++)}
 \DoxyCodeLine{\Hypertarget{vorticity__smoother_8h_source_l02582}02582             \{}
 \DoxyCodeLine{\Hypertarget{vorticity__smoother_8h_source_l02583}02583               \textcolor{comment}{// Get a pointer to the j-\/th node in this element}}
-\DoxyCodeLine{\Hypertarget{vorticity__smoother_8h_source_l02584}02584               \mbox{\hyperlink{classoomph_1_1Node}{Node}}* nod\_pt = el\_pt-\/>node\_pt(j);}
+\DoxyCodeLine{\Hypertarget{vorticity__smoother_8h_source_l02584}02584               Node* nod\_pt = el\_pt-\/>node\_pt(j);}
 \DoxyCodeLine{\Hypertarget{vorticity__smoother_8h_source_l02585}02585 }
 \DoxyCodeLine{\Hypertarget{vorticity__smoother_8h_source_l02586}02586               \textcolor{comment}{// Get the local coordinates of the node}}
 \DoxyCodeLine{\Hypertarget{vorticity__smoother_8h_source_l02587}02587               el\_pt-\/>local\_coordinate\_of\_node(j, \mbox{\hyperlink{cfortran_8h_ab7123126e4885ef647dd9c6e3807a21c}{s}});}
@@ -2632,13 +2632,13 @@
 \DoxyCodeLine{\Hypertarget{vorticity__smoother_8h_source_l02628}02628         \textcolor{keywordflow}{for} (\textcolor{keywordtype}{unsigned} j = 0; j < nnod; j++)}
 \DoxyCodeLine{\Hypertarget{vorticity__smoother_8h_source_l02629}02629         \{}
 \DoxyCodeLine{\Hypertarget{vorticity__smoother_8h_source_l02630}02630           \textcolor{comment}{// Make a pointer to the j-\/th node}}
-\DoxyCodeLine{\Hypertarget{vorticity__smoother_8h_source_l02631}02631           \mbox{\hyperlink{classoomph_1_1Node}{Node}}* nod\_pt = mesh\_pt-\/>\mbox{\hyperlink{classoomph_1_1Mesh_a69d22c2070f1649c4cb2607f26070d7c}{node\_pt}}(j);}
+\DoxyCodeLine{\Hypertarget{vorticity__smoother_8h_source_l02631}02631           Node* nod\_pt = mesh\_pt-\/>\mbox{\hyperlink{classoomph_1_1Mesh_a69d22c2070f1649c4cb2607f26070d7c}{node\_pt}}(j);}
 \DoxyCodeLine{\Hypertarget{vorticity__smoother_8h_source_l02632}02632 }
 \DoxyCodeLine{\Hypertarget{vorticity__smoother_8h_source_l02633}02633           \textcolor{comment}{// Calculate the values of the smoothed vorticity}}
 \DoxyCodeLine{\Hypertarget{vorticity__smoother_8h_source_l02634}02634           averaged\_recovered\_vort[nod\_pt] /= count[nod\_pt];}
 \DoxyCodeLine{\Hypertarget{vorticity__smoother_8h_source_l02635}02635 }
 \DoxyCodeLine{\Hypertarget{vorticity__smoother_8h_source_l02636}02636           \textcolor{comment}{// Assign smoothed vorticity to nodal values}}
-\DoxyCodeLine{\Hypertarget{vorticity__smoother_8h_source_l02637}02637           nod\_pt-\/>\mbox{\hyperlink{classoomph_1_1Data_a7289ca322725c6fd493970a19474b382}{set\_value}}(smoothed\_vorticity\_index + nodal\_dof,}
+\DoxyCodeLine{\Hypertarget{vorticity__smoother_8h_source_l02637}02637           nod\_pt-\/>set\_value(smoothed\_vorticity\_index + nodal\_dof,}
 \DoxyCodeLine{\Hypertarget{vorticity__smoother_8h_source_l02638}02638                             averaged\_recovered\_vort[nod\_pt]);}
 \DoxyCodeLine{\Hypertarget{vorticity__smoother_8h_source_l02639}02639         \}}
 \DoxyCodeLine{\Hypertarget{vorticity__smoother_8h_source_l02640}02640 }
@@ -2650,7 +2650,7 @@
 \DoxyCodeLine{\Hypertarget{vorticity__smoother_8h_source_l02646}02646       \} \textcolor{comment}{// for (unsigned deriv=0;deriv<max\_vort\_recov+max\_veloc\_recov;deriv++)}}
 \DoxyCodeLine{\Hypertarget{vorticity__smoother_8h_source_l02647}02647 }
 \DoxyCodeLine{\Hypertarget{vorticity__smoother_8h_source_l02648}02648       \textcolor{comment}{// Cleanup}}
-\DoxyCodeLine{\Hypertarget{vorticity__smoother_8h_source_l02649}02649       \textcolor{keywordflow}{for} (\textcolor{keyword}{typename} std::map<\mbox{\hyperlink{classoomph_1_1Node}{Node}}*, \mbox{\hyperlink{classoomph_1_1Vector}{Vector<ELEMENT*>}}*>::iterator it =}
+\DoxyCodeLine{\Hypertarget{vorticity__smoother_8h_source_l02649}02649       \textcolor{keywordflow}{for} (\textcolor{keyword}{typename} std::map<Node*, \mbox{\hyperlink{classoomph_1_1Vector}{Vector<ELEMENT*>}}*>::iterator it =}
 \DoxyCodeLine{\Hypertarget{vorticity__smoother_8h_source_l02650}02650              adjacent\_elements\_pt.begin();}
 \DoxyCodeLine{\Hypertarget{vorticity__smoother_8h_source_l02651}02651            it != adjacent\_elements\_pt.end();}
 \DoxyCodeLine{\Hypertarget{vorticity__smoother_8h_source_l02652}02652            it++)}

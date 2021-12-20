@@ -1642,7 +1642,7 @@
 \DoxyCodeLine{\Hypertarget{womersley__elements_8h_source_l01638}01638           n\_st\_nodes.insert(el\_pt-\/>\mbox{\hyperlink{classoomph_1_1FiniteElement_a9addfe893ab8205619963aa96204cdc4}{node\_pt}}(j));}
 \DoxyCodeLine{\Hypertarget{womersley__elements_8h_source_l01639}01639 }
 \DoxyCodeLine{\Hypertarget{womersley__elements_8h_source_l01640}01640           \textcolor{comment}{// Careful: It there are hanging nodes this won't work!}}
-\DoxyCodeLine{\Hypertarget{womersley__elements_8h_source_l01641}01641           \textcolor{keywordflow}{if} (el\_pt-\/>\mbox{\hyperlink{classoomph_1_1FiniteElement_a9addfe893ab8205619963aa96204cdc4}{node\_pt}}(j)-\/>\mbox{\hyperlink{classoomph_1_1Node_af0e6237dfafad62cf427ff5013ddcfef}{is\_hanging}}())}
+\DoxyCodeLine{\Hypertarget{womersley__elements_8h_source_l01641}01641           \textcolor{keywordflow}{if} (el\_pt-\/>\mbox{\hyperlink{classoomph_1_1FiniteElement_a9addfe893ab8205619963aa96204cdc4}{node\_pt}}(j)-\/>is\_hanging())}
 \DoxyCodeLine{\Hypertarget{womersley__elements_8h_source_l01642}01642           \{}
 \DoxyCodeLine{\Hypertarget{womersley__elements_8h_source_l01643}01643             \textcolor{keywordflow}{throw} \mbox{\hyperlink{classoomph_1_1OomphLibError}{OomphLibError}}(}
 \DoxyCodeLine{\Hypertarget{womersley__elements_8h_source_l01644}01644               \textcolor{stringliteral}{"{}Cannot build WomersleyMesh from mesh with hanging nodes!"{}},}
@@ -1705,13 +1705,13 @@
 \DoxyCodeLine{\Hypertarget{womersley__elements_8h_source_l01701}01701         \textcolor{keywordflow}{for} (\textcolor{keywordtype}{unsigned} j = 0; j < nnod\_el; j++)}
 \DoxyCodeLine{\Hypertarget{womersley__elements_8h_source_l01702}01702         \{}
 \DoxyCodeLine{\Hypertarget{womersley__elements_8h_source_l01703}01703           \textcolor{comment}{// Has the Navier Stokes node been done yet?}}
-\DoxyCodeLine{\Hypertarget{womersley__elements_8h_source_l01704}01704           \mbox{\hyperlink{classoomph_1_1Node}{Node}}* n\_st\_node\_pt = n\_st\_el\_pt-\/>\mbox{\hyperlink{classoomph_1_1FiniteElement_a9addfe893ab8205619963aa96204cdc4}{node\_pt}}(j);}
+\DoxyCodeLine{\Hypertarget{womersley__elements_8h_source_l01704}01704           Node* n\_st\_node\_pt = n\_st\_el\_pt-\/>\mbox{\hyperlink{classoomph_1_1FiniteElement_a9addfe893ab8205619963aa96204cdc4}{node\_pt}}(j);}
 \DoxyCodeLine{\Hypertarget{womersley__elements_8h_source_l01705}01705 }
 \DoxyCodeLine{\Hypertarget{womersley__elements_8h_source_l01706}01706           \textcolor{comment}{// Hasn't been done: Create new node in Womersley element}}
 \DoxyCodeLine{\Hypertarget{womersley__elements_8h_source_l01707}01707           \textcolor{keywordflow}{if} (!n\_st\_node\_done[n\_st\_node\_pt])}
 \DoxyCodeLine{\Hypertarget{womersley__elements_8h_source_l01708}01708           \{}
 \DoxyCodeLine{\Hypertarget{womersley__elements_8h_source_l01709}01709             \textcolor{comment}{// Create a new node in the Womersley element}}
-\DoxyCodeLine{\Hypertarget{womersley__elements_8h_source_l01710}01710             \mbox{\hyperlink{classoomph_1_1Node}{Node}}* new\_node\_pt =}
+\DoxyCodeLine{\Hypertarget{womersley__elements_8h_source_l01710}01710             Node* new\_node\_pt =}
 \DoxyCodeLine{\Hypertarget{womersley__elements_8h_source_l01711}01711               \mbox{\hyperlink{classoomph_1_1Mesh_a479059b0964826a8cee6eb506b57268a}{finite\_element\_pt}}(\mbox{\hyperlink{cfortran_8h_a37cd013acc76697829c324bdd8562d82}{e}})-\/>\mbox{\hyperlink{classoomph_1_1FiniteElement_a54676a4e37813f207d53ef9a7d16fd41}{construct\_node}}(j, time\_stepper\_pt);}
 \DoxyCodeLine{\Hypertarget{womersley__elements_8h_source_l01712}01712 }
 \DoxyCodeLine{\Hypertarget{womersley__elements_8h_source_l01713}01713             \textcolor{comment}{// Add newly created node}}
@@ -1720,27 +1720,27 @@
 \DoxyCodeLine{\Hypertarget{womersley__elements_8h_source_l01716}01716 }
 \DoxyCodeLine{\Hypertarget{womersley__elements_8h_source_l01717}01717 }
 \DoxyCodeLine{\Hypertarget{womersley__elements_8h_source_l01718}01718             \textcolor{comment}{// Set coordinates}}
-\DoxyCodeLine{\Hypertarget{womersley__elements_8h_source_l01719}01719             \textcolor{keywordtype}{unsigned} dim = n\_st\_node\_pt-\/>\mbox{\hyperlink{classoomph_1_1Node_a786c96a8e46eb27a03b2b31f629d41b3}{ndim}}();}
+\DoxyCodeLine{\Hypertarget{womersley__elements_8h_source_l01719}01719             \textcolor{keywordtype}{unsigned} dim = n\_st\_node\_pt-\/>ndim();}
 \DoxyCodeLine{\Hypertarget{womersley__elements_8h_source_l01720}01720             \textcolor{keywordtype}{unsigned} icount = 0;}
 \DoxyCodeLine{\Hypertarget{womersley__elements_8h_source_l01721}01721             \textcolor{keywordflow}{for} (\textcolor{keywordtype}{unsigned} \mbox{\hyperlink{cfortran_8h_adb50e893b86b3e55e751a42eab3cba82}{i}} = 0; \mbox{\hyperlink{cfortran_8h_adb50e893b86b3e55e751a42eab3cba82}{i}} < dim; \mbox{\hyperlink{cfortran_8h_adb50e893b86b3e55e751a42eab3cba82}{i}}++)}
 \DoxyCodeLine{\Hypertarget{womersley__elements_8h_source_l01722}01722             \{}
 \DoxyCodeLine{\Hypertarget{womersley__elements_8h_source_l01723}01723               \textcolor{keywordflow}{if} (\mbox{\hyperlink{cfortran_8h_adb50e893b86b3e55e751a42eab3cba82}{i}} != fixed\_coordinate)}
 \DoxyCodeLine{\Hypertarget{womersley__elements_8h_source_l01724}01724               \{}
-\DoxyCodeLine{\Hypertarget{womersley__elements_8h_source_l01725}01725                 new\_node\_pt-\/>\mbox{\hyperlink{classoomph_1_1Node_ab76b4773a65b349f143539e07b6e15e2}{x}}(icount) = n\_st\_node\_pt-\/>\mbox{\hyperlink{classoomph_1_1Node_ab76b4773a65b349f143539e07b6e15e2}{x}}(\mbox{\hyperlink{cfortran_8h_adb50e893b86b3e55e751a42eab3cba82}{i}});}
+\DoxyCodeLine{\Hypertarget{womersley__elements_8h_source_l01725}01725                 new\_node\_pt-\/>x(icount) = n\_st\_node\_pt-\/>x(\mbox{\hyperlink{cfortran_8h_adb50e893b86b3e55e751a42eab3cba82}{i}});}
 \DoxyCodeLine{\Hypertarget{womersley__elements_8h_source_l01726}01726                 icount++;}
 \DoxyCodeLine{\Hypertarget{womersley__elements_8h_source_l01727}01727               \}}
 \DoxyCodeLine{\Hypertarget{womersley__elements_8h_source_l01728}01728             \}}
 \DoxyCodeLine{\Hypertarget{womersley__elements_8h_source_l01729}01729 }
 \DoxyCodeLine{\Hypertarget{womersley__elements_8h_source_l01730}01730             \textcolor{comment}{// Set pin status}}
-\DoxyCodeLine{\Hypertarget{womersley__elements_8h_source_l01731}01731             \textcolor{keywordflow}{if} (n\_st\_node\_pt-\/>\mbox{\hyperlink{classoomph_1_1Data_aedd0c445396ddcd650c814d17fef77dc}{is\_pinned}}(w\_index))}
+\DoxyCodeLine{\Hypertarget{womersley__elements_8h_source_l01731}01731             \textcolor{keywordflow}{if} (n\_st\_node\_pt-\/>is\_pinned(w\_index))}
 \DoxyCodeLine{\Hypertarget{womersley__elements_8h_source_l01732}01732             \{}
-\DoxyCodeLine{\Hypertarget{womersley__elements_8h_source_l01733}01733               new\_node\_pt-\/>\mbox{\hyperlink{classoomph_1_1Data_a422231c58e423f0b43822827aa334d79}{pin}}(0);}
+\DoxyCodeLine{\Hypertarget{womersley__elements_8h_source_l01733}01733               new\_node\_pt-\/>pin(0);}
 \DoxyCodeLine{\Hypertarget{womersley__elements_8h_source_l01734}01734               n\_pinned\_nodes++;}
 \DoxyCodeLine{\Hypertarget{womersley__elements_8h_source_l01735}01735             \}}
 \DoxyCodeLine{\Hypertarget{womersley__elements_8h_source_l01736}01736             \textcolor{keywordflow}{else}}
 \DoxyCodeLine{\Hypertarget{womersley__elements_8h_source_l01737}01737             \{}
 \DoxyCodeLine{\Hypertarget{womersley__elements_8h_source_l01738}01738               \textcolor{comment}{// shouldn't need this, but...}}
-\DoxyCodeLine{\Hypertarget{womersley__elements_8h_source_l01739}01739               new\_node\_pt-\/>\mbox{\hyperlink{classoomph_1_1Data_a4e5cb031bf8eceb8f97c2c4fbd74cb05}{unpin}}(0);}
+\DoxyCodeLine{\Hypertarget{womersley__elements_8h_source_l01739}01739               new\_node\_pt-\/>unpin(0);}
 \DoxyCodeLine{\Hypertarget{womersley__elements_8h_source_l01740}01740             \}}
 \DoxyCodeLine{\Hypertarget{womersley__elements_8h_source_l01741}01741 }
 \DoxyCodeLine{\Hypertarget{womersley__elements_8h_source_l01742}01742             \textcolor{comment}{// Record which Womersley node the}}
@@ -2347,13 +2347,13 @@
 \DoxyCodeLine{\Hypertarget{womersley__elements_8h_source_l02343}02343         \textcolor{keywordflow}{for} (\textcolor{keywordtype}{unsigned} j = 0; j < nnod; j++)}
 \DoxyCodeLine{\Hypertarget{womersley__elements_8h_source_l02344}02344         \{}
 \DoxyCodeLine{\Hypertarget{womersley__elements_8h_source_l02345}02345           \textcolor{comment}{// Get pointer to Node}}
-\DoxyCodeLine{\Hypertarget{womersley__elements_8h_source_l02346}02346           \mbox{\hyperlink{classoomph_1_1Node}{Node}}* nod\_pt = \mbox{\hyperlink{classoomph_1_1FiniteElement_a9addfe893ab8205619963aa96204cdc4}{node\_pt}}(j);}
+\DoxyCodeLine{\Hypertarget{womersley__elements_8h_source_l02346}02346           Node* nod\_pt = \mbox{\hyperlink{classoomph_1_1FiniteElement_a9addfe893ab8205619963aa96204cdc4}{node\_pt}}(j);}
 \DoxyCodeLine{\Hypertarget{womersley__elements_8h_source_l02347}02347 }
 \DoxyCodeLine{\Hypertarget{womersley__elements_8h_source_l02348}02348           \textcolor{comment}{// Loop over directions}}
 \DoxyCodeLine{\Hypertarget{womersley__elements_8h_source_l02349}02349           \textcolor{keywordflow}{for} (\textcolor{keywordtype}{unsigned} \mbox{\hyperlink{cfortran_8h_adb50e893b86b3e55e751a42eab3cba82}{i}} = 0; \mbox{\hyperlink{cfortran_8h_adb50e893b86b3e55e751a42eab3cba82}{i}} < (DIM + 1); \mbox{\hyperlink{cfortran_8h_adb50e893b86b3e55e751a42eab3cba82}{i}}++)}
 \DoxyCodeLine{\Hypertarget{womersley__elements_8h_source_l02350}02350           \{}
 \DoxyCodeLine{\Hypertarget{womersley__elements_8h_source_l02351}02351             \textcolor{comment}{// Get global equation number}}
-\DoxyCodeLine{\Hypertarget{womersley__elements_8h_source_l02352}02352             \textcolor{keywordtype}{int} i\_global = nod\_pt-\/>\mbox{\hyperlink{classoomph_1_1Data_ab6845db69833c541766d9a073b023fc4}{eqn\_number}}(\mbox{\hyperlink{cfortran_8h_adb50e893b86b3e55e751a42eab3cba82}{i}});}
+\DoxyCodeLine{\Hypertarget{womersley__elements_8h_source_l02352}02352             \textcolor{keywordtype}{int} i\_global = nod\_pt-\/>eqn\_number(\mbox{\hyperlink{cfortran_8h_adb50e893b86b3e55e751a42eab3cba82}{i}});}
 \DoxyCodeLine{\Hypertarget{womersley__elements_8h_source_l02353}02353 }
 \DoxyCodeLine{\Hypertarget{womersley__elements_8h_source_l02354}02354             \textcolor{comment}{// Real dof or bc?}}
 \DoxyCodeLine{\Hypertarget{womersley__elements_8h_source_l02355}02355             \textcolor{keywordflow}{if} (i\_global >= 0)}
@@ -2504,7 +2504,7 @@
 \DoxyCodeLine{\Hypertarget{womersley__elements_8h_source_l02500}02500               \textcolor{keywordflow}{for} (\textcolor{keywordtype}{unsigned} j = 0; j < n\_node; j++)}
 \DoxyCodeLine{\Hypertarget{womersley__elements_8h_source_l02501}02501               \{}
 \DoxyCodeLine{\Hypertarget{womersley__elements_8h_source_l02502}02502                 \textcolor{comment}{// Get pointer to Node}}
-\DoxyCodeLine{\Hypertarget{womersley__elements_8h_source_l02503}02503                 \mbox{\hyperlink{classoomph_1_1Node}{Node}}* nod\_pt = node\_pt(j);}
+\DoxyCodeLine{\Hypertarget{womersley__elements_8h_source_l02503}02503                 Node* nod\_pt = node\_pt(j);}
 \DoxyCodeLine{\Hypertarget{womersley__elements_8h_source_l02504}02504 }
 \DoxyCodeLine{\Hypertarget{womersley__elements_8h_source_l02505}02505                 \textcolor{comment}{// Loop over the velocity components}}
 \DoxyCodeLine{\Hypertarget{womersley__elements_8h_source_l02506}02506                 \textcolor{keywordflow}{for} (\textcolor{keywordtype}{unsigned} ii = 0; ii < DIM + 1; ii++)}
@@ -2515,7 +2515,7 @@
 \DoxyCodeLine{\Hypertarget{womersley__elements_8h_source_l02511}02511                   \textcolor{keywordflow}{if} (local\_unknown >= 0)}
 \DoxyCodeLine{\Hypertarget{womersley__elements_8h_source_l02512}02512                   \{}
 \DoxyCodeLine{\Hypertarget{womersley__elements_8h_source_l02513}02513                     \textcolor{comment}{// Get corresponding global unknown number}}
-\DoxyCodeLine{\Hypertarget{womersley__elements_8h_source_l02514}02514                     \textcolor{keywordtype}{unsigned} global\_unknown = nod\_pt-\/>\mbox{\hyperlink{classoomph_1_1Data_ab6845db69833c541766d9a073b023fc4}{eqn\_number}}(ii);}
+\DoxyCodeLine{\Hypertarget{womersley__elements_8h_source_l02514}02514                     \textcolor{keywordtype}{unsigned} global\_unknown = nod\_pt-\/>eqn\_number(ii);}
 \DoxyCodeLine{\Hypertarget{womersley__elements_8h_source_l02515}02515 }
 \DoxyCodeLine{\Hypertarget{womersley__elements_8h_source_l02516}02516                     \textcolor{comment}{// Add contribution}}
 \DoxyCodeLine{\Hypertarget{womersley__elements_8h_source_l02517}02517                     jacobian(local\_eqn, local\_unknown) -\/=}

@@ -992,7 +992,7 @@
 \DoxyCodeLine{\Hypertarget{boussinesq__elements_8h_source_l00988}00988 \textcolor{comment}{}}
 \DoxyCodeLine{\Hypertarget{boussinesq__elements_8h_source_l00989}00989 \textcolor{comment}{    /// Pointer to the j-\/th vertex node in the element,}}
 \DoxyCodeLine{\Hypertarget{boussinesq__elements_8h_source_l00990}00990 \textcolor{comment}{    /// Call the geometric element's function.}}
-\DoxyCodeLine{\Hypertarget{boussinesq__elements_8h_source_l00991}\mbox{\hyperlink{classoomph_1_1RefineableBuoyantQCrouzeixRaviartElement_ae65592457a3a48365e0200325c5bbbbc}{00991}} \textcolor{comment}{}    \mbox{\hyperlink{classoomph_1_1Node}{Node}}* \mbox{\hyperlink{classoomph_1_1RefineableBuoyantQCrouzeixRaviartElement_ae65592457a3a48365e0200325c5bbbbc}{vertex\_node\_pt}}(\textcolor{keyword}{const} \textcolor{keywordtype}{unsigned}\& j)\textcolor{keyword}{ const}}
+\DoxyCodeLine{\Hypertarget{boussinesq__elements_8h_source_l00991}\mbox{\hyperlink{classoomph_1_1RefineableBuoyantQCrouzeixRaviartElement_ae65592457a3a48365e0200325c5bbbbc}{00991}} \textcolor{comment}{}    Node* \mbox{\hyperlink{classoomph_1_1RefineableBuoyantQCrouzeixRaviartElement_ae65592457a3a48365e0200325c5bbbbc}{vertex\_node\_pt}}(\textcolor{keyword}{const} \textcolor{keywordtype}{unsigned}\& j)\textcolor{keyword}{ const}}
 \DoxyCodeLine{\Hypertarget{boussinesq__elements_8h_source_l00992}00992 \textcolor{keyword}{    }\{}
 \DoxyCodeLine{\Hypertarget{boussinesq__elements_8h_source_l00993}00993       \textcolor{keywordflow}{return} \mbox{\hyperlink{classoomph_1_1QElement}{QElement<DIM, 3>::vertex\_node\_pt}}(j);}
 \DoxyCodeLine{\Hypertarget{boussinesq__elements_8h_source_l00994}00994     \}}
@@ -1383,12 +1383,12 @@
 \DoxyCodeLine{\Hypertarget{boussinesq__elements_8h_source_l01379}01379           \textcolor{keywordtype}{double} hang\_weight = 1.0;}
 \DoxyCodeLine{\Hypertarget{boussinesq__elements_8h_source_l01380}01380 }
 \DoxyCodeLine{\Hypertarget{boussinesq__elements_8h_source_l01381}01381           \textcolor{comment}{// Local bool (is the node hanging)}}
-\DoxyCodeLine{\Hypertarget{boussinesq__elements_8h_source_l01382}01382           \textcolor{keywordtype}{bool} is\_node\_hanging = this-\/>\mbox{\hyperlink{classoomph_1_1FiniteElement_a9addfe893ab8205619963aa96204cdc4}{node\_pt}}(l)-\/>\mbox{\hyperlink{classoomph_1_1Node_af0e6237dfafad62cf427ff5013ddcfef}{is\_hanging}}();}
+\DoxyCodeLine{\Hypertarget{boussinesq__elements_8h_source_l01382}01382           \textcolor{keywordtype}{bool} is\_node\_hanging = this-\/>\mbox{\hyperlink{classoomph_1_1FiniteElement_a9addfe893ab8205619963aa96204cdc4}{node\_pt}}(l)-\/>is\_hanging();}
 \DoxyCodeLine{\Hypertarget{boussinesq__elements_8h_source_l01383}01383 }
 \DoxyCodeLine{\Hypertarget{boussinesq__elements_8h_source_l01384}01384           \textcolor{comment}{// If the node is hanging, get the number of master nodes}}
 \DoxyCodeLine{\Hypertarget{boussinesq__elements_8h_source_l01385}01385           \textcolor{keywordflow}{if} (is\_node\_hanging)}
 \DoxyCodeLine{\Hypertarget{boussinesq__elements_8h_source_l01386}01386           \{}
-\DoxyCodeLine{\Hypertarget{boussinesq__elements_8h_source_l01387}01387             hang\_info\_pt = this-\/>\mbox{\hyperlink{classoomph_1_1FiniteElement_a9addfe893ab8205619963aa96204cdc4}{node\_pt}}(l)-\/>\mbox{\hyperlink{classoomph_1_1Node_afefa22db8b28e783b8647e3577ee01d9}{hanging\_pt}}();}
+\DoxyCodeLine{\Hypertarget{boussinesq__elements_8h_source_l01387}01387             hang\_info\_pt = this-\/>\mbox{\hyperlink{classoomph_1_1FiniteElement_a9addfe893ab8205619963aa96204cdc4}{node\_pt}}(l)-\/>hanging\_pt();}
 \DoxyCodeLine{\Hypertarget{boussinesq__elements_8h_source_l01388}01388             n\_master = hang\_info\_pt-\/>\mbox{\hyperlink{classoomph_1_1HangInfo_aa9c1130b58db2ff6d5eee4f923ba365c}{nmaster}}();}
 \DoxyCodeLine{\Hypertarget{boussinesq__elements_8h_source_l01389}01389           \}}
 \DoxyCodeLine{\Hypertarget{boussinesq__elements_8h_source_l01390}01390           \textcolor{comment}{// Otherwise there is just one master node, the node itself}}
@@ -1443,13 +1443,13 @@
 \DoxyCodeLine{\Hypertarget{boussinesq__elements_8h_source_l01439}01439                 \textcolor{keywordflow}{for} (\textcolor{keywordtype}{unsigned} l2 = 0; l2 < n\_node; l2++)}
 \DoxyCodeLine{\Hypertarget{boussinesq__elements_8h_source_l01440}01440                 \{}
 \DoxyCodeLine{\Hypertarget{boussinesq__elements_8h_source_l01441}01441                   \textcolor{comment}{// Local bool (is the node hanging)}}
-\DoxyCodeLine{\Hypertarget{boussinesq__elements_8h_source_l01442}01442                   \textcolor{keywordtype}{bool} is\_node2\_hanging = this-\/>\mbox{\hyperlink{classoomph_1_1FiniteElement_a9addfe893ab8205619963aa96204cdc4}{node\_pt}}(l2)-\/>\mbox{\hyperlink{classoomph_1_1Node_af0e6237dfafad62cf427ff5013ddcfef}{is\_hanging}}();}
+\DoxyCodeLine{\Hypertarget{boussinesq__elements_8h_source_l01442}01442                   \textcolor{keywordtype}{bool} is\_node2\_hanging = this-\/>\mbox{\hyperlink{classoomph_1_1FiniteElement_a9addfe893ab8205619963aa96204cdc4}{node\_pt}}(l2)-\/>is\_hanging();}
 \DoxyCodeLine{\Hypertarget{boussinesq__elements_8h_source_l01443}01443 }
 \DoxyCodeLine{\Hypertarget{boussinesq__elements_8h_source_l01444}01444                   \textcolor{comment}{// If the node is hanging, get the number of master nodes}}
 \DoxyCodeLine{\Hypertarget{boussinesq__elements_8h_source_l01445}01445                   \textcolor{keywordflow}{if} (is\_node2\_hanging)}
 \DoxyCodeLine{\Hypertarget{boussinesq__elements_8h_source_l01446}01446                   \{}
-\DoxyCodeLine{\Hypertarget{boussinesq__elements_8h_source_l01447}01447                     hang\_info2\_pt = this-\/>\mbox{\hyperlink{classoomph_1_1FiniteElement_a9addfe893ab8205619963aa96204cdc4}{node\_pt}}(l2)-\/>\mbox{\hyperlink{classoomph_1_1Node_afefa22db8b28e783b8647e3577ee01d9}{hanging\_pt}}();}
-\DoxyCodeLine{\Hypertarget{boussinesq__elements_8h_source_l01448}01448                     n\_master2 = hang\_info2\_pt-\/>\mbox{\hyperlink{classoomph_1_1HangInfo_aa9c1130b58db2ff6d5eee4f923ba365c}{nmaster}}();}
+\DoxyCodeLine{\Hypertarget{boussinesq__elements_8h_source_l01447}01447                     hang\_info2\_pt = this-\/>\mbox{\hyperlink{classoomph_1_1FiniteElement_a9addfe893ab8205619963aa96204cdc4}{node\_pt}}(l2)-\/>hanging\_pt();}
+\DoxyCodeLine{\Hypertarget{boussinesq__elements_8h_source_l01448}01448                     n\_master2 = hang\_info2\_pt-\/>nmaster();}
 \DoxyCodeLine{\Hypertarget{boussinesq__elements_8h_source_l01449}01449                   \}}
 \DoxyCodeLine{\Hypertarget{boussinesq__elements_8h_source_l01450}01450                   \textcolor{comment}{// Otherwise there is one master node, the node itself}}
 \DoxyCodeLine{\Hypertarget{boussinesq__elements_8h_source_l01451}01451                   \textcolor{keywordflow}{else}}
@@ -1518,13 +1518,13 @@
 \DoxyCodeLine{\Hypertarget{boussinesq__elements_8h_source_l01514}01514                 \textcolor{keywordflow}{for} (\textcolor{keywordtype}{unsigned} l2 = 0; l2 < n\_node; l2++)}
 \DoxyCodeLine{\Hypertarget{boussinesq__elements_8h_source_l01515}01515                 \{}
 \DoxyCodeLine{\Hypertarget{boussinesq__elements_8h_source_l01516}01516                   \textcolor{comment}{// Local bool (is the node hanging)}}
-\DoxyCodeLine{\Hypertarget{boussinesq__elements_8h_source_l01517}01517                   \textcolor{keywordtype}{bool} is\_node2\_hanging = this-\/>\mbox{\hyperlink{classoomph_1_1FiniteElement_a9addfe893ab8205619963aa96204cdc4}{node\_pt}}(l2)-\/>\mbox{\hyperlink{classoomph_1_1Node_af0e6237dfafad62cf427ff5013ddcfef}{is\_hanging}}();}
+\DoxyCodeLine{\Hypertarget{boussinesq__elements_8h_source_l01517}01517                   \textcolor{keywordtype}{bool} is\_node2\_hanging = this-\/>\mbox{\hyperlink{classoomph_1_1FiniteElement_a9addfe893ab8205619963aa96204cdc4}{node\_pt}}(l2)-\/>is\_hanging();}
 \DoxyCodeLine{\Hypertarget{boussinesq__elements_8h_source_l01518}01518 }
 \DoxyCodeLine{\Hypertarget{boussinesq__elements_8h_source_l01519}01519                   \textcolor{comment}{// If the node is hanging, get the number of master nodes}}
 \DoxyCodeLine{\Hypertarget{boussinesq__elements_8h_source_l01520}01520                   \textcolor{keywordflow}{if} (is\_node2\_hanging)}
 \DoxyCodeLine{\Hypertarget{boussinesq__elements_8h_source_l01521}01521                   \{}
-\DoxyCodeLine{\Hypertarget{boussinesq__elements_8h_source_l01522}01522                     hang\_info2\_pt = this-\/>\mbox{\hyperlink{classoomph_1_1FiniteElement_a9addfe893ab8205619963aa96204cdc4}{node\_pt}}(l2)-\/>\mbox{\hyperlink{classoomph_1_1Node_afefa22db8b28e783b8647e3577ee01d9}{hanging\_pt}}();}
-\DoxyCodeLine{\Hypertarget{boussinesq__elements_8h_source_l01523}01523                     n\_master2 = hang\_info2\_pt-\/>\mbox{\hyperlink{classoomph_1_1HangInfo_aa9c1130b58db2ff6d5eee4f923ba365c}{nmaster}}();}
+\DoxyCodeLine{\Hypertarget{boussinesq__elements_8h_source_l01522}01522                     hang\_info2\_pt = this-\/>\mbox{\hyperlink{classoomph_1_1FiniteElement_a9addfe893ab8205619963aa96204cdc4}{node\_pt}}(l2)-\/>hanging\_pt();}
+\DoxyCodeLine{\Hypertarget{boussinesq__elements_8h_source_l01523}01523                     n\_master2 = hang\_info2\_pt-\/>nmaster();}
 \DoxyCodeLine{\Hypertarget{boussinesq__elements_8h_source_l01524}01524                   \}}
 \DoxyCodeLine{\Hypertarget{boussinesq__elements_8h_source_l01525}01525                   \textcolor{comment}{// Otherwise there is one master node, the node itself}}
 \DoxyCodeLine{\Hypertarget{boussinesq__elements_8h_source_l01526}01526                   \textcolor{keywordflow}{else}}

@@ -38,7 +38,7 @@ void \mbox{\hyperlink{classoomph_1_1RefineableSolidElement_a65b054a8a113f03e2a11
 \begin{DoxyCompactList}\small\item\em Set the flag deciding if the Lagrangian coordinates of newly-\/created interior Solid\+Nodes are to be determined by the father element\textquotesingle{}s undeformed \mbox{\hyperlink{classoomph_1_1MacroElement}{Macro\+Element}} representation (if it has one). \end{DoxyCompactList}\item 
 void \mbox{\hyperlink{classoomph_1_1RefineableSolidElement_a1d85edf9f84720ac0de66427d75a5871}{disable\+\_\+use\+\_\+of\+\_\+undeformed\+\_\+macro\+\_\+element\+\_\+for\+\_\+new\+\_\+lagrangian\+\_\+coords}} ()
 \begin{DoxyCompactList}\small\item\em Unset the flag deciding if the Lagrangian coordinates of newly-\/created interior Solid\+Nodes are to be determined by the father element\textquotesingle{}s undeformed \mbox{\hyperlink{classoomph_1_1MacroElement}{Macro\+Element}} representation (if it has one). \end{DoxyCompactList}\item 
-\mbox{\hyperlink{classoomph_1_1DenseMatrix}{Dense\+Matrix}}$<$ int $>$ \& \mbox{\hyperlink{classoomph_1_1RefineableSolidElement_a547e50bc2c13c6e4852c543cd7d38f74}{local\+\_\+position\+\_\+hang\+\_\+eqn}} (\mbox{\hyperlink{classoomph_1_1Node}{Node}} $\ast$\mbox{\hyperlink{classoomph_1_1FiniteElement_a9770e5512c9c7bcab17ddbdde169d588}{const}} \&\mbox{\hyperlink{classoomph_1_1FiniteElement_a9addfe893ab8205619963aa96204cdc4}{node\+\_\+pt}})
+\mbox{\hyperlink{classoomph_1_1DenseMatrix}{Dense\+Matrix}}$<$ int $>$ \& \mbox{\hyperlink{classoomph_1_1RefineableSolidElement_a547e50bc2c13c6e4852c543cd7d38f74}{local\+\_\+position\+\_\+hang\+\_\+eqn}} (Node $\ast$\mbox{\hyperlink{classoomph_1_1FiniteElement_a9770e5512c9c7bcab17ddbdde169d588}{const}} \&\mbox{\hyperlink{classoomph_1_1FiniteElement_a9addfe893ab8205619963aa96204cdc4}{node\+\_\+pt}})
 \begin{DoxyCompactList}\small\item\em Access the local equation number of of hanging node variables associated with nodal positions. The function returns a dense matrix that contains all the local equation numbers corresponding to the positional degrees of freedom. \end{DoxyCompactList}\item 
 virtual void \mbox{\hyperlink{classoomph_1_1RefineableSolidElement_a159967ccbb5327b2ee04154a11b1b51c}{further\+\_\+build}} ()
 \begin{DoxyCompactList}\small\item\em Further build\+: Pass the father\textquotesingle{}s Use\+\_\+undeformed\+\_\+macro\+\_\+element\+\_\+for\+\_\+new\+\_\+lagrangian\+\_\+coords flag down, then call the underlying \mbox{\hyperlink{classoomph_1_1RefineableElement}{Refineable\+Element}}\textquotesingle{}s version. \end{DoxyCompactList}\end{DoxyCompactItemize}
@@ -64,7 +64,7 @@ void \mbox{\hyperlink{classoomph_1_1RefineableSolidElement_a973020f4458c30aa4584
 \doxysubsection*{Private Attributes}
 \begin{DoxyCompactItemize}
 \item 
-std\+::map$<$ \mbox{\hyperlink{classoomph_1_1Node}{Node}} $\ast$, \mbox{\hyperlink{classoomph_1_1DenseMatrix}{Dense\+Matrix}}$<$ int $>$ $>$ \mbox{\hyperlink{classoomph_1_1RefineableSolidElement_aa361b9441808d7d194494125abd1f6fd}{Local\+\_\+position\+\_\+hang\+\_\+eqn}}
+std\+::map$<$ Node $\ast$, \mbox{\hyperlink{classoomph_1_1DenseMatrix}{Dense\+Matrix}}$<$ int $>$ $>$ \mbox{\hyperlink{classoomph_1_1RefineableSolidElement_aa361b9441808d7d194494125abd1f6fd}{Local\+\_\+position\+\_\+hang\+\_\+eqn}}
 \begin{DoxyCompactList}\small\item\em Storage for local equation numbers of hanging node variables associated with nodal positions. local position equation number = Local\+\_\+position\+\_\+hang\+\_\+eqn(master\+\_\+node\+\_\+pt,ival) \end{DoxyCompactList}\end{DoxyCompactItemize}
 \doxysubsection*{Additional Inherited Members}
 
@@ -164,13 +164,13 @@ References \mbox{\hyperlink{elements_8h_source_l02616}{oomph\+::\+Finite\+Elemen
 
 Assign local equation numbers to the hanging values associated with positions or additional solid values. 
 
-The standard equation numbering scheme for solid positions, so that hanging \mbox{\hyperlink{classoomph_1_1Node}{Node}} information is included. 
+The standard equation numbering scheme for solid positions, so that hanging Node information is included. 
 
 Definition at line \mbox{\hyperlink{refineable__elements_8cc_source_l01178}{1178}} of file \mbox{\hyperlink{refineable__elements_8cc_source}{refineable\+\_\+elements.\+cc}}.
 
 
 
-References \mbox{\hyperlink{elements_8cc_source_l00156}{oomph\+::\+Generalised\+Element\+::add\+\_\+global\+\_\+eqn\+\_\+numbers()}}, \mbox{\hyperlink{elements_8h_source_l00231}{oomph\+::\+Generalised\+Element\+::\+Dof\+\_\+pt\+\_\+deque}}, \mbox{\hyperlink{elements_8h_source_l00704}{oomph\+::\+Generalised\+Element\+::eqn\+\_\+number()}}, \mbox{\hyperlink{nodes_8h_source_l01230}{oomph\+::\+Node\+::hanging\+\_\+pt()}}, \mbox{\hyperlink{nodes_8h_source_l00183}{oomph\+::\+Data\+::\+Is\+\_\+pinned}}, \mbox{\hyperlink{elements_8h_source_l00726}{oomph\+::\+Generalised\+Element\+::local\+\_\+eqn\+\_\+number()}}, \mbox{\hyperlink{refineable__elements_8h_source_l00880}{Local\+\_\+position\+\_\+hang\+\_\+eqn}}, \mbox{\hyperlink{nodes_8h_source_l00791}{oomph\+::\+Hang\+Info\+::master\+\_\+node\+\_\+pt()}}, \mbox{\hyperlink{elements_8h_source_l00835}{oomph\+::\+Generalised\+Element\+::ndof()}}, \mbox{\hyperlink{nodes_8h_source_l00785}{oomph\+::\+Hang\+Info\+::nmaster()}}, \mbox{\hyperlink{elements_8h_source_l02468}{oomph\+::\+Finite\+Element\+::nnodal\+\_\+position\+\_\+type()}}, \mbox{\hyperlink{elements_8h_source_l02215}{oomph\+::\+Finite\+Element\+::nnode()}}, \mbox{\hyperlink{elements_8h_source_l02489}{oomph\+::\+Finite\+Element\+::nodal\+\_\+dimension()}}, \mbox{\hyperlink{elements_8h_source_l02180}{oomph\+::\+Finite\+Element\+::node\+\_\+pt()}}, \mbox{\hyperlink{elements_8h_source_l04165}{oomph\+::\+Solid\+Finite\+Element\+::position\+\_\+local\+\_\+eqn()}}, and \mbox{\hyperlink{nodes_8h_source_l01128}{oomph\+::\+Node\+::x\+\_\+gen()}}.
+References \mbox{\hyperlink{elements_8cc_source_l00156}{oomph\+::\+Generalised\+Element\+::add\+\_\+global\+\_\+eqn\+\_\+numbers()}}, \mbox{\hyperlink{elements_8h_source_l00231}{oomph\+::\+Generalised\+Element\+::\+Dof\+\_\+pt\+\_\+deque}}, \mbox{\hyperlink{elements_8h_source_l00704}{oomph\+::\+Generalised\+Element\+::eqn\+\_\+number()}}, \mbox{\hyperlink{nodes_8h_source_l00183}{oomph\+::\+Data\+::\+Is\+\_\+pinned}}, \mbox{\hyperlink{elements_8h_source_l00726}{oomph\+::\+Generalised\+Element\+::local\+\_\+eqn\+\_\+number()}}, \mbox{\hyperlink{refineable__elements_8h_source_l00880}{Local\+\_\+position\+\_\+hang\+\_\+eqn}}, \mbox{\hyperlink{nodes_8h_source_l00791}{oomph\+::\+Hang\+Info\+::master\+\_\+node\+\_\+pt()}}, \mbox{\hyperlink{elements_8h_source_l00835}{oomph\+::\+Generalised\+Element\+::ndof()}}, \mbox{\hyperlink{nodes_8h_source_l00785}{oomph\+::\+Hang\+Info\+::nmaster()}}, \mbox{\hyperlink{elements_8h_source_l02468}{oomph\+::\+Finite\+Element\+::nnodal\+\_\+position\+\_\+type()}}, \mbox{\hyperlink{elements_8h_source_l02215}{oomph\+::\+Finite\+Element\+::nnode()}}, \mbox{\hyperlink{elements_8h_source_l02489}{oomph\+::\+Finite\+Element\+::nodal\+\_\+dimension()}}, \mbox{\hyperlink{elements_8h_source_l02180}{oomph\+::\+Finite\+Element\+::node\+\_\+pt()}}, and \mbox{\hyperlink{elements_8h_source_l04165}{oomph\+::\+Solid\+Finite\+Element\+::position\+\_\+local\+\_\+eqn()}}.
 
 
 
@@ -254,7 +254,7 @@ Definition at line \mbox{\hyperlink{refineable__elements_8cc_source_l01335}{1335
 
 
 
-References \mbox{\hyperlink{elements_8h_source_l01198}{oomph\+::\+Generalised\+Element\+::\+Default\+\_\+fd\+\_\+jacobian\+\_\+step}}, \mbox{\hyperlink{elements_8h_source_l00980}{oomph\+::\+Generalised\+Element\+::get\+\_\+residuals()}}, \mbox{\hyperlink{nodes_8h_source_l01230}{oomph\+::\+Node\+::hanging\+\_\+pt()}}, \mbox{\hyperlink{cfortran_8h_source_l00603}{i}}, \mbox{\hyperlink{nodes_8h_source_l01287}{oomph\+::\+Node\+::is\+\_\+hanging()}}, \mbox{\hyperlink{elements_8h_source_l01611}{oomph\+::\+Finite\+Element\+::jacobian}}, \mbox{\hyperlink{refineable__elements_8h_source_l00880}{Local\+\_\+position\+\_\+hang\+\_\+eqn}}, \mbox{\hyperlink{nodes_8h_source_l00791}{oomph\+::\+Hang\+Info\+::master\+\_\+node\+\_\+pt()}}, \mbox{\hyperlink{elements_8h_source_l00835}{oomph\+::\+Generalised\+Element\+::ndof()}}, \mbox{\hyperlink{nodes_8h_source_l00785}{oomph\+::\+Hang\+Info\+::nmaster()}}, \mbox{\hyperlink{elements_8h_source_l02468}{oomph\+::\+Finite\+Element\+::nnodal\+\_\+position\+\_\+type()}}, \mbox{\hyperlink{elements_8h_source_l02215}{oomph\+::\+Finite\+Element\+::nnode()}}, \mbox{\hyperlink{elements_8h_source_l02489}{oomph\+::\+Finite\+Element\+::nodal\+\_\+dimension()}}, \mbox{\hyperlink{elements_8h_source_l02180}{oomph\+::\+Finite\+Element\+::node\+\_\+pt()}}, \mbox{\hyperlink{nodes_8h_source_l01617}{oomph\+::\+Node\+::perform\+\_\+auxiliary\+\_\+node\+\_\+update\+\_\+fct()}}, \mbox{\hyperlink{elements_8h_source_l04165}{oomph\+::\+Solid\+Finite\+Element\+::position\+\_\+local\+\_\+eqn()}}, \mbox{\hyperlink{elements_8h_source_l04273}{oomph\+::\+Solid\+Finite\+Element\+::reset\+\_\+after\+\_\+solid\+\_\+position\+\_\+fd()}}, \mbox{\hyperlink{elements_8h_source_l04283}{oomph\+::\+Solid\+Finite\+Element\+::reset\+\_\+in\+\_\+solid\+\_\+position\+\_\+fd()}}, \mbox{\hyperlink{elements_8h_source_l04268}{oomph\+::\+Solid\+Finite\+Element\+::update\+\_\+before\+\_\+solid\+\_\+position\+\_\+fd()}}, \mbox{\hyperlink{elements_8h_source_l04278}{oomph\+::\+Solid\+Finite\+Element\+::update\+\_\+in\+\_\+solid\+\_\+position\+\_\+fd()}}, and \mbox{\hyperlink{nodes_8h_source_l01128}{oomph\+::\+Node\+::x\+\_\+gen()}}.
+References \mbox{\hyperlink{elements_8h_source_l01198}{oomph\+::\+Generalised\+Element\+::\+Default\+\_\+fd\+\_\+jacobian\+\_\+step}}, \mbox{\hyperlink{elements_8h_source_l00980}{oomph\+::\+Generalised\+Element\+::get\+\_\+residuals()}}, \mbox{\hyperlink{cfortran_8h_source_l00603}{i}}, \mbox{\hyperlink{elements_8h_source_l01611}{oomph\+::\+Finite\+Element\+::jacobian}}, \mbox{\hyperlink{refineable__elements_8h_source_l00880}{Local\+\_\+position\+\_\+hang\+\_\+eqn}}, \mbox{\hyperlink{nodes_8h_source_l00791}{oomph\+::\+Hang\+Info\+::master\+\_\+node\+\_\+pt()}}, \mbox{\hyperlink{elements_8h_source_l00835}{oomph\+::\+Generalised\+Element\+::ndof()}}, \mbox{\hyperlink{nodes_8h_source_l00785}{oomph\+::\+Hang\+Info\+::nmaster()}}, \mbox{\hyperlink{elements_8h_source_l02468}{oomph\+::\+Finite\+Element\+::nnodal\+\_\+position\+\_\+type()}}, \mbox{\hyperlink{elements_8h_source_l02215}{oomph\+::\+Finite\+Element\+::nnode()}}, \mbox{\hyperlink{elements_8h_source_l02489}{oomph\+::\+Finite\+Element\+::nodal\+\_\+dimension()}}, \mbox{\hyperlink{elements_8h_source_l02180}{oomph\+::\+Finite\+Element\+::node\+\_\+pt()}}, \mbox{\hyperlink{elements_8h_source_l04165}{oomph\+::\+Solid\+Finite\+Element\+::position\+\_\+local\+\_\+eqn()}}, \mbox{\hyperlink{elements_8h_source_l04273}{oomph\+::\+Solid\+Finite\+Element\+::reset\+\_\+after\+\_\+solid\+\_\+position\+\_\+fd()}}, \mbox{\hyperlink{elements_8h_source_l04283}{oomph\+::\+Solid\+Finite\+Element\+::reset\+\_\+in\+\_\+solid\+\_\+position\+\_\+fd()}}, \mbox{\hyperlink{elements_8h_source_l04268}{oomph\+::\+Solid\+Finite\+Element\+::update\+\_\+before\+\_\+solid\+\_\+position\+\_\+fd()}}, and \mbox{\hyperlink{elements_8h_source_l04278}{oomph\+::\+Solid\+Finite\+Element\+::update\+\_\+in\+\_\+solid\+\_\+position\+\_\+fd()}}.
 
 \mbox{\Hypertarget{classoomph_1_1RefineableSolidElement_a159967ccbb5327b2ee04154a11b1b51c}\label{classoomph_1_1RefineableSolidElement_a159967ccbb5327b2ee04154a11b1b51c}} 
 \index{oomph::RefineableSolidElement@{oomph::RefineableSolidElement}!further\_build@{further\_build}}
@@ -306,7 +306,7 @@ Definition at line \mbox{\hyperlink{refineable__elements_8cc_source_l01055}{1055
 
 
 
-References \mbox{\hyperlink{nodes_8h_source_l01230}{oomph\+::\+Node\+::hanging\+\_\+pt()}}, \mbox{\hyperlink{nodes_8h_source_l00791}{oomph\+::\+Hang\+Info\+::master\+\_\+node\+\_\+pt()}}, \mbox{\hyperlink{nodes_8h_source_l00785}{oomph\+::\+Hang\+Info\+::nmaster()}}, \mbox{\hyperlink{elements_8h_source_l02215}{oomph\+::\+Finite\+Element\+::nnode()}}, and \mbox{\hyperlink{elements_8h_source_l02180}{oomph\+::\+Finite\+Element\+::node\+\_\+pt()}}.
+References \mbox{\hyperlink{nodes_8h_source_l00791}{oomph\+::\+Hang\+Info\+::master\+\_\+node\+\_\+pt()}}, \mbox{\hyperlink{nodes_8h_source_l00785}{oomph\+::\+Hang\+Info\+::nmaster()}}, \mbox{\hyperlink{elements_8h_source_l02215}{oomph\+::\+Finite\+Element\+::nnode()}}, and \mbox{\hyperlink{elements_8h_source_l02180}{oomph\+::\+Finite\+Element\+::node\+\_\+pt()}}.
 
 \mbox{\Hypertarget{classoomph_1_1RefineableSolidElement_ac895a84017b3eb57dadc19384b6ce7f4}\label{classoomph_1_1RefineableSolidElement_ac895a84017b3eb57dadc19384b6ce7f4}} 
 \index{oomph::RefineableSolidElement@{oomph::RefineableSolidElement}!identify\_geometric\_data@{identify\_geometric\_data}}
@@ -328,7 +328,7 @@ Definition at line \mbox{\hyperlink{refineable__elements_8cc_source_l01137}{1137
 
 
 
-References \mbox{\hyperlink{nodes_8h_source_l01230}{oomph\+::\+Node\+::hanging\+\_\+pt()}}, \mbox{\hyperlink{nodes_8h_source_l00791}{oomph\+::\+Hang\+Info\+::master\+\_\+node\+\_\+pt()}}, \mbox{\hyperlink{nodes_8h_source_l00785}{oomph\+::\+Hang\+Info\+::nmaster()}}, \mbox{\hyperlink{elements_8h_source_l02215}{oomph\+::\+Finite\+Element\+::nnode()}}, and \mbox{\hyperlink{elements_8h_source_l02180}{oomph\+::\+Finite\+Element\+::node\+\_\+pt()}}.
+References \mbox{\hyperlink{nodes_8h_source_l00791}{oomph\+::\+Hang\+Info\+::master\+\_\+node\+\_\+pt()}}, \mbox{\hyperlink{nodes_8h_source_l00785}{oomph\+::\+Hang\+Info\+::nmaster()}}, \mbox{\hyperlink{elements_8h_source_l02215}{oomph\+::\+Finite\+Element\+::nnode()}}, and \mbox{\hyperlink{elements_8h_source_l02180}{oomph\+::\+Finite\+Element\+::node\+\_\+pt()}}.
 
 \mbox{\Hypertarget{classoomph_1_1RefineableSolidElement_a23a8382cc9da7809752851db65e20241}\label{classoomph_1_1RefineableSolidElement_a23a8382cc9da7809752851db65e20241}} 
 \index{oomph::RefineableSolidElement@{oomph::RefineableSolidElement}!is\_undeformed\_macro\_element\_used\_for\_new\_lagrangian\_coords@{is\_undeformed\_macro\_element\_used\_for\_new\_lagrangian\_coords}}
@@ -356,7 +356,7 @@ Referenced by \mbox{\hyperlink{refineable__elements_8h_source_l01014}{further\+\
 \index{oomph::RefineableSolidElement@{oomph::RefineableSolidElement}!local\_position\_hang\_eqn@{local\_position\_hang\_eqn}}
 \index{local\_position\_hang\_eqn@{local\_position\_hang\_eqn}!oomph::RefineableSolidElement@{oomph::RefineableSolidElement}}
 \doxysubsubsection{\texorpdfstring{local\_position\_hang\_eqn()}{local\_position\_hang\_eqn()}}
-{\footnotesize\ttfamily \mbox{\hyperlink{classoomph_1_1DenseMatrix}{Dense\+Matrix}}$<$ int $>$ \& oomph\+::\+Refineable\+Solid\+Element\+::local\+\_\+position\+\_\+hang\+\_\+eqn (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classoomph_1_1Node}{Node}} $\ast$\mbox{\hyperlink{classoomph_1_1FiniteElement_a9770e5512c9c7bcab17ddbdde169d588}{const}} \&}]{node\+\_\+pt }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+{\footnotesize\ttfamily \mbox{\hyperlink{classoomph_1_1DenseMatrix}{Dense\+Matrix}}$<$ int $>$ \& oomph\+::\+Refineable\+Solid\+Element\+::local\+\_\+position\+\_\+hang\+\_\+eqn (\begin{DoxyParamCaption}\item[{Node $\ast$\mbox{\hyperlink{classoomph_1_1FiniteElement_a9770e5512c9c7bcab17ddbdde169d588}{const}} \&}]{node\+\_\+pt }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
 
 
 
@@ -416,7 +416,7 @@ Definition at line \mbox{\hyperlink{refineable__elements_8cc_source_l01003}{1003
 
 
 
-References \mbox{\hyperlink{nodes_8h_source_l01230}{oomph\+::\+Node\+::hanging\+\_\+pt()}}, \mbox{\hyperlink{nodes_8h_source_l00791}{oomph\+::\+Hang\+Info\+::master\+\_\+node\+\_\+pt()}}, \mbox{\hyperlink{nodes_8h_source_l00785}{oomph\+::\+Hang\+Info\+::nmaster()}}, \mbox{\hyperlink{elements_8h_source_l02215}{oomph\+::\+Finite\+Element\+::nnode()}}, and \mbox{\hyperlink{elements_8h_source_l02180}{oomph\+::\+Finite\+Element\+::node\+\_\+pt()}}.
+References \mbox{\hyperlink{nodes_8h_source_l00791}{oomph\+::\+Hang\+Info\+::master\+\_\+node\+\_\+pt()}}, \mbox{\hyperlink{nodes_8h_source_l00785}{oomph\+::\+Hang\+Info\+::nmaster()}}, \mbox{\hyperlink{elements_8h_source_l02215}{oomph\+::\+Finite\+Element\+::nnode()}}, and \mbox{\hyperlink{elements_8h_source_l02180}{oomph\+::\+Finite\+Element\+::node\+\_\+pt()}}.
 
 
 
@@ -425,7 +425,7 @@ References \mbox{\hyperlink{nodes_8h_source_l01230}{oomph\+::\+Node\+::hanging\+
 \index{oomph::RefineableSolidElement@{oomph::RefineableSolidElement}!Local\_position\_hang\_eqn@{Local\_position\_hang\_eqn}}
 \index{Local\_position\_hang\_eqn@{Local\_position\_hang\_eqn}!oomph::RefineableSolidElement@{oomph::RefineableSolidElement}}
 \doxysubsubsection{\texorpdfstring{Local\_position\_hang\_eqn}{Local\_position\_hang\_eqn}}
-{\footnotesize\ttfamily std\+::map$<$\mbox{\hyperlink{classoomph_1_1Node}{Node}}$\ast$, \mbox{\hyperlink{classoomph_1_1DenseMatrix}{Dense\+Matrix}}$<$int$>$ $>$ oomph\+::\+Refineable\+Solid\+Element\+::\+Local\+\_\+position\+\_\+hang\+\_\+eqn\hspace{0.3cm}{\ttfamily [private]}}
+{\footnotesize\ttfamily std\+::map$<$Node$\ast$, \mbox{\hyperlink{classoomph_1_1DenseMatrix}{Dense\+Matrix}}$<$int$>$ $>$ oomph\+::\+Refineable\+Solid\+Element\+::\+Local\+\_\+position\+\_\+hang\+\_\+eqn\hspace{0.3cm}{\ttfamily [private]}}
 
 
 

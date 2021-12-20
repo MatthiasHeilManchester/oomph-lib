@@ -80,7 +80,7 @@
 \DoxyCodeLine{\Hypertarget{refineable__polar__navier__stokes__elements_8cc_source_l00076}00076       \textcolor{comment}{// Read out whether the pressure is hanging}}
 \DoxyCodeLine{\Hypertarget{refineable__polar__navier__stokes__elements_8cc_source_l00077}00077       \textcolor{keywordflow}{for} (\textcolor{keywordtype}{unsigned} l = 0; l < n\_pres; ++l)}
 \DoxyCodeLine{\Hypertarget{refineable__polar__navier__stokes__elements_8cc_source_l00078}00078       \{}
-\DoxyCodeLine{\Hypertarget{refineable__polar__navier__stokes__elements_8cc_source_l00079}00079         pressure\_dof\_is\_hanging[l] = \mbox{\hyperlink{classoomph_1_1RefineablePolarNavierStokesEquations_ac0dbc7d0d05f52e8242a1612c5247504}{pressure\_node\_pt}}(l)-\/>\mbox{\hyperlink{classoomph_1_1Node_af0e6237dfafad62cf427ff5013ddcfef}{is\_hanging}}(p\_index);}
+\DoxyCodeLine{\Hypertarget{refineable__polar__navier__stokes__elements_8cc_source_l00079}00079         pressure\_dof\_is\_hanging[l] = \mbox{\hyperlink{classoomph_1_1RefineablePolarNavierStokesEquations_ac0dbc7d0d05f52e8242a1612c5247504}{pressure\_node\_pt}}(l)-\/>is\_hanging(p\_index);}
 \DoxyCodeLine{\Hypertarget{refineable__polar__navier__stokes__elements_8cc_source_l00080}00080       \}}
 \DoxyCodeLine{\Hypertarget{refineable__polar__navier__stokes__elements_8cc_source_l00081}00081     \}}
 \DoxyCodeLine{\Hypertarget{refineable__polar__navier__stokes__elements_8cc_source_l00082}00082     \textcolor{comment}{// Otherwise the pressure is not stored at a node and so cannot hang}}
@@ -189,12 +189,12 @@
 \DoxyCodeLine{\Hypertarget{refineable__polar__navier__stokes__elements_8cc_source_l00185}00185       \textcolor{keywordflow}{for} (\textcolor{keywordtype}{unsigned} l = 0; l < n\_node; l++)}
 \DoxyCodeLine{\Hypertarget{refineable__polar__navier__stokes__elements_8cc_source_l00186}00186       \{}
 \DoxyCodeLine{\Hypertarget{refineable__polar__navier__stokes__elements_8cc_source_l00187}00187         \textcolor{comment}{// Local boolean to indicate whether the node is hanging}}
-\DoxyCodeLine{\Hypertarget{refineable__polar__navier__stokes__elements_8cc_source_l00188}00188         \textcolor{keywordtype}{bool} is\_node\_hanging = \mbox{\hyperlink{classoomph_1_1FiniteElement_a9addfe893ab8205619963aa96204cdc4}{node\_pt}}(l)-\/>\mbox{\hyperlink{classoomph_1_1Node_af0e6237dfafad62cf427ff5013ddcfef}{is\_hanging}}();}
+\DoxyCodeLine{\Hypertarget{refineable__polar__navier__stokes__elements_8cc_source_l00188}00188         \textcolor{keywordtype}{bool} is\_node\_hanging = \mbox{\hyperlink{classoomph_1_1FiniteElement_a9addfe893ab8205619963aa96204cdc4}{node\_pt}}(l)-\/>is\_hanging();}
 \DoxyCodeLine{\Hypertarget{refineable__polar__navier__stokes__elements_8cc_source_l00189}00189 }
 \DoxyCodeLine{\Hypertarget{refineable__polar__navier__stokes__elements_8cc_source_l00190}00190         \textcolor{comment}{// If the node is hanging}}
 \DoxyCodeLine{\Hypertarget{refineable__polar__navier__stokes__elements_8cc_source_l00191}00191         \textcolor{keywordflow}{if} (is\_node\_hanging)}
 \DoxyCodeLine{\Hypertarget{refineable__polar__navier__stokes__elements_8cc_source_l00192}00192         \{}
-\DoxyCodeLine{\Hypertarget{refineable__polar__navier__stokes__elements_8cc_source_l00193}00193           hang\_info\_pt = \mbox{\hyperlink{classoomph_1_1FiniteElement_a9addfe893ab8205619963aa96204cdc4}{node\_pt}}(l)-\/>\mbox{\hyperlink{classoomph_1_1Node_afefa22db8b28e783b8647e3577ee01d9}{hanging\_pt}}();}
+\DoxyCodeLine{\Hypertarget{refineable__polar__navier__stokes__elements_8cc_source_l00193}00193           hang\_info\_pt = \mbox{\hyperlink{classoomph_1_1FiniteElement_a9addfe893ab8205619963aa96204cdc4}{node\_pt}}(l)-\/>hanging\_pt();}
 \DoxyCodeLine{\Hypertarget{refineable__polar__navier__stokes__elements_8cc_source_l00194}00194           \textcolor{comment}{// Read out number of master nodes from hanging data}}
 \DoxyCodeLine{\Hypertarget{refineable__polar__navier__stokes__elements_8cc_source_l00195}00195           n\_master = hang\_info\_pt-\/>\mbox{\hyperlink{classoomph_1_1HangInfo_aa9c1130b58db2ff6d5eee4f923ba365c}{nmaster}}();}
 \DoxyCodeLine{\Hypertarget{refineable__polar__navier__stokes__elements_8cc_source_l00196}00196         \}}
@@ -274,14 +274,14 @@
 \DoxyCodeLine{\Hypertarget{refineable__polar__navier__stokes__elements_8cc_source_l00270}00270                 \textcolor{keywordflow}{for} (\textcolor{keywordtype}{unsigned} l2 = 0; l2 < n\_node; l2++)}
 \DoxyCodeLine{\Hypertarget{refineable__polar__navier__stokes__elements_8cc_source_l00271}00271                 \{}
 \DoxyCodeLine{\Hypertarget{refineable__polar__navier__stokes__elements_8cc_source_l00272}00272                   \textcolor{comment}{// Local boolean to indicate whether the node is hanging}}
-\DoxyCodeLine{\Hypertarget{refineable__polar__navier__stokes__elements_8cc_source_l00273}00273                   \textcolor{keywordtype}{bool} is\_node2\_hanging = \mbox{\hyperlink{classoomph_1_1FiniteElement_a9addfe893ab8205619963aa96204cdc4}{node\_pt}}(l2)-\/>\mbox{\hyperlink{classoomph_1_1Node_af0e6237dfafad62cf427ff5013ddcfef}{is\_hanging}}();}
+\DoxyCodeLine{\Hypertarget{refineable__polar__navier__stokes__elements_8cc_source_l00273}00273                   \textcolor{keywordtype}{bool} is\_node2\_hanging = \mbox{\hyperlink{classoomph_1_1FiniteElement_a9addfe893ab8205619963aa96204cdc4}{node\_pt}}(l2)-\/>is\_hanging();}
 \DoxyCodeLine{\Hypertarget{refineable__polar__navier__stokes__elements_8cc_source_l00274}00274 }
 \DoxyCodeLine{\Hypertarget{refineable__polar__navier__stokes__elements_8cc_source_l00275}00275                   \textcolor{comment}{// If the node is hanging}}
 \DoxyCodeLine{\Hypertarget{refineable__polar__navier__stokes__elements_8cc_source_l00276}00276                   \textcolor{keywordflow}{if} (is\_node2\_hanging)}
 \DoxyCodeLine{\Hypertarget{refineable__polar__navier__stokes__elements_8cc_source_l00277}00277                   \{}
-\DoxyCodeLine{\Hypertarget{refineable__polar__navier__stokes__elements_8cc_source_l00278}00278                     hang\_info2\_pt = \mbox{\hyperlink{classoomph_1_1FiniteElement_a9addfe893ab8205619963aa96204cdc4}{node\_pt}}(l2)-\/>\mbox{\hyperlink{classoomph_1_1Node_afefa22db8b28e783b8647e3577ee01d9}{hanging\_pt}}();}
+\DoxyCodeLine{\Hypertarget{refineable__polar__navier__stokes__elements_8cc_source_l00278}00278                     hang\_info2\_pt = \mbox{\hyperlink{classoomph_1_1FiniteElement_a9addfe893ab8205619963aa96204cdc4}{node\_pt}}(l2)-\/>hanging\_pt();}
 \DoxyCodeLine{\Hypertarget{refineable__polar__navier__stokes__elements_8cc_source_l00279}00279                     \textcolor{comment}{// Read out number of master nodes from hanging data}}
-\DoxyCodeLine{\Hypertarget{refineable__polar__navier__stokes__elements_8cc_source_l00280}00280                     n\_master2 = hang\_info2\_pt-\/>\mbox{\hyperlink{classoomph_1_1HangInfo_aa9c1130b58db2ff6d5eee4f923ba365c}{nmaster}}();}
+\DoxyCodeLine{\Hypertarget{refineable__polar__navier__stokes__elements_8cc_source_l00280}00280                     n\_master2 = hang\_info2\_pt-\/>nmaster();}
 \DoxyCodeLine{\Hypertarget{refineable__polar__navier__stokes__elements_8cc_source_l00281}00281                   \}}
 \DoxyCodeLine{\Hypertarget{refineable__polar__navier__stokes__elements_8cc_source_l00282}00282                   \textcolor{comment}{// Otherwise the node is its own master}}
 \DoxyCodeLine{\Hypertarget{refineable__polar__navier__stokes__elements_8cc_source_l00283}00283                   \textcolor{keywordflow}{else}}
@@ -417,10 +417,10 @@
 \DoxyCodeLine{\Hypertarget{refineable__polar__navier__stokes__elements_8cc_source_l00413}00413                   \textcolor{keywordflow}{if} (pressure\_dof\_is\_hanging[l2])}
 \DoxyCodeLine{\Hypertarget{refineable__polar__navier__stokes__elements_8cc_source_l00414}00414                   \{}
 \DoxyCodeLine{\Hypertarget{refineable__polar__navier__stokes__elements_8cc_source_l00415}00415                     hang\_info2\_pt =}
-\DoxyCodeLine{\Hypertarget{refineable__polar__navier__stokes__elements_8cc_source_l00416}00416                       this-\/>\mbox{\hyperlink{classoomph_1_1RefineablePolarNavierStokesEquations_ac0dbc7d0d05f52e8242a1612c5247504}{pressure\_node\_pt}}(l2)-\/>\mbox{\hyperlink{classoomph_1_1Node_afefa22db8b28e783b8647e3577ee01d9}{hanging\_pt}}(p\_index);}
+\DoxyCodeLine{\Hypertarget{refineable__polar__navier__stokes__elements_8cc_source_l00416}00416                       this-\/>\mbox{\hyperlink{classoomph_1_1RefineablePolarNavierStokesEquations_ac0dbc7d0d05f52e8242a1612c5247504}{pressure\_node\_pt}}(l2)-\/>hanging\_pt(p\_index);}
 \DoxyCodeLine{\Hypertarget{refineable__polar__navier__stokes__elements_8cc_source_l00417}00417                     \textcolor{comment}{// Pressure dof is hanging so it must be nodal-\/based}}
 \DoxyCodeLine{\Hypertarget{refineable__polar__navier__stokes__elements_8cc_source_l00418}00418                     \textcolor{comment}{// Get the number of master nodes from the pressure node}}
-\DoxyCodeLine{\Hypertarget{refineable__polar__navier__stokes__elements_8cc_source_l00419}00419                     n\_master2 = hang\_info2\_pt-\/>\mbox{\hyperlink{classoomph_1_1HangInfo_aa9c1130b58db2ff6d5eee4f923ba365c}{nmaster}}();}
+\DoxyCodeLine{\Hypertarget{refineable__polar__navier__stokes__elements_8cc_source_l00419}00419                     n\_master2 = hang\_info2\_pt-\/>nmaster();}
 \DoxyCodeLine{\Hypertarget{refineable__polar__navier__stokes__elements_8cc_source_l00420}00420                   \}}
 \DoxyCodeLine{\Hypertarget{refineable__polar__navier__stokes__elements_8cc_source_l00421}00421                   \textcolor{comment}{// Otherwise the node is its own master}}
 \DoxyCodeLine{\Hypertarget{refineable__polar__navier__stokes__elements_8cc_source_l00422}00422                   \textcolor{keywordflow}{else}}
@@ -541,14 +541,14 @@
 \DoxyCodeLine{\Hypertarget{refineable__polar__navier__stokes__elements_8cc_source_l00537}00537                 \textcolor{keywordflow}{for} (\textcolor{keywordtype}{unsigned} l2 = 0; l2 < n\_node; l2++)}
 \DoxyCodeLine{\Hypertarget{refineable__polar__navier__stokes__elements_8cc_source_l00538}00538                 \{}
 \DoxyCodeLine{\Hypertarget{refineable__polar__navier__stokes__elements_8cc_source_l00539}00539                   \textcolor{comment}{// Local boolean to indicate whether the node is hanging}}
-\DoxyCodeLine{\Hypertarget{refineable__polar__navier__stokes__elements_8cc_source_l00540}00540                   \textcolor{keywordtype}{bool} is\_node2\_hanging = \mbox{\hyperlink{classoomph_1_1FiniteElement_a9addfe893ab8205619963aa96204cdc4}{node\_pt}}(l2)-\/>\mbox{\hyperlink{classoomph_1_1Node_af0e6237dfafad62cf427ff5013ddcfef}{is\_hanging}}();}
+\DoxyCodeLine{\Hypertarget{refineable__polar__navier__stokes__elements_8cc_source_l00540}00540                   \textcolor{keywordtype}{bool} is\_node2\_hanging = \mbox{\hyperlink{classoomph_1_1FiniteElement_a9addfe893ab8205619963aa96204cdc4}{node\_pt}}(l2)-\/>is\_hanging();}
 \DoxyCodeLine{\Hypertarget{refineable__polar__navier__stokes__elements_8cc_source_l00541}00541 }
 \DoxyCodeLine{\Hypertarget{refineable__polar__navier__stokes__elements_8cc_source_l00542}00542                   \textcolor{comment}{// If the node is hanging}}
 \DoxyCodeLine{\Hypertarget{refineable__polar__navier__stokes__elements_8cc_source_l00543}00543                   \textcolor{keywordflow}{if} (is\_node2\_hanging)}
 \DoxyCodeLine{\Hypertarget{refineable__polar__navier__stokes__elements_8cc_source_l00544}00544                   \{}
-\DoxyCodeLine{\Hypertarget{refineable__polar__navier__stokes__elements_8cc_source_l00545}00545                     hang\_info2\_pt = \mbox{\hyperlink{classoomph_1_1FiniteElement_a9addfe893ab8205619963aa96204cdc4}{node\_pt}}(l2)-\/>\mbox{\hyperlink{classoomph_1_1Node_afefa22db8b28e783b8647e3577ee01d9}{hanging\_pt}}();}
+\DoxyCodeLine{\Hypertarget{refineable__polar__navier__stokes__elements_8cc_source_l00545}00545                     hang\_info2\_pt = \mbox{\hyperlink{classoomph_1_1FiniteElement_a9addfe893ab8205619963aa96204cdc4}{node\_pt}}(l2)-\/>hanging\_pt();}
 \DoxyCodeLine{\Hypertarget{refineable__polar__navier__stokes__elements_8cc_source_l00546}00546                     \textcolor{comment}{// Read out number of master nodes from hanging data}}
-\DoxyCodeLine{\Hypertarget{refineable__polar__navier__stokes__elements_8cc_source_l00547}00547                     n\_master2 = hang\_info2\_pt-\/>\mbox{\hyperlink{classoomph_1_1HangInfo_aa9c1130b58db2ff6d5eee4f923ba365c}{nmaster}}();}
+\DoxyCodeLine{\Hypertarget{refineable__polar__navier__stokes__elements_8cc_source_l00547}00547                     n\_master2 = hang\_info2\_pt-\/>nmaster();}
 \DoxyCodeLine{\Hypertarget{refineable__polar__navier__stokes__elements_8cc_source_l00548}00548                   \}}
 \DoxyCodeLine{\Hypertarget{refineable__polar__navier__stokes__elements_8cc_source_l00549}00549                   \textcolor{comment}{// Otherwise the node is its own master}}
 \DoxyCodeLine{\Hypertarget{refineable__polar__navier__stokes__elements_8cc_source_l00550}00550                   \textcolor{keywordflow}{else}}
@@ -689,10 +689,10 @@
 \DoxyCodeLine{\Hypertarget{refineable__polar__navier__stokes__elements_8cc_source_l00685}00685                   \textcolor{keywordflow}{if} (pressure\_dof\_is\_hanging[l2])}
 \DoxyCodeLine{\Hypertarget{refineable__polar__navier__stokes__elements_8cc_source_l00686}00686                   \{}
 \DoxyCodeLine{\Hypertarget{refineable__polar__navier__stokes__elements_8cc_source_l00687}00687                     hang\_info2\_pt =}
-\DoxyCodeLine{\Hypertarget{refineable__polar__navier__stokes__elements_8cc_source_l00688}00688                       this-\/>\mbox{\hyperlink{classoomph_1_1RefineablePolarNavierStokesEquations_ac0dbc7d0d05f52e8242a1612c5247504}{pressure\_node\_pt}}(l2)-\/>\mbox{\hyperlink{classoomph_1_1Node_afefa22db8b28e783b8647e3577ee01d9}{hanging\_pt}}(p\_index);}
+\DoxyCodeLine{\Hypertarget{refineable__polar__navier__stokes__elements_8cc_source_l00688}00688                       this-\/>\mbox{\hyperlink{classoomph_1_1RefineablePolarNavierStokesEquations_ac0dbc7d0d05f52e8242a1612c5247504}{pressure\_node\_pt}}(l2)-\/>hanging\_pt(p\_index);}
 \DoxyCodeLine{\Hypertarget{refineable__polar__navier__stokes__elements_8cc_source_l00689}00689                     \textcolor{comment}{// Pressure dof is hanging so it must be nodal-\/based}}
 \DoxyCodeLine{\Hypertarget{refineable__polar__navier__stokes__elements_8cc_source_l00690}00690                     \textcolor{comment}{// Get the number of master nodes from the pressure node}}
-\DoxyCodeLine{\Hypertarget{refineable__polar__navier__stokes__elements_8cc_source_l00691}00691                     n\_master2 = hang\_info2\_pt-\/>\mbox{\hyperlink{classoomph_1_1HangInfo_aa9c1130b58db2ff6d5eee4f923ba365c}{nmaster}}();}
+\DoxyCodeLine{\Hypertarget{refineable__polar__navier__stokes__elements_8cc_source_l00691}00691                     n\_master2 = hang\_info2\_pt-\/>nmaster();}
 \DoxyCodeLine{\Hypertarget{refineable__polar__navier__stokes__elements_8cc_source_l00692}00692                   \}}
 \DoxyCodeLine{\Hypertarget{refineable__polar__navier__stokes__elements_8cc_source_l00693}00693                   \textcolor{comment}{// Otherwise the node is its own master}}
 \DoxyCodeLine{\Hypertarget{refineable__polar__navier__stokes__elements_8cc_source_l00694}00694                   \textcolor{keywordflow}{else}}
@@ -754,7 +754,7 @@
 \DoxyCodeLine{\Hypertarget{refineable__polar__navier__stokes__elements_8cc_source_l00750}00750         \{}
 \DoxyCodeLine{\Hypertarget{refineable__polar__navier__stokes__elements_8cc_source_l00751}00751           \textcolor{comment}{// Pressure dof is hanging so it must be nodal-\/based}}
 \DoxyCodeLine{\Hypertarget{refineable__polar__navier__stokes__elements_8cc_source_l00752}00752           \textcolor{comment}{// Get the hang info object}}
-\DoxyCodeLine{\Hypertarget{refineable__polar__navier__stokes__elements_8cc_source_l00753}00753           hang\_info\_pt = this-\/>\mbox{\hyperlink{classoomph_1_1RefineablePolarNavierStokesEquations_ac0dbc7d0d05f52e8242a1612c5247504}{pressure\_node\_pt}}(l)-\/>\mbox{\hyperlink{classoomph_1_1Node_afefa22db8b28e783b8647e3577ee01d9}{hanging\_pt}}(p\_index);}
+\DoxyCodeLine{\Hypertarget{refineable__polar__navier__stokes__elements_8cc_source_l00753}00753           hang\_info\_pt = this-\/>\mbox{\hyperlink{classoomph_1_1RefineablePolarNavierStokesEquations_ac0dbc7d0d05f52e8242a1612c5247504}{pressure\_node\_pt}}(l)-\/>hanging\_pt(p\_index);}
 \DoxyCodeLine{\Hypertarget{refineable__polar__navier__stokes__elements_8cc_source_l00754}00754           \textcolor{comment}{// Get the number of master nodes from the pressure node}}
 \DoxyCodeLine{\Hypertarget{refineable__polar__navier__stokes__elements_8cc_source_l00755}00755           n\_master = hang\_info\_pt-\/>\mbox{\hyperlink{classoomph_1_1HangInfo_aa9c1130b58db2ff6d5eee4f923ba365c}{nmaster}}();}
 \DoxyCodeLine{\Hypertarget{refineable__polar__navier__stokes__elements_8cc_source_l00756}00756         \}}
@@ -801,14 +801,14 @@
 \DoxyCodeLine{\Hypertarget{refineable__polar__navier__stokes__elements_8cc_source_l00797}00797               \textcolor{keywordflow}{for} (\textcolor{keywordtype}{unsigned} l2 = 0; l2 < n\_node; l2++)}
 \DoxyCodeLine{\Hypertarget{refineable__polar__navier__stokes__elements_8cc_source_l00798}00798               \{}
 \DoxyCodeLine{\Hypertarget{refineable__polar__navier__stokes__elements_8cc_source_l00799}00799                 \textcolor{comment}{// Local boolean to indicate whether the node is hanging}}
-\DoxyCodeLine{\Hypertarget{refineable__polar__navier__stokes__elements_8cc_source_l00800}00800                 \textcolor{keywordtype}{bool} is\_node2\_hanging = \mbox{\hyperlink{classoomph_1_1FiniteElement_a9addfe893ab8205619963aa96204cdc4}{node\_pt}}(l2)-\/>\mbox{\hyperlink{classoomph_1_1Node_af0e6237dfafad62cf427ff5013ddcfef}{is\_hanging}}();}
+\DoxyCodeLine{\Hypertarget{refineable__polar__navier__stokes__elements_8cc_source_l00800}00800                 \textcolor{keywordtype}{bool} is\_node2\_hanging = \mbox{\hyperlink{classoomph_1_1FiniteElement_a9addfe893ab8205619963aa96204cdc4}{node\_pt}}(l2)-\/>is\_hanging();}
 \DoxyCodeLine{\Hypertarget{refineable__polar__navier__stokes__elements_8cc_source_l00801}00801 }
 \DoxyCodeLine{\Hypertarget{refineable__polar__navier__stokes__elements_8cc_source_l00802}00802                 \textcolor{comment}{// If the node is hanging}}
 \DoxyCodeLine{\Hypertarget{refineable__polar__navier__stokes__elements_8cc_source_l00803}00803                 \textcolor{keywordflow}{if} (is\_node2\_hanging)}
 \DoxyCodeLine{\Hypertarget{refineable__polar__navier__stokes__elements_8cc_source_l00804}00804                 \{}
-\DoxyCodeLine{\Hypertarget{refineable__polar__navier__stokes__elements_8cc_source_l00805}00805                   hang\_info2\_pt = \mbox{\hyperlink{classoomph_1_1FiniteElement_a9addfe893ab8205619963aa96204cdc4}{node\_pt}}(l2)-\/>\mbox{\hyperlink{classoomph_1_1Node_afefa22db8b28e783b8647e3577ee01d9}{hanging\_pt}}();}
+\DoxyCodeLine{\Hypertarget{refineable__polar__navier__stokes__elements_8cc_source_l00805}00805                   hang\_info2\_pt = \mbox{\hyperlink{classoomph_1_1FiniteElement_a9addfe893ab8205619963aa96204cdc4}{node\_pt}}(l2)-\/>hanging\_pt();}
 \DoxyCodeLine{\Hypertarget{refineable__polar__navier__stokes__elements_8cc_source_l00806}00806                   \textcolor{comment}{// Read out number of master nodes from hanging data}}
-\DoxyCodeLine{\Hypertarget{refineable__polar__navier__stokes__elements_8cc_source_l00807}00807                   n\_master2 = hang\_info2\_pt-\/>\mbox{\hyperlink{classoomph_1_1HangInfo_aa9c1130b58db2ff6d5eee4f923ba365c}{nmaster}}();}
+\DoxyCodeLine{\Hypertarget{refineable__polar__navier__stokes__elements_8cc_source_l00807}00807                   n\_master2 = hang\_info2\_pt-\/>nmaster();}
 \DoxyCodeLine{\Hypertarget{refineable__polar__navier__stokes__elements_8cc_source_l00808}00808                 \}}
 \DoxyCodeLine{\Hypertarget{refineable__polar__navier__stokes__elements_8cc_source_l00809}00809                 \textcolor{comment}{// Otherwise the node is its own master}}
 \DoxyCodeLine{\Hypertarget{refineable__polar__navier__stokes__elements_8cc_source_l00810}00810                 \textcolor{keywordflow}{else}}

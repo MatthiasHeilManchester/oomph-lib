@@ -872,7 +872,7 @@
 \DoxyCodeLine{\Hypertarget{projection_8h_source_l00868}00868           -\/>nfields\_for\_projection();}
 \DoxyCodeLine{\Hypertarget{projection_8h_source_l00869}00869 }
 \DoxyCodeLine{\Hypertarget{projection_8h_source_l00870}00870       \textcolor{comment}{// Spatial dimension of the problem}}
-\DoxyCodeLine{\Hypertarget{projection_8h_source_l00871}00871       \textcolor{keywordtype}{unsigned} n\_dim = \mbox{\hyperlink{classoomph_1_1Problem_ae2e5559918832d0850b3631d004d0a37}{Problem::mesh\_pt}}()-\/>\mbox{\hyperlink{classoomph_1_1Mesh_a69d22c2070f1649c4cb2607f26070d7c}{node\_pt}}(0)-\/>\mbox{\hyperlink{classoomph_1_1Node_a786c96a8e46eb27a03b2b31f629d41b3}{ndim}}();}
+\DoxyCodeLine{\Hypertarget{projection_8h_source_l00871}00871       \textcolor{keywordtype}{unsigned} n\_dim = \mbox{\hyperlink{classoomph_1_1Problem_ae2e5559918832d0850b3631d004d0a37}{Problem::mesh\_pt}}()-\/>\mbox{\hyperlink{classoomph_1_1Mesh_a69d22c2070f1649c4cb2607f26070d7c}{node\_pt}}(0)-\/>ndim();}
 \DoxyCodeLine{\Hypertarget{projection_8h_source_l00872}00872 }
 \DoxyCodeLine{\Hypertarget{projection_8h_source_l00873}00873       \textcolor{comment}{// Default number of history values}}
 \DoxyCodeLine{\Hypertarget{projection_8h_source_l00874}00874       \textcolor{keywordtype}{unsigned} n\_history\_values = 0;}
@@ -1003,7 +1003,7 @@
 \DoxyCodeLine{\Hypertarget{projection_8h_source_l00999}00999               \mbox{\hyperlink{classoomph_1_1SolidNode}{SolidNode}}* solid\_node\_pt =}
 \DoxyCodeLine{\Hypertarget{projection_8h_source_l01000}01000                 \textcolor{keyword}{dynamic\_cast<}\mbox{\hyperlink{classoomph_1_1SolidNode}{SolidNode}}*\textcolor{keyword}{>}(\mbox{\hyperlink{classoomph_1_1Problem_ae2e5559918832d0850b3631d004d0a37}{Problem::mesh\_pt}}()-\/>\mbox{\hyperlink{classoomph_1_1Mesh_a69d22c2070f1649c4cb2607f26070d7c}{node\_pt}}(n));}
 \DoxyCodeLine{\Hypertarget{projection_8h_source_l01001}01001               \textcolor{comment}{// Now find number of types}}
-\DoxyCodeLine{\Hypertarget{projection_8h_source_l01002}01002               \textcolor{keyword}{const} \textcolor{keywordtype}{unsigned} n\_position\_type = solid\_node\_pt-\/>\mbox{\hyperlink{classoomph_1_1Node_aee6f2b7a46fc9d875c6736895d7fc095}{nposition\_type}}();}
+\DoxyCodeLine{\Hypertarget{projection_8h_source_l01002}01002               \textcolor{keyword}{const} \textcolor{keywordtype}{unsigned} n\_position\_type = solid\_node\_pt-\/>nposition\_type();}
 \DoxyCodeLine{\Hypertarget{projection_8h_source_l01003}01003               \textcolor{comment}{// Find number of lagrangian types}}
 \DoxyCodeLine{\Hypertarget{projection_8h_source_l01004}01004               \textcolor{keyword}{const} \textcolor{keywordtype}{unsigned} n\_lagrangian\_type =}
 \DoxyCodeLine{\Hypertarget{projection_8h_source_l01005}01005                 solid\_node\_pt-\/>\mbox{\hyperlink{classoomph_1_1SolidNode_a3c1e52e4b6dde53b98228d621f7fcb0a}{nlagrangian\_type}}();}
@@ -1029,10 +1029,10 @@
 \DoxyCodeLine{\Hypertarget{projection_8h_source_l01025}01025               \textcolor{comment}{// from the first coordinate which was used during the projection}}
 \DoxyCodeLine{\Hypertarget{projection_8h_source_l01026}01026               \textcolor{keywordflow}{for} (\textcolor{keywordtype}{unsigned} k = 0; k < n\_position\_type; ++k)}
 \DoxyCodeLine{\Hypertarget{projection_8h_source_l01027}01027               \{}
-\DoxyCodeLine{\Hypertarget{projection_8h_source_l01028}01028                 solid\_node\_pt-\/>\mbox{\hyperlink{classoomph_1_1SolidNode_ada699bd006497ddeabb0bc0750d99965}{xi\_gen}}(k, \mbox{\hyperlink{cfortran_8h_adb50e893b86b3e55e751a42eab3cba82}{i}}) = solid\_node\_pt-\/>\mbox{\hyperlink{classoomph_1_1Node_af7fdc0dfda495d69bd31c790ee77da73}{x\_gen}}(k, 0);}
+\DoxyCodeLine{\Hypertarget{projection_8h_source_l01028}01028                 solid\_node\_pt-\/>\mbox{\hyperlink{classoomph_1_1SolidNode_ada699bd006497ddeabb0bc0750d99965}{xi\_gen}}(k, \mbox{\hyperlink{cfortran_8h_adb50e893b86b3e55e751a42eab3cba82}{i}}) = solid\_node\_pt-\/>x\_gen(k, 0);}
 \DoxyCodeLine{\Hypertarget{projection_8h_source_l01029}01029                 \textcolor{comment}{// Reset real values so that the Jacobians are correctly}}
 \DoxyCodeLine{\Hypertarget{projection_8h_source_l01030}01030                 \textcolor{comment}{// computed next time around}}
-\DoxyCodeLine{\Hypertarget{projection_8h_source_l01031}01031                 solid\_node\_pt-\/>\mbox{\hyperlink{classoomph_1_1Node_af7fdc0dfda495d69bd31c790ee77da73}{x\_gen}}(k, 0) = \mbox{\hyperlink{classoomph_1_1ProjectionProblem_af085e8e2152466d7a98eebff07ea9271}{Solid\_backup}}[n](k, 0);}
+\DoxyCodeLine{\Hypertarget{projection_8h_source_l01031}01031                 solid\_node\_pt-\/>x\_gen(k, 0) = \mbox{\hyperlink{classoomph_1_1ProjectionProblem_af085e8e2152466d7a98eebff07ea9271}{Solid\_backup}}[n](k, 0);}
 \DoxyCodeLine{\Hypertarget{projection_8h_source_l01032}01032               \}}
 \DoxyCodeLine{\Hypertarget{projection_8h_source_l01033}01033             \}}
 \DoxyCodeLine{\Hypertarget{projection_8h_source_l01034}01034           \} \textcolor{comment}{// End of loop over lagrangian coordinates}}
@@ -1094,16 +1094,16 @@
 \DoxyCodeLine{\Hypertarget{projection_8h_source_l01090}01090                 \textcolor{keywordflow}{for} (\textcolor{keywordtype}{unsigned} n = 0; n < n\_node; ++n)}
 \DoxyCodeLine{\Hypertarget{projection_8h_source_l01091}01091                 \{}
 \DoxyCodeLine{\Hypertarget{projection_8h_source_l01092}01092                   \textcolor{comment}{// Cache the pointer to the node}}
-\DoxyCodeLine{\Hypertarget{projection_8h_source_l01093}01093                   \mbox{\hyperlink{classoomph_1_1Node}{Node}}* nod\_pt = \mbox{\hyperlink{classoomph_1_1Problem_ae2e5559918832d0850b3631d004d0a37}{Problem::mesh\_pt}}()-\/>\mbox{\hyperlink{classoomph_1_1Mesh_a69d22c2070f1649c4cb2607f26070d7c}{node\_pt}}(n);}
+\DoxyCodeLine{\Hypertarget{projection_8h_source_l01093}01093                   Node* nod\_pt = \mbox{\hyperlink{classoomph_1_1Problem_ae2e5559918832d0850b3631d004d0a37}{Problem::mesh\_pt}}()-\/>\mbox{\hyperlink{classoomph_1_1Mesh_a69d22c2070f1649c4cb2607f26070d7c}{node\_pt}}(n);}
 \DoxyCodeLine{\Hypertarget{projection_8h_source_l01094}01094                   \textcolor{comment}{// Find the number of generalised dofs}}
-\DoxyCodeLine{\Hypertarget{projection_8h_source_l01095}01095                   \textcolor{keyword}{const} \textcolor{keywordtype}{unsigned} n\_position\_type = nod\_pt-\/>\mbox{\hyperlink{classoomph_1_1Node_aee6f2b7a46fc9d875c6736895d7fc095}{nposition\_type}}();}
+\DoxyCodeLine{\Hypertarget{projection_8h_source_l01095}01095                   \textcolor{keyword}{const} \textcolor{keywordtype}{unsigned} n\_position\_type = nod\_pt-\/>nposition\_type();}
 \DoxyCodeLine{\Hypertarget{projection_8h_source_l01096}01096                   \textcolor{comment}{// Now copy all back}}
 \DoxyCodeLine{\Hypertarget{projection_8h_source_l01097}01097                   \textcolor{keywordflow}{for} (\textcolor{keywordtype}{unsigned} k = 0; k < n\_position\_type; ++k)}
 \DoxyCodeLine{\Hypertarget{projection_8h_source_l01098}01098                   \{}
-\DoxyCodeLine{\Hypertarget{projection_8h_source_l01099}01099                     nod\_pt-\/>\mbox{\hyperlink{classoomph_1_1Node_af7fdc0dfda495d69bd31c790ee77da73}{x\_gen}}(time\_level, k, \mbox{\hyperlink{cfortran_8h_adb50e893b86b3e55e751a42eab3cba82}{i}}) = nod\_pt-\/>\mbox{\hyperlink{classoomph_1_1Node_af7fdc0dfda495d69bd31c790ee77da73}{x\_gen}}(0, k, \mbox{\hyperlink{cfortran_8h_adb50e893b86b3e55e751a42eab3cba82}{i}});}
+\DoxyCodeLine{\Hypertarget{projection_8h_source_l01099}01099                     nod\_pt-\/>x\_gen(time\_level, k, \mbox{\hyperlink{cfortran_8h_adb50e893b86b3e55e751a42eab3cba82}{i}}) = nod\_pt-\/>x\_gen(0, k, \mbox{\hyperlink{cfortran_8h_adb50e893b86b3e55e751a42eab3cba82}{i}});}
 \DoxyCodeLine{\Hypertarget{projection_8h_source_l01100}01100                     \textcolor{comment}{// Reset real values so that the Jacobians are computed}}
 \DoxyCodeLine{\Hypertarget{projection_8h_source_l01101}01101                     \textcolor{comment}{// correctly next time around}}
-\DoxyCodeLine{\Hypertarget{projection_8h_source_l01102}01102                     nod\_pt-\/>\mbox{\hyperlink{classoomph_1_1Node_af7fdc0dfda495d69bd31c790ee77da73}{x\_gen}}(0, k, \mbox{\hyperlink{cfortran_8h_adb50e893b86b3e55e751a42eab3cba82}{i}}) = \mbox{\hyperlink{classoomph_1_1ProjectionProblem_af085e8e2152466d7a98eebff07ea9271}{Solid\_backup}}[n](k, \mbox{\hyperlink{cfortran_8h_adb50e893b86b3e55e751a42eab3cba82}{i}});}
+\DoxyCodeLine{\Hypertarget{projection_8h_source_l01102}01102                     nod\_pt-\/>x\_gen(0, k, \mbox{\hyperlink{cfortran_8h_adb50e893b86b3e55e751a42eab3cba82}{i}}) = \mbox{\hyperlink{classoomph_1_1ProjectionProblem_af085e8e2152466d7a98eebff07ea9271}{Solid\_backup}}[n](k, \mbox{\hyperlink{cfortran_8h_adb50e893b86b3e55e751a42eab3cba82}{i}});}
 \DoxyCodeLine{\Hypertarget{projection_8h_source_l01103}01103                   \}}
 \DoxyCodeLine{\Hypertarget{projection_8h_source_l01104}01104                 \}}
 \DoxyCodeLine{\Hypertarget{projection_8h_source_l01105}01105               \}}
@@ -1138,15 +1138,15 @@
 \DoxyCodeLine{\Hypertarget{projection_8h_source_l01134}01134             \textcolor{keywordtype}{unsigned} nnod = el\_pt-\/>\mbox{\hyperlink{classoomph_1_1FiniteElement_a6219ed269a6d89b5aa14659cce48905a}{nnode}}();}
 \DoxyCodeLine{\Hypertarget{projection_8h_source_l01135}01135             \textcolor{keywordflow}{for} (\textcolor{keywordtype}{unsigned} j = 0; j < nnod; j++)}
 \DoxyCodeLine{\Hypertarget{projection_8h_source_l01136}01136             \{}
-\DoxyCodeLine{\Hypertarget{projection_8h_source_l01137}01137               \mbox{\hyperlink{classoomph_1_1Node}{Node}}* nod\_pt = el\_pt-\/>\mbox{\hyperlink{classoomph_1_1FiniteElement_a9addfe893ab8205619963aa96204cdc4}{node\_pt}}(j);}
-\DoxyCodeLine{\Hypertarget{projection_8h_source_l01138}01138               \textcolor{keywordflow}{if} (nod\_pt-\/>\mbox{\hyperlink{classoomph_1_1Data_a7e67fc78a2e8a2fd6eb75bd292d42ff8}{nvalue}}() == 0)}
+\DoxyCodeLine{\Hypertarget{projection_8h_source_l01137}01137               Node* nod\_pt = el\_pt-\/>\mbox{\hyperlink{classoomph_1_1FiniteElement_a9addfe893ab8205619963aa96204cdc4}{node\_pt}}(j);}
+\DoxyCodeLine{\Hypertarget{projection_8h_source_l01138}01138               \textcolor{keywordflow}{if} (nod\_pt-\/>nvalue() == 0)}
 \DoxyCodeLine{\Hypertarget{projection_8h_source_l01139}01139               \{}
 \DoxyCodeLine{\Hypertarget{projection_8h_source_l01140}01140                 std::ostringstream error\_stream;}
 \DoxyCodeLine{\Hypertarget{projection_8h_source_l01141}01141                 error\_stream << \textcolor{stringliteral}{"{}Node at  "{}};}
-\DoxyCodeLine{\Hypertarget{projection_8h_source_l01142}01142                 \textcolor{keywordtype}{unsigned} n = nod\_pt-\/>\mbox{\hyperlink{classoomph_1_1Node_a786c96a8e46eb27a03b2b31f629d41b3}{ndim}}();}
+\DoxyCodeLine{\Hypertarget{projection_8h_source_l01142}01142                 \textcolor{keywordtype}{unsigned} n = nod\_pt-\/>ndim();}
 \DoxyCodeLine{\Hypertarget{projection_8h_source_l01143}01143                 \textcolor{keywordflow}{for} (\textcolor{keywordtype}{unsigned} \mbox{\hyperlink{cfortran_8h_adb50e893b86b3e55e751a42eab3cba82}{i}} = 0; \mbox{\hyperlink{cfortran_8h_adb50e893b86b3e55e751a42eab3cba82}{i}} < n; \mbox{\hyperlink{cfortran_8h_adb50e893b86b3e55e751a42eab3cba82}{i}}++)}
 \DoxyCodeLine{\Hypertarget{projection_8h_source_l01144}01144                 \{}
-\DoxyCodeLine{\Hypertarget{projection_8h_source_l01145}01145                   error\_stream << nod\_pt-\/>\mbox{\hyperlink{classoomph_1_1Node_ab76b4773a65b349f143539e07b6e15e2}{x}}(\mbox{\hyperlink{cfortran_8h_adb50e893b86b3e55e751a42eab3cba82}{i}}) << \textcolor{stringliteral}{"{} "{}};}
+\DoxyCodeLine{\Hypertarget{projection_8h_source_l01145}01145                   error\_stream << nod\_pt-\/>x(\mbox{\hyperlink{cfortran_8h_adb50e893b86b3e55e751a42eab3cba82}{i}}) << \textcolor{stringliteral}{"{} "{}};}
 \DoxyCodeLine{\Hypertarget{projection_8h_source_l01146}01146                 \}}
 \DoxyCodeLine{\Hypertarget{projection_8h_source_l01147}01147                 error\_stream}
 \DoxyCodeLine{\Hypertarget{projection_8h_source_l01148}01148                   << \textcolor{stringliteral}{"{}\(\backslash\)nhas no values. Projection (of coordinates) doesn't "{}}}
@@ -1226,7 +1226,7 @@
 \DoxyCodeLine{\Hypertarget{projection_8h_source_l01222}01222                   \{}
 \DoxyCodeLine{\Hypertarget{projection_8h_source_l01223}01223                     \textcolor{comment}{// Replace as coordinates}}
 \DoxyCodeLine{\Hypertarget{projection_8h_source_l01224}01224                     \textcolor{keywordtype}{double} coord = data[d].first-\/>value(0, 0);}
-\DoxyCodeLine{\Hypertarget{projection_8h_source_l01225}01225                     \textcolor{keyword}{dynamic\_cast<}\mbox{\hyperlink{classoomph_1_1Node}{Node}}*\textcolor{keyword}{>}(data[d].first)-\/>\mbox{\hyperlink{namespaceoomph_a9d1d2da2b8bb8e73af72b5cadb8fe97c}{x}}(time\_level, \mbox{\hyperlink{cfortran_8h_adb50e893b86b3e55e751a42eab3cba82}{i}}) =}
+\DoxyCodeLine{\Hypertarget{projection_8h_source_l01225}01225                     \textcolor{keyword}{dynamic\_cast<}Node*\textcolor{keyword}{>}(data[d].first)-\/>\mbox{\hyperlink{namespaceoomph_a9d1d2da2b8bb8e73af72b5cadb8fe97c}{x}}(time\_level, \mbox{\hyperlink{cfortran_8h_adb50e893b86b3e55e751a42eab3cba82}{i}}) =}
 \DoxyCodeLine{\Hypertarget{projection_8h_source_l01226}01226                       coord;}
 \DoxyCodeLine{\Hypertarget{projection_8h_source_l01227}01227                   \}}
 \DoxyCodeLine{\Hypertarget{projection_8h_source_l01228}01228                 \}}
@@ -1442,9 +1442,9 @@
 \DoxyCodeLine{\Hypertarget{projection_8h_source_l01438}01438         \textcolor{keyword}{const} \textcolor{keywordtype}{unsigned} n\_node = this-\/>\mbox{\hyperlink{classoomph_1_1Problem_ae2e5559918832d0850b3631d004d0a37}{mesh\_pt}}()-\/>\mbox{\hyperlink{classoomph_1_1Mesh_a945e7823d1a2af243b5b7f7866aaff5e}{nnode}}();}
 \DoxyCodeLine{\Hypertarget{projection_8h_source_l01439}01439         \mbox{\hyperlink{classoomph_1_1ProjectionProblem_af085e8e2152466d7a98eebff07ea9271}{Solid\_backup}}.resize(n\_node);}
 \DoxyCodeLine{\Hypertarget{projection_8h_source_l01440}01440         \textcolor{comment}{// Read dimension and number of position values from the first node}}
-\DoxyCodeLine{\Hypertarget{projection_8h_source_l01441}01441         \textcolor{keyword}{const} \textcolor{keywordtype}{unsigned} n\_dim = this-\/>\mbox{\hyperlink{classoomph_1_1Problem_ae2e5559918832d0850b3631d004d0a37}{mesh\_pt}}()-\/>\mbox{\hyperlink{classoomph_1_1Mesh_a69d22c2070f1649c4cb2607f26070d7c}{node\_pt}}(0)-\/>\mbox{\hyperlink{classoomph_1_1Node_a786c96a8e46eb27a03b2b31f629d41b3}{ndim}}();}
+\DoxyCodeLine{\Hypertarget{projection_8h_source_l01441}01441         \textcolor{keyword}{const} \textcolor{keywordtype}{unsigned} n\_dim = this-\/>\mbox{\hyperlink{classoomph_1_1Problem_ae2e5559918832d0850b3631d004d0a37}{mesh\_pt}}()-\/>\mbox{\hyperlink{classoomph_1_1Mesh_a69d22c2070f1649c4cb2607f26070d7c}{node\_pt}}(0)-\/>ndim();}
 \DoxyCodeLine{\Hypertarget{projection_8h_source_l01442}01442         \textcolor{keyword}{const} \textcolor{keywordtype}{unsigned} n\_position\_type =}
-\DoxyCodeLine{\Hypertarget{projection_8h_source_l01443}01443           this-\/>\mbox{\hyperlink{classoomph_1_1Problem_ae2e5559918832d0850b3631d004d0a37}{mesh\_pt}}()-\/>\mbox{\hyperlink{classoomph_1_1Mesh_a69d22c2070f1649c4cb2607f26070d7c}{node\_pt}}(0)-\/>\mbox{\hyperlink{classoomph_1_1Node_aee6f2b7a46fc9d875c6736895d7fc095}{nposition\_type}}();}
+\DoxyCodeLine{\Hypertarget{projection_8h_source_l01443}01443           this-\/>\mbox{\hyperlink{classoomph_1_1Problem_ae2e5559918832d0850b3631d004d0a37}{mesh\_pt}}()-\/>\mbox{\hyperlink{classoomph_1_1Mesh_a69d22c2070f1649c4cb2607f26070d7c}{node\_pt}}(0)-\/>nposition\_type();}
 \DoxyCodeLine{\Hypertarget{projection_8h_source_l01444}01444         \textcolor{comment}{// Loop over the nodes}}
 \DoxyCodeLine{\Hypertarget{projection_8h_source_l01445}01445         \textcolor{keywordflow}{for} (\textcolor{keywordtype}{unsigned} n = 0; n < n\_node; n++)}
 \DoxyCodeLine{\Hypertarget{projection_8h_source_l01446}01446         \{}
@@ -1458,7 +1458,7 @@
 \DoxyCodeLine{\Hypertarget{projection_8h_source_l01454}01454           \{}
 \DoxyCodeLine{\Hypertarget{projection_8h_source_l01455}01455             \textcolor{keywordflow}{for} (\textcolor{keywordtype}{unsigned} k = 0; k < n\_position\_type; k++)}
 \DoxyCodeLine{\Hypertarget{projection_8h_source_l01456}01456             \{}
-\DoxyCodeLine{\Hypertarget{projection_8h_source_l01457}01457               \mbox{\hyperlink{classoomph_1_1ProjectionProblem_af085e8e2152466d7a98eebff07ea9271}{Solid\_backup}}[n](k, \mbox{\hyperlink{cfortran_8h_adb50e893b86b3e55e751a42eab3cba82}{i}}) = solid\_nod\_pt-\/>\mbox{\hyperlink{classoomph_1_1Node_af7fdc0dfda495d69bd31c790ee77da73}{x\_gen}}(k, \mbox{\hyperlink{cfortran_8h_adb50e893b86b3e55e751a42eab3cba82}{i}});}
+\DoxyCodeLine{\Hypertarget{projection_8h_source_l01457}01457               \mbox{\hyperlink{classoomph_1_1ProjectionProblem_af085e8e2152466d7a98eebff07ea9271}{Solid\_backup}}[n](k, \mbox{\hyperlink{cfortran_8h_adb50e893b86b3e55e751a42eab3cba82}{i}}) = solid\_nod\_pt-\/>x\_gen(k, \mbox{\hyperlink{cfortran_8h_adb50e893b86b3e55e751a42eab3cba82}{i}});}
 \DoxyCodeLine{\Hypertarget{projection_8h_source_l01458}01458             \}}
 \DoxyCodeLine{\Hypertarget{projection_8h_source_l01459}01459           \}}
 \DoxyCodeLine{\Hypertarget{projection_8h_source_l01460}01460         \}}
@@ -1482,9 +1482,9 @@
 \DoxyCodeLine{\Hypertarget{projection_8h_source_l01478}01478       \{}
 \DoxyCodeLine{\Hypertarget{projection_8h_source_l01479}01479         \textcolor{keyword}{const} \textcolor{keywordtype}{unsigned} n\_node = this-\/>\mbox{\hyperlink{classoomph_1_1Problem_ae2e5559918832d0850b3631d004d0a37}{mesh\_pt}}()-\/>\mbox{\hyperlink{classoomph_1_1Mesh_a945e7823d1a2af243b5b7f7866aaff5e}{nnode}}();}
 \DoxyCodeLine{\Hypertarget{projection_8h_source_l01480}01480         \textcolor{comment}{// Read dimension and number of position values from the first node}}
-\DoxyCodeLine{\Hypertarget{projection_8h_source_l01481}01481         \textcolor{keyword}{const} \textcolor{keywordtype}{unsigned} n\_dim = this-\/>\mbox{\hyperlink{classoomph_1_1Problem_ae2e5559918832d0850b3631d004d0a37}{mesh\_pt}}()-\/>\mbox{\hyperlink{classoomph_1_1Mesh_a69d22c2070f1649c4cb2607f26070d7c}{node\_pt}}(0)-\/>\mbox{\hyperlink{classoomph_1_1Node_a786c96a8e46eb27a03b2b31f629d41b3}{ndim}}();}
+\DoxyCodeLine{\Hypertarget{projection_8h_source_l01481}01481         \textcolor{keyword}{const} \textcolor{keywordtype}{unsigned} n\_dim = this-\/>\mbox{\hyperlink{classoomph_1_1Problem_ae2e5559918832d0850b3631d004d0a37}{mesh\_pt}}()-\/>\mbox{\hyperlink{classoomph_1_1Mesh_a69d22c2070f1649c4cb2607f26070d7c}{node\_pt}}(0)-\/>ndim();}
 \DoxyCodeLine{\Hypertarget{projection_8h_source_l01482}01482         \textcolor{keyword}{const} \textcolor{keywordtype}{unsigned} n\_position\_type =}
-\DoxyCodeLine{\Hypertarget{projection_8h_source_l01483}01483           this-\/>\mbox{\hyperlink{classoomph_1_1Problem_ae2e5559918832d0850b3631d004d0a37}{mesh\_pt}}()-\/>\mbox{\hyperlink{classoomph_1_1Mesh_a69d22c2070f1649c4cb2607f26070d7c}{node\_pt}}(0)-\/>\mbox{\hyperlink{classoomph_1_1Node_aee6f2b7a46fc9d875c6736895d7fc095}{nposition\_type}}();}
+\DoxyCodeLine{\Hypertarget{projection_8h_source_l01483}01483           this-\/>\mbox{\hyperlink{classoomph_1_1Problem_ae2e5559918832d0850b3631d004d0a37}{mesh\_pt}}()-\/>\mbox{\hyperlink{classoomph_1_1Mesh_a69d22c2070f1649c4cb2607f26070d7c}{node\_pt}}(0)-\/>nposition\_type();}
 \DoxyCodeLine{\Hypertarget{projection_8h_source_l01484}01484         \textcolor{comment}{// Loop over the nodes}}
 \DoxyCodeLine{\Hypertarget{projection_8h_source_l01485}01485         \textcolor{keywordflow}{for} (\textcolor{keywordtype}{unsigned} n = 0; n < n\_node; n++)}
 \DoxyCodeLine{\Hypertarget{projection_8h_source_l01486}01486         \{}
@@ -1496,7 +1496,7 @@
 \DoxyCodeLine{\Hypertarget{projection_8h_source_l01492}01492           \{}
 \DoxyCodeLine{\Hypertarget{projection_8h_source_l01493}01493             \textcolor{keywordflow}{for} (\textcolor{keywordtype}{unsigned} k = 0; k < n\_position\_type; k++)}
 \DoxyCodeLine{\Hypertarget{projection_8h_source_l01494}01494             \{}
-\DoxyCodeLine{\Hypertarget{projection_8h_source_l01495}01495               solid\_nod\_pt-\/>\mbox{\hyperlink{classoomph_1_1Node_af7fdc0dfda495d69bd31c790ee77da73}{x\_gen}}(k, \mbox{\hyperlink{cfortran_8h_adb50e893b86b3e55e751a42eab3cba82}{i}}) = \mbox{\hyperlink{classoomph_1_1ProjectionProblem_af085e8e2152466d7a98eebff07ea9271}{Solid\_backup}}[n](k, \mbox{\hyperlink{cfortran_8h_adb50e893b86b3e55e751a42eab3cba82}{i}});}
+\DoxyCodeLine{\Hypertarget{projection_8h_source_l01495}01495               solid\_nod\_pt-\/>x\_gen(k, \mbox{\hyperlink{cfortran_8h_adb50e893b86b3e55e751a42eab3cba82}{i}}) = \mbox{\hyperlink{classoomph_1_1ProjectionProblem_af085e8e2152466d7a98eebff07ea9271}{Solid\_backup}}[n](k, \mbox{\hyperlink{cfortran_8h_adb50e893b86b3e55e751a42eab3cba82}{i}});}
 \DoxyCodeLine{\Hypertarget{projection_8h_source_l01496}01496             \}}
 \DoxyCodeLine{\Hypertarget{projection_8h_source_l01497}01497           \}}
 \DoxyCodeLine{\Hypertarget{projection_8h_source_l01498}01498         \}}
@@ -1529,11 +1529,11 @@
 \DoxyCodeLine{\Hypertarget{projection_8h_source_l01525}01525         \textcolor{keywordtype}{unsigned} nnod = el\_pt-\/>\mbox{\hyperlink{classoomph_1_1FiniteElement_a6219ed269a6d89b5aa14659cce48905a}{nnode}}();}
 \DoxyCodeLine{\Hypertarget{projection_8h_source_l01526}01526         \textcolor{keywordflow}{for} (\textcolor{keywordtype}{unsigned} j = 0; j < nnod; j++)}
 \DoxyCodeLine{\Hypertarget{projection_8h_source_l01527}01527         \{}
-\DoxyCodeLine{\Hypertarget{projection_8h_source_l01528}01528           \mbox{\hyperlink{classoomph_1_1Node}{Node}}* nod\_pt = el\_pt-\/>\mbox{\hyperlink{classoomph_1_1FiniteElement_a9addfe893ab8205619963aa96204cdc4}{node\_pt}}(j);}
-\DoxyCodeLine{\Hypertarget{projection_8h_source_l01529}01529           \textcolor{keywordtype}{unsigned} nval = nod\_pt-\/>\mbox{\hyperlink{classoomph_1_1Data_a7e67fc78a2e8a2fd6eb75bd292d42ff8}{nvalue}}();}
+\DoxyCodeLine{\Hypertarget{projection_8h_source_l01528}01528           Node* nod\_pt = el\_pt-\/>\mbox{\hyperlink{classoomph_1_1FiniteElement_a9addfe893ab8205619963aa96204cdc4}{node\_pt}}(j);}
+\DoxyCodeLine{\Hypertarget{projection_8h_source_l01529}01529           \textcolor{keywordtype}{unsigned} nval = nod\_pt-\/>nvalue();}
 \DoxyCodeLine{\Hypertarget{projection_8h_source_l01530}01530           \textcolor{keywordflow}{for} (\textcolor{keywordtype}{unsigned} \mbox{\hyperlink{cfortran_8h_adb50e893b86b3e55e751a42eab3cba82}{i}} = 0; \mbox{\hyperlink{cfortran_8h_adb50e893b86b3e55e751a42eab3cba82}{i}} < nval; \mbox{\hyperlink{cfortran_8h_adb50e893b86b3e55e751a42eab3cba82}{i}}++)}
 \DoxyCodeLine{\Hypertarget{projection_8h_source_l01531}01531           \{}
-\DoxyCodeLine{\Hypertarget{projection_8h_source_l01532}01532             nod\_pt-\/>\mbox{\hyperlink{classoomph_1_1Data_a422231c58e423f0b43822827aa334d79}{pin}}(\mbox{\hyperlink{cfortran_8h_adb50e893b86b3e55e751a42eab3cba82}{i}});}
+\DoxyCodeLine{\Hypertarget{projection_8h_source_l01532}01532             nod\_pt-\/>pin(\mbox{\hyperlink{cfortran_8h_adb50e893b86b3e55e751a42eab3cba82}{i}});}
 \DoxyCodeLine{\Hypertarget{projection_8h_source_l01533}01533           \}}
 \DoxyCodeLine{\Hypertarget{projection_8h_source_l01534}01534         \}}
 \DoxyCodeLine{\Hypertarget{projection_8h_source_l01535}01535       \}}
@@ -1552,9 +1552,9 @@
 \DoxyCodeLine{\Hypertarget{projection_8h_source_l01548}01548         \}}
 \DoxyCodeLine{\Hypertarget{projection_8h_source_l01549}01549 }
 \DoxyCodeLine{\Hypertarget{projection_8h_source_l01550}01550         \textcolor{comment}{// Read dimension and number of position values from the first node}}
-\DoxyCodeLine{\Hypertarget{projection_8h_source_l01551}01551         \textcolor{keyword}{const} \textcolor{keywordtype}{unsigned} n\_dim = this-\/>\mbox{\hyperlink{classoomph_1_1Problem_ae2e5559918832d0850b3631d004d0a37}{mesh\_pt}}()-\/>\mbox{\hyperlink{classoomph_1_1Mesh_a69d22c2070f1649c4cb2607f26070d7c}{node\_pt}}(0)-\/>\mbox{\hyperlink{classoomph_1_1Node_a786c96a8e46eb27a03b2b31f629d41b3}{ndim}}();}
+\DoxyCodeLine{\Hypertarget{projection_8h_source_l01551}01551         \textcolor{keyword}{const} \textcolor{keywordtype}{unsigned} n\_dim = this-\/>\mbox{\hyperlink{classoomph_1_1Problem_ae2e5559918832d0850b3631d004d0a37}{mesh\_pt}}()-\/>\mbox{\hyperlink{classoomph_1_1Mesh_a69d22c2070f1649c4cb2607f26070d7c}{node\_pt}}(0)-\/>ndim();}
 \DoxyCodeLine{\Hypertarget{projection_8h_source_l01552}01552         \textcolor{keyword}{const} \textcolor{keywordtype}{unsigned} n\_position\_type =}
-\DoxyCodeLine{\Hypertarget{projection_8h_source_l01553}01553           this-\/>\mbox{\hyperlink{classoomph_1_1Problem_ae2e5559918832d0850b3631d004d0a37}{mesh\_pt}}()-\/>\mbox{\hyperlink{classoomph_1_1Mesh_a69d22c2070f1649c4cb2607f26070d7c}{node\_pt}}(0)-\/>\mbox{\hyperlink{classoomph_1_1Node_aee6f2b7a46fc9d875c6736895d7fc095}{nposition\_type}}();}
+\DoxyCodeLine{\Hypertarget{projection_8h_source_l01553}01553           this-\/>\mbox{\hyperlink{classoomph_1_1Problem_ae2e5559918832d0850b3631d004d0a37}{mesh\_pt}}()-\/>\mbox{\hyperlink{classoomph_1_1Mesh_a69d22c2070f1649c4cb2607f26070d7c}{node\_pt}}(0)-\/>nposition\_type();}
 \DoxyCodeLine{\Hypertarget{projection_8h_source_l01554}01554 }
 \DoxyCodeLine{\Hypertarget{projection_8h_source_l01555}01555         \textcolor{comment}{// Loop over the nodes}}
 \DoxyCodeLine{\Hypertarget{projection_8h_source_l01556}01556         \textcolor{keywordflow}{for} (\textcolor{keywordtype}{unsigned} n = 0; n < n\_node; n++)}
@@ -1619,9 +1619,9 @@
 \DoxyCodeLine{\Hypertarget{projection_8h_source_l01615}01615         \}}
 \DoxyCodeLine{\Hypertarget{projection_8h_source_l01616}01616 }
 \DoxyCodeLine{\Hypertarget{projection_8h_source_l01617}01617         \textcolor{comment}{// Read dimension and number of position values from the first node}}
-\DoxyCodeLine{\Hypertarget{projection_8h_source_l01618}01618         \textcolor{keyword}{const} \textcolor{keywordtype}{unsigned} n\_dim = this-\/>\mbox{\hyperlink{classoomph_1_1Problem_ae2e5559918832d0850b3631d004d0a37}{mesh\_pt}}()-\/>\mbox{\hyperlink{classoomph_1_1Mesh_a69d22c2070f1649c4cb2607f26070d7c}{node\_pt}}(0)-\/>\mbox{\hyperlink{classoomph_1_1Node_a786c96a8e46eb27a03b2b31f629d41b3}{ndim}}();}
+\DoxyCodeLine{\Hypertarget{projection_8h_source_l01618}01618         \textcolor{keyword}{const} \textcolor{keywordtype}{unsigned} n\_dim = this-\/>\mbox{\hyperlink{classoomph_1_1Problem_ae2e5559918832d0850b3631d004d0a37}{mesh\_pt}}()-\/>\mbox{\hyperlink{classoomph_1_1Mesh_a69d22c2070f1649c4cb2607f26070d7c}{node\_pt}}(0)-\/>ndim();}
 \DoxyCodeLine{\Hypertarget{projection_8h_source_l01619}01619         \textcolor{keyword}{const} \textcolor{keywordtype}{unsigned} n\_position\_type =}
-\DoxyCodeLine{\Hypertarget{projection_8h_source_l01620}01620           this-\/>\mbox{\hyperlink{classoomph_1_1Problem_ae2e5559918832d0850b3631d004d0a37}{mesh\_pt}}()-\/>\mbox{\hyperlink{classoomph_1_1Mesh_a69d22c2070f1649c4cb2607f26070d7c}{node\_pt}}(0)-\/>\mbox{\hyperlink{classoomph_1_1Node_aee6f2b7a46fc9d875c6736895d7fc095}{nposition\_type}}();}
+\DoxyCodeLine{\Hypertarget{projection_8h_source_l01620}01620           this-\/>\mbox{\hyperlink{classoomph_1_1Problem_ae2e5559918832d0850b3631d004d0a37}{mesh\_pt}}()-\/>\mbox{\hyperlink{classoomph_1_1Mesh_a69d22c2070f1649c4cb2607f26070d7c}{node\_pt}}(0)-\/>nposition\_type();}
 \DoxyCodeLine{\Hypertarget{projection_8h_source_l01621}01621 }
 \DoxyCodeLine{\Hypertarget{projection_8h_source_l01622}01622         \textcolor{comment}{// Loop over the nodes}}
 \DoxyCodeLine{\Hypertarget{projection_8h_source_l01623}01623         \textcolor{keywordflow}{for} (\textcolor{keywordtype}{unsigned} n = 0; n < n\_node; n++)}
@@ -1652,7 +1652,7 @@
 \DoxyCodeLine{\Hypertarget{projection_8h_source_l01648}01648 }
 \DoxyCodeLine{\Hypertarget{projection_8h_source_l01649}01649       \textcolor{comment}{// Find the number of position values (should be the same for all nodes)}}
 \DoxyCodeLine{\Hypertarget{projection_8h_source_l01650}01650       \textcolor{keyword}{const} \textcolor{keywordtype}{unsigned} n\_position\_type =}
-\DoxyCodeLine{\Hypertarget{projection_8h_source_l01651}01651         \mbox{\hyperlink{classoomph_1_1Problem_ae2e5559918832d0850b3631d004d0a37}{Problem::mesh\_pt}}()-\/>\mbox{\hyperlink{classoomph_1_1Mesh_a69d22c2070f1649c4cb2607f26070d7c}{node\_pt}}(0)-\/>\mbox{\hyperlink{classoomph_1_1Node_aee6f2b7a46fc9d875c6736895d7fc095}{nposition\_type}}();}
+\DoxyCodeLine{\Hypertarget{projection_8h_source_l01651}01651         \mbox{\hyperlink{classoomph_1_1Problem_ae2e5559918832d0850b3631d004d0a37}{Problem::mesh\_pt}}()-\/>\mbox{\hyperlink{classoomph_1_1Mesh_a69d22c2070f1649c4cb2607f26070d7c}{node\_pt}}(0)-\/>nposition\_type();}
 \DoxyCodeLine{\Hypertarget{projection_8h_source_l01652}01652 }
 \DoxyCodeLine{\Hypertarget{projection_8h_source_l01653}01653       \textcolor{keywordflow}{for} (\textcolor{keywordtype}{unsigned} n = 0; n < n\_node; ++n)}
 \DoxyCodeLine{\Hypertarget{projection_8h_source_l01654}01654       \{}
@@ -1680,7 +1680,7 @@
 \DoxyCodeLine{\Hypertarget{projection_8h_source_l01676}01676 }
 \DoxyCodeLine{\Hypertarget{projection_8h_source_l01677}01677       \textcolor{comment}{// Find the number of position values (should be the same for all nodes)}}
 \DoxyCodeLine{\Hypertarget{projection_8h_source_l01678}01678       \textcolor{keyword}{const} \textcolor{keywordtype}{unsigned} n\_position\_type =}
-\DoxyCodeLine{\Hypertarget{projection_8h_source_l01679}01679         \mbox{\hyperlink{classoomph_1_1Problem_ae2e5559918832d0850b3631d004d0a37}{Problem::mesh\_pt}}()-\/>\mbox{\hyperlink{classoomph_1_1Mesh_a69d22c2070f1649c4cb2607f26070d7c}{node\_pt}}(0)-\/>\mbox{\hyperlink{classoomph_1_1Node_aee6f2b7a46fc9d875c6736895d7fc095}{nposition\_type}}();}
+\DoxyCodeLine{\Hypertarget{projection_8h_source_l01679}01679         \mbox{\hyperlink{classoomph_1_1Problem_ae2e5559918832d0850b3631d004d0a37}{Problem::mesh\_pt}}()-\/>\mbox{\hyperlink{classoomph_1_1Mesh_a69d22c2070f1649c4cb2607f26070d7c}{node\_pt}}(0)-\/>nposition\_type();}
 \DoxyCodeLine{\Hypertarget{projection_8h_source_l01680}01680 }
 \DoxyCodeLine{\Hypertarget{projection_8h_source_l01681}01681       \textcolor{keywordflow}{for} (\textcolor{keywordtype}{unsigned} n = 0; n < n\_node; ++n)}
 \DoxyCodeLine{\Hypertarget{projection_8h_source_l01682}01682       \{}

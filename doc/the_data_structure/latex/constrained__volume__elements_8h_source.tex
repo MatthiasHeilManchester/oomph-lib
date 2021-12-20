@@ -283,14 +283,14 @@
 \DoxyCodeLine{\Hypertarget{constrained__volume__elements_8h_source_l00279}00279         \textcolor{keywordflow}{for} (\textcolor{keywordtype}{unsigned} n = 0; n < n\_node; n++)}
 \DoxyCodeLine{\Hypertarget{constrained__volume__elements_8h_source_l00280}00280         \{}
 \DoxyCodeLine{\Hypertarget{constrained__volume__elements_8h_source_l00281}00281           \textcolor{comment}{// Cache the node pointer}}
-\DoxyCodeLine{\Hypertarget{constrained__volume__elements_8h_source_l00282}00282           \mbox{\hyperlink{classoomph_1_1Node}{Node}}* \textcolor{keyword}{const} nod\_pt = this-\/>\mbox{\hyperlink{classoomph_1_1FiniteElement_a9addfe893ab8205619963aa96204cdc4}{node\_pt}}(n);}
+\DoxyCodeLine{\Hypertarget{constrained__volume__elements_8h_source_l00282}00282           Node* \textcolor{keyword}{const} nod\_pt = this-\/>\mbox{\hyperlink{classoomph_1_1FiniteElement_a9addfe893ab8205619963aa96204cdc4}{node\_pt}}(n);}
 \DoxyCodeLine{\Hypertarget{constrained__volume__elements_8h_source_l00283}00283           \textcolor{comment}{// Find all nodal data values}}
-\DoxyCodeLine{\Hypertarget{constrained__volume__elements_8h_source_l00284}00284           \textcolor{keywordtype}{unsigned} n\_value = nod\_pt-\/>\mbox{\hyperlink{classoomph_1_1Data_a7e67fc78a2e8a2fd6eb75bd292d42ff8}{nvalue}}();}
+\DoxyCodeLine{\Hypertarget{constrained__volume__elements_8h_source_l00284}00284           \textcolor{keywordtype}{unsigned} n\_value = nod\_pt-\/>nvalue();}
 \DoxyCodeLine{\Hypertarget{constrained__volume__elements_8h_source_l00285}00285           \textcolor{comment}{// If we already have the data, set the}}
 \DoxyCodeLine{\Hypertarget{constrained__volume__elements_8h_source_l00286}00286           \textcolor{comment}{// lookup schemes accordingly and return from the function}}
 \DoxyCodeLine{\Hypertarget{constrained__volume__elements_8h_source_l00287}00287           \textcolor{keywordflow}{for} (\textcolor{keywordtype}{unsigned} \mbox{\hyperlink{cfortran_8h_adb50e893b86b3e55e751a42eab3cba82}{i}} = 0; \mbox{\hyperlink{cfortran_8h_adb50e893b86b3e55e751a42eab3cba82}{i}} < n\_value; \mbox{\hyperlink{cfortran_8h_adb50e893b86b3e55e751a42eab3cba82}{i}}++)}
 \DoxyCodeLine{\Hypertarget{constrained__volume__elements_8h_source_l00288}00288           \{}
-\DoxyCodeLine{\Hypertarget{constrained__volume__elements_8h_source_l00289}00289             \textcolor{keywordflow}{if} (nod\_pt-\/>\mbox{\hyperlink{classoomph_1_1Data_a35c8b361ab32cfb8602890b177f6044f}{eqn\_number\_pt}}(\mbox{\hyperlink{cfortran_8h_adb50e893b86b3e55e751a42eab3cba82}{i}}) == global\_eqn\_number)}
+\DoxyCodeLine{\Hypertarget{constrained__volume__elements_8h_source_l00289}00289             \textcolor{keywordflow}{if} (nod\_pt-\/>eqn\_number\_pt(\mbox{\hyperlink{cfortran_8h_adb50e893b86b3e55e751a42eab3cba82}{i}}) == global\_eqn\_number)}
 \DoxyCodeLine{\Hypertarget{constrained__volume__elements_8h_source_l00290}00290             \{}
 \DoxyCodeLine{\Hypertarget{constrained__volume__elements_8h_source_l00291}00291               \mbox{\hyperlink{classoomph_1_1VolumeConstraintBoundingElement_a8f9aa94f106fd443fa690851a0268720}{Traded\_pressure\_stored\_at\_node}} = \textcolor{keyword}{true};}
 \DoxyCodeLine{\Hypertarget{constrained__volume__elements_8h_source_l00292}00292               \mbox{\hyperlink{classoomph_1_1VolumeConstraintBoundingElement_afd35462188f27b6851416ab49ec5df5a}{Data\_number\_of\_traded\_pressure}} = n;}
@@ -550,7 +550,7 @@
 \DoxyCodeLine{\Hypertarget{constrained__volume__elements_8h_source_l00546}00546           \{}
 \DoxyCodeLine{\Hypertarget{constrained__volume__elements_8h_source_l00547}00547             \mbox{\hyperlink{classoomph_1_1FaceElement_a7aa612fec3604e08344503fbcdc357c8}{interpolated\_x}}[\mbox{\hyperlink{cfortran_8h_adb50e893b86b3e55e751a42eab3cba82}{i}}] += this-\/>\mbox{\hyperlink{classoomph_1_1FiniteElement_a9152c16ae9899168bcdaac7c2f977444}{nodal\_position}}(l, \mbox{\hyperlink{cfortran_8h_adb50e893b86b3e55e751a42eab3cba82}{i}}) * psif(l);}
 \DoxyCodeLine{\Hypertarget{constrained__volume__elements_8h_source_l00548}00548             interpolated\_u[\mbox{\hyperlink{cfortran_8h_adb50e893b86b3e55e751a42eab3cba82}{i}}] +=}
-\DoxyCodeLine{\Hypertarget{constrained__volume__elements_8h_source_l00549}00549               this-\/>\mbox{\hyperlink{classoomph_1_1FiniteElement_a9addfe893ab8205619963aa96204cdc4}{node\_pt}}(l)-\/>\mbox{\hyperlink{classoomph_1_1Node_afcc5cdba40bca251826ae5bee5ca15b4}{value}}(}
+\DoxyCodeLine{\Hypertarget{constrained__volume__elements_8h_source_l00549}00549               this-\/>\mbox{\hyperlink{classoomph_1_1FiniteElement_a9addfe893ab8205619963aa96204cdc4}{node\_pt}}(l)-\/>value(}
 \DoxyCodeLine{\Hypertarget{constrained__volume__elements_8h_source_l00550}00550                 \textcolor{keyword}{dynamic\_cast<}AxisymmetricNavierStokesEquations*\textcolor{keyword}{>}(}
 \DoxyCodeLine{\Hypertarget{constrained__volume__elements_8h_source_l00551}00551                   \mbox{\hyperlink{classoomph_1_1FaceElement_a89e9f7ebc8019c47d54dded72f05479e}{bulk\_element\_pt}}())}
 \DoxyCodeLine{\Hypertarget{constrained__volume__elements_8h_source_l00552}00552                   -\/>u\_index\_axi\_nst(\mbox{\hyperlink{cfortran_8h_adb50e893b86b3e55e751a42eab3cba82}{i}})) *}

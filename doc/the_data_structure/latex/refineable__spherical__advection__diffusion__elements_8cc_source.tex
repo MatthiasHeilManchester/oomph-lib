@@ -162,12 +162,12 @@
 \DoxyCodeLine{\Hypertarget{refineable__spherical__advection__diffusion__elements_8cc_source_l00158}00158         \textcolor{keywordtype}{unsigned} n\_master = 1;}
 \DoxyCodeLine{\Hypertarget{refineable__spherical__advection__diffusion__elements_8cc_source_l00159}00159         \textcolor{keywordtype}{double} hang\_weight = 1.0;}
 \DoxyCodeLine{\Hypertarget{refineable__spherical__advection__diffusion__elements_8cc_source_l00160}00160         \textcolor{comment}{// Local bool (is the node hanging)}}
-\DoxyCodeLine{\Hypertarget{refineable__spherical__advection__diffusion__elements_8cc_source_l00161}00161         \textcolor{keywordtype}{bool} is\_node\_hanging = this-\/>\mbox{\hyperlink{classoomph_1_1FiniteElement_a9addfe893ab8205619963aa96204cdc4}{node\_pt}}(l)-\/>\mbox{\hyperlink{classoomph_1_1Node_af0e6237dfafad62cf427ff5013ddcfef}{is\_hanging}}();}
+\DoxyCodeLine{\Hypertarget{refineable__spherical__advection__diffusion__elements_8cc_source_l00161}00161         \textcolor{keywordtype}{bool} is\_node\_hanging = this-\/>\mbox{\hyperlink{classoomph_1_1FiniteElement_a9addfe893ab8205619963aa96204cdc4}{node\_pt}}(l)-\/>is\_hanging();}
 \DoxyCodeLine{\Hypertarget{refineable__spherical__advection__diffusion__elements_8cc_source_l00162}00162 }
 \DoxyCodeLine{\Hypertarget{refineable__spherical__advection__diffusion__elements_8cc_source_l00163}00163         \textcolor{comment}{// If the node is hanging, get the number of master nodes}}
 \DoxyCodeLine{\Hypertarget{refineable__spherical__advection__diffusion__elements_8cc_source_l00164}00164         \textcolor{keywordflow}{if} (is\_node\_hanging)}
 \DoxyCodeLine{\Hypertarget{refineable__spherical__advection__diffusion__elements_8cc_source_l00165}00165         \{}
-\DoxyCodeLine{\Hypertarget{refineable__spherical__advection__diffusion__elements_8cc_source_l00166}00166           hang\_info\_pt = this-\/>\mbox{\hyperlink{classoomph_1_1FiniteElement_a9addfe893ab8205619963aa96204cdc4}{node\_pt}}(l)-\/>\mbox{\hyperlink{classoomph_1_1Node_afefa22db8b28e783b8647e3577ee01d9}{hanging\_pt}}();}
+\DoxyCodeLine{\Hypertarget{refineable__spherical__advection__diffusion__elements_8cc_source_l00166}00166           hang\_info\_pt = this-\/>\mbox{\hyperlink{classoomph_1_1FiniteElement_a9addfe893ab8205619963aa96204cdc4}{node\_pt}}(l)-\/>hanging\_pt();}
 \DoxyCodeLine{\Hypertarget{refineable__spherical__advection__diffusion__elements_8cc_source_l00167}00167           n\_master = hang\_info\_pt-\/>\mbox{\hyperlink{classoomph_1_1HangInfo_aa9c1130b58db2ff6d5eee4f923ba365c}{nmaster}}();}
 \DoxyCodeLine{\Hypertarget{refineable__spherical__advection__diffusion__elements_8cc_source_l00168}00168         \}}
 \DoxyCodeLine{\Hypertarget{refineable__spherical__advection__diffusion__elements_8cc_source_l00169}00169         \textcolor{comment}{// Otherwise there is just one master node, the node itself}}
@@ -226,12 +226,12 @@
 \DoxyCodeLine{\Hypertarget{refineable__spherical__advection__diffusion__elements_8cc_source_l00222}00222               \textcolor{keywordflow}{for} (\textcolor{keywordtype}{unsigned} l2 = 0; l2 < n\_node; l2++)}
 \DoxyCodeLine{\Hypertarget{refineable__spherical__advection__diffusion__elements_8cc_source_l00223}00223               \{}
 \DoxyCodeLine{\Hypertarget{refineable__spherical__advection__diffusion__elements_8cc_source_l00224}00224                 \textcolor{comment}{// Local bool (is the node hanging)}}
-\DoxyCodeLine{\Hypertarget{refineable__spherical__advection__diffusion__elements_8cc_source_l00225}00225                 \textcolor{keywordtype}{bool} is\_node2\_hanging = this-\/>\mbox{\hyperlink{classoomph_1_1FiniteElement_a9addfe893ab8205619963aa96204cdc4}{node\_pt}}(l2)-\/>\mbox{\hyperlink{classoomph_1_1Node_af0e6237dfafad62cf427ff5013ddcfef}{is\_hanging}}();}
+\DoxyCodeLine{\Hypertarget{refineable__spherical__advection__diffusion__elements_8cc_source_l00225}00225                 \textcolor{keywordtype}{bool} is\_node2\_hanging = this-\/>\mbox{\hyperlink{classoomph_1_1FiniteElement_a9addfe893ab8205619963aa96204cdc4}{node\_pt}}(l2)-\/>is\_hanging();}
 \DoxyCodeLine{\Hypertarget{refineable__spherical__advection__diffusion__elements_8cc_source_l00226}00226                 \textcolor{comment}{// If the node is hanging, get the number of master nodes}}
 \DoxyCodeLine{\Hypertarget{refineable__spherical__advection__diffusion__elements_8cc_source_l00227}00227                 \textcolor{keywordflow}{if} (is\_node2\_hanging)}
 \DoxyCodeLine{\Hypertarget{refineable__spherical__advection__diffusion__elements_8cc_source_l00228}00228                 \{}
-\DoxyCodeLine{\Hypertarget{refineable__spherical__advection__diffusion__elements_8cc_source_l00229}00229                   hang\_info2\_pt = this-\/>\mbox{\hyperlink{classoomph_1_1FiniteElement_a9addfe893ab8205619963aa96204cdc4}{node\_pt}}(l2)-\/>\mbox{\hyperlink{classoomph_1_1Node_afefa22db8b28e783b8647e3577ee01d9}{hanging\_pt}}();}
-\DoxyCodeLine{\Hypertarget{refineable__spherical__advection__diffusion__elements_8cc_source_l00230}00230                   n\_master2 = hang\_info2\_pt-\/>\mbox{\hyperlink{classoomph_1_1HangInfo_aa9c1130b58db2ff6d5eee4f923ba365c}{nmaster}}();}
+\DoxyCodeLine{\Hypertarget{refineable__spherical__advection__diffusion__elements_8cc_source_l00229}00229                   hang\_info2\_pt = this-\/>\mbox{\hyperlink{classoomph_1_1FiniteElement_a9addfe893ab8205619963aa96204cdc4}{node\_pt}}(l2)-\/>hanging\_pt();}
+\DoxyCodeLine{\Hypertarget{refineable__spherical__advection__diffusion__elements_8cc_source_l00230}00230                   n\_master2 = hang\_info2\_pt-\/>nmaster();}
 \DoxyCodeLine{\Hypertarget{refineable__spherical__advection__diffusion__elements_8cc_source_l00231}00231                 \}}
 \DoxyCodeLine{\Hypertarget{refineable__spherical__advection__diffusion__elements_8cc_source_l00232}00232                 \textcolor{comment}{// Otherwise there is one master node, the node itself}}
 \DoxyCodeLine{\Hypertarget{refineable__spherical__advection__diffusion__elements_8cc_source_l00233}00233                 \textcolor{keywordflow}{else}}
@@ -268,7 +268,7 @@
 \DoxyCodeLine{\Hypertarget{refineable__spherical__advection__diffusion__elements_8cc_source_l00264}00264                     \textcolor{comment}{// Mass matrix du/dt term}}
 \DoxyCodeLine{\Hypertarget{refineable__spherical__advection__diffusion__elements_8cc_source_l00265}00265                     \mbox{\hyperlink{classoomph_1_1FiniteElement_aa6c806dab803b82ba4f02cf806971af8}{jacobian}}(local\_eqn, local\_unknown) -\/=}
 \DoxyCodeLine{\Hypertarget{refineable__spherical__advection__diffusion__elements_8cc_source_l00266}00266                       scaled\_peclet\_st * test(l) * psi(l2) *}
-\DoxyCodeLine{\Hypertarget{refineable__spherical__advection__diffusion__elements_8cc_source_l00267}00267                       this-\/>\mbox{\hyperlink{classoomph_1_1FiniteElement_a9addfe893ab8205619963aa96204cdc4}{node\_pt}}(l2)-\/>\mbox{\hyperlink{classoomph_1_1Data_a065d7bffcec82bf4d4bd7b41f9aa80b3}{time\_stepper\_pt}}()-\/>\mbox{\hyperlink{classoomph_1_1TimeStepper_a4cb0aecb044b77ba0553cdd54b586d8a}{weight}}(1, 0) * dS *}
+\DoxyCodeLine{\Hypertarget{refineable__spherical__advection__diffusion__elements_8cc_source_l00267}00267                       this-\/>\mbox{\hyperlink{classoomph_1_1FiniteElement_a9addfe893ab8205619963aa96204cdc4}{node\_pt}}(l2)-\/>time\_stepper\_pt()-\/>weight(1, 0) * dS *}
 \DoxyCodeLine{\Hypertarget{refineable__spherical__advection__diffusion__elements_8cc_source_l00268}00268                       \mbox{\hyperlink{namespaceoomph_ab40f6d5233caa62dd428818b4cba72d5}{W}} * hang\_weight * hang\_weight2;}
 \DoxyCodeLine{\Hypertarget{refineable__spherical__advection__diffusion__elements_8cc_source_l00269}00269 }
 \DoxyCodeLine{\Hypertarget{refineable__spherical__advection__diffusion__elements_8cc_source_l00270}00270                     \textcolor{comment}{// Add contribution to mass matrix}}

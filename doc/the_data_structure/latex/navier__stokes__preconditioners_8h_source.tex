@@ -209,11 +209,11 @@
 \DoxyCodeLine{\Hypertarget{navier__stokes__preconditioners_8h_source_l00205}00205       \textcolor{keywordtype}{unsigned} nnod = \mbox{\hyperlink{classoomph_1_1Problem_ae2e5559918832d0850b3631d004d0a37}{mesh\_pt}}()-\/>\mbox{\hyperlink{classoomph_1_1Mesh_a945e7823d1a2af243b5b7f7866aaff5e}{nnode}}();}
 \DoxyCodeLine{\Hypertarget{navier__stokes__preconditioners_8h_source_l00206}00206       \textcolor{keywordflow}{for} (\textcolor{keywordtype}{unsigned} j = 0; j < nnod; j++)}
 \DoxyCodeLine{\Hypertarget{navier__stokes__preconditioners_8h_source_l00207}00207       \{}
-\DoxyCodeLine{\Hypertarget{navier__stokes__preconditioners_8h_source_l00208}00208         \mbox{\hyperlink{classoomph_1_1Node}{Node}}* nod\_pt = \mbox{\hyperlink{classoomph_1_1Problem_ae2e5559918832d0850b3631d004d0a37}{mesh\_pt}}()-\/>\mbox{\hyperlink{classoomph_1_1Mesh_a69d22c2070f1649c4cb2607f26070d7c}{node\_pt}}(j);}
-\DoxyCodeLine{\Hypertarget{navier__stokes__preconditioners_8h_source_l00209}00209         \textcolor{keywordtype}{unsigned} nval = nod\_pt-\/>\mbox{\hyperlink{classoomph_1_1Data_a7e67fc78a2e8a2fd6eb75bd292d42ff8}{nvalue}}();}
+\DoxyCodeLine{\Hypertarget{navier__stokes__preconditioners_8h_source_l00208}00208         Node* nod\_pt = \mbox{\hyperlink{classoomph_1_1Problem_ae2e5559918832d0850b3631d004d0a37}{mesh\_pt}}()-\/>\mbox{\hyperlink{classoomph_1_1Mesh_a69d22c2070f1649c4cb2607f26070d7c}{node\_pt}}(j);}
+\DoxyCodeLine{\Hypertarget{navier__stokes__preconditioners_8h_source_l00209}00209         \textcolor{keywordtype}{unsigned} nval = nod\_pt-\/>nvalue();}
 \DoxyCodeLine{\Hypertarget{navier__stokes__preconditioners_8h_source_l00210}00210         \textcolor{keywordflow}{for} (\textcolor{keywordtype}{unsigned} \mbox{\hyperlink{cfortran_8h_adb50e893b86b3e55e751a42eab3cba82}{i}} = 0; \mbox{\hyperlink{cfortran_8h_adb50e893b86b3e55e751a42eab3cba82}{i}} < nval; \mbox{\hyperlink{cfortran_8h_adb50e893b86b3e55e751a42eab3cba82}{i}}++)}
 \DoxyCodeLine{\Hypertarget{navier__stokes__preconditioners_8h_source_l00211}00211         \{}
-\DoxyCodeLine{\Hypertarget{navier__stokes__preconditioners_8h_source_l00212}00212           nod\_pt-\/>\mbox{\hyperlink{classoomph_1_1Data_ab6845db69833c541766d9a073b023fc4}{eqn\_number}}(\mbox{\hyperlink{cfortran_8h_adb50e893b86b3e55e751a42eab3cba82}{i}}) = \mbox{\hyperlink{classoomph_1_1FpPressureAdvectionDiffusionProblem_ac897a2558e17c2fc7d608cc1cda69fe8}{Eqn\_number\_backup}}[nod\_pt][\mbox{\hyperlink{cfortran_8h_adb50e893b86b3e55e751a42eab3cba82}{i}}];}
+\DoxyCodeLine{\Hypertarget{navier__stokes__preconditioners_8h_source_l00212}00212           nod\_pt-\/>eqn\_number(\mbox{\hyperlink{cfortran_8h_adb50e893b86b3e55e751a42eab3cba82}{i}}) = \mbox{\hyperlink{classoomph_1_1FpPressureAdvectionDiffusionProblem_ac897a2558e17c2fc7d608cc1cda69fe8}{Eqn\_number\_backup}}[nod\_pt][\mbox{\hyperlink{cfortran_8h_adb50e893b86b3e55e751a42eab3cba82}{i}}];}
 \DoxyCodeLine{\Hypertarget{navier__stokes__preconditioners_8h_source_l00213}00213         \}}
 \DoxyCodeLine{\Hypertarget{navier__stokes__preconditioners_8h_source_l00214}00214       \}}
 \DoxyCodeLine{\Hypertarget{navier__stokes__preconditioners_8h_source_l00215}00215 }
@@ -320,10 +320,10 @@
 \DoxyCodeLine{\Hypertarget{navier__stokes__preconditioners_8h_source_l00316}00316         \textcolor{keywordtype}{unsigned} nnod = el\_pt-\/>nnode();}
 \DoxyCodeLine{\Hypertarget{navier__stokes__preconditioners_8h_source_l00317}00317         \textcolor{keywordflow}{for} (\textcolor{keywordtype}{unsigned} j = 0; j < nnod; j++)}
 \DoxyCodeLine{\Hypertarget{navier__stokes__preconditioners_8h_source_l00318}00318         \{}
-\DoxyCodeLine{\Hypertarget{navier__stokes__preconditioners_8h_source_l00319}00319           \mbox{\hyperlink{classoomph_1_1Node}{Node}}* nod\_pt = el\_pt-\/>node\_pt(j);}
+\DoxyCodeLine{\Hypertarget{navier__stokes__preconditioners_8h_source_l00319}00319           Node* nod\_pt = el\_pt-\/>node\_pt(j);}
 \DoxyCodeLine{\Hypertarget{navier__stokes__preconditioners_8h_source_l00320}00320           \textcolor{keywordflow}{if} (\mbox{\hyperlink{classoomph_1_1FpPressureAdvectionDiffusionProblem_ac897a2558e17c2fc7d608cc1cda69fe8}{Eqn\_number\_backup}}[nod\_pt].size() == 0)}
 \DoxyCodeLine{\Hypertarget{navier__stokes__preconditioners_8h_source_l00321}00321           \{}
-\DoxyCodeLine{\Hypertarget{navier__stokes__preconditioners_8h_source_l00322}00322             \textcolor{keywordtype}{unsigned} nvalue = nod\_pt-\/>\mbox{\hyperlink{classoomph_1_1Data_a7e67fc78a2e8a2fd6eb75bd292d42ff8}{nvalue}}();}
+\DoxyCodeLine{\Hypertarget{navier__stokes__preconditioners_8h_source_l00322}00322             \textcolor{keywordtype}{unsigned} nvalue = nod\_pt-\/>nvalue();}
 \DoxyCodeLine{\Hypertarget{navier__stokes__preconditioners_8h_source_l00323}00323             \mbox{\hyperlink{classoomph_1_1FpPressureAdvectionDiffusionProblem_ac897a2558e17c2fc7d608cc1cda69fe8}{Eqn\_number\_backup}}[nod\_pt].resize(nvalue);}
 \DoxyCodeLine{\Hypertarget{navier__stokes__preconditioners_8h_source_l00324}00324             \textcolor{keywordflow}{for} (\textcolor{keywordtype}{unsigned} \mbox{\hyperlink{cfortran_8h_adb50e893b86b3e55e751a42eab3cba82}{i}} = 0; \mbox{\hyperlink{cfortran_8h_adb50e893b86b3e55e751a42eab3cba82}{i}} < nvalue; \mbox{\hyperlink{cfortran_8h_adb50e893b86b3e55e751a42eab3cba82}{i}}++)}
 \DoxyCodeLine{\Hypertarget{navier__stokes__preconditioners_8h_source_l00325}00325             \{}
@@ -332,8 +332,8 @@
 \DoxyCodeLine{\Hypertarget{navier__stokes__preconditioners_8h_source_l00328}00328               \textcolor{keywordflow}{if} (\textcolor{keywordtype}{int}(\mbox{\hyperlink{cfortran_8h_adb50e893b86b3e55e751a42eab3cba82}{i}}) != el\_pt-\/>p\_nodal\_index\_nst())}
 \DoxyCodeLine{\Hypertarget{navier__stokes__preconditioners_8h_source_l00329}00329               \{}
 \DoxyCodeLine{\Hypertarget{navier__stokes__preconditioners_8h_source_l00330}00330                 \textcolor{comment}{// Backup and pin}}
-\DoxyCodeLine{\Hypertarget{navier__stokes__preconditioners_8h_source_l00331}00331                 \mbox{\hyperlink{classoomph_1_1FpPressureAdvectionDiffusionProblem_ac897a2558e17c2fc7d608cc1cda69fe8}{Eqn\_number\_backup}}[nod\_pt][\mbox{\hyperlink{cfortran_8h_adb50e893b86b3e55e751a42eab3cba82}{i}}] = nod\_pt-\/>\mbox{\hyperlink{classoomph_1_1Data_ab6845db69833c541766d9a073b023fc4}{eqn\_number}}(\mbox{\hyperlink{cfortran_8h_adb50e893b86b3e55e751a42eab3cba82}{i}});}
-\DoxyCodeLine{\Hypertarget{navier__stokes__preconditioners_8h_source_l00332}00332                 nod\_pt-\/>\mbox{\hyperlink{classoomph_1_1Data_a422231c58e423f0b43822827aa334d79}{pin}}(\mbox{\hyperlink{cfortran_8h_adb50e893b86b3e55e751a42eab3cba82}{i}});}
+\DoxyCodeLine{\Hypertarget{navier__stokes__preconditioners_8h_source_l00331}00331                 \mbox{\hyperlink{classoomph_1_1FpPressureAdvectionDiffusionProblem_ac897a2558e17c2fc7d608cc1cda69fe8}{Eqn\_number\_backup}}[nod\_pt][\mbox{\hyperlink{cfortran_8h_adb50e893b86b3e55e751a42eab3cba82}{i}}] = nod\_pt-\/>eqn\_number(\mbox{\hyperlink{cfortran_8h_adb50e893b86b3e55e751a42eab3cba82}{i}});}
+\DoxyCodeLine{\Hypertarget{navier__stokes__preconditioners_8h_source_l00332}00332                 nod\_pt-\/>pin(\mbox{\hyperlink{cfortran_8h_adb50e893b86b3e55e751a42eab3cba82}{i}});}
 \DoxyCodeLine{\Hypertarget{navier__stokes__preconditioners_8h_source_l00333}00333               \}}
 \DoxyCodeLine{\Hypertarget{navier__stokes__preconditioners_8h_source_l00334}00334               \textcolor{comment}{// Else it's a pressure value}}
 \DoxyCodeLine{\Hypertarget{navier__stokes__preconditioners_8h_source_l00335}00335               \textcolor{keywordflow}{else}}
@@ -342,7 +342,7 @@
 \DoxyCodeLine{\Hypertarget{navier__stokes__preconditioners_8h_source_l00338}00338                 \textcolor{keywordflow}{if} (el\_pt-\/>p\_nodal\_index\_nst() >= 0)}
 \DoxyCodeLine{\Hypertarget{navier__stokes__preconditioners_8h_source_l00339}00339                 \{}
 \DoxyCodeLine{\Hypertarget{navier__stokes__preconditioners_8h_source_l00340}00340                   \textcolor{comment}{// Backup}}
-\DoxyCodeLine{\Hypertarget{navier__stokes__preconditioners_8h_source_l00341}00341                   \mbox{\hyperlink{classoomph_1_1FpPressureAdvectionDiffusionProblem_ac897a2558e17c2fc7d608cc1cda69fe8}{Eqn\_number\_backup}}[nod\_pt][\mbox{\hyperlink{cfortran_8h_adb50e893b86b3e55e751a42eab3cba82}{i}}] = nod\_pt-\/>\mbox{\hyperlink{classoomph_1_1Data_ab6845db69833c541766d9a073b023fc4}{eqn\_number}}(\mbox{\hyperlink{cfortran_8h_adb50e893b86b3e55e751a42eab3cba82}{i}});}
+\DoxyCodeLine{\Hypertarget{navier__stokes__preconditioners_8h_source_l00341}00341                   \mbox{\hyperlink{classoomph_1_1FpPressureAdvectionDiffusionProblem_ac897a2558e17c2fc7d608cc1cda69fe8}{Eqn\_number\_backup}}[nod\_pt][\mbox{\hyperlink{cfortran_8h_adb50e893b86b3e55e751a42eab3cba82}{i}}] = nod\_pt-\/>eqn\_number(\mbox{\hyperlink{cfortran_8h_adb50e893b86b3e55e751a42eab3cba82}{i}});}
 \DoxyCodeLine{\Hypertarget{navier__stokes__preconditioners_8h_source_l00342}00342                 \}}
 \DoxyCodeLine{\Hypertarget{navier__stokes__preconditioners_8h_source_l00343}00343               \}}
 \DoxyCodeLine{\Hypertarget{navier__stokes__preconditioners_8h_source_l00344}00344             \}}
@@ -352,12 +352,12 @@
 \DoxyCodeLine{\Hypertarget{navier__stokes__preconditioners_8h_source_l00348}00348           \textcolor{keywordflow}{if} (set\_pressure\_bc\_for\_validation)}
 \DoxyCodeLine{\Hypertarget{navier__stokes__preconditioners_8h_source_l00349}00349           \{}
 \DoxyCodeLine{\Hypertarget{navier__stokes__preconditioners_8h_source_l00350}00350             \mbox{\hyperlink{classoomph_1_1Vector}{Vector<double>}} \mbox{\hyperlink{namespaceoomph_a9d1d2da2b8bb8e73af72b5cadb8fe97c}{x}}(2);}
-\DoxyCodeLine{\Hypertarget{navier__stokes__preconditioners_8h_source_l00351}00351             \mbox{\hyperlink{namespaceoomph_a9d1d2da2b8bb8e73af72b5cadb8fe97c}{x}}[0] = nod\_pt-\/>\mbox{\hyperlink{classoomph_1_1Node_ab76b4773a65b349f143539e07b6e15e2}{x}}(0);}
-\DoxyCodeLine{\Hypertarget{navier__stokes__preconditioners_8h_source_l00352}00352             \mbox{\hyperlink{namespaceoomph_a9d1d2da2b8bb8e73af72b5cadb8fe97c}{x}}[1] = nod\_pt-\/>\mbox{\hyperlink{classoomph_1_1Node_ab76b4773a65b349f143539e07b6e15e2}{x}}(1);}
+\DoxyCodeLine{\Hypertarget{navier__stokes__preconditioners_8h_source_l00351}00351             \mbox{\hyperlink{namespaceoomph_a9d1d2da2b8bb8e73af72b5cadb8fe97c}{x}}[0] = nod\_pt-\/>x(0);}
+\DoxyCodeLine{\Hypertarget{navier__stokes__preconditioners_8h_source_l00352}00352             \mbox{\hyperlink{namespaceoomph_a9d1d2da2b8bb8e73af72b5cadb8fe97c}{x}}[1] = nod\_pt-\/>x(1);}
 \DoxyCodeLine{\Hypertarget{navier__stokes__preconditioners_8h_source_l00353}00353             \mbox{\hyperlink{classoomph_1_1Vector}{Vector<double>}} \mbox{\hyperlink{namespaceoomph_ac0ed65f6db53d9ad737e1d2a69767d25}{u}}(2);}
 \DoxyCodeLine{\Hypertarget{navier__stokes__preconditioners_8h_source_l00354}00354             \mbox{\hyperlink{namespaceoomph_1_1PressureAdvectionDiffusionValidation_a7bb38b47b4d4efe2e775baf918dda476}{PressureAdvectionDiffusionValidation::wind\_function}}(\mbox{\hyperlink{namespaceoomph_a9d1d2da2b8bb8e73af72b5cadb8fe97c}{x}}, \mbox{\hyperlink{namespaceoomph_ac0ed65f6db53d9ad737e1d2a69767d25}{u}});}
-\DoxyCodeLine{\Hypertarget{navier__stokes__preconditioners_8h_source_l00355}00355             nod\_pt-\/>\mbox{\hyperlink{classoomph_1_1Data_a7289ca322725c6fd493970a19474b382}{set\_value}}(el\_pt-\/>u\_index\_nst(0), \mbox{\hyperlink{namespaceoomph_ac0ed65f6db53d9ad737e1d2a69767d25}{u}}[0]);}
-\DoxyCodeLine{\Hypertarget{navier__stokes__preconditioners_8h_source_l00356}00356             nod\_pt-\/>\mbox{\hyperlink{classoomph_1_1Data_a7289ca322725c6fd493970a19474b382}{set\_value}}(el\_pt-\/>u\_index\_nst(1), \mbox{\hyperlink{namespaceoomph_ac0ed65f6db53d9ad737e1d2a69767d25}{u}}[1]);}
+\DoxyCodeLine{\Hypertarget{navier__stokes__preconditioners_8h_source_l00355}00355             nod\_pt-\/>set\_value(el\_pt-\/>u\_index\_nst(0), \mbox{\hyperlink{namespaceoomph_ac0ed65f6db53d9ad737e1d2a69767d25}{u}}[0]);}
+\DoxyCodeLine{\Hypertarget{navier__stokes__preconditioners_8h_source_l00356}00356             nod\_pt-\/>set\_value(el\_pt-\/>u\_index\_nst(1), \mbox{\hyperlink{namespaceoomph_ac0ed65f6db53d9ad737e1d2a69767d25}{u}}[1]);}
 \DoxyCodeLine{\Hypertarget{navier__stokes__preconditioners_8h_source_l00357}00357           \}}
 \DoxyCodeLine{\Hypertarget{navier__stokes__preconditioners_8h_source_l00358}00358         \}}
 \DoxyCodeLine{\Hypertarget{navier__stokes__preconditioners_8h_source_l00359}00359       \}}
@@ -506,7 +506,7 @@
 \DoxyCodeLine{\Hypertarget{navier__stokes__preconditioners_8h_source_l00502}00502       \{}
 \DoxyCodeLine{\Hypertarget{navier__stokes__preconditioners_8h_source_l00503}00503         \textcolor{keywordflow}{if} (\mbox{\hyperlink{classoomph_1_1Problem_ae2e5559918832d0850b3631d004d0a37}{mesh\_pt}}()-\/>node\_pt(j)-\/>nvalue() == 3)}
 \DoxyCodeLine{\Hypertarget{navier__stokes__preconditioners_8h_source_l00504}00504         \{}
-\DoxyCodeLine{\Hypertarget{navier__stokes__preconditioners_8h_source_l00505}00505           *(\mbox{\hyperlink{classoomph_1_1Problem_ae2e5559918832d0850b3631d004d0a37}{mesh\_pt}}()-\/>\mbox{\hyperlink{classoomph_1_1Mesh_a69d22c2070f1649c4cb2607f26070d7c}{node\_pt}}(j)-\/>\mbox{\hyperlink{classoomph_1_1Data_af545f88ca20583f0c1b66e4da6076aa3}{value\_pt}}(2)) -\/= p -\/ u\_exact;}
+\DoxyCodeLine{\Hypertarget{navier__stokes__preconditioners_8h_source_l00505}00505           *(\mbox{\hyperlink{classoomph_1_1Problem_ae2e5559918832d0850b3631d004d0a37}{mesh\_pt}}()-\/>\mbox{\hyperlink{classoomph_1_1Mesh_a69d22c2070f1649c4cb2607f26070d7c}{node\_pt}}(j)-\/>value\_pt(2)) -\/= p -\/ u\_exact;}
 \DoxyCodeLine{\Hypertarget{navier__stokes__preconditioners_8h_source_l00506}00506         \}}
 \DoxyCodeLine{\Hypertarget{navier__stokes__preconditioners_8h_source_l00507}00507       \}}
 \DoxyCodeLine{\Hypertarget{navier__stokes__preconditioners_8h_source_l00508}00508 }
@@ -1113,11 +1113,11 @@
 \DoxyCodeLine{\Hypertarget{navier__stokes__preconditioners_8h_source_l01109}01109       \textcolor{keywordtype}{unsigned} nnod = Navier\_stokes\_mesh\_pt-\/>\mbox{\hyperlink{classoomph_1_1Mesh_a945e7823d1a2af243b5b7f7866aaff5e}{nnode}}();}
 \DoxyCodeLine{\Hypertarget{navier__stokes__preconditioners_8h_source_l01110}01110       \textcolor{keywordflow}{for} (\textcolor{keywordtype}{unsigned} j = 0; j < nnod; j++)}
 \DoxyCodeLine{\Hypertarget{navier__stokes__preconditioners_8h_source_l01111}01111       \{}
-\DoxyCodeLine{\Hypertarget{navier__stokes__preconditioners_8h_source_l01112}01112         \mbox{\hyperlink{classoomph_1_1Node}{Node}}* nod\_pt = Navier\_stokes\_mesh\_pt-\/>node\_pt(j);}
-\DoxyCodeLine{\Hypertarget{navier__stokes__preconditioners_8h_source_l01113}01113         \textcolor{keywordtype}{unsigned} nval = nod\_pt-\/>\mbox{\hyperlink{classoomph_1_1Data_a7e67fc78a2e8a2fd6eb75bd292d42ff8}{nvalue}}();}
+\DoxyCodeLine{\Hypertarget{navier__stokes__preconditioners_8h_source_l01112}01112         Node* nod\_pt = Navier\_stokes\_mesh\_pt-\/>node\_pt(j);}
+\DoxyCodeLine{\Hypertarget{navier__stokes__preconditioners_8h_source_l01113}01113         \textcolor{keywordtype}{unsigned} nval = nod\_pt-\/>nvalue();}
 \DoxyCodeLine{\Hypertarget{navier__stokes__preconditioners_8h_source_l01114}01114         \textcolor{keywordflow}{for} (\textcolor{keywordtype}{unsigned} \mbox{\hyperlink{cfortran_8h_adb50e893b86b3e55e751a42eab3cba82}{i}} = 0; \mbox{\hyperlink{cfortran_8h_adb50e893b86b3e55e751a42eab3cba82}{i}} < nval; \mbox{\hyperlink{cfortran_8h_adb50e893b86b3e55e751a42eab3cba82}{i}}++)}
 \DoxyCodeLine{\Hypertarget{navier__stokes__preconditioners_8h_source_l01115}01115         \{}
-\DoxyCodeLine{\Hypertarget{navier__stokes__preconditioners_8h_source_l01116}01116           nod\_pt-\/>\mbox{\hyperlink{classoomph_1_1Data_ab6845db69833c541766d9a073b023fc4}{eqn\_number}}(\mbox{\hyperlink{cfortran_8h_adb50e893b86b3e55e751a42eab3cba82}{i}}) = Eqn\_number\_backup[nod\_pt][\mbox{\hyperlink{cfortran_8h_adb50e893b86b3e55e751a42eab3cba82}{i}}];}
+\DoxyCodeLine{\Hypertarget{navier__stokes__preconditioners_8h_source_l01116}01116           nod\_pt-\/>eqn\_number(\mbox{\hyperlink{cfortran_8h_adb50e893b86b3e55e751a42eab3cba82}{i}}) = Eqn\_number\_backup[nod\_pt][\mbox{\hyperlink{cfortran_8h_adb50e893b86b3e55e751a42eab3cba82}{i}}];}
 \DoxyCodeLine{\Hypertarget{navier__stokes__preconditioners_8h_source_l01117}01117         \}}
 \DoxyCodeLine{\Hypertarget{navier__stokes__preconditioners_8h_source_l01118}01118 }
 \DoxyCodeLine{\Hypertarget{navier__stokes__preconditioners_8h_source_l01119}01119         \textcolor{comment}{// If it's a solid node deal with its positional data too}}

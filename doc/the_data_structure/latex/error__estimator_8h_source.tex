@@ -135,7 +135,7 @@
 \DoxyCodeLine{\Hypertarget{error__estimator_8h_source_l00131}00131 \textcolor{comment}{}}
 \DoxyCodeLine{\Hypertarget{error__estimator_8h_source_l00132}00132 \textcolor{comment}{    /// Pointer to the j-\/th vertex node in the element. Needed for}}
 \DoxyCodeLine{\Hypertarget{error__estimator_8h_source_l00133}00133 \textcolor{comment}{    /// efficient patch assmbly}}
-\DoxyCodeLine{\Hypertarget{error__estimator_8h_source_l00134}\mbox{\hyperlink{classoomph_1_1ElementWithZ2ErrorEstimator_a6d852edae3d9f6bddeb5aaf136ebbb8b}{00134}} \textcolor{comment}{}    \textcolor{keyword}{virtual} \mbox{\hyperlink{classoomph_1_1Node}{Node}}* \mbox{\hyperlink{classoomph_1_1ElementWithZ2ErrorEstimator_a6d852edae3d9f6bddeb5aaf136ebbb8b}{vertex\_node\_pt}}(\textcolor{keyword}{const} \textcolor{keywordtype}{unsigned}\& j) \textcolor{keyword}{const} = 0;}
+\DoxyCodeLine{\Hypertarget{error__estimator_8h_source_l00134}\mbox{\hyperlink{classoomph_1_1ElementWithZ2ErrorEstimator_a6d852edae3d9f6bddeb5aaf136ebbb8b}{00134}} \textcolor{comment}{}    \textcolor{keyword}{virtual} Node* \mbox{\hyperlink{classoomph_1_1ElementWithZ2ErrorEstimator_a6d852edae3d9f6bddeb5aaf136ebbb8b}{vertex\_node\_pt}}(\textcolor{keyword}{const} \textcolor{keywordtype}{unsigned}\& j) \textcolor{keyword}{const} = 0;}
 \DoxyCodeLine{\Hypertarget{error__estimator_8h_source_l00135}00135 \textcolor{comment}{}}
 \DoxyCodeLine{\Hypertarget{error__estimator_8h_source_l00136}00136 \textcolor{comment}{    /// Order of recovery shape functions}}
 \DoxyCodeLine{\Hypertarget{error__estimator_8h_source_l00137}\mbox{\hyperlink{classoomph_1_1ElementWithZ2ErrorEstimator_af39480835bd3e0f6b2f4f7a9a4044798}{00137}} \textcolor{comment}{}    \textcolor{keyword}{virtual} \textcolor{keywordtype}{unsigned} \mbox{\hyperlink{classoomph_1_1ElementWithZ2ErrorEstimator_af39480835bd3e0f6b2f4f7a9a4044798}{nrecovery\_order}}() = 0;}
@@ -371,7 +371,7 @@
 \DoxyCodeLine{\Hypertarget{error__estimator_8h_source_l00367}00367 \textcolor{comment}{    /// adjacent\_elements\_pt[nod\_pt] contains the pointer to the vector that}}
 \DoxyCodeLine{\Hypertarget{error__estimator_8h_source_l00368}00368 \textcolor{comment}{    /// contains the pointers to the elements that the node is part of.}}
 \DoxyCodeLine{\Hypertarget{error__estimator_8h_source_l00369}00369 \textcolor{comment}{}    \textcolor{keywordtype}{void} setup\_patches(\mbox{\hyperlink{classoomph_1_1Mesh}{Mesh}}*\& mesh\_pt,}
-\DoxyCodeLine{\Hypertarget{error__estimator_8h_source_l00370}00370                        std::map<\mbox{\hyperlink{classoomph_1_1Node}{Node}}*, \mbox{\hyperlink{classoomph_1_1Vector}{Vector<ElementWithZ2ErrorEstimator*>}}*>\&}
+\DoxyCodeLine{\Hypertarget{error__estimator_8h_source_l00370}00370                        std::map<Node*, \mbox{\hyperlink{classoomph_1_1Vector}{Vector<ElementWithZ2ErrorEstimator*>}}*>\&}
 \DoxyCodeLine{\Hypertarget{error__estimator_8h_source_l00371}00371                          adjacent\_elements\_pt,}
 \DoxyCodeLine{\Hypertarget{error__estimator_8h_source_l00372}00372                        \mbox{\hyperlink{classoomph_1_1Vector}{Vector<Node*>}}\& vertex\_node\_pt);}
 \DoxyCodeLine{\Hypertarget{error__estimator_8h_source_l00373}00373 \textcolor{comment}{}}
@@ -495,7 +495,7 @@
 \DoxyCodeLine{\Hypertarget{error__estimator_8h_source_l00491}00491       \}}
 \DoxyCodeLine{\Hypertarget{error__estimator_8h_source_l00492}00492 \textcolor{preprocessor}{\#endif}}
 \DoxyCodeLine{\Hypertarget{error__estimator_8h_source_l00493}00493 }
-\DoxyCodeLine{\Hypertarget{error__estimator_8h_source_l00494}00494       \textcolor{keywordtype}{unsigned} dim = mesh\_pt-\/>\mbox{\hyperlink{classoomph_1_1Mesh_a479059b0964826a8cee6eb506b57268a}{finite\_element\_pt}}(0)-\/>\mbox{\hyperlink{classoomph_1_1FiniteElement_a9addfe893ab8205619963aa96204cdc4}{node\_pt}}(0)-\/>\mbox{\hyperlink{classoomph_1_1Node_a786c96a8e46eb27a03b2b31f629d41b3}{ndim}}();}
+\DoxyCodeLine{\Hypertarget{error__estimator_8h_source_l00494}00494       \textcolor{keywordtype}{unsigned} dim = mesh\_pt-\/>\mbox{\hyperlink{classoomph_1_1Mesh_a479059b0964826a8cee6eb506b57268a}{finite\_element\_pt}}(0)-\/>\mbox{\hyperlink{classoomph_1_1FiniteElement_a9addfe893ab8205619963aa96204cdc4}{node\_pt}}(0)-\/>ndim();}
 \DoxyCodeLine{\Hypertarget{error__estimator_8h_source_l00495}00495       \textcolor{keywordflow}{if} (use\_lagrangian\_coordinates)}
 \DoxyCodeLine{\Hypertarget{error__estimator_8h_source_l00496}00496       \{}
 \DoxyCodeLine{\Hypertarget{error__estimator_8h_source_l00497}00497         \mbox{\hyperlink{classoomph_1_1SolidNode}{SolidNode}}* solid\_nod\_pt =}
@@ -517,10 +517,10 @@
 \DoxyCodeLine{\Hypertarget{error__estimator_8h_source_l00513}00513         \textcolor{keywordtype}{unsigned} nnod = el\_pt-\/>\mbox{\hyperlink{classoomph_1_1FiniteElement_a6219ed269a6d89b5aa14659cce48905a}{nnode}}();}
 \DoxyCodeLine{\Hypertarget{error__estimator_8h_source_l00514}00514         \textcolor{keywordflow}{for} (\textcolor{keywordtype}{unsigned} j = 0; j < nnod; j++)}
 \DoxyCodeLine{\Hypertarget{error__estimator_8h_source_l00515}00515         \{}
-\DoxyCodeLine{\Hypertarget{error__estimator_8h_source_l00516}00516           \mbox{\hyperlink{classoomph_1_1Node}{Node}}* nod\_pt = el\_pt-\/>\mbox{\hyperlink{classoomph_1_1FiniteElement_a9addfe893ab8205619963aa96204cdc4}{node\_pt}}(j);}
+\DoxyCodeLine{\Hypertarget{error__estimator_8h_source_l00516}00516           Node* nod\_pt = el\_pt-\/>\mbox{\hyperlink{classoomph_1_1FiniteElement_a9addfe893ab8205619963aa96204cdc4}{node\_pt}}(j);}
 \DoxyCodeLine{\Hypertarget{error__estimator_8h_source_l00517}00517           \textcolor{keywordflow}{for} (\textcolor{keywordtype}{unsigned} \mbox{\hyperlink{cfortran_8h_adb50e893b86b3e55e751a42eab3cba82}{i}} = 0; \mbox{\hyperlink{cfortran_8h_adb50e893b86b3e55e751a42eab3cba82}{i}} < dim; \mbox{\hyperlink{cfortran_8h_adb50e893b86b3e55e751a42eab3cba82}{i}}++)}
 \DoxyCodeLine{\Hypertarget{error__estimator_8h_source_l00518}00518           \{}
-\DoxyCodeLine{\Hypertarget{error__estimator_8h_source_l00519}00519             \textcolor{keywordtype}{double} \mbox{\hyperlink{namespaceoomph_a9d1d2da2b8bb8e73af72b5cadb8fe97c}{x}} = nod\_pt-\/>\mbox{\hyperlink{classoomph_1_1Node_ab76b4773a65b349f143539e07b6e15e2}{x}}(\mbox{\hyperlink{cfortran_8h_adb50e893b86b3e55e751a42eab3cba82}{i}});}
+\DoxyCodeLine{\Hypertarget{error__estimator_8h_source_l00519}00519             \textcolor{keywordtype}{double} \mbox{\hyperlink{namespaceoomph_a9d1d2da2b8bb8e73af72b5cadb8fe97c}{x}} = nod\_pt-\/>x(\mbox{\hyperlink{cfortran_8h_adb50e893b86b3e55e751a42eab3cba82}{i}});}
 \DoxyCodeLine{\Hypertarget{error__estimator_8h_source_l00520}00520             \textcolor{keywordflow}{if} (use\_lagrangian\_coordinates)}
 \DoxyCodeLine{\Hypertarget{error__estimator_8h_source_l00521}00521             \{}
 \DoxyCodeLine{\Hypertarget{error__estimator_8h_source_l00522}00522               \mbox{\hyperlink{classoomph_1_1SolidNode}{SolidNode}}* solid\_nod\_pt = \textcolor{keyword}{dynamic\_cast<}\mbox{\hyperlink{classoomph_1_1SolidNode}{SolidNode}}*\textcolor{keyword}{>}(nod\_pt);}
@@ -612,7 +612,7 @@
 \DoxyCodeLine{\Hypertarget{error__estimator_8h_source_l00608}00608 }
 \DoxyCodeLine{\Hypertarget{error__estimator_8h_source_l00609}00609         \textcolor{comment}{// Check if element is in the regions to be refined}}
 \DoxyCodeLine{\Hypertarget{error__estimator_8h_source_l00610}00610         \textcolor{comment}{// (based on coords of its central node)}}
-\DoxyCodeLine{\Hypertarget{error__estimator_8h_source_l00611}00611         \mbox{\hyperlink{classoomph_1_1Node}{Node}}* nod\_pt =}
+\DoxyCodeLine{\Hypertarget{error__estimator_8h_source_l00611}00611         Node* nod\_pt =}
 \DoxyCodeLine{\Hypertarget{error__estimator_8h_source_l00612}00612           mesh\_pt-\/>\mbox{\hyperlink{classoomph_1_1Mesh_a479059b0964826a8cee6eb506b57268a}{finite\_element\_pt}}(\mbox{\hyperlink{cfortran_8h_a37cd013acc76697829c324bdd8562d82}{e}})-\/>\mbox{\hyperlink{classoomph_1_1FiniteElement_a9addfe893ab8205619963aa96204cdc4}{node\_pt}}(\mbox{\hyperlink{classoomph_1_1DummyErrorEstimator_a9885e1d7966047816f1a24448d5f6ac5}{Central\_node\_number}});}
 \DoxyCodeLine{\Hypertarget{error__estimator_8h_source_l00613}00613         \textcolor{keywordflow}{for} (\textcolor{keywordtype}{unsigned} r = 0; r < nregion; r++)}
 \DoxyCodeLine{\Hypertarget{error__estimator_8h_source_l00614}00614         \{}
@@ -620,7 +620,7 @@
 \DoxyCodeLine{\Hypertarget{error__estimator_8h_source_l00616}00616           \textcolor{keywordtype}{unsigned} dim = \mbox{\hyperlink{classoomph_1_1DummyErrorEstimator_a181a66a833352440c325a8edbefb51cf}{Region\_low\_bound}}[r].size();}
 \DoxyCodeLine{\Hypertarget{error__estimator_8h_source_l00617}00617           \textcolor{keywordflow}{for} (\textcolor{keywordtype}{unsigned} \mbox{\hyperlink{cfortran_8h_adb50e893b86b3e55e751a42eab3cba82}{i}} = 0; \mbox{\hyperlink{cfortran_8h_adb50e893b86b3e55e751a42eab3cba82}{i}} < dim; \mbox{\hyperlink{cfortran_8h_adb50e893b86b3e55e751a42eab3cba82}{i}}++)}
 \DoxyCodeLine{\Hypertarget{error__estimator_8h_source_l00618}00618           \{}
-\DoxyCodeLine{\Hypertarget{error__estimator_8h_source_l00619}00619             \textcolor{keywordtype}{double} \mbox{\hyperlink{namespaceoomph_a9d1d2da2b8bb8e73af72b5cadb8fe97c}{x}} = nod\_pt-\/>\mbox{\hyperlink{classoomph_1_1Node_ab76b4773a65b349f143539e07b6e15e2}{x}}(\mbox{\hyperlink{cfortran_8h_adb50e893b86b3e55e751a42eab3cba82}{i}});}
+\DoxyCodeLine{\Hypertarget{error__estimator_8h_source_l00619}00619             \textcolor{keywordtype}{double} \mbox{\hyperlink{namespaceoomph_a9d1d2da2b8bb8e73af72b5cadb8fe97c}{x}} = nod\_pt-\/>x(\mbox{\hyperlink{cfortran_8h_adb50e893b86b3e55e751a42eab3cba82}{i}});}
 \DoxyCodeLine{\Hypertarget{error__estimator_8h_source_l00620}00620             \textcolor{keywordflow}{if} (\mbox{\hyperlink{classoomph_1_1DummyErrorEstimator_a052e3d319921a682b7fa0fef66496625}{Use\_lagrangian\_coordinates}})}
 \DoxyCodeLine{\Hypertarget{error__estimator_8h_source_l00621}00621             \{}
 \DoxyCodeLine{\Hypertarget{error__estimator_8h_source_l00622}00622               \mbox{\hyperlink{classoomph_1_1SolidNode}{SolidNode}}* solid\_nod\_pt = \textcolor{keyword}{dynamic\_cast<}\mbox{\hyperlink{classoomph_1_1SolidNode}{SolidNode}}*\textcolor{keyword}{>}(nod\_pt);}

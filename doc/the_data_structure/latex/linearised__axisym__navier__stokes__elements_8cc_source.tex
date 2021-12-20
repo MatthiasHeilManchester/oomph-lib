@@ -400,7 +400,7 @@
 \DoxyCodeLine{\Hypertarget{linearised__axisym__navier__stokes__elements_8cc_source_l00396}00396       \textcolor{keywordtype}{unsigned} flag)}
 \DoxyCodeLine{\Hypertarget{linearised__axisym__navier__stokes__elements_8cc_source_l00397}00397   \{}
 \DoxyCodeLine{\Hypertarget{linearised__axisym__navier__stokes__elements_8cc_source_l00398}00398     \textcolor{comment}{// Get the time from the first node in the element}}
-\DoxyCodeLine{\Hypertarget{linearised__axisym__navier__stokes__elements_8cc_source_l00399}00399     \textcolor{keyword}{const} \textcolor{keywordtype}{double} time = this-\/>\mbox{\hyperlink{classoomph_1_1FiniteElement_a9addfe893ab8205619963aa96204cdc4}{node\_pt}}(0)-\/>\mbox{\hyperlink{classoomph_1_1Data_a065d7bffcec82bf4d4bd7b41f9aa80b3}{time\_stepper\_pt}}()-\/>\mbox{\hyperlink{classoomph_1_1TimeStepper_a5a69b6874b36b2f594cbee45719d4c7b}{time}}();}
+\DoxyCodeLine{\Hypertarget{linearised__axisym__navier__stokes__elements_8cc_source_l00399}00399     \textcolor{keyword}{const} \textcolor{keywordtype}{double} time = this-\/>\mbox{\hyperlink{classoomph_1_1FiniteElement_a9addfe893ab8205619963aa96204cdc4}{node\_pt}}(0)-\/>time\_stepper\_pt()-\/>time();}
 \DoxyCodeLine{\Hypertarget{linearised__axisym__navier__stokes__elements_8cc_source_l00400}00400 }
 \DoxyCodeLine{\Hypertarget{linearised__axisym__navier__stokes__elements_8cc_source_l00401}00401     \textcolor{comment}{// Determine number of nodes in the element}}
 \DoxyCodeLine{\Hypertarget{linearised__axisym__navier__stokes__elements_8cc_source_l00402}00402     \textcolor{keyword}{const} \textcolor{keywordtype}{unsigned} n\_node = \mbox{\hyperlink{classoomph_1_1FiniteElement_a6219ed269a6d89b5aa14659cce48905a}{nnode}}();}
@@ -713,7 +713,7 @@
 \DoxyCodeLine{\Hypertarget{linearised__axisym__navier__stokes__elements_8cc_source_l00709}00709                 \textcolor{comment}{// Inertial terms (du/dt)}}
 \DoxyCodeLine{\Hypertarget{linearised__axisym__navier__stokes__elements_8cc_source_l00710}00710                 \mbox{\hyperlink{classoomph_1_1FiniteElement_aa6c806dab803b82ba4f02cf806971af8}{jacobian}}(local\_eqn, local\_unknown) -\/=}
 \DoxyCodeLine{\Hypertarget{linearised__axisym__navier__stokes__elements_8cc_source_l00711}00711                   scaled\_re\_st * r *}
-\DoxyCodeLine{\Hypertarget{linearised__axisym__navier__stokes__elements_8cc_source_l00712}00712                   \mbox{\hyperlink{classoomph_1_1FiniteElement_a9addfe893ab8205619963aa96204cdc4}{node\_pt}}(l2)-\/>\mbox{\hyperlink{classoomph_1_1Data_a065d7bffcec82bf4d4bd7b41f9aa80b3}{time\_stepper\_pt}}()-\/>\mbox{\hyperlink{classoomph_1_1TimeStepper_a4cb0aecb044b77ba0553cdd54b586d8a}{weight}}(1, 0) * psif\_ *}
+\DoxyCodeLine{\Hypertarget{linearised__axisym__navier__stokes__elements_8cc_source_l00712}00712                   \mbox{\hyperlink{classoomph_1_1FiniteElement_a9addfe893ab8205619963aa96204cdc4}{node\_pt}}(l2)-\/>time\_stepper\_pt()-\/>weight(1, 0) * psif\_ *}
 \DoxyCodeLine{\Hypertarget{linearised__axisym__navier__stokes__elements_8cc_source_l00713}00713                   testf\_ * \mbox{\hyperlink{namespaceoomph_ab40f6d5233caa62dd428818b4cba72d5}{W}};}
 \DoxyCodeLine{\Hypertarget{linearised__axisym__navier__stokes__elements_8cc_source_l00714}00714 }
 \DoxyCodeLine{\Hypertarget{linearised__axisym__navier__stokes__elements_8cc_source_l00715}00715                 \textcolor{comment}{// Inertial terms (convective)}}
@@ -901,7 +901,7 @@
 \DoxyCodeLine{\Hypertarget{linearised__axisym__navier__stokes__elements_8cc_source_l00897}00897                 \textcolor{comment}{// Inertial terms (du/dt)}}
 \DoxyCodeLine{\Hypertarget{linearised__axisym__navier__stokes__elements_8cc_source_l00898}00898                 \mbox{\hyperlink{classoomph_1_1FiniteElement_aa6c806dab803b82ba4f02cf806971af8}{jacobian}}(local\_eqn, local\_unknown) -\/=}
 \DoxyCodeLine{\Hypertarget{linearised__axisym__navier__stokes__elements_8cc_source_l00899}00899                   scaled\_re\_st * r *}
-\DoxyCodeLine{\Hypertarget{linearised__axisym__navier__stokes__elements_8cc_source_l00900}00900                   \mbox{\hyperlink{classoomph_1_1FiniteElement_a9addfe893ab8205619963aa96204cdc4}{node\_pt}}(l2)-\/>\mbox{\hyperlink{classoomph_1_1Data_a065d7bffcec82bf4d4bd7b41f9aa80b3}{time\_stepper\_pt}}()-\/>\mbox{\hyperlink{classoomph_1_1TimeStepper_a4cb0aecb044b77ba0553cdd54b586d8a}{weight}}(1, 0) * psif\_ *}
+\DoxyCodeLine{\Hypertarget{linearised__axisym__navier__stokes__elements_8cc_source_l00900}00900                   \mbox{\hyperlink{classoomph_1_1FiniteElement_a9addfe893ab8205619963aa96204cdc4}{node\_pt}}(l2)-\/>time\_stepper\_pt()-\/>weight(1, 0) * psif\_ *}
 \DoxyCodeLine{\Hypertarget{linearised__axisym__navier__stokes__elements_8cc_source_l00901}00901                   testf\_ * \mbox{\hyperlink{namespaceoomph_ab40f6d5233caa62dd428818b4cba72d5}{W}};}
 \DoxyCodeLine{\Hypertarget{linearised__axisym__navier__stokes__elements_8cc_source_l00902}00902 }
 \DoxyCodeLine{\Hypertarget{linearised__axisym__navier__stokes__elements_8cc_source_l00903}00903                 \textcolor{comment}{// Inertial terms (convective)}}
@@ -1082,7 +1082,7 @@
 \DoxyCodeLine{\Hypertarget{linearised__axisym__navier__stokes__elements_8cc_source_l01078}01078                 \textcolor{comment}{// Inertial terms (du/dt)}}
 \DoxyCodeLine{\Hypertarget{linearised__axisym__navier__stokes__elements_8cc_source_l01079}01079                 \mbox{\hyperlink{classoomph_1_1FiniteElement_aa6c806dab803b82ba4f02cf806971af8}{jacobian}}(local\_eqn, local\_unknown) -\/=}
 \DoxyCodeLine{\Hypertarget{linearised__axisym__navier__stokes__elements_8cc_source_l01080}01080                   scaled\_re\_st * r *}
-\DoxyCodeLine{\Hypertarget{linearised__axisym__navier__stokes__elements_8cc_source_l01081}01081                   \mbox{\hyperlink{classoomph_1_1FiniteElement_a9addfe893ab8205619963aa96204cdc4}{node\_pt}}(l2)-\/>\mbox{\hyperlink{classoomph_1_1Data_a065d7bffcec82bf4d4bd7b41f9aa80b3}{time\_stepper\_pt}}()-\/>\mbox{\hyperlink{classoomph_1_1TimeStepper_a4cb0aecb044b77ba0553cdd54b586d8a}{weight}}(1, 0) * psif\_ *}
+\DoxyCodeLine{\Hypertarget{linearised__axisym__navier__stokes__elements_8cc_source_l01081}01081                   \mbox{\hyperlink{classoomph_1_1FiniteElement_a9addfe893ab8205619963aa96204cdc4}{node\_pt}}(l2)-\/>time\_stepper\_pt()-\/>weight(1, 0) * psif\_ *}
 \DoxyCodeLine{\Hypertarget{linearised__axisym__navier__stokes__elements_8cc_source_l01082}01082                   testf\_ * \mbox{\hyperlink{namespaceoomph_ab40f6d5233caa62dd428818b4cba72d5}{W}};}
 \DoxyCodeLine{\Hypertarget{linearised__axisym__navier__stokes__elements_8cc_source_l01083}01083 }
 \DoxyCodeLine{\Hypertarget{linearised__axisym__navier__stokes__elements_8cc_source_l01084}01084                 \textcolor{comment}{// Inertial terms (convective)}}
@@ -1258,7 +1258,7 @@
 \DoxyCodeLine{\Hypertarget{linearised__axisym__navier__stokes__elements_8cc_source_l01254}01254                 \textcolor{comment}{// Inertial terms (du/dt)}}
 \DoxyCodeLine{\Hypertarget{linearised__axisym__navier__stokes__elements_8cc_source_l01255}01255                 \mbox{\hyperlink{classoomph_1_1FiniteElement_aa6c806dab803b82ba4f02cf806971af8}{jacobian}}(local\_eqn, local\_unknown) -\/=}
 \DoxyCodeLine{\Hypertarget{linearised__axisym__navier__stokes__elements_8cc_source_l01256}01256                   scaled\_re\_st * r *}
-\DoxyCodeLine{\Hypertarget{linearised__axisym__navier__stokes__elements_8cc_source_l01257}01257                   \mbox{\hyperlink{classoomph_1_1FiniteElement_a9addfe893ab8205619963aa96204cdc4}{node\_pt}}(l2)-\/>\mbox{\hyperlink{classoomph_1_1Data_a065d7bffcec82bf4d4bd7b41f9aa80b3}{time\_stepper\_pt}}()-\/>\mbox{\hyperlink{classoomph_1_1TimeStepper_a4cb0aecb044b77ba0553cdd54b586d8a}{weight}}(1, 0) * psif\_ *}
+\DoxyCodeLine{\Hypertarget{linearised__axisym__navier__stokes__elements_8cc_source_l01257}01257                   \mbox{\hyperlink{classoomph_1_1FiniteElement_a9addfe893ab8205619963aa96204cdc4}{node\_pt}}(l2)-\/>time\_stepper\_pt()-\/>weight(1, 0) * psif\_ *}
 \DoxyCodeLine{\Hypertarget{linearised__axisym__navier__stokes__elements_8cc_source_l01258}01258                   testf\_ * \mbox{\hyperlink{namespaceoomph_ab40f6d5233caa62dd428818b4cba72d5}{W}};}
 \DoxyCodeLine{\Hypertarget{linearised__axisym__navier__stokes__elements_8cc_source_l01259}01259 }
 \DoxyCodeLine{\Hypertarget{linearised__axisym__navier__stokes__elements_8cc_source_l01260}01260                 \textcolor{comment}{// Inertial terms (convective)}}
@@ -1451,7 +1451,7 @@
 \DoxyCodeLine{\Hypertarget{linearised__axisym__navier__stokes__elements_8cc_source_l01447}01447                 \textcolor{comment}{// Inertial terms (du/dt)}}
 \DoxyCodeLine{\Hypertarget{linearised__axisym__navier__stokes__elements_8cc_source_l01448}01448                 \mbox{\hyperlink{classoomph_1_1FiniteElement_aa6c806dab803b82ba4f02cf806971af8}{jacobian}}(local\_eqn, local\_unknown) -\/=}
 \DoxyCodeLine{\Hypertarget{linearised__axisym__navier__stokes__elements_8cc_source_l01449}01449                   scaled\_re\_st * r *}
-\DoxyCodeLine{\Hypertarget{linearised__axisym__navier__stokes__elements_8cc_source_l01450}01450                   \mbox{\hyperlink{classoomph_1_1FiniteElement_a9addfe893ab8205619963aa96204cdc4}{node\_pt}}(l2)-\/>\mbox{\hyperlink{classoomph_1_1Data_a065d7bffcec82bf4d4bd7b41f9aa80b3}{time\_stepper\_pt}}()-\/>\mbox{\hyperlink{classoomph_1_1TimeStepper_a4cb0aecb044b77ba0553cdd54b586d8a}{weight}}(1, 0) * psif\_ *}
+\DoxyCodeLine{\Hypertarget{linearised__axisym__navier__stokes__elements_8cc_source_l01450}01450                   \mbox{\hyperlink{classoomph_1_1FiniteElement_a9addfe893ab8205619963aa96204cdc4}{node\_pt}}(l2)-\/>time\_stepper\_pt()-\/>weight(1, 0) * psif\_ *}
 \DoxyCodeLine{\Hypertarget{linearised__axisym__navier__stokes__elements_8cc_source_l01451}01451                   testf\_ * \mbox{\hyperlink{namespaceoomph_ab40f6d5233caa62dd428818b4cba72d5}{W}};}
 \DoxyCodeLine{\Hypertarget{linearised__axisym__navier__stokes__elements_8cc_source_l01452}01452 }
 \DoxyCodeLine{\Hypertarget{linearised__axisym__navier__stokes__elements_8cc_source_l01453}01453                 \textcolor{comment}{// Inertial terms (convective)}}
@@ -1647,7 +1647,7 @@
 \DoxyCodeLine{\Hypertarget{linearised__axisym__navier__stokes__elements_8cc_source_l01643}01643                 \textcolor{comment}{// Inertial terms (du/dt)}}
 \DoxyCodeLine{\Hypertarget{linearised__axisym__navier__stokes__elements_8cc_source_l01644}01644                 \mbox{\hyperlink{classoomph_1_1FiniteElement_aa6c806dab803b82ba4f02cf806971af8}{jacobian}}(local\_eqn, local\_unknown) -\/=}
 \DoxyCodeLine{\Hypertarget{linearised__axisym__navier__stokes__elements_8cc_source_l01645}01645                   scaled\_re\_st * r *}
-\DoxyCodeLine{\Hypertarget{linearised__axisym__navier__stokes__elements_8cc_source_l01646}01646                   \mbox{\hyperlink{classoomph_1_1FiniteElement_a9addfe893ab8205619963aa96204cdc4}{node\_pt}}(l2)-\/>\mbox{\hyperlink{classoomph_1_1Data_a065d7bffcec82bf4d4bd7b41f9aa80b3}{time\_stepper\_pt}}()-\/>\mbox{\hyperlink{classoomph_1_1TimeStepper_a4cb0aecb044b77ba0553cdd54b586d8a}{weight}}(1, 0) * psif\_ *}
+\DoxyCodeLine{\Hypertarget{linearised__axisym__navier__stokes__elements_8cc_source_l01646}01646                   \mbox{\hyperlink{classoomph_1_1FiniteElement_a9addfe893ab8205619963aa96204cdc4}{node\_pt}}(l2)-\/>time\_stepper\_pt()-\/>weight(1, 0) * psif\_ *}
 \DoxyCodeLine{\Hypertarget{linearised__axisym__navier__stokes__elements_8cc_source_l01647}01647                   testf\_ * \mbox{\hyperlink{namespaceoomph_ab40f6d5233caa62dd428818b4cba72d5}{W}};}
 \DoxyCodeLine{\Hypertarget{linearised__axisym__navier__stokes__elements_8cc_source_l01648}01648 }
 \DoxyCodeLine{\Hypertarget{linearised__axisym__navier__stokes__elements_8cc_source_l01649}01649                 \textcolor{comment}{// Convective terms}}

@@ -171,7 +171,7 @@
 \DoxyCodeLine{\Hypertarget{axisym__linear__elasticity__elements_8cc_source_l00167}00167     \textcolor{keywordtype}{unsigned} n\_node = this-\/>\mbox{\hyperlink{classoomph_1_1FiniteElement_a6219ed269a6d89b5aa14659cce48905a}{nnode}}();}
 \DoxyCodeLine{\Hypertarget{axisym__linear__elasticity__elements_8cc_source_l00168}00168 }
 \DoxyCodeLine{\Hypertarget{axisym__linear__elasticity__elements_8cc_source_l00169}00169     \textcolor{comment}{// Get continuous time from timestepper of first node}}
-\DoxyCodeLine{\Hypertarget{axisym__linear__elasticity__elements_8cc_source_l00170}00170     \textcolor{keywordtype}{double} time = \mbox{\hyperlink{classoomph_1_1FiniteElement_a9addfe893ab8205619963aa96204cdc4}{node\_pt}}(0)-\/>\mbox{\hyperlink{classoomph_1_1Data_a065d7bffcec82bf4d4bd7b41f9aa80b3}{time\_stepper\_pt}}()-\/>\mbox{\hyperlink{classoomph_1_1TimeStepper_ac73981d5a68161d7b317bebb4ee04adb}{time\_pt}}()-\/>\mbox{\hyperlink{classoomph_1_1Time_a43461269b799134f4b7a9aca3e79a7c8}{time}}();}
+\DoxyCodeLine{\Hypertarget{axisym__linear__elasticity__elements_8cc_source_l00170}00170     \textcolor{keywordtype}{double} time = \mbox{\hyperlink{classoomph_1_1FiniteElement_a9addfe893ab8205619963aa96204cdc4}{node\_pt}}(0)-\/>time\_stepper\_pt()-\/>time\_pt()-\/>time();}
 \DoxyCodeLine{\Hypertarget{axisym__linear__elasticity__elements_8cc_source_l00171}00171 }
 \DoxyCodeLine{\Hypertarget{axisym__linear__elasticity__elements_8cc_source_l00172}00172 \textcolor{preprocessor}{\#ifdef PARANOID}}
 \DoxyCodeLine{\Hypertarget{axisym__linear__elasticity__elements_8cc_source_l00173}00173     \textcolor{comment}{// Find out how many positional dofs there are}}
@@ -375,7 +375,7 @@
 \DoxyCodeLine{\Hypertarget{axisym__linear__elasticity__elements_8cc_source_l00371}00371                            dpsidx(l2, 1) * dpsidx(l, 1)) +}
 \DoxyCodeLine{\Hypertarget{axisym__linear__elasticity__elements_8cc_source_l00372}00372                      lambda * (dpsidx(l2, 0) + psi(l2) / r) *}
 \DoxyCodeLine{\Hypertarget{axisym__linear__elasticity__elements_8cc_source_l00373}00373                        (dpsidx(l, 0) + psi(l) / r) +}
-\DoxyCodeLine{\Hypertarget{axisym__linear__elasticity__elements_8cc_source_l00374}00374                      \mbox{\hyperlink{classoomph_1_1AxisymmetricLinearElasticityEquationsBase_a3dd89f0ad59f589f4052765d9dc32e7d}{lambda\_sq}} * \mbox{\hyperlink{classoomph_1_1FiniteElement_a9addfe893ab8205619963aa96204cdc4}{node\_pt}}(l2)-\/>\mbox{\hyperlink{classoomph_1_1Data_a065d7bffcec82bf4d4bd7b41f9aa80b3}{time\_stepper\_pt}}()-\/>\mbox{\hyperlink{classoomph_1_1TimeStepper_a4cb0aecb044b77ba0553cdd54b586d8a}{weight}}(2, 0) *}
+\DoxyCodeLine{\Hypertarget{axisym__linear__elasticity__elements_8cc_source_l00374}00374                      \mbox{\hyperlink{classoomph_1_1AxisymmetricLinearElasticityEquationsBase_a3dd89f0ad59f589f4052765d9dc32e7d}{lambda\_sq}} * \mbox{\hyperlink{classoomph_1_1FiniteElement_a9addfe893ab8205619963aa96204cdc4}{node\_pt}}(l2)-\/>time\_stepper\_pt()-\/>weight(2, 0) *}
 \DoxyCodeLine{\Hypertarget{axisym__linear__elasticity__elements_8cc_source_l00375}00375                        psi(l2) * psi(l)) *}
 \DoxyCodeLine{\Hypertarget{axisym__linear__elasticity__elements_8cc_source_l00376}00376                     r * \mbox{\hyperlink{namespaceoomph_ab40f6d5233caa62dd428818b4cba72d5}{W}};}
 \DoxyCodeLine{\Hypertarget{axisym__linear__elasticity__elements_8cc_source_l00377}00377 }
@@ -398,7 +398,7 @@
 \DoxyCodeLine{\Hypertarget{axisym__linear__elasticity__elements_8cc_source_l00394}00394                     (mu * (dpsidx(l2, 0) * dpsidx(l, 0) +}
 \DoxyCodeLine{\Hypertarget{axisym__linear__elasticity__elements_8cc_source_l00395}00395                            2.0 * dpsidx(l2, 1) * dpsidx(l, 1)) +}
 \DoxyCodeLine{\Hypertarget{axisym__linear__elasticity__elements_8cc_source_l00396}00396                      lambda * dpsidx(l2, 1) * dpsidx(l, 1) +}
-\DoxyCodeLine{\Hypertarget{axisym__linear__elasticity__elements_8cc_source_l00397}00397                      \mbox{\hyperlink{classoomph_1_1AxisymmetricLinearElasticityEquationsBase_a3dd89f0ad59f589f4052765d9dc32e7d}{lambda\_sq}} * \mbox{\hyperlink{classoomph_1_1FiniteElement_a9addfe893ab8205619963aa96204cdc4}{node\_pt}}(l2)-\/>\mbox{\hyperlink{classoomph_1_1Data_a065d7bffcec82bf4d4bd7b41f9aa80b3}{time\_stepper\_pt}}()-\/>\mbox{\hyperlink{classoomph_1_1TimeStepper_a4cb0aecb044b77ba0553cdd54b586d8a}{weight}}(2, 0) *}
+\DoxyCodeLine{\Hypertarget{axisym__linear__elasticity__elements_8cc_source_l00397}00397                      \mbox{\hyperlink{classoomph_1_1AxisymmetricLinearElasticityEquationsBase_a3dd89f0ad59f589f4052765d9dc32e7d}{lambda\_sq}} * \mbox{\hyperlink{classoomph_1_1FiniteElement_a9addfe893ab8205619963aa96204cdc4}{node\_pt}}(l2)-\/>time\_stepper\_pt()-\/>weight(2, 0) *}
 \DoxyCodeLine{\Hypertarget{axisym__linear__elasticity__elements_8cc_source_l00398}00398                        psi(l2) * psi(l)) *}
 \DoxyCodeLine{\Hypertarget{axisym__linear__elasticity__elements_8cc_source_l00399}00399                     r * \mbox{\hyperlink{namespaceoomph_ab40f6d5233caa62dd428818b4cba72d5}{W}};}
 \DoxyCodeLine{\Hypertarget{axisym__linear__elasticity__elements_8cc_source_l00400}00400 }
@@ -417,7 +417,7 @@
 \DoxyCodeLine{\Hypertarget{axisym__linear__elasticity__elements_8cc_source_l00413}00413                     (mu * ((dpsidx(l2, 0) -\/ psi(l2) / r) *}
 \DoxyCodeLine{\Hypertarget{axisym__linear__elasticity__elements_8cc_source_l00414}00414                              (dpsidx(l, 0) -\/ psi(l) / r) +}
 \DoxyCodeLine{\Hypertarget{axisym__linear__elasticity__elements_8cc_source_l00415}00415                            dpsidx(l2, 1) * dpsidx(l, 1)) +}
-\DoxyCodeLine{\Hypertarget{axisym__linear__elasticity__elements_8cc_source_l00416}00416                      \mbox{\hyperlink{classoomph_1_1AxisymmetricLinearElasticityEquationsBase_a3dd89f0ad59f589f4052765d9dc32e7d}{lambda\_sq}} * \mbox{\hyperlink{classoomph_1_1FiniteElement_a9addfe893ab8205619963aa96204cdc4}{node\_pt}}(l2)-\/>\mbox{\hyperlink{classoomph_1_1Data_a065d7bffcec82bf4d4bd7b41f9aa80b3}{time\_stepper\_pt}}()-\/>\mbox{\hyperlink{classoomph_1_1TimeStepper_a4cb0aecb044b77ba0553cdd54b586d8a}{weight}}(2, 0) *}
+\DoxyCodeLine{\Hypertarget{axisym__linear__elasticity__elements_8cc_source_l00416}00416                      \mbox{\hyperlink{classoomph_1_1AxisymmetricLinearElasticityEquationsBase_a3dd89f0ad59f589f4052765d9dc32e7d}{lambda\_sq}} * \mbox{\hyperlink{classoomph_1_1FiniteElement_a9addfe893ab8205619963aa96204cdc4}{node\_pt}}(l2)-\/>time\_stepper\_pt()-\/>weight(2, 0) *}
 \DoxyCodeLine{\Hypertarget{axisym__linear__elasticity__elements_8cc_source_l00417}00417                        psi(l2) * psi(l)) *}
 \DoxyCodeLine{\Hypertarget{axisym__linear__elasticity__elements_8cc_source_l00418}00418                     r * \mbox{\hyperlink{namespaceoomph_ab40f6d5233caa62dd428818b4cba72d5}{W}};}
 \DoxyCodeLine{\Hypertarget{axisym__linear__elasticity__elements_8cc_source_l00419}00419                 \}}

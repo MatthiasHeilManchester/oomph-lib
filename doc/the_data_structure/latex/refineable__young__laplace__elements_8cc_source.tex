@@ -207,7 +207,7 @@
 \DoxyCodeLine{\Hypertarget{refineable__young__laplace__elements_8cc_source_l00203}00203         \textcolor{comment}{// If the node is hanging, get the number of master nodes}}
 \DoxyCodeLine{\Hypertarget{refineable__young__laplace__elements_8cc_source_l00204}00204         \textcolor{keywordflow}{if} (\mbox{\hyperlink{classoomph_1_1FiniteElement_a9addfe893ab8205619963aa96204cdc4}{node\_pt}}(l)-\/>is\_hanging())}
 \DoxyCodeLine{\Hypertarget{refineable__young__laplace__elements_8cc_source_l00205}00205         \{}
-\DoxyCodeLine{\Hypertarget{refineable__young__laplace__elements_8cc_source_l00206}00206           n\_master = \mbox{\hyperlink{classoomph_1_1FiniteElement_a9addfe893ab8205619963aa96204cdc4}{node\_pt}}(l)-\/>\mbox{\hyperlink{classoomph_1_1Node_afefa22db8b28e783b8647e3577ee01d9}{hanging\_pt}}()-\/>\mbox{\hyperlink{classoomph_1_1HangInfo_aa9c1130b58db2ff6d5eee4f923ba365c}{nmaster}}();}
+\DoxyCodeLine{\Hypertarget{refineable__young__laplace__elements_8cc_source_l00206}00206           n\_master = \mbox{\hyperlink{classoomph_1_1FiniteElement_a9addfe893ab8205619963aa96204cdc4}{node\_pt}}(l)-\/>hanging\_pt()-\/>nmaster();}
 \DoxyCodeLine{\Hypertarget{refineable__young__laplace__elements_8cc_source_l00207}00207         \}}
 \DoxyCodeLine{\Hypertarget{refineable__young__laplace__elements_8cc_source_l00208}00208         \textcolor{comment}{// Otherwise there is just one master node, the node itself}}
 \DoxyCodeLine{\Hypertarget{refineable__young__laplace__elements_8cc_source_l00209}00209         \textcolor{keywordflow}{else}}
@@ -226,7 +226,7 @@
 \DoxyCodeLine{\Hypertarget{refineable__young__laplace__elements_8cc_source_l00222}00222             local\_eqn =}
 \DoxyCodeLine{\Hypertarget{refineable__young__laplace__elements_8cc_source_l00223}00223               \mbox{\hyperlink{classoomph_1_1RefineableElement_abc3d0cb0131ebf717ff0620242c9ca2b}{local\_hang\_eqn}}(\mbox{\hyperlink{classoomph_1_1FiniteElement_a9addfe893ab8205619963aa96204cdc4}{node\_pt}}(l)-\/>hanging\_pt()-\/>master\_node\_pt(m), 0);}
 \DoxyCodeLine{\Hypertarget{refineable__young__laplace__elements_8cc_source_l00224}00224             \textcolor{comment}{// Read out the weight from the master node}}
-\DoxyCodeLine{\Hypertarget{refineable__young__laplace__elements_8cc_source_l00225}00225             hang\_weight = \mbox{\hyperlink{classoomph_1_1FiniteElement_a9addfe893ab8205619963aa96204cdc4}{node\_pt}}(l)-\/>\mbox{\hyperlink{classoomph_1_1Node_afefa22db8b28e783b8647e3577ee01d9}{hanging\_pt}}()-\/>\mbox{\hyperlink{classoomph_1_1HangInfo_ac49ebdd8957a658fe4a2420108d2dcee}{master\_weight}}(m);}
+\DoxyCodeLine{\Hypertarget{refineable__young__laplace__elements_8cc_source_l00225}00225             hang\_weight = \mbox{\hyperlink{classoomph_1_1FiniteElement_a9addfe893ab8205619963aa96204cdc4}{node\_pt}}(l)-\/>hanging\_pt()-\/>master\_weight(m);}
 \DoxyCodeLine{\Hypertarget{refineable__young__laplace__elements_8cc_source_l00226}00226           \}}
 \DoxyCodeLine{\Hypertarget{refineable__young__laplace__elements_8cc_source_l00227}00227           \textcolor{comment}{// If the node is not hanging}}
 \DoxyCodeLine{\Hypertarget{refineable__young__laplace__elements_8cc_source_l00228}00228           \textcolor{keywordflow}{else}}
