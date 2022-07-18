@@ -52,17 +52,15 @@ class ThermoFoepplVonKarmanEquations : public virtual FoepplVonKarmanEquations
 
 public:
 
- /// \short Function pointer to temperature function fct(x,f(x)) --
+ /// \short Function pointer to an alphaDT type swelling function fct(x,f(x)) --
  /// x is a Vector!
- typedef void (*TemperatureFctPt)(const Vector<double>& x, double& f);
+ typedef void (*SwellingFctPt)(const Vector<double>& x, double& f);
 
  /// Constructor (must initialise the Pressure_fct_pt to null)
  ThermoFoepplVonKarmanEquations() :
   FoepplVonKarmanEquations()
-  {
-   Alpha_pt = &Default_Alpha_Value;
-  }
-
+ {}
+ 
  /// Broken copy constructor
  ThermoFoepplVonKarmanEquations(const ThermoFoepplVonKarmanEquations& dummy)
   {
@@ -79,7 +77,7 @@ public:
  void get_sigma(DenseMatrix<double>& sigma,
 		const DenseMatrix<double>& grad_u,
 		const DenseMatrix<double>& grad_w,
-		const double& alphaDeltaT)const
+		const double& c_swell)const
   {
    // Poisson ratio
    double nu(get_nu());
@@ -101,45 +99,39 @@ public:
      for(unsigned beta=0;beta<this->dim();++beta)
       {
        // The Laplacian term: Trace[ \epsilon ] I
-       // \nu * \epsilon_{\alpha \beta} delta_{\gamma \gamma}
-       sigma(alpha,alpha) += nu*epsilon(beta,beta)/(1-nu*nu);
+       // \nu * \epsilon_{\gamma\gamma} delta_{\alpha\beta}
+       sigma(alpha,alpha) += nu*epsilon(beta,beta)/(1.0-nu*nu);
       
        // The scalar transform term: \epsilon
        // (1-\nu) * \epsilon_{\alpha \beta}
-       sigma(alpha,beta) += (1-nu)* epsilon(alpha,beta)/(1-nu*nu);
+       sigma(alpha,beta) += (1.0-nu)* epsilon(alpha,beta)/(1.0-nu*nu);
       }
-     // Thermal stresses
-     sigma(alpha,alpha) += -alphaDeltaT;
+     // Swelling stresses
+     sigma(alpha,alpha) += -c_swell/(1.0-nu);
     }
  
   }
- /// Access function: Pointer to temperature function
- TemperatureFctPt& temperature_fct_pt() {return Temperature_fct_pt;}
+ /// Access function: Pointer to swelling function
+ SwellingFctPt& swelling_fct_pt() {return Swelling_fct_pt;}
 
- /// Access function: Pointer to temperature function. Const version
- TemperatureFctPt temperature_fct_pt() const {return Temperature_fct_pt;}
+ /// Access function: Pointer to swelling function. Const version
+ SwellingFctPt swelling_fct_pt() const {return Swelling_fct_pt;}
 
- /// Access function for alpha
- const double &get_alpha() const {return *Alpha_pt;}
-
- /// Access function for a pointer to eta
- const double* &alpha_pt() {return Alpha_pt;}
-
- /// Get temperature at (Eulerian) position x. This function is
+ /// Get swelling at (Eulerian) position x. This function is
  /// virtual to allow overloading.
- inline virtual void get_temperature_foeppl_von_karman(const unsigned& ipt,
+ inline virtual void get_swelling_foeppl_von_karman(const unsigned& ipt,
                                         const Vector<double>& x,
-                                        double& temperature) const
+                                        double& swelling) const
   {
-   //If no pressure function has been set, return zero
-   if(Temperature_fct_pt==0)
+   //If no swelling function has been set, return zero
+   if(Swelling_fct_pt==0)
     {
-     temperature = 0.0;
+     swelling = 0.0;
     }
    else
     {
-     // Get pressure strength
-     (*Temperature_fct_pt)(x,temperature);
+     // Get swelling magnitude
+     (*Swelling_fct_pt)(x,swelling);
     }
   }
 
@@ -189,16 +181,8 @@ protected:
   Vector<double> &residuals, DenseMatrix<double> &jacobian,
   const unsigned& flag);
  
- 
- /// Pointer to temperature function:
- TemperatureFctPt Temperature_fct_pt;
-
- /// Pointer to alpha, thermal expansion coefficient
- const double *Alpha_pt;
-
- /// Default value for material parameter alpha
- static const double Default_Alpha_Value;
- 
+ /// Pointer to swelling function:
+ SwellingFctPt Swelling_fct_pt; 
 };
 
 

@@ -32,10 +32,6 @@
 
 namespace oomph
 {
- /// \short Default to no thermal expansion
- const double ThermoFoepplVonKarmanEquations::Default_Alpha_Value=0;
-
-
 //======================================================================
 /// Fill in generic residual and jacobian contribution 
 //======================================================================
@@ -57,9 +53,6 @@ fill_in_generic_residual_contribution_thermo_foeppl_von_karman(
 
  //Get the Poisson ratio of the plate
  const double nu=get_nu();
-
-  //Get Alpha for the plate
- const double alpha=get_alpha();
 
  //Set up memory for the shape and test functions
  Shape psi_u(n_u_node), test_u(n_u_node);
@@ -169,15 +162,12 @@ fill_in_generic_residual_contribution_thermo_foeppl_von_karman(
    
    //Get the temperature function
    //--------------------
-   double deltaT(0.0);
-   get_temperature_foeppl_von_karman(ipt,interp_x,deltaT);
+   double c_swell(0.0);
+   get_swelling_foeppl_von_karman(ipt,interp_x,c_swell);
 
-   // Multiply alpha and deltaT to get the thermal expansion
-   double alphaDeltaT= alpha*deltaT;
- 
    // Get the stress
    DenseMatrix<double> sigma(2,2,0.0);
-   get_sigma(sigma,interpolated_duidxj, interpolated_dwdxi, alphaDeltaT); 
+   get_sigma(sigma,interpolated_duidxj, interpolated_dwdxi, c_swell); 
    
     // Check 
 //    Vector<double> interpolated_w(6,0.0)pli:
