@@ -147,8 +147,10 @@ protected:
  inline void rotate_shape(Shape& shape, DShape& dshape,
    DShape& d2shape) const;
  
- /// \short Get the jth bubble dof at the lth internal point.
- inline double get_w_bubble_dof(const unsigned& l, const unsigned& j) const;
+ /// \short Get the jth bubble dof at the lth internal point at time t(=0).
+ inline double get_w_bubble_dof(const unsigned& l,
+				const unsigned& j,
+				const unsigned& t=0) const;
 
  /// \short Get the jth bubble dof at the lth internal point
  int local_w_bubble_equation(const unsigned& l, const unsigned& j) const;
@@ -329,16 +331,16 @@ class FaceGeometry<ThermoFoepplVonKarmanC1CurvedBellElement<NNODE_1D> >:
 //==============================================================================
 template < unsigned NNODE_1D>
 double ThermoFoepplVonKarmanC1CurvedBellElement<NNODE_1D>::get_w_bubble_dof
- (const unsigned& l, const unsigned& j) const
-  {return CurvableBellElement<NNODE_1D>::get_bubble_dof(l,j);} 
+  (const unsigned& l, const unsigned& j, const unsigned& t) const
+  {return CurvableBellElement<NNODE_1D>::get_bubble_dof(l,j,t);} 
 
 //==============================================================================
 /// Get the jth bubble dof at the lth internal point. Deliberately broken for
 /// case when there is no curved edge.
 //==============================================================================
 template < unsigned NNODE_1D>
-int ThermoFoepplVonKarmanC1CurvedBellElement<NNODE_1D>::local_w_bubble_equation(const
-  unsigned& l, const unsigned& j) const
+int ThermoFoepplVonKarmanC1CurvedBellElement<NNODE_1D>::local_w_bubble_equation
+  (const unsigned& l, const unsigned& j) const
   {return CurvableBellElement<NNODE_1D>::local_bubble_equation(l,j);}
 
 //==============================================================================

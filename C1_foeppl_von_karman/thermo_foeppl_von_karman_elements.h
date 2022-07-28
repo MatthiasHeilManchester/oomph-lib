@@ -109,8 +109,8 @@ public:
      // Swelling stresses
      sigma(alpha,alpha) += -c_swell/(1.0-nu);
     }
+  } 
  
-  }
  /// Access function: Pointer to swelling function
  SwellingFctPt& swelling_fct_pt() {return Swelling_fct_pt;}
 

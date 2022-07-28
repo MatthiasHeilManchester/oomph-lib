@@ -35,6 +35,9 @@ namespace oomph
  /// \short Default to incompressible sheet Poisson ratio
  const double FoepplVonKarmanEquations::Default_Nu_Value=0.5;
  
+ /// \short Default to no dampening
+ const double FoepplVonKarmanEquations::Default_Mu_Value=0.0;
+ 
  /// \short Default to 'natural' FvK nondimensionalisation which is h 
  /// independent (NB NOT the same as in JFM paper)
  const double FoepplVonKarmanEquations::Default_Eta_Value=1;

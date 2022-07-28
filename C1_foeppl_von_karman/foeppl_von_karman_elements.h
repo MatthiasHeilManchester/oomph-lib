@@ -288,8 +288,16 @@ const unsigned& boundary_number, const PressureFctPt& u)=0;
  ///Access function to the Poisson ratio (const version)
  const double& get_nu() const {return *Nu_pt;}
 
- /// Get the kth dof type at internal point l
- virtual double get_w_bubble_dof(const unsigned& l, const unsigned& k) const =0;
+ ///Access function to the dampening coefficient.
+ const double*& mu_pt() {return Mu_pt;}
+
+ ///Access function to the dampening coefficient (const version)
+ const double& get_mu() const {return *Mu_pt;}
+
+ /// Get the kth dof type at internal point l at time t(=0)
+ virtual double get_w_bubble_dof(const unsigned& l,
+				 const unsigned& k,
+				 const unsigned& t = 0) const =0;
 
  /// Get the kth equation at internal point l
  virtual int local_w_bubble_equation(const unsigned& l, const unsigned& k)
@@ -527,11 +535,17 @@ protected:
  /// Pointer to Poisson ratio, which this element cannot modify
  const double* Nu_pt;
 
+ /// Pointer to the dampening coefficient, which this element cannot modify
+ const double* Mu_pt;
+
  /// Pointer to global eta
  const double *Eta_pt;
 
  /// Default value for physical constant: Poisson ratio. 
  static const double Default_Nu_Value;
+
+ /// Default value for constant: dampening coefficient. 
+ static const double Default_Mu_Value;
 
  /// Default eta value so that we use 'natural' nondim and have no h dependence. 
  static const double Default_Eta_Value;
