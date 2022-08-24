@@ -148,7 +148,9 @@ protected:
    DShape& d2shape) const;
  
  /// \short Get the jth bubble dof at the lth internal point.
- inline double get_w_bubble_dof(const unsigned& l, const unsigned& j) const;
+ inline double get_w_bubble_dof(const unsigned& l,
+				const unsigned& j,
+				const unsigned& t = 0) const;
 
  /// \short Get the jth bubble dof at the lth internal point
  int local_w_bubble_equation(const unsigned& l, const unsigned& j) const;
@@ -329,7 +331,7 @@ class FaceGeometry<FoepplVonKarmanC1CurvedBellElement<NNODE_1D> >:
 //==============================================================================
 template < unsigned NNODE_1D>
 double FoepplVonKarmanC1CurvedBellElement<NNODE_1D>::get_w_bubble_dof
- (const unsigned& l, const unsigned& j) const
+ (const unsigned& l, const unsigned& j, const unsigned& t) const
   {return CurvableBellElement<NNODE_1D>::get_bubble_dof(l,j);} 
 
 //==============================================================================

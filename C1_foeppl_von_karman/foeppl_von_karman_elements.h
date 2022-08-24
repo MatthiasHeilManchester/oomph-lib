@@ -384,7 +384,87 @@ const unsigned& boundary_number, const PressureFctPt& u)=0;
     }
   }
 
+ /// \short Return FE representation of dw/dt at local coordinate s
+ virtual inline Vector<double> interpolated_dwdt_foeppl_von_karman(const Vector<double>& s) const
+ {
+  //Find out how many nodes positional dofs there are
+  unsigned n_basis_type = nnodal_basis_type();
+  // Find the internal dofs
+  const unsigned n_b_position_type = nbubble_basis_type();
+  //Find out how many nodes there are
+  const unsigned n_w_node = nnode_outofplane();
+  //Find out how many internal points there are
+  const unsigned n_b_node = nbubble_basis();
+  //Get the index at which the unknown is stored
+  const unsigned w_nodal_index = w_nodal_index_foeppl_von_karman();
+  //Get the index at which the unknown is stored
+  const unsigned w_bubble_index = 1; //_foeppl_von_karman();
+  // ^^^ THIS NEEDS TO BE FIXED, NOT GENERAL ENOUGH.
+  // (1) should be changed to right index
+  
+  //Local c1-shape funtion
+  Shape psi(n_w_node,n_basis_type),test(n_w_node,n_basis_type),
+   psi_b(n_b_node,n_b_position_type),test_b(n_b_node,n_b_position_type);
+  
+  //Calculate values of unknown
+  Vector<double> interpolated_w(1,0.0);
+  Vector<double> interpolated_dwdt(1,0.0);
+    
+  //Call the derivatives of the shape and test functions for the unknown
+  shape_and_test_foeppl_von_karman(s,
+				   psi, psi_b,
+				   test, test_b);
 
+  // Loop over nodes
+  for(unsigned l=0;l<n_w_node;l++)
+   {
+    TimeStepper* timestepper_pt = this->node_pt(l)->time_stepper_pt();
+    unsigned n_time = 0;
+    if( !(timestepper_pt->is_steady()) )
+     {
+      n_time=timestepper_pt->ntstorage();
+     }
+    for(unsigned k=0;k<n_basis_type;k++)
+     {
+      // Add the contributions to the time derivative from node l, type k
+      double dwdt_value = 0.0;
+      for(unsigned t=0; t<n_time; t++)
+       {
+	dwdt_value +=
+	 timestepper_pt->weight(1,t)
+	 * this->raw_nodal_value(t, l, w_nodal_index+k);
+       }
+      interpolated_dwdt[0] += dwdt_value * psi(l,k);
+     }
+   }
+
+  // Loop over internal dofs
+  // oomph_info << "About to loop over the bubble bases" << std::endl;
+  for(unsigned l=0;l<nbubble_basis();l++)
+   {
+    TimeStepper* timestepper_pt = internal_data_pt(w_bubble_index) // :(
+     ->time_stepper_pt();
+    unsigned n_time = 0;
+    if( !(timestepper_pt->is_steady()) )
+     {
+      n_time=timestepper_pt->ntstorage();
+     }
+    for(unsigned k=0;k<n_b_position_type;k++)
+     {
+      // Add the contributions to the time derivative
+      double dwdt_value = 0.0;
+      for(unsigned t=0; t<n_time; t++)
+       {
+	dwdt_value +=
+	 timestepper_pt->weight(1,t) * get_w_bubble_dof(l,k,t);
+       }
+      interpolated_dwdt[0] += dwdt_value * psi_b(l,k);
+     }
+   }
+  // Finally return the (single valued) vector of interpolated velocity.
+  return interpolated_dwdt;
+ }
+ 
  /// \short Return FE representation of unknown values u(s)
  /// at local coordinate s
  virtual inline Vector<double> interpolated_u_foeppl_von_karman(const Vector<double> &s) const
@@ -395,7 +475,7 @@ const unsigned& boundary_number, const PressureFctPt& u)=0;
    const unsigned n_b_position_type = nbubble_basis_type();
    //Find out how many nodes there are
    const unsigned n_w_node = nnode_outofplane();
-  //Find out how many nodes there are
+   //Find out how many nodes there are
    const unsigned n_u_node = nnode_inplane();
    //Find out how many internal points there are
    const unsigned n_b_node = nbubble_basis();

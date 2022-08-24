@@ -171,6 +171,11 @@ public:
      mass_matrix(i,i)+=1.0;
     }
   }
+ 
+ /// \short Calculate the elastic energy of the element and return it as a
+ /// double.
+ virtual Vector<double> element_elastic_and_kinetic_energy();
+
 
 
 protected:

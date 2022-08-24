@@ -41,6 +41,8 @@ namespace oomph
 								DenseMatrix<double> &jacobian,
 								const unsigned& flag)
  {
+  //Find the dimension of the element
+  const unsigned dim = this->dim();
   //Find out how many nodes there are
   const unsigned n_u_node = nnode_inplane();
   const unsigned n_w_node = nnode_outofplane(); 
@@ -59,14 +61,14 @@ namespace oomph
   
   //Set up memory for the shape and test functions
   Shape psi_u(n_u_node), test_u(n_u_node);
-  DShape dpsi_udxi(n_u_node,this->dim()), dtest_udxi(n_u_node,this->dim());
+  DShape dpsi_udxi(n_u_node,dim), dtest_udxi(n_u_node,dim);
 
   //Local c1-shape funtion
   Shape psi(n_w_node,n_basis_type),test(n_w_node,n_basis_type),
    psi_b(n_b_node,n_b_position_type),test_b(n_b_node,n_b_position_type);
  
-  DShape dpsi_dxi(n_w_node,n_basis_type,this->dim()),dtest_dxi(n_w_node,n_basis_type,this->dim()),
-   dpsi_b_dxi(n_b_node,n_b_position_type,this->dim()),dtest_b_dxi(n_b_node,n_b_position_type,this->dim()),
+  DShape dpsi_dxi(n_w_node,n_basis_type,dim),dtest_dxi(n_w_node,n_basis_type,dim),
+   dpsi_b_dxi(n_b_node,n_b_position_type,dim),dtest_b_dxi(n_b_node,n_b_position_type,dim),
    d2psi_dxi2(n_w_node,n_basis_type,3), d2test_dxi2(n_w_node,n_basis_type,3),
    d2psi_b_dxi2(n_b_node,n_b_position_type,3), d2test_b_dxi2(n_b_node,n_b_position_type,3);
 
@@ -84,23 +86,23 @@ namespace oomph
     //Calculate values of unknown
     Vector<double> interpolated_w(1,0.0);
     Vector<double> interpolated_dwdt(1,0.0);
-    DenseMatrix<double> interpolated_dwdxi(1,this->dim(),0.0);
+    DenseMatrix<double> interpolated_dwdxi(1,dim,0.0);
     DenseMatrix<double> interpolated_d2wdxi2(1,3,0.0);
    
     //Calculate values of unknown
     Vector<double> interpolated_u(2,0.0);
-    DenseMatrix<double> interpolated_duidxj(2,this->dim(),0.0);
+    DenseMatrix<double> interpolated_duidxj(2,dim,0.0);
 
     //Allocate and initialise to zero
-    Vector<double> interp_x(this->dim(),0.0);
-    Vector<double> s(this->dim());
+    Vector<double> interp_x(dim,0.0);
+    Vector<double> s(dim);
     s[0] = this->integral_pt()->knot(ipt,0);
     s[1] = this->integral_pt()->knot(ipt,1);
     interpolated_x(s,interp_x);
     //Call the derivatives of the shape and test functions for the unknown
     double J = d2shape_and_d2test_eulerian_foeppl_von_karman(s,
-	      psi, psi_b, dpsi_dxi, dpsi_b_dxi, d2psi_dxi2, d2psi_b_dxi2,
-	      test, test_b, dtest_dxi, dtest_b_dxi, d2test_dxi2, d2test_b_dxi2);
+							     psi, psi_b, dpsi_dxi, dpsi_b_dxi, d2psi_dxi2, d2psi_b_dxi2,
+							     test, test_b, dtest_dxi, dtest_b_dxi, d2test_dxi2, d2test_b_dxi2);
 
     dshape_u_and_dtest_u_eulerian_foeppl_von_karman(s,psi_u,dpsi_udxi,test_u,dtest_udxi);
     //Premultiply the weights and the Jacobian
@@ -112,23 +114,18 @@ namespace oomph
     for(unsigned l=0;l<n_w_node;l++)
      {
       TimeStepper* timestepper_pt = this->node_pt(l)->time_stepper_pt();
-      const unsigned n_time = timestepper_pt->ntstorage();
-      
+      unsigned n_time = 0;
+      if( !(timestepper_pt->is_steady()) )
+       {
+	n_time=timestepper_pt->ntstorage();
+       }
       for(unsigned k=0;k<n_basis_type;k++)
        {
 	//Get the nodal value of the unknown
 	double w_value = this->raw_nodal_value(l,k+2);
 	interpolated_w[0] += w_value*psi(l,k);
-	// Add the contributions to the time derivative
-	double dwdt_value = 0.0;
-	for(unsigned t=0; t<n_time; t++)
-	 {
-	  dwdt_value +=
-	   timestepper_pt->weight(1,t) * this->raw_nodal_value(t, l, k+2);
-	 }
-	interpolated_dwdt[0] += dwdt_value * psi(l,k);
 	// Loop over directions
-	for(unsigned j=0;j<this->dim();j++)
+	for(unsigned j=0;j<dim;j++)
 	 {
 	  interpolated_dwdxi(0,j) += w_value*dpsi_dxi(l,k,j);
 	 }
@@ -136,15 +133,33 @@ namespace oomph
 	 {
 	  interpolated_d2wdxi2(0,j) += w_value*d2psi_dxi2(l,k,j);
 	 }
+
+	// Add the contributions to the time derivative from node l, type k
+	double dwdt_value = 0.0;
+	for(unsigned t=0; t<n_time; t++)
+	 {
+	  dwdt_value +=
+	   timestepper_pt->weight(1,t) * this->raw_nodal_value(t, l, k+2);
+	 }
+	interpolated_dwdt[0] += dwdt_value * psi(l,k);
        }
      }
 
     // Loop over internal dofs
+    // oomph_info << "About to loop over the bubble bases" << std::endl;
     for(unsigned l=0;l<nbubble_basis();l++)
      {
-      TimeStepper* timestepper_pt = this->node_pt(l)->time_stepper_pt();
-      const unsigned n_time = timestepper_pt->ntstorage();
-
+      // oomph_info << "Basis number: " << l << std::endl;
+      // THIS NEEDS TO BE FIXED, NOT GENERAL ENOUGH.
+      // (1) should be changed to right index
+      TimeStepper* timestepper_pt = internal_data_pt(1) // :(
+       ->time_stepper_pt();
+      unsigned n_time = 0;
+      if( !(timestepper_pt->is_steady()) )
+       {
+	n_time=timestepper_pt->ntstorage();
+       }
+      
       for(unsigned k=0;k<n_b_position_type;k++)
        {
 	//Get the nodal value of the unknown
@@ -154,12 +169,16 @@ namespace oomph
 	double dwdt_value = 0.0;
 	for(unsigned t=0; t<n_time; t++)
 	 {
+	  // oomph_info << "At time " << t << ": ";
 	  dwdt_value +=
-	   timestepper_pt->weight(1,t) * get_w_bubble_dof(t,l,k);
+	   timestepper_pt->weight(1,t) * get_w_bubble_dof(l,k,t);
+	  // oomph_info << dwdt_value
+	  // 	     << " = " << timestepper_pt
+	  // 	     << " * " << get_w_bubble_dof(l,k,t) << std::endl;;
 	 }
 	interpolated_dwdt[0] += dwdt_value * psi_b(l,k);
 	// Loop over directions
-	for(unsigned j=0;j<this->dim();j++)
+	for(unsigned j=0;j<dim;j++)
 	 {
 	  interpolated_dwdxi(0,j) += w_value*dpsi_b_dxi(l,k,j);
 	 }
@@ -179,13 +198,14 @@ namespace oomph
 	interpolated_u[alpha] += u_value*psi_u(l);
   
         // Loop over directions
-        for(unsigned beta=0; beta<this->dim(); beta++)
+        for(unsigned beta=0; beta<dim; beta++)
          {
           interpolated_duidxj(alpha,beta) += u_value*dpsi_udxi(l,beta);
          }
        }
      }
-   
+
+     
     //Get the temperature function
     //--------------------
     double c_swell(0.0);
@@ -222,7 +242,7 @@ namespace oomph
 	if(local_eqn >= 0)
 	 {
 	  // Add virtual time derivative term for dampened buckling
-	  residuals[local_eqn] -= mu*interpolated_dwdt[0]*test(l,k)*W;
+	  residuals[local_eqn] += mu*interpolated_dwdt[0]*test(l,k)*W;
 	  // Add body force/pressure term here
 	  residuals[local_eqn] -= pressure*test(l,k)*W;
 	  for(unsigned alpha=0;alpha<2;++alpha)
@@ -385,7 +405,7 @@ namespace oomph
 	if(local_eqn >= 0)
 	 {
 	  // Add virtual time derivative term for dampened buckling
-	  residuals[local_eqn] -= mu*interpolated_dwdt[0]*test_b(l,k)*W;     
+	  residuals[local_eqn] += mu*interpolated_dwdt[0]*test_b(l,k)*W;     
 	  // Add body force/pressure term here
 	  residuals[local_eqn] -= pressure*test_b(l,k)*W;
 	  for(unsigned alpha=0;alpha<2;++alpha)
@@ -654,5 +674,235 @@ namespace oomph
    } // End of loop over integration points
  }
 
+ // Define the energy calculation function here
+ Vector<double> ThermoFoepplVonKarmanEquations::element_elastic_and_kinetic_energy()
+ {
+ 
+  double element_elastic_energy = 0.0;
+  double element_kinetic_energy = 0.0;
+  const unsigned dim = this->dim();
+  //Find out how many nodes there are
+  const unsigned n_u_node = nnode_inplane();
+  const unsigned n_w_node = nnode_outofplane(); 
+  //Find out how many bubble nodes there are
+  const unsigned n_b_node = nbubble_basis();
+  //Find out how many nodes positional dofs there are
+  unsigned n_basis_type = nnodal_basis_type();
+  // Find the internal dofs
+  const unsigned n_b_position_type = nbubble_basis_type();
+
+  //Get the Poisson ratio of the plate
+  const double nu=get_nu();
+
+  //Get the virtual dampening coefficient
+  const double mu=get_mu();
+  
+  //Set up memory for the shape and test functions
+  Shape psi_u(n_u_node), test_u(n_u_node);
+  DShape dpsi_udxi(n_u_node,dim), dtest_udxi(n_u_node,dim);
+
+  //Local c1-shape funtion
+  Shape psi(n_w_node,n_basis_type),test(n_w_node,n_basis_type),
+   psi_b(n_b_node,n_b_position_type),test_b(n_b_node,n_b_position_type);
+ 
+  DShape dpsi_dxi(n_w_node,n_basis_type,dim),dtest_dxi(n_w_node,n_basis_type,dim),
+   dpsi_b_dxi(n_b_node,n_b_position_type,dim),dtest_b_dxi(n_b_node,n_b_position_type,dim),
+   d2psi_dxi2(n_w_node,n_basis_type,3), d2test_dxi2(n_w_node,n_basis_type,3),
+   d2psi_b_dxi2(n_b_node,n_b_position_type,3), d2test_b_dxi2(n_b_node,n_b_position_type,3);
+
+  //Set the value of n_intpt
+  const unsigned n_intpt = this->integral_pt()->nweight();
+
+  //Loop over the integration points
+  for(unsigned ipt=0;ipt<n_intpt;ipt++)
+   {
+    //Get the integral weight
+    double w = this->integral_pt()->weight(ipt);
+
+    //Calculate values of unknown
+    Vector<double> interpolated_w(1,0.0);
+    Vector<double> interpolated_dwdt(1,0.0);
+    DenseMatrix<double> interpolated_dwdxi(1,dim,0.0);
+    DenseMatrix<double> interpolated_d2wdxi2(1,3,0.0);
+   
+    //Calculate values of unknown
+    Vector<double> interpolated_u(2,0.0);
+    DenseMatrix<double> interpolated_duidxj(2,dim,0.0);
+
+    //Allocate and initialise to zero
+    Vector<double> interp_x(dim,0.0);
+    Vector<double> s(dim);
+    s[0] = this->integral_pt()->knot(ipt,0);
+    s[1] = this->integral_pt()->knot(ipt,1);
+    interpolated_x(s,interp_x);
+    //Call the derivatives of the shape and test functions for the unknown
+    double J = d2shape_and_d2test_eulerian_foeppl_von_karman(s,
+							     psi, psi_b, dpsi_dxi, dpsi_b_dxi, d2psi_dxi2, d2psi_b_dxi2,
+							     test, test_b, dtest_dxi, dtest_b_dxi, d2test_dxi2, d2test_b_dxi2);
+
+    dshape_u_and_dtest_u_eulerian_foeppl_von_karman(s,psi_u,dpsi_udxi,test_u,dtest_udxi);
+    //Premultiply the weights and the Jacobian
+    double W = w*J;
+
+
+    //Calculate function value and derivatives
+    //-----------------------------------------
+    // Loop over nodes
+    for(unsigned l=0;l<n_w_node;l++)
+     {
+      TimeStepper* timestepper_pt = this->node_pt(l)->time_stepper_pt();
+      unsigned n_time = 0;
+      if( !(timestepper_pt->is_steady()) )
+       {
+	n_time=timestepper_pt->ntstorage();
+       }
+      for(unsigned k=0;k<n_basis_type;k++)
+       {
+	//Get the nodal value of the unknown
+	double w_value = this->raw_nodal_value(l,k+2);
+	interpolated_w[0] += w_value*psi(l,k);
+	// Loop over directions
+	for(unsigned j=0;j<dim;j++)
+	 {
+	  interpolated_dwdxi(0,j) += w_value*dpsi_dxi(l,k,j);
+	 }
+	for(unsigned j=0;j<3;j++)
+	 {
+	  interpolated_d2wdxi2(0,j) += w_value*d2psi_dxi2(l,k,j);
+	 }
+
+	// Add the contributions to the time derivative from node l, type k
+	double dwdt_value = 0.0;
+	for(unsigned t=0; t<n_time; t++)
+	 {
+	  dwdt_value +=
+	   timestepper_pt->weight(1,t) * this->raw_nodal_value(t, l, k+2);
+	 }
+	interpolated_dwdt[0] += dwdt_value * psi(l,k);
+       }
+     }
+
+    // Loop over internal dofs
+    // oomph_info << "About to loop over the bubble bases" << std::endl;
+    for(unsigned l=0;l<nbubble_basis();l++)
+     {
+      // oomph_info << "Basis number: " << l << std::endl;
+      // THIS NEEDS TO BE FIXED, NOT GENERAL ENOUGH.
+      // (1) should be changed to right index
+      TimeStepper* timestepper_pt = internal_data_pt(1) // :(
+       ->time_stepper_pt();
+      unsigned n_time = 0;
+      if( !(timestepper_pt->is_steady()) )
+       {
+	n_time=timestepper_pt->ntstorage();
+       }
+      
+      for(unsigned k=0;k<n_b_position_type;k++)
+       {
+	//Get the nodal value of the unknown
+	double w_value = get_w_bubble_dof(l,k);
+	interpolated_w[0] += w_value*psi_b(l,k);
+	// Add the contributions to the time derivative
+	double dwdt_value = 0.0;
+	for(unsigned t=0; t<n_time; t++)
+	 {
+	  // oomph_info << "At time " << t << ": ";
+	  dwdt_value +=
+	   timestepper_pt->weight(1,t) * get_w_bubble_dof(l,k,t);
+	  // oomph_info << dwdt_value
+	  // 	     << " = " << timestepper_pt
+	  // 	     << " * " << get_w_bubble_dof(l,k,t) << std::endl;;
+	 }
+	interpolated_dwdt[0] += dwdt_value * psi_b(l,k);
+	// Loop over directions
+	for(unsigned j=0;j<dim;j++)
+	 {
+	  interpolated_dwdxi(0,j) += w_value*dpsi_b_dxi(l,k,j);
+	 }
+	for(unsigned j=0;j<3;j++)
+	 {
+	  interpolated_d2wdxi2(0,j) += w_value*d2psi_b_dxi2(l,k,j);
+	 }
+       }
+     }
+
+    // Loop over nodes
+    for(unsigned l=0;l<n_u_node;l++)
+     {
+      for(unsigned alpha=0;alpha<2;alpha++)
+       {
+	double u_value = this->raw_nodal_value(l,alpha);
+	interpolated_u[alpha] += u_value*psi_u(l);
+  
+	// Loop over directions
+	for(unsigned beta=0; beta<dim; beta++)
+	 {
+	  interpolated_duidxj(alpha,beta) += u_value*dpsi_udxi(l,beta);
+	 }
+       }
+     }
+
+    //----------------------------------------------------------------------
+    // Add the elastic energy at ipt.
+
+    // (Nondimensional) Lame parameters
+    double lame2 = 1.0 / (2.0 * (1.0+nu));
+    double lame1 = 2.0*nu*lame2 / (1.0 - 2.0*nu);
+
+    //Get the temperature function
+    double c_swell(0.0);
+    get_swelling_foeppl_von_karman(ipt,interp_x,c_swell);
+    
+    // Truncated Green Lagrange strain tensor
+    DenseMatrix<double> epsilon(dim,dim,0.0);
+    for(unsigned alpha=0;alpha<dim;++alpha)
+     {
+      epsilon(alpha,alpha) -= c_swell;
+      for(unsigned beta=0;beta<dim;++beta)
+       {
+	// Truncated Green Lagrange strain tensor
+	epsilon(alpha,beta) += 0.5* interpolated_duidxj(alpha,beta)
+	 + 0.5*interpolated_duidxj(beta,alpha)
+	 + 0.5*interpolated_dwdxi(0,alpha)*interpolated_dwdxi(0,beta);
+       }
+     }
+
+    // Add the plane strain energy contribution at ipt.
+    for(unsigned alpha=0;alpha<dim;++alpha)
+     {
+      element_elastic_energy +=
+       0.5*lame1*epsilon(alpha,alpha)*epsilon(alpha,alpha) * W;
+      for(unsigned beta=0;beta<dim;++beta)
+       {
+	element_elastic_energy +=
+	 eta()*lame2*epsilon(alpha,beta)*epsilon(alpha,beta) * W;
+       }
+     }
+    
+    // Add the bending energy contribution at ipt.
+    element_elastic_energy +=
+     0.5 * (
+	    (interpolated_d2wdxi2(0,0)+interpolated_d2wdxi2(0,2))
+	    *(interpolated_d2wdxi2(0,0)+interpolated_d2wdxi2(0,2))
+	    + 2.0*(1.0-nu) * (
+			      interpolated_d2wdxi2(0,1)*interpolated_d2wdxi2(0,1)
+			      - interpolated_d2wdxi2(0,0)*interpolated_d2wdxi2(0,2)
+			      )
+	    ) * W;
+
+    //----------------------------------------------------------------------
+    // Add the kinetic energy at ipt.
+    element_kinetic_energy += 0.5*mu*interpolated_dwdt[0]*interpolated_dwdt[0] * W;
+
+   }
+  Vector<double> energies(2,0.0);
+  // First entry is the elastic energy and second is kinetic.
+  energies[0] = element_elastic_energy;
+  energies[1] = element_kinetic_energy;
+  
+  return energies;
+ }
+
+ 
 }
 
