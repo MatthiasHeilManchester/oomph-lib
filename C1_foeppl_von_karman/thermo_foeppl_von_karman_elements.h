@@ -73,43 +73,56 @@ public:
    BrokenCopy::broken_assign("ThermoFoepplVonKarmanEquations");
   }
 
+ /// Fill in the strain tensor
+ void get_epsilon(DenseMatrix<double>& epsilon,
+		  const DenseMatrix<double>& grad_u,
+		  const DenseMatrix<double>& grad_w,
+		  const double& c_swell=0.0)const
+ {
+  // Truncated Green Lagrange strain tensor
+  DenseMatrix<double> dummy_epsilon(this->dim(),this->dim(),0.0);
+  for(unsigned alpha=0;alpha<this->dim();++alpha)
+   {
+    for(unsigned beta=0;beta<this->dim();++beta)
+     {
+      // Truncated Green Lagrange strain tensor
+      dummy_epsilon(alpha,beta) += 0.5* grad_u(alpha,beta)
+       + 0.5*grad_u(beta,alpha)
+       + 0.5*grad_w(0,alpha)*grad_w(0,beta);
+     }
+    // Swelling slack
+    dummy_epsilon(alpha,alpha) -= c_swell;
+   }
+  epsilon=dummy_epsilon;
+ }
+
  /// Fill in the stress tensor
  void get_sigma(DenseMatrix<double>& sigma,
 		const DenseMatrix<double>& grad_u,
 		const DenseMatrix<double>& grad_w,
-		const double& c_swell)const
-  {
-   // Poisson ratio
-   double nu(get_nu());
-   // Truncated Green Lagrange strain tensor
-   DenseMatrix<double> epsilon(this->dim(),this->dim(),0.0);
-   for(unsigned alpha=0;alpha<this->dim();++alpha)
-    {
-     for(unsigned beta=0;beta<this->dim();++beta)
-      {
-       // Truncated Green Lagrange strain tensor
-       epsilon(alpha,beta) += 0.5* grad_u(alpha,beta) + 0.5*grad_u(beta,alpha)
-                           +0.5*grad_w(0,alpha)*grad_w(0,beta);
-      }
-    }
+		const double c_swell=0.0)const
+ {
+  // Poisson ratio
+  double nu(get_nu());
+  // Truncated Green Lagrange strain tensor
+  DenseMatrix<double> epsilon(this->dim(),this->dim(),0.0);
+  get_epsilon(epsilon, grad_u, grad_w, c_swell);
    
-   // Now construct the Stress
-   for(unsigned alpha=0;alpha<this->dim();++alpha)
-    {
-     for(unsigned beta=0;beta<this->dim();++beta)
-      {
-       // The Laplacian term: Trace[ \epsilon ] I
-       // \nu * \epsilon_{\gamma\gamma} delta_{\alpha\beta}
-       sigma(alpha,alpha) += nu*epsilon(beta,beta)/(1.0-nu*nu);
+  // Now construct the Stress
+  for(unsigned alpha=0;alpha<this->dim();++alpha)
+   {
+    for(unsigned beta=0;beta<this->dim();++beta)
+     {
+      // The Laplacian term: Trace[ \epsilon ] I
+      // \nu * \epsilon_{\alpha \beta} delta_{\gamma \gamma}
+      sigma(alpha,alpha) += nu*epsilon(beta,beta)/(1-nu*nu);
       
-       // The scalar transform term: \epsilon
-       // (1-\nu) * \epsilon_{\alpha \beta}
-       sigma(alpha,beta) += (1.0-nu)* epsilon(alpha,beta)/(1.0-nu*nu);
-      }
-     // Swelling stresses
-     sigma(alpha,alpha) += -c_swell/(1.0-nu);
-    }
-  } 
+      // The scalar transform term: \epsilon
+      // (1-\nu) * \epsilon_{\alpha \beta}
+      sigma(alpha,beta) += (1-nu)* epsilon(alpha,beta)/(1-nu*nu);
+     }
+   }
+ }
  
  /// Access function: Pointer to swelling function
  SwellingFctPt& swelling_fct_pt() {return Swelling_fct_pt;}

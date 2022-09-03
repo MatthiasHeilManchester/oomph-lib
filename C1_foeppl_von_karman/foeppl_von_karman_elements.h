@@ -214,46 +214,59 @@ const unsigned& boundary_number, const PressureFctPt& u)=0;
  void compute_error(std::ostream &outfile,
                     FiniteElement::UnsteadyExactSolutionFctPt exact_soln_pt,
                     const double& time, double& error, double& norm)
-  {
-   throw OomphLibError(
-    "There is no time-dependent compute_error() for these elements",
-    OOMPH_CURRENT_FUNCTION, OOMPH_EXCEPTION_LOCATION);
-  }
+ {
+  throw OomphLibError(
+		      "There is no time-dependent compute_error() for these elements",
+		      OOMPH_CURRENT_FUNCTION, OOMPH_EXCEPTION_LOCATION);
+ }
 
  /// Fill in the stress tensor
- void get_sigma(DenseMatrix<double>& sigma, const DenseMatrix<double>& grad_u,
-  const DenseMatrix<double>& grad_w )const
-  {
-   // Poisson ratio
-   double nu(get_nu());
-   // Truncated Green Lagrange strain tensor
-   DenseMatrix<double> epsilon(this->dim(),this->dim(),0.0);
-   for(unsigned alpha=0;alpha<this->dim();++alpha)
-    {
-     for(unsigned beta=0;beta<this->dim();++beta)
-      {
-       // Truncated Green Lagrange strain tensor
-       epsilon(alpha,beta) += 0.5* grad_u(alpha,beta) + 0.5*grad_u(beta,alpha)
-                           +0.5*grad_w(0,alpha)*grad_w(0,beta);
-      }
-    }
+ void get_sigma(DenseMatrix<double>& sigma,
+		const DenseMatrix<double>& grad_u,
+		const DenseMatrix<double>& grad_w )const
+ {
+  // Poisson ratio
+  double nu(get_nu());
+  // Truncated Green Lagrange strain tensor
+  DenseMatrix<double> epsilon(this->dim(),this->dim(),0.0);
+  get_epsilon(epsilon, grad_u, grad_w);
    
-   // Now construct the Stress
-   for(unsigned alpha=0;alpha<this->dim();++alpha)
-    {
-     for(unsigned beta=0;beta<this->dim();++beta)
-      {
-       // The Laplacian term: Trace[ \epsilon ] I
-       // \nu * \epsilon_{\alpha \beta} delta_{\gamma \gamma}
-       sigma(alpha,alpha) += nu*epsilon(beta,beta)/(1-nu*nu);
+  // Now construct the Stress
+  for(unsigned alpha=0;alpha<this->dim();++alpha)
+   {
+    for(unsigned beta=0;beta<this->dim();++beta)
+     {
+      // The Laplacian term: Trace[ \epsilon ] I
+      // \nu * \epsilon_{\alpha \beta} delta_{\gamma \gamma}
+      sigma(alpha,alpha) += nu*epsilon(beta,beta)/(1-nu*nu);
       
-       // The scalar transform term: \epsilon
-       // (1-\nu) * \epsilon_{\alpha \beta}
-       sigma(alpha,beta) += (1-nu)* epsilon(alpha,beta)/(1-nu*nu);
-      }
-    }
+      // The scalar transform term: \epsilon
+      // (1-\nu) * \epsilon_{\alpha \beta}
+      sigma(alpha,beta) += (1-nu)* epsilon(alpha,beta)/(1-nu*nu);
+     }
+   }
+ }
+
+ /// Fill in the strain tensor
+ void get_epsilon(DenseMatrix<double>& epsilon,
+		  const DenseMatrix<double>& grad_u,
+		  const DenseMatrix<double>& grad_w)const
+ {
+  // Truncated Green Lagrange strain tensor
+  DenseMatrix<double> dummy_epsilon(this->dim(),this->dim(),0.0);
+  for(unsigned alpha=0;alpha<this->dim();++alpha)
+   {
+    for(unsigned beta=0;beta<this->dim();++beta)
+     {
+      // Truncated Green Lagrange strain tensor
+      dummy_epsilon(alpha,beta) += 0.5* grad_u(alpha,beta)
+       + 0.5*grad_u(beta,alpha)
+       + 0.5*grad_w(0,alpha)*grad_w(0,beta);
+     }
+   }
+  epsilon=dummy_epsilon;
+ }
  
-  }
  /// Access function: Pointer to pressure function
  PressureFctPt& pressure_fct_pt() {return Pressure_fct_pt;}
 
@@ -439,7 +452,6 @@ const unsigned& boundary_number, const PressureFctPt& u)=0;
    }
 
   // Loop over internal dofs
-  // oomph_info << "About to loop over the bubble bases" << std::endl;
   for(unsigned l=0;l<nbubble_basis();l++)
    {
     TimeStepper* timestepper_pt = internal_data_pt(w_bubble_index) // :(
@@ -503,8 +515,8 @@ const unsigned& boundary_number, const PressureFctPt& u)=0;
    Shape test_u(n_u_node);
    DShape dtest_u(n_u_node,this->dim());
 
-   // Number of in-plane displacement fields is equal to dimension
-   const unsigned n_u_fields = 2;// DIM;
+   // Number of in-plane displacement fields is equal to dim + dim^2
+   const unsigned n_u_fields = 6;// DIM;
    // Number of out-of-plane displacement fields is equal 1 (value of deflection_
    // plus first and second deriv
    const unsigned n_w_fields = 6;//1+DIM+n_second_deriv;
@@ -538,7 +550,7 @@ const unsigned& boundary_number, const PressureFctPt& u)=0;
 
    // Bubble dofs
    for(unsigned l=0;l<nbubble_basis();l++)
-   {
+    {
     for(unsigned k=0;k<nbubble_basis_type();k++)
      {
       double u_value = get_w_bubble_dof(l,w_bubble_index+k);
@@ -548,24 +560,24 @@ const unsigned& boundary_number, const PressureFctPt& u)=0;
       for(unsigned alpha=0;alpha<this->dim();++alpha)
        { interpolated_u[1+alpha] += u_value*dpsi_b_dxi(l,w_bubble_index+k,alpha); }
       // d2_u_3_dx_alpha dx_beta
-     for(unsigned alphabeta=0;alphabeta<n_second_deriv;++alphabeta)
-      {
-       interpolated_u[this->dim()+1+alphabeta] += u_value*d2psi_b_dxi2(l,w_bubble_index+k,alphabeta);
-      }
+      for(unsigned alphabeta=0;alphabeta<n_second_deriv;++alphabeta)
+       {
+	interpolated_u[this->dim()+1+alphabeta] += u_value*d2psi_b_dxi2(l,w_bubble_index+k,alphabeta);
+       }
      }
-   }
+    }
    // Now for the displacement 
    for(unsigned l=0; l< n_u_node;++l)
     {
      // Now for the two in--plane displacements
      interpolated_u[6] += this->nodal_value(l,u_nodal_index+0)*psi_u(l);
      interpolated_u[7] += this->nodal_value(l,u_nodal_index+1)*psi_u(l);
-    // // Also output the in--plane displacement derivatives
-    // for(unsigned i=0; i<this->dim(); ++i)
-    //  {
-    //  interpolated_u[8 +i] += this->nodal_value(l,u_nodal_index+0)*dpsi_u(l,i);
-    //  interpolated_u[10+i] += this->nodal_value(l,u_nodal_index+1)*dpsi_u(l,i);
-    //  }
+     // Also output the in--plane displacement derivatives
+     for(unsigned i=0; i<this->dim(); ++i)
+      {
+       interpolated_u[8 +i] += this->nodal_value(l,u_nodal_index+0)*dpsi_u(l,i);
+       interpolated_u[10+i] += this->nodal_value(l,u_nodal_index+1)*dpsi_u(l,i);
+      }
     }
    return(interpolated_u);
   }

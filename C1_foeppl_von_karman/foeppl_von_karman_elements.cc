@@ -652,15 +652,19 @@ unsigned  FoepplVonKarmanEquations::self_test()
 void  FoepplVonKarmanEquations::output(std::ostream &outfile,
                                     const unsigned &nplot)
 {
-
+ unsigned dim = this->dim();
+ 
  //Vector of local coordinates
- Vector<double> s(this->dim()),x(this->dim());
+ Vector<double> s(dim),x(dim);
 
  // Tecplot header info
  outfile << this->tecplot_zone_string(nplot);
 
  // Loop over plot points
  Vector<double> u;
+ DenseMatrix<double> interpolated_dwdxj(1,dim,0.0);
+ DenseMatrix<double> interpolated_duidxj(2,dim,0.0);
+ DenseMatrix<double> epsilon(2,2,0.0);
  unsigned num_plot_points=this->nplot_points(nplot);
  Vector<double> r(3);
 
@@ -669,6 +673,17 @@ void  FoepplVonKarmanEquations::output(std::ostream &outfile,
    // Get local coordinates of plot point
    this->get_s_plot(iplot,nplot,s);
    u = interpolated_u_foeppl_von_karman(s);
+
+   // TODO: make the indexing below more general and not hard coded.
+   // Copy gradients from u into interpolated gradient matrices...
+   interpolated_dwdxj(0,0) = u[1]; //dwdx1
+   interpolated_dwdxj(0,1) = u[2]; //dwdx2
+   interpolated_duidxj(0,0)= u[8]; //du1dx1
+   interpolated_duidxj(0,1)= u[9]; //du1dx2
+   interpolated_duidxj(1,0)= u[10]; //du2dx1
+   interpolated_duidxj(1,1)= u[11]; //du2dx2
+   // ...which are used to retrieve the strain tensor epsilon
+   get_epsilon(epsilon,interpolated_duidxj,interpolated_dwdxj);
 
    // Get x position as Vector
    interpolated_x(s,x);
@@ -683,10 +698,13 @@ void  FoepplVonKarmanEquations::output(std::ostream &outfile,
     {
      outfile << *it << " " ;
     }
+   
+   // Output strain
+   outfile << epsilon(0,0) << " " << epsilon(0,1) << " " << epsilon(1,1) << " ";
 
+   // End output line
    outfile << std::endl;
   }
-
  // Write tecplot footer (e.g. FE connectivity lists)
  this->write_tecplot_zone_footer(outfile,nplot);
 }
