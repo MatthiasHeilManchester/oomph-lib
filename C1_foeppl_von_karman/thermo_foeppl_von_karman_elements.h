@@ -73,11 +73,51 @@ public:
    BrokenCopy::broken_assign("ThermoFoepplVonKarmanEquations");
   }
 
+ /// Output with default number of plot points
+ void output(std::ostream &outfile)
+  {
+   const unsigned n_plot=5;
+   ThermoFoepplVonKarmanEquations::output(outfile,n_plot);
+  }
+
+ /// \short Output FE representation of soln: x,y,u or x,y,z,u at
+ /// n_plot^DIM plot points
+ void output(std::ostream &outfile, const unsigned &n_plot);
+
+ /// C_style output with default number of plot points
+ void output(FILE* file_pt)
+  {
+   const unsigned n_plot=5;
+   ThermoFoepplVonKarmanEquations::output(file_pt,n_plot);
+  }
+
+ /// \short C-style output FE representation of soln: x,y,u or x,y,z,u at
+ /// n_plot^DIM plot points
+ void output(FILE* file_pt, const unsigned &n_plot);
+
+ /// Output exact soln: x,y,u_exact or x,y,z,u_exact at n_plot^DIM plot points
+ void output_fct(std::ostream &outfile, const unsigned &n_plot,
+                 FiniteElement::SteadyExactSolutionFctPt exact_soln_pt);
+
+ /// \short Output exact soln: x,y,u_exact or x,y,z,u_exact at
+ /// n_plot^DIM plot points (dummy time-dependent version to
+ /// keep intel compiler happy)
+ virtual void output_fct(std::ostream &outfile, const unsigned &n_plot,
+                         const double& time,
+                         FiniteElement::UnsteadyExactSolutionFctPt
+                         exact_soln_pt)
+  {
+   throw OomphLibError(
+    "There is no time-dependent output_fct() for these elements ",
+    OOMPH_CURRENT_FUNCTION, OOMPH_EXCEPTION_LOCATION);
+  }
+
+ 
  /// Fill in the strain tensor
  void get_epsilon(DenseMatrix<double>& epsilon,
 		  const DenseMatrix<double>& grad_u,
 		  const DenseMatrix<double>& grad_w,
-		  const double& c_swell=0.0)const
+		  const double& c_swell)const
  {
   // Truncated Green Lagrange strain tensor
   DenseMatrix<double> dummy_epsilon(this->dim(),this->dim(),0.0);
@@ -92,6 +132,7 @@ public:
      }
     // Swelling slack
     dummy_epsilon(alpha,alpha) -= c_swell;
+    
    }
   epsilon=dummy_epsilon;
  }
@@ -100,7 +141,7 @@ public:
  void get_sigma(DenseMatrix<double>& sigma,
 		const DenseMatrix<double>& grad_u,
 		const DenseMatrix<double>& grad_w,
-		const double c_swell=0.0)const
+		const double c_swell)const
  {
   // Poisson ratio
   double nu(get_nu());

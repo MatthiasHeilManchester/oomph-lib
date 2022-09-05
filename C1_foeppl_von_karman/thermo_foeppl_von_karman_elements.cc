@@ -903,6 +903,122 @@ namespace oomph
   return energies;
  }
 
+
+//======================================================================
+/// Output function:
+///
+///   x,y,u   or    x,y,z,u
+///
+/// nplot points in each coordinate direction
+//======================================================================
+void ThermoFoepplVonKarmanEquations::output(std::ostream &outfile,
+                                    const unsigned &nplot)
+{
+ unsigned dim = this->dim();
+ 
+ //Vector of local coordinates
+ Vector<double> s(dim),x(dim);
+
+ // Tecplot header info
+ outfile << this->tecplot_zone_string(nplot);
+
+ // Storage for variables
+ Vector<double> interp_x(dim,0.0);
+ double c_swell(0.0);
+ Vector<double> u;
+ DenseMatrix<double> interpolated_dwdxj(1,dim,0.0);
+ DenseMatrix<double> interpolated_duidxj(2,dim,0.0);
+ DenseMatrix<double> epsilon(2,2,0.0);
+ unsigned num_plot_points=this->nplot_points(nplot);
+ Vector<double> r(3);
+ 
+ // Loop over plot points
+ for (unsigned iplot=0;iplot<num_plot_points;iplot++)
+  {
+   // Get local and global coordinates of plot point
+   this->get_s_plot(iplot,nplot,s);
+   interpolated_x(s,interp_x);
+
+   // Get interpolated unknowns
+   u = interpolated_u_foeppl_von_karman(s);
+
+   // Get degree of swelling for use in the strain tensor
+   this->get_swelling_foeppl_von_karman(iplot,interp_x,c_swell);
+   
+   // TODO: make the indexing below more general and not hard coded.
+   // Copy gradients from u into interpolated gradient matrices...
+   interpolated_dwdxj(0,0) = u[1]; //dwdx1
+   interpolated_dwdxj(0,1) = u[2]; //dwdx2
+   interpolated_duidxj(0,0)= u[8]; //du1dx1
+   interpolated_duidxj(0,1)= u[9]; //du1dx2
+   interpolated_duidxj(1,0)= u[10]; //du2dx1
+   interpolated_duidxj(1,1)= u[11]; //du2dx2
+   // ...which are used to retrieve the strain tensor epsilon
+   get_epsilon(epsilon,interpolated_duidxj,interpolated_dwdxj, c_swell);
+
+   // Get x position as Vector
+   interpolated_x(s,x);
+
+   for(unsigned i=0;i<this->dim();i++)
+    {
+     outfile << x[i] << " ";
+    }
+
+   // Loop for variables
+   for(Vector<double>::iterator it=u.begin();it!=u.end();++it)
+    {
+     outfile << *it << " " ;
+    }
+   
+   // Output strain
+   outfile << epsilon(0,0) << " " << epsilon(0,1) << " " << epsilon(1,1) << " ";
+
+   // End output line
+   outfile << std::endl;
+  }
+ // Write tecplot footer (e.g. FE connectivity lists)
+ this->write_tecplot_zone_footer(outfile,nplot);
+}
+
+
+
+//======================================================================
+/// C-style output function: // [TODO]
+///
+///   x,y,u   or    x,y,z,u
+///
+/// nplot points in each coordinate direction
+//======================================================================
+void ThermoFoepplVonKarmanEquations::output(FILE* file_pt,
+                                    const unsigned &nplot)
+{
+  throw OomphLibError("C-style output not implemented for "
+                      "ThermoFoepplVonKarmanEquations yet.\n"
+                      "Please use c++ output.",
+		      OOMPH_CURRENT_FUNCTION,
+		      OOMPH_EXCEPTION_LOCATION);
+}
+
+
+//======================================================================
+ /// Output exact solution // [TODO]
+ ///
+ /// Solution is provided via function pointer.
+ /// Plot at a given number of plot points.
+ ///
+ ///   x,y,u_exact    or    x,y,z,u_exact
+//======================================================================
+void ThermoFoepplVonKarmanEquations::output_fct(std::ostream &outfile,
+                                       const unsigned &nplot,
+                  FiniteElement::SteadyExactSolutionFctPt exact_soln_pt)
+{
+  throw OomphLibError("Exact solution output not implemented for "
+                      "ThermoFoepplVonKarmanEquations yet.",
+                      OOMPH_CURRENT_FUNCTION,
+                      OOMPH_EXCEPTION_LOCATION);
+}
+
+
  
 }
 
