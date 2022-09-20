@@ -31,7 +31,7 @@
 #ifndef OOMPH_THERMO_FVK_BELL_ELEMENTS_HEADER
 #define OOMPH_THERMO_FVK_BELL_ELEMENTS_HEADER
 
-#include "thermo_foeppl_von_karman_elements.h"
+#include "damped_foeppl_von_karman_elements.h"
 #include "../C1_basis/Bell_element_basis.h"
 
 namespace oomph
@@ -43,7 +43,7 @@ namespace oomph
 /// the C1-functions for approximating variables.
 //======================================================================
 template <unsigned DIM, unsigned NNODE_1D>
-class ThermoFoepplVonKarmanBellElement : public virtual ThermoFoepplVonKarmanEquations
+class DampedFoepplVonKarmanBellElement : public virtual DampedFoepplVonKarmanEquations
 {
 public:
  /// \short Function pointer to pressure function fct(x,f(x)) --
@@ -170,8 +170,8 @@ public:
 
  ///\short  Constructor: Call constructors for BellElement and
  /// Biharmonic equations
- ThermoFoepplVonKarmanBellElement() :
-  ThermoFoepplVonKarmanEquations(), Bell_basis(),
+ DampedFoepplVonKarmanBellElement() :
+  DampedFoepplVonKarmanEquations(), Bell_basis(),
   Rotated_basis_fct_pt(0), Nnodes_to_rotate(0)
   {
    this->set_nnodal_position_type(6);
@@ -181,22 +181,22 @@ public:
   }
 
  ///\short Destructor
- ~ThermoFoepplVonKarmanBellElement() 
+ ~DampedFoepplVonKarmanBellElement() 
   {
    // Use the higher order integration scheme
    delete this->integral_pt(); 
   }
 
  /// Broken copy constructor
- ThermoFoepplVonKarmanBellElement(const ThermoFoepplVonKarmanBellElement<DIM,NNODE_1D>& dummy)
+ DampedFoepplVonKarmanBellElement(const DampedFoepplVonKarmanBellElement<DIM,NNODE_1D>& dummy)
   {
-   BrokenCopy::broken_copy("ThermoFoepplVonKarmanBellElement");
+   BrokenCopy::broken_copy("DampedFoepplVonKarmanBellElement");
   }
 
  /// Broken assignment operator
- void operator=(const ThermoFoepplVonKarmanBellElement<DIM,NNODE_1D>&)
+ void operator=(const DampedFoepplVonKarmanBellElement<DIM,NNODE_1D>&)
   {
-   BrokenCopy::broken_assign("ThermoFoepplVonKarmanBellElement");
+   BrokenCopy::broken_assign("DampedFoepplVonKarmanBellElement");
   }
 
   /// Set up the rotated degrees of freedom
@@ -231,32 +231,32 @@ public:
  /// \short Output function:
  ///  x,y,u   or    x,y,z,u
  void output(std::ostream &outfile)
-  {ThermoFoepplVonKarmanEquations::output(outfile);}
+  {DampedFoepplVonKarmanEquations::output(outfile);}
 
 
  ///  \short Output function:
  ///   x,y,u   or    x,y,z,u at n_plot^DIM plot points
  void output(std::ostream &outfile, const unsigned &n_plot)
-  {ThermoFoepplVonKarmanEquations::output(outfile,n_plot);}
+  {DampedFoepplVonKarmanEquations::output(outfile,n_plot);}
 
 
  /// \short C-style output function:
  ///  x,y,u   or    x,y,z,u
  void output(FILE* file_pt)
-  {ThermoFoepplVonKarmanEquations::output(file_pt);}
+  {DampedFoepplVonKarmanEquations::output(file_pt);}
 
 
  ///  \short C-style output function:
  ///   x,y,u   or    x,y,z,u at n_plot^DIM plot points
  void output(FILE* file_pt, const unsigned &n_plot)
-  {ThermoFoepplVonKarmanEquations::output(file_pt,n_plot);}
+  {DampedFoepplVonKarmanEquations::output(file_pt,n_plot);}
 
 
  /// \short Output function for an exact solution:
  ///  x,y,u_exact   or    x,y,z,u_exact at n_plot^DIM plot points
  void output_fct(std::ostream &outfile, const unsigned &n_plot,
                  FiniteElement::SteadyExactSolutionFctPt exact_soln_pt)
-  {ThermoFoepplVonKarmanEquations::output_fct(outfile,n_plot,exact_soln_pt);}
+  {DampedFoepplVonKarmanEquations::output_fct(outfile,n_plot,exact_soln_pt);}
 
 
 
@@ -266,7 +266,7 @@ public:
  void output_fct(std::ostream &outfile, const unsigned &n_plot,
                  const double& time,
                  FiniteElement::UnsteadyExactSolutionFctPt exact_soln_pt)
-  {ThermoFoepplVonKarmanEquations::output_fct(outfile,n_plot,time,exact_soln_pt);}
+  {DampedFoepplVonKarmanEquations::output_fct(outfile,n_plot,time,exact_soln_pt);}
 
 
 protected:
@@ -324,7 +324,7 @@ protected:
 /// along their 1D edges.
 //=======================================================================
 template<unsigned DIM, unsigned NNODE_1D>
-class FaceGeometry<ThermoFoepplVonKarmanBellElement<DIM,NNODE_1D>>:
+class FaceGeometry<DampedFoepplVonKarmanBellElement<DIM,NNODE_1D>>:
  public virtual TElement<DIM-1,NNODE_1D>
 {
 
@@ -351,7 +351,7 @@ class FaceGeometry<ThermoFoepplVonKarmanBellElement<DIM,NNODE_1D>>:
 /// Galerkin: Test functions = shape functions
 //======================================================================
 template<unsigned DIM, unsigned NNODE_1D>
-void ThermoFoepplVonKarmanBellElement<DIM,NNODE_1D>::rotation_matrix_at_node
+void DampedFoepplVonKarmanBellElement<DIM,NNODE_1D>::rotation_matrix_at_node
  (const unsigned& inode, DenseMatrix<double>& rotation_matrix) const
 {
  // Initialise x normal and tangent
@@ -431,7 +431,7 @@ void ThermoFoepplVonKarmanBellElement<DIM,NNODE_1D>::rotation_matrix_at_node
 /// Galerkin: Test functions = shape functions
 //======================================================================
 template<unsigned DIM, unsigned NNODE_1D>
- void ThermoFoepplVonKarmanBellElement<DIM,NNODE_1D>::shape_and_test_foeppl_von_karman(
+ void DampedFoepplVonKarmanBellElement<DIM,NNODE_1D>::shape_and_test_foeppl_von_karman(
   const Vector<double> &s, Shape &psi, Shape& psi_b,  Shape &test, Shape& test_b
   ) const
 {
@@ -490,7 +490,7 @@ template<unsigned DIM, unsigned NNODE_1D>
 /// Galerkin: Test functions = shape functions
 //=============================================================================
 template<unsigned DIM, unsigned NNODE_1D>
- double ThermoFoepplVonKarmanBellElement<DIM,NNODE_1D>::
+ double DampedFoepplVonKarmanBellElement<DIM,NNODE_1D>::
   dshape_u_and_dtest_u_eulerian_foeppl_von_karman(const Vector<double> &s,Shape &psi,
   DShape &dpsidx,  Shape &test,  DShape &dtestdx) const
 {
@@ -534,7 +534,7 @@ template<unsigned DIM, unsigned NNODE_1D>
 /// Galerkin: Test functions = shape functions
 //======================================================================
 template<unsigned DIM, unsigned NNODE_1D>
- double ThermoFoepplVonKarmanBellElement<DIM,NNODE_1D>::
+ double DampedFoepplVonKarmanBellElement<DIM,NNODE_1D>::
  dshape_and_dtest_eulerian_foeppl_von_karman(const Vector<double> &s, Shape &psi,
  Shape& psi_b, DShape &dpsidx, DShape& dpsi_b_dx,  Shape &test, Shape& test_b,
  DShape &dtestdx,DShape &dtest_b_dx) const
@@ -594,7 +594,7 @@ template<unsigned DIM, unsigned NNODE_1D>
 }
 
 template<unsigned DIM, unsigned NNODE_1D>
- double ThermoFoepplVonKarmanBellElement<DIM,NNODE_1D>::
+ double DampedFoepplVonKarmanBellElement<DIM,NNODE_1D>::
   d2shape_and_d2test_eulerian_foeppl_von_karman(const Vector<double> &s,  Shape &psi,
   Shape &psi_b, DShape &dpsidx, DShape &dpsi_bdx,  DShape &d2psidx,
   DShape &d2psi_bdx,
@@ -688,7 +688,7 @@ template<unsigned DIM, unsigned NNODE_1D>
 }
 
 template<unsigned DIM, unsigned NNODE_1D>
- void ThermoFoepplVonKarmanBellElement<DIM,NNODE_1D>::pin_all_deflection_dofs() const
+ void DampedFoepplVonKarmanBellElement<DIM,NNODE_1D>::pin_all_deflection_dofs() const
  {
   // CHECK HERE
   // Bell elements only have deflection dofs at vertices
@@ -707,7 +707,7 @@ template<unsigned DIM, unsigned NNODE_1D>
  }
 
 template<unsigned DIM, unsigned NNODE_1D>
- void ThermoFoepplVonKarmanBellElement<DIM,NNODE_1D>::
+ void DampedFoepplVonKarmanBellElement<DIM,NNODE_1D>::
  fix_out_of_plane_displacement_dof(const unsigned& dof_number, const unsigned&
 boundary_number, const DisplacementFctPt& w)
  {
@@ -736,7 +736,7 @@ boundary_number, const DisplacementFctPt& w)
  }
 
 template<unsigned DIM, unsigned NNODE_1D>
- void ThermoFoepplVonKarmanBellElement<DIM,NNODE_1D>::
+ void DampedFoepplVonKarmanBellElement<DIM,NNODE_1D>::
  fix_in_plane_displacement_dof(const unsigned& dof_number, const unsigned&
 boundary_number, const DisplacementFctPt& u)
  {
@@ -772,7 +772,7 @@ boundary_number, const DisplacementFctPt& u)
 ///// Galerkin: Test functions = shape functions
 ////======================================================================
 //template<unsigned DIM, unsigned NNODE_1D>
-//double ThermoFoepplVonKarmanBellElement<DIM,NNODE_1D>::
+//double DampedFoepplVonKarmanBellElement<DIM,NNODE_1D>::
 // dshape_and_dtest_eulerian_at_knot_foeppl_von_karman(
 //  const unsigned &ipt,
 //  Shape &psi,
@@ -787,7 +787,7 @@ boundary_number, const DisplacementFctPt& u)
 
 
 //template<unsigned DIM, unsigned NNODE_1D>
-//double ThermoFoepplVonKarmanBellElement<DIM,NNODE_1D>::
+//double DampedFoepplVonKarmanBellElement<DIM,NNODE_1D>::
 // d2shape_and_d2test_eulerian_at_knot_foeppl_von_karman(
 //  const unsigned &ipt,
 //  Shape &psi,
@@ -812,7 +812,7 @@ boundary_number, const DisplacementFctPt& u)
 /// Shape function for specific TElement<2,2>
 //=======================================================================
 template <unsigned DIM, unsigned NNODE_1D>
-  void ThermoFoepplVonKarmanBellElement<DIM,NNODE_1D>::Lshape(const Vector<double> &s, Shape &psi) const
+  void DampedFoepplVonKarmanBellElement<DIM,NNODE_1D>::Lshape(const Vector<double> &s, Shape &psi) const
    {
     psi[0] = s[0];
     psi[1] = s[1];
@@ -824,7 +824,7 @@ template <unsigned DIM, unsigned NNODE_1D>
 /// Derivatives of shape functions for specific TElement<2,2>
 //=======================================================================
 template <unsigned DIM, unsigned NNODE_1D>
-  void ThermoFoepplVonKarmanBellElement<DIM,NNODE_1D>::dLshape_local(const Vector<double> &s,
+  void DampedFoepplVonKarmanBellElement<DIM,NNODE_1D>::dLshape_local(const Vector<double> &s,
                     Shape &psi, DShape &dpsids) const
    {
     this->Lshape(s, psi);
@@ -841,7 +841,7 @@ template <unsigned DIM, unsigned NNODE_1D>
 
 
 template <unsigned DIM, unsigned NNODE_1D>
-double ThermoFoepplVonKarmanBellElement<DIM,NNODE_1D>::local_to_eulerian_mapping2(const DShape &dpsids,
+double DampedFoepplVonKarmanBellElement<DIM,NNODE_1D>::local_to_eulerian_mapping2(const DShape &dpsids,
                                            DenseMatrix<double> &jacobian,
                                            DenseMatrix<double> &inverse_jacobian) const
   {
@@ -887,7 +887,7 @@ double ThermoFoepplVonKarmanBellElement<DIM,NNODE_1D>::local_to_eulerian_mapping
  /// coordinates at the position s
  //========================================================================
 template <unsigned DIM, unsigned NNODE_1D>
- double ThermoFoepplVonKarmanBellElement<DIM,NNODE_1D>::J_eulerian1(const Vector<double> &s) const
+ double DampedFoepplVonKarmanBellElement<DIM,NNODE_1D>::J_eulerian1(const Vector<double> &s) const
   {
    //Find the number of nodes and position types
    const unsigned n_node = 3;
@@ -977,7 +977,7 @@ template <unsigned DIM, unsigned NNODE_1D>
 // (using linear Lagrange interpolation)
 //=======================================================================
 template <unsigned DIM, unsigned NNODE_1D>
-  void ThermoFoepplVonKarmanBellElement<DIM,NNODE_1D>::my_interpolated_x(const Vector<double> &s, Vector<double> &x)
+  void DampedFoepplVonKarmanBellElement<DIM,NNODE_1D>::my_interpolated_x(const Vector<double> &s, Vector<double> &x)
    const
   {
    //Find the number of nodes

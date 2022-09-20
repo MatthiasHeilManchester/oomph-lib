@@ -31,7 +31,7 @@
 #ifndef OOMPH_THERMO_FVK_CURVED_BELL_ELEMENTS_HEADER
 #define OOMPH_THERMO_FVK_CURVED_BELL_ELEMENTS_HEADER
 
-#include "thermo_foeppl_von_karman_elements.h"
+#include "damped_foeppl_von_karman_elements.h"
 #include "../C1_basis/Bell_element_basis.h"
 #include "../C1_basis/C1_curved_elements.h"
 #include "../C1_basis/my_geom_object.h"
@@ -40,15 +40,15 @@
 namespace oomph
 {
 //===============================================================================
-/// ThermoFoepplVonKarmanC1CurvedBellElement elements are a subparametric scheme
+/// DampedFoepplVonKarmanC1CurvedBellElement elements are a subparametric scheme
 /// with  linear Lagrange interpolation for approximating the geometry and
 /// the C1-functions for approximating variables.
 //==============================================================================
 
 template <unsigned NNODE_1D>
-class ThermoFoepplVonKarmanC1CurvedBellElement :
+class DampedFoepplVonKarmanC1CurvedBellElement :
   public virtual CurvableBellElement<NNODE_1D>, 
-  public virtual ThermoFoepplVonKarmanEquations
+  public virtual DampedFoepplVonKarmanEquations
 {
 public:
  /// \short Function pointer to pressure function fct(x,f(x)) --
@@ -95,7 +95,7 @@ inline void interpolated_zeta(const Vector<double> &s
    // Store the expensive-to-construct matrix
    this->store_association_matrix();
    //Call the generic routine with the flag set to 1
-   ThermoFoepplVonKarmanEquations::fill_in_contribution_to_residuals(residuals);
+   DampedFoepplVonKarmanEquations::fill_in_contribution_to_residuals(residuals);
    // Remove the expensive-to-construct matrix
    this->delete_association_matrix();
   }
@@ -108,7 +108,7 @@ inline void interpolated_zeta(const Vector<double> &s
    // Store the expensive-to-construct matrix
    this->store_association_matrix();
    //Call the generic routine with the flag set to 1
-   ThermoFoepplVonKarmanEquations::fill_in_contribution_to_jacobian(residuals,jacobian);
+   DampedFoepplVonKarmanEquations::fill_in_contribution_to_jacobian(residuals,jacobian);
    // Remove the expensive-to-construct matrix
    this->delete_association_matrix();
   }
@@ -158,28 +158,28 @@ protected:
 public:
  ///\short  Constructor: Call constructors for C1CurvedBellElement and
  /// Biharmonic equations
- ThermoFoepplVonKarmanC1CurvedBellElement() :
-  ThermoFoepplVonKarmanEquations(), 
+ DampedFoepplVonKarmanC1CurvedBellElement() :
+  DampedFoepplVonKarmanEquations(), 
   Rotated_basis_fct_pt(0),  Nnodes_to_rotate(0)
   {
   }
 
  ///\short  Destructor: clean up alloacations
- ~ThermoFoepplVonKarmanC1CurvedBellElement()
+ ~DampedFoepplVonKarmanC1CurvedBellElement()
   {
   }
 
  /// Broken copy constructor
- ThermoFoepplVonKarmanC1CurvedBellElement(const
-  ThermoFoepplVonKarmanC1CurvedBellElement<NNODE_1D>& dummy)
+ DampedFoepplVonKarmanC1CurvedBellElement(const
+  DampedFoepplVonKarmanC1CurvedBellElement<NNODE_1D>& dummy)
   {
-   BrokenCopy::broken_copy("ThermoFoepplVonKarmanC1CurvedBellElement");
+   BrokenCopy::broken_copy("DampedFoepplVonKarmanC1CurvedBellElement");
   }
 
  /// Broken assignment operator
- void operator=(const ThermoFoepplVonKarmanC1CurvedBellElement<NNODE_1D>&)
+ void operator=(const DampedFoepplVonKarmanC1CurvedBellElement<NNODE_1D>&)
   {
-   BrokenCopy::broken_assign("ThermoFoepplVonKarmanC1CurvedBellElement");
+   BrokenCopy::broken_assign("DampedFoepplVonKarmanC1CurvedBellElement");
   }
 
  /// \short Set up the rotated degrees of freedom
@@ -195,12 +195,12 @@ public:
  /// \short Output function:
  ///  x,y,u   or    x,y,z,u
  void output(std::ostream &outfile)
-  {ThermoFoepplVonKarmanEquations::output(outfile);}
+  {DampedFoepplVonKarmanEquations::output(outfile);}
 
  ///  \short Output function:
  ///   x,y,u   or    x,y,z,u at n_plot^DIM plot points
  void output(std::ostream &outfile, const unsigned &n_plot)
-  {ThermoFoepplVonKarmanEquations::output(outfile,n_plot);}
+  {DampedFoepplVonKarmanEquations::output(outfile,n_plot);}
 
  ///  \short Output function:
  ///   x,y,u   or    x,y,z,u at n_plot^DIM plot points
@@ -210,12 +210,12 @@ public:
  /// \short C-style output function:
  ///  x,y,u   or    x,y,z,u
  void output(FILE* file_pt)
-  {ThermoFoepplVonKarmanEquations::output(file_pt);}
+  {DampedFoepplVonKarmanEquations::output(file_pt);}
 
  ///  \short C-style output function:
  ///   x,y,u   or    x,y,z,u at n_plot^DIM plot points
  void output(FILE* file_pt, const unsigned &n_plot)
-  {ThermoFoepplVonKarmanEquations::output(file_pt,n_plot);}
+  {DampedFoepplVonKarmanEquations::output(file_pt,n_plot);}
 
 
  /// \short Output function for an exact solution:
@@ -223,7 +223,7 @@ public:
  void output_fct(std::ostream &outfile, const unsigned &n_plot,
                  FiniteElement::SteadyExactSolutionFctPt exact_soln_pt)
   {
-   ThermoFoepplVonKarmanEquations::output_fct(outfile,n_plot,
+   DampedFoepplVonKarmanEquations::output_fct(outfile,n_plot,
     exact_soln_pt);
   }
 
@@ -234,7 +234,7 @@ public:
                  const double& time,
                  FiniteElement::UnsteadyExactSolutionFctPt exact_soln_pt)
   {
-   ThermoFoepplVonKarmanEquations::output_fct(outfile,n_plot,time,exact_soln_pt);
+   DampedFoepplVonKarmanEquations::output_fct(outfile,n_plot,time,exact_soln_pt);
   }
 
 
@@ -292,12 +292,12 @@ private:
 
 
 //==============================================================================
-/// Face geometry for the ThermoFoepplVonKarmanC1CurvedBellElement elements: The
+/// Face geometry for the DampedFoepplVonKarmanC1CurvedBellElement elements: The
 /// spatial dimension of the face elements is one lower than that of the bulk
 /// element but they have the same number of points along their 1D edges.
 //==============================================================================
 template < unsigned NNODE_1D>
-class FaceGeometry<ThermoFoepplVonKarmanC1CurvedBellElement<NNODE_1D> >:
+class FaceGeometry<DampedFoepplVonKarmanC1CurvedBellElement<NNODE_1D> >:
  public virtual TElement<1,NNODE_1D>
 {
 
@@ -323,14 +323,14 @@ class FaceGeometry<ThermoFoepplVonKarmanC1CurvedBellElement<NNODE_1D> >:
 // //==============================================================================
 // template < unsigned NNODE_1D>
 // void
-// ThermoFoepplVonKarmanC1CurvedBellElement<NNODE_1D>::
+// DampedFoepplVonKarmanC1CurvedBellElement<NNODE_1D>::
 
 //==============================================================================
 /// Get the jth bubble dof at the lth internal point. Deliberately broken for
 /// the case where there is no curved edge
 //==============================================================================
 template < unsigned NNODE_1D>
-double ThermoFoepplVonKarmanC1CurvedBellElement<NNODE_1D>::get_w_bubble_dof
+double DampedFoepplVonKarmanC1CurvedBellElement<NNODE_1D>::get_w_bubble_dof
   (const unsigned& l, const unsigned& j, const unsigned& t) const
   {return CurvableBellElement<NNODE_1D>::get_bubble_dof(l,j,t);} 
 
@@ -339,7 +339,7 @@ double ThermoFoepplVonKarmanC1CurvedBellElement<NNODE_1D>::get_w_bubble_dof
 /// case when there is no curved edge.
 //==============================================================================
 template < unsigned NNODE_1D>
-int ThermoFoepplVonKarmanC1CurvedBellElement<NNODE_1D>::local_w_bubble_equation
+int DampedFoepplVonKarmanC1CurvedBellElement<NNODE_1D>::local_w_bubble_equation
   (const unsigned& l, const unsigned& j) const
   {return CurvableBellElement<NNODE_1D>::local_bubble_equation(l,j);}
 
@@ -348,7 +348,7 @@ int ThermoFoepplVonKarmanC1CurvedBellElement<NNODE_1D>::local_w_bubble_equation
 /// rotation nodes being greater than three.
 //==============================================================================
 template < unsigned NNODE_1D>
-void ThermoFoepplVonKarmanC1CurvedBellElement<NNODE_1D>::set_up_rotated_dofs(const unsigned&
+void DampedFoepplVonKarmanC1CurvedBellElement<NNODE_1D>::set_up_rotated_dofs(const unsigned&
   nnodes_to_rotate, const Vector<unsigned>& nodes_to_rotate, const
   BasisVectorsFctPt& basis_vectors_fct_pt)
 {
@@ -377,7 +377,7 @@ void ThermoFoepplVonKarmanC1CurvedBellElement<NNODE_1D>::set_up_rotated_dofs(con
 /// Galerkin: Test functions = shape functions
 //==============================================================================
 template < unsigned NNODE_1D>
-void ThermoFoepplVonKarmanC1CurvedBellElement<NNODE_1D>::
+void DampedFoepplVonKarmanC1CurvedBellElement<NNODE_1D>::
  rotation_matrix_at_node (const unsigned& inode, DenseDoubleMatrix&
  rotation_matrix) const
 {
@@ -469,13 +469,13 @@ void ThermoFoepplVonKarmanC1CurvedBellElement<NNODE_1D>::
 /// Galerkin: Test functions = shape functions
 //======================================================================
 template < unsigned NNODE_1D>
- void ThermoFoepplVonKarmanC1CurvedBellElement<NNODE_1D>::shape_and_test_foeppl_von_karman(
+ void DampedFoepplVonKarmanC1CurvedBellElement<NNODE_1D>::shape_and_test_foeppl_von_karman(
   const Vector<double> &s, Shape &psi, Shape& psi_b,  Shape &test, Shape& test_b
   ) const
 {
  throw OomphLibError(
  "This still needs testing for curved elements.",
- "void ThermoFoepplVonKarmanC1CurvedBellElement<NNODE_1D>::\
+ "void DampedFoepplVonKarmanC1CurvedBellElement<NNODE_1D>::\
 shape_and_test_foeppl_von_karman(...)", OOMPH_EXCEPTION_LOCATION); // HERE
 
  this->basis(s,psi,psi_b); 
@@ -498,7 +498,7 @@ shape_and_test_foeppl_von_karman(...)", OOMPH_EXCEPTION_LOCATION); // HERE
 /// Galerkin: Test functions = shape functions
 //======================================================================
 template < unsigned NNODE_1D>
- double ThermoFoepplVonKarmanC1CurvedBellElement<NNODE_1D>::
+ double DampedFoepplVonKarmanC1CurvedBellElement<NNODE_1D>::
  dshape_and_dtest_eulerian_foeppl_von_karman(const Vector<double> &s, Shape &psi,
  Shape& psi_b, DShape &dpsidx, DShape& dpsi_b_dx,  Shape &test, Shape& test_b,
  DShape &dtestdx,DShape &dtest_b_dx) const
@@ -506,7 +506,7 @@ template < unsigned NNODE_1D>
  // Throw if called 
  throw OomphLibError(
  "This still needs testing for curved elements.",
- "void ThermoFoepplVonKarmanC1CurvedBellElement<NNODE_1D>::\
+ "void DampedFoepplVonKarmanC1CurvedBellElement<NNODE_1D>::\
 dshape_and_dtest_foeppl_von_karman(...)",
   OOMPH_EXCEPTION_LOCATION);// HERE
 
@@ -526,7 +526,7 @@ dshape_and_dtest_foeppl_von_karman(...)",
 }
 
 template < unsigned NNODE_1D>
- double ThermoFoepplVonKarmanC1CurvedBellElement<NNODE_1D>::
+ double DampedFoepplVonKarmanC1CurvedBellElement<NNODE_1D>::
   d2shape_and_d2test_eulerian_foeppl_von_karman(const Vector<double> &s,  Shape &psi,
   Shape &psi_b, DShape &dpsidx, DShape &dpsi_bdx,  DShape &d2psidx,
   DShape &d2psi_bdx,
@@ -558,7 +558,7 @@ template < unsigned NNODE_1D>
 /// up and performing the LU decomposition only once
 //======================================================================
 template < unsigned NNODE_1D>
-inline void ThermoFoepplVonKarmanC1CurvedBellElement<NNODE_1D>::
+inline void DampedFoepplVonKarmanC1CurvedBellElement<NNODE_1D>::
  rotate_shape(Shape& psi) const
 {
  const unsigned n_dof_types  = nnodal_basis_type();
@@ -603,7 +603,7 @@ inline void ThermoFoepplVonKarmanC1CurvedBellElement<NNODE_1D>::
 /// up and performing the LU decomposition only once
 //======================================================================
 template < unsigned NNODE_1D>
-inline void ThermoFoepplVonKarmanC1CurvedBellElement<NNODE_1D>::
+inline void DampedFoepplVonKarmanC1CurvedBellElement<NNODE_1D>::
  rotate_shape(Shape& psi, DShape& dpsidx) const
 {
  const unsigned n_dof_types  = nnodal_basis_type();
@@ -656,7 +656,7 @@ inline void ThermoFoepplVonKarmanC1CurvedBellElement<NNODE_1D>::
 /// up and performing the LU decomposition only once
 //======================================================================
 template < unsigned NNODE_1D>
-inline void ThermoFoepplVonKarmanC1CurvedBellElement<NNODE_1D>::
+inline void DampedFoepplVonKarmanC1CurvedBellElement<NNODE_1D>::
  rotate_shape(Shape& psi, DShape& dpsidx, DShape& d2psidx) const
 {
  const unsigned n_dof_types  = nnodal_basis_type();
@@ -717,7 +717,7 @@ inline void ThermoFoepplVonKarmanC1CurvedBellElement<NNODE_1D>::
 /// Galerkin: Test functions = shape functions
 //=============================================================================
 template < unsigned NNODE_1D>
- double ThermoFoepplVonKarmanC1CurvedBellElement<NNODE_1D>::
+ double DampedFoepplVonKarmanC1CurvedBellElement<NNODE_1D>::
   dshape_u_and_dtest_u_eulerian_foeppl_von_karman(const Vector<double> &s,Shape &psi,
   DShape &dpsidx,  Shape &test,  DShape &dtestdx) const
 {
@@ -752,7 +752,7 @@ template < unsigned NNODE_1D>
 }
 
 template < unsigned NNODE_1D>
- void ThermoFoepplVonKarmanC1CurvedBellElement<NNODE_1D>::pin_all_deflection_dofs() const
+ void DampedFoepplVonKarmanC1CurvedBellElement<NNODE_1D>::pin_all_deflection_dofs() const
  {
   // Curved Bell elements only have deflection dofs at vertices
   for(unsigned n=0; n<nnode_outofplane(); ++n)
@@ -783,7 +783,7 @@ template < unsigned NNODE_1D>
 
 
 template < unsigned NNODE_1D>
- void ThermoFoepplVonKarmanC1CurvedBellElement<NNODE_1D>::
+ void DampedFoepplVonKarmanC1CurvedBellElement<NNODE_1D>::
  fix_out_of_plane_displacement_dof(const unsigned& dof_number, const unsigned&
 b,const DisplacementFctPt& specified_deflection_fct_pt)
  {
@@ -793,7 +793,7 @@ b,const DisplacementFctPt& specified_deflection_fct_pt)
    {
     throw OomphLibError("Foppl von Karman elements only have 6 Hermite deflection degrees\
 of freedom at internal points. They are {w ; w,x ; w,y ; w,xx ; w,xy ; w,yy}",
-                        "ThermoFoepplVonKarmanC1CurvedBellElement:fix_out_of_plane_dof()",
+                        "DampedFoepplVonKarmanC1CurvedBellElement:fix_out_of_plane_dof()",
                         OOMPH_EXCEPTION_LOCATION);
    }
   // Bell elements only have deflection dofs at vertices
@@ -820,7 +820,7 @@ of freedom at internal points. They are {w ; w,x ; w,y ; w,xx ; w,xy ; w,yy}",
  }
 
 template < unsigned NNODE_1D>
- void ThermoFoepplVonKarmanC1CurvedBellElement<NNODE_1D>::
+ void DampedFoepplVonKarmanC1CurvedBellElement<NNODE_1D>::
  fix_in_plane_displacement_dof(const unsigned& dof_number, const unsigned& b, const
 DisplacementFctPt& specified_displacement_fct_pt)
  {
@@ -831,7 +831,7 @@ DisplacementFctPt& specified_displacement_fct_pt)
    {
     throw OomphLibError("Foppl von Karman elements only have 2 in-plane displacement degrees\
 of freedom at internal points. They are {w ; w,x ; w,y ; w,xx ; w,xy ; w,yy}",
-                        "ThermoFoepplVonKarmanC1CurvedBellElement:fix_out_of_plane_dof()",
+                        "DampedFoepplVonKarmanC1CurvedBellElement:fix_out_of_plane_dof()",
                         OOMPH_EXCEPTION_LOCATION);
    }
   // Bell elements only have deflection dofs at vertices

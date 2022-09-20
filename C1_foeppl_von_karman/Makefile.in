@@ -141,9 +141,9 @@ LTLIBRARIES = $(lib_LTLIBRARIES)
 libC1_foeppl_von_karman_la_LIBADD =
 am__objects_1 =
 am__objects_2 = foeppl_von_karman_elements.lo \
-	thermo_foeppl_von_karman_elements.lo \
+	damped_foeppl_von_karman_elements.lo \
 	foeppl_von_karman_curved_bell_elements.lo \
-	thermo_foeppl_von_karman_curved_bell_elements.lo
+	damped_foeppl_von_karman_curved_bell_elements.lo
 am__objects_3 = $(am__objects_1) $(am__objects_2)
 am_libC1_foeppl_von_karman_la_OBJECTS = $(am__objects_3)
 libC1_foeppl_von_karman_la_OBJECTS =  \
@@ -168,10 +168,10 @@ DEFAULT_INCLUDES = -I.@am__isrc@ -I$(top_builddir)
 depcomp = $(SHELL) $(top_srcdir)/depcomp
 am__maybe_remake_depfiles = depfiles
 am__depfiles_remade =  \
+	./$(DEPDIR)/damped_foeppl_von_karman_curved_bell_elements.Plo \
+	./$(DEPDIR)/damped_foeppl_von_karman_elements.Plo \
 	./$(DEPDIR)/foeppl_von_karman_curved_bell_elements.Plo \
-	./$(DEPDIR)/foeppl_von_karman_elements.Plo \
-	./$(DEPDIR)/thermo_foeppl_von_karman_curved_bell_elements.Plo \
-	./$(DEPDIR)/thermo_foeppl_von_karman_elements.Plo
+	./$(DEPDIR)/foeppl_von_karman_elements.Plo
 am__mv = mv -f
 CXXCOMPILE = $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) \
 	$(AM_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS)
@@ -429,19 +429,19 @@ top_srcdir = @top_srcdir@
 # Define the sources
 sourcesFvK = \
 foeppl_von_karman_elements.cc \
-thermo_foeppl_von_karman_elements.cc \
+damped_foeppl_von_karman_elements.cc \
 foeppl_von_karman_curved_bell_elements.cc \
-thermo_foeppl_von_karman_curved_bell_elements.cc
+damped_foeppl_von_karman_curved_bell_elements.cc
 
 
 # Define the headers
 headersFvK = \
 foeppl_von_karman.h \
-thermo_foeppl_von_karman.h \
+damped_foeppl_von_karman.h \
 foeppl_von_karman_elements.h \
-thermo_foeppl_von_karman_elements.h \
+damped_foeppl_von_karman_elements.h \
 foeppl_von_karman_curved_bell_elements.h \
-thermo_foeppl_von_karman_curved_bell_elements.h
+damped_foeppl_von_karman_curved_bell_elements.h
 
 
 # Define name of library
@@ -550,10 +550,10 @@ mostlyclean-compile:
 distclean-compile:
 	-rm -f *.tab.c
 
+@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/damped_foeppl_von_karman_curved_bell_elements.Plo@am__quote@ # am--include-marker
+@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/damped_foeppl_von_karman_elements.Plo@am__quote@ # am--include-marker
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/foeppl_von_karman_curved_bell_elements.Plo@am__quote@ # am--include-marker
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/foeppl_von_karman_elements.Plo@am__quote@ # am--include-marker
-@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/thermo_foeppl_von_karman_curved_bell_elements.Plo@am__quote@ # am--include-marker
-@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/thermo_foeppl_von_karman_elements.Plo@am__quote@ # am--include-marker
 
 $(am__depfiles_remade):
 	@$(MKDIR_P) $(@D)
@@ -758,10 +758,10 @@ clean-am: clean-generic clean-libLTLIBRARIES clean-libtool clean-local \
 	mostlyclean-am
 
 distclean: distclean-am
-		-rm -f ./$(DEPDIR)/foeppl_von_karman_curved_bell_elements.Plo
+		-rm -f ./$(DEPDIR)/damped_foeppl_von_karman_curved_bell_elements.Plo
+	-rm -f ./$(DEPDIR)/damped_foeppl_von_karman_elements.Plo
+	-rm -f ./$(DEPDIR)/foeppl_von_karman_curved_bell_elements.Plo
 	-rm -f ./$(DEPDIR)/foeppl_von_karman_elements.Plo
-	-rm -f ./$(DEPDIR)/thermo_foeppl_von_karman_curved_bell_elements.Plo
-	-rm -f ./$(DEPDIR)/thermo_foeppl_von_karman_elements.Plo
 	-rm -f Makefile
 distclean-am: clean-am distclean-compile distclean-generic \
 	distclean-tags
@@ -809,10 +809,10 @@ install-ps-am:
 installcheck-am:
 
 maintainer-clean: maintainer-clean-am
-		-rm -f ./$(DEPDIR)/foeppl_von_karman_curved_bell_elements.Plo
+		-rm -f ./$(DEPDIR)/damped_foeppl_von_karman_curved_bell_elements.Plo
+	-rm -f ./$(DEPDIR)/damped_foeppl_von_karman_elements.Plo
+	-rm -f ./$(DEPDIR)/foeppl_von_karman_curved_bell_elements.Plo
 	-rm -f ./$(DEPDIR)/foeppl_von_karman_elements.Plo
-	-rm -f ./$(DEPDIR)/thermo_foeppl_von_karman_curved_bell_elements.Plo
-	-rm -f ./$(DEPDIR)/thermo_foeppl_von_karman_elements.Plo
 	-rm -f Makefile
 maintainer-clean-am: distclean-am maintainer-clean-generic
 

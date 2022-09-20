@@ -28,7 +28,7 @@
 //LIC// 
 //LIC//====================================================================
 // Non--inline functions for BellBiharmonic elements
-#include "thermo_foeppl_von_karman.h"
+#include "damped_foeppl_von_karman.h"
 
 namespace oomph
 {
@@ -36,19 +36,19 @@ namespace oomph
 /// Set the data for the number of Variables at each node
 //======================================================================
  template<>
- const unsigned ThermoFoepplVonKarmanC1CurvedBellElement<2>::Initial_Nvalue[3] = {8,8,8};
+ const unsigned DampedFoepplVonKarmanC1CurvedBellElement<2>::Initial_Nvalue[3] = {8,8,8};
 
  template<>
- const unsigned ThermoFoepplVonKarmanC1CurvedBellElement<3>::Initial_Nvalue[6] = {8,8,8,2,2,2};
+ const unsigned DampedFoepplVonKarmanC1CurvedBellElement<3>::Initial_Nvalue[6] = {8,8,8,2,2,2};
  
  template<>
- const unsigned ThermoFoepplVonKarmanC1CurvedBellElement<4>::Initial_Nvalue[10]= {8,8,8,2,2,2,2,2,2,2};
+ const unsigned DampedFoepplVonKarmanC1CurvedBellElement<4>::Initial_Nvalue[10]= {8,8,8,2,2,2,2,2,2,2};
 
 //=======================================================================
 /// Shape function for specific TElement<DIM,NNODE,BOUNDARY_ORDER>
 //=======================================================================
  template<unsigned NNODE>
- void ThermoFoepplVonKarmanC1CurvedBellElement<NNODE>::shape_u(const Vector<double> &s, Shape &psi) const
+ void DampedFoepplVonKarmanC1CurvedBellElement<NNODE>::shape_u(const Vector<double> &s, Shape &psi) const
    {
     // Use the base TElement version of shape
     TElement<2,NNODE>::shape(s,psi);
@@ -57,7 +57,7 @@ namespace oomph
 /// Derivatives of shape functions for specific TElement<2,2,BOUNDARY_ORDER>
 //=======================================================================
  template<unsigned NNODE>
- void ThermoFoepplVonKarmanC1CurvedBellElement<NNODE>::dshape_u_local(const Vector<double> &s,
+ void DampedFoepplVonKarmanC1CurvedBellElement<NNODE>::dshape_u_local(const Vector<double> &s,
                     Shape &psi, DShape &dpsids) const
    {
     // Use the base TElement version of dshape_local
@@ -66,9 +66,9 @@ namespace oomph
 //====================================================================
 // Force build of templates
 //====================================================================
-template class ThermoFoepplVonKarmanC1CurvedBellElement<2>;
+template class DampedFoepplVonKarmanC1CurvedBellElement<2>;
 
-template class ThermoFoepplVonKarmanC1CurvedBellElement<3>;
+template class DampedFoepplVonKarmanC1CurvedBellElement<3>;
 
-template class ThermoFoepplVonKarmanC1CurvedBellElement<4>;
+template class DampedFoepplVonKarmanC1CurvedBellElement<4>;
 }

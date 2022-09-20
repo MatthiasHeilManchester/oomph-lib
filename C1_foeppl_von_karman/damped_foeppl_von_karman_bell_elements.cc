@@ -29,7 +29,7 @@
 //LIC//====================================================================
 // Non--inline functions for BellBiharmonic elements
 #include "foeppl_von_karman.h"
-#include "thermo_foeppl_von_karman_bell_elements.h"
+#include "damped_foeppl_von_karman_bell_elements.h"
 
 namespace oomph
 {
@@ -41,13 +41,13 @@ namespace oomph
 // const unsigned FoepplVonKarmanBellElement<DIM,NNODE_1D>::Initial_Nvalue[1] = 8;
 
  template<>
- const unsigned ThermoFoepplVonKarmanBellElement<2,2>::Initial_Nvalue[3] = {8,8,8};
+ const unsigned DampedFoepplVonKarmanBellElement<2,2>::Initial_Nvalue[3] = {8,8,8};
 
  template<>
- const unsigned ThermoFoepplVonKarmanBellElement<2,3>::Initial_Nvalue[6] = {8,8,8,2,2,2};
+ const unsigned DampedFoepplVonKarmanBellElement<2,3>::Initial_Nvalue[6] = {8,8,8,2,2,2};
  
  template<>
- const unsigned ThermoFoepplVonKarmanBellElement<2,4>::Initial_Nvalue[10]= {8,8,8,2,2,2,2,2,2,2};
+ const unsigned DampedFoepplVonKarmanBellElement<2,4>::Initial_Nvalue[10]= {8,8,8,2,2,2,2,2,2,2};
 
 //  template<>
 // const unsigned FoepplVonKarmanBellElement<2,4>::Initial_Nvalue[9] = {8,8,8,2,2,2,2,2,2,};
@@ -56,7 +56,7 @@ namespace oomph
 /// Shape function for specific TElement<2,2>
 //=======================================================================
  template<>
- void ThermoFoepplVonKarmanBellElement<2,2>::shape_u(const Vector<double> &s, Shape &psi) const
+ void DampedFoepplVonKarmanBellElement<2,2>::shape_u(const Vector<double> &s, Shape &psi) const
    {
     psi[0] = s[0];
     psi[1] = s[1];
@@ -66,7 +66,7 @@ namespace oomph
 /// Derivatives of shape functions for specific TElement<2,2>
 //=======================================================================
  template<>
- void ThermoFoepplVonKarmanBellElement<2,2>::dshape_u_local(const Vector<double> &s,
+ void DampedFoepplVonKarmanBellElement<2,2>::dshape_u_local(const Vector<double> &s,
                     Shape &psi, DShape &dpsids) const
    {
     shape_u(s, psi);
@@ -84,7 +84,7 @@ namespace oomph
 /// Shape function for specific TElement<2,3>
 //=======================================================================
  template<>
- void ThermoFoepplVonKarmanBellElement<2,3>::shape_u(const Vector<double> &s, Shape &psi) const
+ void DampedFoepplVonKarmanBellElement<2,3>::shape_u(const Vector<double> &s, Shape &psi) const
 {
  // Reconstruct the third area coordinate
  double s_2=1.0-s[0]-s[1];
@@ -105,7 +105,7 @@ namespace oomph
 /// Derivatives of shape functions for specific TElement<2,3>
 //=======================================================================
  template<>
- void ThermoFoepplVonKarmanBellElement<2,3>::dshape_u_local(const Vector<double> &s,
+ void DampedFoepplVonKarmanBellElement<2,3>::dshape_u_local(const Vector<double> &s,
                     Shape &psi, DShape &dpsids) const
    {
  //ALH: Don't know why object qualifier is needed
@@ -129,7 +129,7 @@ namespace oomph
 /// Shape function for specific TElement<2,4>
 //=======================================================================
 template<>
-void ThermoFoepplVonKarmanBellElement<2,4>::shape_u(const Vector<double> &s, Shape &psi) const
+void DampedFoepplVonKarmanBellElement<2,4>::shape_u(const Vector<double> &s, Shape &psi) const
 {
  psi[0] = 0.5*s[0]*(3.0*s[0]-2.0)*(3.0*s[0]-1.0);
  psi[1] = 0.5*s[1]*(3.0*s[1]-2.0)*(3.0*s[1]-1.0);
@@ -147,7 +147,7 @@ void ThermoFoepplVonKarmanBellElement<2,4>::shape_u(const Vector<double> &s, Sha
 /// Derivatives of shape functions for specific TElement<2,4>
 //=======================================================================
 template<>
-void ThermoFoepplVonKarmanBellElement<2,4>::dshape_u_local(const Vector<double> &s,
+void DampedFoepplVonKarmanBellElement<2,4>::dshape_u_local(const Vector<double> &s,
                    Shape &psi, DShape &dpsids) const
 {
   
@@ -183,9 +183,9 @@ void ThermoFoepplVonKarmanBellElement<2,4>::dshape_u_local(const Vector<double> 
 //====================================================================
 // Force build of templates
 //====================================================================
-template class ThermoFoepplVonKarmanBellElement<2,2>;
+template class DampedFoepplVonKarmanBellElement<2,2>;
 
-template class ThermoFoepplVonKarmanBellElement<2,3>;
+template class DampedFoepplVonKarmanBellElement<2,3>;
 
-template class ThermoFoepplVonKarmanBellElement<2,4>;
+template class DampedFoepplVonKarmanBellElement<2,4>;
 }
