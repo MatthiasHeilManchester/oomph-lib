@@ -28,15 +28,15 @@
 //LIC// 
 //LIC//====================================================================
 // Non--inline functions for the foeppl_von_karman equations
-#include "thermo_foeppl_von_karman_elements.h"
+#include "damped_foeppl_von_karman_elements.h"
 
 namespace oomph
 {
  //======================================================================
  /// Fill in generic residual and jacobian contribution 
  //======================================================================
- void  ThermoFoepplVonKarmanEquations::
- fill_in_generic_residual_contribution_thermo_foeppl_von_karman(
+ void  DampedFoepplVonKarmanEquations::
+ fill_in_generic_residual_contribution_damped_foeppl_von_karman(
 								Vector<double> &residuals,
 								DenseMatrix<double> &jacobian,
 								const unsigned& flag)
@@ -675,7 +675,7 @@ namespace oomph
  }
 
  // Define the energy calculation function here
- Vector<double> ThermoFoepplVonKarmanEquations::element_elastic_and_kinetic_energy()
+ Vector<double> DampedFoepplVonKarmanEquations::element_elastic_and_kinetic_energy()
  {
  
   double element_elastic_energy = 0.0;
@@ -911,7 +911,7 @@ namespace oomph
 ///
 /// nplot points in each coordinate direction
 //======================================================================
-void ThermoFoepplVonKarmanEquations::output(std::ostream &outfile,
+void DampedFoepplVonKarmanEquations::output(std::ostream &outfile,
                                     const unsigned &nplot)
 {
  unsigned dim = this->dim();
@@ -989,11 +989,11 @@ void ThermoFoepplVonKarmanEquations::output(std::ostream &outfile,
 ///
 /// nplot points in each coordinate direction
 //======================================================================
-void ThermoFoepplVonKarmanEquations::output(FILE* file_pt,
+void DampedFoepplVonKarmanEquations::output(FILE* file_pt,
                                     const unsigned &nplot)
 {
   throw OomphLibError("C-style output not implemented for "
-                      "ThermoFoepplVonKarmanEquations yet.\n"
+                      "DampedFoepplVonKarmanEquations yet.\n"
                       "Please use c++ output.",
 		      OOMPH_CURRENT_FUNCTION,
 		      OOMPH_EXCEPTION_LOCATION);
@@ -1008,12 +1008,12 @@ void ThermoFoepplVonKarmanEquations::output(FILE* file_pt,
  ///
  ///   x,y,u_exact    or    x,y,z,u_exact
 //======================================================================
-void ThermoFoepplVonKarmanEquations::output_fct(std::ostream &outfile,
+void DampedFoepplVonKarmanEquations::output_fct(std::ostream &outfile,
                                        const unsigned &nplot,
                   FiniteElement::SteadyExactSolutionFctPt exact_soln_pt)
 {
   throw OomphLibError("Exact solution output not implemented for "
-                      "ThermoFoepplVonKarmanEquations yet.",
+                      "DampedFoepplVonKarmanEquations yet.",
                       OOMPH_CURRENT_FUNCTION,
                       OOMPH_EXCEPTION_LOCATION);
 }

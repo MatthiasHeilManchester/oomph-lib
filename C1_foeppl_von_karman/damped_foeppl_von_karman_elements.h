@@ -47,7 +47,7 @@ namespace oomph
 /// This contains the generic maths. Shape functions, geometric
 /// mapping etc. must get implemented in derived class.
 //=============================================================
-class ThermoFoepplVonKarmanEquations : public virtual FoepplVonKarmanEquations
+class DampedFoepplVonKarmanEquations : public virtual FoepplVonKarmanEquations
 {
 
 public:
@@ -57,27 +57,27 @@ public:
  typedef void (*SwellingFctPt)(const Vector<double>& x, double& f);
 
  /// Constructor (must initialise the Pressure_fct_pt to null)
- ThermoFoepplVonKarmanEquations() :
+ DampedFoepplVonKarmanEquations() :
   FoepplVonKarmanEquations()
  {}
  
  /// Broken copy constructor
- ThermoFoepplVonKarmanEquations(const ThermoFoepplVonKarmanEquations& dummy)
+ DampedFoepplVonKarmanEquations(const DampedFoepplVonKarmanEquations& dummy)
   {
-   BrokenCopy::broken_copy("ThermoFoepplVonKarmanEquations");
+   BrokenCopy::broken_copy("DampedFoepplVonKarmanEquations");
   }
 
  /// Broken assignment operator
- void operator=(const ThermoFoepplVonKarmanEquations&)
+ void operator=(const DampedFoepplVonKarmanEquations&)
   {
-   BrokenCopy::broken_assign("ThermoFoepplVonKarmanEquations");
+   BrokenCopy::broken_assign("DampedFoepplVonKarmanEquations");
   }
 
  /// Output with default number of plot points
  void output(std::ostream &outfile)
   {
    const unsigned n_plot=5;
-   ThermoFoepplVonKarmanEquations::output(outfile,n_plot);
+   DampedFoepplVonKarmanEquations::output(outfile,n_plot);
   }
 
  /// \short Output FE representation of soln: x,y,u or x,y,z,u at
@@ -88,7 +88,7 @@ public:
  void output(FILE* file_pt)
   {
    const unsigned n_plot=5;
-   ThermoFoepplVonKarmanEquations::output(file_pt,n_plot);
+   DampedFoepplVonKarmanEquations::output(file_pt,n_plot);
   }
 
  /// \short C-style output FE representation of soln: x,y,u or x,y,z,u at
@@ -194,7 +194,7 @@ public:
   {
    //Call the generic residuals function with flag set to 0
    //using a dummy matrix argument
-   fill_in_generic_residual_contribution_thermo_foeppl_von_karman(
+   fill_in_generic_residual_contribution_damped_foeppl_von_karman(
     residuals,GeneralisedElement::Dummy_matrix,0);
   }
 
@@ -204,7 +204,7 @@ public:
                                    DenseMatrix<double> &jacobian)
   {
    //Call the generic routine with the flag set to 1
-   fill_in_generic_residual_contribution_thermo_foeppl_von_karman(residuals,jacobian,1);
+   fill_in_generic_residual_contribution_damped_foeppl_von_karman(residuals,jacobian,1);
   }
 
  /// Add the element's contribution to its residual vector and
@@ -236,7 +236,7 @@ protected:
  
  /// \short Compute element residual Vector only (if flag=and/or element
  /// Jacobian matrix
- virtual void fill_in_generic_residual_contribution_thermo_foeppl_von_karman(
+ virtual void fill_in_generic_residual_contribution_damped_foeppl_von_karman(
   Vector<double> &residuals, DenseMatrix<double> &jacobian,
   const unsigned& flag);
  
