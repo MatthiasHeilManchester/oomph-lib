@@ -147,7 +147,7 @@ protected:
  inline void rotate_shape(Shape& shape, DShape& dshape,
    DShape& d2shape) const;
  
- /// \short Get the jth bubble dof at the lth internal point.
+ /// \short Get the jth bubble dof at the lth internal point at time t(=0).
  inline double get_w_bubble_dof(const unsigned& l,
 				const unsigned& j,
 				const unsigned& t = 0) const;
@@ -332,7 +332,7 @@ class FaceGeometry<FoepplVonKarmanC1CurvedBellElement<NNODE_1D> >:
 template < unsigned NNODE_1D>
 double FoepplVonKarmanC1CurvedBellElement<NNODE_1D>::get_w_bubble_dof
  (const unsigned& l, const unsigned& j, const unsigned& t) const
-  {return CurvableBellElement<NNODE_1D>::get_bubble_dof(l,j);} 
+  {return CurvableBellElement<NNODE_1D>::get_bubble_dof(l,j,t);} 
 
 //==============================================================================
 /// Get the jth bubble dof at the lth internal point. Deliberately broken for

@@ -149,10 +149,10 @@ namespace oomph
     // oomph_info << "About to loop over the bubble bases" << std::endl;
     for(unsigned l=0;l<nbubble_basis();l++)
      {
-      // oomph_info << "Basis number: " << l << std::endl;
-      // THIS NEEDS TO BE FIXED, NOT GENERAL ENOUGH.
+
+      // TODO THIS NEEDS TO BE FIXED, NOT GENERAL ENOUGH.
       // (1) should be changed to right index
-      TimeStepper* timestepper_pt = internal_data_pt(1) // :(
+      TimeStepper* timestepper_pt = internal_data_pt(1)
        ->time_stepper_pt();
       unsigned n_time = 0;
       if( !(timestepper_pt->is_steady()) )
@@ -204,9 +204,8 @@ namespace oomph
          }
        }
      }
-
-     
-    //Get the temperature function
+    
+    //Get the swelling function
     //--------------------
     double c_swell(0.0);
     get_swelling_foeppl_von_karman(ipt,interp_x,c_swell);
@@ -408,6 +407,7 @@ namespace oomph
 	  residuals[local_eqn] += mu*interpolated_dwdt[0]*test_b(l,k)*W;     
 	  // Add body force/pressure term here
 	  residuals[local_eqn] -= pressure*test_b(l,k)*W;
+
 	  for(unsigned alpha=0;alpha<2;++alpha)
 	   {
 	    for(unsigned beta=0; beta<2;++beta)
@@ -677,7 +677,6 @@ namespace oomph
  // Define the energy calculation function here
  Vector<double> DampedFoepplVonKarmanEquations::element_elastic_and_kinetic_energy()
  {
- 
   double element_elastic_energy = 0.0;
   double element_kinetic_energy = 0.0;
   const unsigned dim = this->dim();

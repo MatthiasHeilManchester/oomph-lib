@@ -56,6 +56,10 @@ class FoepplVonKarmanEquations : public virtual FiniteElement
 
 public:
 
+ /// \short Function pointer to an alphaDT type swelling function fct(x,f(x)) --
+ /// x is a Vector!
+ typedef void (*SwellingFctPt)(const Vector<double>& x, double& f);
+
  /// \short Function pointer to pressure function fct(x,f(x)) --
  /// x is a Vector!
  typedef void (*PressureFctPt)(const Vector<double>& x, double& f);
@@ -220,16 +224,42 @@ const unsigned& boundary_number, const PressureFctPt& u)=0;
 		      OOMPH_CURRENT_FUNCTION, OOMPH_EXCEPTION_LOCATION);
  }
 
- /// Fill in the stress tensor
+ /// Fill in the strain tensor from displacement gradients
+ void get_epsilon(DenseMatrix<double>& epsilon,
+		  const DenseMatrix<double>& grad_u,
+		  const DenseMatrix<double>& grad_w,
+		  const double& c_swell)const
+ {
+  // Truncated Green Lagrange strain tensor
+  DenseMatrix<double> dummy_epsilon(this->dim(),this->dim(),0.0);
+  for(unsigned alpha=0;alpha<this->dim();++alpha)
+   {
+    for(unsigned beta=0;beta<this->dim();++beta)
+     {
+      // Truncated Green Lagrange strain tensor
+      dummy_epsilon(alpha,beta) += 0.5* grad_u(alpha,beta)
+       + 0.5*grad_u(beta,alpha)
+       + 0.5*grad_w(0,alpha)*grad_w(0,beta);
+     }
+    // Swelling slack
+    dummy_epsilon(alpha,alpha) -= c_swell;
+    
+   }
+  epsilon=dummy_epsilon;
+ }
+
+ /// Fill in the stress tensor from displacement gradients
  void get_sigma(DenseMatrix<double>& sigma,
 		const DenseMatrix<double>& grad_u,
-		const DenseMatrix<double>& grad_w )const
+		const DenseMatrix<double>& grad_w,
+		const double c_swell)const
  {
-  // Poisson ratio
+  // Get the Poisson ratio
   double nu(get_nu());
+
   // Truncated Green Lagrange strain tensor
   DenseMatrix<double> epsilon(this->dim(),this->dim(),0.0);
-  get_epsilon(epsilon, grad_u, grad_w);
+  get_epsilon(epsilon, grad_u, grad_w, c_swell);
    
   // Now construct the Stress
   for(unsigned alpha=0;alpha<this->dim();++alpha)
@@ -247,31 +277,93 @@ const unsigned& boundary_number, const PressureFctPt& u)=0;
    }
  }
 
- /// Fill in the strain tensor
- void get_epsilon(DenseMatrix<double>& epsilon,
-		  const DenseMatrix<double>& grad_u,
-		  const DenseMatrix<double>& grad_w)const
+ // TODO: Fix this function to use index loops
+ /// Fill in the stress tensor using a precalculated strain tensor
+ void get_sigma_from_epsilon(DenseMatrix<double>& sigma,
+			     const DenseMatrix<double>& epsilon)const
  {
-  // Truncated Green Lagrange strain tensor
-  DenseMatrix<double> dummy_epsilon(this->dim(),this->dim(),0.0);
-  for(unsigned alpha=0;alpha<this->dim();++alpha)
-   {
-    for(unsigned beta=0;beta<this->dim();++beta)
-     {
-      // Truncated Green Lagrange strain tensor
-      dummy_epsilon(alpha,beta) += 0.5* grad_u(alpha,beta)
-       + 0.5*grad_u(beta,alpha)
-       + 0.5*grad_w(0,alpha)*grad_w(0,beta);
-     }
-   }
-  epsilon=dummy_epsilon;
+  // Get the Poisson ratio
+  double nu(get_nu());
+   
+  // Now construct the Stress
+  sigma(0,0) = (epsilon(0,0) + nu*epsilon(1,1)) / (1.0 - nu*nu);
+  sigma(1,1) = (epsilon(1,1) + nu*epsilon(0,0)) / (1.0 - nu*nu);
+  sigma(0,1) = epsilon(0,1) / (1.0 + nu);
+  sigma(1,0) = sigma(0,1);
  }
- 
+
+ /// Get the principal stresses from the stress tensor
+ void get_principal_stresses(const DenseMatrix<double>& sigma,
+		Vector<double>& eigenvals,
+		DenseMatrix<double>& eigenvecs)const
+ {
+  // Ensure that our eigenvectors are the right size
+  eigenvals.resize(2);
+  eigenvecs.resize(2);
+  
+  // Store the axial and shear stresses
+  double s00 = sigma(0,0);
+  double s01 = sigma(0,1);
+  double s11 = sigma(1,1);
+
+  // Calculate the principal stress magnitudes
+  eigenvals[0] =
+   0.5 * ( (s00 + s11) + sqrt((s00+s11)*(s00+s11) - 4.0*(s00*s11-s01*s01)) );
+  eigenvals[1] =
+   0.5 * ( (s00 + s11) - sqrt((s00+s11)*(s00+s11) - 4.0*(s00*s11-s01*s01)) );
+
+  // Handle the shear free case
+  if(s01==0.0)
+   {
+    eigenvecs(0,0)=1.0;
+    eigenvecs(1,0)=0.0;
+    eigenvecs(0,1)=0.0;
+    eigenvecs(1,1)=1.0;
+   }
+  
+  else
+   {
+    // TODO: better (more general) sign choice for streamlines
+
+    // For max eval we choose y-positive evecs (suited to swelling sheet
+    // problem)
+    double sign = (eigenvals[0]-s00<0.0) ? -1.0 : 1.0;
+    // Calculate the normalised principal stress direction for eigenvals[0]
+    eigenvecs(0,0) =
+     sign * (s01 / sqrt(s01*s01 + (eigenvals[0]-s00)*(eigenvals[0]-s00)));
+    eigenvecs(1,0) =
+     sign * ((eigenvals[0]-s00) / sqrt(s01*s01 + (eigenvals[0]-s00)*(eigenvals[0]-s00)));
+
+    // For min eval we choose x-positive evecs (suited to swelling sheet
+    // problem)
+    sign = (s01<0.0) ? -1.0 : 1.0;
+    // Calculate the normalised principal stress direction for eigenvals[1]
+    eigenvecs(0,1) =
+     sign * (s01 / sqrt(s01*s01 + (eigenvals[1]-s00)*(eigenvals[1]-s00)));
+    eigenvecs(1,1) =
+     sign * ((eigenvals[1]-s00) / sqrt(s01*s01 + (eigenvals[1]-s00)*(eigenvals[1]-s00)));
+   }
+ }
+
  /// Access function: Pointer to pressure function
  PressureFctPt& pressure_fct_pt() {return Pressure_fct_pt;}
 
  /// Access function: Pointer to pressure function. Const version
  PressureFctPt pressure_fct_pt() const {return Pressure_fct_pt;}
+
+ /// Access function: Pointer to in plane forcing function
+ InPlaneForcingFctPt& in_plane_forcing_fct_pt()
+  {return In_plane_forcing_fct_pt;}
+
+ /// Access function: Pointer to in plane forcing function. Const version
+ InPlaneForcingFctPt in_plane_forcing_fct_pt() const
+  {return In_plane_forcing_fct_pt;}
+
+ /// Access function: Pointer to swelling function
+ SwellingFctPt& swelling_fct_pt() {return Swelling_fct_pt;}
+
+ /// Access function: Pointer to swelling function. Const version
+ SwellingFctPt swelling_fct_pt() const {return Swelling_fct_pt;}
 
  /// Access function: Pointer to error metric function
  ErrorMetricFctPt& error_metric_fct_pt() {return Error_metric_fct_pt;}
@@ -286,14 +378,6 @@ const unsigned& boundary_number, const PressureFctPt& u)=0;
  /// Access function: Pointer to multiple error metric function
  MultipleErrorMetricFctPt multiple_error_metric_fct_pt() const 
   {return Multiple_error_metric_fct_pt;}
-
- /// Access function: Pointer to in plane forcing function
- InPlaneForcingFctPt& in_plane_forcing_fct_pt()
-  {return In_plane_forcing_fct_pt;}
-
- /// Access function: Pointer to in plane forcing function. Const version
- InPlaneForcingFctPt in_plane_forcing_fct_pt() const
-  {return In_plane_forcing_fct_pt;}
 
  ///Access function to the Poisson ratio.
  const double*& nu_pt() {return Nu_pt;}
@@ -358,6 +442,28 @@ const unsigned& boundary_number, const PressureFctPt& u)=0;
      (*In_plane_forcing_fct_pt)(x,pressure);
     }
   }
+
+ /// Get swelling at (Eulerian) position x. This function is
+ /// virtual to allow overloading.
+ inline virtual void get_swelling_foeppl_von_karman(const unsigned& ipt,
+                                        const Vector<double>& x,
+                                        double& swelling) const
+  {
+   //If no swelling function has been set, return zero
+   if(Swelling_fct_pt==0)
+    {
+     swelling = 0.0;
+    }
+   else
+    {
+     // Get swelling magnitude
+     (*Swelling_fct_pt)(x,swelling);
+    }
+  }
+ 
+ /// \short Calculate the elastic energy of the element and return it as a
+ /// double.
+ virtual Vector<double> element_elastic_and_kinetic_energy();
 
  /// Add the element's contribution to its residual vector (wrapper)
  void fill_in_contribution_to_residuals(Vector<double> &residuals)
@@ -623,6 +729,9 @@ protected:
  /// Pointer to in plane forcing function (i.e. the shear force applied to
  /// the face)
  InPlaneForcingFctPt In_plane_forcing_fct_pt;
+ 
+ /// Pointer to swelling function:
+ SwellingFctPt Swelling_fct_pt; 
 
  /// Pointer to Poisson ratio, which this element cannot modify
  const double* Nu_pt;
