@@ -907,7 +907,7 @@ namespace oomph
 //======================================================================
 /// Output function:
 ///
-///   x,y,u   or    x,y,z,u
+///   x,y,u,(epsilon),(sigma),(sigma_evals,sigma_evecs)
 ///
 /// nplot points in each coordinate direction
 //======================================================================
@@ -923,12 +923,14 @@ void DampedFoepplVonKarmanEquations::output(std::ostream &outfile,
  outfile << this->tecplot_zone_string(nplot);
 
  // Storage for variables
- Vector<double> interp_x(dim,0.0);
  double c_swell(0.0);
  Vector<double> u;
  DenseMatrix<double> interpolated_dwdxj(1,dim,0.0);
  DenseMatrix<double> interpolated_duidxj(2,dim,0.0);
  DenseMatrix<double> epsilon(2,2,0.0);
+ DenseMatrix<double> sigma(2,2,0.0);
+ DenseMatrix<double> sigma_eigenvecs(2,2,0.0);
+ Vector<double> sigma_eigenvals(2,0.0);
  unsigned num_plot_points=this->nplot_points(nplot);
  Vector<double> r(3);
  
@@ -937,15 +939,18 @@ void DampedFoepplVonKarmanEquations::output(std::ostream &outfile,
   {
    // Get local and global coordinates of plot point
    this->get_s_plot(iplot,nplot,s);
-   interpolated_x(s,interp_x);
+   interpolated_x(s,x);
 
    // Get interpolated unknowns
    u = interpolated_u_foeppl_von_karman(s);
 
    // Get degree of swelling for use in the strain tensor
-   this->get_swelling_foeppl_von_karman(iplot,interp_x,c_swell);
-   
+   this->get_swelling_foeppl_von_karman(iplot,x,c_swell);
+
+   // TODO: make the output customisable with flags e.g. output_axial_strain,
+   //       output_principal_stress
    // TODO: make the indexing below more general and not hard coded.
+
    // Copy gradients from u into interpolated gradient matrices...
    interpolated_dwdxj(0,0) = u[1]; //dwdx1
    interpolated_dwdxj(0,1) = u[2]; //dwdx2
@@ -953,12 +958,16 @@ void DampedFoepplVonKarmanEquations::output(std::ostream &outfile,
    interpolated_duidxj(0,1)= u[9]; //du1dx2
    interpolated_duidxj(1,0)= u[10]; //du2dx1
    interpolated_duidxj(1,1)= u[11]; //du2dx2
-   // ...which are used to retrieve the strain tensor epsilon
-   get_epsilon(epsilon,interpolated_duidxj,interpolated_dwdxj, c_swell);
+   // ...which are used to retrieve the strain tensor epsilon.
+   get_epsilon(epsilon, interpolated_duidxj,interpolated_dwdxj, c_swell);
 
-   // Get x position as Vector
-   interpolated_x(s,x);
+   // Use epsilon to find the stress sigma.
+   get_sigma_from_epsilon(sigma, epsilon);
 
+   // Get the principal values and the corresponding directions of stress.
+   get_principal_stresses(sigma, sigma_eigenvals, sigma_eigenvecs);
+   
+   
    for(unsigned i=0;i<this->dim();i++)
     {
      outfile << x[i] << " ";
@@ -970,9 +979,19 @@ void DampedFoepplVonKarmanEquations::output(std::ostream &outfile,
      outfile << *it << " " ;
     }
    
-   // Output strain
+   // Output axial strains
    outfile << epsilon(0,0) << " " << epsilon(0,1) << " " << epsilon(1,1) << " ";
 
+   // Output axial stress
+   outfile << sigma(0,0) << " " << sigma(0,1) << " " << sigma(1,1) << " ";
+   
+   // Output principal stresses
+   outfile << sigma_eigenvals[0] << " " << sigma_eigenvals[1] << " ";
+   
+   // Output principal stress directions
+   outfile << sigma_eigenvecs(0,0) << " " << sigma_eigenvecs(1,0) << " "
+	   << sigma_eigenvecs(0,1) << " " << sigma_eigenvecs(1,1) << " ";
+   
    // End output line
    outfile << std::endl;
   }

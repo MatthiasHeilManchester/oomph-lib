@@ -143,8 +143,9 @@ public:
 		const DenseMatrix<double>& grad_w,
 		const double c_swell)const
  {
-  // Poisson ratio
+  // Get the Poisson ratio
   double nu(get_nu());
+
   // Truncated Green Lagrange strain tensor
   DenseMatrix<double> epsilon(this->dim(),this->dim(),0.0);
   get_epsilon(epsilon, grad_u, grad_w, c_swell);
@@ -162,6 +163,74 @@ public:
       // (1-\nu) * \epsilon_{\alpha \beta}
       sigma(alpha,beta) += (1-nu)* epsilon(alpha,beta)/(1-nu*nu);
      }
+   }
+ }
+
+ // TODO: Fix this function to use index loops
+ /// Fill in the stress tensor using a precalculated epsilon
+ void get_sigma_from_epsilon(DenseMatrix<double>& sigma,
+			     const DenseMatrix<double>& epsilon)const
+ {
+  // Get the Poisson ratio
+  double nu(get_nu());
+   
+  // Now construct the Stress
+  sigma(0,0) = (epsilon(0,0) + nu*epsilon(1,1)) / (1.0 - nu*nu);
+  sigma(1,1) = (epsilon(1,1) + nu*epsilon(0,0)) / (1.0 - nu*nu);
+  sigma(0,1) = epsilon(0,1) / (1.0 + nu);
+  sigma(1,0) = sigma(0,1);
+ }
+ 
+ /// Get the principal stresses from the stress tensor
+ void get_principal_stresses(const DenseMatrix<double>& sigma,
+		Vector<double>& eigenvals,
+		DenseMatrix<double>& eigenvecs)const
+ {
+  // Ensure that our eigenvectors are the right size
+  eigenvals.resize(2);
+  eigenvecs.resize(2);
+  
+  // Store the axial and shear stresses
+  double s00 = sigma(0,0);
+  double s01 = sigma(0,1);
+  double s11 = sigma(1,1);
+
+  // Calculate the principal stress magnitudes
+  eigenvals[0] =
+   0.5 * ( (s00 + s11) + sqrt((s00+s11)*(s00+s11) - 4.0*(s00*s11-s01*s01)) );
+  eigenvals[1] =
+   0.5 * ( (s00 + s11) - sqrt((s00+s11)*(s00+s11) - 4.0*(s00*s11-s01*s01)) );
+
+  // Handle the shear free case
+  if(s01==0.0)
+   {
+    eigenvecs(0,0)=1.0;
+    eigenvecs(1,0)=0.0;
+    eigenvecs(0,1)=0.0;
+    eigenvecs(1,1)=1.0;
+   }
+  
+  else
+   {
+    // TODO: better (more general) sign choice for streamlines
+
+    // For max eval we choose y-positive evecs (suited to swelling sheet
+    // problem)
+    double sign = (eigenvals[0]-s00<0.0) ? -1.0 : 1.0;
+    // Calculate the normalised principal stress direction for eigenvals[0]
+    eigenvecs(0,0) =
+     sign * (s01 / sqrt(s01*s01 + (eigenvals[0]-s00)*(eigenvals[0]-s00)));
+    eigenvecs(1,0) =
+     sign * ((eigenvals[0]-s00) / sqrt(s01*s01 + (eigenvals[0]-s00)*(eigenvals[0]-s00)));
+
+    // For min eval we choose x-positive evecs (suited to swelling sheet
+    // problem)
+    sign = (s01<0.0) ? -1.0 : 1.0;
+    // Calculate the normalised principal stress direction for eigenvals[1]
+    eigenvecs(0,1) =
+     sign * (s01 / sqrt(s01*s01 + (eigenvals[1]-s00)*(eigenvals[1]-s00)));
+    eigenvecs(1,1) =
+     sign * ((eigenvals[1]-s00) / sqrt(s01*s01 + (eigenvals[1]-s00)*(eigenvals[1]-s00)));
    }
  }
  
