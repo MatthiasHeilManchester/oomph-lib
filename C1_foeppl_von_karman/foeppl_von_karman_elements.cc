@@ -687,7 +687,7 @@ fill_in_generic_residual_contribution_foeppl_von_karman(Vector<double> &residual
 
 
  // Define the energy calculation function here
- Vector<double> DampedFoepplVonKarmanEquations::element_elastic_and_kinetic_energy()
+ Vector<double> FoepplVonKarmanEquations::element_elastic_and_kinetic_energy()
  {
   double element_elastic_energy = 0.0;
   double element_kinetic_energy = 0.0;
