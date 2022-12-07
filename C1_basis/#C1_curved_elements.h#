@@ -112,17 +112,19 @@ public:
 /*  @     @                                                                   */
 /*                                                                            */
 /*  Physical (21):      Reference dofs (21):     basic dofs(36):              */
-/*   w(ai)               w(ai)                   w(ahati)                     */
-/*   w,j(ai)             w,tij (ai)              w,j(ahati)                   */
-/*   w,jk(ai)            w,tij tij(ai)           w,jk(ahati)                  */
-/*   w(ei)               w,tkj tjk(ai)           w,n(bi)                      */
-/*                       w(ei)                   w(ei)                        */
-/*                                               w(di)                        */
-/*                                               w,n(di)                      */
+/*   w(ai)    (3)        w(ai)          (3)      w(ahati)   (3)               */
+/*   w,j(ai)  (6)        w,tij (ai)     (6)      w,j(ahati) (6)               */
+/*   w,jk(ai) (9)        w,tij tij(ai)  (?)      w,jk(ahati)(9)               */
+/*   w(ei)    (3)        w,tkj tjk(ai)  (?)      w,n(bi)    (3)               */
+/*                       w(ei)          (3)      w(di)      (6)               */
+/*                                               w,n(di)    (6)               */
+/*                                               w(ei)      (3)               */
+/*                                                                            */
 /* where tij are the two tangents at node ai and tjk are the two tangents opp-*/
 /* osite ai. ai are nodes, bi are midside points and di are mid-midside points*/
 /* ei are internal dofs at points Fk(ei_hat) where ei hat are at (1/4,1/4)    */
-/* (1/4,1/2) and (1/2,1/4).                                                    */
+/* (1/4,1/2) and (1/2,1/4).                                                   */
+///
 /// We first map the dofs from global to local dofs such that the derivatives are
 /// now all with respect to local tangents.
 /// This is just done using local rotations of the derivative dofs using a 24x24

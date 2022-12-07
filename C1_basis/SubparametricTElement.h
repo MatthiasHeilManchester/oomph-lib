@@ -627,6 +627,6 @@ private:
  /// Pointer to Stored Association matrix
  DenseMatrix<double>* Association_matrix_pt;
 
-}; //End of Subparametric TElement class
+}; //End of CurvableBellElement class
 } //End of namespace extension
 #endif
