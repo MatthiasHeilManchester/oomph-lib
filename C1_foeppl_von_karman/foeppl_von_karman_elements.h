@@ -128,11 +128,15 @@ const unsigned& boundary_number, const PressureFctPt& u)=0;
 
  /// Constructor (must initialise the Pressure_fct_pt to null)
  FoepplVonKarmanEquations() : Pressure_fct_pt(0),
-   In_plane_forcing_fct_pt(0), Error_metric_fct_pt(0),
-    Multiple_error_metric_fct_pt(0), Association_matrix_pt(0) 
+			      In_plane_forcing_fct_pt(0),
+			      Swelling_fct_pt(0),
+			      Error_metric_fct_pt(0),
+			      Multiple_error_metric_fct_pt(0),
+			      Association_matrix_pt(0) 
   {
    Eta_pt = &Default_Eta_Value;
    Nu_pt = &Default_Nu_Value;
+   Mu_pt = &Default_Mu_Value;
   }
 
  /// Broken copy constructor

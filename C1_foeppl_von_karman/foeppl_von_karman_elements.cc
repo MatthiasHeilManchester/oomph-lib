@@ -66,8 +66,8 @@ fill_in_generic_residual_contribution_foeppl_von_karman(Vector<double> &residual
  //Get the Poisson ratio of the plate
  const double nu=get_nu();
 
-  //Get the virtual dampening coefficient
-  const double mu=get_mu();
+ //Get the virtual dampening coefficient
+ const double mu=get_mu();
   
  //Set up memory for the shape and test functions
  Shape psi_u(n_u_node), test_u(n_u_node);
@@ -1079,7 +1079,8 @@ void  FoepplVonKarmanEquations::output(FILE* file_pt,
 }
 
 
-
+// [zdec] This is also called to output the pressure.
+// [TODO] Needs renaming.
 //======================================================================
  /// Output exact solution
  ///
@@ -1102,8 +1103,16 @@ void FoepplVonKarmanEquations::output_fct(std::ostream &outfile,
  outfile << this->tecplot_zone_string(nplot);
 
  // Exact solution Vector (here a scalar)
- Vector<double> exact_soln(this->required_nvalue(0),0.0);
-
+ //
+ // [zdec] Why was this->required_nvalue(0) called here? Caused range checking
+ // errors due to required_nvalue(0) being 8 but exact_soln_pt resizing to a
+ // vector of length one. Replaced with 1 for now as the above comment states
+ // we already know this function to be scalar.
+ // 
+ // Vector<double> exact_soln(this->required_nvalue(0),0.0);
+ unsigned nvalue=1;
+ Vector<double> exact_soln(nvalue,0.0);
+ 
  // Loop over plot points
  unsigned num_plot_points=this->nplot_points(nplot);
  for (unsigned iplot=0;iplot<num_plot_points;iplot++)
@@ -1124,7 +1133,7 @@ void FoepplVonKarmanEquations::output_fct(std::ostream &outfile,
      outfile << x[i] << " ";
     }
    // Loop over variables
-   for(unsigned j=0;j<this->required_nvalue(0);j++)
+   for(unsigned j=0;j<nvalue;j++)
    {
     outfile << exact_soln[j] << " ";
    }
