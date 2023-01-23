@@ -33,6 +33,103 @@
 namespace oomph
 {
 //======================================================================
+/// Set the data for the field, node, type enumeration
+//======================================================================
+ template<unsigned NNODE_1D>
+ const unsigned FoepplVonKarmanC1CurvedBellElement<NNODE_1D>::Nfield=3;
+
+ template<>
+ const unsigned FoepplVonKarmanC1CurvedBellElement<2>::Nnode = 3;
+ template<>
+ const unsigned FoepplVonKarmanC1CurvedBellElement<3>::Nnode = 6;
+ template<>
+ const unsigned FoepplVonKarmanC1CurvedBellElement<4>::Nnode = 10;
+
+ // Number of nodes used by each field
+ template<>
+ const Vector<unsigned> FoepplVonKarmanC1CurvedBellElement<2>::Nnode_for_field =
+  {3, 3, 3};
+ template<>
+ const Vector<unsigned> FoepplVonKarmanC1CurvedBellElement<3>::Nnode_for_field =
+  {6, 6, 3};
+ template<>
+ const Vector<unsigned> FoepplVonKarmanC1CurvedBellElement<4>::Nnode_for_field =
+  {10, 10, 3};
+
+ // Index of nodes used by each field,
+ // all nodes for ux, uy
+ // first three (vertex) for w
+ template<>
+ const Vector< Vector<unsigned> > FoepplVonKarmanC1CurvedBellElement<2>::Node_index_for_field =
+  {
+   {0,1,2},
+   {0,1,2},
+   {0,1,2}
+  }; template<>
+ const Vector< Vector<unsigned> > FoepplVonKarmanC1CurvedBellElement<3>::Node_index_for_field =
+  {
+   {0,1,2,3,4,5},
+   {0,1,2,3,4,5},
+   {0,1,2}
+  }; template<>
+ const Vector< Vector<unsigned> > FoepplVonKarmanC1CurvedBellElement<4>::Node_index_for_field =
+  {
+   {0,1,2,3,4,5,6,7,8,9},
+   {0,1,2,3,4,5,6,7,8,9},
+   {0,1,2}
+  };
+ 
+ // Number of basis types at each node for each field
+ // (1 Lagrangian at every node for in-plane)
+ // (6 Hermite at vertex nodes for out-of-plane)
+ template<>
+ const Vector< Vector<unsigned> > FoepplVonKarmanC1CurvedBellElement<2>::Ntype_for_field_at_node =
+  {
+   Vector<unsigned>(3,1),
+   Vector<unsigned>(3,1),
+   Vector<unsigned>(3,6)
+  };
+ template<>
+ const Vector< Vector<unsigned> > FoepplVonKarmanC1CurvedBellElement<3>::Ntype_for_field_at_node =
+  {
+   Vector<unsigned>(6,1),
+   Vector<unsigned>(6,1),
+   Vector<unsigned>(3,6)
+  };
+ template<>
+ const Vector< Vector<unsigned> > FoepplVonKarmanC1CurvedBellElement<4>::Ntype_for_field_at_node =
+  {
+   Vector<unsigned>(10,1),
+   Vector<unsigned>(10,1),
+   Vector<unsigned>(3,6)
+  };
+
+ template<>
+ const Vector< Vector< Vector<unsigned> > > FoepplVonKarmanC1CurvedBellElement<2>::Nodal_value_index =
+  {
+   Vector<Vector<unsigned>>(3,Vector<unsigned>{0}),
+   Vector<Vector<unsigned>>(3,Vector<unsigned>{1}),
+   Vector<Vector<unsigned>>(3,Vector<unsigned>{2,3,4,5,6,7})
+  };
+
+ template<>
+ const Vector< Vector< Vector<unsigned> > > FoepplVonKarmanC1CurvedBellElement<3>::Nodal_value_index =
+  {
+   Vector<Vector<unsigned>>(6,Vector<unsigned>{0}),
+   Vector<Vector<unsigned>>(6,Vector<unsigned>{1}),
+   Vector<Vector<unsigned>>(3,Vector<unsigned>{2,3,4,5,6,7})
+  };
+
+ template<>
+ const Vector< Vector< Vector<unsigned> > > FoepplVonKarmanC1CurvedBellElement<4>::Nodal_value_index =
+  {
+   Vector<Vector<unsigned>>(10,Vector<unsigned>{0}),
+   Vector<Vector<unsigned>>(10,Vector<unsigned>{1}),
+   Vector<Vector<unsigned>>(3,Vector<unsigned>{2,3,4,5,6,7})
+  };
+ 
+ 
+//======================================================================
 /// Set the data for the number of Variables at each node
 //======================================================================
  template<>

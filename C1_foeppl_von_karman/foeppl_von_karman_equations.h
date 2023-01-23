@@ -38,6 +38,7 @@
 #include "../generic/nodes.h"
 #include "../generic/oomph_utilities.h"
 #include "../generic/Telements.h"
+//#include "../C1_basis/SubparametricTriangleElement.h"
 
 
 namespace oomph
@@ -77,13 +78,16 @@ public:
 
  /// \short Function pointer to the Error Metric we are using if we want multiple
  ///  errors.  e.g could be we want errors seperately on each displacment
- typedef void (*MultipleErrorMetricFctPt)(const Vector<double>& x, const 
-  Vector<double>& u, const Vector<double>& u_exact, Vector<double>& error, 
-  Vector<double>& norm);
+ typedef void (*MultipleErrorMetricFctPt)(const Vector<double>& x,
+					  const Vector<double>& u,
+					  const Vector<double>& u_exact,
+					  Vector<double>& error,
+					  Vector<double>& norm);
 
  /// \short (pure virtual) interface to fixing the out of plane displacement
  virtual void fix_out_of_plane_displacement_dof(const unsigned& dof_number, 
-const unsigned& boundary_number, const PressureFctPt& w)=0;
+						const unsigned& boundary_number,
+						const PressureFctPt& w) = 0;
  // NB do we need this?
 
  /// \short (pure virtual) interface to fixing the in plane displacement
@@ -92,30 +96,64 @@ const unsigned& boundary_number, const PressureFctPt& u)=0;
  // NB do we need this?
  
  /// \short (Read only) Access to number of internal dofs
-// unsigned number_of_internal_dofs() const {return this->nbubble_basis();}
-//
-//
+ // unsigned number_of_internal_dofs() const {return this->nbubble_basis();}
+ //
+ //
+
+ // Get the number of unknown fields we are solving for
+ virtual unsigned nfield() const = 0;
+
+ // Get the number of nodes used in the interpolation of a given field
+ virtual unsigned nnode_for_field(const unsigned& i_field) const = 0;
+
+ /// Get the number of basis type for field i at node j
+ virtual unsigned ntype_for_field_at_node(const unsigned& i_field,
+					   const unsigned& j_node) const = 0;
+
+ // Get the value of the kth type at node j for field i
+ virtual double nodal_value_for_field_at_node_of_type(const unsigned& i_field,
+						      const unsigned& j_node,
+						      const unsigned& k_type) const = 0;
+ 
+ // Get the value of the kth type at node j for field i at historical time t
+ virtual double nodal_value_for_field_at_node_of_type(const unsigned& t,
+						      const unsigned& i_field,
+						      const unsigned& j_node,
+						      const unsigned& k_type) const = 0;
+ 
+ /// Get the nodes associated with interpolating field i
+ virtual Vector<unsigned> nodes_for_field(const unsigned& i_field) const = 0;
+ 
+ /// Get the value of the damping flag for field i
+ virtual bool is_field_damped(const unsigned& i_field) const
+ {
+  if(i_field==2)
+   return true;
+  else
+   return false;
+ }
+ 
  // Get the number of nodes of the out-of-plane functions, pure virtual
  virtual unsigned nnode_outofplane() const =  0;
-
+ 
  // Get the number of nodes of the out-of-plane functions, pure virtual
  virtual unsigned nnode_inplane() const =  0;
-
+ 
  // Get the number of basis functions, pure virtual
  virtual unsigned nnodal_basis_type() const =  0;
 
  // Get the number of internal basis functions, pure virtual
  virtual unsigned nbubble_basis() const = 0;
-
+ 
  // Get the number of internal basis functions, pure virtual
  virtual unsigned nbubble_basis_type() const = 0;
  
- public:
-
+public:
+ 
  /// Get pointer to association matrix 
  DenseMatrix<double> *get_association_matrix_pt()const {return Association_matrix_pt;};
 
- public: 
+public: 
 
  /// Eta
  const double &eta() const {return *Eta_pt;}
@@ -449,9 +487,8 @@ const unsigned& boundary_number, const PressureFctPt& u)=0;
 
  /// Get swelling at (Eulerian) position x. This function is
  /// virtual to allow overloading.
- inline virtual void get_swelling_foeppl_von_karman(const unsigned& ipt,
-                                        const Vector<double>& x,
-                                        double& swelling) const
+ inline virtual void get_swelling_foeppl_von_karman(const Vector<double>& x,
+		 				    double& swelling) const
   {
    //If no swelling function has been set, return zero
    if(Swelling_fct_pt==0)
@@ -587,7 +624,7 @@ const unsigned& boundary_number, const PressureFctPt& u)=0;
   return interpolated_dwdt;
  }
  
- /// \short Return FE representation of unknown values u(s)
+ /// Return FE representation of unknown values u(s)
  /// at local coordinate s
  virtual inline Vector<double> interpolated_u_foeppl_von_karman(const Vector<double> &s) const
   {
@@ -609,20 +646,27 @@ const unsigned& boundary_number, const PressureFctPt& u)=0;
    const unsigned w_bubble_index = 0; //w_index_foeppl_von_karman();
    // Number of unique second deriv. will be the DIMth triangle number
    const unsigned n_second_deriv = (this->dim()*(this->dim()+1))/2;
-
-   //Local c1-shape funtion
-   Shape psi(n_w_node,n_basis_type),test(n_w_node,n_basis_type),
-    psi_b(n_b_node,n_b_position_type),test_b(n_b_node,n_b_position_type);
    
-   DShape dpsi_dxi(n_w_node,n_basis_type,this->dim()),dtest_dxi(n_w_node,n_basis_type,this->dim()),
-    dpsi_b_dxi(n_b_node,n_b_position_type,this->dim()),dtest_b_dxi(n_b_node,n_b_position_type,this->dim()),
-    d2psi_dxi2(n_w_node,n_basis_type,n_second_deriv), d2test_dxi2(n_w_node,n_basis_type,n_second_deriv),
-    d2psi_b_dxi2(n_b_node,n_b_position_type,n_second_deriv), d2test_b_dxi2(n_b_node,n_b_position_type,n_second_deriv);
+   //Local c1-shape funtion
+   Shape psi(n_w_node,n_basis_type);
+   Shape test(n_w_node,n_basis_type);
+   Shape psi_b(n_b_node,n_b_position_type);
+   Shape test_b(n_b_node,n_b_position_type);
+   
+   DShape dpsi_dxi(n_w_node,n_basis_type,this->dim());
+   DShape dtest_dxi(n_w_node,n_basis_type,this->dim());
+   DShape dpsi_b_dxi(n_b_node,n_b_position_type,this->dim());
+   DShape dtest_b_dxi(n_b_node,n_b_position_type,this->dim());
+   DShape d2psi_dxi2(n_w_node,n_basis_type,n_second_deriv);
+   DShape d2test_dxi2(n_w_node,n_basis_type,n_second_deriv);
+   DShape d2psi_b_dxi2(n_b_node,n_b_position_type,n_second_deriv);
+   DShape d2test_b_dxi2(n_b_node,n_b_position_type,n_second_deriv);
    
    // In--plane dofs
    Shape psi_u(n_u_node);
-   DShape dpsi_u(n_u_node,this->dim());
    Shape test_u(n_u_node);
+   
+   DShape dpsi_u(n_u_node,this->dim());
    DShape dtest_u(n_u_node,this->dim());
 
    // Number of in-plane displacement fields is equal to dim + dim^2
