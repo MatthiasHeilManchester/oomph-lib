@@ -28,7 +28,7 @@
 //LIC// 
 //LIC//====================================================================
 
-//oomph-lib headers
+//oomph-lib headers 
 #include "../generic/shape.h"
 #include "../generic/Telements.h"
 #include "../generic/prettyprint98.h"
@@ -49,45 +49,96 @@ namespace oomph
  /// \short Class for subparametric element that has a seprate basis for the 
  // unknowns and a shape for the interpolation of the coordinates.
  template<unsigned NNODE_1D>
- class SubparametricTElement : public TElement<2,NNODE_1D>
+ class SubparametricTriangleElement : public TElement<2,NNODE_1D>
  {
  public:
   /// Constructor
-  SubparametricTElement() {}; 
+  SubparametricTriangleElement() {}; 
 
   /// Destructor
-  ~SubparametricTElement() {}; 
+  ~SubparametricTriangleElement() {}; 
 
   // Broken Copy Constructor
-  SubparametricTElement(const SubparametricTElement& dummy)
+  SubparametricTriangleElement(const SubparametricTriangleElement& dummy)
   { BrokenCopy::broken_copy(OOMPH_CURRENT_FUNCTION); }
 
   // Broken assignment operator
-  void operator=(const SubparametricTElement& dummy)
+  void operator=(const SubparametricTriangleElement& dummy)
   { BrokenCopy::broken_assign(OOMPH_CURRENT_FUNCTION); }
 
-  /// Return total number of basis functions 
-  virtual unsigned nbasis()const 
-  {return this->nvertex_node()*nnodal_basis_type()+nbubble_basis()*nbubble_basis_type();} 
- 
-  /// Return number of basis function types 
-  virtual unsigned nnodal_basis_type()const = 0 ; 
- 
-  /// Return number of bubble basis functions 
-  virtual unsigned nbubble_basis()const = 0 ; 
- 
-  /// Return number of bubble basis functions 
-  virtual unsigned nbubble_basis_type() const = 0 ; 
- 
-  /// Return number of internal dofs (may be different from basis functions in
-  /// general if multiple unknowns are interpolated by SubparametricTElements)
-  virtual unsigned ninternal_dofs() const = 0 ; 
- 
-  /// Get the itype th bubble dof at internal point ibdof
-  virtual double get_bubble_dof(const unsigned ibdof,
-				const unsigned itype,
-				const unsigned t=0) const = 0;
+  // ===================== New functions [zdec] ================================
+  /// Number of fields (unknowns) interpolated by the element
+  virtual unsigned nfield() const = 0;
 
+  // ------------------------ Nodal data ---------------------------------------
+  /// Get the number of nodes that field i is interpolated over
+  virtual unsigned nnode_for_field(const unsigned& i_field) const = 0;
+
+  /// Get the nodes associated with interpolating field i
+  virtual Vector<unsigned> nodes_for_field(const unsigned& i_field) const = 0;
+  
+  /// Get the number of basis type for field i at node j
+  virtual unsigned ntype_for_field_at_node(const unsigned& i_field,
+					   const unsigned& j_node) const = 0;
+
+  /// Get the dof of the field i at node j of type k
+  virtual double nodal_value_for_field_at_node_of_type(const unsigned& i_field,
+						       const unsigned& j_node,
+						       const unsigned& k_type) const = 0;
+  
+  /// Get the dof of the field i at node j of type k at time t
+  virtual double nodal_value_for_field_at_node_of_type(const unsigned& t,
+						       const unsigned& i_field,
+						       const unsigned& j_node,
+						       const unsigned& k_type) const = 0;
+  
+  // ----------------------- Internal data -------------------------------------
+  /// Get the number of internal data for field i
+  virtual unsigned ninternal_types_for_field(const unsigned& i_field) const = 0;
+
+  /// Return the value at the internal data for field i type j
+  virtual Data* internal_data_for_field_pt(const unsigned i_field) const = 0;
+  
+  /// Return the value at the internal data for field i type j
+  virtual unsigned internal_value_for_field(const unsigned i_field,
+					    const unsigned j_type) const = 0;
+
+  // /// Get the basis functions for field i at local coordinate s
+  // virtual double basis_for_field(const unsigned& i,
+  // 				 const Vector<double>& s,
+  // 				 Shape& nodal_basis,
+  // 				 Shape& internal_basis) const = 0;
+   
+  // ========================= End new [zdec] ==================================
+
+  // ========================== Kill these? ====================================
+  // /// Return total number of basis functions 
+  // virtual unsigned nbasis() const 
+  // {return this->nvertex_node()*nnodal_basis_type()+nbubble_basis()*nbubble_basis_type();} 
+  
+  // /// Return number of basis function types 
+  // virtual unsigned nnodal_basis_type()const = 0 ; 
+  
+  // /// Return number of bubble basis functions 
+  // virtual unsigned nbubble_basis()const = 0 ; 
+  
+  // /// Return number of bubble basis functions 
+  // virtual unsigned nbubble_basis_type() const = 0 ; 
+  
+  // /// Return number of internal dofs (may be different from basis functions in
+  // /// general if multiple unknowns are interpolated by SubparametricTriangleElements)
+  // virtual unsigned ninternal_dofs() const = 0 ; 
+  
+  // /// Get the itype th bubble dof at internal point ibdof at time t
+  // virtual double get_bubble_dof(const unsigned t,
+  // 				const unsigned ibdof,
+  // 				const unsigned itype) const = 0;
+  
+  // /// Get the itype th bubble dof at internal point ibdof
+  // virtual double get_bubble_dof(const unsigned ibdof,
+  // 				const unsigned itype) const = 0;
+  // ===========================================================================
+   
   /// Interpolate simplex coordinate x 
   void interpolated_x (const Vector<double>& s, Vector<double>& x) const 
   {
@@ -169,35 +220,63 @@ namespace oomph
    dsimplex_shape_local(s,psi,dpsids);
   }
 
-  /// Get the basis for the  unknowns
-  virtual void basis(const Vector<double>& s, Shape& nodal_basis, Shape& bubble_basis) const = 0;
+  // /// Get the basis for the  unknowns
+  // virtual void basis(const Vector<double>& s, Shape& nodal_basis, Shape& bubble_basis) const = 0;
 
-  /// Get the local derivative of the basis for the unknowns
-  virtual void d_basis_local(const Vector<double>& s, Shape& nodal_basis, Shape& bubble_basis, DShape& dnodal_basis,
-			     DShape& dbubble_basis) const = 0;
+  // /// Get the basis functions for field i at local coordinate s
+  // virtual double basis(//const unsigned& i_field,
+  // 		       const Vector<double>& s,
+  // 		       Shape& nodal_basis,
+  // 		       Shape& internal_basis) const = 0;  
+  
 
-  /// Get the local second derivative of the basis for the unknowns
-  virtual void d2_basis_local(const Vector<double>& s, Shape& nodal_basis, 
-			      Shape& bubble_basis, DShape& dnodal_basis, DShape& dbubble_basis, DShape&
-			      d2nodal_basis, DShape& d2bubble_basis) const  = 0;
+  // /// Get the local derivative of the basis for the unknowns
+  // virtual void d_basis_local(//const unsigned& i_field,
+  // 			     const Vector<double>& s,
+  // 			     Shape& nodal_basis,
+  // 			     Shape& bubble_basis,
+  // 			     DShape& dnodal_basis,
+  // 			     DShape& dbubble_basis) const = 0;
 
-  /// Get the global (Eulerian) derivative of the basis for the unknowns
-  virtual double d_basis_eulerian(const Vector<double>& s, Shape& nodal_basis, Shape& bubble_basis, DShape& dnodal_basis,
-				  DShape& dbubble_basis) const = 0;
+  // /// Get the local second derivative of the basis for the unknowns
+  // virtual void d2_basis_local(//const unsigned& i_field,
+  // 			      const Vector<double>& s,
+  // 			      Shape& nodal_basis, 
+  // 			      Shape& bubble_basis,
+  // 			      DShape& dnodal_basis,
+  // 			      DShape& dbubble_basis,
+  // 			      DShape& d2nodal_basis,
+  // 			      DShape& d2bubble_basis) const  = 0;
 
-  /// Get the global (Eulerian) second derivative of the basis for the unknowns
-  virtual double d2_basis_eulerian(const Vector<double>& s, Shape& nodal_basis, 
-				   Shape& bubble_basis, DShape& dnodal_basis, DShape& dbubble_basis, DShape&
-				   d2nodal_basis, DShape& d2bubble_basis) const  = 0;
+  // /// Get the global (Eulerian) derivative of the basis for the unknowns
+  // virtual double d_basis_eulerian(//const unsigned& i_field,
+  // 				  const Vector<double>& s,
+  // 				  Shape& nodal_basis,
+  // 				  Shape& bubble_basis,
+  // 				  DShape& dnodal_basis,
+  // 				  DShape& dbubble_basis) const = 0;
+
+  // /// Get the global (Eulerian) second derivative of the basis for the unknowns
+  // virtual double d2_basis_eulerian(//const unsigned& i_field,
+  // 				   const Vector<double>& s,
+  // 				   Shape& nodal_basis, 
+  // 				   Shape& bubble_basis,
+  // 				   DShape& dnodal_basis,
+  // 				   DShape& dbubble_basis,
+  // 				   DShape& d2nodal_basis,
+  // 				   DShape& d2bubble_basis) const  = 0;
+
 
  }; //End of Subparametric TElement class
 
+
+ 
  /// \short Curvable Bell element. By default this element is the standard 
  /// simplex Bell element with 6dofs per node. The element can be upgraded
  /// to provide accurate representation of boundary conditions, which adds
  /// additional (bubble) unknowns to the interior.
  template<unsigned NNODE_1D>
- class CurvableBellElement : public SubparametricTElement<NNODE_1D>
+ class CurvableBellElement : public SubparametricTriangleElement<NNODE_1D>
  {
  public:
   /// Constructor
@@ -246,7 +325,7 @@ namespace oomph
     }
    else 
     {
-     SubparametricTElement<NNODE_1D>::interpolated_x(s,x);
+     SubparametricTriangleElement<NNODE_1D>::interpolated_x(s,x);
     }
   }
 
@@ -269,9 +348,8 @@ to access interpolated eulerian coordinate",
     }
    // Default to TElement shape
    else
-    {SubparametricTElement<NNODE_1D>::simplex_shape(s,shape);}
+    {SubparametricTriangleElement<NNODE_1D>::simplex_shape(s,shape);}
   }
-
 
   /// Overloaded shape. Thin wrapper which breaks shape for upgraded elements,
   /// which have a mapping but no shape function defined.
@@ -284,7 +362,7 @@ to access interpolated eulerian coordinate",
 			 OOMPH_CURRENT_FUNCTION, OOMPH_EXCEPTION_LOCATION);
     }
    else
-    {SubparametricTElement<NNODE_1D>::dsimplex_shape_local(s,shape,dshape);}
+    {SubparametricTriangleElement<NNODE_1D>::dsimplex_shape_local(s,shape,dshape);}
   }
  
   /// Local_to_eulerian mapping with local coordinate argument: when upgraded this 
@@ -310,7 +388,7 @@ to access interpolated eulerian coordinate",
      // Assemble dshape to get the mapping
      Shape psi(this->nnode());
      DShape dpsi(this->nnode(),this->dim());
-     SubparametricTElement<NNODE_1D>::dsimplex_shape_local(s,psi,dpsi);
+     SubparametricTriangleElement<NNODE_1D>::dsimplex_shape_local(s,psi,dpsi);
      return TElement<2,NNODE_1D>::local_to_eulerian_mapping(dpsi,jacobian,inverse_jacobian);
     }
   }
@@ -456,12 +534,12 @@ to access interpolated eulerian coordinate",
   unsigned nbubble_basis_type() const {return 1;}; 
 
   /// Return number of nodal dof types 
-  unsigned nnodal_basis_type()const { return 6; }; 
+  unsigned nnodal_basis_type() const { return 6; }; 
   
   /// \short Return number of nodal dof types. The default implementation in these
   /// elements is to use nbasis_type but in derived classes these two values may
   /// not be the same
-  virtual unsigned ndof_type()const { return nnodal_basis_type(); }; 
+  virtual unsigned ndof_type() const { return nnodal_basis_type(); }; 
 
   /// \short Return number of internal dofs. This will be zero
   /// for un-upgraded elements. The default implementation in these elements
@@ -469,8 +547,36 @@ to access interpolated eulerian coordinate",
   virtual unsigned ninternal_dofs() const { return nbubble_basis(); }; 
 
   /// Get the bubble dof
-  virtual double get_bubble_dof(const unsigned ibdof, const unsigned
-				itype, const unsigned t = 0) const 
+  virtual double get_bubble_dof(const unsigned ibdof,
+				const unsigned itype) const 
+  {
+   // Deliberately break this function for the below cases
+   // If there is no curved edge then we cannot return anything meaningful
+   if(Curved_edge==MyC1CurvedElements::none)
+    {
+     throw OomphLibError("There are no time-dependent internal 'bubble' dofs for \
+this element.",OOMPH_CURRENT_FUNCTION, OOMPH_EXCEPTION_LOCATION);
+     // Return dummy value 0.0 to shut up compiler
+     return 0;
+    }
+   // For these elements we only have a single dof at each internal point
+   else if(itype!=0)
+    {
+     throw OomphLibError(
+			 "There is only a single degree of freedom at the internal points in this \
+element.", OOMPH_CURRENT_FUNCTION, OOMPH_EXCEPTION_LOCATION);
+     // Return dummy value 0.0 to shut up compiler
+     return 0;
+    }
+   // Now give the lth internal degree of freedom
+   else
+    {return this->internal_data_pt(Index_of_internal_data)->value(ibdof);}
+  }
+  /// Get the bubble dof
+
+  virtual double get_bubble_dof(const unsigned t,
+				const unsigned ibdof,
+				const unsigned itype) const 
   {
    // Deliberately break this function for the below cases
    // If there is no curved edge then we cannot return anything meaningful
@@ -535,8 +641,7 @@ element.", OOMPH_CURRENT_FUNCTION,OOMPH_EXCEPTION_LOCATION);
     {Bernadou_element_basis_pt =  new BERNADOU_BASIS;}
    else
     {
-     throw OomphLibError(
-			 "There is already a curved basis for this curvable Bell element.",
+     throw OomphLibError("There is already a curved basis for this curvable Bell element.",
 			 OOMPH_CURRENT_FUNCTION,  OOMPH_EXCEPTION_LOCATION);
     }
   } 
@@ -581,12 +686,12 @@ Elements.",OOMPH_CURRENT_FUNCTION,  OOMPH_EXCEPTION_LOCATION);
    // Should we have a delete Integral_pt function?
    delete this->integral_pt(); 
    this->set_integration_scheme(new_integral_pt); 
-   // Set the number of internal dofs to nbubble
-   // Number_of_internal_dof_types = 1;
-   // Number_of_internal_dofs = basis_pt->ninternal_dofs;
-   // Nbubble_basis =  nbubble;
+
+   // [zdec] Always use same data, just resize according to internal basis
+   // requirements.
    unsigned n_bubble = Bernadou_element_basis_pt->n_internal_dofs();
-   Index_of_internal_data = this->add_internal_data(new Data(n_bubble));
+   this->internal_data_pt(Index_of_internal_data)->resize(n_bubble);
+   //Index_of_internal_data = this->add_internal_data(new Data(n_bubble));
  
    // Vector to store nodes
    Vector<Vector<double> > vertices(Vector<Vector<double> >(this->nvertex_node(),Vector<double>(this->dim(),0.0)));

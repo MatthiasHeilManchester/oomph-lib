@@ -41,648 +41,696 @@ namespace oomph
  /// \short Default to 'natural' FvK nondimensionalisation which is h 
  /// independent (NB NOT the same as in JFM paper)
  const double FoepplVonKarmanEquations::Default_Eta_Value=1;
-
-
-//======================================================================
-/// Fill in generic residual and jacobian contribution 
-//======================================================================
-void  FoepplVonKarmanEquations::
-fill_in_generic_residual_contribution_foeppl_von_karman(Vector<double> &residuals,
-                                              DenseMatrix<double> &jacobian,
-                                              const unsigned& flag)
-{
+ 
+ 
+ //======================================================================
+ /// Fill in generic residual and jacobian contribution 
+ //======================================================================
+ void  FoepplVonKarmanEquations::
+ fill_in_generic_residual_contribution_foeppl_von_karman(Vector<double> &residuals,
+							 DenseMatrix<double> &jacobian,
+							 const unsigned& flag)
+ {
+  //Find the number of unknown fields (should be 3 for FvK)
+  const unsigned n_field = nfield();
+  static const unsigned u_index = 0;
+  static const unsigned w_index = 2;
   //Find the dimension of the element
   const unsigned dim = this->dim();
- //Find out how many nodes there are
- const unsigned n_u_node = nnode_inplane();
- const unsigned n_w_node = nnode_outofplane(); 
- //Find out how many bubble nodes there are
- const unsigned n_b_node = nbubble_basis();
- //Find out how many nodes positional dofs there are
- unsigned n_basis_type = nnodal_basis_type();
- // Find the internal dofs
- const unsigned n_b_position_type = nbubble_basis_type();
+  //The number of first derivatives is the dimension of the element
+  const unsigned n_deriv = dim;
+  //The number of second derivatives is the triangle number of the dimension
+  const unsigned n_2deriv = dim*(dim+1)/2;
+  //Find out how many nodes there are
+  const unsigned n_u_node = nnode_inplane();
+  const unsigned n_w_node = nnode_outofplane(); 
+  //Find out how many bubble nodes there are
+  const unsigned n_b_node = nbubble_basis();
+  //Find out how many nodes positional dofs there are
+  unsigned n_basis_type = nnodal_basis_type();
+  // Find the internal dofs
+  const unsigned n_b_position_type = nbubble_basis_type();
 
- //Get the Poisson ratio of the plate
- const double nu=get_nu();
-
- //Get the virtual dampening coefficient
- const double mu=get_mu();
-  
- //Set up memory for the shape and test functions
- Shape psi_u(n_u_node), test_u(n_u_node);
-  DShape dpsi_udxi(n_u_node,dim), dtest_udxi(n_u_node,dim);
-
- //Local c1-shape funtion
- Shape psi(n_w_node,n_basis_type),test(n_w_node,n_basis_type),
-  psi_b(n_b_node,n_b_position_type),test_b(n_b_node,n_b_position_type);
+  //Get the Poisson ratio of the plate
+  const double nu=get_nu();
  
-  DShape dpsi_dxi(n_w_node,n_basis_type,dim),dtest_dxi(n_w_node,n_basis_type,dim),
-   dpsi_b_dxi(n_b_node,n_b_position_type,dim),dtest_b_dxi(n_b_node,n_b_position_type,dim),
-  d2psi_dxi2(n_w_node,n_basis_type,3), d2test_dxi2(n_w_node,n_basis_type,3),
-  d2psi_b_dxi2(n_b_node,n_b_position_type,3), d2test_b_dxi2(n_b_node,n_b_position_type,3);
+  //Get the virtual dampening coefficient
+  const double mu=get_mu();
+ 
+  //Set up memory for the shape and test functions
+  Shape psi_u(n_u_node), test_u(n_u_node);
+  DShape dpsi_udxi(n_u_node,n_deriv), dtest_udxi(n_u_node,n_deriv);
+ 
+  //Local c1-shape funtion
+  Shape psi_w(n_w_node,n_basis_type),test_w(n_w_node,n_basis_type),
+   psi_b(n_b_node,n_b_position_type),test_b(n_b_node,n_b_position_type);
+ 
+  DShape dpsi_wdxi(n_w_node,n_basis_type,n_deriv),dtest_wdxi(n_w_node,n_basis_type,n_deriv),
+   dpsi_b_dxi(n_b_node,n_b_position_type,n_deriv),dtest_b_dxi(n_b_node,n_b_position_type,n_deriv),
+   d2psi_wdxi2(n_w_node,n_basis_type,n_2deriv), d2test_wdxi2(n_w_node,n_basis_type,n_2deriv),
+   d2psi_b_dxi2(n_b_node,n_b_position_type,n_2deriv), d2test_b_dxi2(n_b_node,n_b_position_type,n_2deriv);
 
- //Set the value of n_intpt
- const unsigned n_intpt = this->integral_pt()->nweight();
- //Integers to store the local equation and unknown numbers
- int local_eqn=0, local_unknown=0;
+  // Vectors of pointers to the appropriate shape funtions so we can loop over them.
+  Vector<Shape*> psi_field_pt(n_field, &psi_u);
+  Vector<DShape*> dpsi_field_pt(n_field, &dpsi_udxi);
+  Vector<DShape*> d2psi_field_pt(n_field, 0); // [zdec] Do we bother making this three long
+  psi_field_pt[2]=&psi_w;
+  dpsi_field_pt[2]=&dpsi_wdxi;
+  d2psi_field_pt[2]=&d2psi_wdxi2;
+ 
+  //Set the value of n_intpt
+  const unsigned n_intpt = this->integral_pt()->nweight();
+  //Integers to store the local equation and unknown numbers
+  int local_eqn=0;
+  int local_unknown=0;
 
- //Loop over the integration points
- for(unsigned ipt=0;ipt<n_intpt;ipt++)
-  {
-   //Get the integral weight
-   double w = this->integral_pt()->weight(ipt);
+  //Loop over the integration points
+  for(unsigned ipt=0;ipt<n_intpt;ipt++)
+   {
+    //Get the integral weight
+    double w = this->integral_pt()->weight(ipt);
 
-   //Calculate values of unknown
-   Vector<double> interpolated_w(1,0.0);
+    /* [zdec] THE OLD INTERPOLATED VALUES
+    //Calculate values of unknown
+    Vector<double> interpolated_w(1,0.0);
     Vector<double> interpolated_dwdt(1,0.0);
     DenseMatrix<double> interpolated_dwdxi(1,dim,0.0);
-   DenseMatrix<double> interpolated_d2wdxi2(1,3,0.0);
-   
-   //Calculate values of unknown
-   Vector<double> interpolated_u(2,0.0);
+    DenseMatrix<double> interpolated_d2wdxi2(1,3,0.0);
+    
+    //Calculate values of unknown
+    Vector<double> interpolated_u(2,0.0);
     DenseMatrix<double> interpolated_duidxj(2,dim,0.0);
+    */
 
-   //Allocate and initialise to zero
+    // [zdec] The interpolated field values
+    Vector<double> interpolated_f(n_field,0.0);
+    Vector<double> interpolated_dfdt(n_field,0.0); // Do we size this based on damped fields?
+    DenseMatrix<double> interpolated_dfdxi(n_field,dim,0.0);
+    DenseMatrix<double> interpolated_d2fdxi2(n_field,dim*(dim+1)/2,0.0);
+   
+    //Allocate and initialise to zero
     Vector<double> interp_x(dim,0.0);
     Vector<double> s(dim);
-   s[0] = this->integral_pt()->knot(ipt,0);
-   s[1] = this->integral_pt()->knot(ipt,1);
-   interpolated_x(s,interp_x);
-   //Call the derivatives of the shape and test functions for the unknown
-   double J = d2shape_and_d2test_eulerian_foeppl_von_karman(s,
-    psi, psi_b, dpsi_dxi, dpsi_b_dxi, d2psi_dxi2, d2psi_b_dxi2,
-    test, test_b, dtest_dxi, dtest_b_dxi, d2test_dxi2, d2test_b_dxi2);
+    s[0] = this->integral_pt()->knot(ipt,0);
+    s[1] = this->integral_pt()->knot(ipt,1);
+    interpolated_x(s,interp_x);
+    //Call the derivatives of the shape and test functions for the unknown
+    double J =
+     d2shape_and_d2test_eulerian_foeppl_von_karman(s, psi_w, psi_b,
+						   dpsi_wdxi, dpsi_b_dxi,
+						   d2psi_wdxi2, d2psi_b_dxi2,
+						   test_w, test_b,
+						   dtest_wdxi, dtest_b_dxi,
+						   d2test_wdxi2, d2test_b_dxi2);
 
-   dshape_u_and_dtest_u_eulerian_foeppl_von_karman(s,psi_u,dpsi_udxi,test_u,dtest_udxi);
-   //Premultiply the weights and the Jacobian
-   double W = w*J;
+    dshape_u_and_dtest_u_eulerian_foeppl_von_karman(s,psi_u,dpsi_udxi,
+						    test_u,dtest_udxi);
+    //Premultiply the weights and the Jacobian
+    double W = w*J;
 
-   //Calculate function value and derivatives
-   //-----------------------------------------
-   // Loop over nodes
-   for(unsigned l=0;l<n_w_node;l++)
-    {
-      TimeStepper* timestepper_pt = this->node_pt(l)->time_stepper_pt();
-      unsigned n_time = 0;
-      if( !(timestepper_pt->is_steady()) )
-       {
-	n_time=timestepper_pt->ntstorage();
-       }
-     for(unsigned k=0;k<n_basis_type;k++)
-      {
-       //Get the nodal value of the unknown
-       double w_value = this->raw_nodal_value(l,k+2);
-       interpolated_w[0] += w_value*psi(l,k);
-       // Loop over directions
-	for(unsigned j=0;j<dim;j++)
-        {
-         interpolated_dwdxi(0,j) += w_value*dpsi_dxi(l,k,j);
-        }
-       for(unsigned j=0;j<3;j++)
-        {
-          interpolated_d2wdxi2(0,j) += w_value*d2psi_dxi2(l,k,j);
-        }
+    //Calculate function value and derivatives
+    //-----------------------------------------
 
-	// Add the contributions to the time derivative from node l, type k
-	double dwdt_value = 0.0;
-	for(unsigned t=0; t<n_time; t++)
-	 {
-	  dwdt_value +=
-	   timestepper_pt->weight(1,t) * this->raw_nodal_value(t, l, k+2);
-	 }
-	interpolated_dwdt[0] += dwdt_value * psi(l,k);
-      }
-    }
-
-   // Loop over internal dofs
-   for(unsigned l=0;l<nbubble_basis();l++)
-   {
-
-      // TODO THIS NEEDS TO BE FIXED, NOT GENERAL ENOUGH.
-      // (1) should be changed to right index
-      TimeStepper* timestepper_pt = internal_data_pt(1)
-       ->time_stepper_pt();
-      unsigned n_time = 0;
-      if( !(timestepper_pt->is_steady()) )
-       {
-	n_time=timestepper_pt->ntstorage();
-       }
-      
-    for(unsigned k=0;k<n_b_position_type;k++)
+    //==============[zdec] NEW BASIS INTERPOLATION===============================
+    // Loop over the unknowns [u1,u2,w]
+    for(unsigned i_field=0; i_field<n_field; i_field++)
      {
-      //Get the nodal value of the unknown
-	double w_value = get_w_bubble_dof(l,k);
-	interpolated_w[0] += w_value*psi_b(l,k);
-	// Add the contributions to the time derivative
-	double dwdt_value = 0.0;
-	for(unsigned t=0; t<n_time; t++)
+      // Basis pointers for the current field
+      // u1 and u2 share basis, w has a separate one
+      Shape* basis_pt = psi_field_pt[i_field];
+      DShape* dbasis_pt = dpsi_field_pt[i_field];
+      DShape* d2basis_pt = d2psi_field_pt[i_field];
+      // We only loop over the number of nodes that we need to for field i
+      unsigned n_node = nnode_for_field(i_field);
+      // Get the local node numbers used in the interpolation of the field
+      Vector<unsigned> local_nodes_for_field_i = nodes_for_field(i_field);
+      // Loop over the nodes
+      for(unsigned j_nodei=0; j_nodei<n_node; j_nodei++)
+       {
+	// Get the `j`-th node associated with field i
+	unsigned j_node = local_nodes_for_field_i[j_nodei];
+	unsigned n_type = ntype_for_field_at_node(i_field,j_node);
+
+	// If we are damping this field AND not doing a steady solve, get the time
+	TimeStepper* timestepper_pt = this->node_pt(j_node)->time_stepper_pt();
+	bool damping = is_field_damped(i_field) && !(timestepper_pt->is_steady());
+	unsigned n_time = 0;
+	if(damping)
 	 {
-	  // oomph_info << "At time " << t << ": ";
-	  dwdt_value +=
-	   timestepper_pt->weight(1,t) * get_w_bubble_dof(l,k,t);
-	  // oomph_info << dwdt_value
-	  // 	     << " = " << timestepper_pt
-	  // 	     << " * " << get_w_bubble_dof(l,k,t) << std::endl;;
+	  n_time=timestepper_pt->ntstorage();
 	 }
-	interpolated_dwdt[0] += dwdt_value * psi_b(l,k);
-      // Loop over directions
-	for(unsigned j=0;j<dim;j++)
+       
+	// Loop over the types of basis function
+	for(unsigned k_type=0; k_type<n_type; k_type++)
+	 {
+	  double nodal_value =
+	   nodal_value_for_field_at_node_of_type(i_field, j_node, k_type);
+	  oomph_info << i_field << " "
+		     << j_node << " "
+		     << k_type << " "
+		     << nodal_value << std::endl;
+	  
+	  // Add nodal contribution to unknown
+	  interpolated_f[i_field] +=
+	   nodal_value * (*basis_pt)(j_node,k_type);
+
+	  // Add nodal contribution to first derivatives
+	  for(unsigned l_deriv=0; l_deriv<n_deriv; l_deriv++)
+	   {
+	    interpolated_dfdxi(i_field,l_deriv) +=
+	     nodal_value * (*dbasis_pt)(j_node, k_type, l_deriv);
+	   } // End of loop over first derivatives (l_deriv)
+
+	  // Add nodal contributions to second derivatives (for w only)
+	  if(d2basis_pt!=0)
+	   {
+	    for(unsigned l_2deriv=0; l_2deriv<n_2deriv; l_2deriv++)
+	     {
+	      interpolated_d2fdxi2(i_field,l_2deriv) +=
+	       nodal_value * (*d2basis_pt)(j_node,k_type,l_2deriv);
+	     } // End of loop over second derivatives l_2deriv
+	   }
+	  // Add nodal contribution to time derivative (n_time=0 if not damped)
+	  double dudt_value=0.0;
+	  for(unsigned t=0; t<n_time; t++)
+	   {
+	    double nodal_history_value = nodal_value_for_field_at_node_of_type(t,
+									       i_field,
+									       j_node,
+									       k_type);
+	    dudt_value += nodal_history_value * timestepper_pt->weight(1,t);
+	   } // End of loop over history values (t)
+	  interpolated_dfdt[i_field] += dudt_value * (*basis_pt)(j_node,k_type);
+	 
+	 } // End of loop over basis types (k_type)
+       } // End of loop over nodes used by field i (j_nodei)
+     } // End of loop over fields (i_field)
+    //=====================end of new interpolation=============================
+    
+    //=============[zdec] move interpolated variables into u and w==============
+    // Create containers for out-of-plane unknowns
+    Vector<double> interpolated_w(1);
+    Vector<double> interpolated_dwdt(1);
+    DenseMatrix<double> interpolated_dwdxi(1,n_deriv);
+    DenseMatrix<double> interpolated_d2wdxi2(1,n_2deriv);
+    // Copy out-of-plane field into w container
+    interpolated_w[0]    = interpolated_f[w_index];
+    interpolated_dwdt[0] = interpolated_dfdt[w_index];
+    for(unsigned i_deriv=0; i_deriv<n_deriv; i_deriv++)
+     {
+      interpolated_dwdxi(0,i_deriv) = interpolated_dfdxi(w_index,i_deriv);
+     }
+    for(unsigned i_2deriv=0; i_2deriv<n_2deriv; i_2deriv++)
+     {
+      interpolated_d2wdxi2(0,i_2deriv) = interpolated_d2fdxi2(w_index,i_2deriv);
+     }
+   
+    //Create space for 
+    Vector<double> interpolated_ui(2);
+    DenseMatrix<double> interpolated_duidxj(2,n_deriv);
+    for(unsigned alpha=u_index; alpha<u_index+2; alpha++)
+     {
+      interpolated_ui[alpha] = interpolated_f[alpha];
+      for(unsigned i_deriv=0; i_deriv<n_deriv; i_deriv++)
        {
-	  interpolated_dwdxi(0,j) += w_value*dpsi_b_dxi(l,k,j);
-       }
-      for(unsigned j=0;j<3;j++)
-       {
-	  interpolated_d2wdxi2(0,j) += w_value*d2psi_b_dxi2(l,k,j);
+	interpolated_duidxj(alpha,i_deriv) =
+	 interpolated_dfdxi(u_index+alpha,i_deriv);
+	oomph_info << alpha << " "
+		   << i_deriv << " "
+		   << interpolated_duidxj(alpha,i_deriv) << std::endl;
        }
      }
-    }
-
-   // Loop over nodes
-   for(unsigned l=0;l<n_u_node;l++)
-    {
-     for(unsigned alpha=0;alpha<2;alpha++)
-      {
-       double u_value = this->raw_nodal_value(l,alpha);
-       interpolated_u[alpha] += u_value*psi_u(l);
-  
-        // Loop over directions
-        for(unsigned beta=0; beta<dim; beta++)
-         {
-          interpolated_duidxj(alpha,beta) += u_value*dpsi_udxi(l,beta);
-         }
-      }
-     }
-
+    //=======================end of interpolation transfer======================
+    
+    //======================[zdec] residuals and jacobians======================
     //Get the swelling function
     //--------------------
     double c_swell(0.0);
-    get_swelling_foeppl_von_karman(ipt,interp_x,c_swell);
+    get_swelling_foeppl_von_karman(interp_x,c_swell);
 
-   // Get the stress
-   DenseMatrix<double> sigma(2,2,0.0);
-   get_sigma(sigma,interpolated_duidxj, interpolated_dwdxi, c_swell); 
+    // Get the stress
+    DenseMatrix<double> sigma(2,2,0.0);
+    get_sigma(sigma, interpolated_duidxj, interpolated_dwdxi, c_swell);
    
     // Check 
-//    Vector<double> interpolated_w(6,0.0)pli:
-//    interpolated_w=this-> interpolated_w_foeppl_von_karman(s);
-//   interpolated_w[0]=interpolated_w[0];
-//   interpolated_dwdxi(0,0)=interpolated_w[1];
-//   interpolated_dwdxi(0,1)=interpolated_w[2];
-//   interpolated_d2wdxi2(0,0)=interpolated_w[3];
-//   interpolated_d2wdxi2(0,1)=interpolated_w[4];
-//   interpolated_d2wdxi2(0,2)=interpolated_w[5];
-   //Get pressure function
-   //-------------------
-   double pressure(0.0);
-   Vector<double> pressure_gradient(2,0.0);
-   get_pressure_foeppl_von_karman(ipt,interp_x,pressure);
-   get_in_plane_forcing_foeppl_von_karman(ipt,interp_x,pressure_gradient);
+    //    Vector<double> interpolated_w(6,0.0)pli:
+    //    interpolated_w=this-> interpolated_w_foeppl_von_karman(s);
+    //   interpolated_w[0]=interpolated_w[0];
+    //   interpolated_dwdxi(0,0)=interpolated_w[1];
+    //   interpolated_dwdxi(0,1)=interpolated_w[2];
+    //   interpolated_d2wdxi2(0,0)=interpolated_w[3];
+    //   interpolated_d2wdxi2(0,1)=interpolated_w[4];
+    //   interpolated_d2wdxi2(0,2)=interpolated_w[5];
+    //Get pressure function
+    //-------------------
+    double pressure(0.0);
+    Vector<double> pressure_gradient(2,0.0);
+    get_pressure_foeppl_von_karman(ipt,interp_x,pressure);
+    get_in_plane_forcing_foeppl_von_karman(ipt,interp_x,pressure_gradient);
 
-   // Loop over the nodal test functions
-   for(unsigned l=0;l<n_w_node;l++)
-    {
-    for(unsigned k=0;k<n_basis_type;k++)
+    // Loop over the nodal test functions
+    for(unsigned l=0;l<n_w_node;l++)
      {
-     //Get the local equation
-     local_eqn = this->nodal_local_eqn(l,k+2);
-     //IF it's not a boundary condition
-     if(local_eqn >= 0)
-      {
-      // Add virtual time derivative term for dampened buckling
-      residuals[local_eqn] += mu*interpolated_dwdt[0]*test(l,k)*W;
-      // Add body force/pressure term here
-      residuals[local_eqn] -= pressure*test(l,k)*W;
-      for(unsigned alpha=0;alpha<2;++alpha)
+      for(unsigned k=0;k<n_basis_type;k++)
        {
-       for(unsigned beta=0; beta<2;++beta)
-        {
-        // w_{,\alpha\beta} \delta \kappa_\alpha\beta
-        residuals[local_eqn] += (1-nu)
-         *interpolated_d2wdxi2(0,alpha+beta)*d2test_dxi2(l,k,alpha+beta)*W;
-        // w_{,\alpha\alpha} \delta \kappa_\beta\beta
-        residuals[local_eqn] += (nu)
-         *interpolated_d2wdxi2(0,beta+beta)*d2test_dxi2(l,k,alpha+alpha)*W;
-        // sigma_{\alpha\beta} w_\alpha \delta w_{,\beta}
-        residuals[local_eqn] += eta()*sigma(alpha,beta)
-         *interpolated_dwdxi(0,alpha)*dtest_dxi(l,k,beta)*W;
-        }
-       }
-      // Calculate the jacobian
-      //-----------------------
-      if(flag)
-      {
-       //Loop over the in--plane unknowns again
-       for(unsigned ll=0;ll<n_u_node;ll++)
-        {
-        // Loop over displacements
-        for(unsigned gamma=0;gamma<2;++gamma)
-         {
-         local_unknown = this->nodal_local_eqn(ll,gamma);
-         // If at a non-zero degree of freedom add in the entry
-         if(local_unknown >= 0)
-          {
-          // Loop over displacements
-          for(unsigned alpha=0;alpha<2;++alpha)
-           {
-           // Loop over dimensions 
-           for(unsigned beta=0; beta<2;++beta)
-            {
-            // The Nonlinear Terms 
-            if(alpha==beta)
-             {
-             jacobian(local_eqn,local_unknown) += eta()*nu*dpsi_udxi(ll,gamma)* 
-                   interpolated_dwdxi(0,alpha)*dtest_dxi(l,k,beta)/(1-nu*nu)*W;
-             }
-            if(alpha==gamma)
-             {
-             jacobian(local_eqn,local_unknown) += eta()*(1-nu)/2.*dpsi_udxi(ll,beta)
-                   *interpolated_dwdxi(0,alpha)*dtest_dxi(l,k,beta)/(1-nu*nu)*W;
-             }
-            if(beta==gamma)
-             {
-             jacobian(local_eqn,local_unknown) += eta()*(1-nu)/2.*dpsi_udxi(ll,alpha)
-                   *interpolated_dwdxi(0,alpha)*dtest_dxi(l,k,beta)/(1-nu*nu)*W;
-             }
-            }
-           }
-          }
-         }
-        }
+	//Get the local equation
+	local_eqn = this->nodal_local_eqn(l,k+2);
+	//IF it's not a boundary condition
+	if(local_eqn >= 0)
+	 {
+	  // Add virtual time derivative term for dampened buckling
+	  residuals[local_eqn] += mu*interpolated_dwdt[0]*test_w(l,k)*W;
+	  // Add body force/pressure term here
+	  residuals[local_eqn] -= pressure*test_w(l,k)*W;
+	  for(unsigned alpha=0;alpha<2;++alpha)
+	   {
+	    for(unsigned beta=0; beta<2;++beta)
+	     {
+	      // w_{,\alpha\beta} \delta \kappa_\alpha\beta
+	      residuals[local_eqn] += (1-nu)
+	       *interpolated_d2wdxi2(0,alpha+beta)*d2test_wdxi2(l,k,alpha+beta)*W;
+	      // w_{,\alpha\alpha} \delta \kappa_\beta\beta
+	      residuals[local_eqn] += (nu)
+	       *interpolated_d2wdxi2(0,beta+beta)*d2test_wdxi2(l,k,alpha+alpha)*W;
+	      // sigma_{\alpha\beta} w_\alpha \delta w_{,\beta}
+	      residuals[local_eqn] += eta()*sigma(alpha,beta)
+	       *interpolated_dwdxi(0,alpha)*dtest_wdxi(l,k,beta)*W;
+	     }
+	   }
+	  // Calculate the jacobian
+	  //-----------------------
+	  if(flag)
+	   {
+	    //Loop over the in--plane unknowns again
+	    for(unsigned ll=0;ll<n_u_node;ll++)
+	     {
+	      // Loop over displacements
+	      for(unsigned gamma=0;gamma<2;++gamma)
+	       {
+		local_unknown = this->nodal_local_eqn(ll,gamma);
+		// If at a non-zero degree of freedom add in the entry
+		if(local_unknown >= 0)
+		 {
+		  // Loop over displacements
+		  for(unsigned alpha=0;alpha<2;++alpha)
+		   {
+		    // Loop over dimensions 
+		    for(unsigned beta=0; beta<2;++beta)
+		     {
+		      // The Nonlinear Terms 
+		      if(alpha==beta)
+		       {
+			jacobian(local_eqn,local_unknown) += eta()*nu*dpsi_udxi(ll,gamma)* 
+			 interpolated_dwdxi(0,alpha)*dtest_wdxi(l,k,beta)/(1-nu*nu)*W;
+		       }
+		      if(alpha==gamma)
+		       {
+			jacobian(local_eqn,local_unknown) += eta()*(1-nu)/2.*dpsi_udxi(ll,beta)
+			 *interpolated_dwdxi(0,alpha)*dtest_wdxi(l,k,beta)/(1-nu*nu)*W;
+		       }
+		      if(beta==gamma)
+		       {
+			jacobian(local_eqn,local_unknown) += eta()*(1-nu)/2.*dpsi_udxi(ll,alpha)
+			 *interpolated_dwdxi(0,alpha)*dtest_wdxi(l,k,beta)/(1-nu*nu)*W;
+		       }
+		     }
+		   }
+		 }
+	       }
+	     }
 
-       //Loop over the test functions again
-       for(unsigned l2=0;l2<n_w_node;l2++)
-        {
-        // Loop over position dofs
-        for(unsigned k2=0;k2<n_basis_type;k2++)
-         {
-          local_unknown = this->nodal_local_eqn(l2,k2+2);
-          // If at a non-zero degree of freedom add in the entry
-          if(local_unknown >= 0)
-           {
+	    //Loop over the test functions again
+	    for(unsigned l2=0;l2<n_w_node;l2++)
+	     {
+	      // Loop over position dofs
+	      for(unsigned k2=0;k2<n_basis_type;k2++)
+	       {
+		local_unknown = this->nodal_local_eqn(l2,k2+2);
+		// If at a non-zero degree of freedom add in the entry
+		if(local_unknown >= 0)
+		 {
 		  // Contribution from buckle stabilising drag
 		  jacobian(local_eqn,local_unknown) +=
-		   psi(l2,k2)*node_pt(l2)->time_stepper_pt()->weight(1,0)
-		   *mu*test(l,k)*W;
-           // Loop over dimensions 
-           for(unsigned alpha=0;alpha<2;++alpha)
-            {
-            for(unsigned beta=0; beta<2;++beta)
-             {
-             // Linear Terms
-             // w_{,\alpha\beta} \delta \kappa_\alpha\beta
-             jacobian(local_eqn,local_unknown) += (1-nu)
-                *d2psi_dxi2(l2,k2,alpha+beta)*d2test_dxi2(l,k,alpha+beta)*W;
-             // w_{,\alpha\alpha} \delta \kappa_\beta\beta
-             jacobian(local_eqn,local_unknown) += nu
-                *d2psi_dxi2(l2,k2,beta+beta)*d2test_dxi2(l,k,alpha+alpha)*W;
-             // Nonlinear terms
-             jacobian(local_eqn,local_unknown) += eta()*sigma(alpha,beta) 
-                        *dpsi_dxi(l2,k2,alpha)*dtest_dxi(l,k,beta)*W;
-             // Nonlinear terms
-             jacobian(local_eqn,local_unknown) += eta()*nu/(1-nu*nu)*
-               interpolated_dwdxi(0,alpha)*dpsi_dxi(l2,k2,alpha)
-               *interpolated_dwdxi(0,beta)*dtest_dxi(l,k,beta)*W;//DGR: eta^2 surely
-             jacobian(local_eqn,local_unknown) += eta()/2.*(1-nu)/(1-nu*nu)*
-               interpolated_dwdxi(0,alpha)*dpsi_dxi(l2,k2,beta)
-               *interpolated_dwdxi(0,alpha)*dtest_dxi(l,k,beta)*W;//DGR: eta^2 surely
-             jacobian(local_eqn,local_unknown) += eta()/2.*(1-nu)/(1-nu*nu)*
-               interpolated_dwdxi(0,beta)*dpsi_dxi(l2,k2,alpha)
-               *interpolated_dwdxi(0,alpha)*dtest_dxi(l,k,beta)*W;//DGR: eta^2 surely
-             }
-            }
-           }
-         }
-        }
-       //Loop over the internal test functions
-       for(unsigned l2=0;l2<nbubble_basis();l2++)
-        {
-        for(unsigned k2=0;k2<n_b_position_type;k2++)
-         {
-         local_unknown = local_w_bubble_equation(l2,k2);
-         //If at a non-zero degree of freedom add in the entry
-         if(local_unknown >= 0)
-          {
+		   psi_w(l2,k2)*node_pt(l2)->time_stepper_pt()->weight(1,0)
+		   *mu*test_w(l,k)*W;
+		  // Loop over dimensions 
+		  for(unsigned alpha=0;alpha<2;++alpha)
+		   {
+		    for(unsigned beta=0; beta<2;++beta)
+		     {
+		      // Linear Terms
+		      // w_{,\alpha\beta} \delta \kappa_\alpha\beta
+		      jacobian(local_eqn,local_unknown) += (1-nu)
+		       *d2psi_wdxi2(l2,k2,alpha+beta)*d2test_wdxi2(l,k,alpha+beta)*W;
+		      // w_{,\alpha\alpha} \delta \kappa_\beta\beta
+		      jacobian(local_eqn,local_unknown) += nu
+		       *d2psi_wdxi2(l2,k2,beta+beta)*d2test_wdxi2(l,k,alpha+alpha)*W;
+		      // Nonlinear terms
+		      jacobian(local_eqn,local_unknown) += eta()*sigma(alpha,beta) 
+		       *dpsi_wdxi(l2,k2,alpha)*dtest_wdxi(l,k,beta)*W;
+		      // Nonlinear terms
+		      jacobian(local_eqn,local_unknown) += eta()*nu/(1-nu*nu)*
+		       interpolated_dwdxi(0,alpha)*dpsi_wdxi(l2,k2,alpha)
+		       *interpolated_dwdxi(0,beta)*dtest_wdxi(l,k,beta)*W;//DGR: eta^2 surely
+		      jacobian(local_eqn,local_unknown) += eta()/2.*(1-nu)/(1-nu*nu)*
+		       interpolated_dwdxi(0,alpha)*dpsi_wdxi(l2,k2,beta)
+		       *interpolated_dwdxi(0,alpha)*dtest_wdxi(l,k,beta)*W;//DGR: eta^2 surely
+		      jacobian(local_eqn,local_unknown) += eta()/2.*(1-nu)/(1-nu*nu)*
+		       interpolated_dwdxi(0,beta)*dpsi_wdxi(l2,k2,alpha)
+		       *interpolated_dwdxi(0,alpha)*dtest_wdxi(l,k,beta)*W;//DGR: eta^2 surely
+		     }
+		   }
+		 }
+	       }
+	     }
+	    //Loop over the internal test functions
+	    for(unsigned l2=0;l2<nbubble_basis();l2++)
+	     {
+	      for(unsigned k2=0;k2<n_b_position_type;k2++)
+	       {
+		local_unknown = local_w_bubble_equation(l2,k2);
+		//If at a non-zero degree of freedom add in the entry
+		if(local_unknown >= 0)
+		 {
 		  // Contribution from buckle stabilising drag
 		  jacobian(local_eqn,local_unknown) +=
 		   psi_b(l2,k2)*node_pt(l2)->time_stepper_pt()->weight(1,0)
-		   *mu*test(l,k)*W;
-          // Loop over dimensions 
-          for(unsigned alpha=0;alpha<2;++alpha)
-           {
-           for(unsigned beta=0; beta<2;++beta)
-            {
-            // The Linear Terms 
-            // w_{,\alpha\beta} \delta \kappa_\alpha\beta
-            jacobian(local_eqn,local_unknown) += (1-nu)
-               *d2psi_b_dxi2(l2,k2,alpha+beta)*d2test_dxi2(l,k,alpha+beta)*W;
-            // w_{,\alpha\alpha} \delta \kappa_\beta\beta
-            jacobian(local_eqn,local_unknown) += nu
-               *d2psi_b_dxi2(l2,k2,beta+beta)*d2test_dxi2(l,k,alpha+alpha)*W;
-            // Nonlinear terms
-            jacobian(local_eqn,local_unknown) += eta()*sigma(alpha,beta) 
-                       *dpsi_b_dxi(l2,k2,alpha)*dtest_dxi(l,k,beta)*W;
-            // Nonlinear terms
-            jacobian(local_eqn,local_unknown) += eta()*nu/(1-nu*nu)*
-              interpolated_dwdxi(0,alpha)*dpsi_b_dxi(l2,k2,alpha)
-              *interpolated_dwdxi(0,beta)*dtest_dxi(l,k,beta)*W;//DGR: eta^2 surely
-            jacobian(local_eqn,local_unknown) += eta()/2.*(1-nu)/(1-nu*nu)*
-              interpolated_dwdxi(0,alpha)*dpsi_b_dxi(l2,k2,beta)
-              *interpolated_dwdxi(0,alpha)*dtest_dxi(l,k,beta)*W;//DGR: eta^2 surely
-            jacobian(local_eqn,local_unknown) += eta()/2.*(1-nu)/(1-nu*nu)*
-              interpolated_dwdxi(0,beta)*dpsi_b_dxi(l2,k2,alpha)
-              *interpolated_dwdxi(0,alpha)*dtest_dxi(l,k,beta)*W;//DGR: eta^2 surely
-            }
-           }
-          }
-         }
-        }
-       } // End of flag
-      }
+		   *mu*test_w(l,k)*W;
+		  // Loop over dimensions 
+		  for(unsigned alpha=0;alpha<2;++alpha)
+		   {
+		    for(unsigned beta=0; beta<2;++beta)
+		     {
+		      // The Linear Terms 
+		      // w_{,\alpha\beta} \delta \kappa_\alpha\beta
+		      jacobian(local_eqn,local_unknown) += (1-nu)
+		       *d2psi_b_dxi2(l2,k2,alpha+beta)*d2test_wdxi2(l,k,alpha+beta)*W;
+		      // w_{,\alpha\alpha} \delta \kappa_\beta\beta
+		      jacobian(local_eqn,local_unknown) += nu
+		       *d2psi_b_dxi2(l2,k2,beta+beta)*d2test_wdxi2(l,k,alpha+alpha)*W;
+		      // Nonlinear terms
+		      jacobian(local_eqn,local_unknown) += eta()*sigma(alpha,beta) 
+                       *dpsi_b_dxi(l2,k2,alpha)*dtest_wdxi(l,k,beta)*W;
+		      // Nonlinear terms
+		      jacobian(local_eqn,local_unknown) += eta()*nu/(1-nu*nu)*
+		       interpolated_dwdxi(0,alpha)*dpsi_b_dxi(l2,k2,alpha)
+		       *interpolated_dwdxi(0,beta)*dtest_wdxi(l,k,beta)*W;//DGR: eta^2 surely
+		      jacobian(local_eqn,local_unknown) += eta()/2.*(1-nu)/(1-nu*nu)*
+		       interpolated_dwdxi(0,alpha)*dpsi_b_dxi(l2,k2,beta)
+		       *interpolated_dwdxi(0,alpha)*dtest_wdxi(l,k,beta)*W;//DGR: eta^2 surely
+		      jacobian(local_eqn,local_unknown) += eta()/2.*(1-nu)/(1-nu*nu)*
+		       interpolated_dwdxi(0,beta)*dpsi_b_dxi(l2,k2,alpha)
+		       *interpolated_dwdxi(0,alpha)*dtest_wdxi(l,k,beta)*W;//DGR: eta^2 surely
+		     }
+		   }
+		 }
+	       }
+	     }
+	   } // End of flag
+	 }
+       }
      }
-    }
 
     // Loop over the internal test functions
     for(unsigned l=0;l<nbubble_basis();l++)
-    {
-    for(unsigned k=0;k<n_b_position_type;k++)
      {
-     //Get the local equation
-     local_eqn = local_w_bubble_equation(l,k);
-     //IF it's not a boundary condition
-     if(local_eqn >= 0)
-      {
+      for(unsigned k=0;k<n_b_position_type;k++)
+       {
+	//Get the local equation
+	local_eqn = local_w_bubble_equation(l,k);
+	//IF it's not a boundary condition
+	if(local_eqn >= 0)
+	 {
 	  // Add virtual time derivative term for dampened buckling
 	  residuals[local_eqn] += mu*interpolated_dwdt[0]*test_b(l,k)*W;     
-      // Add body force/pressure term here
-      residuals[local_eqn] -= pressure*test_b(l,k)*W;
+	  // Add body force/pressure term here
+	  residuals[local_eqn] -= pressure*test_b(l,k)*W;
 
-      for(unsigned alpha=0;alpha<2;++alpha)
-       {
-       for(unsigned beta=0; beta<2;++beta)
-        {
-        // The Linear Terms 
-        // w_{,\alpha\beta} \delta \kappa_\alpha\beta
-        residuals[local_eqn] += (1-nu)
-          *interpolated_d2wdxi2(0,alpha+beta)*d2test_b_dxi2(l,k,alpha+beta)*W;
-        // w_{,\alpha\alpha} \delta \kappa_\beta\beta
-        residuals[local_eqn] += (nu)
-          *interpolated_d2wdxi2(0,beta+beta)*d2test_b_dxi2(l,k,alpha+alpha)*W;
-        // sigma_{\alpha\beta} w_\alpha \delta w_{,\beta}
-        residuals[local_eqn] += eta()*sigma(alpha,beta)
-          *interpolated_dwdxi(0,alpha)*dtest_b_dxi(l,k,beta)*W;
-        }
-       }
-      // Calculate the jacobian
-      //-----------------------
-      if(flag)
-       {
-       //Loop over the in--plane unknowns again
-       for(unsigned ll=0;ll<n_u_node;ll++)
-        {
-        // Loop over displacements
-        for(unsigned gamma=0;gamma<2;++gamma)
-         {
-         local_unknown = this->nodal_local_eqn(ll,gamma);
-         // If at a non-zero degree of freedom add in the entry
-         if(local_unknown >= 0)
-          {
-          // Loop over displacements
-          for(unsigned alpha=0;alpha<2;++alpha)
-           {
-           // Loop over dimensions 
-           for(unsigned beta=0; beta<2;++beta)
-            {
-            // The Nonlinear Terms 
-            if(alpha==beta)
-             {
-             jacobian(local_eqn,local_unknown) += eta()*nu*dpsi_udxi(ll,gamma)*
-                   interpolated_dwdxi(0,alpha)*dtest_b_dxi(l,k,beta)/(1-nu*nu)*W;
-             }
-            if(alpha==gamma)
-             {
-             jacobian(local_eqn,local_unknown) += eta()*(1-nu)/2.*dpsi_udxi(ll,beta)
-                   *interpolated_dwdxi(0,alpha)*dtest_b_dxi(l,k,beta)/(1-nu*nu)*W;
-             }
-            if(beta==gamma)
-             {
-             jacobian(local_eqn,local_unknown) += eta()*(1-nu)/2.*dpsi_udxi(ll,alpha)
-                   *interpolated_dwdxi(0,alpha)*dtest_b_dxi(l,k,beta)/(1-nu*nu)*W;
-             }
-            }
-           }
-          }
-         }
+	  for(unsigned alpha=0;alpha<2;++alpha)
+	   {
+	    for(unsigned beta=0; beta<2;++beta)
+	     {
+	      // The Linear Terms 
+	      // w_{,\alpha\beta} \delta \kappa_\alpha\beta
+	      residuals[local_eqn] += (1-nu)
+	       *interpolated_d2wdxi2(0,alpha+beta)*d2test_b_dxi2(l,k,alpha+beta)*W;
+	      // w_{,\alpha\alpha} \delta \kappa_\beta\beta
+	      residuals[local_eqn] += (nu)
+	       *interpolated_d2wdxi2(0,beta+beta)*d2test_b_dxi2(l,k,alpha+alpha)*W;
+	      // sigma_{\alpha\beta} w_\alpha \delta w_{,\beta}
+	      residuals[local_eqn] += eta()*sigma(alpha,beta)
+	       *interpolated_dwdxi(0,alpha)*dtest_b_dxi(l,k,beta)*W;
+	     }
+	   }
+	  // Calculate the jacobian
+	  //-----------------------
+	  if(flag)
+	   {
+	    //Loop over the in--plane unknowns again
+	    for(unsigned ll=0;ll<n_u_node;ll++)
+	     {
+	      // Loop over displacements
+	      for(unsigned gamma=0;gamma<2;++gamma)
+	       {
+		local_unknown = this->nodal_local_eqn(ll,gamma);
+		// If at a non-zero degree of freedom add in the entry
+		if(local_unknown >= 0)
+		 {
+		  // Loop over displacements
+		  for(unsigned alpha=0;alpha<2;++alpha)
+		   {
+		    // Loop over dimensions 
+		    for(unsigned beta=0; beta<2;++beta)
+		     {
+		      // The Nonlinear Terms 
+		      if(alpha==beta)
+		       {
+			jacobian(local_eqn,local_unknown) += eta()*nu*dpsi_udxi(ll,gamma)*
+			 interpolated_dwdxi(0,alpha)*dtest_b_dxi(l,k,beta)/(1-nu*nu)*W;
+		       }
+		      if(alpha==gamma)
+		       {
+			jacobian(local_eqn,local_unknown) += eta()*(1-nu)/2.*dpsi_udxi(ll,beta)
+			 *interpolated_dwdxi(0,alpha)*dtest_b_dxi(l,k,beta)/(1-nu*nu)*W;
+		       }
+		      if(beta==gamma)
+		       {
+			jacobian(local_eqn,local_unknown) += eta()*(1-nu)/2.*dpsi_udxi(ll,alpha)
+			 *interpolated_dwdxi(0,alpha)*dtest_b_dxi(l,k,beta)/(1-nu*nu)*W;
+		       }
+		     }
+		   }
+		 }
+	       }
 
-        }
-       //Loop over the test functions again
-       for(unsigned l2=0;l2<n_w_node;l2++)
-        {
-         // Loop over position dofs
-         for(unsigned k2=0;k2<n_basis_type;k2++)
-          {
-          local_unknown = this->nodal_local_eqn(l2,k2+2);
-          //If at a non-zero degree of freedom add in the entry
-          if(local_unknown >= 0)
-           {
+	     }
+	    //Loop over the test functions again
+	    for(unsigned l2=0;l2<n_w_node;l2++)
+	     {
+	      // Loop over position dofs
+	      for(unsigned k2=0;k2<n_basis_type;k2++)
+	       {
+		local_unknown = this->nodal_local_eqn(l2,k2+2);
+		//If at a non-zero degree of freedom add in the entry
+		if(local_unknown >= 0)
+		 {
 		  // Contribution from buckle stabilising drag
 		  jacobian(local_eqn,local_unknown) +=
-		   psi(l2,k2)*node_pt(l2)->time_stepper_pt()->weight(1,0)
+		   psi_w(l2,k2)*node_pt(l2)->time_stepper_pt()->weight(1,0)
 		   *mu*test_b(l,k)*W;
-           // Loop over dimensions 
-           for(unsigned alpha=0;alpha<2;++alpha)
-            {
-            for(unsigned beta=0; beta<2;++beta)
-             {
-             // The Linear Terms 
-             // w_{,\alpha\beta} \delta \kappa_\alpha\beta
-             jacobian(local_eqn,local_unknown) += (1-nu)
-                *d2psi_dxi2(l2,k2,alpha+beta)*d2test_b_dxi2(l,k,alpha+beta)*W;
-             // w_{,\alpha\alpha} \delta \kappa_\beta\beta
-             jacobian(local_eqn,local_unknown) += nu
-                *d2psi_dxi2(l2,k2,beta+beta)*d2test_b_dxi2(l,k,alpha+alpha)*W;
-             // Nonlinear terms
-             jacobian(local_eqn,local_unknown) += eta()*sigma(alpha,beta) 
-                        *dpsi_dxi(l2,k2,alpha)*dtest_b_dxi(l,k,beta)*W;
-             // Nonlinear terms
-             jacobian(local_eqn,local_unknown) += eta()*nu/(1-nu*nu)*
-               interpolated_dwdxi(0,alpha)*dpsi_dxi(l2,k2,alpha)
-               *interpolated_dwdxi(0,beta)*dtest_b_dxi(l,k,beta)*W;
-             jacobian(local_eqn,local_unknown) += eta()/2.*(1-nu)/(1-nu*nu)*
-               interpolated_dwdxi(0,alpha)*dpsi_dxi(l2,k2,beta)
-               *interpolated_dwdxi(0,alpha)*dtest_b_dxi(l,k,beta)*W;
-             jacobian(local_eqn,local_unknown) += eta()/2.*(1-nu)/(1-nu*nu)*
-               interpolated_dwdxi(0,beta)*dpsi_dxi(l2,k2,alpha)
-               *interpolated_dwdxi(0,alpha)*dtest_b_dxi(l,k,beta)*W;
-             }
-            }
-           }
-          }
-         }
-       //Loop over the test functions again
-       for(unsigned l2=0;l2<nbubble_basis();l2++)
-        {
-        // Loop over position dofs
-        for(unsigned k2=0;k2<n_b_position_type;k2++)
-         {
-         local_unknown = local_w_bubble_equation(l2,k2);
-         //If at a non-zero degree of freedom add in the entry
-         if(local_unknown >= 0)
-          {
+		  // Loop over dimensions 
+		  for(unsigned alpha=0;alpha<2;++alpha)
+		   {
+		    for(unsigned beta=0; beta<2;++beta)
+		     {
+		      // The Linear Terms 
+		      // w_{,\alpha\beta} \delta \kappa_\alpha\beta
+		      jacobian(local_eqn,local_unknown) += (1-nu)
+		       *d2psi_wdxi2(l2,k2,alpha+beta)*d2test_b_dxi2(l,k,alpha+beta)*W;
+		      // w_{,\alpha\alpha} \delta \kappa_\beta\beta
+		      jacobian(local_eqn,local_unknown) += nu
+		       *d2psi_wdxi2(l2,k2,beta+beta)*d2test_b_dxi2(l,k,alpha+alpha)*W;
+		      // Nonlinear terms
+		      jacobian(local_eqn,local_unknown) += eta()*sigma(alpha,beta) 
+		       *dpsi_wdxi(l2,k2,alpha)*dtest_b_dxi(l,k,beta)*W;
+		      // Nonlinear terms
+		      jacobian(local_eqn,local_unknown) += eta()*nu/(1-nu*nu)*
+		       interpolated_dwdxi(0,alpha)*dpsi_wdxi(l2,k2,alpha)
+		       *interpolated_dwdxi(0,beta)*dtest_b_dxi(l,k,beta)*W;
+		      jacobian(local_eqn,local_unknown) += eta()/2.*(1-nu)/(1-nu*nu)*
+		       interpolated_dwdxi(0,alpha)*dpsi_wdxi(l2,k2,beta)
+		       *interpolated_dwdxi(0,alpha)*dtest_b_dxi(l,k,beta)*W;
+		      jacobian(local_eqn,local_unknown) += eta()/2.*(1-nu)/(1-nu*nu)*
+		       interpolated_dwdxi(0,beta)*dpsi_wdxi(l2,k2,alpha)
+		       *interpolated_dwdxi(0,alpha)*dtest_b_dxi(l,k,beta)*W;
+		     }
+		   }
+		 }
+	       }
+	     }
+	    //Loop over the test functions again
+	    for(unsigned l2=0;l2<nbubble_basis();l2++)
+	     {
+	      // Loop over position dofs
+	      for(unsigned k2=0;k2<n_b_position_type;k2++)
+	       {
+		local_unknown = local_w_bubble_equation(l2,k2);
+		//If at a non-zero degree of freedom add in the entry
+		if(local_unknown >= 0)
+		 {
 		  // Contribution from buckle stabilising drag
 		  jacobian(local_eqn,local_unknown) +=
 		   psi_b(l2,k2)*node_pt(l2)->time_stepper_pt()->weight(1,0)
 		   *mu*test_b(l,k)*W;
-          // Loop over dimensions 
-          for(unsigned alpha=0;alpha<2;++alpha)
-           {
-           for(unsigned beta=0; beta<2;++beta)
-            {
-            // The Linear Terms 
-            // w_{,\alpha\beta} \delta \kappa_\alpha\beta
-            jacobian(local_eqn,local_unknown) += (1-nu)
-               *d2psi_b_dxi2(l2,k2,alpha+beta)*d2test_b_dxi2(l,k,alpha+beta)*W;
-            // w_{,\alpha\alpha} \delta \kappa_\beta\beta
-            jacobian(local_eqn,local_unknown) += nu
-               *d2psi_b_dxi2(l2,k2,beta+beta)*d2test_b_dxi2(l,k,alpha+alpha)*W;
-            // Nonlinear terms
-            jacobian(local_eqn,local_unknown) += eta()*sigma(alpha,beta) 
+		  // Loop over dimensions 
+		  for(unsigned alpha=0;alpha<2;++alpha)
+		   {
+		    for(unsigned beta=0; beta<2;++beta)
+		     {
+		      // The Linear Terms 
+		      // w_{,\alpha\beta} \delta \kappa_\alpha\beta
+		      jacobian(local_eqn,local_unknown) += (1-nu)
+		       *d2psi_b_dxi2(l2,k2,alpha+beta)*d2test_b_dxi2(l,k,alpha+beta)*W;
+		      // w_{,\alpha\alpha} \delta \kappa_\beta\beta
+		      jacobian(local_eqn,local_unknown) += nu
+		       *d2psi_b_dxi2(l2,k2,beta+beta)*d2test_b_dxi2(l,k,alpha+alpha)*W;
+		      // Nonlinear terms
+		      jacobian(local_eqn,local_unknown) += eta()*sigma(alpha,beta) 
                        *dpsi_b_dxi(l2,k2,alpha)*dtest_b_dxi(l,k,beta)*W;
-            // Nonlinear terms
-            jacobian(local_eqn,local_unknown) += eta()*nu/(1-nu*nu)*
-              interpolated_dwdxi(0,alpha)*dpsi_b_dxi(l2,k2,alpha)
-              *interpolated_dwdxi(0,beta)*dtest_b_dxi(l,k,beta)*W;
-            jacobian(local_eqn,local_unknown) += eta()/2.*(1-nu)/(1-nu*nu)*
-              interpolated_dwdxi(0,alpha)*dpsi_b_dxi(l2,k2,beta)
-              *interpolated_dwdxi(0,alpha)*dtest_b_dxi(l,k,beta)*W;
-            jacobian(local_eqn,local_unknown) += eta()/2.*(1-nu)/(1-nu*nu)*
-              interpolated_dwdxi(0,beta)*dpsi_b_dxi(l2,k2,alpha)
-              *interpolated_dwdxi(0,alpha)*dtest_b_dxi(l,k,beta)*W;
-            }
-           }
-          }
-         }
-        }
-       } // End of flag
-      }
-     }
-    } //end loop over nodes
-  for(unsigned l=0;l<n_u_node;++l)
-   {
-    // Now loop over displacement equations
-    for(unsigned alpha=0; alpha<2 ; ++alpha)
+		      // Nonlinear terms
+		      jacobian(local_eqn,local_unknown) += eta()*nu/(1-nu*nu)*
+		       interpolated_dwdxi(0,alpha)*dpsi_b_dxi(l2,k2,alpha)
+		       *interpolated_dwdxi(0,beta)*dtest_b_dxi(l,k,beta)*W;
+		      jacobian(local_eqn,local_unknown) += eta()/2.*(1-nu)/(1-nu*nu)*
+		       interpolated_dwdxi(0,alpha)*dpsi_b_dxi(l2,k2,beta)
+		       *interpolated_dwdxi(0,alpha)*dtest_b_dxi(l,k,beta)*W;
+		      jacobian(local_eqn,local_unknown) += eta()/2.*(1-nu)/(1-nu*nu)*
+		       interpolated_dwdxi(0,beta)*dpsi_b_dxi(l2,k2,alpha)
+		       *interpolated_dwdxi(0,alpha)*dtest_b_dxi(l,k,beta)*W;
+		     }
+		   }
+		 }
+	       }
+	     }
+	   } // End of flag
+	 }
+       }
+     } //end loop over nodes
+    for(unsigned l=0;l<n_u_node;++l)
      {
-     //Get the local equation
-     local_eqn = this->nodal_local_eqn(l,alpha);
-     //IF it's not a boundary condition
-     if(local_eqn >= 0)
-      {
-      // Now add on the stress terms
-      for(unsigned beta=0; beta<2;++beta)
-        {
-         // Variations in u_alpha
-         residuals[local_eqn] += sigma(alpha,beta)*dtest_udxi(l,beta)*W;
-        }
-      // Add the forcing term
-      residuals[local_eqn] += pressure_gradient[alpha]*psi_u(l)*W;
-
-      // Now loop over Jacobian
-      if(flag)
+      // Now loop over displacement equations
+      for(unsigned alpha=0; alpha<2 ; ++alpha)
        {
-       for(unsigned ll=0;ll<n_u_node;++ll)
-        {
-        // Now loop over displacement equations
-        for(unsigned gamma=0; gamma<2 ; ++gamma)
-         {
-         //Get the local equation
-         local_unknown = this->nodal_local_eqn(ll,gamma);
-         // If the unknown is a degree of freedom 
-         if(local_unknown>=0)
-          {
-          // Now add on the stress terms
-          for(unsigned beta=0; beta<2;++beta)
-           {
-           // The Linear Terms 
-           if(alpha==beta)
-            {
-            jacobian(local_eqn,local_unknown) += nu*dpsi_udxi(ll,gamma)
-                  *dtest_udxi(l,beta)/(1-nu*nu)*W;
-            }
-           if(alpha==gamma)
-            {
-            jacobian(local_eqn,local_unknown) += (1-nu)/2.*dpsi_udxi(ll,beta)
-                  *dtest_udxi(l,beta)/(1-nu*nu)*W;
-            }
-           if(beta==gamma)
-            {
-            jacobian(local_eqn,local_unknown) += (1-nu)/2.*dpsi_udxi(ll,alpha)
-                  *dtest_udxi(l,beta)/(1-nu*nu)*W;
-            }
-           }// End loop beta
-          }// End if local unknown
-         }// End loop gamma dof
-        }// End loop nodal dofs
-       
-       //Loop over the w nodal dofs
-       for(unsigned l2=0;l2<n_w_node;l2++)
-        {
-        // Loop over position dofs
-        for(unsigned k2=0;k2<n_basis_type;k2++)
-         {
-         //If at a non-zero degree of freedom add in the entry
-         //Get the local equation
-         local_unknown = this->nodal_local_eqn(l2,k2+2);
-         // If the unknown is a degree of freedom 
-         if(local_unknown>=0)
-          {
-          // Now add on the stress terms
-          for(unsigned beta=0; beta<2;++beta)
-           {
-           // The NonLinear Terms 
-           jacobian(local_eqn,local_unknown) += nu*dpsi_dxi(l2,k2,beta)
-                 *interpolated_dwdxi(0,beta)*dtest_udxi(l,alpha)/(1-nu*nu)*W;
-           jacobian(local_eqn,local_unknown) +=(1-nu)/2.*dpsi_dxi(l2,k2,alpha)
-                 *interpolated_dwdxi(0,beta)*dtest_udxi(l,beta)/(1-nu*nu)*W;
-           jacobian(local_eqn,local_unknown) +=(1-nu)/2.*dpsi_dxi(l2,k2,beta)
-                 *interpolated_dwdxi(0,alpha)*dtest_udxi(l,beta)/(1-nu*nu)*W;
-           }// End loop beta
-          }// End if local unknown
-         }// End loop position type dof
-        }// End loop w nodal dofs
-       
-       //Loop over the w internal dofs
-       for(unsigned l2=0;l2<nbubble_basis();l2++)
-        {
-        // Loop over position dofs
-        for(unsigned k2=0;k2<n_b_position_type;k2++)
-         {
-         //If at a non-zero degree of freedom add in the entry
-         //Get the local equation
-         local_unknown = local_w_bubble_equation(l2,k2);
-         //If at a non-zero degree of freedom add in the entry
-         if(local_unknown >= 0)
-          {
-          // Now add on the stress terms
-          for(unsigned beta=0; beta<2;++beta)
-           {
-           // The NonLinear Terms 
-           jacobian(local_eqn,local_unknown) += nu*dpsi_b_dxi(l2,k2,beta)
-                 *interpolated_dwdxi(0,beta)*dtest_udxi(l,alpha)/(1-nu*nu)*W;
-           jacobian(local_eqn,local_unknown) +=(1-nu)/2.*dpsi_b_dxi(l2,k2,alpha)
-                 *interpolated_dwdxi(0,beta)*dtest_udxi(l,beta)/(1-nu*nu)*W;
-           jacobian(local_eqn,local_unknown) +=(1-nu)/2.*dpsi_b_dxi(l2,k2,beta)
-                 *interpolated_dwdxi(0,alpha)*dtest_udxi(l,beta)/(1-nu*nu)*W;
-           } // End loop beta
-          } // End if local_unknown
-         } // End loop position type
-        } // End loop internal dofs
-       } // End if flag
-      } // End if local eqn
-     } // End loop over alpha
-    } // End loop over nodes
-  } // End of loop over integration points
-}
+	//Get the local equation
+	local_eqn = this->nodal_local_eqn(l,alpha);
+	//IF it's not a boundary condition
+	if(local_eqn >= 0)
+	 {
+	  // Now add on the stress terms
+	  for(unsigned beta=0; beta<2;++beta)
+	   {
+	    // Variations in u_alpha
+	    residuals[local_eqn] += sigma(alpha,beta)*dtest_udxi(l,beta)*W;
+	   }
+	  // Add the forcing term
+	  residuals[local_eqn] += pressure_gradient[alpha]*psi_u(l)*W;
 
+	  // Now loop over Jacobian
+	  if(flag)
+	   {
+	    for(unsigned ll=0;ll<n_u_node;++ll)
+	     {
+	      // Now loop over displacement equations
+	      for(unsigned gamma=0; gamma<2 ; ++gamma)
+	       {
+		//Get the local equation
+		local_unknown = this->nodal_local_eqn(ll,gamma);
+		// If the unknown is a degree of freedom 
+		if(local_unknown>=0)
+		 {
+		  // Now add on the stress terms
+		  for(unsigned beta=0; beta<2;++beta)
+		   {
+		    // The Linear Terms 
+		    if(alpha==beta)
+		     {
+		      jacobian(local_eqn,local_unknown) += nu*dpsi_udxi(ll,gamma)
+		       *dtest_udxi(l,beta)/(1-nu*nu)*W;
+		     }
+		    if(alpha==gamma)
+		     {
+		      jacobian(local_eqn,local_unknown) += (1-nu)/2.*dpsi_udxi(ll,beta)
+		       *dtest_udxi(l,beta)/(1-nu*nu)*W;
+		     }
+		    if(beta==gamma)
+		     {
+		      jacobian(local_eqn,local_unknown) += (1-nu)/2.*dpsi_udxi(ll,alpha)
+		       *dtest_udxi(l,beta)/(1-nu*nu)*W;
+		     }
+		   }// End loop beta
+		 }// End if local unknown
+	       }// End loop gamma dof
+	     }// End loop nodal dofs
+       
+	    //Loop over the w nodal dofs
+	    for(unsigned l2=0;l2<n_w_node;l2++)
+	     {
+	      // Loop over position dofs
+	      for(unsigned k2=0;k2<n_basis_type;k2++)
+	       {
+		//If at a non-zero degree of freedom add in the entry
+		//Get the local equation
+		local_unknown = this->nodal_local_eqn(l2,k2+2);
+		// If the unknown is a degree of freedom 
+		if(local_unknown>=0)
+		 {
+		  // Now add on the stress terms
+		  for(unsigned beta=0; beta<2;++beta)
+		   {
+		    // The NonLinear Terms 
+		    jacobian(local_eqn,local_unknown) += nu*dpsi_wdxi(l2,k2,beta)
+		     *interpolated_dwdxi(0,beta)*dtest_udxi(l,alpha)/(1-nu*nu)*W;
+		    jacobian(local_eqn,local_unknown) +=(1-nu)/2.*dpsi_wdxi(l2,k2,alpha)
+		     *interpolated_dwdxi(0,beta)*dtest_udxi(l,beta)/(1-nu*nu)*W;
+		    jacobian(local_eqn,local_unknown) +=(1-nu)/2.*dpsi_wdxi(l2,k2,beta)
+		     *interpolated_dwdxi(0,alpha)*dtest_udxi(l,beta)/(1-nu*nu)*W;
+		   }// End loop beta
+		 }// End if local unknown
+	       }// End loop position type dof
+	     }// End loop w nodal dofs
+       
+	    //Loop over the w internal dofs
+	    for(unsigned l2=0;l2<nbubble_basis();l2++)
+	     {
+	      // Loop over position dofs
+	      for(unsigned k2=0;k2<n_b_position_type;k2++)
+	       {
+		//If at a non-zero degree of freedom add in the entry
+		//Get the local equation
+		local_unknown = local_w_bubble_equation(l2,k2);
+		//If at a non-zero degree of freedom add in the entry
+		if(local_unknown >= 0)
+		 {
+		  // Now add on the stress terms
+		  for(unsigned beta=0; beta<2;++beta)
+		   {
+		    // The NonLinear Terms 
+		    jacobian(local_eqn,local_unknown) += nu*dpsi_b_dxi(l2,k2,beta)
+		     *interpolated_dwdxi(0,beta)*dtest_udxi(l,alpha)/(1-nu*nu)*W;
+		    jacobian(local_eqn,local_unknown) +=(1-nu)/2.*dpsi_b_dxi(l2,k2,alpha)
+		     *interpolated_dwdxi(0,beta)*dtest_udxi(l,beta)/(1-nu*nu)*W;
+		    jacobian(local_eqn,local_unknown) +=(1-nu)/2.*dpsi_b_dxi(l2,k2,beta)
+		     *interpolated_dwdxi(0,alpha)*dtest_udxi(l,beta)/(1-nu*nu)*W;
+		   } // End loop beta
+		 } // End if local_unknown
+	       } // End loop position type
+	     } // End loop internal dofs
+	   } // End if flag
+	 } // End if local eqn
+       } // End loop over alpha
+     } // End loop over nodes
+   } // End of loop over integration points
+ }
 
 
 
@@ -737,7 +785,7 @@ fill_in_generic_residual_contribution_foeppl_von_karman(Vector<double> &residual
     DenseMatrix<double> interpolated_d2wdxi2(1,3,0.0);
    
     //Calculate values of unknown
-    Vector<double> interpolated_u(2,0.0);
+    Vector<double> interpolated_ui(2,0.0);
     DenseMatrix<double> interpolated_duidxj(2,dim,0.0);
 
     //Allocate and initialise to zero
@@ -843,7 +891,7 @@ fill_in_generic_residual_contribution_foeppl_von_karman(Vector<double> &residual
       for(unsigned alpha=0;alpha<2;alpha++)
        {
 	double u_value = this->raw_nodal_value(l,alpha);
-	interpolated_u[alpha] += u_value*psi_u(l);
+	interpolated_ui[alpha] += u_value*psi_u(l);
   
 	// Loop over directions
 	for(unsigned beta=0; beta<dim; beta++)
@@ -862,7 +910,7 @@ fill_in_generic_residual_contribution_foeppl_von_karman(Vector<double> &residual
 
     //Get the temperature function
     double c_swell(0.0);
-    get_swelling_foeppl_von_karman(ipt,interp_x,c_swell);
+    get_swelling_foeppl_von_karman(interp_x,c_swell);
     
     // Truncated Green Lagrange strain tensor
     DenseMatrix<double> epsilon(dim,dim,0.0);
@@ -917,456 +965,456 @@ fill_in_generic_residual_contribution_foeppl_von_karman(Vector<double> &residual
 
 
 
-//======================================================================
-/// Self-test:  Return 0 for OK
-//======================================================================
-unsigned  FoepplVonKarmanEquations::self_test()
-{
+ //======================================================================
+ /// Self-test:  Return 0 for OK
+ //======================================================================
+ unsigned  FoepplVonKarmanEquations::self_test()
+ {
 
- bool passed=true;
+  bool passed=true;
 
- // Check lower-level stuff
- if (FiniteElement::self_test()!=0)
-  {
-   passed=false;
-  }
+  // Check lower-level stuff
+  if (FiniteElement::self_test()!=0)
+   {
+    passed=false;
+   }
 
- // Return verdict
- if (passed)
-  {
-   return 0;
-  }
- else
-  {
-   return 1;
-  }
+  // Return verdict
+  if (passed)
+   {
+    return 0;
+   }
+  else
+   {
+    return 1;
+   }
 
-}
+ }
 
-//======================================================================
-/// Output function:
-///
-///   x,y,u,(epsilon),(sigma),(sigma_evals,sigma_evecs)
-///
-/// nplot points in each coordinate direction
-//======================================================================
-void  FoepplVonKarmanEquations::output(std::ostream &outfile,
-                                    const unsigned &nplot)
-{
- unsigned dim = this->dim();
+ //======================================================================
+ /// Output function:
+ ///
+ ///   x,y,u,(epsilon),(sigma),(sigma_evals,sigma_evecs)
+ ///
+ /// nplot points in each coordinate direction
+ //======================================================================
+ void  FoepplVonKarmanEquations::output(std::ostream &outfile,
+					const unsigned &nplot)
+ {
+  unsigned dim = this->dim();
  
- //Vector of local coordinates
- Vector<double> s(dim),x(dim);
+  //Vector of local coordinates
+  Vector<double> s(dim),x(dim);
 
- // Tecplot header info
- outfile << this->tecplot_zone_string(nplot);
+  // Tecplot header info
+  outfile << this->tecplot_zone_string(nplot);
 
- // Storage for variables
- double c_swell(0.0);
- Vector<double> u;
- DenseMatrix<double> interpolated_dwdxj(1,dim,0.0);
- DenseMatrix<double> interpolated_duidxj(2,dim,0.0);
- DenseMatrix<double> epsilon(2,2,0.0);
- DenseMatrix<double> sigma(2,2,0.0);
- DenseMatrix<double> sigma_eigenvecs(2,2,0.0);
- Vector<double> sigma_eigenvals(2,0.0);
- unsigned num_plot_points=this->nplot_points(nplot);
- Vector<double> r(3);
+  // Storage for variables
+  double c_swell(0.0);
+  Vector<double> u;
+  DenseMatrix<double> interpolated_dwdxj(1,dim,0.0);
+  DenseMatrix<double> interpolated_duidxj(2,dim,0.0);
+  DenseMatrix<double> epsilon(2,2,0.0);
+  DenseMatrix<double> sigma(2,2,0.0);
+  DenseMatrix<double> sigma_eigenvecs(2,2,0.0);
+  Vector<double> sigma_eigenvals(2,0.0);
+  unsigned num_plot_points=this->nplot_points(nplot);
+  Vector<double> r(3);
 
- // Loop over plot points
- for (unsigned iplot=0;iplot<num_plot_points;iplot++)
-  {
-   // Get local and global coordinates of plot point
-   this->get_s_plot(iplot,nplot,s);
-   interpolated_x(s,x);
+  // Loop over plot points
+  for (unsigned iplot=0;iplot<num_plot_points;iplot++)
+   {
+    // Get local and global coordinates of plot point
+    this->get_s_plot(iplot,nplot,s);
+    interpolated_x(s,x);
 
-   // Get interpolated unknowns
-   u = interpolated_u_foeppl_von_karman(s);
+    // Get interpolated unknowns
+    u = interpolated_u_foeppl_von_karman(s);
 
-   // Get degree of swelling for use in the strain tensor
-   this->get_swelling_foeppl_von_karman(iplot,x,c_swell);
+    // Get degree of swelling for use in the strain tensor
+    this->get_swelling_foeppl_von_karman(x,c_swell);
 
-   // TODO: make the output customisable with flags e.g. output_axial_strain,
-   //       output_principal_stress
-   // TODO: make the indexing below more general and not hard coded.
-   // Copy gradients from u into interpolated gradient matrices...
-   interpolated_dwdxj(0,0) = u[1]; //dwdx1
-   interpolated_dwdxj(0,1) = u[2]; //dwdx2
-   interpolated_duidxj(0,0)= u[8]; //du1dx1
-   interpolated_duidxj(0,1)= u[9]; //du1dx2
-   interpolated_duidxj(1,0)= u[10]; //du2dx1
-   interpolated_duidxj(1,1)= u[11]; //du2dx2
-   // ...which are used to retrieve the strain tensor epsilon.
-   get_epsilon(epsilon, interpolated_duidxj,interpolated_dwdxj, c_swell);
+    // TODO: make the output customisable with flags e.g. output_axial_strain,
+    //       output_principal_stress
+    // TODO: make the indexing below more general and not hard coded.
+    // Copy gradients from u into interpolated gradient matrices...
+    interpolated_dwdxj(0,0) = u[1]; //dwdx1
+    interpolated_dwdxj(0,1) = u[2]; //dwdx2
+    interpolated_duidxj(0,0)= u[8]; //du1dx1
+    interpolated_duidxj(0,1)= u[9]; //du1dx2
+    interpolated_duidxj(1,0)= u[10]; //du2dx1
+    interpolated_duidxj(1,1)= u[11]; //du2dx2
+    // ...which are used to retrieve the strain tensor epsilon.
+    get_epsilon(epsilon, interpolated_duidxj,interpolated_dwdxj, c_swell);
 
-   // Use epsilon to find the stress sigma.
-   get_sigma_from_epsilon(sigma, epsilon);
+    // Use epsilon to find the stress sigma.
+    get_sigma_from_epsilon(sigma, epsilon);
 
-   // Get the principal values and the corresponding directions of stress.
-   get_principal_stresses(sigma, sigma_eigenvals, sigma_eigenvecs);
+    // Get the principal values and the corresponding directions of stress.
+    get_principal_stresses(sigma, sigma_eigenvals, sigma_eigenvecs);
    
 
-   for(unsigned i=0;i<this->dim();i++)
-    {
-     outfile << x[i] << " ";
-    }
+    for(unsigned i=0;i<this->dim();i++)
+     {
+      outfile << x[i] << " ";
+     }
 
-   // Loop for variables
-   for(Vector<double>::iterator it=u.begin();it!=u.end();++it)
-    {
-     outfile << *it << " " ;
-    }
+    // Loop for variables
+    for(Vector<double>::iterator it=u.begin();it!=u.end();++it)
+     {
+      outfile << *it << " " ;
+     }
    
-   // Output axial strains
-   outfile << epsilon(0,0) << " " << epsilon(0,1) << " " << epsilon(1,1) << " ";
+    // Output axial strains
+    outfile << epsilon(0,0) << " " << epsilon(0,1) << " " << epsilon(1,1) << " ";
 
-   // Output axial stress
-   outfile << sigma(0,0) << " " << sigma(0,1) << " " << sigma(1,1) << " ";
+    // Output axial stress
+    outfile << sigma(0,0) << " " << sigma(0,1) << " " << sigma(1,1) << " ";
    
-   // Output principal stresses
-   outfile << sigma_eigenvals[0] << " " << sigma_eigenvals[1] << " ";
+    // Output principal stresses
+    outfile << sigma_eigenvals[0] << " " << sigma_eigenvals[1] << " ";
    
-   // Output principal stress directions
-   outfile << sigma_eigenvecs(0,0) << " " << sigma_eigenvecs(1,0) << " "
-	   << sigma_eigenvecs(0,1) << " " << sigma_eigenvecs(1,1) << " ";
+    // Output principal stress directions
+    outfile << sigma_eigenvecs(0,0) << " " << sigma_eigenvecs(1,0) << " "
+	    << sigma_eigenvecs(0,1) << " " << sigma_eigenvecs(1,1) << " ";
 
-   // End output line
-   outfile << std::endl;
-  }
- // Write tecplot footer (e.g. FE connectivity lists)
- this->write_tecplot_zone_footer(outfile,nplot);
-}
-
-
-// TODO: update further output functions for full output
-//======================================================================
-/// C-style output function: 
-///
-///   x,y,u   or    x,y,z,u
-///
-/// nplot points in each coordinate direction
-//======================================================================
-void  FoepplVonKarmanEquations::output(FILE* file_pt,
-                                    const unsigned &nplot)
-{
- //Vector of local coordinates
- Vector<double> s(this->dim()), x(this->dim());;
-
- // Tecplot header info
- fprintf(file_pt,"%s",this->tecplot_zone_string(nplot).c_str());
-
- // Loop over plot points
- Vector<double> u(this->required_nvalue(0),0.0);
- unsigned num_plot_points=this->nplot_points(nplot);
- for (unsigned iplot=0;iplot<num_plot_points;iplot++)
-  {
-   // Get local coordinates of plot point
-   this->get_s_plot(iplot,nplot,s);
-
-   // Get x position as Vector
-   interpolated_x(s,x);
-
-   for(unsigned i=0;i<this->dim();i++)
-    {
-     fprintf(file_pt,"%g ",x[i]);
-    }
-   u = interpolated_u_foeppl_von_karman(s);
-   fprintf(file_pt,"%g \n",u[0]);
-  }
-
- // Write tecplot footer (e.g. FE connectivity lists)
- this->write_tecplot_zone_footer(file_pt,nplot);
-}
+    // End output line
+    outfile << std::endl;
+   }
+  // Write tecplot footer (e.g. FE connectivity lists)
+  this->write_tecplot_zone_footer(outfile,nplot);
+ }
 
 
-// [zdec] This is also called to output the pressure.
-// [TODO] Needs renaming.
-//======================================================================
+ // TODO: update further output functions for full output
+ //======================================================================
+ /// C-style output function: 
+ ///
+ ///   x,y,u   or    x,y,z,u
+ ///
+ /// nplot points in each coordinate direction
+ //======================================================================
+ void  FoepplVonKarmanEquations::output(FILE* file_pt,
+					const unsigned &nplot)
+ {
+  //Vector of local coordinates
+  Vector<double> s(this->dim()), x(this->dim());;
+
+  // Tecplot header info
+  fprintf(file_pt,"%s",this->tecplot_zone_string(nplot).c_str());
+
+  // Loop over plot points
+  Vector<double> u(this->required_nvalue(0),0.0);
+  unsigned num_plot_points=this->nplot_points(nplot);
+  for (unsigned iplot=0;iplot<num_plot_points;iplot++)
+   {
+    // Get local coordinates of plot point
+    this->get_s_plot(iplot,nplot,s);
+
+    // Get x position as Vector
+    interpolated_x(s,x);
+
+    for(unsigned i=0;i<this->dim();i++)
+     {
+      fprintf(file_pt,"%g ",x[i]);
+     }
+    u = interpolated_u_foeppl_von_karman(s);
+    fprintf(file_pt,"%g \n",u[0]);
+   }
+
+  // Write tecplot footer (e.g. FE connectivity lists)
+  this->write_tecplot_zone_footer(file_pt,nplot);
+ }
+
+
+ // [zdec] This is also called to output the pressure.
+ // [TODO] Needs renaming.
+ //======================================================================
  /// Output exact solution
  ///
  /// Solution is provided via function pointer.
  /// Plot at a given number of plot points.
  ///
  ///   x,y,u_exact    or    x,y,z,u_exact
-//======================================================================
-void FoepplVonKarmanEquations::output_fct(std::ostream &outfile,
-                                       const unsigned &nplot,
-                  FiniteElement::SteadyExactSolutionFctPt exact_soln_pt)
-{
- //Vector of local coordinates
- Vector<double> s(this->dim());
+ //======================================================================
+ void FoepplVonKarmanEquations::output_fct(std::ostream &outfile,
+					   const unsigned &nplot,
+					   FiniteElement::SteadyExactSolutionFctPt exact_soln_pt)
+ {
+  //Vector of local coordinates
+  Vector<double> s(this->dim());
 
   // Vector for coordintes
   Vector<double> x(this->dim());
 
- // Tecplot header info
- outfile << this->tecplot_zone_string(nplot);
+  // Tecplot header info
+  outfile << this->tecplot_zone_string(nplot);
 
- // Exact solution Vector (here a scalar)
- //
- // [zdec] Why was this->required_nvalue(0) called here? Caused range checking
- // errors due to required_nvalue(0) being 8 but exact_soln_pt resizing to a
- // vector of length one. Replaced with 1 for now as the above comment states
- // we already know this function to be scalar.
- // 
- // Vector<double> exact_soln(this->required_nvalue(0),0.0);
- unsigned nvalue=1;
- Vector<double> exact_soln(nvalue,0.0);
+  // Exact solution Vector (here a scalar)
+  //
+  // [zdec] Why was this->required_nvalue(0) called here? Caused range checking
+  // errors due to required_nvalue(0) being 8 but exact_soln_pt resizing to a
+  // vector of length one. Replaced with 1 for now as the above comment states
+  // we already know this function to be scalar.
+  // 
+  // Vector<double> exact_soln(this->required_nvalue(0),0.0);
+  unsigned nvalue=1;
+  Vector<double> exact_soln(nvalue,0.0);
  
- // Loop over plot points
- unsigned num_plot_points=this->nplot_points(nplot);
- for (unsigned iplot=0;iplot<num_plot_points;iplot++)
-  {
-
-   // Get local coordinates of plot point
-   this->get_s_plot(iplot,nplot,s);
-
-   // Get x position as Vector
-   interpolated_x(s,x);
-
-   // Get exact solution at this point
-   (*exact_soln_pt)(x,exact_soln);
-
-   //Output x,y,...,u_exact
-   for(unsigned i=0;i<this->dim();i++)
-    {
-     outfile << x[i] << " ";
-    }
-   // Loop over variables
-   for(unsigned j=0;j<nvalue;j++)
+  // Loop over plot points
+  unsigned num_plot_points=this->nplot_points(nplot);
+  for (unsigned iplot=0;iplot<num_plot_points;iplot++)
    {
-    outfile << exact_soln[j] << " ";
+
+    // Get local coordinates of plot point
+    this->get_s_plot(iplot,nplot,s);
+
+    // Get x position as Vector
+    interpolated_x(s,x);
+
+    // Get exact solution at this point
+    (*exact_soln_pt)(x,exact_soln);
+
+    //Output x,y,...,u_exact
+    for(unsigned i=0;i<this->dim();i++)
+     {
+      outfile << x[i] << " ";
+     }
+    // Loop over variables
+    for(unsigned j=0;j<nvalue;j++)
+     {
+      outfile << exact_soln[j] << " ";
+     }
+    outfile <<  std::endl;
    }
-   outfile <<  std::endl;
-  }
 
- // Write tecplot footer (e.g. FE connectivity lists)
- this->write_tecplot_zone_footer(outfile,nplot);
-}
+  // Write tecplot footer (e.g. FE connectivity lists)
+  this->write_tecplot_zone_footer(outfile,nplot);
+ }
 
 
-//======================================================================
-/// Validate against exact solution
-///
-/// Solution is provided via function pointer.
-/// Plot error at a given number of plot points.
-///
-/// HERE THIS MAY BE SUPERFLUOUS NOW
-//======================================================================
-void FoepplVonKarmanEquations::compute_error_in_deflection(std::ostream &outfile,
-                                          FiniteElement::SteadyExactSolutionFctPt exact_soln_pt,
-                                          double& error, double& norm)
-{
- // Initialise
- error=0.0;
- norm=0.0;
- //Find out how many nodes there are
- // const unsigned n_u_node = this->nnode();
- const unsigned n_w_node = nnode_outofplane();
- //Find out how many bubble nodes there are
- const unsigned n_b_node = nbubble_basis();
- //Find out how many nodes positional dofs there are
- unsigned n_basis_type = nnodal_basis_type();
- // Find the internal dofs
- const unsigned n_b_position_type = nbubble_basis_type();
-
- //Vector of local coordinates
- Vector<double> s(this->dim());
-
- // Vector for coordintes
- Vector<double> x(this->dim());
-
- //Set the value of n_intpt
- unsigned n_intpt = this->integral_pt()->nweight();
-
- // Exact solution Vector (here a scalar)
- Vector<double> exact_soln(this->required_nvalue(0),0.0);
-
- //Loop over the integration points
- for(unsigned ipt=0;ipt<n_intpt;ipt++)
-  {
-
-   //Assign values of s
-   for(unsigned i=0;i<this->dim();i++)
-    {
-     s[i] = this->integral_pt()->knot(ipt,i);
-    }
-
-   //Get the integral weight
-   double w = this->integral_pt()->weight(ipt);
-
-   // Get jacobian of mapping
-   double J;
-   {
-   //Local c1-shape funtion
-   Shape psi(n_w_node,n_basis_type),test(n_w_node,n_basis_type),
-    psi_b(n_b_node,n_b_position_type),test_b(n_b_node,n_b_position_type);
-   
-
-   DShape dpsi_dxi(n_w_node,n_basis_type,this->dim()),dtest_dxi(n_w_node,n_basis_type,this->dim()),
-    dpsi_b_dxi(n_b_node,n_b_position_type,this->dim()),dtest_b_dxi(n_b_node,n_b_position_type,this->dim()),
-    d2psi_dxi2(n_w_node,n_basis_type,3), d2test_dxi2(n_w_node,n_basis_type,3),
-    d2psi_b_dxi2(n_b_node,n_b_position_type,3), d2test_b_dxi2(n_b_node,n_b_position_type,3);
-
-   J=this-> d2shape_and_d2test_eulerian_foeppl_von_karman(s,
-    psi, psi_b, dpsi_dxi, dpsi_b_dxi, d2psi_dxi2, d2psi_b_dxi2,
-    test, test_b, dtest_dxi, dtest_b_dxi, d2test_dxi2, d2test_b_dxi2);
-   }
-   //Premultiply the weights and the Jacobian
-   double W = w*J;
-   // double Wlin = w*Jlin;
-
-   // Get x position as Vector
-   interpolated_x(s,x);
-
-   // Get FE function value
-   Vector<double> u_fe(this->required_nvalue(0),0.0);
-   u_fe = interpolated_u_foeppl_von_karman(s);
-
-   // Get exact solution at this point
-   (*exact_soln_pt)(x,exact_soln);
-
-   //Output x,y,...,error
-   for(unsigned i=0;i<this->dim();i++)
-    {
-     outfile << x[i] << " ";
-    }
-   for(unsigned ii=0;ii<this->required_nvalue(0);ii++)
-    {
-     outfile << exact_soln[ii] << " " << exact_soln[ii]-u_fe[ii] << " ";
-    }
-   outfile << std::endl;
-
-   // Loop over variables
-   double tmp1 = 0.0, tmp2 =0.0;
-   for(unsigned ii=0;ii<1;ii++)
-    {
-     // Add to error and norm
-     tmp1 = (exact_soln[ii]*exact_soln[ii]*W);
-     tmp2 = ((exact_soln[ii]-u_fe[ii])*(exact_soln[ii]-u_fe[ii])*W);
-     norm += tmp1;
-     error += tmp2;
-    }
-  } //End of loop over integration pts
-}
-//HERE OVERLOAD COMPUTE_ERROR SO WE CAN GET A VECTOR OF NORMS
-
-
-//======================================================================
+ //======================================================================
  /// Validate against exact solution
  ///
  /// Solution is provided via function pointer.
  /// Plot error at a given number of plot points.
  ///
-//======================================================================
-void FoepplVonKarmanEquations::compute_error(std::ostream &outfile,
-                                          FiniteElement::SteadyExactSolutionFctPt exact_soln_pt,
-                                          double& error, double& norm)
-{
- // Initialise
- error=0.0;
- norm=0.0;
+ /// HERE THIS MAY BE SUPERFLUOUS NOW
+ //======================================================================
+ void FoepplVonKarmanEquations::compute_error_in_deflection(std::ostream &outfile,
+							    FiniteElement::SteadyExactSolutionFctPt exact_soln_pt,
+							    double& error, double& norm)
+ {
+  // Initialise
+  error=0.0;
+  norm=0.0;
+  //Find out how many nodes there are
+  // const unsigned n_u_node = this->nnode();
+  const unsigned n_w_node = nnode_outofplane();
+  //Find out how many bubble nodes there are
+  const unsigned n_b_node = nbubble_basis();
+  //Find out how many nodes positional dofs there are
+  unsigned n_basis_type = nnodal_basis_type();
+  // Find the internal dofs
+  const unsigned n_b_position_type = nbubble_basis_type();
 
- //Find out how many nodes there are
- // const unsigned n_u_node = this->nnode();
- const unsigned n_w_node = nnode_outofplane(); 
- //Find out how many bubble nodes there are
- const unsigned n_b_node = nbubble_basis();
- //Find out how many nodes positional dofs there are
- unsigned n_basis_type = nnodal_basis_type();
- // Find the internal dofs
- const unsigned n_b_position_type = nbubble_basis_type();
+  //Vector of local coordinates
+  Vector<double> s(this->dim());
 
- //Vector of local coordinates
- Vector<double> s(this->dim());
+  // Vector for coordintes
+  Vector<double> x(this->dim());
 
- // Vector for coordintes
- Vector<double> x(this->dim());
+  //Set the value of n_intpt
+  unsigned n_intpt = this->integral_pt()->nweight();
 
- //Set the value of n_intpt
- unsigned n_intpt = this->integral_pt()->nweight();
+  // Exact solution Vector (here a scalar)
+  Vector<double> exact_soln(this->required_nvalue(0),0.0);
 
- // Tecplot
- //outfile << "ZONE" << std::endl;
-
- // Exact solution Vector (here a scalar)
- Vector<double> exact_soln(this->required_nvalue(0),0.0);
-
- //Loop over the integration points
- for(unsigned ipt=0;ipt<n_intpt;ipt++)
-  {
-
-   //Assign values of s
-   for(unsigned i=0;i<this->dim();i++)
-    {
-     s[i] = this->integral_pt()->knot(ipt,i);
-    }
-
-   //Get the integral weight
-   double w = this->integral_pt()->weight(ipt);
-
-   // Get jacobian of mapping
-   double J;
-   // double Jlin = this->J_eulerian1(s);// Nope
+  //Loop over the integration points
+  for(unsigned ipt=0;ipt<n_intpt;ipt++)
    {
-   //Local c1-shape funtion
-   Shape psi(n_w_node,n_basis_type),test(n_w_node,n_basis_type),
-    psi_b(n_b_node,n_b_position_type),test_b(n_b_node,n_b_position_type);
+
+    //Assign values of s
+    for(unsigned i=0;i<this->dim();i++)
+     {
+      s[i] = this->integral_pt()->knot(ipt,i);
+     }
+
+    //Get the integral weight
+    double w = this->integral_pt()->weight(ipt);
+
+    // Get jacobian of mapping
+    double J;
+    {
+     //Local c1-shape funtion
+     Shape psi(n_w_node,n_basis_type),test(n_w_node,n_basis_type),
+      psi_b(n_b_node,n_b_position_type),test_b(n_b_node,n_b_position_type);
    
 
-   DShape dpsi_dxi(n_w_node,n_basis_type,this->dim()),dtest_dxi(n_w_node,n_basis_type,this->dim()),
-    dpsi_b_dxi(n_b_node,n_b_position_type,this->dim()),dtest_b_dxi(n_b_node,n_b_position_type,this->dim()),
-    d2psi_dxi2(n_w_node,n_basis_type,3), d2test_dxi2(n_w_node,n_basis_type,3),
-    d2psi_b_dxi2(n_b_node,n_b_position_type,3), d2test_b_dxi2(n_b_node,n_b_position_type,3);
+     DShape dpsi_dxi(n_w_node,n_basis_type,this->dim()),dtest_dxi(n_w_node,n_basis_type,this->dim()),
+      dpsi_b_dxi(n_b_node,n_b_position_type,this->dim()),dtest_b_dxi(n_b_node,n_b_position_type,this->dim()),
+      d2psi_dxi2(n_w_node,n_basis_type,3), d2test_dxi2(n_w_node,n_basis_type,3),
+      d2psi_b_dxi2(n_b_node,n_b_position_type,3), d2test_b_dxi2(n_b_node,n_b_position_type,3);
+
+     J=this-> d2shape_and_d2test_eulerian_foeppl_von_karman(s,
+							    psi, psi_b, dpsi_dxi, dpsi_b_dxi, d2psi_dxi2, d2psi_b_dxi2,
+							    test, test_b, dtest_dxi, dtest_b_dxi, d2test_dxi2, d2test_b_dxi2);
+    }
+    //Premultiply the weights and the Jacobian
+    double W = w*J;
+    // double Wlin = w*Jlin;
+
+    // Get x position as Vector
+    interpolated_x(s,x);
+
+    // Get FE function value
+    Vector<double> u_fe(this->required_nvalue(0),0.0);
+    u_fe = interpolated_u_foeppl_von_karman(s);
+
+    // Get exact solution at this point
+    (*exact_soln_pt)(x,exact_soln);
+
+    //Output x,y,...,error
+    for(unsigned i=0;i<this->dim();i++)
+     {
+      outfile << x[i] << " ";
+     }
+    for(unsigned ii=0;ii<this->required_nvalue(0);ii++)
+     {
+      outfile << exact_soln[ii] << " " << exact_soln[ii]-u_fe[ii] << " ";
+     }
+    outfile << std::endl;
+
+    // Loop over variables
+    double tmp1 = 0.0, tmp2 =0.0;
+    for(unsigned ii=0;ii<1;ii++)
+     {
+      // Add to error and norm
+      tmp1 = (exact_soln[ii]*exact_soln[ii]*W);
+      tmp2 = ((exact_soln[ii]-u_fe[ii])*(exact_soln[ii]-u_fe[ii])*W);
+      norm += tmp1;
+      error += tmp2;
+     }
+   } //End of loop over integration pts
+ }
+ //HERE OVERLOAD COMPUTE_ERROR SO WE CAN GET A VECTOR OF NORMS
 
 
-   J=this-> d2shape_and_d2test_eulerian_foeppl_von_karman(s,
-    psi, psi_b, dpsi_dxi, dpsi_b_dxi, d2psi_dxi2, d2psi_b_dxi2,
-    test, test_b, dtest_dxi, dtest_b_dxi, d2test_dxi2, d2test_b_dxi2);
-   }
-   //Premultiply the weights and the Jacobian
-   double W = w*J;
-   // double Wlin = w*Jlin;
+ //======================================================================
+ /// Validate against exact solution
+ ///
+ /// Solution is provided via function pointer.
+ /// Plot error at a given number of plot points.
+ ///
+ //======================================================================
+ void FoepplVonKarmanEquations::compute_error(std::ostream &outfile,
+					      FiniteElement::SteadyExactSolutionFctPt exact_soln_pt,
+					      double& error, double& norm)
+ {
+  // Initialise
+  error=0.0;
+  norm=0.0;
 
-   // Get x position as Vector
-   interpolated_x(s,x);
+  //Find out how many nodes there are
+  // const unsigned n_u_node = this->nnode();
+  const unsigned n_w_node = nnode_outofplane(); 
+  //Find out how many bubble nodes there are
+  const unsigned n_b_node = nbubble_basis();
+  //Find out how many nodes positional dofs there are
+  unsigned n_basis_type = nnodal_basis_type();
+  // Find the internal dofs
+  const unsigned n_b_position_type = nbubble_basis_type();
 
-   // Get FE function value
-   Vector<double> u_fe(this->required_nvalue(0),0.0);
-   u_fe = interpolated_u_foeppl_von_karman(s);
+  //Vector of local coordinates
+  Vector<double> s(this->dim());
 
-   // Get exact solution at this point
-   (*exact_soln_pt)(x,exact_soln);
+  // Vector for coordintes
+  Vector<double> x(this->dim());
 
-   // Loop over variables
-   double tmp1 = 0.0, tmp2 =0.0;
-   if(Error_metric_fct_pt==0)
+  //Set the value of n_intpt
+  unsigned n_intpt = this->integral_pt()->nweight();
+
+  // Tecplot
+  //outfile << "ZONE" << std::endl;
+
+  // Exact solution Vector (here a scalar)
+  Vector<double> exact_soln(this->required_nvalue(0),0.0);
+
+  //Loop over the integration points
+  for(unsigned ipt=0;ipt<n_intpt;ipt++)
    {
-   //Output x,y,...,error
-   for(unsigned i=0;i<this->dim();i++)
-    {
-     outfile << x[i] << " ";
-    }
-   for(unsigned ii=0;ii<this->required_nvalue(0);ii++)
-    {
-     outfile << exact_soln[ii] << " " << exact_soln[ii]-u_fe[ii] << " ";
-    }
-   outfile << std::endl;
 
-   for(unsigned ii=0;ii<1;ii++)
+    //Assign values of s
+    for(unsigned i=0;i<this->dim();i++)
+     {
+      s[i] = this->integral_pt()->knot(ipt,i);
+     }
+
+    //Get the integral weight
+    double w = this->integral_pt()->weight(ipt);
+
+    // Get jacobian of mapping
+    double J;
+    // double Jlin = this->J_eulerian1(s);// Nope
     {
-     // Add to error and norm
-     tmp1 = (exact_soln[ii]*exact_soln[ii]);
-     tmp2 = ((exact_soln[ii]-u_fe[ii])*(exact_soln[ii]-u_fe[ii]));
+     //Local c1-shape funtion
+     Shape psi(n_w_node,n_basis_type),test(n_w_node,n_basis_type),
+      psi_b(n_b_node,n_b_position_type),test_b(n_b_node,n_b_position_type);
+   
+
+     DShape dpsi_dxi(n_w_node,n_basis_type,this->dim()),dtest_dxi(n_w_node,n_basis_type,this->dim()),
+      dpsi_b_dxi(n_b_node,n_b_position_type,this->dim()),dtest_b_dxi(n_b_node,n_b_position_type,this->dim()),
+      d2psi_dxi2(n_w_node,n_basis_type,3), d2test_dxi2(n_w_node,n_basis_type,3),
+      d2psi_b_dxi2(n_b_node,n_b_position_type,3), d2test_b_dxi2(n_b_node,n_b_position_type,3);
+
+
+     J=this-> d2shape_and_d2test_eulerian_foeppl_von_karman(s,
+							    psi, psi_b, dpsi_dxi, dpsi_b_dxi, d2psi_dxi2, d2psi_b_dxi2,
+							    test, test_b, dtest_dxi, dtest_b_dxi, d2test_dxi2, d2test_b_dxi2);
     }
-   }
-   else
-    {
-     // Get the metric
-     (*Error_metric_fct_pt)(x,u_fe,exact_soln,tmp2,tmp1);
-    }
-   norm += tmp1*W;
-   error += tmp2*W;
-  } //End of loop over integration pts
-}
+    //Premultiply the weights and the Jacobian
+    double W = w*J;
+    // double Wlin = w*Jlin;
+
+    // Get x position as Vector
+    interpolated_x(s,x);
+
+    // Get FE function value
+    Vector<double> u_fe(this->required_nvalue(0),0.0);
+    u_fe = interpolated_u_foeppl_von_karman(s);
+
+    // Get exact solution at this point
+    (*exact_soln_pt)(x,exact_soln);
+
+    // Loop over variables
+    double tmp1 = 0.0, tmp2 =0.0;
+    if(Error_metric_fct_pt==0)
+     {
+      //Output x,y,...,error
+      for(unsigned i=0;i<this->dim();i++)
+       {
+	outfile << x[i] << " ";
+       }
+      for(unsigned ii=0;ii<this->required_nvalue(0);ii++)
+       {
+	outfile << exact_soln[ii] << " " << exact_soln[ii]-u_fe[ii] << " ";
+       }
+      outfile << std::endl;
+
+      for(unsigned ii=0;ii<1;ii++)
+       {
+	// Add to error and norm
+	tmp1 = (exact_soln[ii]*exact_soln[ii]);
+	tmp2 = ((exact_soln[ii]-u_fe[ii])*(exact_soln[ii]-u_fe[ii]));
+       }
+     }
+    else
+     {
+      // Get the metric
+      (*Error_metric_fct_pt)(x,u_fe,exact_soln,tmp2,tmp1);
+     }
+    norm += tmp1*W;
+    error += tmp2*W;
+   } //End of loop over integration pts
+ }
 }
