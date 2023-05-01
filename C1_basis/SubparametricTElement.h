@@ -43,7 +43,7 @@ namespace oomph
  // SubparametricTElements are subparametric finite elements that provide both
  // basis functions to interpolate the unknowns and shape functions to 
  // interpolate the geometry. In general these elements have both nodal basis
- // functions and bubble basis functions (corresponding to internal dofs)
+ // functions and internal basis functions (corresponding to internal dofs)
  //==============================================================================
 
  /// \short Class for subparametric element that has a seprate basis for the 
@@ -71,11 +71,14 @@ namespace oomph
   virtual unsigned nfield() const = 0;
 
   // ------------------------ Nodal data ---------------------------------------
+  // Nodal basis functions might vary between field and node, here is the
+  // interface for accessing the appropriate dof/basis in generality.
+  
   /// Get the number of nodes that field i is interpolated over
   virtual unsigned nnode_for_field(const unsigned& i_field) const = 0;
 
-  /// Get the nodes associated with interpolating field i
-  virtual Vector<unsigned> nodes_for_field(const unsigned& i_field) const = 0;
+  /// Get a vector of the nodes associated with interpolating field i
+   virtual Vector<unsigned> nodes_for_field(const unsigned& i_field) const = 0;
   
   /// Get the number of basis type for field i at node j
   virtual unsigned ntype_for_field_at_node(const unsigned& i_field,
@@ -93,53 +96,35 @@ namespace oomph
 						       const unsigned& k_type) const = 0;
   
   // ----------------------- Internal data -------------------------------------
+  // Each field has its own internal data which is resized according to the
+  // number of dof/basis types required
+  
   /// Get the number of internal data for field i
   virtual unsigned ninternal_types_for_field(const unsigned& i_field) const = 0;
 
-  /// Return the value at the internal data for field i type j
-  virtual Data* internal_data_for_field_pt(const unsigned i_field) const = 0;
+  /// Get the index of the internal data for field i
+  virtual unsigned index_of_internal_data_for_field(const unsigned& i_field) const = 0;
   
-  /// Return the value at the internal data for field i type j
-  virtual unsigned internal_value_for_field(const unsigned i_field,
-					    const unsigned j_type) const = 0;
-
-  // /// Get the basis functions for field i at local coordinate s
-  // virtual double basis_for_field(const unsigned& i,
-  // 				 const Vector<double>& s,
-  // 				 Shape& nodal_basis,
-  // 				 Shape& internal_basis) const = 0;
+  /// Return the pointer to the internal data for field i
+  virtual Data* internal_data_for_field_pt(const unsigned& i_field) const = 0;
+  
+  /// Return the value at the internal data for field i type k
+  virtual double internal_value_for_field_of_type(const unsigned& i_field,
+						  const unsigned& k_type) const = 0;
+  
+  /// Return the value at the internal data for field i type k at time t
+  virtual double internal_value_for_field_of_type(const unsigned& t,
+						  const unsigned& i_field,
+						  const unsigned& k_type) const = 0;
+  
+  /// Get the jth bubble dof at the lth internal point. Deliberately broken 
+  /// for case when there is no curved edge.
+  virtual int local_internal_equation(const unsigned& i_field,
+			      const unsigned& k_type) const = 0;
    
   // ========================= End new [zdec] ==================================
-
-  // ========================== Kill these? ====================================
-  // /// Return total number of basis functions 
-  // virtual unsigned nbasis() const 
-  // {return this->nvertex_node()*nnodal_basis_type()+nbubble_basis()*nbubble_basis_type();} 
   
-  // /// Return number of basis function types 
-  // virtual unsigned nnodal_basis_type()const = 0 ; 
-  
-  // /// Return number of bubble basis functions 
-  // virtual unsigned nbubble_basis()const = 0 ; 
-  
-  // /// Return number of bubble basis functions 
-  // virtual unsigned nbubble_basis_type() const = 0 ; 
-  
-  // /// Return number of internal dofs (may be different from basis functions in
-  // /// general if multiple unknowns are interpolated by SubparametricTriangleElements)
-  // virtual unsigned ninternal_dofs() const = 0 ; 
-  
-  // /// Get the itype th bubble dof at internal point ibdof at time t
-  // virtual double get_bubble_dof(const unsigned t,
-  // 				const unsigned ibdof,
-  // 				const unsigned itype) const = 0;
-  
-  // /// Get the itype th bubble dof at internal point ibdof
-  // virtual double get_bubble_dof(const unsigned ibdof,
-  // 				const unsigned itype) const = 0;
-  // ===========================================================================
-   
-  /// Interpolate simplex coordinate x 
+  /// Interpolate global coordinate x using simplex shape functions.
   void interpolated_x (const Vector<double>& s, Vector<double>& x) const 
   {
    //Find the number of nodes
@@ -148,12 +133,12 @@ namespace oomph
    const unsigned n_position_type = this->nnodal_position_type();
    //Find the dimension stored in the node
    const unsigned nodal_dim = this->nodal_dimension();
-
+   
    //Assign storage for the local shape function
    Shape psi(this->nnode(),n_position_type);
    //Find the values of shape function
    simplex_shape(s,psi);
-
+   
    //Loop over the dimensions
    for(unsigned i=0;i<nodal_dim;i++)
     {
@@ -170,26 +155,35 @@ namespace oomph
       }
     }  
   }
-
+  
   /// TElement<2,2> shape functions, because any higher order geometric scheme
-  /// will be redundant for straight sided triangular elements.
+  /// will be redundant for straight sided (Lagrangian) triangular elements.
   void simplex_shape(const Vector<double>& s, Shape& psi) const
   {
+   // Define the simplex shape functions
    psi[0] = s[0];
    psi[1] = s[1];
    psi[2] = 1.0-s[0]-s[1];
+   
+   // Get the number of vertices and number of total nodes so we can loop over
+   // the remaining shape functions
+   unsigned n_vertex_node = this->nvertex_node();
+   unsigned n_node = this->nnode();
    // Set the rest of shape to zero 
-   for(unsigned i=this->nvertex_node(); i<this->nnode();++i)
-    { psi[i] = 0.0; }
+   for(unsigned i=n_vertex_node; i<n_node;++i)
+    {
+     psi[i] = 0.0;
+    }
   }
-
-  /// TElement<2,2> dshape functions, because any higher order geometric scheme
-  /// will be redundant for straight sided triangular elements.
+  
+  /// TElement<2,2> dshape functions with respect to local coordinates, because
+  /// any higher order geometric scheme will be redundant for straight sided
+  /// (Lagrangian) triangular elements.
   void dsimplex_shape_local(const Vector<double>& s,
 			    Shape& psi, DShape& dpsids) const
   {
+   // Assign the shape functions
    this->simplex_shape(s, psi);
-    
    // Derivatives
    dpsids(0,0) = 1.0;
    dpsids(0,1) = 0.0;
@@ -197,14 +191,20 @@ namespace oomph
    dpsids(1,1) = 1.0;
    dpsids(2,0) = -1.0;
    dpsids(2,1) = -1.0;
-   // Set the rest of shape functions to zero 
-   for(unsigned i=this->nvertex_node(); i<this->nnode();++i)
+   
+   // Get the number of vertices and number of total nodes so we can loop over
+   // the remaining shape functions
+   unsigned n_vertex_node = this->nvertex_node();
+   unsigned n_node = this->nnode();
+   
+   // Set the rest of shape to zero 
+   for(unsigned i=n_vertex_node; i<n_node;++i)
     { 
      dpsids(i,0) = 0.0; 
      dpsids(i,1) = 0.0; 
     }
   }
-
+  
   /// Overloaded shape. Wrapper which ensures we are only retrieving the
   /// simplex shape functions.
   virtual void shape(const Vector<double>& s, Shape& psi) const
@@ -220,61 +220,19 @@ namespace oomph
    dsimplex_shape_local(s,psi,dpsids);
   }
 
-  // /// Get the basis for the  unknowns
-  // virtual void basis(const Vector<double>& s, Shape& nodal_basis, Shape& bubble_basis) const = 0;
-
-  // /// Get the basis functions for field i at local coordinate s
-  // virtual double basis(//const unsigned& i_field,
-  // 		       const Vector<double>& s,
-  // 		       Shape& nodal_basis,
-  // 		       Shape& internal_basis) const = 0;  
-  
-
-  // /// Get the local derivative of the basis for the unknowns
-  // virtual void d_basis_local(//const unsigned& i_field,
-  // 			     const Vector<double>& s,
-  // 			     Shape& nodal_basis,
-  // 			     Shape& bubble_basis,
-  // 			     DShape& dnodal_basis,
-  // 			     DShape& dbubble_basis) const = 0;
-
-  // /// Get the local second derivative of the basis for the unknowns
-  // virtual void d2_basis_local(//const unsigned& i_field,
-  // 			      const Vector<double>& s,
-  // 			      Shape& nodal_basis, 
-  // 			      Shape& bubble_basis,
-  // 			      DShape& dnodal_basis,
-  // 			      DShape& dbubble_basis,
-  // 			      DShape& d2nodal_basis,
-  // 			      DShape& d2bubble_basis) const  = 0;
-
-  // /// Get the global (Eulerian) derivative of the basis for the unknowns
-  // virtual double d_basis_eulerian(//const unsigned& i_field,
-  // 				  const Vector<double>& s,
-  // 				  Shape& nodal_basis,
-  // 				  Shape& bubble_basis,
-  // 				  DShape& dnodal_basis,
-  // 				  DShape& dbubble_basis) const = 0;
-
-  // /// Get the global (Eulerian) second derivative of the basis for the unknowns
-  // virtual double d2_basis_eulerian(//const unsigned& i_field,
-  // 				   const Vector<double>& s,
-  // 				   Shape& nodal_basis, 
-  // 				   Shape& bubble_basis,
-  // 				   DShape& dnodal_basis,
-  // 				   DShape& dbubble_basis,
-  // 				   DShape& d2nodal_basis,
-  // 				   DShape& d2bubble_basis) const  = 0;
-
-
  }; //End of Subparametric TElement class
-
-
  
- /// \short Curvable Bell element. By default this element is the standard 
- /// simplex Bell element with 6dofs per node. The element can be upgraded
- /// to provide accurate representation of boundary conditions, which adds
- /// additional (bubble) unknowns to the interior.
+ 
+ 
+ //=============================================================================
+ /// Curvable Bell element. It inherits the field-node-type interface from
+ /// SubparametricTriangleElement to make mixed interpolation of different
+ /// fields simpler, it also inherits the NNODE_1D Lagrangian basis.
+ /// By default this element is the standard simplex triangle Bell element with
+ /// 6dofs per node. The element can be upgraded to curved "triangle" elements
+ /// which provide accurate representation of boundary conditions by adding
+ /// additional Bernadou basis unknowns to the interior.
+ //=============================================================================
  template<unsigned NNODE_1D>
  class CurvableBellElement : public SubparametricTriangleElement<NNODE_1D>
  {
@@ -284,13 +242,12 @@ namespace oomph
   { 
    // Use the higher order integration scheme
    TGauss<2,4>* new_integral_pt = new TGauss<2,4>;
-   this->set_integration_scheme(new_integral_pt); 
-   // Add the (zero) bubble dofs
-   Index_of_internal_data = this->add_internal_data(new Data(0));
+   this->set_integration_scheme(new_integral_pt);
+   // By default, there is no Bernadou basis (straight sided triangle)
    Bernadou_element_basis_pt=0;
    Association_matrix_pt=0;
   };
-
+  
   ///Destructor 
   ~CurvableBellElement()
   {
@@ -303,19 +260,58 @@ namespace oomph
 
   /// Broken copy constructor
   CurvableBellElement(const CurvableBellElement& dummy)
-  { BrokenCopy::broken_copy(OOMPH_CURRENT_FUNCTION); }
+  {
+   BrokenCopy::broken_copy(OOMPH_CURRENT_FUNCTION);
+  }
 
   /// Broken copy assignment 
   void operator = (const CurvableBellElement& dummy)
-  { BrokenCopy::broken_assign(OOMPH_CURRENT_FUNCTION); }
-
-  /// \short Alias for enum to enumerate the possible edges that could be curved
+  {
+   BrokenCopy::broken_assign(OOMPH_CURRENT_FUNCTION);
+  }
+  
+  /// Alias for enum to enumerate the possible edges that could be curved
   typedef typename MyC1CurvedElements::Edge Edge; 
-
+  
   ///  Boolean function indicating whether element is curved or not
-  bool element_is_curved() const {return Curved_edge != MyC1CurvedElements::none; }
+  bool element_is_curved() const
+  {
+   return Curved_edge != MyC1CurvedElements::none;
+  }
+  
+  /// Return a bool telling us whether the ith field interpolated by the
+  /// Bell basis, needed when upgrading elements in order to resize internal
+  /// data of appropriate fields. Pure virtual as it depends on the equations
+  /// requirements.
+  virtual bool field_is_bell_interpolated(const unsigned& i_field) const = 0;
+  
 
-  /// \short get the coordinate x
+  // C++17 onwards
+  /*
+  // This lets us return a pointer to either basis class depending on whether 
+  // the element is curved or not. 
+  // [zdec] Maybe use another member data pointer "Current_basis_pt"
+  using BASIS = std::variant<MyC1CurvedElements::BernadouElementBasisBase,
+			     MyShape::BellElementBasis>;
+  /// Return the pointer to the current basis
+  BASIS current_basis_pt()
+  {
+   if(element_is_curved())
+    {return Bernadou_element_basis_pt;}
+   else
+    {return *Bell_basis;}
+  }
+  */
+
+  /// Access function for the Bernadou_element_basis_pt 
+  MyC1CurvedElements::BernadouElementBasisBase* bernadou_element_basis_pt()
+  {
+   // [zdec] Should this throw an error if not upgraded or just return null pt?
+   return Bernadou_element_basis_pt;
+  }
+  
+  /// Get the interpolated global coordinates x -- simplex interpolation if
+  /// straight edged, uses the Bernadou basis if curved.
   void interpolated_x (const Vector<double>& s, Vector<double>& x) const 
   {
    // Wrapper: call the BernadouElement curved basis if curved 
@@ -329,13 +325,14 @@ namespace oomph
     }
   }
 
-  /// \short get the coordinate i
+  /// Return the interpolated global coordinate x_i (slow as it just calls
+  /// the full interpolated_x and returns the relevant one)
   double interpolated_x (const Vector<double>& s, const unsigned& i) const 
   {
    // Just call interpolated_x and discard the other component (slow)
    Vector<double> x(2,0.0); interpolated_x(s,x); return x[i];
   }
-
+  
   /// Overloaded shape. Thin wrapper which breaks shape for upgraded elements,
   /// which have a mapping but no shape function defined.
   virtual void shape(const Vector<double>& s, Shape& shape) const
@@ -348,7 +345,9 @@ to access interpolated eulerian coordinate",
     }
    // Default to TElement shape
    else
-    {SubparametricTriangleElement<NNODE_1D>::simplex_shape(s,shape);}
+    {
+     SubparametricTriangleElement<NNODE_1D>::simplex_shape(s,shape);
+    }
   }
 
   /// Overloaded shape. Thin wrapper which breaks shape for upgraded elements,
@@ -361,8 +360,11 @@ to access interpolated eulerian coordinate",
 to access interpolated eulerian coordinate",
 			 OOMPH_CURRENT_FUNCTION, OOMPH_EXCEPTION_LOCATION);
     }
+   // Default to TElement shape
    else
-    {SubparametricTriangleElement<NNODE_1D>::dsimplex_shape_local(s,shape,dshape);}
+    {
+     SubparametricTriangleElement<NNODE_1D>::dsimplex_shape_local(s,shape,dshape);
+    }
   }
  
   /// Local_to_eulerian mapping with local coordinate argument: when upgraded this 
@@ -374,7 +376,7 @@ to access interpolated eulerian coordinate",
    if(element_is_curved())
     { 
      // Fill in the Jacobian // HERE this provides TRANSVERSE of oomph definition 
-     // fix lower down if possible
+     // fix lower down if possible // [zdec] what did David mean by this?
      Bernadou_element_basis_pt->get_jacobian(s,jacobian); 
      // Temporary fix - just transpose
      double tmp =  jacobian(0,1);
@@ -393,8 +395,10 @@ to access interpolated eulerian coordinate",
     }
   }
 
-  /// Get the basis for the  unknowns
-  virtual void basis(const Vector<double>& s, Shape& nodal_basis, Shape& bubble_basis) const
+  /// Get the Bell/Bernadou basis for the unknowns
+  virtual void basis(const Vector<double>& s,
+		     Shape& nodal_basis,
+		     Shape& bubble_basis) const
   {
    if(element_is_curved())
     { 
@@ -414,26 +418,35 @@ to access interpolated eulerian coordinate",
     }
   };
 
-  /// Get the local derivative of the basis for the unknowns
-  virtual void d_basis_local(const Vector<double>& s, Shape& nodal_basis, 
-			     Shape& bubble_basis, DShape& dnodal_basis, DShape& dbubble_basis) const
+  /// Get the local derivative of the basis for the unknowns [zdec] this is now Aidan's fault
+  virtual void d_basis_local(const Vector<double>& s,
+			     Shape& nodal_basis, 
+			     Shape& bubble_basis,
+			     DShape& dnodal_basis,
+			     DShape& dbubble_basis) const
   {
-   throw OomphLibError("Needs implementing. BLAME DAVID.",OOMPH_CURRENT_FUNCTION,
+   throw OomphLibError("Needs implementing. BLAME AIDAN.",OOMPH_CURRENT_FUNCTION,
 		       OOMPH_EXCEPTION_LOCATION);
   }
 
   /// Get the local second derivative of the basis for the unknowns
-  virtual void d2_basis_local(const Vector<double>& s, Shape& nodal_basis, 
-			      Shape& bubble_basis, DShape& dnodal_basis, DShape& dbubble_basis, DShape&
-			      d2nodal_basis, DShape& d2bubble_basis) const
+  virtual void d2_basis_local(const Vector<double>& s,
+			      Shape& nodal_basis, 
+			      Shape& bubble_basis,
+			      DShape& dnodal_basis,
+			      DShape& dbubble_basis,
+			      DShape& d2nodal_basis,
+			      DShape& d2bubble_basis) const
   {
-   throw OomphLibError("Needs implementing. BLAME DAVID.",OOMPH_CURRENT_FUNCTION, 
+   throw OomphLibError("Needs implementing. BLAME AIDAN.",OOMPH_CURRENT_FUNCTION, 
 		       OOMPH_EXCEPTION_LOCATION);
   }
 
   /// Get the global (Eulerian) derivative of the basis for the unknowns
-  virtual double d_basis_eulerian(const Vector<double>& s, Shape& nodal_basis, 
-				  Shape& bubble_basis, DShape& dnodal_basis,
+  virtual double d_basis_eulerian(const Vector<double>& s,
+				  Shape& nodal_basis, 
+				  Shape& bubble_basis,
+				  DShape& dnodal_basis,
 				  DShape& dbubble_basis) const
   {
    if(element_is_curved())
@@ -442,7 +455,7 @@ to access interpolated eulerian coordinate",
 						  dnodal_basis, dbubble_basis);
     }
    else
-    { //HERE
+    { //HERE // [zdec] Calls the full d2_basis_eulerian (slow and sloppy)
      Vector<Vector<double> > Verts = (Vector<Vector<double> >(this->nvertex_node(),Vector<double>(this->dim(),0.0)));
      for(unsigned ivert=0;ivert<this->nvertex_node();++ivert)
       {
@@ -456,9 +469,13 @@ to access interpolated eulerian coordinate",
   }
 
   /// Get the global (Eulerian) second derivative of the basis for the unknowns
-  virtual double d2_basis_eulerian(const Vector<double>& s, Shape& nodal_basis, 
-				   Shape& bubble_basis, DShape& dnodal_basis, DShape& dbubble_basis, DShape&
-				   d2nodal_basis, DShape& d2bubble_basis) const  
+  virtual double d2_basis_eulerian(const Vector<double>& s,
+				   Shape& nodal_basis, 
+				   Shape& bubble_basis,
+				   DShape& dnodal_basis,
+				   DShape& dbubble_basis,
+				   DShape& d2nodal_basis,
+				   DShape& d2bubble_basis) const  
   {
    if(element_is_curved())
     {
@@ -466,14 +483,25 @@ to access interpolated eulerian coordinate",
      // so use the `slow' version
      if(Association_matrix_pt==0) 
       {
-       return Bernadou_element_basis_pt->d2_shape_dx2(s,nodal_basis,bubble_basis, 
-						      dnodal_basis,dbubble_basis,d2nodal_basis,d2bubble_basis);
+       return Bernadou_element_basis_pt->d2_shape_dx2(s,
+						      nodal_basis,
+						      bubble_basis, 
+						      dnodal_basis,
+						      dbubble_basis,
+						      d2nodal_basis,
+						      d2bubble_basis);
       }
      // Else use the cached association matrix to compute
      else 
       {
-       return Bernadou_element_basis_pt->d2_shape_dx2(s,nodal_basis,bubble_basis, 
-						      dnodal_basis,dbubble_basis,d2nodal_basis,d2bubble_basis,*Association_matrix_pt);
+       return Bernadou_element_basis_pt->d2_shape_dx2(s,
+						      nodal_basis,
+						      bubble_basis, 
+						      dnodal_basis,
+						      dbubble_basis,
+						      d2nodal_basis,
+						      d2bubble_basis,
+						      *Association_matrix_pt);
       }
     }
    // Use the Bell basis functions if not upgraded
@@ -509,9 +537,9 @@ to access interpolated eulerian coordinate",
     { /* No association matrix for the Bell Elements. Throw here*/}
   }; 
 
-  /// \short Delete the association matrix for the curved basis. This is 
-  /// important for optimisation, as we don't want to be storing a large matrix 
-  /// for every element. 
+  /// Delete the association matrix for the curved basis. This is important for
+  /// optimisation, as we don't want to be storing a large matrix for every
+  /// element. 
   void delete_association_matrix()
   {
    // If the element has been upgraded
@@ -524,114 +552,28 @@ to access interpolated eulerian coordinate",
     { /* No association matrix for the Bell Elements. Throw here ?*/}
   }; 
 
-  /// \short Return number of bubble basis functions. This will be zero
+  // [zdec] Look into changing the following functions!
+  /// Return number of bubble basis functions. This will be zero
   /// for un-upgraded elements. Upgrading introduces nbubble_dof additional basis 
   /// functions depending on the basis 
   unsigned nbubble_basis() const 
   {return (element_is_curved() ? Bernadou_element_basis_pt->n_internal_dofs() : 0);}; 
 
-  // Return number of bubble dof types
+  /// Return number of bubble dof types
   unsigned nbubble_basis_type() const {return 1;}; 
 
   /// Return number of nodal dof types 
   unsigned nnodal_basis_type() const { return 6; }; 
   
-  /// \short Return number of nodal dof types. The default implementation in these
+  /// Return number of nodal dof types. The default implementation in these
   /// elements is to use nbasis_type but in derived classes these two values may
   /// not be the same
   virtual unsigned ndof_type() const { return nnodal_basis_type(); }; 
 
-  /// \short Return number of internal dofs. This will be zero
+  /// Return number of internal dofs. This will be zero
   /// for un-upgraded elements. The default implementation in these elements
   /// adds nbubble_basis additional basis functions
   virtual unsigned ninternal_dofs() const { return nbubble_basis(); }; 
-
-  /// Get the bubble dof
-  virtual double get_bubble_dof(const unsigned ibdof,
-				const unsigned itype) const 
-  {
-   // Deliberately break this function for the below cases
-   // If there is no curved edge then we cannot return anything meaningful
-   if(Curved_edge==MyC1CurvedElements::none)
-    {
-     throw OomphLibError("There are no time-dependent internal 'bubble' dofs for \
-this element.",OOMPH_CURRENT_FUNCTION, OOMPH_EXCEPTION_LOCATION);
-     // Return dummy value 0.0 to shut up compiler
-     return 0;
-    }
-   // For these elements we only have a single dof at each internal point
-   else if(itype!=0)
-    {
-     throw OomphLibError(
-			 "There is only a single degree of freedom at the internal points in this \
-element.", OOMPH_CURRENT_FUNCTION, OOMPH_EXCEPTION_LOCATION);
-     // Return dummy value 0.0 to shut up compiler
-     return 0;
-    }
-   // Now give the lth internal degree of freedom
-   else
-    {return this->internal_data_pt(Index_of_internal_data)->value(ibdof);}
-  }
-  /// Get the bubble dof
-
-  virtual double get_bubble_dof(const unsigned t,
-				const unsigned ibdof,
-				const unsigned itype) const 
-  {
-   // Deliberately break this function for the below cases
-   // If there is no curved edge then we cannot return anything meaningful
-   if(Curved_edge==MyC1CurvedElements::none)
-    {
-     throw OomphLibError("There are no time-dependent internal 'bubble' dofs for \
-this element.",OOMPH_CURRENT_FUNCTION, OOMPH_EXCEPTION_LOCATION);
-     // Return dummy value 0.0 to shut up compiler
-     return 0;
-    }
-   // For these elements we only have a single dof at each internal point
-   else if(itype!=0)
-    {
-     throw OomphLibError(
-			 "There is only a single degree of freedom at the internal points in this \
-element.", OOMPH_CURRENT_FUNCTION, OOMPH_EXCEPTION_LOCATION);
-     // Return dummy value 0.0 to shut up compiler
-     return 0;
-    }
-   // Now give the lth internal degree of freedom
-   else
-    {return this->internal_data_pt(Index_of_internal_data)->value(t,ibdof);}
-  }
-
-  ///\short Get the jth bubble dof at the lth internal point. Deliberately broken 
-  /// for case when there is no curved edge.
-  int local_bubble_equation(const  unsigned& l, const unsigned& j) const
-  {
-   // Deliberately break this function for the below cases
-   // If there is no curved edge then we cannot return anything meaningful
-   if(!element_is_curved())
-    {
-     throw OomphLibError(
-			 "There are no time-dependent internal 'bubble' dofs for this element.",
-			 OOMPH_CURRENT_FUNCTION,  OOMPH_EXCEPTION_LOCATION);
-     // Return dummy value -2
-     return -2;
-    }
-   // For these elements we only have a single dof at each internal point
-   else if(j!=0)
-    {
-     throw OomphLibError(
-			 "There is only a single degree of equation at the internal points in this \
-element.", OOMPH_CURRENT_FUNCTION,OOMPH_EXCEPTION_LOCATION);
-     // Return dummy value -2
-     return -2;
-    }
-   // Now give the lth internal equation number
-   else
-    { return this->internal_local_eqn(Index_of_internal_data,l); }
-  }
- 
-  /// Index of the internal data
-  virtual unsigned index_of_internal_data() const 
-  {return Index_of_internal_data;}
   
   /// Add the a curved element pointer of type BERNADOU_BASIS
   template<typename BERNADOU_BASIS>
@@ -681,18 +623,25 @@ Elements.",OOMPH_CURRENT_FUNCTION,  OOMPH_EXCEPTION_LOCATION);
 			 "Currently only BernadouElementBasis<3> and BernadouElementBasis<5> are implemented."
 			 ,OOMPH_CURRENT_FUNCTION,  OOMPH_EXCEPTION_LOCATION);
     } 
-
+   
    // Cannot Null this pointer but we immediatly reset it.
    // Should we have a delete Integral_pt function?
    delete this->integral_pt(); 
    this->set_integration_scheme(new_integral_pt); 
-
+   
    // [zdec] Always use same data, just resize according to internal basis
    // requirements.
+   unsigned n_field = this->nfield();
    unsigned n_bubble = Bernadou_element_basis_pt->n_internal_dofs();
-   this->internal_data_pt(Index_of_internal_data)->resize(n_bubble);
-   //Index_of_internal_data = this->add_internal_data(new Data(n_bubble));
- 
+   for(unsigned i_field=0; i_field<n_field; i_field++)
+    {
+     if(this->field_is_bell_interpolated(i_field))
+      {
+       this->internal_data_pt(this->index_of_internal_data_for_field(i_field))
+	->resize(n_bubble);
+      }
+    }
+   
    // Vector to store nodes
    Vector<Vector<double> > vertices(Vector<Vector<double> >(this->nvertex_node(),Vector<double>(this->dim(),0.0)));
    // Now switch to upgrade
@@ -718,12 +667,12 @@ Elements.",OOMPH_CURRENT_FUNCTION,  OOMPH_EXCEPTION_LOCATION);
    Bernadou_element_basis_pt->upgrade_element(vertices, s_ubar,s_obar,
 					      curved_edge,*parametric_edge);
   }
-
-  /// \short Get the reference location of the internal curved Bell dofs, dof
+  
+  /// Get the reference location of the internal curved Bell dofs, dof
   void get_internal_dofs_location(const unsigned& dof, Vector<double>& s) const
   {
-   // If the element has been upgraded
-   if(element_is_curved())
+   // If the element has not been upgraded
+   if(!element_is_curved())
     {
      throw OomphLibError(
 			 "There are no internal dofs for these elements as they have not been\
@@ -731,16 +680,13 @@ Elements.",OOMPH_CURRENT_FUNCTION,  OOMPH_EXCEPTION_LOCATION);
 			 OOMPH_CURRENT_FUNCTION, OOMPH_EXCEPTION_LOCATION);
     }
    else 
-    {get_internal_dofs_location(dof,s);}
+    {Bernadou_element_basis_pt->get_internal_dofs_location(dof,s);}
   };
 
  private:
   /// Enum to store which edge is curved set to none when element has no curved
   /// edges
   MyC1CurvedElements::Edge Curved_edge;
-
-  /// Index at which the added internal data is storedj
-  unsigned Index_of_internal_data;
 
   /// Pointer to Bernadou Element Basis
   MyC1CurvedElements::BernadouElementBasisBase* Bernadou_element_basis_pt;
