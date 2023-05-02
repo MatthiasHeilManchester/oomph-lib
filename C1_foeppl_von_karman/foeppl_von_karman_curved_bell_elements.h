@@ -57,7 +57,7 @@ namespace oomph
  // nodes (i.e. nodes 0,1,2) each contain an additional six out-of-plane Hermite
  // dofs.
  //
- //  e.g FeopplVonKarmanC1CurvedBellElement<5>
+ //  e.g FeopplVonKarmanC1CurvedBellElement<4>
  //                        | 0 | 1 | 2 | 3  | 4  |  5   |  6   |  7   |
  //          o <---------- |u_x|u_y| w |dwdx|dwdy|d2wdx2|d2wdxy|d2wdy2|
  //         / \
@@ -65,9 +65,7 @@ namespace oomph
  //       /     \
  //      x   x   x  
  //     /         \
- //    x   x   x   x
- //   /             \
- //  o---x---x---x---o
+ //    o---x---x---o
  //                    
  */
  template <unsigned NNODE_1D>
@@ -129,7 +127,7 @@ namespace oomph
    // Remove the expensive-to-construct matrix
    this->delete_association_matrix();
   }
-
+  
   /// Add the element's contribution to its residual vector and
   /// element Jacobian matrix (wrapper) with caching of association matrix
   void fill_in_contribution_to_jacobian(Vector<double> &residuals,
@@ -142,42 +140,34 @@ namespace oomph
    // Remove the expensive-to-construct matrix
    this->delete_association_matrix();
   }
-
+  
   // ===================== New access functions [zdec] ==========================
   /// Number of fields (unknowns) interpolated by the element
   virtual unsigned nfield() const
   {
    return Nfield;
   }
-
+  
+  virtual bool field_is_bell_interpolated(const unsigned& i_field) const
+  {
+   if(i_field==2)
+    {return true;}
+   else
+    {return false;}
+  }
+  
   // ------------------------ Nodal data ---------------------------------------
   /// Get the number of nodes that field i is interpolated over
   /// For FvK in-plane use all nodes, out-of-plane uses vertex nodes
   virtual unsigned nnode_for_field(const unsigned& i_field) const
   {
    return Nnode_for_field[i_field];
-   // switch(i_field)
-   //  {
-   //  case 0: {return nnode_inplane();}
-   //  case 1: {return nnode_inplane();}
-   //  case 2: {return nnode_outofplane();}
-   //  }
   }
 
   /// Get the nodes associated with interpolating field i
   virtual Vector<unsigned> nodes_for_field(const unsigned& i_field) const
   {
    return Node_index_for_field[i_field];
-   // // Case 0 and 1 (in-plane) return vectors of all node indices
-   // // Case 2 (out-of-plane) returns vector of vertex node indices
-   // // In either case we use the first 'nnode_for_field' nodes.
-   // unsigned n_node = nnode_for_field(i_field);
-   // Vector<unsigned> V(n_node);
-   // for(unsigned i=0; i<n_node; i++)
-   //  {
-   //   V[i]=i;
-   //  }
-   // return V;
   }
   
   /// Get the number of basis type for field i at node j
@@ -187,12 +177,6 @@ namespace oomph
    // The in-plane fields always use 1 unknown at each node
    // The out-of-plane fields use 6 unknowns at the vertex nodes
    return Ntype_for_field_at_node[i_field][j_node];
-   // switch(i_field)
-   //  {
-   //  case 0: {return 1;}
-   //  case 1: {return 1;}
-   //  case 2: {return 6;}
-   //  }
   }
 
   /// Get the dof index for field i type k at node j
@@ -221,12 +205,6 @@ namespace oomph
    unsigned local_value_index = Nodal_value_index[i_field][j_nodei][k_type];
 
    return raw_nodal_value(local_node_index,local_value_index);
-   // switch(i_field)
-   //  {
-   //  case 0: {local_value_index = 0;}
-   //  case 1: {local_value_index = 1;}
-   //  case 2: {local_value_index = 2+k_type;}
-   //  }
   }
   
   /// Get the dof of the field i at node j of type k at time t
@@ -248,31 +226,34 @@ namespace oomph
    unsigned local_value_index = Nodal_value_index[i_field][j_nodei][k_type];
 
    return raw_nodal_value(t,local_node_index,local_value_index);
-   // switch(i_field)
-   //  {
-   //  case 0: {local_value_index = 0;}
-   //  case 1: {local_value_index = 1;}
-   //  case 2: {local_value_index = 2+k_type;}
-   //  }
   }
-
+  
   
   // ----------------------- Internal data -------------------------------------
+  // Each field has its own internal data which is resized according to the
+  // number of dof/basis types required
+  
   /// Get the number of internal data for field i
   virtual unsigned ninternal_types_for_field(const unsigned& i_field) const
   {
    return Ninternal_types_for_field[i_field];
   }
-  
-  /// Return the value at the internal data for field i type j
-  virtual Data* internal_data_for_field_pt(const unsigned i_field) const
+
+  /// Get the index of the internal data for field i
+  virtual unsigned index_of_internal_data_for_field(const unsigned& i_field) const
   {
-   return internal_data_pt(i_field);
+   return Index_of_internal_data_for_field[i_field];
   }
   
-  /// Return the value at the internal data for field i type j
-  virtual unsigned internal_value_for_field(const unsigned i_field,
-					    const unsigned j_type) const
+  /// Return the pointer to the internal data for field i
+  virtual Data* internal_data_for_field_pt(const unsigned& i_field) const
+  {
+   return internal_data_pt(Index_of_internal_data_for_field[i_field]);
+  }
+  
+  /// Return the value at the internal data for field i type k
+  virtual double internal_value_for_field_of_type(const unsigned& i_field,
+						    const unsigned& k_type) const
   {
    #ifdef PARANOID
    if(!this->element_is_curved())
@@ -289,25 +270,79 @@ namespace oomph
 			 OOMPH_EXCEPTION_LOCATION);
     }
    #endif
-   return internal_data_pt(i_field)->value(j_type);
+   return internal_data_pt(i_field)->value(k_type);
+  }
+  
+  /// Return the value at the internal data for field i type k
+  virtual double internal_value_for_field_of_type(const unsigned& t,
+						  const unsigned& i_field,
+						  const unsigned& k_type) const
+  {
+   #ifdef PARANOID
+   if(!this->element_is_curved())
+    {
+     throw OomphLibError("You should not be looking for internal values in an\
+ element that isnt curved!",
+			 OOMPH_CURRENT_FUNCTION,
+			 OOMPH_EXCEPTION_LOCATION);
+    }
+   else if(i_field!=2)
+    {
+     throw OomphLibError("The only unknown with internal values is w [index 2]",
+			 OOMPH_CURRENT_FUNCTION,
+			 OOMPH_EXCEPTION_LOCATION);
+    }
+   #endif
+   return internal_data_pt(i_field)->value(t,k_type);
+  }
+  
+  /// Get the jth bubble dof at the lth internal point. Deliberately broken 
+  /// for case when there is no curved edge.
+  int local_internal_equation(const unsigned& i_field,
+			      const unsigned& k_type) const
+  {
+   // Deliberately break this function for the below cases
+   // If there is no curved edge then we cannot return anything meaningful
+   // [zdec] Make this PARANOID?
+   if(!this->element_is_curved())
+    {
+     throw OomphLibError(
+			 "There are no time-dependent internal 'bubble' dofs for this element.",
+			 OOMPH_CURRENT_FUNCTION,  OOMPH_EXCEPTION_LOCATION);
+     // Return dummy value -2
+     return -2;
+    }
+   // Now give the lth internal equation number
+   else
+    { return this->internal_local_eqn(index_of_internal_data_for_field(i_field),
+				      k_type); }
   }
 
   // ========================= End new [zdec] ==================================
- 
-  // Get the number of nodal basis types, wrapper
-  unsigned nnode_inplane() const {return this->nnode();};
- 
-  // Get the number of internal basis types, wrapper
-  unsigned nnode_outofplane() const {return this->nvertex_node();};
+
+  // Is this element curved?
+  bool element_is_curved() const
+  {return CurvableBellElement<NNODE_1D>::element_is_curved();}
   
   // Get the number of nodal basis types, wrapper
-  unsigned nnodal_basis_type() const {return CurvableBellElement<NNODE_1D>::nnodal_basis_type();};
-
+  unsigned nnode_inplane() const
+  {return this->nnode();};
+  
   // Get the number of internal basis types, wrapper
-  unsigned nbubble_basis_type() const {return CurvableBellElement<NNODE_1D>::nbubble_basis_type();};
+  unsigned nnode_outofplane() const
+  {return this->nvertex_node();};
+  
+  // Get the number of nodal basis types, wrapper
+  unsigned nnodal_basis_type() const
+  {return CurvableBellElement<NNODE_1D>::nnodal_basis_type();};
+  
+  // Get the number of internal basis types, wrapper
+  unsigned nbubble_basis_type() const
+  {return CurvableBellElement<NNODE_1D>::nbubble_basis_type();};
 
   // Get the number of internal bases, wrapper
-  unsigned nbubble_basis() const {return CurvableBellElement<NNODE_1D>::nbubble_basis();};
+  unsigned nbubble_basis() const
+  {return CurvableBellElement<NNODE_1D>::nbubble_basis();};
  
  protected:
   /// Get rotation matrices that change the degrees of freedom to the basis set
@@ -341,40 +376,22 @@ namespace oomph
   /// Biharmonic equations
   FoepplVonKarmanC1CurvedBellElement() :
    FoepplVonKarmanEquations(), 
-   Ninternal_types_for_field(3,0),
+   Ninternal_types_for_field(Nfield,0),
+   Index_of_internal_data_for_field(Nfield),
    Rotated_basis_fct_pt(0),
    Nnodes_to_rotate(0)
-   //Nfield(3),
-   //Nnode((NNODE_1D*(NNODE_1D+1))/2),
-   //Ntype_for_field_at_node(3),
-   //Node_index_for_field(3),
   {
    // Use the higher order integration scheme
    TGauss<2,4>* new_integral_pt = new TGauss<2,4>;
    this->set_integration_scheme(new_integral_pt); 
-   // Add the (zero) bubble dofs
-   Index_of_internal_data = this->add_internal_data(new Data(0));
-   Bernadou_element_basis_pt=0;
-   Association_matrix_pt=0;
 
-   // // We use 1 basis function at each node for in-plane interpolation
-   // // and 6 basis function the 3 vertices for out-of-plane interpolation
-   // Nnode_for_field = {Nnode, Nnode, 3};
-   // Ntype_for_field_at_node[0].resize(Nnode);
-   // Ntype_for_field_at_node[1].resize(Nnode);
-   // for(unsigned i=0; i<Nnode; i++)
-   //  {
-   //   // Lagrange basis function at each node
-   //   Ntype_for_field_at_node[0][i]=1;
-   //   Ntype_for_field_at_node[1][i]=1;
-   //   // All nodes are used, and hence they keep their index
-   //   Node_index_for_field[0][i]=i;
-   //   Node_index_for_field[1][i]=i;
-   //  }
-   // // Hermite basis with 6 dofs per vertex
-   // Ntype_for_field_at_node[2] = {6, 6, 6};
-   // // First three nodes are used 
-   // Node_index_for_field[2] = {0, 1, 2};
+   // Add the (zero) internal data for each field
+   for(unsigned i_field=0; i_field<Nfield; i_field++)
+    {
+     Index_of_internal_data_for_field[i_field] = this->add_internal_data(new Data(0));
+    }
+
+   Association_matrix_pt=0;
   }
 
   ///\short  Destructor: clean up alloacations
@@ -408,7 +425,8 @@ namespace oomph
    CurvableBellElement<NNODE_1D>::
     upgrade_element_to_curved(curved_edge, s_ubar, s_obar,
 			      parametric_edge, boundary_order);
-   Ninternal_types_for_field[2]+=1;
+   Ninternal_types_for_field[2]+=
+    this->bernadou_element_basis_pt()->n_internal_dofs();
   }
   
   /// \short  Required  # of `values' (pinned or dofs)
@@ -521,14 +539,8 @@ namespace oomph
   /// edges
   MyC1CurvedElements::Edge Curved_edge;
 
-  /// Index at which the added internal data is storedj
-  unsigned Index_of_internal_data;
-
-  /// Pointer to Bernadou Element Basis
-  MyC1CurvedElements::BernadouElementBasisBase* Bernadou_element_basis_pt;
-
-  /// Basis functions
-  MyShape::BellElementBasis Bell_basis;
+  /// Indices at which the added internal data is stored
+  Vector<unsigned> Index_of_internal_data_for_field;
 
   /// Pointer to Stored Association matrix
   DenseMatrix<double>* Association_matrix_pt;
@@ -536,10 +548,6 @@ namespace oomph
   /// Static int that holds the number of variables at
   /// nodes: always the same
   static const unsigned Initial_Nvalue[];
-
-  /// unsigned that holds the index the 'bubble' dofs of the element are
-  /// stored
-  unsigned Bubble_w_internal_index;
 
   /// A Pointer to the function that sets up the rotated basis at point x
   BasisVectorsFctPt Rotated_basis_fct_pt;
@@ -599,20 +607,26 @@ namespace oomph
  /// Get the jth bubble dof at the lth internal point. Deliberately broken for
  /// the case where there is no curved edge
  //==============================================================================
+ // [zdec] IN THE BIN
+ /*
  template < unsigned NNODE_1D>
  double FoepplVonKarmanC1CurvedBellElement<NNODE_1D>::get_w_bubble_dof
  (const unsigned& l, const unsigned& j, const unsigned& t) const
  {return CurvableBellElement<NNODE_1D>::get_bubble_dof(l,j,t);} 
-
+ */
+ 
  //==============================================================================
  /// Get the jth bubble dof at the lth internal point. Deliberately broken for
  /// case when there is no curved edge.
  //==============================================================================
+ // [zdec] IN THE BIN
+ /*
  template < unsigned NNODE_1D>
  int FoepplVonKarmanC1CurvedBellElement<NNODE_1D>::local_w_bubble_equation(const
 									   unsigned& l, const unsigned& j) const
  {return CurvableBellElement<NNODE_1D>::local_bubble_equation(l,j);}
-
+ */
+ 
  //==============================================================================
  /// Set up the rotated degrees of freedom: includes a check for the number of
  /// rotation nodes being greater than three.
@@ -1024,30 +1038,38 @@ dshape_and_dtest_foeppl_von_karman(...)",
  template < unsigned NNODE_1D>
  void FoepplVonKarmanC1CurvedBellElement<NNODE_1D>::pin_all_deflection_dofs() const
  {
+  const unsigned w_index = 2;
+    
+  // Get nodes
+  const unsigned n_node = this->nnode_for_field(w_index);
+  const Vector<unsigned> nodes = nodes_for_field(w_index);
+
   // Curved Bell elements only have deflection dofs at vertices
-  for(unsigned n=0; n<nnode_outofplane(); ++n)
+  for(unsigned j_nodei=0; j_nodei<n_node; j_nodei++)
    {
-    // Get node
-    Node* nod_pt=this->node_pt(n);
+    // Get the j_nodei-th node used by i_field
+    unsigned j_node = nodes[j_nodei];
+    Node* nod_pt=this->node_pt(j_node);
+
+    // Get the number of types at the current node
+    unsigned n_type = ntype_for_field_at_node(w_index, j_nodei);
+    
     // Check if it is on the boundary
-    for(unsigned i=0;i<nnodal_basis_type();++i)
+    for(unsigned k_type=0; k_type<n_type; k_type++)
      {
       // Pin and set the value
-      nod_pt->pin(2+i);
-      nod_pt->set_value(2+i,0.0);
+      nod_pt->pin(2+k_type);
+      nod_pt->set_value(2+k_type,0.0);
      }
    }
 
-  // Get number of internal dofs
-  const unsigned n_b_node=nbubble_basis();
-  // In general - but we only have one type
-  /* const unsigned n_b_position_type = nbubble_basis_type(); */
   // Now fix internal dofs
-  for(unsigned n=0; n<n_b_node; ++n)
+  unsigned n_internal = ninternal_types_for_field(w_index);
+  for(unsigned k_type=0; k_type<n_internal; k_type++)
    {
     // Get node
     // Pin and set the value
-    this->internal_data_pt(Bubble_w_internal_index)->pin(n);
+    this->internal_data_for_field_pt(w_index)->pin(k_type);
    }
  }
 
@@ -1095,12 +1117,14 @@ of freedom at internal points. They are {w ; w,x ; w,y ; w,xx ; w,xy ; w,yy}",
 			       DisplacementFctPt& specified_displacement_fct_pt)
  {
   // Initialise constants that we use in this function
-  const unsigned n_dof_types = 2, dim = this->dim(), n_node = this->nnode();
+  const unsigned n_dof_types = 2;
+  const unsigned dim = this->dim();
+  const unsigned n_node = this->nnode();
   // Check that the dof number is a sensible value
   if(dof_number >= n_dof_types)
    {
     throw OomphLibError("Foppl von Karman elements only have 2 in-plane displacement degrees\
-of freedom at internal points. They are {w ; w,x ; w,y ; w,xx ; w,xy ; w,yy}",
+of freedom at internal points. They are {ux, uy}",
                         "FoepplVonKarmanC1CurvedBellElement:fix_out_of_plane_dof()",
                         OOMPH_EXCEPTION_LOCATION);
    }
