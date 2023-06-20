@@ -13,33 +13,33 @@ headersFvK =  \
  foeppl_von_karman_curved_bell_elements.h
 
 # Define name of library
-libnameFvK = C1_foeppl_von_karman
+libnameFvK = c1_foeppl_von_karman
 
 # Combine headers and sources
 headersFvK_and_sourcesFvK = $(headersFvK) $(sourcesFvK)
 
 # Define the library that gets placed in lib directory
 #-----------------------------------------------------
-lib_LTLIBRARIES = libC1_foeppl_von_karman.la
+lib_LTLIBRARIES = libc1_foeppl_von_karman.la
 
 # Sources that the library depends on: 
 #-------------------------------------
-libC1_foeppl_von_karman_la_SOURCES = $(headersFvK_and_sourcesFvK)
+libc1_foeppl_von_karman_la_SOURCES = $(headersFvK_and_sourcesFvK)
 
 # The library's include headers:
 #-------------------------------
 # Headers that are to be included in the $(includedir) directory:
 # This is the combined header which contains "#include<...>" commands
 # for the real headers in the subdirectory below $(includedir)
-C1_foeppl_von_karmaninclude_HEADERS = $(libnameFvK).h 
+c1_foeppl_von_karmaninclude_HEADERS = $(libnameFvK).h 
 # C1_basisincludedir = $(includedir) 
-C1_foeppl_von_karmanincludedir = $(includedir)
+c1_foeppl_von_karmanincludedir = $(includedir)
 
 #Here's the subdirectory where the actual header files are placed
-library_C1_foeppl_von_karmanincludedir=$(includedir)/C1_foeppl_von_karman
+library_c1_foeppl_von_karmanincludedir=$(includedir)/c1_foeppl_von_karman
 
 #These are the header files that are to be placed in subdirectory
-library_C1_foeppl_von_karmaninclude_HEADERS=$(headersFvK) 
+library_c1_foeppl_von_karmaninclude_HEADERS=$(headersFvK) 
 
 
 # Required libraries -- [assuming that we want to link against stuff in generic
