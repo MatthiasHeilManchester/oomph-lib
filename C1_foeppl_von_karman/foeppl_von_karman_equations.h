@@ -27,9 +27,9 @@
 //LIC// The authors may be contacted at oomph-lib@maths.man.ac.uk.
 //LIC// 
 //LIC//====================================================================
-// Header file for the Biharmonic Bell elements
-#ifndef OOMPH_MYBIHARMONIC_ELEMENTS_HEADER
-#define OOMPH_MYBIHARMONIC_ELEMENTS_HEADER
+// Header file for the Foeppl-von Karman equation elements
+#ifndef OOMPH_MYFVK_EQUATIONS_HEADER
+#define OOMPH_MYFVK_EQUATIONS_HEADER
 
 
 #include<sstream>
@@ -38,24 +38,38 @@
 #include "../generic/nodes.h"
 #include "../generic/oomph_utilities.h"
 #include "../generic/Telements.h"
-//#include "../C1_basis/SubparametricTriangleElement.h"
-
 
 namespace oomph
 {
- //=============================================================
- /// A class for all subparametric elements that solve the 2D-
- /// Biharmonic equations.
+ //=============================================================================
+ /// A class for all subparametric elements that solve the
+ /// Foeppl-von Karman equations (with artificial damping).
  /// \f[
- /// \frac{\partial^4 u}{\partial x_i^4} = f(x_j)
+ /// \nabla^4 w - \eta \frac{\partial}{\partial x_\alpha}
+ /// \left(\sigma_{\alpha\beta}\frac{\partial w}{\partial x_\beta}\right)
+ /// = p(\vec{x}) - \mu\frac{\partial w}{\partial t}
  /// \f]
- /// This contains the generic maths. Shape functions, geometric
+ /// \f[
+ /// \frac{\partial \sigma_{\alpha\beta}}{\partial x_\beta} = t_\alpha
+ /// \f]
+ /// 
+ /// This class contains the generic maths. Shape functions, geometric
  /// mapping etc. must get implemented in derived class.
- //=============================================================
+ ///
+ /// The equations allow for different basis and test functions
+ /// for in-plane and out-of-plane unknowns, however it does
+ /// assume that in-plane u_x and u_y have the same interpolation.
+ /// 
+ /// In general, field interpolation may rely on nodal and internal data and
+ /// these have been considered separately. To date, only the out-of-plane
+ /// field has been written with the possibility of internal data in mind,
+ /// however this can easily be added for in-plane dofs if required.
+ //=============================================================================
  class FoepplVonKarmanEquations : public virtual FiniteElement
  {
-
+  
  public:
+  
   /// A pointer to a scalar function of the position. Can be used for
   /// out-of-plane forcing, swelling, isotropic-prestrain, etc.
   typedef void (*ScalarFctPt)(const Vector<double>& x, double& f);
@@ -63,7 +77,7 @@ namespace oomph
   /// A pointer to a vector function of the position. Can be used for
   /// in-of-plane forcing, anisotropic-prestrain, etc.
   typedef void (*VectorFctPt)(const Vector<double>& x,
-				      Vector<double>& forcing);
+			      Vector<double>& forcing);
 
   /// Function pointer to the Error Metric we are using
   /// e.g could be that we are just interested in error on w etc.
@@ -72,7 +86,7 @@ namespace oomph
 				   const Vector<double>& u_exact,
 				   double& error,
 				   double& norm);
-
+  
   /// Function pointer to the Error Metric we are using if we want multiple
   /// errors.  e.g could be we want errors seperately on each displacment
   typedef void (*MultipleErrorMetricFctPt)(const Vector<double>& x,
@@ -81,179 +95,175 @@ namespace oomph
 					   Vector<double>& error,
 					   Vector<double>& norm);
 
-  /// (pure virtual) interface to fixing the out of plane displacement
-  virtual void fix_out_of_plane_displacement_dof(const unsigned& dof_number, 
-						 const unsigned& boundary_number,
-						 const ScalarFctPt& w) = 0;
 
-  /// (pure virtual) interface to fixing the in plane displacement
-  virtual void fix_in_plane_displacement_dof(const unsigned& dof_number,
-					     const unsigned& boundary_number,
-					     const ScalarFctPt& u)=0;
-
+  //----------------------------------------------------------------------------
+  // Pure virtual interfaces which must be implemented when geometry and bases
+  // are added in the derived class
+  
   /// (pure virtual) interface to return the number of nodes used by u
   virtual unsigned nu_node() const = 0;
+
   /// (pure virtual) interface to return the number of nodes used by w
   virtual unsigned nw_node() const = 0;
+
   
   /// (pure virtual) interface to get the local indices of the nodes used by u
-  virtual Vector<unsigned> get_u_nodes() const = 0;
+  virtual Vector<unsigned> get_u_node_indices() const = 0;
+
   /// (pure virtual) interface to get the local indices of the nodes used by w
-  virtual Vector<unsigned> get_w_nodes() const = 0;
+  virtual Vector<unsigned> get_w_node_indices() const = 0;
+
   
   /// (pure virtual) interface to get the number of basis types for u at node j
-  virtual unsigned nu_type_at_node(const unsigned& j_node) const = 0;
+  virtual unsigned nu_type_at_each_node() const = 0;
+
   /// (pure virtual) interface to get the number of basis types for w at node j
-  virtual unsigned nw_type_at_node(const unsigned& j_node) const = 0;
+  virtual unsigned nw_type_at_each_node() const = 0;
+
   
   /// (pure virtual) interface to retrieve the value of u_alpha at node j of
   /// type k
   virtual double get_u_alpha_value_at_node_of_type(const unsigned& alpha,
-						   const unsigned& node_j,
-						   const unsigned& type_k) const = 0;
+						   const unsigned& j_node,
+						   const unsigned& k_type) const = 0;
+
+  /// (pure virtual) interface to retrieve the t-th history value value of
+  /// u_alpha at node j of type k
+  virtual double get_u_alpha_value_at_node_of_type(const unsigned& t_time,
+						   const unsigned& alpha,
+						   const unsigned& j_node,
+						   const unsigned& k_type) const = 0;
+
   /// (pure virtual) interface to retrieve the value of w at node j of type k
-  virtual double get_w_value_at_node_of_type(const unsigned& node_j,
-					     const unsigned& type_k) const = 0;
-  
+  virtual double get_w_value_at_node_of_type(const unsigned& j_node,
+					     const unsigned& k_type) const = 0;
+
+  /// (pure virtual) interface to retrieve the t-th history value of w at node j
+  /// of type k
+  virtual double get_w_value_at_node_of_type(const unsigned& t_time,
+					     const unsigned& j_node,
+					     const unsigned& k_type) const = 0;
+
+  // [IN-PLANE-INTERNAL] 
+  // /// (pure virtual) interface to get the pointer to the internal data used to
+  // /// interpolate u (NOTE: assumes each u field has exactly one internal data)
+  // virtual Vector<Data*> u_internal_data_pts() const = 0;
+
   /// (pure virtual) interface to get the pointer to the internal data used to
-  /// interpolate u (NOTE: assumes each u field has exactly one internal data)
-  virtual Vector<Data*> u_internal_data_pts() const = 0;
-  /// (pure virtual) interface to get the pointer to the internal data used to
-  /// interpolate u (NOTE: assumes w field has exactly one internal data)
+  /// interpolate w (NOTE: assumes w field has exactly one internal data)
   virtual Data* w_internal_data_pt() const = 0;
 
+  
   /// (pure virtual) interface to get the number of internal types for the u
   /// fields
-  virtual unsigned nu_internal_type() const = 0;
+  virtual unsigned nu_type_internal() const = 0;
+
   /// (pure virtual) interface to get the number of internal types for the w
   /// fields
-  virtual unsigned nw_internal_type() const = 0;
+  virtual unsigned nw_type_internal() const = 0;
+
   
-  /// (pure virtual) interface to retrieve the value of u_alpha of internal
-  /// type k
-  virtual double get_u_alpha_internal_value_of_type(const unsigned& alpha,
-						    const unsigned& type_k) const = 0;
+  // [IN-PLANE-INTERNAL] 
+  // /// (pure virtual) interface to retrieve the value of u_alpha of internal
+  // /// type k
+  // virtual double get_u_alpha_internal_value_of_type(const unsigned& alpha,
+  // 						    const unsigned& k_type) const = 0;
+
+  // /// (pure virtual) interface to retrieve the t-th history value of u_alpha of
+  // /// internal type k
+  // virtual double get_u_alpha_internal_value_of_type(const unsigned& time,
+  // 						    const unsigned& alpha,
+  // 						    const unsigned& k_type) const = 0;
+
   /// (pure virtual) interface to retrieve the value of w of internal type k
-  virtual double get_w_internal_value_of_type(const unsigned& type_k) const = 0;
+  virtual double get_w_internal_value_of_type(const unsigned& k_type) const = 0;
   
-  // // ===================== New functions [zdec] ================================
-  // /// (pure virtual) interface to  get the number of fields (unknowns)
-  // /// interpolated by the element
-  // virtual unsigned nfield() const = 0;
- 
-  // // ------------------------ Nodal data ---------------------------------------
-  // // Nodal basis functions might vary between field and node, here is the
-  // // interface for accessing the appropriate dof/basis in generality.
-  
-  // /// (pure virtual) interface to get the number of nodes that field i is
-  // /// interpolated over
-  // virtual unsigned nnode_for_field(const unsigned& i_field) const = 0;
+  /// (pure virtual) interface to retrieve the t-th history value of w of
+  /// internal type k
+  virtual double get_w_internal_value_of_type(const unsigned& time,
+					      const unsigned& k_type) const = 0;
 
-  // /// (pure virtual) interface to get the nodes associated with interpolating
-  // /// field i
-  // virtual Vector<unsigned> nodes_for_field(const unsigned& i_field) const = 0;
-  
-  // /// (pure virtual) interface to get the number of basis type for field i at
-  // /// node j
-  // virtual unsigned ntype_for_field_at_node(const unsigned& i_field,
-  // 					   const unsigned& j_node) const = 0;
 
-  // /// Get the dof of the field i at node j of type k
-  // virtual double nodal_value_for_field_at_node_of_type(const unsigned& i_field,
-  // 						       const unsigned& j_node,
-  // 						       const unsigned& k_type) const = 0;
-  
-  // /// Get the dof of the field i at node j of type k at time t
-  // virtual double nodal_value_for_field_at_node_of_type(const unsigned& t,
-  // 						       const unsigned& i_field,
-  // 						       const unsigned& j_node,
-  // 						       const unsigned& k_type) const = 0;
-  
-  // // ----------------------- Internal data -------------------------------------
-  // // Each field has its own internal data which is resized according to the
-  // // number of dof/basis types required
-  
-  // /// Get the number of internal data for field i
-  // virtual unsigned ninternal_types_for_field(const unsigned& i_field) const = 0;
+ protected:
+    
+  /// (pure virtual) In-plane basis functions and derivatives w.r.t. global
+  /// coords at local coordinate s; return det(Jacobian of mapping)
+  virtual double dbasis_u_eulerian_foeppl_von_karman(const Vector<double> &s,
+						     Shape& psi_n,
+						     DShape& dpsi_n_dx) const=0;
+    
+  /// (pure virtual) In-plane basis/test functions at and derivatives w.r.t
+  /// global coords at local coordinate s; return det(Jacobian of mapping)
+  virtual double dbasis_and_dtest_u_eulerian_foeppl_von_karman(const Vector<double> &s,
+							       Shape& psi_n,
+							       DShape& dpsi_n_dx,
+							       Shape& test_n,
+							       DShape& dtest_n_dx) const=0;
 
-  // /// Get the index of the internal data for field i
-  // virtual unsigned index_of_internal_data_for_field(const unsigned& i_field) const = 0;
-  
-  // /// Return the pointer to the internal data for field i
-  // virtual Data* internal_data_for_field_pt(const unsigned& i_field) const = 0;
-  
-  // /// Return the value at the internal data for field i type k
-  // virtual double internal_value_for_field_of_type(const unsigned& i_field,
-  // 						  const unsigned& k_type) const = 0;
+  /// (pure virtual) Out-of-plane basis/test functions at local coordinate s
+  virtual void basis_and_test_w_foeppl_von_karman(const Vector<double> &s,
+						  Shape& psi_n,
+						  Shape& psi_i,
+						  Shape& test_n,
+						  Shape& test_i) const=0;
    
-  // /// Return the value at the internal data for field i type k at time t
-  // virtual double internal_value_for_field_of_type(const unsigned& t,
-  // 						  const unsigned& i_field,
-  // 						  const unsigned& k_type) const = 0;
+  /// (pure virtual) Out-of-plane basis/test functions and first derivs w.r.t.
+  /// to global coords at local coordinate s; return det(Jacobian of mapping)
+  virtual double dbasis_and_dtest_w_eulerian_foeppl_von_karman(const Vector<double> &s,
+							       Shape& psi_n,
+							       Shape& psi_i,
+							       DShape& dpsi_n_dx,
+							       DShape& dpsi_i_dx,
+							       Shape& test_n,
+							       Shape& test_i,
+							       DShape& dtest_n_dx,
+							       DShape& dtest_i_dx) const=0;
+
+  /// (pure virtual) Out-of-plane basis functions and derivs w.r.t. global
+  /// coords at local coordinate s; return det(Jacobian of mapping)
+  virtual double d2basis_w_eulerian_foeppl_von_karman(const Vector<double>& s,
+						      Shape& psi_n,
+						      Shape& psi_i,
+						      DShape& dpsi_n_dx,
+						      DShape& dpsi_i_dx,
+						      DShape& d2psi_n_dx2,
+						      DShape& d2psi_i_dx2) const = 0;
   
-  // /// Get the jth bubble dof at the lth internal point. Deliberately broken 
-  // /// for case when there is no curved edge.
-  // virtual int local_internal_equation(const unsigned& i_field,
-  // 				      const unsigned& k_type) const = 0;
-   
-  // // ========================= End new [zdec] ==================================
+  /// (pure virtual) Out-of-plane basis/test functions and first/second derivs
+  /// w.r.t. to global coords at local coordinate s;
+  /// return det(Jacobian of mapping)
+  virtual double d2basis_and_d2test_w_eulerian_foeppl_von_karman(const Vector<double>& s,
+								 Shape& psi_n,
+								 Shape& psi_i,
+								 DShape& dpsi_n_dx,
+								 DShape& dpsi_i_dx,
+								 DShape& d2psi_n_dx2,
+								 DShape& d2psi_i_dx2,
+								 Shape& test_n,
+								 Shape& test_i,
+								 DShape& dtest_n_dx,
+								 DShape& dtest_i_dx,
+								 DShape& d2test_n_dx2,
+								 DShape& d2test_i_dx2) const=0;
 
-  /// Is this element curved or not
-  virtual bool element_is_curved() const = 0;
+  // End of pure virtual interface functions
+  //----------------------------------------------------------------------------
 
-  /// Get the value of the damping flag for u
-  virtual bool u_is_damped() const
-  {
-    return U_is_damped;
-  }
-  /// Get the value of the damping flag for w
-  virtual bool w_is_damped() const
-  {
-    return W_is_damped;
-  }
- 
-  // // Get the number of nodes of the out-of-plane functions, pure virtual
-  // virtual unsigned nnode_outofplane() const =  0;
- 
-  // // Get the number of nodes of the out-of-plane functions, pure virtual
-  // virtual unsigned nnode_inplane() const =  0;
- 
-  // // Get the number of basis functions, pure virtual
-  // virtual unsigned nnodal_basis_type() const =  0;
-
-  // // Get the number of internal basis functions, pure virtual
-  // virtual unsigned nbubble_basis() const = 0;
- 
-  // // Get the number of internal basis functions, pure virtual
-  // virtual unsigned nbubble_basis_type() const = 0;
-
-  /// Flag to control damping of the in-plane variables
-  bool U_is_damped = false;
-
-  /// Flag to control damping of the out-of-plane variable
-  bool W_is_damped = true;
+  
+  //----------------------------------------------------------------------------
+  // Start of established FvK equation functions
   
  public:
- 
-  /// Get pointer to association matrix 
-  DenseMatrix<double> *get_association_matrix_pt()const {return Association_matrix_pt;};
-
-  /// Eta
-  const double &eta() const {return *Eta_pt;}
-
-  /// Pointer to eta
-  const double* &eta_pt() {return Eta_pt;}
-
-  /// Pure virtual function to pin all deflection dofs
-  virtual void pin_all_deflection_dofs() const=0;
-
-  /// Constructor (must initialise the Pressure_fct_pt to null)
+  
+  /// Constructor
   FoepplVonKarmanEquations() : Pressure_fct_pt(0),
 			       In_plane_forcing_fct_pt(0),
 			       Swelling_fct_pt(0),
 			       Error_metric_fct_pt(0),
 			       Multiple_error_metric_fct_pt(0),
-			       Association_matrix_pt(0) 
+			       U_is_damped(false),
+			       W_is_damped(true),
+			       Association_matrix_pt(0)
   {
    Eta_pt = &Default_Eta_Value;
    Nu_pt = &Default_Nu_Value;
@@ -272,31 +282,39 @@ namespace oomph
    BrokenCopy::broken_assign("FoepplVonKarmanEquations");
   }
 
-  /// Return the index at which the first u unknown value is stored.
-  /// In derived multi-physics elements, this function should be overloaded
-  /// to reflect the chosen storage scheme. Note that these equations require
-  /// that the unknown is always stored at the same index at each node.
-  /// Note these are stored before w_dofs otherwise at vertex nodes the 
-  /// stored value would be at a different index
-  virtual inline unsigned u_nodal_index_foeppl_von_karman() const {return 0;}
+ 
+  /// Get pointer to association matrix 
+  DenseMatrix<double> *get_association_matrix_pt()const {return Association_matrix_pt;};
 
-  /// Return the index at which the first w unknown value is stored.
-  /// In derived multi-physics elements, this function should be overloaded
-  /// to reflect the chosen storage scheme. Note that these equations require
-  /// that the unknown is always stored at the same index at each node.
-  /// Note that at midside nodes there are no w dofs 
-  virtual inline unsigned w_nodal_index_foeppl_von_karman() const {return u_nodal_index_foeppl_von_karman()+2;}
+  /// Eta [zdec] why the ampersand?
+  const double &get_eta() const {return *Eta_pt;}
+
+  /// Pointer to eta
+  const double* &eta_pt() {return Eta_pt;}
 
   /// Output with default number of plot points
-  void output(std::ostream &outfile)
+  void output(std::ostream& outfile)
   {
    const unsigned n_plot=5;
    FoepplVonKarmanEquations::output(outfile,n_plot);
   }
   
-  /// \short Output FE representation of soln: x,y,u or x,y,z,u at
+  /// Output with default number of plot points
+  void full_output(std::ostream& outfile)
+  {
+   const unsigned n_plot=5;
+   FoepplVonKarmanEquations::full_output(outfile,n_plot);
+  }
+  
+  /// Output FE representation of soln: x,y,u or x,y,z,u at
   /// n_plot^DIM plot points
-  void output(std::ostream &outfile, const unsigned &n_plot);
+  /// [zdec] isnt this n_plot*(n_plot+1)/2?
+  void output(std::ostream& outfile, const unsigned& n_plot);
+
+  /// Full output function with a rich set of unknowns:
+  ///  x, y, ux, uy, w, dw, ddw, du, strain, stress, principal stress
+  /// at n_plot^DIM plot points
+  void full_output(std::ostream& outfile, const unsigned& n_plot);
   
   /// C_style output with default number of plot points
   void output(FILE* file_pt)
@@ -326,7 +344,14 @@ namespace oomph
 		       OOMPH_CURRENT_FUNCTION, OOMPH_EXCEPTION_LOCATION);
   }
 
+  
+  /// (pure virtual) interface to return a vector of the indices 
+  virtual Vector<unsigned> u_field_indices() const = 0;
 
+  /// (pure virtual) interface to return the number of nodes used by w
+  virtual unsigned w_field_index() const = 0;
+
+  
   /// Get error against and norm of exact solution
   void compute_error(std::ostream &outfile,
 		     FiniteElement::SteadyExactSolutionFctPt exact_soln_pt,
@@ -383,6 +408,12 @@ namespace oomph
    // Truncated Green Lagrange strain tensor
    DenseMatrix<double> epsilon(this->dim(),this->dim(),0.0);
    get_epsilon(epsilon, grad_u, grad_w, c_swell);
+
+   // Empty sigma
+   sigma(0,0)=0.0;
+   sigma(0,1)=0.0;
+   sigma(1,0)=0.0;
+   sigma(1,1)=0.0;
    
    // Now construct the Stress
    for(unsigned alpha=0;alpha<this->dim();++alpha)
@@ -400,7 +431,6 @@ namespace oomph
     }
   }
 
-  // TODO: Fix this function to use index loops
   /// Fill in the stress tensor using a precalculated strain tensor
   void get_sigma_from_epsilon(DenseMatrix<double>& sigma,
 			      const DenseMatrix<double>& epsilon)const
@@ -470,66 +500,67 @@ namespace oomph
 
   /// Access function: Pointer to pressure function
   ScalarFctPt& pressure_fct_pt()
-  {return Pressure_fct_pt;}
+  { return Pressure_fct_pt; }
 
   /// Access function: Pointer to pressure function. Const version
   ScalarFctPt pressure_fct_pt() const
-  {return Pressure_fct_pt;}
+  { return Pressure_fct_pt; }
 
   /// Access function: Pointer to in plane forcing function
   VectorFctPt& in_plane_forcing_fct_pt()
-  {return In_plane_forcing_fct_pt;}
+  { return In_plane_forcing_fct_pt; }
 
   /// Access function: Pointer to in plane forcing function. Const version
   VectorFctPt in_plane_forcing_fct_pt() const
-  {return In_plane_forcing_fct_pt;}
+  { return In_plane_forcing_fct_pt; }
 
   /// Access function: Pointer to swelling function
   ScalarFctPt& swelling_fct_pt()
-  {return Swelling_fct_pt;}
+  { return Swelling_fct_pt; }
 
   /// Access function: Pointer to swelling function. Const version
   ScalarFctPt swelling_fct_pt() const
-  {return Swelling_fct_pt;}
+  { return Swelling_fct_pt; }
 
   /// Access function: Pointer to error metric function
   ErrorMetricFctPt& error_metric_fct_pt()
-  {return Error_metric_fct_pt;}
+  { return Error_metric_fct_pt; }
 
   /// Access function: Pointer to multiple error metric function
   MultipleErrorMetricFctPt& multiple_error_metric_fct_pt() 
-  {return Multiple_error_metric_fct_pt;}
+  { return Multiple_error_metric_fct_pt; }
 
   /// Access function: Pointer to error metric function function
-  ErrorMetricFctPt error_metric_fct_pt() const {return Error_metric_fct_pt;}
+  ErrorMetricFctPt error_metric_fct_pt() const
+  { return Error_metric_fct_pt; }
 
   /// Access function: Pointer to multiple error metric function
   MultipleErrorMetricFctPt multiple_error_metric_fct_pt() const 
-  {return Multiple_error_metric_fct_pt;}
+  { return Multiple_error_metric_fct_pt; }
 
+  /// Access value of the damping flag for u
+  virtual bool u_is_damped() const
+  { return U_is_damped; }
+  
+  /// Access value of the damping flag for w
+  virtual bool w_is_damped() const
+  { return W_is_damped; }
+  
   ///Access function to the Poisson ratio.
-  const double*& nu_pt() {return Nu_pt;}
+  const double*& nu_pt()
+  { return Nu_pt; }
 
   ///Access function to the Poisson ratio (const version)
-  const double& get_nu() const {return *Nu_pt;}
+  const double& get_nu() const
+  { return *Nu_pt; }
 
   ///Access function to the dampening coefficient.
-  const double*& mu_pt() {return Mu_pt;}
+  const double*& mu_pt()
+  { return Mu_pt; }
 
   ///Access function to the dampening coefficient (const version)
-  const double& get_mu() const {return *Mu_pt;}
-
-  // [zdec] IN THE BIN
-  /*
- /// Get the kth dof type at internal point l at time t(=0)
- virtual double get_w_bubble_dof(const unsigned& l,
- const unsigned& k,
- const unsigned& t = 0) const =0;
-
- /// Get the kth equation at internal point l
- virtual int local_w_bubble_equation(const unsigned& l, const unsigned& k)
- const =0;
-  */
+  const double& get_mu() const
+  { return *Mu_pt; }
  
   /// Get pressure term at (Eulerian) position x. This function is
   /// virtual to allow overloading in multi-physics problems where
@@ -557,25 +588,25 @@ namespace oomph
   /// another system of equations.
   inline virtual void get_in_plane_forcing_foeppl_von_karman(const unsigned& ipt,
 							     const Vector<double>& x,
-							     Vector<double>& pressure) const
+							     Vector<double>& traction) const
   {
    //In plane is same as DIM of problem (2)
-   pressure.resize(this->dim());
+   traction.resize(this->dim());
    //If no pressure function has been set, return zero
    if(In_plane_forcing_fct_pt==0)
     {
-     pressure[0] = 0.0;
-     pressure[1] = 0.0; 
+     traction[0] = 0.0;
+     traction[1] = 0.0; 
     }
    else
     {
      // Get pressure strength
-     (*In_plane_forcing_fct_pt)(x,pressure);
+     (*In_plane_forcing_fct_pt)(x,traction);
     }
   }
 
   /// Get swelling at (Eulerian) position x. This function is
-  /// virtual to allow overloading.
+  /// virtual to allow overloading. [zdec] add ipt
   inline virtual void get_swelling_foeppl_von_karman(const Vector<double>& x,
 						     double& swelling) const
   {
@@ -590,11 +621,13 @@ namespace oomph
      (*Swelling_fct_pt)(x,swelling);
     }
   }
- 
-  /// \short Calculate the elastic energy of the element and return it as a
-  /// double.
-  virtual Vector<double> element_elastic_and_kinetic_energy();
 
+  
+  // /// Calculate the elastic energy of the element and return it as a
+  // /// double. [zdec] Check this and change it to assign at reference
+  // virtual Vector<double> element_elastic_and_kinetic_energy();
+  
+  
   /// Add the element's contribution to its residual vector (wrapper)
   void fill_in_contribution_to_residuals(Vector<double> &residuals)
   {
@@ -614,6 +647,7 @@ namespace oomph
    fill_in_generic_residual_contribution_foeppl_von_karman(residuals,jacobian,1);
   }
 
+  
   /// Add the element's contribution to its residual vector and
   /// element Jacobian matrix (wrapper)
   void fill_in_contribution_to_jacobian_and_mass_matrix(Vector<double> &residuals,
@@ -632,238 +666,340 @@ namespace oomph
      mass_matrix(i,i)+=1.0;
     }
   }
- 
+
+  
+  // [zdec] just copied from
+  // fill_in_generic_residual_contribution_foeppl_von_karman
+  // can probably be done better
   /// Return FE representation of unknown values u(s)
   /// at local coordinate s
   virtual inline Vector<double> interpolated_u_foeppl_von_karman(const Vector<double> &s) const
   {
-   //Find the number of unknown fields (should be 3 for FvK)
-   //   const unsigned n_field = nfield();
-   const unsigned w_index = 2;
-   //Find the dimension of the element
+   // The indices of in-plane and out-of-plane unknowns
+   const unsigned n_u_fields = 2;
+   const unsigned n_w_fields = 1;
+  
+   // Find the dimension of the element [zdec] will this ever not be 2?
    const unsigned dim = this->dim();
-   //The number of first derivatives is the dimension of the element
+   // The number of first derivatives is the dimension of the element
    const unsigned n_deriv = dim;
-   //The number of second derivatives is the triangle number of the dimension
+   // The number of second derivatives is the triangle number of the dimension
    const unsigned n_2deriv = dim*(dim+1)/2;
-   //Find out how many nodes there are
-   const unsigned n_u_node = nnode_inplane();
-   const unsigned n_w_node = nnode_outofplane(); 
-   //Find out how many bubble nodes there are
-   const unsigned n_b_type = nbubble_basis();
-   //Find out how many nodes positional dofs there are
-   const unsigned n_basis_type = nnodal_basis_type();
-   const unsigned exactly_uno = 1; // [zdec] What am I supposed to do here?
-   
-   // [zdec] Generalise the retrieval of basis and test functions.
-   // Set up memory for the shape and test functions
-   Shape psi_u(n_u_node);
-   Shape test_u(n_u_node);
-   DShape dpsi_udxi(n_u_node,n_deriv);
-   DShape dtest_udxi(n_u_node,n_deriv);
- 
-   //Local c1-shape funtion
-   Shape psi_w(n_w_node,n_basis_type);
-   Shape test_w(n_w_node,n_basis_type);
-   Shape psi_b(n_b_type,exactly_uno);
-   Shape test_b(n_b_type,exactly_uno);
-   DShape dpsi_wdxi(n_w_node,n_basis_type,n_deriv);
-   DShape dtest_wdxi(n_w_node,n_basis_type,n_deriv);
-   DShape dpsi_b_dxi(n_b_type,exactly_uno,n_deriv);
-   DShape dtest_b_dxi(n_b_type,exactly_uno,n_deriv);
-   DShape d2psi_wdxi2(n_w_node,n_basis_type,n_2deriv);
-   DShape d2test_wdxi2(n_w_node,n_basis_type,n_2deriv);
-   DShape d2psi_b_dxi2(n_b_type,exactly_uno,n_2deriv);
-   DShape d2test_b_dxi2(n_b_type,exactly_uno,n_2deriv);
-
-   // [zdec] for the bin
-   /*
-   // Vectors of pointers to the appropriate nodal basis funtions so we can loop
-   // over them. 
-   Vector<Shape*> psi_field_pt(n_field, &psi_u);
-   Vector<DShape*> dpsi_field_pt(n_field, &dpsi_udxi);
-   Vector<DShape*> d2psi_field_pt(n_field, 0); // [zdec] Do we bother making this three long
-   psi_field_pt[2]=&psi_w;
-   dpsi_field_pt[2]=&dpsi_wdxi;
-   d2psi_field_pt[2]=&d2psi_wdxi2;
-   
-   // Vectors of pointers to the appropriate internal basis funtions so we can
-   // loop over them. Null for ux, uy [zdec] TODO generalise
-   Vector<Shape*> psi_internal_field_pt(n_field, 0);
-   Vector<DShape*> dpsi_internal_field_pt(n_field, 0);
-   Vector<DShape*> d2psi_internal_field_pt(n_field, 0); // [zdec] Do we bother making this three long
-   psi_internal_field_pt[2]=&psi_b;
-   dpsi_internal_field_pt[2]=&dpsi_b_dxi;
-   d2psi_internal_field_pt[2]=&d2psi_b_dxi2;
-   */
- 
-   // Number of in-plane displacement fields is equal to #in-plane + #in-plane-derivs
-   const unsigned n_u_fields = dim + dim*n_deriv;// DIM + DIM^2;
-   // Number of out-of-plane displacement fields is equal 1 (value of deflection_
-   // plus first (dim) and second deriv dim*(dim+1)/2
-   const unsigned n_w_fields = 1 + n_deriv + n_2deriv;//1 + DIM + DIM(DIM+1)/2;
-
-   //Initialise value of u
-   Vector<double> interpolated_u(n_u_fields+n_w_fields,0.0);
-
-   // The temporary field containers for our interpolation loop
-   Vector<double> interpolated_f(n_field,0.0);
-   DenseMatrix<double> interpolated_dfdxi(n_field,dim,0.0);
-   DenseMatrix<double> interpolated_d2fdxi2(n_field,dim*(dim+1)/2,0.0);
-   
-   //Find values of c1-shape function
-   d2shape_and_d2test_eulerian_foeppl_von_karman(s, psi_w, psi_b,
-						 dpsi_wdxi, dpsi_b_dxi,
-						 d2psi_wdxi2, d2psi_b_dxi2,
-						 test_w, test_b,
-						 dtest_wdxi, dtest_b_dxi,
-						 d2test_wdxi2, d2test_b_dxi2);
   
-   dshape_u_and_dtest_u_eulerian_foeppl_von_karman(s, psi_u, dpsi_udxi,
-						   test_u, dtest_udxi);
+   // Find out how many nodes there are for each field
+   const unsigned n_u_node = nu_node();
+   const unsigned n_w_node = nw_node();
+
+   // Get the vector of nodes used for each field
+   const Vector<unsigned> u_nodes = get_u_node_indices();
+   const Vector<unsigned> w_nodes = get_w_node_indices();
+
+   // Find out how many basis types there are at each node
+   const unsigned n_u_nodal_type = nu_type_at_each_node();
+   const unsigned n_w_nodal_type = nw_type_at_each_node();
+
+   // Find out how many basis types there are internally
+   // NOTE: In general, the in-plane basis may require internal basis/test
+   // functions however, no such basis has been used so far and so this is not
+   // implemented. Comments marked with "[IN-PLANE-INTERNAL]" indicate locations
+   // where changes must be made in the case that internal data is used for the
+   // in-plane unknowns.
+   const unsigned n_u_internal_type = nu_type_internal();
+   const unsigned n_w_internal_type = nw_type_internal();
+
+# ifdef PARANOID
+   // [IN-PLANE-INTERNAL]
+   // This PARANOID block should be deleted if/when internal in-plane
+   // contributions have been implemented
   
-   //Interpolated unknown
-   //=======================START OF INTERPOLATION=============================
-   // Loop over the unknowns [u1,u2,w]
-   for(unsigned i_field=0; i_field<n_field; i_field++)
+   // Throw an error if the number of internal in-plane basis types is non-zero
+   if(n_u_internal_type!=0)
     {
-     //---------------NODAL DATA---------------
-     // Nodal basis pointers for the current field
-     // u1 and u2 share basis, w has a separate one
-     Shape* basis_pt = psi_field_pt[i_field];
-     DShape* dbasis_pt = dpsi_field_pt[i_field];
-     DShape* d2basis_pt = d2psi_field_pt[i_field];
-     // We only loop over the number of nodes that we need to for field i
-     // (For Bell elements: all nodes for ux, uy; vertex nodes for w)
-     unsigned n_node = nnode_for_field(i_field);
-     // Get the local node numbers used in the interpolation of the field
-     Vector<unsigned> local_nodes_for_field_i = nodes_for_field(i_field);
+     throw OomphLibError("The number of internal basis types for u is non-zero\
+ but this functionality is not yet implemented. If you want to implement this\
+ look for comments containing the tag [IN-PLANE-INTERNAL].",
+			 OOMPH_CURRENT_FUNCTION,
+			 OOMPH_EXCEPTION_LOCATION);
+    }
+# endif
+  
+   // In-plane local basis & test functions
+   // ------------------------------------------
+   // Local in-plane nodal basis and test functions
+   Shape psi_n_u(n_u_node, n_u_nodal_type);
+   Shape test_n_u(n_u_node, n_u_nodal_type);
+   DShape dpsi_n_udxi(n_u_node, n_u_nodal_type, n_deriv);
+   DShape dtest_n_udxi(n_u_node, n_u_nodal_type, n_deriv); 
+   // [IN-PLANE-INTERNAL]
+   // Uncomment this block of Shape/DShape functions to use for the internal
+   // in-plane basis
+   // // Local in-plane internal basis and test functions
+   // Shape psi_i_u(n_u_internal_type);
+   // Shape test_i_u(n_u_internal_type);
+   // DShape dpsi_i_udxi(n_u_internal_type, n_deriv);
+   // DShape dtest_i_udxi(n_u_internal_type, n_deriv);
+  
+   // Out-of-plane local basis & test functions
+   // ------------------------------------------
+   // Nodal basis & test functions
+   Shape psi_n_w(n_w_node, n_w_nodal_type);
+   Shape test_n_w(n_w_node, n_w_nodal_type);
+   DShape dpsi_n_wdxi(n_w_node, n_w_nodal_type, n_deriv);
+   DShape dtest_n_wdxi(n_w_node, n_w_nodal_type, n_deriv);
+   DShape d2psi_n_wdxi2(n_w_node, n_w_nodal_type, n_2deriv);
+   DShape d2test_n_wdxi2(n_w_node, n_w_nodal_type, n_2deriv);
+   // Internal basis & test functions
+   Shape psi_i_w(n_w_internal_type);
+   Shape test_i_w(n_w_internal_type);
+   DShape dpsi_i_wdxi(n_w_internal_type, n_deriv);
+   DShape dtest_i_wdxi(n_w_internal_type, n_deriv);
+   DShape d2psi_i_wdxi2(n_w_internal_type, n_2deriv);
+   DShape d2test_i_wdxi2(n_w_internal_type, n_2deriv);
+  
+   // Allocate and find global x
+   Vector<double> interp_x(dim,0.0);
+   interpolated_x(s,interp_x);
+    
+   // Call the derivatives of the shape and test functions for the out of plane
+   // unknown
+   d2basis_w_eulerian_foeppl_von_karman(s,
+					psi_n_w,
+					psi_i_w,
+					dpsi_n_wdxi,
+					dpsi_i_wdxi,
+					d2psi_n_wdxi2,
+					d2psi_i_wdxi2);
+  
+   // [IN-PLANE-INTERNAL]
+   // This does not include internal basis functions for u. If they are needed
+   // they must be added (as above for w)
+   dbasis_u_eulerian_foeppl_von_karman(s,
+				       psi_n_u,
+				       dpsi_n_udxi);
+    
 
-     // Loop over the nodes
-     for(unsigned j_nodei=0; j_nodei<n_node; j_nodei++)
+   //=========================== INTERPOLATION=================================
+   //Create space for in-plane interpolated unknowns
+   Vector<double> interpolated_u(n_u_fields, 0.0);
+   Vector<double> interpolated_dudt(n_u_fields, 0.0);
+   DenseMatrix<double> interpolated_dudxi(n_u_fields, n_deriv, 0.0);
+   // Create space for out-of-plane interpolated unknowns
+   Vector<double> interpolated_w(n_w_fields, 0.0);
+   Vector<double> interpolated_dwdt(n_w_fields, 0.0);
+   DenseMatrix<double> interpolated_dwdxi(n_w_fields, n_deriv, 0.0);
+   DenseMatrix<double> interpolated_d2wdxi2(n_w_fields, n_2deriv, 0.0);
+    
+   //---Nodal contribution to the in-plane unknowns----------------------------
+   // Loop over nodes used by in-plane fields
+   for(unsigned j_node=0; j_node<n_u_node; j_node++)
+    {
+     // Get the j-th node used by in-plane fields
+     unsigned j_node_local = u_nodes[j_node];
+      
+     // By default, we have no history values (no damping)
+     unsigned n_time = 0;
+     // Turn on damping if this field requires it AND we are not doing a
+     // steady solve
+     TimeStepper* timestepper_pt = this->node_pt(j_node_local)->time_stepper_pt();
+     bool damping = u_is_damped() && !(timestepper_pt->is_steady());
+     if(damping)
       {
-       // Get the `j`-th node associated with field i
-       // ()
-       unsigned j_node = local_nodes_for_field_i[j_nodei];
-       // Get the number of basis types for field i at node j
-       unsigned n_type = ntype_for_field_at_node(i_field,j_node);
-       // Loop over the types of basis function
-       for(unsigned k_type=0; k_type<n_type; k_type++)
-	{
-	 double nodal_value =
-	  nodal_value_for_field_at_node_of_type(i_field, j_node, k_type);
-	  
-	 // Add nodal contribution to unknown
-	 interpolated_f[i_field] +=
-	  nodal_value * (*basis_pt)(j_node,k_type);
+       n_time=timestepper_pt->ntstorage();
+      }
+      
+     // Loop over types
+     for(unsigned k_type=0; k_type<n_u_nodal_type; k_type++)
+      {
+       // Loop over in-plane unknowns
+       for(unsigned alpha=0; alpha<n_u_fields; alpha++)
+	{	  
+	 // --- Time derivative ---
+	 double nodal_dudt_value=0.0;
+	 // Loop over the history values (if damping, then n_time>0) and
+	 // add history contribution to nodal contribution to time derivative
+	 for(unsigned t_time=0; t_time<n_time; t_time++)
+	  {
+	   nodal_dudt_value +=
+	    get_u_alpha_value_at_node_of_type(t_time, alpha, j_node_local, k_type)
+	    * timestepper_pt->weight(1,t_time);
+	  } 
+	 interpolated_dudt[alpha] +=
+	  nodal_dudt_value * psi_n_u(j_node,k_type);
 
-	 // Add nodal contribution to first derivatives
+	 // Get the nodal value of type k
+	 double u_value =
+	  get_u_alpha_value_at_node_of_type(alpha, j_node_local, k_type);
+	  
+	 // --- Displacement ---
+	 // Add nodal contribution of type k to the interpolated displacement
+	 interpolated_u[alpha] += u_value * psi_n_u(j_node, k_type);
+	  
+	 // --- First derivatives ---
 	 for(unsigned l_deriv=0; l_deriv<n_deriv; l_deriv++)
 	  {
-	   interpolated_dfdxi(i_field,l_deriv) +=
-	    nodal_value * (*dbasis_pt)(j_node, k_type, l_deriv);
-	  } // End of loop over first derivatives (l_deriv)
-
-	 // Add nodal contributions to second derivatives (for w only)
-	 if(i_field==w_index)
-	  {
-	   for(unsigned l_2deriv=0; l_2deriv<n_2deriv; l_2deriv++)
-	    {
-	     interpolated_d2fdxi2(i_field,l_2deriv) +=
-	      nodal_value * (*d2basis_pt)(j_node,k_type,l_2deriv);
-	    } // End of loop over second derivatives l_2deriv
+	   // Add the nodal contribution of type k to the derivative of the
+	   // displacement
+	   interpolated_dudxi(alpha,l_deriv)
+	    += u_value * dpsi_n_udxi(j_node, k_type, l_deriv);
 	  }
-	} // End of loop over basis types (k_type)
-      } // End of loop over nodes used by field i (j_nodei)
-     //-----------END OF NODAL DATA------------
-      
-     //-------------INTERNAL DATA--------------
-     Shape* internal_basis_pt = psi_internal_field_pt[i_field];
-     DShape* internal_dbasis_pt = dpsi_internal_field_pt[i_field];
-     DShape* internal_d2basis_pt = d2psi_internal_field_pt[i_field];
 
-     // Begin loop over internal data [zdec] TODO generalise
-     unsigned n_internal_types = ninternal_types_for_field(i_field);
-     for(unsigned k_type=0; k_type<n_internal_types; k_type++)
-      {
-       double internal_value =
-	internal_value_for_field_of_type(i_field, k_type);
+	 // --- No second derivatives for in-plane ---
 	  
-       // Add nodal contribution to unknown
-       interpolated_f[i_field] +=
-	internal_value * (*internal_basis_pt)(k_type,0);
+	} // End of loop over the index of u -- alpha
+      } // End of loop over the types -- k_type
+    } // End of loop over the nodes -- j_node
 
-       // Add nodal contribution to first derivatives
+    
+   //---Internal contribution to the in-plane unknowns-------------------------
+   // [IN-PLANE-INTERNAL]
+   // Internal contributions to in-plane interpolation not written
+
+    
+   //---Nodal contribution to the out-of-plane unknowns------------------------
+   for(unsigned j_node=0; j_node<n_w_node; j_node++)
+    {
+     // Get the j-th node used by in-plane fields
+     unsigned j_node_local = w_nodes[j_node];
+      
+     // By default, we have no history values (no damping)
+     unsigned n_time = 0;
+     // Turn on damping if this field requires it AND we are not doing a
+     // steady solve
+     TimeStepper* timestepper_pt = this->node_pt(j_node_local)->time_stepper_pt();
+     bool damping = w_is_damped() && !(timestepper_pt->is_steady());
+     if(damping)
+      {
+       n_time=timestepper_pt->ntstorage();
+      }
+      
+     // Loop over types
+     for(unsigned k_type=0; k_type<n_w_nodal_type; k_type++)
+      {
+       // --- Time derivative ---
+       double nodal_dwdt_value=0.0;
+       // Loop over the history values (if damping, then n_time>0) and
+       // add history contribution to nodal contribution to time derivative
+       for(unsigned t_time=0; t_time<n_time; t_time++)
+	{
+	 nodal_dwdt_value +=
+	  get_w_value_at_node_of_type(t_time, j_node_local, k_type)
+	  * timestepper_pt->weight(1,t_time);
+	} 
+       interpolated_dwdt[0] += nodal_dwdt_value * psi_n_w(j_node,k_type);
+	
+       // Get the nodal value of type k
+       double w_value =
+	get_w_value_at_node_of_type(j_node_local, k_type);
+	
+       // --- Displacement ---
+       // Add nodal contribution of type k to the interpolated displacement
+       interpolated_w[0] += w_value * psi_n_w(j_node, k_type);
+	
+       // --- First derivatives ---
        for(unsigned l_deriv=0; l_deriv<n_deriv; l_deriv++)
 	{
-	 interpolated_dfdxi(i_field,l_deriv) +=
-	  internal_value * (*internal_dbasis_pt)(k_type, 0, l_deriv);
-	} // End of loop over first derivatives (l_deriv)
-
-       // Add nodal contributions to second derivatives (for w only)
-       if(i_field==w_index)
-	{
-	 for(unsigned l_2deriv=0; l_2deriv<n_2deriv; l_2deriv++)
-	  {
-	   interpolated_d2fdxi2(i_field,l_2deriv) +=
-	    internal_value * (*internal_d2basis_pt)(k_type, 0,l_2deriv);
-	  } // End of loop over second derivatives l_2deriv
+	 // Add the nodal contribution of type k to the derivative of the
+	 // displacement
+	 interpolated_dwdxi(0,l_deriv)
+	  += w_value * dpsi_n_wdxi(j_node, k_type, l_deriv);
 	}
-      } // End of loop over basis types (k_type)
-     //----------END OF INTERNAL DATA----------
-    } // End of loop over fields (i_field)
-   //========================END OF INTERPOLATION==============================
-   
-   // Copy our interpolated fields into u in the order we want and return it.
-   // ([zdec] w first?)
-   interpolated_u[0] = interpolated_f[2];         // w
-   interpolated_u[1] = interpolated_dfdxi(2,0);   // dwdx
-   interpolated_u[1] = interpolated_dfdxi(2,1);   // dwdy
-   interpolated_u[1] = interpolated_d2fdxi2(2,0); // d2wdx2
-   interpolated_u[1] = interpolated_d2fdxi2(2,1); // d2wdxdy
-   interpolated_u[1] = interpolated_d2fdxi2(2,2); // d2wdy2
-   interpolated_u[1] = interpolated_f[0];         // ux
-   interpolated_u[1] = interpolated_f[1];         // uy
-   interpolated_u[1] = interpolated_dfdxi(0,0);   // duxdx
-   interpolated_u[1] = interpolated_dfdxi(0,1);   // duxdy
-   interpolated_u[1] = interpolated_dfdxi(1,0);   // duydx
-   interpolated_u[1] = interpolated_dfdxi(1,1);   // duydy
-   return(interpolated_u);
-  }
+	
+       // --- Second derivatives ---
+       for(unsigned l_2deriv=0; l_2deriv<n_2deriv; l_2deriv++)
+	{
+	 // Add the nodal contribution of type k to the derivative of the
+	 // displacement
+	 interpolated_d2wdxi2(0,l_2deriv)
+	  += w_value * d2psi_n_wdxi2(j_node, k_type, l_2deriv);
+	}
+	
+      } // End of loop over the types -- k_type
+    } // End of loop over the nodes -- j_node
 
-  /// \short Self-test: Return 0 for OK
+   //---Internal contribution to the out-of-plane field------------------------
+   // --- Set up damping ---
+   // By default, we have no history values (no damping)
+   unsigned n_time = 0;
+   // Turn on damping if this field requires it AND we are not doing a steady
+   // solve
+   TimeStepper* timestepper_pt = this->w_internal_data_pt()->time_stepper_pt();
+   bool damping = w_is_damped() && !(timestepper_pt->is_steady());
+   if(damping)
+    {
+     n_time=timestepper_pt->ntstorage();
+    }
+   // Loop over the internal data types
+   for(unsigned k_type=0; k_type<n_w_internal_type; k_type++)
+    {
+     // --- Time derivative ---
+     double nodal_dwdt_value=0.0;
+     // Loop over the history values (if damping, then n_time>0) and
+     // add history contribution to nodal contribution to time derivative
+     for(unsigned t_time=0; t_time<n_time; t_time++)
+      {
+       nodal_dwdt_value +=
+	get_w_internal_value_of_type(t_time, k_type)
+	* timestepper_pt->weight(1,t_time);
+      } 
+     interpolated_dwdt[0] += nodal_dwdt_value * psi_i_w(k_type);
+	
+     // Get the nodal value of type k
+     double w_value =
+      get_w_internal_value_of_type(k_type);
+	
+     // --- Displacement ---
+     // Add nodal contribution of type k to the interpolated displacement
+     interpolated_w[0] += w_value * psi_i_w(k_type);
+	
+     // --- First derivatives ---
+     for(unsigned l_deriv=0; l_deriv<n_deriv; l_deriv++)
+      {
+       // Add the nodal contribution of type k to the derivative of the
+       // displacement
+       interpolated_dwdxi(0,l_deriv)
+	+= w_value * dpsi_i_wdxi(k_type, l_deriv);
+      }
+	
+     // --- Second derivatives ---
+     for(unsigned l_2deriv=0; l_2deriv<n_2deriv; l_2deriv++)
+      {
+       // Add the nodal contribution of type k to the derivative of the
+       // displacement
+       interpolated_d2wdxi2(0,l_2deriv)
+	+= w_value * d2psi_i_wdxi2(k_type, l_2deriv);
+      }
+      
+    } // End of loop over internal types -- k_type
+    
+   //====================== END OF INTERPOLATION ==============================
+ 
+   // Copy our interpolated fields into f in the order we want and return it.
+   Vector<double> interpolated_f(12,0.0);
+   interpolated_f[0] = interpolated_w[0];         // w
+   interpolated_f[1] = interpolated_dwdxi(0,0);   // dwdx
+   interpolated_f[2] = interpolated_dwdxi(0,1);   // dwdy
+   interpolated_f[3] = interpolated_d2wdxi2(0,0); // d2wdx2
+   interpolated_f[4] = interpolated_d2wdxi2(0,1); // d2wdxdy
+   interpolated_f[5] = interpolated_d2wdxi2(0,2); // d2wdy2
+   interpolated_f[6] = interpolated_u[0];         // ux
+   interpolated_f[7] = interpolated_u[1];         // uy
+   interpolated_f[8] = interpolated_dudxi(0,0);   // duxdx
+   interpolated_f[9] = interpolated_dudxi(0,1);   // duxdy
+   interpolated_f[10] = interpolated_dudxi(1,0);   // duydx
+   interpolated_f[11] = interpolated_dudxi(1,1);   // duydy
+   return(interpolated_f);
+  }
+  // END OF INTERPOLATED U FVK [zdec]
+  
+  /// Self-test: Return 0 for OK
   unsigned self_test();
 
  protected:
-  /// Pure virtual interface to the basis for the in--plane displacement 
-  virtual void shape_u(const Vector<double> &s,  Shape &psi) const=0;
 
-  /// \short Shape/test functions and derivs w.r.t. to global coords at
-  /// local coord. s; return  Jacobian of mapping
-  virtual double d2shape_and_d2test_eulerian_foeppl_von_karman(const Vector<double> &s,
-							       Shape &psi, Shape& psi_b, DShape &dpsi_dx, DShape &dpsi_b_dx,
-							       DShape &d2psi_dx2,DShape& d2psi_b_dx2,
-							       Shape &test, Shape& test_b, DShape &dtest_dx, DShape &dtest_b_dx,
-							       DShape &d2test_dx2,DShape& d2test_b_dx2) const=0;
-
-  /// \short Shape/test functions and derivs w.r.t. to global coords at
-  /// local coord. s; return  Jacobian of mapping
-  virtual double dshape_and_dtest_eulerian_foeppl_von_karman(const Vector<double> &s,
-							     Shape &psi, Shape& psi_b, DShape &dpsi_dx, DShape &dpsi_b_dx,
-							     Shape &test, Shape& test_b, DShape &dtest_dx, DShape &dtest_b_dx) const=0;
-
-  /// \short Shape/test functions at local coordinate s
-  virtual void shape_and_test_foeppl_von_karman(const Vector<double> &s,
-						Shape &psi, Shape& psi_b, Shape &test, Shape& test_b) const=0;
- 
-  /// \short in--plane Shape/test functions at local coordinate s
-  virtual double dshape_u_and_dtest_u_eulerian_foeppl_von_karman(const Vector<double> &s,
-								 Shape &psi,DShape &dpsidx, Shape &test,DShape &dtestdx) const=0;
-
-  /// \short Compute element residual Vector only (if flag=and/or element
+  /// Compute element residual Vector only (if flag=and/or element
   /// Jacobian matrix
-  virtual void fill_in_generic_residual_contribution_foeppl_von_karman(
-								       Vector<double> &residuals, DenseMatrix<double> &jacobian,
+  virtual void fill_in_generic_residual_contribution_foeppl_von_karman(Vector<double>& residuals,
+								       DenseMatrix<double>& jacobian,
 								       const unsigned& flag);
 
   /// Pointer to pressure function:
@@ -899,9 +1035,12 @@ namespace oomph
 
   /// Pointer to error metric when we want multiple errors
   MultipleErrorMetricFctPt Multiple_error_metric_fct_pt;
+ 
+  /// Flag to control damping of the in-plane variables
+  bool U_is_damped;
 
-
- protected:
+  /// Flag to control damping of the out-of-plane variable
+  bool W_is_damped;
 
   /// Pointer to precomputed matrix that associates shape functions to monomials
   DenseMatrix<double> *Association_matrix_pt;

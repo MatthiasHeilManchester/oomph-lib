@@ -31,121 +31,39 @@
 #include "foeppl_von_karman.h"
 
 namespace oomph
-{
-//======================================================================
-/// Set the data for the field, node, type enumeration
-//======================================================================
+{ 
+ //=============================================================================
+ /// Set the number of fields
+ //=============================================================================
  template<unsigned NNODE_1D>
- const unsigned FoepplVonKarmanC1CurvedBellElement<NNODE_1D>::Nfield=3;
+ const unsigned FoepplVonKarmanC1CurvableBellElement<NNODE_1D>::Nfield = 3;
 
- template<>
- const unsigned FoepplVonKarmanC1CurvedBellElement<2>::Nnode = 3;
- template<>
- const unsigned FoepplVonKarmanC1CurvedBellElement<3>::Nnode = 6;
- template<>
- const unsigned FoepplVonKarmanC1CurvedBellElement<4>::Nnode = 10;
-
- // Number of nodes used by each field
- template<>
- const Vector<unsigned> FoepplVonKarmanC1CurvedBellElement<2>::Nnode_for_field =
-  {3, 3, 3};
- template<>
- const Vector<unsigned> FoepplVonKarmanC1CurvedBellElement<3>::Nnode_for_field =
-  {6, 6, 3};
- template<>
- const Vector<unsigned> FoepplVonKarmanC1CurvedBellElement<4>::Nnode_for_field =
-  {10, 10, 3};
-
- // Index of nodes used by each field,
- // all nodes for ux, uy
- // first three (vertex) for w
- template<>
- const Vector< Vector<unsigned> > FoepplVonKarmanC1CurvedBellElement<2>::Node_index_for_field =
-  {
-   {0,1,2},
-   {0,1,2},
-   {0,1,2}
-  }; template<>
- const Vector< Vector<unsigned> > FoepplVonKarmanC1CurvedBellElement<3>::Node_index_for_field =
-  {
-   {0,1,2,3,4,5},
-   {0,1,2,3,4,5},
-   {0,1,2}
-  }; template<>
- const Vector< Vector<unsigned> > FoepplVonKarmanC1CurvedBellElement<4>::Node_index_for_field =
-  {
-   {0,1,2,3,4,5,6,7,8,9},
-   {0,1,2,3,4,5,6,7,8,9},
-   {0,1,2}
-  };
  
- // Number of basis types at each node for each field
- // (1 Lagrangian at every node for in-plane)
- // (6 Hermite at vertex nodes for out-of-plane)
- template<>
- const Vector< Vector<unsigned> > FoepplVonKarmanC1CurvedBellElement<2>::Ntype_for_field_at_node =
-  {
-   Vector<unsigned>(3,1),
-   Vector<unsigned>(3,1),
-   Vector<unsigned>(3,6)
-  };
- template<>
- const Vector< Vector<unsigned> > FoepplVonKarmanC1CurvedBellElement<3>::Ntype_for_field_at_node =
-  {
-   Vector<unsigned>(6,1),
-   Vector<unsigned>(6,1),
-   Vector<unsigned>(3,6)
-  };
- template<>
- const Vector< Vector<unsigned> > FoepplVonKarmanC1CurvedBellElement<4>::Ntype_for_field_at_node =
-  {
-   Vector<unsigned>(10,1),
-   Vector<unsigned>(10,1),
-   Vector<unsigned>(3,6)
-  };
+ //=============================================================================
+ /// Set the interpolation of each field
+ //=============================================================================
+ template<unsigned NNODE_1D>
+ const std::vector<bool> FoepplVonKarmanC1CurvableBellElement<NNODE_1D>::
+ Field_is_bell_interpolated = {false, false, true};
 
- template<>
- const Vector< Vector< Vector<unsigned> > > FoepplVonKarmanC1CurvedBellElement<2>::Nodal_value_index =
-  {
-   Vector<Vector<unsigned>>(3,Vector<unsigned>{0}),
-   Vector<Vector<unsigned>>(3,Vector<unsigned>{1}),
-   Vector<Vector<unsigned>>(3,Vector<unsigned>{2,3,4,5,6,7})
-  };
-
- template<>
- const Vector< Vector< Vector<unsigned> > > FoepplVonKarmanC1CurvedBellElement<3>::Nodal_value_index =
-  {
-   Vector<Vector<unsigned>>(6,Vector<unsigned>{0}),
-   Vector<Vector<unsigned>>(6,Vector<unsigned>{1}),
-   Vector<Vector<unsigned>>(3,Vector<unsigned>{2,3,4,5,6,7})
-  };
-
- template<>
- const Vector< Vector< Vector<unsigned> > > FoepplVonKarmanC1CurvedBellElement<4>::Nodal_value_index =
-  {
-   Vector<Vector<unsigned>>(10,Vector<unsigned>{0}),
-   Vector<Vector<unsigned>>(10,Vector<unsigned>{1}),
-   Vector<Vector<unsigned>>(3,Vector<unsigned>{2,3,4,5,6,7})
-  };
  
- 
-//======================================================================
+ //======================================================================
 /// Set the data for the number of Variables at each node
 //======================================================================
  template<>
- const unsigned FoepplVonKarmanC1CurvedBellElement<2>::Initial_Nvalue[3] = {8,8,8};
+ const unsigned FoepplVonKarmanC1CurvableBellElement<2>::Initial_Nvalue[3] = {8,8,8};
 
  template<>
- const unsigned FoepplVonKarmanC1CurvedBellElement<3>::Initial_Nvalue[6] = {8,8,8,2,2,2};
+ const unsigned FoepplVonKarmanC1CurvableBellElement<3>::Initial_Nvalue[6] = {8,8,8,2,2,2};
  
  template<>
- const unsigned FoepplVonKarmanC1CurvedBellElement<4>::Initial_Nvalue[10]= {8,8,8,2,2,2,2,2,2,2};
+ const unsigned FoepplVonKarmanC1CurvableBellElement<4>::Initial_Nvalue[10]= {8,8,8,2,2,2,2,2,2,2};
 
 //=======================================================================
 /// Shape function for specific TElement<DIM,NNODE,BOUNDARY_ORDER>
 //=======================================================================
  template<unsigned NNODE>
- void FoepplVonKarmanC1CurvedBellElement<NNODE>::shape_u(const Vector<double> &s, Shape &psi) const
+ void FoepplVonKarmanC1CurvableBellElement<NNODE>::shape_u(const Vector<double> &s, Shape &psi) const
    {
     // Use the base TElement version of shape
     TElement<2,NNODE>::shape(s,psi);
@@ -154,7 +72,7 @@ namespace oomph
 /// Derivatives of shape functions for specific TElement<2,2,BOUNDARY_ORDER>
 //=======================================================================
  template<unsigned NNODE>
- void FoepplVonKarmanC1CurvedBellElement<NNODE>::dshape_u_local(const Vector<double> &s,
+ void FoepplVonKarmanC1CurvableBellElement<NNODE>::dshape_u_local(const Vector<double> &s,
                     Shape &psi, DShape &dpsids) const
    {
     // Use the base TElement version of dshape_local
@@ -163,9 +81,9 @@ namespace oomph
 //====================================================================
 // Force build of templates
 //====================================================================
-template class FoepplVonKarmanC1CurvedBellElement<2>;
+template class FoepplVonKarmanC1CurvableBellElement<2>;
 
-template class FoepplVonKarmanC1CurvedBellElement<3>;
+template class FoepplVonKarmanC1CurvableBellElement<3>;
 
-template class FoepplVonKarmanC1CurvedBellElement<4>;
+template class FoepplVonKarmanC1CurvableBellElement<4>;
 }

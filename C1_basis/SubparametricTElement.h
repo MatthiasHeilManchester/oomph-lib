@@ -31,7 +31,6 @@
 //oomph-lib headers 
 #include "../generic/shape.h"
 #include "../generic/Telements.h"
-#include "../generic/prettyprint98.h"
 #include "C1_curved_elements.h"
 #include "my_geom_object.h"
 
@@ -46,8 +45,9 @@ namespace oomph
  // functions and internal basis functions (corresponding to internal dofs)
  //==============================================================================
 
- /// \short Class for subparametric element that has a seprate basis for the 
- // unknowns and a shape for the interpolation of the coordinates.
+ /// Class for subparametric element that have a NNODE_1D-1 order basis for 
+ /// interpolating unknowns but use simplex shape functions for interpolating
+ /// coordinates.
  template<unsigned NNODE_1D>
  class SubparametricTriangleElement : public TElement<2,NNODE_1D>
  {
@@ -65,65 +65,8 @@ namespace oomph
   // Broken assignment operator
   void operator=(const SubparametricTriangleElement& dummy)
   { BrokenCopy::broken_assign(OOMPH_CURRENT_FUNCTION); }
-
-  // ===================== New functions [zdec] ================================
-  /// Number of fields (unknowns) interpolated by the element
-  virtual unsigned nfield() const = 0;
-
-  // ------------------------ Nodal data ---------------------------------------
-  // Nodal basis functions might vary between field and node, here is the
-  // interface for accessing the appropriate dof/basis in generality.
-  
-  /// Get the number of nodes that field i is interpolated over
-  virtual unsigned nnode_for_field(const unsigned& i_field) const = 0;
-
-  /// Get a vector of the nodes associated with interpolating field i
-   virtual Vector<unsigned> nodes_for_field(const unsigned& i_field) const = 0;
-  
-  /// Get the number of basis type for field i at node j
-  virtual unsigned ntype_for_field_at_node(const unsigned& i_field,
-					   const unsigned& j_node) const = 0;
-
-  /// Get the dof of the field i at node j of type k
-  virtual double nodal_value_for_field_at_node_of_type(const unsigned& i_field,
-						       const unsigned& j_node,
-						       const unsigned& k_type) const = 0;
-  
-  /// Get the dof of the field i at node j of type k at time t
-  virtual double nodal_value_for_field_at_node_of_type(const unsigned& t,
-						       const unsigned& i_field,
-						       const unsigned& j_node,
-						       const unsigned& k_type) const = 0;
-  
-  // ----------------------- Internal data -------------------------------------
-  // Each field has its own internal data which is resized according to the
-  // number of dof/basis types required
-  
-  /// Get the number of internal data for field i
-  virtual unsigned ninternal_types_for_field(const unsigned& i_field) const = 0;
-
-  /// Get the index of the internal data for field i
-  virtual unsigned index_of_internal_data_for_field(const unsigned& i_field) const = 0;
-  
-  /// Return the pointer to the internal data for field i
-  virtual Data* internal_data_for_field_pt(const unsigned& i_field) const = 0;
-  
-  /// Return the value at the internal data for field i type k
-  virtual double internal_value_for_field_of_type(const unsigned& i_field,
-						  const unsigned& k_type) const = 0;
-  
-  /// Return the value at the internal data for field i type k at time t
-  virtual double internal_value_for_field_of_type(const unsigned& t,
-						  const unsigned& i_field,
-						  const unsigned& k_type) const = 0;
-  
-  /// Get the jth bubble dof at the lth internal point. Deliberately broken 
-  /// for case when there is no curved edge.
-  virtual int local_internal_equation(const unsigned& i_field,
-			      const unsigned& k_type) const = 0;
-   
-  // ========================= End new [zdec] ==================================
-  
+    
+    
   /// Interpolate global coordinate x using simplex shape functions.
   void interpolated_x (const Vector<double>& s, Vector<double>& x) const 
   {
@@ -225,9 +168,9 @@ namespace oomph
  
  
  //=============================================================================
- /// Curvable Bell element. It inherits the field-node-type interface from
- /// SubparametricTriangleElement to make mixed interpolation of different
- /// fields simpler, it also inherits the NNODE_1D Lagrangian basis.
+ /// Curvable Bell element. It inherits simplax shape subparametricity
+ /// SubparametricTriangleElement for efficient position interpolation.
+ /// It also inherits the NNODE_1D Lagrangian basis.
  /// By default this element is the standard simplex triangle Bell element with
  /// 6dofs per node. The element can be upgraded to curved "triangle" elements
  /// which provide accurate representation of boundary conditions by adding
@@ -237,8 +180,17 @@ namespace oomph
  class CurvableBellElement : public SubparametricTriangleElement<NNODE_1D>
  {
  public:
-  /// Constructor
-  CurvableBellElement() : Curved_edge(MyC1CurvedElements::none)
+  
+  /// Constructor that takes the number of fields and a vector of corresponding
+  /// bools which is true for each field that should be interpolated using the
+  /// Bell/Bernadou basis (by default, one field, Bell interpolated).
+  CurvableBellElement(const unsigned& n_field=1,
+		      const std::vector<bool>& is_bell_interpolated={true})
+   : Curved_edge(MyC1CurvedElements::none),
+     Nfield(n_field),
+     Field_is_bell_interpolated(is_bell_interpolated),
+     First_nodal_type_index_for_field(n_field),
+     Index_of_internal_data_for_field(n_field)
   { 
    // Use the higher order integration scheme
    TGauss<2,4>* new_integral_pt = new TGauss<2,4>;
@@ -246,7 +198,24 @@ namespace oomph
    // By default, there is no Bernadou basis (straight sided triangle)
    Bernadou_element_basis_pt=0;
    Association_matrix_pt=0;
+   
+   // Keep track of the number of nodal types
+   unsigned n_type_total = 0;
+
+   // Set up each fields data
+   for(unsigned i_field=0; i_field<Nfield; i_field++)
+    {
+     // Add the (zero) internal data for each field
+     Index_of_internal_data_for_field[i_field] = this->add_internal_data(new Data(0));
+
+     // Set the index for the first nodal type for each field
+     First_nodal_type_index_for_field[i_field]=n_type_total;
+     // Add the number of types belonging to i_field to the running total
+     n_type_total+=nnodal_basis_type_for_field(i_field);
+    }
+   
   };
+  
   
   ///Destructor 
   ~CurvableBellElement()
@@ -258,50 +227,137 @@ namespace oomph
    delete this->integral_pt(); 
   }
 
+  
   /// Broken copy constructor
   CurvableBellElement(const CurvableBellElement& dummy)
   {
    BrokenCopy::broken_copy(OOMPH_CURRENT_FUNCTION);
   }
 
+  
   /// Broken copy assignment 
   void operator = (const CurvableBellElement& dummy)
   {
    BrokenCopy::broken_assign(OOMPH_CURRENT_FUNCTION);
   }
+
   
   /// Alias for enum to enumerate the possible edges that could be curved
   typedef typename MyC1CurvedElements::Edge Edge; 
+
   
   ///  Boolean function indicating whether element is curved or not
   bool element_is_curved() const
   {
    return Curved_edge != MyC1CurvedElements::none;
   }
+
+
+  /// Access function for the number of fields
+  unsigned nfield() const
+  { return Nfield; }
+  
+  
+  /// Return the number of basis types at each (vertex) node for the
+  /// Bell/Bernadou interpolation
+  unsigned nbell_nodal_basis_type() const
+  { return 6; }
+  
   
   /// Return a bool telling us whether the ith field interpolated by the
   /// Bell basis, needed when upgrading elements in order to resize internal
   /// data of appropriate fields. Pure virtual as it depends on the equations
   /// requirements.
-  virtual bool field_is_bell_interpolated(const unsigned& i_field) const = 0;
+  virtual bool field_is_bell_interpolated(const unsigned& i_field) const
+  { return Field_is_bell_interpolated[i_field]; }
+
+
+  /// Return the number of nodes for a given field (vertex nodes for Bell
+  /// interpolated fields, all nodes for Lagrange interpolated)
+  unsigned nnode_for_field(const unsigned& i_field) const
+  { return (Field_is_bell_interpolated[i_field] ? 3 : this->nnode()); }
+
+  
+  /// Return the nodal indices for a given field (vertex nodes for Bell
+  /// interpolated fields, all nodes for Lagrange interpolated)
+  Vector<unsigned> nodal_indices_for_field(const unsigned& i_field) const
+  {
+   unsigned n_node = nnode_for_field(i_field);
+   Vector<unsigned> nodal_indices;
+   for(unsigned j_node=0; j_node<n_node; j_node++)
+    {
+     nodal_indices.push_back(j_node);
+    }
+   return nodal_indices;
+  }
+
+  
+  /// Return number of nodal dof types for a given field
+  unsigned nnodal_basis_type_for_field(const unsigned& i_field) const
+  { return (Field_is_bell_interpolated[i_field] ? nbell_nodal_basis_type() : 1); }; 
+
+
+  /// Return the first nodal type index for field i
+  virtual unsigned first_nodal_type_index_for_field(const unsigned& i_field) const
+  {
+   return First_nodal_type_index_for_field[i_field];
+  }
+
+  /// Return the nodal value for field i at node j of type k
+  virtual double nodal_value_for_field_of_type(const unsigned& i_field,
+					       const unsigned& j_node,
+					       const unsigned& k_type) const
+  {
+   // Get the number of nodal types belonging to other fields before this
+   // field.
+   unsigned field_first_index = first_nodal_type_index_for_field(i_field);
+   return this->raw_nodal_value(j_node, field_first_index+k_type);
+  }
+
+
+  /// Return the index of the internal data for a given field, as each field is
+  /// given exactly one piece of internal data to interpolate from, this is
+  /// the same as the input field. Virtual as this behaviour may differ in
+  /// derived elements.
+  virtual unsigned index_of_internal_data_for_field(const unsigned& i_field) const
+  { return i_field; }
+
+
+
+  /// Return the internal data pt for field i
+  virtual Data* internal_data_for_field_pt(const unsigned& i_field) const
+  {
+   unsigned index = index_of_internal_data_for_field(i_field);
+   return this->internal_data_pt(index);
+  }
   
 
-  // C++17 onwards
-  /*
-  // This lets us return a pointer to either basis class depending on whether 
-  // the element is curved or not. 
-  // [zdec] Maybe use another member data pointer "Current_basis_pt"
-  using BASIS = std::variant<MyC1CurvedElements::BernadouElementBasisBase,
-			     MyShape::BellElementBasis>;
-  /// Return the pointer to the current basis
-  BASIS current_basis_pt()
+  /// Return number of bubble basis functions for a field. This will be zero
+  /// for un-upgraded elements or for Lagrange interpolated fields. Upgrading
+  /// introduces additional basis functions depending on the basis 
+  unsigned ninternal_basis_type_for_field(const unsigned& i_field) const 
   {
-   if(element_is_curved())
-    {return Bernadou_element_basis_pt;}
-   else
-    {return *Bell_basis;}
+   return internal_data_for_field_pt(i_field)->nvalue();
   }
-  */
+
+
+  /// Return the internal value for field i of type k
+  virtual double internal_value_for_field_of_type(const unsigned& i_field,
+						  const unsigned& k_type) const
+  {
+   return internal_data_for_field_pt(i_field)->value(k_type);
+  }
+
+
+  /// Return the t-th history internal value for field i of type k
+  virtual double internal_value_for_field_of_type(const unsigned& t_time,
+						  const unsigned& i_field,
+						  const unsigned& k_type) const
+  {
+   return internal_data_for_field_pt(i_field)->value(t_time, k_type);
+  }
+  
+  
 
   /// Access function for the Bernadou_element_basis_pt 
   MyC1CurvedElements::BernadouElementBasisBase* bernadou_element_basis_pt()
@@ -366,7 +422,8 @@ to access interpolated eulerian coordinate",
      SubparametricTriangleElement<NNODE_1D>::dsimplex_shape_local(s,shape,dshape);
     }
   }
- 
+
+  
   /// Local_to_eulerian mapping with local coordinate argument: when upgraded this 
   /// uses the Bernadou implementation of the Jacobian 
   virtual double local_to_eulerian_mapping(const Vector<double>& s, 
@@ -394,60 +451,70 @@ to access interpolated eulerian coordinate",
      return TElement<2,NNODE_1D>::local_to_eulerian_mapping(dpsi,jacobian,inverse_jacobian);
     }
   }
-
+  
+  
   /// Get the Bell/Bernadou basis for the unknowns
-  virtual void basis(const Vector<double>& s,
-		     Shape& nodal_basis,
-		     Shape& bubble_basis) const
+  virtual void c1_basis(const Vector<double>& s,
+			Shape& nodal_basis,
+			Shape& bubble_basis) const
   {
    if(element_is_curved())
     { 
      Bernadou_element_basis_pt->shape(s,nodal_basis,bubble_basis);
     }
    else
-    { //HERE
-     Vector<Vector<double> > Verts = (Vector<Vector<double> >(this->nvertex_node(),Vector<double>(this->dim(),0.0)));
-     for(unsigned ivert=0;ivert<this->nvertex_node();++ivert)
+    { // [zdec] inefficient
+     unsigned n_node = this->nvertex_node();
+     unsigned n_type = nbell_nodal_basis_type();
+     unsigned dim = this->dim();
+     unsigned n_deriv = dim;
+     unsigned n2_deriv = dim * (dim+1) / 2;
+     Vector<Vector<double> > Verts = (Vector<Vector<double> >(n_node,Vector<double>(dim,0.0)));
+     for(unsigned i_vert=0; i_vert<n_node; ++i_vert)
       {
-       for(unsigned icoord=0;icoord<this->dim();++icoord)
-	{Verts[ivert][icoord] =this-> nodal_position(ivert,icoord);}
+       for(unsigned j_coord=0; j_coord<this->dim(); ++j_coord)
+	{Verts[i_vert][j_coord] =this-> nodal_position(i_vert,j_coord);}
       }
-     DShape dummydshape(this->nvertex_node(),nnodal_basis_type(),this->dim());
-     DShape dummyd2shape(this->nvertex_node(),nnodal_basis_type(),this->dim()*this->dim()-1);
+     DShape dummydshape(n_node, n_type, n_deriv);
+     DShape dummyd2shape(n_node, n_type, n2_deriv);
      Bell_basis.d2_basis_eulerian(s,Verts,nodal_basis,dummydshape,dummyd2shape);
     }
   };
 
-  /// Get the local derivative of the basis for the unknowns [zdec] this is now Aidan's fault
-  virtual void d_basis_local(const Vector<double>& s,
-			     Shape& nodal_basis, 
-			     Shape& bubble_basis,
-			     DShape& dnodal_basis,
-			     DShape& dbubble_basis) const
+  
+  /// Get the local derivative of the basis for the unknowns
+  virtual void d_c1_basis_local(const Vector<double>& s,
+				Shape& nodal_basis, 
+				Shape& bubble_basis,
+				DShape& dnodal_basis,
+				DShape& dbubble_basis) const
   {
    throw OomphLibError("Needs implementing. BLAME AIDAN.",OOMPH_CURRENT_FUNCTION,
 		       OOMPH_EXCEPTION_LOCATION);
   }
 
+  
   /// Get the local second derivative of the basis for the unknowns
-  virtual void d2_basis_local(const Vector<double>& s,
-			      Shape& nodal_basis, 
-			      Shape& bubble_basis,
-			      DShape& dnodal_basis,
-			      DShape& dbubble_basis,
-			      DShape& d2nodal_basis,
-			      DShape& d2bubble_basis) const
+  virtual void d2_c1_basis_local(const Vector<double>& s,
+				 Shape& nodal_basis, 
+				 Shape& bubble_basis,
+				 DShape& dnodal_basis,
+				 DShape& dbubble_basis,
+				 DShape& d2nodal_basis,
+				 DShape& d2bubble_basis) const
   {
    throw OomphLibError("Needs implementing. BLAME AIDAN.",OOMPH_CURRENT_FUNCTION, 
 		       OOMPH_EXCEPTION_LOCATION);
   }
 
+  
   /// Get the global (Eulerian) derivative of the basis for the unknowns
-  virtual double d_basis_eulerian(const Vector<double>& s,
-				  Shape& nodal_basis, 
-				  Shape& bubble_basis,
-				  DShape& dnodal_basis,
-				  DShape& dbubble_basis) const
+  // [zdec] Calls the full d2_basis_eulerian (slow and sloppy)
+  virtual double d_c1_basis_eulerian(const Vector<double>& s,
+				     Shape& nodal_basis, 
+				     Shape& bubble_basis,
+				     DShape& dnodal_basis,
+				     DShape& dbubble_basis) const
   {
    if(element_is_curved())
     { 
@@ -455,27 +522,33 @@ to access interpolated eulerian coordinate",
 						  dnodal_basis, dbubble_basis);
     }
    else
-    { //HERE // [zdec] Calls the full d2_basis_eulerian (slow and sloppy)
+    {
+     unsigned n_node = this->nvertex_node();
+     unsigned n_type = nbell_nodal_basis_type();
+     unsigned dim = this->dim();
+     unsigned n2_deriv = dim * (dim+1) / 2;
+     
      Vector<Vector<double> > Verts = (Vector<Vector<double> >(this->nvertex_node(),Vector<double>(this->dim(),0.0)));
      for(unsigned ivert=0;ivert<this->nvertex_node();++ivert)
       {
        for(unsigned icoord=0;icoord<this->dim();++icoord)
 	{Verts[ivert][icoord] =this-> nodal_position(ivert,icoord);}
       }
-     DShape dummyd2shape(this->nvertex_node(),nnodal_basis_type(),this->dim()*this->dim()-1);
+     DShape dummyd2shape(n_node, n_type, n2_deriv);
      Bell_basis.d2_basis_eulerian(s,Verts,nodal_basis,dnodal_basis,dummyd2shape);
      return TElement<2,NNODE_1D>::J_eulerian(s);
     }
   }
 
+  
   /// Get the global (Eulerian) second derivative of the basis for the unknowns
-  virtual double d2_basis_eulerian(const Vector<double>& s,
-				   Shape& nodal_basis, 
-				   Shape& bubble_basis,
-				   DShape& dnodal_basis,
-				   DShape& dbubble_basis,
-				   DShape& d2nodal_basis,
-				   DShape& d2bubble_basis) const  
+  virtual double d2_c1_basis_eulerian(const Vector<double>& s,
+				      Shape& nodal_basis, 
+				      Shape& bubble_basis,
+				      DShape& dnodal_basis,
+				      DShape& dbubble_basis,
+				      DShape& d2nodal_basis,
+				      DShape& d2bubble_basis) const  
   {
    if(element_is_curved())
     {
@@ -518,7 +591,8 @@ to access interpolated eulerian coordinate",
     }
   }
 
-  /// \short Precompute the association matrix for the curved basis. This is 
+  
+  /// Precompute the association matrix for the curved basis. This is 
   /// important for optimisation, as its contruction is expensive. It only 
   /// needs constructing once per get_residuals or get_jacobian call.
   void store_association_matrix()
@@ -537,6 +611,7 @@ to access interpolated eulerian coordinate",
     { /* No association matrix for the Bell Elements. Throw here*/}
   }; 
 
+
   /// Delete the association matrix for the curved basis. This is important for
   /// optimisation, as we don't want to be storing a large matrix for every
   /// element. 
@@ -552,28 +627,6 @@ to access interpolated eulerian coordinate",
     { /* No association matrix for the Bell Elements. Throw here ?*/}
   }; 
 
-  // [zdec] Look into changing the following functions!
-  /// Return number of bubble basis functions. This will be zero
-  /// for un-upgraded elements. Upgrading introduces nbubble_dof additional basis 
-  /// functions depending on the basis 
-  unsigned nbubble_basis() const 
-  {return (element_is_curved() ? Bernadou_element_basis_pt->n_internal_dofs() : 0);}; 
-
-  /// Return number of bubble dof types
-  unsigned nbubble_basis_type() const {return 1;}; 
-
-  /// Return number of nodal dof types 
-  unsigned nnodal_basis_type() const { return 6; }; 
-  
-  /// Return number of nodal dof types. The default implementation in these
-  /// elements is to use nbasis_type but in derived classes these two values may
-  /// not be the same
-  virtual unsigned ndof_type() const { return nnodal_basis_type(); }; 
-
-  /// Return number of internal dofs. This will be zero
-  /// for un-upgraded elements. The default implementation in these elements
-  /// adds nbubble_basis additional basis functions
-  virtual unsigned ninternal_dofs() const { return nbubble_basis(); }; 
   
   /// Add the a curved element pointer of type BERNADOU_BASIS
   template<typename BERNADOU_BASIS>
@@ -588,6 +641,7 @@ to access interpolated eulerian coordinate",
     }
   } 
 
+  
   /// Upgrade the element to be curved
   virtual void upgrade_element_to_curved(const Edge& curved_edge, const double& s_ubar,
 					 const double& s_obar,  CurvilineGeomObject* parametric_edge, 
@@ -629,9 +683,8 @@ Elements.",OOMPH_CURRENT_FUNCTION,  OOMPH_EXCEPTION_LOCATION);
    delete this->integral_pt(); 
    this->set_integration_scheme(new_integral_pt); 
    
-   // [zdec] Always use same data, just resize according to internal basis
-   // requirements.
-   unsigned n_field = this->nfield();
+   // Always use same data, just resize according to internal basis requirements.
+   unsigned n_field = Nfield;
    unsigned n_bubble = Bernadou_element_basis_pt->n_internal_dofs();
    for(unsigned i_field=0; i_field<n_field; i_field++)
     {
@@ -683,6 +736,8 @@ Elements.",OOMPH_CURRENT_FUNCTION,  OOMPH_EXCEPTION_LOCATION);
     {Bernadou_element_basis_pt->get_internal_dofs_location(dof,s);}
   };
 
+  
+  
  private:
   /// Enum to store which edge is curved set to none when element has no curved
   /// edges
@@ -696,6 +751,20 @@ Elements.",OOMPH_CURRENT_FUNCTION,  OOMPH_EXCEPTION_LOCATION);
 
   /// Pointer to Stored Association matrix
   DenseMatrix<double>* Association_matrix_pt;
+
+  /// Number of fields
+  unsigned Nfield;
+  
+  /// Vector of bools which dictate whether a field is interpolated
+  /// using the Bell/Bernadou basis (use Lagrange if not)
+  std::vector<bool> Field_is_bell_interpolated;
+
+  /// Vector of unsigneds which store the first index of a fields nodal types
+  /// (should be the sum of all ntypes for fields which come before)
+  Vector<unsigned> First_nodal_type_index_for_field;
+  
+  /// Indices at which the added internal data is stored
+  Vector<unsigned> Index_of_internal_data_for_field;
 
  }; //End of CurvableBellElement class
 } //End of namespace extension
