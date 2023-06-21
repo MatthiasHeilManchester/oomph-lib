@@ -1,84 +1,86 @@
 # A few file definitions
 #-----------------------
-
 # Define the sources
-sourcesFvK =  \
- foeppl_von_karman_equations.cc \
- foeppl_von_karman_curved_bell_elements.cc
+sources =  \
+foeppl_von_karman_equations.cc \
+foeppl_von_karman_curvable_bell_elements.cc
 
 # Define the headers
-headersFvK =  \
- foeppl_von_karman.h \
- foeppl_von_karman_equations.h \
- foeppl_von_karman_curved_bell_elements.h
+headers =  \
+foeppl_von_karman.h \
+foeppl_von_karman_equations.h \
+foeppl_von_karman_curvable_bell_elements.h
 
 # Define name of library
-libnameFvK = c1_foeppl_von_karman
+libname = c1_foeppl_von_karman
 
 # Combine headers and sources
-headersFvK_and_sourcesFvK = $(headersFvK) $(sourcesFvK)
+headers_and_sources = $(headers) $(sources)
+
 
 # Define the library that gets placed in lib directory
 #-----------------------------------------------------
 lib_LTLIBRARIES = libc1_foeppl_von_karman.la
 
+
 # Sources that the library depends on: 
 #-------------------------------------
-libc1_foeppl_von_karman_la_SOURCES = $(headersFvK_and_sourcesFvK)
+libc1_foeppl_von_karman_la_SOURCES = $(headers_and_sources)
+
 
 # The library's include headers:
 #-------------------------------
 # Headers that are to be included in the $(includedir) directory:
 # This is the combined header which contains "#include<...>" commands
 # for the real headers in the subdirectory below $(includedir)
-c1_foeppl_von_karmaninclude_HEADERS = $(libnameFvK).h 
-# C1_basisincludedir = $(includedir) 
-c1_foeppl_von_karmanincludedir = $(includedir)
+include_HEADERS = $(libname).h 
 
 #Here's the subdirectory where the actual header files are placed
-library_c1_foeppl_von_karmanincludedir=$(includedir)/c1_foeppl_von_karman
+library_includedir=$(includedir)/c1_foeppl_von_karman
 
 #These are the header files that are to be placed in subdirectory
-library_c1_foeppl_von_karmaninclude_HEADERS=$(headersFvK) 
+library_include_HEADERS=$(headers)
 
-
-# Required libraries -- [assuming that we want to link against stuff in generic
-#-------------------     add other oomph-lib libraries if you need them....]
+# Required libraries 
+#-------------------
 # Include path for library headers -- need to refer to include files
-# in their respective source directories as they will not have been 
-# installed yet! 
-AM_CPPFLAGS += -I$(top_builddir)/src/generic
+# in src as they will not have been installed yet! 
+#AM_CPPFLAGS += -I$(top_builddir)/src/generic
 
 
 # Combined header file
 #---------------------
 # Rule for building combined header (dummy target never gets made so
-# the combined header is remade every time)
-$(libnameFvK).h: dummy_$(libnameFvK).h
+# the combined header is remade every time
+$(libname).h: dummy_$(libname).h
 
-dummy_$(libnameFvK).h:  $(headersFvK)
-	echo  $(libnameFvK) $(headersFvK) > all_$(libnameFvK).aux
+dummy_$(libname).h:  $(headers)
+	echo  $(libname) $(headers) > all_$(libname).aux
 	$(AWK) -f $(top_builddir)/bin/headers.awk < \
-	       all_$(libnameFvK).aux > $(libnameFvK).h
-	rm all_$(libnameFvK).aux
+	       all_$(libname).aux > $(libname).h
+	rm all_$(libname).aux
+
 
 # Extra hook for install: Optionally replace headers by symbolic links
 #---------------------------------------------------------------------
 if SYMBOLIC_LINKS_FOR_HEADERS
 install-data-hook: 
-	(cd $(library_C1_foeppl_von_karmanincludedir) && rm -f $(headersFvK) )
-	(echo "$(headersFvK)" > include_files.list )
+	(cd $(library_includedir) && rm -f $(headers) )
+	(echo "$(headers)" > include_files.list )
 	($(top_builddir)/bin/change_headers_to_links.sh `pwd`)
-	($(LN_S) `cat include_files.list.aux` $(library_C1_foeppl_von_karmanincludedir) )
+	($(LN_S) `cat include_files.list.aux` $(library_includedir) )
 	(rm -r include_files.list.aux include_files.list ) 
 else
 install-data-hook: 
 endif
 
 
-# Tidy up
-#--------
-clean-local:
-	rm -f $(libnameFvK).h
+# Cleanup: Kill automatically generated combined header file
+clean-local: 
+	rm -f $(libname).h
+distclean-local:
+	rm -f $(libname).h
+
+
 
 

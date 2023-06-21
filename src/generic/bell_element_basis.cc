@@ -28,7 +28,7 @@
 //LIC// 
 //LIC//====================================================================
 //oomph-lib headers
-#include "Bell_element_basis.h"
+#include "bell_element_basis.h"
 
 namespace oomph {
 

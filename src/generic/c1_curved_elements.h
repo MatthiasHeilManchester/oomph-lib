@@ -31,9 +31,10 @@
 #define OOMPH_MY_CURVED_C1_ELEMENTS
 
 //oomph-lib headers
-#include "../generic/Vector.h"
-#include "../generic/shape.h"
-#include "Bell_element_basis.h"
+#include "Vector.h"
+#include "shape.h"
+#include "bell_element_basis.h"
+#include "my_geom_object.h"
 
 namespace oomph {
 

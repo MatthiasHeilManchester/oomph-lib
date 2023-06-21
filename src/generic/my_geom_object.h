@@ -29,7 +29,7 @@
 //LIC//====================================================================
 #ifndef OOMPH_MY_GEOM_OBJECTS_HEADER
 #define OOMPH_MY_GEOM_OBJECTS_HEADER
-#include "../generic/geom_objects.h"
+#include "geom_objects.h"
 namespace oomph
 {
 

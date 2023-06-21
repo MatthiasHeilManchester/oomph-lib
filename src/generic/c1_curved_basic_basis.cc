@@ -28,7 +28,7 @@
 //LIC// 
 //LIC//====================================================================
 //oomph-lib headers
-#include "C1_curved_elements.h"
+#include "c1_curved_elements.h"
 
 // The matrix that connverts from the set of monomials to a the shape functions
 // defined on the basic element

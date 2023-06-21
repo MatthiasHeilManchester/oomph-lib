@@ -28,8 +28,8 @@
 //LIC// 
 //LIC//====================================================================
 // Header file for the Foeppl-von Karman equation elements
-#ifndef OOMPH_MYFVK_EQUATIONS_HEADER
-#define OOMPH_MYFVK_EQUATIONS_HEADER
+#ifndef OOMPH_C1FVK_EQUATIONS_HEADER
+#define OOMPH_C1FVK_EQUATIONS_HEADER
 
 
 #include<sstream>

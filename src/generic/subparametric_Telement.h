@@ -31,7 +31,7 @@
 //oomph-lib headers 
 #include "../generic/shape.h"
 #include "../generic/Telements.h"
-#include "C1_curved_elements.h"
+#include "c1_curved_elements.h"
 #include "my_geom_object.h"
 
 #ifndef SUBPARAMETRIC_TELEMENTS

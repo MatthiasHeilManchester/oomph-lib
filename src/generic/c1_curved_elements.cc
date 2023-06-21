@@ -28,7 +28,7 @@
 //LIC// 
 //LIC//====================================================================
 //oomph-lib headers
-#include "C1_curved_elements.h"
+#include "c1_curved_elements.h"
 
 namespace oomph {
 namespace MyC1CurvedElements{

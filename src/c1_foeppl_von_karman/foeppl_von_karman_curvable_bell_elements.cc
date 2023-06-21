@@ -27,7 +27,7 @@
 //LIC// The authors may be contacted at oomph-lib@maths.man.ac.uk.
 //LIC// 
 //LIC//====================================================================
-// Non--inline functions for BellBiharmonic elements
+// Non--inline functions for BellFvK elements
 #include "foeppl_von_karman.h"
 
 namespace oomph

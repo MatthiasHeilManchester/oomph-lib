@@ -28,14 +28,14 @@
 //LIC// 
 //LIC//====================================================================
 
-#ifndef OOMPH_BIHARMONIC_CURVABLE_BELL_ELEMENTS_HEADER
-#define OOMPH_BIHARMONIC_CURVABLE_BELL_ELEMENTS_HEADER
+#ifndef OOMPH_FVK_CURVABLE_BELL_ELEMENTS_HEADER
+#define OOMPH_FVK_CURVABLE_BELL_ELEMENTS_HEADER
 
 #include "foeppl_von_karman_equations.h"
-#include "../C1_basis/Bell_element_basis.h"
-#include "../C1_basis/C1_curved_elements.h"
-#include "../C1_basis/my_geom_object.h"
-#include "../C1_basis/SubparametricTElement.h"
+#include "../generic/bell_element_basis.h"
+#include "../generic/c1_curved_elements.h"
+#include "../generic/my_geom_object.h"
+#include "../generic/subparametric_Telement.h"
 
 namespace oomph
 {

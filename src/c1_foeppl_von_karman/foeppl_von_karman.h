@@ -28,4 +28,4 @@
 //LIC// 
 //LIC//====================================================================
 #include "foeppl_von_karman_equations.h"
-#include "foeppl_von_karman_curved_bell_elements.h"
+#include "foeppl_von_karman_curvable_bell_elements.h"
