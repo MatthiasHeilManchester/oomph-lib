@@ -189,7 +189,8 @@ namespace oomph
       double W = w * J;
 
       //===========================
-      //INTERPOLATION================================= Create space for in-plane
+      // INTERPOLATION================================= Create space for
+      // in-plane
       // interpolated unknowns
       Vector<double> interpolated_u(n_u_fields, 0.0);
       Vector<double> interpolated_dudt(n_u_fields, 0.0);
@@ -201,7 +202,7 @@ namespace oomph
       DenseMatrix<double> interpolated_d2wdxi2(n_w_fields, n_2deriv, 0.0);
 
       //---Nodal contribution to the in-plane
-      //unknowns----------------------------
+      // unknowns----------------------------
       // Loop over nodes used by in-plane fields
       for (unsigned j_node = 0; j_node < n_u_node; j_node++)
       {
@@ -264,13 +265,13 @@ namespace oomph
 
 
       //---Internal contribution to the in-plane
-      //unknowns-------------------------
+      // unknowns-------------------------
       // [IN-PLANE-INTERNAL]
       // Internal contributions to in-plane interpolation not written
 
 
       //---Nodal contribution to the out-of-plane
-      //unknowns------------------------
+      // unknowns------------------------
       for (unsigned j_node = 0; j_node < n_w_node; j_node++)
       {
         // Get the j-th node used by in-plane fields
@@ -332,7 +333,7 @@ namespace oomph
       } // End of loop over the nodes -- j_node
 
       //---Internal contribution to the out-of-plane
-      //field------------------------
+      // field------------------------
       // --- Set up damping ---
       // By default, we have no history values (no damping)
       unsigned n_time = 0;
