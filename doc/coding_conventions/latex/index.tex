@@ -175,6 +175,22 @@ Many classes have member functions that provide access to data in private contai
 
 \end{DoxyCode}
  Note the triple slash \char`\"{}///\char`\"{} in the comment block that preceeds the function definition -- comments contained in such lines are automatically extracted by doxygen and inserted into the code documentation.
+\item All member data is defined (and annotated) on a separate line, otherwise doxygen gets confused. So use 
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\textcolor{comment}{/// Number of elements}}
+\DoxyCodeLine{\textcolor{comment}{}\textcolor{keywordtype}{unsigned} Nelement;}
+\DoxyCodeLine{\textcolor{comment}{}}
+\DoxyCodeLine{\textcolor{comment}{/// Number of nodes}}
+\DoxyCodeLine{\textcolor{comment}{}\textcolor{keywordtype}{unsigned} Nnode;}
+
+\end{DoxyCode}
+ rather than 
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\textcolor{comment}{/// Number of elements and nodes}}
+\DoxyCodeLine{\textcolor{comment}{}\textcolor{keywordtype}{unsigned} Nelement, Nnode;}
+
+\end{DoxyCode}
+
 \end{DoxyItemize}\hypertarget{index_oomph}{}\doxysubsection{The oomph-\/lib namespace}\label{index_oomph}
 
 \begin{DoxyItemize}
