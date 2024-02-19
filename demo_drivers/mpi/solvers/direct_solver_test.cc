@@ -290,7 +290,48 @@ int main(int argc, char **argv)
  DocInfo doc_info;
  doc_info.set_directory("RESLT");
 
+#ifdef OOMPH_HAS_MUMPS
+
+ // PROBLEM BASED SOLVE (distributed, using mumps)
+ {
+  oomph_info 
+   << "///////////////////////////////////////////////////////////////////////"
+   << std::endl;
+  oomph_info << "TESTING: MUMPS global problem based solve"
+             << std::endl;
+  oomph_info 
+   << "///////////////////////////////////////////////////////////////////////"
+   << std::endl << std::endl;
+  OneDPoissonProblem<QPoissonElement<1,4> >
+    problem(n_element,FishSolnOneDPoisson::source_function);
+  DoubleVector x;
+  MumpsSolver solver;
+  problem.linear_solver_pt() = &solver;
+  problem.newton_solve();
+  doc_info.number()++;
+  problem.doc_solution(doc_info);
+  problem.zero_dofs();
+ }
+
+#else
+
+ ofstream some_file;
+ char filename[100];
+
+ // Output solution with specified number of plot points per element
+ snprintf(filename, sizeof(filename), "RESLT/dummy_mumps.dat");
+ some_file.open(filename);
+ some_file << "dummy data for missing mumps\n";
+ some_file.close();
+
+#endif
+
+ 
 #ifdef OOMPH_HAS_MPI
+
+
+#ifdef OOMPH_HAS_SUPERLU_DIST
+ 
  //////////////////////////////////////////////////////////////////////////////
  // SuperLU_dist Test
  //////////////////////////////////////////////////////////////////////////////
@@ -395,42 +436,8 @@ int main(int argc, char **argv)
  }
 #endif
 
-
-#ifdef OOMPH_HAS_MUMPS
-
- // PROBLEM BASED SOLVE (distributed, using mumps)
- {
-  oomph_info 
-   << "///////////////////////////////////////////////////////////////////////"
-   << std::endl;
-  oomph_info << "TESTING: MUMPS global problem based solve"
-             << std::endl;
-  oomph_info 
-   << "///////////////////////////////////////////////////////////////////////"
-   << std::endl << std::endl;
-  OneDPoissonProblem<QPoissonElement<1,4> >
-    problem(n_element,FishSolnOneDPoisson::source_function);
-  DoubleVector x;
-  MumpsSolver solver;
-  problem.linear_solver_pt() = &solver;
-  problem.newton_solve();
-  doc_info.number()++;
-  problem.doc_solution(doc_info);
-  problem.zero_dofs();
- }
-
-#else
-
- ofstream some_file;
- char filename[100];
-
- // Output solution with specified number of plot points per element
- snprintf(filename, sizeof(filename), "RESLT/dummy_mumps.dat");
- some_file.open(filename);
- some_file << "dummy data for missing mumps\n";
- some_file.close();
-
 #endif
+
 
 
 #ifdef OOMPH_HAS_MPI
