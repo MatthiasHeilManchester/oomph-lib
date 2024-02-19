@@ -686,6 +686,14 @@ int main(int argc, char* argv[])
  solver_pt->solver_type() = TrilinosAztecOOSolver::GMRES;
 #else
  GMRES<CRDoubleMatrix>* solver_pt = new GMRES<CRDoubleMatrix>;
+
+ // Our GMRES isn't parallelised so this won't work if run in parallel
+ if (MPI_Helpers::communicator_pt()->nproc()>1)
+  {
+   throw OomphLibError("Without trilinos this code can only run serially",
+                       OOMPH_CURRENT_FUNCTION,
+                       OOMPH_EXCEPTION_LOCATION);
+  }
 #endif
  problem.linear_solver_pt() = solver_pt;
  solver_pt->tolerance() = 10e-5;

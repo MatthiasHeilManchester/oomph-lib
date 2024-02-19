@@ -7,6 +7,7 @@ OOMPH_ROOT_DIR=$1
 MPI_RUN_COMMAND="$2"
 
 #Set the number of tests to be checked
+# Note adjusted below while we don't have superlu_dist
 NUM_TESTS=46
 
 # Threshold for number of iterations in comparison of convergence histories
@@ -407,111 +408,176 @@ fi
 
 # Validation for rectangular driven cavity
 #-----------------------------------------
-
-echo "Running rectangular driven cavity LSC precond validation "
 mkdir RESLT
 
 # Wait for a bit to allow parallel file systems to realise
 # the existence of the new directory
 sleep 5
 
-$MPI_RUN_COMMAND ../driven_cavity >OUTPUT_driven_cavity
-echo "done"
-echo " " >>validation.log
-echo "Rectangular driven cavity validation" >>validation.log
-echo "------------------------------------" >>validation.log
-echo " " >>validation.log
-echo "Validation directory: " >>validation.log
-echo " " >>validation.log
-echo "  " $(pwd) >>validation.log
-echo " " >>validation.log
-cat RESLT/soln0.dat RESLT/soln1.dat \
-    >driven_cavity_results.dat
-
-if test "$3" = "no_fpdiff"; then
-    echo "dummy [OK] -- Can't run fpdiff.py because we don't have python or validata" >>validation.log
+if [ -e ../driven_cavity ]; then
+    echo "Running rectangular driven cavity LSC precond validation "
+    $MPI_RUN_COMMAND ../driven_cavity >OUTPUT_driven_cavity
+    echo "done"
+    echo " " >>validation.log
+    echo "Rectangular driven cavity validation" >>validation.log
+    echo "------------------------------------" >>validation.log
+    echo " " >>validation.log
+    echo "Validation directory: " >>validation.log
+    echo " " >>validation.log
+    echo "  " $(pwd) >>validation.log
+    echo " " >>validation.log
+    cat RESLT/soln0.dat RESLT/soln1.dat \
+        >driven_cavity_results.dat
+    
+    if test "$3" = "no_fpdiff"; then
+        echo "dummy [OK] -- Can't run fpdiff.py because we don't have python or validata" >>validation.log
+    else
+        $OOMPH_ROOT_DIR/scripts/fpdiff.py ../validata/driven_cavity_results.dat.gz \
+                                          driven_cavity_results.dat >>validation.log
+    fi
 else
-    $OOMPH_ROOT_DIR/scripts/fpdiff.py ../validata/driven_cavity_results.dat.gz \
-        driven_cavity_results.dat >>validation.log
+    echo "Not running rectangular driven cavity LSC precond validation (no trilinos)"
+    echo " " >>validation.log
+    echo "Rectangular driven cavity validation" >>validation.log
+    echo "------------------------------------" >>validation.log
+    echo " " >>validation.log
+    echo "Validation directory: " >>validation.log
+    echo " " >>validation.log
+    echo "  " $(pwd) >>validation.log
+    echo " " >>validation.log
+    echo "dummy [OK] -- no trilinos" >>validation.log
 fi
 
 # Airy Cantiliver
 #================
-echo "Running Airy Cantilever with BlockDiagonalPreconditioner"
-$MPI_RUN_COMMAND ../airy_cantilever 0 >OUTPUT_airy_0
-echo "done"
-echo ""
-echo "Running Airy Cantilever with BlockDiagonalPreconditioner with two level parallelisation"
-$MPI_RUN_COMMAND ../airy_cantilever 1 >OUTPUT_airy_1
-echo "done"
-echo ""
-echo "Running Airy Cantilever with BlockTriangularPreconditioner (Upper)"
-$MPI_RUN_COMMAND ../airy_cantilever 2 >OUTPUT_airy_2
-echo "done"
-echo ""
-echo "Running Airy Cantilever with BlockTriangularPreconditioner (Lower)"
-$MPI_RUN_COMMAND ../airy_cantilever 3 >OUTPUT_airy_3
-echo "done"
-echo ""
-echo " " >>validation.log
-echo "Airy Cantilever block preconditioner tests" >>validation.log
-echo "--------------" >>validation.log
-echo " " >>validation.log
-echo "Validation directory: " >>validation.log
-echo " " >>validation.log
-echo "  " $(pwd) >>validation.log
-echo " " >>validation.log
-if test "$3" = "no_fpdiff"; then
-    echo "dummy [OK] -- Can't run fpdiff.py because we don't have python or validata" >>validation.log
+if [ -e ../airy_cantilever ]; then  
+    echo "Running Airy Cantilever with BlockDiagonalPreconditioner"
+    $MPI_RUN_COMMAND ../airy_cantilever 0 >OUTPUT_airy_0
+    echo "done"
+    echo ""
+    if [ -e ../airy_cantilever_with_hypre ]; then
+        echo "Running Airy Cantilever with BlockDiagonalPreconditioner with two level parallelisation"
+        $MPI_RUN_COMMAND ../airy_cantilever_with_hypre 1 >OUTPUT_airy_1
+    else
+        echo "Not running Airy Cantilever with BlockDiagonalPreconditioner with two level parallelisation because we don't have hypre"
+    fi
+    echo "done"
+    echo ""
+    echo "Running Airy Cantilever with BlockTriangularPreconditioner (Upper)"
+    $MPI_RUN_COMMAND ../airy_cantilever 2 >OUTPUT_airy_2
+    echo "done"
+    echo ""
+    echo "Running Airy Cantilever with BlockTriangularPreconditioner (Lower)"
+    $MPI_RUN_COMMAND ../airy_cantilever 3 >OUTPUT_airy_3
+    echo "done"
 else
-    $OOMPH_ROOT_DIR/scripts/fpdiff.py ../validata/airy_soln.dat.gz \
-        RESLT/airy_soln0.dat 0.1 10e-6 >>validation.log
-fi
-if test "$3" = "no_fpdiff"; then
-    echo "dummy [OK] -- Can't run fpdiff.py because we don't have python or validata" >>validation.log
-else
-    $OOMPH_ROOT_DIR/scripts/fpdiff.py ../validata/airy_soln.dat.gz \
-        RESLT/airy_soln1.dat 0.1 10e-6 >>validation.log
-fi
-if test "$3" = "no_fpdiff"; then
-    echo "dummy [OK] -- Can't run fpdiff.py because we don't have python or validata" >>validation.log
-else
-    $OOMPH_ROOT_DIR/scripts/fpdiff.py ../validata/airy_soln.dat.gz \
-        RESLT/airy_soln2.dat 0.1 10e-6 >>validation.log
-fi
-if test "$3" = "no_fpdiff"; then
-    echo "dummy [OK] -- Can't run fpdiff.py because we don't have python or validata" >>validation.log
-else
-    $OOMPH_ROOT_DIR/scripts/fpdiff.py ../validata/airy_soln.dat.gz \
-        RESLT/airy_soln3.dat 0.1 10e-6 >>validation.log
+    echo "Not running Airy Cantilever codes because we don't have trilinos"
 fi
 
-# FSI Preconditioner
-#===================
-echo "Running FSI Preconditioner on Channel with Leaflet Problem"
-$MPI_RUN_COMMAND ../fsi_channel_with_leaflet >OUTPUT_fsi
-echo "done"
-echo ""
+echo " "
 echo " " >>validation.log
-echo "FSI Preconditioner Tests" >>validation.log
-echo "--------------" >>validation.log
+echo "Airy Cantilever block preconditioner tests" >>validation.log
+echo "------------------------------------------" >>validation.log
 echo " " >>validation.log
 echo "Validation directory: " >>validation.log
 echo " " >>validation.log
 echo "  " $(pwd) >>validation.log
 echo " " >>validation.log
+
+
+
 if test "$3" = "no_fpdiff"; then
     echo "dummy [OK] -- Can't run fpdiff.py because we don't have python or validata" >>validation.log
 else
-    $OOMPH_ROOT_DIR/scripts/fpdiff.py ../validata/fsi_fluid_soln.dat.gz \
-        RESLT/fsi_fluid_soln0.dat 0.1 10e-8 >>validation.log
+    if [ -e ../airy_cantilever_with_hypre ]; then
+        touch  RESLT/airy_soln0.dat
+        $OOMPH_ROOT_DIR/scripts/fpdiff.py ../validata/airy_soln.dat.gz \
+                                          RESLT/airy_soln0.dat 0.1 10e-6 >>validation.log
+    else
+        echo "dummy [OK] -- no trilinos" >>validation.log
+    fi
 fi
+
+
 if test "$3" = "no_fpdiff"; then
     echo "dummy [OK] -- Can't run fpdiff.py because we don't have python or validata" >>validation.log
 else
-    $OOMPH_ROOT_DIR/scripts/fpdiff.py ../validata/fsi_wall_soln.dat.gz \
-        RESLT/fsi_wall_soln0.dat 0.1 10e-6 >>validation.log
+    if [ -e ../airy_cantilever_with_hypre ]; then
+        touch  RESLT/airy_soln1.dat
+        $OOMPH_ROOT_DIR/scripts/fpdiff.py ../validata/airy_soln.dat.gz \
+                                          RESLT/airy_soln1.dat 0.1 10e-6 >>validation.log
+    else
+        echo "dummy [OK] -- no hypre" >>validation.log
+    fi
 fi
+
+
+if test "$3" = "no_fpdiff"; then
+    echo "dummy [OK] -- Can't run fpdiff.py because we don't have python or validata" >>validation.log
+else
+    if [ -e ../airy_cantilever ]; then
+        touch  RESLT/airy_soln2.dat
+        $OOMPH_ROOT_DIR/scripts/fpdiff.py ../validata/airy_soln.dat.gz \
+           RESLT/airy_soln2.dat 0.1 10e-6 >>validation.log
+    else
+        echo "dummy [OK] -- no trilinos" >>validation.log
+    fi
+fi
+
+
+if test "$3" = "no_fpdiff"; then
+    echo "dummy [OK] -- Can't run fpdiff.py because we don't have python or validata" >>validation.log
+else
+    if [ -e ../airy_cantilever ]; then
+        touch  RESLT/airy_soln3.dat
+        $OOMPH_ROOT_DIR/scripts/fpdiff.py ../validata/airy_soln.dat.gz \
+          RESLT/airy_soln3.dat 0.1 10e-6 >>validation.log
+    else
+        echo "dummy [OK] -- no trilinos" >>validation.log
+    fi
+fi
+ 
+# FSI Preconditioner
+#===================
+if [ -e ../fsi_channel_with_leaflet ]; then
+    echo "Running FSI Preconditioner on Channel with Leaflet Problem"
+    $MPI_RUN_COMMAND ../fsi_channel_with_leaflet >OUTPUT_fsi
+    echo "done"
+    echo ""
+    echo " " >>validation.log
+    echo "FSI Preconditioner Tests" >>validation.log
+    echo "------------------------" >>validation.log
+    echo " " >>validation.log
+    echo "Validation directory: " >>validation.log
+    echo " " >>validation.log
+    echo "  " $(pwd) >>validation.log
+    echo " " >>validation.log
+    if test "$3" = "no_fpdiff"; then
+        echo "dummy [OK] -- Can't run fpdiff.py because we don't have python or validata" >>validation.log
+    else
+        $OOMPH_ROOT_DIR/scripts/fpdiff.py ../validata/fsi_fluid_soln.dat.gz \
+                                          RESLT/fsi_fluid_soln0.dat 0.1 10e-8 >>validation.log
+    fi
+    if test "$3" = "no_fpdiff"; then
+        echo "dummy [OK] -- Can't run fpdiff.py because we don't have python or validata" >>validation.log
+    else
+        $OOMPH_ROOT_DIR/scripts/fpdiff.py ../validata/fsi_wall_soln.dat.gz \
+                                          RESLT/fsi_wall_soln0.dat 0.1 10e-6 >>validation.log
+    fi
+else
+    echo "Not running FSI Preconditioner on Channel with Leaflet Problem (no trilinos)"
+    echo " " >>validation.log
+    echo "FSI Preconditioner Tests" >>validation.log
+    echo "------------------------" >>validation.log
+    echo " " >>validation.log
+    echo "Validation directory: " >>validation.log
+    echo " " >>validation.log
+    echo "  " $(pwd) >>validation.log
+    echo " " >>validation.log
+    echo "dummy [OK] -- no trilinos" >>validation.log
+    echo "dummy [OK] -- no trilinos" >>validation.log
+fi
+
 
 # Trilinos test
 #==============
@@ -627,27 +693,32 @@ echo " " >>validation.log
 if test "$3" = "no_fpdiff"; then
     echo "dummy [OK] -- Can't run fpdiff.py because we don't have python or validata" >>validation.log
 else
-    echo "SuperLU_dist matrix based solve w/ global CRDoubleMatrixSolver" >>validation.log
-    $OOMPH_ROOT_DIR/scripts/fpdiff.py ../validata/direct_solver_matrix_solve_result.dat.gz \
-        RESLT/SuperLU_dist_CRDoubleMatrix_global.dat >>validation.log
-    echo "SuperLU_dist matrix based solve w/ dist CRDoubleMatrixSolver" >>validation.log
-    $OOMPH_ROOT_DIR/scripts/fpdiff.py ../validata/direct_solver_matrix_solve_result.dat.gz \
-        RESLT/SuperLU_dist_CRDoubleMatrix_distributed.dat >>validation.log
-    echo "SuperLU_dist global problem based solve" >>validation.log
-    $OOMPH_ROOT_DIR/scripts/fpdiff.py ../validata/direct_solver_problem_solve_result.dat.gz \
-        RESLT/soln_direct_solver_1.dat >>validation.log
-    echo "SuperLU_dist global problem based solve" >>validation.log
-    $OOMPH_ROOT_DIR/scripts/fpdiff.py ../validata/direct_solver_problem_solve_result.dat.gz \
-        RESLT/soln_direct_solver_2.dat >>validation.log
-
     echo "MUMPS-based global problem based solve" >>validation.log
     if [ -f RESLT/dummy_mumps.dat ]; then
         echo "Using dummy data for MUMPS self-test (don't have mumps!)"
         echo "[OK] (Dummy for non-existent MUMPS)" >>validation.log
     else
         $OOMPH_ROOT_DIR/scripts/fpdiff.py ../validata/direct_solver_problem_solve_result.dat.gz \
-            RESLT/soln_direct_solver_3.dat >>validation.log
+            RESLT/soln_direct_solver_1.dat >>validation.log
     fi
+
+
+    # hierher bypassing superlu_dist
+    let NUM_TESTS=$NUM_TESTS-4
+
+    #echo "SuperLU_dist matrix based solve w/ global CRDoubleMatrixSolver" >>validation.log
+    #$OOMPH_ROOT_DIR/scripts/fpdiff.py ../validata/direct_solver_matrix_solve_result.dat.gz \
+    #    RESLT/SuperLU_dist_CRDoubleMatrix_global.dat >>validation.log
+    #echo "SuperLU_dist matrix based solve w/ dist CRDoubleMatrixSolver" >>validation.log
+    #$OOMPH_ROOT_DIR/scripts/fpdiff.py ../validata/direct_solver_matrix_solve_result.dat.gz \
+    #    RESLT/SuperLU_dist_CRDoubleMatrix_distributed.dat >>validation.log
+    #echo "SuperLU_dist global problem based solve" >>validation.log
+    #$OOMPH_ROOT_DIR/scripts/fpdiff.py ../validata/direct_solver_problem_solve_result.dat.gz \
+    #    RESLT/soln_direct_solver_2.dat >>validation.log
+    #echo "SuperLU_dist global problem based solve" >>validation.log
+    #$OOMPH_ROOT_DIR/scripts/fpdiff.py ../validata/direct_solver_problem_solve_result.dat.gz \
+    #    RESLT/soln_direct_solver_3.dat >>validation.log
+
 fi
 
 mv RESLT RESLT_test

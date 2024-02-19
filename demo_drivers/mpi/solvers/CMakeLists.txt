@@ -9,25 +9,33 @@ if(NOT oomphlib_FOUND)
 endif()
 include(CTest)
 
-oomph_add_executable(
-  NAME driven_cavity
-  SOURCES driven_cavity.cc
-  LIBRARIES oomph::navier_stokes oomph::meshes oomph::generic)
+if(OOMPH_HAS_HYPRE)
+  oomph_add_executable(
+    NAME driven_cavity
+    SOURCES driven_cavity.cc
+    LIBRARIES oomph::navier_stokes oomph::meshes oomph::generic)
+endif()
 
 oomph_add_executable(
   NAME direct_solver_test
   SOURCES direct_solver_test.cc
   LIBRARIES oomph::poisson oomph::meshes oomph::generic)
 
-oomph_add_executable(
-  NAME airy_cantilever
-  SOURCES airy_cantilever.cc
-  LIBRARIES oomph::solid oomph::constitutive oomph::meshes oomph::generic)
 
-oomph_add_executable(
-  NAME fsi_channel_with_leaflet
-  SOURCES fsi_channel_with_leaflet.cc
-  LIBRARIES oomph::beam oomph::navier_stokes oomph::meshes oomph::generic)
+# This can only be run in parallel if we have trilinos
+if(OOMPH_HAS_TRILINOS)
+  oomph_add_executable(
+    NAME airy_cantilever
+    SOURCES airy_cantilever.cc
+    LIBRARIES oomph::solid oomph::constitutive oomph::meshes oomph::generic)
+  
+  if(OOMPH_HAS_HYPRE)
+    oomph_add_executable(
+      NAME airy_cantilever_with_hypre
+      SOURCES airy_cantilever.cc
+      LIBRARIES oomph::solid oomph::constitutive oomph::meshes oomph::generic)
+  endif()  
+endif()
 
 if(OOMPH_HAS_TRILINOS)
   oomph_add_executable(
@@ -39,17 +47,33 @@ if(OOMPH_HAS_TRILINOS)
     NAME two_d_multi_poisson
     SOURCES two_d_multi_poisson.cc
     LIBRARIES oomph::meshes oomph::generic)
+  
+  oomph_add_executable(
+    NAME fsi_channel_with_leaflet
+    SOURCES fsi_channel_with_leaflet.cc
+    LIBRARIES oomph::beam oomph::navier_stokes oomph::meshes oomph::generic)
 endif()
 
 # ---------------------------------- TESTING ----------------------------------
 
-set(TEST_TARGET_DEPS driven_cavity direct_solver_test airy_cantilever
-    fsi_channel_with_leaflet)
+set(TEST_TARGET_DEPS direct_solver_test)
 
 if(OOMPH_HAS_TRILINOS)
   list(APPEND TEST_TARGET_DEPS TrilinosSolver_test two_d_multi_poisson)
 endif()
 
+if(OOMPH_HAS_TRILINOS)
+  list(APPEND TEST_TARGET_DEPS airy_cantilever fsi_channel_with_leaflet)
+  if(OOMPH_HAS_HYPRE)
+    list(APPEND TEST_TARGET_DEPS airy_cantilever_with_hypre)
+  endif()
+endif()
+
+
+if(OOMPH_HAS_HYPRE)
+  list(APPEND TEST_TARGET_DEPS driven_cavity)
+endif()
+ 
 oomph_add_test(
   TEST_NAME mpi.solvers
   DEPENDS_ON ${TEST_TARGET_DEPS}
