@@ -567,8 +567,8 @@ namespace oomph
   //=========================================================
   /// 3D Gaussian integration class.
 
- //  hierher wrong
- 
+  //  hierher wrong
+
   /// 4x4x4 integration points. This integration scheme can
   /// integrate up to seventh-order polynomials exactly and
   /// is therefore a suitable "full" integration scheme
@@ -585,11 +585,10 @@ namespace oomph
     static const double Knot[64][3], Weight[64];
 
   public:
-   
     /// Default constructor (empty)
     Gauss()
     {
-     oomph_info << "Wrong wrong wrong!"<< std::endl;
+      oomph_info << "Wrong wrong wrong!" << std::endl;
     };
 
     /// Broken copy constructor
@@ -607,19 +606,19 @@ namespace oomph
     /// Return coordinate x[j] of integration point i
     double knot(const unsigned& i, const unsigned& j) const
     {
-     assert(false);
+      assert(false);
       return Knot[i][j];
     }
 
     /// Return weight of integration point i
     double weight(const unsigned& i) const
     {
-     assert(false);
+      assert(false);
       return Weight[i];
     }
   };
 
- 
+
   //=========================================================
   /// Class for multidimensional Gaussian integration rules,
   /// over intervals other than -1 to 1, all intervals are
