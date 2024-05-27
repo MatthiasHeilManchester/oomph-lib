@@ -833,4 +833,7 @@ namespace oomph
   template class QElement<3, 3>;
   template class QElement<3, 4>;
 
+ // hierher currently dummy version =  <3,4>
+ template class QElement<3, 5>;
+
 } // namespace oomph
