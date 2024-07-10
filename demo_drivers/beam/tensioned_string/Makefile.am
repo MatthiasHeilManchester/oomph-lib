@@ -2,7 +2,7 @@
 include $(top_srcdir)/config/makefile_templates/demo_drivers
 
 #Name of executable
-check_PROGRAMS=tensioned_string
+check_PROGRAMS=tensioned_string tensioned_string2
 
 #Sources for the executable
 tensioned_string_SOURCES = tensioned_string.cc
@@ -10,3 +10,11 @@ tensioned_string_SOURCES = tensioned_string.cc
 # Required libraries:
 # $(FLIBS) is included in case the solver involves fortran sources.
 tensioned_string_LDADD = -L@libdir@ -lbeam -lgeneric $(EXTERNAL_LIBS) $(FLIBS)
+
+
+#Sources for the executable
+tensioned_string2_SOURCES = tensioned_string2.cc
+
+# Required libraries:
+# $(FLIBS) is included in case the solver involves fortran sources.
+tensioned_string2_LDADD = -L@libdir@ -lbeam -lgeneric $(EXTERNAL_LIBS) $(FLIBS)

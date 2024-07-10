@@ -34,6 +34,95 @@ using namespace std;
 
 using namespace oomph;
 
+//=========================================================================
+/// Steady, straight 1D line in 2D space with stretch_ratio
+///  \f[ x = \zeta stretch_ratio \f]
+///  \f[ y = 0  \f]
+//=========================================================================
+class NewStraightLine: public GeomObject
+{
+public:
+ 
+  /// Constructor derives from GeomObject(1, 2)
+  /// Pass stretch_ratio to this class (defaults to 1 in which case
+  /// the Lagrangian coordinate is the arclength)
+  NewStraightLine(const double& stretch_ratio=1.0) : GeomObject(1, 2)
+  {
+    Stretch_ratio = stretch_ratio;
+  }
+
+  /// Broken copy constructor
+  NewStraightLine(const NewStraightLine& dummy) = delete;
+
+  /// Broken assignment operator
+  void operator=(const NewStraightLine&) = delete;
+
+  /// Position Vector at Lagrangian coordinate zeta
+  void position(const Vector<double>& zeta, Vector<double>& r) const
+  {
+    r[0] = zeta[0] * Stretch_ratio;
+    r[1] = 0.0;
+  }
+
+
+  /// Derivative of position Vector w.r.t. to coordinates:
+  /// \f$ \frac{dR_i}{d \zeta_\alpha}\f$ = drdzeta(alpha,i).
+  /// Evaluated at current time.
+  virtual void dposition(const Vector<double>& zeta,
+                         DenseMatrix<double>& drdzeta) const
+  {
+    // Tangent vector
+    drdzeta(0, 0) = Stretch_ratio;
+    drdzeta(0, 1) = 0.0;
+  }
+
+
+  /// 2nd derivative of position Vector w.r.t. to coordinates:
+  /// \f$ \frac{d^2R_i}{d \zeta_\alpha d \zeta_\beta}\f$ =
+  /// ddrdzeta(alpha,beta,i). Evaluated at current time.
+  virtual void d2position(const Vector<double>& zeta,
+                          RankThreeTensor<double>& ddrdzeta) const
+  {
+    // Derivative of tangent vector
+    ddrdzeta(0, 0, 0) = 0.0;
+    ddrdzeta(0, 0, 1) = 0.0;
+  }
+
+
+  /// Posn Vector and its  1st & 2nd derivatives
+  /// w.r.t. to coordinates:
+  /// \f$ \frac{dR_i}{d \zeta_\alpha}\f$ = drdzeta(alpha,i).
+  /// \f$ \frac{d^2R_i}{d \zeta_\alpha d \zeta_\beta}\f$ =
+  /// ddrdzeta(alpha,beta,i).
+  /// Evaluated at current time.
+  virtual void d2position(const Vector<double>& zeta,
+                          Vector<double>& r,
+                          DenseMatrix<double>& drdzeta,
+                          RankThreeTensor<double>& ddrdzeta) const
+  {
+    // Position Vector
+    r[0] = zeta[0] * Stretch_ratio;
+    r[1] = 0.0;
+
+    // Tangent vector
+    drdzeta(0, 0) = Stretch_ratio;
+    drdzeta(0, 1) = 0.0;
+
+    // Derivative of tangent vector
+    ddrdzeta(0, 0, 0) = 0.0;
+    ddrdzeta(0, 0, 1) = 0.0;
+  }
+
+private:
+
+ /// Define the length of the beam
+ double Stretch_ratio;
+ 
+};
+
+
+
+
 //========start_of_namespace========================
 /// Namespace for physical parameters
 //==================================================
@@ -66,7 +155,8 @@ public:
  
  /// Constructor: The arguments are the number of elements, 
  /// the length of domain
- ElasticBeamProblem(const unsigned &n_elem, const double &length);
+ ElasticBeamProblem(const unsigned &n_elem, const double &length,
+                    const double& stretch_ratio);
  
  /// Conduct a parameter study
  void parameter_study();
@@ -100,16 +190,21 @@ private:
 /// Constructor for elastic beam problem
 //======================================================================
 ElasticBeamProblem::ElasticBeamProblem(const unsigned &n_elem,
-                                       const double &length) : Length(length)
+                                       const double &length,
+                                       const double& stretch_ratio) : Length(length)
 {
  // Set the undeformed beam to be a straight line at y=0
- Undef_beam_pt=new StraightLine(0.0); 
+ Undef_beam_pt=new NewStraightLine(stretch_ratio); 
 
  // Create the (Lagrangian!) mesh, using the geometric object
  // Undef_beam_pt to specify the initial (Eulerian) position of the
  // nodes.
+
+ // Compensate for stretched coordinate by adjusting nominal length (in terms
+ // of the coordinate)
+ double compensated_length=length/stretch_ratio;
  Problem::mesh_pt() = 
-  new OneDLagrangianMesh<HermiteBeamElement>(n_elem,length,Undef_beam_pt);
+  new OneDLagrangianMesh<HermiteBeamElement>(n_elem,compensated_length,Undef_beam_pt);
 
  // Set the boundary conditions: Each end of the beam is fixed in space
  // Loop over the boundaries (ends of the beam)
@@ -252,17 +347,34 @@ void ElasticBeamProblem::parameter_study()
 } // end of parameter study
 
 //========start_of_main================================================
-/// Driver for beam (string under tension) test problem 
+/// Driver for beam (string under tension) test problem.
+/// Redo with non-arclength parametrisation.
 //=====================================================================
-int main()
+int main(int argc, char** argv)
 {
+ 
+ // Store command line arguments
+ CommandLineArgs::setup(argc, argv);
+ 
+ // Stretch ratio
+ double stretch_ratio=1.0;
+ CommandLineArgs::specify_command_line_flag(
+  "--stretch_ratio",&stretch_ratio);
+
+ // Set the 2nd Piola Kirchhoff prestress
+ Global_Physical_Variables::Sigma0=0.1; 
+ CommandLineArgs::specify_command_line_flag(
+  "--sigma0",&Global_Physical_Variables::Sigma0);
+
+  // Parse command line
+  CommandLineArgs::parse_and_assign();
+
+  // Doc what has actually been specified on the command line
+  CommandLineArgs::doc_specified_flags();
 
  // Set the non-dimensional thickness 
  Global_Physical_Variables::H=0.01; 
- 
- // Set the 2nd Piola Kirchhoff prestress
- Global_Physical_Variables::Sigma0=0.1; 
- 
+  
  // Set the length of domain
  double L = 10.0;
 
@@ -271,20 +383,7 @@ int main()
  unsigned n_element = 10;
 
  // Construst the problem
- ElasticBeamProblem problem(n_element,L);
-
- // Check that we're ready to go:
- cout << "\n\n\nProblem self-test ";
- if (problem.self_test()==0) 
-  {
-   cout << "passed: Problem can be solved." << std::endl;
-  }
- else 
-  {
-   throw OomphLibError("Self test failed",
-                       OOMPH_CURRENT_FUNCTION,
-                       OOMPH_EXCEPTION_LOCATION);
-  }
+ ElasticBeamProblem problem(n_element,L,stretch_ratio);
 
  // Conduct parameter study
  problem.parameter_study();
