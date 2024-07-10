@@ -493,17 +493,17 @@ namespace oomph
           // Correction factor for non-arclength coordinate.
           // Remember that (undeformed) metric tensor features
           // in elasticity tensor!
-          double correction_factor_for_non_arclength_coordinate=
-           1.0/(adet*adet);
+          double correction_factor_for_non_arclength_coordinate =
+            1.0 / (adet * adet);
 
           // Correction factor for non-arclength coordinate.
           // Remember that the pre-stress is a second Piola Kirchhoff
           // stress and in the undeformed configuration the product of
           // of its magnitude with the undeformed (but stretched!)
           // tangent basis vector must give the actual pre-stress.
-          double prestress_correction_factor_for_non_arclength_coordinate=
-           1.0/(adet);
-          
+          double prestress_correction_factor_for_non_arclength_coordinate =
+            1.0 / (adet);
+
           // Loop over the coordinate directions
           for (unsigned i = 0; i < n_dim; i++)
           {
@@ -523,16 +523,17 @@ namespace oomph
                 h_ratio * Lambda_sq * accel[i] * psi(n, k) * W * sqrt(adet);
 
               // Membrane term with axial prestress
-              residuals[local_eqn] += h_ratio * (
-               sigma_0*prestress_correction_factor_for_non_arclength_coordinate +
-               gamma*correction_factor_for_non_arclength_coordinate) *
-                                      interpolated_A(0, i) * dpsidxi(n, k, 0) *
-                                      W * sqrt(adet);
+              residuals[local_eqn] +=
+                h_ratio *
+                (sigma_0 *
+                   prestress_correction_factor_for_non_arclength_coordinate +
+                 gamma * correction_factor_for_non_arclength_coordinate) *
+                interpolated_A(0, i) * dpsidxi(n, k, 0) * W * sqrt(adet);
 
               // Bending term: Minus sign because \delta \kappa = - \delta B
               residuals[local_eqn] -=
-                h_ratio * (1.0 / 12.0) * HoR * HoR *
-               kappa * correction_factor_for_non_arclength_coordinate *
+                h_ratio * (1.0 / 12.0) * HoR * HoR * kappa *
+                correction_factor_for_non_arclength_coordinate *
                 (N[i] * d2psidxi(n, k, 0) +
                  normal_var[i][0] * interpolated_dAdxi(0, 0) +
                  normal_var[i][1] * interpolated_dAdxi(0, 1)) *
