@@ -585,12 +585,12 @@ namespace oomph
     static const double Knot[64][3], Weight[64];
 
   public:
-
-   
     /// Default constructor (empty)
     Gauss()
     {
-      oomph_info << "Wrong wrong wrong! Called during static instantiation but update" << std::endl;
+      oomph_info
+        << "Wrong wrong wrong! Called during static instantiation but update"
+        << std::endl;
     }
 
     /// Broken copy constructor
