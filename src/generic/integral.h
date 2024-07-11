@@ -589,9 +589,7 @@ namespace oomph
    
     /// Default constructor (empty)
     Gauss()
-    {
-      oomph_info << "Wrong wrong wrong! Called during static instantiation but update" << std::endl;
-    }
+    {}
 
     /// Broken copy constructor
     Gauss(const Gauss& dummy) = delete;
@@ -602,12 +600,15 @@ namespace oomph
     /// Number of integration points of the scheme
     unsigned nweight() const
     {
+      oomph_info << "Dummy implementation; don't use" << std::endl;
+      assert(false);
       return Npts;
     }
 
     /// Return coordinate x[j] of integration point i
     double knot(const unsigned& i, const unsigned& j) const
     {
+      oomph_info << "Dummy implementation; don't use" << std::endl;
       assert(false);
       return Knot[i][j];
     }
@@ -615,6 +616,7 @@ namespace oomph
     /// Return weight of integration point i
     double weight(const unsigned& i) const
     {
+      oomph_info << "Dummy implementation; don't use" << std::endl;
       assert(false);
       return Weight[i];
     }
