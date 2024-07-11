@@ -178,7 +178,7 @@ namespace oomph
     /// should we look and so this function (re)sets these x values.
     // [zdec] I'm not quite sure why this is even necessary, my guess is it is
     // because the position interpolation is broken before these are initialised
-    // the initial assignment is inconsistent.
+    // the initial assignment is inconsistent. - Aidan.
     void repair_lagrange_node_positions()
     {
       // Loop over the non vertex nodes
@@ -716,7 +716,7 @@ to access interpolated eulerian coordinate",
         Association_matrix_pt = 0;
       }
       else
-      { /* No association matrix for the Bell Elements. Throw here ?*/
+      { // No association matrix for the Bell Elements. Throw here if PARANOID?
       }
     };
 

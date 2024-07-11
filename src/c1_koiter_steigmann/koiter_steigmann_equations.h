@@ -42,7 +42,6 @@ namespace oomph
 
     /// \short Function pointer to pressure function fct(x,f(x)) --
     /// x is a Vector!
-    // typedef void (*PressureFctPt)(const Vector<double>& x, double& f);
     typedef void (*StressFctPt)(const Vector<double>& x,
                                 const Vector<double>& u,
                                 const DenseMatrix<double>& strain,

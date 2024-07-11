@@ -30,14 +30,33 @@
 // oomph-lib headers
 #include "c1_curved_elements.h"
 
-// The matrix that connverts from the set of monomials to a the shape functions
-// defined on the basic element
-// this output is directly from the mathematica script that generated the basic
-// shape functions.
+// As the C1 curved Bell triangle elements require degree n=7,9 polynomials for
+// p=3,5 (resp.) boundary interpolation. We construct their basis functions from
+// the degree n or less monomials.
 
-// We could possibly change this out for a static DenseMatrix which has the LU
-// decomposition stored - might give snmaller round off and be of comparably
-// speed HERE
+// This file contains functions which fill out the matrix, A, which maps between
+// two different bases for polynomials of degree n=7,9. Specifically, from the
+// reference basis of all monomials of degree n or less, to the reference basis
+// of degree n polynomials with meaningful degrees of freedom on the triangle
+// outlined in both Aidan and Davids theses.
+
+// Note that the resulting interpolation spaces (degree n polynomials) are huge
+// and not what we need for C1 hermite basis on curved triangles, so we use the
+// constraints that the triangle edges only need to interpolate degree 5
+// polynomials and that the normal derivatives along edges only need to
+// interpolate degree 3 polynomials. This makes many of the dofs redunant and
+// the conversion to the new basis is implemented in the file
+// c1_curved_basic_basis.cc
+
+// There are 36 monomials of degree less than or equal to 7 hence the order 3
+// boundary interpolation uses a 36x36 matrix to go between monomials and the
+// order 7 reference basis
+
+// There are 55 monomials of degree less than or equal to 9 hence the order 5
+// boundary interpolation uses a 55x55 matrix to go between monomials and the
+// order 9 reference basis
+
+
 
 // We could definitely store this as a static
 namespace oomph

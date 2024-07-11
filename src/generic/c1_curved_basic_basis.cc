@@ -30,14 +30,21 @@
 // oomph-lib headers
 #include "c1_curved_elements.h"
 
-// The matrix that connverts from the set of monomials to a the shape functions
-// defined on the basic element
-// this output is directly from the mathematica script that generated the basic
-// shape functions.
 
-// We could possibly change this out for a static DenseMatrix which has the LU
-// decomposition stored - might give smaller round off and be of comparably
-// speed HERE
+// This file contains the conversion from the meaningful reference polynomials
+// of degree n=7,9 to the C1 curved Bell bases for degree p=3,5 polynomially
+// interpolated boundaries.
+
+// For p=3, there are 36 reference polynomials of degree n=7 that are used to
+// calculate the 21 C1 curved Bell element basis polynomials.
+
+// For p=5, there are 55 reference polynomials of degree n=9 that are used to
+// calculate the 28 C1 curved Bell element basis polynomials.
+
+// [zdec] TODO: Importantly, as this is all geometry independent, it can all be
+// precomputed, this is currently only done for p=5 curved Bell elements so far
+// though. Once this is done for p=3,
+
 
 // We could definitely store this as a static
 namespace oomph
@@ -140,9 +147,9 @@ namespace oomph
     void BernadouElementBasis<5>::full_basic_polynomials(
       const Vector<double>& s_basic, Shape& phi) const
     {
-      // For convenience
+      // For convenience separate coordinates
       const double s = s_basic[0], t = s_basic[1];
-      // Precompute
+      // Precompute powers of coordinates
       const double s_p_2 = pow(s, 2), s_p_3 = pow(s, 3), s_p_4 = pow(s, 4),
                    s_p_5 = pow(s, 5), s_p_6 = pow(s, 6), s_p_7 = pow(s, 7);
       const double t_p_2 = pow(t, 2), t_p_3 = pow(t, 3), t_p_4 = pow(t, 4),
