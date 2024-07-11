@@ -586,8 +586,7 @@ namespace oomph
 
   public:
     /// Default constructor (empty)
-    Gauss()
-    {}
+    Gauss() {}
 
     /// Broken copy constructor
     Gauss(const Gauss& dummy) = delete;
