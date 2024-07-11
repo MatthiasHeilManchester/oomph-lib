@@ -585,8 +585,6 @@ namespace oomph
     static const double Knot[64][3], Weight[64];
 
   public:
-
-   
     /// Default constructor (empty)
     Gauss()
     {}
