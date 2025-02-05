@@ -783,18 +783,18 @@ namespace oomph
                 // If at a non-zero degree of freedom add in the entry
                 if (local_unknown >= 0)
                 {
-		  // If damping is on at this internal data, add contribution
-		  TimeStepper* timestepper_pt =
-		    this->internal_data_pt(k_type2)->time_stepper_pt();
-		  bool damped = W_is_damped && !(timestepper_pt->is_steady());
-		  if(damped)
-		  {
-		    // Contribution from buckle stabilising drag
-		    jacobian(local_eqn, local_unknown) +=
-		      psi_i_w(k_type2) *
-		      timestepper_pt->weight(1, 0) *
-		      mu * test_n_w(j_node, k_type) * W;
-		  }
+                  // If damping is on at this internal data, add contribution
+                  TimeStepper* timestepper_pt =
+                      this->w_internal_data_pt()->time_stepper_pt();
+                  bool damped = W_is_damped && !(timestepper_pt->is_steady());
+                  if(damped)
+                  {
+                    // Contribution from buckle stabilising drag
+                    jacobian(local_eqn, local_unknown) +=
+                        psi_i_w(k_type2) *
+                        timestepper_pt->weight(1, 0) *
+                        mu * test_n_w(j_node, k_type) * W;
+                  }
                   // Loop over dimensions
                   for (unsigned alpha = 0; alpha < 2; ++alpha)
                   {
@@ -1019,7 +1019,7 @@ namespace oomph
               {
 		// If damping is on at this internal data, add contribution
 		TimeStepper* timestepper_pt =
-		  this->internal_data_pt(k_type2)->time_stepper_pt();
+		  this->w_internal_data_pt()->time_stepper_pt();
 		bool damped = W_is_damped && !(timestepper_pt->is_steady());
 		if(damped)
 		{
@@ -1444,7 +1444,7 @@ namespace oomph
 
       // Output the interpolated unknowns
       Vector<double> interpolated_vals(n_unknown, 0.0);
-      interpolated_vals = interpolated_fvk_disp_and_deriv(s);
+      interpolated_vals = interpolated_fvk_disp(s);
       for (Vector<double>::iterator it = interpolated_vals.begin();
            it != interpolated_vals.end();
            ++it)
@@ -1501,7 +1501,7 @@ namespace oomph
 
       // Output the interpolated unknowns
       Vector<double> interpolated_vals(n_unknown, 0.0);
-      interpolated_vals = interpolated_fvk_disp_and_deriv(s);
+      interpolated_vals = interpolated_fvk_disp(s);
       for (unsigned i = 0; i < n_unknown; i++)
       {
         fprintf(file_pt, "%g \n", interpolated_vals[i]);
@@ -2076,7 +2076,7 @@ void FoepplVonKarmanEquations::output_smooth_stress(std::ostream &outfile,
     //====================== END OF INTERPOLATION ============================
 
     // Copy our interpolated fields into the order we want and return them.
-    Vector<double> interpolated_vals(12, 0.0);
+    Vector<double> interpolated_vals(3, 0.0);
     interpolated_vals[0] = interpolated_u[0]; // ux
     interpolated_vals[1] = interpolated_u[1]; // uy
     interpolated_vals[2] = interpolated_w[0]; // w

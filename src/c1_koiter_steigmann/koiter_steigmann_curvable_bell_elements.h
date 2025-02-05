@@ -375,18 +375,32 @@ namespace oomph
     //----------------------------------------------------------------------
     // Output and documentation
 
-    /// \short Output function:
-    ///  x,y,u   or    x,y,z,u
+    /// Output function:
+    ///   x,y,u at n_plot^DIM plot points
     void output(std::ostream& outfile)
     {
       KoiterSteigmannEquations::output(outfile);
     }
 
-    ///  \short Output function:
-    ///   x,y,u   or    x,y,z,u at n_plot^DIM plot points
+    /// Output function and derivatives:
+    ///   x,y,u,Du,DDu at n_plot^DIM plot points
+    void output_full(std::ostream& outfile)
+    {
+      KoiterSteigmannEquations::output_full(outfile);
+    }
+
+    /// Output function:
+    ///   x,y,u at n_plot^DIM plot points
     void output(std::ostream& outfile, const unsigned& n_plot)
     {
       KoiterSteigmannEquations::output(outfile, n_plot);
+    }
+
+    /// Output function and derivatives:
+    ///   x,y,u,Du,DDu at n_plot^DIM plot points
+    void output_full(std::ostream& outfile, const unsigned& n_plot)
+    {
+      KoiterSteigmannEquations::output_full(outfile, n_plot);
     }
 
     ///  \short Output function:
@@ -1311,8 +1325,7 @@ shape_and_test_foeppl_von_karman(...)",
     void fill_in_contribution_to_jacobian(Vector<double>& residuals,
                                           DenseMatrix<double>& jacobian)
     {
-      fill_in_generic_residual_contribution_constraint(
-        residuals, jacobian, 1);
+      fill_in_generic_residual_contribution_constraint(residuals, jacobian, 1);
     }
 
     /// Validate constraints which contain no unpinned dofs and pin their
@@ -1324,9 +1337,6 @@ shape_and_test_foeppl_von_karman(...)",
     // dofs?)
     void validate_and_pin_redundant_constraints()
     {
-      // [zdec] debug
-      std::cout << "Constraint Element" << std::endl;
-
       // Start by unpinning all lagrange multipliers in case the boundary
       // conditions are less restrictive than previously
       internal_data_pt(Index_of_lagrange_data)->unpin_all();
@@ -1335,8 +1345,8 @@ shape_and_test_foeppl_von_karman(...)",
       // [zdec] This full description might be overkill for the code but it will
       // go in my thesis.
 
-      // We need to keep trak of which fvk dofs are already 'used' by Lagrange
-      // constraints.  If dofs 3 and 4 in the right node (dw/dl_1, dw/dl_2) are
+      // We need to keep track of which fvk dofs are already 'used' by Lagrange
+      // constraints. If dofs 3 and 4 in the right node (dw/dl_1, dw/dl_2) are
       // the only unpinned dofs between three lagrange constraints (e.g. 3,4,5),
       // then including all three constraints will result in a three
       // (consistent) linearly dependent equations and hence a singular matrix.
@@ -1392,7 +1402,6 @@ shape_and_test_foeppl_von_karman(...)",
           // Index of the val associated with displacement in the left node
           unsigned left_ui_index = i_field * n_type + k_type;
 
-
           // Get whether each value is pinned
           bool right_ui_pinned = right_data_pt->is_pinned(right_ui_index);
           bool left_ui_pinned = left_data_pt->is_pinned(left_ui_index);
@@ -1402,15 +1411,17 @@ shape_and_test_foeppl_von_karman(...)",
           if (!right_ui_pinned && !right_data_used[right_ui_index])
           {
             // [zdec] debug
-            std::cout << "eqn " << condition_index << " depends on R dof"
-                      << k_type << std::endl;
+            std::cout << "eqn " << condition_index
+		      << " depends on R dof" << right_ui_index
+		      << std::endl;
             right_data_used[right_ui_index] = true;
           }
           else if (!left_ui_pinned && !left_data_used[left_ui_index])
           {
             // [zdec] debug
-            std::cout << "eqn " << condition_index << " depends on L dof"
-                      << k_type << std::endl;
+            std::cout << "eqn " << condition_index
+		      << " depends on L dof" << left_ui_index
+		      << std::endl;
             left_data_used[left_ui_index] = true;
           }
           else
@@ -1441,10 +1452,11 @@ shape_and_test_foeppl_von_karman(...)",
             // row/column
             internal_data_pt(Index_of_lagrange_data)->pin(condition_index);
           }
-        }
+        } // End of constraint for the displacement dof
 
-        // Constraints 1,2 use dofs 1,2 respectively from the right node and
-        // both constraints use both dofs 1 and 2 in the left
+
+        // Constraints 1,2 use dofs 1,2 (first derivatives) respectively from
+	// the right node and both constraints use both dofs 1 and 2 in the left
         for (unsigned k_type = 1; k_type < 3; k_type++)
         {
           // The index of the derivative
@@ -1452,30 +1464,30 @@ shape_and_test_foeppl_von_karman(...)",
           // Index of the condition on the element
           unsigned condition_index = i_field * n_type + k_type;
           // Index of the right nodes alpha-th derivative value
-          unsigned right_uida_index = i_field * n_type + k_type;
+          unsigned right_duida_index = i_field * n_type + k_type;
           // Index of the left nodes first derivative value
-          unsigned left_uid1_index = i_field * n_type + 1;
+          unsigned left_duid1_index = i_field * n_type + 1;
           // Index of the left nodes second derivative value
-          unsigned left_uid2_index = i_field * n_type + 2;
+          unsigned left_duid2_index = i_field * n_type + 2;
 
-          // Get whether each value is pinned
-          bool right_duida_pinned = right_data_pt->is_pinned(right_uida_index);
-          bool left_duid1_pinned = left_data_pt->is_pinned(left_uid1_index);
-          bool left_duid2_pinned = left_data_pt->is_pinned(left_uid2_index);
+          // Get whether each nodal value is pinned
+          bool right_duida_pinned = right_data_pt->is_pinned(right_duida_index);
+          bool left_duid1_pinned = left_data_pt->is_pinned(left_duid1_index);
+          bool left_duid2_pinned = left_data_pt->is_pinned(left_duid2_index);
 
           // If anything is free, mark it as used and continue without doing
           // anything else. We also need to check that each dof hasn't become
           // decoupled from this constraint by ensuring that its coefficient (if
           // it has one) is sufficiently large (> Orthogonality_tolerance)
-          if (!right_duida_pinned && !right_data_used[right_uida_index])
+          if (!right_duida_pinned && !right_data_used[right_duida_index])
           {
             // // [zdec] debug
             // std::cout << "eqn " << condition_index << " depends on dof R"
             //        << right_duida_index << std::endl;
-            right_data_used[right_uida_index] = true;
+            right_data_used[right_duida_index] = true;
             continue;
           }
-          if (!left_duid1_pinned && !left_data_used[left_uid1_index])
+          if (!left_duid1_pinned && !left_data_used[left_duid1_index])
           {
             // // [zdec] debug
             // std::cout << "eqn " << condition_index << " depends on dof L"
@@ -1483,11 +1495,11 @@ shape_and_test_foeppl_von_karman(...)",
             double coeff = jac_of_transform(0, alpha);
             if (fabs(coeff) > Orthogonality_tolerance)
             {
-              left_data_used[left_uid1_index] = true;
+              left_data_used[left_duid1_index] = true;
               continue;
             }
           }
-          if (!left_duid2_pinned && !left_data_used[left_uid2_index])
+          if (!left_duid2_pinned && !left_data_used[left_duid2_index])
           {
             // [zdec] debug
             // std::cout << "eqn " << condition_index << " depends on dof L"
@@ -1495,7 +1507,7 @@ shape_and_test_foeppl_von_karman(...)",
             double coeff = jac_of_transform(1, alpha);
             if (fabs(coeff) > Orthogonality_tolerance)
             {
-              left_data_used[left_uid2_index] = true;
+              left_data_used[left_duid2_index] = true;
               continue;
             }
           }
@@ -1529,18 +1541,18 @@ shape_and_test_foeppl_von_karman(...)",
         {
           // Index of the condition on the element
           unsigned condition_index = i_field * n_type + k_type;
-          // Index of the right nodes alpha-th derivative value
-          unsigned right_uidadb_index = i_field * n_type + k_type;
+          // Index of the right nodes alpha-beta-th derivative value
+          unsigned right_duidadb_index = i_field * n_type + k_type;
           // Index of the left nodes d1 derivative value
-          unsigned left_uid1_index = i_field * n_type + 1;
+          unsigned left_duid1_index = i_field * n_type + 1;
           // Index of the left nodes d2 derivative value
-          unsigned left_uid2_index = i_field * n_type + 2;
+          unsigned left_duid2_index = i_field * n_type + 2;
           // Index of the left nodes d1d1 derivative value
-          unsigned left_uid1d1_index = i_field * n_type + 3;
+          unsigned left_duid1d1_index = i_field * n_type + 3;
           // Index of the left nodes d1d2 derivative value
-          unsigned left_uid1d2_index = i_field * n_type + 4;
+          unsigned left_duid1d2_index = i_field * n_type + 4;
           // Index of the left nodes d2d2 derivative value
-          unsigned left_uid2d2_index = i_field * n_type + 5;
+          unsigned left_duid2d2_index = i_field * n_type + 5;
 
           // The index of the derivatives
           unsigned alpha, beta;
@@ -1564,64 +1576,68 @@ shape_and_test_foeppl_von_karman(...)",
           }
 
           // Get whether each value is pinned
-          bool right_uidadb_pinned =
-            right_data_pt->is_pinned(right_uidadb_index);
-          bool left_uid1_pinned = left_data_pt->is_pinned(left_uid1_index);
-          bool left_uid2_pinned = left_data_pt->is_pinned(left_uid2_index);
-          bool left_uid1d1_pinned = left_data_pt->is_pinned(left_uid1d1_index);
-          bool left_uid1d2_pinned = left_data_pt->is_pinned(left_uid1d2_index);
-          bool left_uid2d2_pinned = left_data_pt->is_pinned(left_uid2d2_index);
+          bool right_duidadb_pinned =
+	    right_data_pt->is_pinned(right_duidadb_index);
+          bool left_duid1_pinned = left_data_pt->is_pinned(left_duid1_index);
+          bool left_duid2_pinned = left_data_pt->is_pinned(left_duid2_index);
+          bool left_duid1d1_pinned = left_data_pt->is_pinned(left_duid1d1_index);
+          bool left_duid1d2_pinned = left_data_pt->is_pinned(left_duid1d2_index);
+          bool left_duid2d2_pinned = left_data_pt->is_pinned(left_duid2d2_index);
 
           // If anything is free, mark it as used and continue without doing
           // anything else. We also need to check that each dof hasn't become
           // decoupled from this constraint by ensuring that its coefficient
           // (if it has one) is sufficiently large (> Orthogonality_tolerance)
-          if (!right_uidadb_pinned && !right_data_used[right_uidadb_index])
+          if (!right_duidadb_pinned && !right_data_used[right_duidadb_index])
           {
             // [zdec] debug
-            std::cout << "eqn " << condition_index << " depends on dof R"
-                      << condition_index << std::endl;
-            right_data_used[right_uidadb_index] = true;
+            std::cout << "eqn " << condition_index
+		      << " depends on dof R" << right_duidadb_index
+		      << std::endl;
+            right_data_used[right_duidadb_index] = true;
             continue;
           }
-          if (!left_uid1_pinned && !left_data_used[left_uid1_index])
+          if (!left_duid1_pinned && !left_data_used[left_duid1_index])
           {
             double coeff = hess_of_transform[0](alpha, beta);
             if (fabs(coeff) > Orthogonality_tolerance)
             {
               // [zdec] debug
-              std::cout << "eqn " << condition_index << " depends on dof L3"
+              std::cout << "eqn " << condition_index
+			<< " depends on dof L" << left_duid1_index
                         << std::endl;
-              left_data_used[left_uid1_index] = true;
+              left_data_used[left_duid1_index] = true;
               continue;
             }
           }
-          if (!left_uid2_pinned && !left_data_used[left_uid2_index])
+          if (!left_duid2_pinned && !left_data_used[left_duid2_index])
           {
             double coeff = hess_of_transform[1](alpha, beta);
             if (fabs(coeff) > Orthogonality_tolerance)
             {
               // [zdec] debug
-              std::cout << "eqn " << condition_index << " depends on dof L4"
+              std::cout << "eqn " << condition_index
+			<< " depends on dof L" << left_duid2_index
                         << std::endl;
-              left_data_used[left_uid2_index] = true;
+              left_data_used[left_duid2_index] = true;
               continue;
             }
           }
-          if (!left_uid1d1_pinned && !left_data_used[left_uid1d1_pinned])
+          if (!left_duid1d1_pinned && !left_data_used[left_duid1d1_index])
           {
             double coef =
               jac_of_transform(0, alpha) * jac_of_transform(0, beta);
             if (fabs(coef) > Orthogonality_tolerance)
             {
               // [zdec] debug
-              std::cout << "eqn " << condition_index << " depends on dof L5"
+              std::cout << "eqn " << condition_index
+			<< " depends on dof L" << left_duid1d1_index
                         << std::endl;
-              left_data_used[left_uid1d1_index] = true;
+              left_data_used[left_duid1d1_index] = true;
               continue;
             }
           }
-          if (!left_uid1d2_pinned && !left_data_used[left_uid1d2_index])
+          if (!left_duid1d2_pinned && !left_data_used[left_duid1d2_index])
           {
             double coef =
               jac_of_transform(0, alpha) * jac_of_transform(1, beta) +
@@ -1629,22 +1645,24 @@ shape_and_test_foeppl_von_karman(...)",
             if (fabs(coef) > Orthogonality_tolerance)
             {
               // [zdec] debug
-              std::cout << "eqn " << condition_index << " depends on dof L6"
+              std::cout << "eqn " << condition_index
+			<< " depends on dof L" << left_duid1d2_index
                         << std::endl;
-              left_data_used[left_uid1d2_index] = true;
+              left_data_used[left_duid1d2_index] = true;
               continue;
             }
           }
-          if (!left_uid2d2_pinned && !left_data_used[left_uid2d2_index])
+          if (!left_duid2d2_pinned && !left_data_used[left_duid2d2_index])
           {
             double coef =
               jac_of_transform(1, alpha) * jac_of_transform(1, beta);
             if (fabs(coef) > Orthogonality_tolerance)
             {
               // [zdec] debug
-              std::cout << "eqn " << condition_index << " depends on dof L7"
+              std::cout << "eqn " << condition_index
+			<< " depends on dof L" << left_duid2d2_index
                         << std::endl;
-              left_data_used[left_uid2d2_index] = true;
+              left_data_used[left_duid2d2_index] = true;
               continue;
             }
           }
@@ -2101,7 +2119,7 @@ shape_and_test_foeppl_von_karman(...)",
         // Next two are from left gradient of u_i:
         //     - lambda_{1+\beta} * ui_{1+\alpha} * J_{\alpha\beta}
         //     - lambda_{3+\beta+\gamma} * ui_{1+\alpha} * H_{\alpha\beta\gamma}
-        // gamma>=beta so we don't double count lambda_6 condition
+        // gamma>=beta so we don't double count lambda_4 condition
         for (unsigned alpha = 0; alpha < 2; alpha++)
         {
           // Index of the left nodes d1 derivative value
@@ -2191,8 +2209,7 @@ shape_and_test_foeppl_von_karman(...)",
             // Index of lagrange value associated with the right alpha+beta-th
             // second derivatives
             unsigned left_uidadb_index = i_field * n_type + (3 + alpha + beta);
-            // Eqn number is the index of the second derivative of w which is
-            // the 3+alpha+beta-th dof
+            // Eqn number is the index of the second derivative of ui
             int left_eqn_number =
               external_local_eqn(Index_of_left_data, left_uidadb_index);
             // If this dof isn't pinned we add to the residual
@@ -2271,8 +2288,8 @@ shape_and_test_foeppl_von_karman(...)",
 	  // symmetry
         }
 
-        // Next two (first derivatives of w) are related by
-        //     grad_r(w) = grad_l(w)*J
+        // Next two (first derivatives of ui) are related by
+        //     grad_r(ui) = grad_l(ui)*J
         // where  J is the Jacobian grad_r(left coords)
         for (unsigned alpha = 0; alpha < 2; alpha++)
         {
@@ -2300,8 +2317,8 @@ shape_and_test_foeppl_von_karman(...)",
           }
         }
 
-        // Final three (second derivatives of w) are related by:
-        //     grad_r(grad_r(w)) = grad_l(grad_l(w))*J*J + grad_l(w)*H
+        // Final three (second derivatives of ui) are related by:
+        //     grad_r(grad_r(ui)) = grad_l(grad_l(ui))*J*J + grad_l(ui)*H
         // where H is the Hessian: grad_r(grad_r(left coords))
         // Loop over index of first derivative (0 or 1)
         for (unsigned alpha = 0; alpha < 2; alpha++)

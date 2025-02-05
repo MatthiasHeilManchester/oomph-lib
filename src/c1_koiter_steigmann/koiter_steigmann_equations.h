@@ -151,11 +151,18 @@ namespace oomph
     //----------------------------------------------------------------------
     // Output and documentation
 
-    /// Output with default number of plot points
+    /// Output displacements with default number of plot points
     void output(std::ostream& outfile)
     {
       const unsigned n_plot = 5;
       KoiterSteigmannEquations::output(outfile, n_plot);
+    }
+
+    /// Output displacements and derivatives with default number of plot points
+    void output_full(std::ostream& outfile)
+    {
+      const unsigned n_plot = 5;
+      KoiterSteigmannEquations::output_full(outfile, n_plot);
     }
 
     /// Output including stress with default number of plot points
@@ -165,9 +172,13 @@ namespace oomph
       KoiterSteigmannEquations::output(outfile, n_plot);
     }
 
-    /// Output FE representation of soln: x,y,u or x,y,z,u at
+    /// Output FE representation of soln: x,y,u at
     /// n_plot^DIM plot points
     void output(std::ostream& outfile, const unsigned& n_plot);
+
+    /// Output FE representation of soln and derivatives: x,y,u,Du,DDu at
+    /// n_plot^DIM plot points
+    void output_full(std::ostream& outfile, const unsigned& n_plot);
 
     /// Output FE representation of soln: x,y,u,stress at
     /// n_plot^DIM plot points
@@ -1080,7 +1091,7 @@ difference stress is not yet defined so an error has been thrown.",
 
             for (unsigned gamma = 0; gamma < 2; ++gamma)
             {
-              // Shouldn't this be -M_{i \al \be} \Ga^\ga_{\al \be} ?
+	      // In the derivation this is M_{iab}G^g_{ab} ?
               tension_vectors(i, alpha) -=
                 eta_u * moment_tensors(i, beta, gamma) *
                 christoffel_tensor(alpha, beta, gamma);

@@ -957,7 +957,60 @@ namespace oomph
 	outfile << x[i] << " ";
       }
 
-      // Loop for variables
+      // Loop for displacement variables
+      for (unsigned i = 0; i < Number_of_displacements; i++)
+      {
+	outfile << u[i][0] << " ";
+      }
+
+      outfile << std::endl;
+    }
+
+    // Write tecplot footer (e.g. FE connectivity lists)
+    this->write_tecplot_zone_footer(outfile, nplot);
+  }
+
+
+  //======================================================================
+  /// Output function:
+  ///
+  ///   x,y,u   or    x,y,z,u,Du,DDu
+  ///
+  /// nplot points in each coordinate direction
+  //======================================================================
+  void KoiterSteigmannEquations::output_full(std::ostream & outfile,
+					const unsigned& nplot)
+  {
+    // Dimension of the element
+    const unsigned dim = this->dim();
+
+    // Vector of local coordinates
+    Vector<double> s(dim, 0.0), x(dim, 0.0);
+
+    // Tecplot header info
+    outfile << this->tecplot_zone_string(nplot);
+
+    // Loop over plot points
+    unsigned num_plot_points = this->nplot_points(nplot);
+    // Vector<double> r(3);
+
+    for (unsigned iplot = 0; iplot < num_plot_points; iplot++)
+    {
+      // Get local coordinates of plot point
+      this->get_s_plot(iplot, nplot, s);
+      Vector<Vector<double>> u(Number_of_displacements,
+			       Vector<double>(6, 0.0));
+      interpolated_koiter_steigmann_disp(s, u);
+
+      // Get x position as Vector
+      this->interpolated_x(s, x);
+
+      for (unsigned i = 0; i < dim; i++)
+      {
+	outfile << x[i] << " ";
+      }
+
+      // Loop for displacement variables and derivatives
       for (unsigned i = 0; i < Number_of_displacements; i++)
       {
 	for (unsigned j = 0; j < 6; j++)

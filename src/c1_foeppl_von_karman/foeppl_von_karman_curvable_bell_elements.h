@@ -1846,9 +1846,6 @@ of freedom at internal points. They are {w ; w,x ; w,y ; w,xx ; w,xy ; w,yy}",
     // dofs?)
     void validate_and_pin_redundant_constraints()
     {
-      // [zdec] debug
-      std::cout << "Constraint Element" << std::endl;
-
       // Start by unpinning all lagrange multipliers in case the boundary
       // conditions are less restrictive than previously
       internal_data_pt(Index_of_lagrange_data)->unpin_all();
@@ -1857,8 +1854,8 @@ of freedom at internal points. They are {w ; w,x ; w,y ; w,xx ; w,xy ; w,yy}",
       // [zdec] This full description might be overkill for the code but it will
       // go in my thesis.
 
-      // We need to keep trak of which fvk dofs are already 'used' by Lagrange
-      // constraints.  If dofs 3 and 4 in the right node (dw/dl_1, dw/dl_2) are
+      // We need to keep track of which fvk dofs are already 'used' by Lagrange
+      // constraints. If dofs 3 and 4 in the right node (dw/dl_1, dw/dl_2) are
       // the only unpinned dofs between three lagrange constraints (e.g. 3,4,5),
       // then including all three constraints will result in a three
       // (consistent) linearly dependent equations and hence a singular matrix.
@@ -1871,10 +1868,13 @@ of freedom at internal points. They are {w ; w,x ; w,y ; w,xx ; w,xy ; w,yy}",
       // dof provided we choose a constraint and dof order that prioritise
       // marking dofs which aren't used again (i.e. right dofs).
 
+      // The number of nodal types per field
+      unsigned n_type = 6;
+
       // We use a vector of booleans to keep track of dofs that might be reused
       // (no need to track right dofs which are used once)
-      std::vector<bool> right_data_used(8, false);
-      std::vector<bool> left_data_used(8, false);
+      std::vector<bool> right_data_used(n_type, false);
+      std::vector<bool> left_data_used(n_type, false);
 
       // Store each data
       Data* left_data_pt = external_data_pt(Index_of_left_data);
@@ -1888,90 +1888,115 @@ of freedom at internal points. They are {w ; w,x ; w,y ; w,xx ; w,xy ; w,yy}",
                                                hess_of_transform);
 
       // Constraints 0-2 use dofs 0-2 respectively in each node
-      for (unsigned i_con = 0; i_con < 3; i_con++)
+      for (unsigned k_type = 0; k_type < 3; k_type++)
       {
-        // Get whether each value is pinned
-        bool right_ui_pinned = right_data_pt->is_pinned(i_con);
-        bool left_ui_pinned = left_data_pt->is_pinned(i_con);
+	// Index of the condition on the element
+	unsigned condition_index = k_type;
+        // Index of the val associated with displacement in the right node
+        unsigned right_ui_index = k_type;
+        // Index of the val associated with displacement in the left node
+        unsigned left_ui_index = k_type;
+
+	// Get whether each value is pinned
+	bool right_ui_pinned = right_data_pt->is_pinned(right_ui_index);
+        bool left_ui_pinned = left_data_pt->is_pinned(left_ui_index);
+
         // If anything is free, mark it as used and continue without doing
         // anything else
-        if (!right_ui_pinned && !right_data_used[i_con])
+        if (!right_ui_pinned && !right_data_used[right_ui_index])
         {
           // [zdec] debug
-          std::cout << "eqn " << i_con << " depends on dof R" << i_con
+          std::cout << "eqn " << condition_index
+		    << " depends on dof R" << right_ui_index
                     << std::endl;
-          right_data_used[i_con] = true;
-          continue;
+          right_data_used[right_ui_index] = true;
         }
-        if (!left_ui_pinned && !left_data_used[i_con])
+        else if (!left_ui_pinned && !left_data_used[left_ui_index])
         {
           // [zdec] debug
-          std::cout << "eqn " << i_con << " depends on dof L" << i_con
+
+          std::cout << "eqn " << condition_index
+		    << " depends on dof L" << left_ui_index
                     << std::endl;
-          left_data_used[i_con] = true;
-          continue;
+          left_data_used[left_ui_index] = true;
         }
-        // ---------------------------------------------------------------------
-        // If we made it here, it is because all dofs in the constraint are
-        // pinned so we need to check the constraint is satisfied manually and
-        // then remove it by pinning the corresponding lagrange multiplier
+	else
+	{
+	  // ---------------------------------------------------------------------
+	  // If we made it here, it is because all dofs in the constraint are
+	  // pinned so we need to check the constraint is satisfied manually and
+	  // then remove it by pinning the corresponding lagrange multiplier
 
-        // // Calculate the residual of the constraint
-        // double constraint_residual =
-        //   right_data_pt->value(i_con) - left_data_pt->value(i_con);
-        // // Check that the constraint is met and we don't have a tear
-        // if(constraint_residual > Constraint_tolerance)
-        // {
-        //   throw_unsatisfiable_constraint_error(i_con, constraint_residual);
-        // }
+	  // // Calculate the residual of the constraint
+	  // double constraint_residual =
+	  //   right_data_pt->value(i_con) - left_data_pt->value(i_con);
+	  // // Check that the constraint is met and we don't have a tear
+	  // if(constraint_residual > Constraint_tolerance)
+	  // {
+	  //   throw_unsatisfiable_constraint_error(i_con, constraint_residual);
+	  // }
 
-        // If it is met, we pin the lagrange multiplier that corresponds to
-        // this constraint as it is redundant and results in a zero row/column
-        internal_data_pt(Index_of_lagrange_data)->pin(i_con);
-      }
+	  // If it is met, we pin the lagrange multiplier that corresponds to
+	  // this constraint as it is redundant and results in a zero row/column
+	  internal_data_pt(Index_of_lagrange_data)->pin(condition_index);
+	}
+      } // End for loop over first three conditions [k_type]
 
-      // Constraints 3-4 use dofs 3-4 respectively from the right node and
-      // both in the left
+
+      // Constraints 3-4 use dofs 3-4 (first derivatives of w) respectively from
+      // the right node and both in the left
       for (unsigned alpha = 0; alpha < 2; alpha++)
       {
-        // Get the condition associated with this right derivative
-        unsigned i_con = 3 + alpha;
+	// Index of the condition on the element
+	unsigned condition_index = 3 + alpha;
+	// Index of the right nodes alpha-th derivative value
+        unsigned right_dwda_index = 3 + alpha;
+	// Index of the left nodes first derivative value
+	unsigned left_dwd1_index = 3;
+        // Index of the left nodes second derivative value
+        unsigned left_dwd2_index = 4;
 
-        // Get whether each value is pinned
-        bool right_ui_pinned = right_data_pt->is_pinned(i_con);
-        bool left_u3_pinned = left_data_pt->is_pinned(3);
-        bool left_u4_pinned = left_data_pt->is_pinned(4);
+        // Get whether each nodal value is pinned
+        bool right_dwda_pinned = right_data_pt->is_pinned(right_dwda_index);
+        bool left_dwd1_pinned = left_data_pt->is_pinned(left_dwd1_index);
+        bool left_dwd2_pinned = left_data_pt->is_pinned(left_dwd2_index);
+
         // If anything is free, mark it as used and continue without doing
         // anything else. We also need to check that each dof hasn't become
         // decoupled from this constraint by ensuring that its coefficient (if
         // it has one) is sufficiently large (> Orthogonality_tolerance)
-        if (!right_ui_pinned && !right_data_used[i_con])
+        if (!right_dwda_pinned && !right_data_used[right_dwda_index])
         {
           // [zdec] debug
-          std::cout << "eqn " << i_con << " depends on dof R" << i_con
+          std::cout << "eqn " << condition_index
+		    << " depends on dof R" << right_dwda_index
                     << std::endl;
-          right_data_used[i_con] = true;
+          right_data_used[right_dwda_index] = true;
           continue;
         }
-        if (!left_u3_pinned && !left_data_used[3])
+        if (!left_dwd1_pinned && !left_data_used[left_dwd1_index])
         {
           // [zdec] debug
-          std::cout << "eqn " << i_con << " depends on dof L3" << std::endl;
+          std::cout << "eqn " << condition_index
+		    << " depends on dof L" << left_dwd1_index
+		    << std::endl;
           double coeff = jac_of_transform(0, alpha);
           if (fabs(coeff) > Orthogonality_tolerance)
           {
-            left_data_used[3] = true;
+            left_data_used[left_dwd1_index] = true;
             continue;
           }
         }
-        if (!left_u4_pinned && !left_data_used[4])
+        if (!left_dwd2_pinned && !left_data_used[left_dwd2_index])
         {
           // [zdec] debug
-          std::cout << "eqn " << i_con << " depends on dof L4" << std::endl;
+          std::cout << "eqn " << condition_index
+		    << " depends on dof L" << left_dwd2_index
+		    << std::endl;
           double coeff = jac_of_transform(1, alpha);
           if (fabs(coeff) > Orthogonality_tolerance)
           {
-            left_data_used[4] = true;
+            left_data_used[left_dwd2_index] = true;
             continue;
           }
         }
@@ -1995,7 +2020,7 @@ of freedom at internal points. They are {w ; w,x ; w,y ; w,xx ; w,xy ; w,yy}",
 
         // If it is met, we pin the lagrange multiplier that corresponds to
         // this constraint as it is redundant and results in a zero row/column
-        internal_data_pt(Index_of_lagrange_data)->pin(i_con);
+        internal_data_pt(Index_of_lagrange_data)->pin(condition_index);
       }
 
       // Constraints 5-7 use dofs 5-7 respectively from the right node and
@@ -2006,62 +2031,83 @@ of freedom at internal points. They are {w ; w,x ; w,y ; w,xx ; w,xy ; w,yy}",
         for (unsigned beta = alpha; beta < 2; beta++)
         {
           // The index of the constraint
-          unsigned i_con = 5 + alpha + beta;
+          unsigned condition_index = 5 + alpha + beta;
+          // Index of the right nodes alpha-beta-th derivative value
+          unsigned right_dwdadb_index = 5 + alpha + beta;
+          // Index of the left nodes d1 derivative value
+          unsigned left_dwd1_index = 3;
+          // Index of the left nodes d2 derivative value
+          unsigned left_dwd2_index = 4;
+          // Index of the left nodes d1d1 derivative value
+          unsigned left_dwd1d1_index = 5;
+          // Index of the left nodes d1d2 derivative value
+          unsigned left_dwd1d2_index = 6;
+          // Index of the left nodes d2d2 derivative value
+          unsigned left_dwd2d2_index = 7;
 
-          // Get whether each value is pinned
-          bool right_ui_pinned = right_data_pt->is_pinned(i_con);
-          bool left_u3_pinned = left_data_pt->is_pinned(3);
-          bool left_u4_pinned = left_data_pt->is_pinned(4);
-          bool left_u5_pinned = left_data_pt->is_pinned(5);
-          bool left_u6_pinned = left_data_pt->is_pinned(6);
-          bool left_u7_pinned = left_data_pt->is_pinned(7);
+          // Get whether each nodal value is pinned
+          bool right_dwdadb_pinned =
+	    right_data_pt->is_pinned(right_dwdadb_index);
+          bool left_dwd1_pinned = left_data_pt->is_pinned(left_dwd1_index);
+          bool left_dwd2_pinned = left_data_pt->is_pinned(left_dwd2_index);
+          bool left_dwd1d1_pinned = left_data_pt->is_pinned(left_dwd1d1_index);
+          bool left_dwd1d2_pinned = left_data_pt->is_pinned(left_dwd1d2_index);
+          bool left_dwd2d2_pinned = left_data_pt->is_pinned(left_dwd2d2_index);
+
           // If anything is free, mark it as used and continue without doing
           // anything else. We also need to check that each dof hasn't become
           // decoupled from this constraint by ensuring that its coefficient (if
           // it has one) is sufficiently large (> Orthogonality_tolerance)
-          if (!right_ui_pinned && !right_data_used[i_con])
+          if (!right_dwdadb_pinned && !right_data_used[right_dwdadb_index])
           {
             // [zdec] debug
-            std::cout << "eqn " << i_con << " depends on dof R" << i_con
+            std::cout << "eqn " << condition_index
+		      << " depends on dof R" << right_dwdadb_index
                       << std::endl;
-            right_data_used[i_con] = true;
+            right_data_used[right_dwdadb_index] = true;
             continue;
           }
-          if (!left_u3_pinned && !left_data_used[3])
+          if (!left_dwd1_pinned && !left_data_used[left_dwd1_index])
           {
             double coeff = hess_of_transform[0](alpha, beta);
             if (fabs(coeff) > Orthogonality_tolerance)
             {
               // [zdec] debug
-              std::cout << "eqn " << i_con << " depends on dof L3" << std::endl;
-              left_data_used[3] = true;
+              std::cout << "eqn " << condition_index
+			<< " depends on dof L" << left_dwd1_index
+			<< std::endl;
+              left_data_used[left_dwd1_index] = true;
               continue;
             }
           }
-          if (!left_u4_pinned && !left_data_used[4])
+          if (!left_dwd2_pinned && !left_data_used[left_dwd2_index])
           {
             double coeff = hess_of_transform[1](alpha, beta);
             if (fabs(coeff) > Orthogonality_tolerance)
             {
               // [zdec] debug
-              std::cout << "eqn " << i_con << " depends on dof L4" << std::endl;
-              left_data_used[4] = true;
+              std::cout << "eqn " << condition_index
+			<< " depends on dof L" << left_dwd2_index
+			<< std::endl;
+              left_data_used[left_dwd2_index] = true;
               continue;
             }
           }
-          if (!left_u5_pinned && !left_data_used[5])
+          if (!left_dwd1d1_pinned && !left_data_used[left_dwd1d1_index])
           {
             double coef =
               jac_of_transform(0, alpha) * jac_of_transform(0, beta);
             if (fabs(coef) > Orthogonality_tolerance)
             {
               // [zdec] debug
-              std::cout << "eqn " << i_con << " depends on dof L5" << std::endl;
-              left_data_used[5] = true;
+              std::cout << "eqn " << condition_index
+			<< " depends on dof L" << left_dwd1d1_index
+			<< std::endl;
+              left_data_used[left_dwd1d1_index] = true;
               continue;
             }
           }
-          if (!left_u6_pinned && !left_data_used[6])
+          if (!left_dwd1d2_pinned && !left_data_used[left_dwd1d2_index])
           {
             double coef =
               jac_of_transform(0, alpha) * jac_of_transform(1, beta) +
@@ -2069,20 +2115,24 @@ of freedom at internal points. They are {w ; w,x ; w,y ; w,xx ; w,xy ; w,yy}",
             if (fabs(coef) > Orthogonality_tolerance)
             {
               // [zdec] debug
-              std::cout << "eqn " << i_con << " depends on dof L6" << std::endl;
-              left_data_used[6] = true;
+              std::cout << "eqn " << condition_index
+			<< " depends on dof L" << left_dwd1d2_index
+			<< std::endl;
+              left_data_used[left_dwd1d2_index] = true;
               continue;
             }
           }
-          if (!left_u7_pinned && !left_data_used[7])
+          if (!left_dwd2d2_pinned && !left_data_used[left_dwd2d2_index])
           {
             double coef =
               jac_of_transform(1, alpha) * jac_of_transform(1, beta);
             if (fabs(coef) > Orthogonality_tolerance)
             {
               // [zdec] debug
-              std::cout << "eqn " << i_con << " depends on dof L7" << std::endl;
-              left_data_used[7] = true;
+              std::cout << "eqn " << condition_index
+			<< " depends on dof L" << left_dwd2d2_index
+			<< std::endl;
+              left_data_used[left_dwd2d2_index] = true;
               continue;
             }
           }
@@ -2462,6 +2512,25 @@ of freedom at internal points. They are {w ; w,x ; w,y ; w,xx ; w,xy ; w,yy}",
         {
           // Right dof term in the constraint always lambda_i*W_i
           residuals[right_eqn_number] += lagrange_value[k_type];
+
+          // If flag, then add the jacobian contribution
+          if (flag)
+          {
+            // The contributions to the right node's equations are just
+            // r_i * L_i
+            int lagrange_dof_number =
+              internal_local_eqn(Index_of_lagrange_data, k_type);
+            // If this dof isn't pinned then add the contributions
+            // [zdec] should never be pinned if right value is not
+            if (lagrange_dof_number >= 0)
+            {
+              // Add the contribution to the jacobian
+              jacobian(right_eqn_number, lagrange_dof_number) += 1.0;
+              // And by symmetry, we can add the transpose contribution to the
+              // jacobian
+              jacobian(lagrange_dof_number, right_eqn_number) += 1.0;
+            } // End pinned check
+          } // End Jacobian contribution [if (flag)]
         }
       } // End for loop adding contributions to right nodal equations
 
@@ -2470,15 +2539,33 @@ of freedom at internal points. They are {w ; w,x ; w,y ; w,xx ; w,xy ; w,yy}",
       // Next, the contributions to the left node external equations
       // First three are displacements:
       //     - lambda_i*(U_alpha or W_0)
-      for (unsigned i = 0; i < 3; i++)
+      for (unsigned k_type = 0; k_type < 3; k_type++)
       {
-        // Eqn number is just the index of (u_x,u_y,w) which is the ith dof
-        // (i=0,1,2)
-        int left_eqn_number = external_local_eqn(Index_of_left_data, i);
+	// Index of the left nodes i-th displacement (0-th type) value
+	unsigned left_ui_index = k_type;
+        // External equation index
+        int left_eqn_number =
+          external_local_eqn(Index_of_left_data, left_ui_index);
         // If this dof isn't pinned we add to the residual
         if (left_eqn_number >= 0)
         {
-          residuals[left_eqn_number] += -lagrange_value[i];
+	  // Add residual contribution which comes from lagrange value
+	  unsigned lagrange_index = k_type;
+          residuals[left_eqn_number] += -lagrange_value[lagrange_index];
+
+          // Get the local equation number for this dof and add the jacobian
+          // contribution if unpinned (and we are making the jacobian)
+          // [zdec] should never be pinned if right value is not
+          int lagrange_dof_number =
+            internal_local_eqn(Index_of_lagrange_data, lagrange_index);
+          if (flag && (lagrange_dof_number >= 0))
+          {
+            // Add the contribution to the jacobian
+            jacobian(left_eqn_number, lagrange_dof_number) += -1.0;
+            // And by symmetry, we can add the transpose contribution to the
+            // jacobian
+            jacobian(lagrange_dof_number, left_eqn_number) += -1.0;
+	  }
         }
       } // End loop adding contribution to the left nodal displacement equations
 
@@ -2488,26 +2575,76 @@ of freedom at internal points. They are {w ; w,x ; w,y ; w,xx ; w,xy ; w,yy}",
       // gamma>=beta so we don't double count lambda_6 condition
       for (unsigned alpha = 0; alpha < 2; alpha++)
       {
-        // Eqn number is the index of the alpha-th derivative of w which is the
-        // 3+alpha-th dof (alpha=0,1)
-        int left_eqn_number = external_local_eqn(Index_of_left_data, 3 + alpha);
+	// Index of the left nodes d1 derivative value
+	unsigned left_wda_index = 3 + alpha;
+        // Eqn number is the index of the alpha-th derivative of w which is
+        // the 1+alpha-th dof (alpha=0,1)
+        int left_eqn_number =
+          external_local_eqn(Index_of_left_data, left_wda_index);
         // If this dof isn't pinned we add to the residual
         if (left_eqn_number >= 0)
         {
+	  // Loop over the lagrange multipliers associated with the right
+	  // first derivatives
           for (unsigned beta = 0; beta < 2; beta++)
           {
+	    // Add residual contribution from the lagrange value associated
+	    // with the right beta-th derivative
+            unsigned lagrange_wdb_index = 3 + beta;
             residuals[left_eqn_number] +=
-              -lagrange_value[3 + beta] * jac_of_transform(alpha, beta);
+              -lagrange_value[lagrange_wdb_index]
+	      * jac_of_transform(alpha, beta);
+
+	    // Get the local equation number for this dof and add the jacobian
+	    // contribution if unpinned (and we are making the jacobian)
+            int lagrange_dof_number =
+              internal_local_eqn(Index_of_lagrange_data, lagrange_wdb_index);
+            if (flag && (lagrange_dof_number >= 0))
+            {
+              double jac_term = -jac_of_transform(alpha, beta);
+              // Orthogonality check (for jacobian cleanliness)
+              if (fabs(jac_term) > Orthogonality_tolerance)
+              {
+                // Add the contribution to the jacobian
+                jacobian(left_eqn_number, lagrange_dof_number) += jac_term;
+                // And by symmetry, we can add the transpose contribution to
+                // the jacobian
+                jacobian(lagrange_dof_number, left_eqn_number) += jac_term;
+              } // End orthogonality check
+	    } // End jacobian contributions for first derivative terms
+
             // gamma>=beta so we don't double count the
             // lagrange_value[6] constraint
             for (unsigned gamma = beta; gamma < 2; gamma++)
             {
-              residuals[left_eqn_number] +=
-                -lagrange_value[5 + beta + gamma] *
-                hess_of_transform[alpha](beta, gamma);
-            }
-          }
-        } // End of if unpinned
+	      // Add residual contribution from the lagrange value associated
+	      // with the right beta+gamma-th second derivative
+	      unsigned lagrange_wdbdg_index = 5 + beta + gamma;
+	      residuals[left_eqn_number] +=
+		- lagrange_value[lagrange_wdbdg_index]
+		* hess_of_transform[alpha](beta, gamma);
+
+	      // Get the local equation number for this dof and add the
+	      // jacobian contribution if unpinned (and we are making the
+	      // jacobian)
+	      int lagrange_dof_number =
+		internal_local_eqn(Index_of_lagrange_data, lagrange_wdbdg_index);
+	      if (flag && (lagrange_dof_number >= 0))
+	      {
+		double jac_term = -hess_of_transform[alpha](beta, gamma);
+		// Orthogonality check
+		if (fabs(jac_term) > Orthogonality_tolerance)
+		{
+		  // Add the contribution to the jacobian
+		  jacobian(left_eqn_number, lagrange_dof_number) += jac_term;
+		  // And by symmetry, we can add the transpose contribution
+		  // to the jacobian
+		  jacobian(lagrange_dof_number, left_eqn_number) += jac_term;
+		} // End of orthogonality check
+	      } // End of jacobian contribution for second derivative terms
+	    } // End loop over second derivative Lagrange multipliers [gamma]
+	  } // End loop over first derivative Lagrange multipliers [beta]
+	} // End of if unpinned
       } // End loop adding contributions to the left nodal gradient equations
 
       // Last three are the second derivatives of w (delta>gamma):
@@ -2516,66 +2653,87 @@ of freedom at internal points. They are {w ; w,x ; w,y ; w,xx ; w,xy ; w,yy}",
       // Index second derivative (equation) using alpha & beta
       for (unsigned alpha = 0; alpha < 2; alpha++)
       {
-        // Note that d^2w/ds_1ds_2 is counted twice in the summation
+	// Note that d^2w/ds_1ds_2 is counted twice in the summation so we
+	// allow alpha and beta to loop over both indices (unlike gamma+delta)
         for (unsigned beta = 0; beta < 2; beta++)
         {
+	  // Index of lagrange value associated with the right alpha+beta-th
+	  // second derivatives
+          unsigned left_wdadb_index = 5 + alpha + beta;
+          // Eqn number is the index of the second derivative of w
           int left_eqn_number =
-            external_local_eqn(Index_of_left_data, 5 + alpha + beta);
+            external_local_eqn(Index_of_left_data, left_wdadb_index);
           // If this dof isn't pinned we add to the residual
           if (left_eqn_number >= 0)
           {
             // Index constraint using gamma and delta
             for (unsigned gamma = 0; gamma < 2; gamma++)
             {
-              // delta>=gamma so we don't double count the
-              // lagrange_value[6] constraint
+              // delta>=gamma so we don't double count the lagrange_value
+	      // associated with the mixed derivative
               for (unsigned delta = gamma; delta < 2; delta++)
               {
+		// Add residual contribution
+		unsigned lagrange_wdgdd_index = 5 + gamma + delta;
                 residuals[left_eqn_number] +=
-                  -lagrange_value[5 + gamma + delta] *
-                  jac_of_transform(alpha, gamma) *
-                  jac_of_transform(beta, delta);
+		  -lagrange_value[lagrange_wdgdd_index] *
+		  jac_of_transform(alpha, gamma) *
+		  jac_of_transform(beta, delta);
+
+                // Get the local equation number for this dof and add the
+                // jacobian contribution if unpinned (and we are making the
+                // jacobian)
+                int lagrange_dof_number = internal_local_eqn(
+                  Index_of_lagrange_data, lagrange_wdgdd_index);
+                if (flag && (lagrange_dof_number >= 0))
+                {
+                  // Find the jacobian matrix contribution
+                  double jac_term = -jac_of_transform(alpha, gamma) *
+                                    jac_of_transform(beta, delta);
+                  // Orthogonality check
+                  if (fabs(jac_term) > Orthogonality_tolerance)
+                  {
+                    // Add the contribution to the jacobian
+                    jacobian(left_eqn_number, lagrange_dof_number) += jac_term;
+                    // And by symmetry, we can add the transpose contribution
+                    // to the jacobian
+                    jacobian(lagrange_dof_number, left_eqn_number) += jac_term;
+                  }
+                  } // End jacobian
               }
             } // End loops over the conditions (gamma,delta)
           } // End if dof isn't pinned
         }
       } // End loops adding contributions to the left nodal curvature equations
-        // (alpha,beta)
+      // (alpha,beta)
 
 
       //----------------------------------------------------------------------
       // Now add contributions to the internal (lagrange multiplier) equations
-
-      // Storage for tensor products so they can be reused in the Jacobians
-      // (upper halves of symmetric 2x2 matrices stored in vectors of length
-      //  three: {A11,A12,A22} )
-      // Left gradient of w multiplied by the jacobian of the coordiante
-      // transform
-      Vector<double> DwJ(2, 0.0);
-      // Left Hessian of w multiplied in each index by the jacobian of the
-      // coordinate transform
-      Vector<double> D2wJJ(3, 0.0);
-      // Left gradient of w multipied in the first index of the Hessian of the
-      // coordinate transform
-      Vector<double> DwH(3, 0.0);
+      // (note jacobian contributions will have already been thanks to use of
+      // symmetry)
 
       // First three (u,v,w) dofs are equal
       for (unsigned i_dof = 0; i_dof < 3; i_dof++)
       {
+	// Index of the condition on the nodes (displacement constraint
+	// corresponds to zeroth type for each field)
+        unsigned lagrange_index = i_dof;
         // Get the internal data eqn number for this constraint
-        int internal_eqn_number =
-          internal_local_eqn(Index_of_lagrange_data, i_dof);
-        // If this dof isn't pinned we add to the residual
-        if (internal_eqn_number >= 0)
+        int lagrange_eqn_number =
+          internal_local_eqn(Index_of_lagrange_data, lagrange_index);
+	// If this dof isn't pinned we add to the residual
+	if (lagrange_eqn_number >= 0)
         {
-          // || Add constraining residual ||
-          residuals[internal_eqn_number] +=
-            (right_value[i_dof] - left_value[i_dof]);
-          // [zdec] WHAT IF BOTH ARE PINNED?
-          // More generally, what if we have no dofs to satisfy our constraints?
-          // Do we check (if all dofs are pinned) that a constraint is met,
-          // before pinning the relevant dofs
+          // Add contributions from right and left nodes displacement
+          // (zero-th) type
+          unsigned right_ui_index = i_dof;
+          unsigned left_ui_index = i_dof;
+          residuals[lagrange_eqn_number] +=
+            (right_value[right_ui_index] - left_value[left_ui_index]);
         }
+	// Jacobian is added during right and left nodal equations using
+	// symmetry
       }
 
       // Next two (first derivatives of w) are related by
@@ -2583,21 +2741,27 @@ of freedom at internal points. They are {w ; w,x ; w,y ; w,xx ; w,xy ; w,yy}",
       // where  J is the Jacobian grad_r(left coords)
       for (unsigned alpha = 0; alpha < 2; alpha++)
       {
+        // Index of the condition on the nodes
+        unsigned lagrange_index = 3 + alpha;
         // Get the internal data eqn number for this constraint
-        int internal_eqn_number =
-          internal_local_eqn(Index_of_lagrange_data, 3 + alpha);
+        int lagrange_eqn_number =
+          internal_local_eqn(Index_of_lagrange_data, lagrange_index);
         // If this dof isn't pinned we add to the residual
-        if (internal_eqn_number >= 0)
+        if (lagrange_eqn_number >= 0)
         {
-          // Calculate grad_l(w)*J
+          // Add contribution from right node
+          unsigned right_wda_index = 3 + alpha;
+          residuals[lagrange_eqn_number] += (right_value[right_wda_index]);
+          // Add contribuions from left node
           for (unsigned beta = 0; beta < 2; beta++)
           {
-            DwJ[alpha] += left_value[3 + beta] * jac_of_transform(beta, alpha);
+            unsigned left_wdb_index = 3 + beta;
+            residuals[lagrange_eqn_number] +=
+              -left_value[left_wdb_index] * jac_of_transform(beta, alpha);
           }
-          // || Add constraining residual ||
-          residuals[internal_eqn_number] +=
-            (right_value[3 + alpha] - DwJ[alpha]);
-        }
+          // Jacobian is added during right and left nodal equations using
+          // symmetry
+	}
       }
 
       // Final three (second derivatives of w) are related by:
@@ -2610,224 +2774,42 @@ of freedom at internal points. They are {w ; w,x ; w,y ; w,xx ; w,xy ; w,yy}",
         // (>=alpha to prevent double counting mixed deriv)
         for (unsigned beta = alpha; beta < 2; beta++)
         {
+          // Index of the condition on the nodes
+          unsigned lagrange_index = 5 + alpha + beta;
           // Get the internal data eqn number for this constraint
-          int internal_eqn_number =
-            internal_local_eqn(Index_of_lagrange_data, 5 + alpha + beta);
+          int lagrange_eqn_number =
+            internal_local_eqn(Index_of_lagrange_data, lagrange_index);
           // If this dof isn't pinned we add to the residual
-          if (internal_eqn_number >= 0)
+          if (lagrange_eqn_number >= 0)
           {
-            // Loops to calculate D(D(w))*J*J and D(w)*H
+            // Add contributions from right node
+            unsigned right_wdadb_index = 5 + alpha + beta;
+            residuals[lagrange_eqn_number] += right_value[right_wdadb_index];
+            // Loop over the left node derivatives
             for (unsigned gamma = 0; gamma < 2; gamma++)
             {
+              // Add contributions from left node first derivatives
+              unsigned left_wdg_index = 3 + gamma;
+              residuals[lagrange_eqn_number] +=
+                -left_value[left_wdg_index] *
+                hess_of_transform[gamma](alpha, beta);
+              // Loop over the left derivatives again to get second
+              // derivatives
               for (unsigned delta = 0; delta < 2; delta++)
               {
-                // Add contribution to D(D(w))*J*J
-                D2wJJ[alpha + beta] += left_value[5 + gamma + delta] *
-                                       jac_of_transform(gamma, alpha) *
-                                       jac_of_transform(delta, beta);
-                // // [zdec] debug
-                // std::cout << alpha << " "
-                // 	  << beta << " "
-                // 	  << gamma << " "
-                // 	  << delta << ": D2wJJ += "
-                // 	  << left_value[5+gamma+delta] << " * "
-                // 	  << jac_of_transform(gamma,alpha) << " * "
-                // 	  << jac_of_transform(delta,beta) << " = "
-                // 	  << D2wJJ[alpha+beta] << std::endl;
+                // Add contributions from left node second derivatives
+		unsigned left_wdgdd_index = 5 + gamma + delta;
+		residuals[lagrange_eqn_number] +=
+                  -left_value[left_wdgdd_index] *
+                  jac_of_transform(gamma, alpha) *
+                  jac_of_transform(delta, beta);
               }
-              // Add contributions to D(w)*H
-              DwH[alpha + beta] +=
-                left_value[3 + gamma] * hess_of_transform[gamma](alpha, beta);
-              // // [zdec] debug
-              // std::cout << alpha << " "
-              // 		<< beta << " "
-              // 		<< gamma << " "
-              // 		<< ": DwH += "
-              // 		<< left_value[3+gamma] << " * "
-              // 		<< hess_of_transform[gamma](alpha,beta) << " = "
-              // 		<< DwH[alpha+beta] << std::endl;
             }
-            // // [zdec] debug
-            // std::cout << alpha << " "
-            // 	      << beta << " "
-            // 	      << ": res += " << right_value[5+alpha+beta]
-            // 	      << " - " << D2wJJ[alpha+beta]
-            // 	      << " - " << DwH[alpha+beta] << std::endl;
-
-            // || Add constraining residual ||
-            residuals[internal_eqn_number] +=
-              (right_value[5 + alpha + beta] - D2wJJ[alpha + beta] -
-               DwH[alpha + beta]);
+            // Jacobian is added during right and left nodal equations using
+            // symmetry
           } // End if eqn not pinned
-        }
+	}
       }
-
-      //----------------------------------------------------------------------
-      //----------------------------------------------------------------------
-      // If flag, then add the jacobian contribution
-      //
-      if (flag)
-      {
-        //----------------------------------------------------------------------
-        // First the contributions to the right node's equations which is just
-        // r_i * L_i
-        for (unsigned k_type = 0; k_type < 8; k_type++)
-        {
-          // Get the rhs equation number
-          int right_eqn_number =
-            external_local_eqn(Index_of_right_data, k_type);
-          // Get the lagrange dof number
-          int lagrange_dof_number =
-            internal_local_eqn(Index_of_lagrange_data, k_type);
-          // If this equation and dof aren't pinned then add their contribution
-          if (right_eqn_number >= 0 && lagrange_dof_number >= 0)
-          {
-            // Add the contribution to the jacobian
-            jacobian(right_eqn_number, lagrange_dof_number) += 1.0;
-            // And by symmetry, we can add the transpose contribution to the
-            // jacobian
-            jacobian(lagrange_dof_number, right_eqn_number) += 1.0;
-          } // End pinned check
-        } // End loop over right node equations
-
-        //----------------------------------------------------------------------
-        // Next the contributions to the left node's equations which differ
-        // between dof types
-        // The first three are just -l_i * L_i
-        for (unsigned k_type = 0; k_type < 3; k_type++)
-        {
-          // Get the lhs equation number
-          int left_eqn_number = external_local_eqn(Index_of_left_data, k_type);
-          // Get the lagrange dof number
-          int lagrange_dof_number =
-            internal_local_eqn(Index_of_lagrange_data, k_type);
-          // If this equation and dof aren't pinned then add their contribution
-          if (left_eqn_number >= 0 && lagrange_dof_number >= 0)
-          {
-            // Add the contribution to the jacobian
-            jacobian(left_eqn_number, lagrange_dof_number) += -1.0;
-            // And by symmetry, we can add the transpose contribution to the
-            // jacobian
-            jacobian(lagrange_dof_number, left_eqn_number) += -1.0;
-          }
-        } // End of three displacements
-
-        // The next two equations come from the l_\alpha derivative of:
-        // -l_\alpha * ( J_{\alpha\beta} * L_{3+\beta}
-        //              + H_{\alpha\beta\gamma} * L_{5+\beta+gamma} )
-        for (unsigned alpha = 0; alpha < 2; alpha++)
-        {
-          // Get the index of this equation in the left node
-          unsigned left_type = 3 + alpha;
-          // Get the local equation number for this equation
-          int left_eqn_number =
-            external_local_eqn(Index_of_left_data, left_type);
-          // Check this equation isn't pinned
-          if (left_eqn_number >= 0)
-          {
-            // Loop over the Lagrange dofs
-            for (unsigned beta = 0; beta < 2; beta++)
-            {
-              // Get the index of this Lagrange dof
-              unsigned lagrange_type = 3 + beta;
-              // Get the local equation number for this dof
-              int lagrange_dof_number =
-                internal_local_eqn(Index_of_lagrange_data, lagrange_type);
-              // Check this dof isn't pinned
-              if (lagrange_dof_number >= 0)
-              {
-                double jac_term = -jac_of_transform(alpha, beta);
-                // Orthogonality check (for jacobian conditioning)
-                if (fabs(jac_term) > Orthogonality_tolerance)
-                {
-                  // Add the contribution to the jacobian
-                  jacobian(left_eqn_number, lagrange_dof_number) += jac_term;
-                  // And by symmetry, we can add the transpose contribution to
-                  // the jacobian
-                  jacobian(lagrange_dof_number, left_eqn_number) += jac_term;
-                } // End orthogonality check
-              } // End dof pinned check
-
-              // Add the Hessian terms (gamma>=beta so we don't recount fifth
-              // constraint)
-              for (unsigned gamma = beta; gamma < 0; gamma++)
-              {
-                // Get the index of this Lagrange dof
-                lagrange_type = 5 + beta + gamma;
-                // Get the local equation number for this dof
-                lagrange_dof_number =
-                  internal_local_eqn(Index_of_lagrange_data, lagrange_type);
-                // Check that this dof isn't pinned
-                if (lagrange_dof_number)
-                {
-                  double jac_term = -hess_of_transform[alpha](beta, gamma);
-                  // Orthogonality check
-                  if (fabs(jac_term) > Orthogonality_tolerance)
-                  {
-                    // Add the contribution to the jacobian
-                    jacobian(left_eqn_number, lagrange_dof_number) += jac_term;
-                    // And by symmetry, we can add the transpose contribution to
-                    // the jacobian
-                    jacobian(lagrange_dof_number, left_eqn_number) += jac_term;
-                  } // End of orthogonality check
-                } // End dof pinned check
-              } // End loop over second derivative index gamma
-            } // End for loop over Lagrange dofs
-          } // End equation pinned check
-        } // End for loop over left node equations
-
-        //----------------------------------------------------------------------
-        // Lastly, fill in the jacobian entries for the three second derivative
-        // equations in the left node. The two derivatives
-        // -l_{5+\alpha+\beta}
-        //     * J_{\alpha\gamma} * J_{\beta\delta} * L_{5+\gamma+\delta}
-        for (unsigned alpha = 0; alpha < 2; alpha++)
-        {
-          for (unsigned beta = 0; beta < 2; beta++)
-          {
-            // Get the index of this equation in the left node
-            unsigned left_type = 5 + alpha + beta;
-            // Get the local equation number for this equation
-            int left_eqn_number =
-              external_local_eqn(Index_of_left_data, left_type);
-            // Check this equation isn't pinned
-            if (left_eqn_number >= 0)
-            {
-              // Loop over the lagrange dofs
-              for (unsigned gamma = 0; gamma < 2; gamma++)
-              {
-                // The second derivative must have index >= gamma to prevent
-                // double counting the mixed derivative condition.
-                for (unsigned delta = gamma; delta < 2; delta++)
-                {
-                  // Get the index of this Lagrange dof
-                  unsigned lagrange_type = 5 + gamma + delta;
-                  // Get the local equation number for this dof
-                  int lagrange_dof_number =
-                    internal_local_eqn(Index_of_lagrange_data, lagrange_type);
-                  // Check this dof isn't pinned
-                  if (lagrange_dof_number >= 0)
-                  {
-                    double jac_term = -jac_of_transform(alpha, gamma) *
-                                      jac_of_transform(beta, delta);
-                    // Orthogonality check
-                    if (fabs(jac_term) > Orthogonality_tolerance)
-                    {
-                      // Add the contribution to the jacobian
-                      jacobian(left_eqn_number, lagrange_dof_number) +=
-                        jac_term;
-                      // And by symmetry, we can add the transpose contribution
-                      // to the jacobian
-                      jacobian(lagrange_dof_number, left_eqn_number) +=
-                        jac_term;
-                    }
-                  } // End dof pinned check
-                } // [delta]
-              } // End lagrange loops [gamma]
-            } // End equation pinned check
-          } // [beta]
-        } // End equation loops [alpha]
-      } // End if(flag) check for jacobian
     } // End fill_in_generic_residual_contribution_constraint
 
     /// Store the index of the internal data keeping the Lagrange multipliers
