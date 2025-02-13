@@ -35,9 +35,6 @@
 #include <oomph-lib-config.h>
 #endif
 
-#include <cassert>
-
-
 // oomph-lib headers
 #include "oomph_utilities.h"
 #include "orthpoly.h"
@@ -563,62 +560,6 @@ namespace oomph
       return Weight[i];
     }
   };
-
-  //=========================================================
-  /// 3D Gaussian integration class.
-
-  //  hierher wrong
-
-  /// 4x4x4 integration points. This integration scheme can
-  /// integrate up to seventh-order polynomials exactly and
-  /// is therefore a suitable "full" integration scheme
-  /// for cubic (64-node) elements in which the
-  /// highest-order polynomial is sixth order.
-  //=========================================================
-  template<>
-  class Gauss<3, 5> : public Integral
-  {
-  private:
-    /// Number of integration points in the scheme
-    static const unsigned Npts = 64;
-    /// Array to hold the weights and knots (defined in cc file)
-    static const double Knot[64][3], Weight[64];
-
-  public:
-    /// Default constructor (empty)
-    Gauss() {}
-
-    /// Broken copy constructor
-    Gauss(const Gauss& dummy) = delete;
-
-    /// Broken assignment operator
-    void operator=(const Gauss&) = delete;
-
-    /// Number of integration points of the scheme
-    unsigned nweight() const
-    {
-      oomph_info << "Dummy implementation; don't use" << std::endl;
-      assert(false);
-      return Npts;
-    }
-
-    /// Return coordinate x[j] of integration point i
-    double knot(const unsigned& i, const unsigned& j) const
-    {
-      oomph_info << "Dummy implementation; don't use" << std::endl;
-      assert(false);
-      return Knot[i][j];
-    }
-
-    /// Return weight of integration point i
-    double weight(const unsigned& i) const
-    {
-      oomph_info << "Dummy implementation; don't use" << std::endl;
-      assert(false);
-      return Weight[i];
-    }
-  };
-
 
   //=========================================================
   /// Class for multidimensional Gaussian integration rules,
