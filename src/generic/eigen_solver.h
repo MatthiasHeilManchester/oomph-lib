@@ -3,7 +3,7 @@
 // LIC// multi-physics finite-element library, available
 // LIC// at http://www.oomph-lib.org.
 // LIC//
-// LIC// Copyright (C) 2006-2024 Matthias Heil and Andrew Hazel
+// LIC// Copyright (C) 2006-2025 Matthias Heil and Andrew Hazel
 // LIC//
 // LIC// This library is free software; you can redistribute it and/or
 // LIC// modify it under the terms of the GNU Lesser General Public
@@ -73,23 +73,6 @@ namespace oomph
 
     /// Empty destructor
     virtual ~EigenSolver() {}
-
-    /// Eigensolver. This takes a pointer to a problem and returns
-    /// a vector of complex numbers representing the eigenvalues
-    /// and a corresponding vector of eigenvectors. n_eval specifies the min.
-    /// number of eigenvalues/vectors required. This is primarily used in
-    /// Arnoldi type implementations; direct solvers such as QZ compute all the
-    /// eigenvalues/vectors.
-    /// Note: this is a legacy version of this function that stores re & imag
-    /// parts of eigenvectors in some solver-specific collection of real
-    /// vectors.
-    virtual void solve_eigenproblem_legacy(
-      Problem* const& problem_pt,
-      const int& n_eval,
-      Vector<std::complex<double>>& eigenvalue,
-      Vector<DoubleVector>& eigenvector,
-      const bool& do_adjoint_problem = false) = 0;
-
 
     /// Solve the real eigenproblem that is assembled by elements in
     /// a mesh in a Problem object. Note that the assembled matrices include the
@@ -186,21 +169,6 @@ namespace oomph
     /// Empty desctructor
     virtual ~LAPACK_QZ() {}
 
-    /// Use LAPACK QZ to solve the real eigenproblem that is assembled
-    /// by elements in a mesh in a Problem object. Note that the assembled
-    /// matrices include the shift and are real. The eigenvalues and
-    /// eigenvectors are, in general, complex.
-    /// This is a legacy version of this function that stores re & imag parts of
-    /// eigenvectors in some solver-specific collection of real vectors;
-    /// they are disentangled in the alternative version of this function
-    /// that returns Vectors of complex Vectors.
-    /// At least n_eval eigenvalues are computed.
-    void solve_eigenproblem_legacy(Problem* const& problem_pt,
-                                   const int& n_eval,
-                                   Vector<std::complex<double>>& eigenvalue,
-                                   Vector<DoubleVector>& eigenvector,
-                                   const bool& do_adjoint_problem = false);
-
     /// Solve the real eigenproblem that is assembled by elements in
     /// a mesh in a Problem object. Note that the assembled matrices include the
     /// shift and are real. The eigenvalues and eigenvectors are,
@@ -246,7 +214,7 @@ namespace oomph
     }
 
   private:
-    /// Helper function called from legacy and updated version from "raw" lapack
+    /// Helper function called from "raw" lapack
     /// code
     void solve_eigenproblem_helper(Problem* const& problem_pt,
                                    const int& n_eval,

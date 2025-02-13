@@ -3,7 +3,7 @@
 // LIC// multi-physics finite-element library, available
 // LIC// at http://www.oomph-lib.org.
 // LIC//
-// LIC// Copyright (C) 2006-2024 Matthias Heil and Andrew Hazel
+// LIC// Copyright (C) 2006-2025 Matthias Heil and Andrew Hazel
 // LIC//
 // LIC// This library is free software; you can redistribute it and/or
 // LIC// modify it under the terms of the GNU Lesser General Public
@@ -86,6 +86,9 @@ namespace oomph
 
   // Forward definition for sum of matrices class
   class SumOfMatrices;
+
+  // Forward definition for inverted element errors
+  class InvertedElementError;
 
   /// //////////////////////////////////////////////////////////////////
   /// //////////////////////////////////////////////////////////////////
@@ -1937,43 +1940,6 @@ namespace oomph
       Vector<DoubleVectorWithHaloEntries>& product);
 
 
-    /// Get derivative of an element in the problem wrt a global
-    /// parameter, used in continuation problems
-    // void get_derivative_wrt_global_parameter(double* const &parameter_pt,
-    //                                         GeneralisedElement* const
-    //                                         &elem_pt, Vector<double>
-    //                                         &result);
-
-    /// Solve an eigenproblem as assembled by the Problem's constituent
-    /// elements. Calculate (at least) n_eval eigenvalues and return the
-    /// corresponding eigenvectors. The boolean flag (default true) specifies
-    /// whether the steady jacobian should be assembled. If the flag is false
-    /// then the weighted mass-matrix terms from the timestepper will
-    /// be included in the jacobian --- this is almost certainly never
-    /// wanted. Legacy version that returns real vectors which are
-    /// related in some solver-specific way to the real and imaginary parts
-    /// of the actual, usually complex eigenvalues.
-    void solve_eigenproblem_legacy(const unsigned& n_eval,
-                                   Vector<std::complex<double>>& eigenvalue,
-                                   Vector<DoubleVector>& eigenvector,
-                                   const bool& steady = true);
-
-    /// Solve an eigenproblem as assembled by the Problem's constituent
-    /// elements. Calculate (at least) n_eval eigenvalues.
-    /// The boolean flag (default true) specifies
-    /// whether the steady jacobian should be assembled. If the flag is false
-    /// then the weighted mass-matrix terms from the timestepper will
-    /// be included in the jacobian --- this is almost certainly never
-    /// wanted. Legacy version.
-    void solve_eigenproblem_legacy(const unsigned& n_eval,
-                                   Vector<std::complex<double>>& eigenvalue,
-                                   const bool& steady = true)
-    {
-      // Create temporary storage for the eigenvectors (potentially wasteful)
-      Vector<DoubleVector> eigenvector;
-      solve_eigenproblem_legacy(n_eval, eigenvalue, eigenvector, steady);
-    }
-
     /// Solve an eigenproblem as assembled by the Problem's constituent
     /// elements. Calculate (at least) n_eval eigenvalues and return the
     /// corresponding eigenvectors. The boolean flag (default true) specifies
@@ -2056,19 +2022,6 @@ namespace oomph
       solve_eigenproblem(
         n_eval, alpha, beta, eigenvector_real, eigenvector_imag, steady);
     }
-
-    /// Solve an adjoint eigenvalue problem using the same procedure as
-    /// solve_eigenproblem. See the documentation on that function for more
-    /// details.
-    /// Note: this is a legacy version of this function that stores re & imag
-    /// parts of eigenvectors in some solver-specific collection of real
-    /// vectors.
-    void solve_adjoint_eigenproblem_legacy(
-      const unsigned& n_eval,
-      Vector<std::complex<double>>& eigenvalue,
-      Vector<DoubleVector>& eigenvector,
-      const bool& make_timesteppers_steady = true);
-
 
     /// Solve an adjoint eigenvalue problem using the same procedure as
     /// solve_eigenproblem. See the documentation on that function for more
@@ -3100,35 +3053,69 @@ namespace oomph
   //=======================================================================
   /// A class to handle errors in the Newton solver
   //=======================================================================
-  class NewtonSolverError
+  class NewtonSolverError : public OomphLibError
   {
-  public:
+  private:
     /// Error in the linear solver
-    bool linear_solver_error;
+    bool Linear_solver_error;
 
     /// Max. # of iterations performed when the Newton solver died
-    unsigned iterations;
+    unsigned Iterations;
 
     /// Max. residual when Newton solver died
-    double maxres;
+    double Maxres;
 
+  public:
     /// Default constructor, does nothing
-    NewtonSolverError() : linear_solver_error(false), iterations(0), maxres(0.0)
+    NewtonSolverError()
+      : OomphLibError("There was an error in the Newton Solver.",
+                      OOMPH_CURRENT_FUNCTION,
+                      OOMPH_EXCEPTION_LOCATION),
+        Linear_solver_error(false),
+        Iterations(0),
+        Maxres(0.0)
     {
     }
 
     /// Constructor that passes a failure of the linear solver
     NewtonSolverError(const bool& Passed_linear_failure)
-      : linear_solver_error(Passed_linear_failure), iterations(0), maxres(0.0)
+      : OomphLibError("There was an error in the Newton Solver.",
+                      OOMPH_CURRENT_FUNCTION,
+                      OOMPH_EXCEPTION_LOCATION),
+        Linear_solver_error(Passed_linear_failure),
+        Iterations(0),
+        Maxres(0.0)
     {
     }
 
     /// Constructor that passes number of iterations and residuals
     NewtonSolverError(unsigned Passed_iterations, double Passed_maxres)
-      : linear_solver_error(false),
-        iterations(Passed_iterations),
-        maxres(Passed_maxres)
+      : OomphLibError("There was an error in the Newton Solver.",
+                      OOMPH_CURRENT_FUNCTION,
+                      OOMPH_EXCEPTION_LOCATION),
+        Linear_solver_error(false),
+        Iterations(Passed_iterations),
+        Maxres(Passed_maxres)
     {
+    }
+
+    /// Access function to the error in the linear solver
+    bool linear_solver_error()
+    {
+      return Linear_solver_error;
+    }
+
+    /// Access function to Max. # of iterations performed when the Newton solver
+    /// died
+    unsigned iterations()
+    {
+      return Iterations;
+    }
+
+    /// Access function to Max. residual when Newton solver died
+    double maxres()
+    {
+      return Maxres;
     }
   };
 

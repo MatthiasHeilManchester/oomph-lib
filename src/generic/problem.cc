@@ -3,7 +3,7 @@
 // LIC// multi-physics finite-element library, available
 // LIC// at http://www.oomph-lib.org.
 // LIC//
-// LIC// Copyright (C) 2006-2024 Matthias Heil and Andrew Hazel
+// LIC// Copyright (C) 2006-2025 Matthias Heil and Andrew Hazel
 // LIC//
 // LIC// This library is free software; you can redistribute it and/or
 // LIC// modify it under the terms of the GNU Lesser General Public
@@ -8226,123 +8226,6 @@ namespace oomph
   }
 
 
-  //================================================================
-  /// Get derivative of an element in the problem wrt a global
-  /// parameter, to be used in continuation problems
-  //================================================================
-  /*void Problem::get_derivative_wrt_global_parameter(
-   double* const &parameter_pt,
-   GeneralisedElement* const &elem_pt,
-   Vector<double> &result)
-  {
-
-  #ifdef OOMPH_HAS_MPI
-
-   if (Problem_has_been_distributed)
-    {
-     OomphLibWarning("This is unlikely to work with a distributed problem",
-                     "Problem::get_derivative_wrt_global_parameter()",
-                     OOMPH_EXCEPTION_LOCATION);
-    }
-  #endif
-
-   //Locally cache pointer to assembly handler
-   AssemblyHandler* const assembly_handler_pt = Assembly_handler_pt;
-
-   //Should definitely give this a more global scope
-   double FD_Jstep = 1.0e-8;
-
-   //Find the number of variables in the element, e
-   unsigned nvar = assembly_handler_pt->ndof(elem_pt);
-   //Create storage for residuals
-   Vector<double> residuals(nvar), newres(nvar);
-
-   //Get the "original" residuals
-   assembly_handler_pt->get_residuals(elem_pt,residuals);
-
-   //Save the old value of the global parameter
-   double old_var = *parameter_pt;
-
-   //Increment the value
-   *parameter_pt += FD_Jstep;
-
-   //Now do any possible updates
-   actions_after_change_in_global_parameter();
-
-   //Get the "new" residuals
-   assembly_handler_pt->get_residuals(elem_pt,newres);
-
-   //Do the finite differences
-   for(unsigned m=0;m<nvar;m++)
-    {
-     result[m] = (newres[m] - residuals[m])/FD_Jstep;
-    }
-
-   //Reset value of the global parameter
-   *parameter_pt = old_var;
-
-   //Now do any possible updates
-   actions_after_change_in_global_parameter();
-  }*/
-
-  //==================================================================
-  /// Solve the eigenproblem. Legacy version that returns real vectors which are
-  /// related in some solver-specific way to the real and imaginary parts
-  /// of the actual, usually complex eigenvalues.
-  /// At least n_eval eigenvalues are computed.
-  //==================================================================
-  void Problem::solve_eigenproblem_legacy(
-    const unsigned& n_eval,
-    Vector<std::complex<double>>& eigenvalue,
-    Vector<DoubleVector>& eigenvector,
-    const bool& make_timesteppers_steady)
-  {
-    // If the boolean flag is steady, then make all the timesteppers steady
-    // before solving the eigenproblem. This will "switch off" the
-    // time-derivative terms in the jacobian matrix
-    if (make_timesteppers_steady)
-    {
-      // Find out how many timesteppers there are
-      const unsigned n_time_steppers = ntime_stepper();
-
-      // Vector of bools to store the is_steady status of the various
-      // timesteppers when we came in here
-      std::vector<bool> was_steady(n_time_steppers);
-
-      // Loop over them all and make them (temporarily) static
-      for (unsigned i = 0; i < n_time_steppers; i++)
-      {
-        was_steady[i] = time_stepper_pt(i)->is_steady();
-        time_stepper_pt(i)->make_steady();
-      }
-
-      const bool do_adjoint_problem = false;
-      // Call the Eigenproblem for the eigensolver
-      Eigen_solver_pt->solve_eigenproblem_legacy(
-        this, n_eval, eigenvalue, eigenvector, do_adjoint_problem);
-
-      // Reset the is_steady status of all timesteppers that
-      // weren't already steady when we came in here and reset their
-      // weights
-      for (unsigned i = 0; i < n_time_steppers; i++)
-      {
-        if (!was_steady[i])
-        {
-          time_stepper_pt(i)->undo_make_steady();
-        }
-      }
-    }
-    // Otherwise if we don't want to make the problem steady, just
-    // assemble and solve the eigensystem
-    else
-    {
-      const bool do_adjoint_problem = false;
-      // Call the Eigenproblem for the eigensolver
-      Eigen_solver_pt->solve_eigenproblem_legacy(
-        this, n_eval, eigenvalue, eigenvector, do_adjoint_problem);
-    }
-  }
-
   //==================================================================
   /// Solve the eigenproblem
   //==================================================================
@@ -8470,63 +8353,6 @@ namespace oomph
                                           eigenvector_real,
                                           eigenvector_imag,
                                           do_adjoint_problem);
-    }
-  }
-
-
-  //==================================================================
-  /// Solve the adjoint eigenproblem
-  //==================================================================
-  void Problem::solve_adjoint_eigenproblem_legacy(
-    const unsigned& n_eval,
-    Vector<std::complex<double>>& eigenvalue,
-    Vector<DoubleVector>& eigenvector,
-    const bool& make_timesteppers_steady)
-  {
-    // If the boolean flag is steady, then make all the timesteppers steady
-    // before solving the eigenproblem. This will "switch off" the
-    // time-derivative terms in the jacobian matrix
-    if (make_timesteppers_steady)
-    {
-      // Find out how many timesteppers there are
-      const unsigned n_time_steppers = ntime_stepper();
-
-      // Vector of bools to store the is_steady status of the various
-      // timesteppers when we came in here
-      std::vector<bool> was_steady(n_time_steppers);
-
-      // Loop over them all and make them (temporarily) static
-      for (unsigned i = 0; i < n_time_steppers; i++)
-      {
-        was_steady[i] = time_stepper_pt(i)->is_steady();
-        time_stepper_pt(i)->make_steady();
-      }
-
-      const bool do_adjoint_problem = true;
-      // Call the Eigenproblem for the ajoint-problem eigensolver
-      // NB Only different to solve_eigenproblem
-      Eigen_solver_pt->solve_eigenproblem_legacy(
-        this, n_eval, eigenvalue, eigenvector, do_adjoint_problem);
-
-      // Reset the is_steady status of all timesteppers that
-      // weren't already steady when we came in here and reset their
-      // weights
-      for (unsigned i = 0; i < n_time_steppers; i++)
-      {
-        if (!was_steady[i])
-        {
-          time_stepper_pt(i)->undo_make_steady();
-        }
-      }
-    }
-    // Otherwise if we don't want to make the problem steady, just
-    // assemble and solve the eigensystem
-    else
-    {
-      const bool do_adjoint_problem = true;
-      // Call the Eigenproblem for the eigensolver
-      Eigen_solver_pt->solve_eigenproblem_legacy(
-        this, n_eval, eigenvalue, eigenvector, do_adjoint_problem);
     }
   }
 
@@ -9517,20 +9343,20 @@ namespace oomph
       oomph_info << std::endl
                  << "USER-DEFINED ERROR IN NEWTON SOLVER " << std::endl;
       // Check whether it's the linear solver
-      if (error.linear_solver_error)
+      if (error.linear_solver_error())
       {
         oomph_info << "ERROR IN THE LINEAR SOLVER" << std::endl;
       }
       // Check to see whether we have reached Max_iterations
-      else if (error.iterations == Max_newton_iterations)
+      else if (error.iterations() == Max_newton_iterations)
       {
-        oomph_info << "MAXIMUM NUMBER OF ITERATIONS (" << error.iterations
+        oomph_info << "MAXIMUM NUMBER OF ITERATIONS (" << error.iterations()
                    << ") REACHED WITHOUT CONVERGENCE " << std::endl;
       }
       // If not, it must be that we have exceeded the maximum residuals
       else
       {
-        oomph_info << "MAXIMUM RESIDUALS: " << error.maxres
+        oomph_info << "MAXIMUM RESIDUALS: " << error.maxres()
                    << " EXCEEDS PREDEFINED MAXIMUM " << Max_residuals
                    << std::endl;
       }
@@ -10898,7 +10724,7 @@ namespace oomph
         catch (NewtonSolverError& error)
         {
           // Check whether it's the linear solver
-          if (error.linear_solver_error)
+          if (error.linear_solver_error())
           {
             std::ostringstream error_stream;
             error_stream << std::endl
@@ -10911,11 +10737,21 @@ namespace oomph
           // Otherwise mark the step as having failed
           else
           {
-            oomph_info << "STEP REJECTED --- TRYING AGAIN" << std::endl;
+            oomph_info << "STEP REJECTED DUE TO NEWTON SOLVER --- TRYING AGAIN"
+                       << std::endl;
             STEP_REJECTED = true;
             // Let's take a smaller step
             Ds_current *= (2.0 / 3.0);
           }
+        }
+        catch (InvertedElementError const& error)
+        {
+          oomph_info
+            << "STEP REJECTED DUE TO INVERTED ELEMENTS --- TRYING AGAIN"
+            << std::endl;
+          STEP_REJECTED = true;
+          // Let's take a smaller step
+          Ds_current *= (2.0 / 3.0);
         }
       } while (STEP_REJECTED); // continue until a step is accepted
 
@@ -11202,20 +11038,20 @@ namespace oomph
       oomph_info << std::endl
                  << "USER-DEFINED ERROR IN NEWTON SOLVER " << std::endl;
       // Check whether it's the linear solver
-      if (error.linear_solver_error)
+      if (error.linear_solver_error())
       {
         oomph_info << "ERROR IN THE LINEAR SOLVER" << std::endl;
       }
       // Check to see whether we have reached Max_iterations
-      else if (error.iterations == Max_newton_iterations)
+      else if (error.iterations() == Max_newton_iterations)
       {
-        oomph_info << "MAXIMUM NUMBER OF ITERATIONS (" << error.iterations
+        oomph_info << "MAXIMUM NUMBER OF ITERATIONS (" << error.iterations()
                    << ") REACHED WITHOUT CONVERGENCE " << std::endl;
       }
       // If not, it must be that we have exceeded the maximum residuals
       else
       {
-        oomph_info << "MAXIMUM RESIDUALS: " << error.maxres
+        oomph_info << "MAXIMUM RESIDUALS: " << error.maxres()
                    << " EXCEEDS PREDEFINED MAXIMUM " << Max_residuals
                    << std::endl;
       }
@@ -11357,7 +11193,7 @@ namespace oomph
       catch (NewtonSolverError& error)
       {
         // If it's a solver error then die
-        if (error.linear_solver_error ||
+        if (error.linear_solver_error() ||
             Time_adaptive_newton_crash_on_solve_fail)
         {
           std::string error_message = "USER-DEFINED ERROR IN NEWTON SOLVER\n";
@@ -11370,12 +11206,22 @@ namespace oomph
         else
         {
           // Reject the timestep, if we have an exception
-          oomph_info << "TIMESTEP REJECTED" << std::endl;
+          oomph_info << "TIMESTEP REJECTED DUE TO THE NEWTON SOLVER"
+                     << std::endl;
           reject_timestep = true;
 
           // Half the time step
           dt_rescaling_factor = Timestep_reduction_factor_after_nonconvergence;
         }
+      }
+      catch (InvertedElementError const& error)
+      {
+        /// Reject the timestep, if we have an exception
+        oomph_info << "TIMESTEP REJECTED DUE TO INVERTED ELEMENTS" << std::endl;
+        reject_timestep = true;
+
+        /// Half the time step
+        dt_rescaling_factor = Timestep_reduction_factor_after_nonconvergence;
       }
 
       // Run the individual timesteppers actions, these need to be before the
@@ -16516,15 +16362,15 @@ namespace oomph
           oomph_info << std::endl
                      << "USER-DEFINED ERROR IN NEWTON SOLVER " << std::endl;
           // Check to see whether we have reached Max_iterations
-          if (error.iterations == Max_newton_iterations)
+          if (error.iterations() == Max_newton_iterations)
           {
-            oomph_info << "MAXIMUM NUMBER OF ITERATIONS (" << error.iterations
+            oomph_info << "MAXIMUM NUMBER OF ITERATIONS (" << error.iterations()
                        << ") REACHED WITHOUT CONVERGENCE " << std::endl;
           }
           // If not, it must be that we have exceeded the maximum residuals
           else
           {
-            oomph_info << "MAXIMUM RESIDUALS: " << error.maxres
+            oomph_info << "MAXIMUM RESIDUALS: " << error.maxres()
                        << "EXCEEDS PREDEFINED MAXIMUM " << Max_residuals
                        << std::endl;
           }
