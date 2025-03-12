@@ -447,11 +447,11 @@ namespace oomph
       : CurvableBellElement<NNODE_1D>(Nfield, Field_is_bell_interpolated),
         FoepplVonKarmanEquations()
     {
-      // Use the higher order integration scheme
-      delete this->integral_pt();
-      // Use the higher order integration scheme
-      TGauss<2, 4>* new_integral_pt = new TGauss<2, 4>;
-      this->set_integration_scheme(new_integral_pt);
+      // // Use the higher order integration scheme
+      // delete this->integral_pt();
+      // // Use the higher order integration scheme
+      // TGauss<2, 4>* new_integral_pt = new TGauss<2, 4>;
+      // this->set_integration_scheme(new_integral_pt);
 
       // Rotated dof helper
       Rotated_boundary_helper_pt = new RotatedBoundaryHelper(this);
@@ -927,6 +927,12 @@ namespace oomph
       DShape& d2test_n_dx2,
       DShape& d2test_i_dx2) const;
 
+    /// Get the jacobian of the local to global mapping
+    virtual double local_to_eulerian_mapping(
+      const Vector<double>& s,
+      DenseMatrix<double>& jacobian,
+      DenseMatrix<double>& inverse_jacobian) const;
+
     // End of FoepplVonKarmanEquations interface functions
     //----------------------------------------------------------------------------
 
@@ -1392,6 +1398,21 @@ namespace oomph
     return J;
   }
 
+
+  //======================================================================
+  /// Get the jacobian of the local to global mapping
+  //======================================================================
+  template<unsigned NNODE_1D>
+  double FoepplVonKarmanC1CurvableBellElement<NNODE_1D>::
+    local_to_eulerian_mapping(const Vector<double>& s,
+			      DenseMatrix<double>& jacobian,
+			      DenseMatrix<double>& inverse_jacobian) const
+  {
+    return CurvableBellElement<NNODE_1D>::
+      local_to_eulerian_mapping(s,
+				jacobian,
+				inverse_jacobian);
+  }
 
   //======================================================================
   /// Rotate the shape functions according to the specified basis on the
@@ -2164,7 +2185,7 @@ of freedom at internal points. They are {w ; w,x ; w,y ; w,xx ; w,xy ; w,yy}",
 
           // If it is met, we pin the lagrange multiplier that corresponds to
           // this constraint as it is redundant and results in a zero row/column
-          internal_data_pt(Index_of_lagrange_data)->pin(i_con);
+          internal_data_pt(Index_of_lagrange_data)->pin(condition_index);
         }
       }
     } // End validate_and_pin_redundant_constraints()

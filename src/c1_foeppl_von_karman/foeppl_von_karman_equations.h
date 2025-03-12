@@ -85,6 +85,8 @@ namespace oomph
     /// in-of-plane forcing, anisotropic-prestrain, etc.
     typedef void (*VectorFctPt)(const Vector<double>& x, Vector<double>& f);
 
+
+    // [zdec] Remove these? I can't remember what they were for
     /// Function pointer to the Error Metric we are using
     /// e.g could be that we are just interested in error on w etc.
     typedef void (*ErrorMetricFctPt)(const Vector<double>& x,
@@ -93,6 +95,7 @@ namespace oomph
                                      double& error,
                                      double& norm);
 
+    // [zdec] Remove these? I can't remember what they were for
     /// Function pointer to the Error Metric we are using if we want multiple
     /// errors.  e.g could be we want errors seperately on each displacment
     typedef void (*MultipleErrorMetricFctPt)(const Vector<double>& x,
@@ -194,6 +197,8 @@ namespace oomph
         OOMPH_EXCEPTION_LOCATION);
     }
 
+
+
     /// Output: x, y, sigma_xx, sigma_xy, sigma_yy,
     ///         (sigma_1, sigma_2, sigma_1x, sigma1y, sigma2x, sigma2y)
     ///                                   (if principal_stresses==true)
@@ -203,19 +208,11 @@ namespace oomph
                               const bool &principal_stresses=false);
 
 
-
     //----------------------------------------------------------------------
     // Error and norms
 
     /// Get error against and norm of exact solution
     void compute_error(
-      std::ostream& outfile,
-      FiniteElement::SteadyExactSolutionFctPt exact_soln_pt,
-      double& error,
-      double& norm);
-
-    /// Get error against and norm of exact solution
-    void compute_error_in_deflection(
       std::ostream& outfile,
       FiniteElement::SteadyExactSolutionFctPt exact_soln_pt,
       double& error,
@@ -235,6 +232,40 @@ namespace oomph
         OOMPH_EXCEPTION_LOCATION);
     }
 
+    /// Get error against and norm of exact solution
+    void compute_error_in_solution(
+      std::ostream& outfile,
+      VectorFctPt exact_soln_pt,
+      double& error,
+      double& norm);
+
+    // /// Get error in strain against exact solution
+    // void compute_error_in_strain(
+    //   std::ostream& outfile,
+    //   VectorFctPt exact_soln_pt,
+    //   double& error,
+    //   double& norm);
+
+    // /// Get error in stress against exact solution
+    // void compute_error_in_stress(
+    //   std::ostream& outfile,
+    //   VectorFctPt exact_soln_pt,
+    //   double& error,
+    //   double& norm);
+
+    // /// Get error in bending contributions against exact solution
+    // void compute_error_in_bending(
+    //   std::ostream& outfile,
+    //   VectorFctPt exact_soln_pt,
+    //   double& error,
+    //   double& norm);
+
+    // /// Get error in stretching contributions against exact solution
+    // void compute_error_in_stretching(
+    //   std::ostream& outfile,
+    //   VectorFctPt exact_soln_pt,
+    //   double& error,
+    //   double& norm);
 
     //----------------------------------------------------------------------
     // Dependent variables
@@ -944,9 +975,15 @@ namespace oomph
       DShape& d2test_n_dx2,
       DShape& d2test_i_dx2) const = 0;
 
-    // End of pure virtual interface functions
-    //----------------------------------------------------------------------------
+    /// Get the jacobian of the local to global mapping
+    using FiniteElement::local_to_eulerian_mapping;
+    virtual double local_to_eulerian_mapping(
+      const Vector<double>& s,
+      DenseMatrix<double>& jacobian,
+      DenseMatrix<double>& inverse_jacobian) const = 0;
 
+    // End of pure virtual interface functions
+    //--------------------------------------------------------------------------
 
     /// Compute element residual Vector only (if flag=and/or element
     /// Jacobian matrix

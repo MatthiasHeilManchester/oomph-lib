@@ -340,11 +340,11 @@ namespace oomph
       : CurvableBellElement<Nnode_1D>(Nfield, Field_is_bell_interpolated),
         KoiterSteigmannEquations()
     {
-      // Use the higher order integration scheme
-      delete this->integral_pt();
-      // Do we want something that is order 8 instead?
-      TGauss<2, 9>* new_integral_pt = new TGauss<2, 9>;
-      this->set_integration_scheme(new_integral_pt);
+      // // Use the higher order integration scheme
+      // delete this->integral_pt();
+      // // Do we want something that is order 8 instead?
+      // TGauss<2, 9>* new_integral_pt = new TGauss<2, 9>;
+      // this->set_integration_scheme(new_integral_pt);
 
       // Rotated dof helper
       Rotated_boundary_helper_pt = new RotatedBoundaryHelper(this);

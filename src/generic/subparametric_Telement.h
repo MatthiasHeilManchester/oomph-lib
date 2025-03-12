@@ -231,7 +231,7 @@ namespace oomph
         Index_of_internal_data_for_field(n_field)
     {
       // Use the higher order integration scheme
-      TGauss<2, 4>* new_integral_pt = new TGauss<2, 4>;
+      TGauss<2, 13>* new_integral_pt = new TGauss<2, 13>;
       this->set_integration_scheme(new_integral_pt);
       // By default, there is no Bernadou basis (straight sided triangle)
       Bernadou_element_basis_pt = 0;
@@ -790,8 +790,8 @@ Elements.",
 
       // Cannot Null this pointer but we immediatly reset it.
       // Should we have a delete Integral_pt function?
-      delete this->integral_pt();
-      this->set_integration_scheme(new_integral_pt);
+      // delete this->integral_pt();
+      // this->set_integration_scheme(new_integral_pt);
 
       // Always use same data, just resize according to internal basis
       // requirements.

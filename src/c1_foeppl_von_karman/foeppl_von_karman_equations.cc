@@ -1580,213 +1580,94 @@ namespace oomph
   } // End of output_fct(...)
 
 
-
-
-//======================================================================
- /// Output: x, y, sigma_xx, sigma_xy, sigma_yy,
- ///         (sigma_1, sigma_2, sigma_1x, sigma1y, sigma2x, sigma2y)
- ///                                   (if principal_stresses==true)
- /// at the Gauss integration points to obtain a smooth point
- /// cloud (stress may be discontinuous across elements in general)
-//======================================================================
-void FoepplVonKarmanEquations::output_smooth_stress(std::ostream &outfile,
-						    const bool &principal_stresses)
- {
-  unsigned dim = this->dim();
-
-  // Vector of local coordinates
-  Vector<double> s(dim);
-  // Vector of global coordinates
-  Vector<double> x(dim);
-
-  // Storage for variables
-  double c_swell(0.0);
-  Vector<double> u;
-  DenseMatrix<double> interpolated_dwdxj(1,dim,0.0);
-  DenseMatrix<double> interpolated_duidxj(2,dim,0.0);
-  DenseMatrix<double> sigma(2,2,0.0);
-  Vector<double> sigma_eigenvals(2,0.0);
-  DenseMatrix<double> sigma_eigenvecs(2,2,0.0);
-
-  // The number of plot points is the number of integration (Gauss) points
-  unsigned num_plot_points=this->integral_pt()->nweight();
-
-  // Loop over the plot points
-  for(unsigned iplot=0; iplot<num_plot_points; iplot++)
-   {
-    // Get the local and global coordinates of the plot point
-    s[0] = this->integral_pt()->knot(iplot,0);
-    s[1] = this->integral_pt()->knot(iplot,1);
-    //s[0] = 0.5;
-    //s[1] = 0.5;
-    interpolated_x(s,x);
-
-      // Get interpolated unknowns
-   u = interpolated_fvk_disp_and_deriv(s);
-
-   // Get prestrain and degree of swelling for use in the strain tensor
-   this->get_swelling_foeppl_von_karman(x,c_swell);
-
-   // Copy gradients from u into interpolated gradient matrices...
-   interpolated_dwdxj(0,0) = u[1]; //dwdx1
-   interpolated_dwdxj(0,1) = u[2]; //dwdx2
-   interpolated_duidxj(0,0)= u[8]; //du1dx1
-   interpolated_duidxj(0,1)= u[9]; //du1dx2
-   interpolated_duidxj(1,0)= u[10]; //du2dx1
-   interpolated_duidxj(1,1)= u[11]; //du2dx2
-
-   DenseMatrix<double> epsilon(2,2,0.0);
-   get_epsilon(epsilon, interpolated_duidxj, interpolated_dwdxj, c_swell);
-
-   // Use epsilon to find the stress sigma.
-   get_sigma_from_epsilon(sigma, epsilon);
-
-   // Output the global coordinates of the plot point
-   for(unsigned i=0;i<this->dim();i++)
-    {
-     outfile << x[i] << " ";
-    }
-
-   // Output axial stresses [zdec] here also w for debugging
-   outfile << sigma(0,0) << " " << sigma(0,1) << " " << sigma(1,1) << " ";
-
-   // If we want the principal stresses, calculate them and add them to the
-   // output
-   if(principal_stresses)
-    {
-     // Get the principal values and the corresponding directions of stress.
-     get_principal_stresses(sigma, sigma_eigenvals, sigma_eigenvecs);
-
-     // Output principal stress magnitudes
-     outfile << sigma_eigenvals[0] << " " << sigma_eigenvals[1] << " ";
-
-     // Output principal stress directions
-     outfile << sigma_eigenvecs(0,0) << " " << sigma_eigenvecs(1,0) << " "
-	     << sigma_eigenvecs(0,1) << " " << sigma_eigenvecs(1,1) << " ";
-    }
-
-   // End output line
-   outfile << std::endl;
-  }
- }
-
-
-
-
-
   //======================================================================
-  /// Validate against exact solution
-  ///
-  /// Solution is provided via function pointer.
-  /// Plot error at a given number of plot points.
-  ///
-  /// [zdec] Is this function necessary?
+  /// Output: x, y, sigma_xx, sigma_xy, sigma_yy,
+  ///         (sigma_1, sigma_2, sigma_1x, sigma1y, sigma2x, sigma2y)
+  ///                                   (if principal_stresses==true)
+  /// at the Gauss integration points to obtain a smooth point
+  /// cloud (stress may be discontinuous across elements in general)
   //======================================================================
-  void FoepplVonKarmanEquations::compute_error_in_deflection(
-    std::ostream& outfile,
-    FiniteElement::SteadyExactSolutionFctPt exact_soln_pt,
-    double& error,
-    double& norm)
+  void FoepplVonKarmanEquations::output_smooth_stress(
+    std::ostream& outfile, const bool& principal_stresses)
   {
-    // Initialise
-    error = 0.0;
-    norm = 0.0;
-    // Find out how many nodes there are
-    // const unsigned n_u_node = this->nnode();
-    const unsigned n_w_node = nw_node();
-    // Find out how many nodes positional dofs there are [zdec] assumes each
-    // node has the same dofs
-    const unsigned n_w_nodal_type = nw_type_at_each_node();
-    // Find out how many internal types there are
-    const unsigned n_w_internal_type = nw_type_internal();
-
-    // Find the dimension of the element [zdec] will this ever not be 2?
-    const unsigned dim = this->dim();
-    // The number of first derivatives is the dimension of the element
-    const unsigned n_deriv = dim;
-    // The number of second derivatives is the triangle number of the dimension
-    const unsigned n_2deriv = dim * (dim + 1) / 2;
+    unsigned dim = this->dim();
 
     // Vector of local coordinates
     Vector<double> s(dim);
-
-    // Vector for coordintes
+    // Vector of global coordinates
     Vector<double> x(dim);
 
-    // Set the value of n_intpt
-    unsigned n_intpt = this->integral_pt()->nweight();
+    // Storage for variables
+    double c_swell(0.0);
+    Vector<double> u;
+    DenseMatrix<double> interpolated_dwdxj(1, dim, 0.0);
+    DenseMatrix<double> interpolated_duidxj(2, dim, 0.0);
+    DenseMatrix<double> sigma(2, 2, 0.0);
+    Vector<double> sigma_eigenvals(2, 0.0);
+    DenseMatrix<double> sigma_eigenvecs(2, 2, 0.0);
 
-    // Exact solution Vector (here a scalar)
-    Vector<double> exact_soln(this->required_nvalue(0), 0.0);
+    // The number of plot points is the number of integration (Gauss) points
+    unsigned num_plot_points = this->integral_pt()->nweight();
 
-    // Loop over the integration points
-    for (unsigned ipt = 0; ipt < n_intpt; ipt++)
+    // Loop over the plot points
+    for (unsigned iplot = 0; iplot < num_plot_points; iplot++)
     {
-      // Assign values of s
-      for (unsigned i = 0; i < this->dim(); i++)
-      {
-        s[i] = this->integral_pt()->knot(ipt, i);
-      }
-
-      // Get the integral weight
-      double w = this->integral_pt()->weight(ipt);
-
-      // Local out-of-plane nodal basis and test funtions
-      Shape psi_n_w(n_w_node, n_w_nodal_type);
-      DShape dpsi_n_wdxi(n_w_node, n_w_nodal_type, n_deriv);
-      DShape d2psi_n_wdxi2(n_w_node, n_w_nodal_type, n_2deriv);
-      // Local out-of-plane internal basis and test functions
-      Shape psi_i_w(n_w_internal_type);
-      DShape dpsi_i_wdxi(n_w_internal_type, n_deriv);
-      DShape d2psi_i_wdxi2(n_w_internal_type, n_2deriv);
-
-      // Call the derivatives of the shape and test functions for the out of
-      // plane unknown
-      double J = d2basis_w_eulerian_foeppl_von_karman(s,
-                                                      psi_n_w,
-                                                      psi_i_w,
-                                                      dpsi_n_wdxi,
-                                                      dpsi_i_wdxi,
-                                                      d2psi_n_wdxi2,
-                                                      d2psi_i_wdxi2);
-
-      // Premultiply the weights and the Jacobian
-      double W = w * J;
-
-      // Get x position as Vector
+      // Get the local and global coordinates of the plot point
+      s[0] = this->integral_pt()->knot(iplot, 0);
+      s[1] = this->integral_pt()->knot(iplot, 1);
+      // s[0] = 0.5;
+      // s[1] = 0.5;
       interpolated_x(s, x);
 
-      // Get FE function value
-      Vector<double> u_fe(this->required_nvalue(0), 0.0);
-      u_fe = interpolated_fvk_disp_and_deriv(s);
+      // Get interpolated unknowns
+      u = interpolated_fvk_disp_and_deriv(s);
 
-      // Get exact solution at this point
-      (*exact_soln_pt)(x, exact_soln);
+      // Get prestrain and degree of swelling for use in the strain tensor
+      this->get_swelling_foeppl_von_karman(x, c_swell);
 
-      // Output x,y,...,error
+      // Copy gradients from u into interpolated gradient matrices...
+      interpolated_dwdxj(0, 0) = u[1]; // dwdx1
+      interpolated_dwdxj(0, 1) = u[2]; // dwdx2
+      interpolated_duidxj(0, 0) = u[8]; // du1dx1
+      interpolated_duidxj(0, 1) = u[9]; // du1dx2
+      interpolated_duidxj(1, 0) = u[10]; // du2dx1
+      interpolated_duidxj(1, 1) = u[11]; // du2dx2
+
+      DenseMatrix<double> epsilon(2, 2, 0.0);
+      get_epsilon(epsilon, interpolated_duidxj, interpolated_dwdxj, c_swell);
+
+      // Use epsilon to find the stress sigma.
+      get_sigma_from_epsilon(sigma, epsilon);
+
+      // Output the global coordinates of the plot point
       for (unsigned i = 0; i < this->dim(); i++)
       {
-        outfile << x[i] << " ";
+	outfile << x[i] << " ";
       }
-      for (unsigned ii = 0; ii < this->required_nvalue(0); ii++)
-      {
-        outfile << exact_soln[ii] << " " << exact_soln[ii] - u_fe[ii] << " ";
-      }
-      outfile << std::endl;
 
-      // Loop over variables
-      double tmp1 = 0.0, tmp2 = 0.0;
-      for (unsigned ii = 0; ii < 1; ii++)
+      // Output axial stresses [zdec] here also w for debugging
+      outfile << sigma(0, 0) << " " << sigma(0, 1) << " " << sigma(1, 1) << " ";
+
+      // If we want the principal stresses, calculate them and add them to the
+      // output
+      if (principal_stresses)
       {
-        // Add to error and norm
-        tmp1 = (exact_soln[ii] * exact_soln[ii] * W);
-        tmp2 = ((exact_soln[ii] - u_fe[ii]) * (exact_soln[ii] - u_fe[ii]) * W);
-        norm += tmp1;
-        error += tmp2;
+        // Get the principal values and the corresponding directions of stress.
+        get_principal_stresses(sigma, sigma_eigenvals, sigma_eigenvecs);
+
+        // Output principal stress magnitudes
+        outfile << sigma_eigenvals[0] << " " << sigma_eigenvals[1] << " ";
+
+        // Output principal stress directions
+        outfile << sigma_eigenvecs(0, 0) << " " << sigma_eigenvecs(1, 0) << " "
+                << sigma_eigenvecs(0, 1) << " " << sigma_eigenvecs(1, 1) << " ";
       }
-    } // End of loop over integration pts
+
+      // End output line
+      outfile << std::endl;
+    }
   }
-  // HERE OVERLOAD COMPUTE_ERROR SO WE CAN GET A VECTOR OF NORMS
+
 
 
   //======================================================================
@@ -1913,6 +1794,89 @@ void FoepplVonKarmanEquations::output_smooth_stress(std::ostream &outfile,
       error += tmp2 * W;
     } // End of loop over integration pts
   } // End of compute_error(...)
+
+
+
+  //======================================================================
+  /// Validate against exact solution
+  ///
+  /// Solution is provided via function pointer.
+  /// Plot error at a given number of plot points.
+  //======================================================================
+  void FoepplVonKarmanEquations::compute_error_in_solution(
+    std::ostream& outfile,
+    VectorFctPt exact_soln_pt,
+    double& error,
+    double& norm)
+  {
+    // Initialise
+    error = 0.0;
+    norm = 0.0;
+
+    // Find the dimension of the element
+    const unsigned dim = this->dim();
+
+    // Vector of local coordinates
+    Vector<double> s(dim);
+
+    // Vector for coordintes
+    Vector<double> x(dim);
+
+    // Set the value of n_intpt
+    unsigned n_intpt = this->integral_pt()->nweight();
+
+    // Exact and finite element solution Vectors
+    Vector<double> exact_soln(this->required_nvalue(0), 0.0);
+    Vector<double> u_fe(this->required_nvalue(0), 0.0);
+
+    // Loop over the integration points
+    for (unsigned ipt = 0; ipt < n_intpt; ipt++)
+    {
+      // Assign values of s
+      for (unsigned i = 0; i < this->dim(); i++)
+      {
+        s[i] = this->integral_pt()->knot(ipt, i);
+      }
+      // Convert this to the global coordinate
+      interpolated_x(s, x);
+
+      // Get exact solution at this point
+      (*exact_soln_pt)(x, exact_soln);
+      // Get FE solution at this point
+      u_fe = interpolated_fvk_disp_and_deriv(s);
+
+      // Output x,y,...,error
+      for (unsigned i = 0; i < this->dim(); i++)
+      {
+        outfile << x[i] << " ";
+      }
+      for (unsigned ii = 0; ii < this->required_nvalue(0); ii++)
+      {
+        outfile << exact_soln[ii] << " " << exact_soln[ii] - u_fe[ii] << " ";
+      }
+      outfile << std::endl;
+
+      // Get the Jacobian and weight for integrating the error and norm
+      DenseMatrix<double> dummy1(2, 2, 0.0);
+      DenseMatrix<double> dummy2(2, 2, 0.0);
+      double J = local_to_eulerian_mapping(s, dummy1, dummy2);
+      double w = this->integral_pt()->weight(ipt);
+      // Premultiply the weights and the Jacobian
+      double W = w * J;
+
+      // Loop over variables
+      double tmp1 = 0.0, tmp2 = 0.0;
+      for (unsigned ii = 0; ii < 1; ii++)
+      {
+        // Add to error and norm
+        tmp1 = (exact_soln[ii] * exact_soln[ii] * W);
+        tmp2 = ((exact_soln[ii] - u_fe[ii]) * (exact_soln[ii] - u_fe[ii]) * W);
+        norm += tmp1;
+        error += tmp2;
+      }
+    } // End of loop over integration pts
+  }
+
 
 
   //============================================================================
