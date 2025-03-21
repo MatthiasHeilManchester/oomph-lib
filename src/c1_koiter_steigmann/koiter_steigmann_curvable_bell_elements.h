@@ -9,305 +9,307 @@
 
 namespace oomph
 {
-  //===start of rotation helper class=========================================
-  /// Helper class to contain all the rotation information in the element.
-  class RotatedBoundaryHelper
-  {
-  public:
-    /// Constructor: just initialise the member data to their defaults (zeros)
-    RotatedBoundaryHelper(FiniteElement* const& parent_element_pt)
-      : Parent_element_pt(parent_element_pt),
-        Nnode(Parent_element_pt->nvertex_node()),
-        Boundary_coordinate_of_node(3, 0.0),
-        Nodal_boundary_parametrisation_pt(3, 0),
-        Rotation_matrix_at_node(3, DenseMatrix<double>(6, 6, 0.0))
-    {
-    }
+  // //===start of rotation helper class=========================================
+  // /// Helper class to contain all the rotation information in the element.
+  // class RotatedBoundaryHelper
+  // {
+  // public:
+  //   /// Constructor: just initialise the member data to their defaults (zeros)
+  //   RotatedBoundaryHelper(FiniteElement* const& parent_element_pt)
+  //     : Parent_element_pt(parent_element_pt),
+  //       Nnode(Parent_element_pt->nvertex_node()),
+  //       Boundary_coordinate_of_node(3, 0.0),
+  //       Nodal_boundary_parametrisation_pt(3, 0),
+  //       Rotation_matrix_at_node(3, DenseMatrix<double>(6, 6, 0.0))
+  //   {
+  //   }
 
-    /// Destructor
-    ~RotatedBoundaryHelper() {}
+  //   /// Destructor
+  //   ~RotatedBoundaryHelper() {}
 
-    CurvilineGeomObject* nodal_boundary_parametrisation_pt(
-      const unsigned& j_node)
-    {
-      return Nodal_boundary_parametrisation_pt[j_node];
-    }
-
-
-    /// Add a new boundary parametrisation to nodes all the nodes in the
-    /// vector node_on_boundary
-    void set_nodal_boundary_parametrisation(
-      const Vector<unsigned>& node_on_boundary,
-      const Vector<double>& boundary_coord_of_node,
-      CurvilineGeomObject* const& boundary_parametrisation_pt)
-    {
-      // Loop over all the nodes in node_on_boundary and add the boundary
-      // pointer to their vector of boundaries
-      unsigned n_node = node_on_boundary.size();
-      for (unsigned j = 0; j < n_node; j++)
-      {
-        // The j-th node on the boundary
-        unsigned j_node = node_on_boundary[j];
-
-        // Set the boundary parametrisation data pointer for this node
-        Nodal_boundary_parametrisation_pt[j_node] = boundary_parametrisation_pt;
-
-        // Set the coordinate of node j on this boundary
-        Boundary_coordinate_of_node[j_node] = boundary_coord_of_node[j];
-
-        update_rotation_matrices();
-      } // end of loop over nodes in node_on_boundary [j]
-    } // end of set_nodal_boundary_parametrisation()
+  //   C1CurviLine* nodal_boundary_parametrisation_pt(
+  //     const unsigned& j_node)
+  //   {
+  //     return Nodal_boundary_parametrisation_pt[j_node];
+  //   }
 
 
-    /// Update all rotation matrices (checks if they are needed unless flag is
-    /// true)
-    void update_rotation_matrices()
-    {
-      // [zdec] hard coded the three vertex nodes
-      unsigned n_vertex = 3;
-      // Loop over each vertex
-      for (unsigned j_node = 0; j_node < n_vertex; j_node++)
-      {
-        // If this node does not have a parametrisation (the pointer is still
-        // null) skip over it, otherwise we go on to fill out the rotation
-        // matrix
-        if (!nodal_boundary_parametrisation_pt(j_node))
-        {
-          continue;
-        }
+  //  // hierher isn't this the same as in fkv?
+   
+  //   /// Add a new boundary parametrisation to nodes all the nodes in the
+  //   /// vector node_on_boundary
+  //   void set_nodal_boundary_parametrisation(
+  //     const Vector<unsigned>& node_on_boundary,
+  //     const Vector<double>& boundary_coord_of_node,
+  //     C1CurviLine* const& boundary_parametrisation_pt)
+  //   {
+  //     // Loop over all the nodes in node_on_boundary and add the boundary
+  //     // pointer to their vector of boundaries
+  //     unsigned n_node = node_on_boundary.size();
+  //     for (unsigned j = 0; j < n_node; j++)
+  //     {
+  //       // The j-th node on the boundary
+  //       unsigned j_node = node_on_boundary[j];
 
-        // Initialise the two basis vectors and their jacobians
-        Vector<Vector<double>> bi(2, Vector<double>(2, 0.0));
-        Vector<DenseMatrix<double>> dbidx(2, DenseMatrix<double>(2, 2, 0.0));
+  //       // Set the boundary parametrisation data pointer for this node
+  //       Nodal_boundary_parametrisation_pt[j_node] = boundary_parametrisation_pt;
 
-        // Our new coordinate system:
-        //     (l, s)=(normal component, tangent component)
-        // which we define in terms of basis vectors (rescaled)
-        //     ni=dxi/dl / |n|           <-- Jacobian col 1
-        //     ti=dxi/ds / |t|           <-- Jacobian col 2
-        // and their derivatives
-        //     dnidxj=d/dxj(dxi/dl / |n|) <-- Hessian `col' 1
-        //     dtidxj=d/dxj(dxi/ds / |t|) <-- Hessian `col' 2
+  //       // Set the coordinate of node j on this boundary
+  //       Boundary_coordinate_of_node[j_node] = boundary_coord_of_node[j];
 
-        // [zdec] we use i and j for brevity
-        // but it should be alpha & beta
-        // Need to write up how the transformation is done
-
-        // Storage for our basis and derivatives
-        Vector<double> ni(2, 0.0);
-        Vector<double> ti(2, 0.0);
-        Vector<double> dnids(2, 0.0);
-        Vector<double> dtids(2, 0.0);
-
-        // All tensors assumed evaluated on the boundary
-        // Jacobian of inverse mapping
-        DenseMatrix<double> jac_inv(2, 2, 0.0);
-        // Hessian of mapping [zdec] (not needed because...)
-        Vector<DenseMatrix<double>> hess(2, DenseMatrix<double>(2, 2, 0.0));
-        // Hessian of inverse mapping [zdec] (...this can be found by hand)
-        Vector<DenseMatrix<double>> hess_inv(2, DenseMatrix<double>(2, 2, 0.0));
-
-        // The basis is defined in terms of the boundary parametrisation
-        Vector<double> boundary_coord = {Boundary_coordinate_of_node[j_node]};
-        CurvilineGeomObject* boundary_pt =
-          Nodal_boundary_parametrisation_pt[j_node];
-        Vector<double> x(2, 0.0);
-        Vector<double> dxids(2, 0.0);
-        Vector<double> d2xids2(2, 0.0);
-
-        // Get position (debug)
-        boundary_pt->position(boundary_coord, x);
-        // Get tangent vector
-        boundary_pt->dposition(boundary_coord, dxids);
-        // Get second derivative
-        boundary_pt->d2position(boundary_coord, d2xids2);
-
-        double mag_t = sqrt(dxids[0] * dxids[0] + dxids[1] * dxids[1]);
-        // ti is the normalised tangent vector
-        ti[0] = dxids[0] / mag_t;
-        ti[1] = dxids[1] / mag_t;
-        // Derivative of (normalised) tangent
-        dtids[0] = d2xids2[0] / std::pow(mag_t, 2) -
-                   (dxids[0] * d2xids2[0] + dxids[1] * d2xids2[1]) * dxids[0] /
-                     std::pow(mag_t, 4);
-        dtids[1] = d2xids2[1] / std::pow(mag_t, 2) -
-                   (dxids[0] * d2xids2[0] + dxids[1] * d2xids2[1]) * dxids[1] /
-                     std::pow(mag_t, 4);
-        // n = (t x e_z) implies
-        ni[0] = ti[1];
-        ni[1] = -ti[0];
-        // Same for dnids
-        dnids[0] = dtids[1];
-        dnids[1] = -dtids[0];
-
-        // Need inverse of mapping to calculate ds/dxi ----------------
-        //   /  dx/dl  dx/ds  \ -1  ___  __1__ /  dy/ds -dx/ds \ .
-        //   \  dy/dl  dy/ds  /     ---   det  \ -dy/dl  dx/dl /
-        //
-        //                          ___  /  dl/dx  dl/dy  \ .
-        //                          ---  \  ds/dx  ds/dy  /
-        //
-        // Fill out inverse of Jacobian
-        double det = (ni[0] * ti[1] - ni[1] * ti[0]);
-        jac_inv(0, 0) = ti[1] / det;
-        jac_inv(0, 1) = -ti[0] / det;
-        jac_inv(1, 0) = -ni[1] / det;
-        jac_inv(1, 1) = ni[0] / det;
-
-        // Fill out the Hessian
-        // (unneeded -- can calculate the inverse components by hand)
-        for (unsigned alpha = 0; alpha < 2; alpha++)
-        {
-          // hess[alpha](0,0) = 0.0;
-          hess[alpha](0, 1) = dnids[alpha];
-          hess[alpha](1, 0) = dnids[alpha];
-          hess[alpha](1, 1) = dtids[alpha];
-        }
-
-        // Fill out inverse of Hessian
-        // H^{-1}abg = J^{-1}ad Hdez J^{-1}eb J^{-1}zg
-        for (unsigned alpha = 0; alpha < 2; alpha++)
-        {
-          for (unsigned beta = 0; beta < 2; beta++)
-          {
-            for (unsigned gamma = 0; gamma < 2; gamma++)
-            {
-              for (unsigned alpha2 = 0; alpha2 < 2; alpha2++)
-              {
-                for (unsigned beta2 = 0; beta2 < 2; beta2++)
-                {
-                  for (unsigned gamma2 = 0; gamma2 < 2; gamma2++)
-                  {
-                    hess_inv[alpha](beta, gamma) -=
-                      jac_inv(alpha, alpha2) * hess[alpha2](beta2, gamma2) *
-                      jac_inv(beta2, beta) * jac_inv(gamma2, gamma);
-                  }
-                }
-              }
-            }
-          }
-        }
-
-        // Fill in the rotation matrix using the new basis
-        fill_in_rotation_matrix_at_node_with_basis(j_node, jac_inv, hess_inv);
-
-      } // end loop over vertices
-    } // end of update_rotation_matrices()
+  //       update_rotation_matrices();
+  //     } // end of loop over nodes in node_on_boundary [j]
+  //   } // end of set_nodal_boundary_parametrisation()
 
 
-    /// Access function to fill out rot_mat using rotation matrix
-    void get_rotation_matrix_at_node(const unsigned& j_node,
-                                     DenseMatrix<double>& rot_mat)
-    {
-      rot_mat = Rotation_matrix_at_node[j_node];
-    }
+  //   /// Update all rotation matrices (checks if they are needed unless flag is
+  //   /// true)
+  //   void update_rotation_matrices()
+  //   {
+  //     // [zdec] hard coded the three vertex nodes
+  //     unsigned n_vertex = 3;
+  //     // Loop over each vertex
+  //     for (unsigned j_node = 0; j_node < n_vertex; j_node++)
+  //     {
+  //       // If this node does not have a parametrisation (the pointer is still
+  //       // null) skip over it, otherwise we go on to fill out the rotation
+  //       // matrix
+  //       if (!nodal_boundary_parametrisation_pt(j_node))
+  //       {
+  //         continue;
+  //       }
 
-  private:
-    /// Helper function to fill in the rotation matrix for a given basis
-    void fill_in_rotation_matrix_at_node_with_basis(
-      const unsigned& j_node,
-      const DenseMatrix<double>& jac_inv,
-      const Vector<DenseMatrix<double>>& hess_inv)
-    {
-      // Rotation matrix, b constructed using submatrices b1, b12, b22
-      DenseMatrix<double> b1(2, 2, 0.0), b22(3, 3, 0.0), b12(2, 3, 0.0);
+  //       // Initialise the two basis vectors and their jacobians
+  //       Vector<Vector<double>> bi(2, Vector<double>(2, 0.0));
+  //       Vector<DenseMatrix<double>> dbidx(2, DenseMatrix<double>(2, 2, 0.0));
 
-      // Fill in the submatrices
-      // Loop over the rotated first derivatives
-      for (unsigned mu = 0; mu < 2; mu++)
-      {
-        // Loop over the unrotated first derivatives
-        for (unsigned alpha = 0; alpha < 2; alpha++)
-        {
-          // Fill in b1 - the Jacobian
-          // Fill in the affine rotation of the first derivatives
-          b1(mu, alpha) = jac_inv(mu, alpha);
+  //       // Our new coordinate system:
+  //       //     (l, s)=(normal component, tangent component)
+  //       // which we define in terms of basis vectors (rescaled)
+  //       //     ni=dxi/dl / |n|           <-- Jacobian col 1
+  //       //     ti=dxi/ds / |t|           <-- Jacobian col 2
+  //       // and their derivatives
+  //       //     dnidxj=d/dxj(dxi/dl / |n|) <-- Hessian `col' 1
+  //       //     dtidxj=d/dxj(dxi/ds / |t|) <-- Hessian `col' 2
 
-          // Loop over unrotated second derivatives
-          for (unsigned beta = 0; beta < 2; ++beta)
-          {
-            // Avoid double counting the cross derivative
-            if (alpha <= beta)
-            {
-              // Define column index
-              const unsigned col = alpha + beta;
+  //       // [zdec] we use i and j for brevity
+  //       // but it should be alpha & beta
+  //       // Need to write up how the transformation is done
 
-              // Fill in the non-affine part of the rotation of the first
-              // derivatives
-              b12(mu, col) += hess_inv[mu](alpha, beta);
-              // [zdec] debug mixed derivative -- add extra
-              if (alpha < beta)
-              {
-                // b12(mu, col) -= hess_inv[mu](alpha, beta);
-              }
-              // Loop over the rotated second derivatives
-              for (unsigned nu = 0; nu < 2; nu++)
-              {
-                // // Avoid double counting the cross derivative
-                // if (mu <= nu)
-                {
-                  // Fill in b22 - the Affine part of the Jacobian derivative
-                  // Redefine row index for the next submatrix
-                  unsigned row_b22 = mu + nu;
-                  // Fill in the affine part of the rotation of the second
-                  // derivatives [zdec] if( beta>= alpha) ?
-                  b22(row_b22, col) += jac_inv(mu, alpha) * jac_inv(nu, beta);
-                }
-              }
-            }
-          }
-        }
-      }
+  //       // Storage for our basis and derivatives
+  //       Vector<double> ni(2, 0.0);
+  //       Vector<double> ti(2, 0.0);
+  //       Vector<double> dnids(2, 0.0);
+  //       Vector<double> dtids(2, 0.0);
 
-      // Fill in the submatrices to the full (6x6) matrix
-      Rotation_matrix_at_node[j_node](0, 0) = 1.0;
-      // Fill in b1 --- the affine contribution to rotation of the
-      // first derivatives
-      for (unsigned i = 0; i < 2; ++i)
-      {
-        for (unsigned j = 0; j < 2; ++j)
-        {
-          Rotation_matrix_at_node[j_node](1 + i, 1 + j) = b1(i, j);
-        }
-      }
-      // Fill in b21 --- the non-affine (second derivative dependent)
-      // rotation of the first derivatives
-      for (unsigned i = 0; i < 2; ++i)
-      {
-        for (unsigned j = 0; j < 3; ++j)
-        {
-          Rotation_matrix_at_node[j_node](1 + i, 3 + j) = b12(i, j);
-        }
-      }
-      // Fill in b22 --- the rotation of the second derivatives
-      for (unsigned i = 0; i < 3; ++i)
-      {
-        for (unsigned j = 0; j < 3; ++j)
-        {
-          Rotation_matrix_at_node[j_node](3 + i, 3 + j) = b22(i, j);
-        }
-      }
-    } // end fill_in_rotation_matrix_at_node_with_basis
+  //       // All tensors assumed evaluated on the boundary
+  //       // Jacobian of inverse mapping
+  //       DenseMatrix<double> jac_inv(2, 2, 0.0);
+  //       // Hessian of mapping [zdec] (not needed because...)
+  //       Vector<DenseMatrix<double>> hess(2, DenseMatrix<double>(2, 2, 0.0));
+  //       // Hessian of inverse mapping [zdec] (...this can be found by hand)
+  //       Vector<DenseMatrix<double>> hess_inv(2, DenseMatrix<double>(2, 2, 0.0));
 
-    /// Pointer to the `parent' finite element which this is a helper force
-    FiniteElement* Parent_element_pt;
+  //       // The basis is defined in terms of the boundary parametrisation
+  //       Vector<double> boundary_coord = {Boundary_coordinate_of_node[j_node]};
+  //       C1CurviLine* boundary_pt =
+  //         Nodal_boundary_parametrisation_pt[j_node];
+  //       Vector<double> x(2, 0.0);
+  //       Vector<double> dxids(2, 0.0);
+  //       Vector<double> d2xids2(2, 0.0);
 
-    /// The number of nodes (that we store rotation data for) in the fvk element
-    /// that uses this helper
-    unsigned Nnode;
+  //       // Get position (debug)
+  //       boundary_pt->position(boundary_coord, x);
+  //       // Get tangent vector
+  //       boundary_pt->dposition(boundary_coord, dxids);
+  //       // Get second derivative
+  //       boundary_pt->d2position(boundary_coord, d2xids2);
 
-    /// Vector containing boundary parametrised location for each node
-    Vector<double> Boundary_coordinate_of_node;
+  //       double mag_t = sqrt(dxids[0] * dxids[0] + dxids[1] * dxids[1]);
+  //       // ti is the normalised tangent vector
+  //       ti[0] = dxids[0] / mag_t;
+  //       ti[1] = dxids[1] / mag_t;
+  //       // Derivative of (normalised) tangent
+  //       dtids[0] = d2xids2[0] / std::pow(mag_t, 2) -
+  //                  (dxids[0] * d2xids2[0] + dxids[1] * d2xids2[1]) * dxids[0] /
+  //                    std::pow(mag_t, 4);
+  //       dtids[1] = d2xids2[1] / std::pow(mag_t, 2) -
+  //                  (dxids[0] * d2xids2[0] + dxids[1] * d2xids2[1]) * dxids[1] /
+  //                    std::pow(mag_t, 4);
+  //       // n = (t x e_z) implies
+  //       ni[0] = ti[1];
+  //       ni[1] = -ti[0];
+  //       // Same for dnids
+  //       dnids[0] = dtids[1];
+  //       dnids[1] = -dtids[0];
 
-    /// Vector containing boundary parametrisation at each node
-    Vector<CurvilineGeomObject*> Nodal_boundary_parametrisation_pt;
+  //       // Need inverse of mapping to calculate ds/dxi ----------------
+  //       //   /  dx/dl  dx/ds  \ -1  ___  __1__ /  dy/ds -dx/ds \ .
+  //       //   \  dy/dl  dy/ds  /     ---   det  \ -dy/dl  dx/dl /
+  //       //
+  //       //                          ___  /  dl/dx  dl/dy  \ .
+  //       //                          ---  \  ds/dx  ds/dy  /
+  //       //
+  //       // Fill out inverse of Jacobian
+  //       double det = (ni[0] * ti[1] - ni[1] * ti[0]);
+  //       jac_inv(0, 0) = ti[1] / det;
+  //       jac_inv(0, 1) = -ti[0] / det;
+  //       jac_inv(1, 0) = -ni[1] / det;
+  //       jac_inv(1, 1) = ni[0] / det;
 
-    /// Vector containing <rotation matrix at each node>
-    Vector<DenseMatrix<double>> Rotation_matrix_at_node;
-  };
+  //       // Fill out the Hessian
+  //       // (unneeded -- can calculate the inverse components by hand)
+  //       for (unsigned alpha = 0; alpha < 2; alpha++)
+  //       {
+  //         // hess[alpha](0,0) = 0.0;
+  //         hess[alpha](0, 1) = dnids[alpha];
+  //         hess[alpha](1, 0) = dnids[alpha];
+  //         hess[alpha](1, 1) = dtids[alpha];
+  //       }
 
-  //---end of rotation helper class-------------------------------------------
+  //       // Fill out inverse of Hessian
+  //       // H^{-1}abg = J^{-1}ad Hdez J^{-1}eb J^{-1}zg
+  //       for (unsigned alpha = 0; alpha < 2; alpha++)
+  //       {
+  //         for (unsigned beta = 0; beta < 2; beta++)
+  //         {
+  //           for (unsigned gamma = 0; gamma < 2; gamma++)
+  //           {
+  //             for (unsigned alpha2 = 0; alpha2 < 2; alpha2++)
+  //             {
+  //               for (unsigned beta2 = 0; beta2 < 2; beta2++)
+  //               {
+  //                 for (unsigned gamma2 = 0; gamma2 < 2; gamma2++)
+  //                 {
+  //                   hess_inv[alpha](beta, gamma) -=
+  //                     jac_inv(alpha, alpha2) * hess[alpha2](beta2, gamma2) *
+  //                     jac_inv(beta2, beta) * jac_inv(gamma2, gamma);
+  //                 }
+  //               }
+  //             }
+  //           }
+  //         }
+  //       }
+
+  //       // Fill in the rotation matrix using the new basis
+  //       fill_in_rotation_matrix_at_node_with_basis(j_node, jac_inv, hess_inv);
+
+  //     } // end loop over vertices
+  //   } // end of update_rotation_matrices()
+
+
+  //   /// Access function to fill out rot_mat using rotation matrix
+  //   void get_rotation_matrix_at_node(const unsigned& j_node,
+  //                                    DenseMatrix<double>& rot_mat)
+  //   {
+  //     rot_mat = Rotation_matrix_at_node[j_node];
+  //   }
+
+  // private:
+  //   /// Helper function to fill in the rotation matrix for a given basis
+  //   void fill_in_rotation_matrix_at_node_with_basis(
+  //     const unsigned& j_node,
+  //     const DenseMatrix<double>& jac_inv,
+  //     const Vector<DenseMatrix<double>>& hess_inv)
+  //   {
+  //     // Rotation matrix, b constructed using submatrices b1, b12, b22
+  //     DenseMatrix<double> b1(2, 2, 0.0), b22(3, 3, 0.0), b12(2, 3, 0.0);
+
+  //     // Fill in the submatrices
+  //     // Loop over the rotated first derivatives
+  //     for (unsigned mu = 0; mu < 2; mu++)
+  //     {
+  //       // Loop over the unrotated first derivatives
+  //       for (unsigned alpha = 0; alpha < 2; alpha++)
+  //       {
+  //         // Fill in b1 - the Jacobian
+  //         // Fill in the affine rotation of the first derivatives
+  //         b1(mu, alpha) = jac_inv(mu, alpha);
+
+  //         // Loop over unrotated second derivatives
+  //         for (unsigned beta = 0; beta < 2; ++beta)
+  //         {
+  //           // Avoid double counting the cross derivative
+  //           if (alpha <= beta)
+  //           {
+  //             // Define column index
+  //             const unsigned col = alpha + beta;
+
+  //             // Fill in the non-affine part of the rotation of the first
+  //             // derivatives
+  //             b12(mu, col) += hess_inv[mu](alpha, beta);
+  //             // [zdec] debug mixed derivative -- add extra
+  //             if (alpha < beta)
+  //             {
+  //               // b12(mu, col) -= hess_inv[mu](alpha, beta);
+  //             }
+  //             // Loop over the rotated second derivatives
+  //             for (unsigned nu = 0; nu < 2; nu++)
+  //             {
+  //               // // Avoid double counting the cross derivative
+  //               // if (mu <= nu)
+  //               {
+  //                 // Fill in b22 - the Affine part of the Jacobian derivative
+  //                 // Redefine row index for the next submatrix
+  //                 unsigned row_b22 = mu + nu;
+  //                 // Fill in the affine part of the rotation of the second
+  //                 // derivatives [zdec] if( beta>= alpha) ?
+  //                 b22(row_b22, col) += jac_inv(mu, alpha) * jac_inv(nu, beta);
+  //               }
+  //             }
+  //           }
+  //         }
+  //       }
+  //     }
+
+  //     // Fill in the submatrices to the full (6x6) matrix
+  //     Rotation_matrix_at_node[j_node](0, 0) = 1.0;
+  //     // Fill in b1 --- the affine contribution to rotation of the
+  //     // first derivatives
+  //     for (unsigned i = 0; i < 2; ++i)
+  //     {
+  //       for (unsigned j = 0; j < 2; ++j)
+  //       {
+  //         Rotation_matrix_at_node[j_node](1 + i, 1 + j) = b1(i, j);
+  //       }
+  //     }
+  //     // Fill in b21 --- the non-affine (second derivative dependent)
+  //     // rotation of the first derivatives
+  //     for (unsigned i = 0; i < 2; ++i)
+  //     {
+  //       for (unsigned j = 0; j < 3; ++j)
+  //       {
+  //         Rotation_matrix_at_node[j_node](1 + i, 3 + j) = b12(i, j);
+  //       }
+  //     }
+  //     // Fill in b22 --- the rotation of the second derivatives
+  //     for (unsigned i = 0; i < 3; ++i)
+  //     {
+  //       for (unsigned j = 0; j < 3; ++j)
+  //       {
+  //         Rotation_matrix_at_node[j_node](3 + i, 3 + j) = b22(i, j);
+  //       }
+  //     }
+  //   } // end fill_in_rotation_matrix_at_node_with_basis
+
+  //   /// Pointer to the `parent' finite element which this is a helper force
+  //   FiniteElement* Parent_element_pt;
+
+  //   /// The number of nodes (that we store rotation data for) in the fvk element
+  //   /// that uses this helper
+  //   unsigned Nnode;
+
+  //   /// Vector containing boundary parametrised location for each node
+  //   Vector<double> Boundary_coordinate_of_node;
+
+  //   /// Vector containing boundary parametrisation at each node
+  //   Vector<C1CurviLine*> Nodal_boundary_parametrisation_pt;
+
+  //   /// Vector containing <rotation matrix at each node>
+  //   Vector<DenseMatrix<double>> Rotation_matrix_at_node;
+  // };
+
+  // //---end of rotation helper class-------------------------------------------
 
 
 
@@ -543,13 +545,13 @@ namespace oomph
     {
       return CurvableBellElement<Nnode_1D>::element_is_curved();
     }
-
+   
     /// Upgrade the Bell element to a curved Bernadou element
     virtual void upgrade_element_to_curved(
       const MyC1CurvedElements::Edge& curved_edge,
       const double& s_ubar,
       const double& s_obar,
-      CurvilineGeomObject* parametric_edge,
+      C1CurviLine* parametric_edge,
       const unsigned& boundary_order)
     {
       CurvableBellElement<Nnode_1D>::upgrade_element_to_curved(
@@ -1287,8 +1289,8 @@ shape_and_test_foeppl_von_karman(...)",
     DuplicateNodeConstraintElement(
       Node* const& left_node_pt,
       Node* const& right_node_pt,
-      CurvilineGeomObject* const& left_boundary_pt,
-      CurvilineGeomObject* const& right_boundary_pt,
+      C1CurviLine* const& left_boundary_pt,
+      C1CurviLine* const& right_boundary_pt,
       Vector<double> const& left_coord,
       Vector<double> const& right_coord)
       : Left_node_pt(left_node_pt),
@@ -2384,10 +2386,10 @@ shape_and_test_foeppl_von_karman(...)",
     Node* Right_node_pt;
 
     /// Pointer to the left node's boundary parametrisation
-    CurvilineGeomObject* Left_boundary_pt;
+    C1CurviLine* Left_boundary_pt;
 
     /// Pointer to the right node's boundary parametrisation
-    CurvilineGeomObject* Right_boundary_pt;
+    C1CurviLine* Right_boundary_pt;
 
     /// Coordinate of the left node on the left boundary
     Vector<double> Left_node_coord;

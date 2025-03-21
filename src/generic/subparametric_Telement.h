@@ -201,9 +201,33 @@ namespace oomph
       }
     } // End of repair_lagrange_node_positions
 
-  }; // End of Subparametric TElement class
+  }; // End of Subparametric TElement clas
 
 
+ 
+ //===========================================================================
+ /// Template-free base class for curvable Bell Element
+ //===========================================================================
+ class TemplateFreeCurvableBellElement
+ {
+
+ public:
+  
+  /// Upgrade the element to be curved
+  virtual void upgrade_element_to_curved(const MyC1CurvedElements::Edge& curved_edge,
+                                         const double& s_ubar,
+                                         const double& s_obar,
+                                         C1CurviLine* parametric_edge,
+                                         const unsigned& boundary_order)=0;
+  
+  /// Access function to rotated boundary helper object
+  virtual RotatedBoundaryHelper* rotated_boundary_helper_pt()=0;
+  
+ };
+ 
+
+  
+   
   //===========================================================================
   /// Curvable Bell element. It inherits simplax shape subparametricity
   /// SubparametricTriangleElement for efficient position interpolation. It also
@@ -215,9 +239,12 @@ namespace oomph
   /// the Bell bases to the curved Bell/Bernadou basis.
   //============================================================================
   template<unsigned NNODE_1D>
-  class CurvableBellElement : public SubparametricTriangleElement<NNODE_1D>
+ class CurvableBellElement : public virtual TemplateFreeCurvableBellElement,
+                             public SubparametricTriangleElement<NNODE_1D>
   {
+   
   public:
+   
     /// Constructor that takes the number of fields and a vector of
     /// corresponding bools which is true for each field that should be
     /// interpolated using the Bell/Bernadou basis (by default, one field, Bell
@@ -740,11 +767,11 @@ to access interpolated eulerian coordinate",
 
 
     /// Upgrade the element to be curved
-    virtual void upgrade_element_to_curved(const Edge& curved_edge,
-                                           const double& s_ubar,
-                                           const double& s_obar,
-                                           CurvilineGeomObject* parametric_edge,
-                                           const unsigned& boundary_order)
+   virtual void upgrade_element_to_curved(const Edge& curved_edge,
+                                          const double& s_ubar,
+                                          const double& s_obar,
+                                          C1CurviLine* parametric_edge,
+                                          const unsigned& boundary_order)
     {
       using namespace MyC1CurvedElements;
 #ifdef PARANOID
@@ -860,6 +887,7 @@ Elements.",
 
 
   private:
+   
     /// Enum to store which edge is curved set to none when element has no
     /// curved edges
     MyC1CurvedElements::Edge Curved_edge;

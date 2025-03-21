@@ -38,6 +38,8 @@
 
 namespace oomph
 {
+
+ // hierher Aidan kill this namespace!!!
   namespace MyC1CurvedElements
   {
     // HERE replace with class enum in c++11?
@@ -93,22 +95,25 @@ namespace oomph
                                   DShape& d2bpsi,
                                   const DenseMatrix<double>& m) const = 0;
 
-      virtual void coordinate_x(const Vector<double>& s,
-                                Vector<double>& fk) const = 0;
-
-      virtual void get_jacobian(const Vector<double>& s,
+     /// hierher comments!
+     virtual void coordinate_x(const Vector<double>& s,
+                               Vector<double>& fk) const = 0;
+     
+     /// hierher comments!
+     virtual void get_jacobian(const Vector<double>& s,
                                 DenseMatrix<double>& jacobian) const = 0;
 
-      virtual void upgrade_element(
-        const VertexList& verts,
-        const double& su,
-        const double& so,
-        const Edge& curved_edge,
-        const CurvilineGeomObject& parametric_curve) = 0;
-
-      /// Check the element
+     /// hierher
+     virtual void upgrade_element(
+      const VertexList& verts,
+      const double& su,
+      const double& so,
+      const Edge& curved_edge,
+      const C1CurviLine& parametric_curve) = 0;
+     
+     /// Check the element
       virtual void self_check(
-        const CurvilineGeomObject& parametric_curve) const = 0;
+        const C1CurviLine& parametric_curve) const = 0;
 
       /// Return the number of basis functions on the physical triangle
       virtual unsigned n_basis_functions() const = 0;
@@ -193,7 +198,7 @@ namespace oomph
                            const double& su,
                            const double& so,
                            const Edge& curved_edge,
-                           const CurvilineGeomObject& parametric_curve)
+                           const C1CurviLine& parametric_curve)
       {
         // Store vertices
         Vertices = verts;
@@ -240,7 +245,7 @@ namespace oomph
 
     public:
       /// Check the element
-      inline void self_check(const CurvilineGeomObject& parametric_curve) const;
+      inline void self_check(const C1CurviLine& parametric_curve) const;
 
       /// Get the physical coordinate
       void coordinate_x(const Vector<double>& s, Vector<double>& fk) const;
@@ -1284,10 +1289,10 @@ you forget to set a Curved_edge?",
     ///    checks.
     template<unsigned BOUNDARY_ORDER>
     void BernadouElementBasis<BOUNDARY_ORDER>::self_check(
-      const CurvilineGeomObject& parametric_curve_pt) const
+      const C1CurviLine& parametric_curve_pt) const
     {
       // Tolerance as a static member HERE
-      const double tol(1e-15), angle_tol(1e-12);
+     const double tol(1e-10), angle_tol(1e-12); // hierher pass arguments into fct?
 
       // Check that all of the relevant fields have been filled. HERE (HIGHER in
       // complete build of shape function)
@@ -1307,6 +1312,8 @@ definitions.",
       // parametric function
       Vector<Vector<double>> local_vertices(3, Vector<double>(2, 0.0));
       Vector<double> vertex_0(2, 0.0), vertex_1(2, 0.0);
+
+      // hierher why _pt; clearly isn't one!
       parametric_curve_pt.position(Vector<double>(1, S_ubar), vertex_0);
       parametric_curve_pt.position(Vector<double>(1, S_obar), vertex_1);
 
