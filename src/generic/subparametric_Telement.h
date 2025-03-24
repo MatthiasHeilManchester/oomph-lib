@@ -222,6 +222,29 @@ namespace oomph
   
   /// Access function to rotated boundary helper object
   virtual RotatedBoundaryHelper* rotated_boundary_helper_pt()=0;
+
+
+  /// Clamp: i.e. pin the in-plane displacements and pin the out-of-plane
+  /// displacement and its normal derivatives. We also apply implied
+  /// boundary conditions (e.g. specification of dw/dn also implies
+  /// d^2w/dn/dzeta etc.
+  /// hierher zeta is not necessarily the arclength! translation from
+  /// d/dzeta to d/dt requires jacobian!
+  virtual void fully_clamp_specified_boundary(
+   const unsigned& b,
+   const Vector<BoundaryConditionForC1PlateBending*>& boundary_values_pt) = 0;
+  
+  
+  /// Pin i.e. pin the in-plane and out of plane displacements only.
+  /// We leave the normal derivative of the out-of-plane derivative alone.
+  /// We also apply implied boundary conditions (e.g. specification of w
+  /// also implies dw/dzeta etc.
+  /// hierher zeta is not necessarily the arclength! translation from
+  /// d/dzeta to d/dt requires jacobian!
+  virtual void pin_specified_boundary(
+   const unsigned& b,
+   const Vector<BoundaryConditionForC1PlateBending*>& boundary_values_pt) = 0;
+  
   
  };
  

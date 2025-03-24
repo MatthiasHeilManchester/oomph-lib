@@ -5084,6 +5084,11 @@ namespace oomph
         // If the boundary has a geometric object representation then
         // scale the coordinates to match those of the geometric object
         GeomObject* const geom_object_pt = this->boundary_geom_object_pt(b);
+
+        oomph_info << "boundary b " << b << " boundary geom_object "
+                   <<  geom_object_pt
+                   << std::endl;
+        
         if (geom_object_pt != 0)
         {
           Vector<double> bound_coord_limits =

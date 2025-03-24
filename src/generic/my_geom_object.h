@@ -36,6 +36,79 @@
 namespace oomph
 {
 
+
+//==============================================================================
+/// Class to specify boundary conditions for C1 (plate bending) problems
+//==============================================================================
+class BoundaryConditionForC1PlateBending
+{
+
+
+public:
+
+ /// Constructor: Specify FD step for automatic evaluation of derivatives
+ BoundaryConditionForC1PlateBending(const double& fd_step=1.0e-8) :
+  FD_step(fd_step)
+  {}
+
+ // hierher break copy constructor etc.
+ 
+ /// Pure virtual function to specify value of the function (typically a
+ /// displacement component) as a function of zeta, the 1D coordinate
+ /// that parametrises the boundary
+ virtual double f(const double& zeta) =0 ;
+
+
+ /// Broken virtual function to specify the normal derivative of the function
+ /// (typically a displacement component) w.r.t zeta, the 1D coordinate that
+ /// parametrises the boundary. This is only needed for genuine C1 quantities
+ /// (or for large-amplitude problems, e.g. Koiter Steigman, where all three
+ /// displacement components need to be C1. Broken function will shout if it's
+ /// evaluated.
+ virtual double dfdn(const double& zeta)
+  {
+   // hierher throw
+   abort();
+  }
+ 
+ /// Virtual function to specify the derivative of the function (typically a
+ /// displacement component) w.r.t zeta, the 1D coordinate that parametrises the
+ /// boundary. Defaults to fd evaluation. Overload with your own version if
+ /// you prefer
+ double dfdzeta(const double& zeta)
+  {
+   return (f(zeta+FD_step)-f(zeta))/FD_step;
+  }
+ 
+
+ /// Virtual function to specify the derivative of the normal derivatives 
+ /// w.r.t zeta , the 1D coordinate that parametrises the boundary. Defaults to
+ /// fd evaluation. Overload with your own version if you prefer.
+ double d2fdndzeta(const double& zeta)
+  {
+   return (dfdn(zeta+FD_step)-dfdn(zeta))/FD_step;
+  }
+
+ /// Virtual function to specify the second derivative of the function
+ /// w.r.t zeta , the 1D coordinate that parametrises the boundary. Defaults to
+ /// fd evaluation. Overload with your own version if you prefer.
+ double d2fdzeta2(const double& zeta)
+  {
+   return (f(zeta+FD_step)-2.0*f(zeta)+f(zeta-FD_step))/(FD_step*FD_step);
+  }
+
+
+private:
+
+ /// FD step
+ double FD_step;
+
+};
+
+
+ ////////////////////////////////////////////////////////////////////////
+ ////////////////////////////////////////////////////////////////////////
+ ////////////////////////////////////////////////////////////////////////
  
   //======================================================================
   /// hierher

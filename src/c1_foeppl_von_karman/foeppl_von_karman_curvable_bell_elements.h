@@ -581,21 +581,65 @@ namespace oomph
     //----------------------------------------------------------------------
     // Geometry and boundaries
 
+
+
+   // hierher all into base class.
+   
+   /// Clamp: i.e. pin the in-plane displacements and pin the out-of-plane
+   /// displacement and its normal derivatives. We also apply implied
+   /// boundary conditions (e.g. specification of dw/dn also implies
+   /// d^2w/dn/dzeta etc.
+   /// hierher zeta is not necessarily the arclength! translation from
+   /// d/dzeta to d/dt requires jacobian!
+   virtual void fully_clamp_specified_boundary(
+    const unsigned& b,
+    const Vector<BoundaryConditionForC1PlateBending*>& boundary_values_pt);
+   
+   
+   /// Pin i.e. pin the in-plane and out of plane displacements only.
+   /// We leave the normal derivative of the out-of-plane derivative alone.
+   /// We also apply implied boundary conditions (e.g. specification of w
+   /// also implies dw/dzeta etc.
+   /// hierher zeta is not necessarily the arclength! translation from
+   /// d/dzeta to d/dt requires jacobian!
+   virtual void pin_specified_boundary(
+    const unsigned& b,
+    const Vector<BoundaryConditionForC1PlateBending*>& boundary_values_pt);
+
+   
+   /// hierher alpha=0,1  for x and y in plane displacements
+   void pin_and_impose_specified_in_plane_displacement_along_specified_boundary(
+    const unsigned& alpha,
+    const unsigned& b,
+    BoundaryConditionForC1PlateBending* boundary_values_pt);
+   
+   // hierher
+   void clamp_and_impose_specified_out_of_plane_displacement_along_specified_boundary(
+    const unsigned& b,
+    BoundaryConditionForC1PlateBending* boundary_values_pt);
+
+   
+// hierher obsolete from here...
+   
     /// Function to pin all deflection dofs
     void pin_all_deflection_dofs() const;
 
+
+   // hierher rename "pin_..." for consitency
     /// Function to pin the j-th in-plane displacement dof at all nodes along
     /// boundary b to the value prescribed by specified_u_j_pt
     void fix_in_plane_displacement_dof(const unsigned& j_type,
                                        const unsigned& b,
                                        const ScalarFctPt& specified_u_j_pt);
 
+   // hierher rename "pin_..." for consitency
     /// Function to pin the j-th out-of-plane displacement dof at all nodes
     /// along boundary b to the value prescribed by specified_w_j_pt
     void fix_out_of_plane_displacement_dof(const unsigned& dof_number,
                                            const unsigned& b,
                                            const ScalarFctPt& specified_w_j_pt);
 
+ // hierher ... to here (I think!)
 
     // [zdec] I think i misnamed this, should it be interpolated_x?
     /// Get the zeta coordinate
@@ -1648,6 +1692,12 @@ namespace oomph
   void FoepplVonKarmanC1CurvableBellElement<NNODE_1D>::pin_all_deflection_dofs()
     const
   {
+
+
+   // hierher: Aidan: deflection = out of plane? is this used and should we hide
+   // it from the user? I don't really want the dofs to be overly visible to the
+   // outside; it's just too complicated (and unecessary knowledge).
+   
     const unsigned w_index = w_field_index();
 
     // Get nodes
@@ -1683,7 +1733,249 @@ namespace oomph
     }
   }
 
+ //==========================================================================
+ /// Clamp: i.e. pin the in-plane displacements and pin the out-of-plane
+ /// displacement and its normal derivatives. We also apply implied
+ /// boundary conditions (e.g. specification of dw/dn also implies
+ /// d^2w/dn/dzeta etc.
+ /// hierher zeta is not necessarily the arclength! translation from
+ /// d/dzeta to d/dt requires jacobian!
+  //==========================================================================
+ template<unsigned NNODE_1D>
+ void FoepplVonKarmanC1CurvableBellElement<NNODE_1D>::fully_clamp_specified_boundary(
+  const unsigned& b,
+  const Vector<BoundaryConditionForC1PlateBending*>& boundary_values_pt)
+ {
 
+  // Deal with in plane displacements
+  for (unsigned i=0;i<2;i++)
+   {
+    pin_and_impose_specified_in_plane_displacement_along_specified_boundary(
+     i,b,boundary_values_pt[i]);
+   }
+  
+  // Deal with out of plane displacements
+  clamp_and_impose_specified_out_of_plane_displacement_along_specified_boundary(
+   b,boundary_values_pt[2]);
+ }
+
+
+ //=============================================================================
+ /// Pin i.e. pin the in-plane and out of plane displacements only.
+ /// We leave the normal derivative of the out-of-plane derivative alone.
+ /// We also apply implied boundary conditions (e.g. specification of w
+ /// also implies dw/dzeta etc.
+ /// hierher zeta is not necessarily the arclength! translation from
+ /// d/dzeta to d/dt requires jacobian!
+//=============================================================================
+ template<unsigned NNODE_1D>
+ void FoepplVonKarmanC1CurvableBellElement<NNODE_1D>::pin_specified_boundary(
+  const unsigned& b,
+  const Vector<BoundaryConditionForC1PlateBending*>& boundary_values_pt)
+ {
+  //hierher
+  abort();
+ }
+ 
+
+ //=============================================================================
+ /// hierher alpha=0,1  for x and y in plane displacements
+ //=============================================================================
+ template<unsigned NNODE_1D>
+ void FoepplVonKarmanC1CurvableBellElement<NNODE_1D>::
+ pin_and_impose_specified_in_plane_displacement_along_specified_boundary(
+  const unsigned& alpha,
+  const unsigned& b,
+  BoundaryConditionForC1PlateBending* boundary_values_pt)
+ {
+    
+  // Initialise constants that we use in this function
+  const unsigned field_index = u_alpha_field_index(alpha);
+  const unsigned nodal_type_index =
+   this->first_nodal_type_index_for_field(field_index);
+  const unsigned n_node = nu_node();
+  const unsigned dim = this->dim();
+  
+#ifdef PARANOID
+  // Check that the dof number is a sensible value
+  const unsigned n_type = 2 * nu_type_at_each_node();
+  if (alpha >= n_type)
+   {
+    throw OomphLibError(
+     "Foppl von Karman elements only have 2 in-plane displacement degrees\
+of freedom at internal points. They are {ux, uy}",
+     OOMPH_CURRENT_FUNCTION,
+     OOMPH_EXCEPTION_LOCATION);
+   }
+#endif
+  
+  // Bell elements only have deflection dofs at vertices
+  for (unsigned n = 0; n < n_node; ++n)
+   {
+    // Get boundary node
+    BoundaryNode<Node>* nod_pt =
+     dynamic_cast<BoundaryNode<Node>*>(this->node_pt(n));
+    
+    // Check if it is on the boundary
+    if (nod_pt!=0)
+     {
+      if (nod_pt->is_on_boundary(b))
+       {
+#ifdef PARANOID
+        // We should only have one coordinate on this boundary
+        unsigned nzeta=nod_pt->ncoordinates_on_boundary(b);
+        if (nzeta!=1)
+         {
+          // hierher
+          abort();
+         }
+#endif
+        
+        // Get value itself from boundary condition object
+        Vector<double> zeta(nzeta);
+        nod_pt->get_coordinates_on_boundary(b,zeta);
+        double value=boundary_values_pt->f(zeta[0]);
+        
+        oomph_info << "pinning.setting at b zeta " << b << " " << zeta[0] << std::endl;
+        
+        // Pin and set the value
+        nod_pt->pin(alpha);
+        nod_pt->set_value(nodal_type_index, value); // hierher Aidan should indices in pin and set_value be the same? 
+       }
+     }
+   }
+ }
+
+ 
+ //=============================================================================
+ /// hierher 
+ //=============================================================================
+ template<unsigned NNODE_1D>
+ void FoepplVonKarmanC1CurvableBellElement<NNODE_1D>::
+ clamp_and_impose_specified_out_of_plane_displacement_along_specified_boundary(
+  const unsigned& b,
+  BoundaryConditionForC1PlateBending* boundary_values_pt)
+ {
+
+  const unsigned w_index = w_field_index();
+  const unsigned first_nodal_type_index =
+   this->first_nodal_type_index_for_field(w_index);
+  const unsigned n_vertices = nw_node();
+  
+  // Bell elements only have deflection dofs at vertices
+  for (unsigned n = 0; n < n_vertices; ++n)
+   {
+    
+    // Get boundary node
+    BoundaryNode<Node>* nod_pt =
+     dynamic_cast<BoundaryNode<Node>*>(this->node_pt(n));
+    
+    // Check if it is on the boundary
+    if (nod_pt!=0)
+     {
+      if (nod_pt->is_on_boundary(b))
+       {
+#ifdef PARANOID
+        // We should only have one coordinate on this boundary
+        unsigned nzeta=nod_pt->ncoordinates_on_boundary(b);
+        if (nzeta!=1)
+         {
+          // hierher
+          abort();
+         }
+#endif
+        
+        // Get value itself from boundary condition object
+        Vector<double> zeta(nzeta);
+        nod_pt->get_coordinates_on_boundary(b,zeta);
+        
+
+        // Foppl von Karman elements only have 6 Hermite deflection degrees
+        // of freedom at internal points. They are {w ; w,x ; w,y ; w,xx ; w,xy ; w,yy}
+        // or their rotated counterparts {w ; w,n ; w,t ; w,nn ; w,nt ; w,tt}
+        // hierher check order of rotated coordinates
+        unsigned nw_type=nw_type_at_each_node();
+        for (unsigned k_type=0;k_type<nw_type;k_type++)
+         {
+          double value=0.0;
+          switch (k_type)
+           {
+           case 0:
+            value=boundary_values_pt->f(zeta[0]);
+            break;
+            
+           case 1:
+            // Calls broken virtual function; dies if not implemented
+            value=boundary_values_pt->dfdn(zeta[0]);
+            break;
+            
+           case 2:
+            // hierher Jacobian
+            value=boundary_values_pt->dfdzeta(zeta[0]);
+            break;
+
+            
+           case 3:
+            // Second normal derivative shouldn't be set!
+            break;
+            
+           case 4:
+            // hierher Jacobian!
+            value=boundary_values_pt->d2fdndzeta(zeta[0]);
+            break;
+            
+           case 5:
+            // hierher Jacobian!
+            value=boundary_values_pt->d2fdzeta2(zeta[0]);
+            break;
+
+           default:
+            oomph_info << "never get here" << std::endl;
+            abort();
+           }
+
+          // Skip second normal derivative
+          if (k_type!=3)
+           {
+            oomph_info << "pinning.setting at b k_type zeta value" << b << " "
+                       << k_type << " " << zeta[0] << " " << value << std::endl;
+            
+            // Pin and set the value
+            nod_pt->pin(first_nodal_type_index + k_type);
+            nod_pt->set_value(first_nodal_type_index + k_type, value);
+           }
+         }
+       
+
+
+        // hierher old
+        // // Get node
+        // Node* nod_pt = this->node_pt(n);
+        // // Check if it is on the boundary
+        // bool is_boundary_node = nod_pt->is_on_boundary(b_boundary);
+        // if (is_boundary_node)
+        //  {
+        //   // Extract nodal coordinates from node:
+        //   Vector<double> x(2);
+        //   x[0] = nod_pt->x(0);
+        //   x[1] = nod_pt->x(1);
+        //   // Get value
+        //   double value;
+        //   specified_w_j_pt(x, value);
+        //   // Pin and set the value
+        //   nod_pt->pin(first_nodal_type_index + k_type);
+        //   nod_pt->set_value(first_nodal_type_index + k_type, value);
+        //  }
+        
+        
+       }
+     }
+
+   }
+ }
+
+
+  
   //=============================================================================
   /// Function to pin the j-th in-plane displacement dof at all nodes along
   /// boundary b to the value prescribed by specified_u_j_pt
@@ -1694,6 +1986,10 @@ namespace oomph
 				const unsigned& b,
 				const ScalarFctPt& specified_u_j_pt)
   {
+
+   oomph_info << "hierher obsolete" << std::endl;
+   abort();
+   
     // Initialise constants that we use in this function
     const unsigned field_index = u_alpha_field_index(alpha);
     const unsigned nodal_type_index =
@@ -1750,6 +2046,8 @@ of freedom at internal points. They are {ux, uy}",
 				    const unsigned& b_boundary,
 				    const ScalarFctPt& specified_w_j_pt)
   {
+   oomph_info << "hierher obsolete" << std::endl;
+   abort();
     const unsigned w_index = w_field_index();
     const unsigned first_nodal_type_index =
       this->first_nodal_type_index_for_field(w_index);
@@ -1791,6 +2089,12 @@ of freedom at internal points. They are {w ; w,x ; w,y ; w,xx ; w,xy ; w,yy}",
     }
   }
 
+
+ ///////////////////////////////////////////////////////////////////////////
+ ///////////////////////////////////////////////////////////////////////////
+ ///////////////////////////////////////////////////////////////////////////
+ 
+ 
 
   //========= start_of_duplicate_node_constraint_element ==================
   /// Non-geometric element used to constrain dofs between duplicated
