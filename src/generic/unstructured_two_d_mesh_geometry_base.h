@@ -1822,6 +1822,18 @@ namespace oomph
       return Region_attribute[i];
     }
 
+
+   /// Map containing pointers to TriangleMeshCurviLines
+   /// (describing curvilinear boundaries), indexed by
+   /// boundary ID so boundary_curvline_pt[b] is the
+   /// pointer to the TriangleMeshCurviLine describing
+   /// the b-th boundary (null pointer if it's not
+   /// described by a TriangleMeshCurviLines)
+   std::map<unsigned, TriangleMeshCurviLine*> curviline_boundary_pt()
+    {
+     return Curviline_boundary_pt;
+    }
+   
     /// Return the geometric object associated with the b-th boundary or
     /// null if the boundary has associated geometric object.
     GeomObject* boundary_geom_object_pt(const unsigned& b)
@@ -2584,6 +2596,10 @@ namespace oomph
 
     /// Vector of attributes associated with the elements in each region
     Vector<double> Region_attribute;
+
+   /// Storage for the TriangleMeshCurviLine objects associated
+   /// with any boundaries
+   std::map<unsigned, TriangleMeshCurviLine*> Curviline_boundary_pt;
 
     /// Storage for the geometric objects associated with any boundaries
     std::map<unsigned, GeomObject*> Boundary_geom_object_pt;
@@ -3707,6 +3723,9 @@ namespace oomph
             // Set the boundary geometric object and limits
             Boundary_geom_object_pt[bnd_id] = curviline_pt->geom_object_pt();
             Boundary_coordinate_limits[bnd_id] = zeta_bound;
+
+            // Store curviline in map
+            Curviline_boundary_pt[bnd_id]=curviline_pt;
           }
         } // for
       } // else
@@ -3740,6 +3759,10 @@ namespace oomph
           // Set the boundary geometric object and limits
           Boundary_geom_object_pt[bnd_id] = curviline_pt->geom_object_pt();
           Boundary_coordinate_limits[bnd_id] = zeta_bound;
+
+          // Store curviline in map
+          Curviline_boundary_pt[bnd_id]=curviline_pt;
+          
         }
       } // for
     } // function

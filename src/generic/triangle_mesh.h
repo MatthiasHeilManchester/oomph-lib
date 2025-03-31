@@ -90,25 +90,29 @@ namespace oomph
       std::ofstream outfile;
       setup_boundary_element_info(outfile);
     }
-
+   
+   /// Timestepper used to build elements
+   TimeStepper* timestepper_pt()
+    {
+     return Time_stepper_pt;
+    }
+   
+   
     // [zdec] work in progress
     /// Divide an element into three by creating edges from the centroid to
     /// each of the vertex nodes. Take the old element pointer and fill out
     /// vectors containing pointers to the new three elements and all the
-    /// nodes. Optionally takes a pointer to a timestepper to pass on to the
-    /// new elements and nodes.
+    /// nodes.
     template<class ELEMENT>
     void split_element_through_centroid(
       FiniteElement* const& el_pt,
       Vector<FiniteElement*>& new_el_pt,
-      Vector<Node*>& new_nod_pt,
-      TimeStepper* const& time_stepper_pt = &Mesh::Default_TimeStepper);
+      Vector<Node*>& new_nod_pt);
 
     /// Make sure no elements have two boundary edges by splitting them through
     /// their centroid (e.g. no corner elements straddling two boundaries).
     template<class ELEMENT>
-    void split_elements_with_multiple_boundary_edges(
-      TimeStepper* const& time_stepper_pt = &Mesh::Default_TimeStepper);
+    void split_elements_with_multiple_boundary_edges();
 
     /// Setup lookup schemes which establish which elements are located
     /// next to mesh's boundaries. Doc in outfile (if it's open).
@@ -274,6 +278,10 @@ namespace oomph
     }
 
   protected:
+
+   /// Timestepper used to build elements
+   TimeStepper* Time_stepper_pt;
+   
 #ifdef OOMPH_HAS_TRIANGLE_LIB
 
     /// TriangulateIO representation of the mesh
@@ -295,8 +303,7 @@ namespace oomph
   void TriangleMeshBase::split_element_through_centroid(
     FiniteElement* const& el_pt,
     Vector<FiniteElement*>& new_el_pt,
-    Vector<Node*>& new_nod_pt,
-    TimeStepper* const& time_stepper_pt)
+    Vector<Node*>& new_nod_pt)
   {
 #ifdef PARANOID
     // Maybe check that the element belongs to this mesh?
@@ -336,7 +343,7 @@ namespace oomph
 
         // Next, we create the new node (using the construct node function
         // ensures that dof memory is properly allocated for us)
-        Node* c_pt = el0_pt->construct_node(0, time_stepper_pt);
+        Node* c_pt = el0_pt->construct_node(0, Time_stepper_pt);
 
         // We have three elements, fill the vector of new elements
         new_el_pt.resize(3);
@@ -433,10 +440,10 @@ namespace oomph
 
         // Next, we create the new nodes (using the construct node function
         // ensures that dof memory is properly allocated for us)
-        Node* c_pt = el0_pt->construct_node(0, time_stepper_pt);
-        Node* a0_pt = el1_pt->construct_node(3, time_stepper_pt);
-        Node* a1_pt = el0_pt->construct_node(3, time_stepper_pt);
-        Node* a2_pt = el0_pt->construct_node(5, time_stepper_pt);
+        Node* c_pt  = el0_pt->construct_node(0, Time_stepper_pt);
+        Node* a0_pt = el1_pt->construct_node(3, Time_stepper_pt);
+        Node* a1_pt = el0_pt->construct_node(3, Time_stepper_pt);
+        Node* a2_pt = el0_pt->construct_node(5, Time_stepper_pt);
 
         // We have three elements, fill the vector of new elements
         new_el_pt.resize(3);
@@ -580,7 +587,7 @@ namespace oomph
         // Temp pointer to delete o9
         Node* o9_temp_pt = o9_pt;
         // Reconstruct
-        o9_pt = el0_pt->construct_node(0, time_stepper_pt);
+        o9_pt = el0_pt->construct_node(0, Time_stepper_pt);
         // Copy the position
         o9_pt->x(0) = o9_temp_pt->x(0);
         o9_pt->x(1) = o9_temp_pt->x(1);
@@ -590,15 +597,15 @@ namespace oomph
 
         // Next, we create the new nodes (using the construct node function
         // ensures that dof memory is properly allocated for us)
-        Node* a0_pt = el1_pt->construct_node(3, time_stepper_pt);
-        Node* a1_pt = el0_pt->construct_node(4, time_stepper_pt);
-        Node* a2_pt = el0_pt->construct_node(7, time_stepper_pt);
-        Node* b0_pt = el1_pt->construct_node(4, time_stepper_pt);
-        Node* b1_pt = el0_pt->construct_node(3, time_stepper_pt);
-        Node* b2_pt = el0_pt->construct_node(8, time_stepper_pt);
-        Node* c0_pt = el0_pt->construct_node(9, time_stepper_pt);
-        Node* c1_pt = el1_pt->construct_node(9, time_stepper_pt);
-        Node* c2_pt = el2_pt->construct_node(9, time_stepper_pt);
+        Node* a0_pt = el1_pt->construct_node(3, Time_stepper_pt);
+        Node* a1_pt = el0_pt->construct_node(4, Time_stepper_pt);
+        Node* a2_pt = el0_pt->construct_node(7, Time_stepper_pt);
+        Node* b0_pt = el1_pt->construct_node(4, Time_stepper_pt);
+        Node* b1_pt = el0_pt->construct_node(3, Time_stepper_pt);
+        Node* b2_pt = el0_pt->construct_node(8, Time_stepper_pt);
+        Node* c0_pt = el0_pt->construct_node(9, Time_stepper_pt);
+        Node* c1_pt = el1_pt->construct_node(9, Time_stepper_pt);
+        Node* c2_pt = el2_pt->construct_node(9, Time_stepper_pt);
 
         // We have three elements, fill the vector of new elements
         new_el_pt.resize(3);
@@ -707,8 +714,7 @@ namespace oomph
   /// their centroid (e.g. corner elements straddling both boundaries)
   //==========================================================================
   template<class ELEMENT>
-  void TriangleMeshBase::split_elements_with_multiple_boundary_edges(
-    TimeStepper* const& time_stepper_pt)
+  void TriangleMeshBase::split_elements_with_multiple_boundary_edges()
   {
     // Setup boundary lookup scheme if required
     if (!Lookup_for_elements_next_boundary_is_setup)
@@ -719,45 +725,47 @@ namespace oomph
     // Map to store how many boundaries elements are located on
     std::map<FiniteElement*, unsigned> count;
 
-    // [zdec] debug
-    std::string filename_old = "element_debug_file_orig.dat";
-    std::ofstream element_debug_old;
-    element_debug_old.open(filename_old,
-                           std::ofstream::out | std::ofstream::trunc);
-    element_debug_old.close();
-    std::string filename_n_old = "node_debug_file_orig.dat";
-    element_debug_old.open(filename_n_old,
-                           std::ofstream::out | std::ofstream::trunc);
-    element_debug_old.close();
-    for (unsigned e = 0; e < nelement(); e++)
-    {
-      // [zdec] debug: doc all the elements to see the mesh patches
-      oomph_info << "Adding element " << e << " at " << finite_element_pt(e)
-                 << " nodes to debug file" << std::endl;
-      element_debug_old.open(filename_old, std::ios_base::app);
-      // loop over the vertex nodes
-      for (unsigned i = 0; i < 3; i++)
-      {
-        element_debug_old << finite_element_pt(e)->node_pt(i)->x(0) << " ";
-        element_debug_old << finite_element_pt(e)->node_pt(i)->x(1) << " ";
-        element_debug_old << std::endl;
-      }
-      element_debug_old << finite_element_pt(e)->node_pt(0)->x(0) << " ";
-      element_debug_old << finite_element_pt(e)->node_pt(0)->x(1) << " ";
-      element_debug_old << std::endl;
-      element_debug_old << std::endl << std::endl;
-      element_debug_old.close();
-      // Loop over all nodes
-      element_debug_old.open(filename_n_old, std::ios_base::app);
-      for (unsigned i = 0; i < finite_element_pt(e)->nnode(); i++)
-      {
-        element_debug_old << finite_element_pt(e)->node_pt(i)->x(0) << " ";
-        element_debug_old << finite_element_pt(e)->node_pt(i)->x(1) << " ";
-        element_debug_old << std::endl;
-      }
-      element_debug_old << std::endl << std::endl;
-      element_debug_old.close();
-    }
+
+    // hierher kill 
+    // // [zdec] debug
+    // std::string filename_old = "element_debug_file_orig.dat";
+    // std::ofstream element_debug_old;
+    // element_debug_old.open(filename_old,
+    //                        std::ofstream::out | std::ofstream::trunc);
+    // element_debug_old.close();
+    // std::string filename_n_old = "node_debug_file_orig.dat";
+    // element_debug_old.open(filename_n_old,
+    //                        std::ofstream::out | std::ofstream::trunc);
+    // element_debug_old.close();
+    // for (unsigned e = 0; e < nelement(); e++)
+    // {
+    //   // [zdec] debug: doc all the elements to see the mesh patches
+    //   oomph_info << "Adding element " << e << " at " << finite_element_pt(e)
+    //              << " nodes to debug file" << std::endl;
+    //   element_debug_old.open(filename_old, std::ios_base::app);
+    //   // loop over the vertex nodes
+    //   for (unsigned i = 0; i < 3; i++)
+    //   {
+    //     element_debug_old << finite_element_pt(e)->node_pt(i)->x(0) << " ";
+    //     element_debug_old << finite_element_pt(e)->node_pt(i)->x(1) << " ";
+    //     element_debug_old << std::endl;
+    //   }
+    //   element_debug_old << finite_element_pt(e)->node_pt(0)->x(0) << " ";
+    //   element_debug_old << finite_element_pt(e)->node_pt(0)->x(1) << " ";
+    //   element_debug_old << std::endl;
+    //   element_debug_old << std::endl << std::endl;
+    //   element_debug_old.close();
+    //   // Loop over all nodes
+    //   element_debug_old.open(filename_n_old, std::ios_base::app);
+    //   for (unsigned i = 0; i < finite_element_pt(e)->nnode(); i++)
+    //   {
+    //     element_debug_old << finite_element_pt(e)->node_pt(i)->x(0) << " ";
+    //     element_debug_old << finite_element_pt(e)->node_pt(i)->x(1) << " ";
+    //     element_debug_old << std::endl;
+    //   }
+    //   element_debug_old << std::endl << std::endl;
+    //   element_debug_old.close();
+    // }
 
     // Count the number of boundaries each element is on
     unsigned nb = this->nboundary();
@@ -769,12 +777,14 @@ namespace oomph
       {
         // Get pointer to element
         FiniteElement* el_pt = boundary_element_pt(b, e);
+        
         // Bump up counter
         count[el_pt]++;
 
-        // [zdec] debug
-        oomph_info << "Element at " << el_pt << " has " << count[el_pt]
-                   << " boundaries" << std::endl;
+        // hierher kill 
+        // // [zdec] debug
+        // oomph_info << "Element at " << el_pt << " has " << count[el_pt]
+        //            << " boundaries" << std::endl;
       }
     }
 
@@ -802,12 +812,11 @@ namespace oomph
 
     //  Set for retained or newly built nodes
     // (we use a set to prevent node pointer repetition which is hard to track)
-    std::set<Node*> new_or_retained_nod_pt;
+    std::set<Node*> new_or_retained_nod_pt; 
 
     // Map which returns the 3 newly created elements for each old corner
     // element
     std::map<FiniteElement*, Vector<FiniteElement*>> old_to_new_element_map;
-
 
     // Loop over the elements
     for (unsigned e = 0; e < n_el; e++)
@@ -825,6 +834,7 @@ namespace oomph
       {
         // Carry it across
         new_or_retained_el_pt.push_back(el_pt);
+        
         // Carry across its nodes
         unsigned n_el_nod = el_pt->nnode();
         for (unsigned i_el_nod = 0; i_el_nod < n_el_nod; i_el_nod++)
@@ -836,98 +846,131 @@ namespace oomph
       // It's in the set of elements to be split
       else
       {
-        // [zdec] debug
-        oomph_info << "Splitting element " << e << " at " << el_pt
-                   << " into: " << std::endl;
-        // Vector to get the pointers to the new elements
-        Vector<FiniteElement*> new_el_pt(3, 0);
-        Vector<Node*> new_nod_pt;
 
-        // Split the element
-        split_element_through_centroid<ELEMENT>(
-          el_pt, new_el_pt, new_nod_pt, time_stepper_pt);
-
-        // Add the new elements to new the Vector of pointers
-        new_or_retained_el_pt.push_back(new_el_pt[0]);
-        new_or_retained_el_pt.push_back(new_el_pt[1]);
-        new_or_retained_el_pt.push_back(new_el_pt[2]);
-
-        // Add the nodes to the new Vector of pointers
-        unsigned n_new_nod = new_nod_pt.size();
-        for (unsigned i_new_nod = 0; i_new_nod < n_new_nod; i_new_nod++)
+       // hierher kill 
+       // // [zdec] debug
+       // oomph_info << "Splitting element " << e << " at " << el_pt
+       //            << " into: " << std::endl;
+       
+       
+       // Vector to get the pointers to the new elements
+       Vector<FiniteElement*> new_el_pt(3, 0);
+       Vector<Node*> new_nod_pt;
+       
+       // Split the element
+       split_element_through_centroid<ELEMENT>(
+        el_pt, new_el_pt, new_nod_pt); // , Time_stepper_pt);
+       
+       // Add the new elements to new the Vector of pointers
+       new_or_retained_el_pt.push_back(new_el_pt[0]);
+       new_or_retained_el_pt.push_back(new_el_pt[1]);
+       new_or_retained_el_pt.push_back(new_el_pt[2]);
+       
+       // Add the nodes to the new Vector of pointers
+       unsigned n_new_nod = new_nod_pt.size();
+       for (unsigned i_new_nod = 0; i_new_nod < n_new_nod; i_new_nod++)
         {
-          new_or_retained_nod_pt.insert(new_nod_pt[i_new_nod]);
+         new_or_retained_nod_pt.insert(new_nod_pt[i_new_nod]);
         }
-
-        // Add the vector to the map
-        old_to_new_element_map.insert(
-          std::pair<FiniteElement*, Vector<FiniteElement*>>(el_pt, new_el_pt));
-
-        // Delete the old element
-        delete el_pt;
+       
+       // Add the vector to the map
+       old_to_new_element_map.insert(
+        std::pair<FiniteElement*, Vector<FiniteElement*>>(el_pt, new_el_pt));
+       
+       // Delete the old element
+       delete el_pt;
       }
     } // End loop over elements [e]
-
+    
     // Update mesh storage and lookup schemes for new Vector of elements
     //--------------------------------------------------------------------------
-
+    
     // Copy new vector of finite elements to meshes storage
     // Flush element storage
     Element_pt.clear();
-
+    
     // Copy across elements
     n_el = new_or_retained_el_pt.size();
     Element_pt.resize(n_el);
-    // [zdec] debug
-    std::string filename = "element_debug_file.dat";
-    std::string filename_n = "node_debug_file.dat";
-    std::ofstream element_debug;
-    element_debug.open(filename, std::ofstream::out | std::ofstream::trunc);
-    element_debug.close();
-    element_debug.open(filename_n, std::ofstream::out | std::ofstream::trunc);
-    element_debug.close();
+
+
+    // hierher kill 
+    // // [zdec] debug
+    // std::string filename = "element_debug_file.dat";
+    // std::string filename_n = "node_debug_file.dat";
+    // std::ofstream element_debug;
+    // element_debug.open(filename, std::ofstream::out | std::ofstream::trunc);
+    // element_debug.close();
+    // element_debug.open(filename_n, std::ofstream::out | std::ofstream::trunc);
+    // element_debug.close();
+
+
+    
     for (unsigned e = 0; e < n_el; e++)
     {
-      // [zdec] debug: doc all the elements to see the mesh patches
-      oomph_info << "Adding element " << e << " at " << new_or_retained_el_pt[e]
-                 << " nodes to debug file" << std::endl;
-      element_debug.open(filename, std::ios_base::app);
-      // loop over the vertex nodes
-      for (unsigned i = 0; i < 3; i++)
-      {
-        element_debug << new_or_retained_el_pt[e]->node_pt(i)->x(0) << " "
-                      << new_or_retained_el_pt[e]->node_pt(i)->x(1) << " "
-                      << std::endl;
-      }
-      element_debug << new_or_retained_el_pt[e]->node_pt(0)->x(0) << " "
-                    << new_or_retained_el_pt[e]->node_pt(0)->x(1) << " "
-                    << std::endl
-                    << std::endl
-                    << std::endl;
-      element_debug.close();
-      // Loop over all nodes
-      element_debug.open(filename_n, std::ios_base::app);
-      for (unsigned i = 0; i < new_or_retained_el_pt[e]->nnode(); i++)
-      {
-        element_debug << new_or_retained_el_pt[e]->node_pt(i)->x(0) << " "
-                      << new_or_retained_el_pt[e]->node_pt(i)->x(1) << " "
-                      << std::endl;
-      }
-      element_debug << std::endl << std::endl;
-      element_debug.close();
+      // hierher kill 
+      // // [zdec] debug: doc all the elements to see the mesh patches
+      // oomph_info << "Adding element " << e << " at " << new_or_retained_el_pt[e]
+      //            << " nodes to debug file" << std::endl;
+      // element_debug.open(filename, std::ios_base::app);
+      // // loop over the vertex nodes
+      // for (unsigned i = 0; i < 3; i++)
+      // {
+      //   element_debug << new_or_retained_el_pt[e]->node_pt(i)->x(0) << " "
+      //                 << new_or_retained_el_pt[e]->node_pt(i)->x(1) << " "
+      //                 << std::endl;
+      // }
+      // element_debug << new_or_retained_el_pt[e]->node_pt(0)->x(0) << " "
+      //               << new_or_retained_el_pt[e]->node_pt(0)->x(1) << " "
+      //               << std::endl
+      //               << std::endl
+      //               << std::endl;
+      // element_debug.close();
+      // // Loop over all nodes
+      // element_debug.open(filename_n, std::ios_base::app);
+      // for (unsigned i = 0; i < new_or_retained_el_pt[e]->nnode(); i++)
+      // {
+      //   element_debug << new_or_retained_el_pt[e]->node_pt(i)->x(0) << " "
+      //                 << new_or_retained_el_pt[e]->node_pt(i)->x(1) << " "
+      //                 << std::endl;
+      // }
+      // element_debug << std::endl << std::endl;
+      // element_debug.close();
+
+     
       Element_pt[e] = new_or_retained_el_pt[e];
     }
 
-    // Copy across nodes
+    // Wipe storage because node may have been deleted above
     Node_pt.clear();
-    Node_pt.insert(Node_pt.end(),
-                   new_or_retained_nod_pt.begin(),
-                   new_or_retained_nod_pt.end());
+    for (Node* nod_pt : new_or_retained_nod_pt)
+     {
+      this->add_node_pt(nod_pt);
+     }
 
     // Setup boundary lookup scheme again
     setup_boundary_element_info();
 
-
+    
+    // If we haven't had to split any elements then don't need to fiddle
+    // with the lookups
+    if (old_to_new_element_map.size() == 0)
+    {
+      oomph_info << "\nNo elements needed splitting"
+                 << std::endl;
+      return;
+    }
+    oomph_info << "\nNumber of elements split: "
+               << old_to_new_element_map.size() << "\n\n";
+    
+    // If we have no regions then we have no lookups to update so we're done
+    // here
+    if (Region_attribute.size() == 0)
+    {
+      return;
+    }
+    
+    
     // [zdec] THIS WAS JUST COPIED AND NEEDS CHECKING
     // -------------------------------------------------------------------------
     // The various boundary/region lookups now need updating to account for the
@@ -940,25 +983,124 @@ namespace oomph
     //         which maps elements on a given boundary in a given region to the
     //         element's face index on that boundary.
     //
-    // N.B. the lookup Triangular_facet_vertex_boundary_coordinate is setup in
-    // the call to setup_boundary_element_info() above so doesn't need
-    // additional work.
 
-    // if we have no regions then we have no lookups to update so we're done
-    // here
-    if (Region_attribute.size() == 0)
-    {
-      return;
+
+    // ------------------------------------------
+    // Step 1: update the region element lookup
+    
+    // loop over the map of old corner elements which have been split
+    for (std::map<FiniteElement*, Vector<FiniteElement*>>::iterator map_it =
+          old_to_new_element_map.begin();
+         map_it != old_to_new_element_map.end();
+         map_it++)
+     {
+      // extract the old and new elements from the map
+      FiniteElement* original_el_pt = map_it->first;
+      Vector<FiniteElement*> new_el_pt = map_it->second;
+      
+      unsigned original_region_index = 0;
+      
+#ifdef PARANOID
+      // flag for paranoia, if for some reason we don't find the original corner
+      // element in any of the regions
+      bool found = false;
+#endif
+      
+      Vector<FiniteElement*>::iterator region_element_it;
+
+      // loop over the regions and look for this original corner element to find
+      // out which region it used to be in, so we can add the new elements to
+      // the same region.
+      for (unsigned region_index = 0; region_index < Region_element_pt.size();
+           region_index++)
+      {
+        // for each region, search the vector of elements in this region for the
+        // original corner element
+        region_element_it = std::find(Region_element_pt[region_index].begin(),
+                                      Region_element_pt[region_index].end(),
+                                      original_el_pt);
+
+        // if the iterator hasn't reached the end then we've found it
+        if (region_element_it != Region_element_pt[region_index].end())
+        {
+          // save the region index we're at
+          original_region_index = region_index;
+
+#ifdef PARANOID
+          // update the paranoid flag
+          found = true;
+#endif
+
+          // regions can't overlap, so once we've found one we're done
+          break;
+        }
+      }
+
+#ifdef PARANOID
+      if (!found)
+      {
+        std::ostringstream error_message;
+        error_message
+          << "The corner element being split does not appear to be in any "
+          << "region, so something has gone wrong with the region lookup "
+             "scheme\n";
+
+        throw OomphLibError(error_message.str(),
+                            OOMPH_CURRENT_FUNCTION,
+                            OOMPH_EXCEPTION_LOCATION);
+      }
+#endif
+
+      // Now update the basic region lookup. The iterator will still point to
+      // the original corner element in the lookup, so we can delete this easily
+      Region_element_pt[original_region_index].erase(region_element_it);
+      for (unsigned i = 0; i < 3; i++)
+      {
+        Region_element_pt[original_region_index].push_back(new_el_pt[i]);
+      }
     }
-    // if we haven't had to split any elements then don't need to fiddle
-    // with the lookups
-    if (old_to_new_element_map.size() == 0)
+    
+    // ------------------------------------------
+    // Step 2: Clear and regenerate lookups
+    
+    Face_index_region_at_boundary.clear();
+    Boundary_region_element_pt.clear();
+
+    Face_index_region_at_boundary.resize(nb);
+    Boundary_region_element_pt.resize(nb);
+
+    for (unsigned b = 0; b < nb; b++)
     {
-      oomph_info << "\nNo elements need splitting\n\n";
-      return;
+      // Loop over elements next to that boundary
+      unsigned nel = this->nboundary_element(b);
+      for (unsigned e = 0; e < nel; e++)
+      {
+        FiniteElement* el_pt = boundary_element_pt(b, e);
+
+        // now search for it in each region
+        for (unsigned r_index = 0; r_index < Region_attribute.size(); r_index++)
+        {
+          unsigned region_id = static_cast<unsigned>(Region_attribute[r_index]);
+
+          Vector<FiniteElement*>::iterator it =
+            std::find(Region_element_pt[r_index].begin(),
+                      Region_element_pt[r_index].end(),
+                      el_pt);
+
+          // if we find this element in the current region, then update our
+          // lookups
+          if (it != Region_element_pt[r_index].end())
+          {
+            Boundary_region_element_pt[b][region_id].push_back(el_pt);
+
+            unsigned face_index = face_index_at_boundary(b, e);
+            Face_index_region_at_boundary[b][region_id].push_back(face_index);
+          }
+        }
+      }
     }
+
   }
-
 
 } // namespace oomph
 

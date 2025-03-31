@@ -1174,15 +1174,14 @@ namespace oomph
     {
       return Oomph_vertex_nodes_id;
     }
-
-    /// Timestepper used to build elements
-    TimeStepper* Time_stepper_pt;
-
+   
     /// Boolean flag to indicate whether to use attributes or not (required
     /// for multidomain meshes)
     bool Use_attributes;
 
   protected:
+
+   
     /// Target areas for regions; defaults to 0.0 which (luckily)
     /// implies "no specific target area" for triangle!
     std::map<unsigned, double> Regions_areas;

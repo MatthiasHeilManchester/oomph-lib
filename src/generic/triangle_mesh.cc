@@ -393,362 +393,202 @@ namespace oomph
 
 #endif
 
-  //================================================================
-  /// Setup lookup schemes which establish which elements are located
-  /// next to which boundaries (Doc to outfile if it's open).
-  //================================================================
-  void TriangleMeshBase::setup_boundary_element_info(std::ostream& outfile)
-  {
-    // Should we document the output here
-    bool doc = false;
-
-    if (outfile) doc = true;
-
-    // Number of boundaries
-    unsigned nbound = nboundary();
-
-    // Wipe/allocate storage for arrays
-    Boundary_element_pt.clear();
-    Face_index_at_boundary.clear();
-    Boundary_element_pt.resize(nbound);
-    Face_index_at_boundary.resize(nbound);
-
-    // Temporary vector of vectors of pointers to elements on the boundaries:
-    // This is a vector to ensure that order is strictly preserved
-    Vector<Vector<FiniteElement*>> vector_of_boundary_element_pt;
-    vector_of_boundary_element_pt.resize(nbound);
-
-    // Matrix map for working out the fixed face for elements on boundary
-    MapMatrixMixed<unsigned, FiniteElement*, int> face_identifier;
-
-    // Loop over elements
-    //-------------------
-    unsigned nel = nelement();
-
-    // Get pointer to vector of boundaries that the
-    // node lives on
-    Vector<std::set<unsigned>*> boundaries_pt(3, 0);
-
-    // Data needed to deal with edges through the
-    // interior of the domain
-    std::map<Edge, unsigned> edge_count;
-    std::map<Edge, TriangleBoundaryHelper::BCInfo> edge_bcinfo;
-    std::map<Edge, TriangleBoundaryHelper::BCInfo> face_info;
-    MapMatrixMixed<unsigned, FiniteElement*, int> face_count;
-    Vector<unsigned> bonus(nbound);
-
-    // When using internal boundaries, an edge can be related to more than
-    // one element (because of both sides of the internal boundaries)
-    std::map<Edge, Vector<TriangleBoundaryHelper::BCInfo>> edge_internal_bnd;
-
-    for (unsigned e = 0; e < nel; e++)
-    {
-      // Get pointer to element
-      FiniteElement* fe_pt = finite_element_pt(e);
-
-      if (doc)
-      {
-        outfile << "Element: " << e << " " << fe_pt << std::endl;
-      }
-
-      // Only include 2D elements! Some meshes contain interface elements too.
-      if (fe_pt->dim() == 2)
-      {
-        // Loop over the element's nodes and find out which boundaries they're
-        // on
-        // ----------------------------------------------------------------------
-
-        // We need only loop over the corner nodes
-        for (unsigned i = 0; i < 3; i++)
-        {
-          fe_pt->node_pt(i)->get_boundaries_pt(boundaries_pt[i]);
-        }
-
+ //================================================================
+ /// Setup lookup schemes which establish which elements are located
+ /// next to which boundaries (Doc to outfile if it's open).
+ //================================================================
+ void TriangleMeshBase::setup_boundary_element_info(std::ostream& outfile)
+ {
+  
+  // Should we document the output here
+  bool doc = false;
+  
+  if (outfile) doc = true;
+  
+  // Number of boundaries
+  unsigned nbound = nboundary();
+  
+  // Wipe/allocate storage for arrays
+  Boundary_element_pt.clear();
+  Face_index_at_boundary.clear();
+  Boundary_element_pt.resize(nbound);
+  Face_index_at_boundary.resize(nbound);
+  
+  
+  // Loop over elements
+  //-------------------
+  unsigned nel = nelement();
+  
+  for (unsigned e = 0; e < nel; e++)
+   {
+    // Get pointer to element
+    FiniteElement* fe_pt = finite_element_pt(e);
+    
+    if (doc)
+     {
+      outfile << "Element: " << e << " " << fe_pt << std::endl;
+     }
+    
+    // Only include 2D elements! Some meshes contain interface elements too.
+    if (fe_pt->dim() == 2)
+     {
+      // Loop over the element's nodes and find out which boundaries they're
+      // on
+      // ----------------------------------------------------------------------
+      Vector<std::set<unsigned>*> boundaries_pt(3, 0);
+      
+      // We need only loop over the corner nodes
+      for (unsigned i = 0; i < 3; i++)
+       {
+        fe_pt->node_pt(i)->get_boundaries_pt(boundaries_pt[i]);
+        if (doc)
+         {
+          outfile << "Node " << i << " in element: " << e
+                  << " at "
+                  << fe_pt->node_pt(i)->x(0) << " "
+                  << fe_pt->node_pt(i)->x(1) << " "
+                  << " is on boundaries: ";
+          if (boundaries_pt[i]!=0)
+           {
+            for (unsigned b : *boundaries_pt[i])
+             {
+              outfile << b << " ";
+             }
+           }
+          outfile << std::endl;
+         }
+       }
+      
+      
+      // Edge 0 connects points 1 and 2
+      //-----------------------------
+      
+      if (boundaries_pt[1] && boundaries_pt[2])
+       {
         // Find the common boundaries of each edge
-        Vector<std::set<unsigned>> edge_boundary(3);
-
-        // Edge 0 connects points 1 and 2
-        //-----------------------------
-
-        if (boundaries_pt[1] && boundaries_pt[2])
-        {
-          // Create the corresponding edge
-          Edge edge0(fe_pt->node_pt(1), fe_pt->node_pt(2));
-
-          // Update infos about this edge
-          TriangleBoundaryHelper::BCInfo info;
-          info.Face_id = 0;
-          info.FE_pt = fe_pt;
-
-          std::set_intersection(boundaries_pt[1]->begin(),
-                                boundaries_pt[1]->end(),
-                                boundaries_pt[2]->begin(),
-                                boundaries_pt[2]->end(),
-                                std::insert_iterator<std::set<unsigned>>(
-                                  edge_boundary[0], edge_boundary[0].begin()));
-          std::set<unsigned>::iterator it0 = edge_boundary[0].begin();
-
-          // Edge does exist:
-          if (edge_boundary[0].size() > 0)
-          {
-            info.Boundary = *it0;
-
-            // How many times this edge has been visited
-            edge_count[edge0]++;
-
-            // Update edge_bcinfo
-            edge_bcinfo.insert(std::make_pair(edge0, info));
-
-            // ... and also update the info associated with internal bnd
-            edge_internal_bnd[edge0].push_back(info);
-          }
-        }
-
-        // Edge 1 connects points 0 and 2
-        //-----------------------------
-
-        if (boundaries_pt[0] && boundaries_pt[2])
-        {
-          std::set_intersection(boundaries_pt[0]->begin(),
-                                boundaries_pt[0]->end(),
-                                boundaries_pt[2]->begin(),
-                                boundaries_pt[2]->end(),
-                                std::insert_iterator<std::set<unsigned>>(
-                                  edge_boundary[1], edge_boundary[1].begin()));
-
-          // Create the corresponding edge
-          Edge edge1(fe_pt->node_pt(0), fe_pt->node_pt(2));
-
-          // Update infos about this edge
-          TriangleBoundaryHelper::BCInfo info;
-          info.Face_id = 1;
-          info.FE_pt = fe_pt;
-          std::set<unsigned>::iterator it1 = edge_boundary[1].begin();
-
-          // Edge does exist:
-          if (edge_boundary[1].size() > 0)
-          {
-            info.Boundary = *it1;
-
-            // How many times this edge has been visited
-            edge_count[edge1]++;
-
-            // Update edge_bcinfo
-            edge_bcinfo.insert(std::make_pair(edge1, info));
-
-            // ... and also update the info associated with internal bnd
-            edge_internal_bnd[edge1].push_back(info);
-          }
-        }
-
-        // Edge 2 connects points 0 and 1
-        //-----------------------------
-
-        if (boundaries_pt[0] && boundaries_pt[1])
-        {
-          std::set_intersection(boundaries_pt[0]->begin(),
-                                boundaries_pt[0]->end(),
-                                boundaries_pt[1]->begin(),
-                                boundaries_pt[1]->end(),
-                                std::insert_iterator<std::set<unsigned>>(
-                                  edge_boundary[2], edge_boundary[2].begin()));
-
-          // Create the corresponding edge
-          Edge edge2(fe_pt->node_pt(0), fe_pt->node_pt(1));
-
-          // Update infos about this edge
-          TriangleBoundaryHelper::BCInfo info;
-          info.Face_id = 2;
-          info.FE_pt = fe_pt;
-          std::set<unsigned>::iterator it2 = edge_boundary[2].begin();
-
-          // Edge does exist:
-          if (edge_boundary[2].size() > 0)
-          {
-            info.Boundary = *it2;
-
-            // How many times this edge has been visited
-            edge_count[edge2]++;
-
-            // Update edge_bcinfo
-            edge_bcinfo.insert(std::make_pair(edge2, info));
-
-            // ... and also update the info associated with internal bnd
-            edge_internal_bnd[edge2].push_back(info);
-          }
-        }
-
-
+        std::set<unsigned> edge_boundary;
+        std::set_intersection(boundaries_pt[1]->begin(),
+                              boundaries_pt[1]->end(),
+                              boundaries_pt[2]->begin(),
+                              boundaries_pt[2]->end(),
+                              std::insert_iterator<std::set<unsigned>>(
+                               edge_boundary, edge_boundary.begin()));
+        std::set<unsigned>::iterator it = edge_boundary.begin();
+        
+        // Edge does exist:
+        if (edge_boundary.size() > 0)
+         {
 #ifdef PARANOID
-
-        // Check if edge is associated with multiple boundaries
-
-        // We now know whether any edges lay on the boundaries
-        for (unsigned i = 0; i < 3; i++)
-        {
-          // How many boundaries are there
-          unsigned count = 0;
-
-          // Loop over all the members of the set and add to the count
-          // and set the boundary
-          for (std::set<unsigned>::iterator it = edge_boundary[i].begin();
-               it != edge_boundary[i].end();
-               ++it)
-          {
-            ++count;
-          }
-
-          // If we're on more than one boundary, this is weird, so die
-          if (count > 1)
-          {
-            std::ostringstream error_stream;
-            error_stream << "Edge " << i << " is located on " << count
-                         << " boundaries.\n";
-            error_stream << "This is rather strange, so I'm going to die\n";
-            throw OomphLibError(error_stream.str(),
-                                OOMPH_CURRENT_FUNCTION,
-                                OOMPH_EXCEPTION_LOCATION);
-          }
-        }
-
+          if (edge_boundary.size() > 1)
+           {
+            // hierher
+            oomph_info << "WHAT [0]" << std::endl;
+            abort();
+           }
 #endif
-
-        // Now we set the pointers to the boundary sets to zero
-        for (unsigned i = 0; i < 3; i++)
-        {
-          boundaries_pt[i] = 0;
-        }
-      }
-    } // end of loop over all elements
-
-    // Loop over all edges that are located on a boundary
-    typedef std::map<Edge, TriangleBoundaryHelper::BCInfo>::iterator ITE;
-    for (ITE it = edge_bcinfo.begin(); it != edge_bcinfo.end(); it++)
-    {
-      Edge current_edge = it->first;
-      unsigned bound = it->second.Boundary;
-
-      // If the edge has been visited only once
-      if (edge_count[current_edge] == 1)
-      {
-        // Count the edges that are on the same element and on the same boundary
-        face_count(static_cast<unsigned>(bound), it->second.FE_pt) =
-          face_count(static_cast<unsigned>(bound), it->second.FE_pt) + 1;
-
-        // If such edges exist, let store the corresponding element
-        if (face_count(bound, it->second.FE_pt) > 1)
-        {
-          // Update edge's infos
-          TriangleBoundaryHelper::BCInfo info;
-          info.Face_id = it->second.Face_id;
-          info.FE_pt = it->second.FE_pt;
-          info.Boundary = it->second.Boundary;
-
-          // Add it to FIinfo, that stores infos of problematic elements
-          face_info.insert(std::make_pair(current_edge, info));
-
-          // How many edges on which boundary have to be added
-          bonus[bound]++;
-        }
-        else
-        {
-          // Add element and face to the appropriate vectors
-          // Does the pointer already exits in the vector
-          Vector<FiniteElement*>::iterator b_el_it = std::find(
-            vector_of_boundary_element_pt[static_cast<unsigned>(bound)].begin(),
-            vector_of_boundary_element_pt[static_cast<unsigned>(bound)].end(),
-            it->second.FE_pt);
-
-          // Only insert if we have not found it (i.e. got to the end)
-          if (b_el_it ==
-              vector_of_boundary_element_pt[static_cast<unsigned>(bound)].end())
-          {
-            vector_of_boundary_element_pt[static_cast<unsigned>(bound)]
-              .push_back(it->second.FE_pt);
-          }
-
-          // set_of_boundary_element_pt[static_cast<unsigned>(bound)].insert(
-          // it->second.FE_pt);
-          face_identifier(static_cast<unsigned>(bound), it->second.FE_pt) =
-            it->second.Face_id;
-        }
-      }
-
-    } // End of "adding-boundaries"-loop
-
-
-    // Now copy everything across into permanent arrays
-    //-------------------------------------------------
-
+          // The next element on this boundary (pointed to by it0) has face index 0 
+          Boundary_element_pt[*it].push_back(fe_pt);
+          Face_index_at_boundary[*it].push_back(0);
+         }
+       }
+      
+      // Edge 1 connects points 0 and 2
+      //-----------------------------
+      
+      if (boundaries_pt[0] && boundaries_pt[2])
+       {
+        std::set<unsigned> edge_boundary;
+        std::set_intersection(boundaries_pt[0]->begin(),
+                              boundaries_pt[0]->end(),
+                              boundaries_pt[2]->begin(),
+                              boundaries_pt[2]->end(),
+                              std::insert_iterator<std::set<unsigned>>(
+                               edge_boundary, edge_boundary.begin()));
+        std::set<unsigned>::iterator it = edge_boundary.begin();
+        
+        // Edge does exist:
+        if (edge_boundary.size() > 0)
+         {
+#ifdef PARANOID
+          if (edge_boundary.size() > 1)
+           {
+            // hierher
+            oomph_info << "WHAT [1]" << std::endl;
+            abort();
+           }
+#endif
+          // The next element on this boundary (pointed to by it) has face index 1 
+          Boundary_element_pt[*it].push_back(fe_pt);
+          Face_index_at_boundary[*it].push_back(1);           
+         }
+       }
+      
+      // Edge 2 connects points 0 and 1
+      //-----------------------------
+      
+      if (boundaries_pt[0] && boundaries_pt[1])
+       {
+        std::set<unsigned> edge_boundary;
+        std::set_intersection(boundaries_pt[0]->begin(),
+                              boundaries_pt[0]->end(),
+                              boundaries_pt[1]->begin(),
+                              boundaries_pt[1]->end(),
+                              std::insert_iterator<std::set<unsigned>>(
+                               edge_boundary, edge_boundary.begin()));
+        
+        std::set<unsigned>::iterator it = edge_boundary.begin();
+        
+        // Edge does exist:
+        if (edge_boundary.size() > 0)
+         {
+#ifdef PARANOID
+          if (edge_boundary.size() > 1)
+           {
+            // hierher
+            oomph_info << "WHAT [2]" << std::endl;
+            abort();
+           }
+#endif
+          // The next element on this boundary (pointed to by it) has face index 2 
+          Boundary_element_pt[*it].push_back(fe_pt);
+          Face_index_at_boundary[*it].push_back(2);
+          
+          
+         }
+        
+       }
+      
+     }
+    
+   }
+  
+  
+  // Doc?
+  //-----
+  if (doc)
+   {
     // Loop over boundaries
     for (unsigned i = 0; i < nbound; i++)
-    {
-      // Number of elements on this boundary that have to be added
-      // in addition to other elements
-      unsigned bonus1 = bonus[i];
-
-      // Number of elements on this boundary
-      unsigned nel = vector_of_boundary_element_pt[i].size() + bonus1;
-
-      // Allocate storage for the coordinate identifiers
-      Face_index_at_boundary[i].resize(nel);
-
-      unsigned e_count = 0;
-      typedef Vector<FiniteElement*>::iterator IT;
-      for (IT it = vector_of_boundary_element_pt[i].begin();
-           it != vector_of_boundary_element_pt[i].end();
-           it++)
-      {
-        // Recover pointer to element
-        FiniteElement* fe_pt = *it;
-
-        // Add to permanent storage
-        Boundary_element_pt[i].push_back(fe_pt);
-
-        Face_index_at_boundary[i][e_count] = face_identifier(i, fe_pt);
-
-        // Increment counter
-        e_count++;
-      }
-      // We add the elements that have two or more edges on this boundary
-      for (ITE itt = face_info.begin(); itt != face_info.end(); itt++)
-      {
-        if (itt->second.Boundary == i)
-        {
-          // Add to permanent storage
-          Boundary_element_pt[i].push_back(itt->second.FE_pt);
-
-          Face_index_at_boundary[i][e_count] = itt->second.Face_id;
-
-          e_count++;
-        }
-      }
-
-    } // End of loop over boundaries
-
-    // Doc?
-    //-----
-    if (doc)
-    {
-      // Loop over boundaries
-      for (unsigned i = 0; i < nbound; i++)
-      {
-        unsigned nel = Boundary_element_pt[i].size();
-        outfile << "Boundary: " << i << " is adjacent to " << nel << " elements"
-                << std::endl;
-
-        // Loop over elements on given boundary
-        for (unsigned e = 0; e < nel; e++)
-        {
-          FiniteElement* fe_pt = Boundary_element_pt[i][e];
-          outfile << "Boundary element:" << fe_pt
-                  << " Face index of boundary is "
-                  << Face_index_at_boundary[i][e] << std::endl;
-        }
-      }
-    }
-
-    // Lookup scheme has now been setup yet
-    Lookup_for_elements_next_boundary_is_setup = true;
-  }
+     {
+      unsigned nel = Boundary_element_pt[i].size();
+      outfile << "Boundary: " << i << " is adjacent to " << nel << " elements"
+              << std::endl;
+      
+      // Loop over elements on given boundary
+      for (unsigned e = 0; e < nel; e++)
+       {
+        FiniteElement* fe_pt = Boundary_element_pt[i][e];
+        outfile << "Boundary element:" << fe_pt
+                << " Face index of boundary is "
+                << Face_index_at_boundary[i][e] << std::endl;
+       }
+     }
+   }
+  
+  // Lookup scheme has now been setup yet
+  Lookup_for_elements_next_boundary_is_setup = true;
+    
+ }
+ 
+ 
 } // namespace oomph

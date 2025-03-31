@@ -61,8 +61,12 @@
 // We could definitely store this as a static
 namespace oomph
 {
-  namespace MyC1CurvedElements
-  {
+
+ // hierher kill 
+  // namespace MyC1CurvedElements
+  // {
+
+ 
     /// The monomial to basic matrix for elements with 3rd order boundary
     /// interpolation: the basic element has 36 values resulting in a 36x36
     /// matrix
@@ -3215,5 +3219,9 @@ namespace oomph
       ib2l(54, 53) = 1 / 3.;
       ib2l(54, 54) = 1;
     }
-  } // namespace MyC1CurvedElements
+
+ // hierher kill 
+  // } // namespace MyC1CurvedElements
+
+ 
 } // namespace oomph

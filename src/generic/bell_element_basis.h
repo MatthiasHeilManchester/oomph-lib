@@ -36,97 +36,106 @@
 
 namespace oomph
 {
-  namespace MyShape
-  {
-    //===========================================================================
-    /// Two by two specialisation of function to calculate inverse of a matrix
-    //===========================================================================
-    inline double invert_two_by_two(const DenseMatrix<double>& jacobian,
-                                    DenseMatrix<double>& inverse_jacobian)
-    {
-      // Calculate the determinant of the matrix
-      const double det =
-        jacobian(0, 0) * jacobian(1, 1) - jacobian(0, 1) * jacobian(1, 0);
 
-// Report if Matrix is singular or negative
-#ifdef PARANOID
-      if (fabs(det) < 1e-12)
-      {
-        std::stringstream error_stream;
-        error_stream
-          << "The matrix is singular to machine precision : det(M) = " << det
-          << ".\n";
-        throw OomphLibError(
-          error_stream.str(), OOMPH_CURRENT_FUNCTION, OOMPH_EXCEPTION_LOCATION);
-      }
-#endif
+ // hierher kill 
+//  namespace MyShape
+//  {
 
-      // Calculate the inverse of the 2x2 matrix
-      inverse_jacobian(0, 0) = jacobian(1, 1) / det;
-      inverse_jacobian(0, 1) = -jacobian(0, 1) / det;
-      inverse_jacobian(1, 0) = -jacobian(1, 0) / det;
-      inverse_jacobian(1, 1) = jacobian(0, 0) / det;
 
-      return det;
-    }
+ // hierher moved into class that uses it
+ 
+//     //===========================================================================
+//     /// Two by two specialisation of function to calculate inverse of a matrix
+//     //===========================================================================
+//     inline double invert_two_by_two(const DenseMatrix<double>& jacobian,
+//                                     DenseMatrix<double>& inverse_jacobian)
+//     {
+//       // Calculate the determinant of the matrix
+//       const double det =
+//         jacobian(0, 0) * jacobian(1, 1) - jacobian(0, 1) * jacobian(1, 0);
 
-    //=============================================================================
-    /// Three-by three specialisation of function to calculate inverse of a
-    /// matrix
-    //=============================================================================
-    inline void invert_three_by_three(const DenseMatrix<double>& jacobian,
-                                      DenseMatrix<double>& inverse_jacobian)
-    {
-      // Calculate the determinant of the matrix
-      const double det = jacobian(0, 0) * jacobian(1, 1) * jacobian(2, 2) +
-                         jacobian(0, 1) * jacobian(1, 2) * jacobian(2, 0) +
-                         jacobian(0, 2) * jacobian(1, 0) * jacobian(2, 1) -
-                         jacobian(0, 0) * jacobian(1, 2) * jacobian(2, 1) -
-                         jacobian(0, 1) * jacobian(1, 0) * jacobian(2, 2) -
-                         jacobian(0, 2) * jacobian(1, 1) * jacobian(2, 0);
+// // Report if Matrix is singular or negative
+// #ifdef PARANOID
+//       if (fabs(det) < 1e-12)
+//       {
+//         std::stringstream error_stream;
+//         error_stream
+//           << "The matrix is singular to machine precision : det(M) = " << det
+//           << ".\n";
+//         throw OomphLibError(
+//           error_stream.str(), OOMPH_CURRENT_FUNCTION, OOMPH_EXCEPTION_LOCATION);
+//       }
+// #endif
 
-      // Report if Matrix is singular or negative
-#ifdef PARANOID
-      if (fabs(det) < 1e-12)
-      {
-        std::stringstream error_stream;
-        error_stream
-          << "The matrix is singular to machine precision : det(M) = " << det
-          << ".\n";
-        throw OomphLibError(
-          error_stream.str(), OOMPH_CURRENT_FUNCTION, OOMPH_EXCEPTION_LOCATION);
-      }
-#endif
+//       // Calculate the inverse of the 2x2 matrix
+//       inverse_jacobian(0, 0) = jacobian(1, 1) / det;
+//       inverse_jacobian(0, 1) = -jacobian(0, 1) / det;
+//       inverse_jacobian(1, 0) = -jacobian(1, 0) / det;
+//       inverse_jacobian(1, 1) = jacobian(0, 0) / det;
 
-      // Calculate the inverse of the 3x3 matrix
-      inverse_jacobian(0, 0) =
-        (jacobian(1, 1) * jacobian(2, 2) - jacobian(1, 2) * jacobian(2, 1)) /
-        det;
-      inverse_jacobian(0, 1) =
-        -(jacobian(0, 1) * jacobian(2, 2) - jacobian(0, 2) * jacobian(2, 1)) /
-        det;
-      inverse_jacobian(0, 2) =
-        (jacobian(0, 1) * jacobian(1, 2) - jacobian(0, 2) * jacobian(1, 1)) /
-        det;
-      inverse_jacobian(1, 0) =
-        -(jacobian(1, 0) * jacobian(2, 2) - jacobian(1, 2) * jacobian(2, 0)) /
-        det;
-      inverse_jacobian(1, 1) =
-        (jacobian(0, 0) * jacobian(2, 2) - jacobian(0, 2) * jacobian(2, 0)) /
-        det;
-      inverse_jacobian(1, 2) =
-        -(jacobian(0, 0) * jacobian(1, 2) - jacobian(0, 2) * jacobian(1, 0)) /
-        det;
-      inverse_jacobian(2, 0) =
-        (jacobian(1, 0) * jacobian(2, 1) - jacobian(1, 1) * jacobian(2, 0)) /
-        det;
-      inverse_jacobian(2, 1) =
-        -(jacobian(0, 0) * jacobian(2, 1) - jacobian(0, 1) * jacobian(2, 0)) /
-        det;
-      inverse_jacobian(2, 2) =
-        (jacobian(0, 0) * jacobian(1, 1) - jacobian(0, 1) * jacobian(1, 0)) /
-        det;
-    }
+//       return det;
+//     }
+
+
+ // hierher is this used at all?
+ 
+//     //=============================================================================
+//     /// Three-by three specialisation of function to calculate inverse of a
+//     /// matrix
+//     //=============================================================================
+//     inline void invert_three_by_three(const DenseMatrix<double>& jacobian,
+//                                       DenseMatrix<double>& inverse_jacobian)
+//     {
+//       // Calculate the determinant of the matrix
+//       const double det = jacobian(0, 0) * jacobian(1, 1) * jacobian(2, 2) +
+//                          jacobian(0, 1) * jacobian(1, 2) * jacobian(2, 0) +
+//                          jacobian(0, 2) * jacobian(1, 0) * jacobian(2, 1) -
+//                          jacobian(0, 0) * jacobian(1, 2) * jacobian(2, 1) -
+//                          jacobian(0, 1) * jacobian(1, 0) * jacobian(2, 2) -
+//                          jacobian(0, 2) * jacobian(1, 1) * jacobian(2, 0);
+
+//       // Report if Matrix is singular or negative
+// #ifdef PARANOID
+//       if (fabs(det) < 1e-12)
+//       {
+//         std::stringstream error_stream;
+//         error_stream
+//           << "The matrix is singular to machine precision : det(M) = " << det
+//           << ".\n";
+//         throw OomphLibError(
+//           error_stream.str(), OOMPH_CURRENT_FUNCTION, OOMPH_EXCEPTION_LOCATION);
+//       }
+// #endif
+
+//       // Calculate the inverse of the 3x3 matrix
+//       inverse_jacobian(0, 0) =
+//         (jacobian(1, 1) * jacobian(2, 2) - jacobian(1, 2) * jacobian(2, 1)) /
+//         det;
+//       inverse_jacobian(0, 1) =
+//         -(jacobian(0, 1) * jacobian(2, 2) - jacobian(0, 2) * jacobian(2, 1)) /
+//         det;
+//       inverse_jacobian(0, 2) =
+//         (jacobian(0, 1) * jacobian(1, 2) - jacobian(0, 2) * jacobian(1, 1)) /
+//         det;
+//       inverse_jacobian(1, 0) =
+//         -(jacobian(1, 0) * jacobian(2, 2) - jacobian(1, 2) * jacobian(2, 0)) /
+//         det;
+//       inverse_jacobian(1, 1) =
+//         (jacobian(0, 0) * jacobian(2, 2) - jacobian(0, 2) * jacobian(2, 0)) /
+//         det;
+//       inverse_jacobian(1, 2) =
+//         -(jacobian(0, 0) * jacobian(1, 2) - jacobian(0, 2) * jacobian(1, 0)) /
+//         det;
+//       inverse_jacobian(2, 0) =
+//         (jacobian(1, 0) * jacobian(2, 1) - jacobian(1, 1) * jacobian(2, 0)) /
+//         det;
+//       inverse_jacobian(2, 1) =
+//         -(jacobian(0, 0) * jacobian(2, 1) - jacobian(0, 1) * jacobian(2, 0)) /
+//         det;
+//       inverse_jacobian(2, 2) =
+//         (jacobian(0, 0) * jacobian(1, 1) - jacobian(0, 1) * jacobian(1, 0)) /
+//         det;
+//     }
 
     /// Class to contain the Basis polynomials for the Bell element
     class BellElementBasis
@@ -179,7 +188,11 @@ namespace oomph
                                DShape& d2psi) const;
     }; // End
 
-  } // namespace MyShape
+
+ // hierher kill
+  // } // namespace MyShape
+
+
 } // namespace oomph
 
 #endif

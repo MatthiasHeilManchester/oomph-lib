@@ -36,18 +36,21 @@
 
 namespace oomph
 {
-  namespace MyC1CurvedElements
-  {
+
+ // hierher kill
+  // namespace MyC1CurvedElements
+  // {
+ 
     // Declaration of a function protypes  (explicit instantiation)
     /// Fill in matrix to convert the monomials to the basic shape functions
     template<>
-    void oomph::MyC1CurvedElements::BernadouElementBasis<
+    void oomph::BernadouElementBasis<
       3>::monomial_to_basic_matrix(oomph::DenseMatrix<double>& m) const;
 
     /// \short Fill in inverse matrix to convert the monomials to the basic
     /// shape functions (BROKEN)
     template<>
-    void oomph::MyC1CurvedElements::BernadouElementBasis<
+    void oomph::BernadouElementBasis<
       3>::inverse_monomial_to_basic_matrix(DenseDoubleMatrix& ib2l) const;
 
     /// Fill in the (precomputed) full basic polynomials
@@ -67,13 +70,13 @@ namespace oomph
 
     /// Fill in matrix to convert the monomials to the basic shape functions
     template<>
-    void oomph::MyC1CurvedElements::BernadouElementBasis<
+    void oomph::BernadouElementBasis<
       5>::monomial_to_basic_matrix(oomph::DenseMatrix<double>& m) const;
 
     /// Fill in inverse matrix to convert the monomials to the basic shape
     /// functions
     template<>
-    void oomph::MyC1CurvedElements::BernadouElementBasis<
+    void oomph::BernadouElementBasis<
       5>::inverse_monomial_to_basic_matrix(DenseDoubleMatrix& ib2l) const;
 
     /// Fill in the (precomputed) full basic polynomials
@@ -176,7 +179,7 @@ namespace oomph
     {
 // Check the construction of the elements is complete
 #ifdef PARANOID
-      if (Curved_edge == none)
+      if (Curved_edge == C1Helper::CurvedEdgeEnumeration::none)
       {
         throw OomphLibError("The element has not been upgraded yet. Did \
   you forget to set upe the Curved_edge?",
@@ -2150,7 +2153,7 @@ namespace oomph
       get_basic_jacobian(s_permuted, jacobian);
 
       // Now invert
-      double det = MyShape::invert_two_by_two(jacobian, inv_jacobian);
+      double det = invert_two_by_two(jacobian, inv_jacobian);
 
       // Zero the shape functions
       for (unsigned i = 0; i < 3; ++i)
@@ -2766,7 +2769,7 @@ namespace oomph
       get_basic_hessian(s_permuted, hessian);
 
       // Now invert
-      double det = MyShape::invert_two_by_two(jacobian, inv_jacobian);
+      double det = invert_two_by_two(jacobian, inv_jacobian);
 
       // Zero the shape functions
       for (unsigned i = 0; i < 3; ++i)
@@ -2938,7 +2941,7 @@ namespace oomph
       get_basic_hessian(s_permuted, hessian);
 
       // Now invert
-      double det = MyShape::invert_two_by_two(jacobian, inv_jacobian);
+      double det = invert_two_by_two(jacobian, inv_jacobian);
 
       // Zero the shape functions
       for (unsigned i = 0; i < 3; ++i)
@@ -3089,6 +3092,7 @@ namespace oomph
     template class BernadouElementBasis<3>;
     template class BernadouElementBasis<5>;
 
-  } // namespace MyC1CurvedElements
+    // hierher kill 
+    // } // namespace MyC1CurvedElements
 
 } // end namespace oomph

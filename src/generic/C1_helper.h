@@ -27,16 +27,30 @@
 // LIC// The authors may be contacted at oomph-lib@maths.man.ac.uk.
 // LIC//
 // LIC//====================================================================
-#ifndef OOMPH_MY_GEOM_OBJECTS_HEADER // hierher C1_curviline.h
-#define OOMPH_MY_GEOM_OBJECTS_HEADER
+#ifndef OOMPH_C1_HELPER_HEADER
+#define OOMPH_C1_HELPER_HEADER
 
 #include "unstructured_two_d_mesh_geometry_base.h"
-
+#include "triangle_mesh.h"
 
 namespace oomph
 {
 
 
+ //==============================================================================
+ /// Base class for DuplicateNodeConstraintElement s (implemented in FvK and KS)
+ //==============================================================================
+class DuplicateNodeConstraintElement : public virtual GeneralisedElement
+{
+
+public:
+ 
+ /// hierher
+ virtual void validate_and_pin_redundant_constraints()=0;
+ 
+};
+
+ 
 //==============================================================================
 /// Class to specify boundary conditions for C1 (plate bending) problems
 //==============================================================================
@@ -198,11 +212,11 @@ private:
          if ( (zeta>zeta_min-tol) &&
               (zeta<zeta_max+tol) )
           {
-           oomph_info << "Return with zeta = " << zeta << std::endl;
            return zeta;
           }
          else
           {
+           // hierher throw
            oomph_info << "Converged to zeta outside range: zeta = "
                       << zeta << std::endl
                       << "zeta_min/max = " << zeta_min << " " << zeta_max
@@ -210,12 +224,7 @@ private:
            abort(); // hierher
           }
         }
-       
-       oomph_info << "iter, zeta, res "
-                  << iter << " "
-                  << zeta << " "
-                  << res << " "
-                  << std::endl;
+
        
        // Get "Jacobian"
        dposition(zeta_vect,drdzeta);
@@ -228,6 +237,7 @@ private:
       }
 
      // If we get here died:
+     // hierher throw 
      oomph_info << "newton method failed to converge after max_iter = "
                 << max_iter << " iterations" << std::endl;
      abort(); // hierher
@@ -235,14 +245,6 @@ private:
      // dummy return
      return zeta;
     }
-
-
-   // hierher may retain but all functions should have been wrapped now.
-   // /// Pointer to underlying triangle object
-   // TriangleMeshCurviLine* triangle_mesh_curviline_pt() const
-   //  {
-   //   return Triangle_mesh_curviline_pt;
-   //  }
    
 
   private:
@@ -612,6 +614,201 @@ private:
  
 ////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////
+
+
+//==============================================================================
+/// Namespace to deal update triangle meshes to deal with C1 elements
+/// (beginning)
+//==============================================================================
+namespace C1Helper
+{
+ 
+
+ //=============================================================
+ /// Enum to enumerate the possible edges that could be curved
+ //=============================================================
+ enum CurvedEdgeEnumeration
+ {
+  none = -1,
+  zero = 0,
+  one = 1,
+  two = 2
+ };
+
+}
+
+
+ 
+ //===========================================================================
+ /// Template-free base class for curvable Bell Element
+ //===========================================================================
+ class TemplateFreeCurvableBellElement
+ {
+
+ public:
+  
+  /// Upgrade the element to be curved
+  virtual void upgrade_element_to_curved(const C1Helper::CurvedEdgeEnumeration& curved_edge,
+                                         const double& s_ubar,
+                                         const double& s_obar,
+                                         C1CurviLine* parametric_edge,
+                                         const unsigned& boundary_order)=0;
+  
+  /// Access function to rotated boundary helper object
+  virtual RotatedBoundaryHelper* rotated_boundary_helper_pt()=0;
+
+
+  /// Clamp: i.e. pin the in-plane displacements and pin the out-of-plane
+  /// displacement and its normal derivative. We also apply implied
+  /// boundary conditions (e.g. specification of dw/dn also implies
+  /// d^2w/dn/dzeta etc.
+  /// hierher careful with nonzero dw/dn; doesn't necesarily do what you think
+  /// hierher zeta is not necessarily the arclength! translation from
+  /// d/dzeta to d/dt requires jacobian!
+  virtual void fully_clamp_specified_boundary(
+   const unsigned& b,
+   const Vector<BoundaryConditionForC1PlateBending*>& boundary_values_pt) = 0;
+  
+  
+  /// Pin i.e. pin the in-plane and out of plane displacements only.
+  /// We also apply implied boundary conditions (e.g. specification of w
+  /// also implies dw/dt etc.
+  /// hierher zeta is not necessarily the arclength! translation from
+  /// d/dzeta to d/dt requires jacobian!
+  virtual void pin_specified_boundary(
+   const unsigned& b,
+   const Vector<BoundaryConditionForC1PlateBending*>& boundary_values_pt) = 0;
+
+
+  /// Factory to create DuplicateNodeConstraintElement
+  // hierher elaborate ib args
+  virtual DuplicateNodeConstraintElement* duplicate_constraint_element_factory(
+   Node* const& left_node_pt,
+   Node* const& right_node_pt,
+   C1CurviLine* const& left_boundary_pt,
+   C1CurviLine* const& right_boundary_pt,
+   Vector<double> const& left_coord,
+   Vector<double> const& right_coord)=0;
+  
+  
+ };
+ 
+
+//==============================================================================
+/// Namespace to deal update triangle meshes to deal with C1 elements
+/// (continued)
+//==============================================================================
+namespace C1Helper
+{
+ 
+//==============================================================================
+// hierher update
+/// Duplicate nodes at corners in order to properly apply boundary
+/// conditions from each edge. Also adds (8) Lagrange multiplier dofs to the
+/// problem in order to constrain continuous interpolation here across its (8)
+/// vertex dofs. (Note "corner" here refers to the meeting point of any two
+/// sub-boundaries in the closed external boundary)
+//==============================================================================
+ extern void duplicate_corner_nodes(Mesh* bulk_mesh_pt, 
+                             std::map<unsigned,C1CurviLine*> c1_curviline_pt,
+                                    Mesh* constraint_mesh_pt);
+
+
+//==============================================================================
+/// A function that upgrades straight sided elements to be curved. This involves
+/// Setting up the parametric boundary, F(s) and the first derivative F'(s)
+/// We also need to set the edge number of the upgraded element and the positions
+/// of the nodes j and k (defined below) and set which edge (k) is to be exterior
+///            @ k               
+///           /(                 
+///          /. \                
+///         /._._)               
+///      i @     @ j             
+/// For RESTING or FREE boundaries we need to have a C2 CONTINUOUS boundary
+/// representation. That is we need to have a continuous 2nd derivative defined
+/// too. This is well discussed in by [Zenisek 1981] (Aplikace matematiky ,
+/// Vol. 26 (1981), No. 2, 121--141). This results in the necessity for F''(s)
+/// as well.
+//=============================================================================
+ extern void upgrade_edge_elements_to_curved_boundaries(
+  Mesh* bulk_mesh_pt, 
+  std::map<unsigned,C1CurviLine*> c1_curviline_pt);
+
+
+ 
+//======================================================================
+/// Function to set up rotated nodes on the boundary: necessary if we want to set
+/// up physical boundary conditions on a curved boundary with Hermite type dofs.
+/// For example if we know w(n,t) = f(t) (where n and t are the
+/// normal and tangent to a boundary) we ALSO know dw/dt and d2w/dt2.
+/// NB no rotation is needed if the edges are completely free!
+//======================================================================
+ extern void rotate_edge_degrees_of_freedom(
+  Mesh* bulk_mesh_pt, 
+  std::map<unsigned,C1CurviLine*> c1_curviline_pt);
+
+ 
+//======================================================================
+/// Helper function to upgrade a triangle mesh to C1 computations:
+/// -- split elements that have multiple edges on a boundary (so the number
+///    of elements in the mesh changes!
+/// -- duplicate corner nodes (so the number of nodes in the mesh changes
+/// -- create DuplicateNodeConstraintElements that constrain the degrees of freedom
+///    at the newly created nodes to ensure continuity of the displacements
+ ///    These elements are added to the mesh pointed to by constraint_mesh_pt
+/// -- rotate the degrees of freedom on the curvilinear boundaries so they
+///    represent displacements and derivatives in the tangential and
+///    normal direction // hierher Aidan true?
+//======================================================================
+ template <class ELEMENT>
+ void upgrade_triangle_mesh_for_c1_plate_bending(
+  TriangleMeshBase* bulk_mesh_pt,
+  Mesh* constraint_mesh_pt)
+ {
+  // Get map to curvline boundaries of mesh
+  std::map<unsigned, TriangleMeshCurviLine*> curviline_boundary_pt =
+   bulk_mesh_pt->curviline_boundary_pt();
+  
+  // Map as "sparse vector" for C1 curvilines 
+  std::map<unsigned,C1CurviLine*> c1_curviline_pt;
+  for (auto [ b, curviline_pt] :  curviline_boundary_pt)
+   {
+    c1_curviline_pt[b] = new C1CurviLine(curviline_pt);
+   }
+  
+  // Split elements that have multiple edges on a boundary
+  // Note: Sets up the boundary loopup scheme too.
+  bulk_mesh_pt->
+   template split_elements_with_multiple_boundary_edges<ELEMENT>();
+  
+  // Duplicate corner nodes
+  duplicate_corner_nodes(bulk_mesh_pt,
+                         c1_curviline_pt,
+                         constraint_mesh_pt);
+  
+  // Re-setup boundary cooordinates
+  ToleranceForVertexMismatchInPolygons::Tolerable_error=1.0; // hierher
+  unsigned nb=bulk_mesh_pt->nboundary();
+  for (unsigned b=0;b<nb;b++)
+   {
+    bulk_mesh_pt->template setup_boundary_coordinates<ELEMENT>(b);
+   }
+  
+  // Upgrade
+  upgrade_edge_elements_to_curved_boundaries(
+   bulk_mesh_pt,
+   c1_curviline_pt);
+  
+  // Rotate degrees of freedom (only really needed for clamped bcs)
+  rotate_edge_degrees_of_freedom(
+   bulk_mesh_pt,
+   c1_curviline_pt);
+ }
+
+ 
+
+ } // end namespace C1Helper
+
 
 } // namespace oomph
 

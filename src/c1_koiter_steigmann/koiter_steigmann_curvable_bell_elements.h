@@ -9,1257 +9,8 @@
 
 namespace oomph
 {
-  // //===start of rotation helper class=========================================
-  // /// Helper class to contain all the rotation information in the element.
-  // class RotatedBoundaryHelper
-  // {
-  // public:
-  //   /// Constructor: just initialise the member data to their defaults (zeros)
-  //   RotatedBoundaryHelper(FiniteElement* const& parent_element_pt)
-  //     : Parent_element_pt(parent_element_pt),
-  //       Nnode(Parent_element_pt->nvertex_node()),
-  //       Boundary_coordinate_of_node(3, 0.0),
-  //       Nodal_boundary_parametrisation_pt(3, 0),
-  //       Rotation_matrix_at_node(3, DenseMatrix<double>(6, 6, 0.0))
-  //   {
-  //   }
 
-  //   /// Destructor
-  //   ~RotatedBoundaryHelper() {}
-
-  //   C1CurviLine* nodal_boundary_parametrisation_pt(
-  //     const unsigned& j_node)
-  //   {
-  //     return Nodal_boundary_parametrisation_pt[j_node];
-  //   }
-
-
-  //  // hierher isn't this the same as in fkv?
-   
-  //   /// Add a new boundary parametrisation to nodes all the nodes in the
-  //   /// vector node_on_boundary
-  //   void set_nodal_boundary_parametrisation(
-  //     const Vector<unsigned>& node_on_boundary,
-  //     const Vector<double>& boundary_coord_of_node,
-  //     C1CurviLine* const& boundary_parametrisation_pt)
-  //   {
-  //     // Loop over all the nodes in node_on_boundary and add the boundary
-  //     // pointer to their vector of boundaries
-  //     unsigned n_node = node_on_boundary.size();
-  //     for (unsigned j = 0; j < n_node; j++)
-  //     {
-  //       // The j-th node on the boundary
-  //       unsigned j_node = node_on_boundary[j];
-
-  //       // Set the boundary parametrisation data pointer for this node
-  //       Nodal_boundary_parametrisation_pt[j_node] = boundary_parametrisation_pt;
-
-  //       // Set the coordinate of node j on this boundary
-  //       Boundary_coordinate_of_node[j_node] = boundary_coord_of_node[j];
-
-  //       update_rotation_matrices();
-  //     } // end of loop over nodes in node_on_boundary [j]
-  //   } // end of set_nodal_boundary_parametrisation()
-
-
-  //   /// Update all rotation matrices (checks if they are needed unless flag is
-  //   /// true)
-  //   void update_rotation_matrices()
-  //   {
-  //     // [zdec] hard coded the three vertex nodes
-  //     unsigned n_vertex = 3;
-  //     // Loop over each vertex
-  //     for (unsigned j_node = 0; j_node < n_vertex; j_node++)
-  //     {
-  //       // If this node does not have a parametrisation (the pointer is still
-  //       // null) skip over it, otherwise we go on to fill out the rotation
-  //       // matrix
-  //       if (!nodal_boundary_parametrisation_pt(j_node))
-  //       {
-  //         continue;
-  //       }
-
-  //       // Initialise the two basis vectors and their jacobians
-  //       Vector<Vector<double>> bi(2, Vector<double>(2, 0.0));
-  //       Vector<DenseMatrix<double>> dbidx(2, DenseMatrix<double>(2, 2, 0.0));
-
-  //       // Our new coordinate system:
-  //       //     (l, s)=(normal component, tangent component)
-  //       // which we define in terms of basis vectors (rescaled)
-  //       //     ni=dxi/dl / |n|           <-- Jacobian col 1
-  //       //     ti=dxi/ds / |t|           <-- Jacobian col 2
-  //       // and their derivatives
-  //       //     dnidxj=d/dxj(dxi/dl / |n|) <-- Hessian `col' 1
-  //       //     dtidxj=d/dxj(dxi/ds / |t|) <-- Hessian `col' 2
-
-  //       // [zdec] we use i and j for brevity
-  //       // but it should be alpha & beta
-  //       // Need to write up how the transformation is done
-
-  //       // Storage for our basis and derivatives
-  //       Vector<double> ni(2, 0.0);
-  //       Vector<double> ti(2, 0.0);
-  //       Vector<double> dnids(2, 0.0);
-  //       Vector<double> dtids(2, 0.0);
-
-  //       // All tensors assumed evaluated on the boundary
-  //       // Jacobian of inverse mapping
-  //       DenseMatrix<double> jac_inv(2, 2, 0.0);
-  //       // Hessian of mapping [zdec] (not needed because...)
-  //       Vector<DenseMatrix<double>> hess(2, DenseMatrix<double>(2, 2, 0.0));
-  //       // Hessian of inverse mapping [zdec] (...this can be found by hand)
-  //       Vector<DenseMatrix<double>> hess_inv(2, DenseMatrix<double>(2, 2, 0.0));
-
-  //       // The basis is defined in terms of the boundary parametrisation
-  //       Vector<double> boundary_coord = {Boundary_coordinate_of_node[j_node]};
-  //       C1CurviLine* boundary_pt =
-  //         Nodal_boundary_parametrisation_pt[j_node];
-  //       Vector<double> x(2, 0.0);
-  //       Vector<double> dxids(2, 0.0);
-  //       Vector<double> d2xids2(2, 0.0);
-
-  //       // Get position (debug)
-  //       boundary_pt->position(boundary_coord, x);
-  //       // Get tangent vector
-  //       boundary_pt->dposition(boundary_coord, dxids);
-  //       // Get second derivative
-  //       boundary_pt->d2position(boundary_coord, d2xids2);
-
-  //       double mag_t = sqrt(dxids[0] * dxids[0] + dxids[1] * dxids[1]);
-  //       // ti is the normalised tangent vector
-  //       ti[0] = dxids[0] / mag_t;
-  //       ti[1] = dxids[1] / mag_t;
-  //       // Derivative of (normalised) tangent
-  //       dtids[0] = d2xids2[0] / std::pow(mag_t, 2) -
-  //                  (dxids[0] * d2xids2[0] + dxids[1] * d2xids2[1]) * dxids[0] /
-  //                    std::pow(mag_t, 4);
-  //       dtids[1] = d2xids2[1] / std::pow(mag_t, 2) -
-  //                  (dxids[0] * d2xids2[0] + dxids[1] * d2xids2[1]) * dxids[1] /
-  //                    std::pow(mag_t, 4);
-  //       // n = (t x e_z) implies
-  //       ni[0] = ti[1];
-  //       ni[1] = -ti[0];
-  //       // Same for dnids
-  //       dnids[0] = dtids[1];
-  //       dnids[1] = -dtids[0];
-
-  //       // Need inverse of mapping to calculate ds/dxi ----------------
-  //       //   /  dx/dl  dx/ds  \ -1  ___  __1__ /  dy/ds -dx/ds \ .
-  //       //   \  dy/dl  dy/ds  /     ---   det  \ -dy/dl  dx/dl /
-  //       //
-  //       //                          ___  /  dl/dx  dl/dy  \ .
-  //       //                          ---  \  ds/dx  ds/dy  /
-  //       //
-  //       // Fill out inverse of Jacobian
-  //       double det = (ni[0] * ti[1] - ni[1] * ti[0]);
-  //       jac_inv(0, 0) = ti[1] / det;
-  //       jac_inv(0, 1) = -ti[0] / det;
-  //       jac_inv(1, 0) = -ni[1] / det;
-  //       jac_inv(1, 1) = ni[0] / det;
-
-  //       // Fill out the Hessian
-  //       // (unneeded -- can calculate the inverse components by hand)
-  //       for (unsigned alpha = 0; alpha < 2; alpha++)
-  //       {
-  //         // hess[alpha](0,0) = 0.0;
-  //         hess[alpha](0, 1) = dnids[alpha];
-  //         hess[alpha](1, 0) = dnids[alpha];
-  //         hess[alpha](1, 1) = dtids[alpha];
-  //       }
-
-  //       // Fill out inverse of Hessian
-  //       // H^{-1}abg = J^{-1}ad Hdez J^{-1}eb J^{-1}zg
-  //       for (unsigned alpha = 0; alpha < 2; alpha++)
-  //       {
-  //         for (unsigned beta = 0; beta < 2; beta++)
-  //         {
-  //           for (unsigned gamma = 0; gamma < 2; gamma++)
-  //           {
-  //             for (unsigned alpha2 = 0; alpha2 < 2; alpha2++)
-  //             {
-  //               for (unsigned beta2 = 0; beta2 < 2; beta2++)
-  //               {
-  //                 for (unsigned gamma2 = 0; gamma2 < 2; gamma2++)
-  //                 {
-  //                   hess_inv[alpha](beta, gamma) -=
-  //                     jac_inv(alpha, alpha2) * hess[alpha2](beta2, gamma2) *
-  //                     jac_inv(beta2, beta) * jac_inv(gamma2, gamma);
-  //                 }
-  //               }
-  //             }
-  //           }
-  //         }
-  //       }
-
-  //       // Fill in the rotation matrix using the new basis
-  //       fill_in_rotation_matrix_at_node_with_basis(j_node, jac_inv, hess_inv);
-
-  //     } // end loop over vertices
-  //   } // end of update_rotation_matrices()
-
-
-  //   /// Access function to fill out rot_mat using rotation matrix
-  //   void get_rotation_matrix_at_node(const unsigned& j_node,
-  //                                    DenseMatrix<double>& rot_mat)
-  //   {
-  //     rot_mat = Rotation_matrix_at_node[j_node];
-  //   }
-
-  // private:
-  //   /// Helper function to fill in the rotation matrix for a given basis
-  //   void fill_in_rotation_matrix_at_node_with_basis(
-  //     const unsigned& j_node,
-  //     const DenseMatrix<double>& jac_inv,
-  //     const Vector<DenseMatrix<double>>& hess_inv)
-  //   {
-  //     // Rotation matrix, b constructed using submatrices b1, b12, b22
-  //     DenseMatrix<double> b1(2, 2, 0.0), b22(3, 3, 0.0), b12(2, 3, 0.0);
-
-  //     // Fill in the submatrices
-  //     // Loop over the rotated first derivatives
-  //     for (unsigned mu = 0; mu < 2; mu++)
-  //     {
-  //       // Loop over the unrotated first derivatives
-  //       for (unsigned alpha = 0; alpha < 2; alpha++)
-  //       {
-  //         // Fill in b1 - the Jacobian
-  //         // Fill in the affine rotation of the first derivatives
-  //         b1(mu, alpha) = jac_inv(mu, alpha);
-
-  //         // Loop over unrotated second derivatives
-  //         for (unsigned beta = 0; beta < 2; ++beta)
-  //         {
-  //           // Avoid double counting the cross derivative
-  //           if (alpha <= beta)
-  //           {
-  //             // Define column index
-  //             const unsigned col = alpha + beta;
-
-  //             // Fill in the non-affine part of the rotation of the first
-  //             // derivatives
-  //             b12(mu, col) += hess_inv[mu](alpha, beta);
-  //             // [zdec] debug mixed derivative -- add extra
-  //             if (alpha < beta)
-  //             {
-  //               // b12(mu, col) -= hess_inv[mu](alpha, beta);
-  //             }
-  //             // Loop over the rotated second derivatives
-  //             for (unsigned nu = 0; nu < 2; nu++)
-  //             {
-  //               // // Avoid double counting the cross derivative
-  //               // if (mu <= nu)
-  //               {
-  //                 // Fill in b22 - the Affine part of the Jacobian derivative
-  //                 // Redefine row index for the next submatrix
-  //                 unsigned row_b22 = mu + nu;
-  //                 // Fill in the affine part of the rotation of the second
-  //                 // derivatives [zdec] if( beta>= alpha) ?
-  //                 b22(row_b22, col) += jac_inv(mu, alpha) * jac_inv(nu, beta);
-  //               }
-  //             }
-  //           }
-  //         }
-  //       }
-  //     }
-
-  //     // Fill in the submatrices to the full (6x6) matrix
-  //     Rotation_matrix_at_node[j_node](0, 0) = 1.0;
-  //     // Fill in b1 --- the affine contribution to rotation of the
-  //     // first derivatives
-  //     for (unsigned i = 0; i < 2; ++i)
-  //     {
-  //       for (unsigned j = 0; j < 2; ++j)
-  //       {
-  //         Rotation_matrix_at_node[j_node](1 + i, 1 + j) = b1(i, j);
-  //       }
-  //     }
-  //     // Fill in b21 --- the non-affine (second derivative dependent)
-  //     // rotation of the first derivatives
-  //     for (unsigned i = 0; i < 2; ++i)
-  //     {
-  //       for (unsigned j = 0; j < 3; ++j)
-  //       {
-  //         Rotation_matrix_at_node[j_node](1 + i, 3 + j) = b12(i, j);
-  //       }
-  //     }
-  //     // Fill in b22 --- the rotation of the second derivatives
-  //     for (unsigned i = 0; i < 3; ++i)
-  //     {
-  //       for (unsigned j = 0; j < 3; ++j)
-  //       {
-  //         Rotation_matrix_at_node[j_node](3 + i, 3 + j) = b22(i, j);
-  //       }
-  //     }
-  //   } // end fill_in_rotation_matrix_at_node_with_basis
-
-  //   /// Pointer to the `parent' finite element which this is a helper force
-  //   FiniteElement* Parent_element_pt;
-
-  //   /// The number of nodes (that we store rotation data for) in the fvk element
-  //   /// that uses this helper
-  //   unsigned Nnode;
-
-  //   /// Vector containing boundary parametrised location for each node
-  //   Vector<double> Boundary_coordinate_of_node;
-
-  //   /// Vector containing boundary parametrisation at each node
-  //   Vector<C1CurviLine*> Nodal_boundary_parametrisation_pt;
-
-  //   /// Vector containing <rotation matrix at each node>
-  //   Vector<DenseMatrix<double>> Rotation_matrix_at_node;
-  // };
-
-  // //---end of rotation helper class-------------------------------------------
-
-
-
-
-  //===============================================================================
-  /// KoiterSteigmannC1CurvableBellElement elements are a subparametric
-  /// scheme with  linear Lagrange interpolation for approximating the geometry
-  /// and the C1-functions for approximating variables.
-  //==============================================================================
-
-  // [zdec] NNODE_1D(=2) should not be required here due to the fact that all
-  // node should be vertex nodes? Is any templating needed???
-  // template<unsigned DIM,
-  //          unsigned NNODE_1D,
-  //          unsigned BOUNDARY_ORDER,
-  //          template<unsigned DIM_, unsigned NNODE_1D_>
-  //          class PLATE_EQUATIONS>
-  class KoiterSteigmannC1CurvableBellElement
-    : public virtual CurvableBellElement<2>,
-      public virtual KoiterSteigmannEquations
-  {
-  public:
-
-    //----------------------------------------------------------------------
-    // Class construction
-
-    /// Constructor: Call constructors for C1CurvedBellElement and
-    /// KoiterSteigmannEquations
-    KoiterSteigmannC1CurvableBellElement()
-      : CurvableBellElement<Nnode_1D>(Nfield, Field_is_bell_interpolated),
-        KoiterSteigmannEquations()
-    {
-      // // Use the higher order integration scheme
-      // delete this->integral_pt();
-      // // Do we want something that is order 8 instead?
-      // TGauss<2, 9>* new_integral_pt = new TGauss<2, 9>;
-      // this->set_integration_scheme(new_integral_pt);
-
-      // Rotated dof helper
-      Rotated_boundary_helper_pt = new RotatedBoundaryHelper(this);
-    }
-
-    /// Destructor
-    ~KoiterSteigmannC1CurvableBellElement()
-    {
-      // Delete the rotated bonudary helper we made for this element
-      delete Rotated_boundary_helper_pt;
-    }
-
-    /// Broken copy constructor
-    KoiterSteigmannC1CurvableBellElement(
-      const KoiterSteigmannC1CurvableBellElement& dummy)
-    {
-      BrokenCopy::broken_copy("KoiterSteigmannC1CurvableBellElement");
-    }
-
-    /// Broken assignment operator
-    void operator=(
-      const KoiterSteigmannC1CurvableBellElement&)
-    {
-      BrokenCopy::broken_assign("KoiterSteigmannC1CurvableBellElement");
-    }
-
-
-    //----------------------------------------------------------------------
-    // Output and documentation
-
-    /// Output function:
-    ///   x,y,u at n_plot^DIM plot points
-    void output(std::ostream& outfile)
-    {
-      KoiterSteigmannEquations::output(outfile);
-    }
-
-    /// Output function and derivatives:
-    ///   x,y,u,Du,DDu at n_plot^DIM plot points
-    void output_full(std::ostream& outfile)
-    {
-      KoiterSteigmannEquations::output_full(outfile);
-    }
-
-    /// Output function:
-    ///   x,y,u at n_plot^DIM plot points
-    void output(std::ostream& outfile, const unsigned& n_plot)
-    {
-      KoiterSteigmannEquations::output(outfile, n_plot);
-    }
-
-    /// Output function and derivatives:
-    ///   x,y,u,Du,DDu at n_plot^DIM plot points
-    void output_full(std::ostream& outfile, const unsigned& n_plot)
-    {
-      KoiterSteigmannEquations::output_full(outfile, n_plot);
-    }
-
-    ///  \short Output function:
-    ///   x,y,u   or    x,y,z,u at n_plot^DIM plot points
-    void output_interpolated_exact_soln(
-      std::ostream& outfile,
-      FiniteElement::SteadyExactSolutionFctPt exact_soln_pt,
-      const unsigned& n_plot);
-
-    /// \short C-style output function:
-    ///  x,y,u   or    x,y,z,u
-    void output(FILE* file_pt)
-    {
-      KoiterSteigmannEquations::output(file_pt);
-    }
-
-    ///  \short C-style output function:
-    ///   x,y,u   or    x,y,z,u at n_plot^DIM plot points
-    void output(FILE* file_pt, const unsigned& n_plot)
-    {
-      KoiterSteigmannEquations::output(file_pt, n_plot);
-    }
-
-
-    /// \short Output function for an exact solution:
-    ///  x,y,u_exact   or    x,y,z,u_exact at n_plot^DIM plot points
-    void output_fct(std::ostream& outfile,
-                    const unsigned& n_plot,
-                    FiniteElement::SteadyExactSolutionFctPt exact_soln_pt)
-    {
-      KoiterSteigmannEquations::output_fct(
-        outfile, n_plot, exact_soln_pt);
-    }
-
-    /// \short Output function for a time-dependent exact solution.
-    ///  x,y,u_exact   or    x,y,z,u_exact at n_plot^DIM plot points
-    /// (Calls the steady version)
-    void output_fct(std::ostream& outfile,
-                    const unsigned& n_plot,
-                    const double& time,
-                    FiniteElement::UnsteadyExactSolutionFctPt exact_soln_pt)
-    {
-      KoiterSteigmannEquations::output_fct(
-        outfile, n_plot, time, exact_soln_pt);
-    }
-
-
-    // /// \short enum to enumerate the possible edges that could be curved
-    // typedef typename MyC1CurvedElements::Edge Edge;
-
-    // [zdec]
-    // /// \short Get the pointer to the Curved shape class data member
-    // const MyC1CurvedElements::BernadouElementBasis<BOUNDARY_ORDER>* curved_shape_pt()
-    // {
-    //   return &Curved_shape;
-    // };
-
-    // /// \short get the coordinate
-    // inline void get_coordinate_x(const Vector<double>& s,
-    //                              Vector<double>& x) const;
-
-    // /// \short get the coordinate i
-    // double interpolated_x(const Vector<double>& s, const unsigned& i) const
-    // {
-    //   Vector<double> r(2);
-    //   get_coordinate_x(s, r);
-    //   return r[i];
-    // }
-
-
-    //----------------------------------------------------------------------
-    // Jacobian and residual contributions
-
-    /// Add the element's contribution to its residual vector (wrapper) with
-    /// cached association matrix
-    void fill_in_contribution_to_residuals(Vector<double>& residuals)
-    {
-      // Store the expensive-to-construct matrix
-      this->store_association_matrix();
-      // Call the generic routine with the flag set to 1
-      KoiterSteigmannEquations::fill_in_contribution_to_residuals(residuals);
-      // Remove the expensive-to-construct matrix
-      this->delete_association_matrix();
-    }
-
-    /// Add the element's contribution to its residual vector and
-    /// element Jacobian matrix (wrapper) with caching of association matrix
-    void fill_in_contribution_to_jacobian(Vector<double>& residuals,
-                                          DenseMatrix<double>& jacobian)
-    {
-      // Store the expensive-to-construct matrix
-      this->store_association_matrix();
-      // Call the generic routine with the flag set to 1
-      KoiterSteigmannEquations::fill_in_contribution_to_jacobian(residuals,
-                                                                 jacobian);
-      // Remove the expensive-to-construct matrix
-      this->delete_association_matrix();
-    }
-
-
-    //----------------------------------------------------------------------
-    // Geometry and boundaries
-
-    /// Function useful for setting boundary conditions that streamlines the
-    /// boundary condition setting process by pinning the k-th value of the i-th
-    /// displacement field at all nodes on boundary b to the value prescribed by
-    /// specified_u_ik_pt. This allows the user to set BCs without understanding
-    /// the underlying geometry elements of how they are integrated with
-    /// KoiterSteigmannEquations.
-    ///
-    /// As the dofs are Hermite, the user needs to take care to ensure they are
-    /// setting values that are implicitly prescribed at nodes by the higher
-    /// order continuous information AS WELL AS to be careful to track the
-    /// coordinate frame the Hermite data is describing (e.g. (x,y) vs
-    /// (normal,tangent)).
-    void set_boundary_condition(const unsigned& i_field,
-                                const unsigned& k_type,
-                                const unsigned& b_boundary,
-                                const ScalarFctPt& specified_u_ik_pt);
-
-    /// Get the zeta coordinate
-    inline void interpolated_zeta(const Vector<double>& s,
-                                  Vector<double>& zeta) const
-    {
-      // If there is a macro element use it
-      if (this->Macro_elem_pt != 0)
-      {
-        this->get_x_from_macro_element(s, zeta);
-      }
-      // Otherwise interpolate zeta_nodal using the shape functions
-      else
-      {
-        interpolated_x(s, zeta);
-      }
-    }
-
-    /// Return true if the element has been upgraded to interpolate a curved
-    /// boundary
-    bool element_is_curved() const
-    {
-      return CurvableBellElement<Nnode_1D>::element_is_curved();
-    }
-   
-    /// Upgrade the Bell element to a curved Bernadou element
-    virtual void upgrade_element_to_curved(
-      const MyC1CurvedElements::Edge& curved_edge,
-      const double& s_ubar,
-      const double& s_obar,
-      C1CurviLine* parametric_edge,
-      const unsigned& boundary_order)
-    {
-      CurvableBellElement<Nnode_1D>::upgrade_element_to_curved(
-        curved_edge, s_ubar, s_obar, parametric_edge, boundary_order);
-    }
-
-
-    //----------------------------------------------------------------------
-    // Member data acess functions
-
-    /// Access function to rotated boundary helper object
-    RotatedBoundaryHelper* rotated_boundary_helper_pt()
-    {
-      return Rotated_boundary_helper_pt;
-    }
-
-    /// Access the number of fields
-    unsigned nfield()
-    {
-      return Nfield;
-    }
-
-    /// Required  # of `values' (pinned or dofs)
-    /// at node n
-    inline unsigned required_nvalue() const
-    {
-      return Initial_Nvalue;
-    }
-
-
-
-
-  protected:
-
-    /// Transform the shape functions so that they correspond to the new rotated
-    /// dofs
-    inline void rotate_shape(Shape& shape) const;
-
-    /// Transform the shape functions and first derivatives so that they
-    /// correspond to the new rotated dofs
-    inline void rotate_shape(Shape& shape, DShape& dshape) const;
-
-    /// Transform the shape functions, first and second derivatives so that they
-    /// correspond to the new rotated dofs
-    inline void rotate_shape(Shape& shape,
-                             DShape& dshape,
-                             DShape& d2shape) const;
-
-
-    /// Required # of `values' (pinned or dofs) at node n
-    inline unsigned required_nvalue(const unsigned& n) const
-    {
-      return Initial_Nvalue;
-    }
-
-
-    //----------------------------------------------------------------------------
-    // Interface to KoiterSteigmannEquations (can this all be (static) data?)
-
-    /// Interface to return a vector of the index of each displacement unkonwn
-    /// in the grander scheme of unknowns
-    virtual Vector<unsigned> u_field_indices() const
-    {
-      return {0, 1, 2};
-    }
-
-    /// Interface to return a vector of the index of the u_i displacement
-    /// unkonwn in the grander scheme of unknowns
-    virtual unsigned u_i_field_index(const unsigned& i_field) const
-    {
-      return i_field;
-    }
-
-    // [zdec] should always be three
-    /// Interface to return the number of nodes used by u
-    virtual unsigned nu_node() const
-    {
-      return CurvableBellElement<Nnode_1D>::nnode_for_field(
-        u_i_field_index(0));
-    }
-
-    // [zdec] should always be 1,2,3? also not used in KoiterSteigmannEquations
-    // yet (not very future proof)
-    /// Interface to get the local indices of the nodes used by u
-    virtual Vector<unsigned> get_u_node_indices() const
-    {
-      return CurvableBellElement<Nnode_1D>::nodal_indices_for_field(
-        u_i_field_index(0));
-    }
-
-    /// Interface to get the number of basis types for u at node j
-    virtual unsigned nu_type_at_each_node() const
-    {
-      return CurvableBellElement<Nnode_1D>::nnodal_basis_type_for_field(
-        u_i_field_index(0));
-    }
-
-    /// Interface to retrieve the value of u_i at node j of type k
-    virtual double get_u_i_value_at_node_of_type(
-      const unsigned& i_field,
-      const unsigned& j_node,
-      const unsigned& k_type) const
-    {
-      unsigned n_u_types = nu_type_at_each_node();
-      unsigned nodal_type_index = i_field * n_u_types + k_type;
-      return raw_nodal_value(j_node, nodal_type_index);
-    }
-
-    /// Interface to retrieve the t-th history value of u_i at node j of type k
-    virtual double get_u_i_value_at_node_of_type(
-      const unsigned& t_time,
-      const unsigned& i_field,
-      const unsigned& j_node,
-      const unsigned& k_type) const
-    {
-      unsigned n_u_types = nu_type_at_each_node();
-      unsigned nodal_type_index = i_field * n_u_types + k_type;
-      return raw_nodal_value(t_time, j_node, nodal_type_index);
-    }
-
-    /// Interface to get the pointer to the internal data used to interpolate
-    /// the i-th displacement field
-    virtual Data* u_i_internal_data_pt(const unsigned& i_field) const
-    {
-      unsigned index =
-        CurvableBellElement<Nnode_1D>::index_of_internal_data_for_field(
-          i_field);
-      return internal_data_pt(index);
-    }
-
-    /// Interface to get the number of internal types for the u fields
-    virtual unsigned nu_type_internal() const
-    {
-      return CurvableBellElement<Nnode_1D>::ninternal_basis_type_for_field(
-        u_field_indices()[0]);
-    }
-
-    /// (pure virtual) interface to retrieve the value of u_alpha of internal
-    /// type k
-    virtual double get_u_i_internal_value_of_type(
-      const unsigned& i_field,
-      const unsigned& k_type) const
-    {
-      unsigned index = index_of_internal_data_for_field(i_field);
-      return CurvableBellElement<Nnode_1D>::internal_value_for_field_of_type(
-        index, k_type);
-    }
-
-    /// (pure virtual) interface to retrieve the t-th history value of u_alpha
-    /// of internal type k
-    virtual double get_u_i_internal_value_of_type(
-      const unsigned& t_time,
-      const unsigned& i_field,
-      const unsigned& k_type) const
-    {
-      unsigned index = index_of_internal_data_for_field(i_field);
-      return CurvableBellElement<Nnode_1D>::internal_value_for_field_of_type(
-        t_time, index, k_type);
-    }
-
-
-    /// (pure virtual) Out-of-plane basis functions at local coordinate s
-    virtual void basis_u_koiter_steigmann(
-      const Vector<double>& s,
-      Shape& psi_n,
-      Shape& psi_i) const;
-
-    /// (pure virtual) Out-of-plane basis functions and derivs w.r.t. global
-    /// coords at local coordinate s; return det(Jacobian of mapping)
-    virtual double d2basis_u_eulerian_koiter_steigmann(
-      const Vector<double>& s,
-      Shape& psi_n,
-      Shape& psi_i,
-      DShape& dpsi_n_dx,
-      DShape& dpsi_i_dx,
-      DShape& d2psi_n_dx2,
-      DShape& d2psi_i_dx2) const;
-
-    /// (pure virtual) Out-of-plane basis/test functions at local coordinate s
-    virtual void basis_and_test_u_koiter_steigmann(
-      const Vector<double>& s,
-      Shape& psi_n,
-      Shape& psi_i,
-      Shape& test_n,
-      Shape& test_i) const;
-
-    /// (pure virtual) Out-of-plane basis/test functions and first derivs w.r.t.
-    /// to global coords at local coordinate s; return det(Jacobian of mapping)
-    virtual double dbasis_and_dtest_u_eulerian_koiter_steigmann(
-      const Vector<double>& s,
-      Shape& psi_n,
-      Shape& psi_i,
-      DShape& dpsi_n_dx,
-      DShape& dpsi_i_dx,
-      Shape& test_n,
-      Shape& test_i,
-      DShape& dtest_n_dx,
-      DShape& dtest_i_dx) const;
-
-    /// (pure virtual) Out-of-plane basis/test functions and first/second derivs
-    /// w.r.t. to global coords at local coordinate s;
-    /// return det(Jacobian of mapping)
-    virtual double d2basis_and_d2test_u_eulerian_koiter_steigmann(
-      const Vector<double>& s,
-      Shape& psi_n,
-      Shape& psi_i,
-      DShape& dpsi_n_dx,
-      DShape& dpsi_i_dx,
-      DShape& d2psi_n_dx2,
-      DShape& d2psi_i_dx2,
-      Shape& test_n,
-      Shape& test_i,
-      DShape& dtest_n_dx,
-      DShape& dtest_i_dx,
-      DShape& d2test_n_dx2,
-      DShape& d2test_i_dx2) const;
-
-
-
-    // Private Data Members
-  private:
-
-    /// Pointer to an instance of rotated boundary helper
-    RotatedBoundaryHelper* Rotated_boundary_helper_pt;
-
-    /// Number of nodes along each edge of the element (is always 2)
-    static const unsigned Nnode_1D = 2;
-
-    /// Static number of fields (is always 3)
-    static const unsigned Nfield;
-
-    /// Static bool vector with the Bell interpolation of the fields
-    /// (always only w)
-    static const std::vector<bool> Field_is_bell_interpolated;
-
-    /// \short Static int that holds the number of variables at
-    /// nodes: always the same
-    static const unsigned Initial_Nvalue;
-
-  };
-
-
-  ////////////////////////////////////////////////////////////////////
-  ////////////////////////////////////////////////////////////////////
-  ////////////////////////////////////////////////////////////////////
-
-
-  //==============================================================================
-  /// Face geometry for the KoiterSteigmannC1CurvableBellElement elements:
-  /// The spatial dimension of the face elements is one lower than that of the
-  /// bulk element but they have the same number of points along their 1D edges.
-  //==============================================================================
-  // template<unsigned DIM,
-  //          unsigned NNODE_1D,
-  //          unsigned BOUNDARY_ORDER,
-  //          template<unsigned DIM_, unsigned NNODE_1D_>
-  //          class PLATE_EQUATIONS>
-  template<>
-  class FaceGeometry<KoiterSteigmannC1CurvableBellElement>
-    : public virtual TElement<1, 2>
-  {
-  public:
-    /// \short Constructor: Call the constructor for the
-    /// appropriate lower-dimensional TElement
-    FaceGeometry() : TElement<1, 2>() {}
-  };
-
-
-  //////////////////////////////////////////////////////////////////////////////
-  //////////////////////////////////////////////////////////////////////////////
-  //////////////////////////////////////////////////////////////////////////////
-
-
-
-  //============================================================================
-  /// Function useful for setting boundary conditions that streamlines the
-  /// boundary condition setting process by pinning the k-th value of the i-th
-  /// displacement field at all nodes on boundary b to the value prescribed by
-  /// specified_u_ik_pt. This allows the user to set BCs without understanding
-  /// the underlying geometry elements of how they are integrated with
-  /// KoiterSteigmannEquations.
-  ///
-  /// As the dofs are Hermite, the user needs to take care to ensure they are
-  /// setting values that are implicitly prescribed at nodes by the higher
-  /// order continuous information AS WELL AS to be careful to track the
-  /// coordinate frame the Hermite data is describing (e.g. (x,y) vs
-  /// (normal,tangent)).
-  //============================================================================
-  void KoiterSteigmannC1CurvableBellElement::
-  set_boundary_condition(const unsigned& i_field,
-                              const unsigned& k_type,
-                              const unsigned& b_boundary,
-                              const ScalarFctPt& specified_u_ik_pt)
-  {
-    const unsigned first_nodal_type_index =
-      this->first_nodal_type_index_for_field(i_field);
-    const unsigned n_vertices = nu_node();
-
-#ifdef PARANOID
-    // Check that the dof number is a sensible value
-    unsigned n_type = nu_type_at_each_node();
-    if (k_type >= n_type)
-    {
-      throw OomphLibError(
-        "Foppl von Karman elements only have 6 Hermite deflection degrees\
-of freedom at internal points. They are {w ; w,x ; w,y ; w,xx ; w,xy ; w,yy}",
-        OOMPH_CURRENT_FUNCTION,
-        OOMPH_EXCEPTION_LOCATION);
-    }
-#endif
-
-    // These KS elements only have displacement dofs at vertices, we assume
-    // these are the first n_vertices nodes
-    for (unsigned n = 0; n < n_vertices; ++n)
-    {
-      // Get node
-      Node* nod_pt = this->node_pt(n);
-      // Check if it is on the boundary
-      bool is_boundary_node = nod_pt->is_on_boundary(b_boundary);
-      if (is_boundary_node)
-      {
-        // Extract nodal coordinates from node:
-        Vector<double> x(2);
-        x[0] = nod_pt->x(0);
-        x[1] = nod_pt->x(1);
-        // Get value
-        double value;
-        specified_u_ik_pt(x, value);
-        // Pin and set the value
-        nod_pt->pin(first_nodal_type_index + k_type);
-        nod_pt->set_value(first_nodal_type_index + k_type, value);
-      }
-    }
-  }
-
-
-
-  //======================================================================
-  /// (pure virtual) Basis functions at local coordinate s
-  //======================================================================
-  void KoiterSteigmannC1CurvableBellElement::
-    basis_u_koiter_steigmann(const Vector<double>& s,
-                               Shape& psi_n,
-                               Shape& psi_i) const
-  {
-    throw OomphLibError("This still needs testing for curved elements.",
-                        "void KoiterSteigmannEquations::\
-shape_and_test_foeppl_von_karman(...)",
-                        OOMPH_EXCEPTION_LOCATION);
-
-    this->c1_basis(s, psi_n, psi_i);
-
-    // Rotate the degrees of freedom
-    rotate_shape(psi_n);
-  }
-
-
-  //======================================================================
-  /// Define the shape functions and test functions and derivatives
-  /// w.r.t. global coordinates and return Jacobian of mapping.
-  ///
-  /// Galerkin: Test functions = shape functions
-  //======================================================================
-  void KoiterSteigmannC1CurvableBellElement::
-    basis_and_test_u_koiter_steigmann(const Vector<double>& s,
-                                      Shape& psi_n,
-                                      Shape& psi_i,
-                                      Shape& test_n,
-                                      Shape& test_i) const
-  {
-    // Use the c1 basis
-    this->c1_basis(s, psi_n, psi_i);
-
-    // Rotate the degrees of freedom
-    rotate_shape(psi_n);
-
-    // Galerkin
-    // (Shallow) copy the basis functions
-    test_n = psi_n;
-    test_i = psi_i;
-  }
-
-
-  //======================================================================
-  /// Fetch the basis functions and test functions and first derivatives
-  /// w.r.t. global coordinates and return Jacobian of mapping.
-  ///
-  /// Galerkin: Test functions = shape functions
-  //======================================================================
-  double KoiterSteigmannC1CurvableBellElement::
-    dbasis_and_dtest_u_eulerian_koiter_steigmann(const Vector<double>& s,
-                                                 Shape& psi_n,
-                                                 Shape& psi_i,
-                                                 DShape& dpsi_n_dx,
-                                                 DShape& dpsi_i_dx,
-                                                 Shape& test_n,
-                                                 Shape& test_i,
-                                                 DShape& dtest_n_dx,
-                                                 DShape& dtest_i_dx) const
-  {
-    // Get the basis
-    double J = this->d_c1_basis_eulerian(s, psi_n, psi_i, dpsi_n_dx, dpsi_i_dx);
-
-    // Rotate the degrees of freedom
-    rotate_shape(psi_n, dpsi_n_dx);
-    // Galerkin
-    // (Shallow) copy the basis functions
-    test_n = psi_n;
-    dtest_n_dx = dpsi_n_dx;
-    test_i = psi_i;
-    dtest_i_dx = dpsi_i_dx;
-
-    return J;
-  }
-
-
-  //======================================================================
-  /// Fetch the basis functions and first/second derivatives
-  /// w.r.t. global coordinates and return Jacobian of mapping.
-  ///
-  /// Galerkin: Test functions = shape functions
-  //======================================================================
-  double KoiterSteigmannC1CurvableBellElement::
-    d2basis_u_eulerian_koiter_steigmann(const Vector<double>& s,
-                                        Shape& psi_n,
-                                        Shape& psi_i,
-                                        DShape& dpsi_n_dx,
-                                        DShape& dpsi_i_dx,
-                                        DShape& d2psi_n_dx,
-                                        DShape& d2psi_i_dx) const
-  {
-    // Call the geometrical shape functions and derivatives
-    double J = CurvableBellElement<Nnode_1D>::d2_c1_basis_eulerian(
-      s, psi_n, psi_i, dpsi_n_dx, dpsi_i_dx, d2psi_n_dx, d2psi_i_dx);
-    // Rotate the dofs
-    rotate_shape(psi_n, dpsi_n_dx, d2psi_n_dx);
-
-    // Return the jacobian
-    return J;
-  }
-
-
-  //======================================================================
-  /// Fetch the basis functions and test functions and first/second derivatives
-  /// w.r.t. global coordinates and return Jacobian of mapping.
-  ///
-  /// Galerkin: Test functions = shape functions
-  //======================================================================
-  double KoiterSteigmannC1CurvableBellElement::
-    d2basis_and_d2test_u_eulerian_koiter_steigmann(const Vector<double>& s,
-                                                   Shape& psi_n,
-                                                   Shape& psi_i,
-                                                   DShape& dpsi_n_dx,
-                                                   DShape& dpsi_i_dx,
-                                                   DShape& d2psi_n_dx,
-                                                   DShape& d2psi_i_dx,
-                                                   Shape& test_n,
-                                                   Shape& test_i,
-                                                   DShape& dtest_n_dx,
-                                                   DShape& dtest_i_dx,
-                                                   DShape& d2test_n_dx,
-                                                   DShape& d2test_i_dx) const
-  {
-    // Call the geometrical shape functions and derivatives
-    double J = CurvableBellElement<Nnode_1D>::d2_c1_basis_eulerian(
-      s, psi_n, psi_i, dpsi_n_dx, dpsi_i_dx, d2psi_n_dx, d2psi_i_dx);
-    // Rotate the dofs
-    rotate_shape(psi_n, dpsi_n_dx, d2psi_n_dx);
-
-    // Galerkin
-    // Set the test functions equal to the shape functions (this is a shallow
-    // copy)
-    test_n = psi_n;
-    dtest_n_dx = dpsi_n_dx;
-    d2test_n_dx = d2psi_n_dx;
-    test_i = psi_i;
-    dtest_i_dx = dpsi_i_dx;
-    d2test_i_dx = d2psi_i_dx;
-
-    // Return the jacobian
-    return J;
-  }
-
-
-  //======================================================================
-  /// Rotate the shape functions according to the specified basis on the
-  /// boundary. This function does a DenseDoubleMatrix solve to determine
-  /// new basis - which could be speeded up by caching the matrices higher
-  /// up and performing the LU decomposition only once
-  //======================================================================
-  inline void KoiterSteigmannC1CurvableBellElement::rotate_shape(
-    Shape& psi) const
-  {
-    const unsigned n_dof_types = nu_type_at_each_node();
-
-    // Get the nodes that need rotating
-    Vector<unsigned> nodes_to_rotate;
-    for (unsigned j_node = 0; j_node < 3; j_node++)
-    {
-      // If the node has had its boundary parametrisation set, its shape
-      // functions need rotating
-      if (Rotated_boundary_helper_pt->nodal_boundary_parametrisation_pt(j_node))
-      {
-        nodes_to_rotate.push_back(j_node);
-      }
-    }
-
-    // Loop over the nodes with rotated dofs
-    unsigned n_nodes_to_rotate = nodes_to_rotate.size();
-    for (unsigned j = 0; j < n_nodes_to_rotate; j++)
-    {
-      // Get the nodes
-      unsigned j_node = nodes_to_rotate[j];
-
-      // Construct the vectors to hold the shape functions
-      Vector<double> psi_vector(n_dof_types);
-
-      // Get the rotation matrix
-      DenseDoubleMatrix rotation_matrix(n_dof_types, n_dof_types, 0.0);
-      this->Rotated_boundary_helper_pt->get_rotation_matrix_at_node(
-        j_node, rotation_matrix);
-
-      // Copy to the vectors
-      for (unsigned l = 0; l < n_dof_types; ++l)
-      {
-        // Copy to the vectors
-        for (unsigned k = 0; k < n_dof_types; ++k)
-        {
-          // Copy over shape functions
-          // psi_vector[l]=psi(inode,l);
-          psi_vector[l] += psi(j_node, k) * rotation_matrix(l, k);
-        }
-      }
-
-      // Copy back to shape the rotated vetcors
-      for (unsigned l = 0; l < n_dof_types; ++l)
-      {
-        // Copy over shape functions
-        psi(j_node, l) = psi_vector[l];
-      }
-    }
-  }
-
-
-  //======================================================================
-  /// Rotate the shape functions according to the specified basis on the
-  /// boundary. This function does a DenseDoubleMatrix solve to determine
-  /// new basis - which could be speeded up by caching the matrices higher
-  /// up and performing the LU decomposition only once
-  //======================================================================
-  inline void KoiterSteigmannC1CurvableBellElement::rotate_shape(
-    Shape& psi, DShape& dpsidx) const
-  {
-    const unsigned n_dof_types = nu_type_at_each_node();
-    const unsigned n_dim = this->dim();
-
-    // Get the nodes that need rotating
-    Vector<unsigned> nodes_to_rotate;
-    for (unsigned j_node = 0; j_node < 3; j_node++)
-    {
-      // If the node has had its boundary parametrisation set, its shape
-      // functions need rotating
-      if (Rotated_boundary_helper_pt->nodal_boundary_parametrisation_pt(j_node))
-      {
-        nodes_to_rotate.push_back(j_node);
-      }
-    }
-
-    // Loop over the nodes with rotated dofs
-    unsigned n_nodes_to_rotate = nodes_to_rotate.size();
-    for (unsigned j = 0; j < n_nodes_to_rotate; j++)
-    {
-      // Get the nodes
-      unsigned j_node = nodes_to_rotate[j];
-
-      // Construct the vectors to hold the shape functions
-      Vector<double> psi_vector(n_dof_types);
-      Vector<Vector<double>> dpsi_vector_dxi(n_dim,
-                                             Vector<double>(n_dof_types));
-
-      // Get the rotation matrix
-      DenseDoubleMatrix rotation_matrix(n_dof_types, n_dof_types, 0.0);
-      this->Rotated_boundary_helper_pt->get_rotation_matrix_at_node(
-        j_node, rotation_matrix);
-
-      // Copy to the vectors
-      for (unsigned l = 0; l < n_dof_types; ++l)
-      {
-        // Copy to the vectors
-        for (unsigned k = 0; k < n_dof_types; ++k)
-        {
-          // Copy over shape functions
-          // psi_vector[l]=psi(inode,l);
-          psi_vector[l] += psi(j_node, k) * rotation_matrix(l, k);
-          // Copy over first derivatives
-          for (unsigned i = 0; i < n_dim; ++i)
-          {
-            dpsi_vector_dxi[i][l] +=
-              dpsidx(j_node, k, i) * rotation_matrix(l, k);
-          }
-        }
-      }
-
-      // Copy back to shape the rotated vetcors
-      for (unsigned l = 0; l < n_dof_types; ++l)
-      {
-        // Copy over shape functions
-        psi(j_node, l) = psi_vector[l];
-        // Copy over first derivatives
-        for (unsigned i = 0; i < n_dim; ++i)
-        {
-          dpsidx(j_node, l, i) = dpsi_vector_dxi[i][l];
-        }
-      }
-    }
-  }
-
-
-  //======================================================================
-  /// Rotate the shape functions according to the specified basis on the
-  /// boundary. This function does a DenseDoubleMatrix solve to determine
-  /// new basis - which could be speeded up by caching the matrices higher
-  /// up and performing the LU decomposition only once
-  //======================================================================
-  inline void KoiterSteigmannC1CurvableBellElement::rotate_shape(
-    Shape& psi, DShape& dpsidx, DShape& d2psidx) const
-  {
-    const unsigned n_dof_types = nu_type_at_each_node();
-    const unsigned n_dim = this->dim();
-    // n_dimth triangle number
-    const unsigned n_2ndderiv = ((n_dim + 1) * (n_dim)) / 2;
-
-    // Get the nodes that need rotating
-    Vector<unsigned> nodes_to_rotate;
-    for (unsigned j_node = 0; j_node < 3; j_node++)
-    {
-      // If the node has had its boundary parametrisation set, its shape
-      // functions need rotating
-      if (Rotated_boundary_helper_pt->nodal_boundary_parametrisation_pt(j_node))
-      {
-        nodes_to_rotate.push_back(j_node);
-      }
-    }
-
-    // Loop over the nodes with rotated dofs
-    unsigned n_nodes_to_rotate = nodes_to_rotate.size();
-    for (unsigned j = 0; j < n_nodes_to_rotate; j++)
-    {
-      // Get the nodes
-      unsigned j_node = nodes_to_rotate[j];
-
-      // Construct the vectors to hold the shape functions
-      Vector<double> psi_vector(n_dof_types);
-      Vector<Vector<double>> dpsi_vector_dxi(n_dim,
-                                             Vector<double>(n_dof_types));
-      Vector<Vector<double>> d2psi_vector_dxidxj(n_2ndderiv,
-                                                 Vector<double>(n_dof_types));
-
-      // Get the rotation matrix
-      DenseDoubleMatrix rotation_matrix(n_dof_types, n_dof_types, 0.0);
-      this->Rotated_boundary_helper_pt->get_rotation_matrix_at_node(
-        j_node, rotation_matrix);
-
-      // Copy to the vectors
-      for (unsigned l = 0; l < n_dof_types; ++l)
-      {
-        // Copy to the vectors
-        for (unsigned k = 0; k < n_dof_types; ++k)
-        {
-          // Copy over shape functions
-          // psi_vector[l]=psi(inode,l);
-          psi_vector[l] += psi(j_node, k) * rotation_matrix(l, k);
-          // Copy over first derivatives
-          for (unsigned i = 0; i < n_dim; ++i)
-          {
-            dpsi_vector_dxi[i][l] +=
-              dpsidx(j_node, k, i) * rotation_matrix(l, k);
-          }
-          for (unsigned i = 0; i < n_2ndderiv; ++i)
-          {
-            d2psi_vector_dxidxj[i][l] +=
-              d2psidx(j_node, k, i) * rotation_matrix(l, k);
-          }
-        }
-      }
-
-      // Copy back to shape the rotated vetcors
-      for (unsigned l = 0; l < n_dof_types; ++l)
-      {
-        // Copy over shape functions
-        psi(j_node, l) = psi_vector[l];
-        // Copy over first derivatives
-        for (unsigned i = 0; i < n_dim; ++i)
-        {
-          dpsidx(j_node, l, i) = dpsi_vector_dxi[i][l];
-        }
-        // Copy over second derivatives
-        for (unsigned i = 0; i < n_2ndderiv; ++i)
-        {
-          d2psidx(j_node, l, i) = d2psi_vector_dxidxj[i][l];
-        }
-      }
-    }
-  }
-
-
-
-
+ 
 
   //========= start_of_duplicate_node_constraint_element ==================
   /// Non-geometric element used to constrain dofs between duplicated
@@ -1281,12 +32,14 @@ shape_and_test_foeppl_von_karman(...)",
   /// where L_i, i=0,..,7, are Lagrange multipliers -- dofs which are
   /// stored in the internal data of this element.
   //=======================================================================
-  class DuplicateNodeConstraintElement : public virtual GeneralisedElement
+  class KSDuplicateNodeConstraintElement : public virtual DuplicateNodeConstraintElement
   {
+   
   public:
-    /// Construcor. Needs the two node pointers so that we can retrieve the
+   
+    /// Constructor. Needs the two node pointers so that we can retrieve the
     /// boundary data at solve time
-    DuplicateNodeConstraintElement(
+    KSDuplicateNodeConstraintElement(
       Node* const& left_node_pt,
       Node* const& right_node_pt,
       C1CurviLine* const& left_boundary_pt,
@@ -1309,7 +62,7 @@ shape_and_test_foeppl_von_karman(...)",
     }
 
     /// Destructor
-    ~DuplicateNodeConstraintElement()
+    ~KSDuplicateNodeConstraintElement()
     {
       // Must remove Lagrange multiplier data?
     }
@@ -2410,6 +1163,1623 @@ shape_and_test_foeppl_von_karman(...)",
     /// precision and it shouldn't generally need to be touched)
     double Orthogonality_tolerance = 1.0e-15;
   }; // End of DuplicateNodeConstraintElement class definition
+
+
+ 
+  // //===start of rotation helper class=========================================
+  // /// Helper class to contain all the rotation information in the element.
+  // class RotatedBoundaryHelper
+  // {
+  // public:
+  //   /// Constructor: just initialise the member data to their defaults (zeros)
+  //   RotatedBoundaryHelper(FiniteElement* const& parent_element_pt)
+  //     : Parent_element_pt(parent_element_pt),
+  //       Nnode(Parent_element_pt->nvertex_node()),
+  //       Boundary_coordinate_of_node(3, 0.0),
+  //       Nodal_boundary_parametrisation_pt(3, 0),
+  //       Rotation_matrix_at_node(3, DenseMatrix<double>(6, 6, 0.0))
+  //   {
+  //   }
+
+  //   /// Destructor
+  //   ~RotatedBoundaryHelper() {}
+
+  //   C1CurviLine* nodal_boundary_parametrisation_pt(
+  //     const unsigned& j_node)
+  //   {
+  //     return Nodal_boundary_parametrisation_pt[j_node];
+  //   }
+
+
+  //  // hierher isn't this the same as in fkv?
+   
+  //   /// Add a new boundary parametrisation to nodes all the nodes in the
+  //   /// vector node_on_boundary
+  //   void set_nodal_boundary_parametrisation(
+  //     const Vector<unsigned>& node_on_boundary,
+  //     const Vector<double>& boundary_coord_of_node,
+  //     C1CurviLine* const& boundary_parametrisation_pt)
+  //   {
+  //     // Loop over all the nodes in node_on_boundary and add the boundary
+  //     // pointer to their vector of boundaries
+  //     unsigned n_node = node_on_boundary.size();
+  //     for (unsigned j = 0; j < n_node; j++)
+  //     {
+  //       // The j-th node on the boundary
+  //       unsigned j_node = node_on_boundary[j];
+
+  //       // Set the boundary parametrisation data pointer for this node
+  //       Nodal_boundary_parametrisation_pt[j_node] = boundary_parametrisation_pt;
+
+  //       // Set the coordinate of node j on this boundary
+  //       Boundary_coordinate_of_node[j_node] = boundary_coord_of_node[j];
+
+  //       update_rotation_matrices();
+  //     } // end of loop over nodes in node_on_boundary [j]
+  //   } // end of set_nodal_boundary_parametrisation()
+
+
+  //   /// Update all rotation matrices (checks if they are needed unless flag is
+  //   /// true)
+  //   void update_rotation_matrices()
+  //   {
+  //     // [zdec] hard coded the three vertex nodes
+  //     unsigned n_vertex = 3;
+  //     // Loop over each vertex
+  //     for (unsigned j_node = 0; j_node < n_vertex; j_node++)
+  //     {
+  //       // If this node does not have a parametrisation (the pointer is still
+  //       // null) skip over it, otherwise we go on to fill out the rotation
+  //       // matrix
+  //       if (!nodal_boundary_parametrisation_pt(j_node))
+  //       {
+  //         continue;
+  //       }
+
+  //       // Initialise the two basis vectors and their jacobians
+  //       Vector<Vector<double>> bi(2, Vector<double>(2, 0.0));
+  //       Vector<DenseMatrix<double>> dbidx(2, DenseMatrix<double>(2, 2, 0.0));
+
+  //       // Our new coordinate system:
+  //       //     (l, s)=(normal component, tangent component)
+  //       // which we define in terms of basis vectors (rescaled)
+  //       //     ni=dxi/dl / |n|           <-- Jacobian col 1
+  //       //     ti=dxi/ds / |t|           <-- Jacobian col 2
+  //       // and their derivatives
+  //       //     dnidxj=d/dxj(dxi/dl / |n|) <-- Hessian `col' 1
+  //       //     dtidxj=d/dxj(dxi/ds / |t|) <-- Hessian `col' 2
+
+  //       // [zdec] we use i and j for brevity
+  //       // but it should be alpha & beta
+  //       // Need to write up how the transformation is done
+
+  //       // Storage for our basis and derivatives
+  //       Vector<double> ni(2, 0.0);
+  //       Vector<double> ti(2, 0.0);
+  //       Vector<double> dnids(2, 0.0);
+  //       Vector<double> dtids(2, 0.0);
+
+  //       // All tensors assumed evaluated on the boundary
+  //       // Jacobian of inverse mapping
+  //       DenseMatrix<double> jac_inv(2, 2, 0.0);
+  //       // Hessian of mapping [zdec] (not needed because...)
+  //       Vector<DenseMatrix<double>> hess(2, DenseMatrix<double>(2, 2, 0.0));
+  //       // Hessian of inverse mapping [zdec] (...this can be found by hand)
+  //       Vector<DenseMatrix<double>> hess_inv(2, DenseMatrix<double>(2, 2, 0.0));
+
+  //       // The basis is defined in terms of the boundary parametrisation
+  //       Vector<double> boundary_coord = {Boundary_coordinate_of_node[j_node]};
+  //       C1CurviLine* boundary_pt =
+  //         Nodal_boundary_parametrisation_pt[j_node];
+  //       Vector<double> x(2, 0.0);
+  //       Vector<double> dxids(2, 0.0);
+  //       Vector<double> d2xids2(2, 0.0);
+
+  //       // Get position (debug)
+  //       boundary_pt->position(boundary_coord, x);
+  //       // Get tangent vector
+  //       boundary_pt->dposition(boundary_coord, dxids);
+  //       // Get second derivative
+  //       boundary_pt->d2position(boundary_coord, d2xids2);
+
+  //       double mag_t = sqrt(dxids[0] * dxids[0] + dxids[1] * dxids[1]);
+  //       // ti is the normalised tangent vector
+  //       ti[0] = dxids[0] / mag_t;
+  //       ti[1] = dxids[1] / mag_t;
+  //       // Derivative of (normalised) tangent
+  //       dtids[0] = d2xids2[0] / std::pow(mag_t, 2) -
+  //                  (dxids[0] * d2xids2[0] + dxids[1] * d2xids2[1]) * dxids[0] /
+  //                    std::pow(mag_t, 4);
+  //       dtids[1] = d2xids2[1] / std::pow(mag_t, 2) -
+  //                  (dxids[0] * d2xids2[0] + dxids[1] * d2xids2[1]) * dxids[1] /
+  //                    std::pow(mag_t, 4);
+  //       // n = (t x e_z) implies
+  //       ni[0] = ti[1];
+  //       ni[1] = -ti[0];
+  //       // Same for dnids
+  //       dnids[0] = dtids[1];
+  //       dnids[1] = -dtids[0];
+
+  //       // Need inverse of mapping to calculate ds/dxi ----------------
+  //       //   /  dx/dl  dx/ds  \ -1  ___  __1__ /  dy/ds -dx/ds \ .
+  //       //   \  dy/dl  dy/ds  /     ---   det  \ -dy/dl  dx/dl /
+  //       //
+  //       //                          ___  /  dl/dx  dl/dy  \ .
+  //       //                          ---  \  ds/dx  ds/dy  /
+  //       //
+  //       // Fill out inverse of Jacobian
+  //       double det = (ni[0] * ti[1] - ni[1] * ti[0]);
+  //       jac_inv(0, 0) = ti[1] / det;
+  //       jac_inv(0, 1) = -ti[0] / det;
+  //       jac_inv(1, 0) = -ni[1] / det;
+  //       jac_inv(1, 1) = ni[0] / det;
+
+  //       // Fill out the Hessian
+  //       // (unneeded -- can calculate the inverse components by hand)
+  //       for (unsigned alpha = 0; alpha < 2; alpha++)
+  //       {
+  //         // hess[alpha](0,0) = 0.0;
+  //         hess[alpha](0, 1) = dnids[alpha];
+  //         hess[alpha](1, 0) = dnids[alpha];
+  //         hess[alpha](1, 1) = dtids[alpha];
+  //       }
+
+  //       // Fill out inverse of Hessian
+  //       // H^{-1}abg = J^{-1}ad Hdez J^{-1}eb J^{-1}zg
+  //       for (unsigned alpha = 0; alpha < 2; alpha++)
+  //       {
+  //         for (unsigned beta = 0; beta < 2; beta++)
+  //         {
+  //           for (unsigned gamma = 0; gamma < 2; gamma++)
+  //           {
+  //             for (unsigned alpha2 = 0; alpha2 < 2; alpha2++)
+  //             {
+  //               for (unsigned beta2 = 0; beta2 < 2; beta2++)
+  //               {
+  //                 for (unsigned gamma2 = 0; gamma2 < 2; gamma2++)
+  //                 {
+  //                   hess_inv[alpha](beta, gamma) -=
+  //                     jac_inv(alpha, alpha2) * hess[alpha2](beta2, gamma2) *
+  //                     jac_inv(beta2, beta) * jac_inv(gamma2, gamma);
+  //                 }
+  //               }
+  //             }
+  //           }
+  //         }
+  //       }
+
+  //       // Fill in the rotation matrix using the new basis
+  //       fill_in_rotation_matrix_at_node_with_basis(j_node, jac_inv, hess_inv);
+
+  //     } // end loop over vertices
+  //   } // end of update_rotation_matrices()
+
+
+  //   /// Access function to fill out rot_mat using rotation matrix
+  //   void get_rotation_matrix_at_node(const unsigned& j_node,
+  //                                    DenseMatrix<double>& rot_mat)
+  //   {
+  //     rot_mat = Rotation_matrix_at_node[j_node];
+  //   }
+
+  // private:
+  //   /// Helper function to fill in the rotation matrix for a given basis
+  //   void fill_in_rotation_matrix_at_node_with_basis(
+  //     const unsigned& j_node,
+  //     const DenseMatrix<double>& jac_inv,
+  //     const Vector<DenseMatrix<double>>& hess_inv)
+  //   {
+  //     // Rotation matrix, b constructed using submatrices b1, b12, b22
+  //     DenseMatrix<double> b1(2, 2, 0.0), b22(3, 3, 0.0), b12(2, 3, 0.0);
+
+  //     // Fill in the submatrices
+  //     // Loop over the rotated first derivatives
+  //     for (unsigned mu = 0; mu < 2; mu++)
+  //     {
+  //       // Loop over the unrotated first derivatives
+  //       for (unsigned alpha = 0; alpha < 2; alpha++)
+  //       {
+  //         // Fill in b1 - the Jacobian
+  //         // Fill in the affine rotation of the first derivatives
+  //         b1(mu, alpha) = jac_inv(mu, alpha);
+
+  //         // Loop over unrotated second derivatives
+  //         for (unsigned beta = 0; beta < 2; ++beta)
+  //         {
+  //           // Avoid double counting the cross derivative
+  //           if (alpha <= beta)
+  //           {
+  //             // Define column index
+  //             const unsigned col = alpha + beta;
+
+  //             // Fill in the non-affine part of the rotation of the first
+  //             // derivatives
+  //             b12(mu, col) += hess_inv[mu](alpha, beta);
+  //             // [zdec] debug mixed derivative -- add extra
+  //             if (alpha < beta)
+  //             {
+  //               // b12(mu, col) -= hess_inv[mu](alpha, beta);
+  //             }
+  //             // Loop over the rotated second derivatives
+  //             for (unsigned nu = 0; nu < 2; nu++)
+  //             {
+  //               // // Avoid double counting the cross derivative
+  //               // if (mu <= nu)
+  //               {
+  //                 // Fill in b22 - the Affine part of the Jacobian derivative
+  //                 // Redefine row index for the next submatrix
+  //                 unsigned row_b22 = mu + nu;
+  //                 // Fill in the affine part of the rotation of the second
+  //                 // derivatives [zdec] if( beta>= alpha) ?
+  //                 b22(row_b22, col) += jac_inv(mu, alpha) * jac_inv(nu, beta);
+  //               }
+  //             }
+  //           }
+  //         }
+  //       }
+  //     }
+
+  //     // Fill in the submatrices to the full (6x6) matrix
+  //     Rotation_matrix_at_node[j_node](0, 0) = 1.0;
+  //     // Fill in b1 --- the affine contribution to rotation of the
+  //     // first derivatives
+  //     for (unsigned i = 0; i < 2; ++i)
+  //     {
+  //       for (unsigned j = 0; j < 2; ++j)
+  //       {
+  //         Rotation_matrix_at_node[j_node](1 + i, 1 + j) = b1(i, j);
+  //       }
+  //     }
+  //     // Fill in b21 --- the non-affine (second derivative dependent)
+  //     // rotation of the first derivatives
+  //     for (unsigned i = 0; i < 2; ++i)
+  //     {
+  //       for (unsigned j = 0; j < 3; ++j)
+  //       {
+  //         Rotation_matrix_at_node[j_node](1 + i, 3 + j) = b12(i, j);
+  //       }
+  //     }
+  //     // Fill in b22 --- the rotation of the second derivatives
+  //     for (unsigned i = 0; i < 3; ++i)
+  //     {
+  //       for (unsigned j = 0; j < 3; ++j)
+  //       {
+  //         Rotation_matrix_at_node[j_node](3 + i, 3 + j) = b22(i, j);
+  //       }
+  //     }
+  //   } // end fill_in_rotation_matrix_at_node_with_basis
+
+  //   /// Pointer to the `parent' finite element which this is a helper force
+  //   FiniteElement* Parent_element_pt;
+
+  //   /// The number of nodes (that we store rotation data for) in the fvk element
+  //   /// that uses this helper
+  //   unsigned Nnode;
+
+  //   /// Vector containing boundary parametrised location for each node
+  //   Vector<double> Boundary_coordinate_of_node;
+
+  //   /// Vector containing boundary parametrisation at each node
+  //   Vector<C1CurviLine*> Nodal_boundary_parametrisation_pt;
+
+  //   /// Vector containing <rotation matrix at each node>
+  //   Vector<DenseMatrix<double>> Rotation_matrix_at_node;
+  // };
+
+  // //---end of rotation helper class-------------------------------------------
+
+
+
+
+  //===============================================================================
+  /// KoiterSteigmannC1CurvableBellElement elements are a subparametric
+  /// scheme with  linear Lagrange interpolation for approximating the geometry
+  /// and the C1-functions for approximating variables.
+  //==============================================================================
+
+  // [zdec] NNODE_1D(=2) should not be required here due to the fact that all
+  // node should be vertex nodes? Is any templating needed???
+  // template<unsigned DIM,
+  //          unsigned NNODE_1D,
+  //          unsigned BOUNDARY_ORDER,
+  //          template<unsigned DIM_, unsigned NNODE_1D_>
+  //          class PLATE_EQUATIONS>
+  class KoiterSteigmannC1CurvableBellElement
+    : public virtual CurvableBellElement<2>,
+      public virtual KoiterSteigmannEquations
+  {
+  public:
+
+    //----------------------------------------------------------------------
+    // Class construction
+
+    /// Constructor: Call constructors for C1CurvedBellElement and
+    /// KoiterSteigmannEquations
+    KoiterSteigmannC1CurvableBellElement()
+      : CurvableBellElement<Nnode_1D>(Nfield, Field_is_bell_interpolated),
+        KoiterSteigmannEquations()
+    {
+      // // Use the higher order integration scheme
+      // delete this->integral_pt();
+      // // Do we want something that is order 8 instead?
+      // TGauss<2, 9>* new_integral_pt = new TGauss<2, 9>;
+      // this->set_integration_scheme(new_integral_pt);
+
+      // Rotated dof helper
+      Rotated_boundary_helper_pt = new RotatedBoundaryHelper(this);
+    }
+
+    /// Destructor
+    ~KoiterSteigmannC1CurvableBellElement()
+    {
+      // Delete the rotated bonudary helper we made for this element
+      delete Rotated_boundary_helper_pt;
+    }
+
+    /// Broken copy constructor
+    KoiterSteigmannC1CurvableBellElement(
+      const KoiterSteigmannC1CurvableBellElement& dummy)
+    {
+      BrokenCopy::broken_copy("KoiterSteigmannC1CurvableBellElement");
+    }
+
+    /// Broken assignment operator
+    void operator=(
+      const KoiterSteigmannC1CurvableBellElement&)
+    {
+      BrokenCopy::broken_assign("KoiterSteigmannC1CurvableBellElement");
+    }
+
+
+    //----------------------------------------------------------------------
+    // Output and documentation
+
+    /// Output function:
+    ///   x,y,u at n_plot^DIM plot points
+    void output(std::ostream& outfile)
+    {
+      KoiterSteigmannEquations::output(outfile);
+    }
+
+    /// Output function and derivatives:
+    ///   x,y,u,Du,DDu at n_plot^DIM plot points
+    void output_full(std::ostream& outfile)
+    {
+      KoiterSteigmannEquations::output_full(outfile);
+    }
+
+    /// Output function:
+    ///   x,y,u at n_plot^DIM plot points
+    void output(std::ostream& outfile, const unsigned& n_plot)
+    {
+      KoiterSteigmannEquations::output(outfile, n_plot);
+    }
+
+    /// Output function and derivatives:
+    ///   x,y,u,Du,DDu at n_plot^DIM plot points
+    void output_full(std::ostream& outfile, const unsigned& n_plot)
+    {
+      KoiterSteigmannEquations::output_full(outfile, n_plot);
+    }
+
+    ///  \short Output function:
+    ///   x,y,u   or    x,y,z,u at n_plot^DIM plot points
+    void output_interpolated_exact_soln(
+      std::ostream& outfile,
+      FiniteElement::SteadyExactSolutionFctPt exact_soln_pt,
+      const unsigned& n_plot);
+
+    /// \short C-style output function:
+    ///  x,y,u   or    x,y,z,u
+    void output(FILE* file_pt)
+    {
+      KoiterSteigmannEquations::output(file_pt);
+    }
+
+    ///  \short C-style output function:
+    ///   x,y,u   or    x,y,z,u at n_plot^DIM plot points
+    void output(FILE* file_pt, const unsigned& n_plot)
+    {
+      KoiterSteigmannEquations::output(file_pt, n_plot);
+    }
+
+
+    /// \short Output function for an exact solution:
+    ///  x,y,u_exact   or    x,y,z,u_exact at n_plot^DIM plot points
+    void output_fct(std::ostream& outfile,
+                    const unsigned& n_plot,
+                    FiniteElement::SteadyExactSolutionFctPt exact_soln_pt)
+    {
+      KoiterSteigmannEquations::output_fct(
+        outfile, n_plot, exact_soln_pt);
+    }
+
+    /// \short Output function for a time-dependent exact solution.
+    ///  x,y,u_exact   or    x,y,z,u_exact at n_plot^DIM plot points
+    /// (Calls the steady version)
+    void output_fct(std::ostream& outfile,
+                    const unsigned& n_plot,
+                    const double& time,
+                    FiniteElement::UnsteadyExactSolutionFctPt exact_soln_pt)
+    {
+      KoiterSteigmannEquations::output_fct(
+        outfile, n_plot, time, exact_soln_pt);
+    }
+
+
+    // /// \short enum to enumerate the possible edges that could be curved
+    // typedef typename MyC1CurvedElements::Edge Edge;
+
+    // [zdec]
+    // /// \short Get the pointer to the Curved shape class data member
+    // const MyC1CurvedElements::BernadouElementBasis<BOUNDARY_ORDER>* curved_shape_pt()
+    // {
+    //   return &Curved_shape;
+    // };
+
+    // /// \short get the coordinate
+    // inline void get_coordinate_x(const Vector<double>& s,
+    //                              Vector<double>& x) const;
+
+    // /// \short get the coordinate i
+    // double interpolated_x(const Vector<double>& s, const unsigned& i) const
+    // {
+    //   Vector<double> r(2);
+    //   get_coordinate_x(s, r);
+    //   return r[i];
+    // }
+
+
+    //----------------------------------------------------------------------
+    // Jacobian and residual contributions
+
+    /// Add the element's contribution to its residual vector (wrapper) with
+    /// cached association matrix
+    void fill_in_contribution_to_residuals(Vector<double>& residuals)
+    {
+      // Store the expensive-to-construct matrix
+      this->store_association_matrix();
+      // Call the generic routine with the flag set to 1
+      KoiterSteigmannEquations::fill_in_contribution_to_residuals(residuals);
+      // Remove the expensive-to-construct matrix
+      this->delete_association_matrix();
+    }
+
+    /// Add the element's contribution to its residual vector and
+    /// element Jacobian matrix (wrapper) with caching of association matrix
+    void fill_in_contribution_to_jacobian(Vector<double>& residuals,
+                                          DenseMatrix<double>& jacobian)
+    {
+      // Store the expensive-to-construct matrix
+      this->store_association_matrix();
+      // Call the generic routine with the flag set to 1
+      KoiterSteigmannEquations::fill_in_contribution_to_jacobian(residuals,
+                                                                 jacobian);
+      // Remove the expensive-to-construct matrix
+      this->delete_association_matrix();
+    }
+
+
+    //----------------------------------------------------------------------
+    // Geometry and boundaries
+
+   /// Clamp: i.e. pin the in-plane displacements and pin the out-of-plane
+   /// displacement and its normal derivatives. We also apply implied
+   /// boundary conditions (e.g. specification of dw/dn also implies
+   /// d^2w/dn/dzeta etc.
+   /// hierher zeta is not necessarily the arclength! translation from
+   /// d/dzeta to d/dt requires jacobian!
+   virtual void fully_clamp_specified_boundary(
+    const unsigned& b,
+    const Vector<BoundaryConditionForC1PlateBending*>& boundary_values_pt);
+   
+   
+   /// Pin i.e. pin the in-plane and out of plane displacements only.
+   /// We also apply implied boundary conditions (e.g. specification of w
+   /// also implies dw/dzeta etc.
+   /// hierher zeta is not necessarily the arclength! translation from
+   /// d/dzeta to d/dt requires jacobian!
+   virtual void pin_specified_boundary(
+    const unsigned& b,
+    const Vector<BoundaryConditionForC1PlateBending*>& boundary_values_pt);
+
+
+   // hierher kill ?
+   // /// hierher alpha=0,1  for x and y in plane displacements
+   // void pin_and_impose_specified_in_plane_displacement_along_specified_boundary(
+   //  const unsigned& alpha,
+   //  const unsigned& b,
+   //  BoundaryConditionForC1PlateBending* boundary_values_pt);
+
+   // /// hierher i=0,1,2 for u,v,w
+   // void pin_and_impose_specified_displacement_along_specified_boundary(
+   //  const unsigned& i,
+   //  const unsigned& b,
+   //  BoundaryConditionForC1PlateBending* boundary_values_pt);
+     
+   // // hierher
+   // void clamp_and_impose_specified_out_of_plane_displacement_along_specified_boundary(
+   //  const unsigned& b,
+   //  BoundaryConditionForC1PlateBending* boundary_values_pt);
+
+   
+// hierher obsolete from here...
+   
+    /// Function useful for setting boundary conditions that streamlines the
+    /// boundary condition setting process by pinning the k-th value of the i-th
+    /// displacement field at all nodes on boundary b to the value prescribed by
+    /// specified_u_ik_pt. This allows the user to set BCs without understanding
+    /// the underlying geometry elements of how they are integrated with
+    /// KoiterSteigmannEquations.
+    ///
+    /// As the dofs are Hermite, the user needs to take care to ensure they are
+    /// setting values that are implicitly prescribed at nodes by the higher
+    /// order continuous information AS WELL AS to be careful to track the
+    /// coordinate frame the Hermite data is describing (e.g. (x,y) vs
+    /// (normal,tangent)).
+    void set_boundary_condition(const unsigned& i_field,
+                                const unsigned& k_type,
+                                const unsigned& b_boundary,
+                                const ScalarFctPt& specified_u_ik_pt);
+
+    /// Get the zeta coordinate
+    inline void interpolated_zeta(const Vector<double>& s,
+                                  Vector<double>& zeta) const
+    {
+      // If there is a macro element use it
+      if (this->Macro_elem_pt != 0)
+      {
+        this->get_x_from_macro_element(s, zeta);
+      }
+      // Otherwise interpolate zeta_nodal using the shape functions
+      else
+      {
+        interpolated_x(s, zeta);
+      }
+    }
+
+    /// Return true if the element has been upgraded to interpolate a curved
+    /// boundary
+    bool element_is_curved() const
+    {
+      return CurvableBellElement<Nnode_1D>::element_is_curved();
+    }
+   
+    /// Upgrade the Bell element to a curved Bernadou element
+    virtual void upgrade_element_to_curved(
+      const C1Helper::CurvedEdgeEnumeration& curved_edge,
+      const double& s_ubar,
+      const double& s_obar,
+      C1CurviLine* parametric_edge,
+      const unsigned& boundary_order)
+    {
+      CurvableBellElement<Nnode_1D>::upgrade_element_to_curved(
+        curved_edge, s_ubar, s_obar, parametric_edge, boundary_order);
+    }
+
+
+   /// hierher elab on args
+   DuplicateNodeConstraintElement* duplicate_constraint_element_factory(
+    Node* const& left_node_pt,
+    Node* const& right_node_pt,
+    C1CurviLine* const& left_boundary_pt,
+    C1CurviLine* const& right_boundary_pt,
+    Vector<double> const& left_coord,
+    Vector<double> const& right_coord)
+    {
+     return new KSDuplicateNodeConstraintElement(
+      left_node_pt,
+      right_node_pt,
+      left_boundary_pt,
+      right_boundary_pt,
+      left_coord,
+      right_coord);
+    }
+   
+    //----------------------------------------------------------------------
+    // Member data acess functions
+
+    /// Access function to rotated boundary helper object
+    RotatedBoundaryHelper* rotated_boundary_helper_pt()
+    {
+      return Rotated_boundary_helper_pt;
+    }
+
+    /// Access the number of fields
+    unsigned nfield()
+    {
+      return Nfield;
+    }
+
+    /// Required  # of `values' (pinned or dofs)
+    /// at node n
+    inline unsigned required_nvalue() const
+    {
+      return Initial_Nvalue;
+    }
+
+
+
+
+  protected:
+
+    /// Transform the shape functions so that they correspond to the new rotated
+    /// dofs
+    inline void rotate_shape(Shape& shape) const;
+
+    /// Transform the shape functions and first derivatives so that they
+    /// correspond to the new rotated dofs
+    inline void rotate_shape(Shape& shape, DShape& dshape) const;
+
+    /// Transform the shape functions, first and second derivatives so that they
+    /// correspond to the new rotated dofs
+    inline void rotate_shape(Shape& shape,
+                             DShape& dshape,
+                             DShape& d2shape) const;
+
+
+    /// Required # of `values' (pinned or dofs) at node n
+    inline unsigned required_nvalue(const unsigned& n) const
+    {
+      return Initial_Nvalue;
+    }
+
+
+    //----------------------------------------------------------------------------
+    // Interface to KoiterSteigmannEquations (can this all be (static) data?)
+
+    /// Interface to return a vector of the index of each displacement unkonwn
+    /// in the grander scheme of unknowns
+    virtual Vector<unsigned> u_field_indices() const
+    {
+      return {0, 1, 2};
+    }
+
+    /// Interface to return a vector of the index of the u_i displacement
+    /// unkonwn in the grander scheme of unknowns
+    virtual unsigned u_i_field_index(const unsigned& i_field) const
+    {
+      return i_field;
+    }
+
+    // [zdec] should always be three
+    /// Interface to return the number of nodes used by u
+    virtual unsigned nu_node() const
+    {
+      return CurvableBellElement<Nnode_1D>::nnode_for_field(
+        u_i_field_index(0));
+    }
+
+    // [zdec] should always be 1,2,3? also not used in KoiterSteigmannEquations
+    // yet (not very future proof)
+    /// Interface to get the local indices of the nodes used by u
+    virtual Vector<unsigned> get_u_node_indices() const
+    {
+      return CurvableBellElement<Nnode_1D>::nodal_indices_for_field(
+        u_i_field_index(0));
+    }
+
+    /// Interface to get the number of basis types for u at node j
+    virtual unsigned nu_type_at_each_node() const
+    {
+      return CurvableBellElement<Nnode_1D>::nnodal_basis_type_for_field(
+        u_i_field_index(0));
+    }
+
+    /// Interface to retrieve the value of u_i at node j of type k
+    virtual double get_u_i_value_at_node_of_type(
+      const unsigned& i_field,
+      const unsigned& j_node,
+      const unsigned& k_type) const
+    {
+      unsigned n_u_types = nu_type_at_each_node();
+      unsigned nodal_type_index = i_field * n_u_types + k_type;
+      return raw_nodal_value(j_node, nodal_type_index);
+    }
+
+    /// Interface to retrieve the t-th history value of u_i at node j of type k
+    virtual double get_u_i_value_at_node_of_type(
+      const unsigned& t_time,
+      const unsigned& i_field,
+      const unsigned& j_node,
+      const unsigned& k_type) const
+    {
+      unsigned n_u_types = nu_type_at_each_node();
+      unsigned nodal_type_index = i_field * n_u_types + k_type;
+      return raw_nodal_value(t_time, j_node, nodal_type_index);
+    }
+
+    /// Interface to get the pointer to the internal data used to interpolate
+    /// the i-th displacement field
+    virtual Data* u_i_internal_data_pt(const unsigned& i_field) const
+    {
+      unsigned index =
+        CurvableBellElement<Nnode_1D>::index_of_internal_data_for_field(
+          i_field);
+      return internal_data_pt(index);
+    }
+
+    /// Interface to get the number of internal types for the u fields
+    virtual unsigned nu_type_internal() const
+    {
+      return CurvableBellElement<Nnode_1D>::ninternal_basis_type_for_field(
+        u_field_indices()[0]);
+    }
+
+    /// (pure virtual) interface to retrieve the value of u_alpha of internal
+    /// type k
+    virtual double get_u_i_internal_value_of_type(
+      const unsigned& i_field,
+      const unsigned& k_type) const
+    {
+      unsigned index = index_of_internal_data_for_field(i_field);
+      return CurvableBellElement<Nnode_1D>::internal_value_for_field_of_type(
+        index, k_type);
+    }
+
+    /// (pure virtual) interface to retrieve the t-th history value of u_alpha
+    /// of internal type k
+    virtual double get_u_i_internal_value_of_type(
+      const unsigned& t_time,
+      const unsigned& i_field,
+      const unsigned& k_type) const
+    {
+      unsigned index = index_of_internal_data_for_field(i_field);
+      return CurvableBellElement<Nnode_1D>::internal_value_for_field_of_type(
+        t_time, index, k_type);
+    }
+
+
+    /// (pure virtual) Out-of-plane basis functions at local coordinate s
+    virtual void basis_u_koiter_steigmann(
+      const Vector<double>& s,
+      Shape& psi_n,
+      Shape& psi_i) const;
+
+    /// (pure virtual) Out-of-plane basis functions and derivs w.r.t. global
+    /// coords at local coordinate s; return det(Jacobian of mapping)
+    virtual double d2basis_u_eulerian_koiter_steigmann(
+      const Vector<double>& s,
+      Shape& psi_n,
+      Shape& psi_i,
+      DShape& dpsi_n_dx,
+      DShape& dpsi_i_dx,
+      DShape& d2psi_n_dx2,
+      DShape& d2psi_i_dx2) const;
+
+    /// (pure virtual) Out-of-plane basis/test functions at local coordinate s
+    virtual void basis_and_test_u_koiter_steigmann(
+      const Vector<double>& s,
+      Shape& psi_n,
+      Shape& psi_i,
+      Shape& test_n,
+      Shape& test_i) const;
+
+    /// (pure virtual) Out-of-plane basis/test functions and first derivs w.r.t.
+    /// to global coords at local coordinate s; return det(Jacobian of mapping)
+    virtual double dbasis_and_dtest_u_eulerian_koiter_steigmann(
+      const Vector<double>& s,
+      Shape& psi_n,
+      Shape& psi_i,
+      DShape& dpsi_n_dx,
+      DShape& dpsi_i_dx,
+      Shape& test_n,
+      Shape& test_i,
+      DShape& dtest_n_dx,
+      DShape& dtest_i_dx) const;
+
+    /// (pure virtual) Out-of-plane basis/test functions and first/second derivs
+    /// w.r.t. to global coords at local coordinate s;
+    /// return det(Jacobian of mapping)
+    virtual double d2basis_and_d2test_u_eulerian_koiter_steigmann(
+      const Vector<double>& s,
+      Shape& psi_n,
+      Shape& psi_i,
+      DShape& dpsi_n_dx,
+      DShape& dpsi_i_dx,
+      DShape& d2psi_n_dx2,
+      DShape& d2psi_i_dx2,
+      Shape& test_n,
+      Shape& test_i,
+      DShape& dtest_n_dx,
+      DShape& dtest_i_dx,
+      DShape& d2test_n_dx2,
+      DShape& d2test_i_dx2) const;
+
+
+
+    // Private Data Members
+  private:
+
+    /// Pointer to an instance of rotated boundary helper
+    RotatedBoundaryHelper* Rotated_boundary_helper_pt;
+
+    /// Number of nodes along each edge of the element (is always 2)
+    static const unsigned Nnode_1D = 2;
+
+    /// Static number of fields (is always 3)
+    static const unsigned Nfield;
+
+    /// Static bool vector with the Bell interpolation of the fields
+    /// (always only w)
+    static const std::vector<bool> Field_is_bell_interpolated;
+
+    /// \short Static int that holds the number of variables at
+    /// nodes: always the same
+    static const unsigned Initial_Nvalue;
+
+  };
+
+
+  ////////////////////////////////////////////////////////////////////
+  ////////////////////////////////////////////////////////////////////
+  ////////////////////////////////////////////////////////////////////
+
+
+  //==============================================================================
+  /// Face geometry for the KoiterSteigmannC1CurvableBellElement elements:
+  /// The spatial dimension of the face elements is one lower than that of the
+  /// bulk element but they have the same number of points along their 1D edges.
+  //==============================================================================
+  // template<unsigned DIM,
+  //          unsigned NNODE_1D,
+  //          unsigned BOUNDARY_ORDER,
+  //          template<unsigned DIM_, unsigned NNODE_1D_>
+  //          class PLATE_EQUATIONS>
+  template<>
+  class FaceGeometry<KoiterSteigmannC1CurvableBellElement>
+    : public virtual TElement<1, 2>
+  {
+  public:
+    /// \short Constructor: Call the constructor for the
+    /// appropriate lower-dimensional TElement
+    FaceGeometry() : TElement<1, 2>() {}
+  };
+
+
+  //////////////////////////////////////////////////////////////////////////////
+  //////////////////////////////////////////////////////////////////////////////
+  //////////////////////////////////////////////////////////////////////////////
+
+
+
+ //==========================================================================
+ /// Clamp: i.e. pin the in-plane displacements and pin the out-of-plane
+ /// displacement and its normal derivatives. We also apply implied
+ /// boundary conditions (e.g. specification of dw/dn also implies
+ /// d^2w/dn/dzeta etc.
+ /// hierher zeta is not necessarily the arclength! translation from
+ /// d/dzeta to d/dt requires jacobian!
+  //==========================================================================
+ void KoiterSteigmannC1CurvableBellElement::fully_clamp_specified_boundary(
+  const unsigned& b,
+  const Vector<BoundaryConditionForC1PlateBending*>& boundary_values_pt)
+ {
+
+  for (unsigned i_field=0;i_field<3;i_field++)
+   {
+    const unsigned first_nodal_type_index =
+     this->first_nodal_type_index_for_field(i_field);
+    
+    const unsigned n_vertices = nu_node();
+    
+    // These KS elements only have displacement dofs at vertices, we assume
+    // these are the first n_vertices nodes
+    for (unsigned n = 0; n < n_vertices; ++n)
+     {
+      // Get boundary node
+      BoundaryNode<Node>* nod_pt =
+       dynamic_cast<BoundaryNode<Node>*>(this->node_pt(n));
+      
+      // Check if it is on the boundary
+      if (nod_pt!=0)
+       {
+        if (nod_pt->is_on_boundary(b))
+         {
+#ifdef PARANOID
+          // We should only have one coordinate on this boundary
+          unsigned nzeta=nod_pt->ncoordinates_on_boundary(b);
+          if (nzeta!=1)
+           {
+            // hierher
+            abort();
+           }
+#endif
+          
+          // Get value itself from boundary condition object
+          Vector<double> zeta(nzeta);
+          nod_pt->get_coordinates_on_boundary(b,zeta);
+          
+          // We have 6 Hermite deflection degrees
+          // of freedom points. They are {u ; u,x ; u,y ; u,xx ; u,xy ; u,yy}
+          // or their rotated counterparts {u ; u,n ; u,t ; u,nn ; u,nt ; u,tt}
+          unsigned nw_type=6; // hierher nw_type_at_each_node();
+          for (unsigned k_type=0;k_type<nw_type;k_type++)
+           {
+            double value=0.0;
+            bool do_it=true;
+            switch (k_type)
+             {
+             case 0:
+              value=boundary_values_pt[i_field]->f(zeta[0]);
+              break;
+              
+             case 1:
+              // Normal derivative free: Pin for out of plane
+              // Calls broken virtual function; dies if not implemented
+              if (i_field==2)
+               {
+                value=boundary_values_pt[i_field]->dfdn(zeta[0]);
+               }
+              else
+               {
+                do_it=false;
+               }
+              break;
+              
+             case 2:
+              // hierher Jacobian
+              value=boundary_values_pt[i_field]->dfdzeta(zeta[0]);
+              break;
+              
+              
+             case 3:
+              // Second normal derivative shouldn't be set!
+              do_it=false;
+              break;
+              
+             case 4:
+              if (i_field==2)
+               {
+                // hierher Jacobian
+                value=boundary_values_pt[i_field]->d2fdndzeta(zeta[0]);
+               }
+              else
+               {
+                do_it=false;
+               }
+              break;
+              
+             case 5:
+              // hierher Jacobian!
+              value=boundary_values_pt[i_field]->d2fdzeta2(zeta[0]);
+              break;
+              
+             default:
+              oomph_info << "never get here" << std::endl;
+              abort();
+             }
+            
+            // Actually assign?
+            if (do_it)
+             
+             {
+              oomph_info << "pinning.setting at b k_type zeta value" << b << " "
+                         << k_type << " " << zeta[0] << " " << value << std::endl;
+              
+              // Pin and set the value
+              nod_pt->pin(first_nodal_type_index + k_type);
+              nod_pt->set_value(first_nodal_type_index + k_type, value);
+             }
+           }
+         }
+       }
+     }
+   }
+        
+          
+
+    // hierher kill: Aidan's old version had this old:
+        
+    //   // Get node
+    //   Node* nod_pt = this->node_pt(n);
+    //   // Check if it is on the boundary
+    //   bool is_boundary_node = nod_pt->is_on_boundary(b_boundary);
+    //   if (is_boundary_node)
+    //    {
+    //     // Extract nodal coordinates from node:
+    //     Vector<double> x(2);
+    //     x[0] = nod_pt->x(0);
+    //     x[1] = nod_pt->x(1);
+    //     // Get value
+    //     double value;
+    //     specified_u_ik_pt(x, value);
+    //     // Pin and set the value
+    //     nod_pt->pin(first_nodal_type_index + k_type);
+    //     nod_pt->set_value(first_nodal_type_index + k_type, value);
+    //   }
+    // }
+
+
+    // hierher fvk versino
+  // for (unsigned i=0;i<3;i++)
+  //  {
+  //   pin_and_impose_specified_displacement_along_specified_boundary
+  //    (i,b,boundary_values_pt[i]);
+  //  }
+
+ }
+
+
+ //=============================================================================
+ /// Pin i.e. pin the in-plane and out of plane displacements only.
+ /// We also apply implied boundary conditions (e.g. specification of w
+ /// also implies dw/dzeta etc.
+ /// hierher zeta is not necessarily the arclength! translation from
+ /// d/dzeta to d/dt requires jacobian!
+//=============================================================================
+ void KoiterSteigmannC1CurvableBellElement::pin_specified_boundary(
+  const unsigned& b,
+  const Vector<BoundaryConditionForC1PlateBending*>& boundary_values_pt)
+ {
+  
+  for (unsigned i_field=0;i_field<3;i_field++)
+   {
+    const unsigned first_nodal_type_index =
+     this->first_nodal_type_index_for_field(i_field);
+    
+    const unsigned n_vertices = nu_node();
+    
+    // These KS elements only have displacement dofs at vertices, we assume
+    // these are the first n_vertices nodes
+    for (unsigned n = 0; n < n_vertices; ++n)
+     {
+      // Get boundary node
+      BoundaryNode<Node>* nod_pt =
+       dynamic_cast<BoundaryNode<Node>*>(this->node_pt(n));
+      
+      // Check if it is on the boundary
+      if (nod_pt!=0)
+       {
+        if (nod_pt->is_on_boundary(b))
+         {
+#ifdef PARANOID
+          // We should only have one coordinate on this boundary
+          unsigned nzeta=nod_pt->ncoordinates_on_boundary(b);
+          if (nzeta!=1)
+           {
+            // hierher
+            abort();
+           }
+#endif
+          
+          // Get value itself from boundary condition object
+          Vector<double> zeta(nzeta);
+          nod_pt->get_coordinates_on_boundary(b,zeta);
+          
+          // We have 6 Hermite deflection degrees
+          // of freedom points. They are {u ; u,x ; u,y ; u,xx ; u,xy ; u,yy}
+          // or their rotated counterparts {u ; u,n ; u,t ; u,nn ; u,nt ; u,tt}
+          unsigned nw_type=6; // hierher nw_type_at_each_node();
+          for (unsigned k_type=0;k_type<nw_type;k_type++)
+           {
+            double value=0.0;
+            switch (k_type)
+             {
+             case 0:
+              value=boundary_values_pt[i_field]->f(zeta[0]);
+              break;
+              
+             case 1:
+              // Normal derivative free
+              // Calls broken virtual function; dies if not implemented
+              //value=boundary_values_pt[i_field]->dfdn(zeta[0]);
+              break;
+              
+             case 2:
+              // hierher Jacobian
+              value=boundary_values_pt[i_field]->dfdzeta(zeta[0]);
+              break;
+              
+              
+             case 3:
+              // Second normal derivative shouldn't be set!
+              break;
+              
+             case 4:
+              // normal derivative free
+              // value=boundary_values_pt[i_field]->d2fdndzeta(zeta[0]);
+              break;
+              
+             case 5:
+              // hierher Jacobian!
+              value=boundary_values_pt[i_field]->d2fdzeta2(zeta[0]);
+              break;
+              
+             default:
+              oomph_info << "never get here" << std::endl;
+              abort();
+             }
+            
+            // Skip anything related to normal derivatives
+            if ( ( k_type!=1) &&  // dw/dn
+                 ( k_type!=3) &&  // d^2w/dn^2
+                 ( k_type!=4)  )  // d^2w/dtdn
+             
+             {
+              oomph_info << "pinning.setting at b k_type zeta value" << b << " "
+                         << k_type << " " << zeta[0] << " " << value << std::endl;
+              
+              // Pin and set the value
+              nod_pt->pin(first_nodal_type_index + k_type);
+              nod_pt->set_value(first_nodal_type_index + k_type, value);
+             }
+           }
+         }
+       }
+     }
+   }
+        
+          
+
+    // hierher kill: Aidan's old version had this old:
+        
+    //   // Get node
+    //   Node* nod_pt = this->node_pt(n);
+    //   // Check if it is on the boundary
+    //   bool is_boundary_node = nod_pt->is_on_boundary(b_boundary);
+    //   if (is_boundary_node)
+    //    {
+    //     // Extract nodal coordinates from node:
+    //     Vector<double> x(2);
+    //     x[0] = nod_pt->x(0);
+    //     x[1] = nod_pt->x(1);
+    //     // Get value
+    //     double value;
+    //     specified_u_ik_pt(x, value);
+    //     // Pin and set the value
+    //     nod_pt->pin(first_nodal_type_index + k_type);
+    //     nod_pt->set_value(first_nodal_type_index + k_type, value);
+    //   }
+    // }
+
+
+    // hierher fvk versino
+  // for (unsigned i=0;i<3;i++)
+  //  {
+  //   pin_and_impose_specified_displacement_along_specified_boundary
+  //    (i,b,boundary_values_pt[i]);
+  //  }
+
+ }
+ 
+         
+ 
+  //============================================================================
+  /// Function useful for setting boundary conditions that streamlines the
+  /// boundary condition setting process by pinning the k-th value of the i-th
+  /// displacement field at all nodes on boundary b to the value prescribed by
+  /// specified_u_ik_pt. This allows the user to set BCs without understanding
+  /// the underlying geometry elements of how they are integrated with
+  /// KoiterSteigmannEquations.
+  ///
+  /// As the dofs are Hermite, the user needs to take care to ensure they are
+  /// setting values that are implicitly prescribed at nodes by the higher
+  /// order continuous information AS WELL AS to be careful to track the
+  /// coordinate frame the Hermite data is describing (e.g. (x,y) vs
+  /// (normal,tangent)).
+  //============================================================================
+  void KoiterSteigmannC1CurvableBellElement::
+  set_boundary_condition(const unsigned& i_field,
+                              const unsigned& k_type,
+                              const unsigned& b_boundary,
+                              const ScalarFctPt& specified_u_ik_pt)
+  {
+    const unsigned first_nodal_type_index =
+      this->first_nodal_type_index_for_field(i_field);
+    const unsigned n_vertices = nu_node();
+
+
+    // hierher Aidan -- this shouldn't be in KS, should it (obsolete fct anyway, but...)
+#ifdef PARANOID
+    // Check that the dof number is a sensible value
+    unsigned n_type = nu_type_at_each_node();
+    if (k_type >= n_type)
+    {
+      throw OomphLibError(
+        "Foppl von Karman elements only have 6 Hermite deflection degrees\
+of freedom at internal points. They are {w ; w,x ; w,y ; w,xx ; w,xy ; w,yy}",
+        OOMPH_CURRENT_FUNCTION,
+        OOMPH_EXCEPTION_LOCATION);
+    }
+#endif
+
+    // These KS elements only have displacement dofs at vertices, we assume
+    // these are the first n_vertices nodes
+    for (unsigned n = 0; n < n_vertices; ++n)
+    {
+      // Get node
+      Node* nod_pt = this->node_pt(n);
+      // Check if it is on the boundary
+      bool is_boundary_node = nod_pt->is_on_boundary(b_boundary);
+      if (is_boundary_node)
+      {
+        // Extract nodal coordinates from node:
+        Vector<double> x(2);
+        x[0] = nod_pt->x(0);
+        x[1] = nod_pt->x(1);
+        // Get value
+        double value;
+        specified_u_ik_pt(x, value);
+        // Pin and set the value
+        nod_pt->pin(first_nodal_type_index + k_type);
+        nod_pt->set_value(first_nodal_type_index + k_type, value);
+      }
+    }
+  }
+
+
+
+  //======================================================================
+  /// (pure virtual) Basis functions at local coordinate s
+  //======================================================================
+  void KoiterSteigmannC1CurvableBellElement::
+    basis_u_koiter_steigmann(const Vector<double>& s,
+                               Shape& psi_n,
+                               Shape& psi_i) const
+  {
+    throw OomphLibError("This still needs testing for curved elements.",
+                        "void KoiterSteigmannEquations::\
+shape_and_test_foeppl_von_karman(...)",
+                        OOMPH_EXCEPTION_LOCATION);
+
+    this->c1_basis(s, psi_n, psi_i);
+
+    // Rotate the degrees of freedom
+    rotate_shape(psi_n);
+  }
+
+
+  //======================================================================
+  /// Define the shape functions and test functions and derivatives
+  /// w.r.t. global coordinates and return Jacobian of mapping.
+  ///
+  /// Galerkin: Test functions = shape functions
+  //======================================================================
+  void KoiterSteigmannC1CurvableBellElement::
+    basis_and_test_u_koiter_steigmann(const Vector<double>& s,
+                                      Shape& psi_n,
+                                      Shape& psi_i,
+                                      Shape& test_n,
+                                      Shape& test_i) const
+  {
+    // Use the c1 basis
+    this->c1_basis(s, psi_n, psi_i);
+
+    // Rotate the degrees of freedom
+    rotate_shape(psi_n);
+
+    // Galerkin
+    // (Shallow) copy the basis functions
+    test_n = psi_n;
+    test_i = psi_i;
+  }
+
+
+  //======================================================================
+  /// Fetch the basis functions and test functions and first derivatives
+  /// w.r.t. global coordinates and return Jacobian of mapping.
+  ///
+  /// Galerkin: Test functions = shape functions
+  //======================================================================
+  double KoiterSteigmannC1CurvableBellElement::
+    dbasis_and_dtest_u_eulerian_koiter_steigmann(const Vector<double>& s,
+                                                 Shape& psi_n,
+                                                 Shape& psi_i,
+                                                 DShape& dpsi_n_dx,
+                                                 DShape& dpsi_i_dx,
+                                                 Shape& test_n,
+                                                 Shape& test_i,
+                                                 DShape& dtest_n_dx,
+                                                 DShape& dtest_i_dx) const
+  {
+    // Get the basis
+    double J = this->d_c1_basis_eulerian(s, psi_n, psi_i, dpsi_n_dx, dpsi_i_dx);
+
+    // Rotate the degrees of freedom
+    rotate_shape(psi_n, dpsi_n_dx);
+    // Galerkin
+    // (Shallow) copy the basis functions
+    test_n = psi_n;
+    dtest_n_dx = dpsi_n_dx;
+    test_i = psi_i;
+    dtest_i_dx = dpsi_i_dx;
+
+    return J;
+  }
+
+
+  //======================================================================
+  /// Fetch the basis functions and first/second derivatives
+  /// w.r.t. global coordinates and return Jacobian of mapping.
+  ///
+  /// Galerkin: Test functions = shape functions
+  //======================================================================
+  double KoiterSteigmannC1CurvableBellElement::
+    d2basis_u_eulerian_koiter_steigmann(const Vector<double>& s,
+                                        Shape& psi_n,
+                                        Shape& psi_i,
+                                        DShape& dpsi_n_dx,
+                                        DShape& dpsi_i_dx,
+                                        DShape& d2psi_n_dx,
+                                        DShape& d2psi_i_dx) const
+  {
+    // Call the geometrical shape functions and derivatives
+    double J = CurvableBellElement<Nnode_1D>::d2_c1_basis_eulerian(
+      s, psi_n, psi_i, dpsi_n_dx, dpsi_i_dx, d2psi_n_dx, d2psi_i_dx);
+    // Rotate the dofs
+    rotate_shape(psi_n, dpsi_n_dx, d2psi_n_dx);
+
+    // Return the jacobian
+    return J;
+  }
+
+
+  //======================================================================
+  /// Fetch the basis functions and test functions and first/second derivatives
+  /// w.r.t. global coordinates and return Jacobian of mapping.
+  ///
+  /// Galerkin: Test functions = shape functions
+  //======================================================================
+  double KoiterSteigmannC1CurvableBellElement::
+    d2basis_and_d2test_u_eulerian_koiter_steigmann(const Vector<double>& s,
+                                                   Shape& psi_n,
+                                                   Shape& psi_i,
+                                                   DShape& dpsi_n_dx,
+                                                   DShape& dpsi_i_dx,
+                                                   DShape& d2psi_n_dx,
+                                                   DShape& d2psi_i_dx,
+                                                   Shape& test_n,
+                                                   Shape& test_i,
+                                                   DShape& dtest_n_dx,
+                                                   DShape& dtest_i_dx,
+                                                   DShape& d2test_n_dx,
+                                                   DShape& d2test_i_dx) const
+  {
+    // Call the geometrical shape functions and derivatives
+    double J = CurvableBellElement<Nnode_1D>::d2_c1_basis_eulerian(
+      s, psi_n, psi_i, dpsi_n_dx, dpsi_i_dx, d2psi_n_dx, d2psi_i_dx);
+    // Rotate the dofs
+    rotate_shape(psi_n, dpsi_n_dx, d2psi_n_dx);
+
+    // Galerkin
+    // Set the test functions equal to the shape functions (this is a shallow
+    // copy)
+    test_n = psi_n;
+    dtest_n_dx = dpsi_n_dx;
+    d2test_n_dx = d2psi_n_dx;
+    test_i = psi_i;
+    dtest_i_dx = dpsi_i_dx;
+    d2test_i_dx = d2psi_i_dx;
+
+    // Return the jacobian
+    return J;
+  }
+
+
+  //======================================================================
+  /// Rotate the shape functions according to the specified basis on the
+  /// boundary. This function does a DenseDoubleMatrix solve to determine
+  /// new basis - which could be speeded up by caching the matrices higher
+  /// up and performing the LU decomposition only once
+  //======================================================================
+  inline void KoiterSteigmannC1CurvableBellElement::rotate_shape(
+    Shape& psi) const
+  {
+    const unsigned n_dof_types = nu_type_at_each_node();
+
+    // Get the nodes that need rotating
+    Vector<unsigned> nodes_to_rotate;
+    for (unsigned j_node = 0; j_node < 3; j_node++)
+    {
+      // If the node has had its boundary parametrisation set, its shape
+      // functions need rotating
+      if (Rotated_boundary_helper_pt->nodal_boundary_parametrisation_pt(j_node))
+      {
+        nodes_to_rotate.push_back(j_node);
+      }
+    }
+
+    // Loop over the nodes with rotated dofs
+    unsigned n_nodes_to_rotate = nodes_to_rotate.size();
+    for (unsigned j = 0; j < n_nodes_to_rotate; j++)
+    {
+      // Get the nodes
+      unsigned j_node = nodes_to_rotate[j];
+
+      // Construct the vectors to hold the shape functions
+      Vector<double> psi_vector(n_dof_types);
+
+      // Get the rotation matrix
+      DenseDoubleMatrix rotation_matrix(n_dof_types, n_dof_types, 0.0);
+      this->Rotated_boundary_helper_pt->get_rotation_matrix_at_node(
+        j_node, rotation_matrix);
+
+      // Copy to the vectors
+      for (unsigned l = 0; l < n_dof_types; ++l)
+      {
+        // Copy to the vectors
+        for (unsigned k = 0; k < n_dof_types; ++k)
+        {
+          // Copy over shape functions
+          // psi_vector[l]=psi(inode,l);
+          psi_vector[l] += psi(j_node, k) * rotation_matrix(l, k);
+        }
+      }
+
+      // Copy back to shape the rotated vetcors
+      for (unsigned l = 0; l < n_dof_types; ++l)
+      {
+        // Copy over shape functions
+        psi(j_node, l) = psi_vector[l];
+      }
+    }
+  }
+
+
+  //======================================================================
+  /// Rotate the shape functions according to the specified basis on the
+  /// boundary. This function does a DenseDoubleMatrix solve to determine
+  /// new basis - which could be speeded up by caching the matrices higher
+  /// up and performing the LU decomposition only once
+  //======================================================================
+  inline void KoiterSteigmannC1CurvableBellElement::rotate_shape(
+    Shape& psi, DShape& dpsidx) const
+  {
+    const unsigned n_dof_types = nu_type_at_each_node();
+    const unsigned n_dim = this->dim();
+
+    // Get the nodes that need rotating
+    Vector<unsigned> nodes_to_rotate;
+    for (unsigned j_node = 0; j_node < 3; j_node++)
+    {
+      // If the node has had its boundary parametrisation set, its shape
+      // functions need rotating
+      if (Rotated_boundary_helper_pt->nodal_boundary_parametrisation_pt(j_node))
+      {
+        nodes_to_rotate.push_back(j_node);
+      }
+    }
+
+    // Loop over the nodes with rotated dofs
+    unsigned n_nodes_to_rotate = nodes_to_rotate.size();
+    for (unsigned j = 0; j < n_nodes_to_rotate; j++)
+    {
+      // Get the nodes
+      unsigned j_node = nodes_to_rotate[j];
+
+      // Construct the vectors to hold the shape functions
+      Vector<double> psi_vector(n_dof_types);
+      Vector<Vector<double>> dpsi_vector_dxi(n_dim,
+                                             Vector<double>(n_dof_types));
+
+      // Get the rotation matrix
+      DenseDoubleMatrix rotation_matrix(n_dof_types, n_dof_types, 0.0);
+      this->Rotated_boundary_helper_pt->get_rotation_matrix_at_node(
+        j_node, rotation_matrix);
+
+      // Copy to the vectors
+      for (unsigned l = 0; l < n_dof_types; ++l)
+      {
+        // Copy to the vectors
+        for (unsigned k = 0; k < n_dof_types; ++k)
+        {
+          // Copy over shape functions
+          // psi_vector[l]=psi(inode,l);
+          psi_vector[l] += psi(j_node, k) * rotation_matrix(l, k);
+          // Copy over first derivatives
+          for (unsigned i = 0; i < n_dim; ++i)
+          {
+            dpsi_vector_dxi[i][l] +=
+              dpsidx(j_node, k, i) * rotation_matrix(l, k);
+          }
+        }
+      }
+
+      // Copy back to shape the rotated vetcors
+      for (unsigned l = 0; l < n_dof_types; ++l)
+      {
+        // Copy over shape functions
+        psi(j_node, l) = psi_vector[l];
+        // Copy over first derivatives
+        for (unsigned i = 0; i < n_dim; ++i)
+        {
+          dpsidx(j_node, l, i) = dpsi_vector_dxi[i][l];
+        }
+      }
+    }
+  }
+
+
+  //======================================================================
+  /// Rotate the shape functions according to the specified basis on the
+  /// boundary. This function does a DenseDoubleMatrix solve to determine
+  /// new basis - which could be speeded up by caching the matrices higher
+  /// up and performing the LU decomposition only once
+  //======================================================================
+  inline void KoiterSteigmannC1CurvableBellElement::rotate_shape(
+    Shape& psi, DShape& dpsidx, DShape& d2psidx) const
+  {
+    const unsigned n_dof_types = nu_type_at_each_node();
+    const unsigned n_dim = this->dim();
+    // n_dimth triangle number
+    const unsigned n_2ndderiv = ((n_dim + 1) * (n_dim)) / 2;
+
+    // Get the nodes that need rotating
+    Vector<unsigned> nodes_to_rotate;
+    for (unsigned j_node = 0; j_node < 3; j_node++)
+    {
+      // If the node has had its boundary parametrisation set, its shape
+      // functions need rotating
+      if (Rotated_boundary_helper_pt->nodal_boundary_parametrisation_pt(j_node))
+      {
+        nodes_to_rotate.push_back(j_node);
+      }
+    }
+
+    // Loop over the nodes with rotated dofs
+    unsigned n_nodes_to_rotate = nodes_to_rotate.size();
+    for (unsigned j = 0; j < n_nodes_to_rotate; j++)
+    {
+      // Get the nodes
+      unsigned j_node = nodes_to_rotate[j];
+
+      // Construct the vectors to hold the shape functions
+      Vector<double> psi_vector(n_dof_types);
+      Vector<Vector<double>> dpsi_vector_dxi(n_dim,
+                                             Vector<double>(n_dof_types));
+      Vector<Vector<double>> d2psi_vector_dxidxj(n_2ndderiv,
+                                                 Vector<double>(n_dof_types));
+
+      // Get the rotation matrix
+      DenseDoubleMatrix rotation_matrix(n_dof_types, n_dof_types, 0.0);
+      this->Rotated_boundary_helper_pt->get_rotation_matrix_at_node(
+        j_node, rotation_matrix);
+
+      // Copy to the vectors
+      for (unsigned l = 0; l < n_dof_types; ++l)
+      {
+        // Copy to the vectors
+        for (unsigned k = 0; k < n_dof_types; ++k)
+        {
+          // Copy over shape functions
+          // psi_vector[l]=psi(inode,l);
+          psi_vector[l] += psi(j_node, k) * rotation_matrix(l, k);
+          // Copy over first derivatives
+          for (unsigned i = 0; i < n_dim; ++i)
+          {
+            dpsi_vector_dxi[i][l] +=
+              dpsidx(j_node, k, i) * rotation_matrix(l, k);
+          }
+          for (unsigned i = 0; i < n_2ndderiv; ++i)
+          {
+            d2psi_vector_dxidxj[i][l] +=
+              d2psidx(j_node, k, i) * rotation_matrix(l, k);
+          }
+        }
+      }
+
+      // Copy back to shape the rotated vetcors
+      for (unsigned l = 0; l < n_dof_types; ++l)
+      {
+        // Copy over shape functions
+        psi(j_node, l) = psi_vector[l];
+        // Copy over first derivatives
+        for (unsigned i = 0; i < n_dim; ++i)
+        {
+          dpsidx(j_node, l, i) = dpsi_vector_dxi[i][l];
+        }
+        // Copy over second derivatives
+        for (unsigned i = 0; i < n_2ndderiv; ++i)
+        {
+          d2psidx(j_node, l, i) = d2psi_vector_dxidxj[i][l];
+        }
+      }
+    }
+  }
+
+
+
 
 
 } // namespace oomph

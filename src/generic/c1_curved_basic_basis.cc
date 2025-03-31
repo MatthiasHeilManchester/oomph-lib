@@ -49,8 +49,11 @@
 // We could definitely store this as a static
 namespace oomph
 {
-  namespace MyC1CurvedElements
-  {
+
+ // hierher kill 
+  // namespace MyC1CurvedElements
+  // {
+ 
     /// Precomputed basis polynomials for the 3rd order boundary representation
     template<>
     void BernadouElementBasis<3>::full_basic_polynomials(
@@ -3158,5 +3161,8 @@ namespace oomph
          648 * s_p_2 * t_p_2 - 1080 * t_p_3 + 1080 * s * t_p_3 + 540 * t_p_4);
     }
 
-  } // namespace MyC1CurvedElements
+ // hierher kill 
+  // } // namespace MyC1CurvedElements
+
+ 
 } // namespace oomph

@@ -32,8 +32,11 @@
 
 namespace oomph
 {
-  namespace MyShape
-  {
+
+ // hierher kill 
+  // namespace MyShape
+  // {
+ 
     /// Get the (twice) area of the triangle from the vertices
     double BellElementBasis::get_twice_triangle_area(
       const Vector<double>& v0,
@@ -969,5 +972,10 @@ namespace oomph
 
       return J(0, 0) * J(1, 1) - J(0, 1) * J(1, 0);
     }
-  } // namespace MyShape
+
+// hierher kill
+// } // namespace MyShape
+
+
+
 } // namespace oomph
