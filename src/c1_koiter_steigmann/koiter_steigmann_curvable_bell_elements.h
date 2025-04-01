@@ -45,13 +45,14 @@ namespace oomph
       C1CurviLine* const& left_boundary_pt,
       C1CurviLine* const& right_boundary_pt,
       Vector<double> const& left_coord,
-      Vector<double> const& right_coord)
-      : Left_node_pt(left_node_pt),
-        Right_node_pt(right_node_pt),
-        Left_boundary_pt(left_boundary_pt),
-        Right_boundary_pt(right_boundary_pt),
-        Left_node_coord(left_coord),
-        Right_node_coord(right_coord)
+      Vector<double> const& right_coord) :
+     DuplicateNodeConstraintElement(
+      left_node_pt,
+      right_node_pt,
+      left_boundary_pt,
+      right_boundary_pt,
+      left_coord,
+      right_coord)  
     {
       // Add internal data which stores the eight Lagrange multipliers
       Index_of_lagrange_data = add_internal_data(new Data(18));
@@ -459,6 +460,7 @@ namespace oomph
 
 
   private:
+   
     /// Throw an error about a constraint that cannot be satisfied as it has no
     /// free variables but still has a residual greater than a requested error
     /// tokerabce. Takes the index and the residual of the offending constraint
@@ -482,267 +484,269 @@ namespace oomph
     } // End of throw_unsatisfiable_constraint_error
 
 
-    /// Function to calculate Jacobian and Hessian of the coordinate mapping
-    void get_jac_and_hess_of_coordinate_transform(
-      DenseMatrix<double>& jac_of_transform,
-      Vector<DenseMatrix<double>>& hess_of_transform)
-    {
-      //----------------------------------------------------------------------
-      // We need the parametrisations either side of the vertex which define
-      // the coordinates each node uses for its Hermite dofs.
-      Vector<double> left_x(2, 0.0); // [zdec] debug
-      Vector<double> right_x(2, 0.0); // [zdec] debug
-      Vector<double> left_dxids(2, 0.0);
-      Vector<double> left_d2xids2(2, 0.0);
-      Vector<double> right_dxids(2, 0.0);
-      Vector<double> right_d2xids2(2, 0.0);
-      Left_boundary_pt->position(Left_node_coord, left_x); // [zdec] debug
-      Right_boundary_pt->position(Right_node_coord, right_x); // [zdec] debug
-      Left_boundary_pt->dposition(Left_node_coord, left_dxids);
-      Left_boundary_pt->d2position(Left_node_coord, left_d2xids2);
-      Right_boundary_pt->dposition(Right_node_coord, right_dxids);
-      Right_boundary_pt->d2position(Right_node_coord, right_d2xids2);
+   // // moved into base class
+   
+   //  /// Function to calculate Jacobian and Hessian of the coordinate mapping
+   //  void get_jac_and_hess_of_coordinate_transform(
+   //    DenseMatrix<double>& jac_of_transform,
+   //    Vector<DenseMatrix<double>>& hess_of_transform)
+   //  {
+   //    //----------------------------------------------------------------------
+   //    // We need the parametrisations either side of the vertex which define
+   //    // the coordinates each node uses for its Hermite dofs.
+   //    Vector<double> left_x(2, 0.0); // [zdec] debug
+   //    Vector<double> right_x(2, 0.0); // [zdec] debug
+   //    Vector<double> left_dxids(2, 0.0);
+   //    Vector<double> left_d2xids2(2, 0.0);
+   //    Vector<double> right_dxids(2, 0.0);
+   //    Vector<double> right_d2xids2(2, 0.0);
+   //    Left_boundary_pt->position(Left_node_coord, left_x); // [zdec] debug
+   //    Right_boundary_pt->position(Right_node_coord, right_x); // [zdec] debug
+   //    Left_boundary_pt->dposition(Left_node_coord, left_dxids);
+   //    Left_boundary_pt->d2position(Left_node_coord, left_d2xids2);
+   //    Right_boundary_pt->dposition(Right_node_coord, right_dxids);
+   //    Right_boundary_pt->d2position(Right_node_coord, right_d2xids2);
 
-      // Get the speed of each parametrisation
-      double left_mag =
-        sqrt(left_dxids[0] * left_dxids[0] + left_dxids[1] * left_dxids[1]);
-      double right_mag =
-        sqrt(right_dxids[0] * right_dxids[0] + right_dxids[1] * right_dxids[1]);
+   //    // Get the speed of each parametrisation
+   //    double left_mag =
+   //      sqrt(left_dxids[0] * left_dxids[0] + left_dxids[1] * left_dxids[1]);
+   //    double right_mag =
+   //      sqrt(right_dxids[0] * right_dxids[0] + right_dxids[1] * right_dxids[1]);
 
-      //----------------------------------------------------------------------
-      // Normalise dxids to find the tangent vectors and their
-      // derivatives either side of the vertex
-      Vector<double> left_ti(2, 0.0);
-      Vector<double> left_ni(2, 0.0);
-      Vector<double> left_dtids(2, 0.0);
-      Vector<double> left_dnids(2, 0.0);
-      Vector<double> right_ti(2, 0.0);
-      Vector<double> right_ni(2, 0.0);
-      Vector<double> right_dtids(2, 0.0);
-      Vector<double> right_dnids(2, 0.0);
-      for (unsigned alpha = 0; alpha < 2; alpha++)
-      {
-        // Fill in the tangents either side of the vertex
-        left_ti[alpha] = left_dxids[alpha] / left_mag;
-        right_ti[alpha] = right_dxids[alpha] / right_mag;
-        // Fill in the derivatives of the (normalised) tangents either side of
-        // the vertex
-        left_dtids[alpha] =
-          left_d2xids2[alpha] / std::pow(left_mag, 2) -
-          (left_dxids[0] * left_d2xids2[0] + left_dxids[1] * left_d2xids2[1]) *
-            left_dxids[alpha] / std::pow(left_mag, 4);
-        right_dtids[alpha] = right_d2xids2[alpha] / std::pow(right_mag, 2) -
-                             (right_dxids[0] * right_d2xids2[0] +
-                              right_dxids[1] * right_d2xids2[1]) *
-                               right_dxids[alpha] / std::pow(right_mag, 4);
-        // Use these to fill out the corresponding vectors for the normal
-        // direction (nx,ny) = (ty,-tx)
-      }
-      // Use orthogonality to fill in normals and their derivatives
-      for (unsigned alpha = 0; alpha < 2; alpha++)
-      {
-        left_ni[alpha] = pow(-1, alpha) * left_ti[(alpha + 1) % 2];
-        right_ni[alpha] = pow(-1, alpha) * right_ti[(alpha + 1) % 2];
-        left_dnids[alpha] = pow(-1, alpha) * left_dtids[(alpha + 1) % 2];
-        right_dnids[alpha] = pow(-1, alpha) * right_dtids[(alpha + 1) % 2];
-      }
+   //    //----------------------------------------------------------------------
+   //    // Normalise dxids to find the tangent vectors and their
+   //    // derivatives either side of the vertex
+   //    Vector<double> left_ti(2, 0.0);
+   //    Vector<double> left_ni(2, 0.0);
+   //    Vector<double> left_dtids(2, 0.0);
+   //    Vector<double> left_dnids(2, 0.0);
+   //    Vector<double> right_ti(2, 0.0);
+   //    Vector<double> right_ni(2, 0.0);
+   //    Vector<double> right_dtids(2, 0.0);
+   //    Vector<double> right_dnids(2, 0.0);
+   //    for (unsigned alpha = 0; alpha < 2; alpha++)
+   //    {
+   //      // Fill in the tangents either side of the vertex
+   //      left_ti[alpha] = left_dxids[alpha] / left_mag;
+   //      right_ti[alpha] = right_dxids[alpha] / right_mag;
+   //      // Fill in the derivatives of the (normalised) tangents either side of
+   //      // the vertex
+   //      left_dtids[alpha] =
+   //        left_d2xids2[alpha] / std::pow(left_mag, 2) -
+   //        (left_dxids[0] * left_d2xids2[0] + left_dxids[1] * left_d2xids2[1]) *
+   //          left_dxids[alpha] / std::pow(left_mag, 4);
+   //      right_dtids[alpha] = right_d2xids2[alpha] / std::pow(right_mag, 2) -
+   //                           (right_dxids[0] * right_d2xids2[0] +
+   //                            right_dxids[1] * right_d2xids2[1]) *
+   //                             right_dxids[alpha] / std::pow(right_mag, 4);
+   //      // Use these to fill out the corresponding vectors for the normal
+   //      // direction (nx,ny) = (ty,-tx)
+   //    }
+   //    // Use orthogonality to fill in normals and their derivatives
+   //    for (unsigned alpha = 0; alpha < 2; alpha++)
+   //    {
+   //      left_ni[alpha] = pow(-1, alpha) * left_ti[(alpha + 1) % 2];
+   //      right_ni[alpha] = pow(-1, alpha) * right_ti[(alpha + 1) % 2];
+   //      left_dnids[alpha] = pow(-1, alpha) * left_dtids[(alpha + 1) % 2];
+   //      right_dnids[alpha] = pow(-1, alpha) * right_dtids[(alpha + 1) % 2];
+   //    }
 
-      //----------------------------------------------------------------------
-      // We need to fill out the Jacobians and Hessians of the boundary
-      // coordinates either side of the vertex
-      DenseMatrix<double> left_jac(2, 2, 0.0);
-      DenseMatrix<double> right_jac(2, 2, 0.0);
-      Vector<DenseMatrix<double>> left_hess(2, DenseMatrix<double>(2, 2, 0.0));
-      Vector<DenseMatrix<double>> right_hess(2, DenseMatrix<double>(2, 2, 0.0));
-      for (unsigned alpha = 0; alpha < 2; alpha++)
-      {
-        // Fill in Jacobians {{nx,tx},{ny,ty}}
-        left_jac(alpha, 0) = left_ni[alpha];
-        left_jac(alpha, 1) = left_ti[alpha];
-        right_jac(alpha, 0) = right_ni[alpha];
-        right_jac(alpha, 1) = right_ti[alpha];
-        // Fill in Hessians
-        // left_hess[alpha](0,0) = 0.0;
-        left_hess[alpha](0, 1) = left_dnids[alpha];
-        left_hess[alpha](1, 0) = left_dnids[alpha];
-        left_hess[alpha](1, 1) = left_dtids[alpha];
-        // right_hess[alpha](0,0) = 0.0;
-        right_hess[alpha](0, 1) = right_dnids[alpha];
-        right_hess[alpha](1, 0) = right_dnids[alpha];
-        right_hess[alpha](1, 1) = right_dtids[alpha];
-      }
+   //    //----------------------------------------------------------------------
+   //    // We need to fill out the Jacobians and Hessians of the boundary
+   //    // coordinates either side of the vertex
+   //    DenseMatrix<double> left_jac(2, 2, 0.0);
+   //    DenseMatrix<double> right_jac(2, 2, 0.0);
+   //    Vector<DenseMatrix<double>> left_hess(2, DenseMatrix<double>(2, 2, 0.0));
+   //    Vector<DenseMatrix<double>> right_hess(2, DenseMatrix<double>(2, 2, 0.0));
+   //    for (unsigned alpha = 0; alpha < 2; alpha++)
+   //    {
+   //      // Fill in Jacobians {{nx,tx},{ny,ty}}
+   //      left_jac(alpha, 0) = left_ni[alpha];
+   //      left_jac(alpha, 1) = left_ti[alpha];
+   //      right_jac(alpha, 0) = right_ni[alpha];
+   //      right_jac(alpha, 1) = right_ti[alpha];
+   //      // Fill in Hessians
+   //      // left_hess[alpha](0,0) = 0.0;
+   //      left_hess[alpha](0, 1) = left_dnids[alpha];
+   //      left_hess[alpha](1, 0) = left_dnids[alpha];
+   //      left_hess[alpha](1, 1) = left_dtids[alpha];
+   //      // right_hess[alpha](0,0) = 0.0;
+   //      right_hess[alpha](0, 1) = right_dnids[alpha];
+   //      right_hess[alpha](1, 0) = right_dnids[alpha];
+   //      right_hess[alpha](1, 1) = right_dtids[alpha];
+   //    }
 
-      //----------------------------------------------------------------------
-      // We need the inverse Jacobian and Hessian for the left parametrisation
-      DenseMatrix<double> left_jac_inv(2, 2, 0.0);
-      Vector<DenseMatrix<double>> left_hess_inv(2,
-                                                DenseMatrix<double>(2, 2, 0.0));
-      left_jac_inv(0, 0) = left_jac(1, 1);
-      left_jac_inv(0, 1) = -left_jac(0, 1);
-      left_jac_inv(1, 0) = -left_jac(1, 0);
-      left_jac_inv(1, 1) = left_jac(0, 0);
-      // Fill out inverse of Hessian
-      // H^{-1}abg = J^{-1}ad Hdez J^{-1}eb J^{-1}zg
-      for (unsigned alpha = 0; alpha < 2; alpha++)
-      {
-        for (unsigned beta = 0; beta < 2; beta++)
-        {
-          for (unsigned gamma = 0; gamma < 2; gamma++)
-          {
-            for (unsigned alpha2 = 0; alpha2 < 2; alpha2++)
-            {
-              for (unsigned beta2 = 0; beta2 < 2; beta2++)
-              {
-                for (unsigned gamma2 = 0; gamma2 < 2; gamma2++)
-                {
-                  left_hess_inv[alpha](beta, gamma) -=
-                    left_jac_inv(alpha, alpha2) *
-                    left_hess[alpha2](beta2, gamma2) *
-                    left_jac_inv(beta2, beta) * left_jac_inv(gamma2, gamma);
-                }
-              }
-            }
-          }
-        }
-      }
+   //    //----------------------------------------------------------------------
+   //    // We need the inverse Jacobian and Hessian for the left parametrisation
+   //    DenseMatrix<double> left_jac_inv(2, 2, 0.0);
+   //    Vector<DenseMatrix<double>> left_hess_inv(2,
+   //                                              DenseMatrix<double>(2, 2, 0.0));
+   //    left_jac_inv(0, 0) = left_jac(1, 1);
+   //    left_jac_inv(0, 1) = -left_jac(0, 1);
+   //    left_jac_inv(1, 0) = -left_jac(1, 0);
+   //    left_jac_inv(1, 1) = left_jac(0, 0);
+   //    // Fill out inverse of Hessian
+   //    // H^{-1}abg = J^{-1}ad Hdez J^{-1}eb J^{-1}zg
+   //    for (unsigned alpha = 0; alpha < 2; alpha++)
+   //    {
+   //      for (unsigned beta = 0; beta < 2; beta++)
+   //      {
+   //        for (unsigned gamma = 0; gamma < 2; gamma++)
+   //        {
+   //          for (unsigned alpha2 = 0; alpha2 < 2; alpha2++)
+   //          {
+   //            for (unsigned beta2 = 0; beta2 < 2; beta2++)
+   //            {
+   //              for (unsigned gamma2 = 0; gamma2 < 2; gamma2++)
+   //              {
+   //                left_hess_inv[alpha](beta, gamma) -=
+   //                  left_jac_inv(alpha, alpha2) *
+   //                  left_hess[alpha2](beta2, gamma2) *
+   //                  left_jac_inv(beta2, beta) * left_jac_inv(gamma2, gamma);
+   //              }
+   //            }
+   //          }
+   //        }
+   //      }
+   //    }
 
-      //----------------------------------------------------------------------
-      //----------------------------------------------------------------------
-      // Use these to calculate the Jacobian of the left->right transform
-      //     J = J_{left}^{-1}J_{right}
-      // and the Hessian of the left->right transform
-      //     H = H_{left}^{-1}J_{right}J_{right} + J_{left}^{-1}H_{right}
-      for (unsigned alpha = 0; alpha < 2; alpha++)
-      {
-        for (unsigned beta = 0; beta < 2; beta++)
-        {
-          for (unsigned gamma = 0; gamma < 2; gamma++)
-          {
-            // Add contribution to J
-            jac_of_transform(alpha, beta) +=
-              left_jac_inv(alpha, gamma) * right_jac(gamma, beta);
-            for (unsigned mu = 0; mu < 2; mu++)
-            {
-              // Add second term contribution to H
-              hess_of_transform[alpha](beta, gamma) +=
-                left_jac_inv(alpha, mu) * right_hess[mu](beta, gamma);
-              for (unsigned nu = 0; nu < 2; nu++)
-              {
-                // Add first term contribution to H
-                hess_of_transform[alpha](beta, gamma) +=
-                  left_hess_inv[alpha](mu, nu) * right_jac(mu, beta) *
-                  right_jac(nu, gamma);
-              }
-            }
-          }
-        }
-      }
+   //    //----------------------------------------------------------------------
+   //    //----------------------------------------------------------------------
+   //    // Use these to calculate the Jacobian of the left->right transform
+   //    //     J = J_{left}^{-1}J_{right}
+   //    // and the Hessian of the left->right transform
+   //    //     H = H_{left}^{-1}J_{right}J_{right} + J_{left}^{-1}H_{right}
+   //    for (unsigned alpha = 0; alpha < 2; alpha++)
+   //    {
+   //      for (unsigned beta = 0; beta < 2; beta++)
+   //      {
+   //        for (unsigned gamma = 0; gamma < 2; gamma++)
+   //        {
+   //          // Add contribution to J
+   //          jac_of_transform(alpha, beta) +=
+   //            left_jac_inv(alpha, gamma) * right_jac(gamma, beta);
+   //          for (unsigned mu = 0; mu < 2; mu++)
+   //          {
+   //            // Add second term contribution to H
+   //            hess_of_transform[alpha](beta, gamma) +=
+   //              left_jac_inv(alpha, mu) * right_hess[mu](beta, gamma);
+   //            for (unsigned nu = 0; nu < 2; nu++)
+   //            {
+   //              // Add first term contribution to H
+   //              hess_of_transform[alpha](beta, gamma) +=
+   //                left_hess_inv[alpha](mu, nu) * right_jac(mu, beta) *
+   //                right_jac(nu, gamma);
+   //            }
+   //          }
+   //        }
+   //      }
+   //    }
 
-      // // [zdec] debug
-      // std::ofstream jac_and_hess;
+   //    // // [zdec] debug
+   //    // std::ofstream jac_and_hess;
 
-      // jac_and_hess.open("corner_jac_and_hess_new.csv", std::ios_base::app);
-      // jac_and_hess << "Jacobian :" << std::endl
-      //              << jac_of_transform(0, 0) << " " << jac_of_transform(0, 1)
-      //              << std::endl
-      //              << jac_of_transform(1, 0) << " " << jac_of_transform(1, 1)
-      //              << std::endl
-      //              << "Hessian [x]:" << std::endl
-      //              << hess_of_transform[0](0, 0) << " " <<
-      //              hess_of_transform[0](0, 1)
-      //              << std::endl
-      //              << hess_of_transform[0](1, 0) << " " <<
-      //              hess_of_transform[0](1, 1)
-      //              << std::endl
-      //              << "Hessian [y]:" << std::endl
-      //              << hess_of_transform[1](0, 0) << " " <<
-      //              hess_of_transform[1](0, 1)
-      //              << std::endl
-      //              << hess_of_transform[1](1, 0) << " " <<
-      //              hess_of_transform[1](1, 1)
-      //              << std::endl
-      //              << std::endl;
-      // jac_and_hess.close();
-
-
-      // jac_and_hess.open("invleft_jac_and_hess_new.csv", std::ios_base::app);
-      // jac_and_hess << "Jacobian :" << std::endl
-      //              << left_jac_inv(0, 0) << " " << left_jac_inv(0, 1) <<
-      //              std::endl
-      //              << left_jac_inv(1, 0) << " " << left_jac_inv(1, 1) <<
-      //              std::endl
-      //              << "Hessian [x]:" << std::endl
-      //              << left_hess_inv[0](0, 0) << " " << left_hess_inv[0](0, 1)
-      //              << std::endl
-      //              << left_hess_inv[0](1, 0) << " " << left_hess_inv[0](1, 1)
-      //              << std::endl
-      //              << "Hessian [y]:" << std::endl
-      //              << left_hess_inv[1](0, 0) << " " << left_hess_inv[1](0, 1)
-      //              << std::endl
-      //              << left_hess_inv[1](1, 0) << " " << left_hess_inv[1](1, 1)
-      //              << std::endl
-      //              << std::endl;
-      // jac_and_hess.close();
-
-      // jac_and_hess.open("left_jac_and_hess_new.csv", std::ios_base::app);
-      // jac_and_hess << "Jacobian :" << std::endl
-      //              << left_jac(0, 0) << " " << left_jac(0, 1) << std::endl
-      //              << left_jac(1, 0) << " " << left_jac(1, 1) << std::endl
-      //              << "Hessian [x]:" << std::endl
-      //              << left_hess[0](0, 0) << " " << left_hess[0](0, 1)
-      //              << std::endl
-      //              << left_hess[0](1, 0) << " " << left_hess[0](1, 1)
-      //              << std::endl
-      //              << "Hessian [y]:" << std::endl
-      //              << left_hess[1](0, 0) << " " << left_hess[1](0, 1)
-      //              << std::endl
-      //              << left_hess[1](1, 0) << " " << left_hess[1](1, 1)
-      //              << std::endl
-      //              << std::endl;
-      // jac_and_hess.close();
-
-      // jac_and_hess.open("right_jac_and_hess_new.csv", std::ios_base::app);
-      // jac_and_hess << "Jacobian :" << std::endl
-      //              << right_jac(0, 0) << " " << right_jac(0, 1) << std::endl
-      //              << right_jac(1, 0) << " " << right_jac(1, 1) << std::endl
-      //              << "Hessian [x]:" << std::endl
-      //              << right_hess[0](0, 0) << " " << right_hess[0](0, 1)
-      //              << std::endl
-      //              << right_hess[0](1, 0) << " " << right_hess[0](1, 1)
-      //              << std::endl
-      //              << "Hessian [y]:" << std::endl
-      //              << right_hess[1](0, 0) << " " << right_hess[1](0, 1)
-      //              << std::endl
-      //              << right_hess[1](1, 0) << " " << right_hess[1](1, 1)
-      //              << std::endl
-      //              << std::endl;
-      // jac_and_hess.close();
+   //    // jac_and_hess.open("corner_jac_and_hess_new.csv", std::ios_base::app);
+   //    // jac_and_hess << "Jacobian :" << std::endl
+   //    //              << jac_of_transform(0, 0) << " " << jac_of_transform(0, 1)
+   //    //              << std::endl
+   //    //              << jac_of_transform(1, 0) << " " << jac_of_transform(1, 1)
+   //    //              << std::endl
+   //    //              << "Hessian [x]:" << std::endl
+   //    //              << hess_of_transform[0](0, 0) << " " <<
+   //    //              hess_of_transform[0](0, 1)
+   //    //              << std::endl
+   //    //              << hess_of_transform[0](1, 0) << " " <<
+   //    //              hess_of_transform[0](1, 1)
+   //    //              << std::endl
+   //    //              << "Hessian [y]:" << std::endl
+   //    //              << hess_of_transform[1](0, 0) << " " <<
+   //    //              hess_of_transform[1](0, 1)
+   //    //              << std::endl
+   //    //              << hess_of_transform[1](1, 0) << " " <<
+   //    //              hess_of_transform[1](1, 1)
+   //    //              << std::endl
+   //    //              << std::endl;
+   //    // jac_and_hess.close();
 
 
-      // // [zdec] debug
-      // std::ofstream debug_stream;
-      // debug_stream.open("left_norm_and_tan.dat", std::ios_base::app);
-      // debug_stream << left_x[0] << " " << left_x[1] << " " << left_ni[0] << "
-      // "
-      //              << left_ni[1] << " " << left_ti[0] << " " << left_ti[1] <<
-      //              " "
-      //              << left_dnids[0] << " " << left_dnids[1] << " " <<
-      //              left_dtids[0]
-      //              << " " << left_dtids[1] << " " << left_d2xids2[0] << " "
-      //              << left_d2xids2[1] << std::endl;
-      // debug_stream.close();
-      // debug_stream.open("right_norm_and_tan.dat", std::ios_base::app);
-      // debug_stream << right_x[0] << " " << right_x[1] << " " << right_ni[0]
-      // << " "
-      //              << right_ni[1] << " " << right_ti[0] << " " << right_ti[1]
-      //              << " "
-      //              << right_dnids[0] << " " << right_dnids[1] << " " <<
-      //              right_dtids[0]
-      //              << " " << right_dtids[1] << " " << right_d2xids2[0] << " "
-      //              << right_d2xids2[1] << std::endl;
-      // debug_stream.close();
+   //    // jac_and_hess.open("invleft_jac_and_hess_new.csv", std::ios_base::app);
+   //    // jac_and_hess << "Jacobian :" << std::endl
+   //    //              << left_jac_inv(0, 0) << " " << left_jac_inv(0, 1) <<
+   //    //              std::endl
+   //    //              << left_jac_inv(1, 0) << " " << left_jac_inv(1, 1) <<
+   //    //              std::endl
+   //    //              << "Hessian [x]:" << std::endl
+   //    //              << left_hess_inv[0](0, 0) << " " << left_hess_inv[0](0, 1)
+   //    //              << std::endl
+   //    //              << left_hess_inv[0](1, 0) << " " << left_hess_inv[0](1, 1)
+   //    //              << std::endl
+   //    //              << "Hessian [y]:" << std::endl
+   //    //              << left_hess_inv[1](0, 0) << " " << left_hess_inv[1](0, 1)
+   //    //              << std::endl
+   //    //              << left_hess_inv[1](1, 0) << " " << left_hess_inv[1](1, 1)
+   //    //              << std::endl
+   //    //              << std::endl;
+   //    // jac_and_hess.close();
 
-    } // End get_jac_and_hess_of_coordinate_transform
+   //    // jac_and_hess.open("left_jac_and_hess_new.csv", std::ios_base::app);
+   //    // jac_and_hess << "Jacobian :" << std::endl
+   //    //              << left_jac(0, 0) << " " << left_jac(0, 1) << std::endl
+   //    //              << left_jac(1, 0) << " " << left_jac(1, 1) << std::endl
+   //    //              << "Hessian [x]:" << std::endl
+   //    //              << left_hess[0](0, 0) << " " << left_hess[0](0, 1)
+   //    //              << std::endl
+   //    //              << left_hess[0](1, 0) << " " << left_hess[0](1, 1)
+   //    //              << std::endl
+   //    //              << "Hessian [y]:" << std::endl
+   //    //              << left_hess[1](0, 0) << " " << left_hess[1](0, 1)
+   //    //              << std::endl
+   //    //              << left_hess[1](1, 0) << " " << left_hess[1](1, 1)
+   //    //              << std::endl
+   //    //              << std::endl;
+   //    // jac_and_hess.close();
+
+   //    // jac_and_hess.open("right_jac_and_hess_new.csv", std::ios_base::app);
+   //    // jac_and_hess << "Jacobian :" << std::endl
+   //    //              << right_jac(0, 0) << " " << right_jac(0, 1) << std::endl
+   //    //              << right_jac(1, 0) << " " << right_jac(1, 1) << std::endl
+   //    //              << "Hessian [x]:" << std::endl
+   //    //              << right_hess[0](0, 0) << " " << right_hess[0](0, 1)
+   //    //              << std::endl
+   //    //              << right_hess[0](1, 0) << " " << right_hess[0](1, 1)
+   //    //              << std::endl
+   //    //              << "Hessian [y]:" << std::endl
+   //    //              << right_hess[1](0, 0) << " " << right_hess[1](0, 1)
+   //    //              << std::endl
+   //    //              << right_hess[1](1, 0) << " " << right_hess[1](1, 1)
+   //    //              << std::endl
+   //    //              << std::endl;
+   //    // jac_and_hess.close();
+
+
+   //    // // [zdec] debug
+   //    // std::ofstream debug_stream;
+   //    // debug_stream.open("left_norm_and_tan.dat", std::ios_base::app);
+   //    // debug_stream << left_x[0] << " " << left_x[1] << " " << left_ni[0] << "
+   //    // "
+   //    //              << left_ni[1] << " " << left_ti[0] << " " << left_ti[1] <<
+   //    //              " "
+   //    //              << left_dnids[0] << " " << left_dnids[1] << " " <<
+   //    //              left_dtids[0]
+   //    //              << " " << left_dtids[1] << " " << left_d2xids2[0] << " "
+   //    //              << left_d2xids2[1] << std::endl;
+   //    // debug_stream.close();
+   //    // debug_stream.open("right_norm_and_tan.dat", std::ios_base::app);
+   //    // debug_stream << right_x[0] << " " << right_x[1] << " " << right_ni[0]
+   //    // << " "
+   //    //              << right_ni[1] << " " << right_ti[0] << " " << right_ti[1]
+   //    //              << " "
+   //    //              << right_dnids[0] << " " << right_dnids[1] << " " <<
+   //    //              right_dtids[0]
+   //    //              << " " << right_dtids[1] << " " << right_d2xids2[0] << " "
+   //    //              << right_d2xids2[1] << std::endl;
+   //    // debug_stream.close();
+
+   //  } // End get_jac_and_hess_of_coordinate_transform
 
 
     /// Add the contribution to the residuals (and jacobain if flag is 1) from
@@ -1123,45 +1127,50 @@ namespace oomph
       } // End loop over displacements [i_field]
     } // End fill_in_generic_residual_contribution_constraint
 
-    /// Store the index of the internal data keeping the Lagrange multipliers
-    unsigned Index_of_lagrange_data;
 
-    /// Store the index of the external data for the left node
-    unsigned Index_of_left_data;
+   // // moved into base class
+   
+   //  /// Store the index of the internal data keeping the Lagrange multipliers
+   //  unsigned Index_of_lagrange_data;
 
-    /// Store the index of the external data for the right node
-    unsigned Index_of_right_data;
+   //  /// Store the index of the external data for the left node
+   //  unsigned Index_of_left_data;
 
-    /// Pointer to the left node (before the vertex when anticlockwise)
-    Node* Left_node_pt;
+   //  /// Store the index of the external data for the right node
+   //  unsigned Index_of_right_data;
 
-    /// Pointer to the right node (after the vertex when anticlockwise)
-    Node* Right_node_pt;
+   //  /// Pointer to the left node (before the vertex when anticlockwise)
+   //  Node* Left_node_pt;
 
-    /// Pointer to the left node's boundary parametrisation
-    C1CurviLine* Left_boundary_pt;
+   //  /// Pointer to the right node (after the vertex when anticlockwise)
+   //  Node* Right_node_pt;
 
-    /// Pointer to the right node's boundary parametrisation
-    C1CurviLine* Right_boundary_pt;
+   //  /// Pointer to the left node's boundary parametrisation
+   //  C1CurviLine* Left_boundary_pt;
 
-    /// Coordinate of the left node on the left boundary
-    Vector<double> Left_node_coord;
+   //  /// Pointer to the right node's boundary parametrisation
+   //  C1CurviLine* Right_boundary_pt;
 
-    /// Coordinate of the left node on the left boundary
-    Vector<double> Right_node_coord;
+   //  /// Coordinate of the left node on the left boundary
+   //  Vector<double> Left_node_coord;
 
-    /// Tolerance for validating fully pinned constraints
-    // [zdec] does this wnat to be the problem residual tolerance?
-    double Constraint_tolerance = 1.0e-10;
+   //  /// Coordinate of the left node on the left boundary
+   //  Vector<double> Right_node_coord;
 
-    /// Tolerance for checking whether a dof has become decoupled from an
-    /// equation.
-    /// i.e. in the equation y=Ax, how small does A have to be before y no
-    /// longer /numerically/ depends on x? This becomes relevant when derivative
-    /// directions become orthogonal, we need to ensure they aren't considered
-    /// linearly dependent. (We choose this to be slightly larger than machine
-    /// precision and it shouldn't generally need to be touched)
-    double Orthogonality_tolerance = 1.0e-15;
+   //  /// Tolerance for validating fully pinned constraints
+   //  // [zdec] does this wnat to be the problem residual tolerance?
+   //  double Constraint_tolerance = 1.0e-10;
+
+   //  /// Tolerance for checking whether a dof has become decoupled from an
+   //  /// equation.
+   //  /// i.e. in the equation y=Ax, how small does A have to be before y no
+   //  /// longer /numerically/ depends on x? This becomes relevant when derivative
+   //  /// directions become orthogonal, we need to ensure they aren't considered
+   //  /// linearly dependent. (We choose this to be slightly larger than machine
+   //  /// precision and it shouldn't generally need to be touched)
+   //  double Orthogonality_tolerance = 1.0e-15;
+
+   
   }; // End of DuplicateNodeConstraintElement class definition
 
 
@@ -1671,7 +1680,8 @@ namespace oomph
    /// d/dzeta to d/dt requires jacobian!
    virtual void fully_clamp_specified_boundary(
     const unsigned& b,
-    const Vector<BoundaryConditionForC1PlateBending*>& boundary_values_pt);
+    const Vector<BoundaryConditionForC1PlateBending*>& boundary_values_pt,
+    TriangleMeshCurviLine* curviline_pt);
    
    
    /// Pin i.e. pin the in-plane and out of plane displacements only.
@@ -1681,7 +1691,8 @@ namespace oomph
    /// d/dzeta to d/dt requires jacobian!
    virtual void pin_specified_boundary(
     const unsigned& b,
-    const Vector<BoundaryConditionForC1PlateBending*>& boundary_values_pt);
+    const Vector<BoundaryConditionForC1PlateBending*>& boundary_values_pt,
+    TriangleMeshCurviLine* curviline_pt);
 
 
    // hierher kill ?
@@ -2053,7 +2064,8 @@ namespace oomph
   //==========================================================================
  void KoiterSteigmannC1CurvableBellElement::fully_clamp_specified_boundary(
   const unsigned& b,
-  const Vector<BoundaryConditionForC1PlateBending*>& boundary_values_pt)
+  const Vector<BoundaryConditionForC1PlateBending*>& boundary_values_pt,
+  TriangleMeshCurviLine* curviline_pt)
  {
 
   for (unsigned i_field=0;i_field<3;i_field++)
@@ -2090,6 +2102,14 @@ namespace oomph
           Vector<double> zeta(nzeta);
           nod_pt->get_coordinates_on_boundary(b,zeta);
           
+          // Get the Jacobian from the GeomObject parametrising the boundary
+          GeomObject* geom_obj_pt=curviline_pt->geom_object_pt();
+          DenseMatrix<double> drdzeta(nzeta,2);
+          geom_obj_pt->dposition(zeta,drdzeta);
+          RankThreeTensor<double> d2rdzeta2(nzeta,2,2);
+          geom_obj_pt->d2position(zeta,d2rdzeta2);
+          double dtdzeta=sqrt(drdzeta(0,0)*drdzeta(0,0)+drdzeta(0,1)*drdzeta(0,1));
+          
           // We have 6 Hermite deflection degrees
           // of freedom points. They are {u ; u,x ; u,y ; u,xx ; u,xy ; u,yy}
           // or their rotated counterparts {u ; u,n ; u,t ; u,nn ; u,nt ; u,tt}
@@ -2101,11 +2121,12 @@ namespace oomph
             switch (k_type)
              {
              case 0:
+              // f itself
               value=boundary_values_pt[i_field]->f(zeta[0]);
               break;
               
              case 1:
-              // Normal derivative free: Pin for out of plane
+              // df/dn: Normal derivative free: Pin for out of plane
               // Calls broken virtual function; dies if not implemented
               if (i_field==2)
                {
@@ -2118,21 +2139,21 @@ namespace oomph
               break;
               
              case 2:
-              // hierher Jacobian
-              value=boundary_values_pt[i_field]->dfdzeta(zeta[0]);
+              // df/dt, including Jacobian
+              value=boundary_values_pt[i_field]->dfdzeta(zeta[0])/dtdzeta;
               break;
               
               
              case 3:
-              // Second normal derivative shouldn't be set!
+              // d^2f/dn^2: Second normal derivative shouldn't be set!
               do_it=false;
               break;
               
              case 4:
+              // d^2f/dndt mixed second normal derivative: 
               if (i_field==2)
                {
-                // hierher Jacobian
-                value=boundary_values_pt[i_field]->d2fdndzeta(zeta[0]);
+                value=boundary_values_pt[i_field]->d2fdndzeta(zeta[0])/dtdzeta;
                }
               else
                {
@@ -2141,8 +2162,12 @@ namespace oomph
               break;
               
              case 5:
-              // hierher Jacobian!
-              value=boundary_values_pt[i_field]->d2fdzeta2(zeta[0]);
+              // d^2f/dt^2  including Jacobian (twice; chain rule yourself to death)
+              value=
+               (boundary_values_pt[i_field]->d2fdzeta2(zeta[0])*dtdzeta*dtdzeta-
+                boundary_values_pt[i_field]->dfdzeta(zeta[0])*
+                (drdzeta(0,0)*d2rdzeta2(0,0,0)+drdzeta(0,1)*d2rdzeta2(0,0,1)))/
+               (pow(dtdzeta,4));
               break;
               
              default:
@@ -2210,7 +2235,8 @@ namespace oomph
 //=============================================================================
  void KoiterSteigmannC1CurvableBellElement::pin_specified_boundary(
   const unsigned& b,
-  const Vector<BoundaryConditionForC1PlateBending*>& boundary_values_pt)
+  const Vector<BoundaryConditionForC1PlateBending*>& boundary_values_pt,
+  TriangleMeshCurviLine* curviline_pt)
  {
   
   for (unsigned i_field=0;i_field<3;i_field++)
@@ -2247,6 +2273,15 @@ namespace oomph
           Vector<double> zeta(nzeta);
           nod_pt->get_coordinates_on_boundary(b,zeta);
           
+
+          // Get the Jacobian from the GeomObject parametrising the boundary
+          GeomObject* geom_obj_pt=curviline_pt->geom_object_pt();
+          DenseMatrix<double> drdzeta(nzeta,2);
+          geom_obj_pt->dposition(zeta,drdzeta);
+          RankThreeTensor<double> d2rdzeta2(nzeta,2,2);
+          geom_obj_pt->d2position(zeta,d2rdzeta2);
+          double dtdzeta=sqrt(drdzeta(0,0)*drdzeta(0,0)+drdzeta(0,1)*drdzeta(0,1));
+        
           // We have 6 Hermite deflection degrees
           // of freedom points. They are {u ; u,x ; u,y ; u,xx ; u,xy ; u,yy}
           // or their rotated counterparts {u ; u,n ; u,t ; u,nn ; u,nt ; u,tt}
@@ -2257,33 +2292,38 @@ namespace oomph
             switch (k_type)
              {
              case 0:
+              // f itself
               value=boundary_values_pt[i_field]->f(zeta[0]);
               break;
               
              case 1:
-              // Normal derivative free
+              // df/dn: Normal derivative: free
               // Calls broken virtual function; dies if not implemented
               //value=boundary_values_pt[i_field]->dfdn(zeta[0]);
               break;
               
              case 2:
-              // hierher Jacobian
-              value=boundary_values_pt[i_field]->dfdzeta(zeta[0]);
+              // df/dt, including Jacobian
+              value=boundary_values_pt[i_field]->dfdzeta(zeta[0])/dtdzeta;
               break;
               
               
              case 3:
-              // Second normal derivative shouldn't be set!
+              // d^2f/dn^2: Second normal derivative shouldn't be set!
               break;
               
              case 4:
-              // normal derivative free
-              // value=boundary_values_pt[i_field]->d2fdndzeta(zeta[0]);
+              // d^2f/dndt mixed second normal derivative: free
+              // value=boundary_values_pt[i_field]->d2fdndzeta(zeta[0])/dtdzeta;
               break;
               
              case 5:
-              // hierher Jacobian!
-              value=boundary_values_pt[i_field]->d2fdzeta2(zeta[0]);
+              // d^2f/dt^2  including Jacobian (twice; chain rule yourself to death)
+              value=
+               (boundary_values_pt[i_field]->d2fdzeta2(zeta[0])*dtdzeta*dtdzeta-
+                boundary_values_pt[i_field]->dfdzeta(zeta[0])*
+                (drdzeta(0,0)*d2rdzeta2(0,0,0)+drdzeta(0,1)*d2rdzeta2(0,0,1)))/
+               (pow(dtdzeta,4));
               break;
               
              default:
