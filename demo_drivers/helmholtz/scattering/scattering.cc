@@ -309,18 +309,21 @@ ScatteringProblem()
 { 
  
  // Setup "bulk" mesh
+
+
+ unsigned integer_factor=2;
  
  // # of elements in theta
  unsigned n_theta=15;
  
  // # of elements in radius
- unsigned n_r=5;
+ unsigned n_r=5*integer_factor;;
  
  // Inner radius
  double a=1.0;
  
  // Thickness of annular computational domain
- double h=0.5; 
+ double h=0.5*double(integer_factor);; 
 
  // Set outer radius
  GlobalParameters::Outer_radius=a+h;

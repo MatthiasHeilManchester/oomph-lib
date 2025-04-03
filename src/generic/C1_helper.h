@@ -1032,11 +1032,14 @@ namespace C1Helper
        << "will only rotate degrees of freedom on boundaries that are described\n"
        << "by TriangleMeshCurviLine. It seems that in your triangle mesh only\n"
        << curviline_boundary_pt.size() << " of " << nb << " boundaries \n"
-       << "are of this type. Continue at your own risk and/or make this\n"
-       << "message disappear by setting\n\n"
-       << "    << C1Helper::Do_not_warn_about_polygonal_boundaries\n\n"
+       << "are of this type. This only matters if you want to apply clamping-type\n"
+       << "boundary conditions along those boundaries. Continue at your own risk\n"
+       << "and/or make this message disappear by setting\n\n"
+       << "     C1Helper::Do_not_warn_about_polygonal_boundaries\n\n"
        << "to false. More intelligently, replace the polygonal boundaries\n"
-       << "by TriangleMeshCurviLines.\n"
+       << "by TriangleMeshCurviLines. Alternatively, you can deal with this\n"
+       << "yourself, of course. The black box function is only provided for\n"
+       << "convenience."
        << std::endl;
       OomphLibWarning(warning_message.str(),
                       OOMPH_CURRENT_FUNCTION,
