@@ -46,14 +46,12 @@
 // though. Once this is done for p=3,
 
 
-// We could definitely store this as a static
+// We could definitely store this as a static  // hierher Aidan: Let's! Also, where is this from? 
+// Looks machine generated. Do we have the original maple/mathematica code?
+
 namespace oomph
 {
 
- // hierher kill 
-  // namespace MyC1CurvedElements
-  // {
- 
     /// Precomputed basis polynomials for the 3rd order boundary representation
     template<>
     void BernadouElementBasis<3>::full_basic_polynomials(
@@ -3161,8 +3159,4 @@ namespace oomph
          648 * s_p_2 * t_p_2 - 1080 * t_p_3 + 1080 * s * t_p_3 + 540 * t_p_4);
     }
 
- // hierher kill 
-  // } // namespace MyC1CurvedElements
-
- 
 } // namespace oomph

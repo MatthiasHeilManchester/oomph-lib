@@ -112,7 +112,20 @@ namespace oomph
     /// Make sure no elements have two boundary edges by splitting them through
     /// their centroid (e.g. no corner elements straddling two boundaries).
     template<class ELEMENT>
-    void split_elements_with_multiple_boundary_edges();
+    void split_elements_with_multiple_boundary_edges()
+    {
+     // create dummy stream but keep it closed
+     std::ofstream& new_elements_stream;
+     split_elements_with_multiple_boundary_edges<ELEMENT>(
+      new_elements_stream);
+    }
+
+   
+    /// Make sure no elements have two boundary edges by splitting them through
+    /// their centroid (e.g. no corner elements straddling two boundaries).
+    template<class ELEMENT>
+    void split_elements_with_multiple_boundary_edges(std::ofstream& new_elements_stream);
+
 
     /// Setup lookup schemes which establish which elements are located
     /// next to mesh's boundaries. Doc in outfile (if it's open).
@@ -712,9 +725,11 @@ namespace oomph
   //==========================================================================
   /// Make sure no elements have two boundary edges by splitting them through
   /// their centroid (e.g. corner elements straddling both boundaries)
+  /// If open output stream is provided 
   //==========================================================================
   template<class ELEMENT>
-  void TriangleMeshBase::split_elements_with_multiple_boundary_edges()
+  void TriangleMeshBase::split_elements_with_multiple_boundary_edges(
+   std::ofstream& new_elements_stream)
   {
     // Setup boundary lookup scheme if required
     if (!Lookup_for_elements_next_boundary_is_setup)
@@ -725,47 +740,6 @@ namespace oomph
     // Map to store how many boundaries elements are located on
     std::map<FiniteElement*, unsigned> count;
 
-
-    // hierher kill 
-    // // [zdec] debug
-    // std::string filename_old = "element_debug_file_orig.dat";
-    // std::ofstream element_debug_old;
-    // element_debug_old.open(filename_old,
-    //                        std::ofstream::out | std::ofstream::trunc);
-    // element_debug_old.close();
-    // std::string filename_n_old = "node_debug_file_orig.dat";
-    // element_debug_old.open(filename_n_old,
-    //                        std::ofstream::out | std::ofstream::trunc);
-    // element_debug_old.close();
-    // for (unsigned e = 0; e < nelement(); e++)
-    // {
-    //   // [zdec] debug: doc all the elements to see the mesh patches
-    //   oomph_info << "Adding element " << e << " at " << finite_element_pt(e)
-    //              << " nodes to debug file" << std::endl;
-    //   element_debug_old.open(filename_old, std::ios_base::app);
-    //   // loop over the vertex nodes
-    //   for (unsigned i = 0; i < 3; i++)
-    //   {
-    //     element_debug_old << finite_element_pt(e)->node_pt(i)->x(0) << " ";
-    //     element_debug_old << finite_element_pt(e)->node_pt(i)->x(1) << " ";
-    //     element_debug_old << std::endl;
-    //   }
-    //   element_debug_old << finite_element_pt(e)->node_pt(0)->x(0) << " ";
-    //   element_debug_old << finite_element_pt(e)->node_pt(0)->x(1) << " ";
-    //   element_debug_old << std::endl;
-    //   element_debug_old << std::endl << std::endl;
-    //   element_debug_old.close();
-    //   // Loop over all nodes
-    //   element_debug_old.open(filename_n_old, std::ios_base::app);
-    //   for (unsigned i = 0; i < finite_element_pt(e)->nnode(); i++)
-    //   {
-    //     element_debug_old << finite_element_pt(e)->node_pt(i)->x(0) << " ";
-    //     element_debug_old << finite_element_pt(e)->node_pt(i)->x(1) << " ";
-    //     element_debug_old << std::endl;
-    //   }
-    //   element_debug_old << std::endl << std::endl;
-    //   element_debug_old.close();
-    // }
 
     // Count the number of boundaries each element is on
     unsigned nb = this->nboundary();
@@ -781,10 +755,6 @@ namespace oomph
         // Bump up counter
         count[el_pt]++;
 
-        // hierher kill 
-        // // [zdec] debug
-        // oomph_info << "Element at " << el_pt << " has " << count[el_pt]
-        //            << " boundaries" << std::endl;
       }
     }
 
@@ -812,7 +782,7 @@ namespace oomph
 
     //  Set for retained or newly built nodes
     // (we use a set to prevent node pointer repetition which is hard to track)
-    std::set<Node*> new_or_retained_nod_pt; 
+    std::set<Node*> new_or_retained_nod_pt;
 
     // Map which returns the 3 newly created elements for each old corner
     // element
@@ -846,25 +816,25 @@ namespace oomph
       // It's in the set of elements to be split
       else
       {
-
-       // hierher kill 
-       // // [zdec] debug
-       // oomph_info << "Splitting element " << e << " at " << el_pt
-       //            << " into: " << std::endl;
-       
-       
        // Vector to get the pointers to the new elements
        Vector<FiniteElement*> new_el_pt(3, 0);
        Vector<Node*> new_nod_pt;
        
        // Split the element
        split_element_through_centroid<ELEMENT>(
-        el_pt, new_el_pt, new_nod_pt); // , Time_stepper_pt);
+        el_pt, new_el_pt, new_nod_pt);
        
        // Add the new elements to new the Vector of pointers
-       new_or_retained_el_pt.push_back(new_el_pt[0]);
-       new_or_retained_el_pt.push_back(new_el_pt[1]);
-       new_or_retained_el_pt.push_back(new_el_pt[2]);
+       // and doc
+       for (unsigned i=0;i<3;i++)
+        {
+         new_or_retained_el_pt.push_back(new_el_pt[i]);
+         if (new_elements_stream.is_open())
+          {
+           unsigned nplot=5;
+           new_el_pt[i]->output(new_elements_stream,nplot);
+          }
+        }
        
        // Add the nodes to the new Vector of pointers
        unsigned n_new_nod = new_nod_pt.size();
@@ -892,52 +862,8 @@ namespace oomph
     // Copy across elements
     n_el = new_or_retained_el_pt.size();
     Element_pt.resize(n_el);
-
-
-    // hierher kill 
-    // // [zdec] debug
-    // std::string filename = "element_debug_file.dat";
-    // std::string filename_n = "node_debug_file.dat";
-    // std::ofstream element_debug;
-    // element_debug.open(filename, std::ofstream::out | std::ofstream::trunc);
-    // element_debug.close();
-    // element_debug.open(filename_n, std::ofstream::out | std::ofstream::trunc);
-    // element_debug.close();
-
-
-    
     for (unsigned e = 0; e < n_el; e++)
     {
-      // hierher kill 
-      // // [zdec] debug: doc all the elements to see the mesh patches
-      // oomph_info << "Adding element " << e << " at " << new_or_retained_el_pt[e]
-      //            << " nodes to debug file" << std::endl;
-      // element_debug.open(filename, std::ios_base::app);
-      // // loop over the vertex nodes
-      // for (unsigned i = 0; i < 3; i++)
-      // {
-      //   element_debug << new_or_retained_el_pt[e]->node_pt(i)->x(0) << " "
-      //                 << new_or_retained_el_pt[e]->node_pt(i)->x(1) << " "
-      //                 << std::endl;
-      // }
-      // element_debug << new_or_retained_el_pt[e]->node_pt(0)->x(0) << " "
-      //               << new_or_retained_el_pt[e]->node_pt(0)->x(1) << " "
-      //               << std::endl
-      //               << std::endl
-      //               << std::endl;
-      // element_debug.close();
-      // // Loop over all nodes
-      // element_debug.open(filename_n, std::ios_base::app);
-      // for (unsigned i = 0; i < new_or_retained_el_pt[e]->nnode(); i++)
-      // {
-      //   element_debug << new_or_retained_el_pt[e]->node_pt(i)->x(0) << " "
-      //                 << new_or_retained_el_pt[e]->node_pt(i)->x(1) << " "
-      //                 << std::endl;
-      // }
-      // element_debug << std::endl << std::endl;
-      // element_debug.close();
-
-     
       Element_pt[e] = new_or_retained_el_pt[e];
     }
 
@@ -1099,7 +1025,6 @@ namespace oomph
         }
       }
     }
-
   }
 
 } // namespace oomph

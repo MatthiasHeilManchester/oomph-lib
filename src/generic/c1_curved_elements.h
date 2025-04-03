@@ -39,23 +39,8 @@
 namespace oomph
 {
 
- // // hierher Aidan kill this namespace!!!
- //  namespace MyC1CurvedElements
- //  {
 
-   // hierher moved to C1_helper
-    // // HERE replace with class enum in c++11?
-    // /// enum to enumerate the possible edges that could be curved
-    // enum Edge
-    // {
-    //   none = -1,
-    //   zero = 0,
-    //   one = 1,
-    //   two = 2
-    // };
-
-
-    // [zdec] I see no point in having this base class?
+    // [zdec] I see no point in having this base class? // hierher Aidan: Let's kill it then...
     class BernadouElementBasisBase
     {
     public:
@@ -97,15 +82,15 @@ namespace oomph
                                   DShape& d2bpsi,
                                   const DenseMatrix<double>& m) const = 0;
 
-     /// hierher comments!
+     /// hierher Aidan comments!
      virtual void coordinate_x(const Vector<double>& s,
                                Vector<double>& fk) const = 0;
      
-     /// hierher comments!
+     /// hierher Aidan comments!
      virtual void get_jacobian(const Vector<double>& s,
                                 DenseMatrix<double>& jacobian) const = 0;
 
-     /// hierher
+     /// hierher Aidan comments
      virtual void upgrade_element(
       const VertexList& verts,
       const double& su,
@@ -114,10 +99,14 @@ namespace oomph
       const C1CurviLine& parametric_curve) = 0;
      
      /// Check the element
-      virtual void self_check(
-        const C1CurviLine& parametric_curve) const = 0;
-
-      /// Return the number of basis functions on the physical triangle
+     /// Optional final arguments specify tolerances for distance and
+     /// angle checks
+     virtual void self_check(
+       const C1CurviLine& parametric_curve,
+       const double& tol=1.0e-10,
+       const double& angle_tol=1.0e-12) const = 0;
+     
+     /// Return the number of basis functions on the physical triangle
       virtual unsigned n_basis_functions() const = 0;
 
       /// Return the number of bubble basis functions triangle
@@ -246,9 +235,14 @@ namespace oomph
       }
 
     public:
-      /// Check the element
-      inline void self_check(const C1CurviLine& parametric_curve) const;
-
+     
+     /// Check the element.
+     /// Optional final arguments specify tolerances for distance and
+     /// angle checks
+     inline void self_check(const C1CurviLine& parametric_curve,
+                            const double& tol=1.0e-10,
+                            const double& angle_tol=1.0e-12) const;
+     
       /// Get the physical coordinate
       void coordinate_x(const Vector<double>& s, Vector<double>& fk) const;
 
@@ -480,10 +474,6 @@ namespace oomph
       C1Helper::CurvedEdgeEnumeration Curved_edge;
 
     protected:
-      /*  Protected member functions: */
-      /* These functions are used in the construction of shape - but not
-       * intended */
-      /* for use at the user end */
 
       /// The mapping F_k - a polynomial degree 3 PRIVATE
       void f_k(const Vector<double>& s, Vector<double>& fk) const;
@@ -1099,7 +1089,7 @@ namespace oomph
       return det;
       }
 
-      // HERE WRITE A PUBLIC d2shape_local
+      // HERE WRITE A PUBLIC d2shape_local // hierher Aidan ?
 
       // HERE this is a bit dodgy
       /// \short Array to hold the weights and knots (defined in cc file)
@@ -1308,6 +1298,7 @@ you forget to set a Curved_edge?",
     }
 
     // Inline functions
+ 
     /// Self check function:
     /// 1. Checks for inverted elements.
     /// 2. Checks that the specified parametric edge agrees at s_ubar and s_obar
@@ -1320,13 +1311,14 @@ you forget to set a Curved_edge?",
     /// 7. Extra paranoid check to see if ANY of the denominators needed in the
     ///    construction are zero: these cases should be caught by previous
     ///    checks.
+    /// Optional final arguments (defaults set in base class)
+    /// specify tolerances for distance and angle checks
     template<unsigned BOUNDARY_ORDER>
     void BernadouElementBasis<BOUNDARY_ORDER>::self_check(
-      const C1CurviLine& parametric_curve_pt) const
+     const C1CurviLine& parametric_curve,
+     const double& tol,
+     const double& angle_tol) const
     {
-      // Tolerance as a static member HERE
-     const double tol(1e-10), angle_tol(1e-12); // hierher pass arguments into fct?
-
       // Check that all of the relevant fields have been filled. HERE (HIGHER in
       // complete build of shape function)
 
@@ -1345,10 +1337,8 @@ definitions.",
       // parametric function
       Vector<Vector<double>> local_vertices(3, Vector<double>(2, 0.0));
       Vector<double> vertex_0(2, 0.0), vertex_1(2, 0.0);
-
-      // hierher why _pt; clearly isn't one!
-      parametric_curve_pt.position(Vector<double>(1, S_ubar), vertex_0);
-      parametric_curve_pt.position(Vector<double>(1, S_obar), vertex_1);
+      parametric_curve.position(Vector<double>(1, S_ubar), vertex_0);
+      parametric_curve.position(Vector<double>(1, S_obar), vertex_1);
 
       // Magnitude of the difference
       const double diff0 = sqrt(pow(vertex_0[0] - Vertices[0][0], 2) +
@@ -1530,13 +1520,5 @@ by previous checks and needs further investigation.\n",
           OOMPH_EXCEPTION_LOCATION);
       }
     }
-
-
- // hierher kill 
-// } // namespace MyC1CurvedElements
-
-
-
-
 } // namespace oomph
 #endif

@@ -65,7 +65,11 @@ namespace oomph
     /// Destructor
     ~KSDuplicateNodeConstraintElement()
     {
-      // Must remove Lagrange multiplier data?
+     unsigned n_internal=ninternal_data();
+     for (unsigned i=0;i<n_internal;i++)
+      {
+       delete this->internal_data_pt(i);
+      }
     }
 
     /// Add the contribution to the residuals from the Lagrange multiplier
@@ -91,7 +95,7 @@ namespace oomph
     // [zdec] Do we want a bool in the element to determine whether we enforce
     // constraints that are already fully pinned (tears may be desired in some
     // dofs?)
-    void validate_and_pin_redundant_constraints()
+    void pin_redundant_constraints()
     {
       // Start by unpinning all lagrange multipliers in case the boundary
       // conditions are less restrictive than previously
@@ -192,6 +196,8 @@ namespace oomph
             // and then remove it by pinning the corresponding lagrange
             // multiplier
 
+            // hierher Aidan: should this remain alive?
+
             // // Calculate the residual of the constraint
             // double constraint_residual =
             //   right_data_pt->value(condition_index) -
@@ -271,6 +277,8 @@ namespace oomph
           // If we made it here, it is because all dofs in the constraint are
           // pinned so we need to check the constraint is satisfied manually and
           // then remove it by pinning the corresponding lagrange multiplier
+
+          // hierher Aidan should this stay alive?
 
           // // Calculate the residual of the constraint
           // double constraint_residual = right_data_pt->value(condition_index);
@@ -428,6 +436,8 @@ namespace oomph
           // and then remove it by pinning the corresponding lagrange
           // multiplier
 
+          // hierher Aidan should this stay alive? 
+
           // // calculate the residual of the constraint
           // double constraint_residual = right_data_pt->value(condition_index);
           // for(unsigned gamma = 0; gamma < 2; gamma++)
@@ -484,270 +494,6 @@ namespace oomph
     } // End of throw_unsatisfiable_constraint_error
 
 
-   // // moved into base class
-   
-   //  /// Function to calculate Jacobian and Hessian of the coordinate mapping
-   //  void get_jac_and_hess_of_coordinate_transform(
-   //    DenseMatrix<double>& jac_of_transform,
-   //    Vector<DenseMatrix<double>>& hess_of_transform)
-   //  {
-   //    //----------------------------------------------------------------------
-   //    // We need the parametrisations either side of the vertex which define
-   //    // the coordinates each node uses for its Hermite dofs.
-   //    Vector<double> left_x(2, 0.0); // [zdec] debug
-   //    Vector<double> right_x(2, 0.0); // [zdec] debug
-   //    Vector<double> left_dxids(2, 0.0);
-   //    Vector<double> left_d2xids2(2, 0.0);
-   //    Vector<double> right_dxids(2, 0.0);
-   //    Vector<double> right_d2xids2(2, 0.0);
-   //    Left_boundary_pt->position(Left_node_coord, left_x); // [zdec] debug
-   //    Right_boundary_pt->position(Right_node_coord, right_x); // [zdec] debug
-   //    Left_boundary_pt->dposition(Left_node_coord, left_dxids);
-   //    Left_boundary_pt->d2position(Left_node_coord, left_d2xids2);
-   //    Right_boundary_pt->dposition(Right_node_coord, right_dxids);
-   //    Right_boundary_pt->d2position(Right_node_coord, right_d2xids2);
-
-   //    // Get the speed of each parametrisation
-   //    double left_mag =
-   //      sqrt(left_dxids[0] * left_dxids[0] + left_dxids[1] * left_dxids[1]);
-   //    double right_mag =
-   //      sqrt(right_dxids[0] * right_dxids[0] + right_dxids[1] * right_dxids[1]);
-
-   //    //----------------------------------------------------------------------
-   //    // Normalise dxids to find the tangent vectors and their
-   //    // derivatives either side of the vertex
-   //    Vector<double> left_ti(2, 0.0);
-   //    Vector<double> left_ni(2, 0.0);
-   //    Vector<double> left_dtids(2, 0.0);
-   //    Vector<double> left_dnids(2, 0.0);
-   //    Vector<double> right_ti(2, 0.0);
-   //    Vector<double> right_ni(2, 0.0);
-   //    Vector<double> right_dtids(2, 0.0);
-   //    Vector<double> right_dnids(2, 0.0);
-   //    for (unsigned alpha = 0; alpha < 2; alpha++)
-   //    {
-   //      // Fill in the tangents either side of the vertex
-   //      left_ti[alpha] = left_dxids[alpha] / left_mag;
-   //      right_ti[alpha] = right_dxids[alpha] / right_mag;
-   //      // Fill in the derivatives of the (normalised) tangents either side of
-   //      // the vertex
-   //      left_dtids[alpha] =
-   //        left_d2xids2[alpha] / std::pow(left_mag, 2) -
-   //        (left_dxids[0] * left_d2xids2[0] + left_dxids[1] * left_d2xids2[1]) *
-   //          left_dxids[alpha] / std::pow(left_mag, 4);
-   //      right_dtids[alpha] = right_d2xids2[alpha] / std::pow(right_mag, 2) -
-   //                           (right_dxids[0] * right_d2xids2[0] +
-   //                            right_dxids[1] * right_d2xids2[1]) *
-   //                             right_dxids[alpha] / std::pow(right_mag, 4);
-   //      // Use these to fill out the corresponding vectors for the normal
-   //      // direction (nx,ny) = (ty,-tx)
-   //    }
-   //    // Use orthogonality to fill in normals and their derivatives
-   //    for (unsigned alpha = 0; alpha < 2; alpha++)
-   //    {
-   //      left_ni[alpha] = pow(-1, alpha) * left_ti[(alpha + 1) % 2];
-   //      right_ni[alpha] = pow(-1, alpha) * right_ti[(alpha + 1) % 2];
-   //      left_dnids[alpha] = pow(-1, alpha) * left_dtids[(alpha + 1) % 2];
-   //      right_dnids[alpha] = pow(-1, alpha) * right_dtids[(alpha + 1) % 2];
-   //    }
-
-   //    //----------------------------------------------------------------------
-   //    // We need to fill out the Jacobians and Hessians of the boundary
-   //    // coordinates either side of the vertex
-   //    DenseMatrix<double> left_jac(2, 2, 0.0);
-   //    DenseMatrix<double> right_jac(2, 2, 0.0);
-   //    Vector<DenseMatrix<double>> left_hess(2, DenseMatrix<double>(2, 2, 0.0));
-   //    Vector<DenseMatrix<double>> right_hess(2, DenseMatrix<double>(2, 2, 0.0));
-   //    for (unsigned alpha = 0; alpha < 2; alpha++)
-   //    {
-   //      // Fill in Jacobians {{nx,tx},{ny,ty}}
-   //      left_jac(alpha, 0) = left_ni[alpha];
-   //      left_jac(alpha, 1) = left_ti[alpha];
-   //      right_jac(alpha, 0) = right_ni[alpha];
-   //      right_jac(alpha, 1) = right_ti[alpha];
-   //      // Fill in Hessians
-   //      // left_hess[alpha](0,0) = 0.0;
-   //      left_hess[alpha](0, 1) = left_dnids[alpha];
-   //      left_hess[alpha](1, 0) = left_dnids[alpha];
-   //      left_hess[alpha](1, 1) = left_dtids[alpha];
-   //      // right_hess[alpha](0,0) = 0.0;
-   //      right_hess[alpha](0, 1) = right_dnids[alpha];
-   //      right_hess[alpha](1, 0) = right_dnids[alpha];
-   //      right_hess[alpha](1, 1) = right_dtids[alpha];
-   //    }
-
-   //    //----------------------------------------------------------------------
-   //    // We need the inverse Jacobian and Hessian for the left parametrisation
-   //    DenseMatrix<double> left_jac_inv(2, 2, 0.0);
-   //    Vector<DenseMatrix<double>> left_hess_inv(2,
-   //                                              DenseMatrix<double>(2, 2, 0.0));
-   //    left_jac_inv(0, 0) = left_jac(1, 1);
-   //    left_jac_inv(0, 1) = -left_jac(0, 1);
-   //    left_jac_inv(1, 0) = -left_jac(1, 0);
-   //    left_jac_inv(1, 1) = left_jac(0, 0);
-   //    // Fill out inverse of Hessian
-   //    // H^{-1}abg = J^{-1}ad Hdez J^{-1}eb J^{-1}zg
-   //    for (unsigned alpha = 0; alpha < 2; alpha++)
-   //    {
-   //      for (unsigned beta = 0; beta < 2; beta++)
-   //      {
-   //        for (unsigned gamma = 0; gamma < 2; gamma++)
-   //        {
-   //          for (unsigned alpha2 = 0; alpha2 < 2; alpha2++)
-   //          {
-   //            for (unsigned beta2 = 0; beta2 < 2; beta2++)
-   //            {
-   //              for (unsigned gamma2 = 0; gamma2 < 2; gamma2++)
-   //              {
-   //                left_hess_inv[alpha](beta, gamma) -=
-   //                  left_jac_inv(alpha, alpha2) *
-   //                  left_hess[alpha2](beta2, gamma2) *
-   //                  left_jac_inv(beta2, beta) * left_jac_inv(gamma2, gamma);
-   //              }
-   //            }
-   //          }
-   //        }
-   //      }
-   //    }
-
-   //    //----------------------------------------------------------------------
-   //    //----------------------------------------------------------------------
-   //    // Use these to calculate the Jacobian of the left->right transform
-   //    //     J = J_{left}^{-1}J_{right}
-   //    // and the Hessian of the left->right transform
-   //    //     H = H_{left}^{-1}J_{right}J_{right} + J_{left}^{-1}H_{right}
-   //    for (unsigned alpha = 0; alpha < 2; alpha++)
-   //    {
-   //      for (unsigned beta = 0; beta < 2; beta++)
-   //      {
-   //        for (unsigned gamma = 0; gamma < 2; gamma++)
-   //        {
-   //          // Add contribution to J
-   //          jac_of_transform(alpha, beta) +=
-   //            left_jac_inv(alpha, gamma) * right_jac(gamma, beta);
-   //          for (unsigned mu = 0; mu < 2; mu++)
-   //          {
-   //            // Add second term contribution to H
-   //            hess_of_transform[alpha](beta, gamma) +=
-   //              left_jac_inv(alpha, mu) * right_hess[mu](beta, gamma);
-   //            for (unsigned nu = 0; nu < 2; nu++)
-   //            {
-   //              // Add first term contribution to H
-   //              hess_of_transform[alpha](beta, gamma) +=
-   //                left_hess_inv[alpha](mu, nu) * right_jac(mu, beta) *
-   //                right_jac(nu, gamma);
-   //            }
-   //          }
-   //        }
-   //      }
-   //    }
-
-   //    // // [zdec] debug
-   //    // std::ofstream jac_and_hess;
-
-   //    // jac_and_hess.open("corner_jac_and_hess_new.csv", std::ios_base::app);
-   //    // jac_and_hess << "Jacobian :" << std::endl
-   //    //              << jac_of_transform(0, 0) << " " << jac_of_transform(0, 1)
-   //    //              << std::endl
-   //    //              << jac_of_transform(1, 0) << " " << jac_of_transform(1, 1)
-   //    //              << std::endl
-   //    //              << "Hessian [x]:" << std::endl
-   //    //              << hess_of_transform[0](0, 0) << " " <<
-   //    //              hess_of_transform[0](0, 1)
-   //    //              << std::endl
-   //    //              << hess_of_transform[0](1, 0) << " " <<
-   //    //              hess_of_transform[0](1, 1)
-   //    //              << std::endl
-   //    //              << "Hessian [y]:" << std::endl
-   //    //              << hess_of_transform[1](0, 0) << " " <<
-   //    //              hess_of_transform[1](0, 1)
-   //    //              << std::endl
-   //    //              << hess_of_transform[1](1, 0) << " " <<
-   //    //              hess_of_transform[1](1, 1)
-   //    //              << std::endl
-   //    //              << std::endl;
-   //    // jac_and_hess.close();
-
-
-   //    // jac_and_hess.open("invleft_jac_and_hess_new.csv", std::ios_base::app);
-   //    // jac_and_hess << "Jacobian :" << std::endl
-   //    //              << left_jac_inv(0, 0) << " " << left_jac_inv(0, 1) <<
-   //    //              std::endl
-   //    //              << left_jac_inv(1, 0) << " " << left_jac_inv(1, 1) <<
-   //    //              std::endl
-   //    //              << "Hessian [x]:" << std::endl
-   //    //              << left_hess_inv[0](0, 0) << " " << left_hess_inv[0](0, 1)
-   //    //              << std::endl
-   //    //              << left_hess_inv[0](1, 0) << " " << left_hess_inv[0](1, 1)
-   //    //              << std::endl
-   //    //              << "Hessian [y]:" << std::endl
-   //    //              << left_hess_inv[1](0, 0) << " " << left_hess_inv[1](0, 1)
-   //    //              << std::endl
-   //    //              << left_hess_inv[1](1, 0) << " " << left_hess_inv[1](1, 1)
-   //    //              << std::endl
-   //    //              << std::endl;
-   //    // jac_and_hess.close();
-
-   //    // jac_and_hess.open("left_jac_and_hess_new.csv", std::ios_base::app);
-   //    // jac_and_hess << "Jacobian :" << std::endl
-   //    //              << left_jac(0, 0) << " " << left_jac(0, 1) << std::endl
-   //    //              << left_jac(1, 0) << " " << left_jac(1, 1) << std::endl
-   //    //              << "Hessian [x]:" << std::endl
-   //    //              << left_hess[0](0, 0) << " " << left_hess[0](0, 1)
-   //    //              << std::endl
-   //    //              << left_hess[0](1, 0) << " " << left_hess[0](1, 1)
-   //    //              << std::endl
-   //    //              << "Hessian [y]:" << std::endl
-   //    //              << left_hess[1](0, 0) << " " << left_hess[1](0, 1)
-   //    //              << std::endl
-   //    //              << left_hess[1](1, 0) << " " << left_hess[1](1, 1)
-   //    //              << std::endl
-   //    //              << std::endl;
-   //    // jac_and_hess.close();
-
-   //    // jac_and_hess.open("right_jac_and_hess_new.csv", std::ios_base::app);
-   //    // jac_and_hess << "Jacobian :" << std::endl
-   //    //              << right_jac(0, 0) << " " << right_jac(0, 1) << std::endl
-   //    //              << right_jac(1, 0) << " " << right_jac(1, 1) << std::endl
-   //    //              << "Hessian [x]:" << std::endl
-   //    //              << right_hess[0](0, 0) << " " << right_hess[0](0, 1)
-   //    //              << std::endl
-   //    //              << right_hess[0](1, 0) << " " << right_hess[0](1, 1)
-   //    //              << std::endl
-   //    //              << "Hessian [y]:" << std::endl
-   //    //              << right_hess[1](0, 0) << " " << right_hess[1](0, 1)
-   //    //              << std::endl
-   //    //              << right_hess[1](1, 0) << " " << right_hess[1](1, 1)
-   //    //              << std::endl
-   //    //              << std::endl;
-   //    // jac_and_hess.close();
-
-
-   //    // // [zdec] debug
-   //    // std::ofstream debug_stream;
-   //    // debug_stream.open("left_norm_and_tan.dat", std::ios_base::app);
-   //    // debug_stream << left_x[0] << " " << left_x[1] << " " << left_ni[0] << "
-   //    // "
-   //    //              << left_ni[1] << " " << left_ti[0] << " " << left_ti[1] <<
-   //    //              " "
-   //    //              << left_dnids[0] << " " << left_dnids[1] << " " <<
-   //    //              left_dtids[0]
-   //    //              << " " << left_dtids[1] << " " << left_d2xids2[0] << " "
-   //    //              << left_d2xids2[1] << std::endl;
-   //    // debug_stream.close();
-   //    // debug_stream.open("right_norm_and_tan.dat", std::ios_base::app);
-   //    // debug_stream << right_x[0] << " " << right_x[1] << " " << right_ni[0]
-   //    // << " "
-   //    //              << right_ni[1] << " " << right_ti[0] << " " << right_ti[1]
-   //    //              << " "
-   //    //              << right_dnids[0] << " " << right_dnids[1] << " " <<
-   //    //              right_dtids[0]
-   //    //              << " " << right_dtids[1] << " " << right_d2xids2[0] << " "
-   //    //              << right_d2xids2[1] << std::endl;
-   //    // debug_stream.close();
-
-   //  } // End get_jac_and_hess_of_coordinate_transform
-
 
     /// Add the contribution to the residuals (and jacobain if flag is 1) from
     /// the Lagrange multiplier constraining equations
@@ -765,11 +511,7 @@ namespace oomph
       // Dimension of constrained elements
       unsigned dim = 2;
 
-      // [zdec] debug
-      std::cout << std::endl
-                << std::endl
-                << "ADD CONTRIBUTION FROM CONSTRAINTS" << std::endl
-                << "=============================================" << std::endl;
+
       //----------------------------------------------------------------------
       //----------------------------------------------------------------------
       // Calculate Jacobian and Hessian of coordinate transform between
@@ -1128,357 +870,11 @@ namespace oomph
     } // End fill_in_generic_residual_contribution_constraint
 
 
-   // // moved into base class
-   
-   //  /// Store the index of the internal data keeping the Lagrange multipliers
-   //  unsigned Index_of_lagrange_data;
-
-   //  /// Store the index of the external data for the left node
-   //  unsigned Index_of_left_data;
-
-   //  /// Store the index of the external data for the right node
-   //  unsigned Index_of_right_data;
-
-   //  /// Pointer to the left node (before the vertex when anticlockwise)
-   //  Node* Left_node_pt;
-
-   //  /// Pointer to the right node (after the vertex when anticlockwise)
-   //  Node* Right_node_pt;
-
-   //  /// Pointer to the left node's boundary parametrisation
-   //  C1CurviLine* Left_boundary_pt;
-
-   //  /// Pointer to the right node's boundary parametrisation
-   //  C1CurviLine* Right_boundary_pt;
-
-   //  /// Coordinate of the left node on the left boundary
-   //  Vector<double> Left_node_coord;
-
-   //  /// Coordinate of the left node on the left boundary
-   //  Vector<double> Right_node_coord;
-
-   //  /// Tolerance for validating fully pinned constraints
-   //  // [zdec] does this wnat to be the problem residual tolerance?
-   //  double Constraint_tolerance = 1.0e-10;
-
-   //  /// Tolerance for checking whether a dof has become decoupled from an
-   //  /// equation.
-   //  /// i.e. in the equation y=Ax, how small does A have to be before y no
-   //  /// longer /numerically/ depends on x? This becomes relevant when derivative
-   //  /// directions become orthogonal, we need to ensure they aren't considered
-   //  /// linearly dependent. (We choose this to be slightly larger than machine
-   //  /// precision and it shouldn't generally need to be touched)
-   //  double Orthogonality_tolerance = 1.0e-15;
-
    
   }; // End of DuplicateNodeConstraintElement class definition
 
 
  
-  // //===start of rotation helper class=========================================
-  // /// Helper class to contain all the rotation information in the element.
-  // class RotatedBoundaryHelper
-  // {
-  // public:
-  //   /// Constructor: just initialise the member data to their defaults (zeros)
-  //   RotatedBoundaryHelper(FiniteElement* const& parent_element_pt)
-  //     : Parent_element_pt(parent_element_pt),
-  //       Nnode(Parent_element_pt->nvertex_node()),
-  //       Boundary_coordinate_of_node(3, 0.0),
-  //       Nodal_boundary_parametrisation_pt(3, 0),
-  //       Rotation_matrix_at_node(3, DenseMatrix<double>(6, 6, 0.0))
-  //   {
-  //   }
-
-  //   /// Destructor
-  //   ~RotatedBoundaryHelper() {}
-
-  //   C1CurviLine* nodal_boundary_parametrisation_pt(
-  //     const unsigned& j_node)
-  //   {
-  //     return Nodal_boundary_parametrisation_pt[j_node];
-  //   }
-
-
-  //  // hierher isn't this the same as in fkv?
-   
-  //   /// Add a new boundary parametrisation to nodes all the nodes in the
-  //   /// vector node_on_boundary
-  //   void set_nodal_boundary_parametrisation(
-  //     const Vector<unsigned>& node_on_boundary,
-  //     const Vector<double>& boundary_coord_of_node,
-  //     C1CurviLine* const& boundary_parametrisation_pt)
-  //   {
-  //     // Loop over all the nodes in node_on_boundary and add the boundary
-  //     // pointer to their vector of boundaries
-  //     unsigned n_node = node_on_boundary.size();
-  //     for (unsigned j = 0; j < n_node; j++)
-  //     {
-  //       // The j-th node on the boundary
-  //       unsigned j_node = node_on_boundary[j];
-
-  //       // Set the boundary parametrisation data pointer for this node
-  //       Nodal_boundary_parametrisation_pt[j_node] = boundary_parametrisation_pt;
-
-  //       // Set the coordinate of node j on this boundary
-  //       Boundary_coordinate_of_node[j_node] = boundary_coord_of_node[j];
-
-  //       update_rotation_matrices();
-  //     } // end of loop over nodes in node_on_boundary [j]
-  //   } // end of set_nodal_boundary_parametrisation()
-
-
-  //   /// Update all rotation matrices (checks if they are needed unless flag is
-  //   /// true)
-  //   void update_rotation_matrices()
-  //   {
-  //     // [zdec] hard coded the three vertex nodes
-  //     unsigned n_vertex = 3;
-  //     // Loop over each vertex
-  //     for (unsigned j_node = 0; j_node < n_vertex; j_node++)
-  //     {
-  //       // If this node does not have a parametrisation (the pointer is still
-  //       // null) skip over it, otherwise we go on to fill out the rotation
-  //       // matrix
-  //       if (!nodal_boundary_parametrisation_pt(j_node))
-  //       {
-  //         continue;
-  //       }
-
-  //       // Initialise the two basis vectors and their jacobians
-  //       Vector<Vector<double>> bi(2, Vector<double>(2, 0.0));
-  //       Vector<DenseMatrix<double>> dbidx(2, DenseMatrix<double>(2, 2, 0.0));
-
-  //       // Our new coordinate system:
-  //       //     (l, s)=(normal component, tangent component)
-  //       // which we define in terms of basis vectors (rescaled)
-  //       //     ni=dxi/dl / |n|           <-- Jacobian col 1
-  //       //     ti=dxi/ds / |t|           <-- Jacobian col 2
-  //       // and their derivatives
-  //       //     dnidxj=d/dxj(dxi/dl / |n|) <-- Hessian `col' 1
-  //       //     dtidxj=d/dxj(dxi/ds / |t|) <-- Hessian `col' 2
-
-  //       // [zdec] we use i and j for brevity
-  //       // but it should be alpha & beta
-  //       // Need to write up how the transformation is done
-
-  //       // Storage for our basis and derivatives
-  //       Vector<double> ni(2, 0.0);
-  //       Vector<double> ti(2, 0.0);
-  //       Vector<double> dnids(2, 0.0);
-  //       Vector<double> dtids(2, 0.0);
-
-  //       // All tensors assumed evaluated on the boundary
-  //       // Jacobian of inverse mapping
-  //       DenseMatrix<double> jac_inv(2, 2, 0.0);
-  //       // Hessian of mapping [zdec] (not needed because...)
-  //       Vector<DenseMatrix<double>> hess(2, DenseMatrix<double>(2, 2, 0.0));
-  //       // Hessian of inverse mapping [zdec] (...this can be found by hand)
-  //       Vector<DenseMatrix<double>> hess_inv(2, DenseMatrix<double>(2, 2, 0.0));
-
-  //       // The basis is defined in terms of the boundary parametrisation
-  //       Vector<double> boundary_coord = {Boundary_coordinate_of_node[j_node]};
-  //       C1CurviLine* boundary_pt =
-  //         Nodal_boundary_parametrisation_pt[j_node];
-  //       Vector<double> x(2, 0.0);
-  //       Vector<double> dxids(2, 0.0);
-  //       Vector<double> d2xids2(2, 0.0);
-
-  //       // Get position (debug)
-  //       boundary_pt->position(boundary_coord, x);
-  //       // Get tangent vector
-  //       boundary_pt->dposition(boundary_coord, dxids);
-  //       // Get second derivative
-  //       boundary_pt->d2position(boundary_coord, d2xids2);
-
-  //       double mag_t = sqrt(dxids[0] * dxids[0] + dxids[1] * dxids[1]);
-  //       // ti is the normalised tangent vector
-  //       ti[0] = dxids[0] / mag_t;
-  //       ti[1] = dxids[1] / mag_t;
-  //       // Derivative of (normalised) tangent
-  //       dtids[0] = d2xids2[0] / std::pow(mag_t, 2) -
-  //                  (dxids[0] * d2xids2[0] + dxids[1] * d2xids2[1]) * dxids[0] /
-  //                    std::pow(mag_t, 4);
-  //       dtids[1] = d2xids2[1] / std::pow(mag_t, 2) -
-  //                  (dxids[0] * d2xids2[0] + dxids[1] * d2xids2[1]) * dxids[1] /
-  //                    std::pow(mag_t, 4);
-  //       // n = (t x e_z) implies
-  //       ni[0] = ti[1];
-  //       ni[1] = -ti[0];
-  //       // Same for dnids
-  //       dnids[0] = dtids[1];
-  //       dnids[1] = -dtids[0];
-
-  //       // Need inverse of mapping to calculate ds/dxi ----------------
-  //       //   /  dx/dl  dx/ds  \ -1  ___  __1__ /  dy/ds -dx/ds \ .
-  //       //   \  dy/dl  dy/ds  /     ---   det  \ -dy/dl  dx/dl /
-  //       //
-  //       //                          ___  /  dl/dx  dl/dy  \ .
-  //       //                          ---  \  ds/dx  ds/dy  /
-  //       //
-  //       // Fill out inverse of Jacobian
-  //       double det = (ni[0] * ti[1] - ni[1] * ti[0]);
-  //       jac_inv(0, 0) = ti[1] / det;
-  //       jac_inv(0, 1) = -ti[0] / det;
-  //       jac_inv(1, 0) = -ni[1] / det;
-  //       jac_inv(1, 1) = ni[0] / det;
-
-  //       // Fill out the Hessian
-  //       // (unneeded -- can calculate the inverse components by hand)
-  //       for (unsigned alpha = 0; alpha < 2; alpha++)
-  //       {
-  //         // hess[alpha](0,0) = 0.0;
-  //         hess[alpha](0, 1) = dnids[alpha];
-  //         hess[alpha](1, 0) = dnids[alpha];
-  //         hess[alpha](1, 1) = dtids[alpha];
-  //       }
-
-  //       // Fill out inverse of Hessian
-  //       // H^{-1}abg = J^{-1}ad Hdez J^{-1}eb J^{-1}zg
-  //       for (unsigned alpha = 0; alpha < 2; alpha++)
-  //       {
-  //         for (unsigned beta = 0; beta < 2; beta++)
-  //         {
-  //           for (unsigned gamma = 0; gamma < 2; gamma++)
-  //           {
-  //             for (unsigned alpha2 = 0; alpha2 < 2; alpha2++)
-  //             {
-  //               for (unsigned beta2 = 0; beta2 < 2; beta2++)
-  //               {
-  //                 for (unsigned gamma2 = 0; gamma2 < 2; gamma2++)
-  //                 {
-  //                   hess_inv[alpha](beta, gamma) -=
-  //                     jac_inv(alpha, alpha2) * hess[alpha2](beta2, gamma2) *
-  //                     jac_inv(beta2, beta) * jac_inv(gamma2, gamma);
-  //                 }
-  //               }
-  //             }
-  //           }
-  //         }
-  //       }
-
-  //       // Fill in the rotation matrix using the new basis
-  //       fill_in_rotation_matrix_at_node_with_basis(j_node, jac_inv, hess_inv);
-
-  //     } // end loop over vertices
-  //   } // end of update_rotation_matrices()
-
-
-  //   /// Access function to fill out rot_mat using rotation matrix
-  //   void get_rotation_matrix_at_node(const unsigned& j_node,
-  //                                    DenseMatrix<double>& rot_mat)
-  //   {
-  //     rot_mat = Rotation_matrix_at_node[j_node];
-  //   }
-
-  // private:
-  //   /// Helper function to fill in the rotation matrix for a given basis
-  //   void fill_in_rotation_matrix_at_node_with_basis(
-  //     const unsigned& j_node,
-  //     const DenseMatrix<double>& jac_inv,
-  //     const Vector<DenseMatrix<double>>& hess_inv)
-  //   {
-  //     // Rotation matrix, b constructed using submatrices b1, b12, b22
-  //     DenseMatrix<double> b1(2, 2, 0.0), b22(3, 3, 0.0), b12(2, 3, 0.0);
-
-  //     // Fill in the submatrices
-  //     // Loop over the rotated first derivatives
-  //     for (unsigned mu = 0; mu < 2; mu++)
-  //     {
-  //       // Loop over the unrotated first derivatives
-  //       for (unsigned alpha = 0; alpha < 2; alpha++)
-  //       {
-  //         // Fill in b1 - the Jacobian
-  //         // Fill in the affine rotation of the first derivatives
-  //         b1(mu, alpha) = jac_inv(mu, alpha);
-
-  //         // Loop over unrotated second derivatives
-  //         for (unsigned beta = 0; beta < 2; ++beta)
-  //         {
-  //           // Avoid double counting the cross derivative
-  //           if (alpha <= beta)
-  //           {
-  //             // Define column index
-  //             const unsigned col = alpha + beta;
-
-  //             // Fill in the non-affine part of the rotation of the first
-  //             // derivatives
-  //             b12(mu, col) += hess_inv[mu](alpha, beta);
-  //             // [zdec] debug mixed derivative -- add extra
-  //             if (alpha < beta)
-  //             {
-  //               // b12(mu, col) -= hess_inv[mu](alpha, beta);
-  //             }
-  //             // Loop over the rotated second derivatives
-  //             for (unsigned nu = 0; nu < 2; nu++)
-  //             {
-  //               // // Avoid double counting the cross derivative
-  //               // if (mu <= nu)
-  //               {
-  //                 // Fill in b22 - the Affine part of the Jacobian derivative
-  //                 // Redefine row index for the next submatrix
-  //                 unsigned row_b22 = mu + nu;
-  //                 // Fill in the affine part of the rotation of the second
-  //                 // derivatives [zdec] if( beta>= alpha) ?
-  //                 b22(row_b22, col) += jac_inv(mu, alpha) * jac_inv(nu, beta);
-  //               }
-  //             }
-  //           }
-  //         }
-  //       }
-  //     }
-
-  //     // Fill in the submatrices to the full (6x6) matrix
-  //     Rotation_matrix_at_node[j_node](0, 0) = 1.0;
-  //     // Fill in b1 --- the affine contribution to rotation of the
-  //     // first derivatives
-  //     for (unsigned i = 0; i < 2; ++i)
-  //     {
-  //       for (unsigned j = 0; j < 2; ++j)
-  //       {
-  //         Rotation_matrix_at_node[j_node](1 + i, 1 + j) = b1(i, j);
-  //       }
-  //     }
-  //     // Fill in b21 --- the non-affine (second derivative dependent)
-  //     // rotation of the first derivatives
-  //     for (unsigned i = 0; i < 2; ++i)
-  //     {
-  //       for (unsigned j = 0; j < 3; ++j)
-  //       {
-  //         Rotation_matrix_at_node[j_node](1 + i, 3 + j) = b12(i, j);
-  //       }
-  //     }
-  //     // Fill in b22 --- the rotation of the second derivatives
-  //     for (unsigned i = 0; i < 3; ++i)
-  //     {
-  //       for (unsigned j = 0; j < 3; ++j)
-  //       {
-  //         Rotation_matrix_at_node[j_node](3 + i, 3 + j) = b22(i, j);
-  //       }
-  //     }
-  //   } // end fill_in_rotation_matrix_at_node_with_basis
-
-  //   /// Pointer to the `parent' finite element which this is a helper force
-  //   FiniteElement* Parent_element_pt;
-
-  //   /// The number of nodes (that we store rotation data for) in the fvk element
-  //   /// that uses this helper
-  //   unsigned Nnode;
-
-  //   /// Vector containing boundary parametrised location for each node
-  //   Vector<double> Boundary_coordinate_of_node;
-
-  //   /// Vector containing boundary parametrisation at each node
-  //   Vector<C1CurviLine*> Nodal_boundary_parametrisation_pt;
-
-  //   /// Vector containing <rotation matrix at each node>
-  //   Vector<DenseMatrix<double>> Rotation_matrix_at_node;
-  // };
-
-  // //---end of rotation helper class-------------------------------------------
-
-
-
 
   //===============================================================================
   /// KoiterSteigmannC1CurvableBellElement elements are a subparametric
@@ -1508,6 +904,9 @@ namespace oomph
       : CurvableBellElement<Nnode_1D>(Nfield, Field_is_bell_interpolated),
         KoiterSteigmannEquations()
     {
+
+     // hierher Aidan: Can this go; is this handled elsewhere?
+     
       // // Use the higher order integration scheme
       // delete this->integral_pt();
       // // Do we want something that is order 8 instead?
@@ -1673,11 +1072,14 @@ namespace oomph
     // Geometry and boundaries
 
    /// Clamp: i.e. pin the in-plane displacements and pin the out-of-plane
-   /// displacement and its normal derivatives. We also apply implied
+   /// displacement and its normal derivative. We also apply implied
    /// boundary conditions (e.g. specification of dw/dn also implies
-   /// d^2w/dn/dzeta etc.
-   /// hierher zeta is not necessarily the arclength! translation from
-   /// d/dzeta to d/dt requires jacobian!
+   /// d^2w/dn/dzeta etc. boundary_values_pt[i] describes boundary conditions
+   /// for the three displacement components... hierher Aidan: this is where
+   /// it gets complicated: u_x or u_n etc?
+   /// curviline_pt provides a pointer to the representation of the curvilinear
+   /// boundary in the triangle mesh.
+   // hierher make consistent with C1_helper.h
    virtual void fully_clamp_specified_boundary(
     const unsigned& b,
     const Vector<BoundaryConditionForC1PlateBending*>& boundary_values_pt,
@@ -1686,52 +1088,16 @@ namespace oomph
    
    /// Pin i.e. pin the in-plane and out of plane displacements only.
    /// We also apply implied boundary conditions (e.g. specification of w
-   /// also implies dw/dzeta etc.
-   /// hierher zeta is not necessarily the arclength! translation from
-   /// d/dzeta to d/dt requires jacobian!
+   /// also implies dw/dt etc. boundary_values_pt[i] describes boundary conditions
+   /// for the three displacement components... hierher Aidan: this is where
+   /// it gets complicated: u_x or u_n etc?
+   /// curviline_pt provides a pointer to the representation of the curvilinear
+   /// boundary in the triangle mesh.
+   // hierher make consistent with C1_helper.h
    virtual void pin_specified_boundary(
     const unsigned& b,
     const Vector<BoundaryConditionForC1PlateBending*>& boundary_values_pt,
     TriangleMeshCurviLine* curviline_pt);
-
-
-   // hierher kill ?
-   // /// hierher alpha=0,1  for x and y in plane displacements
-   // void pin_and_impose_specified_in_plane_displacement_along_specified_boundary(
-   //  const unsigned& alpha,
-   //  const unsigned& b,
-   //  BoundaryConditionForC1PlateBending* boundary_values_pt);
-
-   // /// hierher i=0,1,2 for u,v,w
-   // void pin_and_impose_specified_displacement_along_specified_boundary(
-   //  const unsigned& i,
-   //  const unsigned& b,
-   //  BoundaryConditionForC1PlateBending* boundary_values_pt);
-     
-   // // hierher
-   // void clamp_and_impose_specified_out_of_plane_displacement_along_specified_boundary(
-   //  const unsigned& b,
-   //  BoundaryConditionForC1PlateBending* boundary_values_pt);
-
-   
-// hierher obsolete from here...
-   
-    /// Function useful for setting boundary conditions that streamlines the
-    /// boundary condition setting process by pinning the k-th value of the i-th
-    /// displacement field at all nodes on boundary b to the value prescribed by
-    /// specified_u_ik_pt. This allows the user to set BCs without understanding
-    /// the underlying geometry elements of how they are integrated with
-    /// KoiterSteigmannEquations.
-    ///
-    /// As the dofs are Hermite, the user needs to take care to ensure they are
-    /// setting values that are implicitly prescribed at nodes by the higher
-    /// order continuous information AS WELL AS to be careful to track the
-    /// coordinate frame the Hermite data is describing (e.g. (x,y) vs
-    /// (normal,tangent)).
-    void set_boundary_condition(const unsigned& i_field,
-                                const unsigned& k_type,
-                                const unsigned& b_boundary,
-                                const ScalarFctPt& specified_u_ik_pt);
 
     /// Get the zeta coordinate
     inline void interpolated_zeta(const Vector<double>& s,
@@ -1769,7 +1135,16 @@ namespace oomph
     }
 
 
-   /// hierher elab on args
+   /// Factory to create DuplicateNodeConstraintElement.
+   /// which ensures that the deformation is sufficiently smooth
+   /// between different parts of a boundary (which may contain isolated
+   /// kinks which make it C0 rather than C1). Pass:
+   /// -- Pointers to nodes on the "left" and "right" boundary
+   /// -- pointers to the C1Curvilines that describe the smooth
+   ///    parts of the boundary on either side
+   /// -- the boundary coordinates that identifies the corner point
+   ///    relative the right and left boundary parametrisation
+   ///    (specified via a one-sized vector). 
    DuplicateNodeConstraintElement* duplicate_constraint_element_factory(
     Node* const& left_node_pt,
     Node* const& right_node_pt,
@@ -2056,12 +1431,15 @@ namespace oomph
 
  //==========================================================================
  /// Clamp: i.e. pin the in-plane displacements and pin the out-of-plane
- /// displacement and its normal derivatives. We also apply implied
+ /// displacement and its normal derivative. We also apply implied
  /// boundary conditions (e.g. specification of dw/dn also implies
- /// d^2w/dn/dzeta etc.
- /// hierher zeta is not necessarily the arclength! translation from
- /// d/dzeta to d/dt requires jacobian!
-  //==========================================================================
+ /// d^2w/dn/dzeta etc. boundary_values_pt[i] describes boundary conditions
+ /// for the three displacement components... hierher Aidan: this is where
+ /// it gets complicated: u_x or u_n etc?
+ /// curviline_pt provides a pointer to the representation of the curvilinear
+ /// boundary in the triangle mesh.
+ // hierher duplicate comment from above
+ //==========================================================================
  void KoiterSteigmannC1CurvableBellElement::fully_clamp_specified_boundary(
   const unsigned& b,
   const Vector<BoundaryConditionForC1PlateBending*>& boundary_values_pt,
@@ -2093,8 +1471,12 @@ namespace oomph
           unsigned nzeta=nod_pt->ncoordinates_on_boundary(b);
           if (nzeta!=1)
            {
-            // hierher
-            abort();
+            std::stringstream error_message;
+            error_message << "boundary coordinate must be 1D!"
+                          << std::endl;
+            throw OomphLibError(error_message.str(),
+                                OOMPH_CURRENT_FUNCTION,
+                                OOMPH_EXCEPTION_LOCATION);
            }
 #endif
           
@@ -2113,7 +1495,7 @@ namespace oomph
           // We have 6 Hermite deflection degrees
           // of freedom points. They are {u ; u,x ; u,y ; u,xx ; u,xy ; u,yy}
           // or their rotated counterparts {u ; u,n ; u,t ; u,nn ; u,nt ; u,tt}
-          unsigned nw_type=6; // hierher nw_type_at_each_node();
+          unsigned nw_type=6; // hierher Aidan the function I copied this from (which I think wasn't ever used had nw_type_at_each_node();
           for (unsigned k_type=0;k_type<nw_type;k_type++)
            {
             double value=0.0;
@@ -2171,17 +1553,18 @@ namespace oomph
               break;
               
              default:
-              oomph_info << "never get here" << std::endl;
-              abort();
+              std::stringstream error_message;
+              error_message << "never get here" << std::endl;
+              throw OomphLibError(error_message.str(),
+                                  OOMPH_CURRENT_FUNCTION,
+                                  OOMPH_EXCEPTION_LOCATION);
+              
              }
             
             // Actually assign?
             if (do_it)
              
              {
-              oomph_info << "pinning.setting at b k_type zeta value" << b << " "
-                         << k_type << " " << zeta[0] << " " << value << std::endl;
-              
               // Pin and set the value
               nod_pt->pin(first_nodal_type_index + k_type);
               nod_pt->set_value(first_nodal_type_index + k_type, value);
@@ -2191,37 +1574,6 @@ namespace oomph
        }
      }
    }
-        
-          
-
-    // hierher kill: Aidan's old version had this old:
-        
-    //   // Get node
-    //   Node* nod_pt = this->node_pt(n);
-    //   // Check if it is on the boundary
-    //   bool is_boundary_node = nod_pt->is_on_boundary(b_boundary);
-    //   if (is_boundary_node)
-    //    {
-    //     // Extract nodal coordinates from node:
-    //     Vector<double> x(2);
-    //     x[0] = nod_pt->x(0);
-    //     x[1] = nod_pt->x(1);
-    //     // Get value
-    //     double value;
-    //     specified_u_ik_pt(x, value);
-    //     // Pin and set the value
-    //     nod_pt->pin(first_nodal_type_index + k_type);
-    //     nod_pt->set_value(first_nodal_type_index + k_type, value);
-    //   }
-    // }
-
-
-    // hierher fvk versino
-  // for (unsigned i=0;i<3;i++)
-  //  {
-  //   pin_and_impose_specified_displacement_along_specified_boundary
-  //    (i,b,boundary_values_pt[i]);
-  //  }
 
  }
 
@@ -2229,9 +1581,12 @@ namespace oomph
  //=============================================================================
  /// Pin i.e. pin the in-plane and out of plane displacements only.
  /// We also apply implied boundary conditions (e.g. specification of w
- /// also implies dw/dzeta etc.
- /// hierher zeta is not necessarily the arclength! translation from
- /// d/dzeta to d/dt requires jacobian!
+ /// also implies dw/dt etc. boundary_values_pt[i] describes boundary conditions
+ /// for the three displacement components... hierher Aidan: this is where
+ /// it gets complicated: u_x or u_n etc?
+ /// curviline_pt provides a pointer to the representation of the curvilinear
+ /// boundary in the triangle mesh.
+ // hierher copy from above when sorted out
 //=============================================================================
  void KoiterSteigmannC1CurvableBellElement::pin_specified_boundary(
   const unsigned& b,
@@ -2264,8 +1619,12 @@ namespace oomph
           unsigned nzeta=nod_pt->ncoordinates_on_boundary(b);
           if (nzeta!=1)
            {
-            // hierher
-            abort();
+            std::stringstream error_message;
+            error_message << "boundary coordinate must be 1D!"
+                          << std::endl;
+            throw OomphLibError(error_message.str(),
+                                OOMPH_CURRENT_FUNCTION,
+                                OOMPH_EXCEPTION_LOCATION);
            }
 #endif
           
@@ -2285,7 +1644,7 @@ namespace oomph
           // We have 6 Hermite deflection degrees
           // of freedom points. They are {u ; u,x ; u,y ; u,xx ; u,xy ; u,yy}
           // or their rotated counterparts {u ; u,n ; u,t ; u,nn ; u,nt ; u,tt}
-          unsigned nw_type=6; // hierher nw_type_at_each_node();
+          unsigned nw_type=6; // hierher Aidan the function I copied this from (which I think wasn't ever used had nw_type_at_each_node();
           for (unsigned k_type=0;k_type<nw_type;k_type++)
            {
             double value=0.0;
@@ -2327,8 +1686,11 @@ namespace oomph
               break;
               
              default:
-              oomph_info << "never get here" << std::endl;
-              abort();
+              std::stringstream error_message;
+              error_message << "never get here" << std::endl;
+              throw OomphLibError(error_message.str(),
+                                  OOMPH_CURRENT_FUNCTION,
+                                  OOMPH_EXCEPTION_LOCATION);
              }
             
             // Skip anything related to normal derivatives
@@ -2337,9 +1699,6 @@ namespace oomph
                  ( k_type!=4)  )  // d^2w/dtdn
              
              {
-              oomph_info << "pinning.setting at b k_type zeta value" << b << " "
-                         << k_type << " " << zeta[0] << " " << value << std::endl;
-              
               // Pin and set the value
               nod_pt->pin(first_nodal_type_index + k_type);
               nod_pt->set_value(first_nodal_type_index + k_type, value);
@@ -2349,106 +1708,10 @@ namespace oomph
        }
      }
    }
-        
-          
-
-    // hierher kill: Aidan's old version had this old:
-        
-    //   // Get node
-    //   Node* nod_pt = this->node_pt(n);
-    //   // Check if it is on the boundary
-    //   bool is_boundary_node = nod_pt->is_on_boundary(b_boundary);
-    //   if (is_boundary_node)
-    //    {
-    //     // Extract nodal coordinates from node:
-    //     Vector<double> x(2);
-    //     x[0] = nod_pt->x(0);
-    //     x[1] = nod_pt->x(1);
-    //     // Get value
-    //     double value;
-    //     specified_u_ik_pt(x, value);
-    //     // Pin and set the value
-    //     nod_pt->pin(first_nodal_type_index + k_type);
-    //     nod_pt->set_value(first_nodal_type_index + k_type, value);
-    //   }
-    // }
-
-
-    // hierher fvk versino
-  // for (unsigned i=0;i<3;i++)
-  //  {
-  //   pin_and_impose_specified_displacement_along_specified_boundary
-  //    (i,b,boundary_values_pt[i]);
-  //  }
 
  }
  
          
- 
-  //============================================================================
-  /// Function useful for setting boundary conditions that streamlines the
-  /// boundary condition setting process by pinning the k-th value of the i-th
-  /// displacement field at all nodes on boundary b to the value prescribed by
-  /// specified_u_ik_pt. This allows the user to set BCs without understanding
-  /// the underlying geometry elements of how they are integrated with
-  /// KoiterSteigmannEquations.
-  ///
-  /// As the dofs are Hermite, the user needs to take care to ensure they are
-  /// setting values that are implicitly prescribed at nodes by the higher
-  /// order continuous information AS WELL AS to be careful to track the
-  /// coordinate frame the Hermite data is describing (e.g. (x,y) vs
-  /// (normal,tangent)).
-  //============================================================================
-  void KoiterSteigmannC1CurvableBellElement::
-  set_boundary_condition(const unsigned& i_field,
-                              const unsigned& k_type,
-                              const unsigned& b_boundary,
-                              const ScalarFctPt& specified_u_ik_pt)
-  {
-    const unsigned first_nodal_type_index =
-      this->first_nodal_type_index_for_field(i_field);
-    const unsigned n_vertices = nu_node();
-
-
-    // hierher Aidan -- this shouldn't be in KS, should it (obsolete fct anyway, but...)
-#ifdef PARANOID
-    // Check that the dof number is a sensible value
-    unsigned n_type = nu_type_at_each_node();
-    if (k_type >= n_type)
-    {
-      throw OomphLibError(
-        "Foppl von Karman elements only have 6 Hermite deflection degrees\
-of freedom at internal points. They are {w ; w,x ; w,y ; w,xx ; w,xy ; w,yy}",
-        OOMPH_CURRENT_FUNCTION,
-        OOMPH_EXCEPTION_LOCATION);
-    }
-#endif
-
-    // These KS elements only have displacement dofs at vertices, we assume
-    // these are the first n_vertices nodes
-    for (unsigned n = 0; n < n_vertices; ++n)
-    {
-      // Get node
-      Node* nod_pt = this->node_pt(n);
-      // Check if it is on the boundary
-      bool is_boundary_node = nod_pt->is_on_boundary(b_boundary);
-      if (is_boundary_node)
-      {
-        // Extract nodal coordinates from node:
-        Vector<double> x(2);
-        x[0] = nod_pt->x(0);
-        x[1] = nod_pt->x(1);
-        // Get value
-        double value;
-        specified_u_ik_pt(x, value);
-        // Pin and set the value
-        nod_pt->pin(first_nodal_type_index + k_type);
-        nod_pt->set_value(first_nodal_type_index + k_type, value);
-      }
-    }
-  }
-
-
 
   //======================================================================
   /// (pure virtual) Basis functions at local coordinate s

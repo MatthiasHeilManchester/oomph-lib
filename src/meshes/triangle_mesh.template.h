@@ -1180,7 +1180,6 @@ namespace oomph
     bool Use_attributes;
 
   protected:
-
    
     /// Target areas for regions; defaults to 0.0 which (luckily)
     /// implies "no specific target area" for triangle!

@@ -201,77 +201,9 @@ namespace oomph
       }
     } // End of repair_lagrange_node_positions
 
-  }; // End of Subparametric TElement clas
+  }; // End of Subparametric TElement class
 
 
-
-
-//  //===========================================================================
-//  /// Base class for DuplicateNodeConstraintElement s (imlemented in FvK and KS
-//  //===========================================================================
-// class DuplicateNodeConstraintElement : public virtual GeneralisedElement
-// {};
-
- 
- 
- 
- // //===========================================================================
- // /// Template-free base class for curvable Bell Element
- // //===========================================================================
- // class TemplateFreeCurvableBellElement
- // {
-
- // public:
-  
- //  /// Upgrade the element to be curved
- //  virtual void upgrade_element_to_curved(const C1Helper::CurvedEdgeEnumeration& curved_edge,
- //                                         const double& s_ubar,
- //                                         const double& s_obar,
- //                                         C1CurviLine* parametric_edge,
- //                                         const unsigned& boundary_order)=0;
-  
- //  /// Access function to rotated boundary helper object
- //  virtual RotatedBoundaryHelper* rotated_boundary_helper_pt()=0;
-
-
- //  /// Clamp: i.e. pin the in-plane displacements and pin the out-of-plane
- //  /// displacement and its normal derivative. We also apply implied
- //  /// boundary conditions (e.g. specification of dw/dn also implies
- //  /// d^2w/dn/dzeta etc.
- //  /// hierher careful with nonzero dw/dn; doesn't necesarily do what you think
- //  /// hierher zeta is not necessarily the arclength! translation from
- //  /// d/dzeta to d/dt requires jacobian!
- //  virtual void fully_clamp_specified_boundary(
- //   const unsigned& b,
- //   const Vector<BoundaryConditionForC1PlateBending*>& boundary_values_pt) = 0;
-  
-  
- //  /// Pin i.e. pin the in-plane and out of plane displacements only.
- //  /// We also apply implied boundary conditions (e.g. specification of w
- //  /// also implies dw/dt etc.
- //  /// hierher zeta is not necessarily the arclength! translation from
- //  /// d/dzeta to d/dt requires jacobian!
- //  virtual void pin_specified_boundary(
- //   const unsigned& b,
- //   const Vector<BoundaryConditionForC1PlateBending*>& boundary_values_pt) = 0;
-
-
- //  /// Factory to create DuplicateNodeConstraintElement
- //  // hierher elaborate ib args
- //  DuplicateNodeConstraintElement* duplicate_constraint_element_factory(
- //   Node* const& left_node_pt,
- //   Node* const& right_node_pt,
- //   C1CurviLine* const& left_boundary_pt,
- //   C1CurviLine* const& right_boundary_pt,
- //   Vector<double> const& left_coord,
- //   Vector<double> const& right_coord)=0;
-  
-  
- // };
- 
-
-  
-   
   //===========================================================================
   /// Curvable Bell element. It inherits simplax shape subparametricity
   /// SubparametricTriangleElement for efficient position interpolation. It also
@@ -349,10 +281,6 @@ namespace oomph
     {
       BrokenCopy::broken_assign(OOMPH_CURRENT_FUNCTION);
     }
-
-
-    /// Alias for enum to enumerate the possible edges that could be curved
-    // hierher kill typedef typename MyC1CurvedElements::Edge Edge;
 
 
     ///  Boolean function indicating whether element is curved or not
@@ -817,8 +745,7 @@ to access interpolated eulerian coordinate",
                                           C1CurviLine* parametric_edge,
                                           const unsigned& boundary_order)
     {
-// hierher kill      using namespace MyC1CurvedElements;
-     
+
 #ifdef PARANOID
       // Check that we haven't upgraded this element already
       if (Curved_edge != C1Helper::CurvedEdgeEnumeration::none)

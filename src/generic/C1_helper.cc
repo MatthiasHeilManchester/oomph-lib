@@ -11,6 +11,20 @@ namespace C1Helper
  
 
  
+ /// Boolean to suppress warning about polygonal boundaries
+ bool Do_not_warn_about_polygonal_boundaries=false;
+  
+ /// Output stream to document split elements
+ std::ofstream Split_elements_output_stream;
+     
+ /// Output stream to document duplicated nodes
+ std::ofstream Duplicated_node_output_stream;
+     
+ /// Output stream to document elements whose boundaries have been
+ /// upgraded to become curved
+ std::ofstream Upgraded_to_curved_edge_element_stream;
+
+ 
 //==============================================================================
 // hierher update
 /// Duplicate nodes at corners in order to properly apply boundary
@@ -50,7 +64,6 @@ namespace C1Helper
          unsigned b_max=0;
          for (unsigned b : (*boundaries_pt))
           {
-           oomph_info << "Node " << node_pt << " is on boundary " << b << std::endl;
            if (b<b_min) b_min=b;
            if (b>b_max) b_max=b;           
           }
@@ -69,13 +82,18 @@ namespace C1Helper
     Node* node_to_be_duplicated_pt=a.first;
     unsigned boundary_on_which_node_is_duplicated=a.second.first;
     unsigned boundary_on_which_node_is_left=a.second.second;
+
+    // Doc?
+    if (Duplicated_node_output_stream.is_open())
+     {
+      Duplicated_node_output_stream
+       << node_to_be_duplicated_pt->x(0) << " "
+       << node_to_be_duplicated_pt->x(1) << " "
+       << boundary_on_which_node_is_duplicated << " "
+       << boundary_on_which_node_is_left
+       << std::endl;
+     }
     
-    oomph_info << "Node " <<  node_to_be_duplicated_pt
-               << " is duplicated on boundary "
-               << boundary_on_which_node_is_duplicated << " and kept on boundary"
-               << boundary_on_which_node_is_left
-               << std::endl;
-   
     // Find the boundary element that contains the node to be duplicated on
     // the boundary where the node is to be duplicated
     FiniteElement* el_where_node_is_to_be_duplicated_pt=0;
@@ -93,9 +111,6 @@ namespace C1Helper
         break;
       }
     }
-
-    oomph_info << "Boundary element that contains that node: "
-               << el_where_node_is_to_be_duplicated_pt << std::endl;
     
     // Now we need to create a new node and substitute the element's
     // old corner node for this new one
@@ -113,9 +128,6 @@ namespace C1Helper
     bulk_mesh_pt->remove_boundary_node(boundary_on_which_node_is_duplicated,node_to_be_duplicated_pt);
     bulk_mesh_pt->   add_boundary_node(boundary_on_which_node_is_duplicated,new_node_pt);
 
-
-    // hierher is there some region lookup scheme where the node needs to be added too?
-    
     // The final job is to constrain this duplication using the specialised
     // Lagrange multiplier elements which enforce equality of displacement and
     // its derivatives either side of this corner.
@@ -180,12 +192,9 @@ namespace C1Helper
       // Get pointer to bulk element adjacent to b
       FiniteElement* bulk_el_pt =
        bulk_mesh_pt->boundary_element_pt(ibound,e);
-      
-      // hierher Aidan what is that? why "My"?
+
       // Initialise enum for the curved edge
       C1Helper::CurvedEdgeEnumeration edge=C1Helper::CurvedEdgeEnumeration::none;
-      
-      // hierher kill MyC1CurvedElements::Edge edge(MyC1CurvedElements::none);
       
       // Loop over all (three) vertex nodes of the element and
       // identify single node that is interior (i.e. not on any
@@ -273,6 +282,16 @@ namespace C1Helper
       curv_el_pt->upgrade_element_to_curved(edge, s_ubar, s_obar,
                                             c1_curve_pt,
                                             boundary_order);
+
+
+      // Doc?
+      if (Upgraded_to_curved_edge_element_stream.is_open())
+       {
+        unsigned nplot=5;
+        curv_el_pt->output(Upgraded_to_curved_edge_element_stream,nplot);
+       }
+      
+      
      }
 
    } // end of loop over outer boundaries
@@ -352,67 +371,6 @@ namespace C1Helper
   }
  
 } // end rotate_edge_degrees_of_freedom
-
-
-
-
- 
-// //======================================================================
-// /// Helper function to upgrade a triangle mesh to C1 computations:
-// /// -- split elements that have multiple edges on a boundary (so the number
-// ///    of elements in the mesh changes!
-// /// -- duplicate corner nodes (so the number of nodes in the mesh changes
-// /// -- create DuplicateNodeConstraintElements that constrain the degrees of freedom
-// ///    at the newly created nodes to ensure continuity of the displacements
-//  ///    These elements are added to the mesh pointed to by constraint_mesh_pt
-// /// -- rotate the degrees of freedom on the curvilinear boundaries so they
-// ///    represent displacements and derivatives in the tangential and
-// ///    normal direction // hierher Aidan true?
-// //======================================================================
-//  template <class ELEMENT>
-//  void upgrade_triangle_mesh_for_c1_plate_bending(
-//   TriangleMeshBase* bulk_mesh_pt,
-//   Mesh* constraint_mesh_pt)
-//  {
-//   // Get map to curvline boundaries of mesh
-//   std::map<unsigned, TriangleMeshCurviLine*> curviline_boundary_pt =
-//    bulk_mesh_pt->curviline_boundary_pt();
-  
-//   // Map as "sparse vector" for C1 curvilines 
-//   std::map<unsigned,C1CurviLine*> c1_curviline_pt;
-//   for (auto [ b, curviline_pt] :  curviline_boundary_pt)
-//    {
-//     c1_curviline_pt[b] = new C1CurviLine(curviline_pt);
-//    }
-  
-//   // Split elements that have multiple edges on a boundary
-//   // Note: Sets up the boundary loopup scheme too.
-//   bulk_mesh_pt->
-//    template split_elements_with_multiple_boundary_edges<ELEMENT>();
-  
-//   // Duplicate corner nodes
-//   duplicate_corner_nodes(bulk_mesh_pt,
-//                          c1_curviline_pt,
-//                          constraint_mesh_pt);
-  
-//   // Re-setup boundary cooordinates
-//   ToleranceForVertexMismatchInPolygons::Tolerable_error=1.0; // hierher
-//   unsigned nb=bulk_mesh_pt->nboundary();
-//   for (unsigned b=0;b<nb;b++)
-//    {
-//     bulk_mesh_pt->template setup_boundary_coordinates<ELEMENT>(b);
-//    }
-  
-//   // Upgrade
-//   upgrade_edge_elements_to_curved_boundaries(
-//    bulk_mesh_pt,
-//    c1_curviline_pt);
-  
-//   // Rotate degrees of freedom (only really needed for clamped bcs)
-//   rotate_edge_degrees_of_freedom(
-//    bulk_mesh_pt,
-//    c1_curviline_pt);
-//  }
 
  
 

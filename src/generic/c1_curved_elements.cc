@@ -36,11 +36,6 @@
 
 namespace oomph
 {
-
- // hierher kill
-  // namespace MyC1CurvedElements
-  // {
- 
     // Declaration of a function protypes  (explicit instantiation)
     /// Fill in matrix to convert the monomials to the basic shape functions
     template<>
@@ -3092,7 +3087,5 @@ namespace oomph
     template class BernadouElementBasis<3>;
     template class BernadouElementBasis<5>;
 
-    // hierher kill 
-    // } // namespace MyC1CurvedElements
 
 } // end namespace oomph

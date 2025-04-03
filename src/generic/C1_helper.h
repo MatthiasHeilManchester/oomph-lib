@@ -37,7 +37,10 @@ namespace oomph
 {
 
   //======================================================================
-  /// hierher
+  /// Thin wrapper to curved line that defines curved boundaries
+  /// in triangle meshes. Obtains higher derivatives from the underlying
+  /// GeomObject. Used in C1 problems (e.g. plate bending) where we
+  /// we need such information about the boundary parametrisation.
   //======================================================================
   class C1CurviLine 
 
@@ -50,17 +53,14 @@ namespace oomph
     {
     }
    
-    /// Broken copy constructor
+   /// Broken copy constructor
    C1CurviLine(const C1CurviLine& dummy) = delete;
-
-    /// Broken assignment operator
+   
+   /// Broken assignment operator
    void operator=(const C1CurviLine&) = delete;
    
-    /// (Empty) destructor
-    virtual ~C1CurviLine() {}
-
-
-   // hierher in all of these, why is zeta still a vector?
+   /// (Empty) destructor
+   virtual ~C1CurviLine() {}
    
    /// Position r as fct of zeta; forward to underlying geom object
    void position(const Vector<double>& zeta,
@@ -68,11 +68,11 @@ namespace oomph
     {
      Triangle_mesh_curviline_pt->geom_object_pt()->position(zeta,r); 
     }
-
    
-    /// Derivative of position Vector w.r.t. to zeta:
-    virtual void dposition(const Vector<double>& zeta,
-                           Vector<double>& drdzeta) const
+   
+   /// Derivative of position Vector w.r.t. to zeta:
+   virtual void dposition(const Vector<double>& zeta,
+                          Vector<double>& drdzeta) const
     {
      DenseMatrix<double> drdzeta_general(2,2);
      Triangle_mesh_curviline_pt->geom_object_pt()->dposition(zeta,drdzeta_general);
@@ -128,12 +128,15 @@ namespace oomph
           }
          else
           {
-           // hierher throw
-           oomph_info << "Converged to zeta outside range: zeta = "
-                      << zeta << std::endl
-                      << "zeta_min/max = " << zeta_min << " " << zeta_max
-                      << std::endl;
-           abort(); // hierher
+           std::stringstream error_message;
+           error_message << "Converged to zeta outside range: zeta = "
+                         << zeta << std::endl
+                         << "zeta_min/max = " << zeta_min << " "
+                         << zeta_max
+                         << std::endl;
+           throw OomphLibError(error_message.str(),
+                               OOMPH_CURRENT_FUNCTION,
+                               OOMPH_EXCEPTION_LOCATION);
           }
         }
 
@@ -149,11 +152,14 @@ namespace oomph
       }
 
      // If we get here died:
-     // hierher throw 
-     oomph_info << "newton method failed to converge after max_iter = "
-                << max_iter << " iterations" << std::endl;
-     abort(); // hierher
-
+     std::stringstream error_message;
+     error_message
+      << "newton method failed to converge after max_iter = "
+      << max_iter << " iterations" << std::endl;
+     throw OomphLibError(error_message.str(),
+                         OOMPH_CURRENT_FUNCTION,
+                         OOMPH_EXCEPTION_LOCATION);
+     
      // dummy return
      return zeta;
     }
@@ -182,8 +188,15 @@ class DuplicateNodeConstraintElement : public virtual GeneralisedElement
 
 public:
 
-
- /// Constructor hierher annotate
+ /// Constructor to ensure that the deformation is sufficiently smooth
+ /// between different parts of a boundary (which may contain isolated
+ /// kinks which make it C0 rather than C1). Pass:
+ /// -- Pointers to nodes on the "left" and "right" boundary
+ /// -- pointers to the C1Curvilines that describe the smooth
+ ///    parts of the boundary on either side
+ /// -- the boundary coordinates that identifies the corner point
+ ///    relative the right and left boundary parametrisation
+ ///    (specified via a one-sized vector). 
  DuplicateNodeConstraintElement(
   Node* const& left_node_pt,
   Node* const& right_node_pt,
@@ -198,11 +211,20 @@ public:
   Left_node_coord(left_coord),
   Right_node_coord(right_coord)
   {}
-
- // hierher break copy constr etc.
  
-  /// hierher rename and annotate
- virtual void validate_and_pin_redundant_constraints()=0;
+
+ /// Broken copy constructor
+ DuplicateNodeConstraintElement(const C1CurviLine& dummy) = delete;
+ 
+ /// Broken assignment operator
+ void operator=(const DuplicateNodeConstraintElement&) = delete;
+  
+ /// This function must be called after all global boundary
+ /// conditions have been applied to pin constraints that
+ /// would enforce continuity that's already guaranteed.
+ /// Specific implementation happens in derived classes
+ /// for specific plate elements
+ virtual void pin_redundant_constraints()=0;
  
 protected: 
 
@@ -361,111 +383,6 @@ protected:
         }
       }
     }
-
-   // // [zdec] debug
-   // std::ofstream jac_and_hess;
-
-   // jac_and_hess.open("corner_jac_and_hess_new.csv", std::ios_base::app);
-   // jac_and_hess << "Jacobian :" << std::endl
-   //              << jac_of_transform(0, 0) << " " << jac_of_transform(0, 1)
-   //              << std::endl
-   //              << jac_of_transform(1, 0) << " " << jac_of_transform(1, 1)
-   //              << std::endl
-   //              << "Hessian [x]:" << std::endl
-   //              << hess_of_transform[0](0, 0) << " " <<
-   //              hess_of_transform[0](0, 1)
-   //              << std::endl
-   //              << hess_of_transform[0](1, 0) << " " <<
-   //              hess_of_transform[0](1, 1)
-   //              << std::endl
-   //              << "Hessian [y]:" << std::endl
-   //              << hess_of_transform[1](0, 0) << " " <<
-   //              hess_of_transform[1](0, 1)
-   //              << std::endl
-   //              << hess_of_transform[1](1, 0) << " " <<
-   //              hess_of_transform[1](1, 1)
-   //              << std::endl
-   //              << std::endl;
-   // jac_and_hess.close();
-
-
-   // jac_and_hess.open("invleft_jac_and_hess_new.csv", std::ios_base::app);
-   // jac_and_hess << "Jacobian :" << std::endl
-   //              << left_jac_inv(0, 0) << " " << left_jac_inv(0, 1) <<
-   //              std::endl
-   //              << left_jac_inv(1, 0) << " " << left_jac_inv(1, 1) <<
-   //              std::endl
-   //              << "Hessian [x]:" << std::endl
-   //              << left_hess_inv[0](0, 0) << " " << left_hess_inv[0](0, 1)
-   //              << std::endl
-   //              << left_hess_inv[0](1, 0) << " " << left_hess_inv[0](1, 1)
-   //              << std::endl
-   //              << "Hessian [y]:" << std::endl
-   //              << left_hess_inv[1](0, 0) << " " << left_hess_inv[1](0, 1)
-   //              << std::endl
-   //              << left_hess_inv[1](1, 0) << " " << left_hess_inv[1](1, 1)
-   //              << std::endl
-   //              << std::endl;
-   // jac_and_hess.close();
-
-   // jac_and_hess.open("left_jac_and_hess_new.csv", std::ios_base::app);
-   // jac_and_hess << "Jacobian :" << std::endl
-   //              << left_jac(0, 0) << " " << left_jac(0, 1) << std::endl
-   //              << left_jac(1, 0) << " " << left_jac(1, 1) << std::endl
-   //              << "Hessian [x]:" << std::endl
-   //              << left_hess[0](0, 0) << " " << left_hess[0](0, 1)
-   //              << std::endl
-   //              << left_hess[0](1, 0) << " " << left_hess[0](1, 1)
-   //              << std::endl
-   //              << "Hessian [y]:" << std::endl
-   //              << left_hess[1](0, 0) << " " << left_hess[1](0, 1)
-   //              << std::endl
-   //              << left_hess[1](1, 0) << " " << left_hess[1](1, 1)
-   //              << std::endl
-   //              << std::endl;
-   // jac_and_hess.close();
-
-   // jac_and_hess.open("right_jac_and_hess_new.csv", std::ios_base::app);
-   // jac_and_hess << "Jacobian :" << std::endl
-   //              << right_jac(0, 0) << " " << right_jac(0, 1) << std::endl
-   //              << right_jac(1, 0) << " " << right_jac(1, 1) << std::endl
-   //              << "Hessian [x]:" << std::endl
-   //              << right_hess[0](0, 0) << " " << right_hess[0](0, 1)
-   //              << std::endl
-   //              << right_hess[0](1, 0) << " " << right_hess[0](1, 1)
-   //              << std::endl
-   //              << "Hessian [y]:" << std::endl
-   //              << right_hess[1](0, 0) << " " << right_hess[1](0, 1)
-   //              << std::endl
-   //              << right_hess[1](1, 0) << " " << right_hess[1](1, 1)
-   //              << std::endl
-   //              << std::endl;
-   // jac_and_hess.close();
-
-
-   // // [zdec] debug
-   // std::ofstream debug_stream;
-   // debug_stream.open("left_norm_and_tan.dat", std::ios_base::app);
-   // debug_stream << left_x[0] << " " << left_x[1] << " " << left_ni[0] << "
-   // "
-   //              << left_ni[1] << " " << left_ti[0] << " " << left_ti[1] <<
-   //              " "
-   //              << left_dnids[0] << " " << left_dnids[1] << " " <<
-   //              left_dtids[0]
-   //              << " " << left_dtids[1] << " " << left_d2xids2[0] << " "
-   //              << left_d2xids2[1] << std::endl;
-   // debug_stream.close();
-   // debug_stream.open("right_norm_and_tan.dat", std::ios_base::app);
-   // debug_stream << right_x[0] << " " << right_x[1] << " " << right_ni[0]
-   // << " "
-   //              << right_ni[1] << " " << right_ti[0] << " " << right_ti[1]
-   //              << " "
-   //              << right_dnids[0] << " " << right_dnids[1] << " " <<
-   //              right_dtids[0]
-   //              << " " << right_dtids[1] << " " << right_d2xids2[0] << " "
-   //              << right_d2xids2[1] << std::endl;
-   // debug_stream.close();
-
   } // End get_jac_and_hess_of_coordinate_transform
 
 
@@ -520,7 +437,6 @@ protected:
 class BoundaryConditionForC1PlateBending
 {
 
-
 public:
 
  /// Constructor: Specify FD step for automatic evaluation of derivatives
@@ -528,9 +444,13 @@ public:
   FD_step(fd_step)
   {}
 
- // hierher break copy constructor etc.
+  /// Broken copy constructor
+ BoundaryConditionForC1PlateBending(const C1CurviLine& dummy) = delete;
  
- /// Pure virtual function to specify value of the function (typically a
+ /// Broken assignment operator
+ void operator=(const BoundaryConditionForC1PlateBending&) = delete;
+ 
+  /// Pure virtual function to specify value of the function (typically a
  /// displacement component) as a function of zeta, the 1D coordinate
  /// that parametrises the boundary
  virtual double f(const double& zeta) =0 ;
@@ -544,8 +464,17 @@ public:
  /// evaluated.
  virtual double dfdn(const double& zeta)
   {
-   // hierher throw
-   abort();
+   std::stringstream error_message;
+   error_message
+    << "You'll have to implement the function that\n"
+    << "specifies the normal derivative if you want to use it!\n"
+    << "This broken virtual function was probably called \n"
+    << "when you tried to implement clamping bcs in a plate problem.\n"
+    << std::endl;
+   throw OomphLibError(error_message.str(),
+                       OOMPH_CURRENT_FUNCTION,
+                       OOMPH_EXCEPTION_LOCATION);
+
   }
  
  /// Virtual function to specify the derivative of the function (typically a
@@ -589,61 +518,66 @@ private:
  
 
 
-
-  //===start of rotation helper class=========================================
-  /// Helper class to contain all the rotation information in the element.
-  class RotatedBoundaryHelper
+ 
+ //===start of rotation helper class=========================================
+ /// Helper class to contain all the rotation information in the element.
+ //==========================================================================
+ class RotatedBoundaryHelper
   {
   public:
-    /// Constructor: just initialise the member data to their defaults (zeros)
-    RotatedBoundaryHelper(FiniteElement* const& parent_element_pt)
-      : Parent_element_pt(parent_element_pt),
-        Nnode(Parent_element_pt->nvertex_node()),
-        Boundary_coordinate_of_node(3, 0.0),
-        Nodal_boundary_parametrisation_pt(3, 0),
-        Rotation_matrix_at_node(3, DenseMatrix<double>(6, 6, 0.0))
+   
+   /// Constructor: just initialise the member data to their defaults (zeros)
+   /// hierher Aidan: what's the parent element?
+   RotatedBoundaryHelper(FiniteElement* const& parent_element_pt)
+    : Parent_element_pt(parent_element_pt),
+      Nnode(Parent_element_pt->nvertex_node()),
+      Boundary_coordinate_of_node(3, 0.0),
+      Nodal_boundary_parametrisation_pt(3, 0),
+      Rotation_matrix_at_node(3, DenseMatrix<double>(6, 6, 0.0))
     {
     }
+   
+   /// Destructor
+   ~RotatedBoundaryHelper() {}
 
-    /// Destructor
-    ~RotatedBoundaryHelper() {}
-
-    C1CurviLine* nodal_boundary_parametrisation_pt(
-      const unsigned& j_node)
+   /// Return C1Curviline associated with the boundary
+   /// parametrisatino that given local node is on
+   /// hierher Aidan: please confirm
+   C1CurviLine* nodal_boundary_parametrisation_pt(
+    const unsigned& j_node)
     {
-      return Nodal_boundary_parametrisation_pt[j_node];
+     return Nodal_boundary_parametrisation_pt[j_node];
     }
-
-   // hierher isn't this the same as in fkv?
-
-    /// Add a new boundary parametrisation to nodes all the nodes in the
-    /// vector node_on_boundary
-    void set_nodal_boundary_parametrisation(
-      const Vector<unsigned>& node_on_boundary,
-      const Vector<double>& boundary_coord_of_node,
-      C1CurviLine* const& boundary_parametrisation_pt)
+   
+   /// Add a new boundary parametrisation to nodes all the nodes in the
+   /// vector node_on_boundary
+   void set_nodal_boundary_parametrisation(
+    const Vector<unsigned>& node_on_boundary,
+    const Vector<double>& boundary_coord_of_node,
+    C1CurviLine* const& boundary_parametrisation_pt)
     {
-      // Loop over all the nodes in node_on_boundary and add the boundary
-      // pointer to their vector of boundaries
-      unsigned n_node = node_on_boundary.size();
-      for (unsigned j = 0; j < n_node; j++)
+     // Loop over all the nodes in node_on_boundary and add the boundary
+     // pointer to their vector of boundaries
+     unsigned n_node = node_on_boundary.size();
+     for (unsigned j = 0; j < n_node; j++)
       {
-        // The j-th node on the boundary
-        unsigned j_node = node_on_boundary[j];
-
-        // Set the boundary parametrisation data pointer for this node
-        Nodal_boundary_parametrisation_pt[j_node] = boundary_parametrisation_pt;
-
-        // Set the coordinate of node j on this boundary
-        Boundary_coordinate_of_node[j_node] = boundary_coord_of_node[j];
-
-        update_rotation_matrices();
+       // The j-th node on the boundary
+       unsigned j_node = node_on_boundary[j];
+       
+       // Set the boundary parametrisation data pointer for this node
+       Nodal_boundary_parametrisation_pt[j_node] = boundary_parametrisation_pt;
+       
+       // Set the coordinate of node j on this boundary
+       Boundary_coordinate_of_node[j_node] = boundary_coord_of_node[j];
+       
+       update_rotation_matrices();
       } // end of loop over nodes in node_on_boundary [j]
     } // end of set_nodal_boundary_parametrisation()
+   
 
-
-    /// Update all rotation matrices (checks if they are needed unless flag is
-    /// true)
+   
+   /// Update all rotation matrices (checks if they are needed unless flag is
+   /// true)
     void update_rotation_matrices()
     {
       // [zdec] hard coded the three vertex nodes
@@ -699,7 +633,7 @@ private:
         Vector<double> dxids(2, 0.0);
         Vector<double> d2xids2(2, 0.0);
 
-        // Get position (debug) // hierher why debug?
+        // Get position (debug) // hierher Aidan why debug?
         boundary_pt->position(boundary_coord, x);
         // Get tangent vector
         boundary_pt->dposition(boundary_coord, dxids);
@@ -775,51 +709,6 @@ private:
         // Fill in the rotation matrix using the new basis
         fill_in_rotation_matrix_at_node_with_basis(j_node, jac_inv, hess_inv);
 
-
-        // // [zdec] debug
-        // std::ofstream jac_and_hess;
-        // jac_and_hess.open("jac_and_hess_new.csv", std::ios_base::app);
-        // jac_and_hess << "Jacobian inverse:" << std::endl
-        // 		   << bi[0][0] << " " << bi[0][1] << std::endl
-        // 		   << bi[1][0] << " " << bi[1][1] << std::endl
-        // 		   << "Hessian inverse [x]:" << std::endl
-        // 		   << Dbi[0](0,0) << " " << Dbi[0](0,1) << std::endl
-        // 		   << Dbi[0](1,0) << " " << Dbi[0](1,1) << std::endl
-        // 		   << "Hessian inverse [y]:" << std::endl
-        // 		   << Dbi[1](0,0) << " " << Dbi[1](0,1) << std::endl
-        // 		   << Dbi[1](1,0) << " " << Dbi[1](1,1) << std::endl <<
-        // std::endl;
-
-
-        // // [zdec] debug
-        // std::ofstream jac_and_hess;
-        // jac_and_hess.open("jac_and_hess_new.csv", std::ios_base::app);
-        // jac_and_hess << "Jacobian inverse:" << std::endl
-        //              << jac_inv(0, 0) << " " << jac_inv(0, 1) << std::endl
-        //              << jac_inv(1, 0) << " " << jac_inv(1, 1) << std::endl
-        //              << "Hessian inverse [x]:" << std::endl
-        //              << hess_inv[0](0, 0) << " " << hess_inv[0](0, 1)
-        //              << std::endl
-        //              << hess_inv[0](1, 0) << " " << hess_inv[0](1, 1)
-        //              << std::endl
-        //              << "Hessian inverse [y]:" << std::endl
-        //              << hess_inv[1](0, 0) << " " << hess_inv[1](0, 1)
-        //              << std::endl
-        //              << hess_inv[1](1, 0) << " " << hess_inv[1](1, 1)
-        //              << std::endl
-        //              << std::endl;
-        // jac_and_hess.close();
-
-        // // [zdec] debug
-        // std::ofstream debug_stream;
-        // debug_stream.open("norm_and_tan.dat", std::ios_base::app);
-        // debug_stream << x[0] << " " << x[1] << " " << ni[0] << " " << ni[1]
-        //              << " " << ti[0] << " " << ti[1] << " " << dnids[0] << "
-        //              "
-        //              << dnids[1] << " " << dtids[0] << " " << dtids[1] << " "
-        //              << d2xids2[0] << " " << d2xids2[1] << std::endl;
-        // debug_stream.close();
-
       } // end loop over vertices
     } // end of update_rotation_matrices()
 
@@ -832,6 +721,7 @@ private:
     }
 
   private:
+
     /// Helper function to fill in the rotation matrix for a given basis
     void fill_in_rotation_matrix_at_node_with_basis(
       const unsigned& j_node,
@@ -968,7 +858,7 @@ namespace C1Helper
  //===========================================================================
  /// Template-free base class for curvable Bell Element
  //===========================================================================
- class TemplateFreeCurvableBellElement
+class TemplateFreeCurvableBellElement : public virtual FiniteElement
  {
 
  public:
@@ -987,10 +877,11 @@ namespace C1Helper
   /// Clamp: i.e. pin the in-plane displacements and pin the out-of-plane
   /// displacement and its normal derivative. We also apply implied
   /// boundary conditions (e.g. specification of dw/dn also implies
-  /// d^2w/dn/dzeta etc.
-  /// hierher careful with nonzero dw/dn; doesn't necesarily do what you think
-  /// hierher zeta is not necessarily the arclength! translation from
-  /// d/dzeta to d/dt requires jacobian!
+  /// d^2w/dn/dzeta etc. boundary_values_pt[i] describes boundary conditions
+  /// for the three displacement components... hierher Aidan: this is where
+  /// it gets complicated: u_x or u_n etc?
+  /// curviline_pt provides a pointer to the representation of the curvilinear
+  /// boundary in the triangle mesh.
   virtual void fully_clamp_specified_boundary(
    const unsigned& b,
    const Vector<BoundaryConditionForC1PlateBending*>& boundary_values_pt,
@@ -999,17 +890,27 @@ namespace C1Helper
   
   /// Pin i.e. pin the in-plane and out of plane displacements only.
   /// We also apply implied boundary conditions (e.g. specification of w
-  /// also implies dw/dt etc.
-  /// hierher zeta is not necessarily the arclength! translation from
-  /// d/dzeta to d/dt requires jacobian!
+  /// also implies dw/dt etc. boundary_values_pt[i] describes boundary conditions
+  /// for the three displacement components... hierher Aidan: this is where
+  /// it gets complicated: u_x or u_n etc?
+  /// curviline_pt provides a pointer to the representation of the curvilinear
+  /// boundary in the triangle mesh.
   virtual void pin_specified_boundary(
    const unsigned& b,
    const Vector<BoundaryConditionForC1PlateBending*>& boundary_values_pt,
    TriangleMeshCurviLine* curviline_pt) = 0;
 
 
-  /// Factory to create DuplicateNodeConstraintElement
-  // hierher elaborate ib args
+  /// Factory to create DuplicateNodeConstraintElement.
+  /// which ensures that the deformation is sufficiently smooth
+  /// between different parts of a boundary (which may contain isolated
+  /// kinks which make it C0 rather than C1). Pass:
+  /// -- Pointers to nodes on the "left" and "right" boundary
+  /// -- pointers to the C1Curvilines that describe the smooth
+  ///    parts of the boundary on either side
+  /// -- the boundary coordinates that identifies the corner point
+  ///    relative the right and left boundary parametrisation
+  ///    (specified via a one-sized vector). 
   virtual DuplicateNodeConstraintElement* duplicate_constraint_element_factory(
    Node* const& left_node_pt,
    Node* const& right_node_pt,
@@ -1029,18 +930,33 @@ namespace C1Helper
 namespace C1Helper
 {
  
+
+ /// Boolean to suppress warning about polygonal boundaries
+ extern bool Do_not_warn_about_polygonal_boundaries;
+
+ /// Output stream to document split elements
+ extern std::ofstream Split_elements_output_stream;
+     
+ /// Output stream to document duplicated nodes
+ extern std::ofstream Duplicated_node_output_stream;
+     
+ /// Output stream to document elements whose boundaries have been
+ /// upgraded to become curved
+ extern std::ofstream Upgraded_to_curved_edge_element_stream;
+
+ 
 //==============================================================================
-// hierher update
-/// Duplicate nodes at corners in order to properly apply boundary
-/// conditions from each edge. Also adds (8) Lagrange multiplier dofs to the
-/// problem in order to constrain continuous interpolation here across its (8)
-/// vertex dofs. (Note "corner" here refers to the meeting point of any two
-/// sub-boundaries in the closed external boundary)
+/// Fct to duplicate nodes that span two boundaries of the triangle mesh pointed to by
+/// bulk_mesh_pt. This makes sure that each node on the boundary is only 
+/// associated with a single (smooth) boundary. Smooth boundaries  of the mesh/domain
+/// are available  via the map c1_curviline_pt. The required continuity of
+/// the solution is then imposed by a suitable DuplicateNodeConstraintElement
+/// that is created and added to the Mesh pointed to by constraint_mesh_pt.
 //==============================================================================
  extern void duplicate_corner_nodes(Mesh* bulk_mesh_pt, 
-                             std::map<unsigned,C1CurviLine*> c1_curviline_pt,
+                                    std::map<unsigned,C1CurviLine*> c1_curviline_pt,
                                     Mesh* constraint_mesh_pt);
-
+ 
 
 //==============================================================================
 /// A function that upgrades straight sided elements to be curved. This involves
@@ -1057,6 +973,10 @@ namespace C1Helper
 /// too. This is well discussed in by [Zenisek 1981] (Aplikace matematiky ,
 /// Vol. 26 (1981), No. 2, 121--141). This results in the necessity for F''(s)
 /// as well.
+/// The smooth mesh/domain boundaries are available via the map c1_curviline_pt.
+/// hierher should we create/store/delete the c1_curviline_pt things in the
+/// triangle mesh (either by default or when required). would probaly fix that
+/// leak problem.
 //=============================================================================
  extern void upgrade_edge_elements_to_curved_boundaries(
   Mesh* bulk_mesh_pt, 
@@ -1065,28 +985,32 @@ namespace C1Helper
 
  
 //======================================================================
-/// Function to set up rotated nodes on the boundary: necessary if we want to set
+/// Function to set up rotated nodes on the boundaries of the triangle
+/// mesh pointed to by bulk_mesh_pt. Necessary if we want to set
 /// up physical boundary conditions on a curved boundary with Hermite type dofs.
 /// For example if we know w(n,t) = f(t) (where n and t are the
 /// normal and tangent to a boundary) we ALSO know dw/dt and d2w/dt2.
 /// NB no rotation is needed if the edges are completely free!
+/// The smooth mesh/domain boundaries are available via the map c1_curviline_pt.
 //======================================================================
  extern void rotate_edge_degrees_of_freedom(
   Mesh* bulk_mesh_pt, 
   std::map<unsigned,C1CurviLine*> c1_curviline_pt);
 
  
+ 
 //======================================================================
-/// Helper function to upgrade a triangle mesh to C1 computations:
+/// Helper function to upgrade a triangle mesh to C1 computations.
 /// -- split elements that have multiple edges on a boundary (so the number
 ///    of elements in the mesh changes!
 /// -- duplicate corner nodes (so the number of nodes in the mesh changes
 /// -- create DuplicateNodeConstraintElements that constrain the degrees of freedom
 ///    at the newly created nodes to ensure continuity of the displacements
- ///    These elements are added to the mesh pointed to by constraint_mesh_pt
+///    These elements are added to the mesh pointed to by constraint_mesh_pt
 /// -- rotate the degrees of freedom on the curvilinear boundaries so they
 ///    represent displacements and derivatives in the tangential and
 ///    normal direction // hierher Aidan true?
+/// The smooth mesh/domain boundaries are available via the map c1_curviline_pt.
 //======================================================================
  template <class ELEMENT>
  void upgrade_triangle_mesh_for_c1_plate_bending(
@@ -1096,6 +1020,31 @@ namespace C1Helper
   // Get map to curvline boundaries of mesh
   std::map<unsigned, TriangleMeshCurviLine*> curviline_boundary_pt =
    bulk_mesh_pt->curviline_boundary_pt();
+
+  unsigned nb=bulk_mesh_pt->nboundary();
+  if (!C1Helper::Do_not_warn_about_polygonal_boundaries)
+   {
+    if (curviline_boundary_pt.size()!=nb)
+     {
+      std::stringstream warning_message;
+      warning_message
+       << "Black box helper function upgrade_triangle_mesh_for_c1_plate_bending()\n"
+       << "will only rotate degrees of freedom on boundaries that are described\n"
+       << "by TriangleMeshCurviLine. It seems that in your triangle mesh only\n"
+       << curviline_boundary_pt.size() << " of " << nb << " boundaries \n"
+       << "are of this type. Continue at your own risk and/or make this\n"
+       << "message disappear by setting\n\n"
+       << "    << C1Helper::Do_not_warn_about_polygonal_boundaries\n\n"
+       << "to false. More intelligently, replace the polygonal boundaries\n"
+       << "by TriangleMeshCurviLines.\n"
+       << std::endl;
+      OomphLibWarning(warning_message.str(),
+                      OOMPH_CURRENT_FUNCTION,
+                      OOMPH_EXCEPTION_LOCATION);
+      
+     }
+   }
+
   
   // Map as "sparse vector" for C1 curvilines
   // Note: don't delete these. They're retained in the
@@ -1109,20 +1058,24 @@ namespace C1Helper
   // Split elements that have multiple edges on a boundary
   // Note: Sets up the boundary loopup scheme too.
   bulk_mesh_pt->
-   template split_elements_with_multiple_boundary_edges<ELEMENT>();
+   template split_elements_with_multiple_boundary_edges<ELEMENT>
+   (Split_elements_output_stream);
   
   // Duplicate corner nodes
   duplicate_corner_nodes(bulk_mesh_pt,
                          c1_curviline_pt,
                          constraint_mesh_pt);
   
-  // Re-setup boundary cooordinates
-  ToleranceForVertexMismatchInPolygons::Tolerable_error=1.0; // hierher
-  unsigned nb=bulk_mesh_pt->nboundary();
+  // Re-setup boundary cooordinates (bypass check of discrepancy
+  // between polygon/smooth representation of boundary.
+  double backup=ToleranceForVertexMismatchInPolygons::Tolerable_error;
+  ToleranceForVertexMismatchInPolygons::Tolerable_error=DBL_MAX;
   for (unsigned b=0;b<nb;b++)
    {
     bulk_mesh_pt->template setup_boundary_coordinates<ELEMENT>(b);
    }
+  ToleranceForVertexMismatchInPolygons::Tolerable_error=backup;
+
   
   // Upgrade
   upgrade_edge_elements_to_curved_boundaries(
