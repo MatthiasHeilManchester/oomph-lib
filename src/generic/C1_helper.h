@@ -1018,20 +1018,20 @@ namespace C1Helper
   Mesh* constraint_mesh_pt)
  {
   // Get map to curvline boundaries of mesh
-  std::map<unsigned, TriangleMeshCurviLine*> curviline_boundary_pt =
-   bulk_mesh_pt->curviline_boundary_pt();
-
+  std::map<unsigned, C1CurviLine*> c1_curviline_boundary_pt =
+   bulk_mesh_pt->c1_curviline_boundary_pt();
+  
   unsigned nb=bulk_mesh_pt->nboundary();
   if (!C1Helper::Do_not_warn_about_polygonal_boundaries)
    {
-    if (curviline_boundary_pt.size()!=nb)
+    if (c1_curviline_boundary_pt.size()!=nb)
      {
       std::stringstream warning_message;
       warning_message
        << "Black box helper function upgrade_triangle_mesh_for_c1_plate_bending()\n"
        << "will only rotate degrees of freedom on boundaries that are described\n"
        << "by TriangleMeshCurviLine. It seems that in your triangle mesh only\n"
-       << curviline_boundary_pt.size() << " of " << nb << " boundaries \n"
+       << c1_curviline_boundary_pt.size() << " of " << nb << " boundaries \n"
        << "are of this type. This only matters if you want to apply clamping-type\n"
        << "boundary conditions along those boundaries. Continue at your own risk\n"
        << "and/or make this message disappear by setting\n\n"
@@ -1047,16 +1047,6 @@ namespace C1Helper
       
      }
    }
-
-  
-  // Map as "sparse vector" for C1 curvilines
-  // Note: don't delete these. They're retained in the
-  // Constraint elements. Leak... 
-  std::map<unsigned,C1CurviLine*> c1_curviline_pt;
-  for (auto [ b, curviline_pt] :  curviline_boundary_pt)
-   {
-    c1_curviline_pt[b] = new C1CurviLine(curviline_pt);
-   }
   
   // Split elements that have multiple edges on a boundary
   // Note: Sets up the boundary loopup scheme too.
@@ -1066,7 +1056,7 @@ namespace C1Helper
   
   // Duplicate corner nodes
   duplicate_corner_nodes(bulk_mesh_pt,
-                         c1_curviline_pt,
+                         c1_curviline_boundary_pt,
                          constraint_mesh_pt);
   
   // Re-setup boundary cooordinates (bypass check of discrepancy
@@ -1083,12 +1073,12 @@ namespace C1Helper
   // Upgrade
   upgrade_edge_elements_to_curved_boundaries(
    bulk_mesh_pt,
-   c1_curviline_pt);
+   c1_curviline_boundary_pt);
   
   // Rotate degrees of freedom (only really needed for clamped bcs)
   rotate_edge_degrees_of_freedom(
    bulk_mesh_pt,
-   c1_curviline_pt);
+   c1_curviline_boundary_pt);
   
  }
 

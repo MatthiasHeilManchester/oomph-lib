@@ -393,7 +393,7 @@ namespace oomph
 
 #endif
 
- //================================================================
+  //================================================================
  /// Setup lookup schemes which establish which elements are located
  /// next to which boundaries (Doc to outfile if it's open).
  //================================================================

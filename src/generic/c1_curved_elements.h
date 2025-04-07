@@ -470,7 +470,7 @@ namespace oomph
       /// edge)
       Vector<double> D2_chi_sobar;
 
-      /// Whih edge is curved
+      /// Which edge is curved
       C1Helper::CurvedEdgeEnumeration Curved_edge;
 
     protected:

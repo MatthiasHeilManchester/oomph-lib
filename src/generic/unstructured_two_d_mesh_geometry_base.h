@@ -47,6 +47,10 @@ namespace oomph
 {
 #ifdef OOMPH_HAS_TRIANGLE_LIB
 
+ // Forward reference
+ class C1CurviLine;
+
+ 
   //=====================================================================
   /// The Triangle data structure, modified from the triangle.h header
   /// supplied with triangle 1.6. by J. R. Schewchuk. We need to define
@@ -1737,22 +1741,37 @@ namespace oomph
   class UnstructuredTwoDMeshGeometryBase : public virtual Mesh
   {
   public:
+
     /// Public static flag to suppress warning; defaults to false
     static bool Suppress_warning_about_regions_and_boundaries;
 
-    /// Empty constructor
-    UnstructuredTwoDMeshGeometryBase() {}
+    /// Constructor
+    UnstructuredTwoDMeshGeometryBase() 
+     {
+      C1_curviline_represensation_has_been_set_up=false;
+     }
 
     /// Broken copy constructor
     UnstructuredTwoDMeshGeometryBase(
       const UnstructuredTwoDMeshGeometryBase& dummy) = delete;
 
     /// Broken assignment operator
-    void operator=(const UnstructuredTwoDMeshGeometryBase&) = delete;
-
-    /// Empty destructor
-    ~UnstructuredTwoDMeshGeometryBase() {}
-
+   void operator=(const UnstructuredTwoDMeshGeometryBase&) = delete;
+   
+   /// Destructor
+   ~UnstructuredTwoDMeshGeometryBase()
+    {
+     if (C1_curviline_represensation_has_been_set_up)
+      {
+       for (auto [ b, c1_curviline_pt] :  C1_curviline_boundary_pt)
+        {
+         delete c1_curviline_pt;
+        }
+       C1_curviline_boundary_pt.empty();
+       C1_curviline_represensation_has_been_set_up=false;
+      }
+    }
+   
     /// Return the number of regions specified by attributes
     unsigned nregion()
     {
@@ -1833,6 +1852,19 @@ namespace oomph
     {
      return Curviline_boundary_pt;
     }
+
+   
+   /// Map containing pointers to C1CurviLines
+   /// (describing curvilinear boundaries of sufficient continuity
+   /// to be used in C1 (e.g. plate bending) problems), indexed by
+   /// boundary ID so c1_curvline_pt[b] is the
+   /// pointer to the C1CurviLine describing
+   /// the b-th boundary (null pointer if it's not
+   /// described by a C1CurviLines). (Note: conversion from
+   /// TriangleMeshCurviLine happens internally and C1CurviLines
+   /// are stored internally once generated; deleted in destuctor
+   /// when mesh goes out of scope.
+   std::map<unsigned, C1CurviLine*> c1_curviline_boundary_pt();
    
     /// Return the geometric object associated with the b-th boundary or
     /// null if the boundary has associated geometric object.
@@ -2601,6 +2633,16 @@ namespace oomph
    /// with any boundaries
    std::map<unsigned, TriangleMeshCurviLine*> Curviline_boundary_pt;
 
+   /// Map to store  C1CurviLines (describing curvilinear boundaries
+   /// of sufficient continuity to be used in C1 (e.g. plate bending)
+   /// problems), indexed by boundary ID. Created when required
+   std::map<unsigned, C1CurviLine*> C1_curviline_boundary_pt;
+   
+   /// Boolean to keep track of C1_curviline_boundary_pt having
+   /// been set up (default: no)
+   bool C1_curviline_represensation_has_been_set_up;
+   
+   
     /// Storage for the geometric objects associated with any boundaries
     std::map<unsigned, GeomObject*> Boundary_geom_object_pt;
 

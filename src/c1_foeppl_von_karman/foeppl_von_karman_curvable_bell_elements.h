@@ -1050,7 +1050,6 @@ namespace oomph
    /// it gets complicated: u_x or u_n etc?
    /// curviline_pt provides a pointer to the representation of the curvilinear
    /// boundary in the triangle mesh.
-   // hierher make consistent with C1_helper.h
    virtual void fully_clamp_specified_boundary(
     const unsigned& b,
     const Vector<BoundaryConditionForC1PlateBending*>& boundary_values_pt,
@@ -1064,7 +1063,6 @@ namespace oomph
    /// it gets complicated: u_x or u_n etc?
    /// curviline_pt provides a pointer to the representation of the curvilinear
    /// boundary in the triangle mesh.
-   // hierher make consistent with C1_helper.h
    virtual void pin_specified_boundary(
     const unsigned& b,
     const Vector<BoundaryConditionForC1PlateBending*>& boundary_values_pt,
@@ -1447,27 +1445,37 @@ namespace oomph
 
   private:
 
-   /// hierher alpha=0,1  for x and y in plane displacements
+   /// Helper function to impose alpha-th in-plane displacements
+   ///(0 or 1 for x or y displacements) according to scalar function
+   /// specified in boundary_values_pt. curvline_pt provides the
+   /// geometry of the boundary in terms of a not-necessarily-arclength
+   /// coordinate zeta.
    void pin_and_impose_specified_in_plane_displacement_along_specified_boundary(
     const unsigned& alpha,
     const unsigned& b,
     BoundaryConditionForC1PlateBending* boundary_values_pt,
     TriangleMeshCurviLine* curviline_pt);
 
-   /// hierher i=0,1,2 for u,v,w
+   /// Helper function to impose i-th displacements
+   /// (0 or 1 for x or y displacements; 2 for out of plane)
+   /// according to scalar function specified in boundary_values_pt.
+   /// curvline_pt provides the geometry of the boundary in terms of
+   /// a not-necessarily-arclength coordinate zeta.
    void pin_and_impose_specified_displacement_along_specified_boundary(
     const unsigned& i,
     const unsigned& b,
     BoundaryConditionForC1PlateBending* boundary_values_pt,
     TriangleMeshCurviLine* curviline_pt);
      
-   // hierher
+   /// Helper function to impose out of plane displacements
+   /// according to scalar function specified in boundary_values_pt.
+   /// curvline_pt provides the geometry of the boundary in terms of
+   /// a not-necessarily-arclength coordinate zeta.
    void clamp_and_impose_specified_out_of_plane_displacement_along_specified_boundary(
     const unsigned& b,
     BoundaryConditionForC1PlateBending* boundary_values_pt,
     TriangleMeshCurviLine* curviline_pt);
 
-   
     /// Pointer to an instance of rotated boundary helper
     RotatedBoundaryHelper* Rotated_boundary_helper_pt;
 
@@ -2026,7 +2034,6 @@ namespace oomph
  /// it gets complicated: u_x or u_n etc?
  /// curviline_pt provides a pointer to the representation of the curvilinear
  /// boundary in the triangle mesh.
- // hierher duplicate comment from above
  //==========================================================================
  template<unsigned NNODE_1D>
  void FoepplVonKarmanC1CurvableBellElement<NNODE_1D>::fully_clamp_specified_boundary(
@@ -2056,7 +2063,6 @@ namespace oomph
  /// it gets complicated: u_x or u_n etc?
  /// curviline_pt provides a pointer to the representation of the curvilinear
  /// boundary in the triangle mesh.
- // hierher copy from above when sorted out
 //=============================================================================
  template<unsigned NNODE_1D>
  void FoepplVonKarmanC1CurvableBellElement<NNODE_1D>::pin_specified_boundary(
@@ -2075,7 +2081,11 @@ namespace oomph
  
 
  //=============================================================================
- /// hierher alpha=0,1  for x and y in plane displacements helper fct
+ /// Helper function to impose alpha-th in-plane displacements
+ ///(0 or 1 for x or y displacements) according to scalar function
+ /// specified in boundary_values_pt. curvline_pt provides the
+ /// geometry of the boundary in terms of a not-necessarily-arclength
+ /// coordinate zeta.
  //=============================================================================
  template<unsigned NNODE_1D>
  void FoepplVonKarmanC1CurvableBellElement<NNODE_1D>::
@@ -2136,9 +2146,7 @@ of freedom at internal points. They are {ux, uy}",
         Vector<double> zeta(nzeta);
         nod_pt->get_coordinates_on_boundary(b,zeta);
         double value=boundary_values_pt->f(zeta[0]);
-        
-        oomph_info << "pinning.setting at b zeta " << b << " " << zeta[0] << std::endl;
-        
+                
         // Pin and set the value
         nod_pt->pin(alpha);
         nod_pt->set_value(nodal_type_index, value); // hierher Aidan should indices in pin and set_value be the same? 
@@ -2148,8 +2156,11 @@ of freedom at internal points. They are {ux, uy}",
  }
 
  //=============================================================================
- /// hierher i=0,1,2 for u,v,w  // hierher provide default pointer to
- /// static member that returns zero; do for all. helper fct
+ /// Helper function to impose i-th displacements
+ /// (0 or 1 for x or y displacements; 2 for out of plane)
+ /// according to scalar function specified in boundary_values_pt.
+ /// curvline_pt provides the geometry of the boundary in terms of
+ /// a not-necessarily-arclength coordinate zeta.
  //=============================================================================
  template<unsigned NNODE_1D>
  void FoepplVonKarmanC1CurvableBellElement<NNODE_1D>::
@@ -2270,9 +2281,6 @@ of freedom at internal points. They are {ux, uy}",
                ( k_type!=4)  )  // d^2w/dtdn
            
            {
-            oomph_info << "pinning.setting at b k_type zeta value" << b << " "
-                       << k_type << " " << zeta[0] << " " << value << std::endl;
-            
             // Pin and set the value
             nod_pt->pin(first_nodal_type_index + k_type);
             nod_pt->set_value(first_nodal_type_index + k_type, value);
@@ -2291,7 +2299,10 @@ of freedom at internal points. They are {ux, uy}",
  
  
  //=============================================================================
- /// hierher helper fct 
+ /// Helper function to impose out of plane displacements
+ /// according to scalar function specified in boundary_values_pt.
+ /// curvline_pt provides the geometry of the boundary in terms of
+ /// a not-necessarily-arclength coordinate zeta.
  //=============================================================================
  template<unsigned NNODE_1D>
  void FoepplVonKarmanC1CurvableBellElement<NNODE_1D>::
@@ -2400,10 +2411,7 @@ of freedom at internal points. They are {ux, uy}",
 
           // Skip second normal derivative
           if (k_type!=3)
-           {
-            oomph_info << "pinning.setting at b k_type zeta value" << b << " "
-                       << k_type << " " << zeta[0] << " " << value << std::endl;
-            
+           {            
             // Pin and set the value
             nod_pt->pin(first_nodal_type_index + k_type);
             nod_pt->set_value(first_nodal_type_index + k_type, value);

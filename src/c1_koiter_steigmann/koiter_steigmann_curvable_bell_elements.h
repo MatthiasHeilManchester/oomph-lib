@@ -1079,7 +1079,6 @@ namespace oomph
    /// it gets complicated: u_x or u_n etc?
    /// curviline_pt provides a pointer to the representation of the curvilinear
    /// boundary in the triangle mesh.
-   // hierher make consistent with C1_helper.h
    virtual void fully_clamp_specified_boundary(
     const unsigned& b,
     const Vector<BoundaryConditionForC1PlateBending*>& boundary_values_pt,
@@ -1093,7 +1092,6 @@ namespace oomph
    /// it gets complicated: u_x or u_n etc?
    /// curviline_pt provides a pointer to the representation of the curvilinear
    /// boundary in the triangle mesh.
-   // hierher make consistent with C1_helper.h
    virtual void pin_specified_boundary(
     const unsigned& b,
     const Vector<BoundaryConditionForC1PlateBending*>& boundary_values_pt,
@@ -1438,7 +1436,6 @@ namespace oomph
  /// it gets complicated: u_x or u_n etc?
  /// curviline_pt provides a pointer to the representation of the curvilinear
  /// boundary in the triangle mesh.
- // hierher duplicate comment from above
  //==========================================================================
  void KoiterSteigmannC1CurvableBellElement::fully_clamp_specified_boundary(
   const unsigned& b,
@@ -1586,7 +1583,6 @@ namespace oomph
  /// it gets complicated: u_x or u_n etc?
  /// curviline_pt provides a pointer to the representation of the curvilinear
  /// boundary in the triangle mesh.
- // hierher copy from above when sorted out
 //=============================================================================
  void KoiterSteigmannC1CurvableBellElement::pin_specified_boundary(
   const unsigned& b,
