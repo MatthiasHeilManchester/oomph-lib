@@ -34,7 +34,7 @@
 #include "Vector.h"
 #include "shape.h"
 #include "bell_element_basis.h"
-#include "C1_helper.h"
+#include "c1_plate_helper.h"
 
 namespace oomph
 {

@@ -34,7 +34,7 @@
 #include "foeppl_von_karman_equations.h"
 #include "src/generic/bell_element_basis.h"
 #include "src/generic/c1_curved_elements.h"
-#include "src/generic/C1_helper.h"
+#include "src/generic/c1_plate_helper.h"
 #include "src/generic/subparametric_Telement.h"
 #include "src/generic/oomph_definitions.h"
 

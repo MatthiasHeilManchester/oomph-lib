@@ -34,7 +34,7 @@
 #include "shape.h"
 #include "Telements.h"
 #include "c1_curved_elements.h"
-#include "C1_helper.h"
+#include "c1_plate_helper.h"
 
 namespace oomph
 {

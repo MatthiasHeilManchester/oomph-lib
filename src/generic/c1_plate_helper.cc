@@ -1,7 +1,171 @@
-#include "C1_helper.h"
+#include "c1_plate_helper.h"
 
 namespace oomph
 {
+
+
+
+ //===============================================================================
+ /// Function to calculate Jacobian and Hessian of the coordinate mapping
+ //===============================================================================
+ void DuplicateNodeConstraintElement::get_jac_and_hess_of_coordinate_transform(
+  DenseMatrix<double>& jac_of_transform,
+  Vector<DenseMatrix<double>>& hess_of_transform)
+ {
+  //----------------------------------------------------------------------
+   // We need the parametrisations either side of the vertex which define
+   // the coordinates each node uses for its Hermite dofs.
+   Vector<double> left_x(2, 0.0); // [zdec] debug
+   Vector<double> right_x(2, 0.0); // [zdec] debug
+   Vector<double> left_dxids(2, 0.0);
+   Vector<double> left_d2xids2(2, 0.0);
+   Vector<double> right_dxids(2, 0.0);
+   Vector<double> right_d2xids2(2, 0.0);
+   Left_boundary_pt->position(Left_node_coord, left_x); // [zdec] debug 
+   Right_boundary_pt->position(Right_node_coord, right_x); // [zdec] debug
+   Left_boundary_pt->dposition(Left_node_coord, left_dxids);
+   Left_boundary_pt->d2position(Left_node_coord, left_d2xids2);
+   Right_boundary_pt->dposition(Right_node_coord, right_dxids);
+   Right_boundary_pt->d2position(Right_node_coord, right_d2xids2);
+
+   // Get the speed of each parametrisation
+   double left_mag =
+    sqrt(left_dxids[0] * left_dxids[0] + left_dxids[1] * left_dxids[1]);
+   double right_mag =
+    sqrt(right_dxids[0] * right_dxids[0] + right_dxids[1] * right_dxids[1]);
+
+   //----------------------------------------------------------------------
+   // Normalise dxids to find the tangent vectors and their
+   // derivatives either side of the vertex
+   Vector<double> left_ti(2, 0.0);
+   Vector<double> left_ni(2, 0.0);
+   Vector<double> left_dtids(2, 0.0);
+   Vector<double> left_dnids(2, 0.0);
+   Vector<double> right_ti(2, 0.0);
+   Vector<double> right_ni(2, 0.0);
+   Vector<double> right_dtids(2, 0.0);
+   Vector<double> right_dnids(2, 0.0);
+   for (unsigned alpha = 0; alpha < 2; alpha++)
+    {
+     // Fill in the tangents either side of the vertex
+     left_ti[alpha] = left_dxids[alpha] / left_mag;
+     right_ti[alpha] = right_dxids[alpha] / right_mag;
+     // Fill in the derivatives of the (normalised) tangents either side of
+     // the vertex
+     left_dtids[alpha] =
+      left_d2xids2[alpha] / std::pow(left_mag, 2) -
+      (left_dxids[0] * left_d2xids2[0] + left_dxids[1] * left_d2xids2[1]) *
+      left_dxids[alpha] / std::pow(left_mag, 4);
+     right_dtids[alpha] = right_d2xids2[alpha] / std::pow(right_mag, 2) -
+      (right_dxids[0] * right_d2xids2[0] +
+       right_dxids[1] * right_d2xids2[1]) *
+      right_dxids[alpha] / std::pow(right_mag, 4);
+     // Use these to fill out the corresponding vectors for the normal
+     // direction (nx,ny) = (ty,-tx)
+    }
+   // Use orthogonality to fill in normals and their derivatives
+   for (unsigned alpha = 0; alpha < 2; alpha++)
+    {
+     left_ni[alpha] = pow(-1, alpha) * left_ti[(alpha + 1) % 2];
+     right_ni[alpha] = pow(-1, alpha) * right_ti[(alpha + 1) % 2];
+     left_dnids[alpha] = pow(-1, alpha) * left_dtids[(alpha + 1) % 2];
+     right_dnids[alpha] = pow(-1, alpha) * right_dtids[(alpha + 1) % 2];
+    }
+
+   //----------------------------------------------------------------------
+   // We need to fill out the Jacobians and Hessians of the boundary
+   // coordinates either side of the vertex
+   DenseMatrix<double> left_jac(2, 2, 0.0);
+   DenseMatrix<double> right_jac(2, 2, 0.0);
+   Vector<DenseMatrix<double>> left_hess(2, DenseMatrix<double>(2, 2, 0.0));
+   Vector<DenseMatrix<double>> right_hess(2, DenseMatrix<double>(2, 2, 0.0));
+   for (unsigned alpha = 0; alpha < 2; alpha++)
+    {
+     // Fill in Jacobians {{nx,tx},{ny,ty}}
+     left_jac(alpha, 0) = left_ni[alpha];
+     left_jac(alpha, 1) = left_ti[alpha];
+     right_jac(alpha, 0) = right_ni[alpha];
+     right_jac(alpha, 1) = right_ti[alpha];
+     // Fill in Hessians
+     // left_hess[alpha](0,0) = 0.0;
+     left_hess[alpha](0, 1) = left_dnids[alpha];
+     left_hess[alpha](1, 0) = left_dnids[alpha];
+     left_hess[alpha](1, 1) = left_dtids[alpha];
+     // right_hess[alpha](0,0) = 0.0;
+     right_hess[alpha](0, 1) = right_dnids[alpha];
+     right_hess[alpha](1, 0) = right_dnids[alpha];
+     right_hess[alpha](1, 1) = right_dtids[alpha];
+    }
+
+   //----------------------------------------------------------------------
+   // We need the inverse Jacobian and Hessian for the left parametrisation
+   DenseMatrix<double> left_jac_inv(2, 2, 0.0);
+   Vector<DenseMatrix<double>> left_hess_inv(2,
+                                             DenseMatrix<double>(2, 2, 0.0));
+   left_jac_inv(0, 0) = left_jac(1, 1);
+   left_jac_inv(0, 1) = -left_jac(0, 1);
+   left_jac_inv(1, 0) = -left_jac(1, 0);
+   left_jac_inv(1, 1) = left_jac(0, 0);
+   // Fill out inverse of Hessian
+   // H^{-1}abg = J^{-1}ad Hdez J^{-1}eb J^{-1}zg
+   for (unsigned alpha = 0; alpha < 2; alpha++)
+    {
+     for (unsigned beta = 0; beta < 2; beta++)
+      {
+       for (unsigned gamma = 0; gamma < 2; gamma++)
+        {
+         for (unsigned alpha2 = 0; alpha2 < 2; alpha2++)
+          {
+           for (unsigned beta2 = 0; beta2 < 2; beta2++)
+            {
+             for (unsigned gamma2 = 0; gamma2 < 2; gamma2++)
+              {
+               left_hess_inv[alpha](beta, gamma) -=
+                left_jac_inv(alpha, alpha2) *
+                left_hess[alpha2](beta2, gamma2) *
+                left_jac_inv(beta2, beta) * left_jac_inv(gamma2, gamma);
+              }
+            }
+          }
+        }
+      }
+    }
+
+   //----------------------------------------------------------------------
+   //----------------------------------------------------------------------
+   // Use these to calculate the Jacobian of the left->right transform
+   //     J = J_{left}^{-1}J_{right}
+   // and the Hessian of the left->right transform
+   //     H = H_{left}^{-1}J_{right}J_{right} + J_{left}^{-1}H_{right}
+   for (unsigned alpha = 0; alpha < 2; alpha++)
+    {
+     for (unsigned beta = 0; beta < 2; beta++)
+      {
+       for (unsigned gamma = 0; gamma < 2; gamma++)
+        {
+         // Add contribution to J
+         jac_of_transform(alpha, beta) +=
+          left_jac_inv(alpha, gamma) * right_jac(gamma, beta);
+         for (unsigned mu = 0; mu < 2; mu++)
+          {
+           // Add second term contribution to H
+           hess_of_transform[alpha](beta, gamma) +=
+            left_jac_inv(alpha, mu) * right_hess[mu](beta, gamma);
+           for (unsigned nu = 0; nu < 2; nu++)
+            {
+             // Add first term contribution to H
+             hess_of_transform[alpha](beta, gamma) +=
+              left_hess_inv[alpha](mu, nu) * right_jac(mu, beta) *
+              right_jac(nu, gamma);
+            }
+          }
+        }
+      }
+    }
+  } // End get_jac_and_hess_of_coordinate_transform
+
+
+
  
 //==============================================================================
 /// Namespace to deal update triangle meshes to deal with C1 elements
@@ -174,12 +338,30 @@ namespace C1Helper
 /// representation. That is we need to have a continuous 2nd derivative defined
 /// too. This is well discussed in by [Zenisek 1981] (Aplikace matematiky ,
 /// Vol. 26 (1981), No. 2, 121--141). This results in the necessity for F''(s)
-/// as well.
+/// as well. Final optional argument, boundary order can take values 3 and 5 and represents
+/// the order of the polynomial that represents the curved boundary. Default value
+/// of 5 works for all boundary conditions; 3 is faster but only works for homogeneous
+/// clamped boundaries (in a plate context). hierher Aidan: check description of
+/// final arg
 //=============================================================================
  void upgrade_edge_elements_to_curved_boundaries(
   Mesh* bulk_mesh_pt, 
-  std::map<unsigned,C1CurviLine*> c1_curviline_pt) 
+  const std::map<unsigned,C1CurviLine*>&  c1_curviline_pt,
+  const unsigned& boundary_order) 
  {
+
+#ifdef PARANOID
+  if ((boundary_order!=3)&&(boundary_order!=5))
+   {
+    std::stringstream error_message;
+    error_message << "You can only upgrade curved boundaries to polynomial\n"
+                  << "approximations of order 3 or 5. You specified "
+                  << boundary_order << std::endl;
+    throw OomphLibError(
+     error_message.str(),
+     OOMPH_CURRENT_FUNCTION, OOMPH_EXCEPTION_LOCATION);
+   }
+#endif
   
   // Loop over the curvilinear parts of the outer boundary
   for (const auto& [ibound, c1_curve_pt] : c1_curviline_pt)

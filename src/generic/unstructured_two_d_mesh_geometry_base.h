@@ -1763,7 +1763,7 @@ namespace oomph
     {
      if (C1_curviline_represensation_has_been_set_up)
       {
-       for (auto [ b, c1_curviline_pt] :  C1_curviline_boundary_pt)
+       for (auto [b, c1_curviline_pt] :  C1_curviline_boundary_pt)
         {
          delete c1_curviline_pt;
         }
