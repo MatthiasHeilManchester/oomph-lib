@@ -1122,7 +1122,7 @@ namespace oomph
    
     /// Upgrade the Bell element to a curved Bernadou element
     virtual void upgrade_element_to_curved(
-      const C1Helper::CurvedEdgeEnumeration& curved_edge,
+      const C1PlateHelper::CurvedEdgeEnumeration& curved_edge,
       const double& s_ubar,
       const double& s_obar,
       C1CurviLine* parametric_edge,

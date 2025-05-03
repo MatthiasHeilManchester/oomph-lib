@@ -671,7 +671,7 @@ private:
 /// Namespace to deal update triangle meshes to deal with C1 elements
 /// (beginning)
 //==============================================================================
-namespace C1Helper
+namespace C1PlateHelper
 {
  
 
@@ -694,7 +694,7 @@ namespace C1Helper
 /// Namespace to deal update triangle meshes to deal with C1 elements
 /// (continued)
 //==============================================================================
-namespace C1Helper
+namespace C1PlateHelper
 {
  
 
@@ -791,7 +791,7 @@ namespace C1Helper
    bulk_mesh_pt->c1_curviline_boundary_pt();
   
   unsigned nb=bulk_mesh_pt->nboundary();
-  if (!C1Helper::Do_not_warn_about_polygonal_boundaries)
+  if (!C1PlateHelper::Do_not_warn_about_polygonal_boundaries)
    {
     if (c1_curviline_boundary_pt.size()!=nb)
      {
@@ -804,7 +804,7 @@ namespace C1Helper
        << "are of this type. This only matters if you want to apply clamping-type\n"
        << "boundary conditions along those boundaries. Continue at your own risk\n"
        << "and/or make this message disappear by setting\n\n"
-       << "     C1Helper::Do_not_warn_about_polygonal_boundaries\n\n"
+       << "     C1PlateHelper::Do_not_warn_about_polygonal_boundaries\n\n"
        << "to false. More intelligently, replace the polygonal boundaries\n"
        << "by TriangleMeshCurviLines. Alternatively, you can deal with this\n"
        << "yourself, of course. The black box function is only provided for\n"
@@ -854,7 +854,7 @@ namespace C1Helper
 
  
 
- } // end namespace C1Helper
+ } // end namespace C1PlateHelper
 
 
 } // namespace oomph

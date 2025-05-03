@@ -226,7 +226,7 @@ class TemplateFreeCurvableBellElement : public virtual FiniteElement
  public:
   
   /// Upgrade the element to be curved
-  virtual void upgrade_element_to_curved(const C1Helper::CurvedEdgeEnumeration& curved_edge,
+  virtual void upgrade_element_to_curved(const C1PlateHelper::CurvedEdgeEnumeration& curved_edge,
                                          const double& s_ubar,
                                          const double& s_obar,
                                          C1CurviLine* parametric_edge,
@@ -312,7 +312,7 @@ class TemplateFreeCurvableBellElement : public virtual FiniteElement
     /// interpolated).
     CurvableBellElement(const unsigned& n_field = 1,
                         const std::vector<bool>& is_bell_interpolated = {true})
-      : Curved_edge(C1Helper::CurvedEdgeEnumeration::none),
+      : Curved_edge(C1PlateHelper::CurvedEdgeEnumeration::none),
         Nfield(n_field),
         Field_is_bell_interpolated(is_bell_interpolated),
         First_nodal_type_index_for_field(n_field),
@@ -371,7 +371,7 @@ class TemplateFreeCurvableBellElement : public virtual FiniteElement
     ///  Boolean function indicating whether element is curved or not
     bool element_is_curved() const
     {
-      return Curved_edge != C1Helper::CurvedEdgeEnumeration::none;
+      return Curved_edge != C1PlateHelper::CurvedEdgeEnumeration::none;
     }
 
 
@@ -824,7 +824,7 @@ to access interpolated eulerian coordinate",
 
 
     /// Upgrade the element to be curved
-   virtual void upgrade_element_to_curved(const C1Helper::CurvedEdgeEnumeration& curved_edge,
+   virtual void upgrade_element_to_curved(const C1PlateHelper::CurvedEdgeEnumeration& curved_edge,
                                           const double& s_ubar,
                                           const double& s_obar,
                                           C1CurviLine* parametric_edge,
@@ -833,7 +833,7 @@ to access interpolated eulerian coordinate",
 
 #ifdef PARANOID
       // Check that we haven't upgraded this element already
-      if (Curved_edge != C1Helper::CurvedEdgeEnumeration::none)
+      if (Curved_edge != C1PlateHelper::CurvedEdgeEnumeration::none)
       {
         throw OomphLibError(
           "Cannot upgrade more than a single edge to be curved in C1 Curved Bell \
@@ -898,7 +898,7 @@ Elements.",
       // The shape functions are designed such that the curved edge is always
       // edge two. So this is where we set that up. Throw an error if an edge is
       // upgraded to none
-      if (Curved_edge == C1Helper::CurvedEdgeEnumeration::none)
+      if (Curved_edge == C1PlateHelper::CurvedEdgeEnumeration::none)
       {
         throw OomphLibError(
           "Cannot upgrade edge 'none'. Curved elements must have\
@@ -947,7 +947,7 @@ Elements.",
    
     /// Enum to store which edge is curved set to none when element has no
     /// curved edges
-    C1Helper::CurvedEdgeEnumeration Curved_edge;
+    C1PlateHelper::CurvedEdgeEnumeration Curved_edge;
 
     /// Pointer to Bernadou Element Basis
     BernadouElementBasisBase* Bernadou_element_basis_pt;

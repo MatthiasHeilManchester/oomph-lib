@@ -174,7 +174,7 @@ namespace oomph
     {
 // Check the construction of the elements is complete
 #ifdef PARANOID
-      if (Curved_edge == C1Helper::CurvedEdgeEnumeration::none)
+      if (Curved_edge == C1PlateHelper::CurvedEdgeEnumeration::none)
       {
         throw OomphLibError("The element has not been upgraded yet. Did \
   you forget to set upe the Curved_edge?",

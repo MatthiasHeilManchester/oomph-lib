@@ -171,7 +171,7 @@ namespace oomph
 //==============================================================================
 /// Namespace to deal update triangle meshes to deal with C1 elements
 //==============================================================================
-namespace C1Helper
+namespace C1PlateHelper
 {
  
 
@@ -208,7 +208,7 @@ namespace C1Helper
       // Unlikely to work for distributed meshes
       if (bulk_mesh_pt->is_mesh_distributed())
        {
-        throw OomphLibError("C1Helper::duplicate_corner_nodes(...) "
+        throw OomphLibError("C1PlateHelper::duplicate_corner_nodes(...) "
                             "is unlikely to work for distributed meshes.\n",
                             OOMPH_CURRENT_FUNCTION,
                             OOMPH_EXCEPTION_LOCATION);
@@ -388,7 +388,7 @@ namespace C1Helper
        bulk_mesh_pt->boundary_element_pt(ibound,e);
 
       // Initialise enum for the curved edge
-      C1Helper::CurvedEdgeEnumeration edge=C1Helper::CurvedEdgeEnumeration::none;
+      C1PlateHelper::CurvedEdgeEnumeration edge=C1PlateHelper::CurvedEdgeEnumeration::none;
       
       // Loop over all (three) vertex nodes of the element and
       // identify single node that is interior (i.e. not on any
@@ -430,7 +430,7 @@ namespace C1Helper
        c1_curve_pt->get_zeta(xn[(index_of_interior_node+2) % 3]);
       
       // Assign edge case
-      edge = static_cast<C1Helper::CurvedEdgeEnumeration>(index_of_interior_node);
+      edge = static_cast<C1PlateHelper::CurvedEdgeEnumeration>(index_of_interior_node);
       
 #ifdef PARANOID
       // Check nnode_on_neither_boundary
@@ -569,6 +569,6 @@ namespace C1Helper
 
  
 
-} // end namespace C1Helper
+} // end namespace C1PlateHelper
 
 } // end namespace oomph

@@ -95,7 +95,7 @@ namespace oomph
       const VertexList& verts,
       const double& su,
       const double& so,
-      const C1Helper::CurvedEdgeEnumeration& curved_edge,
+      const C1PlateHelper::CurvedEdgeEnumeration& curved_edge,
       const C1CurviLine& parametric_curve) = 0;
      
      /// Check the element
@@ -182,13 +182,13 @@ namespace oomph
       typedef Vector<Vector<double>> VertexList;
 
       /// Default Constructor
-      BernadouElementBasis() : Curved_edge(C1Helper::CurvedEdgeEnumeration::none) {}
+      BernadouElementBasis() : Curved_edge(C1PlateHelper::CurvedEdgeEnumeration::none) {}
 
       /// Constructor that takes vertices and start and end parts as arguments.
       void upgrade_element(const VertexList& verts,
                            const double& su,
                            const double& so,
-                           const C1Helper::CurvedEdgeEnumeration& curved_edge,
+                           const C1PlateHelper::CurvedEdgeEnumeration& curved_edge,
                            const C1CurviLine& parametric_curve)
       {
         // Store vertices
@@ -256,7 +256,7 @@ namespace oomph
       inline const double& get_s_ubar() const
       {
         // If we have upgraded
-        if (Curved_edge != C1Helper::CurvedEdgeEnumeration::none)
+        if (Curved_edge != C1PlateHelper::CurvedEdgeEnumeration::none)
         {
           return S_ubar;
         }
@@ -273,7 +273,7 @@ namespace oomph
       inline const double& get_s_obar() const
       {
         // If we have upgraded
-        if (Curved_edge != C1Helper::CurvedEdgeEnumeration::none)
+        if (Curved_edge != C1PlateHelper::CurvedEdgeEnumeration::none)
         {
           return S_obar;
         }
@@ -291,7 +291,7 @@ namespace oomph
       inline const Vector<double>& get_chi_subar() const
       {
         // If we have upgraded
-        if (Curved_edge != C1Helper::CurvedEdgeEnumeration::none)
+        if (Curved_edge != C1PlateHelper::CurvedEdgeEnumeration::none)
         {
           return Chi_subar;
         }
@@ -309,7 +309,7 @@ namespace oomph
       inline const Vector<double>& get_chi_sobar() const
       {
         // If we have upgraded
-        if (Curved_edge != C1Helper::CurvedEdgeEnumeration::none)
+        if (Curved_edge != C1PlateHelper::CurvedEdgeEnumeration::none)
         {
           return Chi_sobar;
         }
@@ -327,7 +327,7 @@ namespace oomph
       inline const Vector<double>& get_d_chi_subar() const
       {
         // If we have upgraded
-        if (Curved_edge != C1Helper::CurvedEdgeEnumeration::none)
+        if (Curved_edge != C1PlateHelper::CurvedEdgeEnumeration::none)
         {
           return D_chi_subar;
         }
@@ -345,7 +345,7 @@ namespace oomph
       inline const Vector<double>& get_d_chi_sobar() const
       {
         // If we have upgraded
-        if (Curved_edge != C1Helper::CurvedEdgeEnumeration::none)
+        if (Curved_edge != C1PlateHelper::CurvedEdgeEnumeration::none)
         {
           return D_chi_sobar;
         }
@@ -363,7 +363,7 @@ namespace oomph
       inline const Vector<double>& get_d2_chi_subar() const
       {
         // If we have upgraded
-        if (Curved_edge != C1Helper::CurvedEdgeEnumeration::none)
+        if (Curved_edge != C1PlateHelper::CurvedEdgeEnumeration::none)
         {
           return D2_chi_subar;
         }
@@ -381,7 +381,7 @@ namespace oomph
       inline const Vector<double>& get_d2_chi_sobar() const
       {
         // If we have upgraded
-        if (Curved_edge != C1Helper::CurvedEdgeEnumeration::none)
+        if (Curved_edge != C1PlateHelper::CurvedEdgeEnumeration::none)
         {
           return D2_chi_sobar;
         }
@@ -471,7 +471,7 @@ namespace oomph
       Vector<double> D2_chi_sobar;
 
       /// Which edge is curved
-      C1Helper::CurvedEdgeEnumeration Curved_edge;
+      C1PlateHelper::CurvedEdgeEnumeration Curved_edge;
 
     protected:
 
@@ -975,7 +975,7 @@ namespace oomph
       {
 // check the construction of the elements is complete
 #ifdef PARANOID
-        if (Curved_edge == C1Helper::CurvedEdgeEnumeration::none)
+        if (Curved_edge == C1PlateHelper::CurvedEdgeEnumeration::none)
         {
           throw OomphLibError("the element has not been upgraded yet. did \
   you forget to set upe the curved_edge?",
@@ -995,7 +995,7 @@ namespace oomph
       {
 // check the construction of the elements is complete
 #ifdef PARANOID
-        if (Curved_edge == C1Helper::CurvedEdgeEnumeration::none)
+        if (Curved_edge == C1PlateHelper::CurvedEdgeEnumeration::none)
         {
           throw OomphLibError("the element has not been upgraded yet. did \
   you forget to set upe the curved_edge?",
@@ -1129,7 +1129,7 @@ namespace oomph
       {
 // check the construction of the elements is complete
 #ifdef PARANOID
-        if (Curved_edge == C1Helper::CurvedEdgeEnumeration::none)
+        if (Curved_edge == C1PlateHelper::CurvedEdgeEnumeration::none)
         {
           throw OomphLibError("The element has not been upgraded yet. did \
   you forget to set up the curved_edge?",
@@ -1184,7 +1184,7 @@ namespace oomph
     {
       // Set the index shift
       // If the element has been upgraded
-      if (Curved_edge == C1Helper::CurvedEdgeEnumeration::none)
+      if (Curved_edge == C1PlateHelper::CurvedEdgeEnumeration::none)
       {
         // There is no reasonable definition for the shape functions in this
         // case
@@ -1194,11 +1194,11 @@ you forget to set a Curved_edge?",
           OOMPH_CURRENT_FUNCTION,
           OOMPH_EXCEPTION_LOCATION);
       }
-      else if (Curved_edge == C1Helper::CurvedEdgeEnumeration::zero)
+      else if (Curved_edge == C1PlateHelper::CurvedEdgeEnumeration::zero)
       {
         index_shift = 1;
       }
-      else if (Curved_edge == C1Helper::CurvedEdgeEnumeration::one)
+      else if (Curved_edge == C1PlateHelper::CurvedEdgeEnumeration::one)
       {
         index_shift = 2;
       }
@@ -1215,7 +1215,7 @@ you forget to set a Curved_edge?",
     {
       // Permute the shape coordinate
       // If the element has been upgraded
-      if (Curved_edge == C1Helper::CurvedEdgeEnumeration::none)
+      if (Curved_edge == C1PlateHelper::CurvedEdgeEnumeration::none)
       {
         // There is no reasonable definition for the shape functions in this
         // case
@@ -1225,7 +1225,7 @@ you forget to set a Curved_edge?",
           OOMPH_CURRENT_FUNCTION,
           OOMPH_EXCEPTION_LOCATION);
       }
-      else if (Curved_edge == C1Helper::CurvedEdgeEnumeration::zero)
+      else if (Curved_edge == C1PlateHelper::CurvedEdgeEnumeration::zero)
       {
         // We need to permute the local coordinate
         Vector<double> permuted_s(2, 0.0);
@@ -1234,7 +1234,7 @@ you forget to set a Curved_edge?",
         // Copy over
         s = permuted_s;
       }
-      else if (Curved_edge == C1Helper::CurvedEdgeEnumeration::one)
+      else if (Curved_edge == C1PlateHelper::CurvedEdgeEnumeration::one)
       {
         // We need to permute the local coordinate
         Vector<double> permuted_s(2, 0.0);
@@ -1257,7 +1257,7 @@ you forget to set a Curved_edge?",
     {
       // Permute the shape coordinate
       // If the element has been upgraded
-      if (Curved_edge == C1Helper::CurvedEdgeEnumeration::none)
+      if (Curved_edge == C1PlateHelper::CurvedEdgeEnumeration::none)
       {
         // There is no reasonable definition for the shape functions in this
         // case
@@ -1267,7 +1267,7 @@ you forget to set a Curved_edge?",
           OOMPH_CURRENT_FUNCTION,
           OOMPH_EXCEPTION_LOCATION);
       }
-      else if (Curved_edge == C1Helper::CurvedEdgeEnumeration::zero)
+      else if (Curved_edge == C1PlateHelper::CurvedEdgeEnumeration::zero)
       {
         // We need the derivative of the permuted coords wrt the local
         // coordinate
@@ -1276,7 +1276,7 @@ you forget to set a Curved_edge?",
         jac(1, 0) = -1.0;
         jac(1, 1) = -1.0;
       }
-      else if (Curved_edge == C1Helper::CurvedEdgeEnumeration::one)
+      else if (Curved_edge == C1PlateHelper::CurvedEdgeEnumeration::one)
       {
         // We need the derivative of the permuted coords wrt the local
         // coordinate
