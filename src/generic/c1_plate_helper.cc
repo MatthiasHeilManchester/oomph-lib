@@ -1,4 +1,5 @@
 #include "c1_plate_helper.h"
+#include "subparametric_Telement.h"
 
 namespace oomph
 {
@@ -190,20 +191,31 @@ namespace C1Helper
 
  
 //==============================================================================
-// hierher update
-/// Duplicate nodes at corners in order to properly apply boundary
-/// conditions from each edge. Also adds (8) Lagrange multiplier dofs to the
-/// problem in order to constrain continuous interpolation here across its (8)
-/// vertex dofs. (Note "corner" here refers to the meeting point of any two
-/// sub-boundaries in the closed external boundary)
+/// Fct to duplicate nodes that span two boundaries of the triangle mesh pointed
+/// to by bulk_mesh_pt. This makes sure that each node on the boundary is only 
+/// associated with a single (smooth) boundary. Smooth boundaries  of the mesh/domain
+/// are available  via the map c1_curviline_pt. The required continuity of
+/// the solution is then imposed by a suitable DuplicateNodeConstraintElement
+/// that is created and added to the Mesh pointed to by constraint_mesh_pt.
 //==============================================================================
  void duplicate_corner_nodes(Mesh* bulk_mesh_pt, 
                              std::map<unsigned,C1CurviLine*> c1_curviline_pt,
                              Mesh* constraint_mesh_pt)
  {
 
-  // hierher check if mesh is distributed!
-  
+#ifdef PARANOID
+#ifdef OOMPH_HAS_MPI
+      // Unlikely to work for distributed meshes
+      if (bulk_mesh_pt->is_mesh_distributed())
+       {
+        throw OomphLibError("C1Helper::duplicate_corner_nodes(...) "
+                            "is unlikely to work for distributed meshes.\n",
+                            OOMPH_CURRENT_FUNCTION,
+                            OOMPH_EXCEPTION_LOCATION);
+       }
+#endif
+#endif
+        
   // Collection of nodes that occupy two boundaries together with the boundary IDs
   // (ordered: first < second)
   std::map<Node*,std::pair<unsigned,unsigned>> boundaries_of_boundary_node_pt;
@@ -458,8 +470,9 @@ namespace C1Helper
        }
 #endif
 
-      // hierher shouldn't we hard code this to only allow specific options
-      // this can't be any number, right?
+      // By default (this is a generic helper function we use fifth order polynomials
+      // for the boundary representation. third order (the other option) is cheaper but
+      // doesn't work for all types of boundary conditions.
       unsigned boundary_order=5;
       curv_el_pt->upgrade_element_to_curved(edge, s_ubar, s_obar,
                                             c1_curve_pt,
@@ -489,7 +502,7 @@ namespace C1Helper
 /// normal and tangent to a boundary) we ALSO know dw/dt and d2w/dt2.
 /// NB no rotation is needed if the edges are completely free!
 //======================================================================
- void rotate_edge_degrees_of_freedom(
+ void rotate_edge_coordinates(
   Mesh* bulk_mesh_pt, 
   std::map<unsigned,C1CurviLine*> c1_curviline_pt) 
 {
@@ -524,7 +537,7 @@ namespace C1Helper
         }
       }
      
-     // If the element has nodes on the boundary, rotate the Hermite dofs
+     // If the element has nodes on the boundary, setup rotation machinery
      if(!boundary_node.empty())
       {
        // Rotate the nodes by passing the index of the nodes and the
@@ -552,7 +565,7 @@ namespace C1Helper
     }
   }
  
-} // end rotate_edge_degrees_of_freedom
+} // end rotate_edge_coordinates
 
  
 

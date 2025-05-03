@@ -204,6 +204,91 @@ namespace oomph
   }; // End of Subparametric TElement class
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+ //===========================================================================
+ /// Template-free base class for curvable Bell Element
+ //===========================================================================
+class TemplateFreeCurvableBellElement : public virtual FiniteElement
+ {
+
+ public:
+  
+  /// Upgrade the element to be curved
+  virtual void upgrade_element_to_curved(const C1Helper::CurvedEdgeEnumeration& curved_edge,
+                                         const double& s_ubar,
+                                         const double& s_obar,
+                                         C1CurviLine* parametric_edge,
+                                         const unsigned& boundary_order)=0;
+  
+  /// Access function to rotated boundary helper object
+  virtual RotatedBoundaryHelper* rotated_boundary_helper_pt()=0;
+
+
+  /// Clamp: i.e. pin the in-plane displacements and pin the out-of-plane
+  /// displacement and its normal derivative. We also apply implied
+  /// boundary conditions (e.g. specification of dw/dn also implies
+  /// d^2w/dn/dzeta etc. boundary_values_pt[i] describes boundary conditions
+  /// for the three displacement components (i=0,1 in plane (x,y);
+   /// i=2: out-of-plane (z)).
+  /// curviline_pt provides a pointer to the representation of the curvilinear
+  /// boundary in the triangle mesh.
+  virtual void fully_clamp_specified_boundary(
+   const unsigned& b,
+   const Vector<BoundaryConditionForC1PlateBending*>& boundary_values_pt,
+   TriangleMeshCurviLine* curviline_pt) = 0;
+  
+  
+  /// Pin i.e. pin the in-plane and out of plane displacements only.
+  /// We also apply implied boundary conditions (e.g. specification of w
+  /// also implies dw/dt etc. boundary_values_pt[i] describes boundary
+  /// conditions for the three displacement components (i=0,1 in plane (x,y);
+  /// i=2: out-of-plane (z)).
+  /// curviline_pt provides a pointer to the representation of the curvilinear
+  /// boundary in the triangle mesh.
+  virtual void pin_specified_boundary(
+   const unsigned& b,
+   const Vector<BoundaryConditionForC1PlateBending*>& boundary_values_pt,
+   TriangleMeshCurviLine* curviline_pt) = 0;
+
+
+  /// Factory to create DuplicateNodeConstraintElement.
+  /// which ensures that the deformation is sufficiently smooth
+  /// between different parts of a boundary (which may contain isolated
+  /// kinks which make it C0 rather than C1). Pass:
+  /// -- Pointers to nodes on the "left" and "right" boundary
+  /// -- pointers to the C1Curvilines that describe the smooth
+  ///    parts of the boundary on either side
+  /// -- the boundary coordinates that identifies the corner point
+  ///    relative the right and left boundary parametrisation
+  ///    (specified via a one-sized vector). 
+  virtual DuplicateNodeConstraintElement* duplicate_constraint_element_factory(
+   Node* const& left_node_pt,
+   Node* const& right_node_pt,
+   C1CurviLine* const& left_boundary_pt,
+   C1CurviLine* const& right_boundary_pt,
+   Vector<double> const& left_coord,
+   Vector<double> const& right_coord)=0;
+  
+  
+ };
+ 
+
+ //////////////////////////////////////////////////////////////////////////////////////
+ //////////////////////////////////////////////////////////////////////////////////////
+ //////////////////////////////////////////////////////////////////////////////////////
+ 
   //===========================================================================
   /// Curvable Bell element. It inherits simplax shape subparametricity
   /// SubparametricTriangleElement for efficient position interpolation. It also

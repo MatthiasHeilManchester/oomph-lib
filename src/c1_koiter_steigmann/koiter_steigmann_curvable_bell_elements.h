@@ -914,7 +914,7 @@ namespace oomph
       // this->set_integration_scheme(new_integral_pt);
 
       // Rotated dof helper
-      Rotated_boundary_helper_pt = new RotatedBoundaryHelper(this);
+      Rotated_boundary_helper_pt = new RotatedBoundaryHelper;
     }
 
     /// Destructor
@@ -1075,8 +1075,8 @@ namespace oomph
    /// displacement and its normal derivative. We also apply implied
    /// boundary conditions (e.g. specification of dw/dn also implies
    /// d^2w/dn/dzeta etc. boundary_values_pt[i] describes boundary conditions
-   /// for the three displacement components... hierher Aidan: this is where
-   /// it gets complicated: u_x or u_n etc?
+   /// for the three displacement components (i=0,1 in plane (x,y);
+   /// i=2: out-of-plane (z)).
    /// curviline_pt provides a pointer to the representation of the curvilinear
    /// boundary in the triangle mesh.
    virtual void fully_clamp_specified_boundary(
@@ -1088,8 +1088,8 @@ namespace oomph
    /// Pin i.e. pin the in-plane and out of plane displacements only.
    /// We also apply implied boundary conditions (e.g. specification of w
    /// also implies dw/dt etc. boundary_values_pt[i] describes boundary conditions
-   /// for the three displacement components... hierher Aidan: this is where
-   /// it gets complicated: u_x or u_n etc?
+   /// for the three displacement components (i=0,1 in plane (x,y);
+   /// i=2: out-of-plane (z)).
    /// curviline_pt provides a pointer to the representation of the curvilinear
    /// boundary in the triangle mesh.
    virtual void pin_specified_boundary(
@@ -1432,8 +1432,8 @@ namespace oomph
  /// displacement and its normal derivative. We also apply implied
  /// boundary conditions (e.g. specification of dw/dn also implies
  /// d^2w/dn/dzeta etc. boundary_values_pt[i] describes boundary conditions
- /// for the three displacement components... hierher Aidan: this is where
- /// it gets complicated: u_x or u_n etc?
+ /// for the three displacement components (i=0,1 in plane (x,y);
+   /// i=2: out-of-plane (z)).
  /// curviline_pt provides a pointer to the representation of the curvilinear
  /// boundary in the triangle mesh.
  //==========================================================================
@@ -1492,7 +1492,7 @@ namespace oomph
           // We have 6 Hermite deflection degrees
           // of freedom points. They are {u ; u,x ; u,y ; u,xx ; u,xy ; u,yy}
           // or their rotated counterparts {u ; u,n ; u,t ; u,nn ; u,nt ; u,tt}
-          unsigned nw_type=6; // hierher Aidan the function I copied this from (which I think wasn't ever used had nw_type_at_each_node();
+          unsigned nw_type=6; 
           for (unsigned k_type=0;k_type<nw_type;k_type++)
            {
             double value=0.0;
@@ -1579,8 +1579,8 @@ namespace oomph
  /// Pin i.e. pin the in-plane and out of plane displacements only.
  /// We also apply implied boundary conditions (e.g. specification of w
  /// also implies dw/dt etc. boundary_values_pt[i] describes boundary conditions
- /// for the three displacement components... hierher Aidan: this is where
- /// it gets complicated: u_x or u_n etc?
+ /// for the three displacement components (i=0,1 in plane (x,y);
+ /// i=2: out-of-plane (z)).
  /// curviline_pt provides a pointer to the representation of the curvilinear
  /// boundary in the triangle mesh.
 //=============================================================================
@@ -1640,7 +1640,7 @@ namespace oomph
           // We have 6 Hermite deflection degrees
           // of freedom points. They are {u ; u,x ; u,y ; u,xx ; u,xy ; u,yy}
           // or their rotated counterparts {u ; u,n ; u,t ; u,nn ; u,nt ; u,tt}
-          unsigned nw_type=6; // hierher Aidan the function I copied this from (which I think wasn't ever used had nw_type_at_each_node();
+          unsigned nw_type=6;
           for (unsigned k_type=0;k_type<nw_type;k_type++)
            {
             double value=0.0;

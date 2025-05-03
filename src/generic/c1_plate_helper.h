@@ -367,17 +367,15 @@ private:
 
  
  //===start of rotation helper class=========================================
- /// Helper class to contain all the rotation information in the element.
+ /// Helper class to contain all the rotation information for an element.
  //==========================================================================
  class RotatedBoundaryHelper
   {
   public:
    
-   /// Constructor: Pass pointer to element that contains boundary where coordinates
-   /// have to be rotated
-   RotatedBoundaryHelper(FiniteElement* const& element_pt)
-    : Nnode(element_pt->nvertex_node()),
-      Boundary_coordinate_of_node(3, 0.0),
+   /// Constructor
+   RotatedBoundaryHelper()
+    : Boundary_coordinate_of_node(3, 0.0),
       Nodal_boundary_parametrisation_pt(3, 0),
       Rotation_matrix_at_node(3, DenseMatrix<double>(6, 6, 0.0))
     {
@@ -387,8 +385,7 @@ private:
    ~RotatedBoundaryHelper() {}
 
    /// Return C1Curviline associated with the boundary
-   /// parametrisatino that given local node is on
-   /// hierher Aidan: please confirm
+   /// parametrisation that given local node is on
    C1CurviLine* nodal_boundary_parametrisation_pt(
     const unsigned& j_node)
     {
@@ -422,8 +419,7 @@ private:
    
 
    
-   /// Update all rotation matrices (checks if they are needed unless flag is
-   /// true)
+   /// Update all rotation matrices 
     void update_rotation_matrices()
     {
       // [zdec] hard coded the three vertex nodes
@@ -654,11 +650,6 @@ private:
       }
     } // end fill_in_rotation_matrix_at_node_with_basis
 
-
-    /// The number of nodes (that we store rotation data for) in the fvk element
-    /// that uses this helper
-    unsigned Nnode;
-
     /// Vector containing boundary parametrised location for each node
     Vector<double> Boundary_coordinate_of_node;
 
@@ -699,74 +690,6 @@ namespace C1Helper
 
 
  
- //===========================================================================
- /// Template-free base class for curvable Bell Element
- //===========================================================================
-class TemplateFreeCurvableBellElement : public virtual FiniteElement
- {
-
- public:
-  
-  /// Upgrade the element to be curved
-  virtual void upgrade_element_to_curved(const C1Helper::CurvedEdgeEnumeration& curved_edge,
-                                         const double& s_ubar,
-                                         const double& s_obar,
-                                         C1CurviLine* parametric_edge,
-                                         const unsigned& boundary_order)=0;
-  
-  /// Access function to rotated boundary helper object
-  virtual RotatedBoundaryHelper* rotated_boundary_helper_pt()=0;
-
-
-  /// Clamp: i.e. pin the in-plane displacements and pin the out-of-plane
-  /// displacement and its normal derivative. We also apply implied
-  /// boundary conditions (e.g. specification of dw/dn also implies
-  /// d^2w/dn/dzeta etc. boundary_values_pt[i] describes boundary conditions
-  /// for the three displacement components... hierher Aidan: this is where
-  /// it gets complicated: u_x or u_n etc?
-  /// curviline_pt provides a pointer to the representation of the curvilinear
-  /// boundary in the triangle mesh.
-  virtual void fully_clamp_specified_boundary(
-   const unsigned& b,
-   const Vector<BoundaryConditionForC1PlateBending*>& boundary_values_pt,
-   TriangleMeshCurviLine* curviline_pt) = 0;
-  
-  
-  /// Pin i.e. pin the in-plane and out of plane displacements only.
-  /// We also apply implied boundary conditions (e.g. specification of w
-  /// also implies dw/dt etc. boundary_values_pt[i] describes boundary conditions
-  /// for the three displacement components... hierher Aidan: this is where
-  /// it gets complicated: u_x or u_n etc?
-  /// curviline_pt provides a pointer to the representation of the curvilinear
-  /// boundary in the triangle mesh.
-  virtual void pin_specified_boundary(
-   const unsigned& b,
-   const Vector<BoundaryConditionForC1PlateBending*>& boundary_values_pt,
-   TriangleMeshCurviLine* curviline_pt) = 0;
-
-
-  /// Factory to create DuplicateNodeConstraintElement.
-  /// which ensures that the deformation is sufficiently smooth
-  /// between different parts of a boundary (which may contain isolated
-  /// kinks which make it C0 rather than C1). Pass:
-  /// -- Pointers to nodes on the "left" and "right" boundary
-  /// -- pointers to the C1Curvilines that describe the smooth
-  ///    parts of the boundary on either side
-  /// -- the boundary coordinates that identifies the corner point
-  ///    relative the right and left boundary parametrisation
-  ///    (specified via a one-sized vector). 
-  virtual DuplicateNodeConstraintElement* duplicate_constraint_element_factory(
-   Node* const& left_node_pt,
-   Node* const& right_node_pt,
-   C1CurviLine* const& left_boundary_pt,
-   C1CurviLine* const& right_boundary_pt,
-   Vector<double> const& left_coord,
-   Vector<double> const& right_coord)=0;
-  
-  
- };
- 
-
 //==============================================================================
 /// Namespace to deal update triangle meshes to deal with C1 elements
 /// (continued)
@@ -839,7 +762,7 @@ namespace C1Helper
 /// NB no rotation is needed if the edges are completely free!
 /// The smooth mesh/domain boundaries are available via the map c1_curviline_pt.
 //======================================================================
- extern void rotate_edge_degrees_of_freedom(
+ extern void rotate_edge_coordinates(
   Mesh* bulk_mesh_pt, 
   std::map<unsigned,C1CurviLine*> c1_curviline_pt);
 
@@ -849,13 +772,13 @@ namespace C1Helper
 /// Helper function to upgrade a triangle mesh to C1 computations.
 /// -- split elements that have multiple edges on a boundary (so the number
 ///    of elements in the mesh changes!
-/// -- duplicate corner nodes (so the number of nodes in the mesh changes
+/// -- duplicate corner nodes (note that the number of nodes in the mesh changes)
 /// -- create DuplicateNodeConstraintElements that constrain the degrees of freedom
 ///    at the newly created nodes to ensure continuity of the displacements
 ///    These elements are added to the mesh pointed to by constraint_mesh_pt
-/// -- rotate the degrees of freedom on the curvilinear boundaries so they
-///    represent displacements and derivatives in the tangential and
-///    normal direction // hierher Aidan true?
+/// -- rotate the coordinates on the curvilinear boundaries so derivatives
+///    represent derivatives in the tangential and
+///    normal direction.
 /// The smooth mesh/domain boundaries are available via the map c1_curviline_pt.
 //======================================================================
  template <class ELEMENT>
@@ -875,7 +798,7 @@ namespace C1Helper
       std::stringstream warning_message;
       warning_message
        << "Black box helper function upgrade_triangle_mesh_for_c1_plate_bending()\n"
-       << "will only rotate degrees of freedom on boundaries that are described\n"
+       << "will only rotate coordinates on boundaries that are described\n"
        << "by TriangleMeshCurviLine. It seems that in your triangle mesh only\n"
        << c1_curviline_boundary_pt.size() << " of " << nb << " boundaries \n"
        << "are of this type. This only matters if you want to apply clamping-type\n"
@@ -921,8 +844,9 @@ namespace C1Helper
    bulk_mesh_pt,
    c1_curviline_boundary_pt);
   
-  // Rotate degrees of freedom (only really needed for clamped bcs)
-  rotate_edge_degrees_of_freedom(
+  // Rotate coordinates (only really needed for clamped bcs but
+  // doesn't do (much) harm in terms of runtimes)
+  rotate_edge_coordinates(
    bulk_mesh_pt,
    c1_curviline_boundary_pt);
   

@@ -481,9 +481,11 @@ namespace oomph
 #ifdef PARANOID
           if (edge_boundary.size() > 1)
            {
-            // hierher
-            oomph_info << "WHAT [0]" << std::endl;
-            abort();
+            std::ostringstream error_stream;
+            error_stream
+             << "This shouldn't happen!";
+            throw OomphLibError(
+             error_stream.str(), OOMPH_CURRENT_FUNCTION, OOMPH_EXCEPTION_LOCATION);
            }
 #endif
           // The next element on this boundary (pointed to by it0) has face index 0 
@@ -512,9 +514,11 @@ namespace oomph
 #ifdef PARANOID
           if (edge_boundary.size() > 1)
            {
-            // hierher
-            oomph_info << "WHAT [1]" << std::endl;
-            abort();
+            std::ostringstream error_stream;
+            error_stream
+             << "This shouldn't happen!";
+            throw OomphLibError(
+             error_stream.str(), OOMPH_CURRENT_FUNCTION, OOMPH_EXCEPTION_LOCATION);
            }
 #endif
           // The next element on this boundary (pointed to by it) has face index 1 
@@ -544,9 +548,11 @@ namespace oomph
 #ifdef PARANOID
           if (edge_boundary.size() > 1)
            {
-            // hierher
-            oomph_info << "WHAT [2]" << std::endl;
-            abort();
+            std::ostringstream error_stream;
+            error_stream
+             << "This shouldn't happen!";
+            throw OomphLibError(
+             error_stream.str(), OOMPH_CURRENT_FUNCTION, OOMPH_EXCEPTION_LOCATION);
            }
 #endif
           // The next element on this boundary (pointed to by it) has face index 2 

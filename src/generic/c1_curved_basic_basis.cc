@@ -46,8 +46,14 @@
 // though. Once this is done for p=3,
 
 
-// We could definitely store this as a static  // hierher Aidan: Let's! Also, where is this from? 
-// Looks machine generated. Do we have the original maple/mathematica code?
+// We could definitely store this as a static  // hierher Aidan: Let's!
+// UPDATE after initial pull request: Can't
+// now remember what we decided, but can you sort this out (or raise it again)
+// when you do your tidies (plenty of zdecs anyway)
+
+
+// hierher Aidan: Also, where is this from? Code looks machine generated. Do we have
+// the original maple/mathematica code?
 
 namespace oomph
 {
