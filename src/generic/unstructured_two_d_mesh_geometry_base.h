@@ -47,6 +47,7 @@ namespace oomph
 {
 #ifdef OOMPH_HAS_TRIANGLE_LIB
 
+
  // Forward reference
  class C1CurviLine;
 
@@ -1759,18 +1760,7 @@ namespace oomph
    void operator=(const UnstructuredTwoDMeshGeometryBase&) = delete;
    
    /// Destructor
-   ~UnstructuredTwoDMeshGeometryBase()
-    {
-     if (C1_curviline_represensation_has_been_set_up)
-      {
-       for (auto [b, c1_curviline_pt] :  C1_curviline_boundary_pt)
-        {
-         delete c1_curviline_pt;
-        }
-       C1_curviline_boundary_pt.empty();
-       C1_curviline_represensation_has_been_set_up=false;
-      }
-    }
+   ~UnstructuredTwoDMeshGeometryBase();
    
     /// Return the number of regions specified by attributes
     unsigned nregion()

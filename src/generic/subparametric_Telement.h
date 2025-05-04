@@ -845,13 +845,16 @@ Elements.",
       // Add the curved edge
       Curved_edge = curved_edge;
 
+
+      // hierher Aidan: what's going on here? This is never used!
       Integral* new_integral_pt;
+      
       // Switch for the boundary order
       switch (boundary_order)
       {
         case 3:
           // [zdec] debug
-          oomph_info << "Upgrading to a 3-er" << std::endl;
+         oomph_info << "Upgrading to a 3-er" << std::endl; // hierher Aidan: also get rid off all these outputs
           add_new_curved_basis<BernadouElementBasis<3>>();
           // new_integral_pt = new TGauss<2, 13>;
           new_integral_pt = new TGauss<2, 5>;

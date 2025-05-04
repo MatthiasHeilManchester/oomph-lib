@@ -1898,7 +1898,21 @@ namespace oomph
 #ifdef OOMPH_HAS_TRIANGLE_LIB
 
 
-
+ //===========================================================================
+ /// Destructor 
+ //===========================================================================
+ UnstructuredTwoDMeshGeometryBase::~UnstructuredTwoDMeshGeometryBase()
+ {
+  if (C1_curviline_represensation_has_been_set_up)
+   {
+    for (auto [b, c1_curviline_pt] :  C1_curviline_boundary_pt)
+     {
+      delete c1_curviline_pt;
+     }
+    C1_curviline_boundary_pt.clear();
+    C1_curviline_represensation_has_been_set_up=false;
+   }
+ }
 
  //==========================================================================
  /// Map containing pointers to C1CurviLines

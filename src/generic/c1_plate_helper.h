@@ -730,11 +730,11 @@ namespace C1PlateHelper
 /// Setting up the parametric boundary, F(s) and the first derivative F'(s)
 /// We also need to set the edge number of the upgraded element and the positions
 /// of the nodes j and k (defined below) and set which edge (k) is to be exterior
-///            @ k               
-///           /(                 
-///          /. \                
-///         /._._)               
-///      i @     @ j             
+///            @ k               .
+///           /(                 .
+///          /. \                .
+///         /._._)               .
+///      i @     @ j             .
 /// For RESTING or FREE boundaries we need to have a C2 CONTINUOUS boundary
 /// representation. That is we need to have a continuous 2nd derivative defined
 /// too. This is well discussed in by [Zenisek 1981] (Aplikace matematiky ,

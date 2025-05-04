@@ -1642,9 +1642,10 @@ namespace oomph
                                          Shape& psi_n,
                                          Shape& psi_i) const
   {
+
+   // hierher Aidan: Kill this commented out bit?
 //     throw OomphLibError("This still needs testing for curved elements.",
-//                         "void FoepplVonKarmanC1CurvableBellElement<NNODE_1D>::\
-// shape_and_test_foeppl_von_karman(...)",
+//                         "void FoepplVonKarmanC1CurvableBellElement<NNODE_1D>::shape_and_test_foeppl_von_karman(...)",
 //                         OOMPH_EXCEPTION_LOCATION);
 
     this->c1_basis(s, psi_n, psi_i);
@@ -2101,7 +2102,6 @@ namespace oomph
   const unsigned nodal_type_index =
    this->first_nodal_type_index_for_field(field_index);
   const unsigned n_node = nu_node();
-  const unsigned dim = this->dim();
   
 #ifdef PARANOID
   // Check that the dof number is a sensible value
