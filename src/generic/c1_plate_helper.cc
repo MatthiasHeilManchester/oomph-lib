@@ -7,6 +7,34 @@ namespace oomph
 
 
  //===============================================================================
+ ///  /// Document the pin status of the Lagrange multipliers
+ //===============================================================================
+ void DuplicateNodeConstraintElement::doc_pin_status_of_lagrange_multipliers(
+  std::ostream& outfile)
+ {
+  outfile << Right_node_pt->x(0) << " " << Right_node_pt->x(1) << " : ";
+   Data* lagr_data_pt=internal_data_pt(Index_of_lagrange_data);
+   if (lagr_data_pt!=0)
+    {
+     unsigned nval=lagr_data_pt->nvalue();
+     for (unsigned i=0;i<nval;i++)
+      {
+       if (lagr_data_pt->is_pinned(i))
+        {
+         outfile << " 1 ";
+        }
+       else
+        {
+         outfile << " 0 ";
+        }
+      }
+     outfile << std::endl;
+    }
+  }
+
+  
+
+ //===============================================================================
  /// Function to calculate Jacobian and Hessian of the coordinate mapping
  //===============================================================================
  void DuplicateNodeConstraintElement::get_jac_and_hess_of_coordinate_transform(
@@ -341,20 +369,20 @@ namespace C1PlateHelper
 /// Setting up the parametric boundary, F(s) and the first derivative F'(s)
 /// We also need to set the edge number of the upgraded element and the positions
 /// of the nodes j and k (defined below) and set which edge (k) is to be exterior
-///            @ k               
-///           /(                 
-///          /. \                
-///         /._._)               
-///      i @     @ j             
+///            @ k               .
+///           /(                 .
+///          /. \                .
+///         /._._)               .
+///      i @     @ j             .
 /// For RESTING or FREE boundaries we need to have a C2 CONTINUOUS boundary
 /// representation. That is we need to have a continuous 2nd derivative defined
 /// too. This is well discussed in by [Zenisek 1981] (Aplikace matematiky ,
 /// Vol. 26 (1981), No. 2, 121--141). This results in the necessity for F''(s)
-/// as well. Final optional argument, boundary order can take values 3 and 5 and represents
-/// the order of the polynomial that represents the curved boundary. Default value
-/// of 5 works for all boundary conditions; 3 is faster but only works for homogeneous
-/// clamped boundaries (in a plate context). hierher Aidan: check description of
-/// final arg
+/// as well. Final optional argument, boundary order can take values 3 and 5 and 
+/// represents the order of the polynomial that represents the curved boundary. 
+/// Default value of 5 works for all boundary conditions; 3 is faster but only 
+/// works for homogeneous clamped boundaries (in a plate context).
+/// hierher Aidan: check description of final arg
 //=============================================================================
  void upgrade_edge_elements_to_curved_boundaries(
   Mesh* bulk_mesh_pt, 
@@ -378,6 +406,13 @@ namespace C1PlateHelper
   // Loop over the curvilinear parts of the outer boundary
   for (const auto& [ibound, c1_curve_pt] : c1_curviline_pt)
    {
+
+
+    oomph_info << "hierher in upgrade_edge_elements_to_curved_boundaries: "
+               << ibound << " "
+               << c1_curve_pt << " "
+               << c1_curve_pt->triangle_mesh_curviline_pt()->geom_object_pt() << std::endl;
+
     
     // Loop over the bulk elements adjacent to boundary ibound
     const unsigned n_els=bulk_mesh_pt->nboundary_element(ibound);
@@ -388,13 +423,14 @@ namespace C1PlateHelper
        bulk_mesh_pt->boundary_element_pt(ibound,e);
 
       // Initialise enum for the curved edge
-      C1PlateHelper::CurvedEdgeEnumeration edge=C1PlateHelper::CurvedEdgeEnumeration::none;
+      C1PlateHelper::CurvedEdgeEnumeration edge=
+       C1PlateHelper::CurvedEdgeEnumeration::none;
       
       // Loop over all (three) vertex nodes of the element and
-      // identify single node that is interior (i.e. not on any
-      // of the outer boundaries
+      // identify single node that is interior (i.e. not on the current
+      // of the curved boundary)
       unsigned index_of_interior_node = 3;
-      unsigned nnode_not_on_any_outer_boundary = 0;
+      unsigned nnode_not_on_curved_boundary = 0;
       const unsigned nnode = 3;
       Vector<Vector<double> > xn(nnode,Vector<double>(2,0.0));
       for(unsigned n=0;n<nnode;++n)
@@ -403,59 +439,97 @@ namespace C1PlateHelper
         xn[n][0]=nod_pt->x(0);
         xn[n][1]=nod_pt->x(1);
         
-        // Check if it is on any of the outer boundaries
-        bool node_is_on_some_outer_boundary=false;
-        for (const auto& [b, dummy_c1_curve_pt] : c1_curviline_pt)
-         {
-          if (nod_pt->is_on_boundary(b))
-           {
-            node_is_on_some_outer_boundary=true;
-            break;
-           }
-         }
-        if (!node_is_on_some_outer_boundary)
+        // Check if it is on the curved boundaries
+        bool node_is_on_curved_boundary=false;
+        {
+         if (nod_pt->is_on_boundary(ibound))  
+          {
+           node_is_on_curved_boundary=true;
+          }
+        }
+        if (!node_is_on_curved_boundary)
          {
           index_of_interior_node = n;
-          nnode_not_on_any_outer_boundary++;
+          nnode_not_on_curved_boundary++;
          }
        }// end record boundary nodes
+
+
+    
+#ifdef PARANOID
+
+      std::stringstream error_stream;
+      error_stream
+       << "Problem arises when upgrading boundary element " << e
+       << " on boundary " << ibound
+       << "\nIts nodes are at\n"
+       << xn[0][0] << " "  << xn[0][1] << "\n"
+       << xn[1][0] << " "  << xn[1][1] << "\n"
+       << xn[2][0] << " "  << xn[2][1] << "\n"
+       << "hierher check this diagnostic again. The quickest solution to this problem is to create a finer mesh\n"
+       << "since smaller elements are less likely to bridge multiple distinct boundaries"
+       << std::endl;
+                   
+      // Check nnode_on_curved_boundary
+      if (nnode_not_on_curved_boundary == 0)
+       {
+        std::string error_message=
+         "No interior nodes. One node per CurvedElement must be interior.\n"+
+         error_stream.str();
+         
+        throw OomphLibError(
+         error_message,
+         OOMPH_CURRENT_FUNCTION, OOMPH_EXCEPTION_LOCATION);
+       }
+      else if (nnode_not_on_curved_boundary> 1)
+       {
+        std::string error_message=
+         "Multiple interior nodes. Only one node per CurvedElement can be interior.\n"+
+         error_stream.str();
+        throw OomphLibError(
+         error_message,
+         OOMPH_CURRENT_FUNCTION, OOMPH_EXCEPTION_LOCATION);
+       }
+      
+#endif
+      
       
       // hierher shouldn't these be called zeta (everywhere; sigh)
       // boundary coordinate at the next (cyclic) node after interior
+
+      oomph_info << "hierher Calling get zeta for s_ubar target x: "
+                 << xn[(index_of_interior_node+1) % 3][0] << " "
+                 << xn[(index_of_interior_node+1) % 3][1] << " "
+                 << std::endl;
       const double s_ubar =
        c1_curve_pt->get_zeta(xn[(index_of_interior_node+1) % 3]);
       
+      oomph_info << "hierher Calling get zeta for s_bar target x: "
+                 << xn[(index_of_interior_node+2) % 3][0] << " "
+                 << xn[(index_of_interior_node+2) % 3][1] << " "
+                 << std::endl;
       // boundary coordinate at the previous (cyclic) node before interior
       const double s_obar =
        c1_curve_pt->get_zeta(xn[(index_of_interior_node+2) % 3]);
       
-      // Assign edge case
-      edge = static_cast<C1PlateHelper::CurvedEdgeEnumeration>(index_of_interior_node);
-      
+    
 #ifdef PARANOID
-      // Check nnode_on_neither_boundary
-      if (nnode_not_on_any_outer_boundary == 0)
-       {
-        throw OomphLibError(
-         "No interior nodes. One node per CurvedElement must be interior.",
-         OOMPH_CURRENT_FUNCTION, OOMPH_EXCEPTION_LOCATION);
-       }
-      else if (nnode_not_on_any_outer_boundary> 1)
-       {
-        throw OomphLibError(
-         "Multiple interior nodes. Only one node per CurvedElement can be interior.",
-         OOMPH_CURRENT_FUNCTION, OOMPH_EXCEPTION_LOCATION);
-       }
-      
       // Check for inverted elements
       if (s_ubar>s_obar)
        {
-        throw OomphLibError(
+        // throw // hierher probably not an issue actually
+        OomphLibError(
          "Decreasing parametric coordinate. Parametric coordinate must increase as the edge is traversed anti-clockwise.",
          OOMPH_CURRENT_FUNCTION,
          OOMPH_EXCEPTION_LOCATION);
        } // end checks
 #endif
+      
+
+      
+      // Assign edge case
+      edge = static_cast<C1PlateHelper::CurvedEdgeEnumeration>(index_of_interior_node);
+  
       
       // Upgrade it
       TemplateFreeCurvableBellElement* curv_el_pt=
@@ -470,9 +544,10 @@ namespace C1PlateHelper
        }
 #endif
 
-      // By default (this is a generic helper function we use fifth order polynomials
-      // for the boundary representation. third order (the other option) is cheaper but
-      // doesn't work for all types of boundary conditions.
+      // By default (this is a generic helper function we use fifth order 
+      // polynomials for the boundary representation. third order (the
+      // other option) is cheaper but doesn't work for all types of
+      // boundary conditions.
       unsigned boundary_order=5;
       curv_el_pt->upgrade_element_to_curved(edge, s_ubar, s_obar,
                                             c1_curve_pt,
@@ -507,7 +582,8 @@ namespace C1PlateHelper
   std::map<unsigned,C1CurviLine*> c1_curviline_pt) 
 {
  
- // Loop over the bulk elements: Yes, really because we also need to deal with those that only
+ // Loop over the bulk elements: Yes, really because we also
+ // need to deal with those that only
  // have a single node on the boundary!
  unsigned n_element = bulk_mesh_pt-> nelement();
  for(unsigned e=0; e<n_element; e++)

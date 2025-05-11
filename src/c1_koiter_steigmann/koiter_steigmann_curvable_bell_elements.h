@@ -1113,25 +1113,6 @@ namespace oomph
       }
     }
 
-    /// Return true if the element has been upgraded to interpolate a curved
-    /// boundary
-    bool element_is_curved() const
-    {
-      return CurvableBellElement<Nnode_1D>::element_is_curved();
-    }
-   
-    /// Upgrade the Bell element to a curved Bernadou element
-    virtual void upgrade_element_to_curved(
-      const C1PlateHelper::CurvedEdgeEnumeration& curved_edge,
-      const double& s_ubar,
-      const double& s_obar,
-      C1CurviLine* parametric_edge,
-      const unsigned& boundary_order)
-    {
-      CurvableBellElement<Nnode_1D>::upgrade_element_to_curved(
-        curved_edge, s_ubar, s_obar, parametric_edge, boundary_order);
-    }
-
 
    /// Factory to create DuplicateNodeConstraintElement.
    /// which ensures that the deformation is sufficiently smooth

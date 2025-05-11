@@ -66,6 +66,7 @@ namespace oomph
    void position(const Vector<double>& zeta,
                  Vector<double>& r) const
     {
+     oomph_info << "hierher about to call position for " << Triangle_mesh_curviline_pt->geom_object_pt() << std::endl;
      Triangle_mesh_curviline_pt->geom_object_pt()->position(zeta,r); 
     }
    
@@ -108,6 +109,9 @@ namespace oomph
      // Start Newton method in the middle
      double zeta_min=Triangle_mesh_curviline_pt->zeta_start();
      double zeta_max=Triangle_mesh_curviline_pt->zeta_end();
+
+     oomph_info << "hierher: Newton method: "
+                << zeta_min << " " << zeta_max << std::endl;
      double zeta=0.5*(zeta_max+zeta_min);
 
      // Do it
@@ -165,6 +169,12 @@ namespace oomph
     }
    
 
+   /// Read only access to pointer to underlying triangle object
+   TriangleMeshCurviLine* triangle_mesh_curviline_pt() const
+    {
+     return Triangle_mesh_curviline_pt;
+    }
+   
   private:
 
    /// Pointer to underlying triangle object
@@ -225,7 +235,11 @@ public:
  /// Specific implementation happens in derived classes
  /// for specific plate elements
  virtual void pin_redundant_constraints()=0;
+
+ /// Document the pin status of the Lagrange multipliers
+ void doc_pin_status_of_lagrange_multipliers(std::ostream& outfile=std::cout);
  
+   
 protected: 
 
  /// Function to calculate Jacobian and Hessian of the coordinate mapping
@@ -784,8 +798,36 @@ namespace C1PlateHelper
  template <class ELEMENT>
  void upgrade_triangle_mesh_for_c1_plate_bending(
   TriangleMeshBase* bulk_mesh_pt,
-  Mesh* constraint_mesh_pt)
+  Mesh* constraint_mesh_pt,
+  const bool verbose=true)
  {
+
+
+  if (verbose)
+   {
+    oomph_info << "\n\nStarting upgrade_triangle_mesh_for_c1_plate_bending(...)\n"
+               << "Stats before: \n"
+               << "-------------"
+               <<std::endl;
+    
+    oomph_info << "- Number of elements/nodes in bulk mesh: "
+               <<    bulk_mesh_pt->nelement() << " "
+               <<    bulk_mesh_pt->nnode() << " "
+               << std::endl;
+    
+    oomph_info << "- Number of elements in constraint mesh: "
+               <<    constraint_mesh_pt->nelement() << " "
+               << std::endl;
+    oomph_info << "- Pin status of data in constraint elements: " << std::endl;
+    unsigned nel=constraint_mesh_pt->nelement();
+    for (unsigned e=0;e<nel;e++)
+     {
+      oomph_info << "Element " << e << ":" << std::endl;
+      dynamic_cast<DuplicateNodeConstraintElement*>(constraint_mesh_pt->element_pt(e))->
+       doc_pin_status_of_lagrange_multipliers(*oomph_info.stream_pt());
+     }
+   }
+  
   // Get map to curvline boundaries of mesh
   std::map<unsigned, C1CurviLine*> c1_curviline_boundary_pt =
    bulk_mesh_pt->c1_curviline_boundary_pt();
@@ -849,6 +891,34 @@ namespace C1PlateHelper
   rotate_edge_coordinates(
    bulk_mesh_pt,
    c1_curviline_boundary_pt);
+
+
+  if (verbose)
+   {
+    oomph_info << "\n\End upgrade_triangle_mesh_for_c1_plate_bending(...)\n"
+               << "Stats after: \n"
+               << "-------------"
+               <<std::endl;
+    
+    oomph_info << "- Number of elements/nodes in bulk mesh: "
+               <<    bulk_mesh_pt->nelement() << " "
+               <<    bulk_mesh_pt->nnode() << " "
+               << std::endl;
+    
+    oomph_info << "- Number of elements in constraint mesh: "
+               <<    constraint_mesh_pt->nelement() << " "
+               << std::endl;
+    oomph_info << "- Pin status of data in constraint elements: " << std::endl;
+    unsigned nel=constraint_mesh_pt->nelement();
+    for (unsigned e=0;e<nel;e++)
+     {
+      oomph_info << "Element " << e << ":" << std::endl;
+      dynamic_cast<DuplicateNodeConstraintElement*>(constraint_mesh_pt->element_pt(e))->
+       doc_pin_status_of_lagrange_multipliers(*oomph_info.stream_pt());
+     }
+   }
+
+
   
  }
 

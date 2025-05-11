@@ -98,14 +98,6 @@ namespace oomph
       const C1PlateHelper::CurvedEdgeEnumeration& curved_edge,
       const C1CurviLine& parametric_curve) = 0;
      
-     /// Check the element
-     /// Optional final arguments specify tolerances for distance and
-     /// angle checks
-     virtual void self_check(
-       const C1CurviLine& parametric_curve,
-       const double& tol=1.0e-10,
-       const double& angle_tol=1.0e-12) const = 0;
-     
      /// Return the number of basis functions on the physical triangle
       virtual unsigned n_basis_functions() const = 0;
 
@@ -184,7 +176,7 @@ namespace oomph
       /// Default Constructor
       BernadouElementBasis() : Curved_edge(C1PlateHelper::CurvedEdgeEnumeration::none) {}
 
-      /// Constructor that takes vertices and start and end parts as arguments.
+      /// hierher Aidan: this is not a constructor! Constructor that takes vertices and start and end parts as arguments.
       void upgrade_element(const VertexList& verts,
                            const double& su,
                            const double& so,
@@ -240,7 +232,7 @@ namespace oomph
      /// Optional final arguments specify tolerances for distance and
      /// angle checks
      inline void self_check(const C1CurviLine& parametric_curve,
-                            const double& tol=1.0e-10,
+                            const double& tol=1.0e-8, // matches the Newton conv tol in get_zeta()
                             const double& angle_tol=1.0e-12) const;
      
       /// Get the physical coordinate
@@ -1350,14 +1342,19 @@ definitions.",
       // The parametric curve does not start and end at the vertices.
       if (vertices_differ_from_curve)
       {
-        oomph_info << "Difference of " << diff0 << " " << diff1
-                   << " between assigned vertices 0"
-                   << " and 1 respectively.\n";
-        throw OomphLibError(
-          "Non zero difference detected between assigned vertices \
-and the start and end of the provided Parametric boundary.",
-          OOMPH_CURRENT_FUNCTION,
-          OOMPH_EXCEPTION_LOCATION);
+       std::stringstream error_stream;       
+       error_stream
+        << "Non zero difference detected between assigned vertices\n"
+        << "and the start and end of the provided Parametric boundary:\n"
+        << "Difference of " << diff0 << " " << diff1
+        << " between assigned vertices 0"
+        << " and 1 respectively.\n"
+        << "The relevant vertices are at\n"
+        << Vertices[0][0] << " " << Vertices[0][1] << "\n"
+        << Vertices[1][0] << " " << Vertices[1][1] << "\n"; 
+       throw OomphLibError(error_stream.str(),
+                           OOMPH_CURRENT_FUNCTION,
+                           OOMPH_EXCEPTION_LOCATION);
       }
 
       // Lengths of the vectors
