@@ -957,6 +957,12 @@ namespace oomph
       FoepplVonKarmanEquations::full_output(outfile);
     }
 
+    /// Full output function with a rich set of unknowns:
+    ///  x, y, ux, uy, w, dw, ddw, du, strain, stress, principal stress
+   void full_output(std::ostream& outfile, const unsigned& nplot)
+    {
+     FoepplVonKarmanEquations::full_output(outfile,nplot);
+    }
     /// Output function:
     ///   x,y,u   or    x,y,z,u at n_plot*(n_plot+1)/2 plot points
     void output(std::ostream& outfile, const unsigned& n_plot)
@@ -2347,7 +2353,13 @@ of freedom at internal points. They are {ux, uy}",
         // Get value itself from boundary condition object
         Vector<double> zeta(nzeta);
         nod_pt->get_coordinates_on_boundary(b,zeta);
-        
+
+        oomph_info << "hierher FULLY CLAMPING AT "
+                   << nod_pt->x(0) << " "
+                   << nod_pt->x(1) << " "
+                   << b << " "
+                   << zeta[0] << " " 
+                   << std::endl;
 
         // Get the Jacobian from the GeomObject parametrising the boundary
         GeomObject* geom_obj_pt=curviline_pt->geom_object_pt();

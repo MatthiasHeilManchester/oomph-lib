@@ -7,7 +7,7 @@ namespace oomph
 
 
  //===============================================================================
- ///  /// Document the pin status of the Lagrange multipliers
+ /// Document the pin status of the Lagrange multipliers
  //===============================================================================
  void DuplicateNodeConstraintElement::doc_pin_status_of_lagrange_multipliers(
   std::ostream& outfile)
@@ -217,14 +217,30 @@ namespace C1PlateHelper
  /// upgraded to become curved
  std::ofstream Upgraded_to_curved_edge_element_stream;
 
+ /// Output stream to document nodes at which derivative dofs have been
+ /// adjusted to represent derivatives in the normal and tantential direction
+ /// We're putputting x,y of the node; the number of the bulk element that uses
+ /// the information and the boundary ID of the curvilinear boundary
+ std::ofstream Rotated_node_output_stream;
+ 
+ /// Output stream to document elements that contain nodes at which
+ /// derivative dofs have been adjusted to represent derivatives in
+ /// the normal and tantential direction
+ std::ofstream Rotated_element_output_stream;
+
+ /// Boolean vector to keep track of which boundaries are curvilinear
+ /// (vs polygonal)
+ std::vector<bool> Boundary_is_curvilinear;
+
  
 //==============================================================================
-/// Fct to duplicate nodes that span two boundaries of the triangle mesh pointed
-/// to by bulk_mesh_pt. This makes sure that each node on the boundary is only 
-/// associated with a single (smooth) boundary. Smooth boundaries  of the mesh/domain
-/// are available  via the map c1_curviline_pt. The required continuity of
-/// the solution is then imposed by a suitable DuplicateNodeConstraintElement
-/// that is created and added to the Mesh pointed to by constraint_mesh_pt.
+/// Fct to duplicate nodes that span two curved boundaries of the triangle mesh
+/// pointed to by bulk_mesh_pt. This makes sure that each node on the boundary 
+/// is only  associated with a single (smooth) boundary. Smooth boundaries  of
+/// the mesh/domain are available  via the map c1_curviline_pt. The required 
+/// continuity of the solution is then imposed by a suitable
+/// DuplicateNodeConstraintElement that is created and added to the
+/// Mesh pointed to by constraint_mesh_pt.
 //==============================================================================
  void duplicate_corner_nodes(Mesh* bulk_mesh_pt, 
                              std::map<unsigned,C1CurviLine*> c1_curviline_pt,
@@ -244,11 +260,15 @@ namespace C1PlateHelper
 #endif
 #endif
         
-  // Collection of nodes that occupy two boundaries together with the boundary IDs
-  // (ordered: first < second)
+  // Storage for collection of nodes that occupy two boundaries together
+  // with the boundary IDs (ordered: first < second)
   std::map<Node*,std::pair<unsigned,unsigned>> boundaries_of_boundary_node_pt;
 
-  // Loop over the curvilinear parts of the outer boundary
+  // Map new_node_pt = newly_created_node_pt[old_node_pt] for replacing
+  // nodes in elements
+  std::map<Node*,Node*> newly_created_node_pt;
+
+  // Loop over the curvilinear parts of the boundary
   for (const auto& [i_bound, para] : c1_curviline_pt)
   {
    unsigned n_b_node = bulk_mesh_pt->nboundary_node(i_bound);
@@ -275,13 +295,25 @@ namespace C1PlateHelper
          boundaries_of_boundary_node_pt[node_pt].first=b_min;
          boundaries_of_boundary_node_pt[node_pt].second=b_max;
         }
+       else if (boundaries_pt->size()>2)
+        {         
+         std::stringstream error_message;
+         error_message
+          << "Sorry; can't currently handle cases where a node is\n"
+          << "located on more than two boundaries. Not rocket science but\n"
+          << "but somebody needs to implement it"
+          << std::endl;
+         throw OomphLibError(
+          error_message.str(),
+          OOMPH_CURRENT_FUNCTION, OOMPH_EXCEPTION_LOCATION);
+        }
       }
     }
   }
   
   // Here are the nodes that need to be duplicated. We duplicate them
   // on the lower of its two boundaries (this is stored first)
-  for (auto a : boundaries_of_boundary_node_pt)
+  for (const auto& a : boundaries_of_boundary_node_pt)
    {
     Node* node_to_be_duplicated_pt=a.first;
     unsigned boundary_on_which_node_is_duplicated=a.second.first;
@@ -298,28 +330,92 @@ namespace C1PlateHelper
        << std::endl;
      }
     
-    // Find the boundary element that contains the node to be duplicated on
+    // Find a boundary element that contains the node to be duplicated on
     // the boundary where the node is to be duplicated
     FiniteElement* el_where_node_is_to_be_duplicated_pt=0;
-    unsigned n_b_el = bulk_mesh_pt->nboundary_element(boundary_on_which_node_is_duplicated);
+
+
+     // hierher Aidan: we need to include the elements for which the node is
+     // the only one on the boundary. Or do we?
+                                                         
+                                                         
+    // Store elements and local node number within them
+    // that need to have node replaced
+    std::set<std::pair<FiniteElement*,unsigned>> node_to_be_replaced_set;
+    bool identified_element_that_will_make_the_new_node=false;
+    unsigned n_b_el = bulk_mesh_pt->nboundary_element(
+     boundary_on_which_node_is_duplicated);
     for (unsigned i_b_el = 0; i_b_el < n_b_el; i_b_el++)
     {
       // Get the element pointer
       FiniteElement* el_pt = bulk_mesh_pt->boundary_element_pt
        (boundary_on_which_node_is_duplicated, i_b_el);
+
+
+      oomph_info << "Testing if element " << i_b_el << " of "
+                 << n_b_el << " : " <<  el_pt << " with vertices at \n"
+                 << el_pt->node_pt(0)->x(0) << " "
+                 << el_pt->node_pt(0)->x(1) << "\n"
+                 << el_pt->node_pt(1)->x(0) << " "
+                 << el_pt->node_pt(1)->x(1) << "\n"
+                 << el_pt->node_pt(2)->x(0) << " "
+                 << el_pt->node_pt(2)->x(1) << "\n"
+                 << "contains the to be replaced node "
+                 << node_to_be_duplicated_pt << " on boundary "
+                 << boundary_on_which_node_is_duplicated
+                 << std::endl;
+      
       // If the corner node pt is in the element we have found the right
       // element
-      if (el_pt->get_node_number(node_to_be_duplicated_pt) != -1)
+      int j_local=el_pt->get_node_number(node_to_be_duplicated_pt);
+      if (j_local != -1)
        {
-        el_where_node_is_to_be_duplicated_pt = el_pt;
-        break;
+        if (identified_element_that_will_make_the_new_node)
+         {
+          oomph_info << "    YES: replace but don't build " << std::endl;
+          node_to_be_replaced_set.insert(std::make_pair(el_pt,j_local));
+         }
+        else
+         {
+          oomph_info << "    YES: replace and build " << std::endl;
+          el_where_node_is_to_be_duplicated_pt = el_pt;
+          identified_element_that_will_make_the_new_node=true;
+         }
       }
     }
-    
+
+    // Get timestepper of original node
+    TimeStepper* time_stepper_pt=node_to_be_duplicated_pt->time_stepper_pt();
+
+
+     
     // Now we need to create a new node and substitute the element's
-    // old corner node for this new one
-    Node* new_node_pt = el_where_node_is_to_be_duplicated_pt->construct_boundary_node(
-     el_where_node_is_to_be_duplicated_pt->get_node_number(node_to_be_duplicated_pt));
+    // old corner node for this new one:
+    unsigned local_node_number_of_to_be_replaced_node=
+     el_where_node_is_to_be_duplicated_pt->
+     get_node_number(node_to_be_duplicated_pt);
+    
+    Node* hierher_old_node_pt=el_where_node_is_to_be_duplicated_pt->
+     node_pt(local_node_number_of_to_be_replaced_node);
+    
+    Node* new_node_pt = el_where_node_is_to_be_duplicated_pt->
+     construct_boundary_node(local_node_number_of_to_be_replaced_node,
+                             time_stepper_pt);
+
+    oomph_info << "Dealing with boundaries (dupl,left) "
+               << boundary_on_which_node_is_duplicated << " "
+               << boundary_on_which_node_is_left << " "
+               << " Replacing node " << local_node_number_of_to_be_replaced_node
+               << " " << hierher_old_node_pt
+               << " in element " << el_where_node_is_to_be_duplicated_pt
+               << " with vertices at \n"
+               << el_where_node_is_to_be_duplicated_pt->node_pt(0)->x(0) << " "
+               << el_where_node_is_to_be_duplicated_pt->node_pt(0)->x(1) << "\n"
+               << el_where_node_is_to_be_duplicated_pt->node_pt(1)->x(0) << " "
+               << el_where_node_is_to_be_duplicated_pt->node_pt(1)->x(1) << "\n"
+               << el_where_node_is_to_be_duplicated_pt->node_pt(2)->x(0) << " "
+               << el_where_node_is_to_be_duplicated_pt->node_pt(2)->x(1) << "\n"
+               << " with new node " << new_node_pt << std::endl;
     
     // Copy the position and other info from the old node into the new node
     new_node_pt->x(0)=node_to_be_duplicated_pt->x(0);
@@ -328,16 +424,144 @@ namespace C1PlateHelper
     // Then we add this node to the mesh
     bulk_mesh_pt->add_node_pt(new_node_pt);
 
-    // Then replace the old node for the new one on the boundary
-    bulk_mesh_pt->remove_boundary_node(boundary_on_which_node_is_duplicated,node_to_be_duplicated_pt);
-    bulk_mesh_pt->   add_boundary_node(boundary_on_which_node_is_duplicated,new_node_pt);
+    // Now overwrite the pointer to the old node with the newly
+    // created one in all other boundary elements that shared it
+    for (auto [fe_pt, j_local] : node_to_be_replaced_set)
+     {
+      oomph_info << "Also replacing node " << j_local << " : "
+                 << fe_pt->node_pt(j_local) << " in element "
+                 << fe_pt
+                 << " with vertices at \n"
+                 << fe_pt->node_pt(0)->x(0) << " "
+                 << fe_pt->node_pt(0)->x(1) << "\n"
+                 << fe_pt->node_pt(1)->x(0) << " "
+                 << fe_pt->node_pt(1)->x(1) << "\n"
+                 << fe_pt->node_pt(2)->x(0) << " "
+                 << fe_pt->node_pt(2)->x(1) << "\n"
+                 << "with the new node " << new_node_pt
+                 << std::endl;
+       fe_pt->node_pt(j_local)=new_node_pt;
+     }
 
+
+    
+    // Keep track sowe can update the elements
+    newly_created_node_pt[node_to_be_duplicated_pt] = new_node_pt;
+    
+    // hierher debug
+    {
+     oomph_info << "hierher BEFORE" << std::endl;
+     oomph_info << "to be duplicated: " << node_to_be_duplicated_pt << "\n"
+                << "new             : " << new_node_pt
+                << std::endl;
+
+     std::set<Node*> nod_pt_set={node_to_be_duplicated_pt,new_node_pt};
+     for (Node* nod_pt : nod_pt_set)
+      {
+       oomph_info <<  "Node " << nod_pt << " at "
+                  << nod_pt->x(0) << " "
+                  << nod_pt->x(1) << " " 
+                  << " is on boundaries: ";
+       std::set<unsigned>* bnd_set_pt=0;
+       nod_pt->get_boundaries_pt(bnd_set_pt);       
+       if (bnd_set_pt!=0)
+        {
+         for (const unsigned& b : *bnd_set_pt)
+          {
+           oomph_info << b << " ";
+           if (nod_pt->boundary_coordinates_have_been_set_up())
+            {
+             Vector<double> boundary_zeta(1);
+             nod_pt->get_coordinates_on_boundary(b, boundary_zeta);
+             oomph_info << boundary_zeta[0] << " ; "; 
+            }
+           else
+            {
+             oomph_info << " @@@ "  << " ; "; 
+            }
+          }
+        }
+       oomph_info << std::endl;
+      }
+    }
+
+
+
+    // Copy across the boundary coordinates
+    Vector<double> boundary_zeta_to_be_copied(1);
+    bool copy_boundary_coordinate=false;
+    if (node_to_be_duplicated_pt->boundary_coordinates_have_been_set_up())
+     {
+      copy_boundary_coordinate=true;
+      node_to_be_duplicated_pt->get_coordinates_on_boundary
+       (boundary_on_which_node_is_duplicated, boundary_zeta_to_be_copied);
+      oomph_info << "Getting boundary coordinate on boundary "
+                 << boundary_on_which_node_is_duplicated
+                 << " from " << node_to_be_duplicated_pt << std::endl;
+     }
+    
+    // Then replace the old node for the new one on the boundary
+    bulk_mesh_pt->remove_boundary_node(
+     boundary_on_which_node_is_duplicated,node_to_be_duplicated_pt);
+    bulk_mesh_pt->   add_boundary_node(
+     boundary_on_which_node_is_duplicated,new_node_pt);
+
+    // Copy boundary coordinate across
+    if (copy_boundary_coordinate)
+     {
+      oomph_info << "Adding boundary coordinate on boundary "
+                 << boundary_on_which_node_is_duplicated
+                 << " to " << new_node_pt << std::endl;
+      new_node_pt->set_coordinates_on_boundary
+       (boundary_on_which_node_is_duplicated, boundary_zeta_to_be_copied);
+     }
+    
+    // hierher debug
+    {
+     oomph_info << "hierher AFTER" << std::endl;
+     oomph_info << "to be duplicated: " << node_to_be_duplicated_pt << "\n"
+                << "new             : " << new_node_pt
+                << std::endl;
+
+     std::set<Node*> nod_pt_set={node_to_be_duplicated_pt,new_node_pt};
+     for (Node* nod_pt : nod_pt_set)
+      {
+       oomph_info <<  "Node " << nod_pt << " at "
+                  << nod_pt->x(0) << " "
+                  << nod_pt->x(1) << " " 
+                  << " is on boundaries: ";
+       std::set<unsigned>* bnd_set_pt=0;
+       nod_pt->get_boundaries_pt(bnd_set_pt);       
+       if (bnd_set_pt!=0)
+        {
+         for (const unsigned& b : *bnd_set_pt)
+          {
+           oomph_info << b << " ";
+           if (nod_pt->boundary_coordinates_have_been_set_up())
+            {
+             Vector<double> boundary_zeta(1);
+             nod_pt->get_coordinates_on_boundary(b, boundary_zeta);
+             oomph_info << boundary_zeta[0] << " ; "; 
+            }
+           else
+            {
+             oomph_info << " @@@ "  << " ; "; 
+            }
+          }
+        }
+       oomph_info << std::endl;
+      }
+    }
+     
     // The final job is to constrain this duplication using the specialised
     // Lagrange multiplier elements which enforce equality of displacement and
     // its derivatives either side of this corner.
-    C1CurviLine* left_parametrisation_pt  = c1_curviline_pt[boundary_on_which_node_is_left];
-    C1CurviLine* right_parametrisation_pt = c1_curviline_pt[boundary_on_which_node_is_duplicated];
+    C1CurviLine* left_parametrisation_pt  =
+     c1_curviline_pt[boundary_on_which_node_is_left];
+    C1CurviLine* right_parametrisation_pt =
+     c1_curviline_pt[boundary_on_which_node_is_duplicated];
 
+     
     // Get the coordinates on each node on their respective boundaries
     Vector<double> left_boundary_coordinate =
      {left_parametrisation_pt->get_zeta(node_to_be_duplicated_pt->position())};
@@ -345,10 +569,17 @@ namespace C1PlateHelper
      {right_parametrisation_pt->get_zeta(new_node_pt->position())};
 
     // Create the constraining element using the first bulk element
-    // in them mesh
-    TemplateFreeCurvableBellElement* bulk_el_pt=dynamic_cast<TemplateFreeCurvableBellElement*>
+    // in them mesh. This seems odd/convoluted but is OK, because FvK and
+    // KS (both of which inherit from the template-free base class) provide
+    // their own specific implementation of the factory that creates the
+    // appropriate DuplicateNodeConstraintElement, so we first get a pointer
+    // to some (any!) such element...
+    TemplateFreeCurvableBellElement* bulk_el_pt=
+     dynamic_cast<TemplateFreeCurvableBellElement*>
      (bulk_mesh_pt->element_pt(0));
-    
+
+    // ...and the pointer to the base class then follows on to the specific
+    // implementation of the factory function in the specific derived class.
     DuplicateNodeConstraintElement* constraint_element_pt =
      bulk_el_pt->duplicate_constraint_element_factory(node_to_be_duplicated_pt,
                                                       new_node_pt,
@@ -406,14 +637,6 @@ namespace C1PlateHelper
   // Loop over the curvilinear parts of the outer boundary
   for (const auto& [ibound, c1_curve_pt] : c1_curviline_pt)
    {
-
-
-    oomph_info << "hierher in upgrade_edge_elements_to_curved_boundaries: "
-               << ibound << " "
-               << c1_curve_pt << " "
-               << c1_curve_pt->triangle_mesh_curviline_pt()->geom_object_pt() << std::endl;
-
-    
     // Loop over the bulk elements adjacent to boundary ibound
     const unsigned n_els=bulk_mesh_pt->nboundary_element(ibound);
     for(unsigned e=0; e<n_els; e++)
@@ -427,8 +650,8 @@ namespace C1PlateHelper
        C1PlateHelper::CurvedEdgeEnumeration::none;
       
       // Loop over all (three) vertex nodes of the element and
-      // identify single node that is interior (i.e. not on the current
-      // of the curved boundary)
+      // identify single node that is interior (i.e. not on the current (!)
+      // curved boundary)
       unsigned index_of_interior_node = 3;
       unsigned nnode_not_on_curved_boundary = 0;
       const unsigned nnode = 3;
@@ -445,12 +668,22 @@ namespace C1PlateHelper
          if (nod_pt->is_on_boundary(ibound))  
           {
            node_is_on_curved_boundary=true;
+           oomph_info << "Node " << nod_pt << " at "
+                      << xn[n][0] << " "
+                      << xn[n][1] << " "
+                      << "is on curved boundary "
+                      << ibound << std::endl;
           }
         }
         if (!node_is_on_curved_boundary)
          {
           index_of_interior_node = n;
           nnode_not_on_curved_boundary++;
+          oomph_info << "Node " << nod_pt << " at "
+                     << xn[n][0] << " "
+                     << xn[n][1] << " "
+                     << "is not on curved boundary "
+                     << ibound << std::endl;
          }
        }// end record boundary nodes
 
@@ -460,14 +693,12 @@ namespace C1PlateHelper
 
       std::stringstream error_stream;
       error_stream
-       << "Problem arises when upgrading boundary element " << e
-       << " on boundary " << ibound
+       << "Problem when upgrading boundary element " << e
+       << " " << bulk_el_pt << " on boundary " << ibound
        << "\nIts nodes are at\n"
        << xn[0][0] << " "  << xn[0][1] << "\n"
        << xn[1][0] << " "  << xn[1][1] << "\n"
        << xn[2][0] << " "  << xn[2][1] << "\n"
-       << "hierher check this diagnostic again. The quickest solution to this problem is to create a finer mesh\n"
-       << "since smaller elements are less likely to bridge multiple distinct boundaries"
        << std::endl;
                    
       // Check nnode_on_curved_boundary
@@ -481,13 +712,16 @@ namespace C1PlateHelper
          error_message,
          OOMPH_CURRENT_FUNCTION, OOMPH_EXCEPTION_LOCATION);
        }
-      else if (nnode_not_on_curved_boundary> 1)
-       {
-        std::string error_message=
-         "Multiple interior nodes. Only one node per CurvedElement can be interior.\n"+
-         error_stream.str();
+      else if (nnode_not_on_curved_boundary>1)
+       {        
+        std::stringstream error_stream2;
+        error_stream2
+         << "Multiple interior nodes: "
+         << nnode_not_on_curved_boundary
+         << " Only one node per CurvedElement can be interior.\n"
+         << error_stream.str();
         throw OomphLibError(
-         error_message,
+         error_stream2.str(),
          OOMPH_CURRENT_FUNCTION, OOMPH_EXCEPTION_LOCATION);
        }
       
@@ -496,34 +730,32 @@ namespace C1PlateHelper
       
       // hierher shouldn't these be called zeta (everywhere; sigh)
       // boundary coordinate at the next (cyclic) node after interior
-
-      oomph_info << "hierher Calling get zeta for s_ubar target x: "
-                 << xn[(index_of_interior_node+1) % 3][0] << " "
-                 << xn[(index_of_interior_node+1) % 3][1] << " "
-                 << std::endl;
       const double s_ubar =
        c1_curve_pt->get_zeta(xn[(index_of_interior_node+1) % 3]);
-      
-      oomph_info << "hierher Calling get zeta for s_bar target x: "
-                 << xn[(index_of_interior_node+2) % 3][0] << " "
-                 << xn[(index_of_interior_node+2) % 3][1] << " "
-                 << std::endl;
+
       // boundary coordinate at the previous (cyclic) node before interior
       const double s_obar =
        c1_curve_pt->get_zeta(xn[(index_of_interior_node+2) % 3]);
       
-    
-#ifdef PARANOID
-      // Check for inverted elements
-      if (s_ubar>s_obar)
-       {
-        // throw // hierher probably not an issue actually
-        OomphLibError(
-         "Decreasing parametric coordinate. Parametric coordinate must increase as the edge is traversed anti-clockwise.",
-         OOMPH_CURRENT_FUNCTION,
-         OOMPH_EXCEPTION_LOCATION);
-       } // end checks
-#endif
+
+
+      // hierher there's still a problem but we do need to fix it
+      // when it happens. Current observation: there's a kink
+      // along internal "curved" boundaries
+
+      
+      // hierher Aidan check unnecessary (we think!)
+// #ifdef PARANOID
+//       // Check for inverted elements
+//       if (s_ubar>s_obar)
+//        {
+//         // throw // hierher probably not an issue actually
+//         OomphLibError(
+//          "Decreasing parametric coordinate. Parametric coordinate must increase as the edge is traversed anti-clockwise.",
+//          OOMPH_CURRENT_FUNCTION,
+//          OOMPH_EXCEPTION_LOCATION);
+//        } // end checks
+// #endif
       
 
       
@@ -590,6 +822,10 @@ namespace C1PlateHelper
   {
    // Get pointer to bulk element 
    FiniteElement* el_pt = bulk_mesh_pt->finite_element_pt(e);
+
+   // Does the element have nodes where coordinates have been rotated?
+   // hierher Aidan: is this the right way to think about it?
+   bool el_rotated=false;
    
    // Loop over the curvilinear parts of the outer boundary
    for (const auto& [b, c1_curve_pt] : c1_curviline_pt)
@@ -604,22 +840,68 @@ namespace C1PlateHelper
      const unsigned nnode=3;
      for (unsigned n=0; n<nnode;++n)
       {
-       // If on external boundary b
-       if (el_pt->node_pt(n)->is_on_boundary(b))
+       Node* node_pt=el_pt->node_pt(n);
+
+#ifdef PARANOID
+       // Is the node on multiple curved boundaries? If so, die!
+       std::set<unsigned>* boundaries_pt=0;
+       node_pt->get_boundaries_pt(boundaries_pt);
+       if (boundaries_pt!=0)
+        {
+         if (boundaries_pt->size()>1)
+          {
+           bool all_boundaries_are_polygonal=true;
+           for (unsigned b : *boundaries_pt)
+            {
+             if (Boundary_is_curvilinear[b])
+              {
+               all_boundaries_are_polygonal=false;
+               break;
+              }
+            }
+           if (!all_boundaries_are_polygonal)
+            {
+             std::stringstream error_stream;
+             error_stream
+              << "Node at "
+              << node_pt->x(0) << " "
+              << node_pt->x(1) << " "
+              << "is on " << boundaries_pt->size()
+              << " curved boundaries.\n"
+              << "This shouldn't happen since it'll be unclear which curved\n"
+              << "boundary it's supposed to get its rotated (tangential and\n"
+              << "normal) directions from."
+              << std::endl;
+             throw OomphLibError(
+              error_stream.str(),
+              OOMPH_CURRENT_FUNCTION, OOMPH_EXCEPTION_LOCATION);
+            }
+          }
+        }
+#endif
+       
+       // If on curvilinear boundary b
+       if ((node_pt->is_on_boundary(b))&&(Boundary_is_curvilinear[b]))
         {
          boundary_node.push_back(n);
          double coord = c1_curve_pt->get_zeta(el_pt->node_pt(n)->position());
          boundary_coordinate_of_node.push_back(coord);
+         // Doc?
+         if (Rotated_node_output_stream.is_open())
+          {
+           Rotated_node_output_stream
+            << node_pt->x(0) << " "
+            << node_pt->x(1) << " "
+            << e << " " 
+            << b << " "
+            << std::endl;
+          }
         }
       }
      
-     // If the element has nodes on the boundary, setup rotation machinery
+     // If the element has nodes on the curvilinear boundary, setup rotation machinery
      if(!boundary_node.empty())
-      {
-       // Rotate the nodes by passing the index of the nodes and the
-       // normal / tangent vectors to the element
-       
-       // Upgrade it
+      {       
        TemplateFreeCurvableBellElement* curv_el_pt=
         dynamic_cast<TemplateFreeCurvableBellElement*>(el_pt);
 #ifdef PARANOID
@@ -631,7 +913,12 @@ namespace C1PlateHelper
           OOMPH_EXCEPTION_LOCATION);
         }
 #endif
-       
+
+       // This reinterprets the derivative dofs as derivatives w.r.t.
+       // normal and tangent diretions (defined by the c1_curve_pt object,
+       // evaluated at the specified boundary coordinate on it), rather than
+       // raw x and y derivatives.
+       el_rotated=true;
        curv_el_pt->
         rotated_boundary_helper_pt()->
         set_nodal_boundary_parametrisation(boundary_node,
@@ -639,9 +926,21 @@ namespace C1PlateHelper
                                            c1_curve_pt);
       }
     }
+
+   // Doc?
+   if (Rotated_element_output_stream.is_open())
+    {
+     if (el_rotated)
+      {
+        unsigned nplot=5;
+        el_pt->output(Rotated_element_output_stream,nplot);
+      }
+    }
+
   }
+
  
-} // end rotate_edge_coordinates
+  } // end rotate_edge_coordinates
 
  
 

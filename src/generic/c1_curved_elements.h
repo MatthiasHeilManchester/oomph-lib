@@ -185,10 +185,20 @@ namespace oomph
       {
         // Store vertices
         Vertices = verts;
+        
         // Set up the new curved data for the element
         S_ubar = su;
         S_obar = so;
         Curved_edge = curved_edge;
+
+
+        // hierher now we know if the edge parametrisation is "inverted"
+        bool edge_parametrisation_is_inverted=false;
+        if (S_ubar>S_obar)
+         {
+          edge_parametrisation_is_inverted=true;
+         }
+
         /// Fill in the function values at vertex 0
         Chi_subar.resize(2);
         D_chi_subar.resize(2);
@@ -196,6 +206,7 @@ namespace oomph
         parametric_curve.position(Vector<double>(1, su), Chi_subar);
         parametric_curve.dposition(Vector<double>(1, su), D_chi_subar);
         parametric_curve.d2position(Vector<double>(1, su), D2_chi_subar);
+        
         /// Fill in the function values at vertex 1
         Chi_sobar.resize(2);
         D_chi_sobar.resize(2);
@@ -203,6 +214,28 @@ namespace oomph
         parametric_curve.position(Vector<double>(1, so), Chi_sobar);
         parametric_curve.dposition(Vector<double>(1, so), D_chi_sobar);
         parametric_curve.d2position(Vector<double>(1, so), D2_chi_sobar);
+
+         
+        // hierher now do something for inverted edge:
+        // D_chi_subar --> -D_chi_subar
+        // and
+        // D_chi_sobar --> -D_chi_sobar
+        if (edge_parametrisation_is_inverted)
+         {
+          oomph_info << "hierher element edge is inverted" << std::endl;
+          //oomph_info
+          // << "hierher: reversing tangent direction on edge from\n"
+          // << Chi_subar[0] << " "  << Chi_subar[1] << " to\n" 
+          // << Chi_sobar[0] << " "  << Chi_sobar[1] << std::endl;
+           
+          //D_chi_subar[0]*=-1.0;
+          //D_chi_subar[1]*=-1.0;
+          //D_chi_sobar[0]*=-1.0;
+          //D_chi_sobar[1]*=-1.0;
+         }
+
+
+        
 // Check the construction of the elements is complete
 #ifdef PARANOID
         self_check(parametric_curve);

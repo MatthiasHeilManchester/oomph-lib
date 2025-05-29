@@ -66,7 +66,6 @@ namespace oomph
    void position(const Vector<double>& zeta,
                  Vector<double>& r) const
     {
-     oomph_info << "hierher about to call position for " << Triangle_mesh_curviline_pt->geom_object_pt() << std::endl;
      Triangle_mesh_curviline_pt->geom_object_pt()->position(zeta,r); 
     }
    
@@ -109,9 +108,6 @@ namespace oomph
      // Start Newton method in the middle
      double zeta_min=Triangle_mesh_curviline_pt->zeta_start();
      double zeta_max=Triangle_mesh_curviline_pt->zeta_end();
-
-     oomph_info << "hierher: Newton method: "
-                << zeta_min << " " << zeta_max << std::endl;
      double zeta=0.5*(zeta_max+zeta_min);
 
      // Do it
@@ -724,15 +720,32 @@ namespace C1PlateHelper
  /// Output stream to document elements whose boundaries have been
  /// upgraded to become curved
  extern std::ofstream Upgraded_to_curved_edge_element_stream;
+ 
+ /// Output stream to document nodes at which derivative dofs have been
+ /// adjusted to represent derivatives in the normal and tantential direction
+ /// We're putputting x,y of the node; the number of the bulk element that uses
+ /// the information and the boundary ID of the curvilinear boundary
+ extern std::ofstream Rotated_node_output_stream;
+
+ /// Output stream to document elements that contain nodes at which
+ /// derivative dofs have been adjusted to represent derivatives in
+ /// the normal and tantential direction
+ extern std::ofstream Rotated_element_output_stream;
+
+
+ /// Boolean vector to keep track of which boundaries are curvilinear
+ /// (vs polygonal)
+ extern std::vector<bool> Boundary_is_curvilinear;
 
  
 //==============================================================================
-/// Fct to duplicate nodes that span two boundaries of the triangle mesh pointed to by
-/// bulk_mesh_pt. This makes sure that each node on the boundary is only 
-/// associated with a single (smooth) boundary. Smooth boundaries  of the mesh/domain
-/// are available  via the map c1_curviline_pt. The required continuity of
-/// the solution is then imposed by a suitable DuplicateNodeConstraintElement
-/// that is created and added to the Mesh pointed to by constraint_mesh_pt.
+/// Fct to duplicate nodes that span two curved boundaries of the triangle mesh
+/// pointed to by bulk_mesh_pt. This makes sure that each node on the boundary 
+/// is only  associated with a single (smooth) boundary. Smooth boundaries  of
+/// the mesh/domain are available  via the map c1_curviline_pt. The required 
+/// continuity of the solution is then imposed by a suitable
+/// DuplicateNodeConstraintElement that is created and added to the
+/// Mesh pointed to by constraint_mesh_pt.
 //==============================================================================
  extern void duplicate_corner_nodes(Mesh* bulk_mesh_pt, 
                                     std::map<unsigned,C1CurviLine*> c1_curviline_pt,
@@ -799,10 +812,12 @@ namespace C1PlateHelper
  void upgrade_triangle_mesh_for_c1_plate_bending(
   TriangleMeshBase* bulk_mesh_pt,
   Mesh* constraint_mesh_pt,
-  const bool verbose=true)
+  const bool& rotate_coordinates_on_all_curvilinear_bounadries=true)
  {
 
-
+  // hierher make global member of namespace
+  const bool verbose=true;
+  
   if (verbose)
    {
     oomph_info << "\n\nStarting upgrade_triangle_mesh_for_c1_plate_bending(...)\n"
@@ -831,8 +846,26 @@ namespace C1PlateHelper
   // Get map to curvline boundaries of mesh
   std::map<unsigned, C1CurviLine*> c1_curviline_boundary_pt =
    bulk_mesh_pt->c1_curviline_boundary_pt();
-  
+
   unsigned nb=bulk_mesh_pt->nboundary();
+  Boundary_is_curvilinear.clear();
+  Boundary_is_curvilinear.resize(nb,false);
+  for (const auto [b, bla] : c1_curviline_boundary_pt)
+   {
+    Boundary_is_curvilinear[b]=true;
+    if (verbose)
+     {
+      if (Boundary_is_curvilinear[b])
+       {
+        oomph_info << "Boundary " << b << " is curvilinear.\n";
+       }
+      else
+       {
+        oomph_info << "Boundary " << b << " is polygonal.\n";
+       }
+     }
+   }
+  
   if (!C1PlateHelper::Do_not_warn_about_polygonal_boundaries)
    {
     if (c1_curviline_boundary_pt.size()!=nb)
@@ -842,60 +875,117 @@ namespace C1PlateHelper
        << "Black box helper function upgrade_triangle_mesh_for_c1_plate_bending()\n"
        << "will only rotate coordinates on boundaries that are described\n"
        << "by TriangleMeshCurviLine. It seems that in your triangle mesh only\n"
-       << c1_curviline_boundary_pt.size() << " of " << nb << " boundaries \n"
-       << "are of this type. This only matters if you want to apply clamping-type\n"
+       << c1_curviline_boundary_pt.size() << " of " << nb << " boundaries "
+       << "are of this type. \n Specifically here's are the boundaries and their"
+       << "curviness:\n";
+      for (unsigned b=0;b<nb;b++)
+       {
+        if (Boundary_is_curvilinear[b])
+         {
+          warning_message << "Boundary " << b << " is curvilinear.\n";
+         }
+        else
+         {
+          warning_message << "Boundary " << b << " is polygonal.\n";
+         }
+       }
+      warning_message
+       << "This only matters if you want to apply clamping-type\n"
        << "boundary conditions along those boundaries. Continue at your own risk\n"
        << "and/or make this message disappear by setting\n\n"
        << "     C1PlateHelper::Do_not_warn_about_polygonal_boundaries\n\n"
        << "to false. More intelligently, replace the polygonal boundaries\n"
-       << "by TriangleMeshCurviLines. Alternatively, you can deal with this\n"
+       << "by TriangleMeshCurviLines. Alternatively, you can do the setup\n"
        << "yourself, of course. The black box function is only provided for\n"
-       << "convenience."
+       << "convenience and looking inside it will show you what needs to be done."
        << std::endl;
       OomphLibWarning(warning_message.str(),
                       OOMPH_CURRENT_FUNCTION,
                       OOMPH_EXCEPTION_LOCATION);
+
       
      }
    }
-  
+
   // Split elements that have multiple edges on a boundary
   // Note: Sets up the boundary loopup scheme too.
   bulk_mesh_pt->
    template split_elements_with_multiple_boundary_edges<ELEMENT>
    (Split_elements_output_stream);
-  
-  // Duplicate corner nodes
-  duplicate_corner_nodes(bulk_mesh_pt,
-                         c1_curviline_boundary_pt,
-                         constraint_mesh_pt);
-  
-  // Re-setup boundary cooordinates (bypass check of discrepancy
-  // between polygon/smooth representation of boundary.
-  double backup=ToleranceForVertexMismatchInPolygons::Tolerable_error;
-  ToleranceForVertexMismatchInPolygons::Tolerable_error=DBL_MAX;
-  for (unsigned b=0;b<nb;b++)
-   {
-    bulk_mesh_pt->template setup_boundary_coordinates<ELEMENT>(b);
-   }
-  ToleranceForVertexMismatchInPolygons::Tolerable_error=backup;
 
-  
-  // Upgrade
+
+  // Don't do this if we're not rotating coordinates;
+  // the constraint elements impose continuity ini terms of the
+  // curvilinear boundary representations to the nodes need to store
+  // derivative dofs in terms of these, i.e. they need to be rotated!
+  if (rotate_coordinates_on_all_curvilinear_bounadries)
+   {
+    oomph_info << "Rotating coordinates on all curvilinear boundaries\n"
+               <<"therefore also duplicating corner nodes"
+               << std::endl;
+    
+    // Duplicate corner nodes, i.e. nodes that are on multiple
+    // boundaries. Since each boundary can be associated with
+    // a different curve, we have to decide which boundary the
+    // two corner nodes defining a (soon to be curved)
+    // element edge  is on. We'll therefore create a copy of the
+    // single boundary node and associate each one of the two nodes
+    // with a different boundary. Continuity of the displacements
+    // and their derivatives is then enforced by the Lagrange multiplier
+    // elements stored in the Mesh pointed to by constraint_mesh_pt
+    // The newly created node is given the appropriate boundary coordinate
+    // too.
+    duplicate_corner_nodes(bulk_mesh_pt,
+                           c1_curviline_boundary_pt,
+                           constraint_mesh_pt);
+   }
+  else
+   {
+    oomph_info
+     << "Not rotating coordinates on all curvilinear boundaries\n"
+     <<"therefore also not duplicating corner nodes because\b"
+     << "the constraint elements that ensure continuity of displacaments\n"
+     << "and their derivatives use information from the distinct curvlinear\n"
+     << "boundaries."
+     << std::endl;
+   }
+
+  // Upgrade elements on curvilinear boundaries so that the
+  // edge on the curved boundary is represented by a sufficiently
+  // high-order polynomial. The order can be specified by a final
+  // (optional) argument to this function and can be 3 or 5. Given the
+  // black-box-ness of this helper function we use 5 (the default)
+  // because it'll always work! 
   upgrade_edge_elements_to_curved_boundaries(
    bulk_mesh_pt,
    c1_curviline_boundary_pt);
+
+  if (rotate_coordinates_on_all_curvilinear_bounadries)
+   {
+    oomph_info << "Rotating coordinates on all curvilinear boundaries!"
+               << std::endl;
+
+    // Now rotate the coordinates of any nodes that are located on a
+    // curved boundary so that the derivative dofs can be interpreted as
+    // derivatives w.r.t. n,t rather than x,y. Only really needed
+    // for clamped bcs but it doesn't do (much) harm in terms of runtimes
+    // to do it for all of them. Note that the rotation also has to be
+    // applied for elements that only have a single node on the boundary
+    // otherwise such elements will mis-interpret the meaning of the derivative
+    // dofs stored at that node.
+    rotate_edge_coordinates(
+     bulk_mesh_pt,
+     c1_curviline_boundary_pt);
+   }
+  else
+   {
+    oomph_info << "Not rotating coordinates anywhere!" << std::endl;
+   }
+
   
-  // Rotate coordinates (only really needed for clamped bcs but
-  // doesn't do (much) harm in terms of runtimes)
-  rotate_edge_coordinates(
-   bulk_mesh_pt,
-   c1_curviline_boundary_pt);
-
-
   if (verbose)
    {
-    oomph_info << "\n\End upgrade_triangle_mesh_for_c1_plate_bending(...)\n"
+    oomph_info << "\n\nEnd upgrade_triangle_mesh_for_c1_plate_bending(...)\n"
                << "Stats after: \n"
                << "-------------"
                <<std::endl;

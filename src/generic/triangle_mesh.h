@@ -115,7 +115,7 @@ namespace oomph
     void split_elements_with_multiple_boundary_edges()
     {
      // create dummy stream but keep it closed
-     std::ofstream& new_elements_stream;
+     std::ofstream new_elements_stream;
      split_elements_with_multiple_boundary_edges<ELEMENT>(
       new_elements_stream);
     }
