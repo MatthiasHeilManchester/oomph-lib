@@ -34,24 +34,13 @@
 #include "Vector.h"
 #include "shape.h"
 #include "bell_element_basis.h"
-#include "my_geom_object.h"
+#include "c1_plate_helper.h"
 
 namespace oomph
 {
-  namespace MyC1CurvedElements
-  {
-    // HERE replace with class enum in c++11?
-    /// enum to enumerate the possible edges that could be curved
-    enum Edge
-    {
-      none = -1,
-      zero = 0,
-      one = 1,
-      two = 2
-    };
 
 
-    // [zdec] I see no point in having this base class?
+    // [zdec] I see no point in having this base class? // hierher Aidan: Let's kill it then...
     class BernadouElementBasisBase
     {
     public:
@@ -93,24 +82,23 @@ namespace oomph
                                   DShape& d2bpsi,
                                   const DenseMatrix<double>& m) const = 0;
 
-      virtual void coordinate_x(const Vector<double>& s,
-                                Vector<double>& fk) const = 0;
-
-      virtual void get_jacobian(const Vector<double>& s,
+     /// hierher Aidan comments!
+     virtual void coordinate_x(const Vector<double>& s,
+                               Vector<double>& fk) const = 0;
+     
+     /// hierher Aidan comments!
+     virtual void get_jacobian(const Vector<double>& s,
                                 DenseMatrix<double>& jacobian) const = 0;
 
-      virtual void upgrade_element(
-        const VertexList& verts,
-        const double& su,
-        const double& so,
-        const Edge& curved_edge,
-        const CurvilineGeomObject& parametric_curve) = 0;
-
-      /// Check the element
-      virtual void self_check(
-        const CurvilineGeomObject& parametric_curve) const = 0;
-
-      /// Return the number of basis functions on the physical triangle
+     /// hierher Aidan comments
+     virtual void upgrade_element(
+      const VertexList& verts,
+      const double& su,
+      const double& so,
+      const C1PlateHelper::CurvedEdgeEnumeration& curved_edge,
+      const C1CurviLine& parametric_curve) = 0;
+     
+     /// Return the number of basis functions on the physical triangle
       virtual unsigned n_basis_functions() const = 0;
 
       /// Return the number of bubble basis functions triangle
@@ -186,21 +174,31 @@ namespace oomph
       typedef Vector<Vector<double>> VertexList;
 
       /// Default Constructor
-      BernadouElementBasis() : Curved_edge(none) {}
+      BernadouElementBasis() : Curved_edge(C1PlateHelper::CurvedEdgeEnumeration::none) {}
 
-      /// Constructor that takes vertices and start and end parts as arguments.
+      /// hierher Aidan: this is not a constructor! Constructor that takes vertices and start and end parts as arguments.
       void upgrade_element(const VertexList& verts,
                            const double& su,
                            const double& so,
-                           const Edge& curved_edge,
-                           const CurvilineGeomObject& parametric_curve)
+                           const C1PlateHelper::CurvedEdgeEnumeration& curved_edge,
+                           const C1CurviLine& parametric_curve)
       {
         // Store vertices
         Vertices = verts;
+        
         // Set up the new curved data for the element
         S_ubar = su;
         S_obar = so;
         Curved_edge = curved_edge;
+
+
+        // hierher now we know if the edge parametrisation is "inverted"
+        bool edge_parametrisation_is_inverted=false;
+        if (S_ubar>S_obar)
+         {
+          edge_parametrisation_is_inverted=true;
+         }
+
         /// Fill in the function values at vertex 0
         Chi_subar.resize(2);
         D_chi_subar.resize(2);
@@ -208,6 +206,7 @@ namespace oomph
         parametric_curve.position(Vector<double>(1, su), Chi_subar);
         parametric_curve.dposition(Vector<double>(1, su), D_chi_subar);
         parametric_curve.d2position(Vector<double>(1, su), D2_chi_subar);
+        
         /// Fill in the function values at vertex 1
         Chi_sobar.resize(2);
         D_chi_sobar.resize(2);
@@ -215,6 +214,28 @@ namespace oomph
         parametric_curve.position(Vector<double>(1, so), Chi_sobar);
         parametric_curve.dposition(Vector<double>(1, so), D_chi_sobar);
         parametric_curve.d2position(Vector<double>(1, so), D2_chi_sobar);
+
+         
+        // hierher now do something for inverted edge:
+        // D_chi_subar --> -D_chi_subar
+        // and
+        // D_chi_sobar --> -D_chi_sobar
+        if (edge_parametrisation_is_inverted)
+         {
+          oomph_info << "hierher element edge is inverted" << std::endl;
+          //oomph_info
+          // << "hierher: reversing tangent direction on edge from\n"
+          // << Chi_subar[0] << " "  << Chi_subar[1] << " to\n" 
+          // << Chi_sobar[0] << " "  << Chi_sobar[1] << std::endl;
+           
+          //D_chi_subar[0]*=-1.0;
+          //D_chi_subar[1]*=-1.0;
+          //D_chi_sobar[0]*=-1.0;
+          //D_chi_sobar[1]*=-1.0;
+         }
+
+
+        
 // Check the construction of the elements is complete
 #ifdef PARANOID
         self_check(parametric_curve);
@@ -239,9 +260,14 @@ namespace oomph
       }
 
     public:
-      /// Check the element
-      inline void self_check(const CurvilineGeomObject& parametric_curve) const;
-
+     
+     /// Check the element.
+     /// Optional final arguments specify tolerances for distance and
+     /// angle checks
+     inline void self_check(const C1CurviLine& parametric_curve,
+                            const double& tol=1.0e-8, // matches the Newton conv tol in get_zeta()
+                            const double& angle_tol=1.0e-12) const;
+     
       /// Get the physical coordinate
       void coordinate_x(const Vector<double>& s, Vector<double>& fk) const;
 
@@ -255,7 +281,7 @@ namespace oomph
       inline const double& get_s_ubar() const
       {
         // If we have upgraded
-        if (Curved_edge != none)
+        if (Curved_edge != C1PlateHelper::CurvedEdgeEnumeration::none)
         {
           return S_ubar;
         }
@@ -272,7 +298,7 @@ namespace oomph
       inline const double& get_s_obar() const
       {
         // If we have upgraded
-        if (Curved_edge != none)
+        if (Curved_edge != C1PlateHelper::CurvedEdgeEnumeration::none)
         {
           return S_obar;
         }
@@ -290,7 +316,7 @@ namespace oomph
       inline const Vector<double>& get_chi_subar() const
       {
         // If we have upgraded
-        if (Curved_edge != none)
+        if (Curved_edge != C1PlateHelper::CurvedEdgeEnumeration::none)
         {
           return Chi_subar;
         }
@@ -308,7 +334,7 @@ namespace oomph
       inline const Vector<double>& get_chi_sobar() const
       {
         // If we have upgraded
-        if (Curved_edge != none)
+        if (Curved_edge != C1PlateHelper::CurvedEdgeEnumeration::none)
         {
           return Chi_sobar;
         }
@@ -326,7 +352,7 @@ namespace oomph
       inline const Vector<double>& get_d_chi_subar() const
       {
         // If we have upgraded
-        if (Curved_edge != none)
+        if (Curved_edge != C1PlateHelper::CurvedEdgeEnumeration::none)
         {
           return D_chi_subar;
         }
@@ -344,7 +370,7 @@ namespace oomph
       inline const Vector<double>& get_d_chi_sobar() const
       {
         // If we have upgraded
-        if (Curved_edge != none)
+        if (Curved_edge != C1PlateHelper::CurvedEdgeEnumeration::none)
         {
           return D_chi_sobar;
         }
@@ -362,7 +388,7 @@ namespace oomph
       inline const Vector<double>& get_d2_chi_subar() const
       {
         // If we have upgraded
-        if (Curved_edge != none)
+        if (Curved_edge != C1PlateHelper::CurvedEdgeEnumeration::none)
         {
           return D2_chi_subar;
         }
@@ -380,7 +406,7 @@ namespace oomph
       inline const Vector<double>& get_d2_chi_sobar() const
       {
         // If we have upgraded
-        if (Curved_edge != none)
+        if (Curved_edge != C1PlateHelper::CurvedEdgeEnumeration::none)
         {
           return D2_chi_sobar;
         }
@@ -469,14 +495,10 @@ namespace oomph
       /// edge)
       Vector<double> D2_chi_sobar;
 
-      /// Whih edge is curved
-      Edge Curved_edge;
+      /// Which edge is curved
+      C1PlateHelper::CurvedEdgeEnumeration Curved_edge;
 
     protected:
-      /*  Protected member functions: */
-      /* These functions are used in the construction of shape - but not
-       * intended */
-      /* for use at the user end */
 
       /// The mapping F_k - a polynomial degree 3 PRIVATE
       void f_k(const Vector<double>& s, Vector<double>& fk) const;
@@ -978,7 +1000,7 @@ namespace oomph
       {
 // check the construction of the elements is complete
 #ifdef PARANOID
-        if (Curved_edge == none)
+        if (Curved_edge == C1PlateHelper::CurvedEdgeEnumeration::none)
         {
           throw OomphLibError("the element has not been upgraded yet. did \
   you forget to set upe the curved_edge?",
@@ -998,7 +1020,7 @@ namespace oomph
       {
 // check the construction of the elements is complete
 #ifdef PARANOID
-        if (Curved_edge == none)
+        if (Curved_edge == C1PlateHelper::CurvedEdgeEnumeration::none)
         {
           throw OomphLibError("the element has not been upgraded yet. did \
   you forget to set upe the curved_edge?",
@@ -1061,7 +1083,38 @@ namespace oomph
                         DShape& d2bpsi,
                         const DenseMatrix<double>& m) const; // PRIVATE
 
-      // HERE WRITE A PUBLIC d2shape_local
+     
+     /// Two by two specialisation of function to calculate inverse of a matrix
+     static inline double invert_two_by_two(const DenseMatrix<double>& jacobian,
+                                     DenseMatrix<double>& inverse_jacobian)
+      {
+       // Calculate the determinant of the matrix
+       const double det =
+        jacobian(0, 0) * jacobian(1, 1) - jacobian(0, 1) * jacobian(1, 0);
+       
+       // Report if Matrix is singular or negative
+#ifdef PARANOID
+       if (fabs(det) < 1e-12)
+        {
+         std::stringstream error_stream;
+         error_stream
+          << "The matrix seems to be singular : det(M) = " << det
+          << ".\n";
+         throw OomphLibError(
+          error_stream.str(), OOMPH_CURRENT_FUNCTION, OOMPH_EXCEPTION_LOCATION);
+        }
+#endif
+       
+       // Calculate the inverse of the 2x2 matrix
+      inverse_jacobian(0, 0) = jacobian(1, 1) / det;
+      inverse_jacobian(0, 1) = -jacobian(0, 1) / det;
+      inverse_jacobian(1, 0) = -jacobian(1, 0) / det;
+      inverse_jacobian(1, 1) = jacobian(0, 0) / det;
+      
+      return det;
+      }
+
+      // HERE WRITE A PUBLIC d2shape_local // hierher Aidan ?
 
       // HERE this is a bit dodgy
       /// \short Array to hold the weights and knots (defined in cc file)
@@ -1101,7 +1154,7 @@ namespace oomph
       {
 // check the construction of the elements is complete
 #ifdef PARANOID
-        if (Curved_edge == none)
+        if (Curved_edge == C1PlateHelper::CurvedEdgeEnumeration::none)
         {
           throw OomphLibError("The element has not been upgraded yet. did \
   you forget to set up the curved_edge?",
@@ -1156,7 +1209,7 @@ namespace oomph
     {
       // Set the index shift
       // If the element has been upgraded
-      if (Curved_edge == none)
+      if (Curved_edge == C1PlateHelper::CurvedEdgeEnumeration::none)
       {
         // There is no reasonable definition for the shape functions in this
         // case
@@ -1166,11 +1219,11 @@ you forget to set a Curved_edge?",
           OOMPH_CURRENT_FUNCTION,
           OOMPH_EXCEPTION_LOCATION);
       }
-      else if (Curved_edge == zero)
+      else if (Curved_edge == C1PlateHelper::CurvedEdgeEnumeration::zero)
       {
         index_shift = 1;
       }
-      else if (Curved_edge == one)
+      else if (Curved_edge == C1PlateHelper::CurvedEdgeEnumeration::one)
       {
         index_shift = 2;
       }
@@ -1187,7 +1240,7 @@ you forget to set a Curved_edge?",
     {
       // Permute the shape coordinate
       // If the element has been upgraded
-      if (Curved_edge == none)
+      if (Curved_edge == C1PlateHelper::CurvedEdgeEnumeration::none)
       {
         // There is no reasonable definition for the shape functions in this
         // case
@@ -1197,7 +1250,7 @@ you forget to set a Curved_edge?",
           OOMPH_CURRENT_FUNCTION,
           OOMPH_EXCEPTION_LOCATION);
       }
-      else if (Curved_edge == zero)
+      else if (Curved_edge == C1PlateHelper::CurvedEdgeEnumeration::zero)
       {
         // We need to permute the local coordinate
         Vector<double> permuted_s(2, 0.0);
@@ -1206,7 +1259,7 @@ you forget to set a Curved_edge?",
         // Copy over
         s = permuted_s;
       }
-      else if (Curved_edge == one)
+      else if (Curved_edge == C1PlateHelper::CurvedEdgeEnumeration::one)
       {
         // We need to permute the local coordinate
         Vector<double> permuted_s(2, 0.0);
@@ -1229,7 +1282,7 @@ you forget to set a Curved_edge?",
     {
       // Permute the shape coordinate
       // If the element has been upgraded
-      if (Curved_edge == none)
+      if (Curved_edge == C1PlateHelper::CurvedEdgeEnumeration::none)
       {
         // There is no reasonable definition for the shape functions in this
         // case
@@ -1239,7 +1292,7 @@ you forget to set a Curved_edge?",
           OOMPH_CURRENT_FUNCTION,
           OOMPH_EXCEPTION_LOCATION);
       }
-      else if (Curved_edge == zero)
+      else if (Curved_edge == C1PlateHelper::CurvedEdgeEnumeration::zero)
       {
         // We need the derivative of the permuted coords wrt the local
         // coordinate
@@ -1248,7 +1301,7 @@ you forget to set a Curved_edge?",
         jac(1, 0) = -1.0;
         jac(1, 1) = -1.0;
       }
-      else if (Curved_edge == one)
+      else if (Curved_edge == C1PlateHelper::CurvedEdgeEnumeration::one)
       {
         // We need the derivative of the permuted coords wrt the local
         // coordinate
@@ -1270,6 +1323,7 @@ you forget to set a Curved_edge?",
     }
 
     // Inline functions
+ 
     /// Self check function:
     /// 1. Checks for inverted elements.
     /// 2. Checks that the specified parametric edge agrees at s_ubar and s_obar
@@ -1282,13 +1336,14 @@ you forget to set a Curved_edge?",
     /// 7. Extra paranoid check to see if ANY of the denominators needed in the
     ///    construction are zero: these cases should be caught by previous
     ///    checks.
+    /// Optional final arguments (defaults set in base class)
+    /// specify tolerances for distance and angle checks
     template<unsigned BOUNDARY_ORDER>
     void BernadouElementBasis<BOUNDARY_ORDER>::self_check(
-      const CurvilineGeomObject& parametric_curve_pt) const
+     const C1CurviLine& parametric_curve,
+     const double& tol,
+     const double& angle_tol) const
     {
-      // Tolerance as a static member HERE
-      const double tol(1e-15), angle_tol(1e-12);
-
       // Check that all of the relevant fields have been filled. HERE (HIGHER in
       // complete build of shape function)
 
@@ -1307,8 +1362,8 @@ definitions.",
       // parametric function
       Vector<Vector<double>> local_vertices(3, Vector<double>(2, 0.0));
       Vector<double> vertex_0(2, 0.0), vertex_1(2, 0.0);
-      parametric_curve_pt.position(Vector<double>(1, S_ubar), vertex_0);
-      parametric_curve_pt.position(Vector<double>(1, S_obar), vertex_1);
+      parametric_curve.position(Vector<double>(1, S_ubar), vertex_0);
+      parametric_curve.position(Vector<double>(1, S_obar), vertex_1);
 
       // Magnitude of the difference
       const double diff0 = sqrt(pow(vertex_0[0] - Vertices[0][0], 2) +
@@ -1320,14 +1375,19 @@ definitions.",
       // The parametric curve does not start and end at the vertices.
       if (vertices_differ_from_curve)
       {
-        oomph_info << "Difference of " << diff0 << " " << diff1
-                   << " between assigned vertices 0"
-                   << " and 1 respectively.\n";
-        throw OomphLibError(
-          "Non zero difference detected between assigned vertices \
-and the start and end of the provided Parametric boundary.",
-          OOMPH_CURRENT_FUNCTION,
-          OOMPH_EXCEPTION_LOCATION);
+       std::stringstream error_stream;       
+       error_stream
+        << "Non zero difference detected between assigned vertices\n"
+        << "and the start and end of the provided Parametric boundary:\n"
+        << "Difference of " << diff0 << " " << diff1
+        << " between assigned vertices 0"
+        << " and 1 respectively.\n"
+        << "The relevant vertices are at\n"
+        << Vertices[0][0] << " " << Vertices[0][1] << "\n"
+        << Vertices[1][0] << " " << Vertices[1][1] << "\n"; 
+       throw OomphLibError(error_stream.str(),
+                           OOMPH_CURRENT_FUNCTION,
+                           OOMPH_EXCEPTION_LOCATION);
       }
 
       // Lengths of the vectors
@@ -1490,6 +1550,5 @@ by previous checks and needs further investigation.\n",
           OOMPH_EXCEPTION_LOCATION);
       }
     }
-  } // namespace MyC1CurvedElements
 } // namespace oomph
 #endif

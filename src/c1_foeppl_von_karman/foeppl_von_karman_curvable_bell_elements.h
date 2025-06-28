@@ -34,7 +34,7 @@
 #include "foeppl_von_karman_equations.h"
 #include "src/generic/bell_element_basis.h"
 #include "src/generic/c1_curved_elements.h"
-#include "src/generic/my_geom_object.h"
+#include "src/generic/c1_plate_helper.h"
 #include "src/generic/subparametric_Telement.h"
 #include "src/generic/oomph_definitions.h"
 
@@ -46,350 +46,809 @@
 
 namespace oomph
 {
-  //===start of rotation helper class=========================================
-  /// Helper class to contain all the rotation information in the element.
-  class RotatedBoundaryHelper
+
+ 
+  //========= start_of_duplicate_node_constraint_element ==================
+  /// Non-geometric element used to constrain dofs between duplicated
+  /// vertices where the Hemite data at each node is different but must
+  /// be compatible.
+  ///
+  /// If the first (left) node uses coordinates (s_1,s_2) for the fields
+  /// (U,V,W) and the second (right) uses coordinates (t_1, t_2) for the fields
+  /// (u,v,w) then enforcing (U,V,W)=(u,v,w), using the chain rule we arrive at
+  /// three equations for displacement (alpha=1,2):
+  ///     0 = (U_\alpha - u_\alpha)
+  ///     0 = (W-w)
+  /// two equations constraining gradient (alpha=1,2):
+  ///     0 = (dW_1/ds_\alpha - dw_2/dt_\beta J_{\beta\alpha})
+  /// and three equations constraining curvature (alpha,beta=1,2; beta>=alpha):
+  ///     0 = (d^2W_1/ds_\alpha ds_\beta
+  ///          - J_{\alpha\gamma} * J_{\beta\delta} * d^2w_2/dt_\gamma dt_\delta
+  ///          - H_{\gamma\alpha\beta} * dw_2/dt_gamma)
+  /// where L_i, i=0,..,7, are Lagrange multipliers -- dofs which are
+  /// stored in the internal data of this element.
+  //=======================================================================
+  class FvKDuplicateNodeConstraintElement : public virtual DuplicateNodeConstraintElement
   {
   public:
-    /// Constructor: just initialise the member data to their defaults (zeros)
-    RotatedBoundaryHelper(FiniteElement* const& parent_element_pt)
-      : Parent_element_pt(parent_element_pt),
-        Nnode(Parent_element_pt->nvertex_node()),
-        Boundary_coordinate_of_node(3, 0.0),
-        Nodal_boundary_parametrisation_pt(3, 0),
-        Rotation_matrix_at_node(3, DenseMatrix<double>(6, 6, 0.0))
+   
+    /// Construcor. Needs the two node pointers so that we can retrieve the
+    /// boundary data at solve time
+    FvKDuplicateNodeConstraintElement(
+      Node* const& left_node_pt,
+      Node* const& right_node_pt,
+      C1CurviLine* const& left_boundary_pt,
+      C1CurviLine* const& right_boundary_pt,
+      Vector<double> const& left_coord,
+      Vector<double> const& right_coord)
+     : DuplicateNodeConstraintElement(
+      left_node_pt,
+      right_node_pt,
+      left_boundary_pt,
+      right_boundary_pt,
+      left_coord,
+      right_coord)      
     {
+      // Add internal data which stores the eight Lagrange multipliers
+      Index_of_lagrange_data = add_internal_data(new Data(8));
+
+      // Add each node as external data
+      Index_of_left_data = add_external_data(Left_node_pt);
+      Index_of_right_data = add_external_data(Right_node_pt);
     }
 
     /// Destructor
-    ~RotatedBoundaryHelper() {}
-
-    CurvilineGeomObject* nodal_boundary_parametrisation_pt(
-      const unsigned& j_node)
+    ~FvKDuplicateNodeConstraintElement()
     {
-      return Nodal_boundary_parametrisation_pt[j_node];
+     unsigned n_internal=ninternal_data();
+     for (unsigned i=0;i<n_internal;i++)
+      {
+       delete this->internal_data_pt(i);
+      }
     }
 
-
-    /// Add a new boundary parametrisation to nodes all the nodes in the
-    /// vector node_on_boundary
-    void set_nodal_boundary_parametrisation(
-      const Vector<unsigned>& node_on_boundary,
-      const Vector<double>& boundary_coord_of_node,
-      CurvilineGeomObject* const& boundary_parametrisation_pt)
+    /// Add the contribution to the residuals from the Lagrange multiplier
+    /// constraining equations
+    void fill_in_contribution_to_residuals(Vector<double>& residuals)
     {
-      // Loop over all the nodes in node_on_boundary and add the boundary
-      // pointer to their vector of boundaries
-      unsigned n_node = node_on_boundary.size();
-      for (unsigned j = 0; j < n_node; j++)
-      {
-        // The j-th node on the boundary
-        unsigned j_node = node_on_boundary[j];
+      fill_in_generic_residual_contribution_constraint(
+        residuals, GeneralisedElement::Dummy_matrix, 0);
+    }
 
-        // Set the boundary parametrisation data pointer for this node
-        Nodal_boundary_parametrisation_pt[j_node] = boundary_parametrisation_pt;
-
-        // Set the coordinate of node j on this boundary
-        Boundary_coordinate_of_node[j_node] = boundary_coord_of_node[j];
-
-        update_rotation_matrices();
-      } // end of loop over nodes in node_on_boundary [j]
-    } // end of set_nodal_boundary_parametrisation()
-
-
-    /// Update all rotation matrices (checks if they are needed unless flag is
-    /// true)
-    void update_rotation_matrices()
+    /// Add the contribution to the Jacobian from the Lagrange multiplier
+    /// constraining equations
+    void fill_in_contribution_to_jacobian(Vector<double>& residuals,
+                                          DenseMatrix<double>& jacobian)
     {
-      // [zdec] hard coded the three vertex nodes
-      unsigned n_vertex = 3;
-      // Loop over each vertex
-      for (unsigned j_node = 0; j_node < n_vertex; j_node++)
+      fill_in_generic_residual_contribution_constraint(residuals, jacobian, 1);
+    }
+
+    /// Validate constraints which contain no unpinned dofs and pin their
+    /// corrosponding lagrange multiplier as it is used in no equations and
+    /// it's own equation is trivially satisfied (Jacobian has a zero column
+    /// and row if unpinned => singular)
+    // [zdec] Do we want a bool in the element to determine whether we enforce
+    // constraints that are already fully pinned (tears may be desired in some
+    // dofs?) 
+    void pin_redundant_constraints()
+    {
+      // Start by unpinning all lagrange multipliers in case the boundary
+      // conditions are less restrictive than previously
+      internal_data_pt(Index_of_lagrange_data)->unpin_all();
+
+
+      // [zdec] This full description might be overkill for the code but it will
+      // go in my thesis.
+
+      // We need to keep track of which fvk dofs are already 'used' by Lagrange
+      // constraints. If dofs 3 and 4 in the right node (dw/dl_1, dw/dl_2) are
+      // the only unpinned dofs between three lagrange constraints (e.g. 3,4,5),
+      // then including all three constraints will result in a three
+      // (consistent) linearly dependent equations and hence a singular matrix.
+      // Therefore, each time we apply a constraint we must 'use' a dof by
+      // marking it as effectively pinned by the lagrange constraint. Generally,
+      // checking we are maximally constraining our duplicated nodes without
+      // introducing linear dependent equations can be a tedious problem (we may
+      // mark dof A as 'used' when choosing between A and B only for the next
+      // constraint to contain only dof A) but we can safely mark the first free
+      // dof provided we choose a constraint and dof order that prioritise
+      // marking dofs which aren't used again (i.e. right dofs).
+
+      // The number of nodal types per field
+      unsigned n_type = 6;
+
+      // We use a vector of booleans to keep track of dofs that might be reused
+      // (no need to track right dofs which are used once)
+      std::vector<bool> right_data_used(n_type, false);
+      std::vector<bool> left_data_used(n_type, false);
+
+      // Store each data
+      Data* left_data_pt = external_data_pt(Index_of_left_data);
+      Data* right_data_pt = external_data_pt(Index_of_right_data);
+
+      // We also want to store the jacobian and the hessian of the mapping
+      DenseMatrix<double> jac_of_transform(2, 2, 0.0);
+      Vector<DenseMatrix<double>> hess_of_transform(
+        2, DenseMatrix<double>(2, 2, 0.0));
+      get_jac_and_hess_of_coordinate_transform(jac_of_transform,
+                                               hess_of_transform);
+
+      // Constraints 0-2 use dofs 0-2 respectively in each node
+      for (unsigned k_type = 0; k_type < 3; k_type++)
       {
-        // If this node does not have a parametrisation (the pointer is still
-        // null) skip over it, otherwise we go on to fill out the rotation
-        // matrix
-        if (!nodal_boundary_parametrisation_pt(j_node))
+	// Index of the condition on the element
+	unsigned condition_index = k_type;
+        // Index of the val associated with displacement in the right node
+        unsigned right_ui_index = k_type;
+        // Index of the val associated with displacement in the left node
+        unsigned left_ui_index = k_type;
+
+	// Get whether each value is pinned
+	bool right_ui_pinned = right_data_pt->is_pinned(right_ui_index);
+        bool left_ui_pinned = left_data_pt->is_pinned(left_ui_index);
+
+        // If anything is free, mark it as used and continue without doing
+        // anything else
+        if (!right_ui_pinned && !right_data_used[right_ui_index])
         {
+          // [zdec] debug
+          std::cout << "eqn " << condition_index
+		    << " depends on dof R" << right_ui_index
+                    << std::endl;
+          right_data_used[right_ui_index] = true;
+        }
+        else if (!left_ui_pinned && !left_data_used[left_ui_index])
+        {
+          // [zdec] debug
+
+          std::cout << "eqn " << condition_index
+		    << " depends on dof L" << left_ui_index
+                    << std::endl;
+          left_data_used[left_ui_index] = true;
+        }
+	else
+	{
+	  // ---------------------------------------------------------------------
+	  // If we made it here, it is because all dofs in the constraint are
+	  // pinned so we need to check the constraint is satisfied manually and
+	  // then remove it by pinning the corresponding lagrange multiplier
+         
+         // hierher Aidan: should this remain alive?
+
+	  // // Calculate the residual of the constraint
+	  // double constraint_residual =
+	  //   right_data_pt->value(i_con) - left_data_pt->value(i_con);
+	  // // Check that the constraint is met and we don't have a tear
+	  // if(constraint_residual > Constraint_tolerance)
+	  // {
+	  //   throw_unsatisfiable_constraint_error(i_con, constraint_residual);
+	  // }
+
+	  // If it is met, we pin the lagrange multiplier that corresponds to
+	  // this constraint as it is redundant and results in a zero row/column
+	  internal_data_pt(Index_of_lagrange_data)->pin(condition_index);
+	}
+      } // End for loop over first three conditions [k_type]
+
+
+      // Constraints 3-4 use dofs 3-4 (first derivatives of w) respectively from
+      // the right node and both in the left
+      for (unsigned alpha = 0; alpha < 2; alpha++)
+      {
+	// Index of the condition on the element
+	unsigned condition_index = 3 + alpha;
+	// Index of the right nodes alpha-th derivative value
+        unsigned right_dwda_index = 3 + alpha;
+	// Index of the left nodes first derivative value
+	unsigned left_dwd1_index = 3;
+        // Index of the left nodes second derivative value
+        unsigned left_dwd2_index = 4;
+
+        // Get whether each nodal value is pinned
+        bool right_dwda_pinned = right_data_pt->is_pinned(right_dwda_index);
+        bool left_dwd1_pinned = left_data_pt->is_pinned(left_dwd1_index);
+        bool left_dwd2_pinned = left_data_pt->is_pinned(left_dwd2_index);
+
+        // If anything is free, mark it as used and continue without doing
+        // anything else. We also need to check that each dof hasn't become
+        // decoupled from this constraint by ensuring that its coefficient (if
+        // it has one) is sufficiently large (> Orthogonality_tolerance)
+        if (!right_dwda_pinned && !right_data_used[right_dwda_index])
+        {
+          // [zdec] debug
+          std::cout << "eqn " << condition_index
+		    << " depends on dof R" << right_dwda_index
+                    << std::endl;
+          right_data_used[right_dwda_index] = true;
           continue;
         }
-
-        // Initialise the two basis vectors and their jacobians
-        Vector<Vector<double>> bi(2, Vector<double>(2, 0.0));
-        Vector<DenseMatrix<double>> dbidx(2, DenseMatrix<double>(2, 2, 0.0));
-
-        // Our new coordinate system:
-        //     (l, s)=(normal component, tangent component)
-        // which we define in terms of basis vectors (rescaled)
-        //     ni=dxi/dl / |n|           <-- Jacobian col 1
-        //     ti=dxi/ds / |t|           <-- Jacobian col 2
-        // and their derivatives
-        //     dnidxj=d/dxj(dxi/dl / |n|) <-- Hessian `col' 1
-        //     dtidxj=d/dxj(dxi/ds / |t|) <-- Hessian `col' 2
-
-        // [zdec] we use i and j for brevity
-        // but it should be alpha & beta
-        // Need to write up how the transformation is done
-
-        // Storage for our basis and derivatives
-        Vector<double> ni(2, 0.0);
-        Vector<double> ti(2, 0.0);
-        Vector<double> dnids(2, 0.0);
-        Vector<double> dtids(2, 0.0);
-
-        // All tensors assumed evaluated on the boundary
-        // Jacobian of inverse mapping
-        DenseMatrix<double> jac_inv(2, 2, 0.0);
-        // Hessian of mapping [zdec] (not needed because...)
-        Vector<DenseMatrix<double>> hess(2, DenseMatrix<double>(2, 2, 0.0));
-        // Hessian of inverse mapping [zdec] (...this can be found by
-        // hand)
-        Vector<DenseMatrix<double>> hess_inv(2, DenseMatrix<double>(2, 2, 0.0));
-
-        // The basis is defined in terms of the boundary parametrisation
-        Vector<double> boundary_coord = {Boundary_coordinate_of_node[j_node]};
-        CurvilineGeomObject* boundary_pt =
-          Nodal_boundary_parametrisation_pt[j_node];
-        Vector<double> x(2, 0.0);
-        Vector<double> dxids(2, 0.0);
-        Vector<double> d2xids2(2, 0.0);
-
-        // Get position (debug)
-        boundary_pt->position(boundary_coord, x);
-        // Get tangent vector
-        boundary_pt->dposition(boundary_coord, dxids);
-        // Get second derivative
-        boundary_pt->d2position(boundary_coord, d2xids2);
-
-        double mag_t = sqrt(dxids[0] * dxids[0] + dxids[1] * dxids[1]);
-        // ti is the normalised tangent vector
-        ti[0] = dxids[0] / mag_t;
-        ti[1] = dxids[1] / mag_t;
-        // Derivative of (normalised) tangent
-        dtids[0] = d2xids2[0] / std::pow(mag_t, 2) -
-                   (dxids[0] * d2xids2[0] + dxids[1] * d2xids2[1]) * dxids[0] /
-                     std::pow(mag_t, 4);
-        dtids[1] = d2xids2[1] / std::pow(mag_t, 2) -
-                   (dxids[0] * d2xids2[0] + dxids[1] * d2xids2[1]) * dxids[1] /
-                     std::pow(mag_t, 4);
-        // n = (t x e_z) implies
-        ni[0] = ti[1];
-        ni[1] = -ti[0];
-        // Same for dnids
-        dnids[0] = dtids[1];
-        dnids[1] = -dtids[0];
-
-        // Need inverse of mapping to calculate ds/dxi ----------------
-        //   /  dx/dl  dx/ds  \ -1  ___  __1__ /  dy/ds -dx/ds \ .
-        //   \  dy/dl  dy/ds  /     ---   det  \ -dy/dl  dx/dl /
-        //
-        //                          ___  /  dl/dx  dl/dy  \ .
-        //                          ---  \  ds/dx  ds/dy  /
-        //
-        // Fill out inverse of Jacobian
-        double det = (ni[0] * ti[1] - ni[1] * ti[0]);
-        jac_inv(0, 0) = ti[1] / det;
-        jac_inv(0, 1) = -ti[0] / det;
-        jac_inv(1, 0) = -ni[1] / det;
-        jac_inv(1, 1) = ni[0] / det;
-
-        // Fill out the Hessian
-        // (unneeded -- can calculate the inverse components by hand)
-        for (unsigned alpha = 0; alpha < 2; alpha++)
+        if (!left_dwd1_pinned && !left_data_used[left_dwd1_index])
         {
-          // hess[alpha](0,0) = 0.0;
-          hess[alpha](0, 1) = dnids[alpha];
-          hess[alpha](1, 0) = dnids[alpha];
-          hess[alpha](1, 1) = dtids[alpha];
-        }
-
-        // Fill out inverse of Hessian
-        // H^{-1}abg = J^{-1}ad Hdez J^{-1}eb J^{-1}zg
-        for (unsigned alpha = 0; alpha < 2; alpha++)
-        {
-          for (unsigned beta = 0; beta < 2; beta++)
+          // [zdec] debug
+          std::cout << "eqn " << condition_index
+		    << " depends on dof L" << left_dwd1_index
+		    << std::endl;
+          double coeff = jac_of_transform(0, alpha);
+          if (fabs(coeff) > Orthogonality_tolerance)
           {
-            for (unsigned gamma = 0; gamma < 2; gamma++)
-            {
-              for (unsigned alpha2 = 0; alpha2 < 2; alpha2++)
-              {
-                for (unsigned beta2 = 0; beta2 < 2; beta2++)
-                {
-                  for (unsigned gamma2 = 0; gamma2 < 2; gamma2++)
-                  {
-                    hess_inv[alpha](beta, gamma) -=
-                      jac_inv(alpha, alpha2) * hess[alpha2](beta2, gamma2) *
-                      jac_inv(beta2, beta) * jac_inv(gamma2, gamma);
-                  }
-                }
-              }
-            }
+            left_data_used[left_dwd1_index] = true;
+            continue;
           }
         }
+        if (!left_dwd2_pinned && !left_data_used[left_dwd2_index])
+        {
+          // [zdec] debug
+          std::cout << "eqn " << condition_index
+		    << " depends on dof L" << left_dwd2_index
+		    << std::endl;
+          double coeff = jac_of_transform(1, alpha);
+          if (fabs(coeff) > Orthogonality_tolerance)
+          {
+            left_data_used[left_dwd2_index] = true;
+            continue;
+          }
+        }
+        // ---------------------------------------------------------------------
+        // If we made it here, it is because all dofs in the constraint are
+        // pinned so we need to check the constraint is satisfied manually and
+        // then remove it by pinning the corresponding lagrange multiplier
 
-        // Fill in the rotation matrix using the new basis
-        fill_in_rotation_matrix_at_node_with_basis(j_node, jac_inv, hess_inv);
+        // hierher Aidan: should this remain alive?
 
+        
+        // // Calculate the residual of the constraint
+        // double constraint_residual = right_data_pt->value(i_con);
+        // for(unsigned beta = 0; beta < 2; beta++)
+        // {
+        //   constraint_residual +=
+        //     - left_data_pt->value(3+beta) * jac_of_transform(beta,alpha);
+        // }
+        // // Check that the constraint is met and we don't have a tear
+        // if(constraint_residual > Constraint_tolerance)
+        // {
+        //   throw_unsatisfiable_constraint_error(i_con, constraint_residual);
+        // }
 
-        // // [zdec] debug
-        // std::ofstream jac_and_hess;
-        // jac_and_hess.open("jac_and_hess_new.csv", std::ios_base::app);
-        // jac_and_hess << "Jacobian inverse:" << std::endl
-        // 		   << bi[0][0] << " " << bi[0][1] << std::endl
-        // 		   << bi[1][0] << " " << bi[1][1] << std::endl
-        // 		   << "Hessian inverse [x]:" << std::endl
-        // 		   << Dbi[0](0,0) << " " << Dbi[0](0,1) << std::endl
-        // 		   << Dbi[0](1,0) << " " << Dbi[0](1,1) << std::endl
-        // 		   << "Hessian inverse [y]:" << std::endl
-        // 		   << Dbi[1](0,0) << " " << Dbi[1](0,1) << std::endl
-        // 		   << Dbi[1](1,0) << " " << Dbi[1](1,1) << std::endl <<
-        // std::endl;
+        // If it is met, we pin the lagrange multiplier that corresponds to
+        // this constraint as it is redundant and results in a zero row/column
+        internal_data_pt(Index_of_lagrange_data)->pin(condition_index);
+      }
 
+      // Constraints 5-7 use dofs 5-7 respectively from the right node and
+      // all use dofs 3-7 from the left node
+      for (unsigned alpha = 0; alpha < 2; alpha++)
+      {
+        // beta>=alpha so we dont double count constraint 6
+        for (unsigned beta = alpha; beta < 2; beta++)
+        {
+          // The index of the constraint
+          unsigned condition_index = 5 + alpha + beta;
+          // Index of the right nodes alpha-beta-th derivative value
+          unsigned right_dwdadb_index = 5 + alpha + beta;
+          // Index of the left nodes d1 derivative value
+          unsigned left_dwd1_index = 3;
+          // Index of the left nodes d2 derivative value
+          unsigned left_dwd2_index = 4;
+          // Index of the left nodes d1d1 derivative value
+          unsigned left_dwd1d1_index = 5;
+          // Index of the left nodes d1d2 derivative value
+          unsigned left_dwd1d2_index = 6;
+          // Index of the left nodes d2d2 derivative value
+          unsigned left_dwd2d2_index = 7;
 
-        // // [zdec] debug
-        // std::ofstream jac_and_hess;
-        // jac_and_hess.open("jac_and_hess_new.csv", std::ios_base::app);
-        // jac_and_hess << "Jacobian inverse:" << std::endl
-        //              << jac_inv(0, 0) << " " << jac_inv(0, 1) << std::endl
-        //              << jac_inv(1, 0) << " " << jac_inv(1, 1) << std::endl
-        //              << "Hessian inverse [x]:" << std::endl
-        //              << hess_inv[0](0, 0) << " " << hess_inv[0](0, 1)
-        //              << std::endl
-        //              << hess_inv[0](1, 0) << " " << hess_inv[0](1, 1)
-        //              << std::endl
-        //              << "Hessian inverse [y]:" << std::endl
-        //              << hess_inv[1](0, 0) << " " << hess_inv[1](0, 1)
-        //              << std::endl
-        //              << hess_inv[1](1, 0) << " " << hess_inv[1](1, 1)
-        //              << std::endl
-        //              << std::endl;
-        // jac_and_hess.close();
+          // Get whether each nodal value is pinned
+          bool right_dwdadb_pinned =
+	    right_data_pt->is_pinned(right_dwdadb_index);
+          bool left_dwd1_pinned = left_data_pt->is_pinned(left_dwd1_index);
+          bool left_dwd2_pinned = left_data_pt->is_pinned(left_dwd2_index);
+          bool left_dwd1d1_pinned = left_data_pt->is_pinned(left_dwd1d1_index);
+          bool left_dwd1d2_pinned = left_data_pt->is_pinned(left_dwd1d2_index);
+          bool left_dwd2d2_pinned = left_data_pt->is_pinned(left_dwd2d2_index);
 
-        // // [zdec] debug
-        // std::ofstream debug_stream;
-        // debug_stream.open("norm_and_tan.dat", std::ios_base::app);
-        // debug_stream << x[0] << " " << x[1] << " " << ni[0] << " " << ni[1]
-        //              << " " << ti[0] << " " << ti[1] << " " << dnids[0] << "
-        //              "
-        //              << dnids[1] << " " << dtids[0] << " " << dtids[1] << " "
-        //              << d2xids2[0] << " " << d2xids2[1] << std::endl;
-        // debug_stream.close();
+          // If anything is free, mark it as used and continue without doing
+          // anything else. We also need to check that each dof hasn't become
+          // decoupled from this constraint by ensuring that its coefficient (if
+          // it has one) is sufficiently large (> Orthogonality_tolerance)
+          if (!right_dwdadb_pinned && !right_data_used[right_dwdadb_index])
+          {
+            // [zdec] debug
+            std::cout << "eqn " << condition_index
+		      << " depends on dof R" << right_dwdadb_index
+                      << std::endl;
+            right_data_used[right_dwdadb_index] = true;
+            continue;
+          }
+          if (!left_dwd1_pinned && !left_data_used[left_dwd1_index])
+          {
+            double coeff = hess_of_transform[0](alpha, beta);
+            if (fabs(coeff) > Orthogonality_tolerance)
+            {
+              // [zdec] debug
+              std::cout << "eqn " << condition_index
+			<< " depends on dof L" << left_dwd1_index
+			<< std::endl;
+              left_data_used[left_dwd1_index] = true;
+              continue;
+            }
+          }
+          if (!left_dwd2_pinned && !left_data_used[left_dwd2_index])
+          {
+            double coeff = hess_of_transform[1](alpha, beta);
+            if (fabs(coeff) > Orthogonality_tolerance)
+            {
+              // [zdec] debug
+              std::cout << "eqn " << condition_index
+			<< " depends on dof L" << left_dwd2_index
+			<< std::endl;
+              left_data_used[left_dwd2_index] = true;
+              continue;
+            }
+          }
+          if (!left_dwd1d1_pinned && !left_data_used[left_dwd1d1_index])
+          {
+            double coef =
+              jac_of_transform(0, alpha) * jac_of_transform(0, beta);
+            if (fabs(coef) > Orthogonality_tolerance)
+            {
+              // [zdec] debug
+              std::cout << "eqn " << condition_index
+			<< " depends on dof L" << left_dwd1d1_index
+			<< std::endl;
+              left_data_used[left_dwd1d1_index] = true;
+              continue;
+            }
+          }
+          if (!left_dwd1d2_pinned && !left_data_used[left_dwd1d2_index])
+          {
+            double coef =
+              jac_of_transform(0, alpha) * jac_of_transform(1, beta) +
+              jac_of_transform(1, alpha) * jac_of_transform(0, beta);
+            if (fabs(coef) > Orthogonality_tolerance)
+            {
+              // [zdec] debug
+              std::cout << "eqn " << condition_index
+			<< " depends on dof L" << left_dwd1d2_index
+			<< std::endl;
+              left_data_used[left_dwd1d2_index] = true;
+              continue;
+            }
+          }
+          if (!left_dwd2d2_pinned && !left_data_used[left_dwd2d2_index])
+          {
+            double coef =
+              jac_of_transform(1, alpha) * jac_of_transform(1, beta);
+            if (fabs(coef) > Orthogonality_tolerance)
+            {
+              // [zdec] debug
+              std::cout << "eqn " << condition_index
+			<< " depends on dof L" << left_dwd2d2_index
+			<< std::endl;
+              left_data_used[left_dwd2d2_index] = true;
+              continue;
+            }
+          }
+          // -------------------------------------------------------------------
+          // If we made it here, it is because all dofs in the constraint are
+          // pinned so we need to check the constraint is satisfied manually and
+          // then remove it by pinning the corresponding lagrange multiplier
 
-      } // end loop over vertices
-    } // end of update_rotation_matrices()
+          // hierher Aidan: should this remain alive?
 
+          
+          // // Calculate the residual of the constraint
+          // double constraint_residual = right_data_pt->value(i_con);
+          // for(unsigned gamma = 0; gamma < 2; gamma++)
+          // {
+          //   constraint_residual +=
+          //     - left_data_pt->value(3+gamma) *
+          //     hess_of_transform[gamma](alpha,beta);
+          //   for(unsigned delta = 0; delta < 2; delta++)
+          //   {
+          //     constraint_residual +=
+          //       - left_data_pt->value(5+gamma+delta)
+          //       * jac_of_transform(gamma,alpha)
+          //       * jac_of_transform(delta,beta);
+          //   }
+          // }
+          // // Check that the constraint is met and we don't have a tear
+          // if(constraint_residual > Constraint_tolerance)
+          // {
+          //   throw_unsatisfiable_constraint_error(i_con, constraint_residual);
+          // }
 
-    /// Access function to fill out rot_mat using rotation matrix
-    void get_rotation_matrix_at_node(const unsigned& j_node,
-                                     DenseMatrix<double>& rot_mat)
-    {
-      rot_mat = Rotation_matrix_at_node[j_node];
-    }
+          // If it is met, we pin the lagrange multiplier that corresponds to
+          // this constraint as it is redundant and results in a zero row/column
+          internal_data_pt(Index_of_lagrange_data)->pin(condition_index);
+        }
+      }
+    } // End pin_redundant_constraints()
+
 
   private:
-    /// Helper function to fill in the rotation matrix for a given basis
-    void fill_in_rotation_matrix_at_node_with_basis(
-      const unsigned& j_node,
-      const DenseMatrix<double>& jac_inv,
-      const Vector<DenseMatrix<double>>& hess_inv)
+
+    /// Throw an error about a constraint that cannot be satisfied as it has no
+    /// free variables but still has a residual greater than a requested error
+    /// tokerabce. Takes the index and the residual of the offending constraint
+    void throw_unsatisfiable_constraint_error(const unsigned& i,
+                                              const double& res)
     {
-      // Rotation matrix, b constructed using submatrices b1, b12, b22
-      DenseMatrix<double> b1(2, 2, 0.0), b22(3, 3, 0.0), b12(2, 3, 0.0);
+      // Get the position of the nodes so we can be a little helpful about
+      // where the boundary conditions are contradictory.
+      Vector<double> x(2, 0.0);
+      Left_boundary_pt->position(Left_node_coord, x);
+      std::string error_string =
+        "Constraint " + std::to_string(i) + " on the nodes at x = (" +
+        std::to_string(x[0]) + ", " + std::to_string(x[1]) +
+        ") has no free variables but is not satisfied to within the " +
+        "tolerance (" + std::to_string(Constraint_tolerance) + ")." +
+        "The residual of the constraint is: C_" +
+        std::to_string(Constraint_tolerance) + " = " + std::to_string(res) +
+        "\n";
+      throw OomphLibError(
+        error_string, OOMPH_CURRENT_FUNCTION, OOMPH_EXCEPTION_LOCATION);
+    } // End of throw_unsatisfiable_constraint_error
 
-      // Fill in the submatrices
-      // Loop over the rotated first derivatives
-      for (unsigned mu = 0; mu < 2; mu++)
+
+
+
+    /// Add the contribution to the residuals (and jacobain if flag is 1) from
+    /// the Lagrange multiplier constraining equations
+    void fill_in_generic_residual_contribution_constraint(
+      Vector<double>& residuals,
+      DenseMatrix<double>& jacobian,
+      const unsigned& flag)
+    {
+      // [zdec] debug
+      std::cout << std::endl
+                << std::endl
+                << "ADD CONTRIBUTION FROM CONSTRAINTS" << std::endl
+                << "=============================================" << std::endl;
+      //----------------------------------------------------------------------
+      //----------------------------------------------------------------------
+      // Calculate Jacobian and Hessian of coordinate transform between
+      // each boundary coordinate
+      DenseMatrix<double> jac_of_transform(2, 2, 0.0);
+      Vector<DenseMatrix<double>> hess_of_transform(
+        2, DenseMatrix<double>(2, 2, 0.0));
+      get_jac_and_hess_of_coordinate_transform(jac_of_transform,
+                                               hess_of_transform);
+
+      //----------------------------------------------------------------------
+      //----------------------------------------------------------------------
+      // Use the jac and hess of transform to add the residual
+      // contributions from the constraint
+      // [zdec]::TODO make indexing (alpha,beta,gamma,...) consistent
+
+      // Store the internal data pointer which stores the Lagrange multipliers
+      Vector<double> lagrange_value(8, 0.0);
+      internal_data_pt(Index_of_lagrange_data)->value(lagrange_value);
+
+      // Store the left and right nodal dofs
+      // 0: u_1        4: dw/ds_2
+      // 1: u_2        5: d^2w/ds_1^2
+      // 2: w          6: d^2w/ds_1ds_2
+      // 3: dw/ds_1    7: d^2w/ds_2^2
+      Vector<double> left_value(8, 0.0);
+      Vector<double> right_value(8, 0.0);
+      Left_node_pt->value(left_value);
+      Right_node_pt->value(right_value);
+
+
+      //----------------------------------------------------------------------
+      // First the contributions to the right node external equations
+      unsigned n_external_type = 8;
+      for (unsigned k_type = 0; k_type < n_external_type; k_type++)
       {
-        // Loop over the unrotated first derivatives
-        for (unsigned alpha = 0; alpha < 2; alpha++)
+        int right_eqn_number = external_local_eqn(Index_of_right_data, k_type);
+
+        // If this dof isn't pinned we add to the residual
+        if (right_eqn_number >= 0)
         {
-          // Fill in b1 - the Jacobian
-          // Fill in the affine rotation of the first derivatives
-          b1(mu, alpha) = jac_inv(mu, alpha);
+          // Right dof term in the constraint always lambda_i*W_i
+          residuals[right_eqn_number] += lagrange_value[k_type];
 
-          // Loop over unrotated second derivatives
-          for (unsigned beta = 0; beta < 2; ++beta)
+          // If flag, then add the jacobian contribution
+          if (flag)
           {
-            // Avoid double counting the cross derivative
-            if (alpha <= beta)
+            // The contributions to the right node's equations are just
+            // r_i * L_i
+            int lagrange_dof_number =
+              internal_local_eqn(Index_of_lagrange_data, k_type);
+            // If this dof isn't pinned then add the contributions
+            // [zdec] should never be pinned if right value is not
+            if (lagrange_dof_number >= 0)
             {
-              // Define column index
-              const unsigned col = alpha + beta;
+              // Add the contribution to the jacobian
+              jacobian(right_eqn_number, lagrange_dof_number) += 1.0;
+              // And by symmetry, we can add the transpose contribution to the
+              // jacobian
+              jacobian(lagrange_dof_number, right_eqn_number) += 1.0;
+            } // End pinned check
+          } // End Jacobian contribution [if (flag)]
+        }
+      } // End for loop adding contributions to right nodal equations
 
-              // Fill in the non-affine part of the rotation of the first
-              // derivatives
-              b12(mu, col) += hess_inv[mu](alpha, beta);
-              // [zdec] debug mixed derivative -- add extra
-              if (alpha < beta)
+
+      //----------------------------------------------------------------------
+      // Next, the contributions to the left node external equations
+      // First three are displacements:
+      //     - lambda_i*(U_alpha or W_0)
+      for (unsigned k_type = 0; k_type < 3; k_type++)
+      {
+	// Index of the left nodes i-th displacement (0-th type) value
+	unsigned left_ui_index = k_type;
+        // External equation index
+        int left_eqn_number =
+          external_local_eqn(Index_of_left_data, left_ui_index);
+        // If this dof isn't pinned we add to the residual
+        if (left_eqn_number >= 0)
+        {
+	  // Add residual contribution which comes from lagrange value
+	  unsigned lagrange_index = k_type;
+          residuals[left_eqn_number] += -lagrange_value[lagrange_index];
+
+          // Get the local equation number for this dof and add the jacobian
+          // contribution if unpinned (and we are making the jacobian)
+          // [zdec] should never be pinned if right value is not
+          int lagrange_dof_number =
+            internal_local_eqn(Index_of_lagrange_data, lagrange_index);
+          if (flag && (lagrange_dof_number >= 0))
+          {
+            // Add the contribution to the jacobian
+            jacobian(left_eqn_number, lagrange_dof_number) += -1.0;
+            // And by symmetry, we can add the transpose contribution to the
+            // jacobian
+            jacobian(lagrange_dof_number, left_eqn_number) += -1.0;
+	  }
+        }
+      } // End loop adding contribution to the left nodal displacement equations
+
+      // Next two are from gradient of w:
+      //     - lambda_{3+\beta} * w_{1+\alpha} * J_{\alpha\beta}
+      //     - lambda_{5+\beta+\gamma} * w_{1+\alpha} * H_{\alpha\beta\gamma}
+      // gamma>=beta so we don't double count lambda_6 condition
+      for (unsigned alpha = 0; alpha < 2; alpha++)
+      {
+	// Index of the left nodes d1 derivative value
+	unsigned left_wda_index = 3 + alpha;
+        // Eqn number is the index of the alpha-th derivative of w which is
+        // the 1+alpha-th dof (alpha=0,1)
+        int left_eqn_number =
+          external_local_eqn(Index_of_left_data, left_wda_index);
+        // If this dof isn't pinned we add to the residual
+        if (left_eqn_number >= 0)
+        {
+	  // Loop over the lagrange multipliers associated with the right
+	  // first derivatives
+          for (unsigned beta = 0; beta < 2; beta++)
+          {
+	    // Add residual contribution from the lagrange value associated
+	    // with the right beta-th derivative
+            unsigned lagrange_wdb_index = 3 + beta;
+            residuals[left_eqn_number] +=
+              -lagrange_value[lagrange_wdb_index]
+	      * jac_of_transform(alpha, beta);
+
+	    // Get the local equation number for this dof and add the jacobian
+	    // contribution if unpinned (and we are making the jacobian)
+            int lagrange_dof_number =
+              internal_local_eqn(Index_of_lagrange_data, lagrange_wdb_index);
+            if (flag && (lagrange_dof_number >= 0))
+            {
+              double jac_term = -jac_of_transform(alpha, beta);
+              // Orthogonality check (for jacobian cleanliness)
+              if (fabs(jac_term) > Orthogonality_tolerance)
               {
-                // b12(mu, col) -= hess_inv[mu](alpha, beta);
-              }
-              // Loop over the rotated second derivatives
-              for (unsigned nu = 0; nu < 2; nu++)
+                // Add the contribution to the jacobian
+                jacobian(left_eqn_number, lagrange_dof_number) += jac_term;
+                // And by symmetry, we can add the transpose contribution to
+                // the jacobian
+                jacobian(lagrange_dof_number, left_eqn_number) += jac_term;
+              } // End orthogonality check
+	    } // End jacobian contributions for first derivative terms
+
+            // gamma>=beta so we don't double count the
+            // lagrange_value[6] constraint
+            for (unsigned gamma = beta; gamma < 2; gamma++)
+            {
+	      // Add residual contribution from the lagrange value associated
+	      // with the right beta+gamma-th second derivative
+	      unsigned lagrange_wdbdg_index = 5 + beta + gamma;
+	      residuals[left_eqn_number] +=
+		- lagrange_value[lagrange_wdbdg_index]
+		* hess_of_transform[alpha](beta, gamma);
+
+	      // Get the local equation number for this dof and add the
+	      // jacobian contribution if unpinned (and we are making the
+	      // jacobian)
+	      int lagrange_dof_number =
+		internal_local_eqn(Index_of_lagrange_data, lagrange_wdbdg_index);
+	      if (flag && (lagrange_dof_number >= 0))
+	      {
+		double jac_term = -hess_of_transform[alpha](beta, gamma);
+		// Orthogonality check
+		if (fabs(jac_term) > Orthogonality_tolerance)
+		{
+		  // Add the contribution to the jacobian
+		  jacobian(left_eqn_number, lagrange_dof_number) += jac_term;
+		  // And by symmetry, we can add the transpose contribution
+		  // to the jacobian
+		  jacobian(lagrange_dof_number, left_eqn_number) += jac_term;
+		} // End of orthogonality check
+	      } // End of jacobian contribution for second derivative terms
+	    } // End loop over second derivative Lagrange multipliers [gamma]
+	  } // End loop over first derivative Lagrange multipliers [beta]
+	} // End of if unpinned
+      } // End loop adding contributions to the left nodal gradient equations
+
+      // Last three are the second derivatives of w (delta>gamma):
+      //     - lambda_{5+\gamma+\delta} * w_{3+\alpha+\beta}
+      //       * J_{\alpha\gamma} * J_{\beta\delta}
+      // Index second derivative (equation) using alpha & beta
+      for (unsigned alpha = 0; alpha < 2; alpha++)
+      {
+	// Note that d^2w/ds_1ds_2 is counted twice in the summation so we
+	// allow alpha and beta to loop over both indices (unlike gamma+delta)
+        for (unsigned beta = 0; beta < 2; beta++)
+        {
+	  // Index of lagrange value associated with the right alpha+beta-th
+	  // second derivatives
+          unsigned left_wdadb_index = 5 + alpha + beta;
+          // Eqn number is the index of the second derivative of w
+          int left_eqn_number =
+            external_local_eqn(Index_of_left_data, left_wdadb_index);
+          // If this dof isn't pinned we add to the residual
+          if (left_eqn_number >= 0)
+          {
+            // Index constraint using gamma and delta
+            for (unsigned gamma = 0; gamma < 2; gamma++)
+            {
+              // delta>=gamma so we don't double count the lagrange_value
+	      // associated with the mixed derivative
+              for (unsigned delta = gamma; delta < 2; delta++)
               {
-                // // Avoid double counting the cross derivative
-                // if (mu <= nu)
+		// Add residual contribution
+		unsigned lagrange_wdgdd_index = 5 + gamma + delta;
+                residuals[left_eqn_number] +=
+		  -lagrange_value[lagrange_wdgdd_index] *
+		  jac_of_transform(alpha, gamma) *
+		  jac_of_transform(beta, delta);
+
+                // Get the local equation number for this dof and add the
+                // jacobian contribution if unpinned (and we are making the
+                // jacobian)
+                int lagrange_dof_number = internal_local_eqn(
+                  Index_of_lagrange_data, lagrange_wdgdd_index);
+                if (flag && (lagrange_dof_number >= 0))
                 {
-                  // Fill in b22 - the Affine part of the Jacobian derivative
-                  // Redefine row index for the next submatrix
-                  unsigned row_b22 = mu + nu;
-                  // Fill in the affine part of the rotation of the second
-                  // derivatives [zdec] if( beta>= alpha) ?
-                  b22(row_b22, col) += jac_inv(mu, alpha) * jac_inv(nu, beta);
-                }
+                  // Find the jacobian matrix contribution
+                  double jac_term = -jac_of_transform(alpha, gamma) *
+                                    jac_of_transform(beta, delta);
+                  // Orthogonality check
+                  if (fabs(jac_term) > Orthogonality_tolerance)
+                  {
+                    // Add the contribution to the jacobian
+                    jacobian(left_eqn_number, lagrange_dof_number) += jac_term;
+                    // And by symmetry, we can add the transpose contribution
+                    // to the jacobian
+                    jacobian(lagrange_dof_number, left_eqn_number) += jac_term;
+                  }
+                  } // End jacobian
+              }
+            } // End loops over the conditions (gamma,delta)
+          } // End if dof isn't pinned
+        }
+      } // End loops adding contributions to the left nodal curvature equations
+      // (alpha,beta)
+
+
+      //----------------------------------------------------------------------
+      // Now add contributions to the internal (lagrange multiplier) equations
+      // (note jacobian contributions will have already been thanks to use of
+      // symmetry)
+
+      // First three (u,v,w) dofs are equal
+      for (unsigned i_dof = 0; i_dof < 3; i_dof++)
+      {
+	// Index of the condition on the nodes (displacement constraint
+	// corresponds to zeroth type for each field)
+        unsigned lagrange_index = i_dof;
+        // Get the internal data eqn number for this constraint
+        int lagrange_eqn_number =
+          internal_local_eqn(Index_of_lagrange_data, lagrange_index);
+	// If this dof isn't pinned we add to the residual
+	if (lagrange_eqn_number >= 0)
+        {
+          // Add contributions from right and left nodes displacement
+          // (zero-th) type
+          unsigned right_ui_index = i_dof;
+          unsigned left_ui_index = i_dof;
+          residuals[lagrange_eqn_number] +=
+            (right_value[right_ui_index] - left_value[left_ui_index]);
+        }
+	// Jacobian is added during right and left nodal equations using
+	// symmetry
+      }
+
+      // Next two (first derivatives of w) are related by
+      //     grad_r(w) = grad_l(w)*J
+      // where  J is the Jacobian grad_r(left coords)
+      for (unsigned alpha = 0; alpha < 2; alpha++)
+      {
+        // Index of the condition on the nodes
+        unsigned lagrange_index = 3 + alpha;
+        // Get the internal data eqn number for this constraint
+        int lagrange_eqn_number =
+          internal_local_eqn(Index_of_lagrange_data, lagrange_index);
+        // If this dof isn't pinned we add to the residual
+        if (lagrange_eqn_number >= 0)
+        {
+          // Add contribution from right node
+          unsigned right_wda_index = 3 + alpha;
+          residuals[lagrange_eqn_number] += (right_value[right_wda_index]);
+          // Add contribuions from left node
+          for (unsigned beta = 0; beta < 2; beta++)
+          {
+            unsigned left_wdb_index = 3 + beta;
+            residuals[lagrange_eqn_number] +=
+              -left_value[left_wdb_index] * jac_of_transform(beta, alpha);
+          }
+          // Jacobian is added during right and left nodal equations using
+          // symmetry
+	}
+      }
+
+      // Final three (second derivatives of w) are related by:
+      //     grad_r(grad_r(w)) = grad_l(grad_l(w))*J*J + grad_l(w)*H
+      // where H is the Hessian: grad_r(grad_r(left coords))
+      // Loop over index of first derivative (0 or 1)
+      for (unsigned alpha = 0; alpha < 2; alpha++)
+      {
+        // Loop over index of second derivative
+        // (>=alpha to prevent double counting mixed deriv)
+        for (unsigned beta = alpha; beta < 2; beta++)
+        {
+          // Index of the condition on the nodes
+          unsigned lagrange_index = 5 + alpha + beta;
+          // Get the internal data eqn number for this constraint
+          int lagrange_eqn_number =
+            internal_local_eqn(Index_of_lagrange_data, lagrange_index);
+          // If this dof isn't pinned we add to the residual
+          if (lagrange_eqn_number >= 0)
+          {
+            // Add contributions from right node
+            unsigned right_wdadb_index = 5 + alpha + beta;
+            residuals[lagrange_eqn_number] += right_value[right_wdadb_index];
+            // Loop over the left node derivatives
+            for (unsigned gamma = 0; gamma < 2; gamma++)
+            {
+              // Add contributions from left node first derivatives
+              unsigned left_wdg_index = 3 + gamma;
+              residuals[lagrange_eqn_number] +=
+                -left_value[left_wdg_index] *
+                hess_of_transform[gamma](alpha, beta);
+              // Loop over the left derivatives again to get second
+              // derivatives
+              for (unsigned delta = 0; delta < 2; delta++)
+              {
+                // Add contributions from left node second derivatives
+		unsigned left_wdgdd_index = 5 + gamma + delta;
+		residuals[lagrange_eqn_number] +=
+                  -left_value[left_wdgdd_index] *
+                  jac_of_transform(gamma, alpha) *
+                  jac_of_transform(delta, beta);
               }
             }
-          }
-        }
+            // Jacobian is added during right and left nodal equations using
+            // symmetry
+          } // End if eqn not pinned
+	}
       }
+    } // End fill_in_generic_residual_contribution_constraint
 
-      // Fill in the submatrices to the full (6x6) matrix
-      Rotation_matrix_at_node[j_node](0, 0) = 1.0;
-      // Fill in b1 --- the affine contribution to rotation of the
-      // first derivatives
-      for (unsigned i = 0; i < 2; ++i)
-      {
-        for (unsigned j = 0; j < 2; ++j)
-        {
-          Rotation_matrix_at_node[j_node](1 + i, 1 + j) = b1(i, j);
-        }
-      }
-      // Fill in b21 --- the non-affine (second derivative dependent)
-      // rotation of the first derivatives
-      for (unsigned i = 0; i < 2; ++i)
-      {
-        for (unsigned j = 0; j < 3; ++j)
-        {
-          Rotation_matrix_at_node[j_node](1 + i, 3 + j) = b12(i, j);
-        }
-      }
-      // Fill in b22 --- the rotation of the second derivatives
-      for (unsigned i = 0; i < 3; ++i)
-      {
-        for (unsigned j = 0; j < 3; ++j)
-        {
-          Rotation_matrix_at_node[j_node](3 + i, 3 + j) = b22(i, j);
-        }
-      }
-    } // end fill_in_rotation_matrix_at_node_with_basis
 
-    /// Pointer to the `parent' finite element which this is a helper force
-    FiniteElement* Parent_element_pt;
+  }; // End of FvKDuplicateNodeConstraintElement class definition
 
-    /// The number of nodes (that we store rotation data for) in the fvk element
-    /// that uses this helper
-    unsigned Nnode;
-
-    /// Vector containing boundary parametrised location for each node
-    Vector<double> Boundary_coordinate_of_node;
-
-    /// Vector containing boundary parametrisation at each node
-    Vector<CurvilineGeomObject*> Nodal_boundary_parametrisation_pt;
-
-    /// Vector containing <rotation matrix at each node>
-    Vector<DenseMatrix<double>> Rotation_matrix_at_node;
-  };
-  //---end of rotation helper class-------------------------------------------
 
 
   //============================================================================
@@ -447,6 +906,9 @@ namespace oomph
       : CurvableBellElement<NNODE_1D>(Nfield, Field_is_bell_interpolated),
         FoepplVonKarmanEquations()
     {
+
+      // hierher Aidan: Can this go; is this handled elsewhere?
+
       // // Use the higher order integration scheme
       // delete this->integral_pt();
       // // Use the higher order integration scheme
@@ -454,7 +916,7 @@ namespace oomph
       // this->set_integration_scheme(new_integral_pt);
 
       // Rotated dof helper
-      Rotated_boundary_helper_pt = new RotatedBoundaryHelper(this);
+      Rotated_boundary_helper_pt = new RotatedBoundaryHelper;
     }
 
     /// Destructor: clean up alloacations
@@ -495,6 +957,12 @@ namespace oomph
       FoepplVonKarmanEquations::full_output(outfile);
     }
 
+    /// Full output function with a rich set of unknowns:
+    ///  x, y, ux, uy, w, dw, ddw, du, strain, stress, principal stress
+   void full_output(std::ostream& outfile, const unsigned& nplot)
+    {
+     FoepplVonKarmanEquations::full_output(outfile,nplot);
+    }
     /// Output function:
     ///   x,y,u   or    x,y,z,u at n_plot*(n_plot+1)/2 plot points
     void output(std::ostream& outfile, const unsigned& n_plot)
@@ -579,36 +1047,50 @@ namespace oomph
     //----------------------------------------------------------------------
     // Geometry and boundaries
 
-    /// Function to pin all deflection dofs
-    void pin_all_deflection_dofs() const;
+   
+   /// Clamp: i.e. pin the in-plane displacements and pin the out-of-plane
+   /// displacement and its normal derivative. We also apply implied
+   /// boundary conditions (e.g. specification of dw/dn also implies
+   /// d^2w/dn/dzeta etc. boundary_values_pt[i] describes boundary conditions
+   /// for the three displacement components (i=0,1 in plane (x,y);
+   /// i=2: out-of-plane (z)).
+   /// curviline_pt provides a pointer to the representation of the curvilinear
+   /// boundary in the triangle mesh.
+   virtual void fully_clamp_specified_boundary(
+    const unsigned& b,
+    const Vector<BoundaryConditionForC1PlateBending*>& boundary_values_pt,
+    TriangleMeshCurviLine* curviline_pt);
+   
+   
+   /// Pin i.e. pin the in-plane and out of plane displacements only.
+   /// We also apply implied boundary conditions (e.g. specification of w
+   /// also implies dw/dt etc. boundary_values_pt[i] describes boundary conditions
+   /// for the three displacement components (i=0,1 in plane (x,y);
+   /// i=2: out-of-plane (z)).
+   /// curviline_pt provides a pointer to the representation of the curvilinear
+   /// boundary in the triangle mesh.
+   virtual void pin_specified_boundary(
+    const unsigned& b,
+    const Vector<BoundaryConditionForC1PlateBending*>& boundary_values_pt,
+    TriangleMeshCurviLine* curviline_pt);
 
-    /// Function to pin the j-th in-plane displacement dof at all nodes along
-    /// boundary b to the value prescribed by specified_u_j_pt
-    void fix_in_plane_displacement_dof(const unsigned& j_type,
-                                       const unsigned& b,
-                                       const ScalarFctPt& specified_u_j_pt);
+   
 
-    /// Function to pin the j-th out-of-plane displacement dof at all nodes
-    /// along boundary b to the value prescribed by specified_w_j_pt
-    void fix_out_of_plane_displacement_dof(const unsigned& dof_number,
-                                           const unsigned& b,
-                                           const ScalarFctPt& specified_w_j_pt);
-
-
-    // [zdec] I think i misnamed this, should it be interpolated_x?
-    /// Get the zeta coordinate
-    inline void interpolated_zeta(const Vector<double>& s,
-                                  Vector<double>& zeta) const
+   
+   // [zdec] I think i misnamed this, should it be interpolated_x?
+   /// Get the zeta coordinate
+   inline void interpolated_zeta(const Vector<double>& s,
+                                 Vector<double>& zeta) const
     {
-      // If there is a macro element use it
-      if (this->Macro_elem_pt != 0)
+     // If there is a macro element use it
+     if (this->Macro_elem_pt != 0)
       {
-        this->get_x_from_macro_element(s, zeta);
+       this->get_x_from_macro_element(s, zeta);
       }
-      // Otherwise interpolate zeta_nodal using the shape functions
-      else
+     // Otherwise interpolate zeta_nodal using the shape functions
+     else
       {
-        interpolated_x(s, zeta);
+       interpolated_x(s, zeta);
       }
     }
 
@@ -619,24 +1101,34 @@ namespace oomph
       return CurvableBellElement<NNODE_1D>::element_is_curved();
     }
 
-    /// Upgrade the Bell element to a curved Bernadou element. Expects, in
-    /// order, the unsigned enumeration of the edge that is on the boundary
-    /// (curved_edge) as well as the coordinates of the start and end of that
-    /// edge on the boundary (s_ubar,s_obar), the parametric description of the
-    /// curved edge (parametric_edge) and lastly the polynomial order of the
-    /// boundary interpolation (boundary_order) which can be either 3 or 5.
-    virtual void upgrade_element_to_curved(
-      const MyC1CurvedElements::Edge& curved_edge,
-      const double& s_ubar,
-      const double& s_obar,
-      CurvilineGeomObject* parametric_edge,
-      const unsigned& boundary_order)
+   /// Factory to create DuplicateNodeConstraintElement.
+   /// which ensures that the deformation is sufficiently smooth
+   /// between different parts of a boundary (which may contain isolated
+   /// kinks which make it C0 rather than C1). Pass:
+   /// -- Pointers to nodes on the "left" and "right" boundary
+   /// -- pointers to the C1Curvilines that describe the smooth
+   ///    parts of the boundary on either side
+   /// -- the boundary coordinates that identifies the corner point
+   ///    relative the right and left boundary parametrisation
+   ///    (specified via a one-sized vector). 
+   DuplicateNodeConstraintElement* duplicate_constraint_element_factory(
+    Node* const& left_node_pt,
+    Node* const& right_node_pt,
+    C1CurviLine* const& left_boundary_pt,
+    C1CurviLine* const& right_boundary_pt,
+    Vector<double> const& left_coord,
+    Vector<double> const& right_coord)
     {
-      CurvableBellElement<NNODE_1D>::upgrade_element_to_curved(
-        curved_edge, s_ubar, s_obar, parametric_edge, boundary_order);
+     return new FvKDuplicateNodeConstraintElement(
+      left_node_pt,
+      right_node_pt,
+      left_boundary_pt,
+      right_boundary_pt,
+      left_coord,
+      right_coord);
     }
-
-
+   
+   
     //----------------------------------------------------------------------
     // Member data access functions
 
@@ -662,6 +1154,8 @@ namespace oomph
 
 
   protected:
+
+
     //----------------------------------------------------------------------------
     // Interface to FoepplVonKarmanEquations (can this all be (static) data?)
 
@@ -955,9 +1449,38 @@ namespace oomph
                              DShape& d2shape) const;
 
 
-
-    // All member data is private
   private:
+
+   /// Helper function to impose alpha-th in-plane displacements
+   ///(0 or 1 for x or y displacements) according to scalar function
+   /// specified in boundary_values_pt. curvline_pt provides the
+   /// geometry of the boundary in terms of a not-necessarily-arclength
+   /// coordinate zeta.
+   void pin_and_impose_specified_in_plane_displacement_along_specified_boundary(
+    const unsigned& alpha,
+    const unsigned& b,
+    BoundaryConditionForC1PlateBending* boundary_values_pt,
+    TriangleMeshCurviLine* curviline_pt);
+
+   /// Helper function to impose i-th displacements
+   /// (0 or 1 for x or y displacements; 2 for out of plane)
+   /// according to scalar function specified in boundary_values_pt.
+   /// curvline_pt provides the geometry of the boundary in terms of
+   /// a not-necessarily-arclength coordinate zeta.
+   void pin_and_impose_specified_displacement_along_specified_boundary(
+    const unsigned& i,
+    const unsigned& b,
+    BoundaryConditionForC1PlateBending* boundary_values_pt,
+    TriangleMeshCurviLine* curviline_pt);
+     
+   /// Helper function to impose out of plane displacements
+   /// according to scalar function specified in boundary_values_pt.
+   /// curvline_pt provides the geometry of the boundary in terms of
+   /// a not-necessarily-arclength coordinate zeta.
+   void clamp_and_impose_specified_out_of_plane_displacement_along_specified_boundary(
+    const unsigned& b,
+    BoundaryConditionForC1PlateBending* boundary_values_pt,
+    TriangleMeshCurviLine* curviline_pt);
 
     /// Pointer to an instance of rotated boundary helper
     RotatedBoundaryHelper* Rotated_boundary_helper_pt;
@@ -996,137 +1519,6 @@ namespace oomph
     /// appropriate lower-dimensional TElement
     FaceGeometry() : TElement<1, NNODE_1D>() {}
   };
-
-
-
-  // //[zdec] old rotation
-  // //==============================================================================
-  // /// Set up the rotated degrees of freedom: includes a check for the number
-  // of
-  // /// rotation nodes being greater than three.
-  // //==============================================================================
-  // template<unsigned NNODE_1D>
-  // void FoepplVonKarmanC1CurvableBellElement<NNODE_1D>::set_up_rotated_dofs(
-  //   const unsigned& nnodes_to_rotate,
-  //   const Vector<unsigned>& nodes_to_rotate,
-  //   const BasisVectorsFctPt& basis_vectors_fct_pt)
-  // {
-  //   // Change the member Nnode_to_rotate
-  //   Nnodes_to_rotate = nnodes_to_rotate;
-  //   #ifdef PARANOID
-  //   // Check that the number of nodes is smaller than 3
-  //   if (nnodes_to_rotate > 3)
-  //   {
-  //     throw OomphLibError(
-  // 	"There are only three nodes per element, so we cannot rotate more than
-  // three ", 	OOMPH_CURRENT_FUNCTION, 	OOMPH_EXCEPTION_LOCATION);
-  //   }
-  //   #endif
-
-  //   Nodes_to_rotate = nodes_to_rotate;
-
-  //   // Point to the basis vectors function
-  //   Rotated_basis_fct_pt = basis_vectors_fct_pt;
-  // }
-
-
-  // // [zdec] old rotation -- delete
-  // //==============================================================================
-  // /// Rotate the shape functions according to
-  // /// w.r.t. global coordinates and return Jacobian of mapping.
-  // ///
-  // /// Galerkin: Test functions = shape functions
-  // //==============================================================================
-  // template<unsigned NNODE_1D>
-  // void
-  // FoepplVonKarmanC1CurvableBellElement<NNODE_1D>::rotation_matrix_at_node(
-  //   const unsigned& inode, DenseDoubleMatrix& rotation_matrix) const
-  // {
-  //   // Initialise x normal and tangent
-  //   Vector<double> x(2, 0.0);
-
-  //   // Get the node pointer
-  //   Node* nod_pt = this->node_pt(inode);
-
-  //   // Get the position of the vertex
-  //   x[0] = nod_pt->x(0);
-  //   x[1] = nod_pt->x(1);
-
-  //   // Initialise the two basis vectors
-  //   Vector<Vector<double>> bi(2, Vector<double>(2, 0.0));
-  //   Vector<DenseMatrix<double>> dbi(2, DenseMatrix<double>(2, 2, 0.0));
-
-  //   (*Rotated_basis_fct_pt)(x,bi[0],bi[1],dbi[0],dbi[1]);
-
-  //   // Rotation matrix, B
-  //   DenseMatrix<double> b1(2, 2, 0.0), b22(3, 3, 0.0), b21(3, 2, 0.0);
-
-  //   // Fill in the submatrices
-  //   for (unsigned alpha = 0; alpha < 2; ++alpha)
-  //   {
-  //     for (unsigned beta = 0; beta < 2; ++beta)
-  //     {
-  //       // Fill in b1 - the Jacobian
-  //       // Fill in the rotation of the first derivatives
-  //       b1(alpha, beta) = bi[beta][alpha];
-
-  //       // Avoid double counting the cross derivative
-  //       if (alpha <= beta)
-  //       {
-  //         // Define row index
-  //         const unsigned row = alpha + beta;
-  //         for (unsigned gamma = 0; gamma < 2; ++gamma)
-  //         {
-  //           // Fill in b21 - the non affine part of the Jacobian derivative
-  //           // Define column index
-  //           unsigned col_b21 = gamma;
-  //           // Fill in the non-affine part of the rotation of the second
-  //           // derivatives if( beta>= alpha) ?
-  //           b21(row, col_b21) += dbi[gamma](alpha, beta);
-  //           for (unsigned delta = 0; delta < 2; ++delta)
-  //           {
-  //             // Fill in b22 - the Affine part of the Jacobian derivative
-  //             // Redefine column index for the next submatrix
-  //             unsigned col_b22 = gamma + delta;
-  //             // Fill in the affine part of the rotation of the second
-  //             // derivatives if( beta>= alpha) ?
-  //             b22(row, col_b22) += bi[gamma][alpha] * bi[delta][beta];
-  //           }
-  //         }
-  //       }
-  //     }
-  //   }
-
-
-  //   // Fill in the submatrices to the full (6x6) matrix - we need to right
-  //   // multiply this matrix so we need the transpose of the Jacobian W dof
-  //   // remains the same
-  //   rotation_matrix(0, 0) = 1.0;
-  //   // Fill in b1
-  //   for (unsigned i = 0; i < 2; ++i)
-  //   {
-  //     for (unsigned j = 0; j < 2; ++j)
-  //     {
-  //       rotation_matrix(1 + j, 1 + i) = b1(i, j);
-  //     }
-  //   }
-  //   // Fill in b21
-  //   for (unsigned i = 0; i < 3; ++i)
-  //   {
-  //     for (unsigned j = 0; j < 2; ++j)
-  //     {
-  //       rotation_matrix(1 + j, 3 + i) = b21(i, j);
-  //     }
-  //   }
-  //   // Fill in b22
-  //   for (unsigned i = 0; i < 3; ++i)
-  //   {
-  //     for (unsigned j = 0; j < 3; ++j)
-  //     {
-  //       rotation_matrix(3 + j, 3 + i) = b22(i, j);
-  //     }
-  //   }
-  // }
 
 
   //============================================================================
@@ -1256,9 +1648,10 @@ namespace oomph
                                          Shape& psi_n,
                                          Shape& psi_i) const
   {
+
+   // hierher Aidan: Kill this commented out bit?
 //     throw OomphLibError("This still needs testing for curved elements.",
-//                         "void FoepplVonKarmanC1CurvableBellElement<NNODE_1D>::\
-// shape_and_test_foeppl_von_karman(...)",
+//                         "void FoepplVonKarmanC1CurvableBellElement<NNODE_1D>::shape_and_test_foeppl_von_karman(...)",
 //                         OOMPH_EXCEPTION_LOCATION);
 
     this->c1_basis(s, psi_n, psi_i);
@@ -1638,1241 +2031,419 @@ namespace oomph
   }
 
 
-  //=============================================================================
-  /// Function to pin all deflection dofs
-  //=============================================================================
-  template<unsigned NNODE_1D>
-  void FoepplVonKarmanC1CurvableBellElement<NNODE_1D>::pin_all_deflection_dofs()
-    const
-  {
-    const unsigned w_index = w_field_index();
 
-    // Get nodes
-    const unsigned n_node = nw_node();
-    const Vector<unsigned> nodes = get_w_node_indices();
+ //==========================================================================
+ /// Clamp: i.e. pin the in-plane displacements and pin the out-of-plane
+ /// displacement and its normal derivative. We also apply implied
+ /// boundary conditions (e.g. specification of dw/dn also implies
+ /// d^2w/dn/dzeta etc. boundary_values_pt[i] describes boundary conditions
+ /// for the three displacement components (i=0,1 in plane (x,y);
+ /// i=2: out-of-plane (z)).
+ /// curviline_pt provides a pointer to the representation of the curvilinear
+ /// boundary in the triangle mesh.
+ //==========================================================================
+ template<unsigned NNODE_1D>
+ void FoepplVonKarmanC1CurvableBellElement<NNODE_1D>::fully_clamp_specified_boundary(
+  const unsigned& b,
+  const Vector<BoundaryConditionForC1PlateBending*>& boundary_values_pt,
+  TriangleMeshCurviLine* curviline_pt)
+ {
 
-    // Curved Bell elements only have deflection dofs at vertices
-    for (unsigned j_nodei = 0; j_nodei < n_node; j_nodei++)
-    {
-      // Get the j_nodei-th node used by i_field
-      unsigned j_node = nodes[j_nodei];
-      Node* nod_pt = this->node_pt(j_node);
-
-      // Get the number of types at the current node
-      unsigned n_type = nw_type_at_each_node();
-
-      // Check if it is on the boundary
-      for (unsigned k_type = 0; k_type < n_type; k_type++)
-      {
-        // Pin and set the value
-        nod_pt->pin(2 + k_type);
-        nod_pt->set_value(2 + k_type, 0.0);
-      }
-    }
-
-    // Now fix internal dofs
-    unsigned n_internal = nw_type_internal();
-    for (unsigned k_type = 0; k_type < n_internal; k_type++)
-    {
-      // Get node
-      // Pin and set the value
-      this->internal_data_for_field_pt(w_index)->pin(k_type);
-    }
-  }
+  // Deal with in plane displacements
+  for (unsigned i=0;i<2;i++)
+   {
+    pin_and_impose_specified_in_plane_displacement_along_specified_boundary(
+     i,b,boundary_values_pt[i],curviline_pt);
+   }
+  
+  // Deal with out of plane displacements
+  clamp_and_impose_specified_out_of_plane_displacement_along_specified_boundary(
+   b,boundary_values_pt[2],curviline_pt);
+ }
 
 
-  //=============================================================================
-  /// Function to pin the j-th in-plane displacement dof at all nodes along
-  /// boundary b to the value prescribed by specified_u_j_pt
-  //=============================================================================
-  template<unsigned NNODE_1D>
-  void FoepplVonKarmanC1CurvableBellElement<NNODE_1D>::
-  fix_in_plane_displacement_dof(const unsigned& alpha,
-				const unsigned& b,
-				const ScalarFctPt& specified_u_j_pt)
-  {
-    // Initialise constants that we use in this function
-    const unsigned field_index = u_alpha_field_index(alpha);
-    const unsigned nodal_type_index =
-      this->first_nodal_type_index_for_field(field_index);
-    const unsigned n_node = nu_node();
-    const unsigned dim = this->dim();
+ //=============================================================================
+ /// Pin i.e. pin the in-plane and out of plane displacements only.
+ /// We also apply implied boundary conditions (e.g. specification of w
+ /// also implies dw/dt etc. boundary_values_pt[i] describes boundary conditions
+ /// for the three displacement components (i=0,1 in plane (x,y);
+ /// i=2: out-of-plane (z)).
+ /// curviline_pt provides a pointer to the representation of the curvilinear
+ /// boundary in the triangle mesh.
+//=============================================================================
+ template<unsigned NNODE_1D>
+ void FoepplVonKarmanC1CurvableBellElement<NNODE_1D>::pin_specified_boundary(
+  const unsigned& b,
+  const Vector<BoundaryConditionForC1PlateBending*>& boundary_values_pt,
+  TriangleMeshCurviLine* curviline_pt)
+ {
 
+  for (unsigned i=0;i<3;i++)
+   {
+    pin_and_impose_specified_displacement_along_specified_boundary
+     (i,b,boundary_values_pt[i],curviline_pt);
+   }
+
+ }
+ 
+
+ //=============================================================================
+ /// Helper function to impose alpha-th in-plane displacements
+ ///(0 or 1 for x or y displacements) according to scalar function
+ /// specified in boundary_values_pt. curvline_pt provides the
+ /// geometry of the boundary in terms of a not-necessarily-arclength
+ /// coordinate zeta.
+ //=============================================================================
+ template<unsigned NNODE_1D>
+ void FoepplVonKarmanC1CurvableBellElement<NNODE_1D>::
+ pin_and_impose_specified_in_plane_displacement_along_specified_boundary(
+  const unsigned& alpha,
+  const unsigned& b,
+  BoundaryConditionForC1PlateBending* boundary_values_pt,
+  TriangleMeshCurviLine* curviline_pt)
+ {
+    
+  // Initialise constants that we use in this function
+  const unsigned field_index = u_alpha_field_index(alpha);
+  const unsigned nodal_type_index =
+   this->first_nodal_type_index_for_field(field_index);
+  const unsigned n_node = nu_node();
+  
 #ifdef PARANOID
-    // Check that the dof number is a sensible value
-    const unsigned n_type = 2 * nu_type_at_each_node();
-    if (alpha >= n_type)
-    {
-      throw OomphLibError(
-        "Foppl von Karman elements only have 2 in-plane displacement degrees\
+  // Check that the dof number is a sensible value
+  const unsigned n_type = 2 * nu_type_at_each_node();
+  if (alpha >= n_type)
+   {
+    throw OomphLibError(
+     "Foppl von Karman elements only have 2 in-plane displacement degrees\
 of freedom at internal points. They are {ux, uy}",
-        OOMPH_CURRENT_FUNCTION,
-        OOMPH_EXCEPTION_LOCATION);
-    }
+     OOMPH_CURRENT_FUNCTION,
+     OOMPH_EXCEPTION_LOCATION);
+   }
 #endif
-
-    // Bell elements only have deflection dofs at vertices
-    for (unsigned n = 0; n < n_node; ++n)
-    {
-      // Get node
-      Node* nod_pt = this->node_pt(n);
-      // Check if it is on the boundary
-      bool is_boundary_node = nod_pt->is_on_boundary(b);
-      if (is_boundary_node)
-      {
-        // Extract nodal coordinates from node:
-        // Since the element isn't necessarily isoparametric the nodes
-        // 'position' is not necessarily correct?
-        Vector<double> x(dim), s(dim);
-        this->local_coordinate_of_node(n, s);
-        interpolated_x(s, x);
-        // Fill in value
-        double value;
-        specified_u_j_pt(x, value);
+  
+  // Bell elements only have deflection dofs at vertices
+  for (unsigned n = 0; n < n_node; ++n)
+   {
+    // Get boundary node
+    BoundaryNode<Node>* nod_pt =
+     dynamic_cast<BoundaryNode<Node>*>(this->node_pt(n));
+    
+    // Check if it is on the boundary
+    if (nod_pt!=0)
+     {
+      if (nod_pt->is_on_boundary(b))
+       {
+#ifdef PARANOID
+        // We should only have one coordinate on this boundary
+        unsigned nzeta=nod_pt->ncoordinates_on_boundary(b);
+        if (nzeta!=1)
+         {
+          std::stringstream error_message;
+          error_message << "boundary coordinate must be 1D!"
+                        << std::endl;
+          throw OomphLibError(error_message.str(),
+                              OOMPH_CURRENT_FUNCTION,
+                              OOMPH_EXCEPTION_LOCATION);
+         }
+#endif
+        
+        // Get value itself from boundary condition object
+        Vector<double> zeta(nzeta);
+        nod_pt->get_coordinates_on_boundary(b,zeta);
+        double value=boundary_values_pt->f(zeta[0]);
+                
         // Pin and set the value
         nod_pt->pin(alpha);
-        nod_pt->set_value(nodal_type_index, value);
-      }
-    }
-  }
+        nod_pt->set_value(nodal_type_index, value); // hierher Aidan should indices in pin and set_value be the same? 
+       }
+     }
+   }
+ }
 
+ //=============================================================================
+ /// Helper function to impose i-th displacements
+ /// (0 or 1 for x or y displacements; 2 for out of plane)
+ /// according to scalar function specified in boundary_values_pt.
+ /// curvline_pt provides the geometry of the boundary in terms of
+ /// a not-necessarily-arclength coordinate zeta.
+ //=============================================================================
+ template<unsigned NNODE_1D>
+ void FoepplVonKarmanC1CurvableBellElement<NNODE_1D>::
+ pin_and_impose_specified_displacement_along_specified_boundary(
+  const unsigned& i,
+  const unsigned& b,
+  BoundaryConditionForC1PlateBending* boundary_values_pt,
+  TriangleMeshCurviLine* curviline_pt)
+ {
 
-  //=============================================================================
-  /// Function to pin particular out-of-plane displacement dofs along boundary
-  /// b to the value prescribed by specified_w_j_pt
-  //=============================================================================
-  template<unsigned NNODE_1D>
-  void FoepplVonKarmanC1CurvableBellElement<NNODE_1D>::
-  fix_out_of_plane_displacement_dof(const unsigned& k_type,
-				    const unsigned& b_boundary,
-				    const ScalarFctPt& specified_w_j_pt)
-  {
+  // In plane
+  if (i<2)
+   {
+    pin_and_impose_specified_in_plane_displacement_along_specified_boundary
+     (i,b,boundary_values_pt,curviline_pt);
+   }
+  // Out of plane
+  else
+   {
     const unsigned w_index = w_field_index();
     const unsigned first_nodal_type_index =
-      this->first_nodal_type_index_for_field(w_index);
+     this->first_nodal_type_index_for_field(w_index);
     const unsigned n_vertices = nw_node();
-
-#ifdef PARANOID
-    // Check that the dof number is a sensible value
-    unsigned n_type = nw_type_at_each_node();
-    if (k_type >= n_type)
-    {
-      throw OomphLibError(
-        "Foppl von Karman elements only have 6 Hermite deflection degrees\
-of freedom at internal points. They are {w ; w,x ; w,y ; w,xx ; w,xy ; w,yy}",
-        OOMPH_CURRENT_FUNCTION,
-        OOMPH_EXCEPTION_LOCATION);
-    }
-#endif
-
+    
     // Bell elements only have deflection dofs at vertices
     for (unsigned n = 0; n < n_vertices; ++n)
-    {
-      // Get node
-      Node* nod_pt = this->node_pt(n);
+     {      
+      // Get boundary node
+      BoundaryNode<Node>* nod_pt =
+       dynamic_cast<BoundaryNode<Node>*>(this->node_pt(n));
+      
       // Check if it is on the boundary
-      bool is_boundary_node = nod_pt->is_on_boundary(b_boundary);
-      if (is_boundary_node)
-      {
-        // Extract nodal coordinates from node:
-        Vector<double> x(2);
-        x[0] = nod_pt->x(0);
-        x[1] = nod_pt->x(1);
-        // Get value
-        double value;
-        specified_w_j_pt(x, value);
-        // Pin and set the value
-        nod_pt->pin(first_nodal_type_index + k_type);
-        nod_pt->set_value(first_nodal_type_index + k_type, value);
-      }
-    }
-  }
-
-
-  //========= start_of_duplicate_node_constraint_element ==================
-  /// Non-geometric element used to constrain dofs between duplicated
-  /// vertices where the Hemite data at each node is different but must
-  /// be compatible.
-  ///
-  /// If the first (left) node uses coordinates (s_1,s_2) for the fields
-  /// (U,V,W) and the second (right) uses coordinates (t_1, t_2) for the fields
-  /// (u,v,w) then enforcing (U,V,W)=(u,v,w), using the chain rule we arrive at
-  /// three equations for displacement (alpha=1,2):
-  ///     0 = (U_\alpha - u_\alpha)
-  ///     0 = (W-w)
-  /// two equations constraining gradient (alpha=1,2):
-  ///     0 = (dW_1/ds_\alpha - dw_2/dt_\beta J_{\beta\alpha})
-  /// and three equations constraining curvature (alpha,beta=1,2; beta>=alpha):
-  ///     0 = (d^2W_1/ds_\alpha ds_\beta
-  ///          - J_{\alpha\gamma} * J_{\beta\delta} * d^2w_2/dt_\gamma dt_\delta
-  ///          - H_{\gamma\alpha\beta} * dw_2/dt_gamma)
-  /// where L_i, i=0,..,7, are Lagrange multipliers -- dofs which are
-  /// stored in the internal data of this element.
-  //=======================================================================
-  class DuplicateNodeConstraintElement : public virtual GeneralisedElement
-  {
-  public:
-    /// Construcor. Needs the two node pointers so that we can retrieve the
-    /// boundary data at solve time
-    DuplicateNodeConstraintElement(
-      Node* const& left_node_pt,
-      Node* const& right_node_pt,
-      CurvilineGeomObject* const& left_boundary_pt,
-      CurvilineGeomObject* const& right_boundary_pt,
-      Vector<double> const& left_coord,
-      Vector<double> const& right_coord)
-      : Left_node_pt(left_node_pt),
-        Right_node_pt(right_node_pt),
-        Left_boundary_pt(left_boundary_pt),
-        Right_boundary_pt(right_boundary_pt),
-        Left_node_coord(left_coord),
-        Right_node_coord(right_coord)
-    {
-      // Add internal data which stores the eight Lagrange multipliers
-      Index_of_lagrange_data = add_internal_data(new Data(8));
-
-      // Add each node as external data
-      Index_of_left_data = add_external_data(Left_node_pt);
-      Index_of_right_data = add_external_data(Right_node_pt);
-    }
-
-    /// Destructor
-    ~DuplicateNodeConstraintElement()
-    {
-      // Must remove Lagrange multiplier data?
-    }
-
-    /// Add the contribution to the residuals from the Lagrange multiplier
-    /// constraining equations
-    void fill_in_contribution_to_residuals(Vector<double>& residuals)
-    {
-      fill_in_generic_residual_contribution_constraint(
-        residuals, GeneralisedElement::Dummy_matrix, 0);
-    }
-
-    /// Add the contribution to the Jacobian from the Lagrange multiplier
-    /// constraining equations
-    void fill_in_contribution_to_jacobian(Vector<double>& residuals,
-                                          DenseMatrix<double>& jacobian)
-    {
-      fill_in_generic_residual_contribution_constraint(residuals, jacobian, 1);
-    }
-
-    /// Validate constraints which contain no unpinned dofs and pin their
-    /// corrosponding lagrange multiplier as it is used in no equations and
-    /// it's own equation is trivially satisfied (Jacobian has a zero column
-    /// and row if unpinned => singular)
-    // [zdec] Do we want a bool in the element to determine whether we enforce
-    // constraints that are already fully pinned (tears may be desired in some
-    // dofs?)
-    void validate_and_pin_redundant_constraints()
-    {
-      // Start by unpinning all lagrange multipliers in case the boundary
-      // conditions are less restrictive than previously
-      internal_data_pt(Index_of_lagrange_data)->unpin_all();
-
-
-      // [zdec] This full description might be overkill for the code but it will
-      // go in my thesis.
-
-      // We need to keep track of which fvk dofs are already 'used' by Lagrange
-      // constraints. If dofs 3 and 4 in the right node (dw/dl_1, dw/dl_2) are
-      // the only unpinned dofs between three lagrange constraints (e.g. 3,4,5),
-      // then including all three constraints will result in a three
-      // (consistent) linearly dependent equations and hence a singular matrix.
-      // Therefore, each time we apply a constraint we must 'use' a dof by
-      // marking it as effectively pinned by the lagrange constraint. Generally,
-      // checking we are maximally constraining our duplicated nodes without
-      // introducing linear dependent equations can be a tedious problem (we may
-      // mark dof A as 'used' when choosing between A and B only for the next
-      // constraint to contain only dof A) but we can safely mark the first free
-      // dof provided we choose a constraint and dof order that prioritise
-      // marking dofs which aren't used again (i.e. right dofs).
-
-      // The number of nodal types per field
-      unsigned n_type = 6;
-
-      // We use a vector of booleans to keep track of dofs that might be reused
-      // (no need to track right dofs which are used once)
-      std::vector<bool> right_data_used(n_type, false);
-      std::vector<bool> left_data_used(n_type, false);
-
-      // Store each data
-      Data* left_data_pt = external_data_pt(Index_of_left_data);
-      Data* right_data_pt = external_data_pt(Index_of_right_data);
-
-      // We also want to store the jacobian and the hessian of the mapping
-      DenseMatrix<double> jac_of_transform(2, 2, 0.0);
-      Vector<DenseMatrix<double>> hess_of_transform(
-        2, DenseMatrix<double>(2, 2, 0.0));
-      get_jac_and_hess_of_coordinate_transform(jac_of_transform,
-                                               hess_of_transform);
-
-      // Constraints 0-2 use dofs 0-2 respectively in each node
-      for (unsigned k_type = 0; k_type < 3; k_type++)
-      {
-	// Index of the condition on the element
-	unsigned condition_index = k_type;
-        // Index of the val associated with displacement in the right node
-        unsigned right_ui_index = k_type;
-        // Index of the val associated with displacement in the left node
-        unsigned left_ui_index = k_type;
-
-	// Get whether each value is pinned
-	bool right_ui_pinned = right_data_pt->is_pinned(right_ui_index);
-        bool left_ui_pinned = left_data_pt->is_pinned(left_ui_index);
-
-        // If anything is free, mark it as used and continue without doing
-        // anything else
-        if (!right_ui_pinned && !right_data_used[right_ui_index])
-        {
-          // [zdec] debug
-          std::cout << "eqn " << condition_index
-		    << " depends on dof R" << right_ui_index
-                    << std::endl;
-          right_data_used[right_ui_index] = true;
-        }
-        else if (!left_ui_pinned && !left_data_used[left_ui_index])
-        {
-          // [zdec] debug
-
-          std::cout << "eqn " << condition_index
-		    << " depends on dof L" << left_ui_index
-                    << std::endl;
-          left_data_used[left_ui_index] = true;
-        }
-	else
-	{
-	  // ---------------------------------------------------------------------
-	  // If we made it here, it is because all dofs in the constraint are
-	  // pinned so we need to check the constraint is satisfied manually and
-	  // then remove it by pinning the corresponding lagrange multiplier
-
-	  // // Calculate the residual of the constraint
-	  // double constraint_residual =
-	  //   right_data_pt->value(i_con) - left_data_pt->value(i_con);
-	  // // Check that the constraint is met and we don't have a tear
-	  // if(constraint_residual > Constraint_tolerance)
-	  // {
-	  //   throw_unsatisfiable_constraint_error(i_con, constraint_residual);
-	  // }
-
-	  // If it is met, we pin the lagrange multiplier that corresponds to
-	  // this constraint as it is redundant and results in a zero row/column
-	  internal_data_pt(Index_of_lagrange_data)->pin(condition_index);
-	}
-      } // End for loop over first three conditions [k_type]
-
-
-      // Constraints 3-4 use dofs 3-4 (first derivatives of w) respectively from
-      // the right node and both in the left
-      for (unsigned alpha = 0; alpha < 2; alpha++)
-      {
-	// Index of the condition on the element
-	unsigned condition_index = 3 + alpha;
-	// Index of the right nodes alpha-th derivative value
-        unsigned right_dwda_index = 3 + alpha;
-	// Index of the left nodes first derivative value
-	unsigned left_dwd1_index = 3;
-        // Index of the left nodes second derivative value
-        unsigned left_dwd2_index = 4;
-
-        // Get whether each nodal value is pinned
-        bool right_dwda_pinned = right_data_pt->is_pinned(right_dwda_index);
-        bool left_dwd1_pinned = left_data_pt->is_pinned(left_dwd1_index);
-        bool left_dwd2_pinned = left_data_pt->is_pinned(left_dwd2_index);
-
-        // If anything is free, mark it as used and continue without doing
-        // anything else. We also need to check that each dof hasn't become
-        // decoupled from this constraint by ensuring that its coefficient (if
-        // it has one) is sufficiently large (> Orthogonality_tolerance)
-        if (!right_dwda_pinned && !right_data_used[right_dwda_index])
-        {
-          // [zdec] debug
-          std::cout << "eqn " << condition_index
-		    << " depends on dof R" << right_dwda_index
-                    << std::endl;
-          right_data_used[right_dwda_index] = true;
-          continue;
-        }
-        if (!left_dwd1_pinned && !left_data_used[left_dwd1_index])
-        {
-          // [zdec] debug
-          std::cout << "eqn " << condition_index
-		    << " depends on dof L" << left_dwd1_index
-		    << std::endl;
-          double coeff = jac_of_transform(0, alpha);
-          if (fabs(coeff) > Orthogonality_tolerance)
-          {
-            left_data_used[left_dwd1_index] = true;
-            continue;
-          }
-        }
-        if (!left_dwd2_pinned && !left_data_used[left_dwd2_index])
-        {
-          // [zdec] debug
-          std::cout << "eqn " << condition_index
-		    << " depends on dof L" << left_dwd2_index
-		    << std::endl;
-          double coeff = jac_of_transform(1, alpha);
-          if (fabs(coeff) > Orthogonality_tolerance)
-          {
-            left_data_used[left_dwd2_index] = true;
-            continue;
-          }
-        }
-        // ---------------------------------------------------------------------
-        // If we made it here, it is because all dofs in the constraint are
-        // pinned so we need to check the constraint is satisfied manually and
-        // then remove it by pinning the corresponding lagrange multiplier
-
-        // // Calculate the residual of the constraint
-        // double constraint_residual = right_data_pt->value(i_con);
-        // for(unsigned beta = 0; beta < 2; beta++)
-        // {
-        //   constraint_residual +=
-        //     - left_data_pt->value(3+beta) * jac_of_transform(beta,alpha);
-        // }
-        // // Check that the constraint is met and we don't have a tear
-        // if(constraint_residual > Constraint_tolerance)
-        // {
-        //   throw_unsatisfiable_constraint_error(i_con, constraint_residual);
-        // }
-
-        // If it is met, we pin the lagrange multiplier that corresponds to
-        // this constraint as it is redundant and results in a zero row/column
-        internal_data_pt(Index_of_lagrange_data)->pin(condition_index);
-      }
-
-      // Constraints 5-7 use dofs 5-7 respectively from the right node and
-      // all use dofs 3-7 from the left node
-      for (unsigned alpha = 0; alpha < 2; alpha++)
-      {
-        // beta>=alpha so we dont double count constraint 6
-        for (unsigned beta = alpha; beta < 2; beta++)
-        {
-          // The index of the constraint
-          unsigned condition_index = 5 + alpha + beta;
-          // Index of the right nodes alpha-beta-th derivative value
-          unsigned right_dwdadb_index = 5 + alpha + beta;
-          // Index of the left nodes d1 derivative value
-          unsigned left_dwd1_index = 3;
-          // Index of the left nodes d2 derivative value
-          unsigned left_dwd2_index = 4;
-          // Index of the left nodes d1d1 derivative value
-          unsigned left_dwd1d1_index = 5;
-          // Index of the left nodes d1d2 derivative value
-          unsigned left_dwd1d2_index = 6;
-          // Index of the left nodes d2d2 derivative value
-          unsigned left_dwd2d2_index = 7;
-
-          // Get whether each nodal value is pinned
-          bool right_dwdadb_pinned =
-	    right_data_pt->is_pinned(right_dwdadb_index);
-          bool left_dwd1_pinned = left_data_pt->is_pinned(left_dwd1_index);
-          bool left_dwd2_pinned = left_data_pt->is_pinned(left_dwd2_index);
-          bool left_dwd1d1_pinned = left_data_pt->is_pinned(left_dwd1d1_index);
-          bool left_dwd1d2_pinned = left_data_pt->is_pinned(left_dwd1d2_index);
-          bool left_dwd2d2_pinned = left_data_pt->is_pinned(left_dwd2d2_index);
-
-          // If anything is free, mark it as used and continue without doing
-          // anything else. We also need to check that each dof hasn't become
-          // decoupled from this constraint by ensuring that its coefficient (if
-          // it has one) is sufficiently large (> Orthogonality_tolerance)
-          if (!right_dwdadb_pinned && !right_data_used[right_dwdadb_index])
-          {
-            // [zdec] debug
-            std::cout << "eqn " << condition_index
-		      << " depends on dof R" << right_dwdadb_index
-                      << std::endl;
-            right_data_used[right_dwdadb_index] = true;
-            continue;
-          }
-          if (!left_dwd1_pinned && !left_data_used[left_dwd1_index])
-          {
-            double coeff = hess_of_transform[0](alpha, beta);
-            if (fabs(coeff) > Orthogonality_tolerance)
-            {
-              // [zdec] debug
-              std::cout << "eqn " << condition_index
-			<< " depends on dof L" << left_dwd1_index
-			<< std::endl;
-              left_data_used[left_dwd1_index] = true;
-              continue;
-            }
-          }
-          if (!left_dwd2_pinned && !left_data_used[left_dwd2_index])
-          {
-            double coeff = hess_of_transform[1](alpha, beta);
-            if (fabs(coeff) > Orthogonality_tolerance)
-            {
-              // [zdec] debug
-              std::cout << "eqn " << condition_index
-			<< " depends on dof L" << left_dwd2_index
-			<< std::endl;
-              left_data_used[left_dwd2_index] = true;
-              continue;
-            }
-          }
-          if (!left_dwd1d1_pinned && !left_data_used[left_dwd1d1_index])
-          {
-            double coef =
-              jac_of_transform(0, alpha) * jac_of_transform(0, beta);
-            if (fabs(coef) > Orthogonality_tolerance)
-            {
-              // [zdec] debug
-              std::cout << "eqn " << condition_index
-			<< " depends on dof L" << left_dwd1d1_index
-			<< std::endl;
-              left_data_used[left_dwd1d1_index] = true;
-              continue;
-            }
-          }
-          if (!left_dwd1d2_pinned && !left_data_used[left_dwd1d2_index])
-          {
-            double coef =
-              jac_of_transform(0, alpha) * jac_of_transform(1, beta) +
-              jac_of_transform(1, alpha) * jac_of_transform(0, beta);
-            if (fabs(coef) > Orthogonality_tolerance)
-            {
-              // [zdec] debug
-              std::cout << "eqn " << condition_index
-			<< " depends on dof L" << left_dwd1d2_index
-			<< std::endl;
-              left_data_used[left_dwd1d2_index] = true;
-              continue;
-            }
-          }
-          if (!left_dwd2d2_pinned && !left_data_used[left_dwd2d2_index])
-          {
-            double coef =
-              jac_of_transform(1, alpha) * jac_of_transform(1, beta);
-            if (fabs(coef) > Orthogonality_tolerance)
-            {
-              // [zdec] debug
-              std::cout << "eqn " << condition_index
-			<< " depends on dof L" << left_dwd2d2_index
-			<< std::endl;
-              left_data_used[left_dwd2d2_index] = true;
-              continue;
-            }
-          }
-          // -------------------------------------------------------------------
-          // If we made it here, it is because all dofs in the constraint are
-          // pinned so we need to check the constraint is satisfied manually and
-          // then remove it by pinning the corresponding lagrange multiplier
-
-          // // Calculate the residual of the constraint
-          // double constraint_residual = right_data_pt->value(i_con);
-          // for(unsigned gamma = 0; gamma < 2; gamma++)
-          // {
-          //   constraint_residual +=
-          //     - left_data_pt->value(3+gamma) *
-          //     hess_of_transform[gamma](alpha,beta);
-          //   for(unsigned delta = 0; delta < 2; delta++)
-          //   {
-          //     constraint_residual +=
-          //       - left_data_pt->value(5+gamma+delta)
-          //       * jac_of_transform(gamma,alpha)
-          //       * jac_of_transform(delta,beta);
-          //   }
-          // }
-          // // Check that the constraint is met and we don't have a tear
-          // if(constraint_residual > Constraint_tolerance)
-          // {
-          //   throw_unsatisfiable_constraint_error(i_con, constraint_residual);
-          // }
-
-          // If it is met, we pin the lagrange multiplier that corresponds to
-          // this constraint as it is redundant and results in a zero row/column
-          internal_data_pt(Index_of_lagrange_data)->pin(condition_index);
-        }
-      }
-    } // End validate_and_pin_redundant_constraints()
-
-
-  private:
-    /// Throw an error about a constraint that cannot be satisfied as it has no
-    /// free variables but still has a residual greater than a requested error
-    /// tokerabce. Takes the index and the residual of the offending constraint
-    void throw_unsatisfiable_constraint_error(const unsigned& i,
-                                              const double& res)
-    {
-      // Get the position of the nodes so we can be a little helpful about
-      // where the boundary conditions are contradictory.
-      Vector<double> x(2, 0.0);
-      Left_boundary_pt->position(Left_node_coord, x);
-      std::string error_string =
-        "Constraint " + std::to_string(i) + " on the nodes at x = (" +
-        std::to_string(x[0]) + ", " + std::to_string(x[1]) +
-        ") has no free variables but is not satisfied to within the " +
-        "tolerance (" + std::to_string(Constraint_tolerance) + ")." +
-        "The residual of the constraint is: C_" +
-        std::to_string(Constraint_tolerance) + " = " + std::to_string(res) +
-        "\n";
-      throw OomphLibError(
-        error_string, OOMPH_CURRENT_FUNCTION, OOMPH_EXCEPTION_LOCATION);
-    } // End of throw_unsatisfiable_constraint_error
-
-
-    /// Function to calculate Jacobian and Hessian of the coordinate mapping
-    void get_jac_and_hess_of_coordinate_transform(
-      DenseMatrix<double>& jac_of_transform,
-      Vector<DenseMatrix<double>>& hess_of_transform)
-    {
-      //----------------------------------------------------------------------
-      // We need the parametrisations either side of the vertex which define
-      // the coordinates each node uses for its Hermite dofs.
-      Vector<double> left_x(2, 0.0); // [zdec] debug
-      Vector<double> right_x(2, 0.0); // [zdec] debug
-      Vector<double> left_dxids(2, 0.0);
-      Vector<double> left_d2xids2(2, 0.0);
-      Vector<double> right_dxids(2, 0.0);
-      Vector<double> right_d2xids2(2, 0.0);
-      Left_boundary_pt->position(Left_node_coord, left_x); // [zdec] debug
-      Right_boundary_pt->position(Right_node_coord, right_x); // [zdec] debug
-      Left_boundary_pt->dposition(Left_node_coord, left_dxids);
-      Left_boundary_pt->d2position(Left_node_coord, left_d2xids2);
-      Right_boundary_pt->dposition(Right_node_coord, right_dxids);
-      Right_boundary_pt->d2position(Right_node_coord, right_d2xids2);
-
-      // Get the speed of each parametrisation
-      double left_mag =
-        sqrt(left_dxids[0] * left_dxids[0] + left_dxids[1] * left_dxids[1]);
-      double right_mag =
-        sqrt(right_dxids[0] * right_dxids[0] + right_dxids[1] * right_dxids[1]);
-
-      //----------------------------------------------------------------------
-      // Normalise dxids to find the tangent vectors and their
-      // derivatives either side of the vertex
-      Vector<double> left_ti(2, 0.0);
-      Vector<double> left_ni(2, 0.0);
-      Vector<double> left_dtids(2, 0.0);
-      Vector<double> left_dnids(2, 0.0);
-      Vector<double> right_ti(2, 0.0);
-      Vector<double> right_ni(2, 0.0);
-      Vector<double> right_dtids(2, 0.0);
-      Vector<double> right_dnids(2, 0.0);
-      for (unsigned alpha = 0; alpha < 2; alpha++)
-      {
-        // Fill in the tangents either side of the vertex
-        left_ti[alpha] = left_dxids[alpha] / left_mag;
-        right_ti[alpha] = right_dxids[alpha] / right_mag;
-        // Fill in the derivatives of the (normalised) tangents either side of
-        // the vertex
-        left_dtids[alpha] =
-          left_d2xids2[alpha] / std::pow(left_mag, 2) -
-          (left_dxids[0] * left_d2xids2[0] + left_dxids[1] * left_d2xids2[1]) *
-            left_dxids[alpha] / std::pow(left_mag, 4);
-        right_dtids[alpha] = right_d2xids2[alpha] / std::pow(right_mag, 2) -
-                             (right_dxids[0] * right_d2xids2[0] +
-                              right_dxids[1] * right_d2xids2[1]) *
-                               right_dxids[alpha] / std::pow(right_mag, 4);
-        // Use these to fill out the corresponding vectors for the normal
-        // direction (nx,ny) = (ty,-tx)
-      }
-      // Use orthogonality to fill in normals and their derivatives
-      for (unsigned alpha = 0; alpha < 2; alpha++)
-      {
-        left_ni[alpha] = pow(-1, alpha) * left_ti[(alpha + 1) % 2];
-        right_ni[alpha] = pow(-1, alpha) * right_ti[(alpha + 1) % 2];
-        left_dnids[alpha] = pow(-1, alpha) * left_dtids[(alpha + 1) % 2];
-        right_dnids[alpha] = pow(-1, alpha) * right_dtids[(alpha + 1) % 2];
-      }
-
-      //----------------------------------------------------------------------
-      // We need to fill out the Jacobians and Hessians of the boundary
-      // coordinates either side of the vertex
-      DenseMatrix<double> left_jac(2, 2, 0.0);
-      DenseMatrix<double> right_jac(2, 2, 0.0);
-      Vector<DenseMatrix<double>> left_hess(2, DenseMatrix<double>(2, 2, 0.0));
-      Vector<DenseMatrix<double>> right_hess(2, DenseMatrix<double>(2, 2, 0.0));
-      for (unsigned alpha = 0; alpha < 2; alpha++)
-      {
-        // Fill in Jacobians {{nx,tx},{ny,ty}}
-        left_jac(alpha, 0) = left_ni[alpha];
-        left_jac(alpha, 1) = left_ti[alpha];
-        right_jac(alpha, 0) = right_ni[alpha];
-        right_jac(alpha, 1) = right_ti[alpha];
-        // Fill in Hessians
-        // left_hess[alpha](0,0) = 0.0;
-        left_hess[alpha](0, 1) = left_dnids[alpha];
-        left_hess[alpha](1, 0) = left_dnids[alpha];
-        left_hess[alpha](1, 1) = left_dtids[alpha];
-        // right_hess[alpha](0,0) = 0.0;
-        right_hess[alpha](0, 1) = right_dnids[alpha];
-        right_hess[alpha](1, 0) = right_dnids[alpha];
-        right_hess[alpha](1, 1) = right_dtids[alpha];
-      }
-
-      //----------------------------------------------------------------------
-      // We need the inverse Jacobian and Hessian for the left parametrisation
-      DenseMatrix<double> left_jac_inv(2, 2, 0.0);
-      Vector<DenseMatrix<double>> left_hess_inv(2,
-                                                DenseMatrix<double>(2, 2, 0.0));
-      left_jac_inv(0, 0) = left_jac(1, 1);
-      left_jac_inv(0, 1) = -left_jac(0, 1);
-      left_jac_inv(1, 0) = -left_jac(1, 0);
-      left_jac_inv(1, 1) = left_jac(0, 0);
-      // Fill out inverse of Hessian
-      // H^{-1}abg = J^{-1}ad Hdez J^{-1}eb J^{-1}zg
-      for (unsigned alpha = 0; alpha < 2; alpha++)
-      {
-        for (unsigned beta = 0; beta < 2; beta++)
-        {
-          for (unsigned gamma = 0; gamma < 2; gamma++)
-          {
-            for (unsigned alpha2 = 0; alpha2 < 2; alpha2++)
-            {
-              for (unsigned beta2 = 0; beta2 < 2; beta2++)
-              {
-                for (unsigned gamma2 = 0; gamma2 < 2; gamma2++)
-                {
-                  left_hess_inv[alpha](beta, gamma) -=
-                    left_jac_inv(alpha, alpha2) *
-                    left_hess[alpha2](beta2, gamma2) *
-                    left_jac_inv(beta2, beta) * left_jac_inv(gamma2, gamma);
-                }
-              }
-            }
-          }
-        }
-      }
-
-      //----------------------------------------------------------------------
-      //----------------------------------------------------------------------
-      // Use these to calculate the Jacobian of the left->right transform
-      //     J = J_{left}^{-1}J_{right}
-      // and the Hessian of the left->right transform
-      //     H = H_{left}^{-1}J_{right}J_{right} + J_{left}^{-1}H_{right}
-      for (unsigned alpha = 0; alpha < 2; alpha++)
-      {
-        for (unsigned beta = 0; beta < 2; beta++)
-        {
-          for (unsigned gamma = 0; gamma < 2; gamma++)
-          {
-            // Add contribution to J
-            jac_of_transform(alpha, beta) +=
-              left_jac_inv(alpha, gamma) * right_jac(gamma, beta);
-            for (unsigned mu = 0; mu < 2; mu++)
-            {
-              // Add second term contribution to H
-              hess_of_transform[alpha](beta, gamma) +=
-                left_jac_inv(alpha, mu) * right_hess[mu](beta, gamma);
-              for (unsigned nu = 0; nu < 2; nu++)
-              {
-                // Add first term contribution to H
-                hess_of_transform[alpha](beta, gamma) +=
-                  left_hess_inv[alpha](mu, nu) * right_jac(mu, beta) *
-                  right_jac(nu, gamma);
-              }
-            }
-          }
-        }
-      }
-
-      // // [zdec] debug
-      // std::ofstream jac_and_hess;
-
-      // jac_and_hess.open("corner_jac_and_hess_new.csv", std::ios_base::app);
-      // jac_and_hess << "Jacobian :" << std::endl
-      //              << jac_of_transform(0, 0) << " " << jac_of_transform(0, 1)
-      //              << std::endl
-      //              << jac_of_transform(1, 0) << " " << jac_of_transform(1, 1)
-      //              << std::endl
-      //              << "Hessian [x]:" << std::endl
-      //              << hess_of_transform[0](0, 0) << " " <<
-      //              hess_of_transform[0](0, 1)
-      //              << std::endl
-      //              << hess_of_transform[0](1, 0) << " " <<
-      //              hess_of_transform[0](1, 1)
-      //              << std::endl
-      //              << "Hessian [y]:" << std::endl
-      //              << hess_of_transform[1](0, 0) << " " <<
-      //              hess_of_transform[1](0, 1)
-      //              << std::endl
-      //              << hess_of_transform[1](1, 0) << " " <<
-      //              hess_of_transform[1](1, 1)
-      //              << std::endl
-      //              << std::endl;
-      // jac_and_hess.close();
-
-
-      // jac_and_hess.open("invleft_jac_and_hess_new.csv", std::ios_base::app);
-      // jac_and_hess << "Jacobian :" << std::endl
-      //              << left_jac_inv(0, 0) << " " << left_jac_inv(0, 1) <<
-      //              std::endl
-      //              << left_jac_inv(1, 0) << " " << left_jac_inv(1, 1) <<
-      //              std::endl
-      //              << "Hessian [x]:" << std::endl
-      //              << left_hess_inv[0](0, 0) << " " << left_hess_inv[0](0, 1)
-      //              << std::endl
-      //              << left_hess_inv[0](1, 0) << " " << left_hess_inv[0](1, 1)
-      //              << std::endl
-      //              << "Hessian [y]:" << std::endl
-      //              << left_hess_inv[1](0, 0) << " " << left_hess_inv[1](0, 1)
-      //              << std::endl
-      //              << left_hess_inv[1](1, 0) << " " << left_hess_inv[1](1, 1)
-      //              << std::endl
-      //              << std::endl;
-      // jac_and_hess.close();
-
-      // jac_and_hess.open("left_jac_and_hess_new.csv", std::ios_base::app);
-      // jac_and_hess << "Jacobian :" << std::endl
-      //              << left_jac(0, 0) << " " << left_jac(0, 1) << std::endl
-      //              << left_jac(1, 0) << " " << left_jac(1, 1) << std::endl
-      //              << "Hessian [x]:" << std::endl
-      //              << left_hess[0](0, 0) << " " << left_hess[0](0, 1)
-      //              << std::endl
-      //              << left_hess[0](1, 0) << " " << left_hess[0](1, 1)
-      //              << std::endl
-      //              << "Hessian [y]:" << std::endl
-      //              << left_hess[1](0, 0) << " " << left_hess[1](0, 1)
-      //              << std::endl
-      //              << left_hess[1](1, 0) << " " << left_hess[1](1, 1)
-      //              << std::endl
-      //              << std::endl;
-      // jac_and_hess.close();
-
-      // jac_and_hess.open("right_jac_and_hess_new.csv", std::ios_base::app);
-      // jac_and_hess << "Jacobian :" << std::endl
-      //              << right_jac(0, 0) << " " << right_jac(0, 1) << std::endl
-      //              << right_jac(1, 0) << " " << right_jac(1, 1) << std::endl
-      //              << "Hessian [x]:" << std::endl
-      //              << right_hess[0](0, 0) << " " << right_hess[0](0, 1)
-      //              << std::endl
-      //              << right_hess[0](1, 0) << " " << right_hess[0](1, 1)
-      //              << std::endl
-      //              << "Hessian [y]:" << std::endl
-      //              << right_hess[1](0, 0) << " " << right_hess[1](0, 1)
-      //              << std::endl
-      //              << right_hess[1](1, 0) << " " << right_hess[1](1, 1)
-      //              << std::endl
-      //              << std::endl;
-      // jac_and_hess.close();
-
-
-      // // [zdec] debug
-      // std::ofstream debug_stream;
-      // debug_stream.open("left_norm_and_tan.dat", std::ios_base::app);
-      // debug_stream << left_x[0] << " " << left_x[1] << " " << left_ni[0] << "
-      // "
-      //              << left_ni[1] << " " << left_ti[0] << " " << left_ti[1] <<
-      //              " "
-      //              << left_dnids[0] << " " << left_dnids[1] << " " <<
-      //              left_dtids[0]
-      //              << " " << left_dtids[1] << " " << left_d2xids2[0] << " "
-      //              << left_d2xids2[1] << std::endl;
-      // debug_stream.close();
-      // debug_stream.open("right_norm_and_tan.dat", std::ios_base::app);
-      // debug_stream << right_x[0] << " " << right_x[1] << " " << right_ni[0]
-      // << " "
-      //              << right_ni[1] << " " << right_ti[0] << " " << right_ti[1]
-      //              << " "
-      //              << right_dnids[0] << " " << right_dnids[1] << " " <<
-      //              right_dtids[0]
-      //              << " " << right_dtids[1] << " " << right_d2xids2[0] << " "
-      //              << right_d2xids2[1] << std::endl;
-      // debug_stream.close();
-
-    } // End get_jac_and_hess_of_coordinate_transform
-
-
-    /// Add the contribution to the residuals (and jacobain if flag is 1) from
-    /// the Lagrange multiplier constraining equations
-    void fill_in_generic_residual_contribution_constraint(
-      Vector<double>& residuals,
-      DenseMatrix<double>& jacobian,
-      const unsigned& flag)
-    {
-      // [zdec] debug
-      std::cout << std::endl
-                << std::endl
-                << "ADD CONTRIBUTION FROM CONSTRAINTS" << std::endl
-                << "=============================================" << std::endl;
-      //----------------------------------------------------------------------
-      //----------------------------------------------------------------------
-      // Calculate Jacobian and Hessian of coordinate transform between
-      // each boundary coordinate
-      DenseMatrix<double> jac_of_transform(2, 2, 0.0);
-      Vector<DenseMatrix<double>> hess_of_transform(
-        2, DenseMatrix<double>(2, 2, 0.0));
-      get_jac_and_hess_of_coordinate_transform(jac_of_transform,
-                                               hess_of_transform);
-
-      //----------------------------------------------------------------------
-      //----------------------------------------------------------------------
-      // Use the jac and hess of transform to add the residual
-      // contributions from the constraint
-      // [zdec]::TODO make indexing (alpha,beta,gamma,...) consistent
-
-      // Store the internal data pointer which stores the Lagrange multipliers
-      Vector<double> lagrange_value(8, 0.0);
-      internal_data_pt(Index_of_lagrange_data)->value(lagrange_value);
-
-      // Store the left and right nodal dofs
-      // 0: u_1        4: dw/ds_2
-      // 1: u_2        5: d^2w/ds_1^2
-      // 2: w          6: d^2w/ds_1ds_2
-      // 3: dw/ds_1    7: d^2w/ds_2^2
-      Vector<double> left_value(8, 0.0);
-      Vector<double> right_value(8, 0.0);
-      Left_node_pt->value(left_value);
-      Right_node_pt->value(right_value);
-
-
-      //----------------------------------------------------------------------
-      // First the contributions to the right node external equations
-      unsigned n_external_type = 8;
-      for (unsigned k_type = 0; k_type < n_external_type; k_type++)
-      {
-        int right_eqn_number = external_local_eqn(Index_of_right_data, k_type);
-
-        // If this dof isn't pinned we add to the residual
-        if (right_eqn_number >= 0)
-        {
-          // Right dof term in the constraint always lambda_i*W_i
-          residuals[right_eqn_number] += lagrange_value[k_type];
-
-          // If flag, then add the jacobian contribution
-          if (flag)
-          {
-            // The contributions to the right node's equations are just
-            // r_i * L_i
-            int lagrange_dof_number =
-              internal_local_eqn(Index_of_lagrange_data, k_type);
-            // If this dof isn't pinned then add the contributions
-            // [zdec] should never be pinned if right value is not
-            if (lagrange_dof_number >= 0)
-            {
-              // Add the contribution to the jacobian
-              jacobian(right_eqn_number, lagrange_dof_number) += 1.0;
-              // And by symmetry, we can add the transpose contribution to the
-              // jacobian
-              jacobian(lagrange_dof_number, right_eqn_number) += 1.0;
-            } // End pinned check
-          } // End Jacobian contribution [if (flag)]
-        }
-      } // End for loop adding contributions to right nodal equations
-
-
-      //----------------------------------------------------------------------
-      // Next, the contributions to the left node external equations
-      // First three are displacements:
-      //     - lambda_i*(U_alpha or W_0)
-      for (unsigned k_type = 0; k_type < 3; k_type++)
-      {
-	// Index of the left nodes i-th displacement (0-th type) value
-	unsigned left_ui_index = k_type;
-        // External equation index
-        int left_eqn_number =
-          external_local_eqn(Index_of_left_data, left_ui_index);
-        // If this dof isn't pinned we add to the residual
-        if (left_eqn_number >= 0)
-        {
-	  // Add residual contribution which comes from lagrange value
-	  unsigned lagrange_index = k_type;
-          residuals[left_eqn_number] += -lagrange_value[lagrange_index];
-
-          // Get the local equation number for this dof and add the jacobian
-          // contribution if unpinned (and we are making the jacobian)
-          // [zdec] should never be pinned if right value is not
-          int lagrange_dof_number =
-            internal_local_eqn(Index_of_lagrange_data, lagrange_index);
-          if (flag && (lagrange_dof_number >= 0))
-          {
-            // Add the contribution to the jacobian
-            jacobian(left_eqn_number, lagrange_dof_number) += -1.0;
-            // And by symmetry, we can add the transpose contribution to the
-            // jacobian
-            jacobian(lagrange_dof_number, left_eqn_number) += -1.0;
-	  }
-        }
-      } // End loop adding contribution to the left nodal displacement equations
-
-      // Next two are from gradient of w:
-      //     - lambda_{3+\beta} * w_{1+\alpha} * J_{\alpha\beta}
-      //     - lambda_{5+\beta+\gamma} * w_{1+\alpha} * H_{\alpha\beta\gamma}
-      // gamma>=beta so we don't double count lambda_6 condition
-      for (unsigned alpha = 0; alpha < 2; alpha++)
-      {
-	// Index of the left nodes d1 derivative value
-	unsigned left_wda_index = 3 + alpha;
-        // Eqn number is the index of the alpha-th derivative of w which is
-        // the 1+alpha-th dof (alpha=0,1)
-        int left_eqn_number =
-          external_local_eqn(Index_of_left_data, left_wda_index);
-        // If this dof isn't pinned we add to the residual
-        if (left_eqn_number >= 0)
-        {
-	  // Loop over the lagrange multipliers associated with the right
-	  // first derivatives
-          for (unsigned beta = 0; beta < 2; beta++)
-          {
-	    // Add residual contribution from the lagrange value associated
-	    // with the right beta-th derivative
-            unsigned lagrange_wdb_index = 3 + beta;
-            residuals[left_eqn_number] +=
-              -lagrange_value[lagrange_wdb_index]
-	      * jac_of_transform(alpha, beta);
-
-	    // Get the local equation number for this dof and add the jacobian
-	    // contribution if unpinned (and we are making the jacobian)
-            int lagrange_dof_number =
-              internal_local_eqn(Index_of_lagrange_data, lagrange_wdb_index);
-            if (flag && (lagrange_dof_number >= 0))
-            {
-              double jac_term = -jac_of_transform(alpha, beta);
-              // Orthogonality check (for jacobian cleanliness)
-              if (fabs(jac_term) > Orthogonality_tolerance)
-              {
-                // Add the contribution to the jacobian
-                jacobian(left_eqn_number, lagrange_dof_number) += jac_term;
-                // And by symmetry, we can add the transpose contribution to
-                // the jacobian
-                jacobian(lagrange_dof_number, left_eqn_number) += jac_term;
-              } // End orthogonality check
-	    } // End jacobian contributions for first derivative terms
-
-            // gamma>=beta so we don't double count the
-            // lagrange_value[6] constraint
-            for (unsigned gamma = beta; gamma < 2; gamma++)
-            {
-	      // Add residual contribution from the lagrange value associated
-	      // with the right beta+gamma-th second derivative
-	      unsigned lagrange_wdbdg_index = 5 + beta + gamma;
-	      residuals[left_eqn_number] +=
-		- lagrange_value[lagrange_wdbdg_index]
-		* hess_of_transform[alpha](beta, gamma);
-
-	      // Get the local equation number for this dof and add the
-	      // jacobian contribution if unpinned (and we are making the
-	      // jacobian)
-	      int lagrange_dof_number =
-		internal_local_eqn(Index_of_lagrange_data, lagrange_wdbdg_index);
-	      if (flag && (lagrange_dof_number >= 0))
-	      {
-		double jac_term = -hess_of_transform[alpha](beta, gamma);
-		// Orthogonality check
-		if (fabs(jac_term) > Orthogonality_tolerance)
-		{
-		  // Add the contribution to the jacobian
-		  jacobian(left_eqn_number, lagrange_dof_number) += jac_term;
-		  // And by symmetry, we can add the transpose contribution
-		  // to the jacobian
-		  jacobian(lagrange_dof_number, left_eqn_number) += jac_term;
-		} // End of orthogonality check
-	      } // End of jacobian contribution for second derivative terms
-	    } // End loop over second derivative Lagrange multipliers [gamma]
-	  } // End loop over first derivative Lagrange multipliers [beta]
-	} // End of if unpinned
-      } // End loop adding contributions to the left nodal gradient equations
-
-      // Last three are the second derivatives of w (delta>gamma):
-      //     - lambda_{5+\gamma+\delta} * w_{3+\alpha+\beta}
-      //       * J_{\alpha\gamma} * J_{\beta\delta}
-      // Index second derivative (equation) using alpha & beta
-      for (unsigned alpha = 0; alpha < 2; alpha++)
-      {
-	// Note that d^2w/ds_1ds_2 is counted twice in the summation so we
-	// allow alpha and beta to loop over both indices (unlike gamma+delta)
-        for (unsigned beta = 0; beta < 2; beta++)
-        {
-	  // Index of lagrange value associated with the right alpha+beta-th
-	  // second derivatives
-          unsigned left_wdadb_index = 5 + alpha + beta;
-          // Eqn number is the index of the second derivative of w
-          int left_eqn_number =
-            external_local_eqn(Index_of_left_data, left_wdadb_index);
-          // If this dof isn't pinned we add to the residual
-          if (left_eqn_number >= 0)
-          {
-            // Index constraint using gamma and delta
-            for (unsigned gamma = 0; gamma < 2; gamma++)
-            {
-              // delta>=gamma so we don't double count the lagrange_value
-	      // associated with the mixed derivative
-              for (unsigned delta = gamma; delta < 2; delta++)
-              {
-		// Add residual contribution
-		unsigned lagrange_wdgdd_index = 5 + gamma + delta;
-                residuals[left_eqn_number] +=
-		  -lagrange_value[lagrange_wdgdd_index] *
-		  jac_of_transform(alpha, gamma) *
-		  jac_of_transform(beta, delta);
-
-                // Get the local equation number for this dof and add the
-                // jacobian contribution if unpinned (and we are making the
-                // jacobian)
-                int lagrange_dof_number = internal_local_eqn(
-                  Index_of_lagrange_data, lagrange_wdgdd_index);
-                if (flag && (lagrange_dof_number >= 0))
-                {
-                  // Find the jacobian matrix contribution
-                  double jac_term = -jac_of_transform(alpha, gamma) *
-                                    jac_of_transform(beta, delta);
-                  // Orthogonality check
-                  if (fabs(jac_term) > Orthogonality_tolerance)
-                  {
-                    // Add the contribution to the jacobian
-                    jacobian(left_eqn_number, lagrange_dof_number) += jac_term;
-                    // And by symmetry, we can add the transpose contribution
-                    // to the jacobian
-                    jacobian(lagrange_dof_number, left_eqn_number) += jac_term;
-                  }
-                  } // End jacobian
-              }
-            } // End loops over the conditions (gamma,delta)
-          } // End if dof isn't pinned
-        }
-      } // End loops adding contributions to the left nodal curvature equations
-      // (alpha,beta)
-
-
-      //----------------------------------------------------------------------
-      // Now add contributions to the internal (lagrange multiplier) equations
-      // (note jacobian contributions will have already been thanks to use of
-      // symmetry)
-
-      // First three (u,v,w) dofs are equal
-      for (unsigned i_dof = 0; i_dof < 3; i_dof++)
-      {
-	// Index of the condition on the nodes (displacement constraint
-	// corresponds to zeroth type for each field)
-        unsigned lagrange_index = i_dof;
-        // Get the internal data eqn number for this constraint
-        int lagrange_eqn_number =
-          internal_local_eqn(Index_of_lagrange_data, lagrange_index);
-	// If this dof isn't pinned we add to the residual
-	if (lagrange_eqn_number >= 0)
-        {
-          // Add contributions from right and left nodes displacement
-          // (zero-th) type
-          unsigned right_ui_index = i_dof;
-          unsigned left_ui_index = i_dof;
-          residuals[lagrange_eqn_number] +=
-            (right_value[right_ui_index] - left_value[left_ui_index]);
-        }
-	// Jacobian is added during right and left nodal equations using
-	// symmetry
-      }
-
-      // Next two (first derivatives of w) are related by
-      //     grad_r(w) = grad_l(w)*J
-      // where  J is the Jacobian grad_r(left coords)
-      for (unsigned alpha = 0; alpha < 2; alpha++)
-      {
-        // Index of the condition on the nodes
-        unsigned lagrange_index = 3 + alpha;
-        // Get the internal data eqn number for this constraint
-        int lagrange_eqn_number =
-          internal_local_eqn(Index_of_lagrange_data, lagrange_index);
-        // If this dof isn't pinned we add to the residual
-        if (lagrange_eqn_number >= 0)
-        {
-          // Add contribution from right node
-          unsigned right_wda_index = 3 + alpha;
-          residuals[lagrange_eqn_number] += (right_value[right_wda_index]);
-          // Add contribuions from left node
-          for (unsigned beta = 0; beta < 2; beta++)
-          {
-            unsigned left_wdb_index = 3 + beta;
-            residuals[lagrange_eqn_number] +=
-              -left_value[left_wdb_index] * jac_of_transform(beta, alpha);
-          }
-          // Jacobian is added during right and left nodal equations using
-          // symmetry
-	}
-      }
-
-      // Final three (second derivatives of w) are related by:
-      //     grad_r(grad_r(w)) = grad_l(grad_l(w))*J*J + grad_l(w)*H
-      // where H is the Hessian: grad_r(grad_r(left coords))
-      // Loop over index of first derivative (0 or 1)
-      for (unsigned alpha = 0; alpha < 2; alpha++)
-      {
-        // Loop over index of second derivative
-        // (>=alpha to prevent double counting mixed deriv)
-        for (unsigned beta = alpha; beta < 2; beta++)
-        {
-          // Index of the condition on the nodes
-          unsigned lagrange_index = 5 + alpha + beta;
-          // Get the internal data eqn number for this constraint
-          int lagrange_eqn_number =
-            internal_local_eqn(Index_of_lagrange_data, lagrange_index);
-          // If this dof isn't pinned we add to the residual
-          if (lagrange_eqn_number >= 0)
-          {
-            // Add contributions from right node
-            unsigned right_wdadb_index = 5 + alpha + beta;
-            residuals[lagrange_eqn_number] += right_value[right_wdadb_index];
-            // Loop over the left node derivatives
-            for (unsigned gamma = 0; gamma < 2; gamma++)
-            {
-              // Add contributions from left node first derivatives
-              unsigned left_wdg_index = 3 + gamma;
-              residuals[lagrange_eqn_number] +=
-                -left_value[left_wdg_index] *
-                hess_of_transform[gamma](alpha, beta);
-              // Loop over the left derivatives again to get second
-              // derivatives
-              for (unsigned delta = 0; delta < 2; delta++)
-              {
-                // Add contributions from left node second derivatives
-		unsigned left_wdgdd_index = 5 + gamma + delta;
-		residuals[lagrange_eqn_number] +=
-                  -left_value[left_wdgdd_index] *
-                  jac_of_transform(gamma, alpha) *
-                  jac_of_transform(delta, beta);
-              }
-            }
-            // Jacobian is added during right and left nodal equations using
-            // symmetry
-          } // End if eqn not pinned
-	}
-      }
-    } // End fill_in_generic_residual_contribution_constraint
-
-    /// Store the index of the internal data keeping the Lagrange multipliers
-    unsigned Index_of_lagrange_data;
-
-    /// Store the index of the external data for the left node
-    unsigned Index_of_left_data;
-
-    /// Store the index of the external data for the right node
-    unsigned Index_of_right_data;
-
-    /// Pointer to the left node (before the vertex when anticlockwise)
-    Node* Left_node_pt;
-
-    /// Pointer to the right node (after the vertex when anticlockwise)
-    Node* Right_node_pt;
-
-    /// Pointer to the left node's boundary parametrisation
-    CurvilineGeomObject* Left_boundary_pt;
-
-    /// Pointer to the right node's boundary parametrisation
-    CurvilineGeomObject* Right_boundary_pt;
-
-    /// Coordinate of the left node on the left boundary
-    Vector<double> Left_node_coord;
-
-    /// Coordinate of the left node on the left boundary
-    Vector<double> Right_node_coord;
-
-    /// Tolerance for validating fully pinned constraints
-    // [zdec] does this wnat to be the problem residual tolerance?
-    double Constraint_tolerance = 1.0e-10;
-
-    /// Tolerance for checking whether a dof has become decoupled from an
-    /// equation.
-    /// i.e. in the equation y=Ax, how small does A have to be before y no
-    /// longer /numerically/ depends on x? This becomes relevant when derivative
-    /// directions become orthogonal, we need to ensure they aren't considered
-    /// linearly dependent. (We choose this to be slightly larger than machine
-    /// precision and it shouldn't generally need to be touched)
-    double Orthogonality_tolerance = 1.0e-15;
-  }; // End of DuplicateNodeConstraintElement class definition
+      if (nod_pt!=0)
+       {
+        if (nod_pt->is_on_boundary(b))
+         {
+#ifdef PARANOID
+          // We should only have one coordinate on this boundary
+          unsigned nzeta=nod_pt->ncoordinates_on_boundary(b);
+          if (nzeta!=1)
+           {
+            std::stringstream error_message;
+            error_message << "boundary coordinate must be 1D!"
+                          << std::endl;
+            throw OomphLibError(error_message.str(),
+                                OOMPH_CURRENT_FUNCTION,
+                                OOMPH_EXCEPTION_LOCATION);
+           }
+#endif
+        
+        // Get value itself from boundary condition object
+        Vector<double> zeta(nzeta);
+        nod_pt->get_coordinates_on_boundary(b,zeta);
+
+        // Get the Jacobian from the GeomObject parametrising the boundary
+        GeomObject* geom_obj_pt=curviline_pt->geom_object_pt();
+        DenseMatrix<double> drdzeta(nzeta,2);
+        geom_obj_pt->dposition(zeta,drdzeta);
+        RankThreeTensor<double> d2rdzeta2(nzeta,2,2);
+        geom_obj_pt->d2position(zeta,d2rdzeta2);
+        double dtdzeta=sqrt(drdzeta(0,0)*drdzeta(0,0)+drdzeta(0,1)*drdzeta(0,1));
+
+        // Foppl von Karman elements only have 6 Hermite deflection degrees
+        // of freedom. They are {w ; w,x ; w,y ; w,xx ; w,xy ; w,yy}
+        // or their rotated counterparts {w ; w,n ; w,t ; w,nn ; w,nt ; w,tt}
+        unsigned nw_type=nw_type_at_each_node();
+        for (unsigned k_type=0;k_type<nw_type;k_type++)
+         {
+          double value=0.0;
+          switch (k_type)
+           {
+           case 0:
+            // f itself
+            value=boundary_values_pt->f(zeta[0]);
+            break;
+            
+           case 1:
+            // df/dn: Normal derivative left free
+            // Calls broken virtual function; dies if not implemented
+            //value=boundary_values_pt->dfdn(zeta[0]);
+            break;
+            
+           case 2:
+            // df/dt, including Jacobian
+            value=boundary_values_pt->dfdzeta(zeta[0])/dtdzeta;
+            break;
+            
+           case 3:
+            // d^2f/dn^2: Second normal derivative shouldn't be set!
+            break;
+            
+           case 4:
+            // d^2f/dndt mixed second normal derivative: left free
+            // value=boundary_values_pt->d2fdndzeta(zeta[0])/dtdzeta;
+            break;
+            
+           case 5:
+            // d^2f/dt^2  including Jacobian (twice; chain rule yourself to death)
+            value=
+             (boundary_values_pt->d2fdzeta2(zeta[0])*dtdzeta*dtdzeta-
+              boundary_values_pt->dfdzeta(zeta[0])*
+              (drdzeta(0,0)*d2rdzeta2(0,0,0)+drdzeta(0,1)*d2rdzeta2(0,0,1)))/
+             (pow(dtdzeta,4));
+            
+            break;
+
+           default:
+            std::stringstream error_message;
+            error_message << "never get here" << std::endl;
+            throw OomphLibError(error_message.str(),
+                                OOMPH_CURRENT_FUNCTION,
+                                OOMPH_EXCEPTION_LOCATION);
+           }
+
+          // Skip anything related to normal derivatives
+          if ( ( k_type!=1) &&  // dw/dn
+               ( k_type!=3) &&  // d^2w/dn^2
+               ( k_type!=4)  )  // d^2w/dtdn
+           
+           {
+            // Pin and set the value
+            nod_pt->pin(first_nodal_type_index + k_type);
+            nod_pt->set_value(first_nodal_type_index + k_type, value);
+           }
+         }
+        
+       }
+     }
+
+   }
+ }
+
+
+ }
+
+ 
+ 
+ //=============================================================================
+ /// Helper function to impose out of plane displacements
+ /// according to scalar function specified in boundary_values_pt.
+ /// curvline_pt provides the geometry of the boundary in terms of
+ /// a not-necessarily-arclength coordinate zeta.
+ //=============================================================================
+ template<unsigned NNODE_1D>
+ void FoepplVonKarmanC1CurvableBellElement<NNODE_1D>::
+ clamp_and_impose_specified_out_of_plane_displacement_along_specified_boundary(
+  const unsigned& b,
+  BoundaryConditionForC1PlateBending* boundary_values_pt,
+  TriangleMeshCurviLine* curviline_pt)
+ {
+
+  const unsigned w_index = w_field_index();
+  const unsigned first_nodal_type_index =
+   this->first_nodal_type_index_for_field(w_index);
+  const unsigned n_vertices = nw_node();
+  
+  // Bell elements only have deflection dofs at vertices
+  for (unsigned n = 0; n < n_vertices; ++n)
+   {
+    
+    // Get boundary node
+    BoundaryNode<Node>* nod_pt =
+     dynamic_cast<BoundaryNode<Node>*>(this->node_pt(n));
+    
+    // Check if it is on the boundary
+    if (nod_pt!=0)
+     {
+      if (nod_pt->is_on_boundary(b))
+       {
+#ifdef PARANOID
+        // We should only have one coordinate on this boundary
+        unsigned nzeta=nod_pt->ncoordinates_on_boundary(b);
+        if (nzeta!=1)
+         {
+          std::stringstream error_message;
+          error_message << "boundary coordinate must be 1D!"
+                        << std::endl;
+          throw OomphLibError(error_message.str(),
+                              OOMPH_CURRENT_FUNCTION,
+                              OOMPH_EXCEPTION_LOCATION);
+         }
+#endif
+        
+        // Get value itself from boundary condition object
+        Vector<double> zeta(nzeta);
+        nod_pt->get_coordinates_on_boundary(b,zeta);
+
+        oomph_info << "hierher FULLY CLAMPING AT "
+                   << nod_pt->x(0) << " "
+                   << nod_pt->x(1) << " "
+                   << b << " "
+                   << zeta[0] << " " 
+                   << std::endl;
+
+        // Get the Jacobian from the GeomObject parametrising the boundary
+        GeomObject* geom_obj_pt=curviline_pt->geom_object_pt();
+        DenseMatrix<double> drdzeta(nzeta,2);
+        geom_obj_pt->dposition(zeta,drdzeta);
+        RankThreeTensor<double> d2rdzeta2(nzeta,2,2);
+        geom_obj_pt->d2position(zeta,d2rdzeta2);
+        double dtdzeta=sqrt(drdzeta(0,0)*drdzeta(0,0)+drdzeta(0,1)*drdzeta(0,1));
+
+        // Foppl von Karman elements only have 6 Hermite deflection degrees
+        // of freedom. They are {w ; w,x ; w,y ; w,xx ; w,xy ; w,yy}
+        // or their rotated counterparts {w ; w,n ; w,t ; w,nn ; w,nt ; w,tt}
+        unsigned nw_type=nw_type_at_each_node();
+        for (unsigned k_type=0;k_type<nw_type;k_type++)
+         {
+          double value=0.0;
+          switch (k_type)
+           {
+           case 0:
+            // f itself
+            value=boundary_values_pt->f(zeta[0]);
+            break;
+            
+           case 1:
+            // df/dn: Normal derivative
+            // Calls broken virtual function; dies if not implemented
+            value=boundary_values_pt->dfdn(zeta[0]);
+            break;
+            
+           case 2:
+            // df/dt, including Jacobian
+            value=boundary_values_pt->dfdzeta(zeta[0])/dtdzeta;
+            break;
+            
+           case 3:
+            // d^2f/dn^2: Second normal derivative shouldn't be set!
+            break;
+            
+           case 4:
+            // d^2f/dndt mixed second normal derivative: 
+            value=boundary_values_pt->d2fdndzeta(zeta[0])/dtdzeta;
+            break;
+            
+           case 5:
+            // d^2f/dt^2  including Jacobian (twice; chain rule yourself to death)
+            value=
+             (boundary_values_pt->d2fdzeta2(zeta[0])*dtdzeta*dtdzeta-
+              boundary_values_pt->dfdzeta(zeta[0])*
+              (drdzeta(0,0)*d2rdzeta2(0,0,0)+drdzeta(0,1)*d2rdzeta2(0,0,1)))/
+             (pow(dtdzeta,4));
+            
+            break;
+
+           default:
+              std::stringstream error_message;
+              error_message << "never get here" << std::endl;
+              throw OomphLibError(error_message.str(),
+                                  OOMPH_CURRENT_FUNCTION,
+                                  OOMPH_EXCEPTION_LOCATION);
+           }
+
+          // Skip second normal derivative
+          if (k_type!=3)
+           {            
+            // Pin and set the value
+            nod_pt->pin(first_nodal_type_index + k_type);
+            nod_pt->set_value(first_nodal_type_index + k_type, value);
+           }
+         }
+        
+       }
+     }
+
+   }
+ }
+
+
+  
+
+ ///////////////////////////////////////////////////////////////////////////
+ ///////////////////////////////////////////////////////////////////////////
+ ///////////////////////////////////////////////////////////////////////////
+ 
+ 
 
 
 } // namespace oomph

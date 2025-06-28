@@ -99,10 +99,10 @@ namespace oomph
 
     // Get the state of the flag to determine whether we are assigning a
     // displacement field to our elements rather than solving FvK equations
-    const bool solve_u_exact = get_solve_u_exact();
+    const bool solve_u_exact = get_solve_u_exact(); // hierher well done Aidan.
 
     // Get the Poisson ratio of the plate
-    const double nu = get_nu();
+    const double nu = get_nu(); // hierher Aidan: get rid of "get_"
 
     // Get the plate parameters
     const double eta = get_eta();
@@ -393,7 +393,7 @@ namespace oomph
       //    w = w_exact
       // We run this if block and then break so that we skip over the remaining
       // (normal) FvK equations residuals
-      if (solve_u_exact)
+      if (solve_u_exact) // hierher upper case?
       {
         // Get the exact displacement field we are trying to assign:
         //   u_exact = (ux_exact,uy_exact,w_exact)

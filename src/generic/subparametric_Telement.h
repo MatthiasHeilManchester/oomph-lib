@@ -27,15 +27,15 @@
 // LIC// The authors may be contacted at oomph-lib@maths.man.ac.uk.
 // LIC//
 // LIC//====================================================================
+#ifndef OOMPH_SUBPARAMETRIC_TELEMENTS_HEADER
+#define OOMPH_SUBPARAMETRIC_TELEMENTS_HEADER
 
 // oomph-lib headers
 #include "shape.h"
 #include "Telements.h"
 #include "c1_curved_elements.h"
-#include "my_geom_object.h"
+#include "c1_plate_helper.h"
 
-#ifndef SUBPARAMETRIC_TELEMENTS
-#define SUBPARAMETRIC_TELEMENTS
 namespace oomph
 {
   //==============================================================================
@@ -204,6 +204,91 @@ namespace oomph
   }; // End of Subparametric TElement class
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+ //===========================================================================
+ /// Template-free base class for curvable Bell Element
+ //===========================================================================
+class TemplateFreeCurvableBellElement : public virtual FiniteElement
+ {
+
+ public:
+  
+  /// Upgrade the element to be curved
+  virtual void upgrade_element_to_curved(const C1PlateHelper::CurvedEdgeEnumeration& curved_edge,
+                                         const double& s_ubar,
+                                         const double& s_obar,
+                                         C1CurviLine* parametric_edge,
+                                         const unsigned& boundary_order)=0;
+  
+  /// Access function to rotated boundary helper object
+  virtual RotatedBoundaryHelper* rotated_boundary_helper_pt()=0;
+
+
+  /// Clamp: i.e. pin the in-plane displacements and pin the out-of-plane
+  /// displacement and its normal derivative. We also apply implied
+  /// boundary conditions (e.g. specification of dw/dn also implies
+  /// d^2w/dn/dzeta etc. boundary_values_pt[i] describes boundary conditions
+  /// for the three displacement components (i=0,1 in plane (x,y);
+   /// i=2: out-of-plane (z)).
+  /// curviline_pt provides a pointer to the representation of the curvilinear
+  /// boundary in the triangle mesh.
+  virtual void fully_clamp_specified_boundary(
+   const unsigned& b,
+   const Vector<BoundaryConditionForC1PlateBending*>& boundary_values_pt,
+   TriangleMeshCurviLine* curviline_pt) = 0;
+  
+  
+  /// Pin i.e. pin the in-plane and out of plane displacements only.
+  /// We also apply implied boundary conditions (e.g. specification of w
+  /// also implies dw/dt etc. boundary_values_pt[i] describes boundary
+  /// conditions for the three displacement components (i=0,1 in plane (x,y);
+  /// i=2: out-of-plane (z)).
+  /// curviline_pt provides a pointer to the representation of the curvilinear
+  /// boundary in the triangle mesh.
+  virtual void pin_specified_boundary(
+   const unsigned& b,
+   const Vector<BoundaryConditionForC1PlateBending*>& boundary_values_pt,
+   TriangleMeshCurviLine* curviline_pt) = 0;
+
+
+  /// Factory to create DuplicateNodeConstraintElement.
+  /// which ensures that the deformation is sufficiently smooth
+  /// between different parts of a boundary (which may contain isolated
+  /// kinks which make it C0 rather than C1). Pass:
+  /// -- Pointers to nodes on the "left" and "right" boundary
+  /// -- pointers to the C1Curvilines that describe the smooth
+  ///    parts of the boundary on either side
+  /// -- the boundary coordinates that identifies the corner point
+  ///    relative the right and left boundary parametrisation
+  ///    (specified via a one-sized vector). 
+  virtual DuplicateNodeConstraintElement* duplicate_constraint_element_factory(
+   Node* const& left_node_pt,
+   Node* const& right_node_pt,
+   C1CurviLine* const& left_boundary_pt,
+   C1CurviLine* const& right_boundary_pt,
+   Vector<double> const& left_coord,
+   Vector<double> const& right_coord)=0;
+  
+  
+ };
+ 
+
+ //////////////////////////////////////////////////////////////////////////////////////
+ //////////////////////////////////////////////////////////////////////////////////////
+ //////////////////////////////////////////////////////////////////////////////////////
+ 
   //===========================================================================
   /// Curvable Bell element. It inherits simplax shape subparametricity
   /// SubparametricTriangleElement for efficient position interpolation. It also
@@ -215,16 +300,19 @@ namespace oomph
   /// the Bell bases to the curved Bell/Bernadou basis.
   //============================================================================
   template<unsigned NNODE_1D>
-  class CurvableBellElement : public SubparametricTriangleElement<NNODE_1D>
+ class CurvableBellElement : public virtual TemplateFreeCurvableBellElement,
+                             public SubparametricTriangleElement<NNODE_1D>
   {
+   
   public:
+   
     /// Constructor that takes the number of fields and a vector of
     /// corresponding bools which is true for each field that should be
     /// interpolated using the Bell/Bernadou basis (by default, one field, Bell
     /// interpolated).
     CurvableBellElement(const unsigned& n_field = 1,
                         const std::vector<bool>& is_bell_interpolated = {true})
-      : Curved_edge(MyC1CurvedElements::none),
+      : Curved_edge(C1PlateHelper::CurvedEdgeEnumeration::none),
         Nfield(n_field),
         Field_is_bell_interpolated(is_bell_interpolated),
         First_nodal_type_index_for_field(n_field),
@@ -280,14 +368,10 @@ namespace oomph
     }
 
 
-    /// Alias for enum to enumerate the possible edges that could be curved
-    typedef typename MyC1CurvedElements::Edge Edge;
-
-
     ///  Boolean function indicating whether element is curved or not
     bool element_is_curved() const
     {
-      return Curved_edge != MyC1CurvedElements::none;
+      return Curved_edge != C1PlateHelper::CurvedEdgeEnumeration::none;
     }
 
 
@@ -413,7 +497,7 @@ namespace oomph
 
 
     /// Access function for the Bernadou_element_basis_pt
-    MyC1CurvedElements::BernadouElementBasisBase* bernadou_element_basis_pt()
+    BernadouElementBasisBase* bernadou_element_basis_pt()
     {
       // [zdec] Should this throw an error if not upgraded or just return null
       // pt?
@@ -740,16 +824,16 @@ to access interpolated eulerian coordinate",
 
 
     /// Upgrade the element to be curved
-    virtual void upgrade_element_to_curved(const Edge& curved_edge,
-                                           const double& s_ubar,
-                                           const double& s_obar,
-                                           CurvilineGeomObject* parametric_edge,
-                                           const unsigned& boundary_order)
+   virtual void upgrade_element_to_curved(const C1PlateHelper::CurvedEdgeEnumeration& curved_edge,
+                                          const double& s_ubar,
+                                          const double& s_obar,
+                                          C1CurviLine* parametric_edge,
+                                          const unsigned& boundary_order)
     {
-      using namespace MyC1CurvedElements;
+
 #ifdef PARANOID
       // Check that we haven't upgraded this element already
-      if (Curved_edge != none)
+      if (Curved_edge != C1PlateHelper::CurvedEdgeEnumeration::none)
       {
         throw OomphLibError(
           "Cannot upgrade more than a single edge to be curved in C1 Curved Bell \
@@ -761,13 +845,16 @@ Elements.",
       // Add the curved edge
       Curved_edge = curved_edge;
 
+
+      // hierher Aidan: what's going on here? This is never used!
       Integral* new_integral_pt;
+      
       // Switch for the boundary order
       switch (boundary_order)
       {
         case 3:
           // [zdec] debug
-          oomph_info << "Upgrading to a 3-er" << std::endl;
+         oomph_info << "Upgrading to a 3-er" << std::endl; // hierher Aidan: also get rid off all these outputs
           add_new_curved_basis<BernadouElementBasis<3>>();
           // new_integral_pt = new TGauss<2, 13>;
           new_integral_pt = new TGauss<2, 5>;
@@ -814,7 +901,7 @@ Elements.",
       // The shape functions are designed such that the curved edge is always
       // edge two. So this is where we set that up. Throw an error if an edge is
       // upgraded to none
-      if (Curved_edge == none)
+      if (Curved_edge == C1PlateHelper::CurvedEdgeEnumeration::none)
       {
         throw OomphLibError(
           "Cannot upgrade edge 'none'. Curved elements must have\
@@ -860,15 +947,16 @@ Elements.",
 
 
   private:
+   
     /// Enum to store which edge is curved set to none when element has no
     /// curved edges
-    MyC1CurvedElements::Edge Curved_edge;
+    C1PlateHelper::CurvedEdgeEnumeration Curved_edge;
 
     /// Pointer to Bernadou Element Basis
-    MyC1CurvedElements::BernadouElementBasisBase* Bernadou_element_basis_pt;
+    BernadouElementBasisBase* Bernadou_element_basis_pt;
 
     /// Basis functions
-    MyShape::BellElementBasis Bell_basis;
+    BellElementBasis Bell_basis;
 
     /// Pointer to Stored Association matrix
     DenseMatrix<double>* Association_matrix_pt;

@@ -46,11 +46,18 @@
 // though. Once this is done for p=3,
 
 
-// We could definitely store this as a static
+// We could definitely store this as a static  // hierher Aidan: Let's!
+// UPDATE after initial pull request: Can't
+// now remember what we decided, but can you sort this out (or raise it again)
+// when you do your tidies (plenty of zdecs anyway)
+
+
+// hierher Aidan: Also, where is this from? Code looks machine generated. Do we have
+// the original maple/mathematica code?
+
 namespace oomph
 {
-  namespace MyC1CurvedElements
-  {
+
     /// Precomputed basis polynomials for the 3rd order boundary representation
     template<>
     void BernadouElementBasis<3>::full_basic_polynomials(
@@ -3158,5 +3165,4 @@ namespace oomph
          648 * s_p_2 * t_p_2 - 1080 * t_p_3 + 1080 * s * t_p_3 + 540 * t_p_4);
     }
 
-  } // namespace MyC1CurvedElements
 } // namespace oomph

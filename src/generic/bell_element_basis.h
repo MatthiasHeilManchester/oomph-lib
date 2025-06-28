@@ -36,150 +36,58 @@
 
 namespace oomph
 {
-  namespace MyShape
-  {
-    //===========================================================================
-    /// Two by two specialisation of function to calculate inverse of a matrix
-    //===========================================================================
-    inline double invert_two_by_two(const DenseMatrix<double>& jacobian,
-                                    DenseMatrix<double>& inverse_jacobian)
-    {
-      // Calculate the determinant of the matrix
-      const double det =
-        jacobian(0, 0) * jacobian(1, 1) - jacobian(0, 1) * jacobian(1, 0);
 
-// Report if Matrix is singular or negative
-#ifdef PARANOID
-      if (fabs(det) < 1e-12)
-      {
-        std::stringstream error_stream;
-        error_stream
-          << "The matrix is singular to machine precision : det(M) = " << det
-          << ".\n";
-        throw OomphLibError(
-          error_stream.str(), OOMPH_CURRENT_FUNCTION, OOMPH_EXCEPTION_LOCATION);
-      }
-#endif
+ /// Class to contain the Basis polynomials for the Bell element
+ class BellElementBasis
+ {
+ public:
+  /// Constructor
+  BellElementBasis() {}
 
-      // Calculate the inverse of the 2x2 matrix
-      inverse_jacobian(0, 0) = jacobian(1, 1) / det;
-      inverse_jacobian(0, 1) = -jacobian(0, 1) / det;
-      inverse_jacobian(1, 0) = -jacobian(1, 0) / det;
-      inverse_jacobian(1, 1) = jacobian(0, 0) / det;
+  /// Destructor
+  ~BellElementBasis() {}
 
-      return det;
-    }
+  // Private copy and assign - so this should cause a compilation error
+ private:
+  /// Broken copy constructor
+  BellElementBasis(BellElementBasis& dummy)
+   {
+    BrokenCopy::broken_copy("BellElementBasis");
+   }
+  /// Broken assignment operator
+  void operator=(const BellElementBasis&)
+   {
+    BrokenCopy::broken_assign("BellElementBasis");
+   }
 
-    //=============================================================================
-    /// Three-by three specialisation of function to calculate inverse of a
-    /// matrix
-    //=============================================================================
-    inline void invert_three_by_three(const DenseMatrix<double>& jacobian,
-                                      DenseMatrix<double>& inverse_jacobian)
-    {
-      // Calculate the determinant of the matrix
-      const double det = jacobian(0, 0) * jacobian(1, 1) * jacobian(2, 2) +
-                         jacobian(0, 1) * jacobian(1, 2) * jacobian(2, 0) +
-                         jacobian(0, 2) * jacobian(1, 0) * jacobian(2, 1) -
-                         jacobian(0, 0) * jacobian(1, 2) * jacobian(2, 1) -
-                         jacobian(0, 1) * jacobian(1, 0) * jacobian(2, 2) -
-                         jacobian(0, 2) * jacobian(1, 1) * jacobian(2, 0);
+ public:
+  /// Get the (twice) area of the triangle from the vertices
+  double get_twice_triangle_area(const Vector<double>& v0,
+                                 const Vector<double>& v1,
+                                 const Vector<double>& v2) const;
 
-      // Report if Matrix is singular or negative
-#ifdef PARANOID
-      if (fabs(det) < 1e-12)
-      {
-        std::stringstream error_stream;
-        error_stream
-          << "The matrix is singular to machine precision : det(M) = " << det
-          << ".\n";
-        throw OomphLibError(
-          error_stream.str(), OOMPH_CURRENT_FUNCTION, OOMPH_EXCEPTION_LOCATION);
-      }
-#endif
+  /// Get outer normal of side between vertices v0 and v1, assumes
+  /// counter-clockwise triangle vertices.
+  Vector<double> get_outer_normal(const Vector<double>& v0,
+                                  const Vector<double>& v1) const;
 
-      // Calculate the inverse of the 3x3 matrix
-      inverse_jacobian(0, 0) =
-        (jacobian(1, 1) * jacobian(2, 2) - jacobian(1, 2) * jacobian(2, 1)) /
-        det;
-      inverse_jacobian(0, 1) =
-        -(jacobian(0, 1) * jacobian(2, 2) - jacobian(0, 2) * jacobian(2, 1)) /
-        det;
-      inverse_jacobian(0, 2) =
-        (jacobian(0, 1) * jacobian(1, 2) - jacobian(0, 2) * jacobian(1, 1)) /
-        det;
-      inverse_jacobian(1, 0) =
-        -(jacobian(1, 0) * jacobian(2, 2) - jacobian(1, 2) * jacobian(2, 0)) /
-        det;
-      inverse_jacobian(1, 1) =
-        (jacobian(0, 0) * jacobian(2, 2) - jacobian(0, 2) * jacobian(2, 0)) /
-        det;
-      inverse_jacobian(1, 2) =
-        -(jacobian(0, 0) * jacobian(1, 2) - jacobian(0, 2) * jacobian(1, 0)) /
-        det;
-      inverse_jacobian(2, 0) =
-        (jacobian(1, 0) * jacobian(2, 1) - jacobian(1, 1) * jacobian(2, 0)) /
-        det;
-      inverse_jacobian(2, 1) =
-        -(jacobian(0, 0) * jacobian(2, 1) - jacobian(0, 1) * jacobian(2, 0)) /
-        det;
-      inverse_jacobian(2, 2) =
-        (jacobian(0, 0) * jacobian(1, 1) - jacobian(0, 1) * jacobian(1, 0)) /
-        det;
-    }
+  /// Basis for a Bell element. This follows exactly the notation of
+  /// M. Okabe in Comput. Methods Appl. Mech. 117 (1994) 411-421
+  void d2_basis(const Vector<double>& s,
+                const Vector<Vector<double>>& v,
+                Shape& psi,
+                DShape& dpsi,
+                DShape& d2psi) const;
 
-    /// Class to contain the Basis polynomials for the Bell element
-    class BellElementBasis
-    {
-    public:
-      /// Constructor
-      BellElementBasis() {}
+  /// Explicit basis for a Bell element. This follows exactly the notation
+  /// of M. Okabe in Comput. Methods Appl. Mech. 117 (1994) 411-421
+  double d2_basis_eulerian(const Vector<double>& s,
+                           const Vector<Vector<double>>& v,
+                           Shape& psi,
+                           DShape& dpsi,
+                           DShape& d2psi) const;
+ };
 
-      /// Destructor
-      ~BellElementBasis() {}
-
-      // Private copy and assign - so this should cause a compilation error
-    private:
-      /// Broken copy constructor
-      BellElementBasis(BellElementBasis& dummy)
-      {
-        BrokenCopy::broken_copy("BellElementBasis");
-      }
-      /// Broken assignment operator
-      void operator=(const BellElementBasis&)
-      {
-        BrokenCopy::broken_assign("BellElementBasis");
-      }
-
-    public:
-      /// Get the (twice) area of the triangle from the vertices
-      double get_twice_triangle_area(const Vector<double>& v0,
-                                     const Vector<double>& v1,
-                                     const Vector<double>& v2) const;
-
-      /// Get outer normal of side between vertices v0 and v1, assumes
-      /// counter-clockwise triangle vertices.
-      Vector<double> get_outer_normal(const Vector<double>& v0,
-                                      const Vector<double>& v1) const;
-
-      /// Basis for a Bell element. This follows exactly the notation of
-      /// M. Okabe in Comput. Methods Appl. Mech. 117 (1994) 411-421
-      void d2_basis(const Vector<double>& s,
-                    const Vector<Vector<double>>& v,
-                    Shape& psi,
-                    DShape& dpsi,
-                    DShape& d2psi) const;
-
-      /// Explicit basis for a Bell element. This follows exactly the notation
-      /// of M. Okabe in Comput. Methods Appl. Mech. 117 (1994) 411-421
-      double d2_basis_eulerian(const Vector<double>& s,
-                               const Vector<Vector<double>>& v,
-                               Shape& psi,
-                               DShape& dpsi,
-                               DShape& d2psi) const;
-    }; // End
-
-  } // namespace MyShape
 } // namespace oomph
 
 #endif

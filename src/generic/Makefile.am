@@ -53,7 +53,7 @@ preconditioner_array.cc general_purpose_block_preconditioners.cc pml_meshes.cc \
 unstructured_two_d_mesh_geometry_base.cc sample_point_container.cc \
 sample_point_parameters.cc geometric_multigrid.cc \
 extruded_macro_element.cc extruded_domain.cc \
-black_box_newton_solver.cc
+black_box_newton_solver.cc c1_plate_helper.cc
 
 if OOMPH_HAS_MUMPS
 sources+=mumps_fortran_solver.F mumps_solver.cc
@@ -77,7 +77,7 @@ displacement_control_element.h \
 mesh.h           timesteppers.h  explicit_timesteppers.h \
 hermite_elements.h  nodes.h      oomph_utilities.h \
 bell_element_basis.h c1_curved_elements.h \
-my_geom_object.h subparametric_Telement.h \
+c1_plate_helper.h subparametric_Telement.h \
 elastic_problems.h  hijacked_elements.h      geom_objects.h \
 algebraic_elements.h            macro_element.h \
 stored_shape_function_elements.h \
