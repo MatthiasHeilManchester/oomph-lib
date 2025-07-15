@@ -748,7 +748,7 @@ namespace C1PlateHelper
 /// Mesh pointed to by constraint_mesh_pt.
 //==============================================================================
  extern void duplicate_corner_nodes(Mesh* bulk_mesh_pt, 
-                                    std::map<unsigned,C1CurviLine*> c1_curviline_pt,
+                                    const std::map<unsigned,C1CurviLine*>& c1_curviline_pt,
                                     Mesh* constraint_mesh_pt);
  
 

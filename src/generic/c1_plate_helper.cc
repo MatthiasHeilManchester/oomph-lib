@@ -243,7 +243,7 @@ namespace C1PlateHelper
 /// Mesh pointed to by constraint_mesh_pt.
 //==============================================================================
  void duplicate_corner_nodes(Mesh* bulk_mesh_pt, 
-                             std::map<unsigned,C1CurviLine*> c1_curviline_pt,
+                             const std::map<unsigned,C1CurviLine*>& c1_curviline_pt,
                              Mesh* constraint_mesh_pt)
  {
 
@@ -549,16 +549,16 @@ namespace C1PlateHelper
        oomph_info << std::endl;
       }
     }
-     
+
     // The final job is to constrain this duplication using the specialised
     // Lagrange multiplier elements which enforce equality of displacement and
     // its derivatives either side of this corner.
-    C1CurviLine* left_parametrisation_pt  =
-     c1_curviline_pt[boundary_on_which_node_is_left];
+    C1CurviLine* left_parametrisation_pt =
+      c1_curviline_pt.at(boundary_on_which_node_is_left);
     C1CurviLine* right_parametrisation_pt =
-     c1_curviline_pt[boundary_on_which_node_is_duplicated];
+      c1_curviline_pt.at(boundary_on_which_node_is_duplicated);
 
-     
+
     // Get the coordinates on each node on their respective boundaries
     Vector<double> left_boundary_coordinate =
      {left_parametrisation_pt->get_zeta(node_to_be_duplicated_pt->position())};
