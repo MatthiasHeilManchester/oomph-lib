@@ -1,6 +1,3 @@
-//
-// Created by iqraa on 13-9-24.
-//
 //LIC// ====================================================================
 //LIC// This file forms part of oomph-lib, the object-oriented,
 //LIC// multi-physics finite-element library, available
@@ -40,9 +37,9 @@ using namespace oomph;
 
 
 
-/// ////////////////////////////////////////////////////////////////////
-/// ////////////////////////////////////////////////////////////////////
-/// ////////////////////////////////////////////////////////////////////
+// Acknowledgement:
+// Code (and associated functionality) developed by Mohammed Hassan
+// https://github.com/mbahassan
 
 
 //=======start_namespace==========================================
@@ -50,171 +47,164 @@ using namespace oomph;
 //================================================================
 namespace Input
 {
-    /// Elastic modulus
-    double E=1.0e8;
+ /// Elastic modulus
+ double E=1.0e8;
+ 
+ /// Poisson's ratio
+ double Nu=0.3;
 
-    /// Poisson's ratio
-    double Nu=0.3;
-
-
-    /// Pointer to constitutive law
-    ConstitutiveLaw* Constitutive_law_pt= nullptr;
-    
-    /// Density
-    double Density = 2500;
-    
-    /// Gravity
-    double Gravity=9.81;
-
-    /// Gravity as body force
-    void body_force(const double& time,
-                    const Vector<double> &xi,
-                    Vector<double> &b)
-    {
-        b[0]=0.0;
-        b[1]=0.0;
-        b[2]=-Gravity*Density;
-    }
+ /// Pointer to constitutive law
+ ConstitutiveLaw* Constitutive_law_pt= nullptr;
+ 
+ /// Density
+ double Density = 2500.0;
+ 
+ /// Gravity
+ double Gravity=9.81;
+ 
+ /// Gravity as body force
+ void body_force(const double& time,
+                 const Vector<double> &xi,
+                 Vector<double> &b)
+ {
+  b[0]=0.0;
+  b[1]=0.0;
+  b[2]=-Gravity*Density;
+ }
 }
 
-
+//================================================================
+/// Problem class
+//================================================================
 template<class ELEMENT>
 class CantileverProblem : public Problem
 {
 
 public:
-
-    /// Constructor:
-    CantileverProblem(const string& mesh_file)
+ 
+ /// Constructor:
+ CantileverProblem(const string& mesh_file)
+  {
+   // Verbose to print all Gmsh info/entities/elements.
+   bool verbose = false;
+   Problem::mesh_pt() = new SolidGmshBrickMesh<ELEMENT>(mesh_file, verbose);
+   
+   // Complete build of elements
+   unsigned n_element=mesh_pt()->nelement();
+   for(unsigned i=0;i<n_element;i++)
     {
-        /// Verbose to print all Gmsh info/entities/elements.
-        bool verbose = false;
-
-        Problem::mesh_pt() = new SolidGmshBrickMesh<ELEMENT>(mesh_file, Verbose);
-
-
-        // Complete build of elements
-        unsigned n_element=mesh_pt()->nelement();
-        for(unsigned i=0;i<n_element;i++)
-        {
-            // Cast to a solid element
-            auto *el_pt = dynamic_cast<ELEMENT*>(mesh_pt()->element_pt(i));
-
-            // Set the constitutive law
-            el_pt->constitutive_law_pt() = Input::Constitutive_law_pt;
-
-            // Set the body force
-            el_pt->body_force_fct_pt() = Input::body_force;
-            
-            // Set density
-            el_pt->lambda_sq_pt() = &Input::Density;
-
-        } // done build of elements
-
-
-        // Pin the left boundary (boundary 0) in all directions
-        unsigned b=0;
-        unsigned n_side = mesh_pt()->nboundary_node(b);
-
-        //Loop over the nodes
-        for(unsigned i=0;i<n_side;i++)
-        {
-            mesh_pt()->boundary_node_pt(b,i)->pin_position(0);
-            mesh_pt()->boundary_node_pt(b,i)->pin_position(1);
-            mesh_pt()->boundary_node_pt(b,i)->pin_position(2);
-        }
-
-        // Pin the redundant solid pressures (if any)
-        PVDEquationsBase<3>::pin_redundant_nodal_solid_pressures(mesh_pt()->element_pt());
-
-        //Assign equation numbers
-        assign_eqn_numbers();
-
-        // Prepare output directory
-        Doc_info.set_directory("RESLT");
-
+     // Cast to a solid element
+     auto *el_pt = dynamic_cast<ELEMENT*>(mesh_pt()->element_pt(i));
+     
+     // Set the constitutive law
+     el_pt->constitutive_law_pt() = Input::Constitutive_law_pt;
+     
+     // Set the body force
+     el_pt->body_force_fct_pt() = Input::body_force;
+     
+     // Set density
+     el_pt->lambda_sq_pt() = &Input::Density;
+     
+    } // done build of elements
+   
+   
+   // Pin the left boundary (boundary 0) in all directions
+   unsigned b=0;
+   unsigned n_side = mesh_pt()->nboundary_node(b);
+   
+   //Loop over the nodes
+   for(unsigned i=0;i<n_side;i++)
+    {
+     mesh_pt()->boundary_node_pt(b,i)->pin_position(0);
+     mesh_pt()->boundary_node_pt(b,i)->pin_position(1);
+     mesh_pt()->boundary_node_pt(b,i)->pin_position(2);
     }
+   
+   // Pin the redundant solid pressures (if any)
+   PVDEquationsBase<3>::pin_redundant_nodal_solid_pressures(
+    mesh_pt()->element_pt());
+   
+   //Assign equation numbers
+   assign_eqn_numbers();
+   
+   // Prepare output directory
+   Doc_info.set_directory("RESLT");
+  }
+ 
+ /// Update function (empty)
+ void actions_after_newton_solve() {}
+ 
+ /// Update function (empty)
+ void actions_before_newton_solve() {}
+  
+ /// Doc the solution
+ void doc_solution()
+  {
+   
+   ofstream some_file;
+   char filename[100];
+   
+   // Number of plot points
+   unsigned n_plot = 2;
+   
+   // Output shape of deformed body
+   sprintf(filename,"%s/soln%i.dat",
+           Doc_info.directory().c_str(),
+           Doc_info.number());
+   some_file.open(filename);
+   mesh_pt()->output(some_file,n_plot);
+   some_file.close();
+        
+   // Increment label for output files
+   Doc_info.number()++;
+  };
+ 
+ 
+ /// Access function for the mesh
+ SolidGmshBrickMesh<ELEMENT>* mesh_pt()
+  {
+   return dynamic_cast<SolidGmshBrickMesh<ELEMENT>*>(Problem::mesh_pt());
+  }
+ 
 
-    /// Update function (empty)
-    void actions_after_newton_solve() {}
-
-    /// Update function (empty)
-    void actions_before_newton_solve() {}
-
-    /// Actions before adapt. Empty
-    void actions_before_adapt(){}
-
-    /// Actions after adapt
-    void actions_after_adapt()
+ /// Solve function: do parameter study
+ void solve()
+  {
+   // Set output directory
+   char dirname[100];
+   sprintf(dirname,"RESLT");
+   
+   // Prepare output
+   Doc_info.set_directory(dirname);
+   
+   // Doc solution
+   doc_solution();
+   
+   //Parameter incrementation
+   unsigned nstep=2;
+   
+   double g_increment=25.0e-2;
+   for(unsigned i=0;i<nstep;i++)
     {
-        // Pin the redundant solid pressures (if any)
-        PVDEquationsBase<3>::pin_redundant_nodal_solid_pressures(mesh_pt()->element_pt());
+     // Increment load
+     Input::Gravity+=g_increment;
+     
+     // Solve it
+     newton_solve();
+     
+     // Doc solution
+     doc_solution();
     }
+  }
 
-    /// Doc the solution
-    void doc_solution()
-    {
-
-        ofstream some_file;
-        char filename[100];
-
-        // Number of plot points
-        unsigned n_plot = 2;
-
-        // Output shape of deformed body
-        sprintf(filename,"%s/soln%i.dat",Doc_info.directory().c_str(),Doc_info.number());
-        some_file.open(filename);
-        mesh_pt()->output(some_file,n_plot);
-        some_file.close();
-
-        // Increment label for output files
-        Doc_info.number()++;
-    };
-
-
-    /// Access function for the mesh
-    SolidGmshBrickMesh<ELEMENT>* mesh_pt()
-    {
-        return dynamic_cast<SolidGmshBrickMesh<ELEMENT>*>(Problem::mesh_pt());
-    }
-
-
-    void solve()
-    {
-        // Set output directory
-        char dirname[100];
-        sprintf(dirname,"RESLT");
-
-        // Prepare output
-        Doc_info.set_directory(dirname);
-
-        // Doc solution
-        doc_solution();
-
-        //Parameter incrementation
-        unsigned nstep=2;
-
-        double g_increment=25.0e-2;
-        for(unsigned i=0;i<nstep;i++)
-        {
-            // Increment load
-            Input::Gravity+=g_increment;
-
-            // Solve it
-            newton_solve();
-
-            // Doc solution
-            doc_solution();
-        }
-    };
-
+ 
 private:
 
-    /// DocInfo object for output
-    DocInfo Doc_info;
-    
-    /// Bulk mesh pointer
-    SolidGmshBrickMesh<ELEMENT>* Solid_mesh_pt;
+ /// DocInfo object for output
+ DocInfo Doc_info;
+ 
+ /// Bulk mesh pointer
+ SolidGmshBrickMesh<ELEMENT>* Solid_mesh_pt;
 };
 
 
@@ -225,42 +215,41 @@ private:
 //======================================================================
 int main(int argc, char* argv[])
 {
-    // Store command line arguments
-    CommandLineArgs::setup(argc,argv);
-
-    // Check number of command line arguments: Need exactly three.
-    if (argc!=2)
-    {
-        std::string error_message =
-            "Wrong number of command line arguments.\n";
-        error_message +=
-            "This code requires a single command line argument \n";
-        error_message +=
-             "which specifies the name of the gmsh-generated .msh file \n";
-        error_message +=
-             "that defines the mesh  \n";
-
+ // Store command line arguments
+ CommandLineArgs::setup(argc,argv);
+ 
+ // Check number of command line arguments: Need exactly three.
+ if (argc!=2)
+  {
+   std::string error_message =
+    "Wrong number of command line arguments.\n";
+   error_message +=
+    "This code requires a single command line argument \n";
+   error_message +=
+    "which specifies the name of the gmsh-generated .msh file \n";
+   error_message +=
+    "that defines the mesh  \n";
+   
    throw OomphLibError(error_message,
                        OOMPH_CURRENT_FUNCTION,
                        OOMPH_EXCEPTION_LOCATION);
   }
-
-    // Convert arguments to strings that specify the input file names
-    string Mesh_file(argv[1]);
-
-
-    // Generalised Hookean constitutive equations
-    Input::Constitutive_law_pt = new GeneralisedHookean(&Input::Nu, &Input::E);
-
-    //Set up the problem with pure displacement based elements
-    CantileverProblem<QPVDElement<3,2> > problem(Mesh_file);
-    problem.solve();
-
-
-    delete Input::Constitutive_law_pt;
-    Input::Constitutive_law_pt= nullptr;
-
-
+ 
+ // Convert arguments to strings that specify the input file names
+ std::string mesh_file(argv[1]);
+ 
+ // Generalised Hookean constitutive equations
+ Input::Constitutive_law_pt = new GeneralisedHookean(&Input::Nu, &Input::E);
+ 
+ //Set up the problem with pure displacement based elements
+ CantileverProblem<QPVDElement<3,2> > problem(mesh_file);
+ problem.solve();
+ 
+ // Clean up
+ delete Input::Constitutive_law_pt;
+ Input::Constitutive_law_pt= nullptr;
+ 
+ 
 } //end of main
 
 
