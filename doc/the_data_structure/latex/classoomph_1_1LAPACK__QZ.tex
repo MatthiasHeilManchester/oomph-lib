@@ -26,8 +26,6 @@ Inheritance diagram for oomph\+::LAPACK\+\_\+\+QZ\+:\begin{figure}[H]
 \begin{DoxyCompactList}\small\item\em Broken assignment operator. \end{DoxyCompactList}\item 
 \mbox{\hyperlink{classoomph_1_1TAdvectionDiffusionReactionElement}{virtual}} \mbox{\hyperlink{classoomph_1_1LAPACK__QZ_ab44c634b95861be02003e7f9f2a4ad3e}{\texorpdfstring{$\sim$}{\string~}\+LAPACK\+\_\+\+QZ}} ()
 \begin{DoxyCompactList}\small\item\em Empty desctructor. \end{DoxyCompactList}\item 
-\mbox{\hyperlink{classoomph_1_1TAdvectionDiffusionReactionElement}{void}} \mbox{\hyperlink{classoomph_1_1LAPACK__QZ_ae64547bdc20fa5ea6aaa3c459cbcf0ad}{solve\+\_\+eigenproblem\+\_\+legacy}} (\mbox{\hyperlink{classoomph_1_1Problem}{Problem}} \texorpdfstring{$\ast$}{*}\mbox{\hyperlink{classoomph_1_1TAdvectionDiffusionReactionElement}{const}} \&problem\+\_\+pt, \mbox{\hyperlink{classoomph_1_1TAdvectionDiffusionReactionElement}{const}} \mbox{\hyperlink{classoomph_1_1TAdvectionDiffusionReactionElement}{int}} \&\mbox{\hyperlink{classoomph_1_1TAdvectionDiffusionReactionElement}{n\+\_\+eval}}, \mbox{\hyperlink{classoomph_1_1Vector}{Vector}}$<$ std\+::complex$<$ \mbox{\hyperlink{classoomph_1_1TAdvectionDiffusionReactionElement}{double}} $>$ $>$ \&eigenvalue, \mbox{\hyperlink{classoomph_1_1Vector}{Vector}}$<$ \mbox{\hyperlink{classoomph_1_1DoubleVector}{Double\+Vector}} $>$ \&\mbox{\hyperlink{classoomph_1_1TAdvectionDiffusionReactionElement}{eigenvector}}, \mbox{\hyperlink{classoomph_1_1TAdvectionDiffusionReactionElement}{const}} \mbox{\hyperlink{classoomph_1_1TAdvectionDiffusionReactionElement}{bool}} \&\mbox{\hyperlink{classoomph_1_1TAdvectionDiffusionReactionElement}{do\+\_\+adjoint\+\_\+problem}}=\mbox{\hyperlink{classoomph_1_1TAdvectionDiffusionReactionElement}{false}})
-\begin{DoxyCompactList}\small\item\em Use LAPACK QZ to solve the real eigenproblem that is assembled by elements in a mesh in a \doxylink{classoomph_1_1Problem}{Problem} object. Note that the assembled matrices include the shift and are real. The eigenvalues and eigenvectors are, in general, complex. This is a legacy version of this function that stores re \& imag parts of eigenvectors in some solver-\/specific collection of real vectors; they are disentangled in the alternative version of this function that returns Vectors of complex Vectors. At least n\+\_\+eval eigenvalues are computed. \end{DoxyCompactList}\item 
 \mbox{\hyperlink{classoomph_1_1TAdvectionDiffusionReactionElement}{void}} \mbox{\hyperlink{classoomph_1_1LAPACK__QZ_acafb0b0ad23899c6587b8a12897919b2}{solve\+\_\+eigenproblem}} (\mbox{\hyperlink{classoomph_1_1Problem}{Problem}} \texorpdfstring{$\ast$}{*}\mbox{\hyperlink{classoomph_1_1TAdvectionDiffusionReactionElement}{const}} \&problem\+\_\+pt, \mbox{\hyperlink{classoomph_1_1TAdvectionDiffusionReactionElement}{const}} \mbox{\hyperlink{classoomph_1_1TAdvectionDiffusionReactionElement}{int}} \&\mbox{\hyperlink{classoomph_1_1TAdvectionDiffusionReactionElement}{n\+\_\+eval}}, \mbox{\hyperlink{classoomph_1_1Vector}{Vector}}$<$ std\+::complex$<$ \mbox{\hyperlink{classoomph_1_1TAdvectionDiffusionReactionElement}{double}} $>$ $>$ \&alpha, \mbox{\hyperlink{classoomph_1_1Vector}{Vector}}$<$ \mbox{\hyperlink{classoomph_1_1TAdvectionDiffusionReactionElement}{double}} $>$ \&beta, \mbox{\hyperlink{classoomph_1_1Vector}{Vector}}$<$ \mbox{\hyperlink{classoomph_1_1DoubleVector}{Double\+Vector}} $>$ \&\mbox{\hyperlink{classoomph_1_1TAdvectionDiffusionReactionElement}{eigenvector\+\_\+real}}, \mbox{\hyperlink{classoomph_1_1Vector}{Vector}}$<$ \mbox{\hyperlink{classoomph_1_1DoubleVector}{Double\+Vector}} $>$ \&\mbox{\hyperlink{classoomph_1_1TAdvectionDiffusionReactionElement}{eigenvector\+\_\+imag}}, \mbox{\hyperlink{classoomph_1_1TAdvectionDiffusionReactionElement}{const}} \mbox{\hyperlink{classoomph_1_1TAdvectionDiffusionReactionElement}{bool}} \&\mbox{\hyperlink{classoomph_1_1TAdvectionDiffusionReactionElement}{do\+\_\+adjoint\+\_\+problem}}=\mbox{\hyperlink{classoomph_1_1TAdvectionDiffusionReactionElement}{false}})
 \begin{DoxyCompactList}\small\item\em Solve the real eigenproblem that is assembled by elements in a mesh in a \doxylink{classoomph_1_1Problem}{Problem} object. Note that the assembled matrices include the shift and are real. The eigenvalues and eigenvectors are, in general, complex. Eigenvalues may be infinite and are therefore returned as $ \lambda_i = \alpha_i / \beta_i $ where $ \alpha_i $ is complex while $ \beta_i $ is real. The actual eigenvalues may then be computed by doing the division, checking for zero betas to avoid Na\+Ns. There\textquotesingle{}s a convenience wrapper to this function that simply computes these eigenvalues regardless. That version may die in NaN checking is enabled (via the fenv.\+h header and the associated feenable function). At least n\+\_\+eval eigenvalues are computed. \end{DoxyCompactList}\item 
 \mbox{\hyperlink{classoomph_1_1TAdvectionDiffusionReactionElement}{void}} \mbox{\hyperlink{classoomph_1_1LAPACK__QZ_aaebeec8c3d313982d20ebce117d51665}{find\+\_\+eigenvalues}} (\mbox{\hyperlink{classoomph_1_1TAdvectionDiffusionReactionElement}{const}} \mbox{\hyperlink{classoomph_1_1ComplexMatrixBase}{Complex\+Matrix\+Base}} \&A, \mbox{\hyperlink{classoomph_1_1TAdvectionDiffusionReactionElement}{const}} \mbox{\hyperlink{classoomph_1_1ComplexMatrixBase}{Complex\+Matrix\+Base}} \&M, \mbox{\hyperlink{classoomph_1_1Vector}{Vector}}$<$ std\+::complex$<$ \mbox{\hyperlink{classoomph_1_1TAdvectionDiffusionReactionElement}{double}} $>$ $>$ \&eigenvalue, \mbox{\hyperlink{classoomph_1_1Vector}{Vector}}$<$ \mbox{\hyperlink{classoomph_1_1Vector}{Vector}}$<$ std\+::complex$<$ \mbox{\hyperlink{classoomph_1_1TAdvectionDiffusionReactionElement}{double}} $>$ $>$ $>$ \&\mbox{\hyperlink{classoomph_1_1TAdvectionDiffusionReactionElement}{eigenvector}})
@@ -86,7 +84,7 @@ Inheritance diagram for oomph\+::LAPACK\+\_\+\+QZ\+:\begin{figure}[H]
 \begin{DoxyCompactItemize}
 \item 
 \mbox{\hyperlink{classoomph_1_1TAdvectionDiffusionReactionElement}{void}} \mbox{\hyperlink{classoomph_1_1LAPACK__QZ_a352beb2b8f123bbb86483a8732276ff0}{solve\+\_\+eigenproblem\+\_\+helper}} (\mbox{\hyperlink{classoomph_1_1Problem}{Problem}} \texorpdfstring{$\ast$}{*}\mbox{\hyperlink{classoomph_1_1TAdvectionDiffusionReactionElement}{const}} \&problem\+\_\+pt, \mbox{\hyperlink{classoomph_1_1TAdvectionDiffusionReactionElement}{const}} \mbox{\hyperlink{classoomph_1_1TAdvectionDiffusionReactionElement}{int}} \&\mbox{\hyperlink{classoomph_1_1TAdvectionDiffusionReactionElement}{n\+\_\+eval}}, \mbox{\hyperlink{classoomph_1_1Vector}{Vector}}$<$ std\+::complex$<$ \mbox{\hyperlink{classoomph_1_1TAdvectionDiffusionReactionElement}{double}} $>$ $>$ \&alpha, \mbox{\hyperlink{classoomph_1_1Vector}{Vector}}$<$ \mbox{\hyperlink{classoomph_1_1TAdvectionDiffusionReactionElement}{double}} $>$ \&beta, \mbox{\hyperlink{classoomph_1_1Vector}{Vector}}$<$ \mbox{\hyperlink{classoomph_1_1DoubleVector}{Double\+Vector}} $>$ \&\mbox{\hyperlink{classoomph_1_1TAdvectionDiffusionReactionElement}{eigenvector}})
-\begin{DoxyCompactList}\small\item\em Helper function called from legacy and updated version from "{}raw"{} lapack code. \end{DoxyCompactList}\item 
+\begin{DoxyCompactList}\small\item\em Helper function called from "{}raw"{} lapack code. \end{DoxyCompactList}\item 
 \mbox{\hyperlink{classoomph_1_1TAdvectionDiffusionReactionElement}{void}} \mbox{\hyperlink{classoomph_1_1LAPACK__QZ_a735e38f88cfa0c21a01f486df261013e}{DGGEV\+\_\+error}} (\mbox{\hyperlink{classoomph_1_1TAdvectionDiffusionReactionElement}{const}} \mbox{\hyperlink{classoomph_1_1TAdvectionDiffusionReactionElement}{int}} \&\mbox{\hyperlink{classoomph_1_1TAdvectionDiffusionReactionElement}{info}}, \mbox{\hyperlink{classoomph_1_1TAdvectionDiffusionReactionElement}{const}} \mbox{\hyperlink{classoomph_1_1TAdvectionDiffusionReactionElement}{int}} \&\mbox{\hyperlink{classoomph_1_1TAdvectionDiffusionReactionElement}{n}})
 \begin{DoxyCompactList}\small\item\em Provide diagonstic for DGGEV error return. \end{DoxyCompactList}\item 
 \mbox{\hyperlink{classoomph_1_1TAdvectionDiffusionReactionElement}{void}} \mbox{\hyperlink{classoomph_1_1LAPACK__QZ_a1bd2bc6c3de0e768ac2120371c65127b}{ZGGEV\+\_\+error}} (\mbox{\hyperlink{classoomph_1_1TAdvectionDiffusionReactionElement}{const}} \mbox{\hyperlink{classoomph_1_1TAdvectionDiffusionReactionElement}{int}} \&\mbox{\hyperlink{classoomph_1_1TAdvectionDiffusionReactionElement}{info}}, \mbox{\hyperlink{classoomph_1_1TAdvectionDiffusionReactionElement}{const}} \mbox{\hyperlink{classoomph_1_1TAdvectionDiffusionReactionElement}{int}} \&\mbox{\hyperlink{classoomph_1_1TAdvectionDiffusionReactionElement}{n}})
@@ -112,7 +110,7 @@ Inheritance diagram for oomph\+::LAPACK\+\_\+\+QZ\+:\begin{figure}[H]
 \doxysubsection{Detailed Description}
 Class for the LAPACK QZ eigensolver. 
 
-Definition at line \mbox{\hyperlink{eigen__solver_8h_source_l00317}{317}} of file \mbox{\hyperlink{eigen__solver_8h_source}{eigen\+\_\+solver.\+h}}.
+Definition at line \mbox{\hyperlink{eigen__solver_8h_source_l00157}{157}} of file \mbox{\hyperlink{eigen__solver_8h_source}{eigen\+\_\+solver.\+h}}.
 
 
 
@@ -129,7 +127,7 @@ Empty constructor.
 
 
 
-Definition at line \mbox{\hyperlink{eigen__solver_8h_source_l00321}{321}} of file \mbox{\hyperlink{eigen__solver_8h_source}{eigen\+\_\+solver.\+h}}.
+Definition at line \mbox{\hyperlink{eigen__solver_8h_source_l00161}{161}} of file \mbox{\hyperlink{eigen__solver_8h_source}{eigen\+\_\+solver.\+h}}.
 
 \Hypertarget{classoomph_1_1LAPACK__QZ_aef8e62c0654e618f8c46a16de2961207}\label{classoomph_1_1LAPACK__QZ_aef8e62c0654e618f8c46a16de2961207} 
 \index{oomph::LAPACK\_QZ@{oomph::LAPACK\_QZ}!LAPACK\_QZ@{LAPACK\_QZ}}
@@ -153,7 +151,7 @@ Empty desctructor.
 
 
 
-Definition at line \mbox{\hyperlink{eigen__solver_8h_source_l00330}{330}} of file \mbox{\hyperlink{eigen__solver_8h_source}{eigen\+\_\+solver.\+h}}.
+Definition at line \mbox{\hyperlink{eigen__solver_8h_source_l00170}{170}} of file \mbox{\hyperlink{eigen__solver_8h_source}{eigen\+\_\+solver.\+h}}.
 
 
 
@@ -170,11 +168,11 @@ Provide diagonstic for DGGEV error return.
 
 
 
-Definition at line \mbox{\hyperlink{eigen__solver_8h_source_l00402}{402}} of file \mbox{\hyperlink{eigen__solver_8h_source}{eigen\+\_\+solver.\+h}}.
+Definition at line \mbox{\hyperlink{eigen__solver_8h_source_l00227}{227}} of file \mbox{\hyperlink{eigen__solver_8h_source}{eigen\+\_\+solver.\+h}}.
 
 
 
-Referenced by \mbox{\hyperlink{eigen__solver_8cc_source_l00566}{solve\+\_\+eigenproblem\+\_\+helper()}}.
+Referenced by \mbox{\hyperlink{eigen__solver_8cc_source_l00065}{solve\+\_\+eigenproblem\+\_\+helper()}}.
 
 \Hypertarget{classoomph_1_1LAPACK__QZ_aaebeec8c3d313982d20ebce117d51665}\label{classoomph_1_1LAPACK__QZ_aaebeec8c3d313982d20ebce117d51665} 
 \index{oomph::LAPACK\_QZ@{oomph::LAPACK\_QZ}!find\_eigenvalues@{find\_eigenvalues}}
@@ -188,11 +186,11 @@ Find the eigenvalues of a complex generalised eigenvalue problem specified by $ 
 
 Use LAPACK to solve a complex eigen problem specified by the given matrices. Note\+: the (real) shift that\textquotesingle{}s specifiable via the \doxylink{classoomph_1_1EigenSolver}{Eigen\+Solver} base class is ignored here. A warning gets issued if it\textquotesingle{}s set to a nonzero value. 
 
-Definition at line \mbox{\hyperlink{eigen__solver_8cc_source_l00946}{946}} of file \mbox{\hyperlink{eigen__solver_8cc_source}{eigen\+\_\+solver.\+cc}}.
+Definition at line \mbox{\hyperlink{eigen__solver_8cc_source_l00401}{401}} of file \mbox{\hyperlink{eigen__solver_8cc_source}{eigen\+\_\+solver.\+cc}}.
 
 
 
-References \mbox{\hyperlink{cfortran_8h_source_l00603}{i}}, \mbox{\hyperlink{classoomph_1_1ComplexMatrixBase_adcbdf19bc82c61c0a4fbfd8c8de97b3b}{oomph\+::\+Complex\+Matrix\+Base\+::nrow()}}, \mbox{\hyperlink{eigen__solver_8h_source_l00065}{oomph\+::\+Eigen\+Solver\+::\+Sigma\+\_\+real}}, and \mbox{\hyperlink{eigen__solver_8h_source_l00441}{ZGGEV\+\_\+error()}}.
+References \mbox{\hyperlink{cfortran_8h_source_l00603}{i}}, \mbox{\hyperlink{classoomph_1_1ComplexMatrixBase_adcbdf19bc82c61c0a4fbfd8c8de97b3b}{oomph\+::\+Complex\+Matrix\+Base\+::nrow()}}, \mbox{\hyperlink{eigen__solver_8h_source_l00065}{oomph\+::\+Eigen\+Solver\+::\+Sigma\+\_\+real}}, and \mbox{\hyperlink{eigen__solver_8h_source_l00266}{ZGGEV\+\_\+error()}}.
 
 \Hypertarget{classoomph_1_1LAPACK__QZ_a67e4d21844d71a5e8edd455d5dcbf048}\label{classoomph_1_1LAPACK__QZ_a67e4d21844d71a5e8edd455d5dcbf048} 
 \index{oomph::LAPACK\_QZ@{oomph::LAPACK\_QZ}!operator=@{operator=}}
@@ -220,11 +218,11 @@ Implements \mbox{\hyperlink{classoomph_1_1EigenSolver_a45497b2b9ca94c6fd5ec2836b
 
 
 
-Definition at line \mbox{\hyperlink{eigen__solver_8cc_source_l00811}{811}} of file \mbox{\hyperlink{eigen__solver_8cc_source}{eigen\+\_\+solver.\+cc}}.
+Definition at line \mbox{\hyperlink{eigen__solver_8cc_source_l00266}{266}} of file \mbox{\hyperlink{eigen__solver_8cc_source}{eigen\+\_\+solver.\+cc}}.
 
 
 
-References \mbox{\hyperlink{linear__algebra__distribution_8h_source_l00457}{oomph\+::\+Distributable\+Linear\+Algebra\+Object\+::distribution\+\_\+pt()}}, \mbox{\hyperlink{problem_8h_source_l01678}{oomph\+::\+Problem\+::ndof()}}, \mbox{\hyperlink{eigen__solver_8cc_source_l00566}{solve\+\_\+eigenproblem\+\_\+helper()}}, and \mbox{\hyperlink{eigen__solver_8h_source_l00479}{Tolerance\+\_\+for\+\_\+ccness\+\_\+check}}.
+References \mbox{\hyperlink{linear__algebra__distribution_8h_source_l00457}{oomph\+::\+Distributable\+Linear\+Algebra\+Object\+::distribution\+\_\+pt()}}, \mbox{\hyperlink{problem_8h_source_l01704}{oomph\+::\+Problem\+::ndof()}}, \mbox{\hyperlink{eigen__solver_8cc_source_l00065}{solve\+\_\+eigenproblem\+\_\+helper()}}, and \mbox{\hyperlink{eigen__solver_8h_source_l00304}{Tolerance\+\_\+for\+\_\+ccness\+\_\+check}}.
 
 \Hypertarget{classoomph_1_1LAPACK__QZ_a352beb2b8f123bbb86483a8732276ff0}\label{classoomph_1_1LAPACK__QZ_a352beb2b8f123bbb86483a8732276ff0} 
 \index{oomph::LAPACK\_QZ@{oomph::LAPACK\_QZ}!solve\_eigenproblem\_helper@{solve\_eigenproblem\_helper}}
@@ -234,41 +232,19 @@ References \mbox{\hyperlink{linear__algebra__distribution_8h_source_l00457}{oomp
 
 
 
-Helper function called from legacy and updated version from "{}raw"{} lapack code. 
+Helper function called from "{}raw"{} lapack code. 
 
 Use LAPACK QZ to solve the real eigenproblem that is assembled by elements in a mesh in a \doxylink{classoomph_1_1Problem}{Problem} object. Note that the assembled matrices include the shift and are real. The eigenvalues and eigenvectors are, in general, complex. Eigenvalues may be infinite and are therefore returned as $ \lambda_i = \alpha_i / \beta_i $ where $ \alpha_i $ is complex while $ \beta_i $ is real. The actual eigenvalues may then be computed by doing the division, checking for zero betas to avoid Na\+Ns. This is actually a helper function that stores re \& imag parts of eigenvectors in a collection of real vectors; they are disentangled in the alternative version of this function that returns Vectors of complex vectors. At least n\+\_\+eval eigenvalues are computed. 
 
-Definition at line \mbox{\hyperlink{eigen__solver_8cc_source_l00566}{566}} of file \mbox{\hyperlink{eigen__solver_8cc_source}{eigen\+\_\+solver.\+cc}}.
+Definition at line \mbox{\hyperlink{eigen__solver_8cc_source_l00065}{65}} of file \mbox{\hyperlink{eigen__solver_8cc_source}{eigen\+\_\+solver.\+cc}}.
 
 
 
-References \mbox{\hyperlink{linear__algebra__distribution_8h_source_l00507}{oomph\+::\+Distributable\+Linear\+Algebra\+Object\+::build\+\_\+distribution()}}, \mbox{\hyperlink{problem_8h_source_l01246}{oomph\+::\+Problem\+::communicator\+\_\+pt()}}, \mbox{\hyperlink{eigen__solver_8h_source_l00402}{DGGEV\+\_\+error()}}, \mbox{\hyperlink{linear__algebra__distribution_8h_source_l00457}{oomph\+::\+Distributable\+Linear\+Algebra\+Object\+::distribution\+\_\+pt()}}, \mbox{\hyperlink{problem_8cc_source_l08602}{oomph\+::\+Problem\+::get\+\_\+eigenproblem\+\_\+matrices()}}, \mbox{\hyperlink{cfortran_8h_source_l00603}{i}}, \mbox{\hyperlink{problem_8h_source_l01678}{oomph\+::\+Problem\+::ndof()}}, and \mbox{\hyperlink{eigen__solver_8h_source_l00065}{oomph\+::\+Eigen\+Solver\+::\+Sigma\+\_\+real}}.
+References \mbox{\hyperlink{linear__algebra__distribution_8h_source_l00507}{oomph\+::\+Distributable\+Linear\+Algebra\+Object\+::build\+\_\+distribution()}}, \mbox{\hyperlink{problem_8h_source_l01266}{oomph\+::\+Problem\+::communicator\+\_\+pt()}}, \mbox{\hyperlink{eigen__solver_8h_source_l00227}{DGGEV\+\_\+error()}}, \mbox{\hyperlink{linear__algebra__distribution_8h_source_l00457}{oomph\+::\+Distributable\+Linear\+Algebra\+Object\+::distribution\+\_\+pt()}}, \mbox{\hyperlink{problem_8cc_source_l08429}{oomph\+::\+Problem\+::get\+\_\+eigenproblem\+\_\+matrices()}}, \mbox{\hyperlink{cfortran_8h_source_l00603}{i}}, \mbox{\hyperlink{problem_8h_source_l01704}{oomph\+::\+Problem\+::ndof()}}, and \mbox{\hyperlink{eigen__solver_8h_source_l00065}{oomph\+::\+Eigen\+Solver\+::\+Sigma\+\_\+real}}.
 
 
 
-Referenced by \mbox{\hyperlink{eigen__solver_8cc_source_l00811}{solve\+\_\+eigenproblem()}}, and \mbox{\hyperlink{eigen__solver_8cc_source_l00763}{solve\+\_\+eigenproblem\+\_\+legacy()}}.
-
-\Hypertarget{classoomph_1_1LAPACK__QZ_ae64547bdc20fa5ea6aaa3c459cbcf0ad}\label{classoomph_1_1LAPACK__QZ_ae64547bdc20fa5ea6aaa3c459cbcf0ad} 
-\index{oomph::LAPACK\_QZ@{oomph::LAPACK\_QZ}!solve\_eigenproblem\_legacy@{solve\_eigenproblem\_legacy}}
-\index{solve\_eigenproblem\_legacy@{solve\_eigenproblem\_legacy}!oomph::LAPACK\_QZ@{oomph::LAPACK\_QZ}}
-\doxysubsubsection{\texorpdfstring{solve\_eigenproblem\_legacy()}{solve\_eigenproblem\_legacy()}}
-{\footnotesize\ttfamily \mbox{\hyperlink{classoomph_1_1TAdvectionDiffusionReactionElement}{void}} oomph\+::\+LAPACK\+\_\+\+QZ\+::solve\+\_\+eigenproblem\+\_\+legacy (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classoomph_1_1Problem}{Problem}} \texorpdfstring{$\ast$}{*}\mbox{\hyperlink{classoomph_1_1TAdvectionDiffusionReactionElement}{const}} \&}]{problem\+\_\+pt,  }\item[{\mbox{\hyperlink{classoomph_1_1TAdvectionDiffusionReactionElement}{const}} \mbox{\hyperlink{classoomph_1_1TAdvectionDiffusionReactionElement}{int}} \&}]{n\+\_\+eval,  }\item[{\mbox{\hyperlink{classoomph_1_1Vector}{Vector}}$<$ std\+::complex$<$ \mbox{\hyperlink{classoomph_1_1TAdvectionDiffusionReactionElement}{double}} $>$ $>$ \&}]{eigenvalue,  }\item[{\mbox{\hyperlink{classoomph_1_1Vector}{Vector}}$<$ \mbox{\hyperlink{classoomph_1_1DoubleVector}{Double\+Vector}} $>$ \&}]{eigenvector,  }\item[{\mbox{\hyperlink{classoomph_1_1TAdvectionDiffusionReactionElement}{const}} \mbox{\hyperlink{classoomph_1_1TAdvectionDiffusionReactionElement}{bool}} \&}]{do\+\_\+adjoint\+\_\+problem = {\ttfamily \mbox{\hyperlink{classoomph_1_1TAdvectionDiffusionReactionElement}{false}}} }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [virtual]}}
-
-
-
-Use LAPACK QZ to solve the real eigenproblem that is assembled by elements in a mesh in a \doxylink{classoomph_1_1Problem}{Problem} object. Note that the assembled matrices include the shift and are real. The eigenvalues and eigenvectors are, in general, complex. This is a legacy version of this function that stores re \& imag parts of eigenvectors in some solver-\/specific collection of real vectors; they are disentangled in the alternative version of this function that returns Vectors of complex Vectors. At least n\+\_\+eval eigenvalues are computed. 
-
-Use LAPACK QZ to solve the real eigenproblem that is assembled by elements in a mesh in a \doxylink{classoomph_1_1Problem}{Problem} object. Note that the assembled matrices include the shift and are real. The eigenvalues and eigenvectors are, in general, complex. This is a legacy version of this function that stores re \& imag parts of eigenvectors in some solver-\/specific collection of real vectors; they are disentangled in the alternative version of this function that returns Vectors of complex vectors. At least n\+\_\+eval eigenvalues are computed. 
-
-Implements \mbox{\hyperlink{classoomph_1_1EigenSolver_acf9affb03fcc85bb39eae4d6ac1c53fd}{oomph\+::\+Eigen\+Solver}}.
-
-
-
-Definition at line \mbox{\hyperlink{eigen__solver_8cc_source_l00763}{763}} of file \mbox{\hyperlink{eigen__solver_8cc_source}{eigen\+\_\+solver.\+cc}}.
-
-
-
-References \mbox{\hyperlink{cfortran_8h_source_l00603}{i}}, \mbox{\hyperlink{problem_8h_source_l01678}{oomph\+::\+Problem\+::ndof()}}, and \mbox{\hyperlink{eigen__solver_8cc_source_l00566}{solve\+\_\+eigenproblem\+\_\+helper()}}.
+Referenced by \mbox{\hyperlink{eigen__solver_8cc_source_l00266}{solve\+\_\+eigenproblem()}}.
 
 \Hypertarget{classoomph_1_1LAPACK__QZ_ae3557066e5afe04fa622e1cc5edb4365}\label{classoomph_1_1LAPACK__QZ_ae3557066e5afe04fa622e1cc5edb4365} 
 \index{oomph::LAPACK\_QZ@{oomph::LAPACK\_QZ}!tolerance\_for\_ccness\_check@{tolerance\_for\_ccness\_check}}
@@ -282,11 +258,11 @@ Access to tolerance for checking complex conjugateness of eigenvalues.
 
 
 
-Definition at line \mbox{\hyperlink{eigen__solver_8h_source_l00386}{386}} of file \mbox{\hyperlink{eigen__solver_8h_source}{eigen\+\_\+solver.\+h}}.
+Definition at line \mbox{\hyperlink{eigen__solver_8h_source_l00211}{211}} of file \mbox{\hyperlink{eigen__solver_8h_source}{eigen\+\_\+solver.\+h}}.
 
 
 
-References \mbox{\hyperlink{eigen__solver_8h_source_l00479}{Tolerance\+\_\+for\+\_\+ccness\+\_\+check}}.
+References \mbox{\hyperlink{eigen__solver_8h_source_l00304}{Tolerance\+\_\+for\+\_\+ccness\+\_\+check}}.
 
 \Hypertarget{classoomph_1_1LAPACK__QZ_a5241b0f0242eee1043631a1c4c284ea3}\label{classoomph_1_1LAPACK__QZ_a5241b0f0242eee1043631a1c4c284ea3} 
 \index{oomph::LAPACK\_QZ@{oomph::LAPACK\_QZ}!tolerance\_for\_ccness\_check@{tolerance\_for\_ccness\_check}}
@@ -300,11 +276,11 @@ Access to tolerance for checking complex conjugateness of eigenvalues (const ver
 
 
 
-Definition at line \mbox{\hyperlink{eigen__solver_8h_source_l00379}{379}} of file \mbox{\hyperlink{eigen__solver_8h_source}{eigen\+\_\+solver.\+h}}.
+Definition at line \mbox{\hyperlink{eigen__solver_8h_source_l00204}{204}} of file \mbox{\hyperlink{eigen__solver_8h_source}{eigen\+\_\+solver.\+h}}.
 
 
 
-References \mbox{\hyperlink{eigen__solver_8h_source_l00479}{Tolerance\+\_\+for\+\_\+ccness\+\_\+check}}.
+References \mbox{\hyperlink{eigen__solver_8h_source_l00304}{Tolerance\+\_\+for\+\_\+ccness\+\_\+check}}.
 
 \Hypertarget{classoomph_1_1LAPACK__QZ_a1bd2bc6c3de0e768ac2120371c65127b}\label{classoomph_1_1LAPACK__QZ_a1bd2bc6c3de0e768ac2120371c65127b} 
 \index{oomph::LAPACK\_QZ@{oomph::LAPACK\_QZ}!ZGGEV\_error@{ZGGEV\_error}}
@@ -318,11 +294,11 @@ Provide diagonstic for ZGGEV error return.
 
 
 
-Definition at line \mbox{\hyperlink{eigen__solver_8h_source_l00441}{441}} of file \mbox{\hyperlink{eigen__solver_8h_source}{eigen\+\_\+solver.\+h}}.
+Definition at line \mbox{\hyperlink{eigen__solver_8h_source_l00266}{266}} of file \mbox{\hyperlink{eigen__solver_8h_source}{eigen\+\_\+solver.\+h}}.
 
 
 
-Referenced by \mbox{\hyperlink{eigen__solver_8cc_source_l00946}{find\+\_\+eigenvalues()}}.
+Referenced by \mbox{\hyperlink{eigen__solver_8cc_source_l00401}{find\+\_\+eigenvalues()}}.
 
 
 
@@ -339,11 +315,11 @@ Tolerance for checking complex conjugateness of eigenvalues.
 
 
 
-Definition at line \mbox{\hyperlink{eigen__solver_8h_source_l00479}{479}} of file \mbox{\hyperlink{eigen__solver_8h_source}{eigen\+\_\+solver.\+h}}.
+Definition at line \mbox{\hyperlink{eigen__solver_8h_source_l00304}{304}} of file \mbox{\hyperlink{eigen__solver_8h_source}{eigen\+\_\+solver.\+h}}.
 
 
 
-Referenced by \mbox{\hyperlink{eigen__solver_8cc_source_l00811}{solve\+\_\+eigenproblem()}}, \mbox{\hyperlink{eigen__solver_8h_source_l00386}{tolerance\+\_\+for\+\_\+ccness\+\_\+check()}}, and \mbox{\hyperlink{eigen__solver_8h_source_l00379}{tolerance\+\_\+for\+\_\+ccness\+\_\+check()}}.
+Referenced by \mbox{\hyperlink{eigen__solver_8cc_source_l00266}{solve\+\_\+eigenproblem()}}, \mbox{\hyperlink{eigen__solver_8h_source_l00211}{tolerance\+\_\+for\+\_\+ccness\+\_\+check()}}, and \mbox{\hyperlink{eigen__solver_8h_source_l00204}{tolerance\+\_\+for\+\_\+ccness\+\_\+check()}}.
 
 
 

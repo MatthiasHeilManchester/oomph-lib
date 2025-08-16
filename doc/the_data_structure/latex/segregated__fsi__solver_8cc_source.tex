@@ -7,7 +7,7 @@
 \DoxyCodeLine{\Hypertarget{segregated__fsi__solver_8cc_source_l00003}00003\ \textcolor{comment}{//\ LIC//\ multi-\/physics\ finite-\/element\ library,\ available}}
 \DoxyCodeLine{\Hypertarget{segregated__fsi__solver_8cc_source_l00004}00004\ \textcolor{comment}{//\ LIC//\ at\ http://www.oomph-\/lib.org.}}
 \DoxyCodeLine{\Hypertarget{segregated__fsi__solver_8cc_source_l00005}00005\ \textcolor{comment}{//\ LIC//}}
-\DoxyCodeLine{\Hypertarget{segregated__fsi__solver_8cc_source_l00006}00006\ \textcolor{comment}{//\ LIC//\ Copyright\ (C)\ 2006-\/2023\ Matthias\ Heil\ and\ Andrew\ Hazel}}
+\DoxyCodeLine{\Hypertarget{segregated__fsi__solver_8cc_source_l00006}00006\ \textcolor{comment}{//\ LIC//\ Copyright\ (C)\ 2006-\/2024\ Matthias\ Heil\ and\ Andrew\ Hazel}}
 \DoxyCodeLine{\Hypertarget{segregated__fsi__solver_8cc_source_l00007}00007\ \textcolor{comment}{//\ LIC//}}
 \DoxyCodeLine{\Hypertarget{segregated__fsi__solver_8cc_source_l00008}00008\ \textcolor{comment}{//\ LIC//\ This\ library\ is\ free\ software;\ you\ can\ redistribute\ it\ and/or}}
 \DoxyCodeLine{\Hypertarget{segregated__fsi__solver_8cc_source_l00009}00009\ \textcolor{comment}{//\ LIC//\ modify\ it\ under\ the\ terms\ of\ the\ GNU\ Lesser\ General\ Public}}
@@ -902,202 +902,202 @@
 \DoxyCodeLine{\Hypertarget{segregated__fsi__solver_8cc_source_l00898}00898\ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Throw\ an\ error\ indicating\ if\ we\ ran\ out\ of\ iterations}}
 \DoxyCodeLine{\Hypertarget{segregated__fsi__solver_8cc_source_l00899}00899\ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (\mbox{\hyperlink{classoomph_1_1TAdvectionDiffusionReactionElement}{iter\_taken}}\ ==\ \mbox{\hyperlink{classoomph_1_1SegregatableFSIProblem_aa2a06cb9517d1f183cdbaa20ea077805}{Max\_picard}})}
 \DoxyCodeLine{\Hypertarget{segregated__fsi__solver_8cc_source_l00900}00900\ \ \ \ \ \ \ \ \ \ \ \{}
-\DoxyCodeLine{\Hypertarget{segregated__fsi__solver_8cc_source_l00901}00901\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{throw}\ \mbox{\hyperlink{classoomph_1_1SegregatedSolverError}{SegregatedSolverError}}(\textcolor{keyword}{true});}
-\DoxyCodeLine{\Hypertarget{segregated__fsi__solver_8cc_source_l00902}00902\ \ \ \ \ \ \ \ \ \ \ \}}
-\DoxyCodeLine{\Hypertarget{segregated__fsi__solver_8cc_source_l00903}00903\ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{else}}
-\DoxyCodeLine{\Hypertarget{segregated__fsi__solver_8cc_source_l00904}00904\ \ \ \ \ \ \ \ \ \ \ \{}
-\DoxyCodeLine{\Hypertarget{segregated__fsi__solver_8cc_source_l00905}00905\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{throw}\ \mbox{\hyperlink{classoomph_1_1SegregatedSolverError}{SegregatedSolverError}}(\textcolor{keyword}{false});}
-\DoxyCodeLine{\Hypertarget{segregated__fsi__solver_8cc_source_l00906}00906\ \ \ \ \ \ \ \ \ \ \ \}}
-\DoxyCodeLine{\Hypertarget{segregated__fsi__solver_8cc_source_l00907}00907\ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{break};}
-\DoxyCodeLine{\Hypertarget{segregated__fsi__solver_8cc_source_l00908}00908\ }
-\DoxyCodeLine{\Hypertarget{segregated__fsi__solver_8cc_source_l00909}00909\ }
-\DoxyCodeLine{\Hypertarget{segregated__fsi__solver_8cc_source_l00910}00910\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{case}\ \mbox{\hyperlink{classoomph_1_1SegregatableFSIProblem_a06634a6823bb5062d11e97f0be78f373a735439a264d7a63a310e12f384d5a081}{Assess\_convergence\_based\_on\_relative\_solid\_change}}:}
-\DoxyCodeLine{\Hypertarget{segregated__fsi__solver_8cc_source_l00911}00911\ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{namespaceoomph_aec474227917784dc0a255faf289cfc16}{oomph\_info}}}
-\DoxyCodeLine{\Hypertarget{segregated__fsi__solver_8cc_source_l00912}00912\ \ \ \ \ \ \ \ \ \ \ \ \ <<\ \textcolor{stringliteral}{"{}\(\backslash\)n\(\backslash\)n\(\backslash\)n///////////////////////////////////////////////////////"{}}}
-\DoxyCodeLine{\Hypertarget{segregated__fsi__solver_8cc_source_l00913}00913\ \ \ \ \ \ \ \ \ \ \ \ \ <<\ \textcolor{stringliteral}{"{}\(\backslash\)nPicard\ iteration\ did\ not\ converge\ after\ "{}}\ <<\ \mbox{\hyperlink{classoomph_1_1TAdvectionDiffusionReactionElement}{iter\_taken}}}
-\DoxyCodeLine{\Hypertarget{segregated__fsi__solver_8cc_source_l00914}00914\ \ \ \ \ \ \ \ \ \ \ \ \ <<\ \textcolor{stringliteral}{"{}\ steps!"{}}\ <<\ std::endl}
-\DoxyCodeLine{\Hypertarget{segregated__fsi__solver_8cc_source_l00915}00915\ \ \ \ \ \ \ \ \ \ \ \ \ <<\ \textcolor{stringliteral}{"{}Convergence\ was\ based\ on\ relative\ change\ in\ solid\ dofs\ \(\backslash\)n"{}}}
-\DoxyCodeLine{\Hypertarget{segregated__fsi__solver_8cc_source_l00916}00916\ \ \ \ \ \ \ \ \ \ \ \ \ <<\ \textcolor{stringliteral}{"{}being\ less\ than\ "{}}\ <<\ \mbox{\hyperlink{classoomph_1_1SegregatableFSIProblem_ad9f2f249e0886878f096926b2cfca74b}{Convergence\_tolerance}}\ <<\ \textcolor{stringliteral}{"{}\ "{}}\ <<\ std::endl}
-\DoxyCodeLine{\Hypertarget{segregated__fsi__solver_8cc_source_l00917}00917\ \ \ \ \ \ \ \ \ \ \ \ \ <<\ \textcolor{stringliteral}{"{}but\ we\ achieved\ only\ "{}}\ <<\ tol\_achieved\ <<\ \textcolor{stringliteral}{"{}."{}}\ <<\ std::endl}
-\DoxyCodeLine{\Hypertarget{segregated__fsi__solver_8cc_source_l00918}00918\ \ \ \ \ \ \ \ \ \ \ \ \ <<\ \textcolor{stringliteral}{"{}////////////////////////////////////////////////////////\(\backslash\)n\(\backslash\)n\(\backslash\)n"{}}}
-\DoxyCodeLine{\Hypertarget{segregated__fsi__solver_8cc_source_l00919}00919\ \ \ \ \ \ \ \ \ \ \ \ \ <<\ std::endl;}
-\DoxyCodeLine{\Hypertarget{segregated__fsi__solver_8cc_source_l00920}00920\ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Throw\ an\ error\ indicating\ if\ we\ ran\ out\ of\ iterations}}
-\DoxyCodeLine{\Hypertarget{segregated__fsi__solver_8cc_source_l00921}00921\ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (\mbox{\hyperlink{classoomph_1_1TAdvectionDiffusionReactionElement}{iter\_taken}}\ ==\ \mbox{\hyperlink{classoomph_1_1SegregatableFSIProblem_aa2a06cb9517d1f183cdbaa20ea077805}{Max\_picard}})}
-\DoxyCodeLine{\Hypertarget{segregated__fsi__solver_8cc_source_l00922}00922\ \ \ \ \ \ \ \ \ \ \ \{}
-\DoxyCodeLine{\Hypertarget{segregated__fsi__solver_8cc_source_l00923}00923\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{throw}\ \mbox{\hyperlink{classoomph_1_1SegregatedSolverError}{SegregatedSolverError}}(\textcolor{keyword}{true});}
-\DoxyCodeLine{\Hypertarget{segregated__fsi__solver_8cc_source_l00924}00924\ \ \ \ \ \ \ \ \ \ \ \}}
-\DoxyCodeLine{\Hypertarget{segregated__fsi__solver_8cc_source_l00925}00925\ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{else}}
-\DoxyCodeLine{\Hypertarget{segregated__fsi__solver_8cc_source_l00926}00926\ \ \ \ \ \ \ \ \ \ \ \{}
-\DoxyCodeLine{\Hypertarget{segregated__fsi__solver_8cc_source_l00927}00927\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{throw}\ \mbox{\hyperlink{classoomph_1_1SegregatedSolverError}{SegregatedSolverError}}(\textcolor{keyword}{false});}
-\DoxyCodeLine{\Hypertarget{segregated__fsi__solver_8cc_source_l00928}00928\ \ \ \ \ \ \ \ \ \ \ \}}
-\DoxyCodeLine{\Hypertarget{segregated__fsi__solver_8cc_source_l00929}00929\ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{break};}
-\DoxyCodeLine{\Hypertarget{segregated__fsi__solver_8cc_source_l00930}00930\ }
-\DoxyCodeLine{\Hypertarget{segregated__fsi__solver_8cc_source_l00931}00931\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{case}\ \mbox{\hyperlink{classoomph_1_1SegregatableFSIProblem_a06634a6823bb5062d11e97f0be78f373aaf32b15e9b1cc097ef3acff8a196bbbd}{Assess\_convergence\_based\_on\_max\_global\_residual}}:}
-\DoxyCodeLine{\Hypertarget{segregated__fsi__solver_8cc_source_l00932}00932\ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{namespaceoomph_aec474227917784dc0a255faf289cfc16}{oomph\_info}}}
-\DoxyCodeLine{\Hypertarget{segregated__fsi__solver_8cc_source_l00933}00933\ \ \ \ \ \ \ \ \ \ \ \ \ <<\ \textcolor{stringliteral}{"{}\(\backslash\)n\(\backslash\)n\(\backslash\)n////////////////////////////////////////////////////////"{}}}
-\DoxyCodeLine{\Hypertarget{segregated__fsi__solver_8cc_source_l00934}00934\ \ \ \ \ \ \ \ \ \ \ \ \ <<\ \textcolor{stringliteral}{"{}\(\backslash\)nPicard\ iteration\ did\ not\ converge\ after\ "{}}\ <<\ \mbox{\hyperlink{classoomph_1_1TAdvectionDiffusionReactionElement}{iter\_taken}}}
-\DoxyCodeLine{\Hypertarget{segregated__fsi__solver_8cc_source_l00935}00935\ \ \ \ \ \ \ \ \ \ \ \ \ <<\ \textcolor{stringliteral}{"{}\ steps!"{}}\ <<\ std::endl}
-\DoxyCodeLine{\Hypertarget{segregated__fsi__solver_8cc_source_l00936}00936\ \ \ \ \ \ \ \ \ \ \ \ \ <<\ \textcolor{stringliteral}{"{}Convergence\ was\ based\ on\ max.\ residual\ of\ coupled\ eqns\ \(\backslash\)n"{}}}
-\DoxyCodeLine{\Hypertarget{segregated__fsi__solver_8cc_source_l00937}00937\ \ \ \ \ \ \ \ \ \ \ \ \ <<\ \textcolor{stringliteral}{"{}being\ less\ than\ "{}}\ <<\ \mbox{\hyperlink{classoomph_1_1SegregatableFSIProblem_ad9f2f249e0886878f096926b2cfca74b}{Convergence\_tolerance}}\ <<\ \textcolor{stringliteral}{"{}\ "{}}\ <<\ std::endl}
-\DoxyCodeLine{\Hypertarget{segregated__fsi__solver_8cc_source_l00938}00938\ \ \ \ \ \ \ \ \ \ \ \ \ <<\ \textcolor{stringliteral}{"{}but\ we\ achieved\ only\ "{}}\ <<\ tol\_achieved\ <<\ \textcolor{stringliteral}{"{}."{}}\ <<\ std::endl}
-\DoxyCodeLine{\Hypertarget{segregated__fsi__solver_8cc_source_l00939}00939\ }
-\DoxyCodeLine{\Hypertarget{segregated__fsi__solver_8cc_source_l00940}00940\ \ \ \ \ \ \ \ \ \ \ \ \ <<\ \textcolor{stringliteral}{"{}////////////////////////////////////////////////////////\(\backslash\)n\(\backslash\)n\(\backslash\)n"{}}}
-\DoxyCodeLine{\Hypertarget{segregated__fsi__solver_8cc_source_l00941}00941\ \ \ \ \ \ \ \ \ \ \ \ \ <<\ std::endl;}
-\DoxyCodeLine{\Hypertarget{segregated__fsi__solver_8cc_source_l00942}00942\ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Throw\ an\ error\ indicating\ if\ we\ ran\ out\ of\ iterations}}
-\DoxyCodeLine{\Hypertarget{segregated__fsi__solver_8cc_source_l00943}00943\ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (\mbox{\hyperlink{classoomph_1_1TAdvectionDiffusionReactionElement}{iter\_taken}}\ ==\ \mbox{\hyperlink{classoomph_1_1SegregatableFSIProblem_aa2a06cb9517d1f183cdbaa20ea077805}{Max\_picard}})}
-\DoxyCodeLine{\Hypertarget{segregated__fsi__solver_8cc_source_l00944}00944\ \ \ \ \ \ \ \ \ \ \ \{}
-\DoxyCodeLine{\Hypertarget{segregated__fsi__solver_8cc_source_l00945}00945\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{throw}\ \mbox{\hyperlink{classoomph_1_1SegregatedSolverError}{SegregatedSolverError}}(\textcolor{keyword}{true});}
-\DoxyCodeLine{\Hypertarget{segregated__fsi__solver_8cc_source_l00946}00946\ \ \ \ \ \ \ \ \ \ \ \}}
-\DoxyCodeLine{\Hypertarget{segregated__fsi__solver_8cc_source_l00947}00947\ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{else}}
-\DoxyCodeLine{\Hypertarget{segregated__fsi__solver_8cc_source_l00948}00948\ \ \ \ \ \ \ \ \ \ \ \{}
-\DoxyCodeLine{\Hypertarget{segregated__fsi__solver_8cc_source_l00949}00949\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{throw}\ \mbox{\hyperlink{classoomph_1_1SegregatedSolverError}{SegregatedSolverError}}(\textcolor{keyword}{false});}
-\DoxyCodeLine{\Hypertarget{segregated__fsi__solver_8cc_source_l00950}00950\ \ \ \ \ \ \ \ \ \ \ \}}
-\DoxyCodeLine{\Hypertarget{segregated__fsi__solver_8cc_source_l00951}00951\ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{break};}
-\DoxyCodeLine{\Hypertarget{segregated__fsi__solver_8cc_source_l00952}00952\ \ \ \ \ \ \ \}}
-\DoxyCodeLine{\Hypertarget{segregated__fsi__solver_8cc_source_l00953}00953\ \ \ \ \ \}}
-\DoxyCodeLine{\Hypertarget{segregated__fsi__solver_8cc_source_l00954}00954\ }
-\DoxyCodeLine{\Hypertarget{segregated__fsi__solver_8cc_source_l00955}00955\ \ \ \ \ \textcolor{keywordflow}{return}\ \mbox{\hyperlink{classoomph_1_1TAdvectionDiffusionReactionElement}{conv\_data}};}
-\DoxyCodeLine{\Hypertarget{segregated__fsi__solver_8cc_source_l00956}00956\ \ \ \}}
-\DoxyCodeLine{\Hypertarget{segregated__fsi__solver_8cc_source_l00957}00957\ }
-\DoxyCodeLine{\Hypertarget{segregated__fsi__solver_8cc_source_l00958}00958\ }
-\DoxyCodeLine{\Hypertarget{segregated__fsi__solver_8cc_source_l00959}00959\ \ \ \textcolor{comment}{//============================================================================}\textcolor{comment}{}}
-\DoxyCodeLine{\Hypertarget{segregated__fsi__solver_8cc_source_l00960}00960\ \textcolor{comment}{\ \ ///\ Segregated\ fixed\ point\ solver\ with\ optional\ pointwise\ Aitken\ acceleration}}
-\DoxyCodeLine{\Hypertarget{segregated__fsi__solver_8cc_source_l00961}00961\ \textcolor{comment}{\ \ ///\ on\ selected\ solid\ dofs.\ Returns\ PicardConvergenceData\ object}}
-\DoxyCodeLine{\Hypertarget{segregated__fsi__solver_8cc_source_l00962}00962\ \textcolor{comment}{\ \ ///\ that\ contains\ the\ vital\ stats\ of\ the\ iteration.}}
-\DoxyCodeLine{\Hypertarget{segregated__fsi__solver_8cc_source_l00963}00963\ \textcolor{comment}{}\ \ \textcolor{comment}{//============================================================================}}
-\DoxyCodeLine{\Hypertarget{segregated__fsi__solver_8cc_source_l00964}\mbox{\hyperlink{classoomph_1_1SegregatableFSIProblem_a8f8145df86358916df505e2b513caf6a}{00964}}\ \ \ \mbox{\hyperlink{classoomph_1_1PicardConvergenceData}{PicardConvergenceData}}\ \mbox{\hyperlink{classoomph_1_1SegregatableFSIProblem_a8f8145df86358916df505e2b513caf6a}{SegregatableFSIProblem::steady\_segregated\_solve}}()}
-\DoxyCodeLine{\Hypertarget{segregated__fsi__solver_8cc_source_l00965}00965\ \ \ \{}
-\DoxyCodeLine{\Hypertarget{segregated__fsi__solver_8cc_source_l00966}00966\ \ \ \ \ \textcolor{comment}{//\ Find\ out\ how\ many\ timesteppers\ there\ are}}
-\DoxyCodeLine{\Hypertarget{segregated__fsi__solver_8cc_source_l00967}00967\ \ \ \ \ \textcolor{keywordtype}{unsigned}\ \mbox{\hyperlink{classoomph_1_1TAdvectionDiffusionReactionElement}{n\_time\_steppers}}\ =\ \mbox{\hyperlink{classoomph_1_1Problem_ace3cdf55009c3bff21d2b7d3706d522a}{ntime\_stepper}}();}
-\DoxyCodeLine{\Hypertarget{segregated__fsi__solver_8cc_source_l00968}00968\ }
-\DoxyCodeLine{\Hypertarget{segregated__fsi__solver_8cc_source_l00969}00969\ \ \ \ \ \textcolor{comment}{//\ Vector\ of\ bools\ to\ store\ the\ is\_steady\ status\ of\ the\ various}}
-\DoxyCodeLine{\Hypertarget{segregated__fsi__solver_8cc_source_l00970}00970\ \ \ \ \ \textcolor{comment}{//\ timesteppers\ when\ we\ came\ in\ here}}
-\DoxyCodeLine{\Hypertarget{segregated__fsi__solver_8cc_source_l00971}00971\ \ \ \ \ std::vector<bool>\ \mbox{\hyperlink{classoomph_1_1TAdvectionDiffusionReactionElement}{was\_steady}}(\mbox{\hyperlink{classoomph_1_1TAdvectionDiffusionReactionElement}{n\_time\_steppers}});}
+\DoxyCodeLine{\Hypertarget{segregated__fsi__solver_8cc_source_l00901}00901\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{throw}\ \mbox{\hyperlink{classoomph_1_1RanOutOfIterationsInSegregatedSolverError}{RanOutOfIterationsInSegregatedSolverError}}(}
+\DoxyCodeLine{\Hypertarget{segregated__fsi__solver_8cc_source_l00902}00902\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{stringliteral}{"{}Error\ occured\ in\ Segregated\ solver.\ \(\backslash\)n"{}},}
+\DoxyCodeLine{\Hypertarget{segregated__fsi__solver_8cc_source_l00903}00903\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classoomph_1_1TAdvectionDiffusionReactionElement}{OOMPH\_CURRENT\_FUNCTION}},}
+\DoxyCodeLine{\Hypertarget{segregated__fsi__solver_8cc_source_l00904}00904\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classoomph_1_1TAdvectionDiffusionReactionElement}{OOMPH\_EXCEPTION\_LOCATION}});}
+\DoxyCodeLine{\Hypertarget{segregated__fsi__solver_8cc_source_l00905}00905\ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{segregated__fsi__solver_8cc_source_l00906}00906\ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{else}}
+\DoxyCodeLine{\Hypertarget{segregated__fsi__solver_8cc_source_l00907}00907\ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{segregated__fsi__solver_8cc_source_l00908}00908\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{throw}\ \mbox{\hyperlink{classoomph_1_1SegregatedSolverError}{SegregatedSolverError}}(}
+\DoxyCodeLine{\Hypertarget{segregated__fsi__solver_8cc_source_l00909}00909\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{stringliteral}{"{}Error\ occured\ in\ Segregated\ solver.\ \(\backslash\)n"{}},}
+\DoxyCodeLine{\Hypertarget{segregated__fsi__solver_8cc_source_l00910}00910\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classoomph_1_1TAdvectionDiffusionReactionElement}{OOMPH\_CURRENT\_FUNCTION}},}
+\DoxyCodeLine{\Hypertarget{segregated__fsi__solver_8cc_source_l00911}00911\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classoomph_1_1TAdvectionDiffusionReactionElement}{OOMPH\_EXCEPTION\_LOCATION}});}
+\DoxyCodeLine{\Hypertarget{segregated__fsi__solver_8cc_source_l00912}00912\ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{segregated__fsi__solver_8cc_source_l00913}00913\ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{break};}
+\DoxyCodeLine{\Hypertarget{segregated__fsi__solver_8cc_source_l00914}00914\ }
+\DoxyCodeLine{\Hypertarget{segregated__fsi__solver_8cc_source_l00915}00915\ }
+\DoxyCodeLine{\Hypertarget{segregated__fsi__solver_8cc_source_l00916}00916\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{case}\ \mbox{\hyperlink{classoomph_1_1SegregatableFSIProblem_a06634a6823bb5062d11e97f0be78f373a735439a264d7a63a310e12f384d5a081}{Assess\_convergence\_based\_on\_relative\_solid\_change}}:}
+\DoxyCodeLine{\Hypertarget{segregated__fsi__solver_8cc_source_l00917}00917\ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{namespaceoomph_aec474227917784dc0a255faf289cfc16}{oomph\_info}}}
+\DoxyCodeLine{\Hypertarget{segregated__fsi__solver_8cc_source_l00918}00918\ \ \ \ \ \ \ \ \ \ \ \ \ <<\ \textcolor{stringliteral}{"{}\(\backslash\)n\(\backslash\)n\(\backslash\)n///////////////////////////////////////////////////////"{}}}
+\DoxyCodeLine{\Hypertarget{segregated__fsi__solver_8cc_source_l00919}00919\ \ \ \ \ \ \ \ \ \ \ \ \ <<\ \textcolor{stringliteral}{"{}\(\backslash\)nPicard\ iteration\ did\ not\ converge\ after\ "{}}\ <<\ \mbox{\hyperlink{classoomph_1_1TAdvectionDiffusionReactionElement}{iter\_taken}}}
+\DoxyCodeLine{\Hypertarget{segregated__fsi__solver_8cc_source_l00920}00920\ \ \ \ \ \ \ \ \ \ \ \ \ <<\ \textcolor{stringliteral}{"{}\ steps!"{}}\ <<\ std::endl}
+\DoxyCodeLine{\Hypertarget{segregated__fsi__solver_8cc_source_l00921}00921\ \ \ \ \ \ \ \ \ \ \ \ \ <<\ \textcolor{stringliteral}{"{}Convergence\ was\ based\ on\ relative\ change\ in\ solid\ dofs\ \(\backslash\)n"{}}}
+\DoxyCodeLine{\Hypertarget{segregated__fsi__solver_8cc_source_l00922}00922\ \ \ \ \ \ \ \ \ \ \ \ \ <<\ \textcolor{stringliteral}{"{}being\ less\ than\ "{}}\ <<\ \mbox{\hyperlink{classoomph_1_1SegregatableFSIProblem_ad9f2f249e0886878f096926b2cfca74b}{Convergence\_tolerance}}\ <<\ \textcolor{stringliteral}{"{}\ "{}}\ <<\ std::endl}
+\DoxyCodeLine{\Hypertarget{segregated__fsi__solver_8cc_source_l00923}00923\ \ \ \ \ \ \ \ \ \ \ \ \ <<\ \textcolor{stringliteral}{"{}but\ we\ achieved\ only\ "{}}\ <<\ tol\_achieved\ <<\ \textcolor{stringliteral}{"{}."{}}\ <<\ std::endl}
+\DoxyCodeLine{\Hypertarget{segregated__fsi__solver_8cc_source_l00924}00924\ \ \ \ \ \ \ \ \ \ \ \ \ <<\ \textcolor{stringliteral}{"{}////////////////////////////////////////////////////////\(\backslash\)n\(\backslash\)n\(\backslash\)n"{}}}
+\DoxyCodeLine{\Hypertarget{segregated__fsi__solver_8cc_source_l00925}00925\ \ \ \ \ \ \ \ \ \ \ \ \ <<\ std::endl;}
+\DoxyCodeLine{\Hypertarget{segregated__fsi__solver_8cc_source_l00926}00926\ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Throw\ an\ error\ indicating\ if\ we\ ran\ out\ of\ iterations}}
+\DoxyCodeLine{\Hypertarget{segregated__fsi__solver_8cc_source_l00927}00927\ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (\mbox{\hyperlink{classoomph_1_1TAdvectionDiffusionReactionElement}{iter\_taken}}\ ==\ \mbox{\hyperlink{classoomph_1_1SegregatableFSIProblem_aa2a06cb9517d1f183cdbaa20ea077805}{Max\_picard}})}
+\DoxyCodeLine{\Hypertarget{segregated__fsi__solver_8cc_source_l00928}00928\ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{segregated__fsi__solver_8cc_source_l00929}00929\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{throw}\ \mbox{\hyperlink{classoomph_1_1RanOutOfIterationsInSegregatedSolverError}{RanOutOfIterationsInSegregatedSolverError}}(}
+\DoxyCodeLine{\Hypertarget{segregated__fsi__solver_8cc_source_l00930}00930\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{stringliteral}{"{}Error\ occured\ in\ Segregated\ solver.\ \(\backslash\)n"{}},}
+\DoxyCodeLine{\Hypertarget{segregated__fsi__solver_8cc_source_l00931}00931\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classoomph_1_1TAdvectionDiffusionReactionElement}{OOMPH\_CURRENT\_FUNCTION}},}
+\DoxyCodeLine{\Hypertarget{segregated__fsi__solver_8cc_source_l00932}00932\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classoomph_1_1TAdvectionDiffusionReactionElement}{OOMPH\_EXCEPTION\_LOCATION}});}
+\DoxyCodeLine{\Hypertarget{segregated__fsi__solver_8cc_source_l00933}00933\ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{segregated__fsi__solver_8cc_source_l00934}00934\ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{else}}
+\DoxyCodeLine{\Hypertarget{segregated__fsi__solver_8cc_source_l00935}00935\ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{segregated__fsi__solver_8cc_source_l00936}00936\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{throw}\ \mbox{\hyperlink{classoomph_1_1SegregatedSolverError}{SegregatedSolverError}}(}
+\DoxyCodeLine{\Hypertarget{segregated__fsi__solver_8cc_source_l00937}00937\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{stringliteral}{"{}Error\ occured\ in\ Segregated\ solver.\ \(\backslash\)n"{}},}
+\DoxyCodeLine{\Hypertarget{segregated__fsi__solver_8cc_source_l00938}00938\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classoomph_1_1TAdvectionDiffusionReactionElement}{OOMPH\_CURRENT\_FUNCTION}},}
+\DoxyCodeLine{\Hypertarget{segregated__fsi__solver_8cc_source_l00939}00939\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classoomph_1_1TAdvectionDiffusionReactionElement}{OOMPH\_EXCEPTION\_LOCATION}});}
+\DoxyCodeLine{\Hypertarget{segregated__fsi__solver_8cc_source_l00940}00940\ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{segregated__fsi__solver_8cc_source_l00941}00941\ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{break};}
+\DoxyCodeLine{\Hypertarget{segregated__fsi__solver_8cc_source_l00942}00942\ }
+\DoxyCodeLine{\Hypertarget{segregated__fsi__solver_8cc_source_l00943}00943\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{case}\ \mbox{\hyperlink{classoomph_1_1SegregatableFSIProblem_a06634a6823bb5062d11e97f0be78f373aaf32b15e9b1cc097ef3acff8a196bbbd}{Assess\_convergence\_based\_on\_max\_global\_residual}}:}
+\DoxyCodeLine{\Hypertarget{segregated__fsi__solver_8cc_source_l00944}00944\ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{namespaceoomph_aec474227917784dc0a255faf289cfc16}{oomph\_info}}}
+\DoxyCodeLine{\Hypertarget{segregated__fsi__solver_8cc_source_l00945}00945\ \ \ \ \ \ \ \ \ \ \ \ \ <<\ \textcolor{stringliteral}{"{}\(\backslash\)n\(\backslash\)n\(\backslash\)n////////////////////////////////////////////////////////"{}}}
+\DoxyCodeLine{\Hypertarget{segregated__fsi__solver_8cc_source_l00946}00946\ \ \ \ \ \ \ \ \ \ \ \ \ <<\ \textcolor{stringliteral}{"{}\(\backslash\)nPicard\ iteration\ did\ not\ converge\ after\ "{}}\ <<\ \mbox{\hyperlink{classoomph_1_1TAdvectionDiffusionReactionElement}{iter\_taken}}}
+\DoxyCodeLine{\Hypertarget{segregated__fsi__solver_8cc_source_l00947}00947\ \ \ \ \ \ \ \ \ \ \ \ \ <<\ \textcolor{stringliteral}{"{}\ steps!"{}}\ <<\ std::endl}
+\DoxyCodeLine{\Hypertarget{segregated__fsi__solver_8cc_source_l00948}00948\ \ \ \ \ \ \ \ \ \ \ \ \ <<\ \textcolor{stringliteral}{"{}Convergence\ was\ based\ on\ max.\ residual\ of\ coupled\ eqns\ \(\backslash\)n"{}}}
+\DoxyCodeLine{\Hypertarget{segregated__fsi__solver_8cc_source_l00949}00949\ \ \ \ \ \ \ \ \ \ \ \ \ <<\ \textcolor{stringliteral}{"{}being\ less\ than\ "{}}\ <<\ \mbox{\hyperlink{classoomph_1_1SegregatableFSIProblem_ad9f2f249e0886878f096926b2cfca74b}{Convergence\_tolerance}}\ <<\ \textcolor{stringliteral}{"{}\ "{}}\ <<\ std::endl}
+\DoxyCodeLine{\Hypertarget{segregated__fsi__solver_8cc_source_l00950}00950\ \ \ \ \ \ \ \ \ \ \ \ \ <<\ \textcolor{stringliteral}{"{}but\ we\ achieved\ only\ "{}}\ <<\ tol\_achieved\ <<\ \textcolor{stringliteral}{"{}."{}}\ <<\ std::endl}
+\DoxyCodeLine{\Hypertarget{segregated__fsi__solver_8cc_source_l00951}00951\ }
+\DoxyCodeLine{\Hypertarget{segregated__fsi__solver_8cc_source_l00952}00952\ \ \ \ \ \ \ \ \ \ \ \ \ <<\ \textcolor{stringliteral}{"{}////////////////////////////////////////////////////////\(\backslash\)n\(\backslash\)n\(\backslash\)n"{}}}
+\DoxyCodeLine{\Hypertarget{segregated__fsi__solver_8cc_source_l00953}00953\ \ \ \ \ \ \ \ \ \ \ \ \ <<\ std::endl;}
+\DoxyCodeLine{\Hypertarget{segregated__fsi__solver_8cc_source_l00954}00954\ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Throw\ an\ error\ indicating\ if\ we\ ran\ out\ of\ iterations}}
+\DoxyCodeLine{\Hypertarget{segregated__fsi__solver_8cc_source_l00955}00955\ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (\mbox{\hyperlink{classoomph_1_1TAdvectionDiffusionReactionElement}{iter\_taken}}\ ==\ \mbox{\hyperlink{classoomph_1_1SegregatableFSIProblem_aa2a06cb9517d1f183cdbaa20ea077805}{Max\_picard}})}
+\DoxyCodeLine{\Hypertarget{segregated__fsi__solver_8cc_source_l00956}00956\ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{segregated__fsi__solver_8cc_source_l00957}00957\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{throw}\ \mbox{\hyperlink{classoomph_1_1RanOutOfIterationsInSegregatedSolverError}{RanOutOfIterationsInSegregatedSolverError}}(}
+\DoxyCodeLine{\Hypertarget{segregated__fsi__solver_8cc_source_l00958}00958\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{stringliteral}{"{}Error\ occured\ in\ Segregated\ solver.\ \(\backslash\)n"{}},}
+\DoxyCodeLine{\Hypertarget{segregated__fsi__solver_8cc_source_l00959}00959\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classoomph_1_1TAdvectionDiffusionReactionElement}{OOMPH\_CURRENT\_FUNCTION}},}
+\DoxyCodeLine{\Hypertarget{segregated__fsi__solver_8cc_source_l00960}00960\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classoomph_1_1TAdvectionDiffusionReactionElement}{OOMPH\_EXCEPTION\_LOCATION}});}
+\DoxyCodeLine{\Hypertarget{segregated__fsi__solver_8cc_source_l00961}00961\ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{segregated__fsi__solver_8cc_source_l00962}00962\ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{else}}
+\DoxyCodeLine{\Hypertarget{segregated__fsi__solver_8cc_source_l00963}00963\ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{segregated__fsi__solver_8cc_source_l00964}00964\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{throw}\ \mbox{\hyperlink{classoomph_1_1SegregatedSolverError}{SegregatedSolverError}}(}
+\DoxyCodeLine{\Hypertarget{segregated__fsi__solver_8cc_source_l00965}00965\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{stringliteral}{"{}Error\ occured\ in\ Segregated\ solver.\ \(\backslash\)n"{}},}
+\DoxyCodeLine{\Hypertarget{segregated__fsi__solver_8cc_source_l00966}00966\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classoomph_1_1TAdvectionDiffusionReactionElement}{OOMPH\_CURRENT\_FUNCTION}},}
+\DoxyCodeLine{\Hypertarget{segregated__fsi__solver_8cc_source_l00967}00967\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classoomph_1_1TAdvectionDiffusionReactionElement}{OOMPH\_EXCEPTION\_LOCATION}});}
+\DoxyCodeLine{\Hypertarget{segregated__fsi__solver_8cc_source_l00968}00968\ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{segregated__fsi__solver_8cc_source_l00969}00969\ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{break};}
+\DoxyCodeLine{\Hypertarget{segregated__fsi__solver_8cc_source_l00970}00970\ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{segregated__fsi__solver_8cc_source_l00971}00971\ \ \ \ \ \}}
 \DoxyCodeLine{\Hypertarget{segregated__fsi__solver_8cc_source_l00972}00972\ }
-\DoxyCodeLine{\Hypertarget{segregated__fsi__solver_8cc_source_l00973}00973\ \ \ \ \ \textcolor{comment}{//\ Loop\ over\ them\ all\ and\ make\ them\ (temporarily)\ static}}
-\DoxyCodeLine{\Hypertarget{segregated__fsi__solver_8cc_source_l00974}00974\ \ \ \ \ \textcolor{keywordflow}{for}\ (\textcolor{keywordtype}{unsigned}\ \mbox{\hyperlink{cfortran_8h_adb50e893b86b3e55e751a42eab3cba82}{i}}\ =\ 0;\ \mbox{\hyperlink{cfortran_8h_adb50e893b86b3e55e751a42eab3cba82}{i}}\ <\ \mbox{\hyperlink{classoomph_1_1TAdvectionDiffusionReactionElement}{n\_time\_steppers}};\ \mbox{\hyperlink{cfortran_8h_adb50e893b86b3e55e751a42eab3cba82}{i}}++)}
-\DoxyCodeLine{\Hypertarget{segregated__fsi__solver_8cc_source_l00975}00975\ \ \ \ \ \{}
-\DoxyCodeLine{\Hypertarget{segregated__fsi__solver_8cc_source_l00976}00976\ \ \ \ \ \ \ \mbox{\hyperlink{classoomph_1_1TAdvectionDiffusionReactionElement}{was\_steady}}[\mbox{\hyperlink{cfortran_8h_adb50e893b86b3e55e751a42eab3cba82}{i}}]\ =\ \mbox{\hyperlink{classoomph_1_1Problem_aa6bb90130ac5bb220493c40cddf520ba}{time\_stepper\_pt}}(\mbox{\hyperlink{cfortran_8h_adb50e893b86b3e55e751a42eab3cba82}{i}})-\/>\mbox{\hyperlink{classoomph_1_1TimeStepper_ad341ba9e80265e1c26c1cda0f40c8292}{is\_steady}}();}
-\DoxyCodeLine{\Hypertarget{segregated__fsi__solver_8cc_source_l00977}00977\ \ \ \ \ \ \ \mbox{\hyperlink{classoomph_1_1Problem_aa6bb90130ac5bb220493c40cddf520ba}{time\_stepper\_pt}}(\mbox{\hyperlink{cfortran_8h_adb50e893b86b3e55e751a42eab3cba82}{i}})-\/>\mbox{\hyperlink{classoomph_1_1TimeStepper_a81ea0ff2e66cef5e0184b616c608e418}{make\_steady}}();}
-\DoxyCodeLine{\Hypertarget{segregated__fsi__solver_8cc_source_l00978}00978\ \ \ \ \ \}}
-\DoxyCodeLine{\Hypertarget{segregated__fsi__solver_8cc_source_l00979}00979\ }
-\DoxyCodeLine{\Hypertarget{segregated__fsi__solver_8cc_source_l00980}00980\ \ \ \ \ \textcolor{comment}{//\ Create\ object\ to\ doc\ convergence\ stats}}
-\DoxyCodeLine{\Hypertarget{segregated__fsi__solver_8cc_source_l00981}00981\ \ \ \ \ \mbox{\hyperlink{classoomph_1_1PicardConvergenceData}{PicardConvergenceData}}\ \mbox{\hyperlink{classoomph_1_1TAdvectionDiffusionReactionElement}{conv\_data}};}
-\DoxyCodeLine{\Hypertarget{segregated__fsi__solver_8cc_source_l00982}00982\ }
-\DoxyCodeLine{\Hypertarget{segregated__fsi__solver_8cc_source_l00983}00983\ \ \ \ \ \textcolor{comment}{//\ Solve\ the\ non-\/linear\ problem\ by\ the\ segregated\ solver}}
-\DoxyCodeLine{\Hypertarget{segregated__fsi__solver_8cc_source_l00984}00984\ \ \ \ \ \textcolor{keywordflow}{try}}
-\DoxyCodeLine{\Hypertarget{segregated__fsi__solver_8cc_source_l00985}00985\ \ \ \ \ \{}
-\DoxyCodeLine{\Hypertarget{segregated__fsi__solver_8cc_source_l00986}00986\ \ \ \ \ \ \ \mbox{\hyperlink{classoomph_1_1TAdvectionDiffusionReactionElement}{conv\_data}}\ =\ \mbox{\hyperlink{classoomph_1_1SegregatableFSIProblem_a87a69561674c1e596bb205e0fc4a387f}{segregated\_solve}}();}
-\DoxyCodeLine{\Hypertarget{segregated__fsi__solver_8cc_source_l00987}00987\ \ \ \ \ \}}
-\DoxyCodeLine{\Hypertarget{segregated__fsi__solver_8cc_source_l00988}00988\ \ \ \ \ \textcolor{comment}{//\ Catch\ any\ exceptions\ thrown\ in\ the\ segregated\ solver}}
-\DoxyCodeLine{\Hypertarget{segregated__fsi__solver_8cc_source_l00989}00989\ \ \ \ \ \textcolor{keywordflow}{catch}\ (\mbox{\hyperlink{classoomph_1_1SegregatedSolverError}{SegregatedSolverError}}\&\ \mbox{\hyperlink{classoomph_1_1TAdvectionDiffusionReactionElement}{error}})}
-\DoxyCodeLine{\Hypertarget{segregated__fsi__solver_8cc_source_l00990}00990\ \ \ \ \ \{}
-\DoxyCodeLine{\Hypertarget{segregated__fsi__solver_8cc_source_l00991}00991\ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (!\mbox{\hyperlink{classoomph_1_1TAdvectionDiffusionReactionElement}{error}}.Ran\_out\_of\_iterations)}
-\DoxyCodeLine{\Hypertarget{segregated__fsi__solver_8cc_source_l00992}00992\ \ \ \ \ \ \ \{}
-\DoxyCodeLine{\Hypertarget{segregated__fsi__solver_8cc_source_l00993}00993\ \ \ \ \ \ \ \ \ std::ostringstream\ \mbox{\hyperlink{classoomph_1_1TAdvectionDiffusionReactionElement}{error\_stream}};}
-\DoxyCodeLine{\Hypertarget{segregated__fsi__solver_8cc_source_l00994}00994\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classoomph_1_1TAdvectionDiffusionReactionElement}{error\_stream}}\ <<\ \textcolor{stringliteral}{"{}Error\ occured\ in\ Segregated\ solver.\ "{}}\ <<\ std::endl;}
-\DoxyCodeLine{\Hypertarget{segregated__fsi__solver_8cc_source_l00995}00995\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{throw}\ \mbox{\hyperlink{classoomph_1_1OomphLibError}{OomphLibError}}(}
-\DoxyCodeLine{\Hypertarget{segregated__fsi__solver_8cc_source_l00996}00996\ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classoomph_1_1TAdvectionDiffusionReactionElement}{error\_stream}}.str(),\ \mbox{\hyperlink{classoomph_1_1TAdvectionDiffusionReactionElement}{OOMPH\_CURRENT\_FUNCTION}},\ \mbox{\hyperlink{classoomph_1_1TAdvectionDiffusionReactionElement}{OOMPH\_EXCEPTION\_LOCATION}});}
-\DoxyCodeLine{\Hypertarget{segregated__fsi__solver_8cc_source_l00997}00997\ \ \ \ \ \ \ \}}
-\DoxyCodeLine{\Hypertarget{segregated__fsi__solver_8cc_source_l00998}00998\ \ \ \ \ \ \ \textcolor{keywordflow}{else}}
-\DoxyCodeLine{\Hypertarget{segregated__fsi__solver_8cc_source_l00999}00999\ \ \ \ \ \ \ \{}
-\DoxyCodeLine{\Hypertarget{segregated__fsi__solver_8cc_source_l01000}01000\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{namespaceoomph_aec474227917784dc0a255faf289cfc16}{oomph\_info}}\ <<\ \textcolor{stringliteral}{"{}Note:\ Ran\ out\ of\ iterations\ but\ continuing\ anyway"{}}}
-\DoxyCodeLine{\Hypertarget{segregated__fsi__solver_8cc_source_l01001}01001\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ <<\ std::endl;}
-\DoxyCodeLine{\Hypertarget{segregated__fsi__solver_8cc_source_l01002}01002\ \ \ \ \ \ \ \}}
-\DoxyCodeLine{\Hypertarget{segregated__fsi__solver_8cc_source_l01003}01003\ \ \ \ \ \}}
-\DoxyCodeLine{\Hypertarget{segregated__fsi__solver_8cc_source_l01004}01004\ }
-\DoxyCodeLine{\Hypertarget{segregated__fsi__solver_8cc_source_l01005}01005\ \ \ \ \ \textcolor{comment}{//\ Reset\ the\ is\_steady\ status\ of\ all\ timesteppers\ that}}
-\DoxyCodeLine{\Hypertarget{segregated__fsi__solver_8cc_source_l01006}01006\ \ \ \ \ \textcolor{comment}{//\ weren't\ already\ steady\ when\ we\ came\ in\ here\ and\ reset\ their}}
-\DoxyCodeLine{\Hypertarget{segregated__fsi__solver_8cc_source_l01007}01007\ \ \ \ \ \textcolor{comment}{//\ weights}}
-\DoxyCodeLine{\Hypertarget{segregated__fsi__solver_8cc_source_l01008}01008\ \ \ \ \ \textcolor{keywordflow}{for}\ (\textcolor{keywordtype}{unsigned}\ \mbox{\hyperlink{cfortran_8h_adb50e893b86b3e55e751a42eab3cba82}{i}}\ =\ 0;\ \mbox{\hyperlink{cfortran_8h_adb50e893b86b3e55e751a42eab3cba82}{i}}\ <\ \mbox{\hyperlink{classoomph_1_1TAdvectionDiffusionReactionElement}{n\_time\_steppers}};\ \mbox{\hyperlink{cfortran_8h_adb50e893b86b3e55e751a42eab3cba82}{i}}++)}
-\DoxyCodeLine{\Hypertarget{segregated__fsi__solver_8cc_source_l01009}01009\ \ \ \ \ \{}
-\DoxyCodeLine{\Hypertarget{segregated__fsi__solver_8cc_source_l01010}01010\ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (!\mbox{\hyperlink{classoomph_1_1TAdvectionDiffusionReactionElement}{was\_steady}}[\mbox{\hyperlink{cfortran_8h_adb50e893b86b3e55e751a42eab3cba82}{i}}])}
-\DoxyCodeLine{\Hypertarget{segregated__fsi__solver_8cc_source_l01011}01011\ \ \ \ \ \ \ \{}
-\DoxyCodeLine{\Hypertarget{segregated__fsi__solver_8cc_source_l01012}01012\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classoomph_1_1Problem_aa6bb90130ac5bb220493c40cddf520ba}{time\_stepper\_pt}}(\mbox{\hyperlink{cfortran_8h_adb50e893b86b3e55e751a42eab3cba82}{i}})-\/>\mbox{\hyperlink{classoomph_1_1TimeStepper_aada05f89e86aae352bd5b32bfb173b18}{undo\_make\_steady}}();}
-\DoxyCodeLine{\Hypertarget{segregated__fsi__solver_8cc_source_l01013}01013\ \ \ \ \ \ \ \}}
-\DoxyCodeLine{\Hypertarget{segregated__fsi__solver_8cc_source_l01014}01014\ \ \ \ \ \}}
-\DoxyCodeLine{\Hypertarget{segregated__fsi__solver_8cc_source_l01015}01015\ }
-\DoxyCodeLine{\Hypertarget{segregated__fsi__solver_8cc_source_l01016}01016\ \ \ \ \ \textcolor{comment}{//\ Since\ we\ performed\ a\ steady\ solve,\ the\ history\ values}}
-\DoxyCodeLine{\Hypertarget{segregated__fsi__solver_8cc_source_l01017}01017\ \ \ \ \ \textcolor{comment}{//\ now\ have\ to\ be\ set\ as\ if\ we\ had\ performed\ an\ impulsive\ start\ from}}
-\DoxyCodeLine{\Hypertarget{segregated__fsi__solver_8cc_source_l01018}01018\ \ \ \ \ \textcolor{comment}{//\ the\ current\ solution.\ This\ ensures\ that\ the\ time-\/derivatives}}
-\DoxyCodeLine{\Hypertarget{segregated__fsi__solver_8cc_source_l01019}01019\ \ \ \ \ \textcolor{comment}{//\ evaluate\ to\ zero\ even\ now\ that\ the\ timesteppers\ have\ been}}
-\DoxyCodeLine{\Hypertarget{segregated__fsi__solver_8cc_source_l01020}01020\ \ \ \ \ \textcolor{comment}{//\ reactivated.}}
-\DoxyCodeLine{\Hypertarget{segregated__fsi__solver_8cc_source_l01021}01021\ \ \ \ \ \mbox{\hyperlink{classoomph_1_1Problem_a10e5dc4d944dfb2b141918e18e5e3de8}{assign\_initial\_values\_impulsive}}();}
-\DoxyCodeLine{\Hypertarget{segregated__fsi__solver_8cc_source_l01022}01022\ }
-\DoxyCodeLine{\Hypertarget{segregated__fsi__solver_8cc_source_l01023}01023\ \ \ \ \ \textcolor{comment}{//\ Return\ the\ convergence\ data}}
-\DoxyCodeLine{\Hypertarget{segregated__fsi__solver_8cc_source_l01024}01024\ \ \ \ \ \textcolor{keywordflow}{return}\ \mbox{\hyperlink{classoomph_1_1TAdvectionDiffusionReactionElement}{conv\_data}};}
-\DoxyCodeLine{\Hypertarget{segregated__fsi__solver_8cc_source_l01025}01025\ \ \ \}}
-\DoxyCodeLine{\Hypertarget{segregated__fsi__solver_8cc_source_l01026}01026\ }
-\DoxyCodeLine{\Hypertarget{segregated__fsi__solver_8cc_source_l01027}01027\ }
-\DoxyCodeLine{\Hypertarget{segregated__fsi__solver_8cc_source_l01028}01028\ \ \ \textcolor{comment}{//============================================================================}\textcolor{comment}{}}
-\DoxyCodeLine{\Hypertarget{segregated__fsi__solver_8cc_source_l01029}01029\ \textcolor{comment}{\ \ ///\ Segregated\ fixed\ point\ solver\ with\ optional\ pointwise\ Aitken\ acceleration}}
-\DoxyCodeLine{\Hypertarget{segregated__fsi__solver_8cc_source_l01030}01030\ \textcolor{comment}{\ \ ///\ on\ selected\ solid\ dofs.\ Returns\ PicardConvergenceData\ object}}
-\DoxyCodeLine{\Hypertarget{segregated__fsi__solver_8cc_source_l01031}01031\ \textcolor{comment}{\ \ ///\ that\ contains\ the\ vital\ stats\ of\ the\ iteration.}}
-\DoxyCodeLine{\Hypertarget{segregated__fsi__solver_8cc_source_l01032}01032\ \textcolor{comment}{}\ \ \textcolor{comment}{//============================================================================}}
-\DoxyCodeLine{\Hypertarget{segregated__fsi__solver_8cc_source_l01033}\mbox{\hyperlink{classoomph_1_1SegregatableFSIProblem_aae43b43dbc197d238535bcb5c3acf168}{01033}}\ \ \ \mbox{\hyperlink{classoomph_1_1PicardConvergenceData}{PicardConvergenceData}}\ \mbox{\hyperlink{classoomph_1_1SegregatableFSIProblem_aae43b43dbc197d238535bcb5c3acf168}{SegregatableFSIProblem::unsteady\_segregated\_solve}}(}
-\DoxyCodeLine{\Hypertarget{segregated__fsi__solver_8cc_source_l01034}01034\ \ \ \ \ \textcolor{keyword}{const}\ \textcolor{keywordtype}{double}\&\ dt)}
-\DoxyCodeLine{\Hypertarget{segregated__fsi__solver_8cc_source_l01035}01035\ \ \ \{}
-\DoxyCodeLine{\Hypertarget{segregated__fsi__solver_8cc_source_l01036}01036\ \ \ \ \ \textcolor{comment}{//\ We\ shift\ the\ values,\ so\ shift\_values\ is\ true}}
-\DoxyCodeLine{\Hypertarget{segregated__fsi__solver_8cc_source_l01037}01037\ \ \ \ \ \textcolor{keywordflow}{return}\ \mbox{\hyperlink{classoomph_1_1SegregatableFSIProblem_aae43b43dbc197d238535bcb5c3acf168}{unsteady\_segregated\_solve}}(dt,\ \textcolor{keyword}{true});}
-\DoxyCodeLine{\Hypertarget{segregated__fsi__solver_8cc_source_l01038}01038\ \ \ \}}
-\DoxyCodeLine{\Hypertarget{segregated__fsi__solver_8cc_source_l01039}01039\ }
-\DoxyCodeLine{\Hypertarget{segregated__fsi__solver_8cc_source_l01040}01040\ \ \ \textcolor{comment}{//============================================================================}\textcolor{comment}{}}
-\DoxyCodeLine{\Hypertarget{segregated__fsi__solver_8cc_source_l01041}01041\ \textcolor{comment}{\ \ ///\ Segregated\ fixed\ point\ solver\ with\ optional\ pointwise\ Aitken\ acceleration}}
-\DoxyCodeLine{\Hypertarget{segregated__fsi__solver_8cc_source_l01042}01042\ \textcolor{comment}{\ \ ///\ on\ selected\ solid\ dofs.\ Returns\ PicardConvergenceData\ object}}
-\DoxyCodeLine{\Hypertarget{segregated__fsi__solver_8cc_source_l01043}01043\ \textcolor{comment}{\ \ ///\ that\ contains\ the\ vital\ stats\ of\ the\ iteration.}}
-\DoxyCodeLine{\Hypertarget{segregated__fsi__solver_8cc_source_l01044}01044\ \textcolor{comment}{}\ \ \textcolor{comment}{//============================================================================}}
-\DoxyCodeLine{\Hypertarget{segregated__fsi__solver_8cc_source_l01045}\mbox{\hyperlink{classoomph_1_1SegregatableFSIProblem_a17f019ebaf83e170219bf605a8554111}{01045}}\ \ \ \mbox{\hyperlink{classoomph_1_1PicardConvergenceData}{PicardConvergenceData}}\ \mbox{\hyperlink{classoomph_1_1SegregatableFSIProblem_aae43b43dbc197d238535bcb5c3acf168}{SegregatableFSIProblem::unsteady\_segregated\_solve}}(}
-\DoxyCodeLine{\Hypertarget{segregated__fsi__solver_8cc_source_l01046}01046\ \ \ \ \ \textcolor{keyword}{const}\ \textcolor{keywordtype}{double}\&\ dt,\ \textcolor{keyword}{const}\ \textcolor{keywordtype}{bool}\&\ \mbox{\hyperlink{classoomph_1_1TAdvectionDiffusionReactionElement}{shift\_values}})}
-\DoxyCodeLine{\Hypertarget{segregated__fsi__solver_8cc_source_l01047}01047\ \ \ \{}
-\DoxyCodeLine{\Hypertarget{segregated__fsi__solver_8cc_source_l01048}01048\ \ \ \ \ \textcolor{comment}{//\ Shift\ the\ time\ values\ and\ the\ dts\ according\ to\ the\ control\ flag}}
-\DoxyCodeLine{\Hypertarget{segregated__fsi__solver_8cc_source_l01049}01049\ \ \ \ \ \textcolor{keywordflow}{if}\ (\mbox{\hyperlink{classoomph_1_1TAdvectionDiffusionReactionElement}{shift\_values}})}
-\DoxyCodeLine{\Hypertarget{segregated__fsi__solver_8cc_source_l01050}01050\ \ \ \ \ \{}
-\DoxyCodeLine{\Hypertarget{segregated__fsi__solver_8cc_source_l01051}01051\ \ \ \ \ \ \ \mbox{\hyperlink{classoomph_1_1Problem_aab27bdd1968e57cb3dffe78c1d63f762}{shift\_time\_values}}();}
-\DoxyCodeLine{\Hypertarget{segregated__fsi__solver_8cc_source_l01052}01052\ \ \ \ \ \}}
-\DoxyCodeLine{\Hypertarget{segregated__fsi__solver_8cc_source_l01053}01053\ }
-\DoxyCodeLine{\Hypertarget{segregated__fsi__solver_8cc_source_l01054}01054\ \ \ \ \ \textcolor{comment}{//\ Advance\ global\ time\ and\ set\ current\ value\ of\ dt}}
-\DoxyCodeLine{\Hypertarget{segregated__fsi__solver_8cc_source_l01055}01055\ \ \ \ \ \mbox{\hyperlink{classoomph_1_1Problem_ae87f0d17b929d9b6097e19c2507c87f9}{time\_pt}}()-\/>\mbox{\hyperlink{classoomph_1_1Time_a43461269b799134f4b7a9aca3e79a7c8}{time}}()\ +=\ dt;}
-\DoxyCodeLine{\Hypertarget{segregated__fsi__solver_8cc_source_l01056}01056\ \ \ \ \ \mbox{\hyperlink{classoomph_1_1Problem_ae87f0d17b929d9b6097e19c2507c87f9}{time\_pt}}()-\/>\mbox{\hyperlink{classoomph_1_1Time_abd4c96948929a36a14a3ceaafa52bd42}{dt}}()\ =\ dt;}
-\DoxyCodeLine{\Hypertarget{segregated__fsi__solver_8cc_source_l01057}01057\ }
-\DoxyCodeLine{\Hypertarget{segregated__fsi__solver_8cc_source_l01058}01058\ \ \ \ \ \textcolor{comment}{//\ Find\ out\ how\ many\ timesteppers\ there\ are}}
-\DoxyCodeLine{\Hypertarget{segregated__fsi__solver_8cc_source_l01059}01059\ \ \ \ \ \textcolor{keywordtype}{unsigned}\ \mbox{\hyperlink{classoomph_1_1TAdvectionDiffusionReactionElement}{n\_time\_steppers}}\ =\ \mbox{\hyperlink{classoomph_1_1Problem_ace3cdf55009c3bff21d2b7d3706d522a}{ntime\_stepper}}();}
-\DoxyCodeLine{\Hypertarget{segregated__fsi__solver_8cc_source_l01060}01060\ }
-\DoxyCodeLine{\Hypertarget{segregated__fsi__solver_8cc_source_l01061}01061\ \ \ \ \ \textcolor{comment}{//\ Loop\ over\ them\ all\ and\ set\ the\ weights}}
-\DoxyCodeLine{\Hypertarget{segregated__fsi__solver_8cc_source_l01062}01062\ \ \ \ \ \textcolor{keywordflow}{for}\ (\textcolor{keywordtype}{unsigned}\ \mbox{\hyperlink{cfortran_8h_adb50e893b86b3e55e751a42eab3cba82}{i}}\ =\ 0;\ \mbox{\hyperlink{cfortran_8h_adb50e893b86b3e55e751a42eab3cba82}{i}}\ <\ \mbox{\hyperlink{classoomph_1_1TAdvectionDiffusionReactionElement}{n\_time\_steppers}};\ \mbox{\hyperlink{cfortran_8h_adb50e893b86b3e55e751a42eab3cba82}{i}}++)}
-\DoxyCodeLine{\Hypertarget{segregated__fsi__solver_8cc_source_l01063}01063\ \ \ \ \ \{}
-\DoxyCodeLine{\Hypertarget{segregated__fsi__solver_8cc_source_l01064}01064\ \ \ \ \ \ \ \mbox{\hyperlink{classoomph_1_1Problem_aa6bb90130ac5bb220493c40cddf520ba}{time\_stepper\_pt}}(\mbox{\hyperlink{cfortran_8h_adb50e893b86b3e55e751a42eab3cba82}{i}})-\/>\mbox{\hyperlink{classoomph_1_1TimeStepper_a028fa3a8d3c6db6b0ddf580cb0468d55}{set\_weights}}();}
-\DoxyCodeLine{\Hypertarget{segregated__fsi__solver_8cc_source_l01065}01065\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{segregated__fsi__solver_8cc_source_l00973}00973\ \ \ \ \ \textcolor{keywordflow}{return}\ \mbox{\hyperlink{classoomph_1_1TAdvectionDiffusionReactionElement}{conv\_data}};}
+\DoxyCodeLine{\Hypertarget{segregated__fsi__solver_8cc_source_l00974}00974\ \ \ \}}
+\DoxyCodeLine{\Hypertarget{segregated__fsi__solver_8cc_source_l00975}00975\ }
+\DoxyCodeLine{\Hypertarget{segregated__fsi__solver_8cc_source_l00976}00976\ }
+\DoxyCodeLine{\Hypertarget{segregated__fsi__solver_8cc_source_l00977}00977\ \ \ \textcolor{comment}{//============================================================================}\textcolor{comment}{}}
+\DoxyCodeLine{\Hypertarget{segregated__fsi__solver_8cc_source_l00978}00978\ \textcolor{comment}{\ \ ///\ Segregated\ fixed\ point\ solver\ with\ optional\ pointwise\ Aitken\ acceleration}}
+\DoxyCodeLine{\Hypertarget{segregated__fsi__solver_8cc_source_l00979}00979\ \textcolor{comment}{\ \ ///\ on\ selected\ solid\ dofs.\ Returns\ PicardConvergenceData\ object}}
+\DoxyCodeLine{\Hypertarget{segregated__fsi__solver_8cc_source_l00980}00980\ \textcolor{comment}{\ \ ///\ that\ contains\ the\ vital\ stats\ of\ the\ iteration.}}
+\DoxyCodeLine{\Hypertarget{segregated__fsi__solver_8cc_source_l00981}00981\ \textcolor{comment}{}\ \ \textcolor{comment}{//============================================================================}}
+\DoxyCodeLine{\Hypertarget{segregated__fsi__solver_8cc_source_l00982}\mbox{\hyperlink{classoomph_1_1SegregatableFSIProblem_a8f8145df86358916df505e2b513caf6a}{00982}}\ \ \ \mbox{\hyperlink{classoomph_1_1PicardConvergenceData}{PicardConvergenceData}}\ \mbox{\hyperlink{classoomph_1_1SegregatableFSIProblem_a8f8145df86358916df505e2b513caf6a}{SegregatableFSIProblem::steady\_segregated\_solve}}()}
+\DoxyCodeLine{\Hypertarget{segregated__fsi__solver_8cc_source_l00983}00983\ \ \ \{}
+\DoxyCodeLine{\Hypertarget{segregated__fsi__solver_8cc_source_l00984}00984\ \ \ \ \ \textcolor{comment}{//\ Find\ out\ how\ many\ timesteppers\ there\ are}}
+\DoxyCodeLine{\Hypertarget{segregated__fsi__solver_8cc_source_l00985}00985\ \ \ \ \ \textcolor{keywordtype}{unsigned}\ \mbox{\hyperlink{classoomph_1_1TAdvectionDiffusionReactionElement}{n\_time\_steppers}}\ =\ \mbox{\hyperlink{classoomph_1_1Problem_ace3cdf55009c3bff21d2b7d3706d522a}{ntime\_stepper}}();}
+\DoxyCodeLine{\Hypertarget{segregated__fsi__solver_8cc_source_l00986}00986\ }
+\DoxyCodeLine{\Hypertarget{segregated__fsi__solver_8cc_source_l00987}00987\ \ \ \ \ \textcolor{comment}{//\ Vector\ of\ bools\ to\ store\ the\ is\_steady\ status\ of\ the\ various}}
+\DoxyCodeLine{\Hypertarget{segregated__fsi__solver_8cc_source_l00988}00988\ \ \ \ \ \textcolor{comment}{//\ timesteppers\ when\ we\ came\ in\ here}}
+\DoxyCodeLine{\Hypertarget{segregated__fsi__solver_8cc_source_l00989}00989\ \ \ \ \ std::vector<bool>\ \mbox{\hyperlink{classoomph_1_1TAdvectionDiffusionReactionElement}{was\_steady}}(\mbox{\hyperlink{classoomph_1_1TAdvectionDiffusionReactionElement}{n\_time\_steppers}});}
+\DoxyCodeLine{\Hypertarget{segregated__fsi__solver_8cc_source_l00990}00990\ }
+\DoxyCodeLine{\Hypertarget{segregated__fsi__solver_8cc_source_l00991}00991\ \ \ \ \ \textcolor{comment}{//\ Loop\ over\ them\ all\ and\ make\ them\ (temporarily)\ static}}
+\DoxyCodeLine{\Hypertarget{segregated__fsi__solver_8cc_source_l00992}00992\ \ \ \ \ \textcolor{keywordflow}{for}\ (\textcolor{keywordtype}{unsigned}\ \mbox{\hyperlink{cfortran_8h_adb50e893b86b3e55e751a42eab3cba82}{i}}\ =\ 0;\ \mbox{\hyperlink{cfortran_8h_adb50e893b86b3e55e751a42eab3cba82}{i}}\ <\ \mbox{\hyperlink{classoomph_1_1TAdvectionDiffusionReactionElement}{n\_time\_steppers}};\ \mbox{\hyperlink{cfortran_8h_adb50e893b86b3e55e751a42eab3cba82}{i}}++)}
+\DoxyCodeLine{\Hypertarget{segregated__fsi__solver_8cc_source_l00993}00993\ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{segregated__fsi__solver_8cc_source_l00994}00994\ \ \ \ \ \ \ \mbox{\hyperlink{classoomph_1_1TAdvectionDiffusionReactionElement}{was\_steady}}[\mbox{\hyperlink{cfortran_8h_adb50e893b86b3e55e751a42eab3cba82}{i}}]\ =\ \mbox{\hyperlink{classoomph_1_1Problem_aa6bb90130ac5bb220493c40cddf520ba}{time\_stepper\_pt}}(\mbox{\hyperlink{cfortran_8h_adb50e893b86b3e55e751a42eab3cba82}{i}})-\/>\mbox{\hyperlink{classoomph_1_1TimeStepper_ad341ba9e80265e1c26c1cda0f40c8292}{is\_steady}}();}
+\DoxyCodeLine{\Hypertarget{segregated__fsi__solver_8cc_source_l00995}00995\ \ \ \ \ \ \ \mbox{\hyperlink{classoomph_1_1Problem_aa6bb90130ac5bb220493c40cddf520ba}{time\_stepper\_pt}}(\mbox{\hyperlink{cfortran_8h_adb50e893b86b3e55e751a42eab3cba82}{i}})-\/>\mbox{\hyperlink{classoomph_1_1TimeStepper_a81ea0ff2e66cef5e0184b616c608e418}{make\_steady}}();}
+\DoxyCodeLine{\Hypertarget{segregated__fsi__solver_8cc_source_l00996}00996\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{segregated__fsi__solver_8cc_source_l00997}00997\ }
+\DoxyCodeLine{\Hypertarget{segregated__fsi__solver_8cc_source_l00998}00998\ \ \ \ \ \textcolor{comment}{//\ Create\ object\ to\ doc\ convergence\ stats}}
+\DoxyCodeLine{\Hypertarget{segregated__fsi__solver_8cc_source_l00999}00999\ \ \ \ \ \mbox{\hyperlink{classoomph_1_1PicardConvergenceData}{PicardConvergenceData}}\ \mbox{\hyperlink{classoomph_1_1TAdvectionDiffusionReactionElement}{conv\_data}};}
+\DoxyCodeLine{\Hypertarget{segregated__fsi__solver_8cc_source_l01000}01000\ }
+\DoxyCodeLine{\Hypertarget{segregated__fsi__solver_8cc_source_l01001}01001\ \ \ \ \ \textcolor{comment}{//\ Solve\ the\ non-\/linear\ problem\ by\ the\ segregated\ solver}}
+\DoxyCodeLine{\Hypertarget{segregated__fsi__solver_8cc_source_l01002}01002\ \ \ \ \ \textcolor{keywordflow}{try}}
+\DoxyCodeLine{\Hypertarget{segregated__fsi__solver_8cc_source_l01003}01003\ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{segregated__fsi__solver_8cc_source_l01004}01004\ \ \ \ \ \ \ \mbox{\hyperlink{classoomph_1_1TAdvectionDiffusionReactionElement}{conv\_data}}\ =\ \mbox{\hyperlink{classoomph_1_1SegregatableFSIProblem_a87a69561674c1e596bb205e0fc4a387f}{segregated\_solve}}();}
+\DoxyCodeLine{\Hypertarget{segregated__fsi__solver_8cc_source_l01005}01005\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{segregated__fsi__solver_8cc_source_l01006}01006\ \ \ \ \ \textcolor{comment}{//\ Catch\ any\ exceptions\ thrown\ in\ the\ segregated\ solver}}
+\DoxyCodeLine{\Hypertarget{segregated__fsi__solver_8cc_source_l01007}01007\ \ \ \ \ \textcolor{keywordflow}{catch}\ (\mbox{\hyperlink{classoomph_1_1RanOutOfIterationsInSegregatedSolverError}{RanOutOfIterationsInSegregatedSolverError}}\&\ \mbox{\hyperlink{classoomph_1_1TAdvectionDiffusionReactionElement}{error}})}
+\DoxyCodeLine{\Hypertarget{segregated__fsi__solver_8cc_source_l01008}01008\ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{segregated__fsi__solver_8cc_source_l01009}01009\ \ \ \ \ \ \ \textcolor{comment}{//\ Continue,\ but\ output\ note}}
+\DoxyCodeLine{\Hypertarget{segregated__fsi__solver_8cc_source_l01010}01010\ \ \ \ \ \ \ \mbox{\hyperlink{namespaceoomph_aec474227917784dc0a255faf289cfc16}{oomph\_info}}\ <<\ \textcolor{stringliteral}{"{}Note:\ Ran\ out\ of\ iterations\ but\ continuing\ anyway"{}}}
+\DoxyCodeLine{\Hypertarget{segregated__fsi__solver_8cc_source_l01011}01011\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ <<\ std::endl;}
+\DoxyCodeLine{\Hypertarget{segregated__fsi__solver_8cc_source_l01012}01012\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{segregated__fsi__solver_8cc_source_l01013}01013\ }
+\DoxyCodeLine{\Hypertarget{segregated__fsi__solver_8cc_source_l01014}01014\ \ \ \ \ \textcolor{comment}{//\ Reset\ the\ is\_steady\ status\ of\ all\ timesteppers\ that}}
+\DoxyCodeLine{\Hypertarget{segregated__fsi__solver_8cc_source_l01015}01015\ \ \ \ \ \textcolor{comment}{//\ weren't\ already\ steady\ when\ we\ came\ in\ here\ and\ reset\ their}}
+\DoxyCodeLine{\Hypertarget{segregated__fsi__solver_8cc_source_l01016}01016\ \ \ \ \ \textcolor{comment}{//\ weights}}
+\DoxyCodeLine{\Hypertarget{segregated__fsi__solver_8cc_source_l01017}01017\ \ \ \ \ \textcolor{keywordflow}{for}\ (\textcolor{keywordtype}{unsigned}\ \mbox{\hyperlink{cfortran_8h_adb50e893b86b3e55e751a42eab3cba82}{i}}\ =\ 0;\ \mbox{\hyperlink{cfortran_8h_adb50e893b86b3e55e751a42eab3cba82}{i}}\ <\ \mbox{\hyperlink{classoomph_1_1TAdvectionDiffusionReactionElement}{n\_time\_steppers}};\ \mbox{\hyperlink{cfortran_8h_adb50e893b86b3e55e751a42eab3cba82}{i}}++)}
+\DoxyCodeLine{\Hypertarget{segregated__fsi__solver_8cc_source_l01018}01018\ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{segregated__fsi__solver_8cc_source_l01019}01019\ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (!\mbox{\hyperlink{classoomph_1_1TAdvectionDiffusionReactionElement}{was\_steady}}[\mbox{\hyperlink{cfortran_8h_adb50e893b86b3e55e751a42eab3cba82}{i}}])}
+\DoxyCodeLine{\Hypertarget{segregated__fsi__solver_8cc_source_l01020}01020\ \ \ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{segregated__fsi__solver_8cc_source_l01021}01021\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classoomph_1_1Problem_aa6bb90130ac5bb220493c40cddf520ba}{time\_stepper\_pt}}(\mbox{\hyperlink{cfortran_8h_adb50e893b86b3e55e751a42eab3cba82}{i}})-\/>\mbox{\hyperlink{classoomph_1_1TimeStepper_aada05f89e86aae352bd5b32bfb173b18}{undo\_make\_steady}}();}
+\DoxyCodeLine{\Hypertarget{segregated__fsi__solver_8cc_source_l01022}01022\ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{segregated__fsi__solver_8cc_source_l01023}01023\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{segregated__fsi__solver_8cc_source_l01024}01024\ }
+\DoxyCodeLine{\Hypertarget{segregated__fsi__solver_8cc_source_l01025}01025\ \ \ \ \ \textcolor{comment}{//\ Since\ we\ performed\ a\ steady\ solve,\ the\ history\ values}}
+\DoxyCodeLine{\Hypertarget{segregated__fsi__solver_8cc_source_l01026}01026\ \ \ \ \ \textcolor{comment}{//\ now\ have\ to\ be\ set\ as\ if\ we\ had\ performed\ an\ impulsive\ start\ from}}
+\DoxyCodeLine{\Hypertarget{segregated__fsi__solver_8cc_source_l01027}01027\ \ \ \ \ \textcolor{comment}{//\ the\ current\ solution.\ This\ ensures\ that\ the\ time-\/derivatives}}
+\DoxyCodeLine{\Hypertarget{segregated__fsi__solver_8cc_source_l01028}01028\ \ \ \ \ \textcolor{comment}{//\ evaluate\ to\ zero\ even\ now\ that\ the\ timesteppers\ have\ been}}
+\DoxyCodeLine{\Hypertarget{segregated__fsi__solver_8cc_source_l01029}01029\ \ \ \ \ \textcolor{comment}{//\ reactivated.}}
+\DoxyCodeLine{\Hypertarget{segregated__fsi__solver_8cc_source_l01030}01030\ \ \ \ \ \mbox{\hyperlink{classoomph_1_1Problem_a10e5dc4d944dfb2b141918e18e5e3de8}{assign\_initial\_values\_impulsive}}();}
+\DoxyCodeLine{\Hypertarget{segregated__fsi__solver_8cc_source_l01031}01031\ }
+\DoxyCodeLine{\Hypertarget{segregated__fsi__solver_8cc_source_l01032}01032\ \ \ \ \ \textcolor{comment}{//\ Return\ the\ convergence\ data}}
+\DoxyCodeLine{\Hypertarget{segregated__fsi__solver_8cc_source_l01033}01033\ \ \ \ \ \textcolor{keywordflow}{return}\ \mbox{\hyperlink{classoomph_1_1TAdvectionDiffusionReactionElement}{conv\_data}};}
+\DoxyCodeLine{\Hypertarget{segregated__fsi__solver_8cc_source_l01034}01034\ \ \ \}}
+\DoxyCodeLine{\Hypertarget{segregated__fsi__solver_8cc_source_l01035}01035\ }
+\DoxyCodeLine{\Hypertarget{segregated__fsi__solver_8cc_source_l01036}01036\ }
+\DoxyCodeLine{\Hypertarget{segregated__fsi__solver_8cc_source_l01037}01037\ \ \ \textcolor{comment}{//============================================================================}\textcolor{comment}{}}
+\DoxyCodeLine{\Hypertarget{segregated__fsi__solver_8cc_source_l01038}01038\ \textcolor{comment}{\ \ ///\ Segregated\ fixed\ point\ solver\ with\ optional\ pointwise\ Aitken\ acceleration}}
+\DoxyCodeLine{\Hypertarget{segregated__fsi__solver_8cc_source_l01039}01039\ \textcolor{comment}{\ \ ///\ on\ selected\ solid\ dofs.\ Returns\ PicardConvergenceData\ object}}
+\DoxyCodeLine{\Hypertarget{segregated__fsi__solver_8cc_source_l01040}01040\ \textcolor{comment}{\ \ ///\ that\ contains\ the\ vital\ stats\ of\ the\ iteration.}}
+\DoxyCodeLine{\Hypertarget{segregated__fsi__solver_8cc_source_l01041}01041\ \textcolor{comment}{}\ \ \textcolor{comment}{//============================================================================}}
+\DoxyCodeLine{\Hypertarget{segregated__fsi__solver_8cc_source_l01042}\mbox{\hyperlink{classoomph_1_1SegregatableFSIProblem_aae43b43dbc197d238535bcb5c3acf168}{01042}}\ \ \ \mbox{\hyperlink{classoomph_1_1PicardConvergenceData}{PicardConvergenceData}}\ \mbox{\hyperlink{classoomph_1_1SegregatableFSIProblem_aae43b43dbc197d238535bcb5c3acf168}{SegregatableFSIProblem::unsteady\_segregated\_solve}}(}
+\DoxyCodeLine{\Hypertarget{segregated__fsi__solver_8cc_source_l01043}01043\ \ \ \ \ \textcolor{keyword}{const}\ \textcolor{keywordtype}{double}\&\ dt)}
+\DoxyCodeLine{\Hypertarget{segregated__fsi__solver_8cc_source_l01044}01044\ \ \ \{}
+\DoxyCodeLine{\Hypertarget{segregated__fsi__solver_8cc_source_l01045}01045\ \ \ \ \ \textcolor{comment}{//\ We\ shift\ the\ values,\ so\ shift\_values\ is\ true}}
+\DoxyCodeLine{\Hypertarget{segregated__fsi__solver_8cc_source_l01046}01046\ \ \ \ \ \textcolor{keywordflow}{return}\ \mbox{\hyperlink{classoomph_1_1SegregatableFSIProblem_aae43b43dbc197d238535bcb5c3acf168}{unsteady\_segregated\_solve}}(dt,\ \textcolor{keyword}{true});}
+\DoxyCodeLine{\Hypertarget{segregated__fsi__solver_8cc_source_l01047}01047\ \ \ \}}
+\DoxyCodeLine{\Hypertarget{segregated__fsi__solver_8cc_source_l01048}01048\ }
+\DoxyCodeLine{\Hypertarget{segregated__fsi__solver_8cc_source_l01049}01049\ \ \ \textcolor{comment}{//============================================================================}\textcolor{comment}{}}
+\DoxyCodeLine{\Hypertarget{segregated__fsi__solver_8cc_source_l01050}01050\ \textcolor{comment}{\ \ ///\ Segregated\ fixed\ point\ solver\ with\ optional\ pointwise\ Aitken\ acceleration}}
+\DoxyCodeLine{\Hypertarget{segregated__fsi__solver_8cc_source_l01051}01051\ \textcolor{comment}{\ \ ///\ on\ selected\ solid\ dofs.\ Returns\ PicardConvergenceData\ object}}
+\DoxyCodeLine{\Hypertarget{segregated__fsi__solver_8cc_source_l01052}01052\ \textcolor{comment}{\ \ ///\ that\ contains\ the\ vital\ stats\ of\ the\ iteration.}}
+\DoxyCodeLine{\Hypertarget{segregated__fsi__solver_8cc_source_l01053}01053\ \textcolor{comment}{}\ \ \textcolor{comment}{//============================================================================}}
+\DoxyCodeLine{\Hypertarget{segregated__fsi__solver_8cc_source_l01054}\mbox{\hyperlink{classoomph_1_1SegregatableFSIProblem_a17f019ebaf83e170219bf605a8554111}{01054}}\ \ \ \mbox{\hyperlink{classoomph_1_1PicardConvergenceData}{PicardConvergenceData}}\ \mbox{\hyperlink{classoomph_1_1SegregatableFSIProblem_aae43b43dbc197d238535bcb5c3acf168}{SegregatableFSIProblem::unsteady\_segregated\_solve}}(}
+\DoxyCodeLine{\Hypertarget{segregated__fsi__solver_8cc_source_l01055}01055\ \ \ \ \ \textcolor{keyword}{const}\ \textcolor{keywordtype}{double}\&\ dt,\ \textcolor{keyword}{const}\ \textcolor{keywordtype}{bool}\&\ \mbox{\hyperlink{classoomph_1_1TAdvectionDiffusionReactionElement}{shift\_values}})}
+\DoxyCodeLine{\Hypertarget{segregated__fsi__solver_8cc_source_l01056}01056\ \ \ \{}
+\DoxyCodeLine{\Hypertarget{segregated__fsi__solver_8cc_source_l01057}01057\ \ \ \ \ \textcolor{comment}{//\ Shift\ the\ time\ values\ and\ the\ dts\ according\ to\ the\ control\ flag}}
+\DoxyCodeLine{\Hypertarget{segregated__fsi__solver_8cc_source_l01058}01058\ \ \ \ \ \textcolor{keywordflow}{if}\ (\mbox{\hyperlink{classoomph_1_1TAdvectionDiffusionReactionElement}{shift\_values}})}
+\DoxyCodeLine{\Hypertarget{segregated__fsi__solver_8cc_source_l01059}01059\ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{segregated__fsi__solver_8cc_source_l01060}01060\ \ \ \ \ \ \ \mbox{\hyperlink{classoomph_1_1Problem_aab27bdd1968e57cb3dffe78c1d63f762}{shift\_time\_values}}();}
+\DoxyCodeLine{\Hypertarget{segregated__fsi__solver_8cc_source_l01061}01061\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{segregated__fsi__solver_8cc_source_l01062}01062\ }
+\DoxyCodeLine{\Hypertarget{segregated__fsi__solver_8cc_source_l01063}01063\ \ \ \ \ \textcolor{comment}{//\ Advance\ global\ time\ and\ set\ current\ value\ of\ dt}}
+\DoxyCodeLine{\Hypertarget{segregated__fsi__solver_8cc_source_l01064}01064\ \ \ \ \ \mbox{\hyperlink{classoomph_1_1Problem_ae87f0d17b929d9b6097e19c2507c87f9}{time\_pt}}()-\/>\mbox{\hyperlink{classoomph_1_1Time_a43461269b799134f4b7a9aca3e79a7c8}{time}}()\ +=\ dt;}
+\DoxyCodeLine{\Hypertarget{segregated__fsi__solver_8cc_source_l01065}01065\ \ \ \ \ \mbox{\hyperlink{classoomph_1_1Problem_ae87f0d17b929d9b6097e19c2507c87f9}{time\_pt}}()-\/>\mbox{\hyperlink{classoomph_1_1Time_abd4c96948929a36a14a3ceaafa52bd42}{dt}}()\ =\ dt;}
 \DoxyCodeLine{\Hypertarget{segregated__fsi__solver_8cc_source_l01066}01066\ }
-\DoxyCodeLine{\Hypertarget{segregated__fsi__solver_8cc_source_l01067}01067\ \ \ \ \ \textcolor{comment}{//\ Now\ update\ anything\ that\ needs\ updating\ before\ the\ timestep}}
-\DoxyCodeLine{\Hypertarget{segregated__fsi__solver_8cc_source_l01068}01068\ \ \ \ \ \textcolor{comment}{//\ This\ could\ be\ time-\/dependent\ boundary\ conditions,\ for\ example.}}
-\DoxyCodeLine{\Hypertarget{segregated__fsi__solver_8cc_source_l01069}01069\ \ \ \ \ \mbox{\hyperlink{classoomph_1_1Problem_a4f19896906d2c0274ad6798cd3ac38dc}{actions\_before\_implicit\_timestep}}();}
-\DoxyCodeLine{\Hypertarget{segregated__fsi__solver_8cc_source_l01070}01070\ }
-\DoxyCodeLine{\Hypertarget{segregated__fsi__solver_8cc_source_l01071}01071\ \ \ \ \ \textcolor{comment}{//\ Extrapolate\ the\ solid\ data\ and\ then\ update\ fluid\ mesh\ during\ unsteady\ run}}
-\DoxyCodeLine{\Hypertarget{segregated__fsi__solver_8cc_source_l01072}01072\ \ \ \ \ \mbox{\hyperlink{classoomph_1_1SegregatableFSIProblem_a0e67b39cdae35ea25ef97e5e768aa60a}{extrapolate\_solid\_data}}();}
-\DoxyCodeLine{\Hypertarget{segregated__fsi__solver_8cc_source_l01073}01073\ }
-\DoxyCodeLine{\Hypertarget{segregated__fsi__solver_8cc_source_l01074}01074\ \ \ \ \ \textcolor{comment}{//\ Create\ object\ to\ doc\ convergence\ stats}}
-\DoxyCodeLine{\Hypertarget{segregated__fsi__solver_8cc_source_l01075}01075\ \ \ \ \ \mbox{\hyperlink{classoomph_1_1PicardConvergenceData}{PicardConvergenceData}}\ \mbox{\hyperlink{classoomph_1_1TAdvectionDiffusionReactionElement}{conv\_data}};}
-\DoxyCodeLine{\Hypertarget{segregated__fsi__solver_8cc_source_l01076}01076\ }
-\DoxyCodeLine{\Hypertarget{segregated__fsi__solver_8cc_source_l01077}01077\ \ \ \ \ \textcolor{keywordflow}{try}}
-\DoxyCodeLine{\Hypertarget{segregated__fsi__solver_8cc_source_l01078}01078\ \ \ \ \ \{}
-\DoxyCodeLine{\Hypertarget{segregated__fsi__solver_8cc_source_l01079}01079\ \ \ \ \ \ \ \textcolor{comment}{//\ Solve\ the\ non-\/linear\ problem\ for\ this\ timestep\ with\ Newton's\ method}}
-\DoxyCodeLine{\Hypertarget{segregated__fsi__solver_8cc_source_l01080}01080\ \ \ \ \ \ \ \mbox{\hyperlink{classoomph_1_1TAdvectionDiffusionReactionElement}{conv\_data}}\ =\ \mbox{\hyperlink{classoomph_1_1SegregatableFSIProblem_a87a69561674c1e596bb205e0fc4a387f}{segregated\_solve}}();}
-\DoxyCodeLine{\Hypertarget{segregated__fsi__solver_8cc_source_l01081}01081\ \ \ \ \ \}}
-\DoxyCodeLine{\Hypertarget{segregated__fsi__solver_8cc_source_l01082}01082\ \ \ \ \ \textcolor{comment}{//\ Catch\ any\ exceptions\ thrown\ in\ the\ segregated\ solver}}
-\DoxyCodeLine{\Hypertarget{segregated__fsi__solver_8cc_source_l01083}01083\ \ \ \ \ \textcolor{keywordflow}{catch}\ (\mbox{\hyperlink{classoomph_1_1SegregatedSolverError}{SegregatedSolverError}}\&\ \mbox{\hyperlink{classoomph_1_1TAdvectionDiffusionReactionElement}{error}})}
-\DoxyCodeLine{\Hypertarget{segregated__fsi__solver_8cc_source_l01084}01084\ \ \ \ \ \{}
-\DoxyCodeLine{\Hypertarget{segregated__fsi__solver_8cc_source_l01085}01085\ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (!\mbox{\hyperlink{classoomph_1_1TAdvectionDiffusionReactionElement}{error}}.Ran\_out\_of\_iterations)}
-\DoxyCodeLine{\Hypertarget{segregated__fsi__solver_8cc_source_l01086}01086\ \ \ \ \ \ \ \{}
-\DoxyCodeLine{\Hypertarget{segregated__fsi__solver_8cc_source_l01087}01087\ \ \ \ \ \ \ \ \ std::ostringstream\ \mbox{\hyperlink{classoomph_1_1TAdvectionDiffusionReactionElement}{error\_stream}};}
-\DoxyCodeLine{\Hypertarget{segregated__fsi__solver_8cc_source_l01088}01088\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classoomph_1_1TAdvectionDiffusionReactionElement}{error\_stream}}\ <<\ \textcolor{stringliteral}{"{}Error\ occured\ in\ Segregated\ solver.\ "{}}\ <<\ std::endl;}
-\DoxyCodeLine{\Hypertarget{segregated__fsi__solver_8cc_source_l01089}01089\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{throw}\ \mbox{\hyperlink{classoomph_1_1OomphLibError}{OomphLibError}}(}
-\DoxyCodeLine{\Hypertarget{segregated__fsi__solver_8cc_source_l01090}01090\ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classoomph_1_1TAdvectionDiffusionReactionElement}{error\_stream}}.str(),\ \mbox{\hyperlink{classoomph_1_1TAdvectionDiffusionReactionElement}{OOMPH\_CURRENT\_FUNCTION}},\ \mbox{\hyperlink{classoomph_1_1TAdvectionDiffusionReactionElement}{OOMPH\_EXCEPTION\_LOCATION}});}
-\DoxyCodeLine{\Hypertarget{segregated__fsi__solver_8cc_source_l01091}01091\ \ \ \ \ \ \ \}}
-\DoxyCodeLine{\Hypertarget{segregated__fsi__solver_8cc_source_l01092}01092\ \ \ \ \ \ \ \textcolor{keywordflow}{else}}
-\DoxyCodeLine{\Hypertarget{segregated__fsi__solver_8cc_source_l01093}01093\ \ \ \ \ \ \ \{}
-\DoxyCodeLine{\Hypertarget{segregated__fsi__solver_8cc_source_l01094}01094\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{namespaceoomph_aec474227917784dc0a255faf289cfc16}{oomph\_info}}\ <<\ \textcolor{stringliteral}{"{}Note:\ Ran\ out\ of\ iterations\ but\ continuing\ anyway"{}}}
-\DoxyCodeLine{\Hypertarget{segregated__fsi__solver_8cc_source_l01095}01095\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ <<\ std::endl;}
-\DoxyCodeLine{\Hypertarget{segregated__fsi__solver_8cc_source_l01096}01096\ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{segregated__fsi__solver_8cc_source_l01067}01067\ \ \ \ \ \textcolor{comment}{//\ Find\ out\ how\ many\ timesteppers\ there\ are}}
+\DoxyCodeLine{\Hypertarget{segregated__fsi__solver_8cc_source_l01068}01068\ \ \ \ \ \textcolor{keywordtype}{unsigned}\ \mbox{\hyperlink{classoomph_1_1TAdvectionDiffusionReactionElement}{n\_time\_steppers}}\ =\ \mbox{\hyperlink{classoomph_1_1Problem_ace3cdf55009c3bff21d2b7d3706d522a}{ntime\_stepper}}();}
+\DoxyCodeLine{\Hypertarget{segregated__fsi__solver_8cc_source_l01069}01069\ }
+\DoxyCodeLine{\Hypertarget{segregated__fsi__solver_8cc_source_l01070}01070\ \ \ \ \ \textcolor{comment}{//\ Loop\ over\ them\ all\ and\ set\ the\ weights}}
+\DoxyCodeLine{\Hypertarget{segregated__fsi__solver_8cc_source_l01071}01071\ \ \ \ \ \textcolor{keywordflow}{for}\ (\textcolor{keywordtype}{unsigned}\ \mbox{\hyperlink{cfortran_8h_adb50e893b86b3e55e751a42eab3cba82}{i}}\ =\ 0;\ \mbox{\hyperlink{cfortran_8h_adb50e893b86b3e55e751a42eab3cba82}{i}}\ <\ \mbox{\hyperlink{classoomph_1_1TAdvectionDiffusionReactionElement}{n\_time\_steppers}};\ \mbox{\hyperlink{cfortran_8h_adb50e893b86b3e55e751a42eab3cba82}{i}}++)}
+\DoxyCodeLine{\Hypertarget{segregated__fsi__solver_8cc_source_l01072}01072\ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{segregated__fsi__solver_8cc_source_l01073}01073\ \ \ \ \ \ \ \mbox{\hyperlink{classoomph_1_1Problem_aa6bb90130ac5bb220493c40cddf520ba}{time\_stepper\_pt}}(\mbox{\hyperlink{cfortran_8h_adb50e893b86b3e55e751a42eab3cba82}{i}})-\/>\mbox{\hyperlink{classoomph_1_1TimeStepper_a028fa3a8d3c6db6b0ddf580cb0468d55}{set\_weights}}();}
+\DoxyCodeLine{\Hypertarget{segregated__fsi__solver_8cc_source_l01074}01074\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{segregated__fsi__solver_8cc_source_l01075}01075\ }
+\DoxyCodeLine{\Hypertarget{segregated__fsi__solver_8cc_source_l01076}01076\ \ \ \ \ \textcolor{comment}{//\ Now\ update\ anything\ that\ needs\ updating\ before\ the\ timestep}}
+\DoxyCodeLine{\Hypertarget{segregated__fsi__solver_8cc_source_l01077}01077\ \ \ \ \ \textcolor{comment}{//\ This\ could\ be\ time-\/dependent\ boundary\ conditions,\ for\ example.}}
+\DoxyCodeLine{\Hypertarget{segregated__fsi__solver_8cc_source_l01078}01078\ \ \ \ \ \mbox{\hyperlink{classoomph_1_1Problem_a4f19896906d2c0274ad6798cd3ac38dc}{actions\_before\_implicit\_timestep}}();}
+\DoxyCodeLine{\Hypertarget{segregated__fsi__solver_8cc_source_l01079}01079\ }
+\DoxyCodeLine{\Hypertarget{segregated__fsi__solver_8cc_source_l01080}01080\ \ \ \ \ \textcolor{comment}{//\ Extrapolate\ the\ solid\ data\ and\ then\ update\ fluid\ mesh\ during\ unsteady\ run}}
+\DoxyCodeLine{\Hypertarget{segregated__fsi__solver_8cc_source_l01081}01081\ \ \ \ \ \mbox{\hyperlink{classoomph_1_1SegregatableFSIProblem_a0e67b39cdae35ea25ef97e5e768aa60a}{extrapolate\_solid\_data}}();}
+\DoxyCodeLine{\Hypertarget{segregated__fsi__solver_8cc_source_l01082}01082\ }
+\DoxyCodeLine{\Hypertarget{segregated__fsi__solver_8cc_source_l01083}01083\ \ \ \ \ \textcolor{comment}{//\ Create\ object\ to\ doc\ convergence\ stats}}
+\DoxyCodeLine{\Hypertarget{segregated__fsi__solver_8cc_source_l01084}01084\ \ \ \ \ \mbox{\hyperlink{classoomph_1_1PicardConvergenceData}{PicardConvergenceData}}\ \mbox{\hyperlink{classoomph_1_1TAdvectionDiffusionReactionElement}{conv\_data}};}
+\DoxyCodeLine{\Hypertarget{segregated__fsi__solver_8cc_source_l01085}01085\ }
+\DoxyCodeLine{\Hypertarget{segregated__fsi__solver_8cc_source_l01086}01086\ \ \ \ \ \textcolor{keywordflow}{try}}
+\DoxyCodeLine{\Hypertarget{segregated__fsi__solver_8cc_source_l01087}01087\ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{segregated__fsi__solver_8cc_source_l01088}01088\ \ \ \ \ \ \ \textcolor{comment}{//\ Solve\ the\ non-\/linear\ problem\ for\ this\ timestep\ with\ Newton's\ method}}
+\DoxyCodeLine{\Hypertarget{segregated__fsi__solver_8cc_source_l01089}01089\ \ \ \ \ \ \ \mbox{\hyperlink{classoomph_1_1TAdvectionDiffusionReactionElement}{conv\_data}}\ =\ \mbox{\hyperlink{classoomph_1_1SegregatableFSIProblem_a87a69561674c1e596bb205e0fc4a387f}{segregated\_solve}}();}
+\DoxyCodeLine{\Hypertarget{segregated__fsi__solver_8cc_source_l01090}01090\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{segregated__fsi__solver_8cc_source_l01091}01091\ \ \ \ \ \textcolor{comment}{//\ Catch\ any\ exceptions\ thrown\ in\ the\ segregated\ solver}}
+\DoxyCodeLine{\Hypertarget{segregated__fsi__solver_8cc_source_l01092}01092\ \ \ \ \ \textcolor{keywordflow}{catch}\ (\mbox{\hyperlink{classoomph_1_1RanOutOfIterationsInSegregatedSolverError}{RanOutOfIterationsInSegregatedSolverError}}\&\ \mbox{\hyperlink{classoomph_1_1TAdvectionDiffusionReactionElement}{error}})}
+\DoxyCodeLine{\Hypertarget{segregated__fsi__solver_8cc_source_l01093}01093\ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{segregated__fsi__solver_8cc_source_l01094}01094\ \ \ \ \ \ \ \textcolor{comment}{//\ Continue,\ but\ output\ note}}
+\DoxyCodeLine{\Hypertarget{segregated__fsi__solver_8cc_source_l01095}01095\ \ \ \ \ \ \ \mbox{\hyperlink{namespaceoomph_aec474227917784dc0a255faf289cfc16}{oomph\_info}}\ <<\ \textcolor{stringliteral}{"{}Note:\ Ran\ out\ of\ iterations\ but\ continuing\ anyway"{}}}
+\DoxyCodeLine{\Hypertarget{segregated__fsi__solver_8cc_source_l01096}01096\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ <<\ std::endl;}
 \DoxyCodeLine{\Hypertarget{segregated__fsi__solver_8cc_source_l01097}01097\ \ \ \ \ \}}
 \DoxyCodeLine{\Hypertarget{segregated__fsi__solver_8cc_source_l01098}01098\ }
 \DoxyCodeLine{\Hypertarget{segregated__fsi__solver_8cc_source_l01099}01099\ \ \ \ \ \textcolor{comment}{//\ Now\ update\ anything\ that\ needs\ updating\ after\ the\ timestep}}
