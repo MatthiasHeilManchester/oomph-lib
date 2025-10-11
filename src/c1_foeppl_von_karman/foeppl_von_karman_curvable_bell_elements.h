@@ -1117,7 +1117,7 @@ namespace oomph
     C1CurviLine* const& left_boundary_pt,
     C1CurviLine* const& right_boundary_pt,
     Vector<double> const& left_coord,
-    Vector<double> const& right_coord)
+    Vector<double> const& right_coord) override
     {
      return new FvKDuplicateNodeConstraintElement(
       left_node_pt,
