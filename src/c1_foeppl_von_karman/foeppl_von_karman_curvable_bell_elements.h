@@ -498,11 +498,11 @@ namespace oomph
       DenseMatrix<double>& jacobian,
       const unsigned& flag)
     {
-      // [zdec] debug
-      std::cout << std::endl
-                << std::endl
-                << "ADD CONTRIBUTION FROM CONSTRAINTS" << std::endl
-                << "=============================================" << std::endl;
+      // // [zdec] debug
+      // std::cout << std::endl
+      //           << std::endl
+      //           << "ADD CONTRIBUTION FROM CONSTRAINTS" << std::endl
+      //           << "=============================================" << std::endl;
       //----------------------------------------------------------------------
       //----------------------------------------------------------------------
       // Calculate Jacobian and Hessian of coordinate transform between
@@ -2134,9 +2134,9 @@ of freedom at internal points. They are {ux, uy}",
      {
       if (nod_pt->is_on_boundary(b))
        {
-#ifdef PARANOID
         // We should only have one coordinate on this boundary
         unsigned nzeta=nod_pt->ncoordinates_on_boundary(b);
+#ifdef PARANOID
         if (nzeta!=1)
          {
           std::stringstream error_message;
@@ -2203,9 +2203,9 @@ of freedom at internal points. They are {ux, uy}",
        {
         if (nod_pt->is_on_boundary(b))
          {
-#ifdef PARANOID
           // We should only have one coordinate on this boundary
           unsigned nzeta=nod_pt->ncoordinates_on_boundary(b);
+#ifdef PARANOID
           if (nzeta!=1)
            {
             std::stringstream error_message;
@@ -2336,9 +2336,9 @@ of freedom at internal points. They are {ux, uy}",
      {
       if (nod_pt->is_on_boundary(b))
        {
-#ifdef PARANOID
         // We should only have one coordinate on this boundary
         unsigned nzeta=nod_pt->ncoordinates_on_boundary(b);
+#ifdef PARANOID
         if (nzeta!=1)
          {
           std::stringstream error_message;
