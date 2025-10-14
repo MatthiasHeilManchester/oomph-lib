@@ -64,6 +64,9 @@ namespace oomph
     void BernadouElementBasis<3>::full_basic_polynomials(
       const Vector<double>& s, Shape& phi) const
     {
+
+     // hierher pause("in BernadouElementBasis<3>::full_basic_polynomials");
+
       // This will be replaced eventually - in favour of the explicit shape
       // functions
       // Get the number of basic basis function
@@ -93,6 +96,8 @@ namespace oomph
     void BernadouElementBasis<3>::dfull_basic_polynomials(
       const Vector<double>& s, DShape& dphi) const
     {
+     // hierher pause("in BernadouElementBasis<3>::dfull_basic_polynomials");
+          
       // This will be replaced eventually - in favour of the explicit shape
       // functions
       // Get the number of basic basis function
@@ -126,6 +131,10 @@ namespace oomph
     void BernadouElementBasis<3>::d2full_basic_polynomials(
       const Vector<double>& s, DShape& d2phi) const
     {
+
+     // hierher pause("in BernadouElementBasis<3>::d2full_basic_polynomials");
+
+          
       // This will be replaced eventually - in favour of the explicit shape
       // functions
       // Get the number of basic basis function
@@ -157,6 +166,9 @@ namespace oomph
     void BernadouElementBasis<5>::full_basic_polynomials(
       const Vector<double>& s_basic, Shape& phi) const
     {
+
+     // hierher pause("in BernadouElementBasis<5>::full_basic_polynomials");
+     
       // For convenience separate coordinates
       const double s = s_basic[0], t = s_basic[1];
       // Precompute powers of coordinates
@@ -586,6 +598,9 @@ namespace oomph
     void BernadouElementBasis<5>::dfull_basic_polynomials(
       const Vector<double>& s_basic, DShape& dphi) const
     {
+
+     // hierher pause("in BernadouElementBasis<5>::dfull_basic_polynomials");
+     
       // For convenience
       const double s = s_basic[0], t = s_basic[1];
 
@@ -1572,6 +1587,9 @@ namespace oomph
     void BernadouElementBasis<5>::d2full_basic_polynomials(
       const Vector<double>& s_basic, DShape& d2phi) const
     {
+
+     // hierher pause("in BernadouElementBasis<5>::d2full_basic_polynomials");
+     
       // For convenience
       const double s = s_basic[0], t = s_basic[1];
       // Precompute

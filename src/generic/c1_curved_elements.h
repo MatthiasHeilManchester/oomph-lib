@@ -44,7 +44,11 @@ namespace oomph
     class BernadouElementBasisBase
     {
     public:
+
+     /// Constructor (empty)
       BernadouElementBasisBase(){};
+
+     /// Destructor (empty)
       virtual ~BernadouElementBasisBase(){};
 
       /// Shorthand for a vector of vectors containining the vertices
@@ -973,6 +977,9 @@ namespace oomph
       /// the fly) to the 36(55) shape functions on the basic triangle.
       void inverse_monomial_to_basic_matrix(DenseDoubleMatrix& m) const;
 
+
+    public: // hierher remove when testing is done; this used to be protected
+     
       /// \short Get full basis for a generic (BOUNDARY_ORDER+4)th order
       /// bivariate polynomial: i.e 36 basis monomials for generic p7 polynomial
       /// ;   55 basis monomials for generic p9 polynomial.
