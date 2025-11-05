@@ -86,6 +86,12 @@ namespace oomph
                                   DShape& d2bpsi,
                                   const DenseMatrix<double>& m) const = 0;
 
+      /// Get the values of s at start of parametric curve section
+     virtual inline const double& get_s_ubar() const =0;
+
+     /// Get the values of s at end of parametric curve section
+     virtual inline const double& get_s_obar() const =0;
+       
      /// hierher Aidan comments!
      virtual void coordinate_x(const Vector<double>& s,
                                Vector<double>& fk) const = 0;
