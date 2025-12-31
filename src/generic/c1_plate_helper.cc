@@ -4,7 +4,13 @@
 namespace oomph
 {
 
-
+ 
+ /// Static double to define the default tolerance with which the
+ /// Newton method in get_zeta(...)
+ /// determines the local coordinate zeta associated with a
+ /// specified point on the curviline.
+ double C1CurviLine::Tol_for_get_zeta=1.0e-12;
+ 
 
  //===============================================================================
  /// Document the pin status of the Lagrange multipliers

@@ -1276,9 +1276,6 @@ you forget to set a Curved_edge?",
     inline void BernadouElementBasis<BOUNDARY_ORDER>::permute_shape(
       Vector<double>& s) const
     {
-
-     oomph_info << "hierher CurvedEdge " << Curved_edge << std::endl;
-     
       // Permute the shape coordinate
       // If the element has been upgraded
       if (Curved_edge == C1PlateHelper::CurvedEdgeEnumeration::none)
@@ -1293,8 +1290,6 @@ you forget to set a Curved_edge?",
       }
       else if (Curved_edge == C1PlateHelper::CurvedEdgeEnumeration::zero)
       {
-       oomph_info << "hierher CurvedEdge zero" << std::endl;
-       
         // We need to permute the local coordinate
         Vector<double> permuted_s(2, 0.0);
         permuted_s[0] = s[1];
@@ -1304,8 +1299,6 @@ you forget to set a Curved_edge?",
       }
       else if (Curved_edge == C1PlateHelper::CurvedEdgeEnumeration::one)
       {
-       oomph_info << "hierher CurvedEdge one" << std::endl;
-       
         // We need to permute the local coordinate
         Vector<double> permuted_s(2, 0.0);
         permuted_s[0] = 1 - s[0] - s[1];
@@ -1315,7 +1308,6 @@ you forget to set a Curved_edge?",
       }
       else // i.e. if (Curved_edge==two)
       {
-       oomph_info << "hierher CurvedEdge two" << std::endl;
         // The local coordinate remains unchanged
         // s = s
       }
