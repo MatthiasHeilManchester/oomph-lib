@@ -783,7 +783,6 @@ namespace C1PlateHelper
       // polynomials for the boundary representation. third order (the
       // other option) is cheaper but doesn't work for all types of
       // boundary conditions.
-      unsigned boundary_order=5;
       curv_el_pt->upgrade_element_to_curved(edge, s_ubar, s_obar,
                                             c1_curve_pt,
                                             boundary_order);
