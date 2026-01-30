@@ -66,6 +66,7 @@ set(SUBDIRS
     self_test
     shell
     solid
+    axisym_solid
     spherical_advection_diffusion
     spherical_navier_stokes
     steady_axisym_advection_diffusion
