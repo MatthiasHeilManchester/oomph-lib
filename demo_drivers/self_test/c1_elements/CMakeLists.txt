@@ -27,11 +27,9 @@ oomph_add_executable(
 
 # ---------------------------------- TESTING ----------------------------------
 
-#oomph_add_test(
-#  TEST_NAME self_test.c1_elements
-#  DEPENDS_ON curved_element_validator
-#  COMMAND ./validate.sh ${OOMPH_ROOT_DIR}
-#  TEST_FILES validate.sh validata)
+# oomph_add_test( TEST_NAME self_test.c1_elements DEPENDS_ON
+# curved_element_validator COMMAND ./validate.sh ${OOMPH_ROOT_DIR} TEST_FILES
+# validate.sh validata)
 
 message(VERBOSE "Leaving c1_elements subdirectory")
 # ------------------------------------------------------------------------------
