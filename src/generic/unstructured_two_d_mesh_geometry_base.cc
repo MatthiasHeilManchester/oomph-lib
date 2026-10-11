@@ -33,6 +33,13 @@
 
 namespace oomph
 {
+
+ /// Static double to define the default tolerance with which the
+ /// Newton method in get_zeta(...)
+ /// determines the local coordinate zeta associated with a
+ /// specified point on the curviline.
+ double C1CurviLine::Tol_for_get_zeta=1.0e-12;
+
 #ifdef OOMPH_HAS_TRIANGLE_LIB
 
   //==================================================================
@@ -1894,6 +1901,51 @@ namespace oomph
 
     } // For n_boundaries - 1
   }
+
+
+ //===========================================================================
+ /// Destructor 
+ //===========================================================================
+ UnstructuredTwoDMeshGeometryBase::~UnstructuredTwoDMeshGeometryBase()
+ {
+  if (C1_curviline_represensation_has_been_set_up)
+   {
+    for (auto [b, c1_curviline_pt] :  C1_curviline_boundary_pt)
+     {
+      delete c1_curviline_pt;
+     }
+    C1_curviline_boundary_pt.clear();
+    C1_curviline_represensation_has_been_set_up=false;
+   }
+ }
+
+ //==========================================================================
+ /// Map containing pointers to C1CurviLines
+ /// (describing curvilinear boundaries of sufficient continuity
+ /// to be used in C1 (e.g. plate bending) problems), indexed by
+ /// boundary ID so c1_curvline_pt[b] is the
+ /// pointer to the C1CurviLine describing
+ /// the b-th boundary (null pointer if it's not
+ /// described by a C1CurviLines). (Note: conversion from
+ /// TriangleMeshCurviLine happens internally and C1CurviLines
+ /// are stored internally once generated; deleted in destuctor
+ /// when mesh goes out of scope.
+ //==========================================================================
+ std::map<unsigned, C1CurviLine*> UnstructuredTwoDMeshGeometryBase::c1_curviline_boundary_pt()
+ {
+  if (!C1_curviline_represensation_has_been_set_up)
+   {
+    for (auto [ b, curviline_pt] :  Curviline_boundary_pt)
+     {
+      C1_curviline_boundary_pt[b] = new C1CurviLine(curviline_pt);
+     }
+    C1_curviline_represensation_has_been_set_up=true;
+   }
+  return C1_curviline_boundary_pt;
+ }
+ 
+
+
 
 #ifdef OOMPH_HAS_TRIANGLE_LIB
 

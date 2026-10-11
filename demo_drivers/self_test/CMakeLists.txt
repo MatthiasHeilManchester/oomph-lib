@@ -29,7 +29,8 @@ set(SUBDIRS
     deliberately_broken_code_for_self_test_test
     locate_zeta
     faceted_surface_vtu_output
-    geom_object_fd)
+    geom_object_fd
+    c1_elements)
 
 if(OOMPH_HAS_MPI)
   list(APPEND SUBDIRS mpi)
