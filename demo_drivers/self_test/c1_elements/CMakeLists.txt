@@ -23,8 +23,16 @@ include(CTest)
 oomph_add_executable(
   NAME curved_element_validator
   SOURCES curved_element_validator.cc
-  LIBRARIES oomph::generic)
+  LIBRARIES oomph::generic
+  CXX_OPTIONS -O0 -g --coverage -fno-inline)
 
+# Get the hashed target name and store it in HASHED_TARGET_NAME
+oomph_get_target_name(curved_element_validator HASHED_TARGET_NAME)
+
+message("hashed target name: " ${HASHED_TARGET_NAME})
+
+target_link_options(${HASHED_TARGET_NAME} PRIVATE --coverage)
+  
 # ---------------------------------- TESTING ----------------------------------
 
 # oomph_add_test( TEST_NAME self_test.c1_elements DEPENDS_ON
