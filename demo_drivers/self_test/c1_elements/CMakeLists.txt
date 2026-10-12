@@ -28,9 +28,6 @@ oomph_add_executable(
 
 # Get the hashed target name and store it in HASHED_TARGET_NAME
 oomph_get_target_name(curved_element_validator HASHED_TARGET_NAME)
-
-message("hashed target name: " ${HASHED_TARGET_NAME})
-
 target_link_options(${HASHED_TARGET_NAME} PRIVATE --coverage)
   
 # ---------------------------------- TESTING ----------------------------------

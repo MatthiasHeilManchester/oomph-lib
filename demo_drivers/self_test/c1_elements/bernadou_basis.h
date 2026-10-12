@@ -359,12 +359,12 @@ namespace oomph
   //     }
 
 
-      /// The approximated (3rd order) polynomial
-      void psi_h(const double& s1, Vector<double>& psi_h) const;
+      // /// The approximated (3rd order) polynomial
+      // void psi_h(const double& s1, Vector<double>& psi_h) const;
 
-      /// Fill in the full association matrix
-      void fill_in_full_association_matrix(
-        DenseMatrix<double>& conversion_matrix) const;
+      // /// Fill in the full association matrix
+      // void fill_in_full_association_matrix(
+      //   DenseMatrix<double>& conversion_matrix) const;
 
       // /// Return the order of the polynomial on the curved boudnary
       // inline unsigned boundary_order() const
@@ -444,18 +444,18 @@ namespace oomph
       // /// The mapping F_k - a polynomial degree 3 PRIVATE
       // void f_k(const Vector<double>& s, Vector<double>& fk) const;
 
-      /// The basic Jacobian 
-      void get_basic_jacobian(const Vector<double> s,
-                              DenseMatrix<double>& jac) const;
+      // /// The basic Jacobian 
+      // void get_basic_jacobian(const Vector<double> s,
+      //                         DenseMatrix<double>& jac) const;
 
-      /// \short The Hessian of the global coordinate (of the vector mapping) -
-      /// like a second order Jacobian.
-      /*        d^2 x_i
-          or:   ----------    (rank 3) with x the global coordinate and s the
-         local. d s_i ds_j */
-      // PRIVATE
-      void get_basic_hessian(const Vector<double>& s,
-                             RankThreeTensor<double>& hess) const;
+      // /// \short The Hessian of the global coordinate (of the vector mapping) -
+      // /// like a second order Jacobian.
+      // /*        d^2 x_i
+      //     or:   ----------    (rank 3) with x the global coordinate and s the
+      //    local. d s_i ds_j */
+      // // PRIVATE
+      // void get_basic_hessian(const Vector<double>& s,
+      //                        RankThreeTensor<double>& hess) const;
 
 
       // /// Get the edge permutation, without the index shift
@@ -915,10 +915,10 @@ namespace oomph
       /// triangle. It was derived in mathematica and is extremely large.
       void monomial_to_basic_matrix(DenseMatrix<double>& m) const;
 
-      /// \short Fill in the inverse matrix that transforms from the 36(55)
-      /// basis monomials of p7(9) (may be accurate/similar time to invert on
-      /// the fly) to the 36(55) shape functions on the basic triangle.
-      void inverse_monomial_to_basic_matrix(DenseDoubleMatrix& m) const;
+      // /// \short Fill in the inverse matrix that transforms from the 36(55)
+      // /// basis monomials of p7(9) (may be accurate/similar time to invert on
+      // /// the fly) to the 36(55) shape functions on the basic triangle.
+      // void inverse_monomial_to_basic_matrix(DenseDoubleMatrix& m) const;
 
 
     public: // hierher remove when testing is done; this used to be protected
@@ -947,8 +947,8 @@ namespace oomph
       // p7(9) polynomial
       void d2full_basis_monomials(const Vector<double>& s, DShape& d2p7) const;
 
-      /// Get the basis functions at basic coordinate s
-      void shape_basic(const Vector<double>& s, Shape& psi, Shape& bpsi) const;
+      // /// Get the basis functions at basic coordinate s
+      // void shape_basic(const Vector<double>& s, Shape& psi, Shape& bpsi) const;
 
 //     public:
      
@@ -1011,35 +1011,35 @@ namespace oomph
 
     protected:
      
-      ///  Get the local first derivatives of the basis functions
-      void d_shape_ds(const Vector<double>& s,
-                      Shape& psi,
-                      Shape& bpsi,
-                      DShape& dpsi,
-                      DShape& dbpsi) const; // PRIVATE
+      // ///  Get the local first derivatives of the basis functions
+      // void d_shape_ds(const Vector<double>& s,
+      //                 Shape& psi,
+      //                 Shape& bpsi,
+      //                 DShape& dpsi,
+      //                 DShape& dbpsi) const; // PRIVATE
 
       // [zdec] What was David's plan here? Check with Matthias
       // HERE WRITE A PUBLIC dshape_local
 
-      ///  Get the local second derivatives of the basis functions
-      void d2_shape_ds2(const Vector<double>& s,
-                        Shape& psi,
-                        Shape& bpsi,
-                        DShape& dpsi,
-                        DShape& dbpsi,
-                        DShape& d2psi,
-                        DShape& d2bpsi) const; // PRIVATE
+      // ///  Get the local second derivatives of the basis functions
+      // void d2_shape_ds2(const Vector<double>& s,
+      //                   Shape& psi,
+      //                   Shape& bpsi,
+      //                   DShape& dpsi,
+      //                   DShape& dbpsi,
+      //                   DShape& d2psi,
+      //                   DShape& d2bpsi) const; // PRIVATE
 
-      /// \short  Get the local second derivatives of the basis functions with
-      /// precomputed association matrix
-      void d2_shape_ds2(const Vector<double>& s,
-                        Shape& psi,
-                        Shape& bpsi,
-                        DShape& dpsi,
-                        DShape& dbpsi,
-                        DShape& d2psi,
-                        DShape& d2bpsi,
-                        const DenseMatrix<double>& m) const; // PRIVATE
+      // /// \short  Get the local second derivatives of the basis functions with
+      // /// precomputed association matrix
+      // void d2_shape_ds2(const Vector<double>& s,
+      //                   Shape& psi,
+      //                   Shape& bpsi,
+      //                   DShape& dpsi,
+      //                   DShape& dbpsi,
+      //                   DShape& d2psi,
+      //                   DShape& d2bpsi,
+      //                   const DenseMatrix<double>& m) const; // PRIVATE
 
      
 //      /// Two by two specialisation of function to calculate inverse of a matrix
@@ -1081,34 +1081,34 @@ namespace oomph
     public:
 
 
-     // hierher all very unclear; what is being returned?
+     // // hierher all very unclear; what is being returned?
      
-      /// Get the Eulerian first derivatives of the basis functions
-      double d_shape_dx(const Vector<double>& s,
-                        Shape& psi,
-                        Shape& bpsi,
-                        DShape& dpsi,
-                        DShape& dbpsi) const;
+     //  /// Get the Eulerian first derivatives of the basis functions
+     //  double d_shape_dx(const Vector<double>& s,
+     //                    Shape& psi,
+     //                    Shape& bpsi,
+     //                    DShape& dpsi,
+     //                    DShape& dbpsi) const;
 
-      /// Get the Eulerian second derivatives of the basis functions
-      double d2_shape_dx2(const Vector<double>& s,
-                          Shape& psi,
-                          Shape& bpsi,
-                          DShape& dpsi,
-                          DShape& dbpsi,
-                          DShape& d2psi,
-                          DShape& d2bpsi) const;
+     //  /// Get the Eulerian second derivatives of the basis functions
+     //  double d2_shape_dx2(const Vector<double>& s,
+     //                      Shape& psi,
+     //                      Shape& bpsi,
+     //                      DShape& dpsi,
+     //                      DShape& dbpsi,
+     //                      DShape& d2psi,
+     //                      DShape& d2bpsi) const;
 
-      /// Get the Eulerian second derivatives of the basis functions, returning
-      /// the association matrix used to assemble the basis.
-      double d2_shape_dx2(const Vector<double>& s,
-                          Shape& psi,
-                          Shape& bpsi,
-                          DShape& dpsi,
-                          DShape& dbpsi,
-                          DShape& d2psi,
-                          DShape& d2bpsi,
-                          const DenseMatrix<double>& m) const;
+     //  /// Get the Eulerian second derivatives of the basis functions, returning
+     //  /// the association matrix used to assemble the basis.
+     //  double d2_shape_dx2(const Vector<double>& s,
+     //                      Shape& psi,
+     //                      Shape& bpsi,
+     //                      DShape& dpsi,
+     //                      DShape& dbpsi,
+     //                      DShape& d2psi,
+     //                      DShape& d2bpsi,
+     //                      const DenseMatrix<double>& m) const;
 
 //       /// Return the Eulerian coordinate of the ith internal dof.
 //       void get_internal_dofs_location(const unsigned& idof,
