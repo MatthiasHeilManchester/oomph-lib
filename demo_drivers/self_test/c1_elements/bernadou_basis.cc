@@ -4026,9 +4026,9 @@ void BernadouElementBasis<5>::d2full_basis_monomials(
          }
        }
       end = std::chrono::steady_clock::now();
-      std::cout << "Time for matrix-based full_basic = "
-                << std::chrono::duration_cast<std::chrono::microseconds>(end - begin).count()
-                << "[µs]" << std::endl;
+      // std::cout << "Time for matrix-based full_basic = "
+      //           << std::chrono::duration_cast<std::chrono::microseconds>(end - begin).count()
+      //           << "[µs]" << std::endl;
      }
 
      
@@ -4459,9 +4459,9 @@ void BernadouElementBasis<5>::d2full_basis_monomials(
 
 
       end = std::chrono::steady_clock::now();
-      std::cout << "Time for hard-coded full_basic = "
-                << std::chrono::duration_cast<std::chrono::microseconds>(end - begin).count()
-                << "[µs]" << std::endl;
+      // std::cout << "Time for hard-coded full_basic = "
+      //           << std::chrono::duration_cast<std::chrono::microseconds>(end - begin).count()
+      //           << "[µs]" << std::endl;
 
       // Loop over the Basis functions
       double max_error=0.0;
@@ -4520,9 +4520,9 @@ void BernadouElementBasis<5>::d2full_basis_monomials(
           }
         }
        end = std::chrono::steady_clock::now();
-       std::cout << "Time for matrix-based dfull_basic = "
-                 << std::chrono::duration_cast<std::chrono::microseconds>(end - begin).count()
-                 << "[µs]" << std::endl;
+       // std::cout << "Time for matrix-based dfull_basic = "
+       //           << std::chrono::duration_cast<std::chrono::microseconds>(end - begin).count()
+       //           << "[µs]" << std::endl;
       }
 
 
@@ -5510,9 +5510,9 @@ void BernadouElementBasis<5>::d2full_basis_monomials(
 
 
       end = std::chrono::steady_clock::now();
-      std::cout << "Time for hard-coded dfull_basic = "
-                << std::chrono::duration_cast<std::chrono::microseconds>(end - begin).count()
-                << "[µs]" << std::endl;
+      // std::cout << "Time for hard-coded dfull_basic = "
+      //           << std::chrono::duration_cast<std::chrono::microseconds>(end - begin).count()
+      //           << "[µs]" << std::endl;
 
       // Loop over the basis functions
       double max_error=0.0;
@@ -5523,13 +5523,14 @@ void BernadouElementBasis<5>::d2full_basis_monomials(
           double err=std::abs(dphi_alt(i,alpha)-dphi(i,alpha));
           max_error=std::max(err,max_error);
           
-          oomph_info << "hard coded vs assembled: "
-                     << i << " "
-                     << alpha << " "
-                     << dphi(i,alpha) << " "
-                     << dphi_alt(i,alpha) << " "
-                     << err << " "
-                     << std::endl;          
+          // oomph_info << "hard coded vs assembled: "
+          //            << i << " "
+          //            << alpha << " "
+          //            << dphi(i,alpha) << " "
+          //            << dphi_alt(i,alpha) << " "
+          //            << err << " "
+          //            << std::endl;        
+          
          }
        }
       oomph_info << "MAX ERROR DPHI HARD-CODED VS ASSEMBLED : "
@@ -5575,9 +5576,9 @@ void BernadouElementBasis<5>::d2full_basis_monomials(
           }
         }
        end = std::chrono::steady_clock::now();
-       std::cout << "Time for matrix-based d2full_basic = "
-                 << std::chrono::duration_cast<std::chrono::microseconds>(end - begin).count()
-                 << "[µs]" << std::endl;
+       // std::cout << "Time for matrix-based d2full_basic = "
+       //           << std::chrono::duration_cast<std::chrono::microseconds>(end - begin).count()
+       //           << "[µs]" << std::endl;
       }
 
       begin = std::chrono::steady_clock::now();
@@ -7184,9 +7185,9 @@ void BernadouElementBasis<5>::d2full_basis_monomials(
 
 
       end = std::chrono::steady_clock::now();
-      std::cout << "Time for hard-coded d2full_basic = "
-                << std::chrono::duration_cast<std::chrono::microseconds>(end - begin).count()
-                << "[µs]" << std::endl;
+      // std::cout << "Time for hard-coded d2full_basic = "
+      //           << std::chrono::duration_cast<std::chrono::microseconds>(end - begin).count()
+      //           << "[µs]" << std::endl;
 
 
       // Loop over the basis functions
@@ -7197,13 +7198,13 @@ void BernadouElementBasis<5>::d2full_basis_monomials(
          {
           double err=std::abs(d2phi_alt(i,alpha)-d2phi(i,alpha));
           max_error=std::max(err,max_error);          
-          oomph_info << "hard coded vs assembled: "
-                     << i << " "
-                     << alpha << " "
-                     << d2phi(i,alpha) << " "
-                     << d2phi_alt(i,alpha) << " "
-                     << err << " "
-                     << std::endl;          
+          // oomph_info << "hard coded vs assembled: "
+          //            << i << " "
+          //            << alpha << " "
+          //            << d2phi(i,alpha) << " "
+          //            << d2phi_alt(i,alpha) << " "
+          //            << err << " "
+          //            << std::endl;          
           }
         }
 

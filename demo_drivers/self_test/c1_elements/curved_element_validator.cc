@@ -3065,7 +3065,7 @@ if (plot_em)
  }
 
 // output intermediate results to screen
-bool output_to_screen=false;
+bool output_to_screen=true; // false;
 
 oomph_info << "\nDof classification:\n"
            << "==================="
@@ -3079,6 +3079,7 @@ for (auto dof_class : test_point)
 
   if (output_to_screen)
    {
+    oomph_info << " new row: ";
     oomph_info << std::fixed << std::setprecision(1);
    }
   
@@ -3145,12 +3146,12 @@ for (auto dof_class : test_point)
          {
           double err=std::abs(old_psi(i)-psi(i));
           max_error=std::max(err,max_error);          
-          oomph_info << "old vs. new: "
-                     << i << " "
-                     << psi(i) << " "
-                     << old_psi(i) << " "
-                     << err << " "
-                     << std::endl;          
+          // oomph_info << "old vs. new: "
+          //            << i << " "
+          //            << psi(i) << " "
+          //            << old_psi(i) << " "
+          //            << err << " "
+          //            << std::endl;          
          }
         
         oomph_info << "MAX ERROR PHI OLD VS NEW : "
@@ -3167,13 +3168,13 @@ for (auto dof_class : test_point)
            {
             double err=std::abs(old_dpsi(i,alpha)-dpsi(i,alpha));
             max_error=std::max(err,max_error);          
-            oomph_info << "old vs. new d: "
-                       << i << " "
-                       << alpha << " "
-                       << dpsi(i,alpha) << " "
-                       << old_dpsi(i,alpha) << " "
-                       << err << " "
-                       << std::endl;          
+            // oomph_info << "old vs. new d: "
+            //            << i << " "
+            //            << alpha << " "
+            //            << dpsi(i,alpha) << " "
+            //            << old_dpsi(i,alpha) << " "
+            //            << err << " "
+            //            << std::endl;          
            }
          }
         
@@ -3191,13 +3192,13 @@ for (auto dof_class : test_point)
            {
             double err=std::abs(old_d2psi(i,alpha)-d2psi(i,alpha));
             max_error=std::max(err,max_error);          
-            oomph_info << "old vs. new d2: "
-                       << i << " "
-                       << alpha << " "
-                       << d2psi(i,alpha) << " "
-                       << old_d2psi(i,alpha) << " "
-                       << err << " "
-                       << std::endl;          
+            // oomph_info << "old vs. new d2: "
+            //            << i << " "
+            //            << alpha << " "
+            //            << d2psi(i,alpha) << " "
+            //            << old_d2psi(i,alpha) << " "
+            //            << err << " "
+            //            << std::endl;          
            }
          }
         
