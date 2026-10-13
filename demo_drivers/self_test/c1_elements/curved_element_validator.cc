@@ -3049,6 +3049,10 @@ void validate_monomials_to_basic_basis_functions(const std::string&
  DShape dpsi(n_basic,2); // first derivs
  DShape d2psi(n_basic,3); // 2nd derivs xx, xy, yy 
 
+ Shape old_psi(n_basic); // basis functions themselves
+ DShape old_dpsi(n_basic,2); // first derivs
+ DShape old_d2psi(n_basic,3); // 2nd derivs xx, xy, yy 
+
 
 // Test & plot 'em
 bool plot_em=true;
@@ -3122,12 +3126,88 @@ for (auto dof_class : test_point)
         << std::endl;
        
 
+       // Get all the basis functions and derivatives at this point
+       b_pt->old_full_basic_polynomials(dof_location_and_tests.first,old_psi);
+       b_pt->old_dfull_basic_polynomials(dof_location_and_tests.first,old_dpsi);
+       b_pt->old_d2full_basic_polynomials(dof_location_and_tests.first,old_d2psi);
+
          
        // Get all the basis functions and derivatives at this point
        b_pt->full_basic_polynomials(dof_location_and_tests.first,psi);
        b_pt->dfull_basic_polynomials(dof_location_and_tests.first,dpsi);
        b_pt->d2full_basic_polynomials(dof_location_and_tests.first,d2psi);
 
+      // Loop over the basis functions
+       {
+        double max_error=0.0;
+        unsigned nbasic=b_pt->n_basic_basis_functions();
+        for (unsigned i = 0; i < nbasic; ++i)
+         {
+          double err=std::abs(old_psi(i)-psi(i));
+          max_error=std::max(err,max_error);          
+          oomph_info << "old vs. new: "
+                     << i << " "
+                     << psi(i) << " "
+                     << old_psi(i) << " "
+                     << err << " "
+                     << std::endl;          
+         }
+        
+        oomph_info << "MAX ERROR PHI OLD VS NEW : "
+                   << max_error << std::endl;
+       }
+
+      // Loop over the basis functions
+       {
+        double max_error=0.0;
+        unsigned nbasic=b_pt->n_basic_basis_functions();
+        for (unsigned i = 0; i < nbasic; ++i)
+         {
+          for (unsigned alpha = 0; alpha < 2; ++alpha)
+           {
+            double err=std::abs(old_dpsi(i,alpha)-dpsi(i,alpha));
+            max_error=std::max(err,max_error);          
+            oomph_info << "old vs. new d: "
+                       << i << " "
+                       << alpha << " "
+                       << dpsi(i,alpha) << " "
+                       << old_dpsi(i,alpha) << " "
+                       << err << " "
+                       << std::endl;          
+           }
+         }
+        
+        oomph_info << "MAX ERROR DPHI OLD VS NEW : "
+                   << max_error << std::endl;
+       }
+
+      // Loop over the 2nd derivs of basis functions
+       {
+        double max_error=0.0;
+        unsigned nbasic=b_pt->n_basic_basis_functions();
+        for (unsigned i = 0; i < nbasic; ++i)
+         {
+          for (unsigned alpha = 0; alpha < 3; ++alpha)
+           {
+            double err=std::abs(old_d2psi(i,alpha)-d2psi(i,alpha));
+            max_error=std::max(err,max_error);          
+            oomph_info << "old vs. new d2: "
+                       << i << " "
+                       << alpha << " "
+                       << d2psi(i,alpha) << " "
+                       << old_d2psi(i,alpha) << " "
+                       << err << " "
+                       << std::endl;          
+           }
+         }
+        
+        oomph_info << "MAX ERROR D2PHI OLD VS NEW : "
+                   << max_error << std::endl;
+       }
+
+
+
+       
        if (test_type=="w")
         {
          for (unsigned i=0;i<n_basic;i++)

@@ -929,6 +929,17 @@ namespace oomph
       void full_basis_monomials(const Vector<double>& s, Shape& pn) const;
 
       /// Get full basis for the basic element
+      void old_full_basic_polynomials(const Vector<double>& s, Shape& pn) const;
+
+      /// Get first derivatives of full basis for the basic element
+      void old_dfull_basic_polynomials(const Vector<double>& s, DShape& dpn) const;
+
+      /// Get second derivatives of full basis for the basic element
+      void old_d2full_basic_polynomials(const Vector<double>& s,
+                                    DShape& d2pn) const;
+
+     
+      /// Get full basis for the basic element
       void full_basic_polynomials(const Vector<double>& s, Shape& pn) const;
 
       /// Get first derivatives of full basis for the basic element

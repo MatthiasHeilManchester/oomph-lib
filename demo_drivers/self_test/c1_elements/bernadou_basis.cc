@@ -3212,6 +3212,677 @@ namespace oomph
 // now remember what we decided, but can you sort this out (or raise it again)
 // when you do your tidies (plenty of zdecs anyway)
 // hierher: MH asking himself why can't we do it?
+// Fully specialised, loop-free Bernadou basis evaluations.
+template<>
+void BernadouElementBasis<3>::full_basis_monomials(
+  const Vector<double>& s, Shape& p7) const
+{
+  const double s0 = s[0];
+  const double s1 = s[1];
+  const double s0_2 = s0 * s0;
+  const double s0_3 = s0_2 * s0;
+  const double s0_4 = s0_3 * s0;
+  const double s0_5 = s0_4 * s0;
+  const double s0_6 = s0_5 * s0;
+  const double s0_7 = s0_6 * s0;
+  const double s1_2 = s1 * s1;
+  const double s1_3 = s1_2 * s1;
+  const double s1_4 = s1_3 * s1;
+  const double s1_5 = s1_4 * s1;
+  const double s1_6 = s1_5 * s1;
+  const double s1_7 = s1_6 * s1;
+
+  p7[0] = s0_7;
+  p7[1] = s0_6 * s1;
+  p7[2] = s0_5 * s1_2;
+  p7[3] = s0_4 * s1_3;
+  p7[4] = s0_3 * s1_4;
+  p7[5] = s0_2 * s1_5;
+  p7[6] = s0 * s1_6;
+  p7[7] = s1_7;
+  p7[8] = s0_6;
+  p7[9] = s0_5 * s1;
+  p7[10] = s0_4 * s1_2;
+  p7[11] = s0_3 * s1_3;
+  p7[12] = s0_2 * s1_4;
+  p7[13] = s0 * s1_5;
+  p7[14] = s1_6;
+  p7[15] = s0_5;
+  p7[16] = s0_4 * s1;
+  p7[17] = s0_3 * s1_2;
+  p7[18] = s0_2 * s1_3;
+  p7[19] = s0 * s1_4;
+  p7[20] = s1_5;
+  p7[21] = s0_4;
+  p7[22] = s0_3 * s1;
+  p7[23] = s0_2 * s1_2;
+  p7[24] = s0 * s1_3;
+  p7[25] = s1_4;
+  p7[26] = s0_3;
+  p7[27] = s0_2 * s1;
+  p7[28] = s0 * s1_2;
+  p7[29] = s1_3;
+  p7[30] = s0_2;
+  p7[31] = s0 * s1;
+  p7[32] = s1_2;
+  p7[33] = s0;
+  p7[34] = s1;
+  p7[35] = 1.0;
+}
+
+template<>
+void BernadouElementBasis<3>::dfull_basis_monomials(
+  const Vector<double>& s, DShape& dp7) const
+{
+  const double s0 = s[0];
+  const double s1 = s[1];
+  const double s0_2 = s0 * s0;
+  const double s0_3 = s0_2 * s0;
+  const double s0_4 = s0_3 * s0;
+  const double s0_5 = s0_4 * s0;
+  const double s0_6 = s0_5 * s0;
+  const double s1_2 = s1 * s1;
+  const double s1_3 = s1_2 * s1;
+  const double s1_4 = s1_3 * s1;
+  const double s1_5 = s1_4 * s1;
+  const double s1_6 = s1_5 * s1;
+
+  dp7(0, 0) = 7.0 * s0_6;
+  dp7(0, 1) = 0.0;
+  dp7(1, 0) = 6.0 * s0_5 * s1;
+  dp7(1, 1) = s0_6;
+  dp7(2, 0) = 5.0 * s0_4 * s1_2;
+  dp7(2, 1) = 2.0 * s0_5 * s1;
+  dp7(3, 0) = 4.0 * s0_3 * s1_3;
+  dp7(3, 1) = 3.0 * s0_4 * s1_2;
+  dp7(4, 0) = 3.0 * s0_2 * s1_4;
+  dp7(4, 1) = 4.0 * s0_3 * s1_3;
+  dp7(5, 0) = 2.0 * s0 * s1_5;
+  dp7(5, 1) = 5.0 * s0_2 * s1_4;
+  dp7(6, 0) = s1_6;
+  dp7(6, 1) = 6.0 * s0 * s1_5;
+  dp7(7, 0) = 0.0;
+  dp7(7, 1) = 7.0 * s1_6;
+  dp7(8, 0) = 6.0 * s0_5;
+  dp7(8, 1) = 0.0;
+  dp7(9, 0) = 5.0 * s0_4 * s1;
+  dp7(9, 1) = s0_5;
+  dp7(10, 0) = 4.0 * s0_3 * s1_2;
+  dp7(10, 1) = 2.0 * s0_4 * s1;
+  dp7(11, 0) = 3.0 * s0_2 * s1_3;
+  dp7(11, 1) = 3.0 * s0_3 * s1_2;
+  dp7(12, 0) = 2.0 * s0 * s1_4;
+  dp7(12, 1) = 4.0 * s0_2 * s1_3;
+  dp7(13, 0) = s1_5;
+  dp7(13, 1) = 5.0 * s0 * s1_4;
+  dp7(14, 0) = 0.0;
+  dp7(14, 1) = 6.0 * s1_5;
+  dp7(15, 0) = 5.0 * s0_4;
+  dp7(15, 1) = 0.0;
+  dp7(16, 0) = 4.0 * s0_3 * s1;
+  dp7(16, 1) = s0_4;
+  dp7(17, 0) = 3.0 * s0_2 * s1_2;
+  dp7(17, 1) = 2.0 * s0_3 * s1;
+  dp7(18, 0) = 2.0 * s0 * s1_3;
+  dp7(18, 1) = 3.0 * s0_2 * s1_2;
+  dp7(19, 0) = s1_4;
+  dp7(19, 1) = 4.0 * s0 * s1_3;
+  dp7(20, 0) = 0.0;
+  dp7(20, 1) = 5.0 * s1_4;
+  dp7(21, 0) = 4.0 * s0_3;
+  dp7(21, 1) = 0.0;
+  dp7(22, 0) = 3.0 * s0_2 * s1;
+  dp7(22, 1) = s0_3;
+  dp7(23, 0) = 2.0 * s0 * s1_2;
+  dp7(23, 1) = 2.0 * s0_2 * s1;
+  dp7(24, 0) = s1_3;
+  dp7(24, 1) = 3.0 * s0 * s1_2;
+  dp7(25, 0) = 0.0;
+  dp7(25, 1) = 4.0 * s1_3;
+  dp7(26, 0) = 3.0 * s0_2;
+  dp7(26, 1) = 0.0;
+  dp7(27, 0) = 2.0 * s0 * s1;
+  dp7(27, 1) = s0_2;
+  dp7(28, 0) = s1_2;
+  dp7(28, 1) = 2.0 * s0 * s1;
+  dp7(29, 0) = 0.0;
+  dp7(29, 1) = 3.0 * s1_2;
+  dp7(30, 0) = 2.0 * s0;
+  dp7(30, 1) = 0.0;
+  dp7(31, 0) = s1;
+  dp7(31, 1) = s0;
+  dp7(32, 0) = 0.0;
+  dp7(32, 1) = 2.0 * s1;
+  dp7(33, 0) = 1.0;
+  dp7(33, 1) = 0.0;
+  dp7(34, 0) = 0.0;
+  dp7(34, 1) = 1.0;
+  dp7(35, 0) = 0.0;
+  dp7(35, 1) = 0.0;
+}
+
+template<>
+void BernadouElementBasis<3>::d2full_basis_monomials(
+  const Vector<double>& s, DShape& d2p7) const
+{
+  const double s0 = s[0];
+  const double s1 = s[1];
+  const double s0_2 = s0 * s0;
+  const double s0_3 = s0_2 * s0;
+  const double s0_4 = s0_3 * s0;
+  const double s0_5 = s0_4 * s0;
+  const double s1_2 = s1 * s1;
+  const double s1_3 = s1_2 * s1;
+  const double s1_4 = s1_3 * s1;
+  const double s1_5 = s1_4 * s1;
+
+  d2p7(0, 0) = 42.0 * s0_5;
+  d2p7(0, 1) = 0.0;
+  d2p7(0, 2) = 0.0;
+  d2p7(1, 0) = 30.0 * s0_4 * s1;
+  d2p7(1, 1) = 6.0 * s0_5;
+  d2p7(1, 2) = 0.0;
+  d2p7(2, 0) = 20.0 * s0_3 * s1_2;
+  d2p7(2, 1) = 10.0 * s0_4 * s1;
+  d2p7(2, 2) = 2.0 * s0_5;
+  d2p7(3, 0) = 12.0 * s0_2 * s1_3;
+  d2p7(3, 1) = 12.0 * s0_3 * s1_2;
+  d2p7(3, 2) = 6.0 * s0_4 * s1;
+  d2p7(4, 0) = 6.0 * s0 * s1_4;
+  d2p7(4, 1) = 12.0 * s0_2 * s1_3;
+  d2p7(4, 2) = 12.0 * s0_3 * s1_2;
+  d2p7(5, 0) = 2.0 * s1_5;
+  d2p7(5, 1) = 10.0 * s0 * s1_4;
+  d2p7(5, 2) = 20.0 * s0_2 * s1_3;
+  d2p7(6, 0) = 0.0;
+  d2p7(6, 1) = 6.0 * s1_5;
+  d2p7(6, 2) = 30.0 * s0 * s1_4;
+  d2p7(7, 0) = 0.0;
+  d2p7(7, 1) = 0.0;
+  d2p7(7, 2) = 42.0 * s1_5;
+  d2p7(8, 0) = 30.0 * s0_4;
+  d2p7(8, 1) = 0.0;
+  d2p7(8, 2) = 0.0;
+  d2p7(9, 0) = 20.0 * s0_3 * s1;
+  d2p7(9, 1) = 5.0 * s0_4;
+  d2p7(9, 2) = 0.0;
+  d2p7(10, 0) = 12.0 * s0_2 * s1_2;
+  d2p7(10, 1) = 8.0 * s0_3 * s1;
+  d2p7(10, 2) = 2.0 * s0_4;
+  d2p7(11, 0) = 6.0 * s0 * s1_3;
+  d2p7(11, 1) = 9.0 * s0_2 * s1_2;
+  d2p7(11, 2) = 6.0 * s0_3 * s1;
+  d2p7(12, 0) = 2.0 * s1_4;
+  d2p7(12, 1) = 8.0 * s0 * s1_3;
+  d2p7(12, 2) = 12.0 * s0_2 * s1_2;
+  d2p7(13, 0) = 0.0;
+  d2p7(13, 1) = 5.0 * s1_4;
+  d2p7(13, 2) = 20.0 * s0 * s1_3;
+  d2p7(14, 0) = 0.0;
+  d2p7(14, 1) = 0.0;
+  d2p7(14, 2) = 30.0 * s1_4;
+  d2p7(15, 0) = 20.0 * s0_3;
+  d2p7(15, 1) = 0.0;
+  d2p7(15, 2) = 0.0;
+  d2p7(16, 0) = 12.0 * s0_2 * s1;
+  d2p7(16, 1) = 4.0 * s0_3;
+  d2p7(16, 2) = 0.0;
+  d2p7(17, 0) = 6.0 * s0 * s1_2;
+  d2p7(17, 1) = 6.0 * s0_2 * s1;
+  d2p7(17, 2) = 2.0 * s0_3;
+  d2p7(18, 0) = 2.0 * s1_3;
+  d2p7(18, 1) = 6.0 * s0 * s1_2;
+  d2p7(18, 2) = 6.0 * s0_2 * s1;
+  d2p7(19, 0) = 0.0;
+  d2p7(19, 1) = 4.0 * s1_3;
+  d2p7(19, 2) = 12.0 * s0 * s1_2;
+  d2p7(20, 0) = 0.0;
+  d2p7(20, 1) = 0.0;
+  d2p7(20, 2) = 20.0 * s1_3;
+  d2p7(21, 0) = 12.0 * s0_2;
+  d2p7(21, 1) = 0.0;
+  d2p7(21, 2) = 0.0;
+  d2p7(22, 0) = 6.0 * s0 * s1;
+  d2p7(22, 1) = 3.0 * s0_2;
+  d2p7(22, 2) = 0.0;
+  d2p7(23, 0) = 2.0 * s1_2;
+  d2p7(23, 1) = 4.0 * s0 * s1;
+  d2p7(23, 2) = 2.0 * s0_2;
+  d2p7(24, 0) = 0.0;
+  d2p7(24, 1) = 3.0 * s1_2;
+  d2p7(24, 2) = 6.0 * s0 * s1;
+  d2p7(25, 0) = 0.0;
+  d2p7(25, 1) = 0.0;
+  d2p7(25, 2) = 12.0 * s1_2;
+  d2p7(26, 0) = 6.0 * s0;
+  d2p7(26, 1) = 0.0;
+  d2p7(26, 2) = 0.0;
+  d2p7(27, 0) = 2.0 * s1;
+  d2p7(27, 1) = 2.0 * s0;
+  d2p7(27, 2) = 0.0;
+  d2p7(28, 0) = 0.0;
+  d2p7(28, 1) = 2.0 * s1;
+  d2p7(28, 2) = 2.0 * s0;
+  d2p7(29, 0) = 0.0;
+  d2p7(29, 1) = 0.0;
+  d2p7(29, 2) = 6.0 * s1;
+  d2p7(30, 0) = 2.0 * 1.0;
+  d2p7(30, 1) = 0.0;
+  d2p7(30, 2) = 0.0;
+  d2p7(31, 0) = 0.0;
+  d2p7(31, 1) = 1.0;
+  d2p7(31, 2) = 0.0;
+  d2p7(32, 0) = 0.0;
+  d2p7(32, 1) = 0.0;
+  d2p7(32, 2) = 2.0 * 1.0;
+  d2p7(33, 0) = 0.0;
+  d2p7(33, 1) = 0.0;
+  d2p7(33, 2) = 0.0;
+  d2p7(34, 0) = 0.0;
+  d2p7(34, 1) = 0.0;
+  d2p7(34, 2) = 0.0;
+  d2p7(35, 0) = 0.0;
+  d2p7(35, 1) = 0.0;
+  d2p7(35, 2) = 0.0;
+}
+template<>
+void BernadouElementBasis<5>::full_basis_monomials(
+  const Vector<double>& s, Shape& p7) const
+{
+  const double s0 = s[0];
+  const double s1 = s[1];
+  const double s0_2 = s0 * s0;
+  const double s0_3 = s0_2 * s0;
+  const double s0_4 = s0_3 * s0;
+  const double s0_5 = s0_4 * s0;
+  const double s0_6 = s0_5 * s0;
+  const double s0_7 = s0_6 * s0;
+  const double s0_8 = s0_7 * s0;
+  const double s0_9 = s0_8 * s0;
+  const double s1_2 = s1 * s1;
+  const double s1_3 = s1_2 * s1;
+  const double s1_4 = s1_3 * s1;
+  const double s1_5 = s1_4 * s1;
+  const double s1_6 = s1_5 * s1;
+  const double s1_7 = s1_6 * s1;
+  const double s1_8 = s1_7 * s1;
+  const double s1_9 = s1_8 * s1;
+
+  p7[0] = s0_9;
+  p7[1] = s0_8 * s1;
+  p7[2] = s0_7 * s1_2;
+  p7[3] = s0_6 * s1_3;
+  p7[4] = s0_5 * s1_4;
+  p7[5] = s0_4 * s1_5;
+  p7[6] = s0_3 * s1_6;
+  p7[7] = s0_2 * s1_7;
+  p7[8] = s0 * s1_8;
+  p7[9] = s1_9;
+  p7[10] = s0_8;
+  p7[11] = s0_7 * s1;
+  p7[12] = s0_6 * s1_2;
+  p7[13] = s0_5 * s1_3;
+  p7[14] = s0_4 * s1_4;
+  p7[15] = s0_3 * s1_5;
+  p7[16] = s0_2 * s1_6;
+  p7[17] = s0 * s1_7;
+  p7[18] = s1_8;
+  p7[19] = s0_7;
+  p7[20] = s0_6 * s1;
+  p7[21] = s0_5 * s1_2;
+  p7[22] = s0_4 * s1_3;
+  p7[23] = s0_3 * s1_4;
+  p7[24] = s0_2 * s1_5;
+  p7[25] = s0 * s1_6;
+  p7[26] = s1_7;
+  p7[27] = s0_6;
+  p7[28] = s0_5 * s1;
+  p7[29] = s0_4 * s1_2;
+  p7[30] = s0_3 * s1_3;
+  p7[31] = s0_2 * s1_4;
+  p7[32] = s0 * s1_5;
+  p7[33] = s1_6;
+  p7[34] = s0_5;
+  p7[35] = s0_4 * s1;
+  p7[36] = s0_3 * s1_2;
+  p7[37] = s0_2 * s1_3;
+  p7[38] = s0 * s1_4;
+  p7[39] = s1_5;
+  p7[40] = s0_4;
+  p7[41] = s0_3 * s1;
+  p7[42] = s0_2 * s1_2;
+  p7[43] = s0 * s1_3;
+  p7[44] = s1_4;
+  p7[45] = s0_3;
+  p7[46] = s0_2 * s1;
+  p7[47] = s0 * s1_2;
+  p7[48] = s1_3;
+  p7[49] = s0_2;
+  p7[50] = s0 * s1;
+  p7[51] = s1_2;
+  p7[52] = s0;
+  p7[53] = s1;
+  p7[54] = 1.0;
+}
+
+template<>
+void BernadouElementBasis<5>::dfull_basis_monomials(
+  const Vector<double>& s, DShape& dp7) const
+{
+  const double s0 = s[0];
+  const double s1 = s[1];
+  const double s0_2 = s0 * s0;
+  const double s0_3 = s0_2 * s0;
+  const double s0_4 = s0_3 * s0;
+  const double s0_5 = s0_4 * s0;
+  const double s0_6 = s0_5 * s0;
+  const double s0_7 = s0_6 * s0;
+  const double s0_8 = s0_7 * s0;
+  const double s1_2 = s1 * s1;
+  const double s1_3 = s1_2 * s1;
+  const double s1_4 = s1_3 * s1;
+  const double s1_5 = s1_4 * s1;
+  const double s1_6 = s1_5 * s1;
+  const double s1_7 = s1_6 * s1;
+  const double s1_8 = s1_7 * s1;
+
+  dp7(0, 0) = 9.0 * s0_8;
+  dp7(0, 1) = 0.0;
+  dp7(1, 0) = 8.0 * s0_7 * s1;
+  dp7(1, 1) = s0_8;
+  dp7(2, 0) = 7.0 * s0_6 * s1_2;
+  dp7(2, 1) = 2.0 * s0_7 * s1;
+  dp7(3, 0) = 6.0 * s0_5 * s1_3;
+  dp7(3, 1) = 3.0 * s0_6 * s1_2;
+  dp7(4, 0) = 5.0 * s0_4 * s1_4;
+  dp7(4, 1) = 4.0 * s0_5 * s1_3;
+  dp7(5, 0) = 4.0 * s0_3 * s1_5;
+  dp7(5, 1) = 5.0 * s0_4 * s1_4;
+  dp7(6, 0) = 3.0 * s0_2 * s1_6;
+  dp7(6, 1) = 6.0 * s0_3 * s1_5;
+  dp7(7, 0) = 2.0 * s0 * s1_7;
+  dp7(7, 1) = 7.0 * s0_2 * s1_6;
+  dp7(8, 0) = s1_8;
+  dp7(8, 1) = 8.0 * s0 * s1_7;
+  dp7(9, 0) = 0.0;
+  dp7(9, 1) = 9.0 * s1_8;
+  dp7(10, 0) = 8.0 * s0_7;
+  dp7(10, 1) = 0.0;
+  dp7(11, 0) = 7.0 * s0_6 * s1;
+  dp7(11, 1) = s0_7;
+  dp7(12, 0) = 6.0 * s0_5 * s1_2;
+  dp7(12, 1) = 2.0 * s0_6 * s1;
+  dp7(13, 0) = 5.0 * s0_4 * s1_3;
+  dp7(13, 1) = 3.0 * s0_5 * s1_2;
+  dp7(14, 0) = 4.0 * s0_3 * s1_4;
+  dp7(14, 1) = 4.0 * s0_4 * s1_3;
+  dp7(15, 0) = 3.0 * s0_2 * s1_5;
+  dp7(15, 1) = 5.0 * s0_3 * s1_4;
+  dp7(16, 0) = 2.0 * s0 * s1_6;
+  dp7(16, 1) = 6.0 * s0_2 * s1_5;
+  dp7(17, 0) = s1_7;
+  dp7(17, 1) = 7.0 * s0 * s1_6;
+  dp7(18, 0) = 0.0;
+  dp7(18, 1) = 8.0 * s1_7;
+  dp7(19, 0) = 7.0 * s0_6;
+  dp7(19, 1) = 0.0;
+  dp7(20, 0) = 6.0 * s0_5 * s1;
+  dp7(20, 1) = s0_6;
+  dp7(21, 0) = 5.0 * s0_4 * s1_2;
+  dp7(21, 1) = 2.0 * s0_5 * s1;
+  dp7(22, 0) = 4.0 * s0_3 * s1_3;
+  dp7(22, 1) = 3.0 * s0_4 * s1_2;
+  dp7(23, 0) = 3.0 * s0_2 * s1_4;
+  dp7(23, 1) = 4.0 * s0_3 * s1_3;
+  dp7(24, 0) = 2.0 * s0 * s1_5;
+  dp7(24, 1) = 5.0 * s0_2 * s1_4;
+  dp7(25, 0) = s1_6;
+  dp7(25, 1) = 6.0 * s0 * s1_5;
+  dp7(26, 0) = 0.0;
+  dp7(26, 1) = 7.0 * s1_6;
+  dp7(27, 0) = 6.0 * s0_5;
+  dp7(27, 1) = 0.0;
+  dp7(28, 0) = 5.0 * s0_4 * s1;
+  dp7(28, 1) = s0_5;
+  dp7(29, 0) = 4.0 * s0_3 * s1_2;
+  dp7(29, 1) = 2.0 * s0_4 * s1;
+  dp7(30, 0) = 3.0 * s0_2 * s1_3;
+  dp7(30, 1) = 3.0 * s0_3 * s1_2;
+  dp7(31, 0) = 2.0 * s0 * s1_4;
+  dp7(31, 1) = 4.0 * s0_2 * s1_3;
+  dp7(32, 0) = s1_5;
+  dp7(32, 1) = 5.0 * s0 * s1_4;
+  dp7(33, 0) = 0.0;
+  dp7(33, 1) = 6.0 * s1_5;
+  dp7(34, 0) = 5.0 * s0_4;
+  dp7(34, 1) = 0.0;
+  dp7(35, 0) = 4.0 * s0_3 * s1;
+  dp7(35, 1) = s0_4;
+  dp7(36, 0) = 3.0 * s0_2 * s1_2;
+  dp7(36, 1) = 2.0 * s0_3 * s1;
+  dp7(37, 0) = 2.0 * s0 * s1_3;
+  dp7(37, 1) = 3.0 * s0_2 * s1_2;
+  dp7(38, 0) = s1_4;
+  dp7(38, 1) = 4.0 * s0 * s1_3;
+  dp7(39, 0) = 0.0;
+  dp7(39, 1) = 5.0 * s1_4;
+  dp7(40, 0) = 4.0 * s0_3;
+  dp7(40, 1) = 0.0;
+  dp7(41, 0) = 3.0 * s0_2 * s1;
+  dp7(41, 1) = s0_3;
+  dp7(42, 0) = 2.0 * s0 * s1_2;
+  dp7(42, 1) = 2.0 * s0_2 * s1;
+  dp7(43, 0) = s1_3;
+  dp7(43, 1) = 3.0 * s0 * s1_2;
+  dp7(44, 0) = 0.0;
+  dp7(44, 1) = 4.0 * s1_3;
+  dp7(45, 0) = 3.0 * s0_2;
+  dp7(45, 1) = 0.0;
+  dp7(46, 0) = 2.0 * s0 * s1;
+  dp7(46, 1) = s0_2;
+  dp7(47, 0) = s1_2;
+  dp7(47, 1) = 2.0 * s0 * s1;
+  dp7(48, 0) = 0.0;
+  dp7(48, 1) = 3.0 * s1_2;
+  dp7(49, 0) = 2.0 * s0;
+  dp7(49, 1) = 0.0;
+  dp7(50, 0) = s1;
+  dp7(50, 1) = s0;
+  dp7(51, 0) = 0.0;
+  dp7(51, 1) = 2.0 * s1;
+  dp7(52, 0) = 1.0;
+  dp7(52, 1) = 0.0;
+  dp7(53, 0) = 0.0;
+  dp7(53, 1) = 1.0;
+  dp7(54, 0) = 0.0;
+  dp7(54, 1) = 0.0;
+}
+
+template<>
+void BernadouElementBasis<5>::d2full_basis_monomials(
+  const Vector<double>& s, DShape& d2p7) const
+{
+  const double s0 = s[0];
+  const double s1 = s[1];
+  const double s0_2 = s0 * s0;
+  const double s0_3 = s0_2 * s0;
+  const double s0_4 = s0_3 * s0;
+  const double s0_5 = s0_4 * s0;
+  const double s0_6 = s0_5 * s0;
+  const double s0_7 = s0_6 * s0;
+  const double s1_2 = s1 * s1;
+  const double s1_3 = s1_2 * s1;
+  const double s1_4 = s1_3 * s1;
+  const double s1_5 = s1_4 * s1;
+  const double s1_6 = s1_5 * s1;
+  const double s1_7 = s1_6 * s1;
+
+  d2p7(0, 0) = 72.0 * s0_7;
+  d2p7(0, 1) = 0.0;
+  d2p7(0, 2) = 0.0;
+  d2p7(1, 0) = 56.0 * s0_6 * s1;
+  d2p7(1, 1) = 8.0 * s0_7;
+  d2p7(1, 2) = 0.0;
+  d2p7(2, 0) = 42.0 * s0_5 * s1_2;
+  d2p7(2, 1) = 14.0 * s0_6 * s1;
+  d2p7(2, 2) = 2.0 * s0_7;
+  d2p7(3, 0) = 30.0 * s0_4 * s1_3;
+  d2p7(3, 1) = 18.0 * s0_5 * s1_2;
+  d2p7(3, 2) = 6.0 * s0_6 * s1;
+  d2p7(4, 0) = 20.0 * s0_3 * s1_4;
+  d2p7(4, 1) = 20.0 * s0_4 * s1_3;
+  d2p7(4, 2) = 12.0 * s0_5 * s1_2;
+  d2p7(5, 0) = 12.0 * s0_2 * s1_5;
+  d2p7(5, 1) = 20.0 * s0_3 * s1_4;
+  d2p7(5, 2) = 20.0 * s0_4 * s1_3;
+  d2p7(6, 0) = 6.0 * s0 * s1_6;
+  d2p7(6, 1) = 18.0 * s0_2 * s1_5;
+  d2p7(6, 2) = 30.0 * s0_3 * s1_4;
+  d2p7(7, 0) = 2.0 * s1_7;
+  d2p7(7, 1) = 14.0 * s0 * s1_6;
+  d2p7(7, 2) = 42.0 * s0_2 * s1_5;
+  d2p7(8, 0) = 0.0;
+  d2p7(8, 1) = 8.0 * s1_7;
+  d2p7(8, 2) = 56.0 * s0 * s1_6;
+  d2p7(9, 0) = 0.0;
+  d2p7(9, 1) = 0.0;
+  d2p7(9, 2) = 72.0 * s1_7;
+  d2p7(10, 0) = 56.0 * s0_6;
+  d2p7(10, 1) = 0.0;
+  d2p7(10, 2) = 0.0;
+  d2p7(11, 0) = 42.0 * s0_5 * s1;
+  d2p7(11, 1) = 7.0 * s0_6;
+  d2p7(11, 2) = 0.0;
+  d2p7(12, 0) = 30.0 * s0_4 * s1_2;
+  d2p7(12, 1) = 12.0 * s0_5 * s1;
+  d2p7(12, 2) = 2.0 * s0_6;
+  d2p7(13, 0) = 20.0 * s0_3 * s1_3;
+  d2p7(13, 1) = 15.0 * s0_4 * s1_2;
+  d2p7(13, 2) = 6.0 * s0_5 * s1;
+  d2p7(14, 0) = 12.0 * s0_2 * s1_4;
+  d2p7(14, 1) = 16.0 * s0_3 * s1_3;
+  d2p7(14, 2) = 12.0 * s0_4 * s1_2;
+  d2p7(15, 0) = 6.0 * s0 * s1_5;
+  d2p7(15, 1) = 15.0 * s0_2 * s1_4;
+  d2p7(15, 2) = 20.0 * s0_3 * s1_3;
+  d2p7(16, 0) = 2.0 * s1_6;
+  d2p7(16, 1) = 12.0 * s0 * s1_5;
+  d2p7(16, 2) = 30.0 * s0_2 * s1_4;
+  d2p7(17, 0) = 0.0;
+  d2p7(17, 1) = 7.0 * s1_6;
+  d2p7(17, 2) = 42.0 * s0 * s1_5;
+  d2p7(18, 0) = 0.0;
+  d2p7(18, 1) = 0.0;
+  d2p7(18, 2) = 56.0 * s1_6;
+  d2p7(19, 0) = 42.0 * s0_5;
+  d2p7(19, 1) = 0.0;
+  d2p7(19, 2) = 0.0;
+  d2p7(20, 0) = 30.0 * s0_4 * s1;
+  d2p7(20, 1) = 6.0 * s0_5;
+  d2p7(20, 2) = 0.0;
+  d2p7(21, 0) = 20.0 * s0_3 * s1_2;
+  d2p7(21, 1) = 10.0 * s0_4 * s1;
+  d2p7(21, 2) = 2.0 * s0_5;
+  d2p7(22, 0) = 12.0 * s0_2 * s1_3;
+  d2p7(22, 1) = 12.0 * s0_3 * s1_2;
+  d2p7(22, 2) = 6.0 * s0_4 * s1;
+  d2p7(23, 0) = 6.0 * s0 * s1_4;
+  d2p7(23, 1) = 12.0 * s0_2 * s1_3;
+  d2p7(23, 2) = 12.0 * s0_3 * s1_2;
+  d2p7(24, 0) = 2.0 * s1_5;
+  d2p7(24, 1) = 10.0 * s0 * s1_4;
+  d2p7(24, 2) = 20.0 * s0_2 * s1_3;
+  d2p7(25, 0) = 0.0;
+  d2p7(25, 1) = 6.0 * s1_5;
+  d2p7(25, 2) = 30.0 * s0 * s1_4;
+  d2p7(26, 0) = 0.0;
+  d2p7(26, 1) = 0.0;
+  d2p7(26, 2) = 42.0 * s1_5;
+  d2p7(27, 0) = 30.0 * s0_4;
+  d2p7(27, 1) = 0.0;
+  d2p7(27, 2) = 0.0;
+  d2p7(28, 0) = 20.0 * s0_3 * s1;
+  d2p7(28, 1) = 5.0 * s0_4;
+  d2p7(28, 2) = 0.0;
+  d2p7(29, 0) = 12.0 * s0_2 * s1_2;
+  d2p7(29, 1) = 8.0 * s0_3 * s1;
+  d2p7(29, 2) = 2.0 * s0_4;
+  d2p7(30, 0) = 6.0 * s0 * s1_3;
+  d2p7(30, 1) = 9.0 * s0_2 * s1_2;
+  d2p7(30, 2) = 6.0 * s0_3 * s1;
+  d2p7(31, 0) = 2.0 * s1_4;
+  d2p7(31, 1) = 8.0 * s0 * s1_3;
+  d2p7(31, 2) = 12.0 * s0_2 * s1_2;
+  d2p7(32, 0) = 0.0;
+  d2p7(32, 1) = 5.0 * s1_4;
+  d2p7(32, 2) = 20.0 * s0 * s1_3;
+  d2p7(33, 0) = 0.0;
+  d2p7(33, 1) = 0.0;
+  d2p7(33, 2) = 30.0 * s1_4;
+  d2p7(34, 0) = 20.0 * s0_3;
+  d2p7(34, 1) = 0.0;
+  d2p7(34, 2) = 0.0;
+  d2p7(35, 0) = 12.0 * s0_2 * s1;
+  d2p7(35, 1) = 4.0 * s0_3;
+  d2p7(35, 2) = 0.0;
+  d2p7(36, 0) = 6.0 * s0 * s1_2;
+  d2p7(36, 1) = 6.0 * s0_2 * s1;
+  d2p7(36, 2) = 2.0 * s0_3;
+  d2p7(37, 0) = 2.0 * s1_3;
+  d2p7(37, 1) = 6.0 * s0 * s1_2;
+  d2p7(37, 2) = 6.0 * s0_2 * s1;
+  d2p7(38, 0) = 0.0;
+  d2p7(38, 1) = 4.0 * s1_3;
+  d2p7(38, 2) = 12.0 * s0 * s1_2;
+  d2p7(39, 0) = 0.0;
+  d2p7(39, 1) = 0.0;
+  d2p7(39, 2) = 20.0 * s1_3;
+  d2p7(40, 0) = 12.0 * s0_2;
+  d2p7(40, 1) = 0.0;
+  d2p7(40, 2) = 0.0;
+  d2p7(41, 0) = 6.0 * s0 * s1;
+  d2p7(41, 1) = 3.0 * s0_2;
+  d2p7(41, 2) = 0.0;
+  d2p7(42, 0) = 2.0 * s1_2;
+  d2p7(42, 1) = 4.0 * s0 * s1;
+  d2p7(42, 2) = 2.0 * s0_2;
+  d2p7(43, 0) = 0.0;
+  d2p7(43, 1) = 3.0 * s1_2;
+  d2p7(43, 2) = 6.0 * s0 * s1;
+  d2p7(44, 0) = 0.0;
+  d2p7(44, 1) = 0.0;
+  d2p7(44, 2) = 12.0 * s1_2;
+  d2p7(45, 0) = 6.0 * s0;
+  d2p7(45, 1) = 0.0;
+  d2p7(45, 2) = 0.0;
+  d2p7(46, 0) = 2.0 * s1;
+  d2p7(46, 1) = 2.0 * s0;
+  d2p7(46, 2) = 0.0;
+  d2p7(47, 0) = 0.0;
+  d2p7(47, 1) = 2.0 * s1;
+  d2p7(47, 2) = 2.0 * s0;
+  d2p7(48, 0) = 0.0;
+  d2p7(48, 1) = 0.0;
+  d2p7(48, 2) = 6.0 * s1;
+  d2p7(49, 0) = 2.0 * 1.0;
+  d2p7(49, 1) = 0.0;
+  d2p7(49, 2) = 0.0;
+  d2p7(50, 0) = 0.0;
+  d2p7(50, 1) = 1.0;
+  d2p7(50, 2) = 0.0;
+  d2p7(51, 0) = 0.0;
+  d2p7(51, 1) = 0.0;
+  d2p7(51, 2) = 2.0 * 1.0;
+  d2p7(52, 0) = 0.0;
+  d2p7(52, 1) = 0.0;
+  d2p7(52, 2) = 0.0;
+  d2p7(53, 0) = 0.0;
+  d2p7(53, 1) = 0.0;
+  d2p7(53, 2) = 0.0;
+  d2p7(54, 0) = 0.0;
+  d2p7(54, 1) = 0.0;
+  d2p7(54, 2) = 0.0;
+}
 
 
 // hierher Aidan: Also, where is this from? Code looks machine generated. Do we have
@@ -3219,7 +3890,7 @@ namespace oomph
 
     /// Precomputed basis polynomials for the 3rd order boundary representation
     template<>
-    void BernadouElementBasis<3>::full_basic_polynomials(
+    void BernadouElementBasis<3>::old_full_basic_polynomials(
       const Vector<double>& s, Shape& phi) const
     {
 
@@ -3234,7 +3905,7 @@ namespace oomph
       full_basis_monomials(s, p7);
       // Initialise the basic association matrix
       DenseMatrix<double> a_matrix(nbasic, nbasic, 0.0);
-      monomial_to_basic_matrix(a_matrix);
+      monomial_to_basic_matrix(a_matrix); // hierher make static and setup once and for all
       // Loop over the 36 Basis functions
       for (unsigned i = 0; i < nbasic; ++i)
       {
@@ -3251,7 +3922,7 @@ namespace oomph
     /// Precomputed dbasis polynomials for the 3rd order boundary representation
     /// hierher dbasis =  derivatives?
     template<>
-    void BernadouElementBasis<3>::dfull_basic_polynomials(
+    void BernadouElementBasis<3>::old_dfull_basic_polynomials(
       const Vector<double>& s, DShape& dphi) const
     {
      // hierher pause("in BernadouElementBasis<3>::dfull_basic_polynomials");
@@ -3263,7 +3934,7 @@ namespace oomph
       // Initialise the p7 shape functions
       DShape dp7(nbasic, 2);
       dfull_basis_monomials(s, dp7);
-      // Initialise the basic association matrix
+      // Initialise the basic association matrix  -- this can be precomputed
       DenseMatrix<double> a_matrix(nbasic, nbasic, 0.0);
       monomial_to_basic_matrix(a_matrix);
       // Loop over the 36 Basis functions
@@ -3286,7 +3957,7 @@ namespace oomph
     /// representation
     /// hierher d2basis =  second derivatives?
     template<>
-    void BernadouElementBasis<3>::d2full_basic_polynomials(
+    void BernadouElementBasis<3>::old_d2full_basic_polynomials(
       const Vector<double>& s, DShape& d2phi) const
     {
 
@@ -3300,7 +3971,7 @@ namespace oomph
       // Initialise the p7 shape functions
       DShape d2p7(nbasic, 3);
       d2full_basis_monomials(s, d2p7);
-      // Initialise the basic association matrix
+      // Initialise the basic association matrix  -- this can be precomputed
       DenseMatrix<double> a_matrix(nbasic, nbasic, 0.0);
       monomial_to_basic_matrix(a_matrix);
       // Loop over the 36 Basis functions
@@ -3321,12 +3992,49 @@ namespace oomph
 
     /// Precomputed basis polynomials for the 5th order boundary representation
     template<>
-    void BernadouElementBasis<5>::full_basic_polynomials(
+    void BernadouElementBasis<5>::old_full_basic_polynomials(
       const Vector<double>& s_basic, Shape& phi) const
     {
 
-     // hierher pause("in BernadouElementBasis<5>::full_basic_polynomials");
+     std::chrono::steady_clock::time_point begin;
+     std::chrono::steady_clock::time_point end;
      
+     // hierher Trying to assemble via the matrix: careful this code
+     // is lifted directly from the <3> version and has not been edited
+     
+     // Get the number of basic basis function
+     const unsigned nbasic = n_basic_basis_functions();
+     Shape phi_alt(nbasic);
+     {
+      // Initialise the basic association matrix  -- this can be precomputed
+      DenseMatrix<double> a_matrix(nbasic, nbasic, 0.0);
+      monomial_to_basic_matrix(a_matrix);
+      
+      begin = std::chrono::steady_clock::now();
+
+      // Initialise the monomial shape functions
+      Shape p7(nbasic);
+      full_basis_monomials(s_basic, p7);
+
+      // Loop over the basis functions
+      for (unsigned i = 0; i < nbasic; ++i)
+       {
+        phi_alt(i) = 0.0;
+        for (unsigned j = 0; j < nbasic; ++j)
+         {
+          phi_alt(i) += a_matrix(i, j) * p7(j);
+         }
+       }
+      end = std::chrono::steady_clock::now();
+      std::cout << "Time for matrix-based full_basic = "
+                << std::chrono::duration_cast<std::chrono::microseconds>(end - begin).count()
+                << "[µs]" << std::endl;
+     }
+
+     
+     // hierher pause("in BernadouElementBasis<5>::full_basic_polynomials");
+     begin = std::chrono::steady_clock::now();
+
       // For convenience separate coordinates
       const double s = s_basic[0], t = s_basic[1];
       // Precompute powers of coordinates
@@ -3748,17 +4456,80 @@ namespace oomph
 
       phi[54] = -729 * (-1 + 6 * s) * (-1 + 6 * t) * (-5 + 6 * s + 6 * t) *
                 s_p_2 * t_p_2 * pow(-1 + s + t, 2);
+
+
+      end = std::chrono::steady_clock::now();
+      std::cout << "Time for hard-coded full_basic = "
+                << std::chrono::duration_cast<std::chrono::microseconds>(end - begin).count()
+                << "[µs]" << std::endl;
+
+      // Loop over the Basis functions
+      double max_error=0.0;
+      for (unsigned i = 0; i < nbasic; ++i)
+       {
+        double err=std::abs(phi_alt[i]-phi[i]);
+        max_error=std::max(err,max_error);
+        // oomph_info << "hard coded vs assembled: " << i << " "
+        //            << phi[i] << " "
+        //            << phi_alt[i] << " "
+        //            << err << " "
+        //            << std::endl;
+       }
+      oomph_info << "MAX ERROR PHI HARD-CODED VS ASSEMBLED : "
+                 << max_error << std::endl;
+
     }
 
     /// Precomputed dbasis polynomials for the 5th order boundary representation
     /// hierher dbasis = derivatives?
     template<>
-    void BernadouElementBasis<5>::dfull_basic_polynomials(
+    void BernadouElementBasis<5>::old_dfull_basic_polynomials(
       const Vector<double>& s_basic, DShape& dphi) const
     {
 
      // hierher pause("in BernadouElementBasis<5>::dfull_basic_polynomials");
      
+     std::chrono::steady_clock::time_point begin;
+     std::chrono::steady_clock::time_point end;
+     
+      // Get the number of basic basis function
+      const unsigned nbasic = n_basic_basis_functions();
+      DShape dphi_alt(nbasic,2);
+      {
+       // Initialise the basic association matrix  -- this can be precomputed
+       DenseMatrix<double> a_matrix(nbasic, nbasic, 0.0);
+       monomial_to_basic_matrix(a_matrix);
+       
+       begin = std::chrono::steady_clock::now();
+
+       // Initialise the p7 shape functions
+       DShape dp7(nbasic, 2);
+       dfull_basis_monomials(s_basic, dp7);
+       // Loop over the 36 Basis functions
+       for (unsigned i = 0; i < nbasic; ++i)
+        {
+         for (unsigned alpha = 0; alpha < 2; ++alpha)
+          {
+           // Zero the shape functions
+           dphi_alt(i, alpha) = 0.0;
+           // Zero nodal dofs
+           for (unsigned j = 0; j < nbasic; ++j)
+            {
+             dphi_alt(i, alpha) += a_matrix(i, j) * dp7(j, alpha);
+            }
+          }
+        }
+       end = std::chrono::steady_clock::now();
+       std::cout << "Time for matrix-based dfull_basic = "
+                 << std::chrono::duration_cast<std::chrono::microseconds>(end - begin).count()
+                 << "[µs]" << std::endl;
+      }
+
+
+
+      begin = std::chrono::steady_clock::now();
+
+      
       // For convenience
       const double s = s_basic[0], t = s_basic[1];
 
@@ -4736,15 +5507,80 @@ namespace oomph
 
       dphi(54, 1) = -1458 * (-1 + 6 * s) * t * (-1 + s + t) * (-1 + s + 2 * t) *
                     s_p_2 * (5 - 6 * s - 54 * t + 54 * s * t + 54 * t_p_2);
+
+
+      end = std::chrono::steady_clock::now();
+      std::cout << "Time for hard-coded dfull_basic = "
+                << std::chrono::duration_cast<std::chrono::microseconds>(end - begin).count()
+                << "[µs]" << std::endl;
+
+      // Loop over the basis functions
+      double max_error=0.0;
+      for (unsigned i = 0; i < nbasic; ++i)
+       {
+        for (unsigned alpha = 0; alpha < 2; ++alpha)
+         {
+          double err=std::abs(dphi_alt(i,alpha)-dphi(i,alpha));
+          max_error=std::max(err,max_error);
+          
+          oomph_info << "hard coded vs assembled: "
+                     << i << " "
+                     << alpha << " "
+                     << dphi(i,alpha) << " "
+                     << dphi_alt(i,alpha) << " "
+                     << err << " "
+                     << std::endl;          
+         }
+       }
+      oomph_info << "MAX ERROR DPHI HARD-CODED VS ASSEMBLED : "
+                 << max_error << std::endl;
     }
 
     /// Precomputed d2basis polynomials for the 5th order boundary
     /// representation
     /// hierher dbasis = 2nd derivatives?
     template<>
-    void BernadouElementBasis<5>::d2full_basic_polynomials(
+    void BernadouElementBasis<5>::old_d2full_basic_polynomials(
       const Vector<double>& s_basic, DShape& d2phi) const
     {
+
+     std::chrono::steady_clock::time_point begin;
+     std::chrono::steady_clock::time_point end;
+     
+      // Get the number of basic basis function
+      const unsigned nbasic = n_basic_basis_functions();
+      DShape d2phi_alt(nbasic,3);
+      {
+       // Initialise the basic association matrix -- this can be precomputed
+       DenseMatrix<double> a_matrix(nbasic, nbasic, 0.0);
+       monomial_to_basic_matrix(a_matrix);
+       
+       begin = std::chrono::steady_clock::now();
+
+       // Initialise the p7 shape functions
+       DShape d2p7(nbasic, 3);
+       d2full_basis_monomials(s_basic, d2p7);
+       // Loop over the 36 Basis functions
+       for (unsigned i = 0; i < nbasic; ++i)
+        {
+         for (unsigned alpha = 0; alpha < 3; ++alpha)
+          {
+           // Zero the shape functions
+           d2phi_alt(i, alpha) = 0.0;
+           // Zero nodal dofs
+           for (unsigned j = 0; j < nbasic; ++j)
+            {
+             d2phi_alt(i, alpha) += a_matrix(i, j) * d2p7(j, alpha);
+            }
+          }
+        }
+       end = std::chrono::steady_clock::now();
+       std::cout << "Time for matrix-based d2full_basic = "
+                 << std::chrono::duration_cast<std::chrono::microseconds>(end - begin).count()
+                 << "[µs]" << std::endl;
+      }
+
+      begin = std::chrono::steady_clock::now();
 
      // hierher pause("in BernadouElementBasis<5>::d2full_basic_polynomials");
      
@@ -6344,7 +7180,112 @@ namespace oomph
         (5 - 16 * s - 138 * t + 390 * s * t + 17 * s_p_2 - 360 * t * s_p_2 -
          6 * s_p_3 + 108 * t * s_p_3 + 678 * t_p_2 - 1332 * s * t_p_2 +
          648 * s_p_2 * t_p_2 - 1080 * t_p_3 + 1080 * s * t_p_3 + 540 * t_p_4);
+
+
+
+      end = std::chrono::steady_clock::now();
+      std::cout << "Time for hard-coded d2full_basic = "
+                << std::chrono::duration_cast<std::chrono::microseconds>(end - begin).count()
+                << "[µs]" << std::endl;
+
+
+      // Loop over the basis functions
+      double max_error=0.0;
+      for (unsigned i = 0; i < nbasic; ++i)
+       {
+        for (unsigned alpha = 0; alpha < 3; ++alpha)
+         {
+          double err=std::abs(d2phi_alt(i,alpha)-d2phi(i,alpha));
+          max_error=std::max(err,max_error);          
+          oomph_info << "hard coded vs assembled: "
+                     << i << " "
+                     << alpha << " "
+                     << d2phi(i,alpha) << " "
+                     << d2phi_alt(i,alpha) << " "
+                     << err << " "
+                     << std::endl;          
+          }
+        }
+
+      oomph_info << "MAX ERROR D2PHI HARD-CODED VS ASSEMBLED : "
+                 << max_error << std::endl;
+
+      
     }
+
+
+
+
+#undef OLD_VERSION
+#ifdef OLD_VERSION
+
+    template<>
+    void BernadouElementBasis<3>::d2full_basic_polynomials(
+      const Vector<double>& s_basic, DShape& d2phi) const
+    {
+     BernadouElementBasis<3>::old_d2full_basic_polynomials(
+      s_basic, d2phi);
+    }
+
+    template<>
+    void BernadouElementBasis<3>::dfull_basic_polynomials(
+      const Vector<double>& s_basic, DShape& dphi) const
+    {
+     BernadouElementBasis<3>::old_dfull_basic_polynomials(
+      s_basic, dphi);
+    }
+
+    template<>
+    void BernadouElementBasis<3>::full_basic_polynomials(
+      const Vector<double>& s_basic, Shape& dphi) const
+    {
+     BernadouElementBasis<3>::old_full_basic_polynomials(
+      s_basic, dphi);
+    }
+
+
+ //----
+
+ 
+    template<>
+    void BernadouElementBasis<5>::d2full_basic_polynomials(
+      const Vector<double>& s_basic, DShape& d2phi) const
+    {
+     BernadouElementBasis<5>::old_d2full_basic_polynomials(
+      s_basic, d2phi);
+    }
+
+    template<>
+    void BernadouElementBasis<5>::dfull_basic_polynomials(
+      const Vector<double>& s_basic, DShape& dphi) const
+    {
+     BernadouElementBasis<5>::old_dfull_basic_polynomials(
+      s_basic, dphi);
+    }
+
+    template<>
+    void BernadouElementBasis<5>::full_basic_polynomials(
+      const Vector<double>& s_basic, Shape& dphi) const
+    {
+     BernadouElementBasis<5>::old_full_basic_polynomials(
+      s_basic, dphi);
+    }
+
+
+
+#else
+
+
+#include "rewrite/bernadou_basic_polynomials_3.h"
+#include "rewrite/bernadou_basic_polynomials_5.h"
+
+#endif
+
+
+
+
+
+
 
 // } // namespace oomph
 
@@ -7308,7 +8249,6 @@ namespace oomph
 
     /// Get 36 (54) basis monomials for generic p7(9) polynomial on basic
     /// triangle Rename to something more generic and template it
-
     template<unsigned BOUNDARY_ORDER>
     void BernadouElementBasis<BOUNDARY_ORDER>::full_basis_monomials(
       const Vector<double>& s, Shape& p7) const

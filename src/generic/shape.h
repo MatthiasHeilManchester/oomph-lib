@@ -248,7 +248,8 @@ namespace oomph
       Allocated_storage = 0;
     }
 
-  private:
+//   private:
+
     /// Change the size of the storage
     void resize(const unsigned& N, const unsigned& M = 1)
     {
@@ -278,7 +279,8 @@ namespace oomph
     }
 
   public:
-    /// Overload the bracket operator to provide access to values.
+
+   /// Overload the bracket operator to provide access to values.
     inline double& operator[](const unsigned& i)
     {
 #ifdef RANGE_CHECKING
@@ -550,7 +552,8 @@ namespace oomph
       Allocated_storage = 0;
     }
 
-  private:
+//  private:
+   
     /// Change the size of the storage. Note that (for some strange reason)
     /// index2 is the "optional" index, to conform with the existing
     /// constructor.
