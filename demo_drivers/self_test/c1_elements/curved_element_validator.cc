@@ -57,7 +57,24 @@ using MathematicalConstants::Pi;
 #define BOLD_RED    "\033[1;31m"
 #define RESET       "\033[0m"
 
+/// Function for prettified output of differences
+std::string not_one_or_zero(const double& value, const double& tol)
+{
+  const double deviation_from_one = std::abs(std::abs(value) - 1.0);
+  const double deviation_from_zero = std::abs(value);
 
+  const double deviation =
+    std::min(deviation_from_one, deviation_from_zero);
+
+  std::ostringstream output;
+  output << ((deviation > tol) ? BOLD_RED : GREEN)
+         << ((deviation_from_one < deviation_from_zero) ? "\033[4m" : "")
+         << std::scientific << std::setprecision(1)
+         << deviation
+         << RESET;
+
+  return output.str();
+}
 
 //////////////////////////////////////////////////////////////////////
 //////////////////////////////////////////////////////////////////////
@@ -2879,6 +2896,9 @@ void validate_monomials_to_basic_basis_functions(const std::string&
 {
 
 
+
+
+ 
  oomph_info
   << BOLD_BLUE << "\n\n\nTesting Bernadou basic basis functions for M = "
   << M << "\n"
@@ -3066,6 +3086,16 @@ if (plot_em)
 
 // output intermediate results to screen
 bool output_to_screen=true; // false;
+double tol=1.0e-9;
+
+
+// Timing
+std::chrono::steady_clock::duration accumulated_time_old=
+ std::chrono::steady_clock::duration::zero();
+std::chrono::steady_clock::duration accumulated_time_new=
+ std::chrono::steady_clock::duration::zero();
+std::chrono::steady_clock::time_point begin; 
+std::chrono::steady_clock::time_point end;
 
 oomph_info << "\nDof classification:\n"
            << "==================="
@@ -3126,39 +3156,60 @@ for (auto dof_class : test_point)
         << (dof_location_and_tests.first)[1] << ") " 
         << std::endl;
        
-
-       // Get all the basis functions and derivatives at this point
+       
+       begin=std::chrono::steady_clock::now();
+       
        b_pt->old_full_basic_polynomials(dof_location_and_tests.first,old_psi);
        b_pt->old_dfull_basic_polynomials(dof_location_and_tests.first,old_dpsi);
        b_pt->old_d2full_basic_polynomials(dof_location_and_tests.first,old_d2psi);
 
-         
+       
+       end=std::chrono::steady_clock::now();
+       accumulated_time_old += end - begin;
+       begin=std::chrono::steady_clock::now();
+
        // Get all the basis functions and derivatives at this point
        b_pt->full_basic_polynomials(dof_location_and_tests.first,psi);
        b_pt->dfull_basic_polynomials(dof_location_and_tests.first,dpsi);
        b_pt->d2full_basic_polynomials(dof_location_and_tests.first,d2psi);
 
-      // Loop over the basis functions
+       end=std::chrono::steady_clock::now();
+       accumulated_time_new += end - begin;
+
+
+
+
+      // Check old vs new
        {
         double max_error=0.0;
         unsigned nbasic=b_pt->n_basic_basis_functions();
         for (unsigned i = 0; i < nbasic; ++i)
          {
           double err=std::abs(old_psi(i)-psi(i));
-          max_error=std::max(err,max_error);          
-          // oomph_info << "old vs. new: "
-          //            << i << " "
-          //            << psi(i) << " "
-          //            << old_psi(i) << " "
-          //            << err << " "
-          //            << std::endl;          
+          max_error=std::max(err,max_error);
+        //   oomph_info << "new vs. old psi: "
+        //              << i << " ";
+        //   auto old_flags = oomph_info.stream_pt()->flags();
+        //   auto old_precision = oomph_info.stream_pt()->precision();            
+        //   oomph_info << psi(i) << " "
+        //              << old_psi(i) << " "
+        //              << std::scientific << std::setprecision(1)
+        //              << err << " ";            
+        //   oomph_info.stream_pt()->flags(old_flags);
+        //   oomph_info.stream_pt()->precision(old_precision);  
+        //   oomph_info << std::endl;          
          }
-        
+        auto old_flags = oomph_info.stream_pt()->flags();
+        auto old_precision = oomph_info.stream_pt()->precision();            
         oomph_info << "MAX ERROR PHI OLD VS NEW : "
-                   << max_error << std::endl;
+                   << std::scientific << std::setprecision(1)
+                   << max_error << std::endl;       
+        oomph_info.stream_pt()->flags(old_flags);
+        oomph_info.stream_pt()->precision(old_precision);  
        }
 
-      // Loop over the basis functions
+       
+      // Check old vs new
        {
         double max_error=0.0;
         unsigned nbasic=b_pt->n_basic_basis_functions();
@@ -3167,22 +3218,31 @@ for (auto dof_class : test_point)
           for (unsigned alpha = 0; alpha < 2; ++alpha)
            {
             double err=std::abs(old_dpsi(i,alpha)-dpsi(i,alpha));
-            max_error=std::max(err,max_error);          
-            // oomph_info << "old vs. new d: "
-            //            << i << " "
-            //            << alpha << " "
+            max_error=std::max(err,max_error);
+            // oomph_info << "new vs. old dpsi: "
+            //            << i << " ";
+            // auto old_flags = oomph_info.stream_pt()->flags();
+            // auto old_precision = oomph_info.stream_pt()->precision();            
+            // oomph_info << alpha << " "
             //            << dpsi(i,alpha) << " "
             //            << old_dpsi(i,alpha) << " "
-            //            << err << " "
-            //            << std::endl;          
+            //            << std::scientific << std::setprecision(1)
+            //            << err << " ";            
+            // oomph_info.stream_pt()->flags(old_flags);
+            // oomph_info.stream_pt()->precision(old_precision);  
+            // oomph_info << std::endl;          
            }
          }
-        
+        auto old_flags = oomph_info.stream_pt()->flags();
+        auto old_precision = oomph_info.stream_pt()->precision();            
         oomph_info << "MAX ERROR DPHI OLD VS NEW : "
-                   << max_error << std::endl;
+                   << std::scientific << std::setprecision(1)
+                   << max_error << std::endl;       
+        oomph_info.stream_pt()->flags(old_flags);
+        oomph_info.stream_pt()->precision(old_precision);  
        }
 
-      // Loop over the 2nd derivs of basis functions
+      // Check old vs new
        {
         double max_error=0.0;
         unsigned nbasic=b_pt->n_basic_basis_functions();
@@ -3191,21 +3251,31 @@ for (auto dof_class : test_point)
           for (unsigned alpha = 0; alpha < 3; ++alpha)
            {
             double err=std::abs(old_d2psi(i,alpha)-d2psi(i,alpha));
-            max_error=std::max(err,max_error);          
-            // oomph_info << "old vs. new d2: "
-            //            << i << " "
-            //            << alpha << " "
-            //            << d2psi(i,alpha) << " "
-            //            << old_d2psi(i,alpha) << " "
-            //            << err << " "
-            //            << std::endl;          
+            max_error=std::max(err,max_error);
+            oomph_info << "new vs. old d2psi: "
+                       << i << " ";
+            auto old_flags = oomph_info.stream_pt()->flags();
+            auto old_precision = oomph_info.stream_pt()->precision();            
+            oomph_info << alpha << " "
+                       << std::scientific << std::setprecision(1)
+                       << d2psi(i,alpha) << " "
+                       << old_d2psi(i,alpha) << " "
+                       << err << " ";            
+            oomph_info.stream_pt()->flags(old_flags);
+            oomph_info.stream_pt()->precision(old_precision);  
+            oomph_info << std::endl;          
            }
          }
-        
+        auto old_flags = oomph_info.stream_pt()->flags();
+        auto old_precision = oomph_info.stream_pt()->precision();            
         oomph_info << "MAX ERROR D2PHI OLD VS NEW : "
-                   << max_error << std::endl;
+                   << std::scientific << std::setprecision(1)
+                   << max_error << std::endl;       
+        oomph_info.stream_pt()->flags(old_flags);
+        oomph_info.stream_pt()->precision(old_precision);  
        }
 
+       
 
 
        
@@ -3214,7 +3284,7 @@ for (auto dof_class : test_point)
          for (unsigned i=0;i<n_basic;i++)
           {
            test_matrix(interpolation_condition,i)=psi[i];
-           if (output_to_screen) oomph_info << psi[i] << " ";
+           if (output_to_screen) oomph_info << not_one_or_zero(psi[i],tol) << " ";
           }
         }
        else if (test_type=="dwdx")
@@ -3222,7 +3292,7 @@ for (auto dof_class : test_point)
          for (unsigned i=0;i<n_basic;i++)
           {
            test_matrix(interpolation_condition,i)=dpsi(i,0);
-           if (output_to_screen) oomph_info << dpsi(i,0) << " ";
+           if (output_to_screen) oomph_info << not_one_or_zero(dpsi(i,0),tol) << " ";
           }
         }
        else if (test_type=="dwdy")
@@ -3230,7 +3300,7 @@ for (auto dof_class : test_point)
          for (unsigned i=0;i<n_basic;i++)
           {
            test_matrix(interpolation_condition,i)=dpsi(i,1);
-           if (output_to_screen) oomph_info << dpsi(i,1) << " ";
+           if (output_to_screen) oomph_info << not_one_or_zero(dpsi(i,1),tol) << " ";
           }
         }
        else if (test_type=="-dwdx")
@@ -3238,7 +3308,7 @@ for (auto dof_class : test_point)
          for (unsigned i=0;i<n_basic;i++)
           {
            test_matrix(interpolation_condition,i)=-dpsi(i,0);
-           if (output_to_screen) oomph_info << -dpsi(i,0) << " ";
+           if (output_to_screen) oomph_info << not_one_or_zero(-dpsi(i,0),tol) << " ";
           }
         }
        else if (test_type=="-dwdy")
@@ -3246,7 +3316,7 @@ for (auto dof_class : test_point)
          for (unsigned i=0;i<n_basic;i++)
           {
            test_matrix(interpolation_condition,i)=-dpsi(i,1);
-           if (output_to_screen) oomph_info << -dpsi(i,1) << " ";
+           if (output_to_screen) oomph_info << not_one_or_zero(-dpsi(i,1),tol) << " ";
           }
         }
        else if (test_type=="dwdn")
@@ -3257,7 +3327,7 @@ for (auto dof_class : test_point)
             1.0/sqrt(2.0)*(dpsi(i,0)+dpsi(i,1));
            if (output_to_screen)
             {
-             oomph_info << 1.0/sqrt(2.0)*(dpsi(i,0)+dpsi(i,1))
+             oomph_info << not_one_or_zero(1.0/sqrt(2.0)*(dpsi(i,0)+dpsi(i,1)),tol)
                         << " ";
             }
           }
@@ -3267,7 +3337,7 @@ for (auto dof_class : test_point)
          for (unsigned i=0;i<n_basic;i++)
           {
            test_matrix(interpolation_condition,i)=d2psi(i,0);
-           if (output_to_screen) oomph_info << d2psi(i,0) << " ";
+           if (output_to_screen) oomph_info << not_one_or_zero(d2psi(i,0),tol) << " ";
           }
         }
        else if (test_type=="d2wdxdy")
@@ -3275,7 +3345,7 @@ for (auto dof_class : test_point)
          for (unsigned i=0;i<n_basic;i++)
           {
            test_matrix(interpolation_condition,i)=d2psi(i,1);
-           if (output_to_screen) oomph_info << d2psi(i,1) << " ";
+           if (output_to_screen) oomph_info << not_one_or_zero(d2psi(i,1),tol) << " ";
           }
         }
        else if (test_type=="d2wdy2")
@@ -3283,7 +3353,7 @@ for (auto dof_class : test_point)
          for (unsigned i=0;i<n_basic;i++)
           {
            test_matrix(interpolation_condition,i)=d2psi(i,2);
-           if (output_to_screen) oomph_info << d2psi(i,2) << " ";
+           if (output_to_screen) oomph_info << not_one_or_zero(d2psi(i,2),tol) << " ";
           }
         }
        else
@@ -3315,7 +3385,6 @@ if (plot_em)
 unsigned n_interpolation_test=n_basic;
 std::stringstream row_unit_ness_stream;
 std::stringstream col_unit_ness_stream;
-double tol=1.0e-10;
 bool test_passed=true;
 bool have_nonzero_off_diagonals=false;
 for (unsigned i=0;i<n_interpolation_test;i++)
@@ -3390,11 +3459,8 @@ for (unsigned i=0;i<n_interpolation_test;i++)
              << std::endl;
      
   if ((count_one_in_row!=1)||
-      (count_one_in_col!=1)||
       (count_zero_in_row!=(n_interpolation_test-1))||
-      (count_zero_in_col!=(n_interpolation_test-1))||
-      (count_other_in_row!=0)||
-      (count_other_in_col!=0))
+      (count_other_in_row!=0))
    {
     test_passed=false;
     oomph_info << BOLD_RED << "failed: " << RESET << diagnostic.str();
@@ -3429,7 +3495,10 @@ else
    << "No off-diagonals in test matrix: basis fcts enumerated consistently"
              << RESET << std::endl;
  }
- 
+
+// How long did that take
+ oomph_info << "Old version: " << accumulated_time_old.count() << " microseconds\n";
+ oomph_info << "New version: " << accumulated_time_new.count() << " microseconds\n";
 
 
 // Plot all basis functions

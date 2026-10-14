@@ -3996,44 +3996,44 @@ void BernadouElementBasis<5>::d2full_basis_monomials(
       const Vector<double>& s_basic, Shape& phi) const
     {
 
-     std::chrono::steady_clock::time_point begin;
-     std::chrono::steady_clock::time_point end;
+     // std::chrono::steady_clock::time_point begin;
+     // std::chrono::steady_clock::time_point end;
      
-     // hierher Trying to assemble via the matrix: careful this code
-     // is lifted directly from the <3> version and has not been edited
+     // // hierher Trying to assemble via the matrix: careful this code
+     // // is lifted directly from the <3> version and has not been edited
      
-     // Get the number of basic basis function
-     const unsigned nbasic = n_basic_basis_functions();
-     Shape phi_alt(nbasic);
-     {
-      // Initialise the basic association matrix  -- this can be precomputed
-      DenseMatrix<double> a_matrix(nbasic, nbasic, 0.0);
-      monomial_to_basic_matrix(a_matrix);
+     // // Get the number of basic basis function
+     // const unsigned nbasic = n_basic_basis_functions();
+     // Shape phi_alt(nbasic);
+     // {
+     //  // Initialise the basic association matrix  -- this can be precomputed
+     //  DenseMatrix<double> a_matrix(nbasic, nbasic, 0.0);
+     //  monomial_to_basic_matrix(a_matrix);
       
-      begin = std::chrono::steady_clock::now();
+     //  begin = std::chrono::steady_clock::now();
 
-      // Initialise the monomial shape functions
-      Shape p7(nbasic);
-      full_basis_monomials(s_basic, p7);
+     //  // Initialise the monomial shape functions
+     //  Shape p7(nbasic);
+     //  full_basis_monomials(s_basic, p7);
 
-      // Loop over the basis functions
-      for (unsigned i = 0; i < nbasic; ++i)
-       {
-        phi_alt(i) = 0.0;
-        for (unsigned j = 0; j < nbasic; ++j)
-         {
-          phi_alt(i) += a_matrix(i, j) * p7(j);
-         }
-       }
-      end = std::chrono::steady_clock::now();
-      // std::cout << "Time for matrix-based full_basic = "
-      //           << std::chrono::duration_cast<std::chrono::microseconds>(end - begin).count()
-      //           << "[µs]" << std::endl;
-     }
+     //  // Loop over the basis functions
+     //  for (unsigned i = 0; i < nbasic; ++i)
+     //   {
+     //    phi_alt(i) = 0.0;
+     //    for (unsigned j = 0; j < nbasic; ++j)
+     //     {
+     //      phi_alt(i) += a_matrix(i, j) * p7(j);
+     //     }
+     //   }
+     //  end = std::chrono::steady_clock::now();
+     //  // std::cout << "Time for matrix-based full_basic = "
+     //  //           << std::chrono::duration_cast<std::chrono::microseconds>(end - begin).count()
+     //  //           << "[µs]" << std::endl;
+     // }
 
      
-     // hierher pause("in BernadouElementBasis<5>::full_basic_polynomials");
-     begin = std::chrono::steady_clock::now();
+     // // hierher pause("in BernadouElementBasis<5>::full_basic_polynomials");
+     // begin = std::chrono::steady_clock::now();
 
       // For convenience separate coordinates
       const double s = s_basic[0], t = s_basic[1];
@@ -4458,25 +4458,25 @@ void BernadouElementBasis<5>::d2full_basis_monomials(
                 s_p_2 * t_p_2 * pow(-1 + s + t, 2);
 
 
-      end = std::chrono::steady_clock::now();
-      // std::cout << "Time for hard-coded full_basic = "
-      //           << std::chrono::duration_cast<std::chrono::microseconds>(end - begin).count()
-      //           << "[µs]" << std::endl;
+      // end = std::chrono::steady_clock::now();
+      // // std::cout << "Time for hard-coded full_basic = "
+      // //           << std::chrono::duration_cast<std::chrono::microseconds>(end - begin).count()
+      // //           << "[µs]" << std::endl;
 
-      // Loop over the Basis functions
-      double max_error=0.0;
-      for (unsigned i = 0; i < nbasic; ++i)
-       {
-        double err=std::abs(phi_alt[i]-phi[i]);
-        max_error=std::max(err,max_error);
-        // oomph_info << "hard coded vs assembled: " << i << " "
-        //            << phi[i] << " "
-        //            << phi_alt[i] << " "
-        //            << err << " "
-        //            << std::endl;
-       }
-      oomph_info << "MAX ERROR PHI HARD-CODED VS ASSEMBLED : "
-                 << max_error << std::endl;
+      // // Loop over the Basis functions
+      // double max_error=0.0;
+      // for (unsigned i = 0; i < nbasic; ++i)
+      //  {
+      //   double err=std::abs(phi_alt[i]-phi[i]);
+      //   max_error=std::max(err,max_error);
+      //   // oomph_info << "hard coded vs assembled: " << i << " "
+      //   //            << phi[i] << " "
+      //   //            << phi_alt[i] << " "
+      //   //            << err << " "
+      //   //            << std::endl;
+      //  }
+      // oomph_info << "MAX ERROR PHI HARD-CODED VS ASSEMBLED : "
+      //            << max_error << std::endl;
 
     }
 
@@ -4487,47 +4487,47 @@ void BernadouElementBasis<5>::d2full_basis_monomials(
       const Vector<double>& s_basic, DShape& dphi) const
     {
 
-     // hierher pause("in BernadouElementBasis<5>::dfull_basic_polynomials");
+     // // hierher pause("in BernadouElementBasis<5>::dfull_basic_polynomials");
      
-     std::chrono::steady_clock::time_point begin;
-     std::chrono::steady_clock::time_point end;
+     // std::chrono::steady_clock::time_point begin;
+     // std::chrono::steady_clock::time_point end;
      
-      // Get the number of basic basis function
-      const unsigned nbasic = n_basic_basis_functions();
-      DShape dphi_alt(nbasic,2);
-      {
-       // Initialise the basic association matrix  -- this can be precomputed
-       DenseMatrix<double> a_matrix(nbasic, nbasic, 0.0);
-       monomial_to_basic_matrix(a_matrix);
+     //  // Get the number of basic basis function
+     //  const unsigned nbasic = n_basic_basis_functions();
+     //  DShape dphi_alt(nbasic,2);
+     //  {
+     //   // Initialise the basic association matrix  -- this can be precomputed
+     //   DenseMatrix<double> a_matrix(nbasic, nbasic, 0.0);
+     //   monomial_to_basic_matrix(a_matrix);
        
-       begin = std::chrono::steady_clock::now();
+     //   begin = std::chrono::steady_clock::now();
 
-       // Initialise the p7 shape functions
-       DShape dp7(nbasic, 2);
-       dfull_basis_monomials(s_basic, dp7);
-       // Loop over the 36 Basis functions
-       for (unsigned i = 0; i < nbasic; ++i)
-        {
-         for (unsigned alpha = 0; alpha < 2; ++alpha)
-          {
-           // Zero the shape functions
-           dphi_alt(i, alpha) = 0.0;
-           // Zero nodal dofs
-           for (unsigned j = 0; j < nbasic; ++j)
-            {
-             dphi_alt(i, alpha) += a_matrix(i, j) * dp7(j, alpha);
-            }
-          }
-        }
-       end = std::chrono::steady_clock::now();
-       // std::cout << "Time for matrix-based dfull_basic = "
-       //           << std::chrono::duration_cast<std::chrono::microseconds>(end - begin).count()
-       //           << "[µs]" << std::endl;
-      }
+     //   // Initialise the p7 shape functions
+     //   DShape dp7(nbasic, 2);
+     //   dfull_basis_monomials(s_basic, dp7);
+     //   // Loop over the 36 Basis functions
+     //   for (unsigned i = 0; i < nbasic; ++i)
+     //    {
+     //     for (unsigned alpha = 0; alpha < 2; ++alpha)
+     //      {
+     //       // Zero the shape functions
+     //       dphi_alt(i, alpha) = 0.0;
+     //       // Zero nodal dofs
+     //       for (unsigned j = 0; j < nbasic; ++j)
+     //        {
+     //         dphi_alt(i, alpha) += a_matrix(i, j) * dp7(j, alpha);
+     //        }
+     //      }
+     //    }
+     //   end = std::chrono::steady_clock::now();
+     //   // std::cout << "Time for matrix-based dfull_basic = "
+     //   //           << std::chrono::duration_cast<std::chrono::microseconds>(end - begin).count()
+     //   //           << "[µs]" << std::endl;
+     //  }
 
 
 
-      begin = std::chrono::steady_clock::now();
+     //  begin = std::chrono::steady_clock::now();
 
       
       // For convenience
@@ -5509,32 +5509,34 @@ void BernadouElementBasis<5>::d2full_basis_monomials(
                     s_p_2 * (5 - 6 * s - 54 * t + 54 * s * t + 54 * t_p_2);
 
 
-      end = std::chrono::steady_clock::now();
-      // std::cout << "Time for hard-coded dfull_basic = "
-      //           << std::chrono::duration_cast<std::chrono::microseconds>(end - begin).count()
-      //           << "[µs]" << std::endl;
+      // end = std::chrono::steady_clock::now();
+      // // std::cout << "Time for hard-coded dfull_basic = "
+      // //           << std::chrono::duration_cast<std::chrono::microseconds>(end - begin).count()
+      // //           << "[µs]" << std::endl;
 
-      // Loop over the basis functions
-      double max_error=0.0;
-      for (unsigned i = 0; i < nbasic; ++i)
-       {
-        for (unsigned alpha = 0; alpha < 2; ++alpha)
-         {
-          double err=std::abs(dphi_alt(i,alpha)-dphi(i,alpha));
-          max_error=std::max(err,max_error);
+      // // Loop over the basis functions
+      // double max_error=0.0;
+      // for (unsigned i = 0; i < nbasic; ++i)
+      //  {
+      //   for (unsigned alpha = 0; alpha < 2; ++alpha)
+      //    {
+      //     double err=std::abs(dphi_alt(i,alpha)-dphi(i,alpha));
+      //     max_error=std::max(err,max_error);
           
-          // oomph_info << "hard coded vs assembled: "
-          //            << i << " "
-          //            << alpha << " "
-          //            << dphi(i,alpha) << " "
-          //            << dphi_alt(i,alpha) << " "
-          //            << err << " "
-          //            << std::endl;        
+      //     // oomph_info << "hard coded vs assembled: "
+      //     //            << i << " "
+      //     //            << alpha << " "
+      //     //            << dphi(i,alpha) << " "
+      //     //            << dphi_alt(i,alpha) << " "
+      //     //            << err << " "
+      //     //            << std::endl;        
           
-         }
-       }
-      oomph_info << "MAX ERROR DPHI HARD-CODED VS ASSEMBLED : "
-                 << max_error << std::endl;
+      //    }
+      //  }
+      // oomph_info << "MAX ERROR DPHI HARD-CODED VS ASSEMBLED : "
+      //            << max_error << std::endl;
+
+      
     }
 
     /// Precomputed d2basis polynomials for the 5th order boundary
@@ -5545,43 +5547,43 @@ void BernadouElementBasis<5>::d2full_basis_monomials(
       const Vector<double>& s_basic, DShape& d2phi) const
     {
 
-     std::chrono::steady_clock::time_point begin;
-     std::chrono::steady_clock::time_point end;
+     // std::chrono::steady_clock::time_point begin;
+     // std::chrono::steady_clock::time_point end;
      
-      // Get the number of basic basis function
-      const unsigned nbasic = n_basic_basis_functions();
-      DShape d2phi_alt(nbasic,3);
-      {
-       // Initialise the basic association matrix -- this can be precomputed
-       DenseMatrix<double> a_matrix(nbasic, nbasic, 0.0);
-       monomial_to_basic_matrix(a_matrix);
+     //  // Get the number of basic basis function
+     //  const unsigned nbasic = n_basic_basis_functions();
+     //  DShape d2phi_alt(nbasic,3);
+     //  {
+     //   // Initialise the basic association matrix -- this can be precomputed
+     //   DenseMatrix<double> a_matrix(nbasic, nbasic, 0.0);
+     //   monomial_to_basic_matrix(a_matrix);
        
-       begin = std::chrono::steady_clock::now();
+     //   begin = std::chrono::steady_clock::now();
 
-       // Initialise the p7 shape functions
-       DShape d2p7(nbasic, 3);
-       d2full_basis_monomials(s_basic, d2p7);
-       // Loop over the 36 Basis functions
-       for (unsigned i = 0; i < nbasic; ++i)
-        {
-         for (unsigned alpha = 0; alpha < 3; ++alpha)
-          {
-           // Zero the shape functions
-           d2phi_alt(i, alpha) = 0.0;
-           // Zero nodal dofs
-           for (unsigned j = 0; j < nbasic; ++j)
-            {
-             d2phi_alt(i, alpha) += a_matrix(i, j) * d2p7(j, alpha);
-            }
-          }
-        }
-       end = std::chrono::steady_clock::now();
+     //   // Initialise the p7 shape functions
+     //   DShape d2p7(nbasic, 3);
+     //   d2full_basis_monomials(s_basic, d2p7);
+     //   // Loop over the 36 Basis functions
+     //   for (unsigned i = 0; i < nbasic; ++i)
+     //    {
+     //     for (unsigned alpha = 0; alpha < 3; ++alpha)
+     //      {
+     //       // Zero the shape functions
+     //       d2phi_alt(i, alpha) = 0.0;
+     //       // Zero nodal dofs
+     //       for (unsigned j = 0; j < nbasic; ++j)
+     //        {
+     //         d2phi_alt(i, alpha) += a_matrix(i, j) * d2p7(j, alpha);
+     //        }
+     //      }
+     //    }
+     //   end = std::chrono::steady_clock::now();
        // std::cout << "Time for matrix-based d2full_basic = "
        //           << std::chrono::duration_cast<std::chrono::microseconds>(end - begin).count()
        //           << "[µs]" << std::endl;
-      }
+      // }
 
-      begin = std::chrono::steady_clock::now();
+      // begin = std::chrono::steady_clock::now();
 
      // hierher pause("in BernadouElementBasis<5>::d2full_basic_polynomials");
      
@@ -7184,32 +7186,33 @@ void BernadouElementBasis<5>::d2full_basis_monomials(
 
 
 
-      end = std::chrono::steady_clock::now();
-      // std::cout << "Time for hard-coded d2full_basic = "
-      //           << std::chrono::duration_cast<std::chrono::microseconds>(end - begin).count()
-      //           << "[µs]" << std::endl;
+      // end = std::chrono::steady_clock::now();
+      // // std::cout << "Time for hard-coded d2full_basic = "
+      // //           << std::chrono::duration_cast<std::chrono::microseconds>(end - begin).count()
+      // //           << "[µs]" << std::endl;
 
 
-      // Loop over the basis functions
-      double max_error=0.0;
-      for (unsigned i = 0; i < nbasic; ++i)
-       {
-        for (unsigned alpha = 0; alpha < 3; ++alpha)
-         {
-          double err=std::abs(d2phi_alt(i,alpha)-d2phi(i,alpha));
-          max_error=std::max(err,max_error);          
-          // oomph_info << "hard coded vs assembled: "
-          //            << i << " "
-          //            << alpha << " "
-          //            << d2phi(i,alpha) << " "
-          //            << d2phi_alt(i,alpha) << " "
-          //            << err << " "
-          //            << std::endl;          
-          }
-        }
+      // // Loop over the basis functions
+      // double max_error=0.0;
+      // for (unsigned i = 0; i < nbasic; ++i)
+      //  {
+      //   for (unsigned alpha = 0; alpha < 3; ++alpha)
+      //    {
+      //     double err=std::abs(d2phi_alt(i,alpha)-d2phi(i,alpha));
+      //     max_error=std::max(err,max_error);
+          
+      //     // oomph_info << "hard coded vs assembled: "
+      //     //            << i << " "
+      //     //            << alpha << " "
+      //     //            << d2phi(i,alpha) << " "
+      //     //            << d2phi_alt(i,alpha) << " "
+      //     //            << err << " "
+      //     //            << std::endl;          
+      //     }
+      //   }
 
-      oomph_info << "MAX ERROR D2PHI HARD-CODED VS ASSEMBLED : "
-                 << max_error << std::endl;
+      // oomph_info << "MAX ERROR D2PHI HARD-CODED VS ASSEMBLED : "
+      //            << max_error << std::endl;
 
       
     }
