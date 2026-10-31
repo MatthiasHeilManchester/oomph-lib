@@ -166,6 +166,7 @@ namespace oomph
       // FaceElement::continuous_tangent_and_outer_unit_normal(...) in
       // generic; convert to FixedSizeVectors once generic has been
       // updated.
+// hierher is this safe/possible to do now?
       Vector<double> norm_vec(dim_el + 1);
       Vector<Vector<double>> tang_vec(dim_el, Vector<double>(dim_el + 1));
 

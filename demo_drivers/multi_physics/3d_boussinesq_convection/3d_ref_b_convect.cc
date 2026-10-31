@@ -898,7 +898,7 @@ void compute_error(ostream &outfile,
  /// advection-diffusion equations because the wind is the fluid velocity.
  void get_wind_adv_diff(const unsigned& ipt,
                         const Vector<double> &s, const Vector<double>& x,
-                        Vector<double>& wind) const
+                        Vector<double>& wind) const //hierher change interface to work with fixed size vectors
   {
    //The wind function is simply the velocity at the points
    FixedSizeVector<double, DIM> u_nst;
@@ -913,7 +913,7 @@ void compute_error(ostream &outfile,
  /// temperature multiplied by the Rayleigh number acting in the
  /// direction opposite to gravity.
  void get_body_force_nst(const double& time, const unsigned& ipt,
-                         const Vector<double> &s,
+                         const Vector<double> &s, // hierher shouldn't this be a fixed size vector too?
                          const FixedSizeVector<double, DIM> &x,
                          FixedSizeVector<double, DIM> &result)
   {

@@ -477,6 +477,7 @@ namespace oomph
       // in generic; convert to
       // FixedSizeVector<double, ELEMENT::TEMPLATE_PARAMETER_DIM> once
       // generic has been updated.
+// hierher is this safe/possible to do now?
       Vector<double> unit_normal(Dim);
 
       // Traction: its size is the bulk element's spatial dimension,
@@ -659,6 +660,7 @@ namespace oomph
       // in generic; convert to
       // FixedSizeVector<double, ELEMENT::TEMPLATE_PARAMETER_DIM> once
       // generic has been updated.
+// hierher is this safe/possible to do now?
       Vector<double> unit_normal(this->Dim);
 
       // Traction: its size is the bulk element's spatial dimension,

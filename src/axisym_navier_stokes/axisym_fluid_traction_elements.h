@@ -223,7 +223,7 @@ namespace oomph
 
         // Outer unit normal
         Vector<double> unit_normal(n_dim);
-        outer_unit_normal(s, unit_normal);
+        outer_unit_normal(s, unit_normal); // hierher shouldn't this function work with fixed size vectors?
         FixedSizeVector<double, 2> unit_normal_fixed;
         for (unsigned i = 0; i < 2; i++)
         {
@@ -341,7 +341,7 @@ namespace oomph
 
         // Outer unit normal
         Vector<double> unit_normal(n_dim);
-        outer_unit_normal(s, unit_normal);
+        outer_unit_normal(s, unit_normal); // hierher shouldn't this function work with fixed size vectors?
         FixedSizeVector<double, 2> unit_normal_fixed;
         for (unsigned i = 0; i < 2; i++)
         {
@@ -435,7 +435,7 @@ namespace oomph
 
     // Position vector
     Vector<double> x(n_dim);
-    interpolated_x(s, x);
+    interpolated_x(s, x); // hierher should this work with fixed size vectors?
     FixedSizeVector<double, 2> x_fixed;
     for (unsigned i = 0; i < 2; i++)
     {
@@ -444,7 +444,7 @@ namespace oomph
 
     // Outer unit normal (only in r and z direction!)
     Vector<double> unit_normal(n_dim);
-    outer_unit_normal(s, unit_normal);
+    outer_unit_normal(s, unit_normal); // hierher should this work with fixed size vectors?
     FixedSizeVector<double, 2> unit_normal_fixed;
     for (unsigned i = 0; i < 2; i++)
     {
@@ -560,7 +560,7 @@ namespace oomph
 
       // Get the outer unit normal
       Vector<double> interpolated_normal(n_dim);
-      outer_unit_normal(ipt, interpolated_normal);
+      outer_unit_normal(ipt, interpolated_normal); // hierher work with fixed size vectors
       FixedSizeVector<double, 2> interpolated_normal_fixed;
       for (unsigned i = 0; i < 2; i++)
       {

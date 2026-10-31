@@ -2243,7 +2243,7 @@ namespace oomph
     /// element (at its local coordinate s) onto the adjacent
     /// SolidElement. N is the outer unit normal on the FSIFluidElement.
     void get_load(const Vector<double>& s,
-                  const Vector<double>& N,
+                  const Vector<double>& N, // hierher make these fixed sized
                   Vector<double>& load)
     {
       FixedSizeVector<double, 3> N_fixed(0.0);

@@ -2102,6 +2102,7 @@ namespace oomph
       // FiniteElement::interpolated_x(...) and
       // FaceElement::outer_unit_normal(...) in generic; convert to
       // FixedSizeVectors once generic has been updated.
+// hierher is this safe/possible to do now?
       Vector<double> s(DIM);
       Vector<double> x(DIM + 1);
       Vector<double> s_bulk(DIM + 1);
@@ -2304,6 +2305,7 @@ namespace oomph
       // FiniteElement::shape(...) and FaceElement::outer_unit_normal(...)
       // in generic; convert to FixedSizeVectors once generic has been
       // updated.
+// hierher is this safe/possible to do now?
       Vector<double> s(DIM);
       Vector<double> normal(DIM + 1);
 

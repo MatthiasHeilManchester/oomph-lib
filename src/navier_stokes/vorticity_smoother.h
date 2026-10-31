@@ -834,6 +834,7 @@ namespace oomph
       // FiniteElement::get_s_plot(...) and
       // FiniteElement::interpolated_x(...) in generic; convert to
       // FixedSizeVector<double, 2> once generic has been updated.
+// hierher is this safe/possible to do now?
       Vector<double> s(N_dim);
 
       // Global coordinates container: compile-time size 2, passed to
@@ -913,6 +914,7 @@ namespace oomph
       // FiniteElement::get_s_plot(...) and
       // FiniteElement::interpolated_x(...) in generic; convert to
       // FixedSizeVector<double, 2> once generic has been updated.
+// hierher is this safe/possible to do now?
       Vector<double> s(N_dim);
 
       // Global coordinates: compile-time size 2 and only accessed
@@ -1013,6 +1015,7 @@ namespace oomph
       // as a resizable Vector for consistency with
       // FiniteElement::get_s_plot(...) in generic; convert to
       // FixedSizeVector<double, 2> once generic has been updated.
+// hierher is this safe/possible to do now?
       Vector<double> s(N_dim);
 
       // Get the number of plot points
@@ -1179,6 +1182,7 @@ namespace oomph
       // FiniteElement::get_s_plot(...), FiniteElement::shape(...) and
       // FiniteElement::interpolated_x(...) in generic; convert to
       // FixedSizeVector<double, 2> once generic has been updated.
+// hierher is this safe/possible to do now?
       Vector<double> s(N_dim);
 
       // Global coordinates container: compile-time size 2 and only
@@ -1265,6 +1269,7 @@ namespace oomph
     /// maintained as a resizable Vector for consistency with
     /// FiniteElement::dshape_eulerian(...) in generic; convert to
     /// FixedSizeVector<double, 2> once generic has been updated.
+// hierher is this safe/possible to do now?
     void get_raw_velocity_deriv(const Vector<double>& s,
                                 FixedSizeVector<double, 4>& dveloc_dx) const
     {
@@ -1364,6 +1369,7 @@ namespace oomph
     /// maintained as a resizable Vector for consistency with
     /// FiniteElement::dshape_eulerian(...) in generic; convert to
     /// FixedSizeVector<double, 2> once generic has been updated.
+// hierher is this safe/possible to do now?
     void get_raw_vorticity_deriv(
       const Vector<double>& s, FixedSizeVector<double, 2>& dvorticity_dx) const
     {
@@ -1448,6 +1454,7 @@ namespace oomph
     /// Vector for consistency with FiniteElement::dshape_eulerian(...)
     /// in generic; convert to FixedSizeVector<double, 2> once generic
     /// has been updated.
+// hierher is this safe/possible to do now?
     void get_raw_vorticity_second_deriv(
       const Vector<double>& s,
       FixedSizeVector<double, 3>& dvorticity_dxdy) const
@@ -1551,6 +1558,7 @@ namespace oomph
     /// is maintained as a resizable Vector for consistency with
     /// FiniteElement::dshape_eulerian(...) in generic; convert to
     /// FixedSizeVector<double, 2> once generic has been updated.
+// hierher is this safe/possible to do now?
     void get_raw_vorticity_third_deriv(
       const Vector<double>& s,
       FixedSizeVector<double, 4>& dvorticity_dxdxdy) const
@@ -1713,6 +1721,7 @@ namespace oomph
       // FiniteElement::interpolated_x(...) and
       // FiniteElement::dshape_eulerian(...) in generic; convert to
       // FixedSizeVector<double, 2> once generic has been updated.
+// hierher is this safe/possible to do now?
       Vector<double> s(N_dim);
 
       // Global coordinates: compile-time size 2, passed to
@@ -2323,6 +2332,7 @@ namespace oomph
         // FiniteElement::geometric_jacobian(...) in generic; convert both
         // (and the first argument of shape_rec(...)) to
         // FixedSizeVector<double, 2> once generic has been updated.
+// hierher is this safe/possible to do now?
         Vector<double> s(2);
         Vector<double> x(2);
 
@@ -2514,6 +2524,7 @@ namespace oomph
       // FiniteElement::interpolated_x(...) in generic; convert both (and
       // the first argument of shape_rec(...)) to
       // FixedSizeVector<double, 2> once generic has been updated.
+// hierher is this safe/possible to do now?
       Vector<double> s(2);
       Vector<double> x(2);
 

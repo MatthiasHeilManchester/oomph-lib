@@ -333,7 +333,7 @@ namespace oomph
 
 
       // Now get coordinates and stuff
-      Vector<int> s_lo(3);
+      Vector<int> s_lo(3); //hierher shouldn't they all be fixed size?
       FixedSizeVector<int, 3> s_hi;
       Vector<double> s(3);
       Vector<double> xi(3);

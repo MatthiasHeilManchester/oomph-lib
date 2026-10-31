@@ -119,6 +119,7 @@ namespace oomph
       public virtual GeneralisedNewtonianTemplateFreeNavierStokesEquationsBase
   {
   public:
+
     /// Publicly exposed template parameter: the spatial dimension
     static const unsigned TEMPLATE_PARAMETER_DIM = DIM;
 
@@ -741,7 +742,7 @@ namespace oomph
     /// unit normal N (pointing into the fluid!) is actually used
     /// in the computation.
     void get_load(const Vector<double>& s,
-                  const Vector<double>& N,
+                  const Vector<double>& N, // hierher make this work with fixed size vectors
                   Vector<double>& load)
     {
       // Note: get_traction() computes the traction onto the fluid
@@ -757,7 +758,7 @@ namespace oomph
       get_traction(s, normal, traction);
       for (unsigned i = 0; i < DIM; i++)
       {
-        load[i] = traction[i];
+        load[i] = traction[i]; // hierher no longer needed if we work with fixed size vectors everywhere
       }
     }
 

@@ -103,7 +103,8 @@ namespace oomph
   double Dt_min=1.0e-6;
 
   /// Function describing the oscillation
-  void oscillation(const double& time, const FixedSizeVector<double, 2>& x, 
+  void oscillation(const double& time, 
+                   const FixedSizeVector<double, 2>& x, 
                    FixedSizeVector<double, 3>& force)
   {
    force[0]=0.0;

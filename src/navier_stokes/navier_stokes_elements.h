@@ -199,6 +199,7 @@ namespace oomph
     // (FaceElement::get_local_coordinate_in_bulk(...) and
     // pshape_nst(...)); convert to FixedSizeVectors once generic has
     // been updated.
+// hierher is this safe/possible to do now?
     unsigned my_dim = this->dim();
     Vector<double> s(my_dim);
     Vector<double> s_bulk(my_dim + 1);
@@ -207,6 +208,7 @@ namespace oomph
     // ELEMENT::TEMPLATE_PARAMETER_DIM). Maintained as a resizable Vector
     // for consistency with FaceElement::outer_unit_normal(...) in
     // generic; convert to FixedSizeVector once generic has been updated.
+// hierher is this safe/possible to do now?
     Vector<double> unit_normal(my_dim + 1);
 
     // Storage for veloc in bulk element. The bulk element computes
@@ -562,6 +564,7 @@ namespace oomph
     // declaration/signature so that it can be converted to the
     // corresponding FixedSizeVector/FixedSizeMatrix (and any temporary
     // copy eliminated) once generic has been updated.
+// hierher remove comment when done (or better move to coding conventions)
 
     /// Compute the shape functions and derivatives
     /// w.r.t. global coords at local coordinate s.
@@ -1138,7 +1141,7 @@ namespace oomph
         normal[i] = N[i];
       }
       FixedSizeVector<double, DIM> traction;
-      get_traction(s, normal, traction);
+      get_traction(s, normal, traction); // hierher update to fixed size vector and remove translation
       for (unsigned i = 0; i < DIM; i++)
       {
         load[i] = traction[i];
@@ -1171,6 +1174,7 @@ namespace oomph
       // as a resizable Vector for consistency with
       // FiniteElement::get_s_plot(...) in generic; convert to
       // FixedSizeVector<double, DIM> once generic has been updated.
+// hierher is this safe/possible to do now?
       Vector<double> s(DIM);
 
 
@@ -1241,7 +1245,9 @@ namespace oomph
       // have to be maintained as resizable Vectors for consistency with
       // FiniteElement::get_s_plot(...) and
       // FiniteElement::UnsteadyExactSolutionFctPt in generic; convert to
-      // FixedSizeVectors once generic has been updated. Allocated once
+      // FixedSizeVectors once generic has been updated. 
+// hierher is this safe/possible to do now?
+      // Allocated once
       // outside the plot-point loop; no initialisation required since all
       // entries are assigned before use.
       Vector<double> s(DIM);
@@ -1615,6 +1621,7 @@ namespace oomph
         // FaceElement::outer_unit_normal(...) in generic; convert to
         // FixedSizeVector<double, DIM> and
         // FixedSizeVector<double, DIM - 1> once generic has been updated.
+// hierher is this safe/possible to do now?
         Vector<double> unit_normal(DIM);
         Vector<double> x(DIM);
         Vector<double> s(DIM - 1);
@@ -2281,6 +2288,7 @@ namespace oomph
     // FiniteElement::local_to_eulerian_mapping(...) and
     // FiniteElement::transform_derivatives(...) in generic; convert to
     // FixedSizeMatrix<double, 2, 2> once generic has been updated.
+// hierher is this safe/possible to do now?
     DenseMatrix<double> inverse_jacobian(2);
 
     // Now calculate the inverse jacobian
@@ -2374,6 +2382,7 @@ namespace oomph
     // FiniteElement::local_to_eulerian_mapping(...) and
     // FiniteElement::transform_derivatives(...) in generic; convert to
     // FixedSizeMatrix<double, 3, 3> once generic has been updated.
+// hierher is this safe/possible to do now?
     DenseMatrix<double> inverse_jacobian(3);
 
     // Now calculate the inverse jacobian
@@ -2747,6 +2756,7 @@ namespace oomph
     // FiniteElement::local_to_eulerian_mapping(...) and
     // FiniteElement::transform_derivatives(...) in generic; convert to
     // FixedSizeMatrix<double, 2, 2> once generic has been updated.
+// hierher is this safe/possible to do now?
     DenseMatrix<double> inverse_jacobian(2);
 
     // Now calculate the inverse jacobian
@@ -2913,6 +2923,7 @@ namespace oomph
     // FiniteElement::local_to_eulerian_mapping(...) and
     // FiniteElement::transform_derivatives(...) in generic; convert to
     // FixedSizeMatrix<double, 3, 3> once generic has been updated.
+// hierher is this safe/possible to do now?
     DenseMatrix<double> inverse_jacobian(3);
 
     // Now calculate the inverse jacobian

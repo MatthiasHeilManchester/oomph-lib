@@ -4559,7 +4559,7 @@ namespace oomph
     int diff_level;
     int edge = OMEGA;
 
-    Vector<double> s(3);
+    Vector<double> s(3); // hierher: shouldn't they all be fixed sized vectors?
 
     Vector<double> s_lo(3);
     Vector<double> s_hi(3);

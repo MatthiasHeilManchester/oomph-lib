@@ -66,6 +66,7 @@ namespace oomph
     /// with FiniteElement::SteadyExactSolutionFctPt in generic (to which
     /// this function is passed in Mesh::output_fct(...)); convert to
     /// FixedSizeVectors once generic has been updated.
+// hierher is this safe/possible to do now?
     void get_exact_u(const Vector<double>& x, Vector<double>& u)
     {
       u.resize(3);
@@ -92,6 +93,7 @@ namespace oomph
     /// caller obtains x from FiniteElement::interpolated_x(...) in
     /// generic; convert to FixedSizeVector<double, 2> once generic has
     /// been updated.
+// hierher is this safe/possible to do now?
     void get_exact_u(const Vector<double>& x, double& u)
     {
       if (Flag == 0)

@@ -108,7 +108,8 @@ public:
  /// "external" advection diffusion element associated with 
  /// integration point \c ipt.
  void get_body_force_axi_nst(const double& time, const unsigned& ipt, 
-                             const Vector<double> &s, const FixedSizeVector<double, 2> &x, 
+                             const Vector<double> &s, 
+                             const FixedSizeVector<double, 2> &x, 
                              FixedSizeVector<double, 3> &body_force)
  {
 
@@ -434,7 +435,7 @@ public:
  /// obtained from the "external" element
  void get_wind_axi_adv_diff(const unsigned& ipt, const Vector<double> &s, 
                             const Vector<double>& x, 
-                            Vector<double>& wind) const
+                            Vector<double>& wind) const // hierher should all be fixed sized
  {
   // There is only one interaction
   unsigned interaction=0;
@@ -450,7 +451,7 @@ public:
    (external_element_local_coord(interaction,ipt),u);
   for (unsigned i=0;i<3;i++)
    {
-    wind[i] = u[i];
+    wind[i] = u[i];  // hierher no longer needed post rewrite
    }
   
  }  //end of get_wind_adv_diff
@@ -849,7 +850,8 @@ public:
  /// Overload get_body_force_nst to get the temperature "body force"
  /// from the "source" AdvectionDiffusion element via current integration point
  void get_body_force_axi_nst(const double& time, const unsigned& ipt, 
-                             const Vector<double> &s, const FixedSizeVector<double, 2> &x, 
+                             const Vector<double> &s, 
+                             const FixedSizeVector<double, 2> &x, 
                              FixedSizeVector<double, 3> &result);
 
  /// Fill in the derivatives of the body force with respect to the
@@ -1317,7 +1319,7 @@ get_dbody_force_axi_nst_dexternal_element_data(
 //==========================================================================
 void QAxisymAdvectionDiffusionElementWithExternalElement::get_wind_axi_adv_diff
 (const unsigned& ipt,const Vector<double> &s,const Vector<double>& x, 
- Vector<double>& wind) const
+ Vector<double>& wind) const // hierher fixed size!
 {
  // The interaction index is 0 in this case
  unsigned interaction=0;
@@ -1333,7 +1335,7 @@ void QAxisymAdvectionDiffusionElementWithExternalElement::get_wind_axi_adv_diff
   (external_element_local_coord(interaction,ipt),u);
  for (unsigned i=0;i<3;i++)
   {
-   wind[i] = u[i];
+   wind[i] = u[i]; // hierher no longer needed post rewrite
   }
 }  
 

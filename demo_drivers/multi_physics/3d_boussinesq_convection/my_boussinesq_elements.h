@@ -883,7 +883,7 @@ template<unsigned DIM>
 void RefineableQAdvectionDiffusionElementWithExternalElement<DIM>::
 get_wind_adv_diff
 (const unsigned& ipt,const Vector<double> &s,const Vector<double>& x, 
- Vector<double>& wind) const
+ Vector<double>& wind) const // hierher these should be fixed sized!
 {
  // The interatction is stored at index 0 of the NST element
  unsigned interaction=0;
@@ -897,7 +897,7 @@ get_wind_adv_diff
  FixedSizeVector<double, DIM> u_nst;
  source_el_pt->interpolated_u_nst
   (external_element_local_coord(interaction,ipt),u_nst);
- for(unsigned i=0;i<DIM;i++) {wind[i] = u_nst[i];}
+ for(unsigned i=0;i<DIM;i++) {wind[i] = u_nst[i];} // hierher this should no longer be required when interface has been changed
 }  
 
 

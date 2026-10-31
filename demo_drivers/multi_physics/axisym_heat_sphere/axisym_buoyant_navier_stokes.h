@@ -436,14 +436,14 @@ public:
  /// advection-diffusion equations because the wind is the fluid velocity.
 void get_wind_axi_adv_diff(const unsigned& ipt,
                            const Vector<double> &s, const Vector<double>& x,
-                           Vector<double>& wind) const
+                           Vector<double>& wind) const // hierher change interface to fixed size
   {
    //The wind function is simply the velocity at the points
    FixedSizeVector<double, 3> u;
    this->interpolated_u_axi_nst(s,u);
    for (unsigned i=0;i<3;i++)
     {
-     wind[i] = u[i];
+     wind[i] = u[i]; // hierher no longer needed post rewrite
     }
   }
  
@@ -454,7 +454,8 @@ void get_wind_axi_adv_diff(const unsigned& ipt,
  /// temperature multiplied by the Rayleigh number acting in the
  /// direction opposite to gravity.
  void get_body_force_axi_nst(const double& time, const unsigned& ipt,
-                             const Vector<double> &s, const FixedSizeVector<double, 2> &x,
+                             const Vector<double> &s, 
+                             const FixedSizeVector<double, 2> &x,
                              FixedSizeVector<double, 3> &result)
   {
    // Get the temperature

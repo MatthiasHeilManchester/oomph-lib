@@ -282,7 +282,7 @@ namespace oomph
     /// advection-diffusion equations because the wind is the fluid velocity.
     void get_wind_adv_diff(const unsigned& ipt,
                            const Vector<double>& s,
-                           const Vector<double>& x,
+                           const Vector<double>& x, // hierher fixed sized
                            Vector<double>& wind) const
     {
       // The wind function is simply the velocity at the points.
@@ -294,7 +294,7 @@ namespace oomph
       this->interpolated_u_nst(s, u_nst);
       for (unsigned i = 0; i < DIM; i++)
       {
-        wind[i] = u_nst[i];
+        wind[i] = u_nst[i]; // hierher no longer needed if interface is changed
       }
     } // end of get_wind_adv_diff
 
@@ -1225,7 +1225,7 @@ namespace oomph
     /// advection-diffusion equations because the wind is the fluid velocity.
     void get_wind_adv_diff(const unsigned& ipt,
                            const Vector<double>& s,
-                           const Vector<double>& x,
+                           const Vector<double>& x, // hierher fixed sized
                            Vector<double>& wind) const
     {
       // The wind function is simply the velocity at the points.
@@ -1237,7 +1237,7 @@ namespace oomph
       this->interpolated_u_nst(s, u_nst);
       for (unsigned i = 0; i < DIM; i++)
       {
-        wind[i] = u_nst[i];
+        wind[i] = u_nst[i]; // hierher no longer needed if interface is changed to fixed size
       }
     }
 

@@ -93,7 +93,7 @@ namespace GlobalPhysicalVariables
   FixedSizeVector<double, 3> G;
 
   /// Direction of gravity (resizable Vector for linearised axisymmetric elements)
-  Vector<double> G_linearised(3);
+  Vector<double> G_linearised(3); // hierher change to Fixed size vector and update interface
 
   /// Vector of azimuthal mode numbers to investigate
   Vector<int> Vector_of_azimuthal_mode_numbers;

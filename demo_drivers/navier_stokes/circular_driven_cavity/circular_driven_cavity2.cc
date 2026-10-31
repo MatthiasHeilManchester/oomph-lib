@@ -55,7 +55,8 @@ namespace Global_Physical_Variables2
  FixedSizeVector<double, 2> Gravity;
 
  /// Functional body force
- void body_force(const double& time, const FixedSizeVector<double, 2>& x, 
+ void body_force(const double& time, 
+                 const FixedSizeVector<double, 2>& x, 
                  FixedSizeVector<double, 2>& result)
  {
   result[0]=0.0;

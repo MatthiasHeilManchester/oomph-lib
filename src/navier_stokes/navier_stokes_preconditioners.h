@@ -74,6 +74,7 @@ namespace oomph
     /// with FiniteElement::SteadyExactSolutionFctPt in generic (to which
     /// this function is passed in Mesh::output_fct(...)); convert to
     /// FixedSizeVectors once generic has been updated.
+// hierher is this safe/possible to do now?
     extern void get_exact_u(const Vector<double>& x, Vector<double>& u);
 
     /// Exact solution as a scalar (compile-time size of x: 2).
@@ -81,6 +82,7 @@ namespace oomph
     /// caller obtains x from FiniteElement::interpolated_x(...) in
     /// generic; convert to FixedSizeVector<double, 2> once generic has
     /// been updated.
+// hierher is this safe/possible to do now?
     extern void get_exact_u(const Vector<double>& x, double& u);
 
     /// Source function required to make the solution above an exact
@@ -509,6 +511,7 @@ namespace oomph
       // FiniteElement::interpolated_x(...) in generic (and
       // interpolated_p_nst(...)); convert to FixedSizeVectors once
       // generic has been updated.
+// hierher is this safe/possible to do now?
       Vector<double> s(Ndim, 0.0);
       Vector<double> x(Ndim);
       double p = dynamic_cast<ELEMENT*>(mesh_pt()->finite_element_pt(0))
