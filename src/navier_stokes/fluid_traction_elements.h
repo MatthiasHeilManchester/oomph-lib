@@ -55,7 +55,6 @@ namespace oomph
                                       public virtual FaceElement
   {
   public:
-
     /// Function pointer to the imposed traction function
     /// fct(t,x,n,traction): The Eulerian position x, the outer unit
     /// normal n and the traction (returned in result) are fixed-size
@@ -277,7 +276,7 @@ namespace oomph
     // FaceElement::outer_unit_normal(...) in generic has been updated to
     // FixedSizeVector, normal_from_face_element and the copy below can
     // be removed.
-// hierher is this safe/possible to do now?
+    // hierher is this safe/possible to do now?
     FixedSizeVector<double, ELEMENT::TEMPLATE_PARAMETER_DIM> interpolated_x;
     Vector<double> normal_from_face_element(Dim);
     FixedSizeVector<double, ELEMENT::TEMPLATE_PARAMETER_DIM> interpolated_n;
@@ -464,7 +463,7 @@ namespace oomph
     // FaceElement::outer_unit_normal(...) in generic has been updated to
     // FixedSizeVector, normal_from_face_element and the copy below can
     // be removed.
-// hierher is this safe/possible to do now?
+    // hierher is this safe/possible to do now?
     FixedSizeVector<double, ELEMENT::TEMPLATE_PARAMETER_DIM> interpolated_x;
     Vector<double> normal_from_face_element(this->Dim);
     FixedSizeVector<double, ELEMENT::TEMPLATE_PARAMETER_DIM> interpolated_n;
@@ -502,7 +501,9 @@ namespace oomph
 
       // Get the outer unit normal (computed into the resizable Vector and
       // copied into the fixed-size vector; see above)
-      this->outer_unit_normal(ipt, normal_from_face_element); // hierher make this return fixed size vector
+      this->outer_unit_normal(
+        ipt,
+        normal_from_face_element); // hierher make this return fixed size vector
       for (unsigned i = 0; i < this->Dim; i++)
       {
         interpolated_n[i] = normal_from_face_element[i];

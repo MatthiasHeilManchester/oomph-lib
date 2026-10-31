@@ -1027,7 +1027,8 @@ namespace oomph
 
       // Get all 3 components of the nst traction
       FixedSizeVector<double, 3> n_fixed(0.0);
-      n_fixed[0] = interpolated_normal[0]; // hierher should be fixed size (above)
+      n_fixed[0] =
+        interpolated_normal[0]; // hierher should be fixed size (above)
       n_fixed[1] = interpolated_normal[1];
       FixedSizeVector<double, 3> traction_nst;
       ext_el_pt->traction(s_ext, n_fixed, traction_nst);

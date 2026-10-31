@@ -1237,7 +1237,8 @@ namespace oomph
       this->interpolated_u_nst(s, u_nst);
       for (unsigned i = 0; i < DIM; i++)
       {
-        wind[i] = u_nst[i]; // hierher no longer needed if interface is changed to fixed size
+        wind[i] = u_nst[i]; // hierher no longer needed if interface is changed
+                            // to fixed size
       }
     }
 

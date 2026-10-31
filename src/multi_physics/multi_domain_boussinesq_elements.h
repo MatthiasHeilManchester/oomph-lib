@@ -455,7 +455,7 @@ namespace oomph
     /// advection-diffusion equations because the wind is the fluid velocity,
     /// obtained from the "external" element
     void get_wind_adv_diff(const unsigned& ipt,
-                           const Vector<double>& s, 
+                           const Vector<double>& s,
                            const Vector<double>& x, // hierher fixed size vector
                            Vector<double>& wind) const
     {
@@ -467,16 +467,17 @@ namespace oomph
         dynamic_cast<NST_ELEMENT*>(external_element_pt(interaction, ipt));
 
       // Wind is given by the velocity in the Navier Stokes element.
-      // interpolated_u_nst(...) returns a FixedSizeVector whereas   // hierher delete comment once updated
-      // get_wind_adv_diff(...) (inherited from AdvectionDiffusionEquations)
-      // still requires a resizable Vector; copy across until
-      // AdvectionDiffusionEquations has been updated.
+      // interpolated_u_nst(...) returns a FixedSizeVector whereas   // hierher
+      // delete comment once updated get_wind_adv_diff(...) (inherited from
+      // AdvectionDiffusionEquations) still requires a resizable Vector; copy
+      // across until AdvectionDiffusionEquations has been updated.
       FixedSizeVector<double, NST_ELEMENT::TEMPLATE_PARAMETER_DIM> u_nst;
       nst_el_pt->interpolated_u_nst(
         external_element_local_coord(interaction, ipt), u_nst);
       for (unsigned i = 0; i < NST_ELEMENT::TEMPLATE_PARAMETER_DIM; i++)
       {
-        wind[i] = u_nst[i]; // hierher no longer needed when interface is changed
+        wind[i] =
+          u_nst[i]; // hierher no longer needed when interface is changed
       }
 
     } // end of get_wind_adv_diff
@@ -1346,8 +1347,8 @@ namespace oomph
       dynamic_cast<NST_ELEMENT*>(external_element_pt(interaction, ipt));
 
     // The wind function is simply the velocity at the points of the
-    // "other" element. interpolated_u_nst(...) returns a FixedSizeVector // hierher kill comment
-    // whereas get_wind_adv_diff(...) (inherited from
+    // "other" element. interpolated_u_nst(...) returns a FixedSizeVector //
+    // hierher kill comment whereas get_wind_adv_diff(...) (inherited from
     // AdvectionDiffusionEquations) still requires a resizable Vector;
     // copy across until AdvectionDiffusionEquations has been updated.
     FixedSizeVector<double, NST_ELEMENT::TEMPLATE_PARAMETER_DIM> u_nst;

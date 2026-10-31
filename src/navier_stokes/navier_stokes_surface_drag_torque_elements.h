@@ -92,7 +92,7 @@ namespace oomph
     /// size: ELEMENT::TEMPLATE_PARAMETER_DIM) and drag_torque
     /// (compile-time size: 2*ELEMENT::TEMPLATE_PARAMETER_DIM - 3, i.e.
     /// 1 in 2D and 3 in 3D) until generic has been updated.
-// hierher is this safe/possible to do now?
+    // hierher is this safe/possible to do now?
     virtual void get_drag_and_torque(Vector<double>& drag_force,
                                      Vector<double>& drag_torque)
     {
@@ -121,7 +121,7 @@ namespace oomph
       // FiniteElement::J_eulerian(...) and
       // FiniteElement::interpolated_x(...) in generic; convert to
       // FixedSizeVectors once generic has been updated.
-// hierher is this safe/possible to do now?
+      // hierher is this safe/possible to do now?
       Vector<double> s(ndim);
       Vector<double> x(ndim + 1);
       Vector<double> s_bulk(ndim + 1);
@@ -135,7 +135,7 @@ namespace oomph
       // get_traction(...) requires. Once FaceElement::outer_unit_normal(...)
       // in generic has been updated to FixedSizeVector,
       // normal_from_face_element and the copy below can be removed.
-// hierher is this safe/possible to do now?
+      // hierher is this safe/possible to do now?
       Vector<double> normal_from_face_element(ndim + 1);
       FixedSizeVector<double, ELEMENT::TEMPLATE_PARAMETER_DIM> normal;
 
@@ -185,7 +185,7 @@ namespace oomph
         // ELEMENT::TEMPLATE_PARAMETER_DIM; maintained as a resizable
         // Vector for consistency with FiniteElement::interpolated_x(...)
         // in generic until generic has been updated)
-// hierher is this safe/possible to do now?
+        // hierher is this safe/possible to do now?
         Vector<double> x_bulk(ndim + 1);
         bulk_el_pt->interpolated_x(s_bulk, x_bulk);
 
@@ -212,7 +212,8 @@ namespace oomph
         outer_unit_normal(s, normal_from_face_element);
         for (unsigned i = 0; i < ndim + 1; i++)
         {
-          normal[i] = normal_from_face_element[i]; // hierher remove when interface has been changed
+          normal[i] = normal_from_face_element[i]; // hierher remove when
+                                                   // interface has been changed
         }
 
         // Get velocity from bulk element
@@ -292,7 +293,7 @@ namespace oomph
       // FaceElement::get_local_coordinate_in_bulk(...) and
       // FiniteElement::interpolated_x(...) in generic; convert to
       // FixedSizeVectors once generic has been updated.
-// hierher is this safe/possible to do now?
+      // hierher is this safe/possible to do now?
       Vector<double> s(dim_el);
       Vector<double> s_bulk(dim_el + 1);
       Vector<double> x(dim_el + 1);
@@ -336,7 +337,9 @@ namespace oomph
         outer_unit_normal(s, normal_from_face_element);
         for (unsigned i = 0; i < dim_el + 1; i++)
         {
-          normal[i] = normal_from_face_element[i]; // hierher no longer needed when interface has been changed
+          normal[i] =
+            normal_from_face_element[i]; // hierher no longer needed when
+                                         // interface has been changed
         }
         bulk_el_pt->interpolated_u_nst(s_bulk, veloc);
         // Get traction from bulk element this is directed into the fluid

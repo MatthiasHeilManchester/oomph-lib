@@ -2044,7 +2044,8 @@ namespace oomph
     // Receive first and last element from root on non-master processors
     else
     {
-      FixedSizeVector<int, 2> aux; // hierher careful -- check if this works with mpi
+      FixedSizeVector<int, 2>
+        aux; // hierher careful -- check if this works with mpi
       MPI_Status status;
       MPI_Recv(&aux[0],
                2,

@@ -106,7 +106,7 @@ namespace oomph
     // ELEMENT::TEMPLATE_PARAMETER_DIM). Maintained as a resizable Vector
     // for consistency with FaceElement::outer_unit_normal(...) in
     // generic; convert to FixedSizeVector once generic has been updated.
-// hierher is this safe/possible to do now?
+    // hierher is this safe/possible to do now?
     Vector<double> unit_normal(my_dim + 1);
 
     // Storage for veloc in bulk element. The bulk element computes
@@ -1969,7 +1969,7 @@ namespace oomph
     // interpolated_p_nst(...) (whose s argument is kept as a
     // Vector<double> for consistency with generic); convert to
     // FixedSizeVector<double, 2> once generic has been updated.
-// hierher is this safe/possible to do now?
+    // hierher is this safe/possible to do now?
     Vector<double> s_father(2);
 
     // Son midpoint is located at the following coordinates in father element:
@@ -2048,7 +2048,7 @@ namespace oomph
     // interpolated_p_nst(...) (whose s argument is kept as a
     // Vector<double> for consistency with generic); convert to
     // FixedSizeVector<double, 3> once generic has been updated.
-// hierher is this safe/possible to do now?
+    // hierher is this safe/possible to do now?
     Vector<double> s_father(3);
 
     // Son midpoint is located at the following coordinates in father element:

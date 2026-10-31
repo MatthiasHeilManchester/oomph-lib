@@ -470,16 +470,17 @@ namespace oomph
 
     /// The potential loading on an external SolidElement is always
     /// provided by the traction function
-    void get_load(const Vector<double>& s,
-                  const Vector<double>& xi, //hierher they should all be fixed sized!
-                  const Vector<double>& x,
-                  const Vector<double>& N,
-                  Vector<double>& load)
+    void get_load(
+      const Vector<double>& s,
+      const Vector<double>& xi, // hierher they should all be fixed sized!
+      const Vector<double>& x,
+      const Vector<double>& N,
+      Vector<double>& load)
     {
       FixedSizeVector<double, 2> N_fixed;
       for (unsigned i = 0; i < 2; i++)
       {
-        N_fixed[i] = N[i]; //hierher no copy once interface is changed
+        N_fixed[i] = N[i]; // hierher no copy once interface is changed
       }
       FixedSizeVector<double, 2> load_fixed;
       get_traction(s, N_fixed, load_fixed);

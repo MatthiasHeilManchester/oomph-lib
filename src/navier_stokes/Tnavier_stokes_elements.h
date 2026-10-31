@@ -289,7 +289,7 @@ namespace oomph
       // time so we use a fixed-size matrix, allocated on the stack. No
       // initialisation required since strain_rate(...) assigns all
       // entries.
-// hierher is this safe/possible to do now?
+      // hierher is this safe/possible to do now?
       FixedSizeMatrix<double, DIM, DIM> strainrate;
       this->strain_rate(s, strainrate);
 
@@ -526,7 +526,7 @@ namespace oomph
     // FiniteElement::local_to_eulerian_mapping(...) and
     // FiniteElement::transform_derivatives(...) in generic; convert to
     // FixedSizeMatrix<double, 2, 2> once generic has been updated.
-// hierher is this safe/possible to do now?
+    // hierher is this safe/possible to do now?
     DenseMatrix<double> inverse_jacobian(2);
 
     // Now calculate the inverse jacobian
@@ -590,7 +590,7 @@ namespace oomph
     // FiniteElement::local_to_eulerian_mapping(...) and
     // FiniteElement::transform_derivatives(...) in generic; convert to
     // FixedSizeMatrix<double, 3, 3> once generic has been updated.
-// hierher is this safe/possible to do now?
+    // hierher is this safe/possible to do now?
     DenseMatrix<double> inverse_jacobian(3);
 
     // Now calculate the inverse jacobian
@@ -992,7 +992,7 @@ namespace oomph
       // time so we use a fixed-size matrix, allocated on the stack. No
       // initialisation required since strain_rate(...) assigns all
       // entries.
-// hierher is this safe/possible to do now?
+      // hierher is this safe/possible to do now?
       FixedSizeMatrix<double, DIM, DIM> strainrate;
       this->strain_rate(s, strainrate);
 
@@ -1172,7 +1172,7 @@ namespace oomph
     // FiniteElement::local_to_eulerian_mapping(...) and
     // FiniteElement::transform_derivatives(...) in generic; convert to
     // FixedSizeMatrix<double, 2, 2> once generic has been updated.
-// hierher is this safe/possible to do now?
+    // hierher is this safe/possible to do now?
     DenseMatrix<double> inverse_jacobian(2);
 
 
@@ -1242,7 +1242,7 @@ namespace oomph
     // FiniteElement::local_to_eulerian_mapping(...) and
     // FiniteElement::transform_derivatives(...) in generic; convert to
     // FixedSizeMatrix<double, 3, 3> once generic has been updated.
-// hierher is this safe/possible to do now?
+    // hierher is this safe/possible to do now?
     DenseMatrix<double> inverse_jacobian(3);
 
     // Now calculate the inverse jacobian

@@ -115,7 +115,7 @@ namespace oomph
       // FiniteElement::J_eulerian(...) and
       // FiniteElement::interpolated_x(...) in generic; convert to
       // FixedSizeVectors once generic has been updated.
-// hierher is this safe/possible to do now?
+      // hierher is this safe/possible to do now?
       Vector<double> s(ndim);
       Vector<double> x(ndim + 1);
       Vector<double> s_bulk(ndim + 1);
@@ -201,7 +201,9 @@ namespace oomph
         outer_unit_normal(s, normal_from_face_element);
         for (unsigned i = 0; i < ndim + 1; i++)
         {
-          normal[i] = normal_from_face_element[i]; // hierher remove when interfaces have been updated
+          normal[i] =
+            normal_from_face_element[i]; // hierher remove when interfaces have
+                                         // been updated
         }
 
         // Get velocity from bulk element. It's returned in a fixed-size
@@ -280,7 +282,7 @@ namespace oomph
       // FiniteElement::J_eulerian(...) and
       // FiniteElement::interpolated_x(...) in generic; convert to
       // FixedSizeVectors once generic has been updated.
-// hierher is this safe/possible to do now?
+      // hierher is this safe/possible to do now?
       Vector<double> s(ndim);
       Vector<double> x(ndim + 1);
       Vector<double> s_bulk(ndim + 1);
@@ -366,7 +368,9 @@ namespace oomph
         outer_unit_normal(s, normal_from_face_element);
         for (unsigned i = 0; i < ndim + 1; i++)
         {
-          normal[i] = normal_from_face_element[i]; // hierher remove when interfaces have been updated
+          normal[i] =
+            normal_from_face_element[i]; // hierher remove when interfaces have
+                                         // been updated
         }
 
 
@@ -476,7 +480,7 @@ namespace oomph
       // FiniteElement::J_eulerian(...) and
       // FiniteElement::interpolated_x(...) in generic; convert to
       // FixedSizeVectors once generic has been updated.
-// hierher is this safe/possible to do now?
+      // hierher is this safe/possible to do now?
       Vector<double> s(ndim);
       Vector<double> x(ndim + 1);
       Vector<double> s_bulk(ndim + 1);
@@ -562,7 +566,8 @@ namespace oomph
         outer_unit_normal(s, normal_from_face_element);
         for (unsigned i = 0; i < ndim + 1; i++)
         {
-          normal[i] = normal_from_face_element[i]; // hierher remove once interface has been updated
+          normal[i] = normal_from_face_element[i]; // hierher remove once
+                                                   // interface has been updated
         }
 
 
@@ -691,7 +696,7 @@ namespace oomph
       // FiniteElement::interpolated_x(...) and
       // FaceElement::outer_unit_normal(...) in generic; convert to
       // FixedSizeVectors once generic has been updated.
-// hierher is this safe/possible to do now?
+      // hierher is this safe/possible to do now?
       Vector<double> s(ndim);
       Vector<double> x(ndim + 1);
       Vector<double> s_bulk(ndim + 1);
@@ -738,7 +743,7 @@ namespace oomph
         // ELEMENT::TEMPLATE_PARAMETER_DIM; maintained as a resizable
         // Vector for consistency with FiniteElement::interpolated_x(...)
         // in generic until generic has been updated)
-// hierher is this safe/possible to do now?
+        // hierher is this safe/possible to do now?
         Vector<double> x_bulk(ndim + 1);
         bulk_el_pt->interpolated_x(s_bulk, x_bulk);
 
@@ -847,7 +852,7 @@ namespace oomph
       // FiniteElement::interpolated_x(...) and
       // FaceElement::outer_unit_normal(...) in generic; convert to
       // FixedSizeVectors once generic has been updated.
-// hierher is this safe/possible to do now?
+      // hierher is this safe/possible to do now?
       Vector<double> s(ndim);
       Vector<double> x(ndim + 1);
       Vector<double> s_bulk(ndim + 1);
@@ -895,7 +900,7 @@ namespace oomph
         // ELEMENT::TEMPLATE_PARAMETER_DIM; maintained as a resizable
         // Vector for consistency with FiniteElement::interpolated_x(...)
         // in generic until generic has been updated)
-// hierher is this safe/possible to do now?
+        // hierher is this safe/possible to do now?
         Vector<double> x_bulk(ndim + 1);
         bulk_el_pt->interpolated_x(s_bulk, x_bulk);
 

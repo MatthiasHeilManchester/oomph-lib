@@ -3069,7 +3069,8 @@ namespace oomph
             // Are we going to receive anything? This is zero
             // either if there are no discrepancies or there's zero
             // data to be sent.
-            FixedSizeVector<unsigned, 2> n_all_recv(0); // hierher careful check if this works with mpi
+            FixedSizeVector<unsigned, 2> n_all_recv(
+              0); // hierher careful check if this works with mpi
             MPI_Recv(&n_all_recv[0],
                      2,
                      MPI_UNSIGNED,

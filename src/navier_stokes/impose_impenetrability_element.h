@@ -147,7 +147,7 @@ namespace oomph
       // in generic; convert to
       // FixedSizeVector<double, ELEMENT::TEMPLATE_PARAMETER_DIM> once
       // generic has been updated.
-// hierher is this safe/possible to do now?
+      // hierher is this safe/possible to do now?
       Vector<double> norm_vec(dim_el + 1);
 
       // get the value at which the velocities are stored. There are as
