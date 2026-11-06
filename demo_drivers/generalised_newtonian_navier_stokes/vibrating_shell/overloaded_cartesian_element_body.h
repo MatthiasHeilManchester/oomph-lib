@@ -118,7 +118,7 @@
   void latest_fixed_point_iteration_guess_for_strain_rate(
    const unsigned& ipt, FixedSizeMatrix<double, 2, 2>& strainrate) const
    {
-    for (unsigned i=0;i<El_dim;i++) // hierher where does El_dim come from?
+    for (unsigned i=0;i<El_dim;i++)
      {
       for (unsigned j=0;j<El_dim;j++)
        {
