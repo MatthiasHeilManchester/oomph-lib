@@ -123,7 +123,8 @@ namespace oomph
     DiskLikeGeomObjectWithBoundaries()
       : GeomObject(2, 3)
 #ifdef PARANOID
-      , R_work_space_in_use(false),
+        ,
+        R_work_space_in_use(false),
         Zeta_work_space_in_use(false)
 #endif
     {
@@ -145,22 +146,19 @@ namespace oomph
     {
 #ifdef PARANOID
       WorkspaceUseGuard zeta_workspace_guard(
-        Zeta_work_space_in_use,
-        "Zeta_work_space",
-        OOMPH_CURRENT_FUNCTION);
+        Zeta_work_space_in_use, "Zeta_work_space", OOMPH_CURRENT_FUNCTION);
 #endif
       Zeta_work_space[0] = zeta[0];
       Zeta_work_space[1] = zeta[1];
 
 #ifdef PARANOID
       WorkspaceUseGuard r_workspace_guard(
-        R_work_space_in_use,
-        "R_work_space",
-        OOMPH_CURRENT_FUNCTION);
+        R_work_space_in_use, "R_work_space", OOMPH_CURRENT_FUNCTION);
 #endif
       position(Zeta_work_space, R_work_space);
 #ifdef PARANOID
-      // The virtual call has consumed Zeta; R remains live for the copies below.
+      // The virtual call has consumed Zeta; R remains live for the copies
+      // below.
       zeta_workspace_guard.release();
 #endif
 
