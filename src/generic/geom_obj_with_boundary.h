@@ -69,67 +69,12 @@ namespace oomph
   //===========================================================================
   class DiskLikeGeomObjectWithBoundaries : public GeomObject
   {
-#ifdef PARANOID
-    class WorkspaceUseGuard
-    {
-    public:
-      WorkspaceUseGuard(bool& workspace_in_use,
-                        const char* workspace_name,
-                        const char* operation)
-        : Workspace_in_use(workspace_in_use), Is_active(false)
-      {
-        if (Workspace_in_use)
-        {
-          std::ostringstream error_message;
-          error_message
-            << "Attempt to re-enter " << operation << " and reuse mutable "
-            << "workspace " << workspace_name
-            << " while its contents are still live. Mutable workspace uses "
-            << "must not overlap.";
-          throw OomphLibError(error_message.str(),
-                              OOMPH_CURRENT_FUNCTION,
-                              OOMPH_EXCEPTION_LOCATION);
-        }
-        Workspace_in_use = true;
-        Is_active = true;
-      }
-
-      WorkspaceUseGuard(const WorkspaceUseGuard&) = delete;
-
-      WorkspaceUseGuard& operator=(const WorkspaceUseGuard&) = delete;
-
-      ~WorkspaceUseGuard()
-      {
-        release();
-      }
-
-      void release()
-      {
-        if (Is_active)
-        {
-          Workspace_in_use = false;
-          Is_active = false;
-        }
-      }
-
-    private:
-      bool& Workspace_in_use;
-      bool Is_active;
-    };
-#endif
 
   public:
     /// Constructor
     DiskLikeGeomObjectWithBoundaries()
-      : GeomObject(2, 3)
-#ifdef PARANOID
-      , R_work_space_in_use(false),
-        Zeta_work_space_in_use(false)
-#endif
-    {
-      R_work_space.resize(3);
-      Zeta_work_space.resize(2);
-    }
+     : GeomObject(2, 3), R_workspace(3), Zeta_workspace(2)
+    {}
 
     /// How many boundaries do we have?
     unsigned nboundary() const
@@ -143,30 +88,36 @@ namespace oomph
       const FixedSizeVector<double, 2>& zeta,
       FixedSizeVector<double, 3>& r) const
     {
-#ifdef PARANOID
-      WorkspaceUseGuard zeta_workspace_guard(
-        Zeta_work_space_in_use,
-        "Zeta_work_space",
-        OOMPH_CURRENT_FUNCTION);
-#endif
-      Zeta_work_space[0] = zeta[0];
-      Zeta_work_space[1] = zeta[1];
+     // (TOO MUCH) DETAIL ON THE WORKSPACE CODE BELOW:
+     // Get the workspaces containing zeta and the position vector in
+     // their Vector incarnation. The clever bit is that while creating
+     // this workspace (which gives access to the wrapped containers)
+     // in PARANOID mode we're also recording (in the GuardedWorkspace
+     // that actually stores these containers) that the workspace is
+     // in use! When the Workspace goes out of scope (at the end of
+     // this function) the status is reset to "not in use" by the
+     // Workspace destructor. This is safe even if an
+     // exception is thrown somewhere along the way -- the destructor is
+     // always called.
+     // In a non-PARANOID build the bookkeeping is absent, so acquiring and
+     // releasing the workspaces should introduce no runtime overhead.
+     
 
-#ifdef PARANOID
-      WorkspaceUseGuard r_workspace_guard(
-        R_work_space_in_use,
-        "R_work_space",
-        OOMPH_CURRENT_FUNCTION);
-#endif
-      position(Zeta_work_space, R_work_space);
-#ifdef PARANOID
-      // The virtual call has consumed Zeta; R remains live for the copies below.
-      zeta_workspace_guard.release();
-#endif
+     // Get workspace
+     Workspace<Vector<double>> zeta_workspace = Zeta_workspace.workspace();
+     Workspace<Vector<double>> r_workspace = R_workspace.workspace();
 
-      r[0] = R_work_space[0];
-      r[1] = R_work_space[1];
-      r[2] = R_work_space[2];
+     // Fill it
+     zeta_workspace.content()[0] = zeta[0];
+     zeta_workspace.content()[1] = zeta[1];
+     
+     // Use it
+     position(zeta_workspace.content(), r_workspace.content());
+     
+     // Copy back into fixed size container
+     r[0] = r_workspace.content()[0];
+     r[1] = r_workspace.content()[1];
+     r[2] = r_workspace.content()[2];
     }
 
 
@@ -511,24 +462,14 @@ namespace oomph
 
     /// Workspace to avoid re-allocation in wrapped call to position()
     /// Mutable qualifier implies that it's only used as scratch workspace
-    /// so doesn't actualy change the state of the object.
-    /// It's resized once (to size 3) and must not be resized!
-    mutable Vector<double> R_work_space;
+    /// so doesn't actually change the state of the object.
+    mutable GuardedWorkspace<Vector<double>> R_workspace;
 
     /// Workspace to avoid re-allocation in wrapped call to position()
     /// Mutable qualifier implies that it's only used as scratch workspace
-    /// so doesn't actualy change the state of the object
-    /// It's resized once (to size 2) and must not be resized!
-    mutable Vector<double> Zeta_work_space;
+    /// so doesn't actually change the state of the object
+    mutable GuardedWorkspace<Vector<double>> Zeta_workspace;
 
-#ifdef PARANOID
-  private:
-    // Diagnostic state only; this is not synchronization for concurrent access.
-    mutable bool R_work_space_in_use;
-
-    // Diagnostic state only; this is not synchronization for concurrent access.
-    mutable bool Zeta_work_space_in_use;
-#endif
   };
 
 
