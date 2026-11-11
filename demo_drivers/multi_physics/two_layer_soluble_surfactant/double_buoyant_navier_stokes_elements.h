@@ -263,12 +263,12 @@ public:
  /// advection-diffusion equations because the wind is the fluid velocity.
  void get_wind_adv_diff_react(const unsigned& ipt,
                               const Vector<double> &s, const Vector<double>& x,
-                              Vector<double>& wind) const // hierher fixed size
+                              Vector<double>& wind) const
  {
    //The wind function is simply the velocity at the points
    FixedSizeVector<double, DIM> u_nst;
    this->interpolated_u_nst(s,u_nst);
-   for(unsigned i=0;i<DIM;i++) {wind[i] = u_nst[i];} // hierher no longer needed post rewrite
+   for(unsigned i=0;i<DIM;i++) {wind[i] = u_nst[i];}
  }
 
 
@@ -978,12 +978,12 @@ public:
  /// advection-diffusion equations because the wind is the fluid velocity.
  void get_wind_adv_diff_react(const unsigned& ipt,
                               const Vector<double> &s, const Vector<double>& x,
-                              Vector<double>& wind) const // hierher fixed size
+                              Vector<double>& wind) const
  {
    //The wind function is simply the velocity at the points
    FixedSizeVector<double, DIM> u_nst;
    this->interpolated_u_nst(s,u_nst);
-   for(unsigned i=0;i<DIM;i++) {wind[i] = u_nst[i];} // hierher no longer needed post rewrite
+   for(unsigned i=0;i<DIM;i++) {wind[i] = u_nst[i];}
  }
 
 

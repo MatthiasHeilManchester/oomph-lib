@@ -110,12 +110,8 @@ namespace oomph
       // ELEMENT::TEMPLATE_PARAMETER_DIM - 1), Eulerian coordinates
       // (size: ELEMENT::TEMPLATE_PARAMETER_DIM) and local coordinates in
       // the bulk element (size: ELEMENT::TEMPLATE_PARAMETER_DIM).
-      // Maintained as resizable Vectors for consistency with
-      // FaceElement::get_local_coordinate_in_bulk(...),
-      // FiniteElement::J_eulerian(...) and
-      // FiniteElement::interpolated_x(...) in generic; convert to
-      // FixedSizeVectors once generic has been updated.
-      // hierher is this safe/possible to do now?
+      // These are dynamically sized Vectors because they are passed to
+      // FaceElement and FiniteElement interfaces in generic.
       Vector<double> s(ndim);
       Vector<double> x(ndim + 1);
       Vector<double> s_bulk(ndim + 1);
@@ -127,9 +123,7 @@ namespace oomph
       // dimension, obtained as a compile-time constant from its publicly
       // exposed template parameter) that the bulk element's
       // get_traction(...) requires and that is used for all subsequent
-      // computations. Once FaceElement::outer_unit_normal(...) in generic
-      // has been updated to FixedSizeVector, normal_from_face_element and
-      // the copy below can be removed.
+      // computations.
       Vector<double> normal_from_face_element(ndim + 1);
       FixedSizeVector<double, ELEMENT::TEMPLATE_PARAMETER_DIM> normal;
 
@@ -171,10 +165,8 @@ namespace oomph
 
 #ifdef PARANOID
 
-        // Get x position as Vector from bulk element (compile-time size:
-        // ELEMENT::TEMPLATE_PARAMETER_DIM; maintained as a resizable
-        // Vector for consistency with FiniteElement::interpolated_x(...)
-        // in generic until generic has been updated)
+        // Get x position as Vector from the bulk element through the
+        // dynamically sized FiniteElement::interpolated_x(...) interface.
         Vector<double> x_bulk(ndim + 1);
         bulk_el_pt->interpolated_x(s_bulk, x_bulk);
 
@@ -201,9 +193,7 @@ namespace oomph
         outer_unit_normal(s, normal_from_face_element);
         for (unsigned i = 0; i < ndim + 1; i++)
         {
-          normal[i] =
-            normal_from_face_element[i]; // hierher remove when interfaces have
-                                         // been updated
+          normal[i] = normal_from_face_element[i];
         }
 
         // Get velocity from bulk element. It's returned in a fixed-size
@@ -277,12 +267,8 @@ namespace oomph
       // ELEMENT::TEMPLATE_PARAMETER_DIM - 1), Eulerian coordinates
       // (size: ELEMENT::TEMPLATE_PARAMETER_DIM) and local coordinates in
       // the bulk element (size: ELEMENT::TEMPLATE_PARAMETER_DIM).
-      // Maintained as resizable Vectors for consistency with
-      // FaceElement::get_local_coordinate_in_bulk(...),
-      // FiniteElement::J_eulerian(...) and
-      // FiniteElement::interpolated_x(...) in generic; convert to
-      // FixedSizeVectors once generic has been updated.
-      // hierher is this safe/possible to do now?
+      // These are dynamically sized Vectors because they are passed to
+      // FaceElement and FiniteElement interfaces in generic.
       Vector<double> s(ndim);
       Vector<double> x(ndim + 1);
       Vector<double> s_bulk(ndim + 1);
@@ -294,9 +280,7 @@ namespace oomph
       // dimension, obtained as a compile-time constant from its publicly
       // exposed template parameter) that the bulk element's
       // get_traction(...) requires and that is used for all subsequent
-      // computations. Once FaceElement::outer_unit_normal(...) in generic
-      // has been updated to FixedSizeVector, normal_from_face_element and
-      // the copy below can be removed.
+      // computations.
       Vector<double> normal_from_face_element(ndim + 1);
       FixedSizeVector<double, ELEMENT::TEMPLATE_PARAMETER_DIM> normal;
 
@@ -338,10 +322,8 @@ namespace oomph
 
 #ifdef PARANOID
 
-        // Get x position as Vector from bulk element (compile-time size:
-        // ELEMENT::TEMPLATE_PARAMETER_DIM; maintained as a resizable
-        // Vector for consistency with FiniteElement::interpolated_x(...)
-        // in generic until generic has been updated)
+        // Get x position as Vector from the bulk element through the
+        // dynamically sized FiniteElement::interpolated_x(...) interface.
         Vector<double> x_bulk(ndim + 1);
         bulk_el_pt->interpolated_x(s_bulk, x_bulk);
 
@@ -368,9 +350,7 @@ namespace oomph
         outer_unit_normal(s, normal_from_face_element);
         for (unsigned i = 0; i < ndim + 1; i++)
         {
-          normal[i] =
-            normal_from_face_element[i]; // hierher remove when interfaces have
-                                         // been updated
+          normal[i] = normal_from_face_element[i];
         }
 
 
@@ -478,9 +458,7 @@ namespace oomph
       // Maintained as resizable Vectors for consistency with
       // FaceElement::get_local_coordinate_in_bulk(...),
       // FiniteElement::J_eulerian(...) and
-      // FiniteElement::interpolated_x(...) in generic; convert to
-      // FixedSizeVectors once generic has been updated.
-      // hierher is this safe/possible to do now?
+      // FiniteElement::interpolated_x(...) in generic.
       Vector<double> s(ndim);
       Vector<double> x(ndim + 1);
       Vector<double> s_bulk(ndim + 1);
@@ -492,9 +470,7 @@ namespace oomph
       // dimension, obtained as a compile-time constant from its publicly
       // exposed template parameter) that the bulk element's
       // get_traction(...) requires and that is used for all subsequent
-      // computations. Once FaceElement::outer_unit_normal(...) in generic
-      // has been updated to FixedSizeVector, normal_from_face_element and
-      // the copy below can be removed.
+      // computations.
       Vector<double> normal_from_face_element(ndim + 1);
       FixedSizeVector<double, ELEMENT::TEMPLATE_PARAMETER_DIM> normal;
 
@@ -536,10 +512,8 @@ namespace oomph
 
 #ifdef PARANOID
 
-        // Get x position as Vector from bulk element (compile-time size:
-        // ELEMENT::TEMPLATE_PARAMETER_DIM; maintained as a resizable
-        // Vector for consistency with FiniteElement::interpolated_x(...)
-        // in generic until generic has been updated)
+        // The bulk element returns this position through the dynamically
+        // sized FiniteElement::interpolated_x(...) interface.
         Vector<double> x_bulk(ndim + 1);
         bulk_el_pt->interpolated_x(s_bulk, x_bulk);
 
@@ -566,8 +540,7 @@ namespace oomph
         outer_unit_normal(s, normal_from_face_element);
         for (unsigned i = 0; i < ndim + 1; i++)
         {
-          normal[i] = normal_from_face_element[i]; // hierher remove once
-                                                   // interface has been updated
+          normal[i] = normal_from_face_element[i];
         }
 
 
@@ -694,9 +667,7 @@ namespace oomph
       // FaceElement::get_local_coordinate_in_bulk(...),
       // FiniteElement::J_eulerian(...),
       // FiniteElement::interpolated_x(...) and
-      // FaceElement::outer_unit_normal(...) in generic; convert to
-      // FixedSizeVectors once generic has been updated.
-      // hierher is this safe/possible to do now?
+      // FaceElement::outer_unit_normal(...) in generic.
       Vector<double> s(ndim);
       Vector<double> x(ndim + 1);
       Vector<double> s_bulk(ndim + 1);
@@ -739,11 +710,8 @@ namespace oomph
 
 #ifdef PARANOID
 
-        // Get x position as Vector from bulk element (compile-time size:
-        // ELEMENT::TEMPLATE_PARAMETER_DIM; maintained as a resizable
-        // Vector for consistency with FiniteElement::interpolated_x(...)
-        // in generic until generic has been updated)
-        // hierher is this safe/possible to do now?
+        // The bulk element returns this position through the dynamically
+        // sized FiniteElement::interpolated_x(...) interface.
         Vector<double> x_bulk(ndim + 1);
         bulk_el_pt->interpolated_x(s_bulk, x_bulk);
 
@@ -850,9 +818,7 @@ namespace oomph
       // FaceElement::get_local_coordinate_in_bulk(...),
       // FiniteElement::J_eulerian(...),
       // FiniteElement::interpolated_x(...) and
-      // FaceElement::outer_unit_normal(...) in generic; convert to
-      // FixedSizeVectors once generic has been updated.
-      // hierher is this safe/possible to do now?
+      // FaceElement::outer_unit_normal(...) in generic.
       Vector<double> s(ndim);
       Vector<double> x(ndim + 1);
       Vector<double> s_bulk(ndim + 1);
@@ -896,11 +862,8 @@ namespace oomph
 
 #ifdef PARANOID
 
-        // Get x position as Vector from bulk element (compile-time size:
-        // ELEMENT::TEMPLATE_PARAMETER_DIM; maintained as a resizable
-        // Vector for consistency with FiniteElement::interpolated_x(...)
-        // in generic until generic has been updated)
-        // hierher is this safe/possible to do now?
+        // The bulk element returns this position through the dynamically
+        // sized FiniteElement::interpolated_x(...) interface.
         Vector<double> x_bulk(ndim + 1);
         bulk_el_pt->interpolated_x(s_bulk, x_bulk);
 

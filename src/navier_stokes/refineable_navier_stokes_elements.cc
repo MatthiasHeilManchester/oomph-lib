@@ -70,10 +70,7 @@ namespace oomph
 
     // Local coordinates (compile-time size: DIM). Maintained as a
     // resizable Vector for consistency with pshape_nst(...) (whose s
-    // argument is kept as a Vector<double> for consistency with
-    // generic); convert to FixedSizeVector<double, DIM> once generic
-    // has been updated.
-    // hierher is this safe/possible to do now?
+    // argument is kept as a Vector<double> for consistency with the generic interface.
     Vector<double> s(DIM);
 
     // find the indices at which the local velocities are stored. There
@@ -361,9 +358,7 @@ namespace oomph
     // Vector of local coordinates (compile-time size: DIM). Maintained
     // as a resizable Vector for consistency with
     // dpshape_and_dptest_eulerian_nst(...) (which calls
-    // FiniteElement::dshape_local(...) in generic); convert to
-    // FixedSizeVector<double, DIM> once generic has been updated.
-    // hierher is this safe/possible to do now?
+    // FiniteElement::dshape_local(...) in generic).
     Vector<double> s(DIM);
 
     // Get Physical Variables from Element
@@ -655,9 +650,7 @@ namespace oomph
     // Vector of local coordinates (compile-time size: DIM). Maintained
     // as a resizable Vector for consistency with pshape_nst(...) and
     // get_body_force_nst(...) (whose s argument is kept as a
-    // Vector<double> for consistency with generic); convert to
-    // FixedSizeVector<double, DIM> once generic has been updated.
-    // hierher is this safe/possible to do now?
+    // Vector<double> for consistency with generic).
     Vector<double> s(DIM);
 
     // Storage for the body force at the integration point: a fixed-size
@@ -1247,10 +1240,8 @@ namespace oomph
     // Vector of local coordinates (compile-time size: DIM). Maintained
     // as a resizable Vector for consistency with pshape_nst(...),
     // get_body_force_nst(...) and get_body_force_gradient_nst(...)
-    // (whose s argument is kept as a Vector<double> for consistency
-    // with generic); convert to FixedSizeVector<double, DIM> once
-    // generic has been updated.
-    // hierher is this safe/possible to do now?
+    // (whose s argument is kept as a Vector<double> for consistency with the
+    // generic interface).
     Vector<double> s(DIM);
 
     // Storage for the body force and the gradients of the body force
@@ -1902,10 +1893,7 @@ namespace oomph
         // Local coordinates of son midpoint in father element
         // (compile-time size: 2). Maintained as a resizable Vector for
         // consistency with interpolated_p_nst(...) (whose s argument is
-        // kept as a Vector<double> for consistency with generic);
-        // convert to FixedSizeVector<double, 2> once generic has been
-        // updated.
-        // hierher is this safe/possible to do now?
+        // kept as a Vector<double> for consistency with generic).
         Vector<double> s_father(2);
 
         // Son midpoint is located at the following coordinates in father
@@ -2020,10 +2008,7 @@ namespace oomph
         // Local coordinates of son midpoint in father element
         // (compile-time size: 3). Maintained as a resizable Vector for
         // consistency with interpolated_p_nst(...) (whose s argument is
-        // kept as a Vector<double> for consistency with generic);
-        // convert to FixedSizeVector<double, 3> once generic has been
-        // updated.
-        // hierher is this safe/possible to do now?
+        // kept as a Vector<double> for consistency with generic).
         Vector<double> s_father(3);
 
 

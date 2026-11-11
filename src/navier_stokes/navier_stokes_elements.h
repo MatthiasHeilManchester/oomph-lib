@@ -197,9 +197,6 @@ namespace oomph
     // they have to be maintained as resizable Vectors for consistency
     // with the generic FiniteElement/FaceElement interface
     // (FaceElement::get_local_coordinate_in_bulk(...) and
-    // pshape_nst(...)); convert to FixedSizeVectors once generic has
-    // been updated.
-    // hierher is this safe/possible to do now?
     unsigned my_dim = this->dim();
     Vector<double> s(my_dim);
     Vector<double> s_bulk(my_dim + 1);
@@ -207,8 +204,6 @@ namespace oomph
     // Storage for outer unit normal (compile-time size:
     // ELEMENT::TEMPLATE_PARAMETER_DIM). Maintained as a resizable Vector
     // for consistency with FaceElement::outer_unit_normal(...) in
-    // generic; convert to FixedSizeVector once generic has been updated.
-    // hierher is this safe/possible to do now?
     Vector<double> unit_normal(my_dim + 1);
 
     // Storage for veloc in bulk element. The bulk element computes
@@ -531,10 +526,8 @@ namespace oomph
     // the virtual body force/source functions, and the user-specified
     // function pointers for the body force and source functions).
     //
-    // The only quantities of compile-time-known size that are still
-    // maintained as (resizable) Vectors/DenseMatrices are those that
-    // cross into the interface of the generic library, which has not yet
-    // been updated to fixed-size containers:
+    // The following quantities have sizes known at compile time but cross
+    // generic interfaces that intentionally remain dynamically sized:
     //
     //  - the local coordinates s (size DIM in bulk elements, DIM - 1 in
     //    face elements), passed to FiniteElement::shape(...),
@@ -560,11 +553,9 @@ namespace oomph
     //    ElementWithZ2ErrorEstimator::get_Z2_flux(...), and
     //    ElementWithDragFunction::get_drag_and_torque(...).
     //
-    // Every such occurrence in src/navier_stokes is annotated at its
-    // declaration/signature so that it can be converted to the
-    // corresponding FixedSizeVector/FixedSizeMatrix (and any temporary
-    // copy eliminated) once generic has been updated.
-    // hierher remove comment when done (or better move to coding conventions)
+    // These interfaces remain dynamically sized to support virtual dispatch
+    // and derived elements whose dimensions or implementations are determined
+    // at run time.
 
     /// Compute the shape functions and derivatives
     /// w.r.t. global coords at local coordinate s.
@@ -1127,14 +1118,10 @@ namespace oomph
       // traction onto the adjacent wall instead!
       //
       // get_traction(...) expects the normal in, and returns the traction
-      // in, fixed-size vectors whereas the interface of this function
-      // (inherited from FSIFluidElement in generic) still requires
-      // resizable Vectors. Until FSIFluidElement::get_load(...) in
-      // generic has been updated to FixedSizeVector<double, DIM>, we
-      // copy the normal into (stack-allocated) fixed-size storage,
-      // compute the traction into the same kind of storage and copy it
-      // across. No initialisation required since all entries are
-      // assigned.
+      // in, fixed-size vectors, whereas the virtual FSIFluidElement::get_load(...)
+      // interface accepts dynamically sized Vectors. Copy the normal and the
+      // resulting traction at this interface boundary. No initialisation is
+      // required because all entries are assigned.
       FixedSizeVector<double, DIM> normal;
       for (unsigned i = 0; i < DIM; i++)
       {
@@ -1144,7 +1131,7 @@ namespace oomph
       get_traction(
         s,
         normal,
-        traction); // hierher update to fixed size vector and remove translation
+        traction);
       for (unsigned i = 0; i < DIM; i++)
       {
         load[i] = traction[i];
@@ -1175,9 +1162,7 @@ namespace oomph
     {
       // Vector of local coordinates (compile-time size: DIM). Maintained
       // as a resizable Vector for consistency with
-      // FiniteElement::get_s_plot(...) in generic; convert to
-      // FixedSizeVector<double, DIM> once generic has been updated.
-      // hierher is this safe/possible to do now?
+      // FiniteElement::get_s_plot(...) in generic.
       Vector<double> s(DIM);
 
 
@@ -1247,9 +1232,7 @@ namespace oomph
       // pressure). All three have compile-time-known sizes, but they
       // have to be maintained as resizable Vectors for consistency with
       // FiniteElement::get_s_plot(...) and
-      // FiniteElement::UnsteadyExactSolutionFctPt in generic; convert to
-      // FixedSizeVectors once generic has been updated.
-      // hierher is this safe/possible to do now?
+      // FiniteElement::UnsteadyExactSolutionFctPt in generic.
       // Allocated once
       // outside the plot-point loop; no initialisation required since all
       // entries are assigned before use.
@@ -1621,10 +1604,7 @@ namespace oomph
         // are known at compile time, but they have to be maintained as
         // resizable Vectors for consistency with
         // FaceElement::interpolated_x(...) and
-        // FaceElement::outer_unit_normal(...) in generic; convert to
-        // FixedSizeVector<double, DIM> and
-        // FixedSizeVector<double, DIM - 1> once generic has been updated.
-        // hierher is this safe/possible to do now?
+        // FaceElement::outer_unit_normal(...) in generic.
         Vector<double> unit_normal(DIM);
         Vector<double> x(DIM);
         Vector<double> s(DIM - 1);
@@ -2289,9 +2269,7 @@ namespace oomph
     // Allocate memory for the inverse 2x2 jacobian. Maintained as a
     // resizable DenseMatrix for consistency with
     // FiniteElement::local_to_eulerian_mapping(...) and
-    // FiniteElement::transform_derivatives(...) in generic; convert to
-    // FixedSizeMatrix<double, 2, 2> once generic has been updated.
-    // hierher is this safe/possible to do now?
+    // FiniteElement::transform_derivatives(...) in generic.
     DenseMatrix<double> inverse_jacobian(2);
 
     // Now calculate the inverse jacobian
@@ -2383,9 +2361,7 @@ namespace oomph
     // Allocate memory for the inverse 3x3 jacobian. Maintained as a
     // resizable DenseMatrix for consistency with
     // FiniteElement::local_to_eulerian_mapping(...) and
-    // FiniteElement::transform_derivatives(...) in generic; convert to
-    // FixedSizeMatrix<double, 3, 3> once generic has been updated.
-    // hierher is this safe/possible to do now?
+    // FiniteElement::transform_derivatives(...) in generic.
     DenseMatrix<double> inverse_jacobian(3);
 
     // Now calculate the inverse jacobian
@@ -2757,9 +2733,7 @@ namespace oomph
     // Allocate memory for the inverse 2x2 jacobian. Maintained as a
     // resizable DenseMatrix for consistency with
     // FiniteElement::local_to_eulerian_mapping(...) and
-    // FiniteElement::transform_derivatives(...) in generic; convert to
-    // FixedSizeMatrix<double, 2, 2> once generic has been updated.
-    // hierher is this safe/possible to do now?
+    // FiniteElement::transform_derivatives(...) in generic.
     DenseMatrix<double> inverse_jacobian(2);
 
     // Now calculate the inverse jacobian
@@ -2924,9 +2898,7 @@ namespace oomph
     // Allocate memory for the inverse 3x3 jacobian. Maintained as a
     // resizable DenseMatrix for consistency with
     // FiniteElement::local_to_eulerian_mapping(...) and
-    // FiniteElement::transform_derivatives(...) in generic; convert to
-    // FixedSizeMatrix<double, 3, 3> once generic has been updated.
-    // hierher is this safe/possible to do now?
+    // FiniteElement::transform_derivatives(...) in generic.
     DenseMatrix<double> inverse_jacobian(3);
 
     // Now calculate the inverse jacobian

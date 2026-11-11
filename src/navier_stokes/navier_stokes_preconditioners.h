@@ -72,17 +72,12 @@ namespace oomph
     /// Exact solution as a Vector (compile-time sizes: 2 for x, 3 for u).
     /// Maintained with resizable Vector<double> arguments for consistency
     /// with FiniteElement::SteadyExactSolutionFctPt in generic (to which
-    /// this function is passed in Mesh::output_fct(...)); convert to
-    /// FixedSizeVectors once generic has been updated.
-    // hierher is this safe/possible to do now?
+    /// this function is passed in Mesh::output_fct(...)).
     extern void get_exact_u(const Vector<double>& x, Vector<double>& u);
 
     /// Exact solution as a scalar (compile-time size of x: 2).
     /// Maintained with a resizable Vector<double> argument because its
-    /// caller obtains x from FiniteElement::interpolated_x(...) in
-    /// generic; convert to FixedSizeVector<double, 2> once generic has
-    /// been updated.
-    // hierher is this safe/possible to do now?
+    /// caller obtains x from FiniteElement::interpolated_x(...) in generic.
     extern void get_exact_u(const Vector<double>& x, double& u);
 
     /// Source function required to make the solution above an exact
@@ -506,12 +501,10 @@ namespace oomph
       npts = 5;
 
       // Check value of FE solution in first element. Both s and x have
-      // compile-time size ELEMENT::TEMPLATE_PARAMETER_DIM, but they have
-      // to be maintained as resizable Vectors for consistency with
-      // FiniteElement::interpolated_x(...) in generic (and
-      // interpolated_p_nst(...)); convert to FixedSizeVectors once
-      // generic has been updated.
-      // hierher is this safe/possible to do now?
+      // compile-time size ELEMENT::TEMPLATE_PARAMETER_DIM, but they are
+      // resizable Vectors because they are passed to the dynamically sized
+      // FiniteElement::interpolated_x(...) and interpolated_p_nst(...)
+      // interfaces.
       Vector<double> s(Ndim, 0.0);
       Vector<double> x(Ndim);
       double p = dynamic_cast<ELEMENT*>(mesh_pt()->finite_element_pt(0))

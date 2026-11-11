@@ -435,7 +435,7 @@ public:
  /// obtained from the "external" element
  void get_wind_axi_adv_diff(const unsigned& ipt, const Vector<double> &s, 
                             const Vector<double>& x, 
-                            Vector<double>& wind) const // hierher fixed size
+                            Vector<double>& wind) const
  {
   // There is only one interaction
   unsigned interaction=0;
@@ -451,7 +451,7 @@ public:
    (external_element_local_coord(interaction,ipt),u);
   for (unsigned i=0;i<3;i++)
    {
-    wind[i] = u[i]; // hierher no longer needed post rewrite
+    wind[i] = u[i];
    }
   
  }  //end of get_wind_adv_diff
@@ -1319,7 +1319,7 @@ get_dbody_force_axi_nst_dexternal_element_data(
 //==========================================================================
 void QAxisymAdvectionDiffusionElementWithExternalElement::get_wind_axi_adv_diff
 (const unsigned& ipt,const Vector<double> &s,const Vector<double>& x, 
- Vector<double>& wind) const // hierher fixed size
+ Vector<double>& wind) const
 {
  // The interaction index is 0 in this case
  unsigned interaction=0;
@@ -1335,7 +1335,7 @@ void QAxisymAdvectionDiffusionElementWithExternalElement::get_wind_axi_adv_diff
   (external_element_local_coord(interaction,ipt),u);
  for (unsigned i=0;i<3;i++)
   {
-   wind[i] = u[i]; // hierher no longer needed post rewrite
+   wind[i] = u[i];
   }
 }  
 

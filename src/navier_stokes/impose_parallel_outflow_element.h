@@ -163,10 +163,7 @@ namespace oomph
       // (compile-time size: (ELEMENT::TEMPLATE_PARAMETER_DIM - 1) x
       // ELEMENT::TEMPLATE_PARAMETER_DIM). Maintained as resizable
       // Vectors for consistency with
-      // FaceElement::continuous_tangent_and_outer_unit_normal(...) in
-      // generic; convert to FixedSizeVectors once generic has been
-      // updated.
-      // hierher is this safe/possible to do now?
+      // FaceElement::continuous_tangent_and_outer_unit_normal(...) in generic.
       Vector<double> norm_vec(dim_el + 1);
       Vector<Vector<double>> tang_vec(dim_el, Vector<double>(dim_el + 1));
 

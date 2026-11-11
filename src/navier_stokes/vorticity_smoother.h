@@ -832,9 +832,7 @@ namespace oomph
       // Vector of local coordinates (compile-time size: 2). Maintained
       // as a resizable Vector for consistency with
       // FiniteElement::get_s_plot(...) and
-      // FiniteElement::interpolated_x(...) in generic; convert to
-      // FixedSizeVector<double, 2> once generic has been updated.
-      // hierher is this safe/possible to do now?
+      // FiniteElement::interpolated_x(...) in generic.
       Vector<double> s(N_dim);
 
       // Global coordinates container: compile-time size 2, passed to
@@ -912,9 +910,7 @@ namespace oomph
       // Vector of local coordinates (compile-time size: 2). Maintained
       // as a resizable Vector for consistency with
       // FiniteElement::get_s_plot(...) and
-      // FiniteElement::interpolated_x(...) in generic; convert to
-      // FixedSizeVector<double, 2> once generic has been updated.
-      // hierher is this safe/possible to do now?
+      // FiniteElement::interpolated_x(...) in generic.
       Vector<double> s(N_dim);
 
       // Global coordinates: compile-time size 2 and only accessed
@@ -1013,9 +1009,7 @@ namespace oomph
     {
       // Vector of local coordinates (compile-time size: 2). Maintained
       // as a resizable Vector for consistency with
-      // FiniteElement::get_s_plot(...) in generic; convert to
-      // FixedSizeVector<double, 2> once generic has been updated.
-      // hierher is this safe/possible to do now?
+      // FiniteElement::get_s_plot(...) in generic.
       Vector<double> s(N_dim);
 
       // Get the number of plot points
@@ -1180,9 +1174,7 @@ namespace oomph
       // Vector of local coordinates (compile-time size: 2). Maintained
       // as a resizable Vector for consistency with
       // FiniteElement::get_s_plot(...), FiniteElement::shape(...) and
-      // FiniteElement::interpolated_x(...) in generic; convert to
-      // FixedSizeVector<double, 2> once generic has been updated.
-      // hierher is this safe/possible to do now?
+      // FiniteElement::interpolated_x(...) in generic.
       Vector<double> s(N_dim);
 
       // Global coordinates container: compile-time size 2 and only
@@ -1267,9 +1259,7 @@ namespace oomph
     /// Get raw derivative of velocity (4 components in 2D: du/dx, du/dy,
     /// dv/dx, dv/dy; returned in a FixedSizeVector). Note: s (size 2) is
     /// maintained as a resizable Vector for consistency with
-    /// FiniteElement::dshape_eulerian(...) in generic; convert to
-    /// FixedSizeVector<double, 2> once generic has been updated.
-    // hierher is this safe/possible to do now?
+    /// FiniteElement::dshape_eulerian(...) in generic.
     void get_raw_velocity_deriv(const Vector<double>& s,
                                 FixedSizeVector<double, 4>& dveloc_dx) const
     {
@@ -1367,9 +1357,7 @@ namespace oomph
     /// Get raw derivative of smoothed vorticity (2 components in 2D:
     /// d/dx, d/dy; returned in a FixedSizeVector). Note: s (size 2) is
     /// maintained as a resizable Vector for consistency with
-    /// FiniteElement::dshape_eulerian(...) in generic; convert to
-    /// FixedSizeVector<double, 2> once generic has been updated.
-    // hierher is this safe/possible to do now?
+    /// FiniteElement::dshape_eulerian(...) in generic.
     void get_raw_vorticity_deriv(
       const Vector<double>& s, FixedSizeVector<double, 2>& dvorticity_dx) const
     {
@@ -1452,9 +1440,6 @@ namespace oomph
     /// in 2D: d^2/dx^2, d^2/dxdy, d^2/dy^2; returned in a
     /// FixedSizeVector). Note: s (size 2) is maintained as a resizable
     /// Vector for consistency with FiniteElement::dshape_eulerian(...)
-    /// in generic; convert to FixedSizeVector<double, 2> once generic
-    /// has been updated.
-    // hierher is this safe/possible to do now?
     void get_raw_vorticity_second_deriv(
       const Vector<double>& s,
       FixedSizeVector<double, 3>& dvorticity_dxdy) const
@@ -1556,9 +1541,7 @@ namespace oomph
     /// in 2D: [0]: d^3/dx^3, [1]: d^3/dx^2dy, [2]: d^3/dxdy^2,
     /// [3]: d^3/dy^3; returned in a FixedSizeVector). Note: s (size 2)
     /// is maintained as a resizable Vector for consistency with
-    /// FiniteElement::dshape_eulerian(...) in generic; convert to
-    /// FixedSizeVector<double, 2> once generic has been updated.
-    // hierher is this safe/possible to do now?
+    /// FiniteElement::dshape_eulerian(...) in generic.
     void get_raw_vorticity_third_deriv(
       const Vector<double>& s,
       FixedSizeVector<double, 4>& dvorticity_dxdxdy) const
@@ -1719,9 +1702,7 @@ namespace oomph
       // Vector to hold local coordinates (compile-time size: 2).
       // Maintained as a resizable Vector for consistency with
       // FiniteElement::interpolated_x(...) and
-      // FiniteElement::dshape_eulerian(...) in generic; convert to
-      // FixedSizeVector<double, 2> once generic has been updated.
-      // hierher is this safe/possible to do now?
+      // FiniteElement::dshape_eulerian(...) in generic.
       Vector<double> s(N_dim);
 
       // Global coordinates: compile-time size 2, passed to
@@ -2324,15 +2305,9 @@ namespace oomph
         // Create storage for the recovery shape function values
         Vector<double> psi_r(num_recovery_terms);
 
-        // Local coordinates (size 2) and global Eulerian coordinates
-        // (size 2). Both have compile-time size 2, but they have to be
-        // maintained as resizable Vectors for consistency with
-        // FiniteElement::J_eulerian(...),
-        // FiniteElement::interpolated_x(...) and
-        // FiniteElement::geometric_jacobian(...) in generic; convert both
-        // (and the first argument of shape_rec(...)) to
-        // FixedSizeVector<double, 2> once generic has been updated.
-        // hierher is this safe/possible to do now?
+        // Local coordinates and Eulerian coordinates are passed to generic
+        // FiniteElement interfaces as dynamically sized Vectors. The
+        // recovery function shape_rec(...) also accepts a Vector.
         Vector<double> s(2);
         Vector<double> x(2);
 
@@ -2518,13 +2493,9 @@ namespace oomph
       // Start the timer
       double t_start = TimingHelpers::timer();
 
-      // Local coordinates (size 2) and global Eulerian coordinates
-      // (size 2). Maintained as resizable Vectors for consistency with
-      // FiniteElement::local_coordinate_of_node(...) and
-      // FiniteElement::interpolated_x(...) in generic; convert both (and
-      // the first argument of shape_rec(...)) to
-      // FixedSizeVector<double, 2> once generic has been updated.
-      // hierher is this safe/possible to do now?
+      // Local coordinates and Eulerian coordinates are passed to generic
+      // FiniteElement interfaces as dynamically sized Vectors. The
+      // recovery function shape_rec(...) also accepts a Vector.
       Vector<double> s(2);
       Vector<double> x(2);
 

@@ -282,19 +282,19 @@ namespace oomph
     /// advection-diffusion equations because the wind is the fluid velocity.
     void get_wind_adv_diff(const unsigned& ipt,
                            const Vector<double>& s,
-                           const Vector<double>& x, // hierher fixed sized
+                           const Vector<double>& x,
                            Vector<double>& wind) const
     {
       // The wind function is simply the velocity at the points.
-      // interpolated_u_nst(...) returns the velocity in a FixedSizeVector
-      // whereas the interface of get_wind_adv_diff(...) (inherited from
-      // AdvectionDiffusionEquations) still requires a resizable Vector;
-      // copy across until AdvectionDiffusionEquations has been updated.
+      // interpolated_u_nst(...) returns the velocity in a FixedSizeVector,
+      // whereas the virtual get_wind_adv_diff(...) interface inherited from
+      // AdvectionDiffusionEquations accepts a dynamically sized Vector.
+      // Copy the velocity into the wind argument.
       FixedSizeVector<double, DIM> u_nst;
       this->interpolated_u_nst(s, u_nst);
       for (unsigned i = 0; i < DIM; i++)
       {
-        wind[i] = u_nst[i]; // hierher no longer needed if interface is changed
+        wind[i] = u_nst[i];
       }
     } // end of get_wind_adv_diff
 
@@ -1225,20 +1225,19 @@ namespace oomph
     /// advection-diffusion equations because the wind is the fluid velocity.
     void get_wind_adv_diff(const unsigned& ipt,
                            const Vector<double>& s,
-                           const Vector<double>& x, // hierher fixed sized
+                           const Vector<double>& x,
                            Vector<double>& wind) const
     {
       // The wind function is simply the velocity at the points.
-      // interpolated_u_nst(...) returns the velocity in a FixedSizeVector
-      // whereas the interface of get_wind_adv_diff(...) (inherited from
-      // AdvectionDiffusionEquations) still requires a resizable Vector;
-      // copy across until AdvectionDiffusionEquations has been updated.
+      // interpolated_u_nst(...) returns the velocity in a FixedSizeVector,
+      // whereas the virtual get_wind_adv_diff(...) interface inherited from
+      // AdvectionDiffusionEquations accepts a dynamically sized Vector.
+      // Copy the velocity into the wind argument.
       FixedSizeVector<double, DIM> u_nst;
       this->interpolated_u_nst(s, u_nst);
       for (unsigned i = 0; i < DIM; i++)
       {
-        wind[i] = u_nst[i]; // hierher no longer needed if interface is changed
-                            // to fixed size
+        wind[i] = u_nst[i];
       }
     }
 

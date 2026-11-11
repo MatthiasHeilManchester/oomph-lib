@@ -474,10 +474,7 @@ namespace oomph
       // Outer unit normal (compile-time size:
       // ELEMENT::TEMPLATE_PARAMETER_DIM). Maintained as a resizable
       // Vector for consistency with FaceElement::outer_unit_normal(...)
-      // in generic; convert to
-      // FixedSizeVector<double, ELEMENT::TEMPLATE_PARAMETER_DIM> once
-      // generic has been updated.
-      // hierher is this safe/possible to do now?
+      // in generic.
       Vector<double> unit_normal(Dim);
 
       // Traction: its size is the bulk element's spatial dimension,
@@ -657,10 +654,7 @@ namespace oomph
       // Outer unit normal (compile-time size:
       // ELEMENT::TEMPLATE_PARAMETER_DIM). Maintained as a resizable
       // Vector for consistency with FaceElement::outer_unit_normal(...)
-      // in generic; convert to
-      // FixedSizeVector<double, ELEMENT::TEMPLATE_PARAMETER_DIM> once
-      // generic has been updated.
-      // hierher is this safe/possible to do now?
+      // in generic.
       Vector<double> unit_normal(this->Dim);
 
       // Traction: its size is the bulk element's spatial dimension,

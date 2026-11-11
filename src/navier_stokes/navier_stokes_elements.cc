@@ -89,10 +89,7 @@ namespace oomph
 
     // Local coordinates (compile-time size: DIM). Maintained as a
     // resizable Vector for consistency with pshape_nst(...) (whose
-    // interface takes a Vector<double> for consistency with generic);
-    // convert to FixedSizeVector<double, DIM> once generic has been
-    // updated.
-    // hierher is this safe/possible to do now?
+    // interface takes a Vector<double> for consistency with generic).
     Vector<double> s(DIM);
 
     // find the indices at which the local velocities are stored. There
@@ -197,9 +194,7 @@ namespace oomph
 
     // Vector of local coordinates (compile-time size: DIM). Maintained
     // as a resizable Vector for consistency with
-    // FiniteElement::J_eulerian(...) in generic; convert to
-    // FixedSizeVector<double, DIM> once generic has been updated.
-    // hierher is this safe/possible to do now?
+    // FiniteElement::J_eulerian(...) in generic.
     Vector<double> s(DIM);
 
     // Solution
@@ -251,13 +246,11 @@ namespace oomph
   {
     // Resize the solution norm vector (interface inherited from
     // FiniteElement::compute_norm(...) in generic)
-    // hierher update in generic
     norm.resize(DIM + 1, 0.0);
 
     // Vector of local coordinates (compile-time size: DIM). Maintained
     // as a resizable Vector for consistency with
-    // FiniteElement::J_eulerian(...) in generic; convert to
-    // FixedSizeVector<double, DIM> once generic has been updated. No
+    // FiniteElement::J_eulerian(...) in generic.
     // initialisation required since all entries are assigned at each
     // integration point.
     Vector<double> s(DIM);
@@ -319,9 +312,7 @@ namespace oomph
     // known at compile time, but they have to be maintained as resizable
     // Vectors for consistency with FiniteElement::J_eulerian(...),
     // FiniteElement::interpolated_x(...) and
-    // FiniteElement::UnsteadyExactSolutionFctPt in generic; convert to
-    // FixedSizeVectors once generic has been updated.
-    // hierher is this safe/possible to do now?
+    // FiniteElement::UnsteadyExactSolutionFctPt in generic.
     Vector<double> s(DIM);
     Vector<double> x(DIM);
 
@@ -402,9 +393,7 @@ namespace oomph
     // known at compile time, but they have to be maintained as resizable
     // Vectors for consistency with FiniteElement::J_eulerian(...),
     // FiniteElement::interpolated_x(...) and
-    // FiniteElement::SteadyExactSolutionFctPt in generic; convert to
-    // FixedSizeVectors once generic has been updated.
-    // hierher is this safe/possible to do now?
+    // FiniteElement::SteadyExactSolutionFctPt in generic.
     Vector<double> s(DIM);
     Vector<double> x(DIM);
 
@@ -485,9 +474,7 @@ namespace oomph
     // known at compile time, but they have to be maintained as resizable
     // Vectors for consistency with FiniteElement::J_eulerian(...),
     // FiniteElement::interpolated_x(...) and
-    // FiniteElement::[Un]SteadyExactSolutionFctPt in generic; convert to
-    // FixedSizeVectors once generic has been updated.
-    // hierher is this safe/possible to do now?
+    // FiniteElement::[Un]SteadyExactSolutionFctPt in generic.
     Vector<double> s(DIM);
     Vector<double> x(DIM);
 
@@ -554,9 +541,7 @@ namespace oomph
     // known at compile time, but they have to be maintained as resizable
     // Vectors for consistency with FiniteElement::J_eulerian(...),
     // FiniteElement::interpolated_x(...) and
-    // FiniteElement::[Un]SteadyExactSolutionFctPt in generic; convert to
-    // FixedSizeVectors once generic has been updated.
-    // hierher is this safe/possible to do now?
+    // FiniteElement::[Un]SteadyExactSolutionFctPt in generic.
     Vector<double> s(DIM);
     Vector<double> x(DIM);
 
@@ -616,11 +601,9 @@ namespace oomph
     // Local coordinates (size DIM) and Eulerian coordinates (size DIM).
     // Maintained as resizable Vectors for consistency with
     // FiniteElement::get_s_plot(...), FiniteElement::interpolated_x(...)
-    // and FiniteElement::[Un]SteadyExactSolutionFctPt in generic;
-    // convert to FixedSizeVector<double, DIM> once generic has been
-    // updated. (exact_soln is sized by the user callback and can have an
-    // arbitrary number of components.)
-    // update in generic
+    // and FiniteElement::[Un]SteadyExactSolutionFctPt in generic.
+    // exact_soln is sized by the user callback and can have an arbitrary
+    // number of components.
     Vector<double> s(DIM);
     Vector<double> x(DIM);
 
@@ -679,10 +662,8 @@ namespace oomph
     // Maintained as resizable Vectors for consistency with
     // FiniteElement::get_s_plot(...), FiniteElement::interpolated_x(...)
     // and FiniteElement::[Un]SteadyExactSolutionFctPt in generic;
-    // convert to FixedSizeVector<double, DIM> once generic has been
-    // updated. (exact_soln is sized by the user callback and can have an
-    // arbitrary number of components.)
-    // hierher is this safe/possible to do now?
+    // exact_soln is sized by the user callback and can have an arbitrary
+    // number of components.
     Vector<double> s(DIM);
     Vector<double> x(DIM);
 
@@ -744,10 +725,7 @@ namespace oomph
 
     // Vector of local coordinates (compile-time size: DIM). Maintained
     // as a resizable Vector for consistency with
-    // FiniteElement::get_s_plot(...) and FiniteElement::shape(...) in
-    // generic; convert to FixedSizeVector<double, DIM> once generic has
-    // been updated.
-    // hierher is this safe/possible to do now?
+    // FiniteElement::get_s_plot(...) and FiniteElement::shape(...) in generic.
     Vector<double> s(DIM);
 
     // Coordinates and velocities at the plot point; their size (DIM) is
@@ -817,9 +795,7 @@ namespace oomph
     // Vector of local coordinates (compile-time size: DIM). Maintained
     // as a resizable Vector for consistency with
     // FiniteElement::get_s_plot(...) and
-    // FiniteElement::interpolated_x(...) in generic; convert to
-    // FixedSizeVector<double, DIM> once generic has been updated.
-    // hierher is this safe/possible to do now?
+    // FiniteElement::interpolated_x(...) in generic.
     Vector<double> s(DIM);
 
     // Tecplot header info
@@ -868,9 +844,7 @@ namespace oomph
     // Vector of local coordinates (compile-time size: DIM). Maintained
     // as a resizable Vector for consistency with
     // FiniteElement::get_s_plot(...) and
-    // FiniteElement::interpolated_x(...) in generic; convert to
-    // FixedSizeVector<double, DIM> once generic has been updated.
-    // hierher is this safe/possible to do now?
+    // FiniteElement::interpolated_x(...) in generic.
     Vector<double> s(DIM);
 
     // Tecplot header info
@@ -918,9 +892,7 @@ namespace oomph
     // Vector of local coordinates (compile-time size: DIM). Maintained
     // as a resizable Vector for consistency with
     // FiniteElement::get_s_plot(...), FiniteElement::dshape_eulerian(...)
-    // and FiniteElement::interpolated_x(...) in generic; convert to
-    // FixedSizeVector<double, DIM> once generic has been updated.
-    // hierher is this safe/possible to do now?
+    // and FiniteElement::interpolated_x(...) in generic.
     Vector<double> s(DIM);
 
     // Tecplot header info
@@ -1043,9 +1015,7 @@ namespace oomph
     // Vector of local coordinates (compile-time size: DIM). Maintained
     // as a resizable Vector for consistency with
     // FiniteElement::get_s_plot(...) and
-    // FiniteElement::interpolated_x(...) in generic; convert to
-    // FixedSizeVector<double, DIM> once generic has been updated.
-    // hierher is this safe/possible to do now?
+    // FiniteElement::interpolated_x(...) in generic.
     Vector<double> s(DIM);
 
     // Vorticity vector: fixed-size vector with N_vorticity_component
@@ -1106,9 +1076,7 @@ namespace oomph
 
     // Vector of local coordinates (compile-time size: DIM). Maintained
     // as a resizable Vector for consistency with
-    // FiniteElement::J_eulerian(...) in generic; convert to
-    // FixedSizeVector<double, DIM> once generic has been updated.
-    // hierher is this safe/possible to do now?
+    // FiniteElement::J_eulerian(...) in generic.
     Vector<double> s(DIM);
 
     // Storage for the strain rate matrix: its size (DIM x DIM) is known
@@ -1453,9 +1421,7 @@ namespace oomph
 
     // Vector of local coordinates (compile-time size: DIM). Maintained
     // as a resizable Vector for consistency with
-    // FiniteElement::J_eulerian(...) in generic; convert to
-    // FixedSizeVector<double, DIM> once generic has been updated.
-    // hierher is this safe/possible to do now?
+    // FiniteElement::J_eulerian(...) in generic.
     Vector<double> s(DIM);
 
     // Loop over the integration points
@@ -1602,9 +1568,7 @@ namespace oomph
 
     // Vector of local coordinates (compile-time size: DIM). Maintained
     // as a resizable Vector for consistency with
-    // FiniteElement::J_eulerian(...) in generic; convert to
-    // FixedSizeVector<double, DIM> once generic has been updated.
-    // hierher is this safe/possible to do now?
+    // FiniteElement::J_eulerian(...) in generic.
     Vector<double> s(DIM);
 
     // Loop over the integration points
@@ -1677,9 +1641,7 @@ namespace oomph
     // Vector of local coordinates (compile-time size: DIM). Maintained
     // as a resizable Vector for consistency with
     // dpshape_and_dptest_eulerian_nst(...) (which calls
-    // FiniteElement::dshape_local(...) in generic); convert to
-    // FixedSizeVector<double, DIM> once generic has been updated.
-    // hierher is this safe/possible to do now?
+    // FiniteElement::dshape_local(...) in generic).
     Vector<double> s(DIM);
 
     // Get Physical Variables from Element
@@ -1860,9 +1822,7 @@ namespace oomph
     // Vector of local coordinates (compile-time size: DIM). Maintained
     // as a resizable Vector for consistency with pshape_nst(...) and
     // get_body_force_nst(...) (whose s argument is kept as a
-    // Vector<double> for consistency with generic); convert to
-    // FixedSizeVector<double, DIM> once generic has been updated.
-    // hierher is this safe/possible to do now?
+    // Vector<double> for consistency with generic).
     Vector<double> s(DIM);
 
     // Storage for the body force at the integration point: a fixed-size
@@ -2242,10 +2202,8 @@ namespace oomph
     // Vector of local coordinates (compile-time size: DIM). Maintained
     // as a resizable Vector for consistency with pshape_nst(...),
     // get_body_force_nst(...) and get_body_force_gradient_nst(...)
-    // (whose s argument is kept as a Vector<double> for consistency
-    // with generic); convert to FixedSizeVector<double, DIM> once
-    // generic has been updated.
-    // hierher is this safe/possible to do now?
+    // (whose s argument is kept as a Vector<double> for consistency with the
+    // generic interface).
     Vector<double> s(DIM);
 
     // Storage for the body force and the gradients of the body force

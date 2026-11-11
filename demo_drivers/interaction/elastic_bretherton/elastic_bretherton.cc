@@ -351,7 +351,7 @@ class SpineGravityTractionElement :
  double *ReInvFr_pt;
 
  /// Pointer to global gravity Vector
- FixedSizeVector<double, ELEMENT::TEMPLATE_PARAMETER_DIM> *G_pt; // hierher elaborate on TEMPLATE_PARAMETER_DIM
+ FixedSizeVector<double, ELEMENT::TEMPLATE_PARAMETER_DIM> *G_pt;
 
  /// Pointer to the viscosity ratio (relative to the 
  /// viscosity used in the definition of the Reynolds number)

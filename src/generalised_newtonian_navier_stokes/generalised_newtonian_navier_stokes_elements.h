@@ -742,7 +742,7 @@ namespace oomph
     /// in the computation.
     void get_load(
       const Vector<double>& s,
-      const Vector<double>& N, // hierher make this work with fixed size vectors
+      const Vector<double>& N,
       Vector<double>& load)
     {
       // Note: get_traction() computes the traction onto the fluid
@@ -758,8 +758,7 @@ namespace oomph
       get_traction(s, normal, traction);
       for (unsigned i = 0; i < DIM; i++)
       {
-        load[i] = traction[i]; // hierher no longer needed if we work with fixed
-                               // size vectors everywhere
+        load[i] = traction[i];
       }
     }
 

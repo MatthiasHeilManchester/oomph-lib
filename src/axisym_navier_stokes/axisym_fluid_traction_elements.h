@@ -223,8 +223,7 @@ namespace oomph
 
         // Outer unit normal
         Vector<double> unit_normal(n_dim);
-        outer_unit_normal(s, unit_normal); // hierher shouldn't this function
-                                           // work with fixed size vectors?
+        outer_unit_normal(s, unit_normal);
         FixedSizeVector<double, 2> unit_normal_fixed;
         for (unsigned i = 0; i < 2; i++)
         {
@@ -342,8 +341,7 @@ namespace oomph
 
         // Outer unit normal
         Vector<double> unit_normal(n_dim);
-        outer_unit_normal(s, unit_normal); // hierher shouldn't this function
-                                           // work with fixed size vectors?
+        outer_unit_normal(s, unit_normal);
         FixedSizeVector<double, 2> unit_normal_fixed;
         for (unsigned i = 0; i < 2; i++)
         {
@@ -437,7 +435,10 @@ namespace oomph
 
     // Position vector
     Vector<double> x(n_dim);
-    interpolated_x(s, x); // hierher should this work with fixed size vectors?
+    // FiniteElement::interpolated_x(...) returns its result through a
+    // dynamically sized Vector; copy the two coordinates used here into
+    // fixed-size storage.
+    interpolated_x(s, x);
     FixedSizeVector<double, 2> x_fixed;
     for (unsigned i = 0; i < 2; i++)
     {
@@ -446,8 +447,10 @@ namespace oomph
 
     // Outer unit normal (only in r and z direction!)
     Vector<double> unit_normal(n_dim);
-    outer_unit_normal(
-      s, unit_normal); // hierher should this work with fixed size vectors?
+    // FaceElement::outer_unit_normal(...) returns its normal through a
+    // dynamically sized Vector; copy the two components used here into
+    // fixed-size storage.
+    outer_unit_normal(s, unit_normal);
     FixedSizeVector<double, 2> unit_normal_fixed;
     for (unsigned i = 0; i < 2; i++)
     {
@@ -564,7 +567,7 @@ namespace oomph
       // Get the outer unit normal
       Vector<double> interpolated_normal(n_dim);
       outer_unit_normal(
-        ipt, interpolated_normal); // hierher work with fixed size vectors
+        ipt, interpolated_normal);
       FixedSizeVector<double, 2> interpolated_normal_fixed;
       for (unsigned i = 0; i < 2; i++)
       {

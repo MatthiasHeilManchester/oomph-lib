@@ -1374,6 +1374,9 @@ private:
 /// In a PARANOID build, this allows us to verify that no two live
 /// Workspace objects refer to this GuardedWorkspace at the same time.
 ///
+/// In a non-PARANOID build, the active-use check and its bookkeeping are
+/// omitted.
+///
 /// The constructors support the natural dimensional constructors of
 /// oomph-lib's dynamically sized container families:
 ///

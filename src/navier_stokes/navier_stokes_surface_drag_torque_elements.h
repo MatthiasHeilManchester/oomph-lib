@@ -87,12 +87,11 @@ namespace oomph
 
     /// Function that specifies the drag force and the torque about
     /// the origin. Note: The signature of this function is inherited
-    /// from ElementWithDragFunction in generic and therefore maintains
-    /// resizable Vector<double> arguments for drag_force (compile-time
-    /// size: ELEMENT::TEMPLATE_PARAMETER_DIM) and drag_torque
-    /// (compile-time size: 2*ELEMENT::TEMPLATE_PARAMETER_DIM - 3, i.e.
-    /// 1 in 2D and 3 in 3D) until generic has been updated.
-    // hierher is this safe/possible to do now?
+    /// from ElementWithDragFunction in generic and therefore uses
+    /// dynamically sized Vectors for drag_force and drag_torque. Their
+    /// sizes are ELEMENT::TEMPLATE_PARAMETER_DIM and
+    /// 2*ELEMENT::TEMPLATE_PARAMETER_DIM - 3, respectively (one in 2D and
+    /// three in 3D).
     virtual void get_drag_and_torque(Vector<double>& drag_force,
                                      Vector<double>& drag_torque)
     {
@@ -116,12 +115,8 @@ namespace oomph
       // ELEMENT::TEMPLATE_PARAMETER_DIM - 1), Eulerian coordinates
       // (size: ELEMENT::TEMPLATE_PARAMETER_DIM) and local coordinates in
       // the bulk element (size: ELEMENT::TEMPLATE_PARAMETER_DIM).
-      // Maintained as resizable Vectors for consistency with
-      // FaceElement::get_local_coordinate_in_bulk(...),
-      // FiniteElement::J_eulerian(...) and
-      // FiniteElement::interpolated_x(...) in generic; convert to
-      // FixedSizeVectors once generic has been updated.
-      // hierher is this safe/possible to do now?
+      // These are dynamically sized Vectors because they are passed to
+      // FaceElement and FiniteElement interfaces in generic.
       Vector<double> s(ndim);
       Vector<double> x(ndim + 1);
       Vector<double> s_bulk(ndim + 1);
@@ -132,10 +127,7 @@ namespace oomph
       // copied into the fixed-size vector (of the bulk element's spatial
       // dimension, obtained as a compile-time constant from its publicly
       // exposed template parameter) that the bulk element's
-      // get_traction(...) requires. Once FaceElement::outer_unit_normal(...)
-      // in generic has been updated to FixedSizeVector,
-      // normal_from_face_element and the copy below can be removed.
-      // hierher is this safe/possible to do now?
+      // get_traction(...) requires.
       Vector<double> normal_from_face_element(ndim + 1);
       FixedSizeVector<double, ELEMENT::TEMPLATE_PARAMETER_DIM> normal;
 
@@ -181,11 +173,9 @@ namespace oomph
 
 #ifdef PARANOID
 
-        // Get x position as Vector from bulk element (compile-time size:
-        // ELEMENT::TEMPLATE_PARAMETER_DIM; maintained as a resizable
-        // Vector for consistency with FiniteElement::interpolated_x(...)
-        // in generic until generic has been updated)
-        // hierher is this safe/possible to do now?
+        // Get x position as Vector from the bulk element through the
+        // dynamically sized FiniteElement::interpolated_x(...) interface.
+        // (The vector is only required for this PARANOID consistency check.)
         Vector<double> x_bulk(ndim + 1);
         bulk_el_pt->interpolated_x(s_bulk, x_bulk);
 
@@ -212,8 +202,7 @@ namespace oomph
         outer_unit_normal(s, normal_from_face_element);
         for (unsigned i = 0; i < ndim + 1; i++)
         {
-          normal[i] = normal_from_face_element[i]; // hierher remove when
-                                                   // interface has been changed
+          normal[i] = normal_from_face_element[i];
         }
 
         // Get velocity from bulk element
@@ -287,13 +276,9 @@ namespace oomph
       // Local coordinates in the face element (compile-time size:
       // ELEMENT::TEMPLATE_PARAMETER_DIM - 1), local coordinates in the
       // bulk element (size: ELEMENT::TEMPLATE_PARAMETER_DIM) and Eulerian
-      // coordinates (size: ELEMENT::TEMPLATE_PARAMETER_DIM). Maintained
-      // as resizable Vectors for consistency with
-      // FiniteElement::get_s_plot(...),
-      // FaceElement::get_local_coordinate_in_bulk(...) and
-      // FiniteElement::interpolated_x(...) in generic; convert to
-      // FixedSizeVectors once generic has been updated.
-      // hierher is this safe/possible to do now?
+      // coordinates (size: ELEMENT::TEMPLATE_PARAMETER_DIM). These are
+      // dynamically sized Vectors because they are passed to FiniteElement
+      // and FaceElement interfaces in generic.
       Vector<double> s(dim_el);
       Vector<double> s_bulk(dim_el + 1);
       Vector<double> x(dim_el + 1);
@@ -303,9 +288,7 @@ namespace oomph
       // copied into the fixed-size vector (of the bulk element's spatial
       // dimension, obtained as a compile-time constant from its publicly
       // exposed template parameter) that the bulk element's
-      // get_traction(...) requires. Once FaceElement::outer_unit_normal(...)
-      // in generic has been updated to FixedSizeVector,
-      // normal_from_face_element and the copy below can be removed.
+      // get_traction(...) requires.
       Vector<double> normal_from_face_element(dim_el + 1);
       FixedSizeVector<double, ELEMENT::TEMPLATE_PARAMETER_DIM> normal;
 
@@ -337,9 +320,7 @@ namespace oomph
         outer_unit_normal(s, normal_from_face_element);
         for (unsigned i = 0; i < dim_el + 1; i++)
         {
-          normal[i] =
-            normal_from_face_element[i]; // hierher no longer needed when
-                                         // interface has been changed
+          normal[i] = normal_from_face_element[i];
         }
         bulk_el_pt->interpolated_u_nst(s_bulk, veloc);
         // Get traction from bulk element this is directed into the fluid

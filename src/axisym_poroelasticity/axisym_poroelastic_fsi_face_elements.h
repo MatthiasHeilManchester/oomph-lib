@@ -264,8 +264,7 @@ namespace oomph
         // Get the outer unit normal
         Vector<double> interpolated_normal(Dim);
         outer_unit_normal(ipt,
-                          interpolated_normal); // hierher should this return a
-                                                // fixed sized vector?
+                          interpolated_normal);
 
         // Calculate the unit tangent vector
         Vector<double> interpolated_tangent(Dim);
@@ -317,11 +316,13 @@ namespace oomph
         s_bulk = local_coordinate_in_bulk(s);
 
         // Get the fluid traction from the NSt bulk element
+        // FaceElement::outer_unit_normal(...) returns a dynamically sized
+        // Vector; copy its two components into the 3D normal required by the
+        // fluid-traction interface.
         FixedSizeVector<double, 3> n_fixed(0.0);
         n_fixed[0] = interpolated_normal[0];
         n_fixed[1] =
-          interpolated_normal[1]; // hierher translation no longer needed if n
-                                  // is fixed size already (from above)
+          interpolated_normal[1];
         FixedSizeVector<double, 3> traction_nst;
         dynamic_cast<FLUID_BULK_ELEMENT*>(bulk_element_pt())
           ->traction(s_bulk, n_fixed, traction_nst);
@@ -1018,7 +1019,7 @@ namespace oomph
 
       // Get the fluid traction from the NSt bulk element
       FixedSizeVector<double, 3> n_fixed(0.0);
-      n_fixed[0] = interpolated_normal[0]; // hierher again: interpolated_normal
+      n_fixed[0] = interpolated_normal[0];
                                            // should be fixed size (above)
       n_fixed[1] = interpolated_normal[1];
       FixedSizeVector<double, 3> traction_nst;

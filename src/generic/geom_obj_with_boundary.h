@@ -88,32 +88,19 @@ namespace oomph
       const FixedSizeVector<double, 2>& zeta,
       FixedSizeVector<double, 3>& r) const
     {
-     // (TOO MUCH) DETAIL ON THE WORKSPACE CODE BELOW:
-     // Get the workspaces containing zeta and the position vector in
-     // their Vector incarnation. The clever bit is that while creating
-     // this workspace (which gives access to the wrapped containers)
-     // in PARANOID mode we're also recording (in the GuardedWorkspace
-     // that actually stores these containers) that the workspace is
-     // in use! When the Workspace goes out of scope (at the end of
-     // this function) the status is reset to "not in use" by the
-     // Workspace destructor. This is safe even if an
-     // exception is thrown somewhere along the way -- the destructor is
-     // always called.
-     // In a non-PARANOID build the bookkeeping is absent, so acquiring and
-     // releasing the workspaces should introduce no runtime overhead.
-     
-     // Get workspace
+     // GeomObject::position(...) uses dynamically sized Vectors. These
+     // pre-sized workspaces provide the required arguments while avoiding
+     // repeated allocation in this FixedSizeVector wrapper.
      Workspace<Vector<double>> zeta_workspace = Zeta_workspace.workspace();
      Workspace<Vector<double>> r_workspace = R_workspace.workspace();
 
-     // Fill it
+     // Copy the intrinsic coordinates into the generic interface argument.
      zeta_workspace.content()[0] = zeta[0];
      zeta_workspace.content()[1] = zeta[1];
      
-     // Use it
      position(zeta_workspace.content(), r_workspace.content());
      
-     // Copy back into fixed size container
+     // Copy the result back into the fixed-size container.
      r[0] = r_workspace.content()[0];
      r[1] = r_workspace.content()[1];
      r[2] = r_workspace.content()[2];
@@ -459,14 +446,14 @@ namespace oomph
     /// Map to store zeta coordinates of points that identify regions
     std::map<unsigned, Vector<double>> Zeta_in_region;
 
-    /// Workspace to avoid re-allocation in wrapped call to position()
-    /// Mutable qualifier implies that it's only used as scratch workspace
-    /// so doesn't actually change the state of the object.
+    /// Three-entry workspace for the dynamically sized GeomObject::position(...)
+    /// interface. Mutable because it is scratch storage and does not change
+    /// the state of the object.
     mutable GuardedWorkspace<Vector<double>> R_workspace;
 
-    /// Workspace to avoid re-allocation in wrapped call to position()
-    /// Mutable qualifier implies that it's only used as scratch workspace
-    /// so doesn't actually change the state of the object
+    /// Two-entry workspace for the dynamically sized GeomObject::position(...)
+    /// interface. Mutable because it is scratch storage and does not change
+    /// the state of the object.
     mutable GuardedWorkspace<Vector<double>> Zeta_workspace;
 
   };

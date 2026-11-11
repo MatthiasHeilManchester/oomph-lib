@@ -280,16 +280,14 @@ namespace oomph
       }
 #endif
 
-      // Note: The interface of get_Z2_flux(...) is inherited from
-      // ElementWithZ2ErrorEstimator in generic and therefore maintains
-      // resizable Vector<double> arguments for s (size DIM) and flux
-      // (size DIM + DIM*(DIM - 1)/2) until generic has been updated.
+      // The inherited ElementWithZ2ErrorEstimator::get_Z2_flux(...)
+      // interface uses dynamically sized Vector<double> arguments for s
+      // (size DIM) and flux (size DIM + DIM*(DIM - 1)/2).
       //
       // Get strain rate matrix: its size (DIM x DIM) is known at compile
       // time so we use a fixed-size matrix, allocated on the stack. No
       // initialisation required since strain_rate(...) assigns all
       // entries.
-      // hierher is this safe/possible to do now?
       FixedSizeMatrix<double, DIM, DIM> strainrate;
       this->strain_rate(s, strainrate);
 
@@ -524,9 +522,7 @@ namespace oomph
     // Allocate memory for the inverse 2x2 jacobian. Maintained as a
     // resizable DenseMatrix for consistency with
     // FiniteElement::local_to_eulerian_mapping(...) and
-    // FiniteElement::transform_derivatives(...) in generic; convert to
-    // FixedSizeMatrix<double, 2, 2> once generic has been updated.
-    // hierher is this safe/possible to do now?
+    // FiniteElement::transform_derivatives(...) in generic.
     DenseMatrix<double> inverse_jacobian(2);
 
     // Now calculate the inverse jacobian
@@ -588,9 +584,7 @@ namespace oomph
     // Allocate memory for the inverse 3x3 jacobian. Maintained as a
     // resizable DenseMatrix for consistency with
     // FiniteElement::local_to_eulerian_mapping(...) and
-    // FiniteElement::transform_derivatives(...) in generic; convert to
-    // FixedSizeMatrix<double, 3, 3> once generic has been updated.
-    // hierher is this safe/possible to do now?
+    // FiniteElement::transform_derivatives(...) in generic.
     DenseMatrix<double> inverse_jacobian(3);
 
     // Now calculate the inverse jacobian
@@ -983,16 +977,14 @@ namespace oomph
       }
 #endif
 
-      // Note: The interface of get_Z2_flux(...) is inherited from
-      // ElementWithZ2ErrorEstimator in generic and therefore maintains
-      // resizable Vector<double> arguments for s (size DIM) and flux
-      // (size DIM + DIM*(DIM - 1)/2) until generic has been updated.
+      // The inherited ElementWithZ2ErrorEstimator::get_Z2_flux(...)
+      // interface uses dynamically sized Vector<double> arguments for s
+      // (size DIM) and flux (size DIM + DIM*(DIM - 1)/2).
       //
       // Get strain rate matrix: its size (DIM x DIM) is known at compile
       // time so we use a fixed-size matrix, allocated on the stack. No
       // initialisation required since strain_rate(...) assigns all
       // entries.
-      // hierher is this safe/possible to do now?
       FixedSizeMatrix<double, DIM, DIM> strainrate;
       this->strain_rate(s, strainrate);
 
@@ -1170,9 +1162,7 @@ namespace oomph
     // Allocate memory for the inverse 2x2 jacobian. Maintained as a
     // resizable DenseMatrix for consistency with
     // FiniteElement::local_to_eulerian_mapping(...) and
-    // FiniteElement::transform_derivatives(...) in generic; convert to
-    // FixedSizeMatrix<double, 2, 2> once generic has been updated.
-    // hierher is this safe/possible to do now?
+    // FiniteElement::transform_derivatives(...) in generic.
     DenseMatrix<double> inverse_jacobian(2);
 
 
@@ -1240,9 +1230,7 @@ namespace oomph
     // Allocate memory for the inverse 3x3 jacobian. Maintained as a
     // resizable DenseMatrix for consistency with
     // FiniteElement::local_to_eulerian_mapping(...) and
-    // FiniteElement::transform_derivatives(...) in generic; convert to
-    // FixedSizeMatrix<double, 3, 3> once generic has been updated.
-    // hierher is this safe/possible to do now?
+    // FiniteElement::transform_derivatives(...) in generic.
     DenseMatrix<double> inverse_jacobian(3);
 
     // Now calculate the inverse jacobian

@@ -553,7 +553,7 @@ get_dbody_force_nst_dexternal_element_data(const unsigned &ipt,
 template<unsigned DIM>
 void QAdvectionDiffusionElementWithExternalElement<DIM>::get_wind_adv_diff
 (const unsigned& ipt,const Vector<double> &s,const Vector<double>& x, 
- Vector<double>& wind) const // hierher fixed size
+ Vector<double>& wind) const
 {
  // The interaction index is 0 in this case
  unsigned interaction=0;
@@ -567,7 +567,7 @@ void QAdvectionDiffusionElementWithExternalElement<DIM>::get_wind_adv_diff
  FixedSizeVector<double, DIM> u_nst;
  source_el_pt->interpolated_u_nst
   (external_element_local_coord(interaction,ipt),u_nst);
- for(unsigned i=0;i<DIM;i++) {wind[i] = u_nst[i];} // hierher no longer needed post rewrite
+ for(unsigned i=0;i<DIM;i++) {wind[i] = u_nst[i];}
 }  
 
 //=========================================================================

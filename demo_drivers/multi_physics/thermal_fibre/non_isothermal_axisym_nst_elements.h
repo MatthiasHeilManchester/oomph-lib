@@ -217,14 +217,14 @@ class NonIsothermalAxisymmetricQCrouzeixRaviartElement :
  void get_wind_axisym_adv_diff(const unsigned& ipt,
                                const Vector<double> &s, 
                                const Vector<double>& x,
-                               Vector<double>& wind) const // hierher fixed size
+                               Vector<double>& wind) const
  {
    //The wind function is simply the velocity at the points
    FixedSizeVector<double, 3> u;
    this->interpolated_u_axi_nst(s,u);
    for (unsigned i=0;i<3;i++)
     {
-     wind[i] = u[i]; // hierher no longer needed post rewrite
+     wind[i] = u[i];
     }
  } // end of get_wind_axisym_adv_diff
 

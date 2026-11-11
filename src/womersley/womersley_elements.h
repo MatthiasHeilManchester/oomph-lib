@@ -2100,9 +2100,7 @@ namespace oomph
       // FaceElement::get_local_coordinate_in_bulk(...),
       // FiniteElement::J_eulerian(...),
       // FiniteElement::interpolated_x(...) and
-      // FaceElement::outer_unit_normal(...) in generic; convert to
-      // FixedSizeVectors once generic has been updated.
-      // hierher is this safe/possible to do now?
+      // FaceElement::outer_unit_normal(...) in generic.
       Vector<double> s(DIM);
       Vector<double> x(DIM + 1);
       Vector<double> s_bulk(DIM + 1);
@@ -2303,9 +2301,7 @@ namespace oomph
       // normal (size DIM + 1). Maintained as resizable Vectors for
       // consistency with FiniteElement::J_eulerian(...),
       // FiniteElement::shape(...) and FaceElement::outer_unit_normal(...)
-      // in generic; convert to FixedSizeVectors once generic has been
-      // updated.
-      // hierher is this safe/possible to do now?
+      // in generic.
       Vector<double> s(DIM);
       Vector<double> normal(DIM + 1);
 

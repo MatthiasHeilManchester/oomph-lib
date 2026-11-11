@@ -144,10 +144,7 @@ namespace oomph
       // Normal vector (compile-time size:
       // ELEMENT::TEMPLATE_PARAMETER_DIM). Maintained as a resizable
       // Vector for consistency with FaceElement::outer_unit_normal(...)
-      // in generic; convert to
-      // FixedSizeVector<double, ELEMENT::TEMPLATE_PARAMETER_DIM> once
-      // generic has been updated.
-      // hierher is this safe/possible to do now?
+      // in generic.
       Vector<double> norm_vec(dim_el + 1);
 
       // get the value at which the velocities are stored. There are as

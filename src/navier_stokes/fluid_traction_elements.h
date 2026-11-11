@@ -271,12 +271,9 @@ namespace oomph
     // from its publicly exposed template parameter, so we use fixed-size
     // vectors, allocated once (on the stack) outside the loop over the
     // integration points. FaceElement::outer_unit_normal(...) in generic
-    // returns the normal in a resizable Vector (also allocated only once)
-    // from which it is copied into the fixed-size vector; once
-    // FaceElement::outer_unit_normal(...) in generic has been updated to
-    // FixedSizeVector, normal_from_face_element and the copy below can
-    // be removed.
-    // hierher is this safe/possible to do now?
+    // returns the normal in a resizable Vector (also allocated only once),
+    // from which it is copied into the fixed-size vector required by the
+    // traction calculation.
     FixedSizeVector<double, ELEMENT::TEMPLATE_PARAMETER_DIM> interpolated_x;
     Vector<double> normal_from_face_element(Dim);
     FixedSizeVector<double, ELEMENT::TEMPLATE_PARAMETER_DIM> interpolated_n;
@@ -458,12 +455,9 @@ namespace oomph
     // from its publicly exposed template parameter, so we use fixed-size
     // vectors, allocated once (on the stack) outside the loop over the
     // integration points. FaceElement::outer_unit_normal(...) in generic
-    // returns the normal in a resizable Vector (also allocated only once)
-    // from which it is copied into the fixed-size vector; once
-    // FaceElement::outer_unit_normal(...) in generic has been updated to
-    // FixedSizeVector, normal_from_face_element and the copy below can
-    // be removed.
-    // hierher is this safe/possible to do now?
+    // returns the normal in a resizable Vector (also allocated only once),
+    // from which it is copied into the fixed-size vector required by the
+    // traction calculation.
     FixedSizeVector<double, ELEMENT::TEMPLATE_PARAMETER_DIM> interpolated_x;
     Vector<double> normal_from_face_element(this->Dim);
     FixedSizeVector<double, ELEMENT::TEMPLATE_PARAMETER_DIM> interpolated_n;
@@ -503,7 +497,7 @@ namespace oomph
       // copied into the fixed-size vector; see above)
       this->outer_unit_normal(
         ipt,
-        normal_from_face_element); // hierher make this return fixed size vector
+        normal_from_face_element);
       for (unsigned i = 0; i < this->Dim; i++)
       {
         interpolated_n[i] = normal_from_face_element[i];

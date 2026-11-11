@@ -494,7 +494,7 @@ namespace oomph
     /// in the computation.
     void get_load(
       const Vector<double>& s,
-      const Vector<double>& N, // hierher change interface to fixed size vectors
+      const Vector<double>& N,
       Vector<double>& load)
     {
       // Note: get_traction() computes the traction onto the fluid
@@ -505,7 +505,7 @@ namespace oomph
       for (unsigned i = 0; i < 2; i++)
       {
         N_fixed[i] =
-          N[i]; // hierher copy not necessary once interface is changed
+          N[i];
       }
       FixedSizeVector<double, 3> load_fixed;
       get_traction(s, N_fixed, load_fixed);
@@ -513,7 +513,7 @@ namespace oomph
       for (unsigned i = 0; i < n_load; i++)
       {
         load[i] =
-          load_fixed[i]; // hierher copy not necessary once interface is changed
+          load_fixed[i];
       }
     }
 

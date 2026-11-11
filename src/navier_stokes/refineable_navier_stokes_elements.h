@@ -96,8 +96,6 @@ namespace oomph
     // they have to be maintained as resizable Vectors for consistency
     // with the generic FiniteElement/FaceElement interface
     // (FaceElement::get_local_coordinate_in_bulk(...) and
-    // pshape_nst(...)); convert to FixedSizeVectors once generic has
-    // been updated.
     unsigned my_dim = this->dim();
     Vector<double> s(my_dim);
     Vector<double> s_bulk(my_dim + 1);
@@ -105,8 +103,6 @@ namespace oomph
     // Storage for outer unit normal (compile-time size:
     // ELEMENT::TEMPLATE_PARAMETER_DIM). Maintained as a resizable Vector
     // for consistency with FaceElement::outer_unit_normal(...) in
-    // generic; convert to FixedSizeVector once generic has been updated.
-    // hierher is this safe/possible to do now?
     Vector<double> unit_normal(my_dim + 1);
 
     // Storage for veloc in bulk element. The bulk element computes
@@ -434,10 +430,9 @@ namespace oomph
       }
 #endif
 
-      // Note: The interface of get_Z2_flux(...) is inherited from
-      // ElementWithZ2ErrorEstimator in generic and therefore maintains
-      // resizable Vector<double> arguments for s (size DIM) and flux
-      // (size DIM + DIM*(DIM - 1)/2) until generic has been updated.
+      // The inherited ElementWithZ2ErrorEstimator::get_Z2_flux(...)
+      // interface uses dynamically sized Vector<double> arguments for s
+      // (size DIM) and flux (size DIM + DIM*(DIM - 1)/2).
       //
       // Get strain rate matrix: its size (DIM x DIM) is known at compile
       // time so we use a fixed-size matrix, allocated on the stack. No
@@ -1967,9 +1962,7 @@ namespace oomph
     // Local coordinates of son midpoint in father element (compile-time
     // size: 2). Maintained as a resizable Vector for consistency with
     // interpolated_p_nst(...) (whose s argument is kept as a
-    // Vector<double> for consistency with generic); convert to
-    // FixedSizeVector<double, 2> once generic has been updated.
-    // hierher is this safe/possible to do now?
+    // Vector<double> for consistency with generic).
     Vector<double> s_father(2);
 
     // Son midpoint is located at the following coordinates in father element:
@@ -2046,9 +2039,7 @@ namespace oomph
     // Local coordinates of son midpoint in father element (compile-time
     // size: 3). Maintained as a resizable Vector for consistency with
     // interpolated_p_nst(...) (whose s argument is kept as a
-    // Vector<double> for consistency with generic); convert to
-    // FixedSizeVector<double, 3> once generic has been updated.
-    // hierher is this safe/possible to do now?
+    // Vector<double> for consistency with generic).
     Vector<double> s_father(3);
 
     // Son midpoint is located at the following coordinates in father element:

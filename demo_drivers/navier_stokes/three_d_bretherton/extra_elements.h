@@ -456,7 +456,7 @@ public:
      double W = w*J;
 
      //Get the velocity from the parent
-     FixedSizeVector<double, ELEMENT::TEMPLATE_PARAMETER_DIM> interpolated_u; // hierher elaborate
+     FixedSizeVector<double, ELEMENT::TEMPLATE_PARAMETER_DIM> interpolated_u;
      bulk_el_pt->interpolated_u_nst(s_parent,interpolated_u);
 
      //Get the outer unit normal

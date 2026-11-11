@@ -436,14 +436,14 @@ public:
  /// advection-diffusion equations because the wind is the fluid velocity.
 void get_wind_axi_adv_diff(const unsigned& ipt,
                            const Vector<double> &s, const Vector<double>& x,
-                           Vector<double>& wind) const // hierher change interface to fixed size
+                           Vector<double>& wind) const
   {
    //The wind function is simply the velocity at the points
    FixedSizeVector<double, 3> u;
    this->interpolated_u_axi_nst(s,u);
    for (unsigned i=0;i<3;i++)
     {
-     wind[i] = u[i]; // hierher no longer needed post rewrite
+     wind[i] = u[i];
     }
   }
  
