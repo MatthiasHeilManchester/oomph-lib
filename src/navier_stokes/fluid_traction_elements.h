@@ -495,9 +495,7 @@ namespace oomph
 
       // Get the outer unit normal (computed into the resizable Vector and
       // copied into the fixed-size vector; see above)
-      this->outer_unit_normal(
-        ipt,
-        normal_from_face_element);
+      this->outer_unit_normal(ipt, normal_from_face_element);
       for (unsigned i = 0; i < this->Dim; i++)
       {
         interpolated_n[i] = normal_from_face_element[i];

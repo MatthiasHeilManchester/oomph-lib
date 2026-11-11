@@ -740,10 +740,9 @@ namespace oomph
     /// the interface defined in the FSIFluidElement -- only the
     /// unit normal N (pointing into the fluid!) is actually used
     /// in the computation.
-    void get_load(
-      const Vector<double>& s,
-      const Vector<double>& N,
-      Vector<double>& load)
+    void get_load(const Vector<double>& s,
+                  const Vector<double>& N,
+                  Vector<double>& load)
     {
       // Note: get_traction() computes the traction onto the fluid
       // if N is the outer unit normal onto the fluid; here we're

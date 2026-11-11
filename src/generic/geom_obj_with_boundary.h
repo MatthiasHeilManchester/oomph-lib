@@ -69,12 +69,12 @@ namespace oomph
   //===========================================================================
   class DiskLikeGeomObjectWithBoundaries : public GeomObject
   {
-
   public:
     /// Constructor
     DiskLikeGeomObjectWithBoundaries()
-     : GeomObject(2, 3), R_workspace(3), Zeta_workspace(2)
-    {}
+      : GeomObject(2, 3), R_workspace(3), Zeta_workspace(2)
+    {
+    }
 
     /// How many boundaries do we have?
     unsigned nboundary() const
@@ -88,22 +88,22 @@ namespace oomph
       const FixedSizeVector<double, 2>& zeta,
       FixedSizeVector<double, 3>& r) const
     {
-     // GeomObject::position(...) uses dynamically sized Vectors. These
-     // pre-sized workspaces provide the required arguments while avoiding
-     // repeated allocation in this FixedSizeVector wrapper.
-     Workspace<Vector<double>> zeta_workspace = Zeta_workspace.workspace();
-     Workspace<Vector<double>> r_workspace = R_workspace.workspace();
+      // GeomObject::position(...) uses dynamically sized Vectors. These
+      // pre-sized workspaces provide the required arguments while avoiding
+      // repeated allocation in this FixedSizeVector wrapper.
+      Workspace<Vector<double>> zeta_workspace = Zeta_workspace.workspace();
+      Workspace<Vector<double>> r_workspace = R_workspace.workspace();
 
-     // Copy the intrinsic coordinates into the generic interface argument.
-     zeta_workspace.content()[0] = zeta[0];
-     zeta_workspace.content()[1] = zeta[1];
-     
-     position(zeta_workspace.content(), r_workspace.content());
-     
-     // Copy the result back into the fixed-size container.
-     r[0] = r_workspace.content()[0];
-     r[1] = r_workspace.content()[1];
-     r[2] = r_workspace.content()[2];
+      // Copy the intrinsic coordinates into the generic interface argument.
+      zeta_workspace.content()[0] = zeta[0];
+      zeta_workspace.content()[1] = zeta[1];
+
+      position(zeta_workspace.content(), r_workspace.content());
+
+      // Copy the result back into the fixed-size container.
+      r[0] = r_workspace.content()[0];
+      r[1] = r_workspace.content()[1];
+      r[2] = r_workspace.content()[2];
     }
 
 
@@ -446,16 +446,15 @@ namespace oomph
     /// Map to store zeta coordinates of points that identify regions
     std::map<unsigned, Vector<double>> Zeta_in_region;
 
-    /// Three-entry workspace for the dynamically sized GeomObject::position(...)
-    /// interface. Mutable because it is scratch storage and does not change
-    /// the state of the object.
+    /// Three-entry workspace for the dynamically sized
+    /// GeomObject::position(...) interface. Mutable because it is scratch
+    /// storage and does not change the state of the object.
     mutable GuardedWorkspace<Vector<double>> R_workspace;
 
     /// Two-entry workspace for the dynamically sized GeomObject::position(...)
     /// interface. Mutable because it is scratch storage and does not change
     /// the state of the object.
     mutable GuardedWorkspace<Vector<double>> Zeta_workspace;
-
   };
 
 
