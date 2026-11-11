@@ -102,7 +102,6 @@ namespace oomph
      // In a non-PARANOID build the bookkeeping is absent, so acquiring and
      // releasing the workspaces should introduce no runtime overhead.
      
-
      // Get workspace
      Workspace<Vector<double>> zeta_workspace = Zeta_workspace.workspace();
      Workspace<Vector<double>> r_workspace = R_workspace.workspace();
