@@ -510,53 +510,6 @@ namespace oomph
     /// pressure advection diffusion problem (defaults to -1)
     int Pinned_fp_pressure_eqn;
 
-
-    // Container policy
-    //-----------------
-    // Within this element all quantities whose size is known at compile
-    // time (the spatial dimension DIM) -- Eulerian coordinates,
-    // velocities, body forces, normals, tractions, velocity gradients,
-    // strain rates, etc. -- are stored in FixedSizeVectors/
-    // FixedSizeMatrices. These are allocated on the stack and therefore
-    // avoid the heap allocation/deallocation that would otherwise occur
-    // every time such a quantity is created (e.g. once per integration
-    // point). The same applies to the interfaces of the member functions
-    // that compute or consume such quantities (strain_rate(...),
-    // get_traction(...), get_vorticity(...), interpolated_u_nst(...),
-    // the virtual body force/source functions, and the user-specified
-    // function pointers for the body force and source functions).
-    //
-    // The following quantities have sizes known at compile time but cross
-    // generic interfaces that intentionally remain dynamically sized:
-    //
-    //  - the local coordinates s (size DIM in bulk elements, DIM - 1 in
-    //    face elements), passed to FiniteElement::shape(...),
-    //    dshape_local(...), dshape_eulerian(...), J_eulerian(...),
-    //    interpolated_x(...), get_s_plot(...),
-    //    FaceElement::get_local_coordinate_in_bulk(...),
-    //    RefineableElement::interpolating_basis(...), and
-    //    ProjectableElement::jacobian_and_shape_of_field(...); this is
-    //    also why s remains a Vector<double> in the interfaces of the
-    //    Navier-Stokes member functions listed above;
-    //  - the inverse Jacobian (size DIM x DIM) in the 2D/3D
-    //    dpshape_and_dptest_eulerian_nst(...) specialisations, passed to
-    //    FiniteElement::local_to_eulerian_mapping(...) and
-    //    FiniteElement::transform_derivatives(...);
-    //  - unit normals (size DIM) computed by
-    //    FaceElement::outer_unit_normal(...) and tangents computed by
-    //    FaceElement::continuous_tangent_and_outer_unit_normal(...);
-    //  - Eulerian coordinates x (size DIM) and exact-solution vectors
-    //    (size DIM + 1) passed to FiniteElement::interpolated_x(...) and
-    //    FiniteElement::[Un]SteadyExactSolutionFctPt;
-    //  - the arguments of virtual functions inherited from generic base
-    //    classes: FSIFluidElement::get_load(...),
-    //    ElementWithZ2ErrorEstimator::get_Z2_flux(...), and
-    //    ElementWithDragFunction::get_drag_and_torque(...).
-    //
-    // These interfaces remain dynamically sized to support virtual dispatch
-    // and derived elements whose dimensions or implementations are determined
-    // at run time.
-
     /// Compute the shape functions and derivatives
     /// w.r.t. global coords at local coordinate s.
     /// Return Jacobian of mapping between local and global coordinates.
