@@ -566,8 +566,7 @@ namespace oomph
 
       // Get the outer unit normal
       Vector<double> interpolated_normal(n_dim);
-      outer_unit_normal(
-        ipt, interpolated_normal);
+      outer_unit_normal(ipt, interpolated_normal);
       FixedSizeVector<double, 2> interpolated_normal_fixed;
       for (unsigned i = 0; i < 2; i++)
       {

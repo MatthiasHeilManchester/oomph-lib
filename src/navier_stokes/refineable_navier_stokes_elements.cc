@@ -70,7 +70,8 @@ namespace oomph
 
     // Local coordinates (compile-time size: DIM). Maintained as a
     // resizable Vector for consistency with pshape_nst(...) (whose s
-    // argument is kept as a Vector<double> for consistency with the generic interface.
+    // argument is kept as a Vector<double> for consistency with the generic
+    // interface.
     Vector<double> s(DIM);
 
     // find the indices at which the local velocities are stored. There

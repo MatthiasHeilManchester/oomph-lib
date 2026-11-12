@@ -1071,20 +1071,18 @@ namespace oomph
       // traction onto the adjacent wall instead!
       //
       // get_traction(...) expects the normal in, and returns the traction
-      // in, fixed-size vectors, whereas the virtual FSIFluidElement::get_load(...)
-      // interface accepts dynamically sized Vectors. Copy the normal and the
-      // resulting traction at this interface boundary. No initialisation is
-      // required because all entries are assigned.
+      // in, fixed-size vectors, whereas the virtual
+      // FSIFluidElement::get_load(...) interface accepts dynamically sized
+      // Vectors. Copy the normal and the resulting traction at this interface
+      // boundary. No initialisation is required because all entries are
+      // assigned.
       FixedSizeVector<double, DIM> normal;
       for (unsigned i = 0; i < DIM; i++)
       {
         normal[i] = N[i];
       }
       FixedSizeVector<double, DIM> traction;
-      get_traction(
-        s,
-        normal,
-        traction);
+      get_traction(s, normal, traction);
       for (unsigned i = 0; i < DIM; i++)
       {
         load[i] = traction[i];
