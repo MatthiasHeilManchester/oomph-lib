@@ -112,6 +112,42 @@ namespace oomph
   namespace HypreHelpers
   {
 
+    void check_for_zero_row_distribution(
+      const LinearAlgebraDistribution* dist_pt)
+    {
+#ifdef OOMPH_HAS_MPI
+      if (dist_pt->distributed())
+      {
+        const int nproc = dist_pt->communicator_pt()->nproc();
+        const int my_rank = dist_pt->communicator_pt()->my_rank();
+        const int local_zero_row =
+          (dist_pt->nrow_local() == 0) ? my_rank : nproc;
+        int first_zero_row_rank = nproc;
+        MPI_Allreduce(&local_zero_row,
+                      &first_zero_row_rank,
+                      1,
+                      MPI_INT,
+                      MPI_MIN,
+                      dist_pt->communicator_pt()->mpi_comm());
+        if (first_zero_row_rank != nproc)
+        {
+          std::ostringstream error_message;
+          error_message
+            << "The HYPRE interface does not currently support a distributed "
+               "linear-algebra distribution with a processor owning zero "
+               "rows.\n"
+            << "Processor " << first_zero_row_rank << " owns zero rows in a "
+            << dist_pt->nrow() << "-row problem on " << nproc
+            << " processors.";
+          throw OomphLibError(error_message.str(),
+                              OOMPH_CURRENT_FUNCTION,
+                              OOMPH_EXCEPTION_LOCATION);
+        }
+      }
+#endif
+    }
+
+
     //========================================================================
     /// Number of active Hypre solvers (smart pointer like behaviuor
     /// to make sure that the initialise/finalize functions are only
@@ -188,6 +224,8 @@ namespace oomph
                              HYPRE_IJVector& hypre_ij_vector,
                              HYPRE_ParVector& hypre_par_vector)
     {
+      check_for_zero_row_distribution(dist_pt);
+
       // the lower and upper row of the vector on this processor
       unsigned lower = dist_pt->first_row();
       unsigned upper = dist_pt->first_row() + dist_pt->nrow_local() - 1;
@@ -249,6 +287,8 @@ namespace oomph
                              HYPRE_IJVector& hypre_ij_vector,
                              HYPRE_ParVector& hypre_par_vector)
     {
+      check_for_zero_row_distribution(dist_pt);
+
       // the lower and upper row of the vector on this processor
       unsigned lower = dist_pt->first_row();
       unsigned upper = dist_pt->first_row() + dist_pt->nrow_local() - 1;
@@ -350,6 +390,8 @@ namespace oomph
                        nrow,
                        distributed);
       }
+
+      check_for_zero_row_distribution(dist_pt);
 
       // initialize hypre matrix
       unsigned lower = dist_pt->first_row();

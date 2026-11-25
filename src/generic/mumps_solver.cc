@@ -218,6 +218,37 @@ namespace oomph
                           OOMPH_EXCEPTION_LOCATION);
     }
 
+#ifdef OOMPH_HAS_MPI
+    if (dist_matrix_pt->distribution_pt()->distributed())
+    {
+      const int local_zero_row =
+        (dist_matrix_pt->distribution_pt()->nrow_local() == 0) ? 1 : 0;
+      int any_zero_row = 0;
+      MPI_Allreduce(&local_zero_row,
+                    &any_zero_row,
+                    1,
+                    MPI_INT,
+                    MPI_MAX,
+                    dist_matrix_pt->distribution_pt()
+                      ->communicator_pt()
+                      ->mpi_comm());
+      if (any_zero_row != 0)
+      {
+        std::ostringstream error_message_stream;
+        error_message_stream
+          << "The MUMPS interface does not currently support a distributed "
+             "linear-algebra distribution with a processor owning zero rows.\n"
+          << "The problem has " << dist_matrix_pt->distribution_pt()->nrow()
+          << " global rows on "
+          << dist_matrix_pt->distribution_pt()->communicator_pt()->nproc()
+          << " processors.";
+        throw OomphLibError(error_message_stream.str(),
+                            OOMPH_CURRENT_FUNCTION,
+                            OOMPH_EXCEPTION_LOCATION);
+      }
+    }
+#endif
+
 
     // Check that we have a square matrix
 #ifdef PARANOID

@@ -742,10 +742,8 @@ namespace oomph
       // on this processor to avoid duplication (as every processor holds
       // every element)
       unsigned first_lookup_row = 0;
-      unsigned last_lookup_row = 0;
       first_lookup_row = this->master_distribution_pt()->first_row();
-      last_lookup_row =
-        first_lookup_row + this->master_distribution_pt()->nrow_local() - 1;
+      unsigned nrow_local = this->master_distribution_pt()->nrow_local();
 
       // find number of local elements
       unsigned n_el = Solid_mesh_pt->nelement();
@@ -822,7 +820,8 @@ namespace oomph
             unsigned eqn_number = Solid_mesh_pt->element_pt(e)->eqn_number(i);
 
             // if I have lookup information on this processor
-            if (eqn_number >= first_lookup_row && eqn_number <= last_lookup_row)
+            if (eqn_number >= first_lookup_row &&
+                eqn_number < first_lookup_row + nrow_local)
             {
               // bypass non displacement/position DOFs
               if (this->block_number(eqn_number) == 0)

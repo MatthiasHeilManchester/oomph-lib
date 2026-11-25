@@ -2576,6 +2576,16 @@ namespace oomph
     const LinearAlgebraDistribution* const& dist_pt)
   {
 #ifdef OOMPH_HAS_MPI
+    if (this->distributed() && dist_pt->distributed() &&
+        !((*this->distribution_pt()) == *dist_pt))
+    {
+      throw OomphLibError(
+        "Distributed-to-distributed CRDoubleMatrix redistribution is "
+        "currently unfinished and unsupported.",
+        OOMPH_CURRENT_FUNCTION,
+        OOMPH_EXCEPTION_LOCATION);
+    }
+
 #ifdef PARANOID
     // paranoid check that the nrows for both distributions is the
     // same
@@ -2968,7 +2978,6 @@ namespace oomph
         //   m_pt->sparse_indexed_output("m2.dat");
         //  }
         //       this->sparse_indexed_output(oomph_info);
-        abort();
       }
 
       // if this matrix is distributed but the new distributed matrix is global

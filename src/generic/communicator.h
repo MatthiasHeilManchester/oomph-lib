@@ -312,7 +312,10 @@ namespace oomph
       }
 
       // Broadcast the Vector directly
-      MPI_Bcast(&x[0], n, MPI_INT, source, this->mpi_comm());
+      if (n > 0)
+      {
+        MPI_Bcast(&x[0], n, MPI_INT, source, this->mpi_comm());
+      }
     }
 
     /// broadcast function for Vector<double>
@@ -340,7 +343,10 @@ namespace oomph
       }
 
       // Broadcast the Vector directly
-      MPI_Bcast(&x[0], n, MPI_DOUBLE, source, this->mpi_comm());
+      if (n > 0)
+      {
+        MPI_Bcast(&x[0], n, MPI_DOUBLE, source, this->mpi_comm());
+      }
     }
 
     /// broadcast function for DenseMatrix<double>

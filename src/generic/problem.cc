@@ -2122,6 +2122,49 @@ namespace oomph
     // Storage for number of processors
     int n_proc = this->communicator_pt()->nproc();
 
+    if (n_proc > 1)
+    {
+      unsigned local_has_free_global_data = 0;
+      for (unsigned i = 0; i < nglobal_data(); i++)
+      {
+        Data* const data_pt = Global_data_pt[i];
+        for (unsigned j = 0; j < data_pt->nvalue(); j++)
+        {
+          if (!data_pt->is_pinned(j) && !data_pt->is_constrained(j) &&
+              !data_pt->is_segregated_solve_pinned(j))
+          {
+            local_has_free_global_data = 1;
+            break;
+          }
+        }
+        if (local_has_free_global_data != 0)
+        {
+          break;
+        }
+      }
+
+      unsigned any_rank_has_free_global_data = 0;
+      MPI_Allreduce(&local_has_free_global_data,
+                    &any_rank_has_free_global_data,
+                    1,
+                    MPI_UNSIGNED,
+                    MPI_MAX,
+                    this->communicator_pt()->mpi_comm());
+      if (any_rank_has_free_global_data != 0)
+      {
+        std::ostringstream error_message;
+        error_message
+          << "Free problem-level Global_data_pt degrees of freedom are not "
+          << "currently supported in distributed/MPI problems. Pinned global "
+          << "data remain permissible. Pin or remove these unknowns, "
+          << "reformulate the problem without free global data, or implement "
+          << "and test the missing distributed support.";
+        throw OomphLibError(error_message.str(),
+                            "Problem::assign_eqn_numbers",
+                            OOMPH_EXCEPTION_LOCATION);
+      }
+    }
+
 
     if (n_proc > 1)
     {

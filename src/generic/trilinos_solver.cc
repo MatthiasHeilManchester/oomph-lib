@@ -295,6 +295,37 @@ namespace oomph
     // distribution of preconditioner is same as matrix
     this->build_distribution(cast_matrix_pt->distribution_pt());
 
+#ifdef OOMPH_HAS_MPI
+    if (cast_matrix_pt->distributed())
+    {
+      const int local_zero_row =
+        (cast_matrix_pt->nrow_local() == 0) ? 1 : 0;
+      int any_zero_row = 0;
+      MPI_Allreduce(&local_zero_row,
+                    &any_zero_row,
+                    1,
+                    MPI_INT,
+                    MPI_MAX,
+                    cast_matrix_pt->distribution_pt()
+                      ->communicator_pt()
+                      ->mpi_comm());
+      if (any_zero_row != 0)
+      {
+        std::ostringstream error_message;
+        error_message
+          << "The Trilinos 16/Epetra/AztecOO interface does not currently "
+             "support a distributed linear-algebra distribution with a "
+             "processor owning zero rows.\n"
+          << "The problem has " << cast_matrix_pt->nrow() << " global rows on "
+          << cast_matrix_pt->distribution_pt()->communicator_pt()->nproc()
+          << " processors.";
+        throw OomphLibError(error_message.str(),
+                            OOMPH_CURRENT_FUNCTION,
+                            OOMPH_EXCEPTION_LOCATION);
+      }
+    }
+#endif
+
     // create the new solver
     AztecOO_solver_pt = new AztecOO();
 

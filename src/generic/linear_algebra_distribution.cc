@@ -27,6 +27,15 @@
 
 namespace oomph
 {
+  /// Suppress the warning about zero-row processors in a distributed
+  /// linear algebra object.
+  bool LinearAlgebraDistribution::Suppress_warning_about_zero_row_distribution =
+    false;
+
+  /// Has the warning about zero-row processors already been issued?
+  bool LinearAlgebraDistribution::Zero_row_distribution_warning_has_been_issued =
+    false;
+
   //============================================================================
   /// Sets the distribution. Takes first_row, local_nrow and
   /// global_nrow as arguments. If global_nrow is not provided or equal to
@@ -109,62 +118,7 @@ namespace oomph
       Distributed = false;
     }
 
-#ifdef OOMPH_HAS_MPI
-#ifdef PARANOID
-    // paranoid check that the distribution works
-
-
-    // check that none of the processors partition overlap
-    for (int p = 0; p < nproc; p++)
-    {
-      if (Nrow_local[p] > 0)
-      {
-        for (int pp = p + 1; pp < nproc; pp++)
-        {
-          if (Nrow_local[pp] > 0)
-          {
-            if ((First_row[p] >= First_row[pp] &&
-                 First_row[p] < First_row[pp] + Nrow_local[pp]) ||
-                (First_row[p] + Nrow_local[p] - 1 >= First_row[pp] &&
-                 First_row[p] + Nrow_local[p] - 1 <
-                   First_row[pp] + Nrow_local[pp]))
-            {
-              std::ostringstream error_message;
-              error_message
-                << "The distributed rows on processor " << p
-                << " and processor " << pp << " overlap.\n"
-                << "Processor " << p << " : first_row = " << First_row[p]
-                << ", nrow = " << Nrow_local[p] << ".\n"
-                << "Processor " << pp << " : first_row = " << First_row[pp]
-                << ", nrow = " << Nrow_local[pp] << ".\n";
-              throw OomphLibWarning(
-                error_message.str(),
-                "LinearAlgebraDistribution::distribute(...)",
-                OOMPH_EXCEPTION_LOCATION);
-            }
-          }
-        }
-      }
-    }
-
-    // check that no processor has a row with a global row index greater than
-    // the number of global rows
-    for (int p = 0; p < nproc; p++)
-    {
-      if (First_row[p] + Nrow_local[p] > Nrow)
-      {
-        std::ostringstream error_message;
-        error_message << "Processor " << p << " contains rows " << First_row[p]
-                      << " to " << First_row[p] + Nrow_local[p] - 1
-                      << " but there are only " << Nrow << " to be distributed."
-                      << std::endl;
-        throw OomphLibWarning(error_message.str(),
-                              "LinearAlgebraDistribution::distribute(...)",
-                              OOMPH_EXCEPTION_LOCATION);
-      }
-    }
-#endif
-#endif
+    validate_distribution();
   }
 
   //============================================================================
@@ -216,6 +170,105 @@ namespace oomph
         Nrow_local[p] = First_row[p + 1] - First_row[p];
       }
       Nrow_local[nproc - 1] = global_nrow - First_row[nproc - 1];
+    }
+#endif
+
+    validate_distribution();
+  }
+
+  //============================================================================
+  /// Enforce the rank-ordered ownership model used by distributed linear
+  /// algebra. Serial and replicated distributions intentionally have no
+  /// per-rank partition to validate.
+  //============================================================================
+  void LinearAlgebraDistribution::validate_distribution() const
+  {
+#ifdef OOMPH_HAS_MPI
+    if (!Distributed || (Comm_pt == 0) || (Comm_pt->nproc() <= 1))
+    {
+      return;
+    }
+
+    const unsigned nproc = Comm_pt->nproc();
+    unsigned long long expected_first_row = 0;
+    for (unsigned p = 0; p < nproc; p++)
+    {
+      if (First_row[p] != expected_first_row)
+      {
+        std::ostringstream error_message;
+        error_message << "Invalid distributed LinearAlgebraDistribution on "
+                      << "rank " << p << ": first_row = " << First_row[p]
+                      << ", nrow_local = " << Nrow_local[p]
+                      << ", but the preceding rank-ordered intervals must end "
+                      << "at row " << expected_first_row << ". This indicates "
+                      << (First_row[p] > expected_first_row ? "a gap" :
+                                                               "an overlap")
+                      << "; distributed ownership must be a complete, "
+                      << "non-overlapping partition of the global rows "
+                      << "[0, " << Nrow << ").";
+        throw OomphLibError(error_message.str(),
+                            "LinearAlgebraDistribution::validate_distribution",
+                            OOMPH_EXCEPTION_LOCATION);
+      }
+
+      expected_first_row += Nrow_local[p];
+      if (expected_first_row > Nrow)
+      {
+        std::ostringstream error_message;
+        error_message << "Invalid distributed LinearAlgebraDistribution on "
+                      << "rank " << p << ": first_row = " << First_row[p]
+                      << ", nrow_local = " << Nrow_local[p]
+                      << ", and the interval ends at " << expected_first_row
+                      << ", beyond the global row count nrow = " << Nrow
+                      << ".";
+        throw OomphLibError(error_message.str(),
+                            "LinearAlgebraDistribution::validate_distribution",
+                            OOMPH_EXCEPTION_LOCATION);
+      }
+    }
+
+    if (expected_first_row != Nrow)
+    {
+      std::ostringstream error_message;
+      error_message << "Invalid distributed LinearAlgebraDistribution: the "
+                    << "final interval on rank " << (nproc - 1)
+                    << " starts at " << First_row[nproc - 1] << " and has "
+                    << Nrow_local[nproc - 1] << " rows, ending at "
+                    << expected_first_row << ", but the global row count is "
+                    << Nrow << ". The intervals must end exactly at nrow().";
+      throw OomphLibError(error_message.str(),
+                          "LinearAlgebraDistribution::validate_distribution",
+                          OOMPH_EXCEPTION_LOCATION);
+    }
+
+    bool contains_zero_row_processor = false;
+    for (unsigned p = 0; p < nproc; p++)
+    {
+      if (Nrow_local[p] == 0)
+      {
+        contains_zero_row_processor = true;
+        break;
+      }
+    }
+
+    if (contains_zero_row_processor &&
+        !Suppress_warning_about_zero_row_distribution &&
+        !Zero_row_distribution_warning_has_been_issued &&
+        (Comm_pt->my_rank() == 0))
+    {
+      std::ostringstream warning_message;
+      warning_message
+        << "This distributed LinearAlgebraDistribution is legal, but at "
+        << "least one processor owns zero rows. Some downstream linear "
+        << "algebra operations or third-party solvers may not support this "
+        << "case. If you encounter a problem, check the specific operation "
+        << "or solver involved. Suppress this warning by setting "
+        << "LinearAlgebraDistribution::"
+        << "Suppress_warning_about_zero_row_distribution to true.";
+      OomphLibWarning(warning_message.str(),
+                      OOMPH_CURRENT_FUNCTION,
+                      OOMPH_EXCEPTION_LOCATION);
+      Zero_row_distribution_warning_has_been_issued = true;
     }
 #endif
   }

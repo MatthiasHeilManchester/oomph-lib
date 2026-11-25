@@ -848,6 +848,33 @@ namespace oomph
         (this->distribution_pt()->distributed() &&
          this->distribution_pt()->communicator_pt()->nproc() > 1);
 
+#ifdef OOMPH_HAS_MPI
+      if (matrix_distributed)
+      {
+        int local_zero_row =
+          (this->distribution_pt()->nrow_local() == 0) ? 1 : 0;
+        int any_zero_row = 0;
+        MPI_Allreduce(&local_zero_row,
+                      &any_zero_row,
+                      1,
+                      MPI_INT,
+                      MPI_MAX,
+                      this->distribution_pt()->communicator_pt()->mpi_comm());
+        if (any_zero_row != 0)
+        {
+          delete[] index_in_dof_block_sparse_send;
+          delete[] dof_number_sparse_send;
+          delete[] nreq_sparse;
+          delete[] nreq_sparse_for_proc;
+          throw OomphLibError(
+            "Distributed BlockPreconditioner::block_setup() does not "
+            "currently support a processor owning zero rows.",
+            OOMPH_CURRENT_FUNCTION,
+            OOMPH_EXCEPTION_LOCATION);
+        }
+      }
+#endif
+
 
       // Matrix must be a CR matrix.
       CRDoubleMatrix* cr_matrix_pt = dynamic_cast<CRDoubleMatrix*>(matrix_pt());
@@ -5246,6 +5273,24 @@ namespace oomph
     else
     {
 #ifdef OOMPH_HAS_MPI
+      int local_zero_row =
+        (Internal_block_distribution_pt[block_i]->nrow_local() == 0) ? 1 : 0;
+      int any_zero_row = 0;
+      MPI_Allreduce(&local_zero_row,
+                    &any_zero_row,
+                    1,
+                    MPI_INT,
+                    MPI_MAX,
+                    this->distribution_pt()->communicator_pt()->mpi_comm());
+      if (any_zero_row != 0)
+      {
+        throw OomphLibError(
+          "Distributed BlockPreconditioner::internal_get_block() does not "
+          "currently support a processor owning zero rows in this block.",
+          OOMPH_CURRENT_FUNCTION,
+          OOMPH_EXCEPTION_LOCATION);
+      }
+
       // number of processors
       unsigned nproc = this->distribution_pt()->communicator_pt()->nproc();
 

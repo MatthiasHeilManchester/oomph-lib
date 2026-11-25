@@ -55,14 +55,20 @@ namespace oomph
   /// the number of rows.
   /// In parallel either each processor holds a subset of the set of global
   /// rows. (each processor contains only a single continuous block of rows -
-  /// parametised with variables denoting the first row and the number of local
-  /// rows) or, all rows are be duplicated across all processors.
+  /// parameterised with variables denoting the first row and the number of
+  /// local rows; these blocks must form a complete, rank-ordered partition,
+  /// with empty intervals permitted) or all rows are duplicated across all
+  /// processors.
   /// In parallel this object also contains an OomphCommunicator object which
   /// primarily contains the MPI_Comm communicator associated with this object.
   //=============================================================================
   class LinearAlgebraDistribution
   {
   public:
+    /// Suppress the warning about zero-row processors in a distributed
+    /// linear algebra object.
+    static bool Suppress_warning_about_zero_row_distribution;
+
     /// Default Constructor - creates a Distribution that has not been
     /// setup
     LinearAlgebraDistribution() : Comm_pt(0) {}
@@ -407,6 +413,12 @@ namespace oomph
     }
 
   private:
+    /// Validate the ownership model used by distributed linear algebra.
+    void validate_distribution() const;
+
+    /// Has the warning about zero-row processors already been issued?
+    static bool Zero_row_distribution_warning_has_been_issued;
+
     /// the number of global rows
     unsigned Nrow;
 

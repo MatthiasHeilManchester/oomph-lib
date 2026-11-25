@@ -3053,8 +3053,7 @@ namespace oomph
 #ifdef OOMPH_HAS_MPI
         unsigned first_row = this->distribution_pt()->first_row();
         unsigned nrow_local = this->distribution_pt()->nrow_local();
-        unsigned last_row = first_row + nrow_local - 1;
-        if (i_dof >= first_row && i_dof <= last_row)
+        if (i_dof >= first_row && i_dof < first_row + nrow_local)
         {
           return static_cast<int>(Dof_number_dense[i_dof - first_row]);
         }
@@ -3121,8 +3120,7 @@ namespace oomph
 #ifdef OOMPH_HAS_MPI
         unsigned first_row = this->distribution_pt()->first_row();
         unsigned nrow_local = this->distribution_pt()->nrow_local();
-        unsigned last_row = first_row + nrow_local - 1;
-        if (i_dof >= first_row && i_dof <= last_row)
+        if (i_dof >= first_row && i_dof < first_row + nrow_local)
         {
           return static_cast<int>(Index_in_dof_block_dense[i_dof - first_row]);
         }

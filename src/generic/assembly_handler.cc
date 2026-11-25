@@ -1835,7 +1835,14 @@ namespace oomph
     result.redistribute(&aug_dist);
     // The required parameter is that corresponding to the dof, which
     // is only stored on the root processor
-    double parameter_residual = result[n_dof_local];
+    double parameter_residual = 0.0;
+#ifdef OOMPH_HAS_MPI
+    if ((!problem_pt->distributed()) ||
+        (problem_pt->communicator_pt()->my_rank() == 0))
+#endif
+    {
+      parameter_residual = result[n_dof_local];
+    }
 #ifdef OOMPH_HAS_MPI
     // Broadcast to all others, if we have a distributed problem
     if (problem_pt->distributed())
@@ -1915,7 +1922,13 @@ namespace oomph
     // get the last intermediate variable
     // The required parameter is that corresponding to the dof, which
     // is only stored on the root processor
-    double sigma_residual = result[2 * (n_dof_local + offset) - 1];
+    double sigma_residual = 0.0;
+#ifdef OOMPH_HAS_MPI
+    if ((!problem_pt->distributed()) || (my_rank == 0))
+#endif
+    {
+      sigma_residual = result[2 * (n_dof_local + offset) - 1];
+    }
 #ifdef OOMPH_HAS_MPI
     // Broadcast to all others, if we have a distributed problem
     if (problem_pt->distributed())
@@ -2111,7 +2124,14 @@ namespace oomph
 
     // Construct the second intermediate value,
     // assumption is that rhs has been set to the current value of the residuals
-    double parameter_residual = rhs_local[n_dof_local];
+    double parameter_residual = 0.0;
+#ifdef OOMPH_HAS_MPI
+    if ((!problem_pt->distributed()) ||
+        (problem_pt->communicator_pt()->my_rank() == 0))
+#endif
+    {
+      parameter_residual = rhs_local[n_dof_local];
+    }
 #ifdef OOMPH_HAS_MPI
     // Broadcast to all others, if we have a distributed problem
     if (problem_pt->distributed())
@@ -2189,7 +2209,13 @@ namespace oomph
     // get the last intermediate variable
     // The required parameter is that corresponding to the dof, which
     // is only stored on the root processor
-    double sigma_residual = rhs_local[2 * (n_dof_local + offset) - 1];
+    double sigma_residual = 0.0;
+#ifdef OOMPH_HAS_MPI
+    if ((!problem_pt->distributed()) || (my_rank == 0))
+#endif
+    {
+      sigma_residual = rhs_local[2 * (n_dof_local + offset) - 1];
+    }
 #ifdef OOMPH_HAS_MPI
     // Broadcast to all others, if we have a distributed problem
     if (problem_pt->distributed())

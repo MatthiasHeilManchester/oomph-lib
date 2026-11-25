@@ -37,6 +37,62 @@ using namespace std;
 
 using namespace oomph;
 
+namespace
+{
+  //============================================================================
+  /// Throw an oomph-lib error if a self-test condition is not satisfied.
+  //============================================================================
+  void require_mpi_test(const bool passed, const std::string& message)
+  {
+    if (!passed)
+    {
+      throw OomphLibError(
+        message, "generic_mpi_test", OOMPH_EXCEPTION_LOCATION);
+    }
+  }
+
+  //============================================================================
+  /// Check a condition and fail consistently on every MPI rank.
+  //============================================================================
+  void require_mpi_test_on_all_ranks(const OomphCommunicator* const comm_pt,
+                                     const bool passed,
+                                     const std::string& message)
+  {
+    unsigned local_passed = passed ? 1 : 0;
+    unsigned all_passed = 0;
+    MPI_Allreduce(&local_passed,
+                  &all_passed,
+                  1,
+                  MPI_UNSIGNED,
+                  MPI_MIN,
+                  comm_pt->mpi_comm());
+    require_mpi_test(all_passed != 0, message);
+  }
+
+  //============================================================================
+  /// Construct a distributed distribution that should fail validation.
+  //============================================================================
+  void expect_invalid_distribution(const OomphCommunicator* const comm_pt,
+                                  const unsigned first_row,
+                                  const unsigned nrow_local,
+                                  const unsigned nrow)
+  {
+    bool caught_error = false;
+    try
+    {
+      LinearAlgebraDistribution invalid_distribution(
+        comm_pt, first_row, nrow_local, nrow);
+    }
+    catch (OomphLibError& error)
+    {
+      caught_error = true;
+      error.disable_error_message();
+    }
+    require_mpi_test(caught_error,
+                     "An invalid distributed row partition was accepted.");
+  }
+} // namespace
+
 //==start_of_namespace================================================
 /// Namespace for fish-shaped solution of 1D Poisson equation
 //====================================================================
@@ -283,6 +339,19 @@ int main(int argc, char* argv[])
   unsigned my_rank = comm_pt->my_rank();
   unsigned nproc = comm_pt->nproc();
 
+  if (nproc > 1)
+  {
+    OomphCommunicator local_comm(comm_pt);
+    Vector<int> empty_int_vector;
+    Vector<double> empty_double_vector;
+    local_comm.broadcast(0, empty_int_vector);
+    local_comm.broadcast(0, empty_double_vector);
+    require_mpi_test_on_all_ranks(
+      comm_pt,
+      empty_int_vector.empty() && empty_double_vector.empty(),
+      "Broadcasting an empty vector changed its size.");
+  }
+
   // Tell us who you are...
   oomph_info << "I'm rank " << my_rank << " on a total of "
              << nproc << " processors" << std::endl;
@@ -296,6 +365,137 @@ int main(int argc, char* argv[])
   unsigned nrow_global = 100;
   LinearAlgebraDistribution distributed_distribution(comm_pt,
                                                      nrow_global); 
+
+  if (nproc > 1)
+  {
+    const unsigned uniform_first_row = my_rank * nrow_global / nproc;
+    const unsigned uniform_end_row = (my_rank + 1) * nrow_global / nproc;
+    require_mpi_test(
+      distributed_distribution.first_row() == uniform_first_row &&
+        distributed_distribution.nrow_local() ==
+          uniform_end_row - uniform_first_row,
+      "A valid uniform distributed row partition was not preserved.");
+
+    const unsigned unequal_nrow_local = my_rank + 1;
+    const unsigned unequal_first_row = my_rank * (my_rank + 1) / 2;
+    const unsigned unequal_nrow = nproc * (nproc + 1) / 2;
+    LinearAlgebraDistribution unequal_distribution(
+      comm_pt, unequal_first_row, unequal_nrow_local, unequal_nrow);
+    require_mpi_test(
+      unequal_distribution.nrow_local() == unequal_nrow_local,
+      "A valid unequal distributed row partition was not preserved.");
+
+    if (my_rank == 0)
+    {
+      expect_invalid_distribution(comm_pt, 0, 1, nproc + 1); // gap at rank 1
+      expect_invalid_distribution(comm_pt,
+                                  0,
+                                  2,
+                                  nproc + 1); // overlap at rank 1
+      expect_invalid_distribution(comm_pt,
+                                  my_rank,
+                                  1,
+                                  nproc + 1); // incorrect final endpoint
+    }
+    else
+    {
+      const unsigned rank = my_rank;
+      const unsigned gap_first_row = rank + 1;
+      const unsigned overlap_first_row = rank;
+      const unsigned endpoint_first_row = rank;
+      expect_invalid_distribution(
+        comm_pt, gap_first_row, 1, nproc + 1);
+      expect_invalid_distribution(
+        comm_pt, overlap_first_row, 1, nproc + 1);
+      expect_invalid_distribution(
+        comm_pt, endpoint_first_row, 1, nproc + 1);
+    }
+
+    unsigned zero_row_first_row = 0;
+    unsigned zero_row_nrow_local = 0;
+    unsigned zero_row_nrow = 1;
+    if (nproc >= 3)
+    {
+      zero_row_nrow_local = (my_rank < 2) ? 0 : 1;
+      zero_row_first_row = (my_rank < 2) ? 0 : my_rank - 2;
+      zero_row_nrow = nproc - 2;
+    }
+    else if (my_rank == 1)
+    {
+      zero_row_nrow_local = 1;
+    }
+
+    std::ostringstream zero_row_warning_stream;
+    OomphLibWarning::set_stream_pt(&zero_row_warning_stream);
+    LinearAlgebraDistribution::Suppress_warning_about_zero_row_distribution =
+      true;
+    LinearAlgebraDistribution zero_row_distribution(
+      comm_pt, zero_row_first_row, zero_row_nrow_local, zero_row_nrow);
+    require_mpi_test(
+      zero_row_distribution.nrow_local() == zero_row_nrow_local,
+      "A valid distributed partition with zero-row processors was rejected.");
+    require_mpi_test(zero_row_distribution.nrow() == zero_row_nrow,
+                     "A valid zero-row partition has an incorrect global size.");
+    require_mpi_test_on_all_ranks(
+      comm_pt,
+      zero_row_warning_stream.str().empty(),
+      "The zero-row distribution warning was not suppressed.");
+
+    LinearAlgebraDistribution::Suppress_warning_about_zero_row_distribution =
+      false;
+    LinearAlgebraDistribution zero_row_warning_distribution(
+      comm_pt, zero_row_first_row, zero_row_nrow_local, zero_row_nrow);
+    require_mpi_test(
+      zero_row_warning_distribution.nrow_local() == zero_row_nrow_local,
+      "A valid zero-row distribution changed its local row count.");
+    const bool warning_was_emitted =
+      (my_rank == 0) ?
+        (zero_row_warning_stream.str().find(
+           "This distributed LinearAlgebraDistribution is legal") !=
+         std::string::npos) :
+        zero_row_warning_stream.str().empty();
+    OomphLibWarning::set_stream_pt(&output_stream);
+    require_mpi_test_on_all_ranks(
+      comm_pt,
+      warning_was_emitted,
+      "The zero-row distribution warning was not emitted once on rank 0.");
+
+    zero_row_warning_stream.str("");
+    zero_row_warning_stream.clear();
+    LinearAlgebraDistribution repeated_zero_row_distribution(
+      comm_pt, zero_row_first_row, zero_row_nrow_local, zero_row_nrow);
+    require_mpi_test_on_all_ranks(
+      comm_pt,
+      zero_row_warning_stream.str().empty(),
+      "The zero-row distribution warning was repeated.");
+
+    LinearAlgebraDistribution::Suppress_warning_about_zero_row_distribution =
+      true;
+    const unsigned trailing_zero_first_row = (my_rank == 0) ? 0 : 1;
+    const unsigned trailing_zero_nrow_local = (my_rank == 0) ? 1 : 0;
+    LinearAlgebraDistribution trailing_zero_distribution(
+      comm_pt, trailing_zero_first_row, trailing_zero_nrow_local, 1);
+    require_mpi_test_on_all_ranks(
+      comm_pt,
+      trailing_zero_distribution.nrow_local() == trailing_zero_nrow_local,
+      "A valid partition with trailing zero-row processors was rejected.");
+
+    if (nproc >= 3)
+    {
+      const unsigned interior_zero_first_row = (my_rank == 0) ? 0 : 1;
+      const unsigned interior_zero_nrow_local =
+        (my_rank == 0 || my_rank == nproc - 1) ? 1 : 0;
+      LinearAlgebraDistribution interior_zero_distribution(
+        comm_pt, interior_zero_first_row, interior_zero_nrow_local, 2);
+      require_mpi_test_on_all_ranks(
+        comm_pt,
+        interior_zero_distribution.nrow_local() ==
+          interior_zero_nrow_local,
+        "A valid partition with interior zero-row processors was rejected.");
+    }
+    LinearAlgebraDistribution::Suppress_warning_about_zero_row_distribution =
+      false;
+  }
 
   // Show us how many rows this processor holds
   oomph_info << "distributed distribution: first_row and nrow_local: "
@@ -400,6 +600,28 @@ int main(int argc, char* argv[])
   CRDoubleMatrix my_matrix2(&distributed_distribution,ncol,values,
                            column_indices,row_start);
   
+  if (nproc > 1)
+  {
+    const unsigned target_first_row = my_rank;
+    const unsigned target_nrow_local =
+      (my_rank == nproc - 1) ? nrow_global - nproc + 1 : 1;
+    LinearAlgebraDistribution target_distribution(
+      comm_pt, target_first_row, target_nrow_local, nrow_global);
+    bool caught_unsupported_redistribution = false;
+    try
+    {
+      my_matrix2.redistribute(&target_distribution);
+    }
+    catch (OomphLibError& error)
+    {
+      caught_unsupported_redistribution = true;
+      error.disable_error_message();
+    }
+    require_mpi_test(caught_unsupported_redistribution,
+                     "Distributed-to-distributed CRDoubleMatrix "
+                     "redistribution did not raise OomphLibError.");
+  }
+
   // Get the first (global) row of my_matrix on this process
   first_row =  my_matrix2.distribution_pt()->first_row();
   
@@ -463,6 +685,27 @@ int main(int argc, char* argv[])
    << my_matrix.nrow_local() << " " 
    << my_matrix.nnz() << " " 
    << std::endl;
+
+  Data global_data(1);
+  problem.add_global_data(&global_data);
+  bool caught_unsupported_global_data = false;
+  try
+  {
+    problem.assign_eqn_numbers();
+  }
+  catch (OomphLibError& error)
+  {
+    caught_unsupported_global_data = true;
+    error.disable_error_message();
+  }
+  require_mpi_test(caught_unsupported_global_data == (nproc > 1),
+                   "Free problem-level global data had an unexpected MPI "
+                   "support result.");
+
+  global_data.pin(0);
+  problem.assign_eqn_numbers();
+  problem.flush_global_data();
+
 
   // Finalize MPI
   MPI_Helpers::finalize();
