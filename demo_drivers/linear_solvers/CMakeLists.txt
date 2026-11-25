@@ -80,7 +80,7 @@ if(NOT OOMPH_HAS_MPI)
       SOURCES TrilinosSolver_test_transition.cc
       LIBRARIES oomph::poisson oomph::meshes oomph::generic)
   endif()
-  
+
   if(OOMPH_HAS_NEW_TRILINOS)
     oomph_add_executable(
       NAME TrilinosSolver_test_transition_new_trilinos
