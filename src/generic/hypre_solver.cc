@@ -112,12 +112,16 @@ namespace oomph
   namespace HypreHelpers
   {
 
+    /// Hypre doesn't allow linear algebra distributions where
+    /// any processors hold zero rows of the matrix.
     void check_for_zero_row_distribution(
       const LinearAlgebraDistribution* dist_pt)
     {
 #ifdef OOMPH_HAS_MPI
       if (dist_pt->distributed())
-      {
+      { 
+        // Do some magic to figure out the lowest ranked processor
+        // (if any!) that holds zero rows of the matrix 
         const int nproc = dist_pt->communicator_pt()->nproc();
         const int my_rank = dist_pt->communicator_pt()->my_rank();
         const int local_zero_row =
@@ -286,7 +290,9 @@ namespace oomph
                              HYPRE_IJVector& hypre_ij_vector,
                              HYPRE_ParVector& hypre_par_vector)
     {
+#ifdef PARANOID
       check_for_zero_row_distribution(dist_pt);
+#endif
 
       // the lower and upper row of the vector on this processor
       unsigned lower = dist_pt->first_row();
@@ -390,7 +396,9 @@ namespace oomph
                        distributed);
       }
 
+#ifdef PARANOID
       check_for_zero_row_distribution(dist_pt);
+#endif
 
       // initialize hypre matrix
       unsigned lower = dist_pt->first_row();

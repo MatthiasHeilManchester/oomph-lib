@@ -2576,12 +2576,15 @@ namespace oomph
     const LinearAlgebraDistribution* const& dist_pt)
   {
 #ifdef OOMPH_HAS_MPI
+
+    // Work in progress warning at the beginning; see below
+    // for fragments of an unfinished/unvalidated implementation
     if (this->distributed() && dist_pt->distributed() &&
         !((*this->distribution_pt()) == *dist_pt))
     {
       throw OomphLibError(
-        "Distributed-to-distributed CRDoubleMatrix redistribution is "
-        "currently unfinished and unsupported.",
+        "Distributed-to-distributed CRDoubleMatrix redistribution is currently "
+        "unfinished and unsupported. Draft code exists. Do you want to finish it?",
         OOMPH_CURRENT_FUNCTION,
         OOMPH_EXCEPTION_LOCATION);
     }
@@ -2639,7 +2642,9 @@ namespace oomph
       // if both distributions are distributed
       // =====================================
       if (this->distributed() && dist_pt->distributed())
-      {
+       { 
+        // START OF UNFINISHED/UNVALIDATED CODE
+
         // new nrow_local and first_row data
         Vector<unsigned> new_first_row(nproc);
         Vector<unsigned> new_nrow_local(nproc);
@@ -2978,7 +2983,9 @@ namespace oomph
         //   m_pt->sparse_indexed_output("m2.dat");
         //  }
         //       this->sparse_indexed_output(oomph_info);
-      }
+
+        // END OF UNFINISHED/UNVALIDATED CODE
+       }
 
       // if this matrix is distributed but the new distributed matrix is global
       // ======================================================================

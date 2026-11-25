@@ -33,8 +33,7 @@ namespace oomph
     false;
 
   /// Has the warning about zero-row processors already been issued?
-  bool
-    LinearAlgebraDistribution::Zero_row_distribution_warning_has_been_issued =
+  bool LinearAlgebraDistribution::Zero_row_distribution_warning_has_been_issued =
       false;
 
   //============================================================================
@@ -119,7 +118,10 @@ namespace oomph
       Distributed = false;
     }
 
+#ifdef PARANOID
     validate_distribution();
+#endif
+
   }
 
   //============================================================================
@@ -174,13 +176,18 @@ namespace oomph
     }
 #endif
 
+#ifdef PARANOID
     validate_distribution();
+#endif
+
   }
 
   //============================================================================
   /// Enforce the rank-ordered ownership model used by distributed linear
-  /// algebra. Serial and replicated distributions intentionally have no
-  /// per-rank partition to validate.
+  /// algebra: Each processor has to hold a nonzero number of rows and the
+  /// rows have to be contiguous. 
+  /// Serial and replicated distributions intentionally have no
+  /// per-rank partition to validate. Throws an error if things go wrong.
   //============================================================================
   void LinearAlgebraDistribution::validate_distribution() const
   {
@@ -194,6 +201,8 @@ namespace oomph
     unsigned long long expected_first_row = 0;
     for (unsigned p = 0; p < nproc; p++)
     {
+
+      // Is the distrbution contiguous?
       if (First_row[p] != expected_first_row)
       {
         std::ostringstream error_message;
@@ -212,6 +221,7 @@ namespace oomph
                             OOMPH_EXCEPTION_LOCATION);
       }
 
+      // Next first row; shouldn't extend beyond the size of the linear algebra object
       expected_first_row += Nrow_local[p];
       if (expected_first_row > Nrow)
       {
@@ -227,6 +237,7 @@ namespace oomph
       }
     }
 
+    // Do we reach the end?
     if (expected_first_row != Nrow)
     {
       std::ostringstream error_message;
@@ -241,6 +252,7 @@ namespace oomph
                           OOMPH_EXCEPTION_LOCATION);
     }
 
+    // Do any processors hold zero rows?
     bool contains_zero_row_processor = false;
     for (unsigned p = 0; p < nproc; p++)
     {

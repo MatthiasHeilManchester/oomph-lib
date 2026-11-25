@@ -295,10 +295,14 @@ namespace oomph
     // distribution of preconditioner is same as matrix
     this->build_distribution(cast_matrix_pt->distribution_pt());
 
+#ifdef PARANOID
 #ifdef OOMPH_HAS_MPI
     if (cast_matrix_pt->distributed())
     {
+      // does the current processor hold zero rows of the matrix?
       const int local_zero_row = (cast_matrix_pt->nrow_local() == 0) ? 1 : 0;
+
+      // What about everybody else?
       int any_zero_row = 0;
       MPI_Allreduce(
         &local_zero_row,
@@ -307,6 +311,8 @@ namespace oomph
         MPI_INT,
         MPI_MAX,
         cast_matrix_pt->distribution_pt()->communicator_pt()->mpi_comm());
+
+      // Bail: AztecOO can't hack it!
       if (any_zero_row != 0)
       {
         std::ostringstream error_message;
@@ -322,6 +328,7 @@ namespace oomph
                             OOMPH_EXCEPTION_LOCATION);
       }
     }
+#endif
 #endif
 
     // create the new solver

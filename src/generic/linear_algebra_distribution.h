@@ -64,7 +64,9 @@ namespace oomph
   //=============================================================================
   class LinearAlgebraDistribution
   {
+   
   public:
+   
     /// Suppress the warning about zero-row processors in a distributed
     /// linear algebra object.
     static bool Suppress_warning_about_zero_row_distribution;
@@ -413,8 +415,13 @@ namespace oomph
     }
 
   private:
+
+#ifdef PARANOID
+
     /// Validate the ownership model used by distributed linear algebra.
     void validate_distribution() const;
+
+#endif
 
     /// Has the warning about zero-row processors already been issued?
     static bool Zero_row_distribution_warning_has_been_issued;

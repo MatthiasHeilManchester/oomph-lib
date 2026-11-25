@@ -820,8 +820,8 @@ namespace oomph
             unsigned eqn_number = Solid_mesh_pt->element_pt(e)->eqn_number(i);
 
             // if I have lookup information on this processor
-            if (eqn_number >= first_lookup_row &&
-                eqn_number < first_lookup_row + nrow_local)
+            if ((eqn_number >= first_lookup_row) &&
+                (eqn_number < (first_lookup_row + nrow_local)))
             {
               // bypass non displacement/position DOFs
               if (this->block_number(eqn_number) == 0)

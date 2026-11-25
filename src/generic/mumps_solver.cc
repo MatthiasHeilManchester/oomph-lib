@@ -218,11 +218,15 @@ namespace oomph
                           OOMPH_EXCEPTION_LOCATION);
     }
 
+#ifdef PARANOID
 #ifdef OOMPH_HAS_MPI
     if (dist_matrix_pt->distribution_pt()->distributed())
     {
+      // Do we store zero rows of the matrix?
       const int local_zero_row =
         (dist_matrix_pt->distribution_pt()->nrow_local() == 0) ? 1 : 0;
+
+      // What about everybody else?
       int any_zero_row = 0;
       MPI_Allreduce(
         &local_zero_row,
@@ -231,6 +235,8 @@ namespace oomph
         MPI_INT,
         MPI_MAX,
         dist_matrix_pt->distribution_pt()->communicator_pt()->mpi_comm());
+
+      // Bail!
       if (any_zero_row != 0)
       {
         std::ostringstream error_message_stream;
@@ -246,6 +252,7 @@ namespace oomph
                             OOMPH_EXCEPTION_LOCATION);
       }
     }
+#endif
 #endif
 
 

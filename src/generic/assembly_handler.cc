@@ -1833,6 +1833,7 @@ namespace oomph
     // set to the current value of the residuals
     // First, redistribute into the Natural distribution of the augmented system
     result.redistribute(&aug_dist);
+
     // The required parameter is that corresponding to the dof, which
     // is only stored on the root processor
     double parameter_residual = 0.0;

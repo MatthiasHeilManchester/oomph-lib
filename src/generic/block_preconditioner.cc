@@ -848,11 +848,15 @@ namespace oomph
         (this->distribution_pt()->distributed() &&
          this->distribution_pt()->communicator_pt()->nproc() > 1);
 
+#ifdef PARANOID
 #ifdef OOMPH_HAS_MPI
       if (matrix_distributed)
       {
+        // Do we store zero rows on the current processor?
         int local_zero_row =
           (this->distribution_pt()->nrow_local() == 0) ? 1 : 0;
+
+        // Figure out what the other processors found
         int any_zero_row = 0;
         MPI_Allreduce(&local_zero_row,
                       &any_zero_row,
@@ -860,6 +864,8 @@ namespace oomph
                       MPI_INT,
                       MPI_MAX,
                       this->distribution_pt()->communicator_pt()->mpi_comm());
+        
+        // Bail
         if (any_zero_row != 0)
         {
           delete[] index_in_dof_block_sparse_send;
@@ -873,6 +879,7 @@ namespace oomph
             OOMPH_EXCEPTION_LOCATION);
         }
       }
+#endif
 #endif
 
 
@@ -5273,8 +5280,11 @@ namespace oomph
     else
     {
 #ifdef OOMPH_HAS_MPI
+#ifdef PARANOID
+      // Does the current processor store zero rows of the matrix?
       int local_zero_row =
         (Internal_block_distribution_pt[block_i]->nrow_local() == 0) ? 1 : 0;
+      // What about everybody else?
       int any_zero_row = 0;
       MPI_Allreduce(&local_zero_row,
                     &any_zero_row,
@@ -5282,6 +5292,7 @@ namespace oomph
                     MPI_INT,
                     MPI_MAX,
                     this->distribution_pt()->communicator_pt()->mpi_comm());
+      // Bail. 
       if (any_zero_row != 0)
       {
         throw OomphLibError(
@@ -5290,6 +5301,7 @@ namespace oomph
           OOMPH_CURRENT_FUNCTION,
           OOMPH_EXCEPTION_LOCATION);
       }
+#endif
 
       // number of processors
       unsigned nproc = this->distribution_pt()->communicator_pt()->nproc();

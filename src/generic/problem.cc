@@ -2122,8 +2122,14 @@ namespace oomph
     // Storage for number of processors
     int n_proc = this->communicator_pt()->nproc();
 
+#ifdef PARANOID
+    // Global Data is currently not handled in distributed problems
+    // though it could be! Intercept and encourage contributions 
+    // once an actual use case exists
     if (n_proc > 1)
     {
+      // check any unpinned global data values on local processor
+      // (if they're all pinned we don't care!)
       unsigned local_has_free_global_data = 0;
       for (unsigned i = 0; i < nglobal_data(); i++)
       {
@@ -2143,6 +2149,7 @@ namespace oomph
         }
       }
 
+      // What about elsewhere?
       unsigned any_rank_has_free_global_data = 0;
       MPI_Allreduce(&local_has_free_global_data,
                     &any_rank_has_free_global_data,
@@ -2150,13 +2157,15 @@ namespace oomph
                     MPI_UNSIGNED,
                     MPI_MAX,
                     this->communicator_pt()->mpi_comm());
+
+      // Bail
       if (any_rank_has_free_global_data != 0)
       {
         std::ostringstream error_message;
         error_message
           << "Free problem-level Global_data_pt degrees of freedom are not "
           << "currently supported in distributed/MPI problems. Pinned global "
-          << "data remain permissible. Pin or remove these unknowns, "
+          << "Data values remain permissible. Pin or remove these unknowns, "
           << "reformulate the problem without free global data, or implement "
           << "and test the missing distributed support.";
         throw OomphLibError(error_message.str(),
@@ -2164,7 +2173,7 @@ namespace oomph
                             OOMPH_EXCEPTION_LOCATION);
       }
     }
-
+#endif
 
     if (n_proc > 1)
     {
