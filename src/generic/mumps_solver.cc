@@ -224,14 +224,13 @@ namespace oomph
       const int local_zero_row =
         (dist_matrix_pt->distribution_pt()->nrow_local() == 0) ? 1 : 0;
       int any_zero_row = 0;
-      MPI_Allreduce(&local_zero_row,
-                    &any_zero_row,
-                    1,
-                    MPI_INT,
-                    MPI_MAX,
-                    dist_matrix_pt->distribution_pt()
-                      ->communicator_pt()
-                      ->mpi_comm());
+      MPI_Allreduce(
+        &local_zero_row,
+        &any_zero_row,
+        1,
+        MPI_INT,
+        MPI_MAX,
+        dist_matrix_pt->distribution_pt()->communicator_pt()->mpi_comm());
       if (any_zero_row != 0)
       {
         std::ostringstream error_message_stream;

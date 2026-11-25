@@ -33,8 +33,9 @@ namespace oomph
     false;
 
   /// Has the warning about zero-row processors already been issued?
-  bool LinearAlgebraDistribution::Zero_row_distribution_warning_has_been_issued =
-    false;
+  bool
+    LinearAlgebraDistribution::Zero_row_distribution_warning_has_been_issued =
+      false;
 
   //============================================================================
   /// Sets the distribution. Takes first_row, local_nrow and
@@ -202,7 +203,7 @@ namespace oomph
                       << ", but the preceding rank-ordered intervals must end "
                       << "at row " << expected_first_row << ". This indicates "
                       << (First_row[p] > expected_first_row ? "a gap" :
-                                                               "an overlap")
+                                                              "an overlap")
                       << "; distributed ownership must be a complete, "
                       << "non-overlapping partition of the global rows "
                       << "[0, " << Nrow << ").";
@@ -219,8 +220,7 @@ namespace oomph
                       << "rank " << p << ": first_row = " << First_row[p]
                       << ", nrow_local = " << Nrow_local[p]
                       << ", and the interval ends at " << expected_first_row
-                      << ", beyond the global row count nrow = " << Nrow
-                      << ".";
+                      << ", beyond the global row count nrow = " << Nrow << ".";
         throw OomphLibError(error_message.str(),
                             "LinearAlgebraDistribution::validate_distribution",
                             OOMPH_EXCEPTION_LOCATION);
@@ -231,8 +231,8 @@ namespace oomph
     {
       std::ostringstream error_message;
       error_message << "Invalid distributed LinearAlgebraDistribution: the "
-                    << "final interval on rank " << (nproc - 1)
-                    << " starts at " << First_row[nproc - 1] << " and has "
+                    << "final interval on rank " << (nproc - 1) << " starts at "
+                    << First_row[nproc - 1] << " and has "
                     << Nrow_local[nproc - 1] << " rows, ending at "
                     << expected_first_row << ", but the global row count is "
                     << Nrow << ". The intervals must end exactly at nrow().";

@@ -137,8 +137,7 @@ namespace oomph
                "linear-algebra distribution with a processor owning zero "
                "rows.\n"
             << "Processor " << first_zero_row_rank << " owns zero rows in a "
-            << dist_pt->nrow() << "-row problem on " << nproc
-            << " processors.";
+            << dist_pt->nrow() << "-row problem on " << nproc << " processors.";
           throw OomphLibError(error_message.str(),
                               OOMPH_CURRENT_FUNCTION,
                               OOMPH_EXCEPTION_LOCATION);
