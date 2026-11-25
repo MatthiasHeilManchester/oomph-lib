@@ -119,9 +119,9 @@ namespace oomph
     {
 #ifdef OOMPH_HAS_MPI
       if (dist_pt->distributed())
-      { 
+      {
         // Do some magic to figure out the lowest ranked processor
-        // (if any!) that holds zero rows of the matrix 
+        // (if any!) that holds zero rows of the matrix
         const int nproc = dist_pt->communicator_pt()->nproc();
         const int my_rank = dist_pt->communicator_pt()->my_rank();
         const int local_zero_row =

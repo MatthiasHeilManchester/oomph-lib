@@ -864,7 +864,7 @@ namespace oomph
                       MPI_INT,
                       MPI_MAX,
                       this->distribution_pt()->communicator_pt()->mpi_comm());
-        
+
         // Bail
         if (any_zero_row != 0)
         {
@@ -5292,7 +5292,7 @@ namespace oomph
                     MPI_INT,
                     MPI_MAX,
                     this->distribution_pt()->communicator_pt()->mpi_comm());
-      // Bail. 
+      // Bail.
       if (any_zero_row != 0)
       {
         throw OomphLibError(

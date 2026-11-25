@@ -2124,7 +2124,7 @@ namespace oomph
 
 #ifdef PARANOID
     // Global Data is currently not handled in distributed problems
-    // though it could be! Intercept and encourage contributions 
+    // though it could be! Intercept and encourage contributions
     // once an actual use case exists
     if (n_proc > 1)
     {

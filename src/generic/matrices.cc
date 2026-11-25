@@ -2584,7 +2584,8 @@ namespace oomph
     {
       throw OomphLibError(
         "Distributed-to-distributed CRDoubleMatrix redistribution is currently "
-        "unfinished and unsupported. Draft code exists. Do you want to finish it?",
+        "unfinished and unsupported. Draft code exists. Do you want to finish "
+        "it?",
         OOMPH_CURRENT_FUNCTION,
         OOMPH_EXCEPTION_LOCATION);
     }
@@ -2642,7 +2643,7 @@ namespace oomph
       // if both distributions are distributed
       // =====================================
       if (this->distributed() && dist_pt->distributed())
-       { 
+      {
         // START OF UNFINISHED/UNVALIDATED CODE
 
         // new nrow_local and first_row data
@@ -2985,7 +2986,7 @@ namespace oomph
         //       this->sparse_indexed_output(oomph_info);
 
         // END OF UNFINISHED/UNVALIDATED CODE
-       }
+      }
 
       // if this matrix is distributed but the new distributed matrix is global
       // ======================================================================
