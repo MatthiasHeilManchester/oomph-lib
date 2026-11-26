@@ -413,7 +413,6 @@ namespace oomph
     }
 
   private:
-
     /// Validate the ownership model used by distributed linear algebra.
     void validate_distribution() const;
 
