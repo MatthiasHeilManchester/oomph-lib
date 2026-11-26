@@ -310,6 +310,9 @@ void PoissonProblem<ELEMENT>::doc_solution(DocInfo& doc_info)
 //========================================================================
 int main(int argc, char **argv)
 {
+
+#ifdef OOMPH_HAS_OLD_TRILINOS
+ 
   // Note: there is a memory leak in trilinos itself as 
   // demonstrated by this bit of code!
   if (false)
@@ -322,6 +325,8 @@ int main(int argc, char **argv)
     exit(0);
    }
 
+#endif
+  
  // Set the orientation of the "step" to 45 degrees
  TanhSolnForPoisson::TanPhi=1.0;
 
@@ -359,10 +364,12 @@ int main(int argc, char **argv)
   // Create new solver (either GMRES-only or some abstract iterative
   // linear solver from Trilinos17 that can act as GMRES)
   // TrilinosAztecOOSolver* linear_solver_pt = new TrilinosAztecOOSolver;
-  
+  LinearSolver* linear_solver_pt=0;
   
 #endif
 
+
+#ifdef OOMPH_HAS_OLD_TRILINOS
   
   // // Create the Trilinos ML preconditioner
   // TrilinosMLPreconditioner* preconditioner_pt = new TrilinosMLPreconditioner;
@@ -378,7 +385,6 @@ int main(int argc, char **argv)
   // if the new versions of trilinos provide the required machinery
   linear_solver_pt->enable_doc_convergence_history();
   linear_solver_pt->open_convergence_history_file_stream("conv_history.dat");
-
   
   linear_solver_pt->enable_doc_time();
   
@@ -395,11 +401,13 @@ int main(int argc, char **argv)
   //     break;
   //    case 1:
 
+
   
   linear_solver_pt->solver_type() = TrilinosAztecOOSolver::GMRES;
   cout << "Using GMRES as solver" << endl;
   cout << "=====================" << endl;
   
+#endif
   
   //  break;
   // case 2: 
